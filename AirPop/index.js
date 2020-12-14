@@ -46,17 +46,9 @@ initEventsHtml();
 
 function initEventsHtml() {
   document.querySelectorAll(".header-scroll__item").forEach(function (el) {
-    console.log(el);
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log(el, 'click');
       let target = this.getAttribute("href");
-      console.log('target', target);
-      console.log('offset', jQuery(target).offset().top - jQuery(".header-scroll").outerHeight());
-      console.log(jQuery(target).offset().top);
-      console.log(jQuery(".header-scroll").outerHeight());
-
-      
       jQuery('html, body').animate({
         scrollTop: jQuery(target).offset().top - jQuery(".header-scroll").outerHeight()
       }, 1500);
