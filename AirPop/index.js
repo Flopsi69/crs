@@ -1,3 +1,22 @@
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2078786,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'innovation_content_on_pdp');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Innovation page content on PDP',
+    'eventAction': 'loaded'
+});
+
 let stylesList = `
   .header-scroll {
     position: fixed;
@@ -34,9 +53,9 @@ document.head.appendChild(styles);
 
 let block = `
   <div class="header-scroll" style='display: none;'>
-    <a href='#image5fd740d79afcd' class="header-scroll__item">AirPop’s hybrid approach</a>
-    <a href='#row5fc6832571d3a' class="header-scroll__item">Two - way filtration</a>
-    <a href='#row5fc6832571eff' class="header-scroll__item">Accreditation & Test results</a>
+    <a href='#image5fd740d79afcd' class="header-scroll__item header-scroll__hybrid">AirPop’s hybrid approach</a>
+    <a href='#row5fc6832571d3a' class="header-scroll__item header-scroll__filtration">Two - way filtration</a>
+    <a href='#row5fc6832571eff' class="header-scroll__item header-scroll__results">Accreditation & Test results</a>
   </div>
 `;
 
@@ -48,6 +67,28 @@ function initEventsHtml() {
   document.querySelectorAll(".header-scroll__item").forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      if (jQuery(this).hasClass("header-scroll__hybrid")) {
+        console.log('1');
+        dataLayer.push({
+          'event': 'event-to-ga',
+          'eventCategory': 'Exp: Innovation page content on PDP',
+          'eventAction': 'click on Airpop hybrid approach'
+      });
+      } else if (jQuery(this).hasClass("header-scroll__filtration")) {
+        console.log('2');
+        dataLayer.push({
+          'event': 'event-to-ga',
+          'eventCategory': 'Exp: Innovation page content on PDP',
+          'eventAction': 'click on Two-way filtration'
+        });
+      } else if (jQuery(this).hasClass("header-scroll__results")) { 
+        console.log('3');
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Innovation page content on PDP',
+            'eventAction': 'click on Accreditation & Test results'
+        });
+      }
       let target = this.getAttribute("href");
       jQuery('html, body').animate({
         scrollTop: jQuery(target).offset().top - jQuery(".header-scroll").outerHeight()
