@@ -99,7 +99,7 @@ function initEventsHtml() {
 
 
 jQuery(window).scroll(function () {
-  if (jQuery(this).scrollTop() > (jQuery(".tocart").offset().top + jQuery(".tocart").outerHeight())) {
+  if (jQuery(this).scrollTop() > (jQuery(".product-info-delivery").offset().top - jQuery(window).height())) {
     if (jQuery(".page-header").css('display') == 'block') {
       jQuery(".header-scroll").slideDown();
       jQuery('.page-header').slideUp();
