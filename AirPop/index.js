@@ -73,7 +73,7 @@ switch (locationLang) {
     scrollResults = "Accreditatie en testresultaten";
     scrollHybridLink = "#image5fdcb0a6293a0";
     scrollFiltrationLink = "#row5fdcb04a34c8a";
-    scrollResultsLink = "#row5fafeebb161c8";
+    scrollResultsLink = "#row5fdcb04a34dfe";
     
     break;
   case 'de':
@@ -82,7 +82,7 @@ switch (locationLang) {
     scrollResults = "Akkreditierung & Testergebnisse";
     scrollHybridLink = "#row5fafeebb15ded";
     scrollFiltrationLink = "#row5fafeebb16061";
-    scrollResultsLink = "#row5fdcb04a34dfe";
+    scrollResultsLink = "#row5fafeebb161c8";
     
     break;
   
