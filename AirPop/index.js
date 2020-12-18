@@ -17,6 +17,9 @@ dataLayer.push({
     'eventAction': 'loaded'
 });
 
+var locationLang = location.pathname.split('/')[1];
+
+
 let stylesList = `
   .header-scroll {
     position: fixed;
@@ -45,23 +48,59 @@ let stylesList = `
   .header-scroll__item + .header-scroll__item {
     border-left: 1px solid #35B4BB;
   }
+  .innovations-block #image5fdc91d5b4807 {
+    display: none!important;
+  }
 `;
 
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
 document.head.appendChild(styles);
 
+let scrollHybrid, scrollFiltration, scrollResults;
+switch (locationLang) {
+  case 'it':
+    scrollHybrid = "L'approccio ibrido di AirPop";
+    scrollFiltration = "Filtrazione a due vie";
+    scrollResults = "Accreditamento e risultati dei test";
+    break;
+  case 'nl':
+    scrollHybrid = "De hybride benadering van AirPop";
+    scrollFiltration = "Tweerichtingsfiltratie";
+    scrollResults = "Accreditatie en testresultaten";
+    break;
+  case 'de':
+    scrollHybrid = "Der hybride Ansatz von AirPop";
+    scrollFiltration = "Zweiwegefiltration";
+    scrollResults = "Akkreditierung & Testergebnisse";
+    break;
+  
+  default:
+    scrollHybrid = "AirPop’s hybrid approach";
+    scrollFiltration = "Two - way filtration";
+    scrollResults = "Accreditation & Test results";
+    break;
+}
+
 let block = `
   <div class="header-scroll" style='display: none;'>
-    <a href='#image5fd740d79afcd' class="header-scroll__item header-scroll__hybrid">AirPop’s hybrid approach</a>
-    <a href='#row5fc6832571d3a' class="header-scroll__item header-scroll__filtration">Two - way filtration</a>
-    <a href='#row5fc6832571eff' class="header-scroll__item header-scroll__results">Accreditation & Test results</a>
+    <a href='#image5fd740d79afcd' class="header-scroll__item header-scroll__hybrid">${scrollHybrid}</a>
+    <a href='#row5fc6832571d3a' class="header-scroll__item header-scroll__filtration">${scrollFiltration}</a>
+    <a href='#row5fc6832571eff' class="header-scroll__item header-scroll__results">${scrollResults}</a>
   </div>
 `;
 
 document.querySelector(".page-header").insertAdjacentHTML("beforebegin", block);
 initEventsHtml();
 
+var innovationBlock = document.createElement("div");
+innovationBlock.classList.add("innovations-block");
+
+jQuery(".innovations-block").find(".pd-row.row").last().css("display", "none");
+
+jQuery(innovationBlock).load(location.origin + "/" + locationLang + "/innovation .column.main");
+
+jQuery('.product-background').after(innovationBlock);
 
 function initEventsHtml() {
   document.querySelectorAll(".header-scroll__item").forEach(function (el) {
