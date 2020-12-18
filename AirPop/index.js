@@ -100,7 +100,7 @@ function initEventsHtml() {
 var lastScrollTop = 0;
 jQuery(window).scroll(function () {
   if (jQuery(this).scrollTop() > (jQuery(".product-info-delivery").offset().top - jQuery(window).height())) {
-    var st = $(this).scrollTop();
+    var st = jQuery(this).scrollTop();
     if (st > lastScrollTop) {
       // downscroll code
       if (jQuery(".page-header").css('display') == 'block') {
