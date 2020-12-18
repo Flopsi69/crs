@@ -109,12 +109,13 @@ initEventsHtml();
 var innovationBlock = document.createElement("div");
 innovationBlock.classList.add("innovations-block");
 
-jQuery(".innovations-block").find(".pd-row.row").last().remove();
-jQuery(".innovations-block").find(".pd-row.row").first().remove();
 
 
 
-jQuery(innovationBlock).load(location.origin + "/" + locationLang + "/innovation .column.main");
+jQuery(innovationBlock).load(location.origin + "/" + locationLang + "/innovation .column.main", function () {
+  jQuery(".innovations-block").find(".pd-row.row").last().remove();
+  jQuery(".innovations-block").find(".pd-row.row").first().remove();
+});
 
 jQuery('.product-background').after(innovationBlock);
 
