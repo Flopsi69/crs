@@ -48,7 +48,7 @@ let stylesList = `
   .header-scroll__item + .header-scroll__item {
     border-left: 1px solid #35B4BB;
   }
-  .innovations-block #image5fdc91d5b4807 {
+  .innovations-block #image5fdc91d5b4807, .innovations-block #image5fdcb230395b7 {
     display: none!important;
   }
 `;
@@ -71,9 +71,9 @@ switch (locationLang) {
     scrollHybrid = "De hybride benadering van AirPop";
     scrollFiltration = "Tweerichtingsfiltratie";
     scrollResults = "Accreditatie en testresultaten";
-    scrollHybridLink = "#image5fdcb0a6293a0";
-    scrollFiltrationLink = "#row5fdcb04a34c8a";
-    scrollResultsLink = "#row5fdcb04a34dfe";
+    scrollHybridLink = "#row5fdcb1d70215a";
+    scrollFiltrationLink = "#row5fdcb1d7023bf";
+    scrollResultsLink = "#row5fdcb1d70252f";
     break;
   case 'de':
     scrollHybrid = "Der hybride Ansatz von AirPop";
