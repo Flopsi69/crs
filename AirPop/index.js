@@ -97,17 +97,23 @@ function initEventsHtml() {
   })
 }
 
-
+var lastScrollTop = 0;
 jQuery(window).scroll(function () {
   if (jQuery(this).scrollTop() > (jQuery(".product-info-delivery").offset().top - jQuery(window).height())) {
-    if (jQuery(".page-header").css('display') == 'block') {
-      jQuery(".header-scroll").slideDown();
-      jQuery('.page-header').slideUp();
+    var st = $(this).scrollTop();
+    if (st > lastScrollTop) {
+      // downscroll code
+      if (jQuery(".page-header").css('display') == 'block') {
+        jQuery(".header-scroll").slideDown();
+        jQuery('.page-header').slideUp();
+      }
+    } else {
+      // upscroll code
+      if (jQuery(".page-header").css('display') == 'none') {
+        jQuery(".header-scroll").slideUp();
+        jQuery('.page-header').slideDown();
+      }
     }
-  } else {
-    if (jQuery(".page-header").css('display') == 'none') {
-      jQuery(".header-scroll").slideUp();
-      jQuery('.page-header').slideDown();
-    }
+    lastScrollTop = st;
   }
 })
