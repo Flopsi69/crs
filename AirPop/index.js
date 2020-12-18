@@ -57,36 +57,50 @@ let styles = document.createElement('style');
 styles.innerHTML = stylesList;
 document.head.appendChild(styles);
 
-let scrollHybrid, scrollFiltration, scrollResults;
+let scrollHybrid, scrollFiltration, scrollResults, scrollHybridLink, scrollFiltrationLink, scrollResultsLink;
 switch (locationLang) {
   case 'it':
     scrollHybrid = "L'approccio ibrido di AirPop";
     scrollFiltration = "Filtrazione a due vie";
     scrollResults = "Accreditamento e risultati dei test";
+    scrollHybridLink = "#image5fdca25adcd0f";
+    scrollFiltrationLink = "#row5fb016ee48f21";
+    scrollResultsLink = "#row5fb016ee4909b";
     break;
   case 'nl':
     scrollHybrid = "De hybride benadering van AirPop";
     scrollFiltration = "Tweerichtingsfiltratie";
     scrollResults = "Accreditatie en testresultaten";
+    scrollHybridLink = "#image5fdcb0a6293a0";
+    scrollFiltrationLink = "#row5fdcb04a34c8a";
+    scrollResultsLink = "#row5fafeebb161c8";
+    
     break;
   case 'de':
     scrollHybrid = "Der hybride Ansatz von AirPop";
     scrollFiltration = "Zweiwegefiltration";
     scrollResults = "Akkreditierung & Testergebnisse";
+    scrollHybridLink = "#row5fafeebb15ded";
+    scrollFiltrationLink = "#row5fafeebb16061";
+    scrollResultsLink = "#row5fdcb04a34dfe";
+    
     break;
   
   default:
     scrollHybrid = "AirPop’s hybrid approach";
     scrollFiltration = "Two - way filtration";
     scrollResults = "Accreditation & Test results";
+    scrollHybridLink = "#row5fc6832571b28"
+    scrollFiltrationLink = "#row5fc6832571d3a"
+    scrollResultsLink = "#row5fc6832571eff"
     break;
 }
 
 let block = `
   <div class="header-scroll" style='display: none;'>
-    <a href='#image5fd740d79afcd' class="header-scroll__item header-scroll__hybrid">${scrollHybrid}</a>
-    <a href='#row5fc6832571d3a' class="header-scroll__item header-scroll__filtration">${scrollFiltration}</a>
-    <a href='#row5fc6832571eff' class="header-scroll__item header-scroll__results">${scrollResults}</a>
+    <a href='${scrollHybridLink}' class="header-scroll__item header-scroll__hybrid">${scrollHybrid}</a>
+    <a href='${scrollFiltrationLink}' class="header-scroll__item header-scroll__filtration">${scrollFiltration}</a>
+    <a href='${scrollResultsLink}' class="header-scroll__item header-scroll__results">${scrollResults}</a>
   </div>
 `;
 
@@ -130,7 +144,7 @@ function initEventsHtml() {
       }
       let target = this.getAttribute("href");
       jQuery('html, body').animate({
-        scrollTop: jQuery(target).offset().top - jQuery(".header-scroll").outerHeight()
+        scrollTop: jQuery(target).offset().top - jQuery(".page-header").outerHeight()
       }, 1500);
     })
   })
