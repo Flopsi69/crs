@@ -48,7 +48,7 @@ let stylesList = `
   .header-scroll__item + .header-scroll__item {
     border-left: 1px solid #35B4BB;
   }
-  .innovations-block #image5fdc91d5b4807, .innovations-block #image5fdcb230395b7 {
+  .innovations-block #image5fdc91d5b4807, .innovations-block #image5fdcb230395b7, .innovations-block #image5fdcb3b1b21c5 {
     display: none!important;
   }
 `;
