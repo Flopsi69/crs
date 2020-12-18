@@ -63,7 +63,7 @@ switch (locationLang) {
     scrollHybrid = "L'approccio ibrido di AirPop";
     scrollFiltration = "Filtrazione a due vie";
     scrollResults = "Accreditamento e risultati dei test";
-    scrollHybridLink = "#image5fdca25adcd0f";
+    scrollHybridLink = "#row5fb016ee48c88";
     scrollFiltrationLink = "#row5fb016ee48f21";
     scrollResultsLink = "#row5fb016ee4909b";
     break;
@@ -74,7 +74,6 @@ switch (locationLang) {
     scrollHybridLink = "#image5fdcb0a6293a0";
     scrollFiltrationLink = "#row5fdcb04a34c8a";
     scrollResultsLink = "#row5fdcb04a34dfe";
-    
     break;
   case 'de':
     scrollHybrid = "Der hybride Ansatz von AirPop";
