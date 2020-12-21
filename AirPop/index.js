@@ -56,82 +56,15 @@ document.head.appendChild(styles);
 
 let scrollHybrid, scrollFiltration, scrollResults, scrollHybridLink, scrollFiltrationLink, scrollResultsLink;
 
-let block = `
-  <div class="header-scroll" style='display: none;'>
-    <a href='#image5fe041c0a3d35' class="header-scroll__item header-scroll__hybrid">${scrollHybrid}</a>
-    <a href='#row5fdcd95943a31' class="header-scroll__item header-scroll__filtration">${scrollFiltration}</a>
-    <a href='#row5fdcd95943c32' class="header-scroll__item header-scroll__results">${scrollResults}</a>
-  </div>
-`;
-
-document.querySelector(".page-header").insertAdjacentHTML("beforebegin", block);
-initEventsHtml();
-
-function initEventsHtml() {
-  document.querySelectorAll(".header-scroll__item").forEach(function (el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (jQuery(this).hasClass("header-scroll__hybrid")) {
-        console.log('1');
-        dataLayer.push({
-          'event': 'event-to-ga',
-          'eventCategory': 'Exp: Innovation page content on PDP',
-          'eventAction': 'click on Airpop hybrid approach'
-      });
-      } else if (jQuery(this).hasClass("header-scroll__filtration")) {
-        console.log('2');
-        dataLayer.push({
-          'event': 'event-to-ga',
-          'eventCategory': 'Exp: Innovation page content on PDP',
-          'eventAction': 'click on Two-way filtration'
-        });
-      } else if (jQuery(this).hasClass("header-scroll__results")) { 
-        console.log('3');
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Innovation page content on PDP',
-            'eventAction': 'click on Accreditation & Test results'
-        });
-      }
-      let target = this.getAttribute("href");
-      jQuery('html, body').animate({
-        scrollTop: jQuery(target).offset().top - jQuery(".page-header").outerHeight()
-      }, 1500);
-    })
-  })
-}
-
-var lastScrollTop = 0;
-jQuery(window).scroll(function () {
-  if (jQuery(this).scrollTop() > (jQuery(".product-info-delivery").offset().top - jQuery(window).height())) {
-    var st = jQuery(this).scrollTop();
-    if (st > lastScrollTop) {
-      // downscroll code
-      if (jQuery(".page-header").css('display') == 'block') {
-        jQuery(".header-scroll").slideDown();
-        jQuery('.page-header').slideUp();
-      }
-    } else {
-      // upscroll code
-      if (jQuery(".page-header").css('display') == 'none') {
-        jQuery(".header-scroll").slideUp();
-        jQuery('.page-header').slideDown();
-      }
-    }
-    lastScrollTop = st;
-  }
-})
-
-
 var htmlAddingBlock = `
 <div class="column main" data-gtm-vis-has-fired-31849418_134="1">
 <style>
-  #row5fdcd95943860 {
+  .row5fdcd95943860 {
     a
   }
 
   @media (min-width: 1024px) {
-    #row5fdcd95943860 {
+    .row5fdcd95943860 {
       display: flex;
       margin: 20px;
       border-radius: 20px;
@@ -142,7 +75,7 @@ var htmlAddingBlock = `
     }
   }
 </style>
-<div class="order pd-row row" id="first-anchor" data-gtm-vis-has-fired-31849418_134="1">
+<div class="order pd-row row row5fdcd95943860" id="first-anchor" data-gtm-vis-has-fired-31849418_134="1">
   <div class="mobile-order-1 pd-col col-md-6" data-gtm-vis-has-fired-31849418_134="1">
     <style>
       #image5fe041c0a3d35 {
@@ -1258,3 +1191,69 @@ switch (locationLang) {
     break;
 }
 jQuery('.lang-block').not('.active').remove();
+
+let block = `
+  <div class="header-scroll" style='display: none;'>
+    <a href='#image5fe041c0a3d35' class="header-scroll__item header-scroll__hybrid">${scrollHybrid}</a>
+    <a href='#row5fdcd95943a31' class="header-scroll__item header-scroll__filtration">${scrollFiltration}</a>
+    <a href='#row5fdcd95943c32' class="header-scroll__item header-scroll__results">${scrollResults}</a>
+  </div>
+`;
+
+document.querySelector(".page-header").insertAdjacentHTML("beforebegin", block);
+initEventsHtml();
+
+function initEventsHtml() {
+  document.querySelectorAll(".header-scroll__item").forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (jQuery(this).hasClass("header-scroll__hybrid")) {
+        console.log('1');
+        dataLayer.push({
+          'event': 'event-to-ga',
+          'eventCategory': 'Exp: Innovation page content on PDP',
+          'eventAction': 'click on Airpop hybrid approach'
+      });
+      } else if (jQuery(this).hasClass("header-scroll__filtration")) {
+        console.log('2');
+        dataLayer.push({
+          'event': 'event-to-ga',
+          'eventCategory': 'Exp: Innovation page content on PDP',
+          'eventAction': 'click on Two-way filtration'
+        });
+      } else if (jQuery(this).hasClass("header-scroll__results")) { 
+        console.log('3');
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Innovation page content on PDP',
+            'eventAction': 'click on Accreditation & Test results'
+        });
+      }
+      let target = this.getAttribute("href");
+      jQuery('html, body').animate({
+        scrollTop: jQuery(target).offset().top - jQuery(".page-header").outerHeight()
+      }, 1500);
+    })
+  })
+}
+
+var lastScrollTop = 0;
+jQuery(window).scroll(function () {
+  if (jQuery(this).scrollTop() > (jQuery(".product-info-delivery").offset().top - jQuery(window).height())) {
+    var st = jQuery(this).scrollTop();
+    if (st > lastScrollTop) {
+      // downscroll code
+      if (jQuery(".page-header").css('display') == 'block') {
+        jQuery(".header-scroll").slideDown();
+        jQuery('.page-header').slideUp();
+      }
+    } else {
+      // upscroll code
+      if (jQuery(".page-header").css('display') == 'none') {
+        jQuery(".header-scroll").slideUp();
+        jQuery('.page-header').slideDown();
+      }
+    }
+    lastScrollTop = st;
+  }
+})
