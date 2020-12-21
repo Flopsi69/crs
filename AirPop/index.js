@@ -282,7 +282,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943948" class='row5fdcd95943948'
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943948" class='row5fdcd95943948' 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">ADAPTIVE AND CONTOURED FIT</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Every face is different. That's why AirPop masks are
