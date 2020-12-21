@@ -211,7 +211,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd959438b8" class="row5fdcd959438b8"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd959438b8" id="row5fdcd959438b8
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FUNCTION | BEST OF ALL WORLDS</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Medical, Industrial and Consumer masks each have a
@@ -221,7 +221,7 @@ var htmlAddingBlock = `
         best everyday protection for you. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c416" class="row5fdcd959438b8"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd959438b8" id="row5fdcd9769c416"
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FUNZIONALITÀ | LA MIGLIORE ALTERNATIVA </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Le mascherine mediche, industriali e di consumo hanno
@@ -232,7 +232,7 @@ var htmlAddingBlock = `
         quotidiana per te. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be66ff7" class="row5fdcd959438b8"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd959438b8" id="row5fdcd9be66ff7"
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FUNCTIE | HET BESTE VAN ALLE WERELDEN </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Medische, industriële en consumentenmondmaskers hebben
@@ -242,7 +242,7 @@ var htmlAddingBlock = `
         willen mensen vrij laten ademen door middel van wetenschap, innovatie en technologie.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd93745405" class="row5fdcd959438b8"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd959438b8" id="row5fdcd93745405"
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FUNKTION | NUR DAS BESTE </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Medizinische, industrielle und Verbrauchermasken haben
@@ -282,7 +282,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943948" class="row5fdcd95943948" 
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd95943948" id="row5fdcd95943948"  
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">ADAPTIVE AND CONTOURED FIT</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Every face is different. That's why AirPop masks are
@@ -296,7 +296,7 @@ var htmlAddingBlock = `
         smile and move while being light enough that you forget it's on.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c4a7" class="row5fdcd95943948"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd95943948" id="row5fdcd9769c4a7" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">VESTIBILITÀ ADATTIVA E SAGOMATA </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Ogni volto è diverso. Ecco perché le maschere AirPop
@@ -312,7 +312,7 @@ var htmlAddingBlock = `
         addosso. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be67087" class="row5fdcd95943948"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd95943948" id="row5fdcd9be67087" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">ADAPTIEVE EN AANSLUITENDE FIT </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Elk gezicht is anders. Daarom zijn AirPop-maskers
@@ -327,7 +327,7 @@ var htmlAddingBlock = `
         je praat, glimlacht en beweegt. Ze zijn zo licht dat je al snel vergeet dat je ze op hebt.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd93745495" class="row5fdcd95943948"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd95943948" id="row5fdcd93745495" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">ADAPTIVE UND KONTURIERTE PASSFORM </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Jedes Gesicht ist anders. Aus diesem Grund sind die
@@ -428,7 +428,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd959439eb" class="row5fdcd959439eb"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd959439eb" id="row5fdcd959439eb" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FIT | MADE FOR HUMANS</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Fit is not just about comfort, fit is essential to the
@@ -439,7 +439,7 @@ var htmlAddingBlock = `
         life.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c549" class="row5fdcd959439eb"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd959439eb" id="row5fdcd9769c549" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">VESTIBILITÀ | CREATE PER UMANI </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">La vestibilità non riguarda solo il comfort: è
@@ -451,7 +451,7 @@ var htmlAddingBlock = `
         quotidiana. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be6712b" class="row5fdcd959439eb"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd959439eb" id="row5fdcd9be6712b" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PASVORM | GEMAAKT VOOR MENSEN </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">De pasvorm gaat niet alleen over comfort, de pasvorm
@@ -461,7 +461,7 @@ var htmlAddingBlock = `
         gepatenteerde design biedt AirPop een effectieve bescherming tegen luchtgedragen ziekteverwekkers. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd93745536" class="row5fdcd959439eb"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd959439eb" id="row5fdcd93745536" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FIT | FÜR MENSCHEN GEMACHT </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Bei der Passform geht es nicht nur um Komfort, sie ist
@@ -504,7 +504,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943a74" class="row5fdcd95943a74"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd95943a74" id="row5fdcd95943a74" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PROTECT YOURSELF, PROTECT OTHERS</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Two-way filtration reduces the number of particles
@@ -512,7 +512,7 @@ var htmlAddingBlock = `
         filtration for total peace of mind.&nbsp;</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c5d3" class="row5fdcd95943a74"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd95943a74" id="row5fdcd9769c5d3" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PROTEGGI TE STESSO, PROTEGGI GLI ALTRI </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">La filtrazione a due vie riduce il numero di
@@ -520,7 +520,7 @@ var htmlAddingBlock = `
         altri grazie a una filtrazione di qualità superiore per la massima tranquillità. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be671b6" class="row5fdcd95943a74"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd95943a74" id="row5fdcd9be671b6" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">BESCHERM JEZELF, BESCHERM ANDEREN </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Tweeweg-filtratie vermindert het aantal deeltjes dat
@@ -529,7 +529,7 @@ var htmlAddingBlock = `
     <p>&nbsp;</p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd937455c4" class="row5fdcd95943a74"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd95943a74" id="row5fdcd937455c4" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">SCHÜTZE DICH SELBST, SCHÜTZE ANDERE </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Die Zweiwege-Filterung reduziert die Anzahl der beim
@@ -611,7 +611,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943b0e" class="row5fdcd95943b0e"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd95943b0e" id="row5fdcd95943b0e" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FILTRATION | BREATHING SAFETY</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">AirPop makes effective barriers that block airborne
@@ -620,7 +620,7 @@ var htmlAddingBlock = `
         media, AirPop products provide two-way protection defending both the wearer and others.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c66b" class="row5fdcd95943b0e"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd95943b0e" id="row5fdcd9769c66b" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FILTRAZIONE | SICUREZZA RESPIRATORIA </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">AirPop crea barriere efficaci che bloccano minacce per
@@ -630,7 +630,7 @@ var htmlAddingBlock = `
         la indossa, sia gli altri. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be67250" class="row5fdcd95943b0e"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd95943b0e" id="row5fdcd9be67250" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FILTRATIE | VEILIG ADEMEN </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">AirPop creëert effectieve bescherming tegen
@@ -640,7 +640,7 @@ var htmlAddingBlock = `
         anderen beschermt.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd937456cd" class="row5fdcd95943b0e"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd95943b0e" id="row5fdcd937456cd" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">FILTERUNG | SICHER ATMEN</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">AirPop stellt wirksame Barrieren her, die Bedrohungen
@@ -679,7 +679,7 @@ var htmlAddingBlock = `
       }
     }
   </style>
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu" id="row5fdcd95943b97" class="row5fdcd95943b97"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-eu row5fdcd95943b97" id="row5fdcd95943b97" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PARTICULATE MATTERS</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Pollutants smaller than 2.5 microns (μm) in diameter
@@ -689,7 +689,7 @@ var htmlAddingBlock = `
         0.1 μ m almost 25X smaller than PM 2.5.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it" id="row5fdcd9769c6f5" class="row5fdcd95943b97"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-it row5fdcd95943b97" id="row5fdcd9769c6f5" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PARTICOLATO </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Gli inquinanti di diametro inferiore a 2,5 micron (μm)
@@ -702,7 +702,7 @@ var htmlAddingBlock = `
         2,5.</span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl" id="row5fdcd9be672ff" class="row5fdcd95943b97"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-nl row5fdcd95943b97" id="row5fdcd9be672ff" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">STOFDEELTJES</span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Verontreinigende stofdeeltjes met een diameter kleiner
@@ -715,7 +715,7 @@ var htmlAddingBlock = `
         PM 2,5. </span></p>
   </div>
 
-  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de" id="row5fdcd93745764" class="row5fdcd95943b97"
+  <div class="mobile-order-2 pd-col col-md-6 lang-block lang-block-de row5fdcd95943b97" id="row5fdcd93745764" 
     data-gtm-vis-has-fired-31849418_134="1">
     <h5 style="text-align: left;"><span style="font-size: 14pt;">PARTIKELBESTANDTEILE </span></h5>
     <p style="text-align: left;"><span style="font-size: 12pt;">Schadstoffe mit einem Durchmesser von weniger als 2,5
