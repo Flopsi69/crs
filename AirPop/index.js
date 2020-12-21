@@ -55,34 +55,6 @@ styles.innerHTML = stylesList;
 document.head.appendChild(styles);
 
 let scrollHybrid, scrollFiltration, scrollResults, scrollHybridLink, scrollFiltrationLink, scrollResultsLink;
-switch (locationLang) {
-  case 'it':
-    scrollHybrid = "L'approccio ibrido di AirPop";
-    scrollFiltration = "Filtrazione a due vie";
-    scrollResults = "Accreditamento e risultati dei test";
-    jQuery('.lang-block-it').addClass('active');
-    break;
-  case 'nl':
-    scrollHybrid = "De hybride benadering van AirPop";
-    scrollFiltration = "Tweerichtingsfiltratie";
-    scrollResults = "Accreditatie en testresultaten";
-    jQuery('.lang-block-nl').addClass('active');
-    break;
-  case 'de':
-    scrollHybrid = "Der hybride Ansatz von AirPop";
-    scrollFiltration = "Zweiwegefiltration";
-    scrollResults = "Akkreditierung & Testergebnisse";
-    jQuery('.lang-block-de').addClass('active');
-    break;
-  
-  default:
-    scrollHybrid = "AirPop’s hybrid approach";
-    scrollFiltration = "Two - way filtration";
-    scrollResults = "Accreditation & Test results";
-    jQuery('.lang-block-eu').addClass('active');
-    break;
-}
-jQuery('.lang-block').not('.active').remove();
 
 let block = `
   <div class="header-scroll" style='display: none;'>
@@ -1257,3 +1229,32 @@ var htmlAddingBlock = `
 
 
 jQuery('.product-background').after(htmlAddingBlock);
+
+switch (locationLang) {
+  case 'it':
+    scrollHybrid = "L'approccio ibrido di AirPop";
+    scrollFiltration = "Filtrazione a due vie";
+    scrollResults = "Accreditamento e risultati dei test";
+    jQuery('.lang-block-it').addClass('active');
+    break;
+  case 'nl':
+    scrollHybrid = "De hybride benadering van AirPop";
+    scrollFiltration = "Tweerichtingsfiltratie";
+    scrollResults = "Accreditatie en testresultaten";
+    jQuery('.lang-block-nl').addClass('active');
+    break;
+  case 'de':
+    scrollHybrid = "Der hybride Ansatz von AirPop";
+    scrollFiltration = "Zweiwegefiltration";
+    scrollResults = "Akkreditierung & Testergebnisse";
+    jQuery('.lang-block-de').addClass('active');
+    break;
+  
+  default:
+    scrollHybrid = "AirPop’s hybrid approach";
+    scrollFiltration = "Two - way filtration";
+    scrollResults = "Accreditation & Test results";
+    jQuery('.lang-block-eu').addClass('active');
+    break;
+}
+jQuery('.lang-block').not('.active').remove();
