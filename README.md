@@ -1,10 +1,10 @@
-# crs
-
+# CRS
 
 Init OTIMIZE
+
 ```javascript
-let script = document.createElement('script');
-script.src = 'https://dragonegor.github.io/conversionrate/autoria/more-photo-desktop.js';
+let script = document.createElement("script");
+script.src = "https://flopsi69.github.io/crs/<directory>/<mod.>/<filename>.js";
 script.async = false;
 document.head.appendChild(script);
 ```
