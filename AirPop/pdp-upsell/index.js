@@ -11,6 +11,25 @@ function gaEvent(category, action, label) {
 };
 
 let locationLang = location.pathname.split('/')[1];
+let maskVar, masksVar;
+switch (locationLang) {
+  case 'it':
+    maskVar = "maschera";
+    masksVar = "maschere";
+  break;
+case 'nl':
+    maskVar = "masker";
+    masksVar = "maskers";
+  break;
+  case 'de':
+    maskVar = "maske";
+    masksVar = "masken";
+default:
+    maskVar = "mask";
+    masksVar = "masks";
+  break;
+}
+
 /* styles start */
 let stylesList = `
   .packs-list {
@@ -95,7 +114,7 @@ let stylesList = `
     padding: 13px 8px;
     color: #000!important;
   }
-  
+
   .color-fixed__item.active {
     background: rgba(51, 51, 51, 0.05);
     pointer-events: none;
@@ -225,9 +244,9 @@ function createUpsellEl({ name, price, position }) {
   return `
     <a href='${upsellPosition}' class='packs-list__item'>
       <div class='packs-list__popular' style='display:${upsellPopular}'>Most popular</div>
-      <div class='packs-list__one'>€${pricePerOne.toFixed(2)}/mask</div>
+      <div class='packs-list__one'>€${pricePerOne.toFixed(2)}/${maskVar}</div>
       <div class='packs-list__save'>${numUpsellSave}</div>
-      <div class='packs-list__count'>${numUpsellMasks} masks</div>
+      <div class='packs-list__count'>${numUpsellMasks} ${masksVar}</div>
       <div class='packs-list__price'>€${price}</div>
     </a>
   `;
@@ -246,26 +265,16 @@ function createFixedEl({ name, price, position }) {
     upsellPosition = $('#upsell-select option')[position].dataset.href;
   } else {
     upsellPosition = "#";
-    $(".mobile-variants>span").text(numUpsellMasks + " masks");
+    $(".mobile-variants>span").text(numUpsellMasks + " " + masksVar);
   }
   let upsellPopular = numUpsellMasks == 8 ? 'inline-block' : 'none';
   return `
     <a href='${upsellPosition}' class='color-fixed__item'>
       <div class='color-fixed__popular' style='display:${upsellPopular}'>Most popular</div>
-        <div class='color-fixed__title'>${numUpsellMasks} masks ${numUpsellSave}</div>
+        <div class='color-fixed__title'>${numUpsellMasks} ${masksVar} ${numUpsellSave}</div>
       <div class='color-fixed__price'>€${price}</div>
     </a>
   `;
 }
-
-// switch (locationLang) {
-// case 'it':
-//   break;
-// case 'nl':
-//   break;
-// case 'de':
-// default:
-//   break;
-// }
 
 // document.querySelector(".page-header").insertAdjacentHTML("beforebegin", block);
