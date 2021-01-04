@@ -1,14 +1,26 @@
-function gaEvent(category, action, label) {
+function gaEvent(category, action) {
   try {
     dataLayer.push({
-      event: "aevent",
-      ecategory: category,
-      eaction: action,
-      elabel: label,
-      interactionType: "False"
+      event: "event-to-ga",
+      eventCategory: category,
+      eventAction: action,
     });
   } catch (e) {}
 };
+
+(function(h,o,t,j,a,r){
+  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+  h._hjSettings={hjid:1651990,hjsv:6};
+  a=o.getElementsByTagName('head')[0];
+  r=o.createElement('script');r.async=1;
+  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'alt_options_on_pdp');
+  
+
+gaEvent('Exp - Alt options on PDP', 'loaded');
 
 let locationLang = location.pathname.split('/')[1];
 let maskVar, masksVar;
@@ -220,7 +232,20 @@ if ($('.block.upsell').length) {
   for (let fixedItemEl of productFixedArr) {
     $('.mobile-variants .colors').append(fixedItemEl);
   }
+
   $('.block.upsell').append(packsListEl);
+
+  $(".packs-list__item").on('click', function () {
+    gaEvent('Exp - Alt options on PDP', 'click on Block packs');
+  })
+
+  $(".color-fixed__item").on('click', function () {
+    gaEvent('Exp - Alt options on PDP', 'click on Element menu');
+  })
+
+  $(".mobile-variants").on('click', function () {
+    gaEvent('Exp - Alt options on PDP', 'click on Button selector');
+  })
 }
 
 
@@ -277,4 +302,3 @@ function createFixedEl({ name, price, position }) {
   `;
 }
 
-// document.querySelector(".page-header").insertAdjacentHTML("beforebegin", block);
