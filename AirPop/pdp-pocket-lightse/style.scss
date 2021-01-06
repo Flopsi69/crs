@@ -64,7 +64,10 @@ body {
     display: block !important;
   }
 }
-
+.yotpo-yotpo-is-enabled .yotpoBottomLine {
+  padding: 0 25px;
+  text-align: left;
+}
 .product-info-main .page-title-wrapper .page-title {
   text-align: left;
   padding: 0 25px;
@@ -117,6 +120,7 @@ body {
   letter-spacing: 0.01em;
   color: #333333;
   opacity: 0.8;
+  order: 10;
 }
 
 .test-modal {
@@ -238,7 +242,7 @@ body {
 }
 
 .fotorama__stage__shaft:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 10;
   left: 10px;
@@ -246,7 +250,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 60px;
-  background: #fff url("https://i.ibb.co/vdRJmNp/preassure-air.png") center
+  background: #fff url('https://i.ibb.co/vdRJmNp/preassure-air.png') center
     no-repeat;
   background-size: 63%;
 }
