@@ -235,10 +235,11 @@ if ($('.block.upsell').length) {
 
   $('.block.upsell').append(packsListEl);
 
+  console.log('up');
+
   $(".packs-list__item").on('click', function () {
     let numMask = $(this).data("masks");
-    numMask = numMask + (numMaksk == 1 ? " pack" : " packs");
-    console.log('up');
+    numMask = numMask + (numMask == 1 ? " pack" : " packs");
     try {
       dataLayer.push({
         event: "event-to-ga",
