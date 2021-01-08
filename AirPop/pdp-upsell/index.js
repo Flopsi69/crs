@@ -236,7 +236,16 @@ if ($('.block.upsell').length) {
   $('.block.upsell').append(packsListEl);
 
   $(".packs-list__item").on('click', function () {
-    gaEvent('Exp - Alt options on PDP', 'click on Block packs');
+    let numMask = $(this).data("masks");
+    numMask = numMask + (numMaksk == 1 ? " pack" : " packs");
+    try {
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: 'Exp - Alt options on PDP',
+        eventAction: 'click on Block packs',
+        eventLabel: numMask
+      });
+    } catch (e) {}
   })
 
   $(".color-fixed__item").on('click', function () {
@@ -247,8 +256,6 @@ if ($('.block.upsell').length) {
     gaEvent('Exp - Alt options on PDP', 'click on Button selector');
   })
 }
-
-
 
 function createUpsellEl({ name, price, position }) {
   let numUpsellMasks = name.match(/\d+/)[0];
@@ -267,7 +274,7 @@ function createUpsellEl({ name, price, position }) {
   let upsellPopular = numUpsellMasks == 8 ? 'block' : 'none';
   let pricePerOne = Math.round(price) / numUpsellMasks;
   return `
-    <a href='${upsellPosition}' class='packs-list__item'>
+    <a href='${upsellPosition}' class='packs-list__item' data-masks='${numUpsellMasks}'>
       <div class='packs-list__popular' style='display:${upsellPopular}'>Most popular</div>
       <div class='packs-list__one'>€${pricePerOne.toFixed(2)}/${maskVar}</div>
       <div class='packs-list__save'>${numUpsellSave}</div>
