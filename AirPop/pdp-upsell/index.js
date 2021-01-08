@@ -236,7 +236,6 @@ if ($('.block.upsell').length) {
   $('.block.upsell').append(packsListEl);
 
   console.log('up');
-
   $(".packs-list__item").on('click', function () {
     let numMask = $(this).data("masks");
     numMask = numMask + (numMask == 1 ? " pack" : " packs");
