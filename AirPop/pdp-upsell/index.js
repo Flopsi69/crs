@@ -238,12 +238,12 @@ if ($('.block.upsell').length) {
   $(".packs-list__item").on('click', function () {
     let numMask = $(this).data("masks");
     numMask = numMask + (numMaksk == 1 ? " pack" : " packs");
+    console.log('up');
     try {
       dataLayer.push({
         event: "event-to-ga",
         eventCategory: 'Exp - Alt options on PDP',
-        eventAction: 'click on Block packs',
-        eventLabel: numMask
+        eventAction: 'click on Block ' + numMask
       });
     } catch (e) {}
   })
