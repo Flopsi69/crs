@@ -202,6 +202,8 @@ if ($('.block.upsell').length) {
     position: false
   }
 
+  let numActiveMasks = activeProductObj.name.match(/\d+/)[0];
+
   let productUpsellArr = [];
   let activeProductEl = createUpsellEl(activeProductObj);
   productUpsellArr.push($(activeProductEl).addClass('active'));
@@ -211,9 +213,12 @@ if ($('.block.upsell').length) {
   productFixedArr.push($(activeFixedEl).addClass('active'));
 
   for (let upsellItem of upsellDataList) {
-    let upsellItemEl = createUpsellEl(upsellItem);
+    if (numActiveMasks < upsellItem.name.match(/\d+/)[0]) {
+      let upsellItemEl = createUpsellEl(upsellItem);
+      productUpsellArr.push($(upsellItemEl));
+    }
+
     let fixedItemEl = createFixedEl(upsellItem);
-    productUpsellArr.push($(upsellItemEl));
     productFixedArr.push($(fixedItemEl));
   }
 
@@ -235,7 +240,6 @@ if ($('.block.upsell').length) {
 
   $('.block.upsell').append(packsListEl);
 
-  console.log('up');
   $(".packs-list__item").on('click', function () {
     let numMask = $(this).data("masks");
     numMask = numMask + (numMask == 1 ? " pack" : " packs");
