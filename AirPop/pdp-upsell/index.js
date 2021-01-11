@@ -211,7 +211,7 @@ if ($('.block.upsell').length) {
   }
 
   function getActivePrice(){
-    if (isNaN($('.price-final_price .price').first().text().trim().substr(1))) {
+    if (isNaN($('.price-final_price .price').first().text().trim()[0])) {
       return parseFloat($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.'));
     } else {
       return parseFloat($('.price-final_price .price').first().text().trim().replace(',', '.'));
