@@ -221,9 +221,9 @@ if ($('.block.upsell').length) {
   productFixedArr.push($(activeFixedEl).addClass('active'));
 
   for (let upsellItem of upsellDataList) {
-    console.log(numActiveMasks, upsellItem.name.match(/\d+/)[0]);
-    if (numActiveMasks < upsellItem.name.match(/\d+/)[0]) {
-      console.log("yes");
+    console.log(parseInt(numActiveMasks), parseInt(upsellItem.name.match(/\d+/)[0]), parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0]));
+    if (parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0])) {
+      console.log("yessss");
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
 
