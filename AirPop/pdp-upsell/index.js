@@ -206,8 +206,16 @@ if ($('.block.upsell').length) {
   
   let activeProductObj = {
     name: $('.page-title').text().trim(),
-    price: parseFloat($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.')),
+    price: getActivePrice(),
     position: false
+  }
+
+  getActivePrice(){
+    if (isNaN($('.price-final_price .price').first().text().trim().substr(1))) {
+      return parseFloat($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.'));
+    } else {
+      return parseFloat($('.price-final_price .price').first().text().trim().replace(',', '.'));
+    }
   }
 
   let numActiveMasks = activeProductObj.name.match(/\d+/)[0];
