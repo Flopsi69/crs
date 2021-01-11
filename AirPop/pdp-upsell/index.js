@@ -221,6 +221,7 @@ if ($('.block.upsell').length) {
   productFixedArr.push($(activeFixedEl).addClass('active'));
 
   for (let upsellItem of upsellDataList) {
+    console.log(numActiveMasks, upsellItem.name.match(/\d+/)[0]);
     if (numActiveMasks < upsellItem.name.match(/\d+/)[0]) {
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
