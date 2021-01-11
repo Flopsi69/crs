@@ -67,7 +67,7 @@ let stylesList = `
     background: rgba(229, 229, 229, 0.1);
     border: 1px solid #58585A;
     border-radius: 10px;
-    width: 110px;
+    width: 130px;
     box-sizing: border-box;
     flex-shrink: 0;
     flex-grow: 1;
@@ -206,7 +206,7 @@ if ($('.block.upsell').length) {
   
   let activeProductObj = {
     name: $('.page-title').text().trim(),
-    price: $('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.'),
+    price: parseInt($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.')),
     position: false
   }
 
