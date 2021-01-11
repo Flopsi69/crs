@@ -216,10 +216,10 @@ if ($('.block.upsell').length) {
     if (numActiveMasks < upsellItem.name.match(/\d+/)[0]) {
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
-    }
 
-    let fixedItemEl = createFixedEl(upsellItem);
-    productFixedArr.push($(fixedItemEl));
+      let fixedItemEl = createFixedEl(upsellItem);
+      productFixedArr.push($(fixedItemEl));
+    }
   }
 
   productUpsellArr.sort(function (a, b) {
