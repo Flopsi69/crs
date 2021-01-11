@@ -23,22 +23,30 @@ hj('trigger', 'alt_options_on_pdp');
 gaEvent('Exp - Alt options on PDP', 'loaded');
 
 let locationLang = location.pathname.split('/')[1];
-let maskVar, masksVar;
+let maskVar, masksVar, mostPopularTrans, saveProcentTrans;
 switch (locationLang) {
   case 'it':
     maskVar = "maschera";
     masksVar = "maschere";
+    mostPopularTrans = "Più popolare";
+    saveProcentTrans = "Risparmia il";
   break;
 case 'nl':
     maskVar = "masker";
     masksVar = "maskers";
+    mostPopularTrans = "Meest populair";
+    saveProcentTrans = "Bespaar";
   break;
   case 'de':
     maskVar = "maske";
     masksVar = "masken";
+    mostPopularTrans = "Am beliebtesten";
+    saveProcentTrans = "Sparen Sie";
 default:
     maskVar = "mask";
     masksVar = "masks";
+    mostPopularTrans = "Most popular";
+    saveProcentTrans = "Save";
   break;
 }
 
@@ -265,7 +273,7 @@ function createUpsellEl({ name, price, position }) {
   let numUpsellMasks = name.match(/\d+/)[0];
   let numUpsellSave = name.match(/\d+%/);
   if (numUpsellSave) {
-    numUpsellSave = "Save " + numUpsellSave[0];
+    numUpsellSave = saveProcentTrans + " " + numUpsellSave[0];
   } else {
     numUpsellSave = '';
   }
@@ -279,7 +287,7 @@ function createUpsellEl({ name, price, position }) {
   let pricePerOne = Math.round(price) / numUpsellMasks;
   return `
     <a href='${upsellPosition}' class='packs-list__item' data-masks='${numUpsellMasks}'>
-      <div class='packs-list__popular' style='display:${upsellPopular}'>Most popular</div>
+      <div class='packs-list__popular' style='display:${upsellPopular}'>${mostPopularTrans}</div>
       <div class='packs-list__one'>€${pricePerOne.toFixed(2)}/${maskVar}</div>
       <div class='packs-list__save'>${numUpsellSave}</div>
       <div class='packs-list__count'>${numUpsellMasks} ${masksVar}</div>
@@ -306,7 +314,7 @@ function createFixedEl({ name, price, position }) {
   let upsellPopular = numUpsellMasks == 8 ? 'inline-block' : 'none';
   return `
     <a href='${upsellPosition}' class='color-fixed__item'>
-      <div class='color-fixed__popular' style='display:${upsellPopular}'>Most popular</div>
+      <div class='color-fixed__popular' style='display:${upsellPopular}'>${mostPopularTrans}</div>
         <div class='color-fixed__title'>${numUpsellMasks} ${masksVar} ${numUpsellSave}</div>
       <div class='color-fixed__price'>€${price}</div>
     </a>
