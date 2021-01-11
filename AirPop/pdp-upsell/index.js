@@ -223,6 +223,7 @@ if ($('.block.upsell').length) {
   for (let upsellItem of upsellDataList) {
     console.log(numActiveMasks, upsellItem.name.match(/\d+/)[0]);
     if (numActiveMasks < upsellItem.name.match(/\d+/)[0]) {
+      console.log("yes");
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
 
@@ -230,6 +231,7 @@ if ($('.block.upsell').length) {
       productFixedArr.push($(fixedItemEl));
     }
   }
+      console.log(productUpsellArr);
 
   productUpsellArr.sort(function (a, b) {
     return parseInt(a.find('.packs-list__count').text()) - parseInt(b.find('.packs-list__count').text());
