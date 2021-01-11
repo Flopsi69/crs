@@ -206,9 +206,11 @@ if ($('.block.upsell').length) {
   
   let activeProductObj = {
     name: $('.page-title').text().trim(),
-    price: $('.price-final_price .price').first().text().trim().substr(1),
+    price: $('.price-final_price .price').first().text().trim().substr(1).trim(),
     position: false
   }
+
+  console.log("pricee", activeProductObj.price);
 
   let numActiveMasks = activeProductObj.name.match(/\d+/)[0];
 
@@ -221,9 +223,7 @@ if ($('.block.upsell').length) {
   productFixedArr.push($(activeFixedEl).addClass('active'));
 
   for (let upsellItem of upsellDataList) {
-    console.log(parseInt(numActiveMasks), parseInt(upsellItem.name.match(/\d+/)[0]), parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0]));
     if (parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0])) {
-      console.log("yessss");
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
 
@@ -231,7 +231,6 @@ if ($('.block.upsell').length) {
       productFixedArr.push($(fixedItemEl));
     }
   }
-      console.log(productUpsellArr);
 
   productUpsellArr.sort(function (a, b) {
     return parseInt(a.find('.packs-list__count').text()) - parseInt(b.find('.packs-list__count').text());
@@ -288,9 +287,6 @@ function createUpsellEl({ name, price, position }) {
   }
   let upsellPopular = numUpsellMasks == 8 ? 'block' : 'none';
   let pricePerOne = Math.round(price) / numUpsellMasks;
-  console.log("price", Math.round(price));
-  console.log("maks", numUpsellMasks);
-  console.log("pricePerOne", pricePerOne);
   
   return `
     <a href='${upsellPosition}' class='packs-list__item' data-masks='${numUpsellMasks}'>
