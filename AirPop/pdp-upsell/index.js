@@ -206,11 +206,9 @@ if ($('.block.upsell').length) {
   
   let activeProductObj = {
     name: $('.page-title').text().trim(),
-    price: $('.price-final_price .price').first().text().trim().substr(1).trim(),
+    price: $('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.'),
     position: false
   }
-
-  console.log("pricee", activeProductObj.price);
 
   let numActiveMasks = activeProductObj.name.match(/\d+/)[0];
 
