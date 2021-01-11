@@ -67,7 +67,7 @@ let stylesList = `
     background: rgba(229, 229, 229, 0.1);
     border: 1px solid #58585A;
     border-radius: 10px;
-    width: 100px;
+    width: 110px;
     box-sizing: border-box;
     flex-shrink: 0;
     flex-grow: 1;
@@ -288,6 +288,10 @@ function createUpsellEl({ name, price, position }) {
   }
   let upsellPopular = numUpsellMasks == 8 ? 'block' : 'none';
   let pricePerOne = Math.round(price) / numUpsellMasks;
+  console.log("price", Math.round(price));
+  console.log("maks", numUpsellMasks);
+  console.log("pricePerOne", pricePerOne);
+  
   return `
     <a href='${upsellPosition}' class='packs-list__item' data-masks='${numUpsellMasks}'>
       <div class='packs-list__popular' style='display:${upsellPopular}'>${mostPopularTrans}</div>
