@@ -206,7 +206,7 @@ if ($('.block.upsell').length) {
   
   let activeProductObj = {
     name: $('.page-title').text().trim(),
-    price: parseInt($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.')),
+    price: parseFloat($('.price-final_price .price').first().text().trim().substr(1).trim().replace(',', '.')),
     position: false
   }
 
