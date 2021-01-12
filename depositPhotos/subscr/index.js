@@ -204,10 +204,12 @@ const advantages = `
     </ul>
   </div>
 `;
+
+let activeIndex = '1';
+console.log('activeIndex');
+
 setTimeout(() => {
   document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
-
-  let activeIndex = '1';
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
     el.addEventListener('click', function (e) {
