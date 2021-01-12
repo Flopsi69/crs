@@ -166,6 +166,9 @@ let stylesList = `
     top: 3px;
     display: block;
   }
+  .plans__box>form:last-child .plan-constructor__frame-row+.plan-constructor__frame-row   {
+    height: 300px;
+  }
 `;
 
 // connect to DOM
