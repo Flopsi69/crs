@@ -180,7 +180,7 @@ const plansHeader = `
     <div class="plans__head-item" data-tab-name="demand">On demand</div>
   </div>
 `;
-
+console.log("yep");
 const advantages = `
   <div class="mixed-plans-constructor__info-box _info-box">
     <ul class="plan-constructor__advantages" style='line-height: 1.5'>
