@@ -226,7 +226,7 @@ setTimeout(() => {
       this.classList.add('active');
     })
   })
-}, 500);
+}, 1000);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
@@ -252,7 +252,7 @@ initTempStyles(activeIndex);
 
 setTimeout(() => {
   document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-}, 500);
+}, 1000);
 
 function initSwitcher() {
   extractList();
