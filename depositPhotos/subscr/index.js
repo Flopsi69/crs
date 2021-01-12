@@ -204,8 +204,9 @@ const advantages = `
     </ul>
   </div>
 `;
-
-document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
+setTimeout(() => {
+  document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
+}, 1000);
 let activeIndex = '1';
 
 document.querySelectorAll(".plans__head-item").forEach(el => {
