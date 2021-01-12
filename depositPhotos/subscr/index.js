@@ -180,7 +180,7 @@ const plansHeader = `
     <div class="plans__head-item" data-tab-name="demand">On demand</div>
   </div>
 `;
-console.log("yep");
+
 const advantages = `
   <div class="mixed-plans-constructor__info-box _info-box">
     <ul class="plan-constructor__advantages" style='line-height: 1.5'>
@@ -206,24 +206,25 @@ const advantages = `
 `;
 setTimeout(() => {
   document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
-}, 1000);
-let activeIndex = '1';
 
-document.querySelectorAll(".plans__head-item").forEach(el => {
-  el.addEventListener('click', function (e) {
-    e.preventDefault();
-    activeIndex = activeIndex == '1' ? '2' : '1';
-    if (el.dataset.tabName == 'demand') {
-      gaEvent('click on button', 'Payment method — On demand tab', '');
-    } else if(el.dataset.tabName == 'subscribe'){
-      gaEvent('click on button', 'Payment method — Subscription tab', '');
-    }
-    initTempStyles(activeIndex);
-    console.log(activeIndex);
-    document.querySelector('.plans__head-item.active').classList.remove('active');
-    this.classList.add('active');
+  let activeIndex = '1';
+
+  document.querySelectorAll(".plans__head-item").forEach(el => {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      activeIndex = activeIndex == '1' ? '2' : '1';
+      if (el.dataset.tabName == 'demand') {
+        gaEvent('click on button', 'Payment method — On demand tab', '');
+      } else if(el.dataset.tabName == 'subscribe'){
+        gaEvent('click on button', 'Payment method — Subscription tab', '');
+      }
+      initTempStyles(activeIndex);
+      console.log(activeIndex);
+      document.querySelector('.plans__head-item.active').classList.remove('active');
+      this.classList.add('active');
+    })
   })
-})
+}, 500);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
