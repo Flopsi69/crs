@@ -176,8 +176,8 @@ document.body.appendChild(styles);
 
 const plansHeader = `
   <div class="plans__head">
-    <div class="plans__head-item active">Subscription</div>
-    <div class="plans__head-item">On demand</div>
+    <div class="plans__head-item active" data-tab-name="subscribe">Subscription</div>
+    <div class="plans__head-item" data-tab-name="demand">On demand</div>
   </div>
 `;
 
@@ -212,9 +212,9 @@ document.querySelectorAll(".plans__head-item").forEach(el => {
   el.addEventListener('click', function (e) {
     e.preventDefault();
     activeIndex = activeIndex == '1' ? '2' : '1';
-    if (el.innerText.toLowerCase() == "on demand".toLowerCase()) {
+    if (el.dataset.tabName == 'demand') {
       gaEvent('click on button', 'Payment method — On demand tab', '');
-    } else {
+    } else if(el.dataset.tabName == 'subscribe'){
       gaEvent('click on button', 'Payment method — Subscription tab', '');
     }
     initTempStyles(activeIndex);
