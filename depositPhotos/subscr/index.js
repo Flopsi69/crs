@@ -39,7 +39,7 @@ let stylesList = `
   }
   .subscribe_upgrade .subscribe__plans-box .plans__container {
     max-width: 950px;
-    min-height: 605px;
+    min-height: 635px;
   }
   .plans__head {
     display: flex;
@@ -250,8 +250,9 @@ function initTempStyles() {
 initTempStyles(activeIndex);
 
 
-
-document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+setTimeout(() => {
+  document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+}, 500);
 
 function initSwitcher() {
   extractList();
