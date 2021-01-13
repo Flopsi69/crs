@@ -303,3 +303,5 @@ document.addEventListener('click', function (e) {
   //   document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
   // }
 });
+
+document.querySelector('.subscribe__plans-box').style.opacity = 1;
