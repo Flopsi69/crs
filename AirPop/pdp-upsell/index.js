@@ -229,7 +229,7 @@ if ($('.block.upsell').length) {
   productFixedArr.push($(activeFixedEl).addClass('active'));
 
   for (let upsellItem of upsellDataList) {
-    if (parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0])) {
+    if (parseInt(numActiveMasks) < parseInt(upsellItem.name.match(/\d+/)[0]) && parseInt(upsellItem.name.match(/\d+/)[0]) == 20 ) {
       let upsellItemEl = createUpsellEl(upsellItem);
       productUpsellArr.push($(upsellItemEl));
 
