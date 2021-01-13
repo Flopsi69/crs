@@ -229,7 +229,9 @@ setTimeout(() => {
       this.classList.add('active');
     })
   })
-}, 1000);
+  document.querySelector('.subscribe__plans-box').style.opacity = 1;
+
+}, 800);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
@@ -303,5 +305,3 @@ document.addEventListener('click', function (e) {
   //   document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
   // }
 });
-
-document.querySelector('.subscribe__plans-box').style.opacity = 1;
