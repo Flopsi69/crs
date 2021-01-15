@@ -271,7 +271,9 @@ function initTempStyles() {
 initTempStyles(activeIndex);
 
 
-setTimeout(addAdvantages, 1000);
+setTimeout(function () {
+  document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+}, 1500);
 
 function addAdvantages() {
   if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
