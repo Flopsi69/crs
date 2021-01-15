@@ -169,8 +169,28 @@ let stylesList = `
   .plans__box>form:last-child .plan-constructor__frame-row+.plan-constructor__frame-row   {
     height: 300px;
   }
+  .offer-row__full-price {
+    color: #525252;
+    font-weight: bold;
+  }
+  .offer-row__amount .offer-row__popular {
+    top: -3px;
+  }
 `;
 
+// .offer-row__full-price .price-capt {
+//   font-size: 11px;
+//   line-height: 13px;
+//   color: #696969;
+//   font-weight: 400;
+//   margin-top: 2px;
+// }
+// .offer-row__full-price .price-capt-old {
+//   text-decoration: line-through;
+// }
+// .offer-row__full-price .price-capt-new {
+//   font-weight: bold;
+// }
 // connect to DOM
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
@@ -209,7 +229,6 @@ const advantages = `
 `;
 
 let activeIndex = '1';
-console.log('activeIndex');
 
 setTimeout(() => {
   document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
@@ -224,7 +243,6 @@ setTimeout(() => {
         gaEvent('click on button', 'Payment method — Subscription tab', '');
       }
       initTempStyles(activeIndex);
-      console.log(activeIndex);
       document.querySelector('.plans__head-item.active').classList.remove('active');
       this.classList.add('active');
     })
@@ -255,53 +273,64 @@ function initTempStyles() {
 initTempStyles(activeIndex);
 
 
-setTimeout(() => {
-  document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-}, 1000);
+setTimeout(addAdvantages, 1000);
 
-function initSwitcher() {
-  extractList();
-  document.querySelectorAll(".tabs-switcher__switcher").forEach(el => {
-    el.addEventListener('click', function (e) {
-      document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-    })
-  })
+function addAdvantages() {
+  if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
+    document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+  }
 }
 
-document.addEventListener('click', function (e) {
-  console.log(e.target);
-  if ( e.target.classList.contains('tabs-switcher__switcher') || e.target.classList.contains('tabs-switcher__label') ) {
-    setTimeout(() => {
-      if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
-        document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-        let dataKey = e.target.parentElement.dataset.key;
-        console.log(dataKey);
-        if (dataKey == 16) {
+let observer = new MutationObserver(cbMutations);
+
+function cbMutations(mutations) {
+  console.log(mutations);
+  for (let mutation of mutations) {
+    for(let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
+
+        document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
+          let priceEl = el.querySelector('.offer-row__full-price');
+          let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
+          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replace(' ', '');
+          let pricePerMonth = parseFloat((price / 12).toFixed(2));
+          priceUpdated = `
+            ${currency}${pricePerMonth} per month
+          `;
+
+          // <span class='price-capt'>(&nbsp;billed <span class='price-capt-old'>${currency}120</span> <span class='price-capt-new'> ${currency}${price}</span>&nbsp;)</span>
+
+          if (el.querySelector('.offer-row__popular')) {
+            el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
+          }
+
+          priceEl.innerHTML = priceUpdated;
+        })
+      console.log(node);
+      }
+
+      
+      if (node.matches('.plan-constructor') && activeIndex == 2) {
+        addAdvantages();
+        console.log(node);
+        if (node.name == 16) {
           document.querySelectorAll('.exluded-trigger').forEach(function (el) {
             el.classList.remove('exluded');
-          })
+          }) 
         }
       }
-    }, 0);
+
+      // или, может быть, пример кода есть в его поддереве?
+      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
+        // Prism.highlightElement(elem);
+      // }
+    }
   }
 
-  if (e.target.classList.contains('offer-row__radio')) {
-    console.log("offer");
-    setTimeout(() => {
-      if (!document.querySelector(".plans__box>form:last-child .mixed-plans-constructor__info-box")) {
-        console.log("offer2");
+}
 
-        document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-        if (document.querySelector('.plans__box>form:last-child .tabs-switcher__switcher').parentElement.dataset.key == 8) {
-          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-            el.classList.remove('exluded');
-          })
-        }
-      }
-    }, 0);
-  }
+let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
 
-  // if (e.target.classList.contains('offer-row')) {
-  //   document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
-  // }
-});
+observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
+
