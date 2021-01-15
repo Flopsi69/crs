@@ -324,8 +324,9 @@ function cbMutations(mutations) {
               break;
           }
         
-          priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`
-          
+          if (!el.classList.contains('offer-row_active')) {
+            priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`;
+          }
 
           if (el.querySelector('.offer-row__popular')) {
             el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
