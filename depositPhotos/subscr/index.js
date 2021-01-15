@@ -281,10 +281,12 @@ function addAdvantages() {
   }
 }
 
-console.log('observer');
+// console.log('observer');
 let observer = new MutationObserver(cbMutations);
+console.log(observer);
 
 function cbMutations(mutations) {
+  console.log(33);
   console.log(mutations);
   for (let mutation of mutations) {
     for(let node of mutation.addedNodes) {
