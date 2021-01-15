@@ -283,61 +283,60 @@ function addAdvantages() {
 
 // console.log('observer');
 setTimeout(() => {
-  console.log('buu');
-  
-let observer = new MutationObserver(mutations => {
-  console.log(33);
-  console.log(mutations);
-  for (let mutation of mutations) {
-    for(let node of mutation.addedNodes) {
-      if (!(node instanceof HTMLElement)) continue;
-      if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
+  console.log('buuff');
+  let observer = new MutationObserver(mutations => {
+    console.log(33);
+    console.log(mutations);
+    for (let mutation of mutations) {
+      for(let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+        if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
 
-        document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
-          let priceEl = el.querySelector('.offer-row__full-price');
-          let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
-          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replace(' ', '');
-          console.log(price);
-          let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replace(',' , '.'));
-          let priceUpdated;
-          if (parseInt(priceEl.innerText)) {
-            priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
-          } else {
-            priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
-          }
+          document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
+            let priceEl = el.querySelector('.offer-row__full-price');
+            let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
+            let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replace(' ', '');
+            console.log(price);
+            let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replace(',' , '.'));
+            let priceUpdated;
+            if (parseInt(priceEl.innerText)) {
+              priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
+            } else {
+              priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
+            }
 
-          // <span class='price-capt'>(&nbsp;billed <span class='price-capt-old'>${currency}120</span> <span class='price-capt-new'> ${currency}${price}</span>&nbsp;)</span>
+            // <span class='price-capt'>(&nbsp;billed <span class='price-capt-old'>${currency}120</span> <span class='price-capt-new'> ${currency}${price}</span>&nbsp;)</span>
 
-          if (el.querySelector('.offer-row__popular')) {
-            el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
-          }
+            if (el.querySelector('.offer-row__popular')) {
+              el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
+            }
 
-          priceEl.innerHTML = priceUpdated;
-        })
-      console.log(node);
-      }
-
-      
-      if (node.matches('.plan-constructor') && activeIndex == 2) {
-        addAdvantages();
+            priceEl.innerHTML = priceUpdated;
+          })
         console.log(node);
-        if (node.name == 16) {
-          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-            el.classList.remove('exluded');
-          }) 
         }
+
+        
+        if (node.matches('.plan-constructor') && activeIndex == 2) {
+          addAdvantages();
+          console.log(node);
+          if (node.name == 16) {
+            document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+              el.classList.remove('exluded');
+            }) 
+          }
+        }
+
+        // или, может быть, пример кода есть в его поддереве?
+        // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
+          // Prism.highlightElement(elem);
+        // }
       }
-
-      // или, может быть, пример кода есть в его поддереве?
-      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
-        // Prism.highlightElement(elem);
-      // }
     }
-  }
 
-});
+  });
   console.log(observer);
-}, 1000);
+}, 5000);
 
 function cbMutations(mutations) {
   console.log(33);
