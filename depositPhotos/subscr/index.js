@@ -176,21 +176,19 @@ let stylesList = `
   .offer-row__amount .offer-row__popular {
     top: -3px;
   }
+  .offer-row__full-price .price-capt {
+    background: #FFD6D6;
+    border-radius: 10px;
+    padding: 3px 6px;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 11px;
+    color: #E74C3C;
+    position: relative;
+    top: -2px;
+  }
 `;
 
-// .offer-row__full-price .price-capt {
-//   font-size: 11px;
-//   line-height: 13px;
-//   color: #696969;
-//   font-weight: 400;
-//   margin-top: 2px;
-// }
-// .offer-row__full-price .price-capt-old {
-//   text-decoration: line-through;
-// }
-// .offer-row__full-price .price-capt-new {
-//   font-weight: bold;
-// }
 // connect to DOM
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
@@ -281,12 +279,13 @@ function addAdvantages() {
   }
 }
 
-let observer = new MutationObserver(cbMutations);
-
 setTimeout(() => {;
   let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
   observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
 }, 1000);
+
+let observer = new MutationObserver(cbMutations);
+
 
 function cbMutations(mutations) {
   for (let mutation of mutations) {
@@ -294,7 +293,7 @@ function cbMutations(mutations) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
 
-        document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
+        document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el, i) {
           let priceEl = el.querySelector('.offer-row__full-price');
           console.log(priceEl);
 
@@ -309,7 +308,22 @@ function cbMutations(mutations) {
             priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
           }
 
-          // <span class='price-capt'>(&nbsp;billed <span class='price-capt-old'>${currency}120</span> <span class='price-capt-new'> ${currency}${price}</span>&nbsp;)</span>
+          let discount;
+          switch (i) {
+            case 0:
+              discount = '14';
+              break;
+            case 3:
+              discount = '16';
+              break;
+          
+            default:
+              discount = '15';
+              break;
+          }
+        
+          priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`
+          
 
           if (el.querySelector('.offer-row__popular')) {
             el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
