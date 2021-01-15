@@ -336,7 +336,11 @@ setTimeout(() => {
 
   });
   console.log(observer);
-}, 5000);
+
+  let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
+
+observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
+}, 1000);
 
 function cbMutations(mutations) {
   console.log(33);
@@ -390,7 +394,4 @@ function cbMutations(mutations) {
 
 }
 
-let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
-
-observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
 
