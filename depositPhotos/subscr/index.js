@@ -283,7 +283,8 @@ function addAdvantages() {
 
 // console.log('observer');
 setTimeout(() => {
-  'gigi'
+  console.log('buu');
+  
 let observer = new MutationObserver(mutations => {
   console.log(33);
   console.log(mutations);
