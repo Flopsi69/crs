@@ -211,7 +211,7 @@ const advantages = `
         <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>All file sizes</li>
         <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Print or digital use </li>
         <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Use for marketing and advertising</li>
-        <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong>more than</strong> 500,000 copies</li>
+        <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong class='advantage-toggle-text'>up to</strong> 500,000 copies</li>
         <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Life-long rights to use images</li>
 
         <li class="plan-constructor__advantage-item exluded exluded-trigger"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -341,6 +341,7 @@ function cbMutations(mutations) {
         if (node.name == 16) {
           document.querySelectorAll('.exluded-trigger').forEach(function (el) {
             el.classList.remove('exluded');
+            document.querySelector('.advantage-toggle-text').innerText = 'more than';
           }) 
         }
       }
