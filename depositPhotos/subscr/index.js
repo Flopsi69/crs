@@ -296,9 +296,12 @@ function cbMutations(mutations) {
 
         document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
           let priceEl = el.querySelector('.offer-row__full-price');
+          console.log(priceEl);
+
           let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
-          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replace(' ', '');
-          let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replace(',' , '.'));
+          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+          
+          let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
           let priceUpdated;
           if (parseInt(priceEl.innerText)) {
             priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
