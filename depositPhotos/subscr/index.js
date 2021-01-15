@@ -281,6 +281,7 @@ function addAdvantages() {
   }
 }
 
+console.log('observer');
 let observer = new MutationObserver(cbMutations);
 
 function cbMutations(mutations) {
