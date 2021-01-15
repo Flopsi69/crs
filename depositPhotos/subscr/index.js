@@ -284,7 +284,6 @@ function addAdvantages() {
 let observer = new MutationObserver(cbMutations);
 
 function cbMutations(mutations) {
-  console.log(mutations);
   for (let mutation of mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
@@ -293,11 +292,15 @@ function cbMutations(mutations) {
         document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el) {
           let priceEl = el.querySelector('.offer-row__full-price');
           let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
-          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replace(' ', '');
+          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+
           let pricePerMonth = parseFloat((price / 12).toFixed(2));
-          priceUpdated = `
-            ${currency}${pricePerMonth} per month
-          `;
+          let priceUpdated;
+          if (parseInt(priceEl.innerText)) {
+            priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
+          } else {
+            priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
+          }
 
           // <span class='price-capt'>(&nbsp;billed <span class='price-capt-old'>${currency}120</span> <span class='price-capt-new'> ${currency}${price}</span>&nbsp;)</span>
 
