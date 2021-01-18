@@ -187,6 +187,9 @@ let stylesList = `
     position: relative;
     top: -2px;
   }
+  #root>.wrapper {
+    opacity: 1;
+  }
 `;
 
 // connect to DOM
