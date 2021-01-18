@@ -245,6 +245,7 @@ setTimeout(() => {
       this.classList.add('active');
     })
   })
+  document.querySelector('body').classList.remove('exp-preloader');
   document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
 }, 800);
