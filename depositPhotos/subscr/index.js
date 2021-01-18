@@ -248,7 +248,7 @@ setTimeout(() => {
       this.classList.add('active');
     })
   })
-  document.querySelector('body').style.opacity = 1;
+  // document.querySelector('body').style.opacity = 1;
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
@@ -278,6 +278,7 @@ initTempStyles(activeIndex);
 
 setTimeout(function () {
   document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+  activateYearly();
 }, 1500);
 
 function addAdvantages() {
@@ -299,48 +300,8 @@ function cbMutations(mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
-
-        document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el, i) {
-          let priceEl = el.querySelector('.offer-row__full-price');
-          console.log(priceEl);
-
-          let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
-          let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
-          
-          let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
-          let priceUpdated;
-          if (parseInt(priceEl.innerText)) {
-            priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
-          } else {
-            priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
-          }
-
-          let discount;
-          switch (i) {
-            case 0:
-              discount = '14';
-              break;
-            case 3:
-              discount = '16';
-              break;
-          
-            default:
-              discount = '15';
-              break;
-          }
-        
-          if (!el.classList.contains('offer-row_active')) {
-            priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`;
-          }
-
-          if (el.querySelector('.offer-row__popular')) {
-            el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
-          }
-
-          priceEl.innerHTML = priceUpdated;
-        })
+        activateYearly();
       }
-
       
       if (node.matches('.plan-constructor') && activeIndex == 2) {
         addAdvantages();
@@ -361,4 +322,47 @@ function cbMutations(mutations) {
 
 }
 
+function activateYearly() {
+  if (document.querySelector('.plan-constructor_note-box')) {
+    document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el, i) {
+      let priceEl = el.querySelector('.offer-row__full-price');
+      console.log(priceEl);
+
+      let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
+      let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+      
+      let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
+      let priceUpdated;
+      if (parseInt(priceEl.innerText)) {
+        priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
+      } else {
+        priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
+      }
+
+      let discount;
+      switch (i) {
+        case 0:
+          discount = '14';
+          break;
+        case 3:
+          discount = '16';
+          break;
+      
+        default:
+          discount = '15';
+          break;
+      }
+    
+      if (!el.classList.contains('offer-row_active')) {
+        priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`;
+      }
+
+      if (el.querySelector('.offer-row__popular')) {
+        el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
+      }
+
+      priceEl.innerHTML = priceUpdated;
+    })
+  }
+}
 
