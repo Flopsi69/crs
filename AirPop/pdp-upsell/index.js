@@ -56,7 +56,13 @@ let stylesList = `
     display: flex;
     margin: 0 -4px;
     overflow-x: auto;
-    padding: 0 15px 0;
+    padding: 10px 15px 0;
+    padding-right: 10px;
+    margin-right: 5px;
+  }
+
+  .yotpoBottomLine {
+    box-sizing: border-box;
   }
 
   .packs-list__item {
