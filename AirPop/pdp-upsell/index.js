@@ -56,8 +56,7 @@ let stylesList = `
     display: flex;
     margin: 0 -4px;
     overflow-x: auto;
-    padding: 10px 15px 0;
-    margin-right: 5px;
+    padding: 0 15px 0;
   }
 
   .packs-list__item {
