@@ -256,7 +256,8 @@ if ($('.block.upsell').length) {
     $('.mobile-variants .colors').append(fixedItemEl);
   }
 
-  $('.block.upsell').append(packsListEl);
+  $('.product-info-price').after(packsListEl);
+  // $('.block.upsell').append(packsListEl);
 
   $(".packs-list__item").on('click', function () {
     let numMask = $(this).data("masks");
