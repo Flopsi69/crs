@@ -1,14 +1,26 @@
-function gaEvent(action, label, value) {
+function gaEvent(action, label) {
   try {
     dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: 'Experiment — Subscription',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: value
+      "event": "event-to-ga",
+      "eventCategory":  "Exp - pl_benefits",
+      "eventAction": action,
+      "eventLabel": label
     });
   } catch (e) {}
 };
+
+hj('trigger', 'pl_benefits');
+gaEvent("loaded", "");
+
+gaEvent("click", "Item clicked on PL");
+
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+'event': 'event-to-ga',
+'eventCategory': 'Exp - pl_benefits',
+'eventAction': 'loaded'
+});
 
 /* STYLES insert start */
 let stylesList = `
@@ -18,7 +30,7 @@ let stylesList = `
     border: 1px solid #B38D0A;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 10px 0 25px;
+    padding: 10px 10px 25px;
     margin: 30px 0;
     width: 100%;
   }
@@ -32,7 +44,6 @@ let stylesList = `
     justify-content: space-between;
     margin: 0 -10px;
     margin-top: 12px;
-    padding: 0 10px;
   }
   .go-benefit__item {
     padding: 0 10px;
