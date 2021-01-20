@@ -12,9 +12,6 @@ function gaEvent(action, label) {
 hj('trigger', 'pl_benefits');
 gaEvent("loaded", "");
 
-gaEvent("click", "Item clicked on PL");
-
-
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
 'event': 'event-to-ga',
@@ -31,8 +28,11 @@ let stylesList = `
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 10px 10px 25px;
-    margin: 30px 0;
+    margin: 25px 0;
     width: 100%;
+  }
+  .go-benefit_first {
+    margin-top: 0;
   }
   .go-benefit__title {
     font-size: 18px;
@@ -76,6 +76,10 @@ let stylesList = `
   }
 `;
 
+$(document).on("click", ".grid-product", function() {
+  gaEvent("click", "Item clicked on PL");
+})
+
 // connect to DOM
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
@@ -85,7 +89,7 @@ document.body.appendChild(styles);
 
 /*HTML insert start */
 const benefitOne = `
-  <div class="go-benefit">
+  <div class="go-benefit go-benefit_first">
     <div class="go-benefit__title">100% Safe to buy</div>
     <div class="go-benefit__list">
       <div class="go-benefit__item">
@@ -174,15 +178,17 @@ const benefitThree = `
 
 document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
 
-$('.product-list .grid-product').each(function (i, el) {
-  if (i == 3) {
-    el.insertAdjacentHTML("afterend", benefitTwo);
-  }
-  if (i == 7) {
-    el.insertAdjacentHTML("afterend", benefitThree);
-    return false;
-  }
-  
-})
+setTimeout(() => {
+  $('.product-list .grid-product').each(function (i, el) {
+    if (i == 3) {
+      el.insertAdjacentHTML("afterend", benefitTwo);
+    }
+    if (i == 7) {
+      el.insertAdjacentHTML("afterend", benefitThree);
+      return false;
+    }
+  })
+}, 1000);
+
 
 /* HTML insert end */
