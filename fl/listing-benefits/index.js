@@ -9,7 +9,9 @@ function gaEvent(action, label) {
   } catch (e) {}
 };
 
-hj('trigger', 'pl_benefits');
+setTimeout(() => {
+  hj('trigger', 'pl_benefits');
+}, 2000);
 gaEvent("loaded", "");
 
 window.dataLayer = window.dataLayer || [];
