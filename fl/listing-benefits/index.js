@@ -41,6 +41,9 @@ let stylesList = `
     line-height: 22px;
     color: #000000;
   }
+  .go-benefit__title-last {
+    font-weight: 400;
+  }
   .go-benefit__list {
     display: flex;
     justify-content: space-between;
@@ -55,6 +58,12 @@ let stylesList = `
     font-size: 11px;
     line-height: 14px;
     color: #000;
+  }
+  .go-benefit__caption-last {
+    margin-top: 13px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
   }
   .go-benefit__image {
     position: relative;
@@ -149,31 +158,8 @@ const benefitTwo = `
 
 const benefitThree = `
   <div class="go-benefit">
-    <div class="go-benefit__title">100% Safe to buy</div>
-    <div class="go-benefit__list">
-      <div class="go-benefit__item">
-        <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJq.svg">
-        </div>
-        <div class="go-benefit__caption">Safe and secure checkout</div>
-      </div>
-
-      <div class="go-benefit__item">
-        <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJg.svg">
-        </div>
-        <div class="go-benefit__caption">Dedicated
-        customer service</div>
-      </div>
-
-      <div class="go-benefit__item">
-        <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/THU.svg">
-        </div>
-        <div class="go-benefit__caption">Affordable 
-        prices</div>
-      </div>
-    </div>
+    <div class="go-benefit__title">No “luxury” markups on highest-quality materials</div>
+    <div class="go-benefit__caption go-benefit__caption-last">While major brands in watch industry markup their products by 8x-16x of the actual cost, We at Filippo Loreti wanted to make luxury watches accessible to anyone</div>
   </div>
 `;
 
