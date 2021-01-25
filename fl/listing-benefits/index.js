@@ -163,10 +163,8 @@ const benefitThree = `
   </div>
 `;
 
-
-document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
-
 setTimeout(() => {
+  document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
   $('.product-list .grid-product').each(function (i, el) {
     if (i == 3) {
       el.insertAdjacentHTML("afterend", benefitTwo);
@@ -176,7 +174,7 @@ setTimeout(() => {
       return false;
     }
   })
-}, 1000);
+}, 2500);
 
 
 /* HTML insert end */
