@@ -1,0 +1,137 @@
+.quiz2-intro-form-wrap .quiz-name-wrap,
+.quiz2-intro-form-wrap h4 {
+  display: none !important;
+}
+
+.step-one__title {
+  margin-bottom: 50px;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.step-one__text {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.step-one__gender-toggler {
+  cursor: pointer;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+
+.step-one__gender-toggler:hover {
+  opacity: 0.9;
+}
+
+.step-one__child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+.step-one__child-genders {
+  margin: 0 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 0;
+}
+
+.step-one__child-gender {
+  border: 3px solid #fff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  width: 84px;
+  height: 84px;
+}
+
+.step-one__child-gender + .step-one__child-gender {
+  margin-left: 22px;
+}
+
+.step-one__child-gender.active {
+  border-color: #3957a5;
+}
+
+.step-one__child-twins {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.step-one__child-checkbox {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 5px;
+  margin-right: 12px;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.step-one__child-checkbox:before {
+  content: '';
+  width: 5px;
+  height: 10px;
+  opacity: 0;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -60%) rotate(45deg);
+          transform: translate(-50%, -60%) rotate(45deg);
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.active .step-one__child-checkbox {
+  background-color: #3957a5;
+}
+
+.active .step-one__child-checkbox:before {
+  opacity: 1;
+}
+
+.step-one__birth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  white-space: nowrap;
+}
+
+.step-one__birth .step-one__text {
+  margin-right: 20px;
+}
+
+.step-one__birth input[type='date'] {
+  max-width: 243px;
+  min-width: auto;
+  width: 100%;
+  padding: 4px 12px 6px 18px;
+  text-align: left;
+  font-weight: 700;
+  width: 100%;
+  line-height: 135%;
+  color: #15206b;
+  height: 44px;
+  font-size: 24px;
+  margin-top: 0;
+}
+/*# sourceMappingURL=index.css.map */
