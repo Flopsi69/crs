@@ -100,7 +100,7 @@ document.body.appendChild(styles);
 
 /*HTML insert start */
 const benefitOne = `
-  <div class="go-benefit go-benefit_first">
+  <div class="go-benefit">
     <div class="go-benefit__title">100% Safe to buy</div>
     <div class="go-benefit__list">
       <div class="go-benefit__item">
@@ -164,7 +164,6 @@ const benefitThree = `
 `;
 
 setTimeout(() => {
-  // document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
   console.log($('.product-list .grid-product').length)
   $('.product-list .grid-product').each(function (i, el) {
     if (i == 3) {
@@ -172,7 +171,6 @@ setTimeout(() => {
     }
     if (i == 7) {
       el.insertAdjacentHTML("afterend", benefitTwo);
-      return false;
     }
     if (i == 11) {
       el.insertAdjacentHTML("afterend", benefitThree);
