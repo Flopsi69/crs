@@ -164,12 +164,16 @@ const benefitThree = `
 `;
 
 setTimeout(() => {
-  document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
+  // document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
   $('.product-list .grid-product').each(function (i, el) {
     if (i == 3) {
-      el.insertAdjacentHTML("afterend", benefitTwo);
+      el.insertAdjacentHTML("afterend", benefitOne);
     }
     if (i == 7) {
+      el.insertAdjacentHTML("afterend", benefitTwo);
+      return false;
+    }
+    if (i == 11) {
       el.insertAdjacentHTML("afterend", benefitThree);
       return false;
     }
