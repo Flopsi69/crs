@@ -1,6 +1,121 @@
-.quiz2-intro-form-wrap .quiz-name-wrap,
 .quiz2-intro-form-wrap h4 {
-  display: none !important;
+  display: none;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  display: none;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  text-align: left;
+  height: 45px;
+  padding: 10px 20px;
+  max-width: 100%;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  margin-top: 40px !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+  border: none;
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  margin-left: 0 !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
+  max-width: 800px;
+  padding: 80px 0 45px;
+  width: 100%;
+}
+
+.step-one__finish-wrap {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  margin-top: 55px;
+}
+
+.step-one__back {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #15226a;
+  margin-right: 35px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.step-one__back:hover {
+  opacity: 0.7;
+}
+
+.step-one__side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  max-width: 360px;
+  margin: auto;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side {
+    padding-left: 60px;
+  }
+}
+
+.step-one__side-title {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 1.2;
+  text-align: center;
+  color: #15226a;
+  margin-top: 25px;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side-title {
+    font-size: 22px;
+  }
+}
+
+.step-one__side-caption {
+  line-height: 1.4;
+  text-align: center;
+  color: #15226a;
+  font-size: 14px;
+  margin-top: 22px;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side-caption {
+    font-size: 13px;
+  }
+}
+
+.step-one__progress {
+  margin-bottom: 60px;
 }
 
 .step-one__title {
@@ -17,12 +132,10 @@
 
 .step-one__gender-toggler {
   cursor: pointer;
-  -webkit-transition: opacity 0.35s;
-  transition: opacity 0.35s;
 }
 
 .step-one__gender-toggler:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .step-one__child {

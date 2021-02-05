@@ -105,21 +105,21 @@ const benefitOne = `
     <div class="go-benefit__list">
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/THM.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/1.svg">
         </div>
         <div class="go-benefit__caption">Free shipping</div>
       </div>
 
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJX.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/2.svg">
         </div>
         <div class="go-benefit__caption">Easy 90-days returns</div>
       </div>
 
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJe.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/3.svg">
         </div>
         <div class="go-benefit__caption">10-year warranty</div>
       </div>
@@ -133,7 +133,7 @@ const benefitTwo = `
     <div class="go-benefit__list">
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJ9.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/4.svg">
         </div>
         <div class="go-benefit__caption">Water resistantce
         to 100 meters</div>
@@ -141,14 +141,14 @@ const benefitTwo = `
 
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/THi.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/5.svg">
         </div>
         <div class="go-benefit__caption">Saphire coated mineral glass</div>
       </div>
 
       <div class="go-benefit__item">
         <div class="go-benefit__image">
-          <img src="https://svgshare.com/i/TJf.svg">
+          <img src="https://flopsi69.github.io/crs/fl/listing-benefits/6.svg">
         </div>
         <div class="go-benefit__caption">Luminiscent details</div>
       </div>
@@ -165,6 +165,7 @@ const benefitThree = `
 
 setTimeout(() => {
   // document.querySelector('.product-list').insertAdjacentHTML("afterbegin", benefitOne);
+  console.log($('.product-list .grid-product').length)
   $('.product-list .grid-product').each(function (i, el) {
     if (i == 3) {
       el.insertAdjacentHTML("afterend", benefitOne);

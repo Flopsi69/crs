@@ -1,11 +1,99 @@
 .quiz2-intro-form-wrap {
-  .quiz-name-wrap,
   h4 {
-    display: none !important;
+    display: none;
   }
 }
 
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  display: none;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: left;
+  height: 45px;
+  padding: 10px 20px;
+  max-width: 100%;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  margin-top: 40px !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+  border: none;
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  margin-left: 0 !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
+  max-width: 800px;
+  padding: 80px 0 45px;
+  width: 100%;
+}
 .step-one {
+  &__finish {
+    &-wrap {
+      align-items: center;
+      display: none;
+      margin-top: 55px;
+    }
+  }
+  &__back {
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: #15226a;
+    margin-right: 35px;
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  &__side {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    max-width: 360px;
+    margin: auto;
+    @media (max-width: 1470px) {
+      // max-width: 360px;
+      padding-left: 60px;
+    }
+    &-title {
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 1.2;
+      text-align: center;
+      color: #15226a;
+      margin-top: 25px;
+      @media (max-width: 1470px) {
+        font-size: 22px;
+      }
+    }
+    &-caption {
+      line-height: 1.4;
+      text-align: center;
+      color: #15226a;
+      font-size: 14px;
+      margin-top: 22px;
+      @media (max-width: 1470px) {
+        font-size: 13px;
+      }
+    }
+  }
+  &__progress {
+    margin-bottom: 60px;
+  }
   &__title {
     margin-bottom: 50px;
     font-size: 26px;
@@ -19,9 +107,8 @@
   }
   &__gender-toggler {
     cursor: pointer;
-    transition: opacity 0.35s;
     &:hover {
-      opacity: 0.9;
+      opacity: 0.8;
     }
   }
   &__child {

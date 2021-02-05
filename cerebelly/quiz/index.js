@@ -22,14 +22,138 @@
 // });
 
 /* STYLES insert start */
-let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
-.quiz2-intro-form-wrap .quiz-name-wrap.mt-4 + div {
+let stylesList = `
+.quiz2-intro-form-wrap h4 {
   display: none;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  display: none;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 5px;
+  text-align: left;
+  height: 45px;
+  padding: 10px 20px;
+  max-width: 100%;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+  margin-top: 40px !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+  border: none;
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  margin-left: 0 !important;
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
+  max-width: 800px;
+  padding: 80px 0 45px;
+  width: 100%;
+}
+
+.step-one__finish-wrap {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  margin-top: 55px;
+}
+
+.step-one__back {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  color: #15226a;
+  margin-right: 35px;
+}
+
+.step-one__side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  max-width: 360px;
+  margin: auto;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side {
+    padding-left: 60px;
+  }
+}
+
+.step-one__side-title {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 1.2;
+  text-align: center;
+  color: #15226a;
+  margin-top: 25px;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side-title {
+    font-size: 22px;
+  }
+}
+
+.step-one__side-caption {
+  line-height: 1.4;
+  text-align: center;
+  color: #15226a;
+  font-size: 14px;
+  margin-top: 22px;
+}
+
+@media (max-width: 1470px) {
+  .step-one__side-caption {
+    font-size: 13px;
+  }
+}
+
+.step-one__progress {
+  margin-bottom: 60px;
+}
+
+.step-one__title {
+  margin-bottom: 50px;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .step-one__text {
   font-size: 22px;
   line-height: 26px;
+}
+
+.step-one__gender-toggler {
+  cursor: pointer;
+}
+
+.step-one__gender-toggler:hover {
+  opacity: 0.8;
 }
 
 .step-one__child {
@@ -43,7 +167,7 @@ let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
 }
 
 .step-one__child-genders {
-  margin: 0 50px;
+  margin: 0 45px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,13 +175,14 @@ let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
 }
 
 .step-one__child-gender {
-  margin-left: 22px;
   border: 3px solid #fff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 15px;
   overflow: hidden;
   background-color: #fff;
+  width: 84px;
+  height: 84px;
 }
 
 .step-one__child-gender + .step-one__child-gender {
@@ -84,6 +209,24 @@ let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
   background: #ffffff;
   border-radius: 5px;
   margin-right: 12px;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+.step-one__child-checkbox:before {
+  content: '';
+  width: 5px;
+  height: 10px;
+  opacity: 0;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -60%) rotate(45deg);
+          transform: translate(-50%, -60%) rotate(45deg);
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
 }
 
 .active .step-one__child-checkbox {
@@ -91,18 +234,7 @@ let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
 }
 
 .active .step-one__child-checkbox:before {
-  content: '';
-  width: 5px;
-  height: 10px;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  border-bottom: 1px solid #fff;
-  border-right: 1px solid #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  opacity: 1;
 }
 
 .step-one__birth {
@@ -133,7 +265,8 @@ let stylesList = `.quiz2-intro-form-wrap .quiz-name-wrap.mt-4,
   font-size: 24px;
   margin-top: 0;
 }
-/*# sourceMappingURL=index.css.map */`;
+/*# sourceMappingURL=index.css.map */
+`;
 
 // connect to DOM
 let styles = document.createElement('style');
@@ -145,18 +278,21 @@ document.body.appendChild(styles);
 /*HTML insert start */
 const stepOneHtml = `
 <div class="step-one">
+    <div class="step-one__progress">
+      <img src="https://flopsi69.github.io/crs/cerebelly/quiz/progress.png" alt="">
+    </div>
     <div class="step-one__title">Tell us a little about your child</div>
     <div class="step-one__child">
       <div class="step-one__text">My little one is</div>
       <div class="step-one__child-genders">
-        <div class="step-one__child-gender step-one__gender-toggler" data-gender='boy'>
-          <img src="https://i.ibb.co/5Kh41dj/step-one-boy.png" alt="step-one-boy">
+        <div class="step-one__child-gender step-one__gender-toggler" data-gender='1'>
+          <img src="https://flopsi69.github.io/crs/cerebelly/quiz/step-one-boy.png" alt="step-one-boy">
         </div>
-        <div class="step-one__child-gender step-one__gender-toggler" data-gender='girl'>
-          <img src="https://i.ibb.co/TM7qYXZ/step-one-girl.png" alt="step-one-girl">
+        <div class="step-one__child-gender step-one__gender-toggler" data-gender='2'>
+          <img src="https://flopsi69.github.io/crs/cerebelly/quiz/step-one-girl.png" alt="step-one-girl">
         </div>
       </div>
-      <div class="step-one__text step-one__child-twins step-one__gender-toggler" data-gender='twins'>
+      <div class="step-one__text step-one__child-twins step-one__gender-toggler" data-gender='0'>
         <div class="step-one__child-checkbox"></div>
         I have twins!
       </div>
@@ -164,6 +300,22 @@ const stepOneHtml = `
     <div class="step-one__birth">
       <div class="step-one__text">and her Birthday is on</div>
     </div>
+
+    <button class="button blue mt-3 mt-md-4 step-one__next"><span>continue</span></button>
+  </div>
+`;
+
+const stepOneSideHtml = `
+  <div class="step-one__side">
+    <div class="step-one__side-title">Get a personalized food box with key nutrients to support brain development.</div>
+    <div class="step-one__side-caption">Take a quiz to create a box based on your child's age and behavioral characteristics:</div>
+  </div>
+`;
+
+const finishBtnHtml = `
+  <div class="step-one__finish-wrap">
+    <div class="step-one__back">< Back</div>
+    <button type="submit" class="button blue step-one__finish" style="display: block;"><span>continue</span></button>
   </div>
 `;
 
@@ -171,7 +323,40 @@ const stepOneHtml = `
 function stepOne() {
   document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
   document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".e-input"));
+  document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
+  document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
+  document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";
+  document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
+  document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
   genderChoice();
+
+  let selectGenderEl = document.querySelector("#select1");
+  let currentGender = selectGenderEl.options.selectedIndex;
+  document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+
+  document.querySelector('.step-one__next').addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.style.display = "none";
+    document.querySelector('.step-one__child').style.display = "none";
+    document.querySelector('.step-one__title').style.display = "none";
+    document.querySelector('.step-one__birth').style.display = "none";
+    document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
+    document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
+    document.querySelector(".step-one__finish-wrap").style.display = "flex";
+  })
+
+  document.querySelector(".step-one__back").addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector(".step-one__next").style.display = "block";
+    document.querySelector('.step-one__child').style.display = "flex";
+    document.querySelector('.step-one__title').style.display = "block";
+    document.querySelector('.step-one__birth').style.display = "flex";
+    document.querySelector('.quiz-name-wrap.mt-4').style.display = "none";
+    document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
+    document.querySelector(".step-one__finish-wrap").style.display = "none";
+  })
 }
 
 
@@ -182,6 +367,8 @@ function genderChoice() {
       this.classList.add("active");
     })
   })
+
+
 }
 stepOne();
 
