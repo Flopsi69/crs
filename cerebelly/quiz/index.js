@@ -23,17 +23,25 @@
 
 /* STYLES insert start */
 let stylesList = `
-.quiz2-intro-form-wrap h4 {
+.quiz2-intro-form-wrap h4, .css-wjajup .quiz2-intro-wrap .quiz-disclaimer, .css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
   display: none;
+}
+.css-8r2qqr button.button.blue {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 18px 47px;
+}
+
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+  font-size: 28px;
 }
 
 .css-wjajup .quiz2-intro-wrap {
-  background: #A7D4CD;
-}
-
-
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
-  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
@@ -49,7 +57,7 @@ let stylesList = `
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
-  margin-top: 40px !important;
+  margin-top: 25px !important;
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
@@ -62,9 +70,17 @@ let stylesList = `
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
-  max-width: 800px;
-  padding: 80px 0 45px;
+  max-width: 700px;
+  padding: 30px 0 45px;
   width: 100%;
+}
+
+.step-one__disclaimer {
+  display: none;
+  margin-top: 43px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .step-one__finish-wrap {
@@ -72,21 +88,51 @@ let stylesList = `
       -ms-flex-align: center;
           align-items: center;
   display: none;
-  margin-top: 55px;
+  margin-top: 20px;
 }
 
 .step-one__back {
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 0.01em;
-  color: #15226a;
+  color: #3856A7;
   margin-right: 35px;
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  padding-left: 15px;
+  line-height: 1;
+  @media (max-width: 992px) {
+    position: relative;
+    left: 0;
+  }
+}
+
+.step-one__back:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-left: 3px solid #3856A7;
+  border-bottom: 3px solid #3856A7;
+  transform: rotate(45deg);
+}
+
+.step-one__back:hover {
+  opacity: 0.7;
 }
 
 .step-one__side {
   padding: 70px 30px;
   max-width: 370px;
   margin-right: auto;
+  @media (max-width: 768px) {
+    max-width: 100%;
+    width: 100%;
+    text-align-center;
+  }
 }
 
 .step-one__side-title {
@@ -103,6 +149,10 @@ let stylesList = `
   font-size: 18px;
   font-weight: 600;
   margin-top: 35px;
+  max-width: 270px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .step-one__progress {
@@ -247,8 +297,11 @@ document.body.appendChild(styles);
 /*HTML insert start */
 const stepOneHtml = `
 <div class="step-one">
-    <div class="step-one__progress">
-      <img src="https://flopsi69.github.io/crs/cerebelly/quiz/progress.png" alt="">
+    <div class="step-one__progress_desk">
+      <img src="https://flopsi69.github.io/crs/cerebelly/quiz/progress-desk.png" alt="">
+    </div>
+    <div class="step-one__progress_mob">
+      <img src="https://flopsi69.github.io/crs/cerebelly/quiz/progress-mob.png" alt="">
     </div>
     <div class="step-one__title">Tell us a little about your child</div>
     <div class="step-one__child">
@@ -282,8 +335,9 @@ const stepOneSideHtml = `
 `;
 
 const finishBtnHtml = `
+  <div class="step-one__disclaimer">This information will help to personalize your Cerebelly experience</div>
   <div class="step-one__finish-wrap">
-    <div class="step-one__back">< Back</div>
+    <div class="step-one__back">Back</div>
     <button type="submit" class="button blue step-one__finish" style="display: block;"><span>continue</span></button>
   </div>
 `;
@@ -294,16 +348,19 @@ function stepOne() {
   document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".e-input"));
   document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
   document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
-  document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";
+  document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";document.querySelector('.quiz-name-wrap.mt-4 input')
+  document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder = "Parent’s name";
+  document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder = "Baby's Name";
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
   setGender();
+  document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
 
   let selectGenderEl = document.querySelector("#select1");
   let currentGender = selectGenderEl.options.selectedIndex;
   getGenderName(currentGender);
   if (currentGender == 0) {
-    $(document).querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+      document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
       el.classList.add('active');
     });
   } else {
@@ -318,9 +375,12 @@ function stepOne() {
     document.querySelector('.step-one__child').style.display = "none";
     document.querySelector('.step-one__title').style.display = "none";
     document.querySelector('.step-one__birth').style.display = "none";
+    document.querySelector('.step-one__side').style.display = "none";
     document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
     document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
+    document.querySelector(".step-one__disclaimer").style.display = "block";
     document.querySelector(".step-one__finish-wrap").style.display = "flex";
+    document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
   })
 
   document.querySelector(".step-one__back").addEventListener("click", function (e) {
@@ -330,9 +390,12 @@ function stepOne() {
     document.querySelector('.step-one__child').style.display = "flex";
     document.querySelector('.step-one__title').style.display = "block";
     document.querySelector('.step-one__birth').style.display = "flex";
+    document.querySelector('.step-one__side').style.display = "block";
     document.querySelector('.quiz-name-wrap.mt-4').style.display = "none";
     document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
+    document.querySelector(".step-one__disclaimer").style.display = "none";
     document.querySelector(".step-one__finish-wrap").style.display = "none";
+    document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
   })
 }
 
@@ -358,12 +421,14 @@ function setGender() {
 }
 
 function getGenderName(gender) {
+  console.log('gender', gender);
+  
   let genderName;
   switch (gender) {
-    case 1:
+    case "1":
       genderName = "his";
       break;
-    case 2:
+    case "2":
       genderName = "her";
       break;
     default:

@@ -1,16 +1,37 @@
-.quiz2-intro-form-wrap h4 {
+.quiz2-intro-form-wrap h4,
+.css-wjajup .quiz2-intro-wrap .quiz-disclaimer,
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
   display: none;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
-  display: none;
+.css-8r2qqr button.button.blue {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 18px 47px;
+}
+
+@media (max-width: 768px) {
+  .css-wjajup .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
+    padding: 0 20px !important;
+  }
+}
+
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  .css-wjajup .quiz2-intro-wrap {
+    display: block;
+  }
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
   background: #ffffff;
   border: 1px solid #cfcfcf;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border-radius: 5px;
   text-align: left;
   height: 45px;
@@ -19,7 +40,7 @@
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
-  margin-top: 40px !important;
+  margin-top: 25px !important;
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
@@ -32,28 +53,58 @@
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
-  max-width: 800px;
-  padding: 80px 0 45px;
+  max-width: 700px;
+  padding: 30px 0 45px;
   width: 100%;
+}
+
+.step-one__disclaimer {
+  display: none;
+  margin-top: 43px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .step-one__finish-wrap {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   display: none;
-  margin-top: 55px;
+  margin-top: 20px;
 }
 
 .step-one__back {
   font-weight: bold;
   font-size: 18px;
   letter-spacing: 0.01em;
-  color: #15226a;
+  color: #3856a7;
   margin-right: 35px;
   cursor: pointer;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  position: absolute;
+  left: 20px;
+  padding-left: 15px;
+  line-height: 1;
+}
+
+@media (max-width: 992px) {
+  .step-one__back {
+    position: relative;
+    left: 0;
+  }
+}
+
+.step-one__back:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-left: 3px solid #3856a7;
+  border-bottom: 3px solid #3856a7;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .step-one__back:hover {
@@ -61,61 +112,69 @@
 }
 
 .step-one__side {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  max-width: 360px;
-  margin: auto;
+  padding: 70px 30px;
+  max-width: 370px;
+  margin-right: auto;
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 768px) {
   .step-one__side {
-    padding-left: 60px;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
   }
 }
 
 .step-one__side-title {
   font-weight: bold;
   font-size: 28px;
-  line-height: 1.2;
-  text-align: center;
+  line-height: 37px;
   color: #15226a;
   margin-top: 25px;
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 768px) {
   .step-one__side-title {
-    font-size: 22px;
+    margin-top: 0;
+    font-size: 24px;
+    line-height: 28px;
   }
 }
 
 .step-one__side-caption {
-  line-height: 1.4;
-  text-align: center;
-  color: #15226a;
-  font-size: 14px;
-  margin-top: 22px;
+  line-height: 24px;
+  color: #3856a7;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 35px;
+  max-width: 270px;
 }
 
-@media (max-width: 1470px) {
+@media (max-width: 768px) {
   .step-one__side-caption {
-    font-size: 13px;
+    display: none;
   }
 }
 
-.step-one__progress {
-  margin-bottom: 60px;
+.step-one__progress.step-one__progress_desk {
+  margin-bottom: 70px;
+}
+
+@media (max-width: 768px) {
+  .step-one__progress.step-one__progress_desk {
+    display: none;
+  }
+}
+
+.step-one__progress.step-one__progress_mob {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .step-one__progress.step-one__progress_mob {
+    display: block;
+  }
 }
 
 .step-one__title {
@@ -125,9 +184,15 @@
   font-weight: 700;
 }
 
+@media (max-width: 768px) {
+  .step-one__title {
+    text-align: center;
+  }
+}
+
 .step-one__text {
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .step-one__gender-toggler {
@@ -142,14 +207,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 65px;
 }
 
 .step-one__child-genders {
-  margin: 0 45px;
+  margin: 0 60px 0 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -160,28 +222,26 @@
   border: 3px solid #fff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 15px;
+  border-radius: 6px;
   overflow: hidden;
   background-color: #fff;
-  width: 84px;
-  height: 84px;
-}
-
-.step-one__child-gender + .step-one__child-gender {
-  margin-left: 22px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(56, 86, 167, 0.2);
 }
 
 .step-one__child-gender.active {
-  border-color: #3957a5;
+  border-color: #3856a7;
+}
+
+.step-one__child-gender + .step-one__child-gender {
+  margin-left: 20px;
 }
 
 .step-one__child-twins {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .step-one__child-checkbox {
@@ -189,10 +249,11 @@
   width: 24px;
   height: 24px;
   background: #ffffff;
-  border-radius: 5px;
-  margin-right: 12px;
+  border-radius: 6px;
+  margin-right: 9px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
+  border: 2px solid rgba(56, 86, 167, 0.2);
 }
 
 .step-one__child-checkbox:before {
@@ -206,7 +267,7 @@
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -60%) rotate(45deg);
-          transform: translate(-50%, -60%) rotate(45deg);
+  transform: translate(-50%, -60%) rotate(45deg);
   -webkit-transition: 0.35s;
   transition: 0.35s;
 }
@@ -224,8 +285,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   white-space: nowrap;
 }
 
