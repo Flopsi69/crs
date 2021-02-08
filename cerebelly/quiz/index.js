@@ -99,13 +99,14 @@ let stylesList = `
 
 .step-one__side-caption {
   line-height: 24px;
-  color: #15226a;
+  color: #3856A7;
   font-size: 18px;
-  margin-top: 60px;
+  font-weight: 600;
+  margin-top: 35px;
 }
 
 .step-one__progress {
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
 .step-one__title {
@@ -116,8 +117,8 @@ let stylesList = `
 }
 
 .step-one__text {
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .step-one__gender-toggler {
@@ -132,14 +133,11 @@ let stylesList = `
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 65px;
 }
 
 .step-one__child-genders {
-  margin: 0 45px;
+  margin: 0 60px 0 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -150,28 +148,26 @@ let stylesList = `
   border: 3px solid #fff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 15px;
+  border-radius: 6px;
   overflow: hidden;
   background-color: #fff;
-  width: 84px;
-  height: 84px;
-}
-
-.step-one__child-gender + .step-one__child-gender {
-  margin-left: 22px;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(56, 86, 167, 0.2);
 }
 
 .step-one__child-gender.active {
-  border-color: #3957a5;
+  border-color: #3856A7;
+}
+
+.step-one__child-gender + .step-one__child-gender {
+  margin-left: 20px;
 }
 
 .step-one__child-twins {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .step-one__child-checkbox {
@@ -179,10 +175,11 @@ let stylesList = `
   width: 24px;
   height: 24px;
   background: #ffffff;
-  border-radius: 5px;
-  margin-right: 12px;
+  border-radius: 6px;
+  margin-right: 9px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
+  border: 2px solid rgba(56, 86, 167, 0.2);
 }
 
 .step-one__child-checkbox:before {
@@ -266,11 +263,11 @@ const stepOneHtml = `
       </div>
       <div class="step-one__text step-one__child-twins step-one__gender-toggler" data-gender='0'>
         <div class="step-one__child-checkbox"></div>
-        I have twins!
+        I prefer not to say
       </div>
     </div>
     <div class="step-one__birth">
-      <div class="step-one__text">and her Birthday is on</div>
+      <div class="step-one__text">and <span class="step-one__birtch-who">her</span> Birthday is on</div>
     </div>
 
     <button class="button blue mt-3 mt-md-4 step-one__next"><span>continue</span></button>
@@ -300,11 +297,19 @@ function stepOne() {
   document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
-  genderChoice();
+  setGender();
 
   let selectGenderEl = document.querySelector("#select1");
   let currentGender = selectGenderEl.options.selectedIndex;
-  document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+  getGenderName(currentGender);
+  if (currentGender == 0) {
+    $(document).querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+      el.classList.add('active');
+    });
+  } else {
+    document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+  }
+  
 
   document.querySelector('.step-one__next').addEventListener("click", function (e) {
     e.preventDefault();
@@ -332,16 +337,43 @@ function stepOne() {
 }
 
 
-function genderChoice() {
+function setGender() {
   document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
     el.addEventListener("click", function () {
-      document.querySelector(".step-one__gender-toggler.active")?.classList.remove('active');
-      this.classList.add("active");
+      let gender = this.dataset.gender;
+      getGenderName(gender);
+      document.querySelector("#select1").options.selectedIndex = gender;
+      if (gender == 0) {
+          document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+          el.classList.add('active');
+        });
+      } else {
+          document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+          el.classList.remove('active');
+        });
+        this.classList.add("active");
+      }
     })
   })
-
-
 }
+
+function getGenderName(gender) {
+  let genderName;
+  switch (gender) {
+    case 1:
+      genderName = "his";
+      break;
+    case 2:
+      genderName = "her";
+      break;
+    default:
+      genderName = "their";
+      break;
+  }
+  document.querySelector(".step-one__birtch-who").innerText = genderName;
+}
+
+
 stepOne();
 
 
