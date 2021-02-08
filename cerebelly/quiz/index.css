@@ -12,6 +12,17 @@
 }
 
 @media (max-width: 768px) {
+  .css-8r2qqr button.button.blue {
+    padding: 15px;
+    max-width: 260px;
+    min-width: auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
   .css-wjajup .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
     padding: 0 20px !important;
   }
@@ -157,22 +168,24 @@
   }
 }
 
-.step-one__progress.step-one__progress_desk {
+.step-one__progress_desk {
   margin-bottom: 70px;
 }
 
 @media (max-width: 768px) {
-  .step-one__progress.step-one__progress_desk {
+  .step-one__progress_desk {
     display: none;
   }
 }
 
-.step-one__progress.step-one__progress_mob {
+.step-one__progress_mob {
   display: none;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 768px) {
-  .step-one__progress.step-one__progress_mob {
+  .step-one__progress_mob {
     display: block;
   }
 }
@@ -187,6 +200,7 @@
 @media (max-width: 768px) {
   .step-one__title {
     text-align: center;
+    margin-bottom: 20px;
   }
 }
 
@@ -203,11 +217,25 @@
   opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+  .step-one__gender-toggler:hover {
+    opacity: 1;
+  }
+}
+
 .step-one__child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 65px;
+}
+
+@media (max-width: 768px) {
+  .step-one__child {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 }
 
 .step-one__child-genders {
@@ -216,6 +244,15 @@
   display: -ms-flexbox;
   display: flex;
   line-height: 0;
+}
+
+@media (max-width: 768px) {
+  .step-one__child-genders {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 15px 0;
+  }
 }
 
 .step-one__child-gender {
@@ -242,6 +279,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+@media (max-width: 768px) {
+  .step-one__child-twins {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 .step-one__child-checkbox {
@@ -290,8 +335,22 @@
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .step-one__birth {
+    display: block;
+    text-align: center;
+  }
+}
+
 .step-one__birth .step-one__text {
   margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .step-one__birth .step-one__text {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }
 
 .step-one__birth input[type='date'] {
@@ -307,5 +366,12 @@
   height: 44px;
   font-size: 24px;
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .step-one__birth input[type='date'] {
+    max-width: 260px;
+    margin: auto;
+  }
 }
 /*# sourceMappingURL=index.css.map */
