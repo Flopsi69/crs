@@ -27,6 +27,11 @@ let stylesList = `
   display: none;
 }
 
+.css-wjajup .quiz2-intro-wrap {
+  background: #A7D4CD;
+}
+
+
 .css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
   display: none;
 }
@@ -79,57 +84,24 @@ let stylesList = `
 }
 
 .step-one__side {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  max-width: 360px;
-  margin: auto;
-}
-
-@media (max-width: 1470px) {
-  .step-one__side {
-    padding-left: 60px;
-  }
+  padding: 70px 30px;
+  max-width: 370px;
+  margin-right: auto;
 }
 
 .step-one__side-title {
   font-weight: bold;
   font-size: 28px;
-  line-height: 1.2;
-  text-align: center;
+  line-height: 37px;
   color: #15226a;
   margin-top: 25px;
 }
 
-@media (max-width: 1470px) {
-  .step-one__side-title {
-    font-size: 22px;
-  }
-}
-
 .step-one__side-caption {
-  line-height: 1.4;
-  text-align: center;
+  line-height: 24px;
   color: #15226a;
-  font-size: 14px;
-  margin-top: 22px;
-}
-
-@media (max-width: 1470px) {
-  .step-one__side-caption {
-    font-size: 13px;
-  }
+  font-size: 18px;
+  margin-top: 60px;
 }
 
 .step-one__progress {
@@ -307,8 +279,8 @@ const stepOneHtml = `
 
 const stepOneSideHtml = `
   <div class="step-one__side">
-    <div class="step-one__side-title">Get a personalized food box with key nutrients to support brain development.</div>
-    <div class="step-one__side-caption">Take a quiz to create a box based on your child's age and behavioral characteristics:</div>
+    <div class="step-one__side-title">Get a personalized meal plan with key nutrients supporting brain development</div>
+    <div class="step-one__side-caption">Take our quiz to receive our science-backed recommendation based on your child's age and milestones</div>
   </div>
 `;
 
