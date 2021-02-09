@@ -36,8 +36,9 @@ let stylesList = `
   padding: 18px 47px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .css-8r2qqr button.button.blue {
+    display: block;
     padding: 15px;
     max-width: 260px;
     min-width: auto;
@@ -47,17 +48,23 @@ let stylesList = `
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .css-wjajup .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
     padding: 0 20px !important;
   }
 }
 
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
-  font-size: 28px;
+  font-size: 26px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
   .css-wjajup .quiz2-intro-wrap {
     display: block;
   }
@@ -88,6 +95,14 @@ let stylesList = `
   margin-left: 0 !important;
 }
 
+@media (max-width: 600px) {
+  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+    max-width: 260px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 .css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
   max-width: 700px;
   padding: 30px 0 45px;
@@ -102,12 +117,41 @@ let stylesList = `
   line-height: 22px;
 }
 
+@media (max-width: 600px) {
+  .step-one__disclaimer {
+    text-align: center;
+    font-size: 14px;
+    line-height: 14px;
+    max-width: 260px;
+    margin: 33px auto;
+  }
+}
+
+.step-one__next-wrap {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.css-wjajup .e-back-btn {
+  position: absolute;
+  left: 20px;
+  transform: translateY(17px);
+}
+
 .step-one__finish-wrap {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   display: none;
   margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .step-one__finish-wrap {
+    margin-top: 0;
+  }
 }
 
 .step-one__back {
@@ -153,8 +197,9 @@ let stylesList = `
   margin-right: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__side {
+    display: block !important;
     max-width: 100%;
     width: 100%;
     text-align: center;
@@ -170,7 +215,7 @@ let stylesList = `
   margin-top: 25px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__side-title {
     margin-top: 0;
     font-size: 24px;
@@ -187,28 +232,30 @@ let stylesList = `
   max-width: 270px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__side-caption {
     display: none;
   }
 }
 
-.step-one__progress.step-one__progress_desk {
+.step-one__progress_desk {
   margin-bottom: 70px;
 }
 
-@media (max-width: 768px) {
-  .step-one__progress.step-one__progress_desk {
+@media (max-width: 600px) {
+  .step-one__progress_desk {
     display: none;
   }
 }
 
-.step-one__progress.step-one__progress_mob {
+.step-one__progress_mob {
   display: none;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-@media (max-width: 768px) {
-  .step-one__progress.step-one__progress_mob {
+@media (max-width: 600px) {
+  .step-one__progress_mob {
     display: block;
   }
 }
@@ -220,10 +267,11 @@ let stylesList = `
   font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__title {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 22px;
   }
 }
 
@@ -240,7 +288,7 @@ let stylesList = `
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__gender-toggler:hover {
     opacity: 1;
   }
@@ -253,7 +301,7 @@ let stylesList = `
   margin-bottom: 65px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__child {
     display: block;
     text-align: center;
@@ -269,7 +317,7 @@ let stylesList = `
   line-height: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__child-genders {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -304,7 +352,7 @@ let stylesList = `
   display: flex;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__child-twins {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -358,7 +406,7 @@ let stylesList = `
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__birth {
     display: block;
     text-align: center;
@@ -369,7 +417,7 @@ let stylesList = `
   margin-right: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__birth .step-one__text {
     margin-right: 0;
     margin-bottom: 10px;
@@ -391,7 +439,7 @@ let stylesList = `
   margin-top: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .step-one__birth input[type='date'] {
     max-width: 260px;
     margin: auto;
@@ -436,7 +484,9 @@ const stepOneHtml = `
       <div class="step-one__text">and <span class="step-one__birtch-who">her</span> Birthday is on</div>
     </div>
 
-    <button class="button blue mt-3 mt-md-4 step-one__next"><span>continue</span></button>
+    <div class="step-one__next-wrap">
+      <button class="button blue mt-3 mt-md-4 step-one__next"><span>continue</span></button>
+    </div>
   </div>
 `;
 
@@ -465,6 +515,7 @@ function stepOne() {
   document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder = "Parent’s name";
   document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder = "Baby's Name";
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
+  document.querySelector(".step-one__next-wrap").insertAdjacentElement('afterbegin', document.querySelector(".e-back-btn"));
   document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
   setGender();
   document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
@@ -493,6 +544,7 @@ function stepOne() {
     document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
     document.querySelector(".step-one__disclaimer").style.display = "block";
     document.querySelector(".step-one__finish-wrap").style.display = "flex";
+    document.querySelector(".step-one__next-wrap").style.display = "none";
     document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
   })
 
@@ -506,6 +558,7 @@ function stepOne() {
     document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
     document.querySelector(".step-one__disclaimer").style.display = "none";
     document.querySelector(".step-one__finish-wrap").style.display = "none";
+    document.querySelector(".step-one__next-wrap").style.display = "flex";
     document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
     if (window.innerWidth > 768) {
       document.querySelector('.step-one__child').style.display = "flex";
@@ -516,7 +569,6 @@ function stepOne() {
     }
   })
 }
-
 
 function setGender() {
   document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
@@ -556,10 +608,20 @@ function getGenderName(gender) {
   document.querySelector(".step-one__birtch-who").innerText = genderName;
 }
 
-
 stepOne();
 
+function stepTwo() {
+  makeMilestone();
+}
 
+function makeMilestone() {
+  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+  document.querySelectorAll(".card").forEach(function (el) {
+    document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', el);
+  });
+}
+
+stepTwo();
 
 
 /* HTML insert end */
