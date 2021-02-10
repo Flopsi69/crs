@@ -122,6 +122,12 @@ let stylesList = `
   padding: 0;
 }
 
+@media (max-width: 1200px) {
+  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form {
+    display: block;
+  }
+}
+
 .step-one__disclaimer {
   display: none;
   margin-top: 43px;
@@ -456,6 +462,15 @@ let stylesList = `
   margin-top: 25px;
 }
 
+@media (max-width: 768px) {
+  .go-cards-list {
+    margin-top: 20px;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .go-cards-sidebar {
   width: 425px;
   background: #a7d4cd;
@@ -468,8 +483,29 @@ let stylesList = `
       flex-shrink: 0;
 }
 
+@media (max-width: 1200px) {
+  .go-cards-sidebar {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .go-cards-sidebar {
+    font-size: 28px;
+    line-height: 1;
+    padding: 50px 15px;
+  }
+}
+
 .css-5wb4mf .quiz-milestone-cards {
   max-width: 700px;
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf .quiz-milestone-cards {
+    padding: 10px 20px 0;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards .warning-wrapper {
@@ -484,8 +520,27 @@ let stylesList = `
   margin-bottom: 40px;
 }
 
+@media (max-width: 599px) {
+  .css-5wb4mf .button-wrapper {
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 599px) {
+  .css-5wb4mf #prev-button {
+    margin-top: 5px;
+  }
+}
+
 .css-8r2qqr button.button.blue {
   margin: 0 !important;
+}
+
+@media (max-width: 599px) {
+  .css-8r2qqr button.button.blue {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards .card label {
@@ -494,9 +549,23 @@ let stylesList = `
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border-radius: 20px;
-  padding: 7px 20px;
-  padding-left: 32px;
+  padding: 6px 32px 7px;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf .quiz-milestone-cards .card label {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 599px) {
+  .css-5wb4mf .quiz-milestone-cards .card label {
+    min-height: auto;
+    max-width: 300px;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards .card label:hover {
@@ -533,6 +602,12 @@ let stylesList = `
   height: 14px;
 }
 
+@media (max-width: 768px) {
+  .css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+    top: 8px;
+  }
+}
+
 .css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
   color: #15206b;
 }
@@ -548,6 +623,15 @@ let stylesList = `
   color: #15206b;
 }
 
+@media (max-width: 768px) {
+  .go-cards-title {
+    font-size: 22px;
+    line-height: 28px;
+    max-width: 360px;
+    margin: auto;
+  }
+}
+
 .css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
   background: #d5d9e8;
   border-radius: 20px;
@@ -557,19 +641,92 @@ let stylesList = `
   height: 6px;
 }
 
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
+    top: 0;
+    width: 52px;
+    left: -46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf .quiz-milestone-cards .card label p {
+    font-size: 15px;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+
+.css-5wb4mf #step-progress-bar {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (max-width: 599px) {
+  .css-5wb4mf #step-progress-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar {
+    width: 315px;
+  }
+}
+
+.css-5wb4mf #mobile-step-progress-bar {
+  display: none !important;
+}
+
 .css-5wb4mf
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
+  background-color: #3856a7;
   width: 122px;
   left: -122px;
   top: 6px;
   height: 6px;
 }
 
+@media (max-width: 768px) {
+  .css-5wb4mf
+#step-progress-bar
+.step:not(:first-of-type)
+.bullet.current::after {
+    width: 44px;
+    left: -44px;
+    top: 2px;
+    height: 6px;
+  }
+}
+
+.carousel .slider-wrapper {
+  height: 20px;
+}
+
 .css-wjajup .e-back-btn {
   position: absolute;
   left: -90px;
+}
+
+@media (max-width: 1320px) {
+  .css-wjajup .e-back-btn {
+    left: 0;
+    position: static;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  .css-wjajup .e-back-btn .css-wjajup .e-back-btn {
+    margin-right: 0;
+    position: fixed;
+    left: 21px;
+  }
 }
 
 .css-5wb4mf #step-progress-bar .bullet.current {
@@ -579,8 +736,31 @@ let stylesList = `
   border: 2px solid #3856a7;
 }
 
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar .bullet.current {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #3856a7;
+  }
+}
+
 .css-5wb4mf #step-progress-bar .step {
+  position: relative;
   width: 20%;
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar .step {
+    width: 54px;
+    height: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .css-5wb4mf #step-progress-bar .bullet {
@@ -589,23 +769,125 @@ let stylesList = `
   background: #d5d9e8;
 }
 
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar .bullet {
+    background: transparent;
+    width: 14px;
+    height: 14px;
+    width: 14px;
+    height: 6px;
+    background: #d5d9e8;
+    border: none;
+  }
+}
+
+.css-5wb4mf .quiz-milestone-cards .cards-carousel .carousel button {
+  display: none;
+}
+
 .header {
   margin-bottom: 70px;
+  padding-top: 1px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 30px;
+  }
 }
 
 .header > img,
 .header > h2 {
   display: none;
 }
+
+.go-progress-caption {
+  position: absolute;
+  top: -15px;
+  right: 2%;
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  .go-progress-caption {
+    display: none;
+  }
+}
+
+.css-5wb4mf #step-progress-bar .step:first-of-type .bullet::after {
+  content: '';
+  position: absolute;
+  background: #3856a7;
+  border-radius: 20px;
+  width: 110px;
+  left: -110px;
+  top: 6px;
+  height: 6px;
+}
+
+@media (max-width: 768px) {
+  .css-5wb4mf #step-progress-bar .step:first-of-type .bullet::after {
+    width: 73px;
+    left: -73px;
+    top: 2px;
+  }
+}
+
+.go-step-caption {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #b9c4e0;
+}
+
+@media (max-width: 768px) {
+  .go-step-caption {
+    bottom: 21px;
+    left: 8px;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    font-size: 9px;
+    line-height: 1;
+  }
+}
+
+.go-step-caption-first {
+  color: #3856a7;
+  left: -107px;
+}
+
+@media (max-width: 768px) {
+  .go-step-caption-first {
+    left: -50px;
+  }
+}
+
+.bullet.current + .go-step-caption {
+  color: #3856a7;
+}
 /*# sourceMappingURL=index.css.map */
 `;
 
 // connect to DOM
 let styles = document.createElement('style');
+styles.id = 'go-styles';
 styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 /* STYLES insert end */
 
+
+function isGoStyles(remove) {
+  if (document.querySelector("#go-styles")) {
+    if (remove) {
+      document.querySelector("#go-styles").remove();
+    }
+    return true;
+  } else {
+    return false;
+  }
+}
 
 /*HTML insert start */
 const stepOneHtml = `
@@ -760,30 +1042,49 @@ function getGenderName(gender) {
   document.querySelector(".step-one__birtch-who").innerText = genderName;
 }
 
+stepOne();
 
-// stepOne();
 
 function stepTwo() {
   const milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
   document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
-    // el
+    el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
+    if (index == 0) {
+      el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
+    }
   });
   makeMilestone();
 }
 
-function makeMilestone() {
-  document.querySelector(".css-5wb4mf .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
-  document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
-  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>What cognitive behaviour is common for your child ?</div>");
+// stepTwo();
 
+function makeMilestone() {
+  toggleBackButton();
+  document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
+  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>What cognitive behaviour is common for your child?</div>");
+  document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
+  
   buildCards();
   document.addEventListener("click", function (e) {
     console.log(e.target.innerText);
     
-    if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText.toLocaleLowerCase() == "finish") {
+    if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
       buildCards();
     }
+    if (e.target.innerText == "finish") {
+
+    }
   })
+}
+
+window.addEventListener('resize', toggleBackButton);
+
+function toggleBackButton() {
+  if (window.outerWidth < 600) {
+    document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentElement("afterbegin", document.querySelector(".e-back-btn"));
+  } else {
+    document.querySelector(".css-5wb4mf .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
+  }
 }
 
 function buildCards() {
@@ -796,9 +1097,6 @@ function buildCards() {
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', el);
   });
 }
-
-
-stepTwo();
 
 
 /* HTML insert end */

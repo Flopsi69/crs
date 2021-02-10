@@ -79,6 +79,9 @@
   flex-flow: row;
   align-items: normal;
   padding: 0;
+  @media (max-width: 1200px) {
+    display: block;
+  }
 }
 
 .step-one__disclaimer {
@@ -358,6 +361,11 @@
   gap: 14px 20px;
   max-width: 700px;
   margin-top: 25px;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 
 .go-cards-sidebar {
@@ -369,10 +377,22 @@
   line-height: 50px;
   color: #15226a;
   flex-shrink: 0;
+  @media (max-width: 1200px) {
+    width: 100%;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    font-size: 28px;
+    line-height: 1;
+    padding: 50px 15px;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards {
   max-width: 700px;
+  @media (max-width: 768px) {
+    padding: 10px 20px 0;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards .warning-wrapper {
@@ -383,10 +403,25 @@
   justify-content: flex-start;
   margin-top: 0 !important;
   margin-bottom: 40px;
+  @media (max-width: 599px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.css-5wb4mf #prev-button {
+  @media (max-width: 599px) {
+    margin-top: 5px;
+    margin-bottom: 0 !important;
+  }
 }
 
 .css-8r2qqr button.button.blue {
   margin: 0 !important;
+  @media (max-width: 599px) {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .css-5wb4mf .quiz-milestone-cards .card label {
@@ -394,9 +429,17 @@
   border: 2px solid rgba(56, 86, 167, 0.2);
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 6px 20px;
-  padding-left: 32px;
+  padding: 6px 32px 7px;
   display: inline-block;
+  @media (max-width: 768px) {
+    display: block;
+    max-width: 400px;
+    margin: auto;
+  }
+  @media (max-width: 599px) {
+    min-height: auto;
+    max-width: 300px;
+  }
   &:hover {
     box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
   }
@@ -427,6 +470,9 @@
       center no-repeat;
     background-size: contain;
     height: 14px;
+    @media (max-width: 768px) {
+      top: 8px;
+    }
   }
   p {
     color: #15206b;
@@ -442,6 +488,12 @@
   font-size: 28px;
   line-height: 28px;
   color: #15206b;
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 28px;
+    max-width: 360px;
+    margin: auto;
+  }
 }
 
 .css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
@@ -451,21 +503,72 @@
   left: -140px;
   top: -1px;
   height: 6px;
+  @media (max-width: 768px) {
+    top: 0;
+    width: 52px;
+    left: -46px;
+  }
+}
+
+.css-5wb4mf .quiz-milestone-cards .card label p {
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+
+.css-5wb4mf #step-progress-bar {
+  justify-content: flex-end;
+  @media (max-width: 599px) {
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    width: 315px;
+    // justify-content: center;
+  }
+}
+
+.css-5wb4mf #mobile-step-progress-bar {
+  display: none !important;
 }
 
 .css-5wb4mf
   #step-progress-bar
   .step:not(:first-of-type)
   .bullet.current::after {
+  background-color: #3856a7;
   width: 122px;
   left: -122px;
   top: 6px;
   height: 6px;
+  @media (max-width: 768px) {
+    width: 44px;
+    left: -44px;
+    top: 2px;
+    height: 6px;
+  }
+}
+
+.carousel .slider-wrapper {
+  height: 20px;
 }
 
 .css-wjajup .e-back-btn {
   position: absolute;
   left: -90px;
+  @media (max-width: 1320px) {
+    left: 0;
+    position: static;
+    margin-right: 20px;
+  }
+  @media (max-width: 599px) {
+    .css-wjajup .e-back-btn {
+      margin-right: 0;
+      position: fixed;
+      left: 21px;
+    }
+  }
 }
 
 .css-5wb4mf #step-progress-bar .bullet.current {
@@ -473,10 +576,23 @@
   height: 22px;
   background: white;
   border: 2px solid #3856a7;
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #3856a7;
+  }
 }
 
 .css-5wb4mf #step-progress-bar .step {
+  position: relative;
   width: 20%;
+  @media (max-width: 768px) {
+    width: 54px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .css-5wb4mf #step-progress-bar .bullet {
@@ -484,12 +600,82 @@
   width: 16px;
   height: 16px;
   background: #d5d9e8;
+  @media (max-width: 768px) {
+    background: transparent;
+    width: 14px;
+    height: 14px;
+    width: 14px;
+    height: 6px;
+    background: #d5d9e8;
+    border: none;
+  }
+}
+
+.css-5wb4mf .quiz-milestone-cards .cards-carousel .carousel button {
+  display: none;
 }
 
 .header {
   margin-bottom: 70px;
+  padding-top: 1px;
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
   & > img,
   & > h2 {
     display: none;
   }
+}
+
+.go-progress-caption {
+  position: absolute;
+  top: -15px;
+  right: 2%;
+  width: 80%;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.css-5wb4mf #step-progress-bar .step:first-of-type .bullet::after {
+  content: '';
+  position: absolute;
+  background: #3856a7;
+  border-radius: 20px;
+  width: 110px;
+  left: -110px;
+  top: 6px;
+  height: 6px;
+  @media (max-width: 768px) {
+    width: 73px;
+    left: -73px;
+    top: 2px;
+  }
+}
+
+.go-step-caption {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #b9c4e0;
+  @media (max-width: 768px) {
+    bottom: 21px;
+    left: 8px;
+    transform: translateX(-50%);
+    font-size: 9px;
+    line-height: 1;
+  }
+  &-first {
+    color: #3856a7;
+    left: -107px;
+    @media (max-width: 768px) {
+      left: -50px;
+    }
+  }
+}
+
+.bullet.current + .go-step-caption {
+  color: #3856a7;
 }
