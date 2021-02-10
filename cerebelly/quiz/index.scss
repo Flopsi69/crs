@@ -74,6 +74,13 @@
   width: 100%;
 }
 
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form {
+  flex-wrap: nowrap;
+  flex-flow: row;
+  align-items: normal;
+  padding: 0;
+}
+
 .step-one__disclaimer {
   display: none;
   margin-top: 43px;
@@ -350,6 +357,36 @@
   grid-template-columns: 1fr 1fr;
   gap: 14px 20px;
   max-width: 700px;
+  margin-top: 25px;
+}
+
+.go-cards-sidebar {
+  width: 425px;
+  background: #a7d4cd;
+  padding: 60px 30px;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 50px;
+  color: #15226a;
+  flex-shrink: 0;
+}
+
+.css-5wb4mf .quiz-milestone-cards {
+  max-width: 700px;
+}
+
+.css-5wb4mf .quiz-milestone-cards .warning-wrapper {
+  display: none !important;
+}
+
+.css-5wb4mf .button-wrapper {
+  justify-content: flex-start;
+  margin-top: 0 !important;
+  margin-bottom: 40px;
+}
+
+.css-8r2qqr button.button.blue {
+  margin: 0 !important;
 }
 
 .css-5wb4mf .quiz-milestone-cards .card label {
@@ -357,10 +394,11 @@
   border: 2px solid rgba(56, 86, 167, 0.2);
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 7px 20px;
+  padding: 6px 20px;
+  padding-left: 32px;
   display: inline-block;
   &:hover {
-    box-shadow: rgb(21 32 107 / 15%) 0px 2px 8px;
+    box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
   }
 }
 
@@ -383,7 +421,7 @@
     content: '';
     position: absolute;
     left: 10px;
-    top: 5px;
+    top: 12px;
     width: 14px;
     background: url('https://flopsi69.github.io/crs/cerebelly/quiz/check.svg')
       center no-repeat;
@@ -397,4 +435,61 @@
 
 .card input[type='checkbox']:checked + label img.success {
   display: none !important;
+}
+
+.go-cards-title {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 28px;
+  color: #15206b;
+}
+
+.css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
+  background: #d5d9e8;
+  border-radius: 20px;
+  width: 140px;
+  left: -140px;
+  top: -1px;
+  height: 6px;
+}
+
+.css-5wb4mf
+  #step-progress-bar
+  .step:not(:first-of-type)
+  .bullet.current::after {
+  width: 122px;
+  left: -122px;
+  top: 6px;
+  height: 6px;
+}
+
+.css-wjajup .e-back-btn {
+  position: absolute;
+  left: -90px;
+}
+
+.css-5wb4mf #step-progress-bar .bullet.current {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border: 2px solid #3856a7;
+}
+
+.css-5wb4mf #step-progress-bar .step {
+  width: 20%;
+}
+
+.css-5wb4mf #step-progress-bar .bullet {
+  // position: static;
+  width: 16px;
+  height: 16px;
+  background: #d5d9e8;
+}
+
+.header {
+  margin-bottom: 70px;
+  & > img,
+  & > h2 {
+    display: none;
+  }
 }

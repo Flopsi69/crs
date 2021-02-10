@@ -109,6 +109,19 @@ let stylesList = `
   width: 100%;
 }
 
+.css-wjajup .quiz2-intro-wrap .quiz2-intro-form {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-align: normal;
+      -ms-flex-align: normal;
+          align-items: normal;
+  padding: 0;
+}
+
 .step-one__disclaimer {
   display: none;
   margin-top: 43px;
@@ -125,19 +138,6 @@ let stylesList = `
     max-width: 260px;
     margin: 33px auto;
   }
-}
-
-.step-one__next-wrap {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: flex;
-}
-
-.css-wjajup .e-back-btn {
-  position: absolute;
-  left: 20px;
-  transform: translateY(17px);
 }
 
 .step-one__finish-wrap {
@@ -445,6 +445,158 @@ let stylesList = `
     margin: auto;
   }
 }
+
+.go-cards-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  max-width: 700px;
+  margin-top: 25px;
+}
+
+.go-cards-sidebar {
+  width: 425px;
+  background: #a7d4cd;
+  padding: 60px 30px;
+  font-weight: bold;
+  font-size: 44px;
+  line-height: 50px;
+  color: #15226a;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.css-5wb4mf .quiz-milestone-cards {
+  max-width: 700px;
+}
+
+.css-5wb4mf .quiz-milestone-cards .warning-wrapper {
+  display: none !important;
+}
+
+.css-5wb4mf .button-wrapper {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-top: 0 !important;
+  margin-bottom: 40px;
+}
+
+.css-8r2qqr button.button.blue {
+  margin: 0 !important;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card label {
+  background: #ffffff;
+  border: 2px solid rgba(56, 86, 167, 0.2);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 20px;
+  padding: 7px 20px;
+  padding-left: 32px;
+  display: inline-block;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card label:hover {
+  -webkit-box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
+          box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card img {
+  display: none;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card {
+  height: auto !important;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label {
+  border-color: #3856a7;
+  position: relative;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  width: 14px;
+  background: url("https://flopsi69.github.io/crs/cerebelly/quiz/check.svg") center no-repeat;
+  background-size: contain;
+  height: 14px;
+}
+
+.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
+  color: #15206b;
+}
+
+.card input[type='checkbox']:checked + label img.success {
+  display: none !important;
+}
+
+.go-cards-title {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 28px;
+  color: #15206b;
+}
+
+.css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
+  background: #d5d9e8;
+  border-radius: 20px;
+  width: 140px;
+  left: -140px;
+  top: -1px;
+  height: 6px;
+}
+
+.css-5wb4mf
+#step-progress-bar
+.step:not(:first-of-type)
+.bullet.current::after {
+  width: 122px;
+  left: -122px;
+  top: 6px;
+  height: 6px;
+}
+
+.css-wjajup .e-back-btn {
+  position: absolute;
+  left: -90px;
+}
+
+.css-5wb4mf #step-progress-bar .bullet.current {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border: 2px solid #3856a7;
+}
+
+.css-5wb4mf #step-progress-bar .step {
+  width: 20%;
+}
+
+.css-5wb4mf #step-progress-bar .bullet {
+  width: 16px;
+  height: 16px;
+  background: #d5d9e8;
+}
+
+.header {
+  margin-bottom: 70px;
+}
+
+.header > img,
+.header > h2 {
+  display: none;
+}
 /*# sourceMappingURL=index.css.map */
 `;
 
@@ -608,18 +760,43 @@ function getGenderName(gender) {
   document.querySelector(".step-one__birtch-who").innerText = genderName;
 }
 
-stepOne();
+
+// stepOne();
 
 function stepTwo() {
+  const milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
+  document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
+    // el
+  });
   makeMilestone();
 }
 
 function makeMilestone() {
-  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+  document.querySelector(".css-5wb4mf .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
+  document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
+  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>What cognitive behaviour is common for your child ?</div>");
+
+  buildCards();
+  document.addEventListener("click", function (e) {
+    console.log(e.target.innerText);
+    
+    if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText.toLocaleLowerCase() == "finish") {
+      buildCards();
+    }
+  })
+}
+
+function buildCards() {
+  if (document.querySelector(".go-cards-list")) {
+    document.querySelector(".go-cards-list").innerHTML = "";
+  } else {
+    document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+  }
   document.querySelectorAll(".card").forEach(function (el) {
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', el);
   });
 }
+
 
 stepTwo();
 
