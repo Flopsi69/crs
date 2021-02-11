@@ -23,6 +23,23 @@
   }
 }
 
+.step-one__next-wrap {
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .step-one__next-wrap {
+    margin-top: 30px;
+  }
+}
+
+.step-one__next-wrap .e-back-btn {
+  position: absolute;
+  left: 22px;
+  -webkit-transform: translateY(13px);
+          transform: translateY(13px);
+}
+
 @media (max-width: 600px) {
   .css-wjajup .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
     padding: 0 20px !important;
@@ -401,7 +418,7 @@
 @media (max-width: 600px) {
   .step-one__birth .step-one__text {
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
   }
 }
 
@@ -509,12 +526,27 @@
   }
 }
 
-.css-8r2qqr button.button.blue {
+.quiz2-intro-form button.button.blue {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 599px) {
+  .quiz2-intro-form button.button.blue {
+    margin: 0 auto !important;
+  }
+}
+
+.css-5wb4mf .quiz-milestone-cards .cards-wrapper {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.quiz-milestone-cards button.button.blue {
   margin: 0 !important;
 }
 
 @media (max-width: 599px) {
-  .css-8r2qqr button.button.blue {
+  .quiz-milestone-cards button.button.blue {
     padding: 10px;
     margin-bottom: 10px;
   }
@@ -685,13 +717,13 @@
   height: 20px;
 }
 
-.css-wjajup .e-back-btn {
+.quiz-milestone-cards .e-back-btn {
   position: absolute;
   left: -90px;
 }
 
 @media (max-width: 1320px) {
-  .css-wjajup .e-back-btn {
+  .quiz-milestone-cards .e-back-btn {
     left: 0;
     position: static;
     margin-right: 20px;
@@ -699,7 +731,7 @@
 }
 
 @media (max-width: 599px) {
-  .css-wjajup .e-back-btn .css-wjajup .e-back-btn {
+  .quiz-milestone-cards .e-back-btn {
     margin-right: 0;
     position: fixed;
     left: 21px;
