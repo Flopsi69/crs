@@ -991,17 +991,14 @@ const config = {
 
 // Функция обратного вызова при срабатывании мутации
 const callback = function(mutationsList, observer) {
-  console.log(mutationsList);
   for (let mutation of mutationsList) {
     let mutEl = mutation.addedNodes[0];
     if (mutEl instanceof HTMLElement) {
       if (mutation.addedNodes.length && mutEl.querySelector(".quiz-milestone-cards")) {
-        console.log('step2');
         stepTwo();
       } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
-        console.log('step2');
         stepOne();
-      } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form'))) {
+      } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
         isGoStyles('remove');
       }
     }
@@ -1183,8 +1180,6 @@ function setGender() {
 }
 
 function getGenderName(gender) {
-  console.log('gender', gender);
-  
   let genderName;
   switch (gender) {
     case "1":
@@ -1223,7 +1218,6 @@ function buildCards() {
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
-      console.log("click");
       document.querySelector(".go-card-" + this.dataset.refto).click();
       if (this.querySelector("input").checked) {
         this.querySelector("input").checked = false;
