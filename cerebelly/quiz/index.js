@@ -1,13 +1,27 @@
-// function gaEvent(action, label) {
-//   try {
-//     dataLayer.push({
-//       "event": "event-to-ga",
-//       "eventCategory":  "Exp - pl_benefits",
-//       "eventAction": action,
-//       "eventLabel": label
-//     });
-//   } catch (e) {}
-// };
+function gaEvent(action,) {
+  try {
+    dataLayer.push({
+      "event": "event-to-ga",
+      "eventCategory": "Exp: Survey Improvement",
+      "eventAction": action,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+(function(h,o,t,j,a,r){
+  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+  h._hjSettings={hjid:2171597,hjsv:6};
+  a=o.getElementsByTagName('head')[0];
+  r=o.createElement('script');r.async=1;
+  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'survey_improvement');
+gaEvent("loaded");
+
 
 // setTimeout(() => {
 //   hj('trigger', 'pl_benefits');
@@ -20,6 +34,11 @@
 // 'eventCategory': 'Exp - pl_benefits',
 // 'eventAction': 'loaded'
 // });
+
+let script = document.createElement("script");
+script.src = "https://flopsi69.github.io/crs/cerebelly/quiz/index.js";
+script.async = false;
+document.head.appendChild(script);
 
 /* STYLES insert start */
 let stylesList = `
@@ -1003,6 +1022,14 @@ let stepTwoInited = false;
 let stepOneInited = false;
 
 function init() {
+  document.addEventListener("click", function (e) {
+    if (e.target.name == "email") {
+      gaEvent("email input focus");
+    }
+    if (e.target.innerText == "finish" && document.querySelector("input[name='email']")) {
+      gaEvent("finish btn");
+    }
+  })
   if (document.querySelector(".quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap")) {
     stepOneInited = true;
     stepOne();
@@ -1031,6 +1058,12 @@ function isGoStyles(remove) {
 function stepOne() {
   isGoStyles();
   if (!document.querySelector('.step-one__next-wrap')) {
+    document.querySelector("input[name='childName']").addEventListener("focus", function () {
+      gaEvent("click on Child name input");
+    })
+    document.querySelector("input[name='firstName']").addEventListener("focus", function () {
+      gaEvent("click on parent name input");
+    })
     document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
     document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".e-input"));
     document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
@@ -1058,6 +1091,7 @@ function stepOne() {
     }
 
     document.querySelector('.step-one__next').addEventListener("click", function (e) {
+      gaEvent("continue gender");
       e.preventDefault();
       e.stopPropagation();
       this.style.display = "none";
@@ -1130,6 +1164,7 @@ function stepTwo() {
 function setGender() {
   document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
     el.addEventListener("click", function () {
+      gaEvent("gender selector");
       let gender = this.dataset.gender;
       getGenderName(gender);
       document.querySelector("#select1").options.selectedIndex = gender;
@@ -1179,10 +1214,15 @@ function buildCards() {
   } else {
     document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
   }
+  document.querySelector("#next-button").addEventListener("click", function () {
+    gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
+  })
+
   document.querySelectorAll(".card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
+      gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
       console.log("click");
       document.querySelector(".go-card-" + this.dataset.refto).click();
       if (this.querySelector("input").checked) {
