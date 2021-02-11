@@ -48,6 +48,11 @@ let stylesList = `
   display: none;
 }
 
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-day-input {
+  display: block;
+  margin-top: 0 !important;
+}
+
 .css-8r2qqr button.button.blue {
   font-weight: 600;
   font-size: 18px;
@@ -1062,7 +1067,7 @@ function stepOne() {
       gaEvent("click on parent name input");
     })
     document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
-    document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".e-input"));
+    document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".b-date-input"));
     document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
     document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
     document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";document.querySelector('.quiz-name-wrap.mt-4 input')
