@@ -309,7 +309,7 @@ setTimeout(() => {
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
-}, 400);
+}, 800);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
