@@ -268,8 +268,9 @@ const advantages = `
 `;
 
 let activeIndex = '1';
+let observer = new MutationObserver(cbMutations);
+  observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
 
-// setTimeout(() => {
   document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
@@ -287,6 +288,7 @@ let activeIndex = '1';
     })
   })
 
+setTimeout(() => {
   document.querySelectorAll("._278to li").forEach(function(el, i) {
     el.addEventListener("click", function () {
       if (activeIndex == 2) {
@@ -305,14 +307,7 @@ let activeIndex = '1';
       }
     })
   })
-
-  let observer = new MutationObserver(cbMutations);
-  observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
-  // document.querySelector('body').style.opacity = 1;
-  // document.querySelector('body').classList.remove('exp-preloader');
-  // document.querySelector('.subscribe__plans-box').style.opacity = 1;
-
-// }, 800);
+}, 1200);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
