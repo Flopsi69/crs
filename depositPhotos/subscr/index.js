@@ -361,6 +361,20 @@ function cbMutations(mutations) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("_11t8h")) {
         document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
+        document.querySelectorAll(".plans__head-item").forEach(el => {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            activeIndex = activeIndex == '1' ? '2' : '1';
+            if (el.dataset.tabName == 'demand') {
+              gaEvent('click on button', 'Payment method — On demand tab', '');
+            } else if(el.dataset.tabName == 'subscribe'){
+              gaEvent('click on button', 'Payment method — Subscription tab', '');
+            }
+            initTempStyles(activeIndex);
+            document.querySelector('.plans__head-item.active').classList.remove('active');
+            this.classList.add('active');
+          })
+        })
       }
     }
   }
