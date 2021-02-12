@@ -269,7 +269,7 @@ const advantages = `
 
 let activeIndex = '1';
 
-setTimeout(() => {
+// setTimeout(() => {
   document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
@@ -305,11 +305,14 @@ setTimeout(() => {
       }
     })
   })
+
+  let observer = new MutationObserver(cbMutations);
+  observer.observe(document.querySelector('.plans__head'), {childList: true, subtree: true, characterDataOldValue: true});
   // document.querySelector('body').style.opacity = 1;
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
-}, 800);
+// }, 800);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
@@ -349,39 +352,14 @@ function addAdvantages() {
 
 // setTimeout(() => {;
   // let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
-  // observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
+ 
 // }, 1000);
-
-// let observer = new MutationObserver(cbMutations);
-
 
 function cbMutations(mutations) {
   for (let mutation of mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
-      // if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
-      //   activateYearly();
-      // }
-      document.querySelectorAll("._278to li").forEach(function(el, i) {
-        el.addEventListener("click", function () {
-          if (activeIndex == 2) {
-            // addAdvantages();
-            if (document.querySelector("._2P5S3").name == 16) {
-              document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-                el.classList.remove('exluded');
-                document.querySelector('.advantage-toggle-text').innerText = 'more than';
-              }) 
-            }
-          }
-        })
-      })
-
-      
-
-      // или, может быть, пример кода есть в его поддереве?
-      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
-        // Prism.highlightElement(elem);
-      // }
+      console.log(node);
     }
   }
 
