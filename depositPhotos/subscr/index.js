@@ -357,13 +357,13 @@ function addAdvantages() {
 
 function cbMutations(mutations) {
   for (let mutation of mutations) {
-    console.log(mutation);
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
-      console.log(node);
+      if (node.classList.contains("_11t8h")) {
+        document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
+      }
     }
   }
-
 }
 
 function activateYearly() {
