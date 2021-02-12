@@ -28,7 +28,7 @@ gaEvent('loaded', '', '');
 
 /* styles start */
 let stylesList = `
-  .plans__container {
+  ._2OxfV{
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.08), 0 0 1px 0 rgba(0,0,0,.16);
     max-width: 950px;
@@ -37,7 +37,7 @@ let stylesList = `
     border-radius: 8px;
     z-index: 1;
   }
-  .subscribe_upgrade .subscribe__plans-box .plans__container {
+  .subscribe_upgrade .subscribe__plans-box ._2OxfV{
     max-width: 950px;
     min-height: 635px;
   }
@@ -232,7 +232,7 @@ const advantages = `
 let activeIndex = '1';
 
 setTimeout(() => {
-  document.querySelector(".plans__container ").insertAdjacentHTML("afterbegin", plansHeader);
+  document.querySelector("._2OxfV").insertAdjacentHTML("afterbegin", plansHeader);
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
     el.addEventListener('click', function (e) {
