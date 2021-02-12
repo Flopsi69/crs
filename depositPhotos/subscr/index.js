@@ -307,7 +307,7 @@ let activeIndex = '1';
   })
 
   let observer = new MutationObserver(cbMutations);
-  observer.observe(document.querySelector('.plans__head'), {childList: true, subtree: true, characterDataOldValue: true});
+  observer.observe(document.querySelector('.plans-component'), {childList: true, subtree: true, characterDataOldValue: true});
   // document.querySelector('body').style.opacity = 1;
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
