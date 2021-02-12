@@ -307,7 +307,7 @@ let activeIndex = '1';
   })
 
   let observer = new MutationObserver(cbMutations);
-  observer.observe(document.querySelector('.plans-component'), {childList: true, subtree: true, characterDataOldValue: true});
+  observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
   // document.querySelector('body').style.opacity = 1;
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
@@ -383,29 +383,29 @@ function activateYearly() {
         priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
       }
 
-      let discount;
-      switch (i) {
-        case 0:
-          discount = '14';
-          break;
-        case 3:
-          discount = '16';
-          break;
+      // let discount;
+      // switch (i) {
+      //   case 0:
+      //     discount = '14';
+      //     break;
+      //   case 3:
+      //     discount = '16';
+      //     break;
       
-        default:
-          discount = '15';
-          break;
-      }
+      //   default:
+      //     discount = '15';
+      //     break;
+      // }
     
       // if (!el.classList.contains('offer-row_active')) {
         // priceUpdated += `<span class='price-capt'>Save ${discount}%</span>`;
       // }
 
-      if (el.querySelector('.offer-row__popular')) {
-        el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
-      }
+      // if (el.querySelector('.offer-row__popular')) {
+      //   el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
+      // }
 
-      priceEl.innerHTML = priceUpdated;
+      // priceEl.innerHTML = priceUpdated;
     })
   }
 }
