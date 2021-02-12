@@ -34,15 +34,27 @@ let stylesList = `
     max-width: 950px;
     width: 100%;
     margin: auto;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
     z-index: 1;
   }
   .subscribe_upgrade .subscribe__plans-box ._2OxfV{
     max-width: 950px;
-    min-height: 635px;
+    min-height: 475px;
+  }
+  ._2P5S3 {
+    max-width: 950px;
+  }
+  .mixed-plans-constructor__info-box {
+    width: 100%;
+    padding-right: 0;
   }
   .plans__head {
+    position: relative;
+    z-index: 10;
+    margin-bottom: -1px;
     display: flex;
+    max-width: 950px;
+    width: 100%;
   }
   .plans__head-item {
     flex: 1;
@@ -70,22 +82,32 @@ let stylesList = `
   .plans__head-item:hover {
     background-color: #b5cae0;
   }
-  .mixed-plans-constructor__label {
+  h2._3rAYB,._3yrOV:before  {
     display: none;
   }
-  .plan-constructor {
+  ._1fz6A{
     box-shadow: none;
   }
-  .plan-constructor__subproducts-box .label-save {
+  ._1dShl {
     font-size: 15px;
     padding: 5px 12px;
     border-radius: 20px;
-    margin-left: 0;
+    margin-left: 8px;
     top: -3px;
+    display: inline-block;
+    height: auto;
   }
-  .tabs-switcher__label {
+  ._2Idsb ._f7MVl {
     font-size: 20px;
   }
+  ._1ck5C {
+    font-size: 22px;
+    max-width: 385px;
+    height: 65px;
+    border-radius: 50px;
+    margin-top: 55px;
+  }
+  // Todo
   .plans__currency-box {
     right: 0;
     bottom: -50px;
@@ -100,6 +122,9 @@ let stylesList = `
   .plan-constructor .plan-constructor__footer {
     padding-top: 55px;
   }
+  ._1fz6A {
+    margin: 0;
+  }
   .plan-constructor_ahead .plan-constructor__buy, .plan-constructor__buy {
     height: 62px;
     border-radius: 50px;
@@ -109,27 +134,29 @@ let stylesList = `
   .subscribe_upgrade .subscribe__group-content {
     margin-bottom: 20px;
   }
-  .tabs-switcher__switcher {
+  ._pwXQx {
     margin: 0 7px;
     transform: scale(1.2);
   }
-  .plans__box>form {
+  .go-plan-wrap {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+  }
+  ._2OxfV>form {
     position: absolute;
     opacity: 0;
     pointer-events: none;
+    margin: auto!important;
+    padding-bottom: 60px;
   }
-  .plans__box>form.active {
+  ._gfk8o {
+    margin-bottom: 60px;
+  }
+  ._2OxfV>form.active {
     position: static;
     opacity: 1;
     pointer-events: auto;
-  }
-  .plan-constructor:not(.plan-constructor_ahead):not(.plan-constructor_focused-btn) .plan-constructor__buy {
-    color: #fff;
-    border: none;
-    background-color: #4792de;
-  }
-  .plan-constructor:not(.plan-constructor_ahead):not(.plan-constructor_focused-btn) .plan-constructor__buy:hover {
-    background-color: #3792ee;
   }
   .plans__container_image .plan-constructor:not(.mixed-plans-constructor) {
     max-width: 730px;
@@ -187,6 +214,14 @@ let stylesList = `
     position: relative;
     top: -2px;
   }
+  ._15kW6 {
+      color: #fff;
+      border: none;
+      background-color: #4792de;
+  }
+  ._15kW6:hover {
+    background-color: #2482E2!important;
+  }
   #root>.wrapper {
     opacity: 1;
   }
@@ -231,8 +266,8 @@ const advantages = `
 
 let activeIndex = '1';
 
-setTimeout(() => {
-  document.querySelector("._2OxfV").insertAdjacentHTML("afterbegin", plansHeader);
+// setTimeout(() => {
+  document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
     el.addEventListener('click', function (e) {
@@ -248,11 +283,30 @@ setTimeout(() => {
       this.classList.add('active');
     })
   })
+
+  document.querySelectorAll("._278to li").forEach(function(el, i) {
+    el.addEventListener("click", function () {
+      if (activeIndex == 2) {
+        // addAdvantages();
+        if (document.querySelector("._2P5S3").name == 16) {
+          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+            el.classList.remove('exluded');
+            document.querySelector('.advantage-toggle-text').innerText = 'more than';
+          }) 
+        } else {
+          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+            el.classList.add('exluded');
+            document.querySelector('.advantage-toggle-text').innerText = 'up to';
+          }) 
+        }
+      }
+    })
+  })
   // document.querySelector('body').style.opacity = 1;
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
-}, 800);
+// }, 800);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
@@ -260,7 +314,7 @@ function initTempStyles() {
   }
 
   stylesListTemp = `
-    .plans__box>form:nth-child(${activeIndex}){
+    ._2OxfV>form:nth-child(${activeIndex}){
       position: static;
       opacity: 1;
       pointer-events: auto;
@@ -277,41 +331,49 @@ initTempStyles(activeIndex);
 
 
 setTimeout(function () {
-  document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+  // Wrap for advantages (on demand)
+  document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
+  document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
+  document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
   activateYearly();
-}, 1500);
+}, 1000);
 
 function addAdvantages() {
   if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
-    document.querySelector('.plans__box>form:last-child .plan-constructor__offers-cell').insertAdjacentHTML("beforebegin", advantages);
+    document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
   }
 }
 
-setTimeout(() => {;
-  let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
-  observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
-}, 1000);
+// setTimeout(() => {;
+  // let subscribeWrapEl = document.querySelector('.subscribe__plans-box');
+  // observer.observe(subscribeWrapEl, {childList: true, subtree: true, characterDataOldValue: true});
+// }, 1000);
 
-let observer = new MutationObserver(cbMutations);
+// let observer = new MutationObserver(cbMutations);
 
 
 function cbMutations(mutations) {
   for (let mutation of mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
-      if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
-        activateYearly();
-      }
+      // if (node.matches('.plan-constructor.plan-constructor_note-box') && activeIndex == 1) {
+      //   activateYearly();
+      // }
+      document.querySelectorAll("._278to li").forEach(function(el, i) {
+        el.addEventListener("click", function () {
+          if (activeIndex == 2) {
+            // addAdvantages();
+            if (document.querySelector("._2P5S3").name == 16) {
+              document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+                el.classList.remove('exluded');
+                document.querySelector('.advantage-toggle-text').innerText = 'more than';
+              }) 
+            }
+          }
+        })
+      })
+
       
-      if (node.matches('.plan-constructor') && activeIndex == 2) {
-        addAdvantages();
-        if (node.name == 16) {
-          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-            el.classList.remove('exluded');
-            document.querySelector('.advantage-toggle-text').innerText = 'more than';
-          }) 
-        }
-      }
 
       // или, может быть, пример кода есть в его поддереве?
       // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {

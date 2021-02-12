@@ -11,6 +11,7 @@
 
 // grid product-single
 
+
 /* STYLES insert start */
 let stylesList = `
 .mw-product-options {
@@ -104,6 +105,34 @@ document.querySelectorAll(".mw-options-container .mw-option-select").forEach(fun
 
   // size, storage, mattress, headboard, reinforce, headboard height
 })
+
+
+var deliveryEl = searchText($(".page-width h2"), "delivery");
+var deliveryBlock = extractHtml(deliveryEl);
+
+var returnEl = searchText($(".page-width h2"), "return");
+
+
+function searchText(list, searchWord) {
+  let findedEl;
+  list.each(function (i, el) {
+    console.log(searchWord, $(el).text().toLocaleLowerCase().trim() == searchWord);
+    if ($(el).text().toLocaleLowerCase().trim() != searchWord) return;
+    findedEl = el;
+    return false;
+  })
+  
+  return findedEl ? findedEl : false;
+}
+
+function extractHtml(element) {
+  let fromEl = element;
+  while(fromEl) {
+    fromEl = fromEl.nextElementSibling;
+    if (fromEl.tagName == "DIV" || fromEl.tagName == "ul" || fromEl.tagName == "span")
+    console.log(fromEl);
+  }
+}
 
 
 /* HTML insert end */
