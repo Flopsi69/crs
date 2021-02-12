@@ -107,6 +107,9 @@ let stylesList = `
     border-radius: 50px;
     margin-top: 55px;
   }
+  ._1loUB {
+    border-radius: 0 50px 50px 0;
+  }
   // Todo
   .plans__currency-box {
     right: 0;
@@ -266,7 +269,7 @@ const advantages = `
 
 let activeIndex = '1';
 
-// setTimeout(() => {
+setTimeout(() => {
   document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
 
   document.querySelectorAll(".plans__head-item").forEach(el => {
@@ -306,7 +309,7 @@ let activeIndex = '1';
   // document.querySelector('body').classList.remove('exp-preloader');
   // document.querySelector('.subscribe__plans-box').style.opacity = 1;
 
-// }, 800);
+}, 800);
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
