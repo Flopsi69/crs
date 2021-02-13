@@ -371,9 +371,10 @@ function cbMutations(mutations) {
             this.classList.add('active');
           })
         })
+        activateYearly();
+
       }
       // setTimeout(() => {
-        activateYearly();
       // }, 300);
 
     }
