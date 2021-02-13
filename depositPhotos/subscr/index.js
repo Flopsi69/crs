@@ -336,7 +336,7 @@ setTimeout(function () {
   document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
   document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
   document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
-  activateYearly();
+  // activateYearly();
 }, 1000);
 
 function addAdvantages() {
@@ -371,7 +371,9 @@ function cbMutations(mutations) {
           })
         })
       }
-  // activateYearly();
+      setTimeout(() => {
+        activateYearly();
+      }, 300);
 
     }
   }
