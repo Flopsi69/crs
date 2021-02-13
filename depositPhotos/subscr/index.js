@@ -199,14 +199,14 @@ let stylesList = `
   .plans__box>form:last-child .plan-constructor__frame-row+.plan-constructor__frame-row   {
     height: 300px;
   }
-  .offer-row__full-price {
+  ._fYu4S {
     color: #525252;
     font-weight: bold;
   }
   .offer-row__amount .offer-row__popular {
     top: -3px;
   }
-  .offer-row__full-price .price-capt {
+  ._fYu4S .price-capt {
     background: #FFD6D6;
     border-radius: 10px;
     padding: 3px 6px;
@@ -371,25 +371,25 @@ function cbMutations(mutations) {
           })
         })
       }
+  activateYearly();
+
     }
   }
 }
 
 function activateYearly() {
-  if (document.querySelector('.plan-constructor_note-box')) {
-    document.querySelectorAll(".plans__box>form:first-child .offer-row").forEach(function (el, i) {
-      let priceEl = el.querySelector('.offer-row__full-price');
-      console.log(priceEl);
-
-      let currency = el.querySelector('.offer-row__full-price .d-curr').innerText;
-      let price = el.querySelector('.offer-row__full-price').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+  if (document.querySelector('._3yrOV ._2DSr9')) {
+    document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
+      let priceEl = el.querySelector('._fYu4S');
+      let currency = el.querySelector('.d-curr').innerText;
+      let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
       
       let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
       let priceUpdated;
       if (parseInt(priceEl.innerText)) {
         priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
       } else {
-        priceUpdated = `${currency}&nbsp;${pricePerMonth} per month `;
+        priceUpdated = `${currency}${pricePerMonth} per month `;
       }
 
       // let discount;
@@ -414,7 +414,7 @@ function activateYearly() {
       //   el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
       // }
 
-      // priceEl.innerHTML = priceUpdated;
+      priceEl.innerHTML = priceUpdated;
     })
   }
 }
