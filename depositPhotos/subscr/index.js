@@ -371,8 +371,10 @@ function cbMutations(mutations) {
             this.classList.add('active');
           })
         })
-        activateYearly();
-
+        // activateYearly();
+      }
+      if (node.classList.contains("d-curr")) {
+        // activateYearly(node);
       }
       // setTimeout(() => {
       // }, 300);
