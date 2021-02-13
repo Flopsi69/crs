@@ -371,7 +371,7 @@ function cbMutations(mutations) {
           })
         })
       }
-  activateYearly();
+  // activateYearly();
 
     }
   }
