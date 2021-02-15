@@ -296,6 +296,7 @@ let observer = new MutationObserver(cbMutations);
         activateYearly();
       }
   })
+  activateYearly();
 
 setTimeout(() => {
   document.querySelectorAll("._278to li").forEach(function(el, i) {
