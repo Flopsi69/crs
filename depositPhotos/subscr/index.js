@@ -293,7 +293,7 @@ let observer = new MutationObserver(cbMutations);
 
   document.addEventListener("click", e => {
       if (e.target.classList.contains("_pwXQx")) {
-        activateYearly();
+        // activateYearly();
       }
   })
 
@@ -341,12 +341,10 @@ initTempStyles(activeIndex);
 
 
 setTimeout(function () {
-  // Wrap for advantages (on demand)
   document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
   document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
   document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
-  // activateYearly();
-}, 1000);
+}, 1500);
 
 function addAdvantages() {
   if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
