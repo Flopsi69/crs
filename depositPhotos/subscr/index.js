@@ -291,7 +291,7 @@ let observer = new MutationObserver(cbMutations);
     })
   })
 
-  ocument.addEventListener("click", e => {
+  document.addEventListener("click", e => {
       if (e.target.classList.contains("_pwXQx")) {
         activateYearly();
       }
