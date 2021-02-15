@@ -361,7 +361,6 @@ function addAdvantages() {
 
 function cbMutations(mutations) {
   for (let mutation of mutations) {
-    console.log(mutation);
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("_11t8h")) {
@@ -387,16 +386,12 @@ function cbMutations(mutations) {
 }
 
 function activateYearly() {
-  console.log(document.querySelector('._3yrOV ._2DSr9'));
-  console.log(activeIndex);
-  console.log(document.querySelector("._pwXQx").dataset.key == "true");
-
   if (document.querySelector('._3yrOV ._2DSr9') && activeIndex == 1 && document.querySelector("._pwXQx").dataset.key == "true") {
     document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
       let priceEl = el.querySelector('._fYu4S');
       let currency = el.querySelector('.d-curr').innerText;
       let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
-      
+      console.log(priceEl);
       let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
       let priceUpdated;
       if (parseInt(priceEl.innerText)) {
