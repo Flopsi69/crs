@@ -109,12 +109,36 @@ document.querySelectorAll(".mw-options-container .mw-option-select").forEach(fun
   Array.from(selectEl.options).forEach(function (option, i) {
     if (i == 0) return;
     let optionTextRaw = option.innerText.match(/(.*)\s\((.*)\)/);
-      let optionText = optionTextRaw ? optionTextRaw[1] : option.innerText;
-      let optionPrice = optionTextRaw ? optionTextRaw[2] : "";
+    let optionText = optionTextRaw ? optionTextRaw[1] : option.innerText;
+    let optionPrice = optionTextRaw ? optionTextRaw[2] : "";
+    switch (labelText) {
+      case "size":
+        setSize();
+        break;
+      case "storage":
+        setStorage();
+        break;
+      case "mattress":
+        setMattress();
+        break;
+      case "headboard buttons":
+        setButton();
+        break;
+      case "Reinforce base":
+        setSize();
+        break;
+      case "Headboard Height":
+        setHb();
+        break;
+    
+      default:
+        console.log("wtf", labelText);
+        break;
+    }
     let slide = `
       <div class='go-option-slide'>
         <div class='go-option-inner'>
-          <div class='go-option-icon'>Img</div>
+          <div class='go-option-icon'>${optionText}</div>
           <div div class='go-option-text'>${optionText}</div>
           <div class='go-option-price'>${optionPrice}</div>
         </div>
@@ -136,6 +160,26 @@ document.querySelectorAll(".mw-options-container .mw-option-select").forEach(fun
 
    // size, storage, mattress, headboard, reinforce, headboard height
 })
+
+function setSize() {
+
+}
+
+function setStorage() {
+
+}
+
+function setMattress() {
+  
+}
+
+function setButton() {
+  
+}
+
+function setHb() {
+  
+}
 
 
 let deliveryEl = searchText($(".page-width h2"), "delivery");
