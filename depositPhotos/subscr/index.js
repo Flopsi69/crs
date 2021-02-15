@@ -293,7 +293,7 @@ let observer = new MutationObserver(cbMutations);
 
   document.addEventListener("click", e => {
       if (e.target.classList.contains("_pwXQx")) {
-        // activateYearly();
+        activateYearly();
       }
   })
 
@@ -389,7 +389,6 @@ function activateYearly() {
       let priceEl = el.querySelector('._fYu4S');
       let currency = el.querySelector('.d-curr').innerText;
       let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
-      console.log(priceEl);
       let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
       let priceUpdated;
       if (parseInt(priceEl.innerText)) {
