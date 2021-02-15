@@ -181,6 +181,9 @@ let stylesList = `
   .plan-constructor__advantage-item+.plan-constructor__advantage-item {
     margin-top: 13px;
   }
+  ._2S8dJ {
+    display: none;
+  }
   .plan-constructor__advantage-item img {
     display: none;
   }
@@ -288,6 +291,12 @@ let observer = new MutationObserver(cbMutations);
     })
   })
 
+  ocument.addEventListener("click", e => {
+      if (e.target.classList.contains("_pwXQx")) {
+        activateYearly();
+      }
+  })
+
 setTimeout(() => {
   document.querySelectorAll("._278to li").forEach(function(el, i) {
     el.addEventListener("click", function () {
@@ -371,20 +380,18 @@ function cbMutations(mutations) {
             this.classList.add('active');
           })
         })
-        // activateYearly();
+        activateYearly();
       }
-      if (node.classList.contains("d-curr")) {
-        // activateYearly(node);
-      }
-      // setTimeout(() => {
-      // }, 300);
-
     }
   }
 }
 
 function activateYearly() {
-  if (document.querySelector('._3yrOV ._2DSr9')) {
+  console.log(document.querySelector('._3yrOV ._2DSr9'));
+  console.log(activeIndex);
+  console.log(document.querySelector("._pwXQx").dataset.key == "true");
+
+  if (document.querySelector('._3yrOV ._2DSr9') && activeIndex == 1 && document.querySelector("._pwXQx").dataset.key == "true") {
     document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
       let priceEl = el.querySelector('._fYu4S');
       let currency = el.querySelector('.d-curr').innerText;
