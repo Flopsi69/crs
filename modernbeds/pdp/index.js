@@ -476,17 +476,22 @@ function initColorSlider() {
     document.querySelector(".swatch__list").insertAdjacentElement("beforeend", el);
   })
 
-  setTimeout(() => {
-    $(".swatch__list").slick({
-      slidesToShow: 5,
-      infinite: false,
-    })
-    $(".slick-arrow").on("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    })
-  }, 500);
+  initSlider();
 
+  function initSlider() {
+    try {
+      $(".swatch__list").slick({
+        slidesToShow: 5,
+        infinite: false,
+      })
+      $(".slick-arrow").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      })
+    } catch (error) {
+      setTimeout(initSlider, 500);
+    }
+  }
 
 
 }
