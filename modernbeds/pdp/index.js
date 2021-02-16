@@ -254,6 +254,7 @@ function init() {
 
     for(let mutation of mutations) {
       // проверим новые узлы, есть ли что-то, что надо подсветить?
+      if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains(".clearpay-instalments"))
       console.log(mutation);
       for(let node of mutation.addedNodes) {
         // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
