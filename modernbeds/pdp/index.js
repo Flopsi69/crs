@@ -12,11 +12,11 @@ try {
   }
   catch(e) {}
 
-function gaEvent(action, label) {
+function gaEvent(category, action, label = "") {
   try {
     dataLayer.push({
       "event": "event-to-ga",
-      "eventCategory":  "Exp - pl_benefits",
+      "eventCategory":  category,
       "eventAction": action,
       "eventLabel": label
     });
@@ -172,7 +172,7 @@ let stylesList = `
 }
 .go-modal__wrap {
   position: fixed;
-  display: flex;
+  dipslay: none;
   left: 0;
   right: 0;
   bottom: 0;
@@ -180,19 +180,34 @@ let stylesList = `
   background: rgba(0,0,0,.7);
   z-index: 9999999999;
   margin: auto;
+  display: none;
+}
+
+.go-modal__wrap.go-modal__wrap-active {
+  display: flex;
 }
 
 .go-modal {
+  position: relative;
   display: none;
   background-color: #fff;
   max-width: 90%;
   max-height: 90%;
-  padding: 15px;
+  padding: 25px 15px 15px;
   box-shadow: 0px 4px 24px rgb(55 55 55 / 10%);
   border-radius: 4px;
   overflow-y: auto;
+  margin: auto;
 }
-
+.go-modal-close {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  right: 10px;
+  top: 15px;
+  border: 1px solid #4c4c4c;
+  border-radius: 50%;
+}
 .go-modal.go-modal-active {
   display: block;
 }
@@ -203,13 +218,22 @@ let stylesList = `
   margin-top: 15px;
 }
 
-.go-modal {
-  img {
+.go-modal img {
     margin-top: 15px;
-  }
+    height: auto;
 }
 .go-modal h4 {
   font-size: font-size: 20px;;
+}
+.go-modal-trigger {
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  line-height: 1;
+}
+.go-modal-trigger + .go-modal-trigger {
+  margin-top: 10px
 }
 `;
 
@@ -227,8 +251,14 @@ init();
 
 
 function init() {
-  // initColorSlider();
-  // initOptionsSliders();
+  initColorSlider();
+  initOptionsSliders();
+
+  $(".go-option-slide").on("click", function () {
+    let slideLabelName = $(this).closest(".go-options-slider").siblings("label").text();
+    gaEvent("PDP", "click on select input — " + slideLabelName, "Details about product'");
+  })
+
   document.querySelector(".std").insertAdjacentHTML("beforebegin", "<div class='go-tabs'></div>");
   let tabs = document.querySelector(".go-tabs");
 
@@ -250,20 +280,41 @@ function init() {
   let mattressInfo = document.querySelector("#product_tabs_pan_new_15");
   let mattressTab = createTab("Mattress Information", [mattressInfo]);
   mattressTab.classList.add("go-tab-mattress");
-  document.body.insertAdjacentHTML("beforeend", "<div class='go-modal__wrap'></div>")
+  document.body.insertAdjacentHTML("beforeend", "<div class='go-modal__wrap'></div>");
   mattressTab.querySelectorAll("h4").forEach((el, i) => {
     if (el.innerText.trim() && el.innerText.toLocaleLowerCase() !== 'features:') {
       let link = document.createElement("div");
       link.classList.add("go-modal-trigger");
+      link.dataset.modalTarget = i;
       link.innerText = el.innerText;
+      link.addEventListener("click", function(){
+        if (document.querySelector(".go-modal.go-modal-active")) {
+          document.querySelector(".go-modal.go-modal-active").classList.remove("go-modal-active");
+        }
+        $(".go-modal-" + this.dataset.modalTarget).addClass("go-modal-active");
+        $(".go-modal__wrap").addClass("go-modal__wrap-active");
+      })
       mattressTab.querySelector(".go-accordion__body").insertAdjacentElement("beforeend", link);
       let mattressSubblock = extractHtmltoBlock(el, true);
       mattressSubblock.classList.add("go-modal");
+      mattressSubblock.classList.add("go-modal-"+i);
+      mattressSubblock.insertAdjacentHTML("afterbegin", `<img class='go-modal-close' src='${REPO_DIR}close.png'/>`)
+      mattressSubblock.querySelector('.go-modal-close').addEventListener("click", function (e) {
+        e.preventDefault();
+        gaEvent("Exp - PDP product options", "click X to close the popup - Mattress Information");
+        $(".go-modal__wrap.go-modal__wrap-active").removeClass("go-modal__wrap-active");
+        $(".go-modal.go-modal-active").removeClass("go-modal-active");
+      })
       document.querySelector(".go-modal__wrap").insertAdjacentElement("beforeend", mattressSubblock);
-      console.log(mattressSubblock);
     }
   });
+  mattressTab.querySelector('#product_tabs_pan_new_15')?.remove();
   tabs.insertAdjacentElement("beforeend", mattressTab);
+
+
+  $(".go-modal-trigger").on("click", function () {
+    gaEvent("Exp - PDP product options", "click on link - "+ $(this).text(), "Expand Mattress Information");
+  })
 
   // other
   let otherInfo = document.querySelector("#product_tabs_pan_new_14");
@@ -285,7 +336,7 @@ function initOptionsSliders() {
     let selectEl = el.querySelector("select");
     selectEl.options.selectedIndex = 1;
     selectEl.style.display = "none";
-    selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></div>");
+    selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></img>");
     Array.from(selectEl.options).forEach(function (option, i) {
       if (i == 0) return;
       let optionTextRaw = option.innerText.match(/(.*)\s\((.*)\)/);
@@ -389,6 +440,7 @@ function initColorSlider() {
 
   $(".swatch__list").slick({
     slidesToShow: 5,
+    infinite: false,
   })
 
   $(".slick-arrow").on("click", function (e) {
@@ -542,6 +594,13 @@ function createTab(tabTitle, innerBlocks) {
   tabTitleEl.classList.add("go-accordion__head");
   $(tabTitleEl).on("click", function (e) {
     e.preventDefault();
+    if ($(this).parent().hasClass("go-return-delivery")) {
+      gaEvent("Exp - PDP product options", "click to Expand Delivery & Returns");
+    } else if ($(this).parent().hasClass("go-tab-dimensions")) {
+      gaEvent("Exp - PDP product options", "click to Expand Dimensions");
+    } else if ($(this).parent().hasClass("go-tab-mattress")) {
+      gaEvent("Exp - PDP product options", "click to Expand Mattress Information");
+    }
     $(this).parent().toggleClass("activeTab");
     $(this).siblings(".go-accordion__body").slideToggle("slow");
     
