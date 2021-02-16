@@ -474,10 +474,13 @@ function initColorSlider() {
     document.querySelector(".swatch__list").insertAdjacentElement("beforeend", el);
   })
 
-  // $(".swatch__list").slick({
-  //   slidesToShow: 5,
-  //   infinite: false,
-  // })
+  setTimeout(() => {
+    $(".swatch__list").slick({
+      slidesToShow: 5,
+      infinite: false,
+    })
+  }, 500);
+
 
   $(".slick-arrow").on("click", function (e) {
     e.preventDefault();
