@@ -245,7 +245,9 @@ document.body.appendChild(styles);
 
 
 /*HTML insert start */
-init();
+setTimeout(() => {
+  init();
+}, 1000);
 
 
 function init() {
