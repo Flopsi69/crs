@@ -264,6 +264,7 @@ function init() {
         // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
         if (!(node instanceof HTMLElement)) continue;
         if (node.classList.contains("mw-product-options")) {
+          console.log('yess');
           setTimeout(() => {
             initOptionsSliders();
           }, 1000);
