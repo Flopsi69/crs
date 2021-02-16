@@ -263,8 +263,10 @@ function init() {
       for(let node of mutation.addedNodes) {
         // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
         if (!(node instanceof HTMLElement)) continue;
-        if (node.classList.contains(".mw-product-options")) {
-          console.log("yesss");
+        if (node.classList.contains("mw-product-options")) {
+          setTimeout(() => {
+            initOptionsSliders();
+          }, 1000);
         }
         // проверить, не является ли вставленный элемент примером кода
         // if (node.matches('pre[class*="language-"]')) {
@@ -286,7 +288,6 @@ function init() {
 
 
   initColorSlider();
-  initOptionsSliders();
 
   $(".go-option-slide").on("click", function () {
     let slideLabelName = $(this).closest(".go-options-slider").siblings("label").text();
