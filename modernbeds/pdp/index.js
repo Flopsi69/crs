@@ -489,7 +489,7 @@ function initColorSlider() {
         e.stopPropagation();
       })
     } catch (error) {
-      setTimeout(initSlider, 500);
+      setTimeout(initSlider, 1000);
     }
   }
 
