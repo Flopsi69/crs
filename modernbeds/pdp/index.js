@@ -258,26 +258,26 @@ function init() {
       // console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
       if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
-        console.log(mutation);
-      }
-      for(let node of mutation.addedNodes) {
-        // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-        if (!(node instanceof HTMLElement)) continue;
-        if (node.classList.contains("mw-product-options")) {
-          console.log('yess');
-          setTimeout(() => {
-            initOptionsSliders();
-          }, 1000);
+        for(let node of mutation.addedNodes) {
+          // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+          if (!(node instanceof HTMLElement)) continue;
+          console.log(node)
+          if (node.classList.contains("mw-product-options")) {
+            console.log('yess');
+            setTimeout(() => {
+              initOptionsSliders();
+            }, 1000);
+          }
+          // проверить, не является ли вставленный элемент примером кода
+          // if (node.matches('pre[class*="language-"]')) {
+            // Prism.highlightElement(node);
+          // }
+    
+          // или, может быть, пример кода есть в его поддереве?
+          // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
+            // Prism.highlightElement(elem);
+          // }
         }
-        // проверить, не является ли вставленный элемент примером кода
-        // if (node.matches('pre[class*="language-"]')) {
-          // Prism.highlightElement(node);
-        // }
-  
-        // или, может быть, пример кода есть в его поддереве?
-        // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
-          // Prism.highlightElement(elem);
-        // }
       }
     }
   
