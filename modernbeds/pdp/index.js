@@ -249,15 +249,15 @@ init();
 
 
 function init() {
-  console.log(55); 
+  console.log(33); 
   let observer = new MutationObserver(mutations => {
 
     for(let mutation of mutations) {
       console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
-      // if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
-      //   console.log(mutation);
-      // }
+      if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
+        console.log(mutation);
+      }
       for(let node of mutation.addedNodes) {
         // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
         if (!(node instanceof HTMLElement)) continue;
@@ -278,7 +278,7 @@ function init() {
   
   });
   
-  let demoElem = document.querySelector('.mw-product-options');
+  let demoElem = document.querySelector('.product-form');
   
   observer.observe(demoElem, {childList: true, subtree: true});
 
