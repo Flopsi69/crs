@@ -249,7 +249,7 @@ init();
 
 
 function init() {
-  console.log(3);
+  console.log(3); 
   let observer = new MutationObserver(mutations => {
 
     for(let mutation of mutations) {
