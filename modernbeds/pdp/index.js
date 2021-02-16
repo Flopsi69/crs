@@ -256,12 +256,12 @@ function init() {
     for(let mutation of mutations) {
       // console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
-      if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
-        console.log(mutation);
+      // if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
+        // console.log(mutation);
         for(let node of mutation.addedNodes) { 
           // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
           if (!(node instanceof HTMLElement)) continue;
-          // console.log(node)
+          console.log(node)
           if (node.classList.contains("mw-options-container")) {
             console.log('yess');
             setTimeout(() => {
@@ -278,7 +278,7 @@ function init() {
             // Prism.highlightElement(elem);
           // }
         }
-      }
+      // }
     }
   
   });
