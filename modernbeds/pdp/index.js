@@ -257,11 +257,12 @@ function init() {
     for(let mutation of mutations) {
       // console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
-      // if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
+      if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
+        console.log(mutation);
         for(let node of mutation.addedNodes) { 
           // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
           if (!(node instanceof HTMLElement)) continue;
-          console.log(node)
+          // console.log(node)
           if (node.classList.contains("mw-options-container")) {
             console.log('yess');
             setTimeout(() => {
@@ -278,7 +279,7 @@ function init() {
             // Prism.highlightElement(elem);
           // }
         }
-      // }
+      }
     }
   
   });
@@ -479,13 +480,14 @@ function initColorSlider() {
       slidesToShow: 5,
       infinite: false,
     })
+    $(".slick-arrow").on("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    })
   }, 500);
 
 
-  $(".slick-arrow").on("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-  })
+
 }
 
 function setSize(size) {
