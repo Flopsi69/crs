@@ -255,7 +255,7 @@ function init() {
   let observer = new MutationObserver(mutations => {
 
     for(let mutation of mutations) {
-      console.log(mutation);
+      // console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
       if (mutation.target.id !== "deliverymessage" && !mutation.target.classList.contains("clearpay-instalments")) {
         console.log(mutation);
