@@ -657,7 +657,6 @@ function createTab(tabTitle, innerBlocks) {
 
   let tabBodyEl = document.createElement('div')
   tabBodyEl.classList.add("go-accordion__body");
-  console.log(innerBlocks);
   for (let block of innerBlocks) {
     tabBodyEl.insertAdjacentElement("beforeend", block);
   }
