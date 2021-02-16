@@ -253,7 +253,6 @@ setTimeout(() => {
 function init() {
   console.log(55); 
   let observer = new MutationObserver(mutations => {
-
     for(let mutation of mutations) {
       // console.log(mutation);
       // проверим новые узлы, есть ли что-то, что надо подсветить?
@@ -283,6 +282,8 @@ function init() {
     }
   
   });
+  initOptionsSliders();
+  
   
   let demoElem = document.querySelector('.product-form');
   
