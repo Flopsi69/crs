@@ -35,11 +35,6 @@ gaEvent("loaded");
 // 'eventAction': 'loaded'
 // });
 
-let script = document.createElement("script");
-script.src = "https://flopsi69.github.io/crs/cerebelly/quiz/index.js";
-script.async = false;
-document.head.appendChild(script);
-
 /* STYLES insert start */
 let stylesList = `
 .quiz2-intro-form-wrap h4,
