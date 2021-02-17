@@ -386,8 +386,8 @@ function cbMutations(mutations) {
 function activateYearly() {
   if (document.querySelector('._3yrOV ._2DSr9') && document.querySelector("._pwXQx").dataset.key == "true") {
     document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
-      if (!el.classList.contains("dirty")) {
-        el.classList.add("dirty");
+      if (!el.querySelector('.d-curr').classList.contains("dirty")) {
+        el.querySelector('.d-curr').classList.add("dirty");
         let priceEl = el.querySelector('._fYu4S');
         let currency = el.querySelector('.d-curr').innerText;
         let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
