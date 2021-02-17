@@ -1,3 +1,4 @@
+console.log('yessssssss');
 if (!document.querySelector("#go-checkout-styles")) {
   function gaEvent(action) {
     try {
