@@ -1,3 +1,5 @@
+console.log('yepp');
+
 function gaEvent(action) {
   try {
     dataLayer.push({
