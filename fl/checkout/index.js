@@ -173,37 +173,39 @@ var goProtection = `
 /*HTML insert end */
   
 setTimeout(() => {
-  document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
-  $(".go-protection__details-head").on("click", function () {
-    $(this).toggleClass("activated");
-    $(this).siblings().slideToggle();
-  });
+  if (!document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
+    document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
+    $(".go-protection__details-head").on("click", function () {
+      $(this).toggleClass("activated");
+      $(this).siblings().slideToggle();
+    });
 
-  $('.go-protection__details-terms a').on("click", function (e) {
-    gaEvent("click on No thanks");
-  })
-
-  $(".go-protection__event-add").on("click", function (e) {
-    e.preventDefault();
-    gaEvent("click on Add to cart");
-    var acsCart = [];
-    var variant = {};
-    variant.id = 32994782675029;
-    variant.qty = 1;
-    acsCart.push(variant);
-    if (acsCart.length > 0){
-      MGUtil.data = acsCart;
-      MGUtil.total = MGUtil.data.length;
-      MGUtil.action = 'add';
-      MGUtil.recursive();
-    }
-  })
-
-  $(".go-protection__event-decline").on("click", function (e) {
-    e.preventDefault();
-    gaEvent("click on No thanks");
-    $(".go-protection").slideToggle(300, function () {
-      $(".go-protection").remove();
+    $('.go-protection__details-terms a').on("click", function (e) {
+      gaEvent("click on No thanks");
     })
-  })
+
+    $(".go-protection__event-add").on("click", function (e) {
+      e.preventDefault();
+      gaEvent("click on Add to cart");
+      var acsCart = [];
+      var variant = {};
+      variant.id = 32994782675029;
+      variant.qty = 1;
+      acsCart.push(variant);
+      if (acsCart.length > 0) {
+        MGUtil.data = acsCart;
+        MGUtil.total = MGUtil.data.length;
+        MGUtil.action = 'add';
+        MGUtil.recursive();
+      }
+    })
+
+    $(".go-protection__event-decline").on("click", function (e) {
+      e.preventDefault();
+      gaEvent("click on No thanks");
+      $(".go-protection").slideToggle(300, function () {
+        $(".go-protection").remove();
+      })
+    })
+  }
 }, 1000);
