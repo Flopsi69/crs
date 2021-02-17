@@ -292,7 +292,7 @@ let observer = new MutationObserver(cbMutations);
   })
 
   document.addEventListener("click", e => {
-      if (e.target.classList.contains("_pwXQx")) {
+      if (e.target.classList.contains("_pwXQx") || e.target.classList.contains("cmp-currency-select-list__option")) {
         activateYearly();
       }
   })
@@ -341,14 +341,12 @@ function initTempStyles() {
 initTempStyles(activeIndex);
 
 
-setTimeout(function () {
-  document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
-  document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
-  document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
-}, 1500);
+setTimeout(addAdvantages, 1500);
 
 function addAdvantages() {
-  if (!document.querySelector('.plans__box>form:last-child .plan-constructor__advantages')) {
+  if (!document.querySelector('.plan-constructor__advantages')) {
+    document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
+    document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
     document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
   }
 }
@@ -363,6 +361,7 @@ function cbMutations(mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("_11t8h")) {
+        addAdvantages();
         document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
         document.querySelectorAll(".plans__head-item").forEach(el => {
           el.addEventListener('click', function (e) {
