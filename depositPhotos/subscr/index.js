@@ -398,6 +398,7 @@ function activateYearly() {
         } else {
           priceUpdated = `${currency}${pricePerMonth} per month `;
         }
+        priceEl.innerHTML = priceUpdated;
       }
 
       // let discount;
@@ -422,7 +423,6 @@ function activateYearly() {
       //   el.querySelector('.offer-row__amount').insertAdjacentElement('beforeend', el.querySelector('.offer-row__popular'));
       // }
 
-      priceEl.innerHTML = priceUpdated;
     })
   }
 }
