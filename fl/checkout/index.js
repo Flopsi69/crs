@@ -1,31 +1,29 @@
-console.log('yepp');
-
-function gaEvent(action) {
-  try {
-    dataLayer.push({
-      "event": "event-to-ga",
-      "eventCategory":  "Exp - Protection package",
-      "eventAction": action,
-    });
-  } catch (e) {}
-};
-
-(function(h,o,t,j,a,r){
-  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-  h._hjSettings={hjid:1885763,hjsv:6};
-  a=o.getElementsByTagName('head')[0];
-  r=o.createElement('script');r.async=1;
-  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+if (!document.querySelector("#go-checkout-styles")) {
+  function gaEvent(action) {
+    try {
+      dataLayer.push({
+        "event": "event-to-ga",
+        "eventCategory":  "Exp - Protection package",
+        "eventAction": action,
+      });
+    } catch (e) {}
+  };
+  
+  (function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1885763,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
   hj('trigger', 'protection_package');
-
-gaEvent("loaded");
-
+  
 
 /* STYLES insert start */
-let stylesList = `
+  
+  let stylesList = `
   .go-protection {
     border: 1px solid #EBC569;
     padding: 0 25px 10px;
@@ -63,6 +61,9 @@ let stylesList = `
     letter-spacing: 0.025em;
     text-transform: uppercase;
     color: #000;
+    padding: 8px 10px
+  }
+  .go-protection__event-add:hover {
     padding: 8px 10px
   }
   .go-protection__details-caption {
@@ -119,18 +120,20 @@ let stylesList = `
     display: none;
     padding-bottom: 15px;
   }
-`;
+  `;
 
+  // connect to DOM
+  let styles = document.createElement('style');
+  styles.id = "go-checkout-styles";
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+  /* STYLES insert end */
+}
 
-// connect to DOM
-let styles = document.createElement('style');
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
-/* STYLES insert end */
-
+gaEvent("loaded");
 
 /*HTML insert start */
-const goProtection = `
+var goProtection = `
   <div class="go-protection">
     <div class="go-protection__head">
       <div class="go-protection__title-caption">Recommended:</div>
@@ -165,47 +168,41 @@ const goProtection = `
     </div>
 
   </div>
-`;
-
+  `;
+/*HTML insert end */
+  
 setTimeout(() => {
   document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
-$(".go-protection__details-head").on("click", function () {
-  $(this).toggleClass("activated");
-  $(this).siblings().slideToggle();
-});
+  $(".go-protection__details-head").on("click", function () {
+    $(this).toggleClass("activated");
+    $(this).siblings().slideToggle();
+  });
 
-$('.go-protection__details-terms a').on("click", function (e) {
-  gaEvent("click on No thanks");
-})
-
-$(".go-protection__event-add").on("click", function (e) {
-  e.preventDefault();
-  gaEvent("click on Add to cart");
-  var acsCart = [];
-  var variant = {};
-  variant.id = 32994782675029;
-  variant.qty = 1;
-  acsCart.push(variant);
-  if (acsCart.length > 0){
-    MGUtil.data = acsCart;
-    MGUtil.total = MGUtil.data.length;
-    MGUtil.action = 'add';
-    MGUtil.recursive();
-  }
-})
-
-$(".go-protection__event-decline").on("click", function (e) {
-  e.preventDefault();
-  gaEvent("click on No thanks");
-  $(".go-protection").slideToggle(300, function () {
-    $(".go-protection").remove();
+  $('.go-protection__details-terms a').on("click", function (e) {
+    gaEvent("click on No thanks");
   })
-})
 
+  $(".go-protection__event-add").on("click", function (e) {
+    e.preventDefault();
+    gaEvent("click on Add to cart");
+    var acsCart = [];
+    var variant = {};
+    variant.id = 32994782675029;
+    variant.qty = 1;
+    acsCart.push(variant);
+    if (acsCart.length > 0){
+      MGUtil.data = acsCart;
+      MGUtil.total = MGUtil.data.length;
+      MGUtil.action = 'add';
+      MGUtil.recursive();
+    }
+  })
+
+  $(".go-protection__event-decline").on("click", function (e) {
+    e.preventDefault();
+    gaEvent("click on No thanks");
+    $(".go-protection").slideToggle(300, function () {
+      $(".go-protection").remove();
+    })
+  })
 }, 1000);
-
-
-
-
-
-/* HTML insert end */
