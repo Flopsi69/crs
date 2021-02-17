@@ -292,7 +292,7 @@ document.querySelectorAll(".plans__head-item").forEach(el => {
 })
 
 document.addEventListener("click", e => {
-    if (e.target.classList.contains("_pwXQx") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description")) {
+    if (e.target.classList.contains("_pwXQx") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
       activateYearly();
     }
 })

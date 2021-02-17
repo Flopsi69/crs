@@ -1,20 +1,25 @@
-// function gaEvent(action, label) {
-//   try {
-//     dataLayer.push({
-//       "event": "event-to-ga",
-//       "eventCategory":  "Exp - pl_benefits",
-//       "eventAction": action,
-//       "eventLabel": label
-//     });
-//   } catch (e) {}
-// };
+function gaEvent(action) {
+  try {
+    dataLayer.push({
+      "event": "event-to-ga",
+      "eventCategory":  "Exp - Protection package",
+      "eventAction": action,
+    });
+  } catch (e) {}
+};
 
-// setTimeout(() => {
-//   hj('trigger', 'pl_benefits');
-// }, 2000);
-// gaEvent("loaded", "");
+(function(h,o,t,j,a,r){
+  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+  h._hjSettings={hjid:1885763,hjsv:6};
+  a=o.getElementsByTagName('head')[0];
+  r=o.createElement('script');r.async=1;
+  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+  hj('trigger', 'protection_package');
 
-// window.dataLayer = window.dataLayer || [];
+gaEvent("loaded");
 
 
 /* STYLES insert start */
@@ -166,12 +171,37 @@ $(".go-protection__details-head").on("click", function () {
   $(this).siblings().slideToggle();
 });
 
+$('.go-protection__details-terms a').on("click", function (e) {
+  gaEvent("click on No thanks");
+})
+
+$(".go-protection__event-add").on("click", function (e) {
+  e.preventDefault();
+  gaEvent("click on Add to cart");
+  var acsCart = [];
+  var variant = {};
+  variant.id = 32994782675029;
+  variant.qty = 1;
+  //data-pre-order-attr
+  acsCart.push(variant);
+  if (acsCart.length > 0){
+    MGUtil.data = acsCart;
+    MGUtil.total = MGUtil.data.length;
+    MGUtil.action = 'add';
+    MGUtil.recursive();
+  }
+})
+
 $(".go-protection__event-decline").on("click", function (e) {
   e.preventDefault();
+  gaEvent("click on No thanks");
   $(".go-protection").slideToggle(300, function () {
     $(".go-protection").remove();
   })
 })
+
+
+
 
 
 
