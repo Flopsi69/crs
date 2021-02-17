@@ -384,17 +384,20 @@ function cbMutations(mutations) {
 }
 
 function activateYearly() {
-  if (document.querySelector('._3yrOV ._2DSr9') && activeIndex == 1 && document.querySelector("._pwXQx").dataset.key == "true") {
+  if (document.querySelector('._3yrOV ._2DSr9') && document.querySelector("._pwXQx").dataset.key == "true") {
     document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
-      let priceEl = el.querySelector('._fYu4S');
-      let currency = el.querySelector('.d-curr').innerText;
-      let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
-      let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',' , '.'));
-      let priceUpdated;
-      if (parseInt(priceEl.innerText)) {
-        priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
-      } else {
-        priceUpdated = `${currency}${pricePerMonth} per month `;
+      if (el.classList.contains("dirty")) {
+        el.classList.add("dirty");
+        let priceEl = el.querySelector('._fYu4S');
+        let currency = el.querySelector('.d-curr').innerText;
+        let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+        let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',', '.'));
+        let priceUpdated;
+        if (parseInt(priceEl.innerText)) {
+          priceUpdated = `${pricePerMonth}&nbsp;${currency} per month `;
+        } else {
+          priceUpdated = `${currency}${pricePerMonth} per month `;
+        }
       }
 
       // let discount;
