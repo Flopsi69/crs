@@ -43,7 +43,7 @@ let stylesList = `
   display: none;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-day-input {
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input {
   display: block;
   margin-top: 0 !important;
 }
