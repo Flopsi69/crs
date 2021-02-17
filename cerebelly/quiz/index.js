@@ -980,8 +980,6 @@ const finishBtnHtml = `
 `;
 /*HTML insert END */
 
-// Выбираем целевой элемент
-var target = document.querySelector(".e-page-content");
 
 // Конфигурация observer (за какими изменениями наблюдать)
 const config = {
@@ -1009,7 +1007,7 @@ const callback = function(mutationsList, observer) {
 const observer = new MutationObserver(callback);
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-observer.observe(target, config);
+observer.observe(document.querySelector(".e-page-content"), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
