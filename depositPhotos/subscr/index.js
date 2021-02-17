@@ -398,7 +398,7 @@ function activateYearly() {
         } else {
           priceUpdated = `${currency}${pricePerMonth} per month `;
         }
-        priceEl.innerHTML = priceUpdated;
+        priceEl.innerHTML = priceUpdated; 
       }
 
       // let discount;
