@@ -167,7 +167,8 @@ const goProtection = `
   </div>
 `;
 
-document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
+setTimeout(() => {
+  document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
 $(".go-protection__details-head").on("click", function () {
   $(this).toggleClass("activated");
   $(this).siblings().slideToggle();
@@ -184,7 +185,6 @@ $(".go-protection__event-add").on("click", function (e) {
   var variant = {};
   variant.id = 32994782675029;
   variant.qty = 1;
-  //data-pre-order-attr
   acsCart.push(variant);
   if (acsCart.length > 0){
     MGUtil.data = acsCart;
@@ -202,6 +202,7 @@ $(".go-protection__event-decline").on("click", function (e) {
   })
 })
 
+}, 1000);
 
 
 
