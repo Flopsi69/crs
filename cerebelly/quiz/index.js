@@ -534,21 +534,21 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards {
+.css-wjajup .quiz-milestone-cards {
   max-width: 700px;
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf .quiz-milestone-cards {
+  .css-wjajup .quiz-milestone-cards {
     padding: 10px 20px 0;
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .warning-wrapper {
+.css-wjajup .quiz-milestone-cards .warning-wrapper {
   display: none !important;
 }
 
-.css-5wb4mf .button-wrapper {
+.css-wjajup .button-wrapper {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -557,14 +557,14 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .css-5wb4mf .button-wrapper {
+  .css-wjajup .button-wrapper {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 }
 
 @media (max-width: 599px) {
-  .css-5wb4mf #prev-button {
+  .css-wjajup #prev-button {
     margin-top: 5px;
     margin-bottom: 0 !important;
   }
@@ -580,7 +580,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .cards-wrapper {
+.css-wjajup .quiz-milestone-cards .cards-wrapper {
   opacity: 0;
   pointer-events: none;
 }
@@ -596,7 +596,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .card label {
+.css-wjajup .quiz-milestone-cards .card label {
   background: #ffffff;
   border: 2px solid rgba(56, 86, 167, 0.2);
   -webkit-box-sizing: border-box;
@@ -607,7 +607,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf .quiz-milestone-cards .card label {
+  .css-wjajup .quiz-milestone-cards .card label {
     display: block;
     max-width: 400px;
     margin: auto;
@@ -615,36 +615,36 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .css-5wb4mf .quiz-milestone-cards .card label {
+  .css-wjajup .quiz-milestone-cards .card label {
     min-height: auto;
     max-width: 300px;
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .card label:hover {
+.css-wjajup .quiz-milestone-cards .card label:hover {
   -webkit-box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
           box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
 }
 
-.css-5wb4mf .quiz-milestone-cards .card:hover {
+.css-wjajup .quiz-milestone-cards .card:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.css-5wb4mf .quiz-milestone-cards .card img {
+.css-wjajup .quiz-milestone-cards .card img {
   display: none;
 }
 
-.css-5wb4mf .quiz-milestone-cards .card {
+.css-wjajup .quiz-milestone-cards .card {
   height: auto !important;
 }
 
-.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label {
+.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label {
   border-color: #3856a7;
   position: relative;
 }
 
-.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
   content: '';
   position: absolute;
   left: 10px;
@@ -656,12 +656,12 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+  .css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
     top: 8px;
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
+.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
   color: #15206b;
 }
 
@@ -685,7 +685,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
+.css-wjajup #step-progress-bar .step:not(:first-of-type) .bullet::after {
   background: #d5d9e8;
   border-radius: 20px;
   width: 140px;
@@ -695,7 +695,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar .step:not(:first-of-type) .bullet::after {
+  .css-wjajup #step-progress-bar .step:not(:first-of-type) .bullet::after {
     top: 0;
     width: 52px;
     left: -46px;
@@ -703,21 +703,21 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf .quiz-milestone-cards .card label p {
+  .css-wjajup .quiz-milestone-cards .card label p {
     font-size: 15px;
     line-height: 1.2;
     text-align: center;
   }
 }
 
-.css-5wb4mf #step-progress-bar {
+.css-wjajup #step-progress-bar {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
 @media (max-width: 599px) {
-  .css-5wb4mf #step-progress-bar {
+  .css-wjajup #step-progress-bar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -725,16 +725,16 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar {
+  .css-wjajup #step-progress-bar {
     width: 315px;
   }
 }
 
-.css-5wb4mf #mobile-step-progress-bar {
+.css-wjajup #mobile-step-progress-bar {
   display: none !important;
 }
 
-.css-5wb4mf
+.css-wjajup
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -746,7 +746,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf
+  .css-wjajup
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -782,7 +782,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf #step-progress-bar .bullet.current {
+.css-wjajup #step-progress-bar .bullet.current {
   width: 22px;
   height: 22px;
   background: white;
@@ -790,7 +790,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar .bullet.current {
+  .css-wjajup #step-progress-bar .bullet.current {
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -798,13 +798,13 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf #step-progress-bar .step {
+.css-wjajup #step-progress-bar .step {
   position: relative;
   width: 20%;
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar .step {
+  .css-wjajup #step-progress-bar .step {
     width: 54px;
     height: 14px;
     display: -webkit-box;
@@ -816,14 +816,14 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf #step-progress-bar .bullet {
+.css-wjajup #step-progress-bar .bullet {
   width: 16px;
   height: 16px;
   background: #d5d9e8;
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar .bullet {
+  .css-wjajup #step-progress-bar .bullet {
     background: transparent;
     width: 14px;
     height: 14px;
@@ -834,7 +834,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf .quiz-milestone-cards .cards-carousel .carousel button {
+.css-wjajup .quiz-milestone-cards .cards-carousel .carousel button {
   display: none;
 }
 
@@ -867,7 +867,7 @@ let stylesList = `
   }
 }
 
-.css-5wb4mf #step-progress-bar .step:first-of-type .bullet::after {
+.css-wjajup #step-progress-bar .step:first-of-type .bullet::after {
   content: '';
   position: absolute;
   background: #3856a7;
@@ -879,7 +879,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-5wb4mf #step-progress-bar .step:first-of-type .bullet::after {
+  .css-wjajup #step-progress-bar .step:first-of-type .bullet::after {
     width: 73px;
     left: -73px;
     top: 2px;
@@ -1052,13 +1052,15 @@ function isGoStyles(remove) {
 
 function stepOne() {
   isGoStyles();
-  if (!document.querySelector('.step-one__next-wrap')) {
+  if (document.querySelector("input[name='childName']")) {
     document.querySelector("input[name='childName']").addEventListener("focus", function () {
       gaEvent("click on Child name input");
     })
     document.querySelector("input[name='firstName']").addEventListener("focus", function () {
       gaEvent("click on parent name input");
     })
+  }
+  if (!document.querySelector('.step-one__next-wrap')) {
     document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
     document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".b-date-input"));
     document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
@@ -1197,7 +1199,7 @@ function toggleBackButton() {
   if (window.outerWidth < 600) {
     document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentElement("afterbegin", document.querySelector(".e-back-btn"));
   } else {
-    document.querySelector(".css-5wb4mf .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
+    document.querySelector(".css-wjajup .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
   }
 }
 
