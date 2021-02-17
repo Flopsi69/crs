@@ -637,6 +637,7 @@ let stylesList = `
 
 .css-wjajup .quiz-milestone-cards .card {
   height: auto !important;
+  border-radius: 20px; 
 }
 
 .css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label {
