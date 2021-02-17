@@ -21,7 +21,7 @@
 let stylesList = `
   .go-protection {
     border: 1px solid #EBC569;
-    padding: 0 25px 22px;
+    padding: 0 25px 10px;
     margin-bottom: 35px;
   }
   .go-protection__head {
@@ -32,7 +32,7 @@ let stylesList = `
     font-family: DM Sans;
   }
   .go-protection__title-caption {
-    font-size: 12px;
+    font-size: 14px;
   }
   .go-protection__title {
     font-weight: 600;
@@ -44,7 +44,7 @@ let stylesList = `
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .go-protection__event-add {
     border: 1px solid #000000;
@@ -75,13 +75,42 @@ let stylesList = `
     line-height: 1.6;
   }
   .go-protection__item {
+    position: relative;
     margin-top: 12px;
+    padding-left: 25px;
+  }
+  .go-protection__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    background: url(https://flopsi69.github.io/crs/fl/checkout/check.svg) center no-repeat;
+    width: 15px;
+    height: 15px;
   }
   .go-protection__details-terms {
     text-align: center;
-    font-size: 10px;
+    font-size: 9px;
     margin-top: 20px;
     color: rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+  }
+  .go-protection__details-terms a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+  }
+  .go-protection__details-head {
+    text-align: center;
+  }
+  .go-protection__details-head img {
+    transition: .35s;
+  }
+  .go-protection__details-head.activated img {
+    transform: rotate(180deg);
+  }
+  .go-protection__details-body {
+    display: none;
+    padding-bottom: 15px;
   }
 `;
 
@@ -108,7 +137,6 @@ const goProtection = `
     </div>
 
     <div class="go-protection__details">
-      <div class="go-protection__details-head"></div>
       <div class="go-protection__details-body">
         <div class="go-protection__details-caption">Wear your watch with confidence:</div>
 
@@ -123,12 +151,27 @@ const goProtection = `
           See <a href="https://shop.filippoloreti.com/pages/terms-conditions">Terms and conditions</a> for details, exclusions
         </div>
       </div>
+
+      <div class="go-protection__details-head">
+        <img src='https://flopsi69.github.io/crs/fl/checkout/dropdown.svg'>
+      </div>
     </div>
 
   </div>
 `;
 
 document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
+$(".go-protection__details-head").on("click", function () {
+  $(this).toggleClass("activated");
+  $(this).siblings().slideToggle();
+});
+
+$(".go-protection__event-decline").on("click", function (e) {
+  e.preventDefault();
+  $(".go-protection").slideToggle(300, function () {
+    $(".go-protection").remove();
+  })
+})
 
 
 

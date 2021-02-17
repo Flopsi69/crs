@@ -272,52 +272,31 @@ const advantages = `
 
 let activeIndex = '1';
 let observer = new MutationObserver(cbMutations);
-  observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
+observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
 
-  document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
+document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
 
-  document.querySelectorAll(".plans__head-item").forEach(el => {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      activeIndex = activeIndex == '1' ? '2' : '1';
-      if (el.dataset.tabName == 'demand') {
-        gaEvent('click on button', 'Payment method — On demand tab', '');
-      } else if(el.dataset.tabName == 'subscribe'){
-        gaEvent('click on button', 'Payment method — Subscription tab', '');
-      }
-      initTempStyles(activeIndex);
-      document.querySelector('.plans__head-item.active').classList.remove('active');
-      this.classList.add('active');
-    })
+document.querySelectorAll(".plans__head-item").forEach(el => {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    activeIndex = activeIndex == '1' ? '2' : '1';
+    if (el.dataset.tabName == 'demand') {
+      gaEvent('click on button', 'Payment method — On demand tab', '');
+    } else if(el.dataset.tabName == 'subscribe'){
+      gaEvent('click on button', 'Payment method — Subscription tab', '');
+    }
+    initTempStyles(activeIndex);
+    document.querySelector('.plans__head-item.active').classList.remove('active');
+    this.classList.add('active');
   })
+})
 
-  document.addEventListener("click", e => {
-      if (e.target.classList.contains("_pwXQx") || e.target.classList.contains("cmp-currency-select-list__option")) {
-        activateYearly();
-      }
-  })
-  activateYearly();
-
-setTimeout(() => {
-  document.querySelectorAll("._278to li").forEach(function(el, i) {
-    el.addEventListener("click", function () {
-      if (activeIndex == 2) {
-        // addAdvantages();
-        if (document.querySelector("._2P5S3").name == 16) {
-          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-            el.classList.remove('exluded');
-            document.querySelector('.advantage-toggle-text').innerText = 'more than';
-          }) 
-        } else {
-          document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-            el.classList.add('exluded');
-            document.querySelector('.advantage-toggle-text').innerText = 'up to';
-          }) 
-        }
-      }
-    })
-  })
-}, 1200);
+document.addEventListener("click", e => {
+    if (e.target.classList.contains("_pwXQx")) {
+      activateYearly();
+    }
+})
+activateYearly();
 
 function initTempStyles() {
   if (document.querySelector("#tempStyles")) {
@@ -348,6 +327,27 @@ function addAdvantages() {
     document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
     document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
     document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
+
+    document.querySelectorAll("._278to li").forEach(function (el, i) {
+      
+      el.addEventListener("click", function () {
+        console.log("click");
+        if (activeIndex == 2) {
+          // addAdvantages();
+          if (document.querySelector("._2P5S3").name == 16) {
+            document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+              el.classList.remove('exluded');
+              document.querySelector('.advantage-toggle-text').innerText = 'more than';
+            }) 
+          } else {
+            document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+              el.classList.add('exluded');
+              document.querySelector('.advantage-toggle-text').innerText = 'up to';
+            }) 
+          }
+        }
+      })
+    })
   }
 }
 
