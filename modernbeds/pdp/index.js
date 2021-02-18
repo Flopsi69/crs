@@ -498,8 +498,6 @@ function initColorSlider() {
       setTimeout(initSlider, 1000);
     }
   }
-
-
 }
 
 function setSize(size) {
