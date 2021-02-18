@@ -956,7 +956,7 @@ const stepOneHtml = `
       </div>
     </div>
     <div class="step-one__birth">
-      <div class="step-one__text">and <span class="step-one__birtch-who">her</span> Birthday is on</div>
+      <div class="step-one__text">and <span class="step-one__birth-who">her</span> Birthday is on</div>
     </div>
 
     <div class="step-one__next-wrap">
@@ -1078,7 +1078,7 @@ function stepOne() {
     setGender();
     let selectGenderEl = document.querySelector("#select1");
     let currentGender = selectGenderEl.options.selectedIndex;
-    getGenderName(selectGenderEl[currentGender].innerText);
+    setGenderName(selectGenderEl[currentGender].innerText);
     
     if (currentGender == 0) {
         document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
@@ -1164,7 +1164,7 @@ function setGender() {
     el.addEventListener("click", function () {
       gaEvent("gender selector");
       let gender = this.dataset.gender;
-      getGenderName(gender);
+      setGenderName(gender);
       document.querySelector("#select1").options.selectedIndex = gender;
       if (gender == 0) {
           document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
@@ -1180,7 +1180,7 @@ function setGender() {
   })
 }
 
-function getGenderName(gender) {
+function setGenderName(gender) {
   console.log(gender);
   let genderName;
   switch (gender.toLocaleLowerCase()) {
@@ -1194,7 +1194,7 @@ function getGenderName(gender) {
       genderName = "their";
       break;
   }
-  document.querySelector(".step-one__birtch-who").innerText = genderName;
+  document.querySelector(".step-one__birth-who").innerText = genderName;
 }
 
 function toggleBackButton() {
