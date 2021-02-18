@@ -373,6 +373,7 @@ function initOptionsSliders() {
     let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
     let selectEl = el.querySelector("select");
     $(selectEl).val(selectEl.options[1].value);
+    $(selectEl).trigger("change");
     // selectEl.options.selectedIndex = 1;
     selectEl.style.display = "none";
     selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></img>");
@@ -438,7 +439,7 @@ function initOptionsSliders() {
       slide.addEventListener("click", function () {
         let slideKey = this.dataset.slideKey;
         $(selectEl).val(selectEl.options[slideKey].value);
-
+        $(selectEl).trigger("change");
         // selectEl.options.selectedIndex = slideKey;
       })
     }) 
@@ -462,7 +463,8 @@ function initOptionsSliders() {
   
     $(el.querySelector(".go-options-slider")).on('afterChange', function(event, slick, currentSlide){
       // selectEl.options.selectedIndex = currentSlide+1;
-      $(selectEl).val(selectEl.options[currentSlide+1].value);
+      $(selectEl).val(selectEl.options[currentSlide + 1].value);
+      $(selectEl).trigger("change");
     })
   
     $(".slick-arrow").on("click", function (e) {
