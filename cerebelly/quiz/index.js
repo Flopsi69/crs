@@ -1078,14 +1078,17 @@ function stepOne() {
     setGender();
     let selectGenderEl = document.querySelector("#select1");
     let currentGender = selectGenderEl.options.selectedIndex;
-    setGenderName(selectGenderEl[currentGender].innerText);
+    // setGenderName(currentGender);
     
     if (currentGender == 0) {
         document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-        el.classList.add('active');
+        // el.classList.add('active');
+          el.click();
       });
     } else {
-      document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+      // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+      document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
+
     }
 
     document.querySelector('.step-one__next').addEventListener("click", function (e) {
@@ -1183,7 +1186,7 @@ function setGender() {
 function setGenderName(gender) {
   console.log(gender);
   let genderName;
-  switch (gender.toLocaleLowerCase()) {
+  switch (gender) {
     case "1":
       genderName = "his";
       break;
