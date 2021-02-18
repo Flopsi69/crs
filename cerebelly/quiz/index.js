@@ -642,6 +642,8 @@ let stylesList = `
 .css-wjajup .quiz-milestone-cards .card {
   height: auto !important;
   border-radius: 20px; 
+  background: none;
+  border: 0;
 }
 
 .css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label {
@@ -726,6 +728,8 @@ let stylesList = `
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    padding-left: 65px;
+    justify-content: center;
   }
 }
 
@@ -864,6 +868,10 @@ let stylesList = `
   top: -15px;
   right: 2%;
   width: 80%;
+}
+
+.go-progress-caption-brief {
+  width: 60%;
 }
 
 @media (max-width: 768px) {
@@ -1156,6 +1164,10 @@ function stepTwo() {
     });
     
     document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
+
+    if (document.querySelectorAll("#step-progress-bar .step").length == 4) {
+      document.querySelector(".go-progress-caption").classList.add('go-progress-caption-brief');
+    }
 
     document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
 
