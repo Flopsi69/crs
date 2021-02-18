@@ -372,7 +372,8 @@ function initOptionsSliders() {
   document.querySelectorAll(".mw-options-container .mw-option-select").forEach(function (el) {
     let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
     let selectEl = el.querySelector("select");
-    selectEl.options.selectedIndex = 1;
+    $(selectEl).val(selectEl.options[1].value);
+    // selectEl.options.selectedIndex = 1;
     selectEl.style.display = "none";
     selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></img>");
     Array.from(selectEl.options).forEach(function (option, i) {
@@ -436,7 +437,9 @@ function initOptionsSliders() {
     el.querySelectorAll(".go-option-slide").forEach((slide, i) => {
       slide.addEventListener("click", function () {
         let slideKey = this.dataset.slideKey;
-        selectEl.options.selectedIndex = slideKey;
+        $(selectEl).val(selectEl.options[slideKey].value);
+
+        // selectEl.options.selectedIndex = slideKey;
       })
     }) 
       
@@ -458,7 +461,8 @@ function initOptionsSliders() {
     }
   
     $(el.querySelector(".go-options-slider")).on('afterChange', function(event, slick, currentSlide){
-      selectEl.options.selectedIndex = currentSlide+1;
+      // selectEl.options.selectedIndex = currentSlide+1;
+      $(selectEl).val(selectEl.options[currentSlide+1].value);
     })
   
     $(".slick-arrow").on("click", function (e) {
