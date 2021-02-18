@@ -998,7 +998,7 @@ const callback = function(mutationsList, observer) {
       } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
         stepOne();
       } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
-        toggleGoStyles('remove');
+        toggleGoStyles(true);
       }
     }
   }
