@@ -1181,6 +1181,7 @@ function setGender() {
 }
 
 function getGenderName(gender) {
+  console.log(gender);
   let genderName;
   switch (gender.toLocaleLowerCase()) {
     case "1":
