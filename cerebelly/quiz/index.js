@@ -1102,17 +1102,15 @@ function stepOne() {
     let selectGenderEl = document.querySelector("#select1");
     let currentGender = selectGenderEl.options.selectedIndex;
     // setGenderName(currentGender);
-    
-    if (currentGender == 0) {
-        document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+    document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
+    // if (currentGender == 0) {
+        // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
         // el.classList.add('active');
-          el.click();
-      });
-    } else {
+          // el.click();
+      // });
+    // } else {
       // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
-      document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
-
-    }
+    // }
 
     document.querySelector('.step-one__next').addEventListener("click", function (e) {
       if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
@@ -1206,16 +1204,16 @@ function setGender() {
       let gender = this.dataset.gender;
       setGenderName(gender);
       document.querySelector("#select1").options.selectedIndex = gender;
-      if (gender == 0) {
-          document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-          el.classList.add('active');
-        });
-      } else {
-          document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-          el.classList.remove('active');
-        });
-        this.classList.add("active");
-      }
+      document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+        el.classList.remove('active');
+      });
+      this.classList.add("active");
+      // if (gender == 0) {
+      //     document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+      //     el.classList.add('active');
+      //   });
+      // } else {
+      // }
     })
   })
 }
