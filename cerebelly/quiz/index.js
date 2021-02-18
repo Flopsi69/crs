@@ -215,6 +215,13 @@ let stylesList = `
   line-height: 1;
 }
 
+@media (max-width: 992px) {
+  .step-one__back {
+    position: relative;
+    left: 0;
+  }
+}
+
 @media (max-width: 600px) {
   .step-one__back {
     margin-right: 0;
@@ -224,13 +231,6 @@ let stylesList = `
   }
 }
 
-
-@media (max-width: 992px) {
-  .step-one__back {
-    position: relative;
-    left: 0;
-  }
-}
 
 .step-one__back:before {
   content: '';
