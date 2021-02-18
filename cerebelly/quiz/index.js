@@ -1078,7 +1078,7 @@ function stepOne() {
     setGender();
     let selectGenderEl = document.querySelector("#select1");
     let currentGender = selectGenderEl.options.selectedIndex;
-    getGenderName(currentGender);
+    getGenderName(selectGenderEl[currentGender].innerText);
     
     if (currentGender == 0) {
         document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
@@ -1182,7 +1182,7 @@ function setGender() {
 
 function getGenderName(gender) {
   let genderName;
-  switch (gender) {
+  switch (gender.toLocaleLowerCase()) {
     case "1":
       genderName = "his";
       break;
