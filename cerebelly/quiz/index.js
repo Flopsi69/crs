@@ -998,7 +998,7 @@ const callback = function(mutationsList, observer) {
       } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
         stepOne();
       } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
-        isGoStyles('remove');
+        toggleGoStyles('remove');
       }
     }
   }
@@ -1039,20 +1039,22 @@ function init() {
 init();
 
 // Functions
-function isGoStyles(remove) {
+function toggleGoStyles(remove) {
+  console.log('toggleGoStyles');
+  
   if (document.querySelector("#go-styles")) {
     if (remove) {
       document.querySelector("#go-styles").remove();
     }
     return true;
-  } else {
+  } else if (!remove) {
     document.body.appendChild(styles);
     return false;
   }
 }
 
 function stepOne() {
-  isGoStyles();
+  toggleGoStyles();
   if (document.querySelector("input[name='childName']")) {
     document.querySelector("input[name='childName']").addEventListener("focus", function () {
       gaEvent("click on Child name input");
@@ -1132,7 +1134,7 @@ function stepOne() {
 }
 
 function stepTwo() {
-  isGoStyles();
+  toggleGoStyles();
   if (!document.querySelector(".go-step-caption-first")) {
     let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
     document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
@@ -1153,7 +1155,7 @@ function stepTwo() {
         buildCards();
       }
       if (e.target.innerText == "finish") {
-        isGoStyles(true);
+        toggleGoStyles(true);
       }
     })
     toggleBackButton();
