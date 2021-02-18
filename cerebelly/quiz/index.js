@@ -196,6 +196,10 @@ let stylesList = `
   }
 }
 
+.css-wjajup .quiz2-intro-wrap .quiz-name-wrap + .error-message {
+  display: none;
+}
+
 .step-one__back {
   font-weight: bold;
   font-size: 18px;
@@ -1093,13 +1097,13 @@ function stepOne() {
     }
 
     document.querySelector('.step-one__next').addEventListener("click", function (e) {
+      if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
+        document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
+      }
       if (document.querySelector('.quiz2-intro-form-wrap .b-date-input input').value) {
         gaEvent("continue gender");
         e.preventDefault();
         e.stopPropagation();
-        if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
-          document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
-        }
         this.style.display = "none";
         document.querySelector('.step-one__child').style.display = "none";
         document.querySelector('.step-one__title').style.display = "none";
