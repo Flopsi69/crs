@@ -188,11 +188,13 @@ let stylesList = `
   align-items: center;
   display: none;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 600px) {
   .step-one__finish-wrap {
     margin-top: 0;
+    justify-content: center;
   }
 }
 
@@ -212,6 +214,16 @@ let stylesList = `
   padding-left: 15px;
   line-height: 1;
 }
+
+@media (max-width: 600px) {
+  .step-one__back {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+    margin-top: 0;
+  }
+}
+
 
 @media (max-width: 992px) {
   .step-one__back {
@@ -622,6 +634,7 @@ let stylesList = `
   .css-wjajup .quiz-milestone-cards .card label {
     min-height: auto;
     max-width: 300px;
+    width: 100%;
   }
 }
 
