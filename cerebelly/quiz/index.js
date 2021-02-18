@@ -1013,7 +1013,6 @@ observer.observe(document.querySelector("body"), config);
 // Позже можно остановить наблюдение
 // observer.disconnect();
 
-window.addEventListener('resize', toggleBackButton);
 let stepTwoInited = false;
 let stepOneInited = false;
 
@@ -1094,20 +1093,28 @@ function stepOne() {
     }
 
     document.querySelector('.step-one__next').addEventListener("click", function (e) {
-      gaEvent("continue gender");
-      e.preventDefault();
-      e.stopPropagation();
-      this.style.display = "none";
-      document.querySelector('.step-one__child').style.display = "none";
-      document.querySelector('.step-one__title').style.display = "none";
-      document.querySelector('.step-one__birth').style.display = "none";
-      document.querySelector('.step-one__side').style.display = "none";
-      document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
-      document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
-      document.querySelector(".step-one__disclaimer").style.display = "block";
-      document.querySelector(".step-one__finish-wrap").style.display = "flex";
-      document.querySelector(".step-one__next-wrap").style.display = "none";
-      document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
+      if (document.querySelector('.quiz2-intro-form-wrap .b-date-input input').value) {
+        gaEvent("continue gender");
+        e.preventDefault();
+        e.stopPropagation();
+        if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
+          document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
+        }
+        this.style.display = "none";
+        document.querySelector('.step-one__child').style.display = "none";
+        document.querySelector('.step-one__title').style.display = "none";
+        document.querySelector('.step-one__birth').style.display = "none";
+        document.querySelector('.step-one__side').style.display = "none";
+        document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
+        document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
+        document.querySelector(".step-one__disclaimer").style.display = "block";
+        document.querySelector(".step-one__finish-wrap").style.display = "flex";
+        document.querySelector(".step-one__next-wrap").style.display = "none";
+        document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
+      } else {
+        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input").insertAdjacentHTML("beforeend", "<div class='error-message'>This field is required</div>");
+        
+      }
     })
   
     document.querySelector(".step-one__back").addEventListener("click", function (e) {
@@ -1159,6 +1166,8 @@ function stepTwo() {
       }
     })
     toggleBackButton();
+    window.addEventListener('resize', toggleBackButton);
+
   }
   
   buildCards();
