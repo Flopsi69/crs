@@ -25,6 +25,7 @@ if (!document.querySelector("#go-checkout-styles")) {
   
   let stylesList = `
   .go-protection {
+    display: none;
     border: 1px solid #EBC569;
     padding: 0 25px 10px;
     margin-bottom: 35px;
@@ -177,6 +178,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
+        setTimeout(() => {
           document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
           $(".go-protection__details-head").on("click", function () {
             $(this).toggleClass("activated");
@@ -210,6 +212,9 @@ let observer = new MutationObserver(mutations => {
               $(".go-protection").remove();
             })
           })
+
+          $(".go-protection").fadeIn();
+        }, 1500);
       }
     }
   }
