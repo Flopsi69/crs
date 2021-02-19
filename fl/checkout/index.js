@@ -178,43 +178,41 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
-        setTimeout(() => {
-          document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
-          $(".go-protection__details-head").on("click", function () {
-            $(this).toggleClass("activated");
-            $(this).siblings().slideToggle();
-          });
-      
-          $('.go-protection__details-terms a').on("click", function (e) {
-            gaEvent("click on No thanks");
+        document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
+        $(".go-protection__details-head").on("click", function () {
+          $(this).toggleClass("activated");
+          $(this).siblings().slideToggle();
+        });
+    
+        $('.go-protection__details-terms a').on("click", function (e) {
+          gaEvent("click on No thanks");
+        })
+    
+        $(".go-protection__event-add").on("click", function (e) {
+          e.preventDefault();
+          gaEvent("click on Add to cart");
+          var acsCart = [];
+          var variant = {};
+          variant.id = 32994782675029;
+          variant.qty = 1;
+          acsCart.push(variant);
+          if (acsCart.length > 0) {
+            MGUtil.data = acsCart;
+            MGUtil.total = MGUtil.data.length;
+            MGUtil.action = 'add';
+            MGUtil.recursive();
+          }
+        })
+    
+        $(".go-protection__event-decline").on("click", function (e) {
+          e.preventDefault();
+          gaEvent("click on No thanks");
+          $(".go-protection").slideToggle(300, function () {
+            $(".go-protection").remove();
           })
-      
-          $(".go-protection__event-add").on("click", function (e) {
-            e.preventDefault();
-            gaEvent("click on Add to cart");
-            var acsCart = [];
-            var variant = {};
-            variant.id = 32994782675029;
-            variant.qty = 1;
-            acsCart.push(variant);
-            if (acsCart.length > 0) {
-              MGUtil.data = acsCart;
-              MGUtil.total = MGUtil.data.length;
-              MGUtil.action = 'add';
-              MGUtil.recursive();
-            }
-          })
-      
-          $(".go-protection__event-decline").on("click", function (e) {
-            e.preventDefault();
-            gaEvent("click on No thanks");
-            $(".go-protection").slideToggle(300, function () {
-              $(".go-protection").remove();
-            })
-          })
-
-          $(".go-protection").fadeIn();
-        }, 1500);
+        })
+        
+        $(".go-protection").delay(1500).slideToggle();
       }
     }
   }
