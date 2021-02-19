@@ -158,7 +158,7 @@ var goProtection = `
           <div class="go-protection__item"><strong></strong>Fully transferable with gifts</div>
         </div>
         
-        <div class="go-protection__details-terms">See <a href="https://shop.filippoloreti.com/pages/terms-conditions">Terms and conditions</a> for details, exclusions</div>
+        <div class="go-protection__details-terms">See <a href="https://shop.filippoloreti.com/pages/terms-of-use">Terms and conditions</a> for details, exclusions</div>
 
 
       </div>
