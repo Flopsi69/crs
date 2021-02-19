@@ -1259,6 +1259,7 @@ function buildCards() {
   document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
     cardClone.dataset.refto = i;
+    cardClone.querySelector("input").id = "";
     console.log(cardClone, el);
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1266,7 +1267,8 @@ function buildCards() {
       
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
-      // document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
+      console.log('to', document.querySelector(".cards-carousel .go-card-" + this.dataset.refto))
+      document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
       if (this.querySelector("input").checked) {
         this.querySelector("input").checked = false;
       } else {
