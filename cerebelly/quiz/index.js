@@ -1258,7 +1258,7 @@ function buildCards() {
 
   document.querySelectorAll(".slide .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
-    el.classList.add('go-card-' + i);
+    // el.classList.add('go-card-' + i);
     cardClone.dataset.refto = i;
     // cardClone.querySelector('input').remove();
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
