@@ -1267,10 +1267,10 @@ function buildCards() {
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
       document.querySelector(".slide .go-card-" + this.dataset.refto).click();
-      if (this.querySelector("input").checked) {
-        this.querySelector("input").checked = false;
+      if (document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked) {
+        document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked = false;
       } else {
-        this.querySelector("input").checked = true;
+        document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked = true;
       }
     })
   });
