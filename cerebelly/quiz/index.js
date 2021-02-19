@@ -1251,6 +1251,9 @@ function buildCards() {
   }
   document.querySelector("#next-button").addEventListener("click", function () {
     gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 500);
   })
 
   document.querySelectorAll(".card").forEach(function (el, i) {
