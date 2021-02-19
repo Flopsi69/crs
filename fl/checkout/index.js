@@ -28,6 +28,7 @@ if (!document.querySelector("#go-checkout-styles")) {
     border: 1px solid #EBC569;
     padding: 0 25px 10px;
     margin-bottom: 35px;
+    display: none;
   }
   .go-protection__head {
     text-align: center;
@@ -176,42 +177,42 @@ let observer = new MutationObserver(mutations => {
     for(let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
-      console.log(44);
       if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
-          console.log(3);
-          document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
-          $(".go-protection__details-head").on("click", function () {
-            $(this).toggleClass("activated");
-            $(this).siblings().slideToggle();
-          });
-      
-          $('.go-protection__details-terms a').on("click", function (e) {
-            gaEvent("click on No thanks");
+        document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
+        $(".go-protection__details-head").on("click", function () {
+          $(this).toggleClass("activated");
+          $(this).siblings().slideToggle();
+        });
+    
+        $('.go-protection__details-terms a').on("click", function (e) {
+          gaEvent("click on No thanks");
+        })
+    
+        $(".go-protection__event-add").on("click", function (e) {
+          e.preventDefault();
+          gaEvent("click on Add to cart");
+          var acsCart = [];
+          var variant = {};
+          variant.id = 32994782675029;
+          variant.qty = 1;
+          acsCart.push(variant);
+          if (acsCart.length > 0) {
+            MGUtil.data = acsCart;
+            MGUtil.total = MGUtil.data.length;
+            MGUtil.action = 'add';
+            MGUtil.recursive();
+          }
+        })
+    
+        $(".go-protection__event-decline").on("click", function (e) {
+          e.preventDefault();
+          gaEvent("click on No thanks");
+          $(".go-protection").slideToggle(300, function () {
+            $(".go-protection").remove();
           })
-      
-          $(".go-protection__event-add").on("click", function (e) {
-            e.preventDefault();
-            gaEvent("click on Add to cart");
-            var acsCart = [];
-            var variant = {};
-            variant.id = 32994782675029;
-            variant.qty = 1;
-            acsCart.push(variant);
-            if (acsCart.length > 0) {
-              MGUtil.data = acsCart;
-              MGUtil.total = MGUtil.data.length;
-              MGUtil.action = 'add';
-              MGUtil.recursive();
-            }
-          })
-      
-          $(".go-protection__event-decline").on("click", function (e) {
-            e.preventDefault();
-            gaEvent("click on No thanks");
-            $(".go-protection").slideToggle(300, function () {
-              $(".go-protection").remove();
-            })
-          })
+        })
+
+        $(".go-protection").delay(1500).slideToggle();
       }
     }
   }
