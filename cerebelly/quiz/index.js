@@ -1183,6 +1183,7 @@ function stepTwo() {
 
     document.addEventListener("click", function (e) {
       if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
+  console.log('first');
         buildCards();
         window.scrollTo(0, 0);
       }
@@ -1194,6 +1195,7 @@ function stepTwo() {
     window.addEventListener('resize', toggleBackButton);
 
   }
+  console.log('last');
   
   buildCards();
 }
@@ -1247,6 +1249,7 @@ function toggleBackButton() {
 function buildCards() {
   console.log("buildCards");
   if (!document.querySelectorAll(".go-cards-list .card").length) {
+    console.log("buildCards ID");
     if (document.querySelector(".go-cards-list")) {
       document.querySelector(".go-cards-list").innerHTML = "";
     } else {
