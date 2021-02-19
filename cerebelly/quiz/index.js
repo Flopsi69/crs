@@ -1246,33 +1246,35 @@ function toggleBackButton() {
 
 function buildCards() {
   console.log("buildCards");
-  if (document.querySelector(".go-cards-list")) {
-    document.querySelector(".go-cards-list").innerHTML = "";
-  } else {
-    document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
-  }
-  document.querySelector("#next-button").addEventListener("click", function () {
-    gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
-  })
-
-  document.querySelectorAll(".slide .card").forEach(function (el, i) {
-    let cardClone = el.cloneNode("true");
-    el.classList.add('go-card-' + i);
-    cardClone.dataset.refto = i;
-    // cardClone.querySelector('input').remove();
-    document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
-    cardClone.addEventListener("click", function (e) {
-      e.preventDefault();
-      gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
-
-      document.querySelector(".go-card-" + this.dataset.refto).click();
-      if (this.querySelector("input").checked) {
-        this.querySelector("input").checked = false;
-      } else {
-        this.querySelector("input").checked = true;
-      }
+  if (!document.querySelectorAll(".go-cards-list .card").length) {
+    if (document.querySelector(".go-cards-list")) {
+      document.querySelector(".go-cards-list").innerHTML = "";
+    } else {
+      document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+    }
+    document.querySelector("#next-button").addEventListener("click", function () {
+      gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
     })
-  });
+
+    document.querySelectorAll(".slide .card").forEach(function (el, i) {
+      let cardClone = el.cloneNode("true");
+      el.classList.add('go-card-' + i);
+      cardClone.dataset.refto = i;
+      // cardClone.querySelector('input').remove();
+      document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
+      cardClone.addEventListener("click", function (e) {
+        e.preventDefault();
+        gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
+
+        document.querySelector(".go-card-" + this.dataset.refto).click();
+        if (this.querySelector("input").checked) {
+          this.querySelector("input").checked = false;
+        } else {
+          this.querySelector("input").checked = true;
+        }
+      })
+    });
+  }
 }
 
 /* HTML insert end */
