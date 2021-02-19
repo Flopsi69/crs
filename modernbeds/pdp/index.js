@@ -251,7 +251,6 @@ setTimeout(() => {
 
 
 function init() {
-  console.log(55); 
   let observer = new MutationObserver(mutations => {
     for(let mutation of mutations) {
       // console.log(mutation);

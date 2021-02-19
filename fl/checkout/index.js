@@ -205,3 +205,31 @@ setTimeout(() => {
     })
   }
 }, 2000);
+
+let observer = new MutationObserver(mutations => {
+
+  for(let mutation of mutations) {
+    // проверим новые узлы, есть ли что-то, что надо подсветить?
+
+    for(let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+
+      // проверить, не является ли вставленный элемент примером кода
+      // if (node.matches('pre[class*="language-"]')) {
+      //   Prism.highlightElement(node);
+      // }
+
+      // или, может быть, пример кода есть в его поддереве?
+      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
+      //   Prism.highlightElement(elem);
+      // }
+    }
+  }
+
+});
+
+let demoElem = document.getElementById('CartContainer');
+
+observer.observe(demoElem, {childList: true, subtree: true});
