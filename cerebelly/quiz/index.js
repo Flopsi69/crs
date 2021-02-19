@@ -1165,7 +1165,6 @@ function stepTwo() {
   if (!document.querySelector(".go-step-caption-first")) {
     let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
     document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
-      document.querySelector(".go-cards-sidebar").innerText = "";
       el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
       if (index == 0) {
         el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
