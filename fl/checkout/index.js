@@ -179,7 +179,7 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
       console.log("pre");
-      if (node.classList.add("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
+      if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
         console.log('yes');
           document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
           $(".go-protection__details-head").on("click", function () {
