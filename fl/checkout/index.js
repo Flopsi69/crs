@@ -189,7 +189,7 @@ let observer = new MutationObserver(mutations => {
         });
     
         $('.go-protection__details-terms a').on("click", function (e) {
-          gaEvent("click on No thanks");
+          gaEvent("click on Terms and conditions");
         })
     
         $(".go-protection__event-add").on("click", function (e) {
