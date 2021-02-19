@@ -178,6 +178,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
+      console.log("pre");
       if (node.classList.add("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
         console.log('yes');
           document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
@@ -214,17 +215,6 @@ let observer = new MutationObserver(mutations => {
             })
           })
       }
-      console.log(node);
-
-      // проверить, не является ли вставленный элемент примером кода
-      // if (node.matches('pre[class*="language-"]')) {
-      //   Prism.highlightElement(node);
-      // }
-
-      // или, может быть, пример кода есть в его поддереве?
-      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
-      //   Prism.highlightElement(elem);
-      // }
     }
   }
 
