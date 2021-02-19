@@ -1245,6 +1245,7 @@ function toggleBackButton() {
 }
 
 function buildCards() {
+  console.log("buildCards");
   if (document.querySelector(".go-cards-list")) {
     document.querySelector(".go-cards-list").innerHTML = "";
   } else {
