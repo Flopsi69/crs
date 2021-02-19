@@ -1258,21 +1258,21 @@ function buildCards() {
 
   document.querySelectorAll(".slide .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
-    el.classList.add('go-card-' + i);
     cardClone.dataset.refto = i;
-    cardClone.querySelector('input').remove();
+    // cardClone.querySelector('input').remove();
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
-      document.querySelector(".slide .go-card-" + this.dataset.refto).click();
-      if (document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked) {
-        document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked = false;
+      document.querySelector(".go-card-" + this.dataset.refto).click();
+      if (this.querySelector("input").checked) {
+        this.querySelector("input").checked = false;
       } else {
-        document.querySelector(".slide .go-card-" + this.dataset.refto).querySelector("input").checked = true;
+        this.querySelector("input").checked = true;
       }
     })
+    el.classList.add('go-card-' + i);
   });
 }
 
