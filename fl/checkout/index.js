@@ -1,4 +1,3 @@
-console.log('yessssssss');
 if (!document.querySelector("#go-checkout-styles")) {
   function gaEvent(action) {
     try {
@@ -177,10 +176,7 @@ let observer = new MutationObserver(mutations => {
     for(let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
-      console.log(node);
-      console.log("pre");
       if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
-        console.log('yes');
           document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
           $(".go-protection__details-head").on("click", function () {
             $(this).toggleClass("activated");
