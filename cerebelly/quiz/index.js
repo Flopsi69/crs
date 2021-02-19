@@ -1261,6 +1261,7 @@ function buildCards() {
     // cardClone.querySelector('input').remove();
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
     cardClone.addEventListener("click", function (e) {
+      console.log('event click');
       e.preventDefault();
       console.log("click-item");
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
