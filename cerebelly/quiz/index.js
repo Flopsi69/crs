@@ -1256,22 +1256,24 @@ function buildCards() {
     gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
   })
 
-  document.querySelectorAll(".slide .card").forEach(function (el, i) {
+  document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
     cardClone.dataset.refto = i;
-    // cardClone.querySelector('input').remove();
-    document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
+      console.log('item click', this);
+      
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
-      document.querySelector(".go-card-" + this.dataset.refto).click();
+      document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
       if (this.querySelector("input").checked) {
         this.querySelector("input").checked = false;
       } else {
         this.querySelector("input").checked = true;
       }
     })
+    document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
+  
     el.classList.add('go-card-' + i);
   });
 }
