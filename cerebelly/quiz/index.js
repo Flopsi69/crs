@@ -1255,16 +1255,14 @@ function buildCards() {
     gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
   })
 
-  document.querySelectorAll(".card").forEach(function (el, i) {
+  document.querySelectorAll(".slide .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
     el.classList.add('go-card-' + i);
     cardClone.dataset.refto = i;
     // cardClone.querySelector('input').remove();
     document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
     cardClone.addEventListener("click", function (e) {
-      console.log('event click');
       e.preventDefault();
-      console.log("click-item");
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
       document.querySelector(".go-card-" + this.dataset.refto).click();
