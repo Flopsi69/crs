@@ -1259,13 +1259,14 @@ function buildCards() {
   document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
     let cardClone = el.cloneNode("true");
     cardClone.dataset.refto = i;
+    console.log(cardClone, el);
     cardClone.addEventListener("click", function (e) {
       e.preventDefault();
       console.log('item click', this);
       
       gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
 
-      document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
+      // document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
       if (this.querySelector("input").checked) {
         this.querySelector("input").checked = false;
       } else {
