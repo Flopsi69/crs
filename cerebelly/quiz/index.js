@@ -1165,6 +1165,7 @@ function stepTwo() {
   if (!document.querySelector(".go-step-caption-first")) {
     let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
     document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
+      document.querySelector(".go-cards-sidebar").innerText = "";
       el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
       if (index == 0) {
         el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
@@ -1184,6 +1185,7 @@ function stepTwo() {
     document.addEventListener("click", function (e) {
       if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
         buildCards();
+        window.scrollTo(0, 0);
       }
       if (e.target.innerText == "finish") {
         toggleGoStyles(true);
@@ -1251,9 +1253,6 @@ function buildCards() {
   }
   document.querySelector("#next-button").addEventListener("click", function () {
     gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 500);
   })
 
   document.querySelectorAll(".card").forEach(function (el, i) {
