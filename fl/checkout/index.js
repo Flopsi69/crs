@@ -23,7 +23,7 @@ if (!document.querySelector("#go-checkout-styles")) {
 
 /* STYLES insert start */
   
-  let stylesList = `
+  let stylesList = ` 
   .go-protection {
     display: none;
     border: 1px solid #EBC569;
