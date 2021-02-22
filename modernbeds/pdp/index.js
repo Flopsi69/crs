@@ -110,7 +110,7 @@ let stylesList = `
   font-size: 34px;
 }
 .product-form .swatch .swatch-element:hover .tooltip-label {
-  display: none;
+  // display: none;
 }
 .go-options-slider {
   margin-top: 4px;
