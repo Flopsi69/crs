@@ -351,7 +351,7 @@ function init() {
 
   // other
   let otherInfo = document.querySelector("#product_tabs_pan_new_14");
-  document.querySelector(".product-single").parentElement.nextElementSibling.insertAdjacentElement("beforeend", otherInfo);
+  document.querySelector("#custom_new").insertAdjacentElement("beforebegin", otherInfo);
 
   // dimensions
   let dimensionsInfo = document.querySelector("#feat-t4-table");
