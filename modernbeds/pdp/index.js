@@ -291,11 +291,6 @@ function init() {
 
   initColorSlider();
 
-  $(".go-option-slide").on("click", function () {
-    let slideLabelName = $(this).closest(".go-options-slider").siblings("label").text();
-    gaEvent("PDP", "click on select input — " + slideLabelName, "Details about product'");
-  })
-
   document.querySelector(".std").insertAdjacentHTML("beforebegin", "<div class='go-tabs'></div>");
   let tabs = document.querySelector(".go-tabs");
 
@@ -367,9 +362,18 @@ function init() {
 
 }
 
-function initOptionsSliders() {
-  document.querySelectorAll(".mw-options-container .mw-option-select").forEach(function (el) {
-    let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
+function initOptionsSliders(targetSlider) {
+  if (targetSlider) {
+    initSlider(targetSlider);
+  } else {
+    document.querySelectorAll(".mw-options-container .mw-option-select").forEach(function (el) {
+      initSlider(el);
+    })
+  }
+}
+
+function initSlider(el) {
+  let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
     let selectEl = el.querySelector("select");
     $(selectEl).val(selectEl.options[1].value);
     $(selectEl).trigger("change");
@@ -436,6 +440,7 @@ function initOptionsSliders() {
   
     el.querySelectorAll(".go-option-slide").forEach((slide, i) => {
       slide.addEventListener("click", function () {
+        gaEvent("Exp - PDP product options", "click on select input — " + labelText, "Details about product'");
         let slideKey = this.dataset.slideKey;
         $(selectEl).val(selectEl.options[slideKey].value);
         $(selectEl).trigger("change");
@@ -464,14 +469,20 @@ function initOptionsSliders() {
       // selectEl.options.selectedIndex = currentSlide+1;
       $(selectEl).val(selectEl.options[currentSlide + 1].value);
       $(selectEl).trigger("change");
+      if (labelText == "size") {
+        console.log('init new');
+        
+        $(el.querySelector(".go-options-slider")).slideToggle(function () {
+          $(el.querySelector(".go-options-slider")).remove();
+          initOptionsSliders(el.nextElementSibling);
+        });
+      }
     })
   
     $(".slick-arrow").on("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
     })
-
-  })
 }
 
 function initColorSlider() {
