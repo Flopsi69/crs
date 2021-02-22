@@ -109,6 +109,9 @@ let stylesList = `
 .go-slider .slick-prev:before, .go-slider .slick-next:before {
   font-size: 34px;
 }
+.grid product-single {
+  overflow: hidden;
+}
 .product-form .swatch .swatch-element:hover .tooltip-label {
   padding: 10px;
   // display: none;
