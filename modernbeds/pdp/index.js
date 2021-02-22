@@ -75,6 +75,10 @@ let stylesList = `
   }
   .product-single {
     margin-right: -15px;
+    padding: 0 15px;
+  }
+  .grid__item {
+    padding-left: 0;
   }
 }
 .slick-current .go-option-inner{
