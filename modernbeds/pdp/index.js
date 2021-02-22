@@ -364,7 +364,7 @@ function init() {
 
 function initOptionsSliders(targetSlider) {
   if (targetSlider) {
-    initSlider(targetSlider);
+    initSlider(targetSlider, true);
   } else {
     document.querySelectorAll(".mw-options-container .mw-option-select").forEach(function (el) {
       initSlider(el);
@@ -372,14 +372,18 @@ function initOptionsSliders(targetSlider) {
   }
 }
 
-function initSlider(el) {
+function initSlider(el, isReInit) {
   let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
     let selectEl = el.querySelector("select");
     $(selectEl).val(selectEl.options[1].value);
     $(selectEl).trigger("change");
     // selectEl.options.selectedIndex = 1;
     selectEl.style.display = "none";
-    selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></img>");
+    // if (isReInit) {
+    //   selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider' style='display: none;'></div>");
+    // } else {
+      selectEl.insertAdjacentHTML("beforebegin", "<div class='go-options-slider go-slider'></div>");
+    // }
     Array.from(selectEl.options).forEach(function (option, i) {
       if (i == 0) return;
       let optionTextRaw = option.innerText.match(/(.*)\s\((.*)\)/);
@@ -472,10 +476,8 @@ function initSlider(el) {
       if (labelText == "size") {
         console.log('init new');
         let nextEl = el.nextElementSibling;
-        $(nextEl.querySelector('.go-options-slider')).slideToggle(function () {
-          $(nextEl.querySelector('.go-options-slider')).remove();
-          initOptionsSliders(el.nextElementSibling);
-        });
+        $(nextEl.querySelector('.go-options-slider')).remove();
+        initOptionsSliders(el.nextElementSibling);
       }
     })
   
