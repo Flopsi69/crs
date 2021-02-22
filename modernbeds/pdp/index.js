@@ -290,8 +290,9 @@ function init() {
 
 
   initColorSlider();
-
-  document.querySelector(".std").insertAdjacentHTML("beforebegin", "<div class='go-tabs'></div>");
+  
+  document.querySelector(".product-single").parentElement.nextElementSibling.insertAdjacentHTML("afterbegin", "<div class='go-tabs'></div>");
+  
   let tabs = document.querySelector(".go-tabs");
 
 
