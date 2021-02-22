@@ -110,7 +110,11 @@ let stylesList = `
   font-size: 34px;
 }
 .product-form .swatch .swatch-element:hover .tooltip-label {
+  padding: 10px;
   // display: none;
+}
+.product-form .swatch .swatch-element:hover .tooltip-label img {
+  margin-bottom: 5px;
 }
 .go-options-slider {
   margin-top: 4px;
