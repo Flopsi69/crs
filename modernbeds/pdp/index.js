@@ -471,9 +471,9 @@ function initSlider(el) {
       $(selectEl).trigger("change");
       if (labelText == "size") {
         console.log('init new');
-        
-        $(el.querySelector(".go-options-slider")).slideToggle(function () {
-          $(el.querySelector(".go-options-slider")).remove();
+        let nextEl = el.nextElementSibling;
+        $(nextEl.querySelector('.go-options-slider')).slideToggle(function () {
+          $(nextEl.querySelector('.go-options-slider')).remove();
           initOptionsSliders(el.nextElementSibling);
         });
       }
@@ -549,6 +549,18 @@ function setStorage(size) {
   switch (size.trim()) {
     case "2 Drawers Same Side":
       image = "storage-2.svg"
+      break;
+
+    case "2 Drawers Foot End":
+        image = "storage-4.svg"
+        break;
+
+    case "4 Drawers":
+      image = "storage-3.svg"
+      break;
+
+    case "1 Jumbo Drawer End of Bed":
+      image = "storage-5.svg"
       break;
 
     default:
