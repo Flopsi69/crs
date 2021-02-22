@@ -113,6 +113,9 @@ let stylesList = `
   padding: 10px;
   // display: none;
 }
+.product-form .swatch .swatch-element:hover .tooltip-label br {
+  display: none;
+}
 .product-form .swatch .swatch-element:hover .tooltip-label img {
   margin-bottom: 5px;
 }
