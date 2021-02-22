@@ -73,6 +73,9 @@ let stylesList = `
   .product-template__container .product-row {
       margin: 0 -15px;
   }
+  .product-single {
+    margin-right: -15px;
+  }
 }
 .slick-current .go-option-inner{
   background: #fff;
