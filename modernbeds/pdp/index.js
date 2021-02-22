@@ -82,6 +82,9 @@ let stylesList = `
 .slick-arrow.hs-loading-btn {
   position: absolute;
 }
+.swatch__list .slick-list {
+  overflow: visible;
+}
 .product-form .swatch .swatch-element {
   display: flex;
   margin: 4px;
@@ -493,6 +496,9 @@ function initColorSlider() {
   swatchEl.insertAdjacentHTML("beforeend", "<div class='swatch__list go-slider'></div>");
   document.querySelectorAll(".swatch-element").forEach(function (el) {
     document.querySelector(".swatch__list").insertAdjacentElement("beforeend", el);
+    el.addEventListener("click", function(){
+      
+    })
   })
 
   initSlider();
