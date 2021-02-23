@@ -41,7 +41,7 @@ let stylesList = `
     max-width: 950px;
     min-height: 475px;
   }
-  ._2P5S3 {
+  ._2ZubU {
     max-width: 950px;
   }
   .mixed-plans-constructor__info-box {
@@ -1342,8 +1342,8 @@ setTimeout(addAdvantages, 1500);
 
 function addAdvantages() {
   if (!document.querySelector('.plan-constructor__advantages')) {
-    document.querySelector("._2P5S3 ._2My_0").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
-    document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2P5S3 ._2My_0"));
+    document.querySelector("._2ZubU ._2qbdE").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
+    document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2ZubU ._2qbdE"));
     document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
 
     document.querySelectorAll("._278to li").forEach(function (el, i) {
@@ -1353,7 +1353,7 @@ function addAdvantages() {
         if (activeIndex == 2) {
           let toggleText = document.querySelector('.advantage-toggle-text').innerText;
           // addAdvantages();
-          if (document.querySelector("._2P5S3").name == 16) {
+          if (document.querySelector("._2ZubU").name == 16) {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
               el.classList.remove('exluded');
               // toggleText =  = 'more than';
