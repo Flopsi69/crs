@@ -1379,8 +1379,8 @@ function cbMutations(mutations) {
   for (let mutation of mutations) {
     for(let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
-      console.log(node);
-      if (node.classList.contains("_11t8h")) {
+      // console.log(node);
+      if (node.classList.contains("_13T5U")) {
         console.log('yes');
         addAdvantages();
         document.querySelector("._2V8TI").insertAdjacentHTML("beforebegin", plansHeader);
