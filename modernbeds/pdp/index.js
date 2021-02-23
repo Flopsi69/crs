@@ -477,16 +477,16 @@ function initSlider(el, isReInit) {
       })
     }) 
       
-  
+  let slider;
     if (selectEl.options.length - 1 < 3) {
-      $(el.querySelector(".go-options-slider")).slick({
+       slider = $(el.querySelector(".go-options-slider")).slick({
         slidesToShow: 2,
         centerMode: true,
         // variableWidth: true,
         focusOnSelect: true
       })
     } else {
-      $(el.querySelector(".go-options-slider")).slick({
+      slider = $(el.querySelector(".go-options-slider")).slick({
         slidesToShow: 1,
         centerMode: true,
         variableWidth: true,
@@ -494,7 +494,7 @@ function initSlider(el, isReInit) {
       })
     }
     if (labelText.match(/reinforce/i)) {
-      $(el.querySelector(".go-options-slider")).slick('slickGoTo', 1);
+      slider.slick('slickGoTo', 2);
     }
   
     $(el.querySelector(".go-options-slider")).on('afterChange', function(event, slick, currentSlide){
