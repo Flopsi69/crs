@@ -1308,7 +1308,7 @@ document.querySelectorAll(".plans__head-item").forEach(el => {
 })
 
 document.addEventListener("click", e => {
-    if (e.target.classList.contains("_3hV8P") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
+    if (e.target.classList.contains("_3AGO") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
       activateYearly();
     }
 })
