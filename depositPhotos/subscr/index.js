@@ -1392,6 +1392,9 @@ function toggleCustomAdvantages(toggleText) {
       }
     }) 
   }
+  if (!document.querySelector('.advantage-toggle-text i')) {
+    document.querySelector('.advantage-toggle-text').insertAdjacentHTML("afterbegin", "<i class='plan-constructor__advantage-icon icon icon-ok icon-ok-blue'></i>")
+  }
 }
 
 // setTimeout(() => {;
