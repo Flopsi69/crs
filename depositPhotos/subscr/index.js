@@ -1308,7 +1308,8 @@ document.querySelectorAll(".plans__head-item").forEach(el => {
 })
 
 document.addEventListener("click", e => {
-    if (e.target.classList.contains("_3AGO") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
+  console.log(e.target);
+    if (e.target.classList.contains("_3AGOf") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
       activateYearly();
     }
 })
@@ -1403,6 +1404,7 @@ function cbMutations(mutations) {
 }
 
 function activateYearly() {
+  console.log('activate');
   if (document.querySelector('._3FZI2 ._3huHN') && document.querySelector("._3AGOf").dataset.key == "true") {
     document.querySelectorAll("._3FZI2 ._3huHN").forEach(function (el, i) {
       if (el.querySelector('._3UbZ- .d-curr')) {
