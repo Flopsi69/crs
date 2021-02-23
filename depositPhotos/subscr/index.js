@@ -249,6 +249,7 @@ const plansHeader = `
 
 let advantages;
 let perMonth;
+getAdvantages();
 
 function getAdvantages(lang) {
   const advantagesEN = `
@@ -1283,7 +1284,6 @@ function getAdvantages(lang) {
   }
   console.log(advantages);
 };
-
 
 
 
