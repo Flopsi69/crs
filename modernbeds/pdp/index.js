@@ -396,9 +396,15 @@ function initOptionsSliders(targetSlider) {
 function initSlider(el, isReInit) {
   let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
   let selectEl = el.querySelector("select");
-  $(selectEl).val(selectEl.options[1].value);
+  console.log("labelText", labelText, labelText.match(/reinforce/i));
   if (labelText.match(/reinforce/i)) {
+    console.log('1');
+    
     $(selectEl).val(selectEl.options[2].value);
+  } else {
+    console.log('2');
+    
+    $(selectEl).val(selectEl.options[1].value);
   }
     $(selectEl).trigger("change");
     // selectEl.options.selectedIndex = 1;
