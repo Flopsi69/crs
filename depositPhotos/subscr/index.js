@@ -1281,6 +1281,7 @@ function getAdvantages(lang) {
       perMonth = "per month";
       break;
   }
+  console.log(advantages);
 };
 
 
