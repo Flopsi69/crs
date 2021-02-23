@@ -28,7 +28,7 @@ gaEvent('loaded', '', '');
 
 /* styles start */
 let stylesList = `
-  ._2OxfV{
+  ._2V8TI{
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.08), 0 0 1px 0 rgba(0,0,0,.16);
     max-width: 950px;
@@ -37,7 +37,7 @@ let stylesList = `
     border-radius: 0 0 8px 8px;
     z-index: 1;
   }
-  .subscribe_upgrade .subscribe__plans-box ._2OxfV{
+  .subscribe_upgrade .subscribe__plans-box ._2V8TI{
     max-width: 950px;
     min-height: 475px;
   }
@@ -146,7 +146,7 @@ let stylesList = `
     width: 100%;
     max-width: 700px;
   }
-  ._2OxfV>form {
+  ._2V8TI>form {
     position: absolute;
     opacity: 0;
     pointer-events: none;
@@ -156,7 +156,7 @@ let stylesList = `
   ._gfk8o {
     margin-bottom: 60px;
   }
-  ._2OxfV>form.active {
+  ._2V8TI>form.active {
     position: static;
     opacity: 1;
     pointer-events: auto;
@@ -261,7 +261,7 @@ function getAdvantages(lang) {
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>All file sizes</li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Print or digital use </li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Use for marketing and advertising</li>
-          <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong class='advantage-toggle-text'>up to</strong> 500,000 copies</li>
+          <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong>up to</strong> 500,000 copies</li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Life-long rights to use images</li>
 
           <li class="plan-constructor__advantage-item exluded exluded-trigger"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -297,7 +297,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Použití pro marketing a reklamu
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Práva na tisk – více než 500 000 kopií
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -337,7 +337,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Gestaltung von Marketing- und Werbematerialien
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Druckberechtigungen – mehr als 500 000 Exemplare
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -376,7 +376,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Χρήση για σκοπούς μάρκετινγκ και διαφήμισης
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Δικαιώματα εκτύπωσης - πάνω από 500.000 αντίγραφα
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -415,7 +415,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Para marketing o publicidad
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Derechos de impresión: más de 500 000 copias
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -454,7 +454,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Markkinointi- ja mainoskäyttö
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Tulostusoikeudet – yli 500 000 kopiota
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -493,7 +493,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Pour le marketing et la publicité
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Droits d’impression - plus de 500 000 copies
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -532,7 +532,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Marketinghez és reklámozáshoz
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Nyomtatási jogok - több mint 500 000 másolat
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -571,7 +571,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Uso per marketing e pubblicità
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Diritti di stampa - più di 500.000 copie
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -610,7 +610,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         マーケティングや広告での使用
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         印刷権 - 500,000部以上
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -649,7 +649,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         마케팅 및 광고에 사용
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         인쇄 권한 - 500,000부 초과
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -688,7 +688,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Możliwość wykorzystania z marketingu i reklamie
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Prawa do druku – ponad 500 000 kopii
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -727,7 +727,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Utilização para comercialização e publicidade
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Direitos de impressão - mais de 500 000 cópias
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -766,7 +766,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Pazarlama ve reklam amaçlı kullanım
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Baskı alma hakkı - 500.000’den fazla kopya
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -805,7 +805,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         用于营销和广告
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         印刷权——超过 500,000 份
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -844,7 +844,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Para marketing y publicidad
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Derechos de impresión: más de 500 000 copias
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -883,7 +883,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Penggunaan untuk pemasaran dan iklan
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Hak pencetakan - lebih dari 500.000 salinan
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -922,7 +922,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Utilização para marketing e publicidade
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Direitos de impressão – mais de 500 000 cópias
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -961,7 +961,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Gebruik voor marketing en reclame
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Drukrechten - meer dan 500.000 kopieën
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1000,7 +1000,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Användning för marknadsföring och reklam
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Tryckupplagor upp till 500,000 utskrifter enligt Standard fleranvändarlicens och mer än 500,000 utskrifter enligt Utökad licens
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1039,7 +1039,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Bruk til markedsføring og annonser
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Trykkerettigheter – opptil 500,000 eksemplarer med Standard og over 500,000 eksemplarer med Utvidet lisens
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1078,7 +1078,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Brug til markedsføring og reklame
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Udskrivningsrettigheder – op til 500,000 kopier som standard og mere end 500,000 kopier ved udvidet licens
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1117,7 +1117,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Використання для маркетингу та реклами
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Наклад до 500,000 екземплярів за Стандартною ліцензією та понад 500,000 екземплярів за Розширеною ліцензією
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1156,7 +1156,7 @@ function getAdvantages(lang) {
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Использование для маркетинга и рекламы
       </li>
-      <li class="plan-constructor__advantage-item zzz"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
+      <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
         Тираж до 500,000 копий по Стандартной и более 500,000 копий по Расширенной лицензии
       </li>
       <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1292,7 +1292,7 @@ let activeIndex = '1';
 let observer = new MutationObserver(cbMutations);
 observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
 
-document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
+document.querySelector("._2V8TI").insertAdjacentHTML("beforebegin", plansHeader);
 
 document.querySelectorAll(".plans__head-item").forEach(el => {
   el.addEventListener('click', function (e) {
@@ -1322,7 +1322,7 @@ function initTempStyles() {
   }
 
   stylesListTemp = `
-    ._2OxfV>form:nth-child(${activeIndex}){
+    ._2V8TI>form:nth-child(${activeIndex}){
       position: static;
       opacity: 1;
       pointer-events: auto;
@@ -1351,11 +1351,12 @@ function addAdvantages() {
       el.addEventListener("click", function () {
         console.log("click");
         if (activeIndex == 2) {
+          let toggleText = document.querySelector('.advantage-toggle-text').innerText;
           // addAdvantages();
           if (document.querySelector("._2P5S3").name == 16) {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
               el.classList.remove('exluded');
-              // document.querySelector('.advantage-toggle-text').innerText = 'more than';
+              toggleText =  = 'more than';
             }) 
           } else {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
@@ -1380,7 +1381,7 @@ function cbMutations(mutations) {
       if (!(node instanceof HTMLElement)) continue;
       if (node.classList.contains("_11t8h")) {
         addAdvantages();
-        document.querySelector("._2OxfV").insertAdjacentHTML("beforebegin", plansHeader);
+        document.querySelector("._2V8TI").insertAdjacentHTML("beforebegin", plansHeader);
         document.querySelectorAll(".plans__head-item").forEach(el => {
           el.addEventListener('click', function (e) {
             e.preventDefault();
