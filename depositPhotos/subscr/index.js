@@ -1173,12 +1173,12 @@ function getAdvantages(lang) {
   </div>
   `;
 
-  let lang = lang.toLowerCase();
+  let langCurrent = lang.toLowerCase();
   if (location.pathname.split("/")[1].length == 2) {
-    lang = location.pathname.split("/")[1];
+    langCurrent = location.pathname.split("/")[1];
   }
 
-  switch (lang) {
+  switch (langCurrent) {
     case "ru":
       advantages = advantagesRU;
       perMonth = "в месяц";
