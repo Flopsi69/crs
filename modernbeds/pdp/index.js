@@ -494,7 +494,8 @@ function initSlider(el, isReInit) {
       })
     }
     if (labelText.match(/reinforce/i)) {
-      slider.slick('slickGoTo', 2);
+      // slider.slick('slickGoTo', 2);
+      el.querySelector(".slick-current").nextElementSibling.click();
     }
   
     $(el.querySelector(".go-options-slider")).on('afterChange', function(event, slick, currentSlide){
