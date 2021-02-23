@@ -1355,12 +1355,12 @@ function addAdvantages() {
           if (document.querySelector("._2P5S3").name == 16) {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
               el.classList.remove('exluded');
-              document.querySelector('.advantage-toggle-text').innerText = 'more than';
+              // document.querySelector('.advantage-toggle-text').innerText = 'more than';
             }) 
           } else {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
               el.classList.add('exluded');
-              document.querySelector('.advantage-toggle-text').innerText = 'up to';
+              // document.querySelector('.advantage-toggle-text').innerText = 'up to';
             }) 
           }
         }
