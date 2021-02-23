@@ -97,8 +97,12 @@ let stylesList = `
     display: inline-block;
     height: auto;
   }
-  ._1HGbz {
+  ._27BDO {
     font-size: 20px;
+  }
+  ._1zOgB {
+    margin: 0 7px;
+    transform: scale(1.2);
   }
   .subscribe__main-block form button {
     font-size: 22px;
@@ -107,9 +111,9 @@ let stylesList = `
     border-radius: 50px;
     margin-top: 55px;
   }
-  // ._1loUB {
-  //   border-radius: 0 50px 50px 0;
-  // }
+  .subscribe__main-block form button span {
+    border-radius: 0 50px 50px 0;
+  }
   // Todo
   // .plans__currency-box {
   //   right: 0;
@@ -136,10 +140,6 @@ let stylesList = `
   }
   .subscribe_upgrade .subscribe__group-content {
     margin-bottom: 20px;
-  }
-  ._pwXQx {
-    margin: 0 7px;
-    transform: scale(1.2);
   }
   .go-plan-wrap {
     display: flex;
@@ -181,7 +181,7 @@ let stylesList = `
   .plan-constructor__advantage-item+.plan-constructor__advantage-item {
     margin-top: 13px;
   }
-  ._2S8dJ {
+  ._1s4Wg {
     display: none;
   }
   .plan-constructor__advantage-item img {
@@ -220,12 +220,12 @@ let stylesList = `
     position: relative;
     top: -2px;
   }
-  ._15kW6 {
+  .subscribe__main-block form button {
       color: #fff;
       border: none;
       background-color: #4792de;
   }
-  ._15kW6:hover {
+  .subscribe__main-block form button:hover {
     background-color: #2482E2!important;
   }
   #root>.wrapper {
