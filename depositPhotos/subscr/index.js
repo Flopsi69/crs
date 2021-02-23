@@ -1356,7 +1356,7 @@ function addAdvantages() {
           if (document.querySelector("._2P5S3").name == 16) {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
               el.classList.remove('exluded');
-              toggleText =  = 'more than';
+              // toggleText =  = 'more than';
             }) 
           } else {
             document.querySelectorAll('.exluded-trigger').forEach(function (el) {
