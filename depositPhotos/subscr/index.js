@@ -202,14 +202,14 @@ let stylesList = `
   .plans__box>form:last-child .plan-constructor__frame-row+.plan-constructor__frame-row   {
     height: 300px;
   }
-  ._fYu4S {
+  ._3UbZ- {
     color: #525252;
     font-weight: bold;
   }
   .offer-row__amount .offer-row__popular {
     top: -3px;
   }
-  ._fYu4S .price-capt {
+  ._3UbZ- .price-capt {
     background: #FFD6D6;
     border-radius: 10px;
     padding: 3px 6px;
@@ -1286,8 +1286,6 @@ function getAdvantages(lang) {
 };
 
 
-
-
 let activeIndex = '1';
 let observer = new MutationObserver(cbMutations);
 observer.observe(document.querySelector('#root'), {childList: true, subtree: true, characterDataOldValue: true});
@@ -1310,7 +1308,7 @@ document.querySelectorAll(".plans__head-item").forEach(el => {
 })
 
 document.addEventListener("click", e => {
-    if (e.target.classList.contains("_pwXQx") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
+    if (e.target.classList.contains("_3hV8P") || e.target.classList.contains("cmp-currency-select-list__option-title") || e.target.classList.contains("cmp-currency-select-list__option-description") || e.target.classList.contains("cmp-currency-select-list__option _currency")) {
       activateYearly();
     }
 })
@@ -1405,12 +1403,12 @@ function cbMutations(mutations) {
 }
 
 function activateYearly() {
-  if (document.querySelector('._3yrOV ._2DSr9') && document.querySelector("._pwXQx").dataset.key == "true") {
-    document.querySelectorAll("._3yrOV ._2DSr9").forEach(function (el, i) {
-      if (el.querySelector('._Ps3yf .d-curr')) {
-        let priceEl = el.querySelector('._fYu4S');
+  if (document.querySelector('._3FZI2 ._3huHN') && document.querySelector("._3AGOf").dataset.key == "true") {
+    document.querySelectorAll("._3FZI2 ._3huHN").forEach(function (el, i) {
+      if (el.querySelector('._3UbZ- .d-curr')) {
+        let priceEl = el.querySelector('._3UbZ-');
         let currency = el.querySelector('.d-curr').innerText;
-        let price = el.querySelector('._fYu4S').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
+        let price = el.querySelector('._3UbZ-').innerText.match(/[\s\d]+/)[0].replaceAll(' ', '');
         let pricePerMonth = parseFloat(((price / 12).toFixed(2)).replaceAll(',', '.'));
         let priceUpdated;
         if (parseInt(priceEl.innerText)) {
