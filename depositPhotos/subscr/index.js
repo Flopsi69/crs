@@ -249,6 +249,7 @@ const plansHeader = `
 
 let advantages;
 let perMonth;
+let toggleTextUp;
 getAdvantages(location.hostname.split(".")[0]);
 
 function getAdvantages(lang) {
@@ -261,7 +262,7 @@ function getAdvantages(lang) {
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>All file sizes</li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Print or digital use </li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Use for marketing and advertising</li>
-          <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong>up to</strong> 500,000 copies</li>
+          <li class="plan-constructor__advantage-item advantage-toggle-text"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Printing rights - <strong>more than</strong> 500,000 copies</li>
           <li class="plan-constructor__advantage-item"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>Life-long rights to use images</li>
 
           <li class="plan-constructor__advantage-item exluded exluded-trigger"><i class="plan-constructor__advantage-icon icon icon-ok icon-ok-blue"></i>
@@ -1187,39 +1188,47 @@ function getAdvantages(lang) {
     case "de":
       advantages = advantagesDE;
       perMonth = "Pro Monat";
+      toggleTextUp = "Druckberechtigungen – mehr als 500.000 Exemplare";
       break;
     case "fr":
       advantages = advantagesFR;
       perMonth = "Par mois";
+      toggleTextUp = "Droits d’impression - plus de 500 000 copies";
       break;
     case "sp":
       advantages = advantagesES;
       perMonth = "Al mes";
+      toggleTextUp = "Derechos de impresión: hasta 500 000 copias";
       break;
     case "it":
       advantages = advantagesIT;
       perMonth = "Al mese";
+      toggleTextUp = "Diritti di stampa - fino a 500.000 copie";
       break;
     case "pt":
       advantages = advantagesPT;
       perMonth = "Por mês";
+      toggleTextUp = "Direitos de impressão - até 500 000 cópias";
       break;
     case "pl":
       advantages = advantagesPL;
       perMonth = "Miesięcznie";
+      toggleTextUp = "Prawa do druku – do 5000 000 kopii";
       break;
-      // TODO
     case "nl":
       advantages = advantagesNL;
       perMonth = "Per maand";
+      toggleTextUp = "Drukrechten - tot 500.000 kopieën";
       break;
     case "jp":
       advantages = advantagesJA;
       perMonth = "１か月につき";
+      toggleTextUp = "印刷権 - 最大500,000部";
       break;
     case "cz":
       advantages = advantagesCS;
       perMonth = "Za měsíc";
+      toggleTextUp = "Práva na tisk – až 500 000 kopií";
       break;
     case "se":
       advantages = advantagesSW;
@@ -1228,30 +1237,37 @@ function getAdvantages(lang) {
     case "cn":
       advantages = advantagesZH;
       perMonth = "每月";
+      toggleTextUp = "印刷权——高达 500,000 份";
       break;
     case "tr":
       advantages = advantagesTR;
       perMonth = "Aylık";
+      toggleTextUp = "Baskı alma hakkı - 500.000’den fazla kopya";
       break;
     case "mx":
       advantages = advantagesEsM;
       perMonth = "Al mes";
+      toggleTextUp = "Derechos de impresión: hasta 500 000 copias";
       break;
     case "gr":
       advantages = advantagesEL;
       perMonth = "Ανά μήνα";
+      toggleTextUp = "Δικαιώματα εκτύπωσης - μέχρι 500.000 αντίγραφα";
       break;
     case "ko":
       advantages = advantagesKO;
       perMonth = "매월";
+      toggleTextUp = "인쇄 권한 - 최대 500,000부";
       break;
     case "br":
       advantages = advantagesPtB;
       perMonth = "Por mês";
+      toggleTextUp = "Direitos de impressão - até 500 000 cópias";
       break;
     case "hu":
       advantages = advantagesHU;
       perMonth = "Havonta";
+      toggleTextUp = "Nyomtatási jogok - több mint 500 000 másolat";
       break;
     case "ua":
       advantages = advantagesUA;
@@ -1260,6 +1276,7 @@ function getAdvantages(lang) {
     case "id":
       advantages = advantagesID;
       perMonth = "Per bulan";
+      toggleTextUp = "Hak pencetakan - hingga 500.000 salinan";
       break;
     // case "th":
     //   advantages = advantagesTH;
@@ -1276,10 +1293,12 @@ function getAdvantages(lang) {
     case "fi":
       advantages = advantagesFL;
       perMonth = "Kuukaudessa";
+      toggleTextUp = "Tulostusoikeudet – enintään 500 000 kopiota";
       break;
     default:
       advantages = advantagesEN;
       perMonth = "per month";
+      toggleTextUp = "Printing rights - up to 500,000 copies";
       break;
   }
   console.log(advantages);
@@ -1344,28 +1363,34 @@ function addAdvantages() {
     document.querySelector("._2ZubU ._2qbdE").insertAdjacentHTML("beforebegin", "<div class='go-plan-wrap'></div>");
     document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2ZubU ._2qbdE"));
     document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
-
+    let toggleText = document.querySelector('.advantage-toggle-text').innerText;
+    toggleCustomAdvantages(toggleText);
     document.querySelectorAll("._2MsAL li").forEach(function (el, i) {
-      
       el.addEventListener("click", function () {
         console.log("click");
         if (activeIndex == 2) {
-          let toggleText = document.querySelector('.advantage-toggle-text').innerText;
-          // addAdvantages();
-          if (document.querySelector("._2ZubU").name == 16) {
-            document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-              el.classList.remove('exluded');
-              // toggleText =  = 'more than';
-            }) 
-          } else {
-            document.querySelectorAll('.exluded-trigger').forEach(function (el) {
-              el.classList.add('exluded');
-              // document.querySelector('.advantage-toggle-text').innerText = 'up to';
-            }) 
-          }
+          toggleCustomAdvantages(toggleText);
         }
       })
     })
+  }
+}
+
+function toggleCustomAdvantages(toggleText) {
+  if (document.querySelector("._2ZubU").name == 16) {
+    document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+      el.classList.remove('exluded');
+      document.querySelector('.advantage-toggle-text').innerText = toggleText;
+    }) 
+  } else {
+    document.querySelectorAll('.exluded-trigger').forEach(function (el) {
+      el.classList.add('exluded');
+      if (toggleTextUp) {
+        document.querySelector('.advantage-toggle-text').innerText = toggleTextUp;
+      } else {
+        document.querySelector('.advantage-toggle-text').innerText = toggleText;
+      }
+    }) 
   }
 }
 
