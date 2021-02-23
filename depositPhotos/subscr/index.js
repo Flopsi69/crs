@@ -241,8 +241,8 @@ document.body.appendChild(styles);
 
 const plansHeader = `
   <div class="plans__head">
-    <div class="plans__head-item active" data-tab-name="subscribe">Subscription</div>
-    <div class="plans__head-item" data-tab-name="demand">On demand</div>
+    <div class="plans__head-item active" data-tab-name="subscribe">${document.querySelector(".plans-component form:nth-child(1) h2").innerText}</div>
+    <div class="plans__head-item" data-tab-name="demand">${document.querySelector(".plans-component form:nth-child(2) h2").innerText}</div>
   </div>
 `;
 
