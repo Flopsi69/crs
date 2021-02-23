@@ -249,7 +249,7 @@ const plansHeader = `
 
 let advantages;
 let perMonth;
-getAdvantages(ocation.hostname.split(".")[0]);
+getAdvantages(location.hostname.split(".")[0]);
 
 function getAdvantages(lang) {
   const advantagesEN = `
