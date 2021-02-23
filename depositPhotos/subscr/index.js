@@ -1345,7 +1345,7 @@ function addAdvantages() {
     document.querySelector('.go-plan-wrap').insertAdjacentElement("afterbegin", document.querySelector("._2ZubU ._2qbdE"));
     document.querySelector('.go-plan-wrap').insertAdjacentHTML("afterbegin", advantages);
 
-    document.querySelectorAll("._278to li").forEach(function (el, i) {
+    document.querySelectorAll("._2MsAL li").forEach(function (el, i) {
       
       el.addEventListener("click", function () {
         console.log("click");
