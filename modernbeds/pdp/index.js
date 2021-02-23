@@ -397,7 +397,7 @@ function initSlider(el, isReInit) {
   let labelText = el.querySelector("label").innerText.toLocaleLowerCase();
   let selectEl = el.querySelector("select");
   $(selectEl).val(selectEl.options[1].value);
-  if ($0.innerText.match(/reinforce/i)) {
+  if (labelText.match(/reinforce/i)) {
     $(selectEl).val(selectEl.options[2].value);
   }
     $(selectEl).trigger("change");
