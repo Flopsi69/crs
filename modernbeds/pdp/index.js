@@ -466,18 +466,8 @@ function initSlider(el, isReInit) {
       }
       el.querySelector(".go-options-slider").insertAdjacentHTML("beforeend", slide);
     })
-  
-    el.querySelectorAll(".go-option-slide").forEach((slide, i) => {
-      slide.addEventListener("click", function () {
-        gaEvent("Exp - PDP product options", "click on select input — " + labelText, "Details about product'");
-        let slideKey = this.dataset.slideKey;
-        $(selectEl).val(selectEl.options[slideKey].value);
-        $(selectEl).trigger("change");
-        // selectEl.options.selectedIndex = slideKey;
-      })
-    }) 
       
-  let slider;
+    let slider;
     if (selectEl.options.length - 1 < 3) {
        slider = $(el.querySelector(".go-options-slider")).slick({
         slidesToShow: 2,
@@ -497,6 +487,16 @@ function initSlider(el, isReInit) {
       // slider.slick('slickGoTo', 2);
       el.querySelector(".slick-current").nextElementSibling.click();
     }
+
+    el.querySelectorAll(".go-option-slide").forEach((slide, i) => {
+      slide.addEventListener("click", function () {
+        gaEvent("Exp - PDP product options", "click on select input — " + labelText, "Details about product");
+        let slideKey = this.dataset.slideKey;
+        $(selectEl).val(selectEl.options[slideKey].value);
+        $(selectEl).trigger("change");
+        // selectEl.options.selectedIndex = slideKey;
+      })
+    }) 
   
     $(el.querySelector(".go-options-slider")).on('afterChange', function(event, slick, currentSlide){
       // selectEl.options.selectedIndex = currentSlide+1;
