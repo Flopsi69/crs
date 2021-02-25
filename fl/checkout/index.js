@@ -152,10 +152,10 @@ var goProtection = `
         <div class="go-protection__details-caption">Wear your watch with confidence:</div>
 
         <div class="go-protection__list">
-          <div class="go-protection__item"><strong>2 Year Coverage for accidental demage.</strong> We will replace your watch for free, no questions asked.</div>
+          <div class="go-protection__item"><strong>2 Year Coverage for accidental demage.</strong> We will repair your watch for free, no questions asked.</div>
           <div class="go-protection__item"><strong>Free shipping on all repairs</strong> with no added or hidden fees</div>
           <div class="go-protection__item"><strong>Priority support</strong></div>
-          <div class="go-protection__item"><strong></strong>Fully transferable with gifts</div>
+          <div class="go-protection__item"><strong></strong>A separate Protection package must be purchased for each watch requiring cover</div>
         </div>
         
         <div class="go-protection__details-terms">See <a href="https://shop.filippoloreti.com/pages/terms-of-use">Terms and conditions</a> for details, exclusions</div>
@@ -186,6 +186,7 @@ let observer = new MutationObserver(mutations => {
         $(".go-protection__details-head").on("click", function () {
           $(this).toggleClass("activated");
           $(this).siblings().slideToggle();
+          gaEvent("click on Arrow Show more");
         });
     
         $('.go-protection__details-terms a').on("click", function (e) {
