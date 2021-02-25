@@ -12,18 +12,18 @@ try {
   }
   catch(e) {}
 
-function gaEvent(category, action, label = "") {
+function gaEvent(action, label = "") {
   try {
     dataLayer.push({
       "event": "event-to-ga",
-      "eventCategory":  category,
+      "eventCategory":  "Exp - PDP product options",
       "eventAction": action,
       "eventLabel": label
     });
   } catch (e) {}
 };
 
-gaEvent("Exp - PDP product options", "loaded");
+gaEvent("loaded");
 
 
 /* STYLES insert start */
@@ -282,7 +282,6 @@ function init() {
           if (!(node instanceof HTMLElement)) continue;
 
           if (node.classList.contains("mw-options-container")) {
-            console.log('yess');
             setTimeout(() => {
               initOptionsSliders();
             }, 1000);
@@ -354,7 +353,7 @@ function init() {
       mattressSubblock.insertAdjacentHTML("afterbegin", `<img class='go-modal-close' src='${REPO_DIR}close.png'/>`)
       mattressSubblock.querySelector('.go-modal-close').addEventListener("click", function (e) {
         e.preventDefault();
-        gaEvent("Exp - PDP product options", "click X to close the popup - Mattress Information");
+        gaEvent("click X to close the popup - Mattress Information");
         $(".go-modal__wrap.go-modal__wrap-active").removeClass("go-modal__wrap-active");
         $(".go-modal.go-modal-active").removeClass("go-modal-active");
       })
@@ -366,7 +365,7 @@ function init() {
 
 
   $(".go-modal-trigger").on("click", function () {
-    gaEvent("Exp - PDP product options", "click on link - "+ $(this).text(), "Expand Mattress Information");
+    gaEvent("click on link - "+ $(this).text(), "Expand Mattress Information");
   })
 
   // other
@@ -490,11 +489,17 @@ function initSlider(el, isReInit) {
 
     el.querySelectorAll(".go-option-slide").forEach((slide, i) => {
       slide.addEventListener("click", function () {
-        gaEvent("Exp - PDP product options", "click on select input — " + labelText, "Details about product");
+        gaEvent("click on select input — " + labelText, "Details about product");
         let slideKey = this.dataset.slideKey;
         $(selectEl).val(selectEl.options[slideKey].value);
         $(selectEl).trigger("change");
         // selectEl.options.selectedIndex = slideKey;
+      })
+    }) 
+
+    el.querySelectorAll(".slick-arrow").forEach((arrow, i) => {
+      arrow.addEventListener("click", function () {
+        gaEvent("click on select input — " + labelText, "Details about product");
       })
     }) 
   
@@ -702,11 +707,11 @@ function createTab(tabTitle, innerBlocks) {
   $(tabTitleEl).on("click", function (e) {
     e.preventDefault();
     if ($(this).parent().hasClass("go-return-delivery")) {
-      gaEvent("Exp - PDP product options", "click to Expand Delivery & Returns");
+      gaEvent("click to Expand Delivery & Returns");
     } else if ($(this).parent().hasClass("go-tab-dimensions")) {
-      gaEvent("Exp - PDP product options", "click to Expand Dimensions");
+      gaEvent("click to Expand Dimensions");
     } else if ($(this).parent().hasClass("go-tab-mattress")) {
-      gaEvent("Exp - PDP product options", "click to Expand Mattress Information");
+      gaEvent("click to Expand Mattress Information");
     }
     $(this).parent().toggleClass("activeTab");
     $(this).siblings(".go-accordion__body").slideToggle("slow");
