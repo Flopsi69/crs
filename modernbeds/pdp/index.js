@@ -263,7 +263,6 @@ const REPO_DIR = "https://flopsi69.github.io/crs/modernbeds/pdp/";
 // let styles = document.createElement('style');
 // styles.innerHTML = stylesList;
 // document.body.appendChild(styles);
-document.body.insertAdjacentHTML('afterbegin', stylesList)
 /* STYLES insert end */
 
 
@@ -274,6 +273,8 @@ setTimeout(() => {
 
 
 function init() {
+    document.body.insertAdjacentHTML('afterbegin', stylesList)
+    
     let observer = new MutationObserver(mutations => {
         for(let mutation of mutations) {
             // console.log(mutation);
