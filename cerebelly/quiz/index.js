@@ -365,7 +365,7 @@ let stylesList = `
 }
 
 .step-one__child-genders {
-  margin: 0 60px 0 15px;
+  margin: 15px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
