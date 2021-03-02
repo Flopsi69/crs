@@ -557,10 +557,6 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz-milestone-cards .warning-wrapper {
-  display: none !important;
-}
-
 .css-wjajup .button-wrapper {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
