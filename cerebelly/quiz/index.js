@@ -1170,6 +1170,7 @@ function stepTwo() {
                 el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
             }
         });
+        document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[0].toLowerCase()} milestones is common for your child?</div>`);
 
         document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
 
