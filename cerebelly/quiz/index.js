@@ -1162,11 +1162,9 @@ function stepOne() {
 
 function stepTwo() {
   toggleGoStyles();
-  document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>Which cognitive milestones is common for your child?</div>");
+  let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
   if (!document.querySelector(".go-step-caption-first")) {
-    let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
     document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
-      document.querySelector('.go-cards-title').innerHtml = `Which ${milestonesNames[index].toLowerCase()} milestones is common for your child?`
       el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
       if (index == 0) {
         el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
@@ -1181,7 +1179,9 @@ function stepTwo() {
 
     document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
 
-    
+    let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
+    document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
+    document.querySelector(".go-cards-sidebar").innerHtml(`${milestonesNames[step-1]} milestones`)
 
     document.addEventListener("click", function (e) {
       if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
