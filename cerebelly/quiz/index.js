@@ -1184,6 +1184,12 @@ function stepTwo() {
                 console.log('first');
                 buildCards();
                 window.scrollTo(0, 0);
+                let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
+                console.log(step)
+                console.log(milestonesNames[step-1])
+                document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
+                document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
+                console.log('last');
             }
             if (e.target.innerText == "finish") {
                 toggleGoStyles(true);
@@ -1193,12 +1199,6 @@ function stepTwo() {
         window.addEventListener('resize', toggleBackButton);
 
     }
-    let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
-    console.log(step)
-    console.log(milestonesNames[step-1])
-    document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
-    document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
-    console.log('last');
 
     buildCards();
 }
