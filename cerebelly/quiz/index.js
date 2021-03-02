@@ -1181,7 +1181,7 @@ function stepTwo() {
 
     let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
     document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
-    document.querySelector(".go-cards-sidebar").innerHtml(`${milestonesNames[step-1]} milestones`)
+    document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
 
     document.addEventListener("click", function (e) {
       if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
