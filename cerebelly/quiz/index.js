@@ -1189,7 +1189,7 @@ function stepTwo() {
                 console.log(step)
                 console.log(milestonesNames[step-1])
                 document.querySelector(".go-cards-title").innerHTML = `Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?`;
-                document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
+                document.querySelector(".go-cards-sidebar").innerText = `${milestonesNames[step-1]} milestones`
                 console.log('last');
             }
             if (e.target.innerText == "finish") {
