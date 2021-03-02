@@ -963,7 +963,7 @@ const stepOneHtml = `
     </div>
     <div class="step-one__title">Tell us a little about your child</div>
     <div class="step-one__child">
-      <div class="step-one__text">My little one is</div>
+      <div class="step-one__text">My little one is a</div>
       <div class="step-one__child-genders">
         <div class="step-one__child-gender step-one__gender-toggler" data-gender='1'>
           <img src="https://flopsi69.github.io/crs/cerebelly/quiz/step-one-boy.png" alt="step-one-boy">
@@ -978,7 +978,7 @@ const stepOneHtml = `
       </div>
     </div>
     <div class="step-one__birth">
-      <div class="step-one__text">and <span class="step-one__birth-who">her</span> Birthday is on</div>
+      <div class="step-one__text">and <span class="step-one__birth-who">her</span> birthday is on</div>
     </div>
 
     <div class="step-one__next-wrap">
