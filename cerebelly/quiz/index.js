@@ -1188,7 +1188,7 @@ function stepTwo() {
                 let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
                 console.log(step)
                 console.log(milestonesNames[step-1])
-                document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
+                document.querySelector(".go-cards-title").innerHTML = `Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?`;
                 document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
                 console.log('last');
             }
