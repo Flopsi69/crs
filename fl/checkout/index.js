@@ -158,7 +158,7 @@ var goProtection = `
           <div class="go-protection__item"><strong></strong>A separate Protection package must be purchased for each watch requiring cover</div>
         </div>
         
-        <div class="go-protection__details-terms">See <a href="https://shop.filippoloreti.com/pages/terms-of-use">Terms and conditions</a> for details, exclusions</div>
+        <div class="go-protection__details-terms">See <a href="https://shop.filippoloreti.com/pages/terms-conditions">Terms and conditions</a> for details, exclusions</div>
 
 
       </div>
