@@ -1179,7 +1179,7 @@ function stepTwo() {
 
     document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
 
-    document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>What cognitive behaviour is common for your child?</div>");
+    document.querySelector(".header").insertAdjacentHTML('afterend', "<div class='go-cards-title'>Which cognitive milestones is common for your child?</div>");
 
     document.addEventListener("click", function (e) {
       if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
