@@ -1,24 +1,24 @@
 function gaEvent(action,) {
-  try {
-    dataLayer.push({
-      "event": "event-to-ga",
-      "eventCategory": "Exp: Survey Improvement",
-      "eventAction": action,
-    });
-  } catch (e) {
-    console.log(e);
-  }
+    try {
+        dataLayer.push({
+            "event": "event-to-ga",
+            "eventCategory": "Exp: Survey Improvement",
+            "eventAction": action,
+        });
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 (function(h,o,t,j,a,r){
-  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-  h._hjSettings={hjid:2171597,hjsv:6};
-  a=o.getElementsByTagName('head')[0];
-  r=o.createElement('script');r.async=1;
-  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-  a.appendChild(r);
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2171597,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('trigger', 'survey_improvement');
 gaEvent("loaded");
 
@@ -1012,18 +1012,18 @@ const config = {
 
 // Функция обратного вызова при срабатывании мутации
 const callback = function(mutationsList, observer) {
-  for (let mutation of mutationsList) {
-    let mutEl = mutation.addedNodes[0];
-    if (mutEl instanceof HTMLElement) {
-      if (mutation.addedNodes.length && mutEl.querySelector(".quiz-milestone-cards")) {
-        stepTwo();
-      } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
-        stepOne();
-      } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
-        toggleGoStyles(true);
-      }
+    for (let mutation of mutationsList) {
+        let mutEl = mutation.addedNodes[0];
+        if (mutEl instanceof HTMLElement) {
+            if (mutation.addedNodes.length && mutEl.querySelector(".quiz-milestone-cards")) {
+                stepTwo();
+            } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
+                stepOne();
+            } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
+                toggleGoStyles(true);
+            }
+        }
     }
-  }
 };
 
 // Создаем экземпляр наблюдателя с указанной функцией обратного вызова
@@ -1039,250 +1039,249 @@ let stepTwoInited = false;
 let stepOneInited = false;
 
 function init() {
-  document.addEventListener("click", function (e) {
-    if (e.target.name == "email") {
-      gaEvent("email input focus");
+    document.addEventListener("click", function (e) {
+        if (e.target.name == "email") {
+            gaEvent("email input focus");
+        }
+        if (e.target.innerText == "finish" && document.querySelector("input[name='email']")) {
+            gaEvent("finish btn");
+        }
+    })
+    if (document.querySelector(".quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap")) {
+        stepOneInited = true;
+        stepOne();
     }
-    if (e.target.innerText == "finish" && document.querySelector("input[name='email']")) {
-      gaEvent("finish btn");
-    }
-  })
-  if (document.querySelector(".quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap")) {
-    stepOneInited = true;
-    stepOne();
-  }
 
-  if (document.querySelector(".quiz-milestone-cards")) {
-    stepTwoInited = true;
-    stepTwo();
-  }
+    if (document.querySelector(".quiz-milestone-cards")) {
+        stepTwoInited = true;
+        stepTwo();
+    }
 }
 init();
 
 // Functions
 function toggleGoStyles(remove) {
-  console.log('toggleGoStyles');
-  
-  if (document.querySelector("#go-styles")) {
-    if (remove) {
-      document.querySelector("#go-styles").remove();
+    console.log('toggleGoStyles');
+
+    if (document.querySelector("#go-styles")) {
+        if (remove) {
+            document.querySelector("#go-styles").remove();
+        }
+        return true;
+    } else if (!remove) {
+        document.body.appendChild(styles);
+        return false;
     }
-    return true;
-  } else if (!remove) {
-    document.body.appendChild(styles);
-    return false;
-  }
 }
 
 function stepOne() {
-  toggleGoStyles();
-  if (document.querySelector("input[name='childName']")) {
-    document.querySelector("input[name='childName']").addEventListener("focus", function () {
-      gaEvent("click on Child name input");
-    })
-    document.querySelector("input[name='firstName']").addEventListener("focus", function () {
-      gaEvent("click on parent name input");
-    })
-  }
-  if (!document.querySelector('.step-one__next-wrap') && document.querySelector("input[name='childName']")) {
-    document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
-    document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".b-date-input"));
-    document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
-    document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
-    document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";document.querySelector('.quiz-name-wrap.mt-4 input')
-    document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder = "Parent’s name";
-    document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder = "Baby's Name";
-    document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
-    if (window.outerWidth > 599) {
-      document.querySelector(".step-one__next-wrap").insertAdjacentElement('afterbegin', document.querySelector(".e-back-btn"));
+    toggleGoStyles();
+    if (document.querySelector("input[name='childName']")) {
+        document.querySelector("input[name='childName']").addEventListener("focus", function () {
+            gaEvent("click on Child name input");
+        })
+        document.querySelector("input[name='firstName']").addEventListener("focus", function () {
+            gaEvent("click on parent name input");
+        })
     }
-    document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
-    document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
-    setGender();
-    let selectGenderEl = document.querySelector("#select1");
-    let currentGender = selectGenderEl.options.selectedIndex;
-    // setGenderName(currentGender);
-    document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
-    // if (currentGender == 0) {
+    if (!document.querySelector('.step-one__next-wrap') && document.querySelector("input[name='childName']")) {
+        document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
+        document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".b-date-input"));
+        document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
+        document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
+        document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";document.querySelector('.quiz-name-wrap.mt-4 input')
+        document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder = "Parent’s name";
+        document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder = "Baby's Name";
+        document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
+        if (window.outerWidth > 599) {
+            document.querySelector(".step-one__next-wrap").insertAdjacentElement('afterbegin', document.querySelector(".e-back-btn"));
+        }
+        document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
+        document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
+        setGender();
+        let selectGenderEl = document.querySelector("#select1");
+        let currentGender = selectGenderEl.options.selectedIndex;
+        // setGenderName(currentGender);
+        document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
+        // if (currentGender == 0) {
         // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
         // el.classList.add('active');
-          // el.click();
-      // });
-    // } else {
-      // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
-    // }
+        // el.click();
+        // });
+        // } else {
+        // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+        // }
 
-    document.querySelector('.step-one__next').addEventListener("click", function (e) {
-      if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
-        document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
-      }
-      if (document.querySelector('.quiz2-intro-form-wrap .b-date-input input').value) {
-        gaEvent("continue gender");
-        e.preventDefault();
-        e.stopPropagation();
-        this.style.display = "none";
-        document.querySelector('.step-one__child').style.display = "none";
-        document.querySelector('.step-one__title').style.display = "none";
-        document.querySelector('.step-one__birth').style.display = "none";
-        document.querySelector('.step-one__side').style.display = "none";
-        document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
-        document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
-        document.querySelector(".step-one__disclaimer").style.display = "block";
-        document.querySelector(".step-one__finish-wrap").style.display = "flex";
-        document.querySelector(".step-one__next-wrap").style.display = "none";
-        document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
-      } else {
-        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input").insertAdjacentHTML("beforeend", "<div class='error-message'>This field is required</div>");
-        
-      }
-    })
-  
-    document.querySelector(".step-one__back").addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      document.querySelector(".step-one__next").style.display = "block";
-      document.querySelector('.step-one__title').style.display = "block";
-      document.querySelector('.step-one__side').style.display = "block";
-      document.querySelector('.quiz-name-wrap.mt-4').style.display = "none";
-      document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
-      document.querySelector(".step-one__disclaimer").style.display = "none";
-      document.querySelector(".step-one__finish-wrap").style.display = "none";
-      document.querySelector(".step-one__next-wrap").style.display = "flex";
-      document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
-      if (window.innerWidth > 768) {
-        document.querySelector('.step-one__child').style.display = "flex";
-        document.querySelector('.step-one__birth').style.display = "flex";
-      } else {
-        document.querySelector('.step-one__child').style.display = "block";
-        document.querySelector('.step-one__birth').style.display = "block";
-      }
-    })
-  }
+        document.querySelector('.step-one__next').addEventListener("click", function (e) {
+            if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
+                document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
+            }
+            if (document.querySelector('.quiz2-intro-form-wrap .b-date-input input').value) {
+                gaEvent("continue gender");
+                e.preventDefault();
+                e.stopPropagation();
+                this.style.display = "none";
+                document.querySelector('.step-one__child').style.display = "none";
+                document.querySelector('.step-one__title').style.display = "none";
+                document.querySelector('.step-one__birth').style.display = "none";
+                document.querySelector('.step-one__side').style.display = "none";
+                document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
+                document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
+                document.querySelector(".step-one__disclaimer").style.display = "block";
+                document.querySelector(".step-one__finish-wrap").style.display = "flex";
+                document.querySelector(".step-one__next-wrap").style.display = "none";
+                document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
+            } else {
+                document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input").insertAdjacentHTML("beforeend", "<div class='error-message'>This field is required</div>");
+
+            }
+        })
+
+        document.querySelector(".step-one__back").addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.querySelector(".step-one__next").style.display = "block";
+            document.querySelector('.step-one__title').style.display = "block";
+            document.querySelector('.step-one__side').style.display = "block";
+            document.querySelector('.quiz-name-wrap.mt-4').style.display = "none";
+            document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
+            document.querySelector(".step-one__disclaimer").style.display = "none";
+            document.querySelector(".step-one__finish-wrap").style.display = "none";
+            document.querySelector(".step-one__next-wrap").style.display = "flex";
+            document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
+            if (window.innerWidth > 768) {
+                document.querySelector('.step-one__child').style.display = "flex";
+                document.querySelector('.step-one__birth').style.display = "flex";
+            } else {
+                document.querySelector('.step-one__child').style.display = "block";
+                document.querySelector('.step-one__birth').style.display = "block";
+            }
+        })
+    }
 }
 
 function stepTwo() {
-  toggleGoStyles();
-  let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
-  if (!document.querySelector(".go-step-caption-first")) {
-    document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
-      el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
-      if (index == 0) {
-        el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
-      }
-    });
-    
-    document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
-
-    if (document.querySelectorAll("#step-progress-bar .step").length == 4) {
-      document.querySelector(".go-progress-caption").classList.add('go-progress-caption-brief');
-    }
-
-    document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
-
+    toggleGoStyles();
+    let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
     let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
     console.log(step)
     console.log(milestonesNames[step-1])
     document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
     document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
+    if (!document.querySelector(".go-step-caption-first")) {
+        document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
+            el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
+            if (index == 0) {
+                el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
+            }
+        });
 
-    document.addEventListener("click", function (e) {
-      if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
-        console.log('first');
-        buildCards();
-        window.scrollTo(0, 0);
-      }
-      if (e.target.innerText == "finish") {
-        toggleGoStyles(true);
-      }
-    })
-    toggleBackButton();
-    window.addEventListener('resize', toggleBackButton);
+        document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
 
-  }
-  console.log('last');
-  
-  buildCards();
+        if (document.querySelectorAll("#step-progress-bar .step").length == 4) {
+            document.querySelector(".go-progress-caption").classList.add('go-progress-caption-brief');
+        }
+
+        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
+
+        document.addEventListener("click", function (e) {
+            if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
+                console.log('first');
+                buildCards();
+                window.scrollTo(0, 0);
+            }
+            if (e.target.innerText == "finish") {
+                toggleGoStyles(true);
+            }
+        })
+        toggleBackButton();
+        window.addEventListener('resize', toggleBackButton);
+
+    }
+    console.log('last');
+
+    buildCards();
 }
 
 function setGender() {
-  document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-    el.addEventListener("click", function () {
-      gaEvent("gender selector");
-      let gender = this.dataset.gender;
-      setGenderName(gender);
-      document.querySelector("#select1").options.selectedIndex = gender;
-      document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-        el.classList.remove('active');
-      });
-      this.classList.add("active");
-      // if (gender == 0) {
-      //     document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-      //     el.classList.add('active');
-      //   });
-      // } else {
-      // }
+    document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+        el.addEventListener("click", function () {
+            gaEvent("gender selector");
+            let gender = this.dataset.gender;
+            setGenderName(gender);
+            document.querySelector("#select1").options.selectedIndex = gender;
+            document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+                el.classList.remove('active');
+            });
+            this.classList.add("active");
+            // if (gender == 0) {
+            //     document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+            //     el.classList.add('active');
+            //   });
+            // } else {
+            // }
+        })
     })
-  })
 }
 
 function setGenderName(gender) {
-  console.log(gender);
-  let genderName;
-  switch (gender) {
-    case "1":
-      genderName = "his";
-      break;
-    case "2":
-      genderName = "her";
-      break;
-    default:
-      genderName = "their";
-      break;
-  }
-  document.querySelector(".step-one__birth-who").innerText = genderName;
+    console.log(gender);
+    let genderName;
+    switch (gender) {
+        case "1":
+            genderName = "his";
+            break;
+        case "2":
+            genderName = "her";
+            break;
+        default:
+            genderName = "their";
+            break;
+    }
+    document.querySelector(".step-one__birth-who").innerText = genderName;
 }
 
 function toggleBackButton() {
-  if (window.outerWidth < 600) {
-    document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentElement("afterbegin", document.querySelector(".e-back-btn"));
-  } else {
-    document.querySelector(".css-wjajup .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
-  }
+    if (window.outerWidth < 600) {
+        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentElement("afterbegin", document.querySelector(".e-back-btn"));
+    } else {
+        document.querySelector(".css-wjajup .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
+    }
 }
 
 function buildCards() {
-  if (document.querySelector(".go-cards-list")) {
-    document.querySelector(".go-cards-list").innerHTML = "";
-  } else {
-    document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
-  }
-  document.querySelector("#next-button").addEventListener("click", function () {
-    gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
-  })
-
-  document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
-    let cardClone = el.cloneNode("true");
-    cardClone.dataset.refto = i;
-    cardClone.querySelector("input").id = "";
-    console.log(cardClone, el);
-    cardClone.addEventListener("click", function (e) {
-      e.preventDefault();
-      console.log('item click', this);
-      
-      gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
-
-      console.log('to', document.querySelector(".cards-carousel .go-card-" + this.dataset.refto))
-      document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
-      if (this.querySelector("input").checked) {
-        this.querySelector("input").checked = false;
-      } else {
-        this.querySelector("input").checked = true;
-      }
+    if (document.querySelector(".go-cards-list")) {
+        document.querySelector(".go-cards-list").innerHTML = "";
+    } else {
+        document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+    }
+    document.querySelector("#next-button").addEventListener("click", function () {
+        gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
     })
-    document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
-  
-    el.classList.add('go-card-' + i);
-  });
+
+    document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
+        let cardClone = el.cloneNode("true");
+        cardClone.dataset.refto = i;
+        cardClone.querySelector("input").id = "";
+        console.log(cardClone, el);
+        cardClone.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log('item click', this);
+
+            gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
+
+            console.log('to', document.querySelector(".cards-carousel .go-card-" + this.dataset.refto))
+            document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
+            if (this.querySelector("input").checked) {
+                this.querySelector("input").checked = false;
+            } else {
+                this.querySelector("input").checked = true;
+            }
+        })
+        document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
+
+        el.classList.add('go-card-' + i);
+    });
 }
 
 /* HTML insert end */
