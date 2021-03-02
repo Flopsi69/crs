@@ -1163,11 +1163,6 @@ function stepOne() {
 function stepTwo() {
     toggleGoStyles();
     let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
-    let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
-    console.log(step)
-    console.log(milestonesNames[step-1])
-    document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
-    document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
     if (!document.querySelector(".go-step-caption-first")) {
         document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
             el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
@@ -1198,6 +1193,11 @@ function stepTwo() {
         window.addEventListener('resize', toggleBackButton);
 
     }
+    let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
+    console.log(step)
+    console.log(milestonesNames[step-1])
+    document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?</div>`);
+    document.querySelector(".go-cards-sidebar").innerHtml = `${milestonesNames[step-1]} milestones`
     console.log('last');
 
     buildCards();
