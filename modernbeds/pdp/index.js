@@ -333,7 +333,10 @@ function init() {
     tabs.insertAdjacentElement("beforeend", returnAndDeliveryTab);
 
     // mattress
-    let mattressInfo = document.querySelector("#product_tabs_pan_new_15");
+    // let mattressInfo = document.querySelector("#product_tabs_pan_new_15");
+    let mattressInfo = document.querySelector("#feat-t4-table");
+
+    
     let mattressTab = createTab("Mattress Information", [mattressInfo]);
     mattressTab.classList.add("go-tab-mattress");
     document.body.insertAdjacentHTML("beforeend", "<div class='go-modal__wrap'></div>");
