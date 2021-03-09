@@ -333,8 +333,12 @@ function init() {
     tabs.insertAdjacentElement("beforeend", returnAndDeliveryTab);
 
     // mattress
-    // let mattressInfo = document.querySelector("#product_tabs_pan_new_15");
-    let mattressInfo = document.querySelector("#feat-t4-table");
+    let mattressInfo;
+    if (document.querySelector("#feat-t4-table")) {
+      mattressInfo = document.querySelector("#feat-t4-table");
+    } else {
+      mattressInfo = document.querySelector("#product_tabs_pan_new_15");
+    }
 
     
     let mattressTab = createTab("Mattress Information", [mattressInfo]);
