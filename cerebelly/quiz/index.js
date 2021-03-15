@@ -1027,6 +1027,7 @@ const callback = function (mutationsList, observer) {
         mutation.addedNodes.length &&
         mutEl.querySelector('.b-date-input .e-input')
       ) {
+        console.log(mutation.addedNodes);
         console.log('stepOneInit();');
         stepOne();
       } else if (
