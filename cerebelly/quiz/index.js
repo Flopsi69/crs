@@ -1011,7 +1011,6 @@ const config = {
   childList: true,
   subtree: true
 };
-let dirty = false;
 
 // Функция обратного вызова при срабатывании мутации
 const callback = function (mutationsList, observer) {
@@ -1028,12 +1027,7 @@ const callback = function (mutationsList, observer) {
         mutation.addedNodes.length &&
         mutEl.querySelector('.b-date-input .e-input')
       ) {
-        console.log(mutation.addedNodes);
-        if (!dirty) {
-          dirty = true;
-          console.log('stepOneInit();');
-          stepOne();
-        }
+        stepOne();
       } else if (
         mutation.addedNodes.length &&
         (mutEl.querySelector('.quiz-brain-section') ||
@@ -1042,7 +1036,6 @@ const callback = function (mutationsList, observer) {
           ) ||
           mutEl.querySelector("input[name='email']"))
       ) {
-        console.log('ToggleStiles();');
         toggleGoStyles(true);
       }
     }
