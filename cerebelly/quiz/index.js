@@ -1030,6 +1030,7 @@ const callback = function (mutationsList, observer) {
       ) {
         console.log(mutation.addedNodes);
         if (!dirty) {
+          dirty = true;
           console.log('stepOneInit();');
           stepOne();
         }
