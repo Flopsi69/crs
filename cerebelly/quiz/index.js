@@ -1021,11 +1021,13 @@ const callback = function (mutationsList, observer) {
         mutation.addedNodes.length &&
         mutEl.querySelector('.quiz-milestone-cards')
       ) {
+        console.log('stepTwoInit();');
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
         mutEl.querySelector('.b-date-input .e-input')
       ) {
+        console.log('stepOneInit();');
         stepOne();
       } else if (
         mutation.addedNodes.length &&
@@ -1035,6 +1037,7 @@ const callback = function (mutationsList, observer) {
           ) ||
           mutEl.querySelector("input[name='email']"))
       ) {
+        console.log('ToggleStiles();');
         toggleGoStyles(true);
       }
     }
@@ -1045,7 +1048,7 @@ const callback = function (mutationsList, observer) {
 const observer = new MutationObserver(callback);
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-// observer.observe(document.querySelector('#root'), config);
+observer.observe(document.querySelector('#root'), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
