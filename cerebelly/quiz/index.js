@@ -1,27 +1,35 @@
-function gaEvent(action,) {
-    try {
-        dataLayer.push({
-            "event": "event-to-ga",
-            "eventCategory": "Exp: Survey Improvement",
-            "eventAction": action,
-        });
-    } catch (e) {
-        console.log(e);
-    }
-};
+function gaEvent(action) {
+  try {
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Survey Improvement',
+      eventAction: action
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:2171597,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2171597, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
 hj('trigger', 'survey_improvement');
-gaEvent("loaded");
-
+gaEvent('loaded');
 
 // setTimeout(() => {
 //   hj('trigger', 'pl_benefits');
@@ -38,12 +46,12 @@ gaEvent("loaded");
 /* STYLES insert start */
 let stylesList = `
 .quiz2-intro-form-wrap h4,
-.css-wjajup .quiz2-intro-wrap .quiz-disclaimer,
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+.e-page-content .quiz2-intro-wrap .quiz-disclaimer,
+.e-page-content .quiz2-intro-wrap .quiz-name-wrap {
   display: none;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input {
+.e-page-content .quiz2-intro-wrap .quiz-name-wrap.b-date-input {
   display: block;
   margin-top: 0 !important;
 }
@@ -85,28 +93,28 @@ let stylesList = `
 }
 
 @media (max-width: 600px) {
-  .css-wjajup .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
+  .e-page-content .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
     padding: 0 20px !important;
   }
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+.e-page-content .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
   font-size: 26px;
 }
 
 @media (max-width: 600px) {
-  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+  .e-page-content .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
     font-size: 22px;
   }
 }
 
 @media (max-width: 600px) {
-  .css-wjajup .quiz2-intro-wrap {
+  .e-page-content .quiz2-intro-wrap {
     display: block;
   }
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
+.e-page-content .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
   background: #ffffff;
   border: 1px solid #cfcfcf;
   -webkit-box-sizing: border-box;
@@ -118,11 +126,11 @@ let stylesList = `
   max-width: 100%;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap {
+.e-page-content .quiz2-intro-wrap .quiz-name-wrap {
   margin-top: 25px !important;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+.e-page-content .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
   border: none;
   max-width: 300px;
   padding: 0;
@@ -132,20 +140,20 @@ let stylesList = `
 }
 
 @media (max-width: 600px) {
-  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+  .e-page-content .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
     max-width: 260px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
+.e-page-content .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
   max-width: 700px;
   padding: 30px 0 45px;
   width: 100%;
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz2-intro-form {
+.e-page-content .quiz2-intro-wrap .quiz2-intro-form {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   -webkit-box-orient: horizontal;
@@ -159,7 +167,7 @@ let stylesList = `
 }
 
 @media (max-width: 1200px) {
-  .css-wjajup .quiz2-intro-wrap .quiz2-intro-form {
+  .e-page-content .quiz2-intro-wrap .quiz2-intro-form {
     display: block;
   }
 }
@@ -198,7 +206,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz2-intro-wrap .quiz-name-wrap + .error-message {
+.e-page-content .quiz2-intro-wrap .quiz-name-wrap + .error-message {
   display: none;
 }
 
@@ -547,17 +555,17 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz-milestone-cards {
+.e-page-content .quiz-milestone-cards {
   max-width: 700px;
 }
 
 @media (max-width: 768px) {
-  .css-wjajup .quiz-milestone-cards {
+  .e-page-content .quiz-milestone-cards {
     padding: 10px 20px 0;
   }
 }
 
-.css-wjajup .button-wrapper {
+.e-page-content .button-wrapper {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -566,14 +574,14 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .css-wjajup .button-wrapper {
+  .e-page-content .button-wrapper {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 }
 
 @media (max-width: 599px) {
-  .css-wjajup #prev-button {
+  .e-page-content #prev-button {
     margin-top: 5px;
     margin-bottom: 0 !important;
   }
@@ -589,7 +597,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz-milestone-cards .cards-wrapper {
+.e-page-content .quiz-milestone-cards .cards-wrapper {
   opacity: 0;
   pointer-events: none;
 }
@@ -605,7 +613,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz-milestone-cards .card label {
+.e-page-content .quiz-milestone-cards .card label {
   background: #ffffff;
   border: 2px solid rgba(56, 86, 167, 0.2);
   -webkit-box-sizing: border-box;
@@ -616,7 +624,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup .quiz-milestone-cards .card label {
+  .e-page-content .quiz-milestone-cards .card label {
     display: block;
     max-width: 400px;
     margin: auto;
@@ -624,40 +632,40 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .css-wjajup .quiz-milestone-cards .card label {
+  .e-page-content .quiz-milestone-cards .card label {
     min-height: auto;
     max-width: 300px;
     width: 100%;
   }
 }
 
-.css-wjajup .quiz-milestone-cards .card label:hover {
+.e-page-content .quiz-milestone-cards .card label:hover {
   -webkit-box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
           box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
 }
 
-.css-wjajup .quiz-milestone-cards .card:hover {
+.e-page-content .quiz-milestone-cards .card:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.css-wjajup .quiz-milestone-cards .card img {
+.e-page-content .quiz-milestone-cards .card img {
   display: none;
 }
 
-.css-wjajup .quiz-milestone-cards .card {
+.e-page-content .quiz-milestone-cards .card {
   height: auto !important;
   border-radius: 20px; 
   background: none;
   border: 0;
 }
 
-.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label {
+.e-page-content .quiz-milestone-cards .card input[type='checkbox']:checked + label {
   border-color: #3856a7;
   position: relative;
 }
 
-.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+.e-page-content .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
   content: '';
   position: absolute;
   left: 10px;
@@ -669,12 +677,12 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+  .e-page-content .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
     top: 8px;
   }
 }
 
-.css-wjajup .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
+.e-page-content .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
   color: #15206b;
 }
 
@@ -698,7 +706,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup #step-progress-bar .step:not(:first-of-type) .bullet::after {
+.e-page-content #step-progress-bar .step:not(:first-of-type) .bullet::after {
   background: #d5d9e8;
   border-radius: 20px;
   width: 140px;
@@ -708,7 +716,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar .step:not(:first-of-type) .bullet::after {
+  .e-page-content #step-progress-bar .step:not(:first-of-type) .bullet::after {
     top: 0;
     width: 52px;
     left: -46px;
@@ -716,21 +724,21 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup .quiz-milestone-cards .card label p {
+  .e-page-content .quiz-milestone-cards .card label p {
     font-size: 15px;
     line-height: 1.2;
     text-align: center;
   }
 }
 
-.css-wjajup #step-progress-bar {
+.e-page-content #step-progress-bar {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
 @media (max-width: 599px) {
-  .css-wjajup #step-progress-bar {
+  .e-page-content #step-progress-bar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -740,16 +748,16 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar {
+  .e-page-content #step-progress-bar {
     width: 315px;
   }
 }
 
-.css-wjajup #mobile-step-progress-bar {
+.e-page-content #mobile-step-progress-bar {
   display: none !important;
 }
 
-.css-wjajup
+.e-page-content
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -761,7 +769,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup
+  .e-page-content
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -797,7 +805,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup #step-progress-bar .bullet.current {
+.e-page-content #step-progress-bar .bullet.current {
   width: 22px;
   height: 22px;
   background: white;
@@ -805,7 +813,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar .bullet.current {
+  .e-page-content #step-progress-bar .bullet.current {
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -813,13 +821,13 @@ let stylesList = `
   }
 }
 
-.css-wjajup #step-progress-bar .step {
+.e-page-content #step-progress-bar .step {
   position: relative;
   width: 20%;
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar .step {
+  .e-page-content #step-progress-bar .step {
     width: 54px;
     height: 14px;
     display: -webkit-box;
@@ -831,14 +839,14 @@ let stylesList = `
   }
 }
 
-.css-wjajup #step-progress-bar .bullet {
+.e-page-content #step-progress-bar .bullet {
   width: 16px;
   height: 16px;
   background: #d5d9e8;
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar .bullet {
+  .e-page-content #step-progress-bar .bullet {
     background: transparent;
     width: 14px;
     height: 14px;
@@ -849,7 +857,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup .quiz-milestone-cards .cards-carousel .carousel button {
+.e-page-content .quiz-milestone-cards .cards-carousel .carousel button {
   display: none;
 }
 
@@ -886,7 +894,7 @@ let stylesList = `
   }
 }
 
-.css-wjajup #step-progress-bar .step:first-of-type .bullet::after {
+.e-page-content #step-progress-bar .step:first-of-type .bullet::after {
   content: '';
   position: absolute;
   background: #3856a7;
@@ -898,7 +906,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .css-wjajup #step-progress-bar .step:first-of-type .bullet::after {
+  .e-page-content #step-progress-bar .step:first-of-type .bullet::after {
     width: 73px;
     left: -73px;
     top: 2px;
@@ -946,7 +954,6 @@ let styles = document.createElement('style');
 styles.id = 'go-styles';
 styles.innerHTML = stylesList;
 /* STYLES insert end */
-
 
 /*HTML insert START */
 const stepOneHtml = `
@@ -999,34 +1006,46 @@ const finishBtnHtml = `
 `;
 /*HTML insert END */
 
-
 // Конфигурация observer (за какими изменениями наблюдать)
 const config = {
-    childList: true,
-    subtree: true
+  childList: true,
+  subtree: true
 };
 
 // Функция обратного вызова при срабатывании мутации
-const callback = function(mutationsList, observer) {
-    for (let mutation of mutationsList) {
-        let mutEl = mutation.addedNodes[0];
-        if (mutEl instanceof HTMLElement) {
-            if (mutation.addedNodes.length && mutEl.querySelector(".quiz-milestone-cards")) {
-                stepTwo();
-            } else if (mutation.addedNodes.length && mutEl.querySelector(".b-date-input .e-input")) {
-                stepOne();
-            } else if (mutation.addedNodes.length && (mutEl.querySelector(".quiz-brain-section") || document.querySelector('.css-wjajup .quiz-intro-wrap .quiz-intro-form') || mutEl.querySelector("input[name='email']"))) {
-                toggleGoStyles(true);
-            }
-        }
+const callback = function (mutationsList, observer) {
+  for (let mutation of mutationsList) {
+    let mutEl = mutation.addedNodes[0];
+    if (mutEl instanceof HTMLElement) {
+      if (
+        mutation.addedNodes.length &&
+        mutEl.querySelector('.quiz-milestone-cards')
+      ) {
+        stepTwo();
+      } else if (
+        mutation.addedNodes.length &&
+        mutEl.querySelector('.b-date-input .e-input')
+      ) {
+        stepOne();
+      } else if (
+        mutation.addedNodes.length &&
+        (mutEl.querySelector('.quiz-brain-section') ||
+          document.querySelector(
+            '.e-page-content .quiz-intro-wrap .quiz-intro-form'
+          ) ||
+          mutEl.querySelector("input[name='email']"))
+      ) {
+        toggleGoStyles(true);
+      }
     }
+  }
 };
 
 // Создаем экземпляр наблюдателя с указанной функцией обратного вызова
 const observer = new MutationObserver(callback);
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-observer.observe(document.querySelector("body"), config);
+observer.observe(document.querySelector('body'), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
@@ -1035,250 +1054,389 @@ let stepTwoInited = false;
 let stepOneInited = false;
 
 function init() {
-    document.addEventListener("click", function (e) {
-        if (e.target.name == "email") {
-            gaEvent("email input focus");
-        }
-        if (e.target.innerText == "finish" && document.querySelector("input[name='email']")) {
-            gaEvent("finish btn");
-        }
-    })
-    if (document.querySelector(".quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap")) {
-        stepOneInited = true;
-        stepOne();
+  document.addEventListener('click', function (e) {
+    if (e.target.name == 'email') {
+      gaEvent('email input focus');
     }
+    if (
+      e.target.innerText == 'finish' &&
+      document.querySelector("input[name='email']")
+    ) {
+      gaEvent('finish btn');
+    }
+  });
+  if (
+    document.querySelector(
+      '.quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap'
+    )
+  ) {
+    stepOneInited = true;
+    stepOne();
+  }
 
-    if (document.querySelector(".quiz-milestone-cards")) {
-        stepTwoInited = true;
-        stepTwo();
-    }
+  if (document.querySelector('.quiz-milestone-cards')) {
+    stepTwoInited = true;
+    stepTwo();
+  }
 }
 init();
 
 // Functions
 function toggleGoStyles(remove) {
-    console.log('toggleGoStyles');
+  console.log('toggleGoStyles');
 
-    if (document.querySelector("#go-styles")) {
-        if (remove) {
-            document.querySelector("#go-styles").remove();
-        }
-        return true;
-    } else if (!remove) {
-        document.body.appendChild(styles);
-        return false;
+  if (document.querySelector('#go-styles')) {
+    if (remove) {
+      document.querySelector('#go-styles').remove();
     }
+    return true;
+  } else if (!remove) {
+    document.body.appendChild(styles);
+    return false;
+  }
 }
 
 function stepOne() {
-    toggleGoStyles();
-    if (document.querySelector("input[name='childName']")) {
-        document.querySelector("input[name='childName']").addEventListener("focus", function () {
-            gaEvent("click on Child name input");
-        })
-        document.querySelector("input[name='firstName']").addEventListener("focus", function () {
-            gaEvent("click on parent name input");
-        })
+  toggleGoStyles();
+  if (document.querySelector("input[name='childName']")) {
+    document
+      .querySelector("input[name='childName']")
+      .addEventListener('focus', function () {
+        gaEvent('click on Child name input');
+      });
+    document
+      .querySelector("input[name='firstName']")
+      .addEventListener('focus', function () {
+        gaEvent('click on parent name input');
+      });
+  }
+  if (
+    !document.querySelector('.step-one__next-wrap') &&
+    document.querySelector("input[name='childName']")
+  ) {
+    document
+      .querySelector('.quiz2-intro-form-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneHtml);
+    document
+      .querySelector('.step-one__birth')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector('.b-date-input')
+      );
+    document
+      .querySelector('.quiz2-intro-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
+    document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
+      'What’s your name?';
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
+      'Who is this box is for?';
+    document.querySelector('.quiz-name-wrap.mt-4 input');
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
+      'Parent’s name';
+    document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
+      "Baby's Name";
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit")
+      .insertAdjacentHTML('afterend', finishBtnHtml);
+    if (window.outerWidth > 599) {
+      document
+        .querySelector('.step-one__next-wrap')
+        .insertAdjacentElement(
+          'afterbegin',
+          document.querySelector('.e-back-btn')
+        );
     }
-    if (!document.querySelector('.step-one__next-wrap') && document.querySelector("input[name='childName']")) {
-        document.querySelector(".quiz2-intro-form-wrap").insertAdjacentHTML("afterbegin", stepOneHtml);
-        document.querySelector('.step-one__birth').insertAdjacentElement("beforeend", document.querySelector(".b-date-input"));
-        document.querySelector(".quiz2-intro-wrap").insertAdjacentHTML("afterbegin", stepOneSideHtml);
-        document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML = "What’s your name?";
-        document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML = "Who is this box is for?";document.querySelector('.quiz-name-wrap.mt-4 input')
-        document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder = "Parent’s name";
-        document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder = "Baby's Name";
-        document.querySelector(".quiz2-intro-form-wrap .button[type='submit").insertAdjacentHTML("afterend", finishBtnHtml);
-        if (window.outerWidth > 599) {
-            document.querySelector(".step-one__next-wrap").insertAdjacentElement('afterbegin', document.querySelector(".e-back-btn"));
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
+      .remove();
+    document.querySelector(
+      '.e-page-content .quiz2-intro-wrap'
+    ).style.background = '#A7D4CD';
+    setGender();
+    let selectGenderEl = document.querySelector('#select1');
+    let currentGender = selectGenderEl.options.selectedIndex;
+    // setGenderName(currentGender);
+    document
+      .querySelector(
+        ".step-one__gender-toggler[data-gender='" + currentGender + "']"
+      )
+      .click();
+    // if (currentGender == 0) {
+    // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+    // el.classList.add('active');
+    // el.click();
+    // });
+    // } else {
+    // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+    // }
+
+    document
+      .querySelector('.step-one__next')
+      .addEventListener('click', function (e) {
+        if (
+          document.querySelector(
+            '.e-page-content .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
+          )
+        ) {
+          document
+            .querySelector(
+              '.e-page-content .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
+            )
+            .remove();
         }
-        document.querySelector(".quiz2-intro-form-wrap .button[type='submit']").remove();
-        document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
-        setGender();
-        let selectGenderEl = document.querySelector("#select1");
-        let currentGender = selectGenderEl.options.selectedIndex;
-        // setGenderName(currentGender);
-        document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").click();
-        // if (currentGender == 0) {
-        // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-        // el.classList.add('active');
-        // el.click();
-        // });
-        // } else {
-        // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
-        // }
+        if (
+          document.querySelector('.quiz2-intro-form-wrap .b-date-input input')
+            .value
+        ) {
+          gaEvent('continue gender');
+          e.preventDefault();
+          e.stopPropagation();
+          this.style.display = 'none';
+          document.querySelector('.step-one__child').style.display = 'none';
+          document.querySelector('.step-one__title').style.display = 'none';
+          document.querySelector('.step-one__birth').style.display = 'none';
+          document.querySelector('.step-one__side').style.display = 'none';
+          document.querySelector('.quiz-name-wrap.mt-4').style.display =
+            'block';
+          document.querySelector('.quiz-name-wrap.mt-4+div').style.display =
+            'block';
+          document.querySelector('.step-one__disclaimer').style.display =
+            'block';
+          document.querySelector('.step-one__finish-wrap').style.display =
+            'flex';
+          document.querySelector('.step-one__next-wrap').style.display = 'none';
+          document.querySelector('.e-page-content .quiz2-intro-wrap').style =
+            '';
+        } else {
+          document
+            .querySelector(
+              '.e-page-content .quiz2-intro-wrap .quiz-name-wrap.b-date-input'
+            )
+            .insertAdjacentHTML(
+              'beforeend',
+              "<div class='error-message'>This field is required</div>"
+            );
+        }
+      });
 
-        document.querySelector('.step-one__next').addEventListener("click", function (e) {
-            if (document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message')) {
-                document.querySelector('.css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message').remove();
-            }
-            if (document.querySelector('.quiz2-intro-form-wrap .b-date-input input').value) {
-                gaEvent("continue gender");
-                e.preventDefault();
-                e.stopPropagation();
-                this.style.display = "none";
-                document.querySelector('.step-one__child').style.display = "none";
-                document.querySelector('.step-one__title').style.display = "none";
-                document.querySelector('.step-one__birth').style.display = "none";
-                document.querySelector('.step-one__side').style.display = "none";
-                document.querySelector('.quiz-name-wrap.mt-4').style.display = "block";
-                document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "block";
-                document.querySelector(".step-one__disclaimer").style.display = "block";
-                document.querySelector(".step-one__finish-wrap").style.display = "flex";
-                document.querySelector(".step-one__next-wrap").style.display = "none";
-                document.querySelector(".css-wjajup .quiz2-intro-wrap").style = "";
-            } else {
-                document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz-name-wrap.b-date-input").insertAdjacentHTML("beforeend", "<div class='error-message'>This field is required</div>");
-
-            }
-        })
-
-        document.querySelector(".step-one__back").addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.querySelector(".step-one__next").style.display = "block";
-            document.querySelector('.step-one__title').style.display = "block";
-            document.querySelector('.step-one__side').style.display = "block";
-            document.querySelector('.quiz-name-wrap.mt-4').style.display = "none";
-            document.querySelector('.quiz-name-wrap.mt-4+div').style.display = "none";
-            document.querySelector(".step-one__disclaimer").style.display = "none";
-            document.querySelector(".step-one__finish-wrap").style.display = "none";
-            document.querySelector(".step-one__next-wrap").style.display = "flex";
-            document.querySelector(".css-wjajup .quiz2-intro-wrap").style.background = "#A7D4CD";
-            if (window.innerWidth > 768) {
-                document.querySelector('.step-one__child').style.display = "flex";
-                document.querySelector('.step-one__birth').style.display = "flex";
-            } else {
-                document.querySelector('.step-one__child').style.display = "block";
-                document.querySelector('.step-one__birth').style.display = "block";
-            }
-        })
-    }
+    document
+      .querySelector('.step-one__back')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('.step-one__next').style.display = 'block';
+        document.querySelector('.step-one__title').style.display = 'block';
+        document.querySelector('.step-one__side').style.display = 'block';
+        document.querySelector('.quiz-name-wrap.mt-4').style.display = 'none';
+        document.querySelector('.quiz-name-wrap.mt-4+div').style.display =
+          'none';
+        document.querySelector('.step-one__disclaimer').style.display = 'none';
+        document.querySelector('.step-one__finish-wrap').style.display = 'none';
+        document.querySelector('.step-one__next-wrap').style.display = 'flex';
+        document.querySelector(
+          '.e-page-content .quiz2-intro-wrap'
+        ).style.background = '#A7D4CD';
+        if (window.innerWidth > 768) {
+          document.querySelector('.step-one__child').style.display = 'flex';
+          document.querySelector('.step-one__birth').style.display = 'flex';
+        } else {
+          document.querySelector('.step-one__child').style.display = 'block';
+          document.querySelector('.step-one__birth').style.display = 'block';
+        }
+      });
+  }
 }
 
 function stepTwo() {
-    toggleGoStyles();
-    let milestonesNames = ["Cognitive", "Language", "Motor", "Social", "Visual"];
-    if (!document.querySelector(".go-step-caption-first")) {
-        document.querySelectorAll("#step-progress-bar .step").forEach(function (el, index) {
-            el.insertAdjacentHTML("beforeend", "<span class='go-step-caption'>" + milestonesNames[index] + "</span>");
-            if (index == 0) {
-                el.insertAdjacentHTML("afterbegin", "<span class='go-step-caption go-step-caption-first'>Your child</span>");
-            }
-        });
-        document.querySelector(".header").insertAdjacentHTML('afterend', `<div class='go-cards-title'>Which ${milestonesNames[0].toLowerCase()} milestones is common for your child?</div>`);
-
-        document.querySelector("#step-progress-bar").insertAdjacentHTML("afterbegin", "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>");
-
-        if (document.querySelectorAll("#step-progress-bar .step").length == 4) {
-            document.querySelector(".go-progress-caption").classList.add('go-progress-caption-brief');
+  toggleGoStyles();
+  let milestonesNames = ['Cognitive', 'Language', 'Motor', 'Social', 'Visual'];
+  if (!document.querySelector('.go-step-caption-first')) {
+    document
+      .querySelectorAll('#step-progress-bar .step')
+      .forEach(function (el, index) {
+        el.insertAdjacentHTML(
+          'beforeend',
+          "<span class='go-step-caption'>" + milestonesNames[index] + '</span>'
+        );
+        if (index == 0) {
+          el.insertAdjacentHTML(
+            'afterbegin',
+            "<span class='go-step-caption go-step-caption-first'>Your child</span>"
+          );
         }
+      });
+    document
+      .querySelector('.header')
+      .insertAdjacentHTML(
+        'afterend',
+        `<div class='go-cards-title'>Which ${milestonesNames[0].toLowerCase()} milestones is common for your child?</div>`
+      );
 
-        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentHTML("afterbegin", "<div class='go-cards-sidebar'>Cognitive milestones</div>")
+    document
+      .querySelector('#step-progress-bar')
+      .insertAdjacentHTML(
+        'afterbegin',
+        "<img class='go-progress-caption' src='https://flopsi69.github.io/crs/cerebelly/quiz/milestones.png'>"
+      );
 
-        document.addEventListener("click", function (e) {
-            if (e.target.innerText.toLocaleLowerCase() == "previous category" || e.target.innerText.toLocaleLowerCase() == "next category" || e.target.innerText == "FINISH") {
-                console.log('first');
-                buildCards();
-                window.scrollTo(0, 0);
-                let step = document.querySelectorAll("#step-progress-bar .step .bullet.current").length
-                console.log(step)
-                console.log(milestonesNames[step-1])
-                document.querySelector(".go-cards-title").innerHTML = `Which ${milestonesNames[step-1].toLowerCase()} milestones is common for your child?`;
-                document.querySelector(".go-cards-sidebar").innerText = `${milestonesNames[step-1]} milestones`
-                console.log('last');
-            }
-            if (e.target.innerText == "finish") {
-                toggleGoStyles(true);
-            }
-        })
-        toggleBackButton();
-        window.addEventListener('resize', toggleBackButton);
-
+    if (document.querySelectorAll('#step-progress-bar .step').length == 4) {
+      document
+        .querySelector('.go-progress-caption')
+        .classList.add('go-progress-caption-brief');
     }
 
-    buildCards();
+    document
+      .querySelector('.e-page-content .quiz2-intro-wrap .quiz2-intro-form')
+      .insertAdjacentHTML(
+        'afterbegin',
+        "<div class='go-cards-sidebar'>Cognitive milestones</div>"
+      );
+
+    document.addEventListener('click', function (e) {
+      if (
+        e.target.innerText.toLocaleLowerCase() == 'previous category' ||
+        e.target.innerText.toLocaleLowerCase() == 'next category' ||
+        e.target.innerText == 'FINISH'
+      ) {
+        console.log('first');
+        buildCards();
+        window.scrollTo(0, 0);
+        let step = document.querySelectorAll(
+          '#step-progress-bar .step .bullet.current'
+        ).length;
+        console.log(step);
+        console.log(milestonesNames[step - 1]);
+        document.querySelector(
+          '.go-cards-title'
+        ).innerHTML = `Which ${milestonesNames[
+          step - 1
+        ].toLowerCase()} milestones is common for your child?`;
+        document.querySelector('.go-cards-sidebar').innerText = `${
+          milestonesNames[step - 1]
+        } milestones`;
+        console.log('last');
+      }
+      if (e.target.innerText == 'finish') {
+        toggleGoStyles(true);
+      }
+    });
+    toggleBackButton();
+    window.addEventListener('resize', toggleBackButton);
+  }
+
+  buildCards();
 }
 
 function setGender() {
-    document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-        el.addEventListener("click", function () {
-            gaEvent("gender selector");
-            let gender = this.dataset.gender;
-            setGenderName(gender);
-            document.querySelector("#select1").options.selectedIndex = gender;
-            document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-                el.classList.remove('active');
-            });
-            this.classList.add("active");
-            // if (gender == 0) {
-            //     document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-            //     el.classList.add('active');
-            //   });
-            // } else {
-            // }
-        })
-    })
+  document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+    el.addEventListener('click', function () {
+      gaEvent('gender selector');
+      let gender = this.dataset.gender;
+      setGenderName(gender);
+      document.querySelector('#select1').options.selectedIndex = gender;
+      document
+        .querySelectorAll('.step-one__gender-toggler')
+        .forEach(function (el) {
+          el.classList.remove('active');
+        });
+      this.classList.add('active');
+      // if (gender == 0) {
+      //     document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+      //     el.classList.add('active');
+      //   });
+      // } else {
+      // }
+    });
+  });
 }
 
 function setGenderName(gender) {
-    console.log(gender);
-    let genderName;
-    switch (gender) {
-        case "1":
-            genderName = "his";
-            break;
-        case "2":
-            genderName = "her";
-            break;
-        default:
-            genderName = "their";
-            break;
-    }
-    document.querySelector(".step-one__birth-who").innerText = genderName;
+  console.log(gender);
+  let genderName;
+  switch (gender) {
+    case '1':
+      genderName = 'his';
+      break;
+    case '2':
+      genderName = 'her';
+      break;
+    default:
+      genderName = 'their';
+      break;
+  }
+  document.querySelector('.step-one__birth-who').innerText = genderName;
 }
 
 function toggleBackButton() {
-    if (window.outerWidth < 600) {
-        document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form").insertAdjacentElement("afterbegin", document.querySelector(".e-back-btn"));
-    } else {
-        document.querySelector(".css-wjajup .button-wrapper").insertAdjacentElement("afterbegin", document.querySelector(".css-wjajup .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn"));
-    }
+  if (window.outerWidth < 600) {
+    document
+      .querySelector('.e-page-content .quiz2-intro-wrap .quiz2-intro-form')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector('.e-back-btn')
+      );
+  } else {
+    document
+      .querySelector('.e-page-content .button-wrapper')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector(
+          '.e-page-content .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn'
+        )
+      );
+  }
 }
 
 function buildCards() {
-    if (document.querySelector(".go-cards-list")) {
-        document.querySelector(".go-cards-list").innerHTML = "";
-    } else {
-        document.querySelector(".go-cards-title").insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
-    }
-    document.querySelector("#next-button").addEventListener("click", function () {
-        gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " next category button");
-    })
+  if (document.querySelector('.go-cards-list')) {
+    document.querySelector('.go-cards-list').innerHTML = '';
+  } else {
+    document
+      .querySelector('.go-cards-title')
+      .insertAdjacentHTML('afterend', "<div class='go-cards-list'></div>");
+  }
+  document.querySelector('#next-button').addEventListener('click', function () {
+    gaEvent(
+      document.querySelectorAll('.bullet.current')[
+        document.querySelectorAll('.bullet.current').length - 1
+      ].nextElementSibling.innerText + ' next category button'
+    );
+  });
 
-    document.querySelectorAll(".cards-carousel .card").forEach(function (el, i) {
-        let cardClone = el.cloneNode("true");
-        cardClone.dataset.refto = i;
-        cardClone.querySelector("input").id = "";
-        console.log(cardClone, el);
-        cardClone.addEventListener("click", function (e) {
-            e.preventDefault();
-            console.log('item click', this);
+  document.querySelectorAll('.cards-carousel .card').forEach(function (el, i) {
+    let cardClone = el.cloneNode('true');
+    cardClone.dataset.refto = i;
+    cardClone.querySelector('input').id = '';
+    console.log(cardClone, el);
+    cardClone.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log('item click', this);
 
-            gaEvent(document.querySelectorAll(".bullet.current")[document.querySelectorAll(".bullet.current").length - 1].nextElementSibling.innerText + " item");
+      gaEvent(
+        document.querySelectorAll('.bullet.current')[
+          document.querySelectorAll('.bullet.current').length - 1
+        ].nextElementSibling.innerText + ' item'
+      );
 
-            console.log('to', document.querySelector(".cards-carousel .go-card-" + this.dataset.refto))
-            document.querySelector(".cards-carousel .go-card-" + this.dataset.refto).click();
-            if (this.querySelector("input").checked) {
-                this.querySelector("input").checked = false;
-            } else {
-                this.querySelector("input").checked = true;
-            }
-        })
-        document.querySelector(".go-cards-list").insertAdjacentElement('beforeend', cardClone);
-
-        el.classList.add('go-card-' + i);
+      console.log(
+        'to',
+        document.querySelector('.cards-carousel .go-card-' + this.dataset.refto)
+      );
+      document
+        .querySelector('.cards-carousel .go-card-' + this.dataset.refto)
+        .click();
+      if (this.querySelector('input').checked) {
+        this.querySelector('input').checked = false;
+      } else {
+        this.querySelector('input').checked = true;
+      }
     });
+    document
+      .querySelector('.go-cards-list')
+      .insertAdjacentElement('beforeend', cardClone);
+
+    el.classList.add('go-card-' + i);
+  });
 }
 
 /* HTML insert end */
