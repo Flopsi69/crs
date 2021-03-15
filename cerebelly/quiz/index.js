@@ -1011,6 +1011,7 @@ const config = {
   childList: true,
   subtree: true
 };
+let dirty = false;
 
 // Функция обратного вызова при срабатывании мутации
 const callback = function (mutationsList, observer) {
@@ -1028,8 +1029,10 @@ const callback = function (mutationsList, observer) {
         mutEl.querySelector('.b-date-input .e-input')
       ) {
         console.log(mutation.addedNodes);
-        console.log('stepOneInit();');
-        stepOne();
+        if (!dirty) {
+          console.log('stepOneInit();');
+          stepOne();
+        }
       } else if (
         mutation.addedNodes.length &&
         (mutEl.querySelector('.quiz-brain-section') ||
