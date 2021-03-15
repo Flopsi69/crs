@@ -1045,7 +1045,7 @@ const callback = function (mutationsList, observer) {
 const observer = new MutationObserver(callback);
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-observer.observe(document.querySelector('body'), config);
+// observer.observe(document.querySelector('#root'), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
