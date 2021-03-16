@@ -1046,10 +1046,10 @@ const callback = function (mutationsList, observer) {
 };
 
 // Создаем экземпляр наблюдателя с указанной функцией обратного вызова
-// const observer = new MutationObserver(callback);
+const observer = new MutationObserver(callback);
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-// observer.observe(document.querySelector('#root'), config);
+observer.observe(document.querySelector('#root'), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
