@@ -1032,6 +1032,7 @@ const callback = function (mutationsList, observer) {
         console.log('stepOne', mutation.addedNodes);
         console.log('g');
         if (!stepOneInited) {
+          stepOneInited = true;
           console.log('gg');
           stepOne();
         }
