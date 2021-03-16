@@ -1115,6 +1115,12 @@ function stepOne() {
         gaEvent('click on parent name input');
       });
   }
+  document
+    .querySelector('.step-one__birth')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.b-date-input')
+    );
   if (
     !document.querySelector('.step-one__next-wrap') &&
     document.querySelector("input[name='childName']")
@@ -1122,12 +1128,6 @@ function stepOne() {
     document
       .querySelector('.quiz2-intro-form-wrap')
       .insertAdjacentHTML('afterbegin', stepOneHtml);
-    document
-      .querySelector('.step-one__birth')
-      .insertAdjacentElement(
-        'beforeend',
-        document.querySelector('.b-date-input')
-      );
     document
       .querySelector('.quiz2-intro-wrap')
       .insertAdjacentHTML('afterbegin', stepOneSideHtml);
