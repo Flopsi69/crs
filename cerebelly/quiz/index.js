@@ -1012,6 +1012,8 @@ const config = {
   subtree: true
 };
 
+let stepTwoInited = false;
+let stepOneInited = false;
 // Функция обратного вызова при срабатывании мутации
 const callback = function (mutationsList, observer) {
   for (let mutation of mutationsList) {
@@ -1028,7 +1030,11 @@ const callback = function (mutationsList, observer) {
         mutEl.querySelector('.b-date-input .e-input')
       ) {
         console.log('stepOne', mutation.addedNodes);
-        stepOne();
+        console.log('g');
+        if (!stepOneInited) {
+          console.log('gg');
+          stepOne();
+        }
       } else if (
         mutation.addedNodes.length &&
         (mutEl.querySelector('.quiz-brain-section') ||
@@ -1054,9 +1060,6 @@ observer.observe(document.querySelector('#root'), config);
 // Позже можно остановить наблюдение
 // observer.disconnect();
 
-let stepTwoInited = false;
-let stepOneInited = false;
-
 function init() {
   document.addEventListener('click', function (e) {
     if (e.target.name == 'email') {
@@ -1074,9 +1077,8 @@ function init() {
       '.quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap'
     )
   ) {
-    stepOneInited = true;
-
     stepOne();
+    // stepOneInited = true;
   }
 
   if (document.querySelector('.quiz-milestone-cards')) {
