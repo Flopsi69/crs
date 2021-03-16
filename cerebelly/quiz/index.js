@@ -1028,9 +1028,10 @@ const callback = function (mutationsList, observer) {
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
-        (mutEl.querySelector('.b-date-input .e-input') || mutEl.classList.contains('quiz2-intro-form')
+        (mutEl.querySelector('.b-date-input .e-input') ||
+          mutEl.classList.contains('quiz2-intro-form'))
       ) {
-        // console.log('stepOne', mutation.addedNodes);
+        console.log('stepOneFire', mutation.addedNodes);
         stepOne();
       } else if (
         mutation.addedNodes.length &&
