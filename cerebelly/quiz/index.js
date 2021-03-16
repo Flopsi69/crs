@@ -1021,12 +1021,13 @@ const callback = function (mutationsList, observer) {
         mutation.addedNodes.length &&
         mutEl.querySelector('.quiz-milestone-cards')
       ) {
-        console.log('stepTwoInit();');
+        console.log(mutation.addedNodes);
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
         mutEl.querySelector('.b-date-input .e-input')
       ) {
+        console.log(mutation.addedNodes);
         stepOne();
       } else if (
         mutation.addedNodes.length &&
@@ -1036,6 +1037,7 @@ const callback = function (mutationsList, observer) {
           ) ||
           mutEl.querySelector("input[name='email']"))
       ) {
+        console.log('gg', mutation.addedNodes);
         toggleGoStyles(true);
       }
     }
