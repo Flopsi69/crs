@@ -46,12 +46,12 @@ gaEvent('loaded');
 /* STYLES insert start */
 let stylesList = `
 .quiz2-intro-form-wrap h4,
-.e-page-content-wrap .quiz2-intro-wrap .quiz-disclaimer,
-.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap {
+.css-cctpci .quiz2-intro-wrap .quiz-disclaimer,
+.css-cctpci .quiz2-intro-wrap .quiz-name-wrap {
   display: none;
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input {
+.css-cctpci .quiz2-intro-wrap .quiz-name-wrap.b-date-input {
   display: block;
   margin-top: 0 !important;
 }
@@ -93,28 +93,28 @@ let stylesList = `
 }
 
 @media (max-width: 600px) {
-  .e-page-content-wrap .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
+  .css-cctpci .quiz2-intro-wrap.quiz-content-top .quiz2-intro-form {
     padding: 0 20px !important;
   }
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+.css-cctpci .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
   font-size: 26px;
 }
 
 @media (max-width: 600px) {
-  .e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
+  .css-cctpci .quiz2-intro-wrap .quiz2-intro-form-wrap h3 {
     font-size: 22px;
   }
 }
 
 @media (max-width: 600px) {
-  .e-page-content-wrap .quiz2-intro-wrap {
+  .css-cctpci .quiz2-intro-wrap {
     display: block;
   }
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
+.css-cctpci .quiz2-intro-wrap .quiz2-intro-form-wrap .e-text-field {
   background: #ffffff;
   border: 1px solid #cfcfcf;
   -webkit-box-sizing: border-box;
@@ -126,11 +126,11 @@ let stylesList = `
   max-width: 100%;
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap {
+.css-cctpci .quiz2-intro-wrap .quiz-name-wrap {
   margin-top: 25px !important;
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+.css-cctpci .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
   border: none;
   max-width: 300px;
   padding: 0;
@@ -140,20 +140,20 @@ let stylesList = `
 }
 
 @media (max-width: 600px) {
-  .e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
+  .css-cctpci .quiz2-intro-wrap .quiz2-intro-form-wrap .input-wrapper {
     max-width: 260px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
+.css-cctpci .quiz2-intro-wrap .quiz2-intro-form .quiz2-intro-form-wrap {
   max-width: 700px;
   padding: 30px 0 45px;
   width: 100%;
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form {
+.css-cctpci .quiz2-intro-wrap .quiz2-intro-form {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   -webkit-box-orient: horizontal;
@@ -167,7 +167,7 @@ let stylesList = `
 }
 
 @media (max-width: 1200px) {
-  .e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form {
+  .css-cctpci .quiz2-intro-wrap .quiz2-intro-form {
     display: block;
   }
 }
@@ -206,7 +206,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap + .error-message {
+.css-cctpci .quiz2-intro-wrap .quiz-name-wrap + .error-message {
   display: none;
 }
 
@@ -258,7 +258,6 @@ let stylesList = `
   padding: 70px 30px;
   max-width: 370px;
   margin-right: auto;
-  order: -1;
 }
 
 @media (max-width: 600px) {
@@ -556,17 +555,17 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards {
+.css-cctpci .quiz-milestone-cards {
   max-width: 700px;
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap .quiz-milestone-cards {
+  .css-cctpci .quiz-milestone-cards {
     padding: 10px 20px 0;
   }
 }
 
-.e-page-content-wrap .button-wrapper {
+.css-cctpci .button-wrapper {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -575,14 +574,14 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .e-page-content-wrap .button-wrapper {
+  .css-cctpci .button-wrapper {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 }
 
 @media (max-width: 599px) {
-  .e-page-content-wrap #prev-button {
+  .css-cctpci #prev-button {
     margin-top: 5px;
     margin-bottom: 0 !important;
   }
@@ -598,7 +597,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards .cards-wrapper {
+.css-cctpci .quiz-milestone-cards .cards-wrapper {
   opacity: 0;
   pointer-events: none;
 }
@@ -614,7 +613,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card label {
+.css-cctpci .quiz-milestone-cards .card label {
   background: #ffffff;
   border: 2px solid rgba(56, 86, 167, 0.2);
   -webkit-box-sizing: border-box;
@@ -625,7 +624,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap .quiz-milestone-cards .card label {
+  .css-cctpci .quiz-milestone-cards .card label {
     display: block;
     max-width: 400px;
     margin: auto;
@@ -633,40 +632,40 @@ let stylesList = `
 }
 
 @media (max-width: 599px) {
-  .e-page-content-wrap .quiz-milestone-cards .card label {
+  .css-cctpci .quiz-milestone-cards .card label {
     min-height: auto;
     max-width: 300px;
     width: 100%;
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card label:hover {
+.css-cctpci .quiz-milestone-cards .card label:hover {
   -webkit-box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
           box-shadow: rgba(21, 32, 107, 0.15) 0px 2px 8px;
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card:hover {
+.css-cctpci .quiz-milestone-cards .card:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card img {
+.css-cctpci .quiz-milestone-cards .card img {
   display: none;
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card {
+.css-cctpci .quiz-milestone-cards .card {
   height: auto !important;
   border-radius: 20px; 
   background: none;
   border: 0;
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card input[type='checkbox']:checked + label {
+.css-cctpci .quiz-milestone-cards .card input[type='checkbox']:checked + label {
   border-color: #3856a7;
   position: relative;
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+.css-cctpci .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
   content: '';
   position: absolute;
   left: 10px;
@@ -678,12 +677,12 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
+  .css-cctpci .quiz-milestone-cards .card input[type='checkbox']:checked + label:before {
     top: 8px;
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
+.css-cctpci .quiz-milestone-cards .card input[type='checkbox']:checked + label p {
   color: #15206b;
 }
 
@@ -707,7 +706,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap #step-progress-bar .step:not(:first-of-type) .bullet::after {
+.css-cctpci #step-progress-bar .step:not(:first-of-type) .bullet::after {
   background: #d5d9e8;
   border-radius: 20px;
   width: 140px;
@@ -717,7 +716,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar .step:not(:first-of-type) .bullet::after {
+  .css-cctpci #step-progress-bar .step:not(:first-of-type) .bullet::after {
     top: 0;
     width: 52px;
     left: -46px;
@@ -725,21 +724,21 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap .quiz-milestone-cards .card label p {
+  .css-cctpci .quiz-milestone-cards .card label p {
     font-size: 15px;
     line-height: 1.2;
     text-align: center;
   }
 }
 
-.e-page-content-wrap #step-progress-bar {
+.css-cctpci #step-progress-bar {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
 @media (max-width: 599px) {
-  .e-page-content-wrap #step-progress-bar {
+  .css-cctpci #step-progress-bar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -749,16 +748,16 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar {
+  .css-cctpci #step-progress-bar {
     width: 315px;
   }
 }
 
-.e-page-content-wrap #mobile-step-progress-bar {
+.css-cctpci #mobile-step-progress-bar {
   display: none !important;
 }
 
-.e-page-content-wrap
+.css-cctpci
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -770,7 +769,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap
+  .css-cctpci
 #step-progress-bar
 .step:not(:first-of-type)
 .bullet.current::after {
@@ -806,7 +805,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap #step-progress-bar .bullet.current {
+.css-cctpci #step-progress-bar .bullet.current {
   width: 22px;
   height: 22px;
   background: white;
@@ -814,7 +813,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar .bullet.current {
+  .css-cctpci #step-progress-bar .bullet.current {
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -822,13 +821,13 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap #step-progress-bar .step {
+.css-cctpci #step-progress-bar .step {
   position: relative;
   width: 20%;
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar .step {
+  .css-cctpci #step-progress-bar .step {
     width: 54px;
     height: 14px;
     display: -webkit-box;
@@ -840,14 +839,14 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap #step-progress-bar .bullet {
+.css-cctpci #step-progress-bar .bullet {
   width: 16px;
   height: 16px;
   background: #d5d9e8;
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar .bullet {
+  .css-cctpci #step-progress-bar .bullet {
     background: transparent;
     width: 14px;
     height: 14px;
@@ -858,7 +857,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap .quiz-milestone-cards .cards-carousel .carousel button {
+.css-cctpci .quiz-milestone-cards .cards-carousel .carousel button {
   display: none;
 }
 
@@ -895,7 +894,7 @@ let stylesList = `
   }
 }
 
-.e-page-content-wrap #step-progress-bar .step:first-of-type .bullet::after {
+.css-cctpci #step-progress-bar .step:first-of-type .bullet::after {
   content: '';
   position: absolute;
   background: #3856a7;
@@ -907,7 +906,7 @@ let stylesList = `
 }
 
 @media (max-width: 768px) {
-  .e-page-content-wrap #step-progress-bar .step:first-of-type .bullet::after {
+  .css-cctpci #step-progress-bar .step:first-of-type .bullet::after {
     width: 73px;
     left: -73px;
     top: 2px;
@@ -1018,32 +1017,24 @@ const callback = function (mutationsList, observer) {
   for (let mutation of mutationsList) {
     let mutEl = mutation.addedNodes[0];
     if (mutEl instanceof HTMLElement) {
-      if (mutation.addedNodes.length) {
-        console.log(mutation.addedNodes);
-      }
       if (
         mutation.addedNodes.length &&
         mutEl.querySelector('.quiz-milestone-cards')
       ) {
-        // console.log('step two', mutation.addedNodes);
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
-        (mutEl.querySelector('.b-date-input .e-input') ||
-          mutEl.classList.contains('quiz2-intro-form'))
+        mutEl.querySelector('.b-date-input .e-input')
       ) {
-        console.log('stepOneFire', mutation.addedNodes);
         stepOne();
       } else if (
         mutation.addedNodes.length &&
         (mutEl.querySelector('.quiz-brain-section') ||
           document.querySelector(
-            '.e-page-content-wrap .quiz-intro-wrap .quiz-intro-form'
+            '.css-cctpci .quiz-intro-wrap .quiz-intro-form'
           ) ||
           mutEl.querySelector("input[name='email']"))
       ) {
-        // console.log('asdfasdfsadf');
-        // console.log('gg', mutation.addedNodes);
         toggleGoStyles(true);
       }
     }
@@ -1058,6 +1049,9 @@ observer.observe(document.querySelector('#root'), config);
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
+
+let stepTwoInited = false;
+let stepOneInited = false;
 
 function init() {
   document.addEventListener('click', function (e) {
@@ -1076,10 +1070,12 @@ function init() {
       '.quiz2-intro-wrap.quiz-content-top form.quiz2-intro-form-wrap'
     )
   ) {
+    stepOneInited = true;
     stepOne();
   }
 
   if (document.querySelector('.quiz-milestone-cards')) {
+    stepTwoInited = true;
     stepTwo();
   }
 }
@@ -1115,31 +1111,21 @@ function stepOne() {
       });
   }
   if (
-    !document.querySelector('.step-one__birth input') &&
+    !document.querySelector('.step-one__next-wrap') &&
     document.querySelector("input[name='childName']")
   ) {
-    console.log('stepone');
-
-    // if (
-    //   !document.querySelector('.step-one__next-wrap') &&
-    //   document.querySelector("input[name='childName']")
-    // ) {
-    if (!document.querySelector('.step-one')) {
-      document
-        .querySelector('.quiz2-intro-form-wrap')
-        .insertAdjacentHTML('afterbegin', stepOneHtml);
-    }
+    document
+      .querySelector('.quiz2-intro-form-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneHtml);
     document
       .querySelector('.step-one__birth')
       .insertAdjacentElement(
         'beforeend',
         document.querySelector('.b-date-input')
       );
-    if (!document.querySelector('.quiz2-intro-wrap .step-one__side')) {
-      document
-        .querySelector('.quiz2-intro-wrap')
-        .insertAdjacentHTML('afterbegin', stepOneSideHtml);
-    }
+    document
+      .querySelector('.quiz2-intro-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
     document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
       'What’s your name?';
     document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
@@ -1163,9 +1149,8 @@ function stepOne() {
     document
       .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
       .remove();
-    document.querySelector(
-      '.e-page-content-wrap .quiz2-intro-wrap'
-    ).style.background = '#A7D4CD';
+    document.querySelector('.css-cctpci .quiz2-intro-wrap').style.background =
+      '#A7D4CD';
     setGender();
     let selectGenderEl = document.querySelector('#select1');
     let currentGender = selectGenderEl.options.selectedIndex;
@@ -1189,12 +1174,12 @@ function stepOne() {
       .addEventListener('click', function (e) {
         if (
           document.querySelector(
-            '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
+            '.css-cctpci .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
           )
         ) {
           document
             .querySelector(
-              '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
+              '.css-cctpci .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
             )
             .remove();
         }
@@ -1219,13 +1204,11 @@ function stepOne() {
           document.querySelector('.step-one__finish-wrap').style.display =
             'flex';
           document.querySelector('.step-one__next-wrap').style.display = 'none';
-          document.querySelector(
-            '.e-page-content-wrap .quiz2-intro-wrap'
-          ).style = '';
+          document.querySelector('.css-cctpci .quiz2-intro-wrap').style = '';
         } else {
           document
             .querySelector(
-              '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input'
+              '.css-cctpci .quiz2-intro-wrap .quiz-name-wrap.b-date-input'
             )
             .insertAdjacentHTML(
               'beforeend',
@@ -1249,7 +1232,7 @@ function stepOne() {
         document.querySelector('.step-one__finish-wrap').style.display = 'none';
         document.querySelector('.step-one__next-wrap').style.display = 'flex';
         document.querySelector(
-          '.e-page-content-wrap .quiz2-intro-wrap'
+          '.css-cctpci .quiz2-intro-wrap'
         ).style.background = '#A7D4CD';
         if (window.innerWidth > 768) {
           document.querySelector('.step-one__child').style.display = 'flex';
@@ -1301,7 +1284,7 @@ function stepTwo() {
     }
 
     document
-      .querySelector('.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form')
+      .querySelector('.css-cctpci .quiz2-intro-wrap .quiz2-intro-form')
       .insertAdjacentHTML(
         'afterbegin',
         "<div class='go-cards-sidebar'>Cognitive milestones</div>"
@@ -1385,18 +1368,18 @@ function setGenderName(gender) {
 function toggleBackButton() {
   if (window.outerWidth < 600) {
     document
-      .querySelector('.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form')
+      .querySelector('.css-cctpci .quiz2-intro-wrap .quiz2-intro-form')
       .insertAdjacentElement(
         'afterbegin',
         document.querySelector('.e-back-btn')
       );
   } else {
     document
-      .querySelector('.e-page-content-wrap .button-wrapper')
+      .querySelector('.css-cctpci .button-wrapper')
       .insertAdjacentElement(
         'afterbegin',
         document.querySelector(
-          '.e-page-content-wrap .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn'
+          '.css-cctpci .quiz2-intro-wrap .quiz2-intro-form > .e-back-btn'
         )
       );
   }
