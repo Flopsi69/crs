@@ -258,6 +258,7 @@ let stylesList = `
   padding: 70px 30px;
   max-width: 370px;
   margin-right: auto;
+  order: -1;
 }
 
 @media (max-width: 600px) {
