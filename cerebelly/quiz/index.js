@@ -1166,20 +1166,14 @@ function stepOne() {
         ".step-one__gender-toggler[data-gender='" + currentGender + "']"
       )
       .click();
-    if (currentGender == 0) {
-      document
-        .querySelectorAll('.step-one__gender-toggler')
-        .forEach(function (el) {
-          el.classList.add('active');
-          el.click();
-        });
-    } else {
-      document
-        .querySelector(
-          ".step-one__gender-toggler[data-gender='" + currentGender + "']"
-        )
-        .classList.add('active');
-    }
+    // if (currentGender == 0) {
+    // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+    // el.classList.add('active');
+    // el.click();
+    // });
+    // } else {
+    // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+    // }
 
     document
       .querySelector('.step-one__next')
