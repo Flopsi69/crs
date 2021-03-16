@@ -1025,7 +1025,7 @@ const callback = function (mutationsList, observer) {
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
-        mutEl.querySelector('.step-one__progress_desk')
+        mutEl.querySelector('.b-date-input .e-input')
       ) {
         console.log('stepOne', mutation.addedNodes);
         stepOne();
@@ -1115,137 +1115,142 @@ function stepOne() {
         gaEvent('click on parent name input');
       });
   }
-  // if (
-  //   !document.querySelector('.step-one__next-wrap') &&
-  //   document.querySelector("input[name='childName']")
-  // ) {
-  document
-    .querySelector('.quiz2-intro-form-wrap')
-    .insertAdjacentHTML('afterbegin', stepOneHtml);
-  document
-    .querySelector('.step-one__birth')
-    .insertAdjacentElement(
-      'beforeend',
-      document.querySelector('.b-date-input')
-    );
-  document
-    .querySelector('.quiz2-intro-wrap')
-    .insertAdjacentHTML('afterbegin', stepOneSideHtml);
-  document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
-    'What’s your name?';
-  document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
-    'Who is this box is for?';
-  document.querySelector('.quiz-name-wrap.mt-4 input');
-  document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
-    'Parent’s name';
-  document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
-    "Baby's Name";
-  document
-    .querySelector(".quiz2-intro-form-wrap .button[type='submit")
-    .insertAdjacentHTML('afterend', finishBtnHtml);
-  if (window.outerWidth > 599) {
+  if (
+    !document.querySelector('.step-one__next-wrap') &&
+    document.querySelector("input[name='childName']")
+  ) {
     document
-      .querySelector('.step-one__next-wrap')
+      .querySelector('.quiz2-intro-form-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneHtml);
+    document
+      .querySelector('.step-one__birth')
       .insertAdjacentElement(
-        'afterbegin',
-        document.querySelector('.e-back-btn')
+        'beforeend',
+        document.querySelector('.b-date-input')
       );
-  }
-  document
-    .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
-    .remove();
-  document.querySelector(
-    '.e-page-content-wrap .quiz2-intro-wrap'
-  ).style.background = '#A7D4CD';
-  setGender();
-  let selectGenderEl = document.querySelector('#select1');
-  let currentGender = selectGenderEl.options.selectedIndex;
-  // setGenderName(currentGender);
-  document
-    .querySelector(
-      ".step-one__gender-toggler[data-gender='" + currentGender + "']"
-    )
-    .click();
-  // if (currentGender == 0) {
-  // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-  // el.classList.add('active');
-  // el.click();
-  // });
-  // } else {
-  // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
-  // }
+    document
+      .querySelector('.quiz2-intro-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
+    document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
+      'What’s your name?';
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
+      'Who is this box is for?';
+    document.querySelector('.quiz-name-wrap.mt-4 input');
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
+      'Parent’s name';
+    document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
+      "Baby's Name";
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit")
+      .insertAdjacentHTML('afterend', finishBtnHtml);
+    if (window.outerWidth > 599) {
+      document
+        .querySelector('.step-one__next-wrap')
+        .insertAdjacentElement(
+          'afterbegin',
+          document.querySelector('.e-back-btn')
+        );
+    }
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
+      .remove();
+    document.querySelector(
+      '.e-page-content-wrap .quiz2-intro-wrap'
+    ).style.background = '#A7D4CD';
+    setGender();
+    let selectGenderEl = document.querySelector('#select1');
+    let currentGender = selectGenderEl.options.selectedIndex;
+    // setGenderName(currentGender);
+    document
+      .querySelector(
+        ".step-one__gender-toggler[data-gender='" + currentGender + "']"
+      )
+      .click();
+    // if (currentGender == 0) {
+    // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
+    // el.classList.add('active');
+    // el.click();
+    // });
+    // } else {
+    // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
+    // }
 
-  document
-    .querySelector('.step-one__next')
-    .addEventListener('click', function (e) {
-      if (
-        document.querySelector(
-          '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
-        )
-      ) {
-        document
-          .querySelector(
+    document
+      .querySelector('.step-one__next')
+      .addEventListener('click', function (e) {
+        if (
+          document.querySelector(
             '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
           )
-          .remove();
-      }
-      if (
-        document.querySelector('.quiz2-intro-form-wrap .b-date-input input')
-          .value
-      ) {
-        gaEvent('continue gender');
+        ) {
+          document
+            .querySelector(
+              '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input .error-message'
+            )
+            .remove();
+        }
+        if (
+          document.querySelector('.quiz2-intro-form-wrap .b-date-input input')
+            .value
+        ) {
+          gaEvent('continue gender');
+          e.preventDefault();
+          e.stopPropagation();
+          this.style.display = 'none';
+          document.querySelector('.step-one__child').style.display = 'none';
+          document.querySelector('.step-one__title').style.display = 'none';
+          document.querySelector('.step-one__birth').style.display = 'none';
+          document.querySelector('.step-one__side').style.display = 'none';
+          document.querySelector('.quiz-name-wrap.mt-4').style.display =
+            'block';
+          document.querySelector('.quiz-name-wrap.mt-4+div').style.display =
+            'block';
+          document.querySelector('.step-one__disclaimer').style.display =
+            'block';
+          document.querySelector('.step-one__finish-wrap').style.display =
+            'flex';
+          document.querySelector('.step-one__next-wrap').style.display = 'none';
+          document.querySelector(
+            '.e-page-content-wrap .quiz2-intro-wrap'
+          ).style = '';
+        } else {
+          document
+            .querySelector(
+              '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input'
+            )
+            .insertAdjacentHTML(
+              'beforeend',
+              "<div class='error-message'>This field is required</div>"
+            );
+        }
+      });
+
+    document
+      .querySelector('.step-one__back')
+      .addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        this.style.display = 'none';
-        document.querySelector('.step-one__child').style.display = 'none';
-        document.querySelector('.step-one__title').style.display = 'none';
-        document.querySelector('.step-one__birth').style.display = 'none';
-        document.querySelector('.step-one__side').style.display = 'none';
-        document.querySelector('.quiz-name-wrap.mt-4').style.display = 'block';
+        document.querySelector('.step-one__next').style.display = 'block';
+        document.querySelector('.step-one__title').style.display = 'block';
+        document.querySelector('.step-one__side').style.display = 'block';
+        document.querySelector('.quiz-name-wrap.mt-4').style.display = 'none';
         document.querySelector('.quiz-name-wrap.mt-4+div').style.display =
-          'block';
-        document.querySelector('.step-one__disclaimer').style.display = 'block';
-        document.querySelector('.step-one__finish-wrap').style.display = 'flex';
-        document.querySelector('.step-one__next-wrap').style.display = 'none';
-        document.querySelector('.e-page-content-wrap .quiz2-intro-wrap').style =
-          '';
-      } else {
-        document
-          .querySelector(
-            '.e-page-content-wrap .quiz2-intro-wrap .quiz-name-wrap.b-date-input'
-          )
-          .insertAdjacentHTML(
-            'beforeend',
-            "<div class='error-message'>This field is required</div>"
-          );
-      }
-    });
-
-  document
-    .querySelector('.step-one__back')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      document.querySelector('.step-one__next').style.display = 'block';
-      document.querySelector('.step-one__title').style.display = 'block';
-      document.querySelector('.step-one__side').style.display = 'block';
-      document.querySelector('.quiz-name-wrap.mt-4').style.display = 'none';
-      document.querySelector('.quiz-name-wrap.mt-4+div').style.display = 'none';
-      document.querySelector('.step-one__disclaimer').style.display = 'none';
-      document.querySelector('.step-one__finish-wrap').style.display = 'none';
-      document.querySelector('.step-one__next-wrap').style.display = 'flex';
-      document.querySelector(
-        '.e-page-content-wrap .quiz2-intro-wrap'
-      ).style.background = '#A7D4CD';
-      if (window.innerWidth > 768) {
-        document.querySelector('.step-one__child').style.display = 'flex';
-        document.querySelector('.step-one__birth').style.display = 'flex';
-      } else {
-        document.querySelector('.step-one__child').style.display = 'block';
-        document.querySelector('.step-one__birth').style.display = 'block';
-      }
-    });
-  // }
+          'none';
+        document.querySelector('.step-one__disclaimer').style.display = 'none';
+        document.querySelector('.step-one__finish-wrap').style.display = 'none';
+        document.querySelector('.step-one__next-wrap').style.display = 'flex';
+        document.querySelector(
+          '.e-page-content-wrap .quiz2-intro-wrap'
+        ).style.background = '#A7D4CD';
+        if (window.innerWidth > 768) {
+          document.querySelector('.step-one__child').style.display = 'flex';
+          document.querySelector('.step-one__birth').style.display = 'flex';
+        } else {
+          document.querySelector('.step-one__child').style.display = 'block';
+          document.querySelector('.step-one__birth').style.display = 'block';
+        }
+      });
+  }
 }
 
 function stepTwo() {
