@@ -1028,7 +1028,7 @@ const callback = function (mutationsList, observer) {
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
-        mutEl.querySelector('.b-date-input .e-input')
+        (mutEl.querySelector('.b-date-input .e-input') || mutEl.classList.contains('quiz2-intro-form')
       ) {
         // console.log('stepOne', mutation.addedNodes);
         stepOne();
@@ -1113,9 +1113,15 @@ function stepOne() {
       });
   }
   if (
-    !document.querySelector('.step-one__next-wrap') &&
+    !document.querySelector('.step-one__birth input') &&
     document.querySelector("input[name='childName']")
   ) {
+    console.log('stepone');
+
+    // if (
+    //   !document.querySelector('.step-one__next-wrap') &&
+    //   document.querySelector("input[name='childName']")
+    // ) {
     document
       .querySelector('.quiz2-intro-form-wrap')
       .insertAdjacentHTML('afterbegin', stepOneHtml);
