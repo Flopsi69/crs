@@ -1119,53 +1119,53 @@ function stepOne() {
     !document.querySelector('.step-one__next-wrap') &&
     document.querySelector("input[name='childName']")
   ) {
+    document
+      .querySelector('.quiz2-intro-form-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneHtml);
     // document
-    //   .querySelector('.quiz2-intro-form-wrap')
-    //   .insertAdjacentHTML('afterbegin', stepOneHtml);
-    document
-      .querySelector('.step-one__birth')
-      .insertAdjacentElement(
-        'beforeend',
-        document.querySelector('.b-date-input')
-      );
-    document
-      .querySelector('.quiz2-intro-wrap')
-      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
-    document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
-      'What’s your name?';
-    document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
-      'Who is this box is for?';
-    document.querySelector('.quiz-name-wrap.mt-4 input');
-    document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
-      'Parent’s name';
-    document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
-      "Baby's Name";
-    document
-      .querySelector(".quiz2-intro-form-wrap .button[type='submit")
-      .insertAdjacentHTML('afterend', finishBtnHtml);
-    if (window.outerWidth > 599) {
-      document
-        .querySelector('.step-one__next-wrap')
-        .insertAdjacentElement(
-          'afterbegin',
-          document.querySelector('.e-back-btn')
-        );
-    }
-    document
-      .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
-      .remove();
-    document.querySelector(
-      '.e-page-content-wrap .quiz2-intro-wrap'
-    ).style.background = '#A7D4CD';
-    setGender();
-    let selectGenderEl = document.querySelector('#select1');
-    let currentGender = selectGenderEl.options.selectedIndex;
-    // setGenderName(currentGender);
-    document
-      .querySelector(
-        ".step-one__gender-toggler[data-gender='" + currentGender + "']"
-      )
-      .click();
+    //   .querySelector('.step-one__birth')
+    //   .insertAdjacentElement(
+    //     'beforeend',
+    //     document.querySelector('.b-date-input')
+    //   );
+    // document
+    //   .querySelector('.quiz2-intro-wrap')
+    //   .insertAdjacentHTML('afterbegin', stepOneSideHtml);
+    // document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
+    //   'What’s your name?';
+    // document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
+    //   'Who is this box is for?';
+    // document.querySelector('.quiz-name-wrap.mt-4 input');
+    // document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
+    //   'Parent’s name';
+    // document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
+    //   "Baby's Name";
+    // document
+    //   .querySelector(".quiz2-intro-form-wrap .button[type='submit")
+    //   .insertAdjacentHTML('afterend', finishBtnHtml);
+    // if (window.outerWidth > 599) {
+    //   document
+    //     .querySelector('.step-one__next-wrap')
+    //     .insertAdjacentElement(
+    //       'afterbegin',
+    //       document.querySelector('.e-back-btn')
+    //     );
+    // }
+    // document
+    //   .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
+    //   .remove();
+    // document.querySelector(
+    //   '.e-page-content-wrap .quiz2-intro-wrap'
+    // ).style.background = '#A7D4CD';
+    // setGender();
+    // let selectGenderEl = document.querySelector('#select1');
+    // let currentGender = selectGenderEl.options.selectedIndex;
+    // // setGenderName(currentGender);
+    // document
+    //   .querySelector(
+    //     ".step-one__gender-toggler[data-gender='" + currentGender + "']"
+    //   )
+    //   .click();
     // if (currentGender == 0) {
     // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
     // el.classList.add('active');
