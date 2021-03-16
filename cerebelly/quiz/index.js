@@ -1012,30 +1012,26 @@ const config = {
   subtree: true
 };
 
-let stepTwoInited = false;
-let stepOneInited = false;
 // Функция обратного вызова при срабатывании мутации
 const callback = function (mutationsList, observer) {
   for (let mutation of mutationsList) {
     let mutEl = mutation.addedNodes[0];
     if (mutEl instanceof HTMLElement) {
+      if (mutation.addedNodes.length) {
+        console.log(mutation.addedNodes);
+      }
       if (
         mutation.addedNodes.length &&
         mutEl.querySelector('.quiz-milestone-cards')
       ) {
-        console.log('step two', mutation.addedNodes);
+        // console.log('step two', mutation.addedNodes);
         stepTwo();
       } else if (
         mutation.addedNodes.length &&
         mutEl.querySelector('.b-date-input .e-input')
       ) {
-        console.log('stepOne', mutation.addedNodes);
-        console.log('g');
-        if (!stepOneInited) {
-          stepOneInited = true;
-          console.log('gg');
-          stepOne();
-        }
+        // console.log('stepOne', mutation.addedNodes);
+        stepOne();
       } else if (
         mutation.addedNodes.length &&
         (mutEl.querySelector('.quiz-brain-section') ||
@@ -1044,8 +1040,8 @@ const callback = function (mutationsList, observer) {
           ) ||
           mutEl.querySelector("input[name='email']"))
       ) {
-        console.log('asdfasdfsadf');
-        console.log('gg', mutation.addedNodes);
+        // console.log('asdfasdfsadf');
+        // console.log('gg', mutation.addedNodes);
         toggleGoStyles(true);
       }
     }
@@ -1079,11 +1075,9 @@ function init() {
     )
   ) {
     stepOne();
-    // stepOneInited = true;
   }
 
   if (document.querySelector('.quiz-milestone-cards')) {
-    stepTwoInited = true;
     stepTwo();
   }
 }
