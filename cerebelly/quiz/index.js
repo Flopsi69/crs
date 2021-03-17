@@ -51,7 +51,7 @@ let stylesList = `
   display: none;
 }
 
-.quiz2-intro-wra {
+.css-cctpci .quiz2-intro-wrap {
   flex-flow: row-reverse;
 }
 
