@@ -1,23 +1,35 @@
-//   function gaEvent(action) {
-//     try {
-//       dataLayer.push({
-//         "event": "event-to-ga",
-//         "eventCategory":  "Exp - Protection package",
-//         "eventAction": action,
-//       });
-//     } catch (e) {}
-//   };
+function gaEvent(action) {
+  return false;
+  try {
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Exp — PDP: add phone number',
+      eventAction: action
+    });
+  } catch (e) {}
+}
 
-//   (function(h,o,t,j,a,r){
-//     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-//     h._hjSettings={hjid:1885763,hjsv:6};
-//     a=o.getElementsByTagName('head')[0];
-//     r=o.createElement('script');r.async=1;
-//     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-//     a.appendChild(r);
-//   })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-//     window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-//   hj('trigger', 'protection_package');
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2174050, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj('trigger', 'pdp__add_phone_number_mob');
+
+gaEvent('loaded');
 
 /* STYLES insert start */
 let stylesList = `
@@ -38,7 +50,7 @@ let stylesList = `
   color: #fff;
 }
 .go-b-advert-block {
-  height: auto;
+  height: auto!important;
   padding-bottom: 60px!important;
 }
 .go-phone-number + .go-phone-number {
@@ -126,6 +138,9 @@ function insertsPhones(phones, insertBeforeEl) {
         phoneEl.classList.add('active');
         phoneEl.innerHTML = phone;
         phoneEl.href = 'tel:' + phone;
+        gaEvent('click on button Show more');
+      } else {
+        gaEvent('click on button with entire phone numbe');
       }
     });
   });
