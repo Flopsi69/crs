@@ -1142,14 +1142,14 @@ function stepOne() {
     document
       .querySelector(".quiz2-intro-form-wrap .button[type='submit")
       .insertAdjacentHTML('afterend', finishBtnHtml);
-    // if (window.outerWidth > 599) {
-    //   document
-    //     .querySelector('.step-one__next-wrap')
-    //     .insertAdjacentElement(
-    //       'afterbegin',
-    //       document.querySelector('.e-back-btn')
-    //     );
-    // }
+    if (window.outerWidth > 599) {
+      document
+        .querySelector('.step-one__next-wrap')
+        .insertAdjacentElement(
+          'afterbegin',
+          document.querySelector('.e-back-btn')
+        );
+    }
     // document
     //   .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
     //   .remove();
