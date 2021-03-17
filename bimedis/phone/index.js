@@ -20,9 +20,59 @@
 //   hj('trigger', 'protection_package');
 
 /* STYLES insert start */
-
-let stylesList = ``;
-console.log('fireee');
+let stylesList = `
+.go-phone-number {
+  background: #FFFFFF;
+  display: block;
+  text-align: center;
+  border: 2px solid #485280;
+  padding: 11px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(38, 39, 44, 0.8);
+  letter-spacing: 0.3px;
+}
+.go-phone-number:hover {
+  background-color: #485280;
+  color: #fff;
+}
+.go-b-advert-block {
+  height: auto;
+  padding-bottom: 60px!important;
+}
+.go-phone-number + .go-phone-number {
+  margin-top: 10px;
+}
+.go-phone-number span {
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  line-height: 14px;
+  color: rgba(38, 39, 44, 0.8);
+}
+@media(max-width: 992px) {
+  .go-phone-number {
+    color: #fff!important;
+    background-color: #485280!important;
+  }
+  .b-advert-block.m-advert-block-right-border.m-advert-block.go-b-advert-block {
+    display: flex;
+    flex-flow: column;
+    padding-bottom: 10px!important;
+    padding-top: 10px!important;
+  }
+  .go-phone-number span {
+    color: #fff!important;
+  }
+  .go-buttons-wrap {
+    margin-bottom: 10px;
+  }
+  .go-buttons-wrap button {
+    margin-top: 10px;
+  }
+}
+`;
 
 // connect to DOM
 let styles = document.createElement('style');
@@ -31,63 +81,54 @@ styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 /* STYLES insert end */
 
-// gaEvent("loaded");
+// CODE START ***
+init();
+async function init() {
+  // Variables
+  // const REQUST_URI =
+  //   'https://bimedis.com/a-item/AjaxRequest/getAdvertPhones?advert_id=' +
+  //   advertId;
+  const REQUST_URI =
+    'https://bimedis.com/a-item/AjaxRequest/getAdvertPhones?advert_id=1615879';
+  const contactEl = document.querySelector('.sjs-send-message-open');
+  contactEl.closest('.b-advert-block').classList.add('go-b-advert-block');
+  contactEl.closest('.m-no-padding').classList.add('go-buttons-wrap');
+  if (window.innerWidth < 992) {
+    document
+      .querySelector('.go-b-advert-block')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector('.go-buttons-wrap')
+      );
+  }
 
-/*HTML insert start */
-var goProtection = ``;
-/*HTML insert end */
+  if (advertId && contactEl) {
+    let response = await fetch(REQUST_URI);
+    let phoneNumbers = await response.json();
+    if (phoneNumbers) {
+      insertsPhones(phoneNumbers, contactEl);
+    }
+  }
+}
 
-// let observer = new MutationObserver(mutations => {
+function insertsPhones(phones, insertBeforeEl) {
+  phones.forEach(phone => {
+    let phoneEl = document.createElement('a');
+    phoneEl.classList.add('go-phone-number');
+    phoneEl.innerHTML = phone.substr(0, 6) + ' <span>— show phone</span>';
+    phoneEl.href = '#';
 
-//   for(let mutation of mutations) {
-//     // проверим новые узлы, есть ли что-то, что надо подсветить?
+    insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
 
-//     for(let node of mutation.addedNodes) {
-//       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-//       if (!(node instanceof HTMLElement)) continue;
-//       if (node.classList.contains("cart__checkout") && !document.querySelector("#CartContainer [data-variant-id='32994782675029']")) {
-//         document.querySelector(".drawer__cart .drawer__inner").insertAdjacentHTML("beforeend", goProtection);
-//         $(".go-protection__details-head").on("click", function () {
-//           $(this).toggleClass("activated");
-//           $(this).siblings().slideToggle();
-//           gaEvent("click on Arrow Show more");
-//         });
+    phoneEl.addEventListener('click', function (e) {
+      if (phoneEl.getAttribute('href') == '#') {
+        e.preventDefault();
+        phoneEl.classList.add('active');
+        phoneEl.innerHTML = phone;
+        phoneEl.href = 'tel:' + phone;
+      }
+    });
+  });
+}
 
-//         $('.go-protection__details-terms a').on("click", function (e) {
-//           gaEvent("click on Terms and conditions");
-//         })
-
-//         $(".go-protection__event-add").on("click", function (e) {
-//           e.preventDefault();
-//           gaEvent("click on Add to cart");
-//           var acsCart = [];
-//           var variant = {};
-//           variant.id = 32994782675029;
-//           variant.qty = 1;
-//           acsCart.push(variant);
-//           if (acsCart.length > 0) {
-//             MGUtil.data = acsCart;
-//             MGUtil.total = MGUtil.data.length;
-//             MGUtil.action = 'add';
-//             MGUtil.recursive();
-//           }
-//         })
-
-//         $(".go-protection__event-decline").on("click", function (e) {
-//           e.preventDefault();
-//           gaEvent("click on No thanks");
-//           $(".go-protection").slideToggle(300, function () {
-//             $(".go-protection").remove();
-//           })
-//         })
-
-//         $(".go-protection").delay(1500).slideToggle();
-//       }
-//     }
-//   }
-
-// });
-
-// let demoElem = document.getElementById('CartContainer');
-
-// observer.observe(demoElem, {childList: true, subtree: true});
+// CODE END ***
