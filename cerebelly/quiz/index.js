@@ -1146,11 +1146,11 @@ function stepOne() {
     //       document.querySelector('.e-back-btn')
     //     );
     // }
-    // document
-    //   .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
-    //   .remove();
-    // document.querySelector('.css-cctpci .quiz2-intro-wrap').style.background =
-    //   '#A7D4CD';
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
+      .remove();
+    document.querySelector('.css-cctpci .quiz2-intro-wrap').style.background =
+      '#A7D4CD';
     setGender();
     let selectGenderEl = document.querySelector('#select1');
     let currentGender = selectGenderEl.options.selectedIndex;
@@ -1160,14 +1160,20 @@ function stepOne() {
         ".step-one__gender-toggler[data-gender='" + currentGender + "']"
       )
       .click();
-    // if (currentGender == 0) {
-    // document.querySelectorAll('.step-one__gender-toggler').forEach(function (el) {
-    // el.classList.add('active');
-    // el.click();
-    // });
-    // } else {
-    // document.querySelector(".step-one__gender-toggler[data-gender='" + currentGender + "']").classList.add('active');
-    // }
+    if (currentGender == 0) {
+      document
+        .querySelectorAll('.step-one__gender-toggler')
+        .forEach(function (el) {
+          el.classList.add('active');
+          el.click();
+        });
+    } else {
+      document
+        .querySelector(
+          ".step-one__gender-toggler[data-gender='" + currentGender + "']"
+        )
+        .classList.add('active');
+    }
 
     document
       .querySelector('.step-one__next')
