@@ -136,17 +136,25 @@ function insertsPhones(phones, insertBeforeEl) {
     insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
 
     phoneEl.addEventListener('click', function (e) {
-      if (phoneEl.getAttribute('href') == '#') {
-        e.preventDefault();
-        phoneEl.classList.add('active');
-        phoneEl.innerHTML = phone;
-        phoneEl.href = 'tel:' + phone;
-        gaEvent('click on button Show more');
+      if (checkAuth()) {
+        if (phoneEl.getAttribute('href') == '#') {
+          e.preventDefault();
+          phoneEl.classList.add('active');
+          phoneEl.innerHTML = phone;
+          phoneEl.href = 'tel:' + phone;
+          gaEvent('click on button Show more');
+        } else {
+          gaEvent('click on button with entire phone numbe');
+        }
       } else {
-        gaEvent('click on button with entire phone numbe');
+        document.querySelector('.login-block').click();
+        document.querySelector('.tabs_popup.active + .tabs_popup').click();
       }
     });
   });
 }
 
+function checkAuth() {
+  return document.querySelector('.scss-cabinet-block') ? true : false;
+}
 // CODE END ***
