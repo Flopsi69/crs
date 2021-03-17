@@ -1123,9 +1123,9 @@ function stepOne() {
     //     'beforeend',
     //     document.querySelector('.b-date-input')
     //   );
-    document
-      .querySelector('.quiz2-intro-wrap')
-      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
+    // document
+    //   .querySelector('.quiz2-intro-wrap')
+    //   .insertAdjacentHTML('afterbegin', stepOneSideHtml);
     document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
       'What’s your name?';
     document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
