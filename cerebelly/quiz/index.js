@@ -1135,9 +1135,9 @@ function stepOne() {
       'Parent’s name';
     document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
       "Baby's Name";
-    // document
-    //   .querySelector(".quiz2-intro-form-wrap .button[type='submit")
-    //   .insertAdjacentHTML('afterend', finishBtnHtml);
+    document
+      .querySelector(".quiz2-intro-form-wrap .button[type='submit")
+      .insertAdjacentHTML('afterend', finishBtnHtml);
     // if (window.outerWidth > 599) {
     //   document
     //     .querySelector('.step-one__next-wrap')
@@ -1146,9 +1146,9 @@ function stepOne() {
     //       document.querySelector('.e-back-btn')
     //     );
     // }
-    document
-      .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
-      .remove();
+    // document
+    //   .querySelector(".quiz2-intro-form-wrap .button[type='submit']")
+    //   .remove();
     document.querySelector('.css-cctpci .quiz2-intro-wrap').style.background =
       '#A7D4CD';
     setGender();
