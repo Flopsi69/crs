@@ -49,6 +49,9 @@ let stylesList = `
   background-color: #485280;
   color: #fff;
 }
+.go-phone-number:hover span{
+  color: #fff;
+}
 .go-b-advert-block {
   height: auto!important;
   padding-bottom: 60px!important;
