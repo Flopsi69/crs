@@ -22,6 +22,7 @@
 /* STYLES insert start */
 
 let stylesList = ``;
+console.log('fireee');
 
 // connect to DOM
 let styles = document.createElement('style');
