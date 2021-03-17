@@ -1123,18 +1123,18 @@ function stepOne() {
     //     'beforeend',
     //     document.querySelector('.b-date-input')
     //   );
-    // document
-    //   .querySelector('.quiz2-intro-wrap')
-    //   .insertAdjacentHTML('afterbegin', stepOneSideHtml);
-    // document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
-    //   'What’s your name?';
-    // document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
-    //   'Who is this box is for?';
-    // document.querySelector('.quiz-name-wrap.mt-4 input');
-    // document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
-    //   'Parent’s name';
-    // document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
-    //   "Baby's Name";
+    document
+      .querySelector('.quiz2-intro-wrap')
+      .insertAdjacentHTML('afterbegin', stepOneSideHtml);
+    document.querySelector('.quiz-name-wrap.mt-4 h3').innerHTML =
+      'What’s your name?';
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').innerHTML =
+      'Who is this box is for?';
+    document.querySelector('.quiz-name-wrap.mt-4 input');
+    document.querySelector('.quiz-name-wrap.mt-4+div h3').placeholder =
+      'Parent’s name';
+    document.querySelector('.quiz-name-wrap.mt-4+div input').placeholder =
+      "Baby's Name";
     // document
     //   .querySelector(".quiz2-intro-form-wrap .button[type='submit")
     //   .insertAdjacentHTML('afterend', finishBtnHtml);
