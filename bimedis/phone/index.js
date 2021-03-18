@@ -100,11 +100,9 @@ document.body.appendChild(styles);
 init();
 async function init() {
   // Variables
-  // const REQUST_URI =
-  //   'https://bimedis.com/a-item/AjaxRequest/getAdvertPhones?advert_id=' +
-  //   advertId;
   const REQUST_URI =
-    'https://bimedis.com/a-item/AjaxRequest/getAdvertPhones?advert_id=1615879';
+    'https://bimedis.com/a-item/AjaxRequest/getAdvertPhones?advert_id=' +
+    advertId;
   const contactEl = document.querySelector('.sjs-send-message-open');
   contactEl.closest('.b-advert-block').classList.add('go-b-advert-block');
   contactEl.closest('.m-no-padding').classList.add('go-buttons-wrap');
