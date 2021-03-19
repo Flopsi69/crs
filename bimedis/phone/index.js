@@ -157,21 +157,20 @@ function insertsPhones(phones, insertBeforeEl) {
           gaEvent('click on button with entire phone numbe');
         }
       } else {
-        if (window.innerWidth < 992) {
-          document.querySelector('.b-blackout').style.display = 'block';
-          document.querySelector('.scss-login-form').style.display = 'block';
-          // document.querySelector('.sjs-mobile-menu-icon').click();
-          // document.querySelector('.login-block').click();
-          if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
-            document.querySelector('.tabs_popup.active + .tabs_popup').click();
-          }
-        } else {
-          document.querySelector('.b-blackout').style.display = 'block';
-          document.querySelector('.scss-login-form').style.display = 'block';
-          if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
-            document.querySelector('.tabs_popup.active + .tabs_popup').click();
-          }
+        document.querySelector('.b-blackout').style.display = 'block';
+        document.querySelector('.scss-login-form').style.display = 'block';
+        if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
+          document.querySelector('.tabs_popup.active + .tabs_popup').click();
         }
+        // document.querySelector('.sjs-mobile-menu-icon').click();
+        // document.querySelector('.login-block').click();
+
+        document
+          .querySelector('.b-blackout')
+          .addEventListener('click', function () {
+            document.querySelector('.b-blackout').style.display = 'none';
+            document.querySelector('.scss-login-form').style.display = 'none';
+          });
       }
     });
   });
