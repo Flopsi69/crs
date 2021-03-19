@@ -97,14 +97,16 @@ document.body.appendChild(styles);
 /* STYLES insert end */
 
 // CODE START ***
-console.log(typeof advertId);
-if (typeof advertId !== 'undefined') {
-  init();
-} else {
-  setTimeout(() => {
+var intervalInit = setInterval(() => {
+  if (typeof advertId !== 'undefined') {
+    console.log('try one more..');
+  } else {
+    console.log('success..');
+    clearInterval(intervalInit);
     init();
-  }, 1000);
-}
+  }
+}, 500);
+
 async function init() {
   // Variables
   const REQUST_URI =
