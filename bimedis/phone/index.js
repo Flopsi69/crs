@@ -161,14 +161,10 @@ function insertsPhones(phones, insertBeforeEl) {
           document.querySelector('.b-blackout').style.display = 'block';
           document.querySelector('.scss-login-form').style.display = 'block';
           // document.querySelector('.sjs-mobile-menu-icon').click();
-          setTimeout(() => {
-            // document.querySelector('.login-block').click();
-            if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
-              document
-                .querySelector('.tabs_popup.active + .tabs_popup')
-                .click();
-            }
-          }, 500);
+          // document.querySelector('.login-block').click();
+          if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
+            document.querySelector('.tabs_popup.active + .tabs_popup').click();
+          }
         } else {
           document.querySelector('.b-blackout').style.display = 'block';
           document.querySelector('.scss-login-form').style.display = 'block';
