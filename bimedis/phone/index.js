@@ -97,7 +97,8 @@ document.body.appendChild(styles);
 /* STYLES insert end */
 
 // CODE START ***
-if (advertId) {
+console.log(typeof advertId);
+if (typeof advertId !== 'undefined') {
   init();
 } else {
   setTimeout(() => {
