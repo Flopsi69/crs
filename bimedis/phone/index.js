@@ -154,8 +154,16 @@ function insertsPhones(phones, insertBeforeEl) {
           gaEvent('click on button with entire phone numbe');
         }
       } else {
-        document.querySelector('.login-block').click();
-        document.querySelector('.tabs_popup.active + .tabs_popup').click();
+        if (window.innerWidth < 992) {
+          document.querySelector('.sjs-mobile-menu-icon').click();
+          setTimeout(() => {
+            document.querySelector('.login-block').click();
+            document.querySelector('.tabs_popup.active + .tabs_popup').click();
+          }, 500);
+        } else {
+          document.querySelector('.login-block').click();
+          document.querySelector('.tabs_popup.active + .tabs_popup').click();
+        }
       }
     });
   });
