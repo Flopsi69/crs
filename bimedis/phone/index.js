@@ -146,18 +146,18 @@ function insertsPhones(phones, insertBeforeEl) {
     insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
 
     phoneEl.addEventListener('click', function (e) {
-      e.preventDefault();
       if (checkAuth()) {
         if (phoneEl.getAttribute('href') == '#') {
+          e.preventDefault();
           phoneEl.classList.add('active');
           phoneEl.innerHTML = phone;
           phoneEl.href = 'tel:' + phone;
           gaEvent('click on button Show more');
         } else {
-          this.click();
           gaEvent('click on button with entire phone numbe');
         }
       } else {
+        e.preventDefault();
         document.querySelector('.b-blackout').style.display = 'block';
         document.querySelector('.scss-login-form').style.display = 'block';
         if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
