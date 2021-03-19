@@ -90,10 +90,13 @@ let stylesList = `
 `;
 
 // connect to DOM
-let styles = document.createElement('style');
-styles.id = 'go-phone-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+setTimeout(() => {
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+}, 300);
+
 /* STYLES insert end */
 
 // CODE START ***
@@ -143,9 +146,9 @@ function insertsPhones(phones, insertBeforeEl) {
     insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
 
     phoneEl.addEventListener('click', function (e) {
+      e.preventDefault();
       if (checkAuth()) {
         if (phoneEl.getAttribute('href') == '#') {
-          e.preventDefault();
           phoneEl.classList.add('active');
           phoneEl.innerHTML = phone;
           phoneEl.href = 'tel:' + phone;
@@ -155,9 +158,11 @@ function insertsPhones(phones, insertBeforeEl) {
         }
       } else {
         if (window.innerWidth < 992) {
-          document.querySelector('.sjs-mobile-menu-icon').click();
+          document.querySelector('.b-blackout').style.display = 'block';
+          document.querySelector('.scss-login-form').style.display = 'block';
+          // document.querySelector('.sjs-mobile-menu-icon').click();
           setTimeout(() => {
-            document.querySelector('.login-block').click();
+            // document.querySelector('.login-block').click();
             if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
               document
                 .querySelector('.tabs_popup.active + .tabs_popup')
@@ -165,7 +170,8 @@ function insertsPhones(phones, insertBeforeEl) {
             }
           }, 500);
         } else {
-          document.querySelector('.login-block').click();
+          document.querySelector('.b-blackout').style.display = 'block';
+          document.querySelector('.scss-login-form').style.display = 'block';
           if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
             document.querySelector('.tabs_popup.active + .tabs_popup').click();
           }
