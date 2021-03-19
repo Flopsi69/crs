@@ -99,11 +99,11 @@ document.body.appendChild(styles);
 // CODE START ***
 var intervalInit = setInterval(() => {
   if (typeof advertId !== 'undefined') {
-    console.log('try one more..');
-  } else {
     console.log('success..');
     clearInterval(intervalInit);
     init();
+  } else {
+    console.log('try one more..');
   }
 }, 500);
 
