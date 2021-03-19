@@ -177,6 +177,6 @@ function insertsPhones(phones, insertBeforeEl) {
 }
 
 function checkAuth() {
-  return document.querySelector('.scss-cabinet-block') ? true : false;
+  return document.querySelector('.scss-login-form') ? false : true;
 }
 // CODE END ***
