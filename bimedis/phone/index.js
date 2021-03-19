@@ -158,11 +158,17 @@ function insertsPhones(phones, insertBeforeEl) {
           document.querySelector('.sjs-mobile-menu-icon').click();
           setTimeout(() => {
             document.querySelector('.login-block').click();
-            document.querySelector('.tabs_popup.active + .tabs_popup').click();
+            if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
+              document
+                .querySelector('.tabs_popup.active + .tabs_popup')
+                .click();
+            }
           }, 500);
         } else {
           document.querySelector('.login-block').click();
-          document.querySelector('.tabs_popup.active + .tabs_popup').click();
+          if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
+            document.querySelector('.tabs_popup.active + .tabs_popup').click();
+          }
         }
       }
     });
