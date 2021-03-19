@@ -97,7 +97,9 @@ document.body.appendChild(styles);
 /* STYLES insert end */
 
 // CODE START ***
-init();
+setTimeout(() => {
+  init();
+}, 800);
 async function init() {
   // Variables
   const REQUST_URI =
