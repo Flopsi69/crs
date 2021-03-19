@@ -97,9 +97,13 @@ document.body.appendChild(styles);
 /* STYLES insert end */
 
 // CODE START ***
-setTimeout(() => {
+if (advertId) {
   init();
-}, 800);
+} else {
+  setTimeout(() => {
+    init();
+  }, 1000);
+}
 async function init() {
   // Variables
   const REQUST_URI =
