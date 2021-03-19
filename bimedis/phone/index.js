@@ -1,5 +1,4 @@
 function gaEvent(action) {
-  return false;
   try {
     dataLayer.push({
       event: 'event-to-ga',
