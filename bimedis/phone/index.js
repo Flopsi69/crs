@@ -154,6 +154,7 @@ function insertsPhones(phones, insertBeforeEl) {
           phoneEl.href = 'tel:' + phone;
           gaEvent('click on button Show more');
         } else {
+          this.click();
           gaEvent('click on button with entire phone numbe');
         }
       } else {
