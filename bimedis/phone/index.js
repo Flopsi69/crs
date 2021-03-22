@@ -1,11 +1,18 @@
 function gaEvent(action, label = '') {
+  window.dataLayer = window.dataLayer || [];
+
   try {
-    dataLayer.push({
+    let eventObj = {
       event: 'event-to-ga',
       eventCategory: 'Exp — PDP: add phone number',
-      eventAction: action,
-      eventLabel: label
-    });
+      eventAction: action
+    };
+
+    if (label) {
+      eventObj['eventLabel'] = label;
+    }
+
+    dataLayer.push(eventObj);
   } catch (e) {}
 }
 
