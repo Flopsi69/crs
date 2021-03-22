@@ -1,9 +1,10 @@
-function gaEvent(action) {
+function gaEvent(action, label = '') {
   try {
     dataLayer.push({
       event: 'event-to-ga',
       eventCategory: 'Exp — PDP: add phone number',
-      eventAction: action
+      eventAction: action,
+      eventLabel: label
     });
   } catch (e) {}
 }
@@ -26,7 +27,11 @@ window.hj =
   function () {
     (hj.q = hj.q || []).push(arguments);
   };
-hj('trigger', 'pdp__add_phone_number_mob');
+if (window.innerWidth < 992) {
+  hj('trigger', 'pdp__add_phone_number_mob');
+} else {
+  hj('trigger', 'pdp__add_phone_number_des');
+}
 
 gaEvent('loaded');
 
@@ -151,12 +156,13 @@ function insertsPhones(phones, insertBeforeEl) {
           phoneEl.classList.add('active');
           phoneEl.innerHTML = phone;
           phoneEl.href = 'tel:' + phone;
-          gaEvent('click on button Show more');
+          gaEvent('click on button Show more', 'registered');
         } else {
-          gaEvent('click on button with entire phone numbe');
+          gaEvent('click on button with entire phone number', 'registered');
         }
       } else {
         e.preventDefault();
+        gaEvent('click on button Show more', 'non-registered');
         document.querySelector('.b-blackout').style.display = 'block';
         document.querySelector('.scss-login-form').style.display = 'block';
         if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
