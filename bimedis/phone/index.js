@@ -3,7 +3,7 @@ function gaEvent(action, label = '') {
 
   try {
     let eventObj = {
-      event: 'event-to-ga',
+      event: 'ga_event',
       eventCategory: 'Exp — PDP: add phone number',
       eventAction: action
     };
