@@ -64,13 +64,19 @@ let stylesList = `
     padding: 3px 10px;
   }
 }
-.go-phone-number:hover {
-  background-color: #485280;
-  color: #fff;
+.go-phone-number.active a {
+  color: #485280;
 }
-.go-phone-number:hover span{
-  color: #fff;
+.go-phone-number.active a:hover {
+  opacity: .8;
 }
+// .go-phone-number:hover {
+//   background-color: #485280;
+//   color: #fff;
+// }
+// .go-phone-number:hover span{
+//   color: #fff;
+// }
 .go-b-advert-block {
   height: auto!important;
   padding-bottom: 60px!important;
