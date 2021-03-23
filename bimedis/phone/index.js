@@ -79,6 +79,7 @@ let stylesList = `
   text-transform: uppercase;
   line-height: 14px;
   color: rgba(38, 39, 44, 0.8);
+  transition: 0.35s;
 }
 @media(max-width: 992px) {
   .b-advert-block.m-advert-block-right-border.m-advert-block.go-b-advert-block {
@@ -173,6 +174,7 @@ function insertsPhones(phones, insertBeforeEl) {
       if (phoneEl.querySelector('a').getAttribute('href') == '#') {
         e.preventDefault();
         phoneEl.classList.add('active');
+        phoneEl.innerHTML = '';
         phones.forEach(phone => {
           phoneEl.insertAdjacentHTML(
             'afterbegin',
