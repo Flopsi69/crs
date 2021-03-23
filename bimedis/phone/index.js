@@ -98,9 +98,6 @@ let stylesList = `
     padding-bottom: 10px!important;
     padding-top: 10px!important;
   }
-  .go-phone-number span {
-    color: #fff!important;
-  }
   .go-buttons-wrap {
     margin-bottom: 10px;
   }
@@ -166,14 +163,14 @@ function insertsPhones(phones, insertBeforeEl) {
   if (localStorage.getItem('clickNR') && checkAuth()) {
     localStorage.removeItem('clickNR');
     phones.forEach(phone => {
-      phoneEl.insertAdjacentHTML(
-        'afterbegin',
-        "<a href='tel:" + phone + "'>" + phone + '</a>'
-      );
-      phone.addEventListener('click', function () {
+      let phoneLinkEl = document.createElement('a');
+      phoneLinkEl.href = 'tel:' + phone;
+      phoneLinkEl.innerHTML = phone;
+      phoneLinkEl.addEventListener('click', function () {
         gaEvent('click on button with entire phone number', 'registered');
         fireBackendEvent();
       });
+      phoneEl.insertAdjacentElement('afterbegin', phoneLinkEl);
     });
   } else {
     phoneEl.insertAdjacentHTML(
