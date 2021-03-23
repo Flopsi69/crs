@@ -48,7 +48,7 @@ let stylesList = `
   background: #FFFFFF;
   text-align: center;
   border: 2px solid #485280;
-  padding: 11px;
+  padding: 7px 11px;
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
@@ -60,9 +60,8 @@ let stylesList = `
   align-items: center;
 }
 .go-phone-number a {
-  display: inline-block {
-    padding: 3px 10px;
-  }
+  display: inline-block;
+  padding: 3px 10px;
 }
 .go-phone-number.active a {
   color: #485280;
