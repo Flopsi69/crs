@@ -153,14 +153,14 @@ function insertsPhones(phones, insertBeforeEl) {
   if (localStorage.getItem('clickNR') && checkAuth()) {
     localStorage.removeItem('clickNR');
     phones.forEach(phone => {
-      phoneEl.insertAdjacentElement(
+      phoneEl.insertAdjacentHTML(
         'beforebegin',
         "<a href='tel:" + phone + "'>" + phone + '</a>'
       );
     });
   } else {
     phones.forEach(phone => {
-      phoneEl.insertAdjacentElement(
+      phoneEl.insertAdjacentHTML(
         'beforebegin',
         "<a href='#'>" + phone.substr(0, 6) + ' <span>— show phone</span></a>'
       );
