@@ -151,8 +151,14 @@ function insertsPhones(phones, insertBeforeEl) {
   phones.forEach(phone => {
     let phoneEl = document.createElement('a');
     phoneEl.classList.add('go-phone-number');
-    phoneEl.innerHTML = phone.substr(0, 6) + ' <span>— show phone</span>';
-    phoneEl.href = '#';
+    if (localStorage.getItem('clickNR') && checkAuth()) {
+      localStorage.removeItem('clickNR');
+      phoneEl.innerHTML = phone;
+      phoneEl.href = 'tel:' + phone;
+    } else {
+      phoneEl.innerHTML = phone.substr(0, 6) + ' <span>— show phone</span>';
+      phoneEl.href = '#';
+    }
 
     insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
 
@@ -164,6 +170,7 @@ function insertsPhones(phones, insertBeforeEl) {
           phoneEl.innerHTML = phone;
           phoneEl.href = 'tel:' + phone;
           gaEvent('click on button Show more', 'registered');
+          localStorage.setItem('clickNR', 'yes');
         } else {
           gaEvent('click on button with entire phone number', 'registered');
         }
