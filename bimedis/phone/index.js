@@ -156,14 +156,14 @@ function insertsPhones(phones, insertBeforeEl) {
     localStorage.removeItem('clickNR');
     phones.forEach(phone => {
       phoneEl.insertAdjacentHTML(
-        'beforebegin',
+        'afterbegin',
         "<a href='tel:" + phone + "'>" + phone + '</a>'
       );
     });
   } else {
     phones.forEach(phone => {
       phoneEl.insertAdjacentHTML(
-        'beforebegin',
+        'afterbegin',
         "<a href='#'>" + phone.substr(0, 6) + ' <span>— show phone</span></a>'
       );
     });
@@ -175,7 +175,7 @@ function insertsPhones(phones, insertBeforeEl) {
         phoneEl.classList.add('active');
         phones.forEach(phone => {
           phoneEl.insertAdjacentHTML(
-            'beforebegin',
+            'afterbegin',
             "<a href='tel:" + phone + "'>" + phone + '</a>'
           );
         });
