@@ -64,10 +64,37 @@ let stylesList = `
 .go-product__preview {
   font-size: 14px;
   line-height: 1.5;
-  text-decoration-line: underline;
-  color: #000000;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.5);
   opacity: 0.5;
 }
+.go-product__count {
+  display: flex;
+  margin-top: 12px;
+}
+.go-product__count-btn {
+  border: 1px solid rgb(150, 150, 150, 0.2);
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 30px;
+  font-size: 20px;
+  background: none;
+}
+.go-product__count-value {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  color: #000000;
+  font-weight: bold;
+}
+.go-product__count-minus {
+  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/minus.svg');
+}
+.go-product__count-plus {
+  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/plus.svg');
+}
+
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
@@ -117,11 +144,13 @@ function createPseudoCartEl(product) {
       <a class='go-product__preview' href='#'>Preview</a>
       <div class='go-product__foot'>
         <div class='go-product__count'>
-          <button class='go-product__count-btn go-product__count-minus'>-</button>
+          <button class='go-product__count-btn go-product__count-minus'>
+          </button>
           <div class='go-product__count-value'>${productInfo.quantity}</div>
-          <button class='go-product__count-btn go-product__count-plus'>+</button>
+          <button class='go-product__count-btn go-product__count-plus'>
+          </button>
         </div>
-        <div class='go-product__remove'>delete</div>
+        <div class='go-product__remove'><img src='${REPO_DIR}delete.svg'></div>
       </div>
     </div>
   `;
