@@ -46,7 +46,6 @@ gaEvent('loaded');
 let stylesList = `
 .go-phone-number {
   background: #FFFFFF;
-  display: block;
   text-align: center;
   border: 2px solid #485280;
   padding: 11px;
@@ -55,6 +54,10 @@ let stylesList = `
   line-height: 14px;
   color: rgba(38, 39, 44, 0.8);
   letter-spacing: 0.3px;
+  display: flex;
+  transition: 0.35s;
+  flex-flow:column;
+  align-items: center;
 }
 .go-phone-number:hover {
   background-color: #485280;
@@ -78,10 +81,6 @@ let stylesList = `
   color: rgba(38, 39, 44, 0.8);
 }
 @media(max-width: 992px) {
-  .go-phone-number {
-    color: #fff!important;
-    background-color: #485280!important;
-  }
   .b-advert-block.m-advert-block-right-border.m-advert-block.go-b-advert-block {
     display: flex;
     flex-flow: column;
@@ -141,59 +140,66 @@ async function init() {
   if (advertId && contactEl) {
     let response = await fetch(REQUST_URI);
     let phoneNumbers = await response.json();
-    if (phoneNumbers) {
+    if (phoneNumbers.length) {
       insertsPhones(phoneNumbers, contactEl);
     }
   }
 }
 
 function insertsPhones(phones, insertBeforeEl) {
-  phones.forEach(phone => {
-    let phoneEl = document.createElement('a');
-    phoneEl.classList.add('go-phone-number');
-    if (localStorage.getItem('clickNR') && checkAuth()) {
-      localStorage.removeItem('clickNR');
-      phoneEl.innerHTML = phone;
-      phoneEl.href = 'tel:' + phone;
-    } else {
-      phoneEl.innerHTML = phone.substr(0, 6) + ' <span>— show phone</span>';
-      phoneEl.href = '#';
-    }
-
-    insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
-
-    phoneEl.addEventListener('click', function (e) {
-      if (checkAuth()) {
-        if (phoneEl.getAttribute('href') == '#') {
-          e.preventDefault();
-          phoneEl.classList.add('active');
-          phoneEl.innerHTML = phone;
-          phoneEl.href = 'tel:' + phone;
-          gaEvent('click on button Show more', 'registered');
-        } else {
-          gaEvent('click on button with entire phone number', 'registered');
-        }
-      } else {
-        e.preventDefault();
-        localStorage.setItem('clickNR', 'yes');
-        gaEvent('click on button Show more', 'non-registered');
-        document.querySelector('.b-blackout').style.display = 'block';
-        document.querySelector('.scss-login-form').style.display = 'block';
-        if (document.querySelector('.tabs_popup.active + .tabs_popup')) {
-          document.querySelector('.tabs_popup.active + .tabs_popup').click();
-        }
-        // document.querySelector('.sjs-mobile-menu-icon').click();
-        // document.querySelector('.login-block').click();
-
-        document
-          .querySelector('.b-blackout')
-          .addEventListener('click', function () {
-            document.querySelector('.b-blackout').style.display = 'none';
-            document.querySelector('.scss-login-form').style.display = 'none';
-          });
-      }
+  // phones.forEach(phone => {
+  let phoneEl = document.createElement('div');
+  phoneEl.classList.add('go-phone-number');
+  if (localStorage.getItem('clickNR') && checkAuth()) {
+    localStorage.removeItem('clickNR');
+    phones.forEach(phone => {
+      phoneEl.insertAdjacentElement(
+        'beforebegin',
+        "<a href='tel:" + phone + "'>" + phone + '</a>'
+      );
     });
+  } else {
+    phones.forEach(phone => {
+      phoneEl.insertAdjacentElement(
+        'beforebegin',
+        "<a href='#'>" + phone.substr(0, 6) + ' <span>— show phone</span></a>'
+      );
+    });
+  }
+
+  insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
+
+  phoneEl.addEventListener('click', function (e) {
+    if (checkAuth()) {
+      if (phoneEl.querySelector('a').getAttribute('href') == '#') {
+        e.preventDefault();
+        phoneEl.classList.add('active');
+        phones.forEach(phone => {
+          phoneEl.insertAdjacentElement(
+            'beforebegin',
+            "<a href='tel:" + phone + "'>" + phone + '</a>'
+          );
+        });
+        gaEvent('click on button Show more', 'registered');
+      } else {
+        gaEvent('click on button with entire phone number', 'registered');
+      }
+    } else {
+      e.preventDefault();
+      localStorage.setItem('clickNR', 'yes');
+      gaEvent('click on button Show more', 'non-registered');
+      document.querySelector('.b-blackout').style.display = 'block';
+      document.querySelector('.scss-login-form').style.display = 'block';
+
+      document
+        .querySelector('.b-blackout')
+        .addEventListener('click', function () {
+          document.querySelector('.b-blackout').style.display = 'none';
+          document.querySelector('.scss-login-form').style.display = 'none';
+        });
+    }
   });
+  // });
 }
 
 function checkAuth() {
