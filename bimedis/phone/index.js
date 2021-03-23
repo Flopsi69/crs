@@ -175,7 +175,7 @@ function insertsPhones(phones, insertBeforeEl) {
         e.preventDefault();
         phoneEl.classList.add('active');
         phones.forEach(phone => {
-          phoneEl.insertAdjacentElement(
+          phoneEl.insertAdjacentHTML(
             'beforebegin',
             "<a href='tel:" + phone + "'>" + phone + '</a>'
           );
