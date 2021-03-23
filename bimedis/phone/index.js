@@ -170,12 +170,12 @@ function insertsPhones(phones, insertBeforeEl) {
           phoneEl.innerHTML = phone;
           phoneEl.href = 'tel:' + phone;
           gaEvent('click on button Show more', 'registered');
-          localStorage.setItem('clickNR', 'yes');
         } else {
           gaEvent('click on button with entire phone number', 'registered');
         }
       } else {
         e.preventDefault();
+        localStorage.setItem('clickNR', 'yes');
         gaEvent('click on button Show more', 'non-registered');
         document.querySelector('.b-blackout').style.display = 'block';
         document.querySelector('.scss-login-form').style.display = 'block';
