@@ -59,6 +59,11 @@ let stylesList = `
   flex-flow:column;
   align-items: center;
 }
+.go-phone-number a {
+  display: inline-block {
+    padding: 3px 10px;
+  }
+}
 .go-phone-number:hover {
   background-color: #485280;
   color: #fff;
