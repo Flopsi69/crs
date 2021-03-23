@@ -150,6 +150,8 @@ function insertsPhones(phones, insertBeforeEl) {
   // phones.forEach(phone => {
   let phoneEl = document.createElement('div');
   phoneEl.classList.add('go-phone-number');
+  insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
+
   if (localStorage.getItem('clickNR') && checkAuth()) {
     localStorage.removeItem('clickNR');
     phones.forEach(phone => {
@@ -166,9 +168,6 @@ function insertsPhones(phones, insertBeforeEl) {
       );
     });
   }
-
-  insertBeforeEl.insertAdjacentElement('beforebegin', phoneEl);
-
   phoneEl.addEventListener('click', function (e) {
     if (checkAuth()) {
       if (phoneEl.querySelector('a').getAttribute('href') == '#') {
