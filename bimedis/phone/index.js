@@ -166,11 +166,6 @@ function insertsPhones(phones, insertBeforeEl) {
       let phoneLinkEl = document.createElement('a');
       phoneLinkEl.href = 'tel:' + phone;
       phoneLinkEl.innerHTML = phone;
-      phoneLinkEl.addEventListener('click', function () {
-        gaEvent('click on button with entire phone number', 'registered');
-        fireBackendEvent();
-      });
-
       phoneEl.insertAdjacentElement('afterbegin', phoneLinkEl);
     });
   } else {
@@ -186,6 +181,7 @@ function insertsPhones(phones, insertBeforeEl) {
     if (checkAuth()) {
       if (phoneEl.querySelector('a').getAttribute('href') == '#') {
         e.preventDefault();
+        fireBackendEvent();
         phoneEl.classList.add('active');
         phoneEl.innerHTML = '';
         phones.forEach(phone => {
@@ -197,7 +193,6 @@ function insertsPhones(phones, insertBeforeEl) {
         gaEvent('click on button Show more', 'registered');
       } else if (e.target.tagName == 'A') {
         gaEvent('click on button with entire phone number', 'registered');
-        fireBackendEvent();
       }
     } else {
       e.preventDefault();
