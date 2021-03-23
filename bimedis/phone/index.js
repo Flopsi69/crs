@@ -170,14 +170,21 @@ function insertsPhones(phones, insertBeforeEl) {
         'afterbegin',
         "<a href='tel:" + phone + "'>" + phone + '</a>'
       );
+      phone.addEventListener('click', function () {
+        gaEvent('click on button with entire phone number', 'registered');
+        fireBackendEvent();
+      });
     });
   } else {
     phoneEl.insertAdjacentHTML(
       'afterbegin',
-      "<a href='#'>" + phones[0].substr(0, 6) + ' <span>— show phone</span></a>'
+      "<a href='#' sytle=pointer-events: none;'>" +
+        phones[0].substr(0, 6) +
+        ' <span>— show phone</span></a>'
     );
   }
   phoneEl.addEventListener('click', function (e) {
+    console.log(e.target);
     if (checkAuth()) {
       if (phoneEl.querySelector('a').getAttribute('href') == '#') {
         e.preventDefault();
@@ -190,8 +197,9 @@ function insertsPhones(phones, insertBeforeEl) {
           );
         });
         gaEvent('click on button Show more', 'registered');
-      } else {
+      } else if (e.target.tagName == 'A') {
         gaEvent('click on button with entire phone number', 'registered');
+        fireBackendEvent();
       }
     } else {
       e.preventDefault();
