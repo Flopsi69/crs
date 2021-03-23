@@ -172,12 +172,10 @@ function insertsPhones(phones, insertBeforeEl) {
       );
     });
   } else {
-    phones.forEach(phone => {
-      phoneEl.insertAdjacentHTML(
-        'afterbegin',
-        "<a href='#'>" + phone.substr(0, 6) + ' <span>— show phone</span></a>'
-      );
-    });
+    phoneEl.insertAdjacentHTML(
+      'afterbegin',
+      "<a href='#'>" + phones[0].substr(0, 6) + ' <span>— show phone</span></a>'
+    );
   }
   phoneEl.addEventListener('click', function (e) {
     if (checkAuth()) {
