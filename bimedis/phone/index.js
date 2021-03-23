@@ -170,6 +170,7 @@ function insertsPhones(phones, insertBeforeEl) {
         gaEvent('click on button with entire phone number', 'registered');
         fireBackendEvent();
       });
+
       phoneEl.insertAdjacentElement('afterbegin', phoneLinkEl);
     });
   } else {
