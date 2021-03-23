@@ -215,3 +215,16 @@ function checkAuth() {
   return document.querySelector('.scss-login-form') ? false : true;
 }
 // CODE END ***
+
+function fireBackendEvent() {
+  fetch('https://bimedis.com/a-item/AjaxRequest/increasePhoneClick', {
+    method: 'POST',
+    body: JSON.stringify({ user_id: userId })
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      console.log(result);
+    });
+}
