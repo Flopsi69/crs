@@ -192,7 +192,7 @@ function insertsPhones(phones, insertBeforeEl) {
         });
         gaEvent('click on button Show more', 'registered');
       } else if (e.target.tagName == 'A') {
-        gaEvent('click on button with entire phone number', 'registered');
+        gaEvent('click on button with entire phone number');
       }
     } else {
       e.preventDefault();
