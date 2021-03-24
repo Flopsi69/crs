@@ -30,12 +30,25 @@
 /*** STYLES insert start ***/
 
 let stylesList = `
+.page.section-header h1 {
+  font-size: 24px;
+  text-transform: none;
+  padding-bottom: 5px;
+}
+.cart table {
+  display: none;
+}
 .go-cart {
   margin-bottom: 30px;
 }
 .go-product {
   display: flex;
   margin: 0 -8px;
+}
+.go-product + .go-product {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 .go-product__image {
   padding: 0 8px;
@@ -145,6 +158,7 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
   margin-bottom: 15px;
@@ -154,7 +168,7 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
 }
 
 .clearpay-text1, .clearpay-instalments, .clearpay-text2 {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   color: rgba(0,0,0,0.6);
   font-weight: 400;
@@ -169,8 +183,9 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   margin: 0;
 }
 .cart-note .cart-note__label {
+  position: relative;
   text-align: left!important;
-  font-size: 13px;
+  font-size: 14px;
   color: #000000;
   line-height: 1.5;
   text-transform: none;
@@ -179,17 +194,90 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   padding: 15px;
   margin-bottom: 0;
 }
+.cart-note .cart-note__label:before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    background: url("https://flopsi69.github.io/crs/modernbeds/checkout/angel.svg") center no-repeat;
+}
 .cart-note .solid-border {
   background: #FAFAFA;
+  padding: 0;
+}
+.cart-note .cart-note__input {
+  display: none;
+  margin-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
 }
 .clearpay-row-el {
   text-align: left;
   line-height: 1.3;
 }
-.clearpay-paragraph .clearpay-logo {
+.go-subtotal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.clearpay-logo-wrap {
+.go-subtotal-wrap .cart__subtotal-title {
+  text-transform: none;
+  font-weight: 400;
+  font-size: 16px;
 }
+.go-subtotal-wrap .cart__subtotal {
+  color: black;
+}
+
+.go-modal__wrap {
+  position: fixed;
+  dipslay: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 9999999999;
+  margin: auto;
+  display: none;
+}
+
+.go-modal__wrap.go-modal__wrap-active {
+  display: flex;
+}
+
+.go-modal {
+  position: relative;
+  display: none;
+  background-color: #fff;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 25px 15px 15px;
+  box-shadow: 0px 4px 24px rgb(55 55 55 / 10%);
+  border-radius: 4px;
+  overflow-y: auto;
+  margin: auto;
+}
+.go-modal-close {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  right: 10px;
+  top: 15px;
+  border: 1px solid #4c4c4c;
+  border-radius: 50%;
+}
+.go-modal.go-modal-active {
+  display: block;
+}
+.go-modal-trigger {
+
+}
+
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
@@ -209,17 +297,50 @@ function init() {
     .querySelector('.grid__item table')
     .insertAdjacentHTML('beforebegin', "<div class='go-cart'></div>");
 
-  document.querySelectorAll('.mw_cart_line').forEach(product => {
+  document.querySelectorAll('.mw_cart_line').forEach((product, index) => {
     document
       .querySelector('.go-cart')
-      .insertAdjacentElement('afterbegin', createPseudoCartEl(product));
+      .insertAdjacentElement('afterbegin', createPseudoCartEl(product, index));
     // console.log(createChar(product));
   });
 
   changeMinor();
+  initModal();
+
+  document.querySelector('.cart-note .cart-note__input').style.display = 'none';
+  document
+    .querySelector('.cart-note .cart-note__label')
+    .addEventListener('click', function () {
+      if (
+        document.querySelector('.cart-note .cart-note__input').style.display ==
+        'none'
+      ) {
+        document.querySelector('.cart-note .cart-note__input').style.display =
+          'block';
+      } else {
+        document.querySelector('.cart-note .cart-note__input').style.display =
+          'none';
+      }
+    });
 }
 
 function changeMinor() {
+  document
+    .querySelector('.cart__subtotal-title')
+    .insertAdjacentHTML('beforebegin', "<div class='go-subtotal-wrap'></div>");
+  document
+    .querySelector('.go-subtotal-wrap')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.cart__subtotal-title')
+    );
+  document
+    .querySelector('.go-subtotal-wrap')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.cart__subtotal')
+    );
+
   let clearpayRowEl = document.createElement('div');
   clearpayRowEl.classList.add('clearpay-row-el');
   document
@@ -251,7 +372,7 @@ function changeMinor() {
   document.querySelector('.cart-note');
 }
 
-function createPseudoCartEl(product) {
+function createPseudoCartEl(product, index) {
   let productInfo = {
     title: product.querySelector('.list-view-item__title a').innerText,
     imageSrc: product
@@ -284,9 +405,32 @@ function createPseudoCartEl(product) {
     </div>
   `;
 
+  let indexEl = index + 1;
+  let originalProduct = document.querySelector(
+    '.cart table tbody tr:nth-child(' + indexEl + ')'
+  );
   let newProductEl = document.createElement('div');
   newProductEl.classList.add('go-product');
+  console.log(index);
+  newProductEl.dataset.productIndex = index;
   newProductEl.insertAdjacentHTML('afterbegin', newProduct);
+  newProductEl
+    .querySelector('.go-product__remove')
+    .addEventListener('click', function () {
+      originalProduct.querySelector('.cart__remove').click();
+    });
+  newProductEl
+    .querySelector('.go-product__count-minus')
+    .addEventListener('click', function () {
+      originalProduct.querySelector('.qtyBtn.minus').click();
+      originalProduct.querySelector('.cart__update').click();
+    });
+  newProductEl
+    .querySelector('.go-product__count-plus')
+    .addEventListener('click', function () {
+      originalProduct.querySelector('.qtyBtn.plus').click();
+      originalProduct.querySelector('.cart__update').click();
+    });
   return newProductEl;
 }
 
@@ -308,4 +452,27 @@ function createOptionChar(option) {
   optionEl.insertAdjacentElement('afterbegin', option.nextElementSibling);
   optionEl.insertAdjacentElement('afterbegin', option);
   return optionEl;
+}
+
+function initModal() {
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    "<div class='go-modal__wrap'></div>"
+  );
+  // go-modal-active
+  // go-modal__wrap-active
+  let modalClearpayEl = `
+  <div class="go-modal go-modal-clearpay">
+    <div class="go-modal__step">1. Procceed to the checkout (or use quick payment buttons).</div>
+    <div class="go-modal__step">2. Fill in all the information.</div>
+    <div class="go-modal__step">3. Choose delivery method.</div>
+    <div class="go-modal__step">4. At the payment stage choose Clearpay:</div>
+    <div class="go-modal__step">5. You will be redirected to ... to complete the payment.</div>
+    <div class="go-modal__step">1. Procceed to the checkout (or use quick payment buttons).</div>
+  </div>
+  `;
+
+  document
+    .querySelector('.go-modal__wrap')
+    .insertAdjacentHTML('afterbegin', modalClearpayEl);
 }
