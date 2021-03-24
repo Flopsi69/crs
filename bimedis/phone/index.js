@@ -218,9 +218,12 @@ function checkAuth() {
 // CODE END ***
 
 function fireBackendEvent() {
+  let ownerLinkArr = document
+    .querySelector('.b-user-logo-image')
+    .dataset.href.split('-');
   fetch('https://bimedis.com/a-item/AjaxRequest/increasePhoneClick', {
     method: 'POST',
-    body: JSON.stringify({ user_id: userId })
+    body: JSON.stringify({ user_id: ownerLinkArr[ownerLinkArr.length - 1] })
   })
     .then(response => {
       return response.json();
