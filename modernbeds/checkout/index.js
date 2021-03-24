@@ -179,6 +179,9 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
 .clearpay-link {
   color: #000000;
 }
+.cart-note {
+  float: none;
+}
 .cart-note h5 {
   margin: 0;
 }
@@ -279,6 +282,11 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   font-size: 14px;
   line-height: 1.5;
 }
+.go-modal__step .go-cl-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+}
 .go-modal__step .go-instr {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -310,8 +318,94 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   height: 16px;
   filter: invert(99%) sepia(65%) saturate(3279%) hue-rotate(218deg) brightness(84%) contrast(42%)
 }
+.pre-guide {
+  background: #FAFAFA;
+  margin-bottom: 40px;
+  margin-top: 4px;
+  padding: 16px;
+  margin-left: 15px;
+}
+
+.pre-guide__title {
+  font-size: 14px;
+  line-height: 1.5;
+  color: black;
+  font-weight: bold;
+}
+
+.pre-guide__descr {
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: black;
+}
+
+.pre-guide__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pre-guide-quik {
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  border-bottom: 1px solid black;
+}
+
+.pre-guide-logo {
+  line-height: 0;
+}
+
+.go-modal-char__name {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.go-modal-char__image {
+ line-height: 0;
+ border-radius: 5px;
+ margin-bottom: 20px;
+}
+
+.go-modal-char__image img {
+  border-radius: 5px;
+}
+
+.go-product__chars {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.option-cart-title {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.5);
+  opacity: 0.5;
+  font-weight: normal;
+  display: block;
+}
+
+.option-cart-title-content {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #000000;
+  display: block;
+}
 
 
+.go-product__option {
+  padding: 0 10px;
+  margin-top: 16px;
+  width: 50%;
+}
 
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
@@ -328,38 +422,33 @@ document.body.appendChild(styles);
 
 init();
 function init() {
-  document
-    .querySelector('.grid__item table')
-    .insertAdjacentHTML('beforebegin', "<div class='go-cart'></div>");
+  changeMinor();
+  initModal();
+  quickGuideBlock();
 
   document.querySelectorAll('.mw_cart_line').forEach((product, index) => {
     document
       .querySelector('.go-cart')
       .insertAdjacentElement('afterbegin', createPseudoCartEl(product, index));
-    // console.log(createChar(product));
   });
-
-  changeMinor();
-  initModal();
-
-  document.querySelector('.cart-note .cart-note__input').style.display = 'none';
-  document
-    .querySelector('.cart-note .cart-note__label')
-    .addEventListener('click', function () {
-      if (
-        document.querySelector('.cart-note .cart-note__input').style.display ==
-        'none'
-      ) {
-        document.querySelector('.cart-note .cart-note__input').style.display =
-          'block';
-      } else {
-        document.querySelector('.cart-note .cart-note__input').style.display =
-          'none';
-      }
-    });
 }
 
 function changeMinor() {
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('go-modal__wrap-active')) {
+      document
+        .querySelector('.go-modal__wrap-active')
+        .classList.remove('go-modal__wrap-active');
+      document
+        .querySelector('.go-modal-active')
+        .classList.remove('go-modal-active');
+    }
+  });
+
+  document
+    .querySelector('.grid__item table')
+    .insertAdjacentHTML('beforebegin', "<div class='go-cart'></div>");
+
   document
     .querySelector('.cart__subtotal-title')
     .insertAdjacentHTML('beforebegin', "<div class='go-subtotal-wrap'></div>");
@@ -404,10 +493,26 @@ function changeMinor() {
     );
 
   document.querySelector('.clearpay-link-inner').innerText = 'Learn more';
-  document.querySelector('.cart-note');
+
+  document.querySelector('.cart-note .cart-note__input').style.display = 'none';
+  document
+    .querySelector('.cart-note .cart-note__label')
+    .addEventListener('click', function () {
+      if (
+        document.querySelector('.cart-note .cart-note__input').style.display ==
+        'none'
+      ) {
+        document.querySelector('.cart-note .cart-note__input').style.display =
+          'block';
+      } else {
+        document.querySelector('.cart-note .cart-note__input').style.display =
+          'none';
+      }
+    });
 }
 
 function createPseudoCartEl(product, index) {
+  let indexEl = index + 1;
   let productInfo = {
     title: product.querySelector('.list-view-item__title a').innerText,
     imageSrc: product
@@ -426,7 +531,7 @@ function createPseudoCartEl(product, index) {
       <a href='${productInfo.link}' class='go-product__title'>${productInfo.title}</a>
       <div class='go-product__meta'>${productInfo.meta}</div>
       <div class='go-product__price'>${productInfo.price}</div>
-      <a class='go-product__preview' href='#'>Preview</a>
+      <a class='go-product__preview' data-modal-target='${indexEl}' href='#'>Preview</a>
       <div class='go-product__foot'>
         <div class='go-product__count'>
           <button class='go-product__count-btn go-product__count-minus'>
@@ -440,7 +545,6 @@ function createPseudoCartEl(product, index) {
     </div>
   `;
 
-  let indexEl = index + 1;
   let originalProduct = document.querySelector(
     '.cart table tbody tr:nth-child(' + indexEl + ')'
   );
@@ -454,6 +558,19 @@ function createPseudoCartEl(product, index) {
     .addEventListener('click', function () {
       originalProduct.querySelector('.cart__remove').click();
     });
+
+  newProductEl
+    .querySelector('.go-product__preview')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.go-modal__wrap')
+        .classList.add('go-modal__wrap-active');
+      document
+        .querySelector('.go-modal-chars-' + this.dataset.modalTarget)
+        .classList.add('go-modal-active');
+    });
+
   newProductEl
     .querySelector('.go-product__count-minus')
     .addEventListener('click', function () {
@@ -461,12 +578,55 @@ function createPseudoCartEl(product, index) {
       originalProduct.querySelector('.cart__update').click();
     });
   newProductEl
+    .querySelector('.go-product__image')
+    .addEventListener('click', function () {
+      newProductEl.querySelector('.go-product__preview').click();
+    });
+  newProductEl
     .querySelector('.go-product__count-plus')
     .addEventListener('click', function () {
       originalProduct.querySelector('.qtyBtn.plus').click();
       originalProduct.querySelector('.cart__update').click();
     });
+  createProductModal(product, productInfo, indexEl);
   return newProductEl;
+}
+
+function createProductModal(product, productInfo, modalIndex) {
+  let modalEl = document.createElement('div');
+  modalEl.classList.add(
+    'go-modal',
+    'go-modal-chars',
+    'go-modal-chars-' + modalIndex
+  );
+  let modalStart = `
+    <div class='go-modal-close go-close-modal-trigger'>
+      <img src='${REPO_DIR}close.svg'>
+    </div>
+    <div class='go-modal-char__name'>${productInfo.title}</div>
+    <div class='go-modal-char__image'><img src='${productInfo.imageSrc}'></div>
+  `;
+  modalEl.insertAdjacentHTML('beforeend', modalStart);
+
+  let charsEl = createChar(product);
+  modalEl.insertAdjacentElement('beforeend', charsEl);
+
+  modalEl
+    .querySelector('.go-modal-close')
+    .addEventListener('click', function () {
+      document
+        .querySelector('.go-modal__wrap')
+        .classList.remove('go-modal__wrap-active');
+      if (document.querySelector('.go-modal-active')) {
+        document
+          .querySelector('.go-modal-active')
+          .classList.remove('go-modal-active');
+      }
+    });
+
+  document
+    .querySelector('.go-modal__wrap')
+    .insertAdjacentElement('afterbegin', modalEl);
 }
 
 function createChar(product) {
@@ -489,20 +649,46 @@ function createOptionChar(option) {
   return optionEl;
 }
 
+function quickGuideBlock() {
+  let guideEl = `
+    <div class='pre-guide'>
+      <div class='pre-guide__title'>Going to pay with Clearpay?</div>
+      <div class='pre-guide__descr'>Choose Clearpay option at the final stage of the Checkout</div>
+      <div class='pre-guide__bottom'>
+        <div class='pre-guide-quik'>Open Quick guide</div>
+        <div class='pre-guide-logo'>
+          <img src="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@3x.png 3x" width="120" alt="Clearpay">
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.querySelector('.cart-note').insertAdjacentHTML('afterend', guideEl);
+
+  document
+    .querySelector('.pre-guide-quik')
+    .addEventListener('click', function () {
+      document
+        .querySelector('.go-modal-clearpay')
+        .classList.add('go-modal-active');
+      document
+        .querySelector('.go-modal__wrap')
+        .classList.add('go-modal__wrap-active');
+    });
+}
+
 function initModal() {
   document.body.insertAdjacentHTML(
     'beforeend',
-    "<div class='go-modal__wrap go-modal__wrap-active'></div>"
+    "<div class='go-modal__wrap'></div>"
   );
 
-  // go-modal-active
-  // go-modal__wrap-active
   let modalClearpayEl = `
-  <div class="go-modal go-modal-clearpay go-modal-active">
+  <div class="go-modal go-modal-clearpay">
     <div class='go-modal-close go-close-modal-trigger'>
       <img src='${REPO_DIR}close.svg'>
     </div>
-    <div class='go-modal-title go-modal__step'>Going to pay with Clearpay?</div>
+    <div class='go-modal-title go-modal__step'>Going to pay with <img class='go-cl-logo' src="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@3x.png 3x" width="90" alt="Clearpay" >?</div>
     <div class="go-modal__step">
     1. Procceed to the checkout (or use quick payment buttons).
     <img class='go-instr' src='${REPO_DIR}сlearpay-instr1.png'>
@@ -512,7 +698,7 @@ function initModal() {
     <div class="go-modal__step">4. At the payment stage choose Clearpay:
       <img class='go-instr' src='${REPO_DIR}сlearpay-instr2.png'>
     </div>
-    <div class="go-modal__step">5. You will be redirected to ... to complete the payment.</div>
+    <div class="go-modal__step">5. You will be redirected to <img class='class='go-cl-logo' src="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-clearpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-clearpay-colour@3x.png 3x" width="90" alt="Clearpay" > to complete the payment.</div>
     <div class="go-modal__close-guide go-close-modal-trigger">
       <img class='go-instr' src='${REPO_DIR}close.svg'> Close Quick guide
     </div>
@@ -528,7 +714,7 @@ function initModal() {
       e.preventDefault();
       document
         .querySelector('.go-modal__wrap')
-        .classList.remove('go-modal__wrap');
+        .classList.remove('go-modal__wrap-active');
       if (document.querySelector('.go-modal-active')) {
         document
           .querySelector('.go-modal-active')
