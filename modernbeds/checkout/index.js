@@ -364,6 +364,7 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   line-height: 1.5;
   color: #000000;
   margin-bottom: 24px;
+  font-weight: bold;
 }
 
 .go-modal-char__image {
