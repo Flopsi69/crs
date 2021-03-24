@@ -30,6 +30,9 @@
 /*** STYLES insert start ***/
 
 let stylesList = `
+.go-cart {
+  margin-bottom: 30px;
+}
 .go-product {
   display: flex;
   margin: 0 -8px;
@@ -37,6 +40,13 @@ let stylesList = `
 .go-product__image {
   padding: 0 8px;
   flex: 1;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.go-product__image img {
+  object-fit: cover;
+  border-radius: 4px;
 }
 .go-product__info {
   padding: 0 8px;
@@ -47,6 +57,7 @@ let stylesList = `
   font-size: 14px;
   line-height: 1.5;
   color: #000000;
+  display: block;
 }
 .go-product__meta {
   font-size: 12px;
@@ -59,7 +70,7 @@ let stylesList = `
   font-size: 14px;
   line-height: 1.5;
   color: #000000;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 .go-product__preview {
   font-size: 14px;
@@ -70,13 +81,26 @@ let stylesList = `
 }
 .go-product__count {
   display: flex;
+}
+.go-product__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 12px;
+}
+.go-product__remove {
+  line-height: 1.05;
+  opacity: 0.5;
+}
+.go-product__remove:hover {
+  opacity: 1;
 }
 .go-product__count-btn {
   border: 1px solid rgb(150, 150, 150, 0.2);
   box-sizing: border-box;
   border-radius: 3px;
-  width: 30px;
+  width: 24px;
+  height: 24px;
   font-size: 20px;
   background: none;
 }
@@ -84,17 +108,88 @@ let stylesList = `
   font-size: 14px;
   display: flex;
   align-items: center;
-  padding: 5px 15px;
+  padding: 0 15px;
   color: #000000;
   font-weight: bold;
 }
 .go-product__count-minus {
-  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/minus.svg');
+  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/minus.svg') center no-repeat;
 }
 .go-product__count-plus {
-  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/plus.svg');
+  background: url('https://flopsi69.github.io/crs/modernbeds/checkout/plus.svg') center no-repeat;
+}
+.cart__footer .checkout .solid-border {
+  padding: 0;
+  border: 0;
+}
+body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopify-cleanslate ._1M9S34W-UyhhDRRQQiV3RH {
+  height: 55px!important;
+}
+.shopify-cleanslate .kEwctmM5pguv6XkPR8mx6, .shopify-cleanslate ._2PfRg7DFvcstLFRNRf5W1e {
+  height: auto!important;
+  margin-top: 14px!important;
+}
+.checkout input[type="submit"] {
+  margin-bottom: 0;
+  height: 55px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.additional-checkout-buttons {
+  margin-top: 0;
+}
+.clearpay-paragraph {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
+.clearpay-text1, .clearpay-instalments, .clearpay-text2 {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.6);
+  font-weight: 400;
+}
+.clearpay-text3 {
+  display: none;
+}
+.clearpay-link {
+  color: #000000;
+}
+.cart-note h5 {
+  margin: 0;
+}
+.cart-note .cart-note__label {
+  text-align: left!important;
+  font-size: 13px;
+  color: #000000;
+  line-height: 1.5;
+  text-transform: none;
+  font-weight: 400;
+  text-align: left!important;
+  padding: 15px;
+  margin-bottom: 0;
+}
+.cart-note .solid-border {
+  background: #FAFAFA;
+}
+.clearpay-row-el {
+  text-align: left;
+  line-height: 1.3;
+}
+.clearpay-paragraph .clearpay-logo {
+}
+.clearpay-logo-wrap {
+}
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
@@ -120,6 +215,40 @@ function init() {
       .insertAdjacentElement('afterbegin', createPseudoCartEl(product));
     // console.log(createChar(product));
   });
+
+  changeMinor();
+}
+
+function changeMinor() {
+  let clearpayRowEl = document.createElement('div');
+  clearpayRowEl.classList.add('clearpay-row-el');
+  document
+    .querySelector('.clearpay-paragraph')
+    .insertAdjacentElement('afterbegin', clearpayRowEl);
+  clearpayRowEl.insertAdjacentElement(
+    'beforeend',
+    document.querySelector('.clearpay-paragraph .clearpay-text1')
+  );
+  clearpayRowEl.insertAdjacentElement(
+    'beforeend',
+    document.querySelector('.clearpay-paragraph .clearpay-instalments')
+  );
+  clearpayRowEl.insertAdjacentElement(
+    'beforeend',
+    document.querySelector('.clearpay-paragraph .clearpay-text2')
+  );
+  document
+    .querySelector('.clearpay-row-el')
+    .insertAdjacentHTML('afterend', "<div class='clearpay-logo-wrap'></div>");
+  document
+    .querySelector('.clearpay-logo-wrap')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.clearpay-paragraph .clearpay-logo')
+    );
+
+  document.querySelector('.clearpay-link-inner').innerText = 'Learn more';
+  document.querySelector('.cart-note');
 }
 
 function createPseudoCartEl(product) {
