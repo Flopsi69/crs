@@ -261,15 +261,12 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   border-radius: 4px;
   overflow-y: auto;
   margin: auto;
+  padding-bottom: 30px;
 }
 .go-modal-close {
-  width: 30px;
-  height: 30px;
-  position: fixed;
+  position: absolute;
   right: 10px;
-  top: 15px;
-  border: 1px solid #4c4c4c;
-  border-radius: 50%;
+  top: 7px;
 }
 .go-modal.go-modal-active {
   display: block;
@@ -277,6 +274,44 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
 .go-modal-trigger {
 
 }
+.go-modal__step {
+  color: black;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.go-modal__step .go-instr {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.go-modal__step + .go-modal__step {
+  margin-top: 16px;
+}
+.go-modal-title {
+  font-weight: bold;
+}
+.go-modal__close-guide {
+  border: 2px solid #0B2B6F;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0B2B6F;
+  padding: 12px;
+  margin-top: 24px;
+}
+.go-modal__close-guide img {
+  margin-right: 12px;
+  width: 16px;
+  height: 16px;
+  filter: invert(99%) sepia(65%) saturate(3279%) hue-rotate(218deg) brightness(84%) contrast(42%)
+}
+
+
 
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
@@ -457,22 +492,48 @@ function createOptionChar(option) {
 function initModal() {
   document.body.insertAdjacentHTML(
     'beforeend',
-    "<div class='go-modal__wrap'></div>"
+    "<div class='go-modal__wrap go-modal__wrap-active'></div>"
   );
+
   // go-modal-active
   // go-modal__wrap-active
   let modalClearpayEl = `
-  <div class="go-modal go-modal-clearpay">
-    <div class="go-modal__step">1. Procceed to the checkout (or use quick payment buttons).</div>
+  <div class="go-modal go-modal-clearpay go-modal-active">
+    <div class='go-modal-close go-close-modal-trigger'>
+      <img src='${REPO_DIR}close.svg'>
+    </div>
+    <div class='go-modal-title go-modal__step'>Going to pay with Clearpay?</div>
+    <div class="go-modal__step">
+    1. Procceed to the checkout (or use quick payment buttons).
+    <img class='go-instr' src='${REPO_DIR}сlearpay-instr1.png'>
+    </div>
     <div class="go-modal__step">2. Fill in all the information.</div>
     <div class="go-modal__step">3. Choose delivery method.</div>
-    <div class="go-modal__step">4. At the payment stage choose Clearpay:</div>
+    <div class="go-modal__step">4. At the payment stage choose Clearpay:
+      <img class='go-instr' src='${REPO_DIR}сlearpay-instr2.png'>
+    </div>
     <div class="go-modal__step">5. You will be redirected to ... to complete the payment.</div>
-    <div class="go-modal__step">1. Procceed to the checkout (or use quick payment buttons).</div>
+    <div class="go-modal__close-guide go-close-modal-trigger">
+      <img class='go-instr' src='${REPO_DIR}close.svg'> Close Quick guide
+    </div>
   </div>
   `;
 
   document
     .querySelector('.go-modal__wrap')
     .insertAdjacentHTML('afterbegin', modalClearpayEl);
+
+  document.querySelectorAll('.go-close-modal-trigger').forEach(el => {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.go-modal__wrap')
+        .classList.remove('go-modal__wrap');
+      if (document.querySelector('.go-modal-active')) {
+        document
+          .querySelector('.go-modal-active')
+          .classList.remove('go-modal-active');
+      }
+    });
+  });
 }
