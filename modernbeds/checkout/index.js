@@ -1,29 +1,37 @@
 /*** Analytics insert start ***/
 
-// try {
-//   (function(h,o,t,j,a,r){
-//       h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-//       h._hjSettings={hjid:2196497,hjsv:6};
-//       a=o.getElementsByTagName('head')[0];
-//       r=o.createElement('script');r.async=1;
-//       r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-//       a.appendChild(r);
-//   })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-//   window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
-//   hj('trigger', 'pdp_product_options');
-// }
-// catch (e) { }
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 2196497, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'Cart_Clearpay');
+} catch (e) {}
 
-// function gaEvent(action, label = "") {
-//   try {
-//       dataLayer.push({
-//           "event": "event-to-ga",
-//           "eventCategory":  "Exp - PDP product options",
-//           "eventAction": action,
-//           "eventLabel": label
-//       });
-//   } catch (e) {}
-// };
+function gaEvent(action) {
+  try {
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Exp - Cart Clearpay',
+      eventAction: action
+    });
+  } catch (e) {}
+}
+gaEvent('loaded');
 
 /*** Analytics insert -end- ***/
 
@@ -435,16 +443,16 @@ function init() {
 }
 
 function changeMinor() {
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('go-modal__wrap-active')) {
-      document
-        .querySelector('.go-modal__wrap-active')
-        .classList.remove('go-modal__wrap-active');
-      document
-        .querySelector('.go-modal-active')
-        .classList.remove('go-modal-active');
-    }
-  });
+  // document.addEventListener('click', function (e) {
+  //   if (e.target.classList.contains('go-modal__wrap-active')) {
+  //     document
+  //       .querySelector('.go-modal__wrap-active')
+  //       .classList.remove('go-modal__wrap-active');
+  //     document
+  //       .querySelector('.go-modal-active')
+  //       .classList.remove('go-modal-active');
+  //   }
+  // });
 
   document
     .querySelector('.grid__item table')
@@ -564,6 +572,7 @@ function createPseudoCartEl(product, index) {
     .querySelector('.go-product__preview')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('click on Preview link');
       document
         .querySelector('.go-modal__wrap')
         .classList.add('go-modal__wrap-active');
@@ -578,11 +587,11 @@ function createPseudoCartEl(product, index) {
       originalProduct.querySelector('.qtyBtn.minus').click();
       originalProduct.querySelector('.cart__update').click();
     });
-  newProductEl
-    .querySelector('.go-product__image')
-    .addEventListener('click', function () {
-      newProductEl.querySelector('.go-product__preview').click();
-    });
+  // newProductEl
+  //   .querySelector('.go-product__image')
+  //   .addEventListener('click', function () {
+  //     newProductEl.querySelector('.go-product__preview').click();
+  //   });
   newProductEl
     .querySelector('.go-product__count-plus')
     .addEventListener('click', function () {
@@ -615,6 +624,7 @@ function createProductModal(product, productInfo, modalIndex) {
   modalEl
     .querySelector('.go-modal-close')
     .addEventListener('click', function () {
+      gaEvent('click on X on Preview pop up');
       document
         .querySelector('.go-modal__wrap')
         .classList.remove('go-modal__wrap-active');
@@ -669,6 +679,7 @@ function quickGuideBlock() {
   document
     .querySelector('.pre-guide-quik')
     .addEventListener('click', function () {
+      gaEvent('click on Open Quick Guide link');
       document
         .querySelector('.go-modal-clearpay')
         .classList.add('go-modal-active');
@@ -713,6 +724,11 @@ function initModal() {
   document.querySelectorAll('.go-close-modal-trigger').forEach(el => {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      if (el.classList.contains('go-modal-close')) {
+        gaEvent('click on X on Quick Guide pop up');
+      } else {
+        gaEvent('click on Close Quick Guide button on Quick Guide pop up');
+      }
       document
         .querySelector('.go-modal__wrap')
         .classList.remove('go-modal__wrap-active');
