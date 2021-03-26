@@ -443,7 +443,6 @@ document.body.appendChild(styles);
 /*** HTML insert start ***/
 
 /*** HTML insert -end- ***/
-
 setTimeout(init, 1500);
 function init() {
   changeMinor();
