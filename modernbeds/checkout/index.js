@@ -419,7 +419,17 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
 
 .go-checkout-btn-clone {
   width: 100%;
-  height: 50px;
+  margin-bottom: 20px;
+  height: 55px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  animation: none;
+}
+.go-checkout-btn-clone-wrap {
+  padding: 0 15px;
 }
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
@@ -458,11 +468,20 @@ function changeMinor() {
     e.stopPropagation();
     document.querySelector('.checkout input[type="submit"]').click();
   });
+
   document
     .querySelector('.page.section-header')
-    .insertAdjacentElement('afterend', cloneSubmitBtn);
+    .insertAdjacentHTML(
+      'afterend',
+      "<div class='go-checkout-btn-clone-wrap'></div>"
+    );
+
+  document
+    .querySelector('.go-checkout-btn-clone-wrap')
+    .insertAdjacentElement('afterbegin', cloneSubmitBtn);
 
   document.querySelector('.checkout input[type="submit"]').cloneNode();
+
   // document.addEventListener('click', function (e) {
   //   if (e.target.classList.contains('go-modal__wrap-active')) {
   //     document
