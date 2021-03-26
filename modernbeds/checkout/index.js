@@ -567,8 +567,9 @@ function createPseudoCartEl(product, index) {
       .querySelector('.cart__image')
       .src.replace('100x.jpg', '500x.jpg'),
     link: product.querySelector('.list-view-item__title a').href,
-    meta: product.querySelector('.cart__meta-text').innerText,
-    price: product.querySelector('.cart__price-wrapper .money').innerText,
+    meta: product.querySelector('.cart__meta-text')?.innerText || '',
+    price:
+      product.querySelector('.cart__price-wrapper .money')?.innerText || '',
     quantity: product.querySelector('.cart__qty-input').value
   };
   let newProduct = `
