@@ -429,7 +429,7 @@ document.body.appendChild(styles);
 
 /*** HTML insert -end- ***/
 
-init();
+setTimeout(init, 800);
 function init() {
   changeMinor();
   initModal();
