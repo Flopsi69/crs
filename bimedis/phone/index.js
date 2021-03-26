@@ -162,6 +162,7 @@ function insertsPhones(phones, insertBeforeEl) {
 
   if (localStorage.getItem('clickNR') && checkAuth()) {
     localStorage.removeItem('clickNR');
+    fireBackendEvent();
     phones.forEach(phone => {
       let phoneLinkEl = document.createElement('a');
       phoneLinkEl.href = 'tel:' + phone;
