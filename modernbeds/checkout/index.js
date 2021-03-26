@@ -460,17 +460,17 @@ function init() {
 }
 
 function changeMinor() {
-  let cloneSubmitBtn = document
-    .querySelector('.checkout input[type="submit"]')
-    .cloneNode();
-  cloneSubmitBtn.classList.add('go-checkout-btn-clone');
-  cloneSubmitBtn.type = 'button';
-  cloneSubmitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    gaEvent('click on checkout top');
-    document.querySelector('.checkout input[type="submit"]').click();
-  });
+  // let cloneSubmitBtn = document
+  //   .querySelector('.checkout input[type="submit"]')
+  //   .cloneNode();
+  // cloneSubmitBtn.classList.add('go-checkout-btn-clone');
+  // cloneSubmitBtn.type = 'button';
+  // cloneSubmitBtn.addEventListener('click', function (e) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   gaEvent('click on checkout top');
+  //   document.querySelector('.checkout input[type="submit"]').click();
+  // });
 
   document
     .querySelector('.page.section-header')
@@ -527,11 +527,11 @@ function changeMinor() {
   );
   clearpayRowEl.insertAdjacentElement(
     'beforeend',
-    document.querySelector('.clearpay-paragraph .clearpay-instalments')
+    document.querySelector('.clearpay-paragraph .clearpay-text2')
   );
   clearpayRowEl.insertAdjacentElement(
     'beforeend',
-    document.querySelector('.clearpay-paragraph .clearpay-text2')
+    document.querySelector('.clearpay-paragraph .clearpay-instalments')
   );
   document
     .querySelector('.clearpay-row-el')
