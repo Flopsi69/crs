@@ -465,6 +465,7 @@ function changeMinor() {
   cloneSubmitBtn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    gaEvent('click on checkout top');
     document.querySelector('.checkout input[type="submit"]').click();
   });
 
