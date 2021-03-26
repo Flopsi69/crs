@@ -38,6 +38,9 @@ gaEvent('loaded');
 /*** STYLES insert start ***/
 
 let stylesList = `
+.hs-sticky-cart-cart-drawer {
+  display: none;
+}
 .page.section-header h1 {
   font-size: 24px;
   text-transform: none;
@@ -98,7 +101,6 @@ let stylesList = `
   line-height: 1.5;
   border-bottom: 1px solid rgba(0,0,0,0.5);
   color: rgba(0,0,0,0.5);
-  opacity: 0.5;
 }
 .go-product__count {
   display: flex;
@@ -396,7 +398,6 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   font-size: 12px;
   line-height: 1.5;
   color: rgba(0,0,0,0.5);
-  opacity: 0.5;
   font-weight: normal;
   display: block;
 }
@@ -407,8 +408,8 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   line-height: 1.35;
   color: #000000;
   display: block;
+  text-transform: lowercase;
 }
-
 
 .go-product__option {
   padding: 0 10px;
@@ -416,6 +417,10 @@ body #hs-additional-buttons .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopi
   width: 50%;
 }
 
+.go-checkout-btn-clone {
+  width: 100%;
+  height: 50px;
+}
 `;
 const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
@@ -429,7 +434,7 @@ document.body.appendChild(styles);
 
 /*** HTML insert -end- ***/
 
-setTimeout(init, 800);
+setTimeout(init, 1500);
 function init() {
   changeMinor();
   initModal();
@@ -443,6 +448,21 @@ function init() {
 }
 
 function changeMinor() {
+  let cloneSubmitBtn = document
+    .querySelector('.checkout input[type="submit"]')
+    .cloneNode();
+  cloneSubmitBtn.classList.add('go-checkout-btn-clone');
+  cloneSubmitBtn.type = 'button';
+  cloneSubmitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.checkout input[type="submit"]').click();
+  });
+  document
+    .querySelector('.page.section-header')
+    .insertAdjacentElement('afterend', cloneSubmitBtn);
+
+  document.querySelector('.checkout input[type="submit"]').cloneNode();
   // document.addEventListener('click', function (e) {
   //   if (e.target.classList.contains('go-modal__wrap-active')) {
   //     document
