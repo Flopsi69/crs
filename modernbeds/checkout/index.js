@@ -472,18 +472,16 @@ function changeMinor() {
   //   document.querySelector('.checkout input[type="submit"]').click();
   // });
 
-  document
-    .querySelector('.page.section-header')
-    .insertAdjacentHTML(
-      'afterend',
-      "<div class='go-checkout-btn-clone-wrap'></div>"
-    );
+  // document
+  //   .querySelector('.page.section-header')
+  //   .insertAdjacentHTML(
+  //     'afterend',
+  //     "<div class='go-checkout-btn-clone-wrap'></div>"
+  //   );
 
-  document
-    .querySelector('.go-checkout-btn-clone-wrap')
-    .insertAdjacentElement('afterbegin', cloneSubmitBtn);
-
-  document.querySelector('.checkout input[type="submit"]').cloneNode();
+  // document
+  //   .querySelector('.go-checkout-btn-clone-wrap')
+  //   .insertAdjacentElement('afterbegin', cloneSubmitBtn);
 
   // document.addEventListener('click', function (e) {
   //   if (e.target.classList.contains('go-modal__wrap-active')) {
