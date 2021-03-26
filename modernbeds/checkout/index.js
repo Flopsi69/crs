@@ -67,10 +67,13 @@ let stylesList = `
   display: flex;
   border-radius: 4px;
   overflow: hidden;
+  min-width: 0;
+  max-height: 100%;
 }
 .go-product__image img {
   object-fit: cover;
   border-radius: 4px;
+  height: 100%;
 }
 .go-product__info {
   padding: 0 8px;
