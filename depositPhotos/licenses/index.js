@@ -78,9 +78,6 @@ price-table-upgrade__content
     border: 3px solid #B7D9FF;
     pointer-events: none;
   }
-  .lav-license__label {
-
-  }
   .lav-license__label img {
     width: 60px;
     margin-top: 15px;
@@ -112,7 +109,7 @@ price-table-upgrade__content
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -6px;
+    margin-top: -7px;
     width: 12px;
     height: 12px;
   }
@@ -132,7 +129,92 @@ price-table-upgrade__content
     display: inline-block;
     border-bottom: 1px solid rgb(156, 156, 156, 50%);
   }
+  .lav-size {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    line-height: 1.2;
+    color: #565656;
+    padding: 16px 20px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-size:hover {
+    background-color: antiquewhite;
+  }
+  .lav-size__info {
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+  }
+  .lav-size__dim {
+    margin-right: 10px;
+  }
+  .lav-size__abr {
+    font-size: 12px;
+    line-height: 14px;  
+    color: #565656;
+    font-weight: 700;
+    width: 45px;
+    text-align: center;
+  }
+  .lav-sizes__value .lav-size {
+    border-top: 1px solid #C9C9C9;
+    border-bottom: 1px solid #C9C9C9;
+  }
+  .lav-sizes {
+    position: relative;
+    margin: 0 -20px 25px;
+  }
+  .lav-sizes__list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* box-shadow: 0 0 20px; */
+    background: white;
+    z-index: 1;
+    border-bottom: 3px solid #d4d4d4;
+    box-shadow: 5px 5px 10px rgb(0, 0, 0, 80%);
+    display: none;
+  }
+  .lav-sizes__list .lav-size {
+    border-bottom: 1px dashed #C9C9C9;
+  }
+  .lav-sizes__list .lav-size_active {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  .lav-size__icon {
+    display: none;
+  }
+  .lav-sizes__value .lav-size__icon {
+    display: block;
+  }
+  .lav-sizes__list .lav-size_extended {
+    display: none;
+  }
+  .lav-sizes_extended .lav-sizes__list .lav-size {
+    display: none;
+  }
+  .lav-sizes_extended .lav-sizes__list .lav-size_extended {
+    display: flex;
+  }
+  .lav-sizes_extended .lav-sizes__value .lav-size__icon {
+    display: none;
+  }
+  .lav-sizes_extended .lav-sizes__list {
+    display: none!important;
+  }
 `;
+
+// <div class='lav-size__abr'>${abr}</div>
+//       <div class='lav-size__info'>
+//         <div class='lav-size__dim'>${dim}</div>
+//         <div class='lav-size__params'>${params}</div>
+//       </div>
+//       <img src='${REPO_DIR}/icon-dropdown.svg' ></img>
 
 // connect to DOM
 let styles = document.createElement('style');
@@ -144,7 +226,7 @@ document.body.appendChild(styles);
 /*** HTML insert start ***/
 let licensEl = `
   <div class='lav-licenses'>
-    <div class='lav-license lav-license_active'>
+    <div class='lav-license lav-license_standart lav-license_active'>
       <div class='lav-license__label'>
         <img src='${REPO_DIR}/label-sl.svg'>
       </div>
@@ -157,7 +239,7 @@ let licensEl = `
       </div>
     </div>
 
-    <div class='lav-license'>
+    <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
         <img src='${REPO_DIR}/label-el.svg'>
       </div>
@@ -165,7 +247,7 @@ let licensEl = `
         <div class='lav-license__title'>Extended license</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
-          <div class='lav-license__item lav-license__item_include'>Limited usage for resale, print, advertising</div>
+          <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
         </div>
         <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
       </div>
@@ -175,6 +257,25 @@ let licensEl = `
 /*** HTML insert -end- ***/
 init();
 function init() {
+  createModal();
+  createLicenses();
+  let sizesEl = createSizes();
+  document
+    .querySelector('.price-table-upgrade')
+    .insertAdjacentElement('beforebegin', sizesEl);
+
+  document
+    .querySelector('.lav-sizes__value')
+    .addEventListener('click', function () {
+      if (document.querySelector('.lav-sizes__list').style.display == 'block') {
+        document.querySelector('.lav-sizes__list').style.display = 'none';
+      } else {
+        document.querySelector('.lav-sizes__list').style.display = 'block';
+      }
+    });
+}
+
+function createLicenses() {
   document
     .querySelector('.price-table-upgrade')
     .insertAdjacentHTML('beforebegin', licensEl);
@@ -186,10 +287,19 @@ function init() {
         .querySelector('.lav-license_active')
         .classList.remove('lav-license_active');
       this.classList.add('lav-license_active');
+      if (this.classList.contains('lav-license_extended')) {
+        document
+          .querySelector('.lav-sizes')
+          .classList.add('lav-sizes_extended');
+        document.querySelector('.lav-sizes__list .lav-size_extended').click();
+      } else if (document.querySelector('.lav-sizes_extended')) {
+        document
+          .querySelector('.lav-sizes')
+          .classList.remove('lav-sizes_extended');
+        document.querySelector('.lav-sizes__list .lav-size_init').click();
+      }
     });
   });
-
-  createSizes();
 }
 
 function createSizes() {
@@ -205,7 +315,10 @@ function createSizes() {
     .forEach(sizeEl => {
       let newSizeEl = createSizeItem(sizeEl);
       if (newSizeEl.classList.contains('lav-size_active')) {
-        sizesValueEl.insertAdjacentElement('beforeend', newSizeEl);
+        sizesValueEl.insertAdjacentElement(
+          'beforeend',
+          newSizeEl.cloneNode(true)
+        );
       }
       sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
     });
@@ -213,7 +326,7 @@ function createSizes() {
   sizesEL.insertAdjacentElement('beforeend', sizesValueEl);
   sizesEL.insertAdjacentElement('beforeend', sizesListEl);
 
-  console.log(sizesEL);
+  return sizesEL;
 }
 
 function createSizeItem(sizeEl) {
@@ -223,8 +336,11 @@ function createSizeItem(sizeEl) {
   let dim = sizeEl.querySelector('.price-table-upgrade__text-size').innerText;
   let params = sizeEl.querySelector('.price-table-upgrade__text').innerText;
 
+  if (abr.toLocaleLowerCase() == 'el') {
+    newSizeEl.classList.add('lav-size_extended');
+  }
   if (sizeEl.classList.contains('price-table-upgrade__item_active')) {
-    newSizeEl.classList.add('lav-size_active');
+    newSizeEl.classList.add('lav-size_active', 'lav-size_init');
   }
 
   let innerElHTML = `
@@ -233,9 +349,107 @@ function createSizeItem(sizeEl) {
         <div class='lav-size__dim'>${dim}</div>
         <div class='lav-size__params'>${params}</div>
       </div>
-      <img src='${REPO_DIR}/icon-dropdown.svg' >
+      <img class='lav-size__icon' src='${REPO_DIR}/icon-dropdown.svg' >
   `;
 
   newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
+
+  newSizeEl.addEventListener('click', function (e) {
+    e.preventDefault();
+    let elIndex = Array.from(
+      document.querySelectorAll('.lav-sizes__list .lav-size')
+    ).indexOf(this);
+    elIndex += 1;
+    document
+      .querySelector(
+        '.price-table-upgrade__content ._row:nth-child(' + elIndex + ')'
+      )
+      .click();
+    document
+      .querySelector('.lav-sizes__list .lav-size_active')
+      .classList.remove('lav-size_active');
+    this.classList.add('lav-size_active');
+    document.querySelector('.lav-sizes__list').style.display = 'none';
+    document.querySelector('.lav-sizes__value').innerHTML = '';
+    document
+      .querySelector('.lav-sizes__value')
+      .insertAdjacentElement('beforeend', this.cloneNode(true));
+  });
+
   return newSizeEl;
+}
+
+function createModal() {
+  let modalHTML = `
+  <div class='go-modal__wrap'>
+    <div class="go-modal">
+      <div class='go-modal-close'>
+        <img src='${REPO_DIR}/close.svg'>
+      </div>
+      <div class='go-modal__body'>
+        <div class='go-modal__block'>
+          <div class='go-modal__title'>Standard license</div>
+          <div class='go-modal__list'>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of website visitors</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of copies or impressions</div>
+              <div class='go-modal__status go-modal__status_note'>Up to 500,000</div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
+              <div class='go-modal__status go-modal__status_include'>Allowed/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+              <div class='go-modal__status go-modal__status_include'>Allowed/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+              <div class='go-modal__status go-modal__status_exclude'>Prohibited</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class='go-modal__block'>
+          <div class='go-modal__title'>Extended license</div>
+          <div class='go-modal__list'>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of website visitors</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of copies or impressions</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+            <div class='go-modal__item'>
+              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
