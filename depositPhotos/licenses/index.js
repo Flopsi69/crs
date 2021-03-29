@@ -220,6 +220,7 @@ price-table-upgrade__content
     background: rgba(60, 60, 60, 0.43);
   }
   .go-modal {
+    position: relative;
     background: #E6EEF9;
     border-radius: 20px;
     max-width: 1000px;
@@ -256,6 +257,8 @@ price-table-upgrade__content
   }
   .go-modal__item {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .go-modal__item + .go-modal__item {
     margin-top: 20px;
@@ -263,21 +266,40 @@ price-table-upgrade__content
   .go-modal__descr {
     flex-grow: 1;
   }
+  .go-modal__close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .go-modal__close:hover {
+    opacity: 0.6;
+  }
+  .go-modal__close img {
+    width: 100%;
+    height: 100%;
+    filter: contrast(0);
+  }
   .go-modal__status {
-    position:
-    width: 120px;
-    margin-left: 25px;
+    position: relative;
+    width: 105px;
+    margin-left: 30px;
     color: #8AC770;
-    padding-left: 18px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding-left: 28px;
   }
   .go-modal__status:before {
     content: '';
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -12px;
-    width: 22px;
-    height: 22px;
+    margin-top: -10px;
+    width: 18px;
+    height: 18px;
     background: url(${REPO_DIR}/icon-include.svg) center no-repeat;
     background-size: cover;
   }
@@ -289,10 +311,9 @@ price-table-upgrade__content
     background-size: cover;
   }
   .go-modal__status.go-modal__status_exclude:before {
-    background: url(${REPO_DIR}/icon-cancel.svg) center no-repeat;
+    background: url(${REPO_DIR}/icon-exclude2.svg) center no-repeat;
     background-size: cover;
   }
-
 `;
 
 // <div class='lav-size__abr'>${abr}</div>
@@ -310,7 +331,7 @@ document.body.appendChild(styles);
 /*** STYLES insert -end- ***/
 
 /*** HTML insert start ***/
-let licensEl = `
+let licensesEl = `
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standart lav-license_active'>
       <div class='lav-license__label'>
@@ -365,7 +386,14 @@ function init() {
 function createLicenses() {
   document
     .querySelector('.price-table-upgrade')
-    .insertAdjacentHTML('beforebegin', licensEl);
+    .insertAdjacentHTML('beforebegin', licensesEl);
+
+  document
+    .querySelector('.lav-license__modal-trigger')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.go-modal__wrap').style.display = 'flex';
+    });
 
   document.querySelectorAll('.lav-license').forEach(license => {
     license.addEventListener('click', function (e) {
@@ -470,7 +498,7 @@ function createModal() {
   let modalHTML = `
   <div class='go-modal__wrap'>
     <div class="go-modal">
-      <div class='go-modal-close'>
+      <div class='go-modal__close'>
         <img src='${REPO_DIR}/close.svg'>
       </div>
       <div class='go-modal__body'>
@@ -539,4 +567,10 @@ function createModal() {
   `;
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  document
+    .querySelector('.go-modal__close')
+    .addEventListener('click', function () {
+      document.querySelector('.go-modal__wrap').style.display = 'none';
+    });
 }
