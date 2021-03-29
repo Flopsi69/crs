@@ -439,15 +439,17 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
-document.body.appendChild(styles);
 
 /*** STYLES insert -end- ***/
 
 /*** HTML insert start ***/
 
 /*** HTML insert -end- ***/
-setTimeout(init, 1500);
+document.addEventListener('DOMContentLoaded', init);
+
 function init() {
+  document.body.appendChild(styles);
+
   changeMinor();
   initModal();
   quickGuideBlock();
