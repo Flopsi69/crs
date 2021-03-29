@@ -445,9 +445,11 @@ styles.innerHTML = stylesList;
 /*** HTML insert start ***/
 
 /*** HTML insert -end- ***/
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(init, 1200);
+});
 
-function init() {
+function init() 
   document.body.appendChild(styles);
 
   changeMinor();
