@@ -258,11 +258,12 @@ let licensEl = `
 init();
 function init() {
   createModal();
-  createLicenses();
   let sizesEl = createSizes();
   document
     .querySelector('.price-table-upgrade')
     .insertAdjacentElement('beforebegin', sizesEl);
+
+  createLicenses();
 
   document
     .querySelector('.lav-sizes__value')
