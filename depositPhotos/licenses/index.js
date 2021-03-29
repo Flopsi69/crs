@@ -99,7 +99,7 @@ price-table-upgrade__content
   }
   .lav-license__item {
     position: relative;
-    padding-left: 15px;
+    padding-left: 18px;
   }
   .lav-license__item + .lav-license__item {
     margin-top: 7px;
@@ -207,6 +207,92 @@ price-table-upgrade__content
   .lav-sizes_extended .lav-sizes__list {
     display: none!important;
   }
+  .go-modal__wrap {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 999;
+    background: rgba(60, 60, 60, 0.43);
+  }
+  .go-modal {
+    background: #E6EEF9;
+    border-radius: 20px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 60px;
+    box-sizing: border-box;
+  }
+  .go-modal__body {
+    display: flex;
+    margin: 0 -10px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #565656;
+  }
+  .go-modal__block {
+    background: #fff;
+    border-radius: 20px;
+    margin: 0 10px;
+    flex: 1;
+    padding: 30px;
+  }
+  .go-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+    color: #3C3C3C;
+    font-weight: 700;
+    font-family: Arial Black, Arial;
+    margin-bottom: 12px;
+  }
+  .go-modal__list {
+    font-size: 12px;
+    line-height: 14px;
+    color: #565656;
+  }
+  .go-modal__item {
+    display: flex;
+  }
+  .go-modal__item + .go-modal__item {
+    margin-top: 20px;
+  }
+  .go-modal__descr {
+    flex-grow: 1;
+  }
+  .go-modal__status {
+    position:
+    width: 120px;
+    margin-left: 25px;
+    color: #8AC770;
+    padding-left: 18px;
+  }
+  .go-modal__status:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    width: 22px;
+    height: 22px;
+    background: url(${REPO_DIR}/icon-include.svg) center no-repeat;
+    background-size: cover;
+  }
+  .go-modal__status.go-modal__status_note, .go-modal__status.go-modal__status_exclude {
+    color: #f04f4f;
+  }
+  .go-modal__status.go-modal__status_note:before {
+    background: url(${REPO_DIR}/icon-exclude.svg) center no-repeat;
+    background-size: cover;
+  }
+  .go-modal__status.go-modal__status_exclude:before {
+    background: url(${REPO_DIR}/icon-cancel.svg) center no-repeat;
+    background-size: cover;
+  }
+
 `;
 
 // <div class='lav-size__abr'>${abr}</div>
@@ -393,7 +479,7 @@ function createModal() {
           <div class='go-modal__list'>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of website visitors</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of copies or impressions</div>
@@ -401,15 +487,15 @@ function createModal() {
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Allowed/div>
+              <div class='go-modal__status go-modal__status_include'>Allowed</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
-              <div class='go-modal__status go-modal__status_include'>Allowed/div>
+              <div class='go-modal__status go-modal__status_include'>Allowed</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
@@ -423,27 +509,27 @@ function createModal() {
           <div class='go-modal__list'>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of website visitors</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of copies or impressions</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
             <div class='go-modal__item'>
               <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited/div>
+              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
             </div>
           </div>
         </div>
