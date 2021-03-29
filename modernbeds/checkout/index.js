@@ -446,7 +446,6 @@ styles.innerHTML = stylesList;
 
 /*** HTML insert -end- ***/
 document.addEventListener('DOMContentLoaded', function () {
-  alert('load');
   setTimeout(init, 1200);
 });
 
