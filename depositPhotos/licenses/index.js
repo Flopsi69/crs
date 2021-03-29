@@ -40,16 +40,38 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
 /*** STYLES insert start ***/
 
 let stylesList = `
+price-table-upgrade__content
   .lav-licenses {
-
+    margin-bottom: 30px;
   }
   .lav-license {
+    position: relative;
     display: flex;
-    padding: 16px 25px 20px;
+    padding: 16px 25px 20px 40px;
     border-radius: 6px;
     border: 3px solid transparent;
     transition: 0.35s;
     cursor: pointer;
+  }
+  .lav-license:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 42px;
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #5499F5
+  }
+  .lav-license_active:after {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 47px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #5499F5;
   }
   .lav-license_active {
     background: #E8F0F9;
@@ -166,4 +188,54 @@ function init() {
       this.classList.add('lav-license_active');
     });
   });
+
+  createSizes();
+}
+
+function createSizes() {
+  let sizesEL = document.createElement('div');
+  sizesEL.classList.add('lav-sizes');
+  let sizesListEl = document.createElement('div');
+  sizesListEl.classList.add('lav-sizes__list');
+  let sizesValueEl = document.createElement('div');
+  sizesValueEl.classList.add('lav-sizes__value');
+
+  document
+    .querySelectorAll('.price-table-upgrade__content ._row')
+    .forEach(sizeEl => {
+      let newSizeEl = createSizeItem(sizeEl);
+      if (newSizeEl.classList.contains('lav-size_active')) {
+        sizesValueEl.insertAdjacentElement('beforeend', newSizeEl);
+      }
+      sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
+    });
+
+  sizesEL.insertAdjacentElement('beforeend', sizesValueEl);
+  sizesEL.insertAdjacentElement('beforeend', sizesListEl);
+
+  console.log(sizesEL);
+}
+
+function createSizeItem(sizeEl) {
+  let newSizeEl = document.createElement('div');
+  newSizeEl.classList.add('lav-size');
+  let abr = sizeEl.querySelector('.price-table-upgrade__size-box').innerText;
+  let dim = sizeEl.querySelector('.price-table-upgrade__text-size').innerText;
+  let params = sizeEl.querySelector('.price-table-upgrade__text').innerText;
+
+  if (sizeEl.classList.contains('price-table-upgrade__item_active')) {
+    newSizeEl.classList.add('lav-size_active');
+  }
+
+  let innerElHTML = `
+      <div class='lav-size__abr'>${abr}</div>
+      <div class='lav-size__info'>
+        <div class='lav-size__dim'>${dim}</div>
+        <div class='lav-size__params'>${params}</div>
+      </div>
+      <img src='${REPO_DIR}/icon-dropdown.svg' >
+  `;
+
+  newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
+  return newSizeEl;
 }
