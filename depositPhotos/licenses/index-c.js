@@ -90,9 +90,15 @@ let stylesList = `
   .lav-license__title {
     font-weight: 800;
     font-size: 15px;
-    margin-bottom: 7px;
     line-height: 1.2;
     color: #3C3C3C;
+    margin-bottom: 2px;
+  }
+  .lav-license__title-price {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #9E9E9E;
+    margin-bottom: 7px;
   }
   .lav-license__list {
     font-size: 10px;
@@ -338,6 +344,14 @@ let stylesList = `
     opacity: 0.6;
     text-decoration: none;
   }
+  .plans-component form button[type='submit'] {
+    background: var(--accent-primary);
+    transition: .35s;
+    color: #fff;
+  }
+  .plans-component form button[type='submit']:hover {
+    background: #1b5c9e;
+  }
 `;
 
 // <div class='lav-size__abr'>${abr}</div>
@@ -357,12 +371,13 @@ document.body.appendChild(styles);
 /*** HTML insert start ***/
 let licensesEl = `
   <div class='lav-licenses'>
-    <div class='lav-license lav-license_standart lav-license_active'>
+    <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
         <img src='${REPO_DIR}/label-sl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Standard license</div>
+        <div class='lav-license__title-price'>from $0,22 / per image</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
           <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
@@ -376,9 +391,11 @@ let licensesEl = `
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Extended license</div>
+        <div class='lav-license__title-price'>from $0,22 / per image</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
           <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
+
         </div>
         <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
       </div>
@@ -391,6 +408,7 @@ if (document.querySelector('.file-view-upgrade')) {
 } else if (localStorage.getItem('lavLicenseType') == 'extended') {
   setTimeout(() => {
     document.querySelectorAll('[data-key]')[1].click();
+    document.querySelector("form[name='2']").style.display = 'none';
   }, 1000);
 }
 
@@ -424,6 +442,7 @@ function createLicenses() {
     .querySelector('.lav-license__modal-trigger')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      e.stopPropagation();
       document.querySelector('.go-modal__wrap').style.display = 'flex';
     });
 
