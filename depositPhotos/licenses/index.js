@@ -378,6 +378,16 @@ let observer = new MutationObserver(mutations => {
       ) {
         init();
       }
+
+      if (
+        node.parentElement.classList.contains('plans-component') &&
+        localStorage.getItem('lavLicenseType') == 'extended'
+      ) {
+        setTimeout(() => {
+          document.querySelectorAll('[data-key]')[1].click();
+          document.querySelector('#root>.wrapper').style.opacity = 1;
+        }, 300);
+      }
     }
   }
 });
@@ -385,9 +395,6 @@ let observer = new MutationObserver(mutations => {
 let demoElem = document.querySelector('#root');
 
 observer.observe(demoElem, { childList: true, subtree: true });
-
-// Позже можно остановить наблюдение
-// observer.disconnect();
 
 // connect to DOM
 let styles = document.createElement('style');
@@ -428,11 +435,6 @@ let licensesEl = `
   </div>
 `;
 /*** HTML insert -end- ***/
-if (localStorage.getItem('lavLicenseType') == 'extended') {
-  setTimeout(() => {
-    document.querySelectorAll('[data-key]')[1].click();
-  }, 1000);
-}
 
 function init() {
   localStorage.setItem('lavLicenseType', 'none');

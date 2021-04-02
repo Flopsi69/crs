@@ -374,9 +374,6 @@ let stylesList = `
   .plans-component form button[type='submit']:hover {
     background: #1b5c9e;
   }
-  #root>.wrapper {
-    opacity: 1!important;
-  }
 `;
 
 let observer = new MutationObserver(mutations => {
@@ -388,15 +385,25 @@ let observer = new MutationObserver(mutations => {
 
       console.log(node);
 
-      // // проверить, не является ли вставленный элемент примером кода
-      // if (node.matches('pre[class*="language-"]')) {
-      //   Prism.highlightElement(node);
-      // }
+      if (
+        node.classList.contains('wrapper') &&
+        document.querySelector('.file-view-upgrade')
+      ) {
+        init();
+      }
 
-      // // или, может быть, пример кода есть в его поддереве?
-      // for (let elem of node.querySelectorAll('pre[class*="language-"]')) {
-      //   Prism.highlightElement(elem);
-      // }
+      if (
+        node.parentElement.classList.contains('plans-component') &&
+        localStorage.getItem('lavLicenseType') == 'extended'
+      ) {
+        setTimeout(() => {
+          document.querySelectorAll('[data-key]')[1].click();
+          document.querySelector('#root>.wrapper').style.opacity = 1;
+          if (document.querySelector("form[name='2']")) {
+            document.querySelector("form[name='2']").style.display = 'none';
+          }
+        }, 300);
+      }
     }
   }
 });
@@ -447,14 +454,6 @@ let licensesEl = `
   </div>
 `;
 /*** HTML insert -end- ***/
-if (document.querySelector('.file-view-upgrade')) {
-  setTimeout(init, 1000);
-} else if (localStorage.getItem('lavLicenseType') == 'extended') {
-  setTimeout(() => {
-    document.querySelectorAll('[data-key]')[1].click();
-    document.querySelector("form[name='2']").style.display = 'none';
-  }, 1000);
-}
 
 function init() {
   localStorage.setItem('lavLicenseType', 'none');
@@ -481,6 +480,10 @@ function createLicenses() {
   document
     .querySelector('.price-table-upgrade')
     .insertAdjacentHTML('beforebegin', licensesEl);
+
+  setTimeout(() => {
+    document.querySelector('#root>.wrapper').style.opacity = 1;
+  }, 300);
 
   document
     .querySelector('.lav-license__modal-trigger')
