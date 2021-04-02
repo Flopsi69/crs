@@ -387,7 +387,7 @@ let licensesEl = `
 `;
 /*** HTML insert -end- ***/
 if (document.querySelector('.file-view-upgrade')) {
-  init();
+  setTimeout(init, 1000);
 } else if (localStorage.getItem('lavLicenseType') == 'extended') {
   setTimeout(() => {
     document.querySelectorAll('[data-key]')[1].click();
