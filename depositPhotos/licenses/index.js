@@ -361,9 +361,6 @@ let stylesList = `
     opacity: 0.6;
     text-decoration: none;
   }
-  #root>.wrapper {
-    opacity: 1!important;
-  }
 `;
 
 let observer = new MutationObserver(mutations => {
@@ -462,6 +459,10 @@ function createLicenses() {
   document
     .querySelector('.price-table-upgrade')
     .insertAdjacentHTML('beforebegin', licensesEl);
+
+  setTimeout(() => {
+    document.querySelector('#root>.wrapper').style.opacity = 1;
+  }, 300);
 
   document
     .querySelector('.lav-license__modal-trigger')
