@@ -388,7 +388,7 @@ let observer = new MutationObserver(mutations => {
 });
 
 // Начинаем наблюдение за настроенными изменениями целевого элемента
-observer.observe(document.querySelector('.file-view-upgrade__purchase-box'), {
+observer.observe(document.querySelector('.content'), {
   childList: true,
   subtree: true
 });
