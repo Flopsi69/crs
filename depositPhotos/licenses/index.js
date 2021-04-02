@@ -374,15 +374,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
 
-      // проверить, не является ли вставленный элемент примером кода
-      if (node.matches('pre[class*="language-"]')) {
-        Prism.highlightElement(node);
-      }
-
-      // или, может быть, пример кода есть в его поддереве?
-      for (let elem of node.querySelectorAll('pre[class*="language-"]')) {
-        Prism.highlightElement(elem);
-      }
+      console.log(node);
     }
   }
 });
