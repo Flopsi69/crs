@@ -117,7 +117,7 @@ let stylesList = `
     margin-bottom: 2px;
   }
   .lav-license__title-price {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.2;
     color: #9E9E9E;
     margin-bottom: 7px;
