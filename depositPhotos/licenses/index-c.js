@@ -123,7 +123,7 @@ let stylesList = `
     margin-bottom: 7px;
   }
   .lav-license__list {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.2;
     color: #3C3C3C;
   }
@@ -163,7 +163,7 @@ let stylesList = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.2;
     color: #565656;
     padding: 16px 20px;
