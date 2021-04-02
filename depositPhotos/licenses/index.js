@@ -369,12 +369,18 @@ let stylesList = `
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     // проверим новые узлы, есть ли что-то, что надо подсветить?
-    console.log(mutation);
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
 
       console.log(node);
+
+      if (
+        node.classList.contains('wrapper') &&
+        document.querySelector('.file-view-upgrade')
+      ) {
+        init();
+      }
     }
   }
 });
@@ -425,9 +431,7 @@ let licensesEl = `
   </div>
 `;
 /*** HTML insert -end- ***/
-if (document.querySelector('.file-view-upgrade')) {
-  setTimeout(init, 1000);
-} else if (localStorage.getItem('lavLicenseType') == 'extended') {
+if (localStorage.getItem('lavLicenseType') == 'extended') {
   setTimeout(() => {
     document.querySelectorAll('[data-key]')[1].click();
   }, 1000);
