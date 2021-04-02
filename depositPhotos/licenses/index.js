@@ -50,7 +50,7 @@ let stylesList = `
     .file-view-upgrade__content-box {
       grid-template-areas:
           'thumb purchase'
-          'info purchase';
+          'info purchase'!important;
     }
     .file-view-upgrade__thumb-box {
       max-width: 100%;
