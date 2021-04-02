@@ -40,10 +40,8 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
 /*** STYLES insert start ***/
 
 let stylesList = `
-  @media screen and (min-width: 1441px) and (max-height: 800px) {
-    .file-view-upgrade__top-box { padding: 0; }
-  }
   @media screen and (min-width: 1441px) {
+    .file-view-upgrade__top-box { padding: 0!important; }
     .file-view-page-upgrade_image .file-view-upgrade__content-box {
       max-width: 100%;
     }
