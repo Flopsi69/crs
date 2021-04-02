@@ -374,14 +374,40 @@ let stylesList = `
   .plans-component form button[type='submit']:hover {
     background: #1b5c9e;
   }
+  #root>.wrapper {
+    opacity: 1!important;
+  }
 `;
 
-// <div class='lav-size__abr'>${abr}</div>
-//       <div class='lav-size__info'>
-//         <div class='lav-size__dim'>${dim}</div>
-//         <div class='lav-size__params'>${params}</div>
-//       </div>
-//       <img src='${REPO_DIR}/icon-dropdown.svg' ></img>
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    // проверим новые узлы, есть ли что-то, что надо подсветить?
+    console.log(mutation);
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+
+      // проверить, не является ли вставленный элемент примером кода
+      // if (node.matches('pre[class*="language-"]')) {
+      //   Prism.highlightElement(node);
+      // }
+
+      // или, может быть, пример кода есть в его поддереве?
+      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
+      //   Prism.highlightElement(elem);
+      // }
+    }
+  }
+});
+
+// Начинаем наблюдение за настроенными изменениями целевого элемента
+observer.observe(document.querySelector('.file-view-upgrade__purchase-box'), {
+  childList: true,
+  subtree: true
+});
+
+// Позже можно остановить наблюдение
+// observer.disconnect();
 
 // connect to DOM
 let styles = document.createElement('style');
