@@ -152,7 +152,7 @@ let stylesList = `
     background-size: cover;
   }
   .lav-license__modal-trigger {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1;
     color: #9C9C9C;
     margin-top: 12px;
