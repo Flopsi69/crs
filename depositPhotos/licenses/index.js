@@ -375,23 +375,21 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
 
       // проверить, не является ли вставленный элемент примером кода
-      // if (node.matches('pre[class*="language-"]')) {
-      //   Prism.highlightElement(node);
-      // }
+      if (node.matches('pre[class*="language-"]')) {
+        Prism.highlightElement(node);
+      }
 
       // или, может быть, пример кода есть в его поддереве?
-      // for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
-      //   Prism.highlightElement(elem);
-      // }
+      for (let elem of node.querySelectorAll('pre[class*="language-"]')) {
+        Prism.highlightElement(elem);
+      }
     }
   }
 });
 
-// Начинаем наблюдение за настроенными изменениями целевого элемента
-observer.observe(document.querySelector('.content'), {
-  childList: true,
-  subtree: true
-});
+let demoElem = document.querySelector('#root');
+
+observer.observe(demoElem, { childList: true, subtree: true });
 
 // Позже можно остановить наблюдение
 // observer.disconnect();
