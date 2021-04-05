@@ -386,7 +386,7 @@ let observer = new MutationObserver(mutations => {
           document.querySelector('#root>.wrapper').style.opacity = 1;
         }, 300);
       } else {
-        document.querySelector('#root>.wrapper').style.opacity = 1;
+        // document.querySelector('#root>.wrapper').style.opacity = 1;
       }
     }
   }
@@ -395,6 +395,10 @@ let observer = new MutationObserver(mutations => {
 let demoElem = document.querySelector('#root');
 
 observer.observe(demoElem, { childList: true, subtree: true });
+
+setTimeout(() => {
+  document.querySelector('#root>.wrapper').style.opacity = 1;
+}, 3500);
 
 // connect to DOM
 let styles = document.createElement('style');
