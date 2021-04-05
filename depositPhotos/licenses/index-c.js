@@ -413,7 +413,9 @@ let observer = new MutationObserver(mutations => {
           if (document.querySelector("form[name='2']")) {
             document.querySelector("form[name='2']").style.display = 'none';
           }
-          document.querySelector('#root>.wrapper').style.opacity = 1;
+          setTimeout(() => {
+            document.querySelector('#root>.wrapper').style.opacity = 1;
+          }, 600);
         }, 300);
       } else {
         document.querySelector('#root>.wrapper').style.opacity = 1;
