@@ -399,7 +399,7 @@ let observer = new MutationObserver(mutations => {
           if (
             document
               .querySelector('.plans-component')
-              .querySelector('form[name=1024]')
+              .querySelector('form[name="1024"]')
           ) {
             document
               .querySelector('.plans-component')
