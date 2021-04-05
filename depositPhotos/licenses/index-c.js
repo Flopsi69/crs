@@ -390,19 +390,33 @@ let observer = new MutationObserver(mutations => {
         document.querySelector('.file-view-upgrade')
       ) {
         init();
-      }
-
-      if (
+      } else if (
         node.parentElement.classList.contains('plans-component') &&
         localStorage.getItem('lavLicenseType') == 'extended'
       ) {
         setTimeout(() => {
           document.querySelectorAll('[data-key]')[1].click();
-          document.querySelector('#root>.wrapper').style.opacity = 1;
+          if (
+            document
+              .querySelector('.plans-component')
+              .querySelector('form[name=1024]')
+          ) {
+            document
+              .querySelector('.plans-component')
+              .querySelector('form[name="1024"]').style.display = 'none';
+          }
+          if (document.querySelector("form[data-label='BEST VALUE']")) {
+            document.querySelector(
+              "form[data-label='BEST VALUE']"
+            ).style.display = 'none';
+          }
           if (document.querySelector("form[name='2']")) {
             document.querySelector("form[name='2']").style.display = 'none';
           }
+          document.querySelector('#root>.wrapper').style.opacity = 1;
         }, 300);
+      } else {
+        document.querySelector('#root>.wrapper').style.opacity = 1;
       }
     }
   }

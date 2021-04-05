@@ -377,9 +377,7 @@ let observer = new MutationObserver(mutations => {
         document.querySelector('.file-view-upgrade')
       ) {
         init();
-      }
-
-      if (
+      } else if (
         node.parentElement.classList.contains('plans-component') &&
         localStorage.getItem('lavLicenseType') == 'extended'
       ) {
@@ -387,6 +385,8 @@ let observer = new MutationObserver(mutations => {
           document.querySelectorAll('[data-key]')[1].click();
           document.querySelector('#root>.wrapper').style.opacity = 1;
         }, 300);
+      } else {
+        document.querySelector('#root>.wrapper').style.opacity = 1;
       }
     }
   }
