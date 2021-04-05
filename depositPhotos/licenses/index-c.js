@@ -394,29 +394,27 @@ let observer = new MutationObserver(mutations => {
         node.parentElement.classList.contains('plans-component') &&
         localStorage.getItem('lavLicenseType') == 'extended'
       ) {
-        setTimeout(() => {
-          document.querySelectorAll('[data-key]')[1].click();
-          if (
-            document
-              .querySelector('.plans-component')
-              .querySelector('form[name="1024"]')
-          ) {
-            document
-              .querySelector('.plans-component')
-              .querySelector('form[name="1024"]').style.display = 'none';
-          }
-          if (document.querySelector("form[data-label='BEST VALUE']")) {
-            document.querySelector(
-              "form[data-label='BEST VALUE']"
-            ).style.display = 'none';
-          }
-          if (document.querySelector("form[name='2']")) {
-            document.querySelector("form[name='2']").style.display = 'none';
-          }
-          setTimeout(() => {
-            document.querySelector('#root>.wrapper').style.opacity = 1;
-          }, 600);
-        }, 300);
+        // setTimeout(() => {
+        document.querySelectorAll('[data-key]')[1].click();
+        if (
+          document
+            .querySelector('.plans-component')
+            .querySelector('form[name="1024"]')
+        ) {
+          document
+            .querySelector('.plans-component')
+            .querySelector('form[name="1024"]').style.display = 'none';
+        }
+        if (document.querySelector("form[data-label='BEST VALUE']")) {
+          document.querySelector(
+            "form[data-label='BEST VALUE']"
+          ).style.display = 'none';
+        }
+        if (document.querySelector("form[name='2']")) {
+          document.querySelector("form[name='2']").style.display = 'none';
+        }
+        document.querySelector('#root>.wrapper').style.opacity = 1;
+        // }, 300);
       } else {
         // document.querySelector('#root>.wrapper').style.opacity = 1;
       }
