@@ -374,9 +374,14 @@ let observer = new MutationObserver(mutations => {
 
       if (
         node.classList.contains('wrapper') &&
-        document.querySelector('.file-view-upgrade')
+        node.querySelector('.file-view-upgrade')
       ) {
-        init();
+        let setIntervalEl = setInterval(() => {
+          if (node.querySelectorAll('.price-table-upgrade__item').length > 1) {
+            clearInterval(setIntervalEl);
+            init();
+          }
+        }, 300);
       } else if (
         node.parentElement.classList.contains('plans-component') &&
         localStorage.getItem('lavLicenseType') == 'extended'
