@@ -460,8 +460,6 @@ setTimeout(() => {
   document.querySelector('#root>.wrapper').style.opacity = 1;
 }, 3500);
 
-init();
-
 function init() {
   localStorage.setItem('lavLicenseType', 'none');
   createModal();
@@ -481,6 +479,16 @@ function init() {
         document.querySelector('.lav-sizes__list').style.display = 'block';
       }
     });
+
+  document.querySelector('#root').addEventListener('click', function (e) {
+    if (
+      document.querySelector('.lav-sizes__list') &&
+      document.querySelector('.lav-sizes__list').style.display == 'block' &&
+      !e.target.closest('.lav-sizes')
+    ) {
+      document.querySelector('.lav-sizes__list').style.display = 'none';
+    }
+  });
 }
 
 function createLicenses() {
