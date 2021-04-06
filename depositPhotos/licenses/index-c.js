@@ -41,9 +41,18 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
 
 let stylesList = `
   @media screen and (min-width: 1441px) {
+    .file-thumb__image-box_label .file-thumb__image_h {
+      max-height: 430px!important;
+    }
+    .file-view-upgrade__info-box .file-view-info {
+      margin: 12px auto;
+    }
     .file-view-upgrade__purchase-box {
       padding-left: 20px!important;
       padding-right: 20px!important;
+    }
+    .file-view-page-upgrade_vertical .file-view-upgrade__content-box {
+      grid-template-rows: 1fr auto;
     }
     .file-view-upgrade__top-box { padding: 0!important; }
     .file-view-page-upgrade_image .file-view-upgrade__content-box {
@@ -114,7 +123,7 @@ let stylesList = `
     font-size: 15px;
     line-height: 1.2;
     color: #3C3C3C;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .lav-license__title-price {
     font-size: 12px;
@@ -182,6 +191,8 @@ let stylesList = `
     margin-right: 10px;
   }
   .lav-size__abr {
+    display: flex;
+    align-items: center;
     font-size: 12px;
     line-height: 14px;  
     color: #565656;
@@ -213,7 +224,7 @@ let stylesList = `
     border-bottom: 1px dashed #C9C9C9;
   }
   .lav-sizes__list .lav-size_active {
-    background-color: #f5f5f5;
+    background-color: #e6e2df;
     font-weight: bold;
     pointer-events: none;
   }
@@ -374,7 +385,54 @@ let stylesList = `
   .plans-component form button[type='submit']:hover {
     background: #1b5c9e;
   }
+
+  .lav-size__abr a {
+    margin-right: 5px;
+  }
 `;
+
+// connect to DOM
+let styles = document.createElement('style');
+styles.innerHTML = stylesList;
+document.body.appendChild(styles);
+
+/*** STYLES insert -end- ***/
+
+/*** HTML insert start ***/
+let licensesEl = `
+  <div class='lav-licenses'>
+    <div class='lav-license lav-license_standard lav-license_active'>
+      <div class='lav-license__label'>
+        <img src='${REPO_DIR}/label-sl.svg'>
+      </div>
+      <div class='lav-license__info'>
+        <div class='lav-license__title'>Standard license</div>
+        <div class='lav-license__title-price'>from $0,22 / per image</div>
+        <div class='lav-license__list'>
+          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
+          <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
+        </div>
+      </div>
+    </div>
+
+    <div class='lav-license lav-license_extended'>
+      <div class='lav-license__label'>
+        <img src='${REPO_DIR}/label-el.svg'>
+      </div>
+      <div class='lav-license__info'>
+        <div class='lav-license__title'>Extended license</div>
+        <div class='lav-license__title-price'>from $0,22 / per image</div>
+        <div class='lav-license__list'>
+          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
+          <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
+
+        </div>
+        <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
+      </div>
+    </div>
+  </div>
+`;
+/*** HTML insert -end- ***/
 
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
@@ -435,48 +493,7 @@ setTimeout(() => {
   document.querySelector('#root>.wrapper').style.opacity = 1;
 }, 3500);
 
-// connect to DOM
-let styles = document.createElement('style');
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
-
-/*** STYLES insert -end- ***/
-
-/*** HTML insert start ***/
-let licensesEl = `
-  <div class='lav-licenses'>
-    <div class='lav-license lav-license_standard lav-license_active'>
-      <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
-      </div>
-      <div class='lav-license__info'>
-        <div class='lav-license__title'>Standard license</div>
-        <div class='lav-license__title-price'>from $0,22 / per image</div>
-        <div class='lav-license__list'>
-          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
-          <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
-        </div>
-      </div>
-    </div>
-
-    <div class='lav-license lav-license_extended'>
-      <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
-      </div>
-      <div class='lav-license__info'>
-        <div class='lav-license__title'>Extended license</div>
-        <div class='lav-license__title-price'>from $0,22 / per image</div>
-        <div class='lav-license__list'>
-          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
-          <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
-
-        </div>
-        <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
-      </div>
-    </div>
-  </div>
-`;
-/*** HTML insert -end- ***/
+init();
 
 function init() {
   localStorage.setItem('lavLicenseType', 'none');
@@ -503,6 +520,17 @@ function createLicenses() {
   document
     .querySelector('.price-table-upgrade')
     .insertAdjacentHTML('beforebegin', licensesEl);
+
+  if (
+    true ||
+    document
+      .querySelector('.price-table-upgrade__download-btn')
+      .dataset.label.toLocaleLowerCase() == 'price: free'
+  ) {
+    document
+      .querySelector('.lav-license_standard .lav-license__title-price')
+      .remove();
+  }
 
   setTimeout(() => {
     document.querySelector('#root>.wrapper').style.opacity = 1;
@@ -594,6 +622,17 @@ function createSizeItem(sizeEl) {
   `;
 
   newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
+
+  if (sizeEl.querySelector('.price-table-upgrade__ind-item_ok')) {
+    newSizeEl
+      .querySelector('.lav-size__abr')
+      .insertAdjacentElement(
+        'afterbegin',
+        sizeEl
+          .querySelector('.price-table-upgrade__ind-item_ok')
+          .cloneNode(true)
+      );
+  }
 
   newSizeEl.addEventListener('click', function (e) {
     e.preventDefault();
