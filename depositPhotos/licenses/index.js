@@ -434,7 +434,11 @@ let observer = new MutationObserver(mutations => {
         let setIntervalEl = setInterval(() => {
           if (node.querySelectorAll('.price-table-upgrade__item').length > 1) {
             clearInterval(setIntervalEl);
-            init();
+            if (document.querySelector('.auth-box')) {
+              document.querySelector('#root>.wrapper').style.opacity = 1;
+            } else {
+              init();
+            }
           }
         }, 300);
       } else if (
