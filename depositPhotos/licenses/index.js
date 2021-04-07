@@ -379,9 +379,11 @@ let stylesList = `
 `;
 
 // connect to DOM
-let styles = document.createElement('style');
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+if (!document.querySelector('.auth-box')) {
+  let styles = document.createElement('style');
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+}
 
 /*** STYLES insert -end- ***/
 
