@@ -43,6 +43,8 @@
 
 // gaEvent('loaded');
 
+// connect to DOM
+
 try {
   (function (h, o, t, j, a, r) {
     h.hj =
@@ -77,7 +79,7 @@ styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 
 if (
-  location.href.includes('place-ad/sell') &&
+  location.href.includes('place-ad/selectmodel') &&
   document.querySelector('.sjs-place-ad-toggle-mode span')
 ) {
   document.querySelector('.sjs-place-ad-toggle-mode span').click();
