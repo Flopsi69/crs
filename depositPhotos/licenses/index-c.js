@@ -536,7 +536,6 @@ function createLicenses() {
     .insertAdjacentHTML('beforebegin', licensesEl);
 
   if (
-    true ||
     document
       .querySelector('.price-table-upgrade__download-btn')
       .dataset.label.toLocaleLowerCase() == 'price: free'
