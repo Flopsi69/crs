@@ -409,7 +409,7 @@ let licensesEl = `
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Standard license</div>
-        <div class='lav-license__title-price'>from $0,22 / per image</div>
+        <div class='lav-license__title-price'>from $2,39 / per image</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
           <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
@@ -423,7 +423,7 @@ let licensesEl = `
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Extended license</div>
-        <div class='lav-license__title-price'>from $0,22 / per image</div>
+        <div class='lav-license__title-price'>from $51 / per image</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
           <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
