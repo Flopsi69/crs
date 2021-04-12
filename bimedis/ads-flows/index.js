@@ -77,7 +77,7 @@ let stylesList = `
 if (location.href.includes('place-ad/selectmodel')) {
   console.log('yes');
   if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
-    location.href = 'https://bimedis.com/place-ad/sell';
+    document.querySelector('.sjs-place-ad-toggle-mode span').click();
   } else {
     setTimeout(() => {
       document.querySelector('.sjs-place-ad-toggle-mode span').click();
