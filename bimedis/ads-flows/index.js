@@ -78,9 +78,11 @@ if (location.href.includes('place-ad/selectmodel')) {
   console.log('yes');
   if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
     document.querySelector('.sjs-place-ad-toggle-mode span').click();
+    console.log('1');
   } else {
     setTimeout(() => {
       document.querySelector('.sjs-place-ad-toggle-mode span').click();
+      console.log('2');
     }, 1000);
   }
 }
