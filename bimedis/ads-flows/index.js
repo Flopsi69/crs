@@ -79,10 +79,11 @@ if (location.href.includes('place-ad/selectmodel')) {
 }
 
 if (location.href.includes('place-ad/selectmodel')) {
-  setTimeout(() => {
-    document.querySelector('.sjs-place-ad-toggle-mode span').click();
-    console.log('2');
-  }, 1000);
+  setInterval(() => {
+    if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
+      document.querySelector('.sjs-place-ad-toggle-mode span').click();
+    }
+  }, 500);
 }
 
 let styles = document.createElement('style');
