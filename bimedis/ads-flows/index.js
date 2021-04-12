@@ -86,7 +86,16 @@ if (location.href.includes('place-ad/selectmodel')) {
   }, 500);
 }
 
-let styles = document.createElement('style');
-styles.id = 'go-flow-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+if (document.body) {
+  let styles = document.createElement('style');
+  styles.id = 'go-flow-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+} else {
+  setTimeout(() => {
+    let styles = document.createElement('style');
+    styles.id = 'go-flow-styles';
+    styles.innerHTML = stylesList;
+    document.body.appendChild(styles);
+  }, 1000);
+}
