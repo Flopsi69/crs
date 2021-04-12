@@ -78,9 +78,7 @@ styles.id = 'go-flow-styles';
 styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 
-if (
-  location.href.includes('place-ad/selectmodel') &&
-  document.querySelector('.sjs-place-ad-toggle-mode span')
-) {
-  document.querySelector('.sjs-place-ad-toggle-mode span').click();
+if (location.href.includes('place-ad/selectmodel')) {
+  console.log('yes');
+  location.href = 'https://bimedis.com/place-ad/sell';
 }
