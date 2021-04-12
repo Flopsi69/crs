@@ -69,18 +69,33 @@ try {
 
 let stylesList = `
   .sjs-place-ad-toggle-mode {
-    display: none;
+    pointer-events: none;
+    opacity: 0;
   }
 `;
 
-let styles = document.createElement('style');
-styles.id = 'go-flow-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+if (location.href.includes('place-ad/selectmodel')) {
+  document.body.style.opacity = 0;
+}
 
-if (
-  location.href.includes('place-ad/selectmodel') &&
-  document.querySelector('.sjs-place-ad-toggle-mode span')
-) {
-  document.querySelector('.sjs-place-ad-toggle-mode span').click();
+if (location.href.includes('place-ad/selectmodel')) {
+  setInterval(() => {
+    if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
+      document.querySelector('.sjs-place-ad-toggle-mode span').click();
+    }
+  }, 500);
+}
+
+if (document.body) {
+  let styles = document.createElement('style');
+  styles.id = 'go-flow-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+} else {
+  setTimeout(() => {
+    let styles = document.createElement('style');
+    styles.id = 'go-flow-styles';
+    styles.innerHTML = stylesList;
+    document.body.appendChild(styles);
+  }, 1000);
 }
