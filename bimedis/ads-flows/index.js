@@ -76,7 +76,13 @@ let stylesList = `
 
 if (location.href.includes('place-ad/selectmodel')) {
   console.log('yes');
-  location.href = 'https://bimedis.com/place-ad/sell';
+  if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
+    location.href = 'https://bimedis.com/place-ad/sell';
+  } else {
+    setTimeout(() => {
+      document.querySelector('.sjs-place-ad-toggle-mode span').click();
+    }, 1000);
+  }
 }
 
 let styles = document.createElement('style');
