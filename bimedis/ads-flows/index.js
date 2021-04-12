@@ -73,12 +73,12 @@ let stylesList = `
   }
 `;
 
-let styles = document.createElement('style');
-styles.id = 'go-flow-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
-
 if (location.href.includes('place-ad/selectmodel')) {
   console.log('yes');
   location.href = 'https://bimedis.com/place-ad/sell';
 }
+
+let styles = document.createElement('style');
+styles.id = 'go-flow-styles';
+styles.innerHTML = stylesList;
+document.body.appendChild(styles);
