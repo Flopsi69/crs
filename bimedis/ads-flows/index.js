@@ -69,7 +69,8 @@ try {
 
 let stylesList = `
   .sjs-place-ad-toggle-mode {
-    display: none;
+    pointer-events: none;
+    opacity: 0;
   }
 `;
 
