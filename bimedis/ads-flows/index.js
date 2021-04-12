@@ -75,16 +75,14 @@ let stylesList = `
 `;
 
 if (location.href.includes('place-ad/selectmodel')) {
-  console.log('yes');
-  if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
+  document.body.style.opacity = 0;
+}
+
+if (location.href.includes('place-ad/selectmodel')) {
+  setTimeout(() => {
     document.querySelector('.sjs-place-ad-toggle-mode span').click();
-    console.log('1');
-  } else {
-    setTimeout(() => {
-      document.querySelector('.sjs-place-ad-toggle-mode span').click();
-      console.log('2');
-    }, 1000);
-  }
+    console.log('2');
+  }, 1000);
 }
 
 let styles = document.createElement('style');
