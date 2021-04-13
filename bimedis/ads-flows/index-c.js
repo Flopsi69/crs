@@ -75,11 +75,15 @@ let stylesList = `
 `;
 
 if (location.href.includes('place-ad/selectmodel')) {
-  setInterval(() => {
+  setTimeout(() => {}, timeout);
+  () => {
+    console.log('click');
+
     if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
       document.querySelector('.sjs-place-ad-toggle-mode span').click();
     }
-  }, 500);
+  },
+    1500;
 }
 
 if (document.body) {
