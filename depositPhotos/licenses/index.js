@@ -74,7 +74,7 @@ let stylesList = `
   }
 
   .price-table-upgrade__content {
-    display: none;
+    display: none!important;
   }
   .lav-licenses {
     margin-bottom: 30px;
@@ -177,6 +177,10 @@ let stylesList = `
   }
   .lav-size:hover {
     background-color: antiquewhite;
+  }
+  .lav-size.lav-size_extended:hover {
+    background: transparent;
+    cursor: auto;
   }
   .lav-size__info {
     display: flex;
@@ -374,7 +378,7 @@ let stylesList = `
     text-decoration: none;
   }
   .lav-size__abr a {
-    margin-right: 5px;
+    margin-left: 5px;
   }
 `;
 
@@ -596,7 +600,7 @@ function createSizeItem(sizeEl) {
     newSizeEl
       .querySelector('.lav-size__abr')
       .insertAdjacentElement(
-        'afterbegin',
+        'beforeend',
         sizeEl
           .querySelector('.price-table-upgrade__ind-item_ok')
           .cloneNode(true)

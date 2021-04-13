@@ -182,6 +182,10 @@ let stylesList = `
   .lav-size:hover {
     background-color: antiquewhite;
   }
+  .lav-size.lav-size_extended:hover {
+    background: transparent;
+    cursor: auto;
+  }
   .lav-size__info {
     display: flex;
     align-items: center;
@@ -360,7 +364,7 @@ let stylesList = `
     background-size: cover;
   }
   .price-table-upgrade__content {
-    display: none;
+    display: none!important;
   }
   .go-modal__caption {
     color: #9E9E9E;
@@ -640,7 +644,7 @@ function createSizeItem(sizeEl) {
     newSizeEl
       .querySelector('.lav-size__abr')
       .insertAdjacentElement(
-        'afterbegin',
+        'beforeend',
         sizeEl
           .querySelector('.price-table-upgrade__ind-item_ok')
           .cloneNode(true)
