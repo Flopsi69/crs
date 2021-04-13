@@ -75,8 +75,7 @@ let stylesList = `
 `;
 
 if (location.href.includes('place-ad/selectmodel')) {
-  setTimeout(() => {}, timeout);
-  () => {
+  setTimeout(() => {
     console.log('click');
 
     if (document.querySelector('.sjs-place-ad-toggle-mode span')) {
