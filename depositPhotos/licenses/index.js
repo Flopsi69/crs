@@ -41,7 +41,7 @@ setTimeout(() => {
 /*** Analytics insert -end- ***/
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
-
+var blockEvents = false;
 /*** STYLES insert start ***/
 
 let stylesList = `
@@ -540,6 +540,7 @@ function createLicenses() {
       if (this.classList.contains('lav-license_extended')) {
         gaEvent('click on checkbox B', 'EL license B');
         localStorage.setItem('lavLicenseType', 'extended');
+        blockEvents = true;
 
         document
           .querySelector('.lav-sizes')
@@ -548,6 +549,7 @@ function createLicenses() {
       } else if (document.querySelector('.lav-sizes_extended')) {
         gaEvent('click on checkbox B', 'Standart license B');
         localStorage.setItem('lavLicenseType', 'none');
+        blockEvents = true;
 
         document
           .querySelector('.lav-sizes')
@@ -623,7 +625,10 @@ function createSizeItem(sizeEl) {
 
   newSizeEl.addEventListener('click', function (e) {
     e.preventDefault();
-    gaEvent('size click', 'image size clicked B');
+    if (!blockEvents) {
+      gaEvent('size click', 'image size clicked B');
+    }
+    blockEvents = false;
     let elIndex = Array.from(
       document.querySelectorAll('.lav-sizes__list .lav-size')
     ).indexOf(this);
