@@ -1,37 +1,39 @@
 /*** Analytics insert start ***/
 
-// try {
-//   (function (h, o, t, j, a, r) {
-//     h.hj =
-//       h.hj ||
-//       function () {
-//         (h.hj.q = h.hj.q || []).push(arguments);
-//       };
-//     h._hjSettings = { hjid: 2196497, hjsv: 6 };
-//     a = o.getElementsByTagName('head')[0];
-//     r = o.createElement('script');
-//     r.async = 1;
-//     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-//     a.appendChild(r);
-//   })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-//   window.hj =
-//     window.hj ||
-//     function () {
-//       (hj.q = hj.q || []).push(arguments);
-//     };
-//   hj('trigger', 'Cart_Clearpay');
-// } catch (e) {}
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'el_pdp');
+} catch (e) {}
 
-// function gaEvent(action) {
-//   try {
-//     dataLayer.push({
-//       event: 'event-to-ga',
-//       eventCategory: 'Exp - Cart Clearpay',
-//       eventAction: action
-//     });
-//   } catch (e) {}
-// }
-// gaEvent('loaded');
+function gaEvent(action, label = '', value = '') {
+  try {
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — EL',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
+    });
+  } catch (e) {}
+}
+gaEvent('loaded');
 
 /*** Analytics insert -end- ***/
 
@@ -516,6 +518,7 @@ function init() {
   document
     .querySelector('.lav-sizes__value')
     .addEventListener('click', function () {
+      gaEvent('image size selector click', 'Size selector C');
       if (document.querySelector('.lav-sizes__list').style.display == 'block') {
         document.querySelector('.lav-sizes__list').style.display = 'none';
       } else {
@@ -557,6 +560,12 @@ function createLicenses() {
   }, 300);
 
   document
+    .querySelector('.price-table-upgrade__download-btn')
+    .addEventListener('click', function () {
+      gaEvent('download button click', 'download button click C');
+    });
+
+  document
     .querySelector('.lav-license__modal-trigger')
     .addEventListener('click', function (e) {
       e.preventDefault();
@@ -573,6 +582,7 @@ function createLicenses() {
       this.classList.add('lav-license_active');
 
       if (this.classList.contains('lav-license_extended')) {
+        gaEvent('click on checkbox C', 'EL license C');
         localStorage.setItem('lavLicenseType', 'extended');
 
         document
@@ -580,6 +590,7 @@ function createLicenses() {
           .classList.add('lav-sizes_extended');
         document.querySelector('.lav-sizes__list .lav-size_extended').click();
       } else if (document.querySelector('.lav-sizes_extended')) {
+        gaEvent('click on checkbox C', 'Standart license C');
         localStorage.setItem('lavLicenseType', 'none');
 
         document
@@ -656,6 +667,7 @@ function createSizeItem(sizeEl) {
 
   newSizeEl.addEventListener('click', function (e) {
     e.preventDefault();
+    gaEvent('size click', 'image size clicked C');
     let elIndex = Array.from(
       document.querySelectorAll('.lav-sizes__list .lav-size')
     ).indexOf(this);
