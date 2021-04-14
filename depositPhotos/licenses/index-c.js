@@ -539,17 +539,18 @@ function createLicenses() {
     .querySelector('.price-table-upgrade')
     .insertAdjacentHTML('beforebegin', licensesEl);
 
-  if (
-    document
-      .querySelector('.price-table-upgrade__download-btn')
-      .dataset.label.toLocaleLowerCase() == 'price: free'
-  ) {
-    document
-      .querySelector('.lav-license_standard .lav-license__title-price')
-      .remove();
-  }
-
   setTimeout(() => {
+    if (
+      document.querySelector('.price-table-upgrade__download-btn') &&
+      document
+        .querySelector('.price-table-upgrade__download-btn')
+        .dataset.label.toLowerCase() == 'price: free'
+    ) {
+      document
+        .querySelector('.lav-license_standard .lav-license__title-price')
+        .remove();
+    }
+
     document.querySelector('#root>.wrapper').style.opacity = 1;
   }, 300);
 
@@ -622,7 +623,7 @@ function createSizeItem(sizeEl) {
   let dim = sizeEl.querySelector('.price-table-upgrade__text-size').innerText;
   let params = sizeEl.querySelector('.price-table-upgrade__text').innerText;
 
-  if (abr.toLocaleLowerCase() == 'el') {
+  if (abr.toLowerCase() == 'el') {
     newSizeEl.classList.add('lav-size_extended');
   }
   if (sizeEl.classList.contains('price-table-upgrade__item_active')) {
