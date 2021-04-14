@@ -542,7 +542,9 @@ function createLicenses() {
   setTimeout(() => {
     if (
       document.querySelector('.price-table-upgrade__download-btn') &&
-      document.querySelector('.price-table-upgrade__download-btn').dataset.label &&
+      document.querySelector('.price-table-upgrade__download-btn').dataset
+        .label &&
+      document
         .querySelector('.price-table-upgrade__download-btn')
         .dataset.label.toLowerCase() == 'price: free'
     ) {
