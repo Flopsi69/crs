@@ -435,7 +435,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
 
-      console.log(node);
+      // console.log(node);
 
       if (
         node.classList.contains('wrapper') &&
