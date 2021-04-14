@@ -34,6 +34,7 @@ function gaEvent(action, label = '', value = '') {
 }
 
 setTimeout(() => {
+  console.log('loaded');
   gaEvent('loaded');
 }, 1500);
 
