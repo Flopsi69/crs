@@ -31,7 +31,9 @@ function gaEvent(action, label = '', value = '') {
       eventLabel: label,
       eventValue: value
     });
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 }
 gaEvent('loaded');
 
