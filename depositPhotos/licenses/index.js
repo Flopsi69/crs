@@ -35,7 +35,10 @@ function gaEvent(action, label = '', value = '') {
     console.log(e);
   }
 }
-gaEvent('loaded');
+
+setTimeout(() => {
+  gaEvent('loaded');
+}, 1000);
 
 /*** Analytics insert -end- ***/
 
