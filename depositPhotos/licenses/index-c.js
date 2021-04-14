@@ -23,22 +23,17 @@ try {
 } catch (e) {}
 
 function gaEvent(action, label = '', value = '') {
-  try {
-    dataLayer.push({
-      event: 'event-to-ga',
-      eventCategory: 'Experiment — EL',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: value
-    });
-  } catch (e) {
-    console.log(e);
-  }
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: 'event-to-ga',
+    eventCategory: 'Experiment — EL',
+    eventAction: action,
+    eventLabel: label,
+    eventValue: value
+  });
 }
 
-setTimeout(() => {
-  gaEvent('loaded');
-}, 1000);
+gaEvent('loaded');
 
 /*** Analytics insert -end- ***/
 
