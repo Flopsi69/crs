@@ -33,7 +33,9 @@ function gaEvent(action, label = '', value = '') {
   });
 }
 
-gaEvent('loaded');
+setTimeout(() => {
+  gaEvent('loaded');
+}, 1500);
 
 /*** Analytics insert -end- ***/
 
@@ -667,6 +669,7 @@ function createSizeItem(sizeEl) {
 
   newSizeEl.addEventListener('click', function (e) {
     e.preventDefault();
+    // lav-size_init
     gaEvent('size click', 'image size clicked C');
     let elIndex = Array.from(
       document.querySelectorAll('.lav-sizes__list .lav-size')
