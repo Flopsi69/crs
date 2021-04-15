@@ -406,8 +406,6 @@ if (!document.querySelector('.auth-box')) {
   document.body.appendChild(styles);
 }
 
-/*** STYLES insert -end- ***/
-
 /*** HTML insert start ***/
 let licensesEl = `
   <div class='lav-licenses'>
