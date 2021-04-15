@@ -463,6 +463,15 @@ let observer = new MutationObserver(mutations => {
                       .querySelector('.price-table-upgrade__ind-item')
                       .cloneNode(true)
                   );
+
+                document
+                  .querySelector('.lav-size_active  .lav-size__abr')
+                  .insertAdjacentElement(
+                    'beforeend',
+                    el
+                      .querySelector('.price-table-upgrade__ind-item')
+                      .cloneNode(true)
+                  );
               }
             }
           });
