@@ -37,6 +37,7 @@ gaEvent('loaded');
 
 /*** STYLES insert start ***/
 
+console.log(1);
 let stylesList = `
 .hs-sticky-cart-cart-drawer {
   display: none;
@@ -439,18 +440,22 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/modernbeds/checkout/';
 // connect to DOM
 let styles = document.createElement('style');
 styles.innerHTML = stylesList;
+console.log(2);
 
 /*** STYLES insert -end- ***/
 
 /*** HTML insert start ***/
 
 /*** HTML insert -end- ***/
-document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(init, 1200);
-});
+// document.addEventListener('DOMContentLoaded', function () {
+setTimeout(init, 1200);
+console.log(3);
+
+// });
 
 function init() {
   document.body.appendChild(styles);
+  console.log(4);
 
   changeMinor();
   initModal();
