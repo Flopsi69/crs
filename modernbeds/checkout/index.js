@@ -448,13 +448,14 @@ console.log(2);
 
 /*** HTML insert -end- ***/
 // document.addEventListener('DOMContentLoaded', function () {
-setTimeout(init, 1200);
+document.body.appendChild(styles);
+
+setTimeout(init, 800);
 console.log(3);
 
 // });
 
 function init() {
-  document.body.appendChild(styles);
   console.log(4);
 
   changeMinor();
