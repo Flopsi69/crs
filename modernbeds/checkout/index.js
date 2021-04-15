@@ -450,7 +450,7 @@ console.log(2);
 // document.addEventListener('DOMContentLoaded', function () {
 document.body.appendChild(styles);
 
-setTimeout(init, 800);
+setTimeout(init, 1200);
 console.log(3);
 
 // });
