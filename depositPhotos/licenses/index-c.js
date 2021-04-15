@@ -394,9 +394,8 @@ let stylesList = `
   .plans-component form button[type='submit']:hover {
     background: #1b5c9e;
   }
-
   .lav-size__abr a {
-    margin-left: 5px;
+    margin-left: 5px; 
   }
 `;
 

@@ -385,6 +385,7 @@ let stylesList = `
   .lav-size__abr a {
     margin-left: 5px;
   }
+  
 `;
 
 // connect to DOM
