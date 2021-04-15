@@ -438,6 +438,36 @@ let observer = new MutationObserver(mutations => {
 
       console.log(node);
 
+      if (node.classList.contains('price-table-upgrade')) {
+        node
+          .querySelectorAll('.price-table-upgrade__item')
+          .forEach(function (el, index) {
+            if (el.querySelector('.price-table-upgrade__ind-item')) {
+              let ind = index + 1;
+              if (
+                !document.querySelector(
+                  '.lav-sizes__list .lav-size:nth-child(' +
+                    ind +
+                    ') .price-table-upgrade__ind-item'
+                )
+              ) {
+                document
+                  .querySelector(
+                    '.lav-sizes__list .lav-size:nth-child(' +
+                      ind +
+                      ') .lav-size__abr'
+                  )
+                  .insertAdjacentElement(
+                    'beforeend',
+                    el
+                      .querySelector('.price-table-upgrade__ind-item')
+                      .cloneNode(true)
+                  );
+              }
+            }
+          });
+      }
+
       if (
         node.classList.contains('wrapper') &&
         node.querySelector('.file-view-upgrade')
