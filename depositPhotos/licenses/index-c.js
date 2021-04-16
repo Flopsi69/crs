@@ -46,6 +46,9 @@ var blockEvents = false;
 
 let stylesList = `
   @media screen and (min-width: 1441px) {
+    .file-thumb__image {
+      --step-large-image-max-height: 400px;
+    }
     .file-thumb__image-box_label .file-thumb__image_h {
       max-height: 430px!important;
     }
