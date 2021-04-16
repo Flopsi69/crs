@@ -19,7 +19,7 @@ try {
     function () {
       (hj.q = hj.q || []).push(arguments);
     };
-  hj('trigger', 'el_pdp');
+  hj('trigger', 'Experiment__Checkout_trust_blocks');
 } catch (e) {}
 
 function gaEvent(action, label = '', value = '') {
