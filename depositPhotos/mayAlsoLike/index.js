@@ -111,9 +111,12 @@ setTimeout(() => {
 function initAlso() {
   console.log('init');
   if (document.querySelectorAll('.file-container__link').length) {
+    console.log(document.querySelectorAll('.file-container__link'));
+
     document
       .querySelectorAll('.file-container__link')
       .forEach(function (photoEl) {
+        console.log(photoEl);
         photoEl.addEventListener('click', function () {
           console.log('Click element');
 
