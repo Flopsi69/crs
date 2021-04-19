@@ -112,28 +112,62 @@ function initAlso() {
   console.log('init');
   if (document.querySelectorAll('.file-container__link').length) {
     console.log(document.querySelectorAll('.file-container__link'));
+    document.addEventListener('click', function (e) {
+      console.log(e.target);
+      if (
+        e.target.classList.contains('file-container__link') ||
+        e.target.closest('.file-container__link').length
+      ) {
+        console.log('1');
 
-    document
-      .querySelectorAll('.file-container__link')
-      .forEach(function (photoEl) {
-        console.log(photoEl);
-        photoEl.addEventListener('click', function () {
-          console.log('Click element');
+        let element;
+        if (e.target.classList.contains('file-container__link')) {
+          console.log('21');
 
-          if (!this.classList.contains('lav-may_dirty')) {
-            if (document.querySelector('.lav-may_dirty')) {
-              document
-                .querySelector('.lav-may_dirty')
-                .classList.remove('lav-may_dirty');
-            }
-            this.classList.add('lav-may_dirty');
-            console.log('pop-up init');
-            getPopupInfo();
-          } else {
-            console.log('dirty');
+          element = e.target;
+        } else if (e.target.closest('.file-container__link').length) {
+          console.log('22');
+
+          element = e.target.closest('.file-container__link');
+        }
+
+        if (!e.target.classList.contains('lav-may_dirty')) {
+          console.log('3');
+
+          if (document.querySelector('.lav-may_dirty')) {
+            document
+              .querySelector('.lav-may_dirty')
+              .classList.remove('lav-may_dirty');
           }
-        });
-      });
+          e.target.classList.add('lav-may_dirty');
+          console.log('pop-up init');
+          getPopupInfo();
+        } else {
+          console.log('dirty');
+        }
+      }
+    });
+    // document
+    //   .querySelectorAll('.file-container__link')
+    //   .forEach(function (photoEl) {
+    //     console.log(photoEl);
+    //     photoEl.addEventListener('click', function () {
+    //       console.log('Click element');
+
+    //       if (!this.classList.contains('lav-may_dirty')) {
+    //         if (document.querySelector('.lav-may_dirty')) {
+    //           document
+    //             .querySelector('.lav-may_dirty')
+    //             .classList.remove('lav-may_dirty');
+    //         }
+    //         this.classList.add('lav-may_dirty');
+    //         console.log('pop-up init');
+    //         getPopupInfo();
+    //       } else {
+    //         console.log('dirty');
+    //       }
+    //     });
+    //   });
   } else {
     setTimeout(() => {
       initAlso();
