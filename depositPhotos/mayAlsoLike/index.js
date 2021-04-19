@@ -37,6 +37,24 @@
 
 // const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/mayAlsoLike';
 
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    // проверим новые узлы, есть ли что-то, что надо подсветить?
+
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+
+      console.log(node);
+      // проверить, не является ли вставленный элемент примером кода
+    }
+  }
+});
+
+let demoElem = document.body;
+
+observer.observe(demoElem, { childList: true, subtree: true });
+
 /*** STYLES insert start ***/
 
 let stylesListAlso = `
@@ -114,7 +132,7 @@ function initAlso() {
     document
       .querySelectorAll('.file-container__link')
       .forEach(function (photoEl) {
-        console.log(photoEl);
+        // console.log(photoEl);
         photoEl.addEventListener('click', function () {
           console.log('Click element');
 
@@ -221,10 +239,10 @@ function insertAfterRow(rows, blockEl) {
     .querySelectorAll('.search-box__content .flex-files>.file-container')
     .forEach(item => {
       rowWidth += item.offsetWidth + 10;
-      console.log(rowWidth, containerWidth);
+      // console.log(rowWidth, containerWidth);
       if (containerWidth == rowWidth) {
         rowNumber++;
-        console.log('RowNumber:', rowNumber);
+        // console.log('RowNumber:', rowNumber);
         rowWidth = 0;
         rows.forEach(row => {
           if (row == rowNumber) {
