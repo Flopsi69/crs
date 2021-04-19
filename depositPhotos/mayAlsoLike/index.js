@@ -45,7 +45,9 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
 
-      console.log(node);
+      if (node.classList.contains('wrapper')) {
+        initAlso();
+      }
       // проверить, не является ли вставленный элемент примером кода
     }
   }
@@ -122,9 +124,9 @@ document.body.appendChild(stylesAlso);
 // setTimeout(() => {
 //   document.querySelector('#root>.wrapper').style.opacity = 1;
 // }, 3500);
-setTimeout(() => {
-  initAlso();
-}, 2500);
+// setTimeout(() => {
+//   initAlso();
+// }, 2500);
 
 function initAlso() {
   console.log('init');
