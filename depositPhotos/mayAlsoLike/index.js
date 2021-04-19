@@ -111,6 +111,8 @@ function initAlso() {
     .querySelectorAll('.file-container__link')
     .forEach(function (photoEl) {
       photoEl.addEventListener('click', function () {
+        console.log('Click element');
+
         if (!this.classList.contains('lav-may_dirty')) {
           if (document.querySelector('.lav-may_dirty')) {
             document
@@ -143,6 +145,7 @@ function getPopupInfo() {
           '.file-view__related[data-tab="similar"] .file-container'
         )
         .forEach(function (relatedEl) {
+          console.log('realted', relatedEl);
           if (relatedEl.querySelector('a').classList.contains('_see-more')) {
             showMoreLink = relatedEl.querySelector('a').href;
           } else {
@@ -156,6 +159,8 @@ function getPopupInfo() {
 }
 
 function createAlsoBlock(items, link) {
+  console.log('Create block');
+
   if (document.querySelectorAll('.lav-may').length) {
     document.querySelectorAll('.lav-may').forEach(function (mayBlock) {
       mayBlock.remove();
@@ -191,6 +196,8 @@ function createAlsoBlock(items, link) {
       return false;
     }
   });
+
+  console.log(blockEl);
 
   insertAfterRow([8, 16], blockEl);
 }
