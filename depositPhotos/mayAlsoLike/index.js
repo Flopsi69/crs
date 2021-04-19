@@ -111,7 +111,6 @@ setTimeout(() => {
 function initAlso() {
   console.log('init');
   if (document.querySelectorAll('.file-container__link').length) {
-    console.log(document.querySelectorAll('.file-container__link'));
     document.body.addEventListener('click', function (e) {
       console.log(e.target);
       if (
