@@ -336,7 +336,6 @@ document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
 
-bannerInit();
 function bannerInit() {
   let bannerEl = `
       <div class='lav-tip modal-trigger'>
@@ -411,9 +410,6 @@ function triggerInit() {
     });
 }
 
-if (sessionStorage.getItem('lav-tooltip') != '1') {
-  tooltipInit();
-}
 function tooltipInit() {
   sessionStorage.setItem('lav-tooltip', 1);
 

@@ -336,7 +336,6 @@ document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
 
-bannerInit();
 function bannerInit() {
   let bannerEl = `
       <div class='lav-tip modal-trigger'>
@@ -356,7 +355,6 @@ function bannerInit() {
     .insertAdjacentHTML('afterend', bannerEl);
 }
 
-triggerInit();
 function triggerInit() {
   let triggerIncrement = 0;
   let triggerEl = `

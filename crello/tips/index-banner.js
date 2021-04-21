@@ -356,7 +356,6 @@ function bannerInit() {
     .insertAdjacentHTML('afterend', bannerEl);
 }
 
-triggerInit();
 function triggerInit() {
   let triggerIncrement = 0;
   let triggerEl = `
@@ -411,9 +410,6 @@ function triggerInit() {
     });
 }
 
-if (sessionStorage.getItem('lav-tooltip') != '1') {
-  tooltipInit();
-}
 function tooltipInit() {
   sessionStorage.setItem('lav-tooltip', 1);
 
