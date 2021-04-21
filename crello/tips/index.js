@@ -49,10 +49,22 @@ let stylesList = `
   .lav-tip {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: #2053C9;
     border-radius: 8px;
     padding: 8px 15px;
+    padding-right: 3px;
     color: #fff;
+    margin-bottom: 12px;
+    margin-right: 8px;
+    transition: .4s;
+    cursor: pointer;
+  }
+  .lav-tip:hover {
+    background-color: rgb(15, 60, 180);
+  }
+  .lav-tip__info {
+    flex-grow: 1;
   }
   .lav-tip__label {
     background: #F5EEE7;
@@ -61,18 +73,86 @@ let stylesList = `
     font-size: 12px;
     line-height: 14px;
     color: #2053C9;
-    padding: 1px 8px;
+    padding: 2px 8px;
+    margin-right: 9px;
+    font-family: ProximaBold;
   }
   .lav-tip__title {
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
     color: #FFFFFF;
+    font-family: ProximaSemiBold;
+    white-space: nowrap;
+    margin-bottom: 1px;
+  }
+  .lav-tip__play {
+    line-height: 0;
   }
   .lav-tip__caption {
     font-size: 10px;
     line-height: 12px;
     color: #FFFFFF;
+  }
+
+  .modal {
+    position: fixed;
+    display: flex;
+    padding: 15px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    outline: 0;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: rgba(0,0,0, .6);
+    transition: 0.35s;
+    pointer-events: none;
+    opacity: 0;
+  }
+  
+  .modal_active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .modal__body {
+    position: relative;
+    margin: auto;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 18px 35px;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 0;
+    outline: none;
+    line-height: 0;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+
+  .modal__title {
+    margin-bottom: 15px;
+    font-ewight: bold;
+    font-family: ProximaBold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+  }
+  
+  .modal__close-icon img {
+    width: 16px;
+    height: 16px;
   }
 `;
 
@@ -84,14 +164,14 @@ document.body.appendChild(stylesEl);
 /* STYLES insert end */
 function bannerInit() {
   let bannerEl = `
-      <div class='lav-tip'>
+      <div class='lav-tip modal-trigger'>
         <div class='lav-tip__label'>Tip</div>
-        <div class='lav-tip__info>
-          <div class='lav-tip__title>How to remove backgrounds from images</div>
-          <div class='lav-tip__caption>1:22 min view</div>
+        <div class='lav-tip__info'>
+          <div class='lav-tip__title'>How to remove backgrounds from images</div>
+          <div class='lav-tip__caption'>1:22 min view</div>
         </div>
-        <div class='lav-tip__play>
-          <img src='${REPO_DIR}/icon-play.svg'
+        <div class='lav-tip__play'>
+          <img src='${REPO_DIR}/icon-play.svg'>
         </div>
       </div>
   `;
@@ -101,3 +181,51 @@ function bannerInit() {
     .insertAdjacentHTML('afterend', bannerEl);
 }
 bannerInit();
+initModal();
+function initModal() {
+  let modal = `
+    <div class="modal">
+      <div class="modal__body">
+        <!-- Close modal -->
+        <button class="modal__close">
+          <img src='${REPO_DIR}/icon-close.svg'>
+        </button>
+
+        <div class='modal__title'>Learn how to remove backgrounds from images</div>
+
+        <div class='modal__video'>
+          <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+  `;
+  document.querySelector('body').insertAdjacentHTML('beforeend', modal);
+
+  let modalEl = document.querySelector('.modal');
+
+  document
+    .querySelector('.modal__close')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      modalClose();
+    });
+
+  modalEl.addEventListener('click', function (e) {
+    if (e.target.classList.contains('modal_active')) {
+      modalClose();
+    }
+  });
+
+  function modalClose() {
+    modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__body').style.display = 'none';
+  }
+
+  document.querySelectorAll('.modal-trigger').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      modalEl.classList.add('modal_active');
+    });
+  });
+}
