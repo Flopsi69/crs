@@ -46,11 +46,72 @@
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/tips';
 
 let stylesList = `
+  .lav-tooltip {
+    color: #FFFFFF;
+    position: relative;
+    width: 366px;
+    padding: 24px;
+    background: linear-gradient(259.7deg,#ff5e64,#9e4cc0);
+    border-radius: 12px;
+    position: fixed;
+    z-index: 999!important;
+    left: 72px;
+    top: 555px;
+  }
+  .lav-tooltip__head {
+    display: flex;
+    align-items: flex-start;
+  }
+  .lav-tooltip__close {
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-tooltip__close svg {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+  }
+  .lav-tooltip__close:hover {
+    opacity: 0.6;
+  }
+  .lav-tooltip__title {
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.025em;
+    flex-grow: 1;
+  }
+  .lav-tooltip__time {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 3px 5px;
+    background: rgba(245, 238, 231, 0.2);
+    border-radius: 5px;
+    margin: 14px 0;
+  }
+  .lav-tooltip__placeholder img {
+    width: 100%;
+  }
+  .lav-tooltip__arrow {
+    fill: #a24dbd;
+    bottom: 31px;
+    left: -17px;
+    transform: rotate(-90deg);
+  }
   .lav-trigger {
     background: #2053C9;
     border-radius: 8px;
     padding: 15px;
     width: 200px;
+    position: fixed;
+    right: 15px;
+    bottom: 65px;
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .lav-trigger_open {
+    opacity: 1;
+    pointer-events: auto;
   }
   .lav-trigger__head {
     display: flex;
@@ -69,12 +130,36 @@ let stylesList = `
     margin-right: 9px;
     font-family: ProximaBold;
   }
-  .lav-trigger__placehoder {
-    
+  .lav-trigger__placeholder {
+    margin-bottom: 14px;
+    transition: 0.35s;
+    cursor: pointer;
   }
-  .lav-trigger
-  .lav-trigger
-  .lav-trigger
+  .lav-trigger__placeholder:hover {
+    opacity: .8;
+  }
+  .lav-trigger__placeholder img {
+    width: 100%;
+  }
+  .lav-trigger__caption {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFFFFF;
+    font-family: ProximaSemiBold;
+  }
+  .lav-trigger__close {
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-trigger__close svg {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+  }
+  .lav-trigger__close:hover {
+    opacity: 0.6;
+  }
   .lav-tip {
     display: flex;
     justify-content: space-between;
@@ -195,6 +280,8 @@ stylesEl.innerHTML = stylesList;
 document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
+
+bannerInit();
 function bannerInit() {
   let bannerEl = `
       <div class='lav-tip modal-trigger'>
@@ -213,8 +300,8 @@ function bannerInit() {
     .querySelector('#sidebar .typography-display-s')
     .insertAdjacentHTML('afterend', bannerEl);
 }
-bannerInit();
 
+triggerInit();
 function triggerInit() {
   let triggerIncrement = 0;
   let triggerEl = `
@@ -222,34 +309,79 @@ function triggerInit() {
       <div class='lav-trigger__head'>
         <div class='lav-trigger__label'>Tip</div>
         <div class='lav-trigger__close'>
-          <a width="9" height="9" viewBox="0 0 9 9" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L17 17" stroke="white"/>
             <path d="M1 17L17 1" stroke="white"/>
-          </a>
+          </svg>
         </div>
       </div>
 
-      <div class='lav-trigger__placeholder'>
+      <div class='lav-trigger__placeholder modal-trigger'>
         <img src='${REPO_DIR}/trigger-placeholder.png'>
       </div>
 
       <div class='lav-trigger__caption'>Learn how to animate your text</div>
     </div>
   `;
+
+  document
+    .querySelector('.konvajs-content')
+    .insertAdjacentHTML('beforeend', triggerEl);
+
   document
     .querySelectorAll("#sidebar button[data-categ='sidebar']")
     .forEach(function (btn) {
       btn.addEventListener('click', function () {
-        btn++;
-        console.log('clicked btn:', btn);
-        if (btn > 3) {
-          activateBanner();
+        triggerIncrement++;
+        console.log('clicked btn:', triggerIncrement);
+        if (
+          triggerIncrement > 3 &&
+          !document.querySelector('.lav-trigger_open')
+        ) {
+          triggerIncrement = 0;
+          document
+            .querySelector('.lav-trigger')
+            .classList.add('lav-trigger_open');
         }
       });
     });
 
-  function activateBanner() {}
+  document
+    .querySelector('.lav-trigger__close')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.lav-trigger')
+        .classList.remove('lav-trigger_open');
+    });
 }
+
+tooltipInit();
+function tooltipInit() {
+  let tooltipEl = `
+    <div class='lav-tooltip'>
+      <div class='lav-tooltip__head'>
+        <div class='lav-tooltip__title'>Learn how to create your perfect designs with Crello</div>
+        <div class='lav-tooltip__close'>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L17 17" stroke="white"/>
+            <path d="M1 17L17 1" stroke="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class='lav-tooltip__time'>1:22 min view</div>
+      <div class='lav-tooltip__placeholder'>
+        <img src='${REPO_DIR}/tooltip-placeholder.png' />
+      </div>
+      <svg class="lav-tooltip__arrow" viewBox="0 0 24 10" width="24" height="10"><path d="M8.46445 1.53554C10.4171 -0.417086 13.5829 -0.417088 15.5355 1.53553L24 10H-1.52588e-05L8.46445 1.53554Z"></path></svg>
+    </div>
+  `;
+
+  document
+    .querySelector('#app-view')
+    .insertAdjacentHTML('beforeend', tooltipEl);
+}
+
 initModal();
 function initModal() {
   let modal = `
