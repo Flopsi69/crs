@@ -278,10 +278,9 @@ function insertAfterRow(rows, blockEl) {
     });
   });
 
-  if (
-    document.querySelectorAll('.lav-may').length < 3 &&
-    (rowNumber > 19 || rowNumber < 14)
-  ) {
+  // &&(rowNumber > 19 || rowNumber < 14)
+
+  if (document.querySelectorAll('.lav-may').length < 3) {
     insertAfterRow([rowNumber - 1], blockEl);
   }
 }
