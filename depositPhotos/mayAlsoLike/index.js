@@ -253,6 +253,13 @@ function insertAfterRow(rows, blockEl) {
           return false;
         });
       }
+
+      if (
+        document.querySelectorAll('.lav-may').length > 2 &&
+        (rowNumber > 19 || rowNumber < 14)
+      ) {
+        insertAfterRow([rowNumber - 1], blockEl);
+      }
     });
 
   document.querySelectorAll('.lav-may__item').forEach(element => {
