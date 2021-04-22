@@ -104,10 +104,16 @@ let stylesListAlso = `
     font-weight: bold;
     font-size: 10px;
     line-height: 12px;
-    color: #5499F5;
+    color: #4792de;
     padding: 6px 45px;
-    border: 2px solid #5499F5;
+    border: 1px solid #4792de;
     border-radius: 15px;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    text-decoration: none;
+  }
+  .lav-may__link:hover {
+    color: #ffffff;
+    background-color: #4792de;
   }
 `;
 
@@ -281,7 +287,10 @@ function insertAfterRow(rows, blockEl) {
 
   // &&(rowNumber > 19 || rowNumber < 14)
 
-  if (document.querySelectorAll('.lav-may').length < 3) {
-    insertAfterRow([rowNumber - 1], blockEl);
+  if (
+    document.querySelectorAll('.lav-may').length < 3 &&
+    (rowNumber > 17 || rowNumber < 15)
+  ) {
+    insertAfterRow([rowNumber], blockEl);
   }
 }
