@@ -410,39 +410,283 @@ if (!document.querySelector('.auth-box')) {
 }
 
 /*** HTML insert start ***/
-let licensesEl = `
-  <div class='lav-licenses'>
-    <div class='lav-license lav-license_standard lav-license_active'>
-      <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+let licensesEl;
+let lang = document.querySelector('html').lang;
+
+if (lang == 'ru') {
+  licensesEl = `
+      <div class='lav-licenses'>
+        <div class='lav-license lav-license_standard lav-license_active'>
+          <div class='lav-license__label'>
+            <img src='${REPO_DIR}/label-sl.svg'>
+          </div>
+          <div class='lav-license__info'>
+            <div class='lav-license__title'>Стандартная лицензия</div>
+            <div class='lav-license__title-price'>from $2,39 / per image</div>
+            <div class='lav-license__list'>
+              <div class='lav-license__item lav-license__item_include'>неограниченное использование  в сети</div>
+              <div class='lav-license__item lav-license__item_exclude'>Ограниченое использование для перепродажи, печати и рекламы </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-license lav-license_extended'>
+          <div class='lav-license__label'>
+            <img src='${REPO_DIR}/label-el.svg'>
+          </div>
+          <div class='lav-license__info'>
+            <div class='lav-license__title'>Расширенная лицензия</div>
+            <div class='lav-license__title-price'>from $51 / per image</div>
+            <div class='lav-license__list'>
+              <div class='lav-license__item lav-license__item_include'>Неограниченное использование  в сети</div>
+              <div class='lav-license__item lav-license__item_include'>неограниченое использование для перепродажи, печати и рекламы </div>
+
+            </div>
+            <div class='lav-license__modal-trigger'>Что такое расширенная лицензия?</div>
+          </div>
+        </div>
       </div>
-      <div class='lav-license__info'>
-        <div class='lav-license__title'>Standard license</div>
-        <div class='lav-license__title-price'>from $2,39 / per image</div>
-        <div class='lav-license__list'>
-          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
-          <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
+  `;
+} else if (lang == 'es-es') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENCIA ESTÁNDAR</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado de la web</div>
+            <div class='lav-license__item lav-license__item_exclude'>Uso limitado para reventa, impresión, publicidad.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENCIA AMPLIADA</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado de la web</div>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado para reventa, impresión, publicidad.</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>¿Qué es una licencia ampliada?</div>
         </div>
       </div>
     </div>
-
-    <div class='lav-license lav-license_extended'>
-      <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
-      </div>
-      <div class='lav-license__info'>
-        <div class='lav-license__title'>Extended license</div>
-        <div class='lav-license__title-price'>from $51 / per image</div>
-        <div class='lav-license__list'>
-          <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
-          <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
-
+  `;
+} else if (lang == 'pt-pt') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
         </div>
-        <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENÇA PADRÃO</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado da web</div>
+            <div class='lav-license__item lav-license__item_exclude'>Uso limitado para revenda, impressão, publicidade</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENÇA ESTENDIDA</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado da web</div>
+            <div class='lav-license__item lav-license__item_include'>Uso ilimitado para revenda, impressão, publicidade</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>O que é uma licença estendida?</div>
+        </div>
       </div>
     </div>
-  </div>
-`;
+  `;
+} else if (lang == 'it') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LA LICENZA STANDARD</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Utilizzo web illimitato</div>
+            <div class='lav-license__item lav-license__item_exclude'>Utilizzo limitato per rivendita, stampa, pubblicità</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LA LICENZA ESTESA</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Utilizzo web illimitato</div>
+            <div class='lav-license__item lav-license__item_include'>Utilizzo illimitato per rivendita, stampa, pubblicità</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>Cos'è una licenza estesa?</div>
+        </div>
+      </div>
+    </div>
+  `;
+} else if (lang == 'pl') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENCJA STANDARDOWA</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Nieograniczone korzystanie z sieci</div>
+            <div class='lav-license__item lav-license__item_exclude'>Ograniczone wykorzystanie do odsprzedaży, druku, reklamy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>LICENCJA ROZSZERZONA</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Nieograniczone korzystanie z sieci</div>
+            <div class='lav-license__item lav-license__item_include'>Nieograniczone wykorzystanie do odsprzedaży, druku, reklamy</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>Co to jest licencja rozszerzona?</div>
+        </div>
+      </div>
+    </div>
+  `;
+} else if (lang == 'nl') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>DE STANDAARD LICENTIE</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Onbeperkt internetgebruik</div>
+            <div class='lav-license__item lav-license__item_exclude'>Beperkt gebruik voor wederverkoop, print, reclame</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>DE UITGEBREIDE LICENTIE</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Onbeperkt internetgebruik</div>
+            <div class='lav-license__item lav-license__item_include'>Onbeperkt gebruik voor wederverkoop, print, reclame</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>Wat is een uitgebreide licentie?</div>
+        </div>
+      </div>
+    </div>
+  `;
+} else if (lang == 'de') {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>DIE STANDARDLIZENZ</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Unbegrenzte Webnutzung</div>
+            <div class='lav-license__item lav-license__item_exclude'>Eingeschränkte Nutzung für Weiterverkauf, Druck, Werbung</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>DIE ERWEITERTE LIZENZ</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Unbegrenzte Webnutzung</div>
+            <div class='lav-license__item lav-license__item_include'>Unbegrenzte Nutzung für Weiterverkauf, Druck, Werbung</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>Was ist eine erweiterte Lizenz?</div>
+        </div>
+      </div>
+    </div>
+  `;
+} else {
+  licensesEl = `
+    <div class='lav-licenses'>
+      <div class='lav-license lav-license_standard lav-license_active'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-sl.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>Standard license</div>
+          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
+            <div class='lav-license__item lav-license__item_exclude'>Limited usage for resale, print, advertising</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-license lav-license_extended'>
+        <div class='lav-license__label'>
+          <img src='${REPO_DIR}/label-el.svg'>
+        </div>
+        <div class='lav-license__info'>
+          <div class='lav-license__title'>Extended license</div>
+          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__list'>
+            <div class='lav-license__item lav-license__item_include'>Unlimited web usage</div>
+            <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
+
+          </div>
+          <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 /*** HTML insert -end- ***/
 
 let observer = new MutationObserver(mutations => {
@@ -547,6 +791,7 @@ setTimeout(() => {
   document.querySelector('#root>.wrapper').style.opacity = 1;
 }, 3500);
 
+init();
 function init() {
   localStorage.setItem('lavLicenseType', 'none');
   createModal();
@@ -741,77 +986,585 @@ function createSizeItem(sizeEl) {
 }
 
 function createModal() {
-  let modalHTML = `
-  <div class='go-modal__wrap'>
-    <div class="go-modal">
-      <div class='go-modal__close'>
-        <img src='${REPO_DIR}/close.svg'>
-      </div>
-      <div class='go-modal__body'>
-        <div class='go-modal__block'>
-          <div class='go-modal__title'>Standard license</div>
-          <div class='go-modal__list'>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of website visitors</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+  let modalHTML;
+
+  if (lang == 'ru') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>Стандартная лицензия</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Посетители веб-сайта</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Количество копий или отпечатков продукта</div>
+                  <div class='go-modal__status go-modal__status_note'>До 500 000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Количество копий или показов продукта для электронного использования</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Максимальный размер (разрешение) не измененного Файла для электронного использования</div>
+                  <div class='go-modal__status go-modal__status_include'>Разрешено</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Создание продукта для перепродажи или свободного распространения, в котором Файл играет второстепенную роль для продукта	</div>
+                  <div class='go-modal__status go-modal__status_include'>Разрешено</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Создание продукта для перепродажи или свободного распространения, в котором Файл играет главную роль для продукта и придает ему ценность	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Запрещено</div>
+                </div>
+              </div>
             </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of copies or impressions</div>
-              <div class='go-modal__status go-modal__status_note'>Up to 500,000</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Allowed</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
-              <div class='go-modal__status go-modal__status_include'>Allowed</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
-              <div class='go-modal__status go-modal__status_exclude'>Prohibited</div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>Расширенная лицензия/div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Посетители веб-сайта</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Количество копий или отпечатков продукта</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Количество копий или показов продукта для электронного использования</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Максимальный размер (разрешение) не измененного Файла для электронного использования</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Создание продукта для перепродажи или свободного распространения, в котором Файл играет второстепенную роль для продукта	</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Создание продукта для перепродажи или свободного распространения, в котором Файл играет главную роль для продукта и придает ему ценность	</div>
+                  <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Вы можете узнать больше о лицензиях <a href='https://ru.depositphotos.com/license.html'>здесь</a></div>
             </div>
           </div>
         </div>
-        
-        <div class='go-modal__block'>
-          <div class='go-modal__title'>Extended license</div>
-          <div class='go-modal__list'>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of website visitors</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+      </div>
+    `;
+  } else if (lang == 'es-es') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENCIA ESTÁNDAR</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de visitantes al sitio web</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de copias o impresiones/div>
+                  <div class='go-modal__status go-modal__status_note'>Hasta 500.000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de copias o publicaciones para uso electrónico</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Máximo tamaño (resolución) permitido para el archivo sin modificar en uso electrónico</div>
+                  <div class='go-modal__status go-modal__status_include'>Permitido</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creación de todo tipo de artículos (excepto artículos para reventa o para distribución gratuita, donde el Archivo juegue un papel principal y añada valor al mismo)	</div>
+                  <div class='go-modal__status go-modal__status_include'>Permitido</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creación de artículos para reventa o para distribución gratuita donde el Archivo juegue un papel secundario en el artículo	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Prohibido</div>
+                </div>
+              </div>
             </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of copies or impressions</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
-            </div>
-            <div class='go-modal__item'>
-              <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
-              <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENCIA AMPLIADA</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de visitantes al sitio web</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de copias o impresiones/div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Cantidad de copias o publicaciones para uso electrónico</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Máximo tamaño (resolución) permitido para el archivo sin modificar en uso electrónico</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Puede leer más sobre las licencias <a href='https://sp.depositphotos.com/license.html'>aquí</a></div>
             </div>
           </div>
-          <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html'>here</a></div>
         </div>
       </div>
-    </div>
-  </div>
-  `;
+    `;
+  } else if (lang == 'pt-pt') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENÇA PADRÃO</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>A quantidade de visitantes no site</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>A quantidade de cópias ou impressões</div>
+                  <div class='go-modal__status go-modal__status_note'>Até 500.000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>TA quantidade de cópias ou exibições para uso eletrônico</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>O tamanho máximo permitido (resolução) do Arquivo não modificado para uso eletrônico</div>
+                  <div class='go-modal__status go-modal__status_include'>Permitido</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Criação de Itens para Revenda ou Itens para Distribuição Gratuita, caso o Arquivo desempenhe um papel secundário no item	</div>
+                  <div class='go-modal__status go-modal__status_include'>Permitido</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Criação de Itens para Revenda ou Itens para Distribuição Gratuita, caso o Arquivo desempenhe um papel principal no item e acrescente valor ao mesmo	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Proibido</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENÇA ESTENDIDA</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>A quantidade de visitantes no site</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or impressions</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Você pode ler mais sobre licenças <a href='https://pt.depositphotos.com/license.html'>aqui</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (lang == 'it') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LA LICENZA STANDARD</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Il numero di visitatori del sito web</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Il numero di copie o impressioni</div>
+                  <div class='go-modal__status go-modal__status_note'>Fino a 500,000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Numero di copie o visualizzazioni per uso elettronico</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Dimensione massima consentita (risoluzione) del File non modificato per uso elettronico</div>
+                  <div class='go-modal__status go-modal__status_include'>Permesso</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creazione di elementi per la Rivendita o elementi per la Distribuzione Gratuita dove il File ricopra un ruolo minore nell’elemento	</div>
+                  <div class='go-modal__status go-modal__status_include'>Permesso</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creazione di elementi per la Rivendita o elementi per la Distribuzione Gratuita dove il File ricopra un ruolo principale nell’elemento	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Proibito</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LA LICENZA ESTESA</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Il numero di visitatori del sito web</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Il numero di copie o impressioni</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Numero di copie o visualizzazioni per uso elettronico</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Dimensione massima consentita (risoluzione) del File non modificato per uso elettronico</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creazione di elementi per la Rivendita o elementi per la Distribuzione Gratuita dove il File ricopra un ruolo minore nell’elemento	</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creazione di elementi per la Rivendita o elementi per la Distribuzione Gratuita dove il File ricopra un ruolo principale nell’elemento	</div>
+                  <div class='go-modal__status go-modal__status_include'>Illimitato</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Puoi leggere di più sulle licenze <a href='https://it.depositphotos.com/license.html'>qui</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (lang == 'pl') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENCJA STANDARDOWA</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość gości na stronie internetowej</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość kopii lub odbitek</div>
+                  <div class='go-modal__status go-modal__status_note'>Do 500 000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość kopii lub wyświetleń w użyciu elektronicznym</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Maksymalny dozwolony rozmiar (rozdzielczość) niezmodyfikowanego Pliku w użyciu elektronicznym</div>
+                  <div class='go-modal__status go-modal__status_include'>Dozwolone</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Tworzenie rzeczy do odsprzedaży lub rzeczy do darmowej dystrybucji gdzie Plik odgrywa podrzędną w rzeczy	</div>
+                  <div class='go-modal__status go-modal__status_include'>Dozwolone</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Tworzenie rzeczy do odsprzedaży lub rzeczy do darmowej dystrybucji gdzie plik odgrywa główną rolę w rzeczy i dodaje mu wartości.	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Zabronione</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>LICENCJA ROZSZERZONA</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość gości na stronie internetowej</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość kopii lub odbitek</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Ilość kopii lub wyświetleń w użyciu elektronicznym</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Maksymalny dozwolony rozmiar (rozdzielczość) niezmodyfikowanego Pliku w użyciu elektronicznym</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Tworzenie rzeczy do odsprzedaży lub rzeczy do darmowej dystrybucji gdzie Plik odgrywa podrzędną w rzeczy	</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Tworzenie rzeczy do odsprzedaży lub rzeczy do darmowej dystrybucji gdzie plik odgrywa główną rolę w rzeczy i dodaje mu wartości.	</div>
+                  <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Więcej o licencjach przeczytasz <a href='https://pl.depositphotos.com/license.html'>tutaj</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (lang == 'nl') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>DE STANDAARD LICENTIE</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal bezoekers van de website</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal exemplaren of vertoningen</div>
+                  <div class='go-modal__status go-modal__status_note'>Maximaal 500.000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal exemplaren of weergaven voor elektronisch gebruik</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>De maximaal toegestane grootte (resolutie) van het ongewijzigde</div>
+                  <div class='go-modal__status go-modal__status_include'>Toegestaan</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het maken van Producten voor de Verkoop of Producten voor Gratis Verspreiding, waarbij het Bestand een ondergeschikte rol speelt voor het product	</div>
+                  <div class='go-modal__status go-modal__status_include'>Toegestaan</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het maken van Producten voor de Verkoop of Producten voor Gratis Verspreiding, waarbij het Bestand een belangrijke rol speelt voor het product en er een toegevoegde waarde aan geeft	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Niet toegestaan</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>DE UITGEBREIDE LICENTIE</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal bezoekers van de website</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal exemplaren of vertoningen</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het aantal exemplaren of weergaven voor elektronisch gebruik</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>De maximaal toegestane grootte (resolutie) van het ongewijzigde</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het maken van Producten voor de Verkoop of Producten voor Gratis Verspreiding, waarbij het Bestand een ondergeschikte rol speelt voor het product	</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Het maken van Producten voor de Verkoop of Producten voor Gratis Verspreiding, waarbij het Bestand een belangrijke rol speelt voor het product en er een toegevoegde waarde aan geeft	</div>
+                  <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>U kunt hier meer lezen over <a href='https://depositphotos.com/nl/license.html'>licenties</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (lang == 'de') {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>DIE STANDARDLIZENZ</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Website-Besuchern</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Kopien oder Drucken</div>
+                  <div class='go-modal__status go-modal__status_note'>Bis 500.000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Kopien oder Displays für die elektronische Verwendung</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die maximal zulässige Größe (Auflösung) der nicht-modifizierten Datei für die elektronische Verwendung</div>
+                  <div class='go-modal__status go-modal__status_include'>zulässig</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Erstellung von Artikeln für den Wiederverkauf oder von Artikeln zur kostenlosen Verteilung, wobei die Datei eine untergeordnete Rolle in dem Artikel spielt	</div>
+                  <div class='go-modal__status go-modal__status_include'>zulässig</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Erstellung von Artikeln für den Wiederverkauf oder von Artikeln zur kostenlosen Verteilung, wobei die Datei eine wesentliche Rolle in dem Artikel spielt und den Wert des Artikels erhöht	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>unzulässig</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>DIE ERWEITERTE LIZENZ</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Website-Besuchern</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Kopien oder Drucken</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die Anzahl von Kopien oder Displays für die elektronische Verwendung</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Die maximal zulässige Größe (Auflösung) der nicht-modifizierten Datei für die elektronische Verwendung</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Erstellung von Artikeln für den Wiederverkauf oder von Artikeln zur kostenlosen Verteilung, wobei die Datei eine untergeordnete Rolle in dem Artikel spielt	</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Erstellung von Artikeln für den Wiederverkauf oder von Artikeln zur kostenlosen Verteilung, wobei die Datei eine wesentliche Rolle in dem Artikel spielt und den Wert des Artikels erhöht	</div>
+                  <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>Weitere Informationen zu Lizenzen finden Sie <a href='https://de.depositphotos.com/license.html'>hier</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    modalHTML = `
+      <div class='go-modal__wrap'>
+        <div class="go-modal">
+          <div class='go-modal__close'>
+            <img src='${REPO_DIR}/close.svg'>
+          </div>
+          <div class='go-modal__body'>
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>Standard license</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of website visitors</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or impressions</div>
+                  <div class='go-modal__status go-modal__status_note'>Up to 500,000</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Allowed</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__status go-modal__status_include'>Allowed</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__status go-modal__status_exclude'>Prohibited</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class='go-modal__block'>
+              <div class='go-modal__title'>Extended license</div>
+              <div class='go-modal__list'>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of website visitors</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or impressions</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The quantity of copies or displays for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>The maximum allowed size (resolution) of the unmodified File for electronic use</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+                <div class='go-modal__item'>
+                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__status go-modal__status_include'>Unlimited</div>
+                </div>
+              </div>
+              <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html'>here</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
 
