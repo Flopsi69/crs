@@ -272,7 +272,11 @@ function insertAfterRow(rows, blockEl) {
         .view-file-box_fixed-size {
           opacity: 0;
         }
+        html {
+          overflow: hidden;
+        }
       `;
+
       document.body.appendChild(tempStylesPhoto);
       var drityInterval = setInterval(() => {
         if (
