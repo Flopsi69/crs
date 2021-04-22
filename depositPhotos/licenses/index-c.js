@@ -422,7 +422,7 @@ if (lang == 'ru') {
           </div>
           <div class='lav-license__info'>
             <div class='lav-license__title'>Стандартная лицензия</div>
-            <div class='lav-license__title-price'>from $2,39 / per image</div>
+            <div class='lav-license__title-price'>от $2,39 / за изображение</div>
             <div class='lav-license__list'>
               <div class='lav-license__item lav-license__item_include'>неограниченное использование  в сети</div>
               <div class='lav-license__item lav-license__item_exclude'>Ограниченое использование для перепродажи, печати и рекламы </div>
@@ -436,7 +436,7 @@ if (lang == 'ru') {
           </div>
           <div class='lav-license__info'>
             <div class='lav-license__title'>Расширенная лицензия</div>
-            <div class='lav-license__title-price'>from $51 / per image</div>
+            <div class='lav-license__title-price'>от $51 / за изображение</div>
             <div class='lav-license__list'>
               <div class='lav-license__item lav-license__item_include'>Неограниченное использование  в сети</div>
               <div class='lav-license__item lav-license__item_include'>неограниченое использование для перепродажи, печати и рекламы </div>
@@ -456,7 +456,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENCIA ESTÁNDAR</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / ad immagine</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado de la web</div>
             <div class='lav-license__item lav-license__item_exclude'>Uso limitado para reventa, impresión, publicidad.</div>
@@ -470,7 +470,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENCIA AMPLIADA</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / ad immagine</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado de la web</div>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado para reventa, impresión, publicidad.</div>
@@ -490,7 +490,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENÇA PADRÃO</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / por imagem</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado da web</div>
             <div class='lav-license__item lav-license__item_exclude'>Uso limitado para revenda, impressão, publicidade</div>
@@ -504,7 +504,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENÇA ESTENDIDA</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / por imagem</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado da web</div>
             <div class='lav-license__item lav-license__item_include'>Uso ilimitado para revenda, impressão, publicidade</div>
@@ -524,7 +524,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LA LICENZA STANDARD</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / ad immagine</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Utilizzo web illimitato</div>
             <div class='lav-license__item lav-license__item_exclude'>Utilizzo limitato per rivendita, stampa, pubblicità</div>
@@ -538,7 +538,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LA LICENZA ESTESA</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / ad immagine</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Utilizzo web illimitato</div>
             <div class='lav-license__item lav-license__item_include'>Utilizzo illimitato per rivendita, stampa, pubblicità</div>
@@ -558,7 +558,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENCJA STANDARDOWA</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / za obraz</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Nieograniczone korzystanie z sieci</div>
             <div class='lav-license__item lav-license__item_exclude'>Ograniczone wykorzystanie do odsprzedaży, druku, reklamy</div>
@@ -572,7 +572,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>LICENCJA ROZSZERZONA</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / za obraz</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Nieograniczone korzystanie z sieci</div>
             <div class='lav-license__item lav-license__item_include'>Nieograniczone wykorzystanie do odsprzedaży, druku, reklamy</div>
@@ -592,7 +592,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>DE STANDAARD LICENTIE</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / per afbeelding</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Onbeperkt internetgebruik</div>
             <div class='lav-license__item lav-license__item_exclude'>Beperkt gebruik voor wederverkoop, print, reclame</div>
@@ -606,7 +606,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>DE UITGEBREIDE LICENTIE</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / per afbeelding</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Onbeperkt internetgebruik</div>
             <div class='lav-license__item lav-license__item_include'>Onbeperkt gebruik voor wederverkoop, print, reclame</div>
@@ -626,7 +626,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>DIE STANDARDLIZENZ</div>
-          <div class='lav-license__title-price'>from $2,39 / per image</div>
+          <div class='lav-license__title-price'>$2,39 / pro Bild</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Unbegrenzte Webnutzung</div>
             <div class='lav-license__item lav-license__item_exclude'>Eingeschränkte Nutzung für Weiterverkauf, Druck, Werbung</div>
@@ -640,7 +640,7 @@ if (lang == 'ru') {
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>DIE ERWEITERTE LIZENZ</div>
-          <div class='lav-license__title-price'>from $51 / per image</div>
+          <div class='lav-license__title-price'>$51 / pro Bild</div>
           <div class='lav-license__list'>
             <div class='lav-license__item lav-license__item_include'>Unbegrenzte Webnutzung</div>
             <div class='lav-license__item lav-license__item_include'>Unbegrenzte Nutzung für Weiterverkauf, Druck, Werbung</div>
