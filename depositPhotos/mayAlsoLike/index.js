@@ -255,7 +255,7 @@ function insertAfterRow(rows, blockEl) {
       }
 
       if (
-        document.querySelectorAll('.lav-may').length > 2 &&
+        document.querySelectorAll('.lav-may').length < 3 &&
         (rowNumber > 19 || rowNumber < 14)
       ) {
         insertAfterRow([rowNumber - 1], blockEl);
