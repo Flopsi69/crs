@@ -241,10 +241,10 @@ function insertAfterRow(rows, blockEl) {
     .querySelectorAll('.search-box__content .flex-files>.file-container')
     .forEach(item => {
       rowWidth += item.offsetWidth + 10;
-      // console.log(rowWidth, containerWidth);
+      console.log(rowWidth, containerWidth);
       if (containerWidth == rowWidth) {
         rowNumber++;
-        // console.log('RowNumber:', rowNumber);
+        console.log('RowNumber:', rowNumber);
         rowWidth = 0;
         rows.forEach(row => {
           if (row == rowNumber) {
