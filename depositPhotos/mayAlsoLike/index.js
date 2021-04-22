@@ -114,6 +114,7 @@ let stylesListAlso = `
   .lav-may__link:hover {
     color: #ffffff;
     background-color: #4792de;
+    text-decoration: none;
   }
 `;
 
@@ -266,6 +267,13 @@ function insertAfterRow(rows, blockEl) {
     element.addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector('.lav-may_dirty').click();
+      let tempStylesPhoto = document.createElement('style');
+      tempStylesPhoto.innerHTML = `
+        .view-file-box_fixed-size {
+          opacity: 0;
+        }
+      `;
+      document.body.appendChild(tempStylesPhoto);
       var drityInterval = setInterval(() => {
         if (
           document.querySelectorAll(
@@ -280,6 +288,8 @@ function insertAfterRow(rows, blockEl) {
                 ') a'
             )
             .click();
+
+          tempStylesPhoto.remove();
         }
       }, 300);
     });
