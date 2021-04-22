@@ -46,6 +46,7 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
 
       if (node.classList.contains('wrapper')) {
+        console.log(node);
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
