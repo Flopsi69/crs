@@ -273,7 +273,7 @@ function insertAfterRow(rows, blockEl) {
           opacity: 0;
         }
         html {
-          overflow: hidden;
+          overflow: hidden!important;
         }
       `;
 
