@@ -132,6 +132,10 @@ let stylesList = `
     line-height: 1.2;
     color: #3C3C3C;
     margin-bottom: 4px;
+    text-transform: lowercase;
+  }
+  .lav-license__title:first-letter {
+    text-transform: uppercase;
   }
   .lav-license__title-price {
     font-size: 12px;
@@ -305,6 +309,10 @@ let stylesList = `
     font-weight: 700;
     font-family: Arial Black, Arial;
     margin-bottom: 17px;
+    text-transform: lowercase;
+  }
+  .go-modal__title:first-letter {
+    text-transform: uppercase;
   }
   .go-modal__list {
     font-size: 12px;
@@ -1027,7 +1035,7 @@ function createModal() {
             </div>
             
             <div class='go-modal__block'>
-              <div class='go-modal__title'>Расширенная лицензия/div>
+              <div class='go-modal__title'>Расширенная лицензия</div>
               <div class='go-modal__list'>
                 <div class='go-modal__item'>
                   <div class='go-modal__descr'>Посетители веб-сайта</div>
