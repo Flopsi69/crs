@@ -1024,7 +1024,7 @@ function createModal() {
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Cantidad de copias o impresiones/div>
+                  <div class='go-modal__descr'>Cantidad de copias o impresiones</div>
                   <div class='go-modal__status go-modal__status_note'>Hasta 500.000</div>
                 </div>
                 <div class='go-modal__item'>
@@ -1054,7 +1054,7 @@ function createModal() {
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Cantidad de copias o impresiones/div>
+                  <div class='go-modal__descr'>Cantidad de copias o impresiones</div>
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
                 <div class='go-modal__item'>
