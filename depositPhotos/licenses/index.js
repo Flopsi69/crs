@@ -1044,7 +1044,7 @@ function createModal() {
                   <div class='go-modal__status go-modal__status_exclude'>Prohibido</div>
                 </div>
               </div>
-            </div>
+            </div> 
             
             <div class='go-modal__block'>
               <div class='go-modal__title'>LICENCIA AMPLIADA</div>
