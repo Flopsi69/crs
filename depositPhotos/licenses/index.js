@@ -421,8 +421,8 @@ if (lang == 'ru') {
           <div class='lav-license__info'>
             <div class='lav-license__title'>Стандартная лицензия</div>
             <div class='lav-license__list'>
-              <div class='lav-license__item lav-license__item_include'>неограниченное использование  в сети</div>
-              <div class='lav-license__item lav-license__item_exclude'>Ограниченое использование для перепродажи, печати и рекламы </div>
+              <div class='lav-license__item lav-license__item_include'>Неограниченное использование  в сети</div>
+              <div class='lav-license__item lav-license__item_exclude'>Ограниченное использование для перепродажи, печати и рекламы </div>
             </div>
           </div>
         </div>
@@ -435,7 +435,7 @@ if (lang == 'ru') {
             <div class='lav-license__title'>Расширенная лицензия</div>
             <div class='lav-license__list'>
               <div class='lav-license__item lav-license__item_include'>Неограниченное использование  в сети</div>
-              <div class='lav-license__item lav-license__item_include'>неограниченое использование для перепродажи, печати и рекламы </div>
+              <div class='lav-license__item lav-license__item_include'>Неограниченное использование для перепродажи, печати и рекламы </div>
 
             </div>
             <div class='lav-license__modal-trigger'>Что такое расширенная лицензия?</div>
@@ -475,7 +475,7 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'pt-pt') {
+} else if (lang == 'pt-br') {
   licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
@@ -1066,11 +1066,11 @@ function createModal() {
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__descr'>Creación de todo tipo de artículos (excepto artículos para reventa o para distribución gratuita, donde el Archivo juegue un papel principal y añada valor al mismo)	</div>
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__descr'>Creación de artículos para reventa o para distribución gratuita donde el Archivo juegue un papel secundario en el artículo	</div>
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
               </div>
@@ -1080,7 +1080,7 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'pt-pt') {
+  } else if (lang == 'pt-br') {
     modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
@@ -1138,11 +1138,11 @@ function createModal() {
                   <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a minor role in the item	</div>
+                  <div class='go-modal__descr'>Criação de Itens para Revenda ou Itens para Distribuição Gratuita, caso o Arquivo desempenhe um papel secundário no item	</div>
                   <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
                 </div>
                 <div class='go-modal__item'>
-                  <div class='go-modal__descr'>Creation of Items for Resale or Items for Free Distribution where the File plays a major role in the item and adds value to it	</div>
+                  <div class='go-modal__descr'>Criação de Itens para Revenda ou Itens para Distribuição Gratuita, caso o Arquivo desempenhe um papel principal no item e acrescente valor ao mesmo	</div>
                   <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
                 </div>
               </div>
