@@ -409,16 +409,16 @@ function triggerInit() {
     });
 }
 
-if (sessionStorage.getItem('lav-tooltip') != '1') {
+// if (sessionStorage.getItem('lav-tooltip') != '1') {
   tooltipInit();
-}
+// }
 function tooltipInit() {
   sessionStorage.setItem('lav-tooltip', 1);
 
   let tooltipEl = `
     <div class='lav-tooltip'>
       <div class='lav-tooltip__head'>
-        <div class='lav-tooltip__title'>Learn how to create your perfect designs with Crello</div>
+        <div class='lav-tooltip__title'>Learn how to easily get started with Crello</div>
         <div class='lav-tooltip__close'>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1L17 17" stroke="white"/>
@@ -426,7 +426,7 @@ function tooltipInit() {
           </svg>
         </div>
       </div>
-      <div class='lav-tooltip__time'>1:22 min view</div>
+      <div class='lav-tooltip__time'>1:50 min view</div>
       <div class='lav-tooltip__placeholder modal-trigger'>
         <img src='${REPO_DIR}/tooltip-placeholder.png' />
       </div>

@@ -211,7 +211,6 @@ let stylesList = `
     line-height: 14px;
     color: #FFFFFF;
     font-family: ProximaSemiBold;
-    white-space: nowrap;
     margin-bottom: 1px;
   }
   .lav-tip__play {
@@ -335,15 +334,22 @@ stylesEl.innerHTML = stylesList;
 document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
-
+initModal();
 bannerInit();
+document.querySelectorAll('.modal-trigger').forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector('.modal').classList.add('modal_active');
+  });
+});
+
 function bannerInit() {
   let bannerEl = `
       <div class='lav-tip modal-trigger'>
         <div class='lav-tip__label'>Tip</div>
         <div class='lav-tip__info'>
-          <div class='lav-tip__title'>How to remove backgrounds from images</div>
-          <div class='lav-tip__caption'>1:22 min view</div>
+          <div class='lav-tip__title'>Learn how to create a visually stunning collage</div>
+          <div class='lav-tip__caption'>1:35 min view</div>
         </div>
         <div class='lav-tip__play'>
           <img src='${REPO_DIR}/icon-play.svg'>
@@ -351,9 +357,21 @@ function bannerInit() {
       </div>
   `;
 
+
   document
     .querySelector('#sidebar .typography-display-s')
     .insertAdjacentHTML('afterend', bannerEl);
+  
+  getCase(document.querySelector('#sidebar button[class*="active"]').dataset.value);
+
+  document
+  .querySelectorAll("#sidebar button[data-categ='sidebar']")
+  .forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      console.log('clicked btn:', btn.dataset.value);
+      getCase(btn.dataset.value);
+    });
+  });
 }
 
 function triggerInit() {
@@ -412,7 +430,6 @@ function triggerInit() {
 
 function tooltipInit() {
   sessionStorage.setItem('lav-tooltip', 1);
-
   let tooltipEl = `
     <div class='lav-tooltip'>
       <div class='lav-tooltip__head'>
@@ -443,7 +460,60 @@ function tooltipInit() {
     });
 }
 
-initModal();
+function getCase(tab) {
+  tab = tab.toLowerCase();
+  var time, caption;
+  if (tab == 'designs') {
+    time = '1:35 min view';
+    caption = 'Learn how to create a visually stunning collage';
+    iframe = 'https://www.youtube.com/embed/O31iu_5Btew?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'photos') {
+    time = '1:21 min view';
+    caption = 'Learn how to remove backgrounds from images';
+    iframe = 'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'media') {
+    time = '0:39 min view';
+    caption = 'Learn how to upload your videos to Crello';
+    iframe = 'https://www.youtube.com/embed/OBT4ujOmvDE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'music') {
+    time = '1:12 min view';
+    caption = 'Learn how to add music to your designs';
+    iframe = 'https://www.youtube.com/embed/MblfcAe39Zk?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'animation') {
+    time = '1:18 min view';
+    caption = 'Learn how to use animated effects in Crello';
+    iframe = 'https://www.youtube.com/embed/jezPVBppz7E?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'graphics') {
+    time = '1:24 min view';
+    caption = 'Learn how to work with objects in Crello';
+    iframe = 'https://www.youtube.com/embed/usOhg9CM12I?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'background') {
+    time = '1:03 min view';
+    caption = 'Learn how to create a custom Zoom background';
+    iframe = 'https://www.youtube.com/embed/t2dUV9uRS0w?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'text') {
+    time = '1:31 min view';
+    caption = 'Learn how to add & edit texts with Crello';
+    iframe = 'https://www.youtube.com/embed/UoaSJIYspp8?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else if (tab == 'brandkit') {
+    time = '1:52 min view';
+    caption = 'Learn how to work with Brand Kit functionality';
+    iframe = 'https://www.youtube.com/embed/Kg7sLteN9eo?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+  } else {
+    time = false;
+  }
+
+  if (time) {
+    document.querySelector('.lav-tip').style.display = 'flex';
+    document.querySelector('.lav-tip__title').innerText = caption;
+    document.querySelector('.lav-tip__caption').innerText = time;
+    document.querySelector('.modal__title').innerText = caption;
+    document.querySelector('.modal__video iframe').src = iframe;
+  } else {
+    document.querySelector('.lav-tip').style.display = 'none';
+  }
+}
+
 function initModal() {
   let modal = `
     <div class="modal">
@@ -456,7 +526,7 @@ function initModal() {
         <div class='modal__title'>Learn how to remove backgrounds from images</div>
 
         <div class='modal__video'>
-          <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/O31iu_5Btew?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class='modal__list'>
@@ -519,13 +589,6 @@ function initModal() {
   function modalClose() {
     modalEl.classList.remove('modal_active');
   }
-
-  document.querySelectorAll('.modal-trigger').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      modalEl.classList.add('modal_active');
-    });
-  });
 
   for (let item of document.querySelectorAll('.modal__item')) {
     item.addEventListener('click', function () {

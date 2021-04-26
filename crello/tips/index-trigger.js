@@ -371,10 +371,10 @@ function triggerInit() {
       </div>
 
       <div class='lav-trigger__placeholder modal-trigger'>
-        <img src='${REPO_DIR}/trigger-placeholder.png'>
+      <img src='${REPO_DIR}/tooltip-placeholder.png' />
       </div>
 
-      <div class='lav-trigger__caption'>Learn how to animate your text</div>
+      <div class='lav-trigger__caption'>Learn how to easily get started with Crello</div>
     </div>
   `;
 
@@ -390,8 +390,10 @@ function triggerInit() {
         console.log('clicked btn:', triggerIncrement);
         if (
           triggerIncrement > 3 &&
-          !document.querySelector('.lav-trigger_open')
+          !document.querySelector('.lav-trigger_open') &&
+          sessionStorage.getItem('lav-fire') != 'yes'
         ) {
+          sessionStorage.setItem('lav-fire', 'yes');
           triggerIncrement = 0;
           document
             .querySelector('.lav-trigger')
