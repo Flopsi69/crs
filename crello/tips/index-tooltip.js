@@ -336,85 +336,25 @@ document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
 
-function bannerInit() {
-  let bannerEl = `
-      <div class='lav-tip modal-trigger'>
-        <div class='lav-tip__label'>Tip</div>
-        <div class='lav-tip__info'>
-          <div class='lav-tip__title'>How to remove backgrounds from images</div>
-          <div class='lav-tip__caption'>1:22 min view</div>
-        </div>
-        <div class='lav-tip__play'>
-          <img src='${REPO_DIR}/icon-play.svg'>
-        </div>
-      </div>
-  `;
+let observer = new MutationObserver(mutations => {
+  for(let mutation of mutations) {
+    for(let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      if (node.dataset.tooltip && node.dataset.tooltip == "tourTip" && node.querySelector('[data-value="step_7/buttonGotIt"]')) {
+        console.log('fire');
+        node.querySelector('.place-top').remove();
+        tooltipInit();
+        initModal();
+      }
+    }
+  }
+});
 
-  document
-    .querySelector('#sidebar .typography-display-s')
-    .insertAdjacentHTML('afterend', bannerEl);
-}
+let demoElem = document.getElementById('react-view');
+observer.observe(demoElem, {childList: true, subtree: true})
 
-function triggerInit() {
-  let triggerIncrement = 0;
-  let triggerEl = `
-    <div class='lav-trigger'>
-      <div class='lav-trigger__head'>
-        <div class='lav-trigger__label'>Tip</div>
-        <div class='lav-trigger__close'>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L17 17" stroke="white"/>
-            <path d="M1 17L17 1" stroke="white"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class='lav-trigger__placeholder modal-trigger'>
-        <img src='${REPO_DIR}/trigger-placeholder.png'>
-      </div>
-
-      <div class='lav-trigger__caption'>Learn how to animate your text</div>
-    </div>
-  `;
-
-  document
-    .querySelector('.konvajs-content')
-    .insertAdjacentHTML('beforeend', triggerEl);
-
-  document
-    .querySelectorAll("#sidebar button[data-categ='sidebar']")
-    .forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        triggerIncrement++;
-        console.log('clicked btn:', triggerIncrement);
-        if (
-          triggerIncrement > 3 &&
-          !document.querySelector('.lav-trigger_open')
-        ) {
-          triggerIncrement = 0;
-          document
-            .querySelector('.lav-trigger')
-            .classList.add('lav-trigger_open');
-        }
-      });
-    });
-
-  document
-    .querySelector('.lav-trigger__close')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document
-        .querySelector('.lav-trigger')
-        .classList.remove('lav-trigger_open');
-    });
-}
-
-// if (sessionStorage.getItem('lav-tooltip') != '1') {
-  tooltipInit();
-// }
 function tooltipInit() {
-  sessionStorage.setItem('lav-tooltip', 1);
-
   let tooltipEl = `
     <div class='lav-tooltip'>
       <div class='lav-tooltip__head'>
@@ -434,8 +374,7 @@ function tooltipInit() {
     </div>
   `;
 
-  document
-    .querySelector('#app-view')
+  document.querySelector('[data-tooltip="tourTip"]')
     .insertAdjacentHTML('beforeend', tooltipEl);
 
   document
@@ -445,7 +384,6 @@ function tooltipInit() {
     });
 }
 
-initModal();
 function initModal() {
   let modal = `
     <div class="modal">
@@ -455,7 +393,7 @@ function initModal() {
           <img src='${REPO_DIR}/icon-close.svg'>
         </button>
 
-        <div class='modal__title'>Learn how to remove backgrounds from images</div>
+        <div class='modal__title'>Learn how to easily get started with Crello</div>
 
         <div class='modal__video'>
           <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

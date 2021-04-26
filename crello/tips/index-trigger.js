@@ -455,7 +455,7 @@ function initModal() {
           <img src='${REPO_DIR}/icon-close.svg'>
         </button>
 
-        <div class='modal__title'>Learn how to remove backgrounds from images</div>
+        <div class='modal__title'>Learn how to easily get started with Crello</div>
 
         <div class='modal__video'>
           <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
