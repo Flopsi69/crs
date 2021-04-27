@@ -588,6 +588,7 @@ function initModal() {
 
   function modalClose() {
     modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
   }
 
   for (let item of document.querySelectorAll('.modal__item')) {

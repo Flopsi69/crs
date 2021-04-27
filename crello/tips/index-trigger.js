@@ -520,6 +520,7 @@ function initModal() {
 
   function modalClose() {
     modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
   }
 
   document.querySelectorAll('.modal-trigger').forEach(function (btn) {
