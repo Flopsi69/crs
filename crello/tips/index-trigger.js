@@ -1,47 +1,39 @@
-// function gaEvent(action, label = '') {
-//   window.dataLayer = window.dataLayer || [];
+function gaEvent(action, label = '', value = '') {
+  window.dataLayer = window.dataLayer || [];
+  try {
+    let eventObj = {
+      'event': 'event-to-ga',
+      'eventCategory': 'Experiment — Tips',
+      'eventAction': action,
+      'eventLabel': label,
+      'eventValue': value
+    };
+    dataLayer.push(eventObj);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-//   try {
-//     let eventObj = {
-//       event: 'ga_event',
-//       eventCategory: 'Exp — PDP: add phone number',
-//       eventAction: action
-//     };
+gaEvent('loaded');
 
-//     if (label) {
-//       eventObj['eventLabel'] = label;
-//     }
 
-//     dataLayer.push(eventObj);
-//   } catch (e) {}
-// }
+try{
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:410340,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
+      hj('trigger', 'tips_tutorial');
+}
+catch (e) { }
 
-// (function (h, o, t, j, a, r) {
-//   h.hj =
-//     h.hj ||
-//     function () {
-//       (h.hj.q = h.hj.q || []).push(arguments);
-//     };
-//   h._hjSettings = { hjid: 2174050, hjsv: 6 };
-//   a = o.getElementsByTagName('head')[0];
-//   r = o.createElement('script');
-//   r.async = 1;
-//   r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-//   a.appendChild(r);
-// })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-// window.hj =
-//   window.hj ||
-//   function () {
-//     (hj.q = hj.q || []).push(arguments);
-//   };
-// if (window.innerWidth < 992) {
-//   hj('trigger', 'pdp__add_phone_number_mob');
-// } else {
-//   hj('trigger', 'pdp__add_phone_number_des');
-// }
 
 /* STYLES insert start */
-// height40;x
+
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/tips';
 
@@ -241,6 +233,10 @@ let stylesList = `
     pointer-events: none;
     opacity: 0;
   }
+
+  .modal__video {
+    line-height: 0;
+  }
   
   .modal_active {
     opacity: 1;
@@ -336,25 +332,6 @@ document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
 
-function bannerInit() {
-  let bannerEl = `
-      <div class='lav-tip modal-trigger'>
-        <div class='lav-tip__label'>Tip</div>
-        <div class='lav-tip__info'>
-          <div class='lav-tip__title'>How to remove backgrounds from images</div>
-          <div class='lav-tip__caption'>1:22 min view</div>
-        </div>
-        <div class='lav-tip__play'>
-          <img src='${REPO_DIR}/icon-play.svg'>
-        </div>
-      </div>
-  `;
-
-  document
-    .querySelector('#sidebar .typography-display-s')
-    .insertAdjacentHTML('afterend', bannerEl);
-}
-
 triggerInit();
 function triggerInit() {
   let triggerIncrement = 0;
@@ -409,39 +386,6 @@ function triggerInit() {
       document
         .querySelector('.lav-trigger')
         .classList.remove('lav-trigger_open');
-    });
-}
-
-function tooltipInit() {
-  sessionStorage.setItem('lav-tooltip', 1);
-
-  let tooltipEl = `
-    <div class='lav-tooltip'>
-      <div class='lav-tooltip__head'>
-        <div class='lav-tooltip__title'>Learn how to create your perfect designs with Crello</div>
-        <div class='lav-tooltip__close'>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L17 17" stroke="white"/>
-            <path d="M1 17L17 1" stroke="white"/>
-          </svg>
-        </div>
-      </div>
-      <div class='lav-tooltip__time'>1:22 min view</div>
-      <div class='lav-tooltip__placeholder modal-trigger'>
-        <img src='${REPO_DIR}/tooltip-placeholder.png' />
-      </div>
-      <svg class="lav-tooltip__arrow" viewBox="0 0 24 10" width="24" height="10"><path d="M8.46445 1.53554C10.4171 -0.417086 13.5829 -0.417088 15.5355 1.53553L24 10H-1.52588e-05L8.46445 1.53554Z"></path></svg>
-    </div>
-  `;
-
-  document
-    .querySelector('#app-view')
-    .insertAdjacentHTML('beforeend', tooltipEl);
-
-  document
-    .querySelector('.lav-tooltip__close')
-    .addEventListener('click', function () {
-      document.querySelector('.lav-tooltip').remove();
     });
 }
 
@@ -518,14 +462,11 @@ function initModal() {
     }
   });
 
-  function modalClose() {
-    modalEl.classList.remove('modal_active');
-    document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
-  }
-
   document.querySelectorAll('.modal-trigger').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('video image click', 'onboarding');
+      gaEvent('pop-up loaded', 'onboarding');
       modalEl.classList.add('modal_active');
     });
   });
@@ -540,3 +481,10 @@ function initModal() {
     });
   }
 }
+
+function modalClose() {
+  gaEvent('pop-up closed', 'onboarding');
+  modalEl.classList.remove('modal_active');
+  document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
+}
+

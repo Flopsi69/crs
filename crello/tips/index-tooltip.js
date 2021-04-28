@@ -1,47 +1,39 @@
-// function gaEvent(action, label = '') {
-//   window.dataLayer = window.dataLayer || [];
+function gaEvent(action, label = '', value = '') {
+  window.dataLayer = window.dataLayer || [];
+  try {
+    let eventObj = {
+      'event': 'event-to-ga',
+      'eventCategory': 'Experiment — Tips',
+      'eventAction': action,
+      'eventLabel': label,
+      'eventValue': value
+    };
+    dataLayer.push(eventObj);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-//   try {
-//     let eventObj = {
-//       event: 'ga_event',
-//       eventCategory: 'Exp — PDP: add phone number',
-//       eventAction: action
-//     };
+gaEvent('loaded');
 
-//     if (label) {
-//       eventObj['eventLabel'] = label;
-//     }
 
-//     dataLayer.push(eventObj);
-//   } catch (e) {}
-// }
+try{
+  (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:410340,hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
+      hj('trigger', 'tips_tutorial');
+}
+catch (e) { }
 
-// (function (h, o, t, j, a, r) {
-//   h.hj =
-//     h.hj ||
-//     function () {
-//       (h.hj.q = h.hj.q || []).push(arguments);
-//     };
-//   h._hjSettings = { hjid: 2174050, hjsv: 6 };
-//   a = o.getElementsByTagName('head')[0];
-//   r = o.createElement('script');
-//   r.async = 1;
-//   r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-//   a.appendChild(r);
-// })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-// window.hj =
-//   window.hj ||
-//   function () {
-//     (hj.q = hj.q || []).push(arguments);
-//   };
-// if (window.innerWidth < 992) {
-//   hj('trigger', 'pdp__add_phone_number_mob');
-// } else {
-//   hj('trigger', 'pdp__add_phone_number_des');
-// }
 
 /* STYLES insert start */
-// height40;x
+
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/tips';
 
@@ -241,6 +233,10 @@ let stylesList = `
     pointer-events: none;
     opacity: 0;
   }
+
+  .modal__video {
+    line-height: 0;
+  }
   
   .modal_active {
     opacity: 1;
@@ -374,6 +370,8 @@ function tooltipInit() {
     </div>
   `;
 
+  gaEvent('banner loaded', 'tips banner');
+
   document.querySelector('[data-tooltip="tourTip"]')
     .insertAdjacentHTML('beforeend', tooltipEl);
 
@@ -456,14 +454,11 @@ function initModal() {
     }
   });
 
-  function modalClose() {
-    modalEl.classList.remove('modal_active');
-    document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
-  }
-
   document.querySelectorAll('.modal-trigger').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('video image click', 'tips banner');
+      gaEvent('pop-up loaded', 'tips banner');
       modalEl.classList.add('modal_active');
     });
   });
@@ -477,4 +472,11 @@ function initModal() {
       document.querySelector('.modal__video iframe').src = item.dataset.video;
     });
   }
+}
+
+
+function modalClose() {
+  gaEvent('pop-up closed', 'tips banner');
+  modalEl.classList.remove('modal_active');
+  document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
 }
