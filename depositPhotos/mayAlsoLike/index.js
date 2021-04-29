@@ -44,9 +44,9 @@ let observer = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
 
       if (node.classList.contains('wrapper')) {
-        console.log(node);
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
