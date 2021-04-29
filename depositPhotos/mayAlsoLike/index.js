@@ -257,6 +257,7 @@ function insertAfterRow(rows, blockEl) {
         rowWidth = 0;
         rows.forEach(row => {
           if (row == rowNumber) {
+            console.log('Added block after', rowNumber);
             item.insertAdjacentElement('afterend', blockEl.cloneNode(true));
           }
           return false;
