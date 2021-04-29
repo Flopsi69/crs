@@ -236,7 +236,7 @@ function createAlsoBlock(items, link) {
     }
   });
 
-  localStorage.setItem('mayAlsoBlock', JSON.stringify(blockEl));
+  localStorage.setItem('mayAlsoBlock', blockEl.innerHTML);
 
   insertAfterRow([8, 16], blockEl);
 }
