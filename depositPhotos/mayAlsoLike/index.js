@@ -239,8 +239,9 @@ function createAlsoBlock(items, link) {
       return false;
     }
   });
-
-  localStorage.setItem('mayAlsoBlock', blockEl.innerHTML);
+  
+  var tempLocalEl = document.createElement('div').insertAdjacentElement('afterbegin', blockEl);
+  localStorage.setItem('mayAlsoBlock', tempLocalEl.innerHTML);
 
   insertAfterRow([8, 16], blockEl);
 }
