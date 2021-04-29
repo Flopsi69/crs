@@ -304,7 +304,7 @@ function insertAfterRow(rows, blockEl) {
 
   if (
     document.querySelectorAll('.lav-may').length < 3 &&
-    (rowNumber > 17 || rowNumber < 15)
+    (rowNumber > 17 || rowNumber < 14)
   ) {
     insertAfterRow([rowNumber], blockEl);
   }
