@@ -43,7 +43,7 @@ let observer = new MutationObserver(mutations => {
 
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-      if (!(node instanceof HTMLElement)) continue;
+      if (!(node instanceof HTMLElement) || node.classList.contains('countdown')) continue;
       console.log(node);
 
       if (node.classList.contains('wrapper')) {
