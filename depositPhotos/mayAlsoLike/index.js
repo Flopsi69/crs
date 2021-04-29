@@ -304,8 +304,8 @@ function insertAfterRow(rows, blockEl) {
   // &&(rowNumber > 19 || rowNumber < 14)
 
   if (
-    document.querySelectorAll('.lav-may').length < 3 &&
-    (rowNumber > 17 || rowNumber <= 14)
+    (rowNumber > 17 && document.querySelectorAll('.lav-may').length < 3) || 
+    (rowNumber < 15 && document.querySelectorAll('.lav-may').length < 2)
   ) {
     console.log('One more time before last');
     insertAfterRow([rowNumber], blockEl);
