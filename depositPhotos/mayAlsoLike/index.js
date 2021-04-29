@@ -235,7 +235,7 @@ function createAlsoBlock(items, link) {
     }
   });
 
-  console.log(blockEl);
+  localStorage.setItem('mayAlsoBlock', blockEl);
 
   insertAfterRow([8, 16], blockEl);
 }
