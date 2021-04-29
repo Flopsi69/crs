@@ -140,6 +140,10 @@ document.body.appendChild(stylesAlso);
 function initAlso() {
   console.log('init');
   if (document.querySelectorAll('.file-container__link').length) {
+    if (localStorage.getItem('mayAlsoBlock')) {
+      insertAfterRow([8, 16], localStorage.getItem('mayAlsoBlock'), true);
+    }
+
     document
       .querySelectorAll('.file-container__link')
       .forEach(function (photoEl) {
@@ -241,7 +245,7 @@ function createAlsoBlock(items, link) {
   insertAfterRow([8, 16], blockEl);
 }
 
-function insertAfterRow(rows, blockEl) {
+function insertAfterRow(rows, blockEl, isHTML) {
   var rowNumber = 0;
   var containerWidth = document.querySelector('.search-box__content')
     .offsetWidth;
@@ -258,7 +262,11 @@ function insertAfterRow(rows, blockEl) {
         rows.forEach(row => {
           if (row == rowNumber) {
             console.log('Added block after', rowNumber);
-            item.insertAdjacentElement('afterend', blockEl.cloneNode(true));
+            if (isHTML) {
+              item.insertAdjacentHTML('afterend', blockEl);
+            } else {
+              item.insertAdjacentElement('afterend', blockEl.cloneNode(true));
+            }
           }
           return false;
         });
