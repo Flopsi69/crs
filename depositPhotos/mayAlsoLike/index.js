@@ -45,8 +45,9 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement) || node.classList.contains('countdown')) continue;
       console.log(node);
+      
 
-      if (node.classList.contains('wrapper')) {
+      if (node.classList.contains('wrapper') || node.classList.contains('search-box__result')) {
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
