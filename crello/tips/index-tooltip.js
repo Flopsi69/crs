@@ -465,6 +465,7 @@ function initModal() {
 
   for (let item of document.querySelectorAll('.modal__item')) {
     item.addEventListener('click', function () {
+      gaEvent('pop-up mini block', 'video-pop-up');
       document.querySelector('.modal__title').innerText = item.querySelector(
         '.modal__item-title'
       ).innerText;
