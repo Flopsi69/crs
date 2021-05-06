@@ -2,11 +2,11 @@ function gaEvent(action, label = '', value = '') {
   window.dataLayer = window.dataLayer || [];
   try {
     let eventObj = {
-      'event': 'event-to-ga',
-      'eventCategory': 'Experiment — Tips',
-      'eventAction': action,
-      'eventLabel': label,
-      'eventValue': value
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — Tips',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
     };
     dataLayer.push(eventObj);
   } catch (e) {
@@ -16,24 +16,29 @@ function gaEvent(action, label = '', value = '') {
 
 gaEvent('loaded');
 
-
-try{
-  (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:410340,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-      a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
-      hj('trigger', 'tips_tutorial');
-}
-catch (e) { }
-
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'tips_tutorial');
+} catch (e) {}
 
 /* STYLES insert start */
-
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/tips';
 
@@ -481,11 +486,12 @@ function initModal() {
       document.querySelector('.modal__video iframe').src = item.dataset.video;
     });
   }
-}
 
-function modalClose() {
-  gaEvent('pop-up closed', 'onboarding');
-  modalEl.classList.remove('modal_active');
-  document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
+  function modalClose() {
+    gaEvent('pop-up closed', 'onboarding');
+    modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__video iframe').src = document.querySelector(
+      '.modal__video iframe'
+    ).src;
+  }
 }
-

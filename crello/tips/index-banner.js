@@ -2,11 +2,11 @@ function gaEvent(action, label = '', value = '') {
   window.dataLayer = window.dataLayer || [];
   try {
     let eventObj = {
-      'event': 'event-to-ga',
-      'eventCategory': 'Experiment — Tips',
-      'eventAction': action,
-      'eventLabel': label,
-      'eventValue': value
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — Tips',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
     };
     dataLayer.push(eventObj);
   } catch (e) {
@@ -16,22 +16,27 @@ function gaEvent(action, label = '', value = '') {
 
 gaEvent('loaded');
 
-
-try{
-  (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:410340,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-      a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
-      hj('trigger', 'tips_tutorial');
-}
-catch (e) { }
-
-
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'tips_tutorial');
+} catch (e) {}
 
 /* STYLES insert start */
 
@@ -339,7 +344,7 @@ document.querySelectorAll('.modal-trigger').forEach(function (btn) {
   btn.addEventListener('click', function (e) {
     e.preventDefault();
     gaEvent('banner click', eventName + ' banner');
-    gaEvent('pop-up loaded', eventName+ ' banner');
+    gaEvent('pop-up loaded', eventName + ' banner');
     document.querySelector('.modal').classList.add('modal_active');
   });
 });
@@ -358,21 +363,22 @@ function bannerInit() {
       </div>
   `;
 
-
   document
     .querySelector('#sidebar .typography-display-s')
     .insertAdjacentHTML('afterend', bannerEl);
-  
-  getCase(document.querySelector('#sidebar button[class*="active"]').dataset.value);
+
+  getCase(
+    document.querySelector('#sidebar button[class*="active"]').dataset.value
+  );
 
   document
-  .querySelectorAll("#sidebar button[data-categ='sidebar']")
-  .forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      console.log('clicked btn:', btn.dataset.value);
-      getCase(btn.dataset.value);
+    .querySelectorAll("#sidebar button[data-categ='sidebar']")
+    .forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        console.log('clicked btn:', btn.dataset.value);
+        getCase(btn.dataset.value);
+      });
     });
-  });
 }
 
 function getCase(tab) {
@@ -381,47 +387,56 @@ function getCase(tab) {
   if (tab == 'designs') {
     time = '1:35 min view';
     caption = 'Learn how to create a visually stunning collage';
-    iframe = 'https://www.youtube.com/embed/O31iu_5Btew?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/O31iu_5Btew?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'templates';
   } else if (tab == 'photos') {
     time = '1:21 min view';
     caption = 'Learn how to remove backgrounds from images';
-    iframe = 'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'photos';
   } else if (tab == 'media') {
     time = '0:39 min view';
     caption = 'Learn how to upload your videos to Crello';
-    iframe = 'https://www.youtube.com/embed/OBT4ujOmvDE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/OBT4ujOmvDE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'videos';
   } else if (tab == 'music') {
     time = '1:12 min view';
     caption = 'Learn how to add music to your designs';
-    iframe = 'https://www.youtube.com/embed/MblfcAe39Zk?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/MblfcAe39Zk?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'music';
   } else if (tab == 'animation') {
     time = '1:18 min view';
     caption = 'Learn how to use animated effects in Crello';
-    iframe = 'https://www.youtube.com/embed/jezPVBppz7E?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/jezPVBppz7E?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'animations';
   } else if (tab == 'graphics') {
     time = '1:24 min view';
     caption = 'Learn how to work with objects in Crello';
-    iframe = 'https://www.youtube.com/embed/usOhg9CM12I?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/usOhg9CM12I?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'objects';
   } else if (tab == 'background') {
     time = '1:03 min view';
     caption = 'Learn how to create a custom Zoom background';
-    iframe = 'https://www.youtube.com/embed/t2dUV9uRS0w?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/t2dUV9uRS0w?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'backgrounds';
   } else if (tab == 'text') {
     time = '1:31 min view';
     caption = 'Learn how to add & edit texts with Crello';
-    iframe = 'https://www.youtube.com/embed/UoaSJIYspp8?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/UoaSJIYspp8?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'text';
   } else if (tab == 'brandkit') {
     time = '1:52 min view';
     caption = 'Learn how to work with Brand Kit functionality';
-    iframe = 'https://www.youtube.com/embed/Kg7sLteN9eo?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+    iframe =
+      'https://www.youtube.com/embed/Kg7sLteN9eo?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
     eventName = 'brand kit';
   } else {
     time = false;
@@ -520,11 +535,11 @@ function initModal() {
       document.querySelector('.modal__video iframe').src = item.dataset.video;
     });
   }
-}
-
-
-function modalClose() {
-  gaEvent('pop-up closed', eventName + ' banner');
-  modalEl.classList.remove('modal_active');
-  document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
+  function modalClose() {
+    gaEvent('pop-up closed', eventName + ' banner');
+    modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__video iframe').src = document.querySelector(
+      '.modal__video iframe'
+    ).src;
+  }
 }

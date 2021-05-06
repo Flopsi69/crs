@@ -2,11 +2,11 @@ function gaEvent(action, label = '', value = '') {
   window.dataLayer = window.dataLayer || [];
   try {
     let eventObj = {
-      'event': 'event-to-ga',
-      'eventCategory': 'Experiment — Tips',
-      'eventAction': action,
-      'eventLabel': label,
-      'eventValue': value
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — Tips',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
     };
     dataLayer.push(eventObj);
   } catch (e) {
@@ -16,24 +16,29 @@ function gaEvent(action, label = '', value = '') {
 
 gaEvent('loaded');
 
-
-try{
-  (function(h,o,t,j,a,r){
-      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-      h._hjSettings={hjid:410340,hjsv:6};
-      a=o.getElementsByTagName('head')[0];
-      r=o.createElement('script');r.async=1;
-      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-      a.appendChild(r);
-  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
-      hj('trigger', 'tips_tutorial');
-}
-catch (e) { }
-
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'tips_tutorial');
+} catch (e) {}
 
 /* STYLES insert start */
-
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/tips';
 
@@ -333,11 +338,15 @@ document.body.appendChild(stylesEl);
 /* STYLES insert end */
 
 let observer = new MutationObserver(mutations => {
-  for(let mutation of mutations) {
-    for(let node of mutation.addedNodes) {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.dataset.tooltip && node.dataset.tooltip == "tourTip" && node.querySelector('[data-value="step_7/buttonGotIt"]')) {
+      if (
+        node.dataset.tooltip &&
+        node.dataset.tooltip == 'tourTip' &&
+        node.querySelector('[data-value="step_7/buttonGotIt"]')
+      ) {
         console.log('fire');
         node.querySelector('.place-top').remove();
         tooltipInit();
@@ -348,7 +357,7 @@ let observer = new MutationObserver(mutations => {
 });
 
 let demoElem = document.getElementById('react-view');
-observer.observe(demoElem, {childList: true, subtree: true})
+observer.observe(demoElem, { childList: true, subtree: true });
 
 function tooltipInit() {
   let tooltipEl = `
@@ -372,7 +381,8 @@ function tooltipInit() {
 
   gaEvent('banner loaded', 'tips banner');
 
-  document.querySelector('[data-tooltip="tourTip"]')
+  document
+    .querySelector('[data-tooltip="tourTip"]')
     .insertAdjacentHTML('beforeend', tooltipEl);
 
   document
@@ -473,11 +483,11 @@ function initModal() {
       document.querySelector('.modal__video iframe').src = item.dataset.video;
     });
   }
-}
-
-
-function modalClose() {
-  gaEvent('pop-up closed', 'tips banner');
-  modalEl.classList.remove('modal_active');
-  document.querySelector('.modal__video iframe').src = document.querySelector('.modal__video iframe').src;
+  function modalClose() {
+    gaEvent('pop-up closed', 'tips banner');
+    modalEl.classList.remove('modal_active');
+    document.querySelector('.modal__video iframe').src = document.querySelector(
+      '.modal__video iframe'
+    ).src;
+  }
 }
