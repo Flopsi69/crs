@@ -336,8 +336,11 @@ stylesEl.innerHTML = stylesList;
 document.body.appendChild(stylesEl);
 
 /* STYLES insert end */
-
-triggerInit();
+if (document.querySelector('.konvajs-content')) {
+  triggerInit();
+} else {
+  setTimeout(triggerInit, 1500);
+}
 function triggerInit() {
   let triggerIncrement = 0;
   let triggerEl = `
