@@ -382,8 +382,10 @@ function tooltipInit() {
   gaEvent('banner loaded', 'tips banner');
 
   document
-    .querySelector('[data-tooltip="tourTip"]')
-    .insertAdjacentHTML('beforeend', tooltipEl);
+    .querySelectorAll('[data-tooltip="tourTip"]')
+    [
+      document.querySelectorAll('[data-tooltip="tourTip"]').length - 1
+    ].insertAdjacentHTML('beforeend', tooltipEl);
 
   document
     .querySelector('.lav-tooltip__close')
@@ -476,9 +478,8 @@ function initModal() {
   for (let item of document.querySelectorAll('.modal__item')) {
     item.addEventListener('click', function () {
       gaEvent('pop-up mini block', 'video-pop-up');
-      document.querySelector('.modal__title').innerText = item.querySelector(
-        '.modal__item-title'
-      ).innerText;
+      document.querySelector('.modal__title').innerText =
+        item.querySelector('.modal__item-title').innerText;
 
       document.querySelector('.modal__video iframe').src = item.dataset.video;
     });
