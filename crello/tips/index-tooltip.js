@@ -380,7 +380,6 @@ function tooltipInit() {
   `;
 
   gaEvent('banner loaded', 'tips banner');
-
   document
     .querySelectorAll('[data-tooltip="tourTip"]')
     [
