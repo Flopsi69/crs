@@ -43,11 +43,14 @@ function gaEvent(action, label = '', value = '') {
 const REPO_DIR = 'https://flopsi69.github.io/crs/crello/sidebarTip';
 
 let stylesList = `
+  .konvajs-content canvas {
+    padding-right: 325px!important;
+  }
   .sidebar-tip {
     position: absolute;
     top: 15px;
     right: 15px;
-    width: 320px;
+    width: 325px;
     padding: 20px 20px 35px;
     font-family: ProximaRegular;
     background: #FFFFFF;
@@ -69,6 +72,7 @@ let stylesList = `
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 12px;
   }
 
   .sidebar-tip__head-label {
@@ -76,27 +80,48 @@ let stylesList = `
     padding: 7px 20px;
     background: #2557CB;
     border-radius: 8px;
-    font-family: Proxima Nova;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #FFFFFF;
+    transition: 0.35s;
   }
 
-  .sidebar-tip__head-collapse {}
+  .sidebar-tip__head-label:hover {
+    transform: scale(1.1);
+  }
+
+  .sidebar-tip__item + .sidebar-tip__item {
+    margin-top: 16px;
+  }
 
   .sidebar-tip__item {
+    position: relative;
     font-size: 11px;
     line-height: 1.35;
     color: #000000;
+    padding-left: 34px;
+    transition: 0.35s;
+  }
+
+  .sidebar-tip__item_checked {
+    color: #12B889;
   }
 
   .sidebar-tip__item:before {
     content: '';
     position: absolute;
     left: 0;
-    
+    width: 24px;
+    height: 24px;
+    background: url('${REPO_DIR}/icon-list-mark.svg') center no-repeat;
+    background-size: contain;
+  }
+
+  .sidebar-tip__item_checked:before {
+    background: url('${REPO_DIR}/icon-list-mark-checked.svg') center no-repeat;
+    background-size: contain;
   }
 
   .sidebar-tip__item-text {
@@ -104,10 +129,13 @@ let stylesList = `
   }
 
   .sidebar-tip__item-details {
+    position: relative;
     font-family: ProximaSemiBold;
     color: #2053C9;
-    margin-right: 18px;;
-
+    margin-right: 15px;
+    border-bottom: 1px solid #2053C9;
+    transition: 0.35s;
+    padding-top: 4px;
   }
 
   .sidebar-tip__item-details:after {
@@ -115,24 +143,91 @@ let stylesList = `
     position: absolute;
     width: 9px;
     height: 9px;
-    right: -18px;
+    right: -15px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-45%);
     background: url('${REPO_DIR}/icon-details.svg') center no-repeat;
     background-size: contain;
-
+    transition: 0.35s;
   }
 
-  .sidebar-tip__item-text {}
+  .sidebar-tip__item-details:hover {
+    border-color: transparent;
+  }
 
-  .sidebar-tip__item-text {}
+  .sidebar-tip__item-details:hover:after {
+    right: -13px;
+  }
 
-  .sidebar-tip__item-text {}
+  .modal {
+    position: fixed;
+    display: flex;
+    padding: 15px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    outline: 0;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: rgba(0,0,0, .6);
+    transition: 0.35s;
+    pointer-events: none;
+    opacity: 0;
+  }
 
+  .modal__video {
+    position: relative;
+    line-height: 0;
+  }
+  
+  .modal_active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .modal__body {
+    position: relative;
+    margin: auto;
+    max-width: 850px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 18px 35px;
+    background: linear-gradient(110.26deg, #A84EB6 3.81%, #CD5493 49.11%, #F95D6A 91.21%);
+  }
 
-  .sidebar-tip {}
+  .modal__body iframe {
+    width: 100%;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 0;
+    outline: none;
+    line-height: 0;
+    cursor: pointer;
+    transition: 0.35s;
+  }
 
-  .sidebar-tip {}
+  .modal__title {
+    margin-bottom: 15px;
+    font-ewight: bold;
+    font-family: ProximaBold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+  }
+  
+  .modal__close-icon img {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 // document.body.insertAdjacentHTML(
@@ -152,46 +247,46 @@ if (document.querySelector('.konvajs-content')) {
 } else {
   setTimeout(triggerInit, 1500);
 }
+
 function triggerInit() {
   let sidebarTipEl = `
   <div class="sidebar-tip">
     <div class="sidebar-tip__head">
       <div class="sidebar-tip__head-label">Tip</div>
-      <div class="sidebar-tip__head-collapse">
+      <button class="sidebar-tip__head-collapse">
         <img src='${REPO_DIR}/icon-collapse.svg'>
-      </div>
+      </button>
     </div>
 
     <div class="sidebar-tip__body">
       <div class="sidebar-tip__title">Design like a pro</div>
       <ul class="sidebar-tip__list">
-        <li class="sidebar-tip__item">
+        <li class="sidebar-tip__item sidebar-tip__item_checked">
           <p class="sidebar-tip__item-text">Select a template or add an image, video for the background. You can aslo upload your own.</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='1'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Remove background if needed. (PRO)</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='2'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Add text. Customize font design, size and color.</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='3'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Add animation. It helps to get users’ attention.</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='4'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Add music.</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='5'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Pack up your logo, brand colours and fonts in Brand kit to make all your designs look consistent (PRO).</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
+          <button class='sidebar-tip__item-details modal-trigger' data-index='6'>See how</button>
         </li>
         <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Download your amazing design!</p>
-          <button class='sidebar-tip__item-details' href="">See how</button>
         </li>
       </ul>
     </div>
@@ -201,12 +296,45 @@ function triggerInit() {
   document
     .querySelector('.konvajs-content')
     .insertAdjacentHTML('beforeend', sidebarTipEl);
+
+  let checkedArr = JSON.parse(localStorage.getItem('sidebarTipChecked'));
+  if (checkedArr) {
+    for (let checkedNumItem of checkedArr) {
+      console.log(checkedNumItem);
+      if (checkedNumItem) {
+        document
+          .querySelector('.sidebar-tip__item:nth-child(' + checkedNumItem + ')')
+          .classList.add('sidebar-tip__item_checked');
+      }
+    }
+  } else {
+    checkedArr = [];
+  }
+
+  document
+    .querySelectorAll('.sidebar-tip__item-details')
+    .forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('before', checkedArr);
+
+        console.log(item.closest('.sidebar-tip__item'));
+        item.parentElement.classList.add('sidebar-tip__item_checked');
+        console.log(checkedArr, item.dataset.index);
+
+        if (!checkedArr.includes(item.dataset.index)) {
+          checkedArr.push(item.dataset.index);
+          localStorage.setItem('sidebarTipChecked', JSON.stringify(checkedArr));
+        }
+        console.log('after', checkedArr);
+      });
+    });
 }
 
-// initModal();
+initModal();
 function initModal() {
   let modal = `
-    < class="modal">
+    <div class="modal">
       <div class="modal__body">
         <!-- Close modal -->
         <button class="modal__close">
@@ -218,47 +346,10 @@ function initModal() {
         <div class='modal__video'>
           <iframe title="Learn to use Crello in 5 easy steps" width="775" height="435" src="https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-
-        <div class='modal__list'>
-          <div class='modal__item' data-video='https://www.youtube.com/embed/ErMBRxbWnXk?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com'>
-            <div class='modal__item-video'>
-              <img width="359" height="202" src="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-359x202.jpg" class="attachment-tutorials size-tutorials wp-post-image" alt="" srcset="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-359x202.jpg 359w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-300x169.jpg 300w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-768x432.jpg 768w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-1024x576.jpg 1024w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/14163515/Resume-546x307.jpg 546w" sizes="(max-width: 359px) 100vw, 359px">
-            </div>
-            <div class='modal__item-title'>Learn how to create a professional and impressive resume</div>
-          </div>
-          
-          <div class='modal__item' data-video='https://www.youtube.com/embed/O31iu_5Btew?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com'>
-            <div class='modal__item-video'>
-              <img width="359" height="202" src="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-359x202.jpg" class="attachment-tutorials size-tutorials wp-post-image" alt="" srcset="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-359x202.jpg 359w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-300x169.jpg 300w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-768x432.jpg 768w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-1024x576.jpg 1024w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/04/09114339/Collage-546x307.jpg 546w" sizes="(max-width: 359px) 100vw, 359px">
-            </div>
-            <div class='modal__item-title'>Learn how to create a visually stunning collage</div>
-          </div>
-
-          <div class='modal__item' data-video='https://www.youtube.com/embed/uCsR1aN0pbU?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com'>
-            <div class='modal__item-video'>
-              <img width="359" height="202" src="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-359x202.jpg" class="attachment-tutorials size-tutorials wp-post-image" alt="" srcset="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-359x202.jpg 359w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-300x169.jpg 300w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-768x432.jpg 768w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-1024x576.jpg 1024w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/02152209/YouTube-Thumbnail2-546x307.jpg 546w" sizes="(max-width: 359px) 100vw, 359px">
-            </div>
-            <div class='modal__item-title'>Learn how to create eye-catching YouTube thumbnails</div>
-          </div>
-
-          <div class='modal__item' data-video='https://www.youtube.com/embed/PEywruw-btQ?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com'>
-            <div class='modal__item-video'>
-              <img width="359" height="202" src="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-359x202.jpg" class="attachment-tutorials size-tutorials wp-post-image" alt="" srcset="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-359x202.jpg 359w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-300x169.jpg 300w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-768x432.jpg 768w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-1024x576.jpg 1024w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2021/03/31144347/Invoice-546x307.jpg 546w" sizes="(max-width: 359px) 100vw, 359px">
-            </div>
-            <div class='modal__item-title'>Learn how to create a great-looking invoice</div>
-          </div>
-
-          <div class='modal__item' data-video='https://www.youtube.com/embed/Kg7sLteN9eo?feature=oembed'>
-            <div class='modal__item-video'>
-              <img width="359" height="202" src="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-359x202.jpg" class="attachment-tutorials size-tutorials wp-post-image" alt="" srcset="https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-359x202.jpg 359w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-300x169.jpg 300w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-768x432.jpg 768w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-1024x576.jpg 1024w, https://landing-cdn.crello.com/tutorials/wp-content/uploads/2020/11/17171915/Brand-kit-546x307.jpg 546w" sizes="(max-width: 359px) 100vw, 359px">
-            </div>
-            <div class='modal__item-title'>Learn how to work with Brand Kit functionality</div>
-          </div>
-        </div>
-
       </div>
-    </>
+    </div>
   `;
+
   document.querySelector('body').insertAdjacentHTML('beforeend', modal);
 
   let modalEl = document.querySelector('.modal');
@@ -267,36 +358,60 @@ function initModal() {
     .querySelector('.modal__close')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      modalClose();
+      closeModal();
     });
 
   modalEl.addEventListener('click', function (e) {
     if (e.target.classList.contains('modal_active')) {
-      modalClose();
+      closeModal();
     }
   });
 
   document.querySelectorAll('.modal-trigger').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('video image click', 'onboarding');
-      gaEvent('pop-up loaded', 'onboarding');
+      chooseVideo(btn.dataset.index, btn.previousElementSibling.innerText);
       modalEl.classList.add('modal_active');
     });
   });
 
-  for (let item of document.querySelectorAll('.modal__item')) {
-    item.addEventListener('click', function () {
-      gaEvent('pop-up mini block', 'video-pop-up');
-      document.querySelector('.modal__title').innerText =
-        item.querySelector('.modal__item-title').innerText;
+  function chooseVideo(index, title) {
+    let videoSrc;
 
-      document.querySelector('.modal__video iframe').src = item.dataset.video;
-    });
+    switch (index) {
+      case 1:
+        videoSrc =
+          'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+        break;
+      case 2:
+        videoSrc =
+          'https://crello.com/tutorials/how-to-remove-backgrounds-from-images/';
+        break;
+      case 3:
+        videoSrc =
+          'https://crello.com/tutorials/how-to-add-edit-texts-with-crello/';
+        break;
+      case 4:
+        videoSrc =
+          'https://crello.com/tutorials/how-to-use-animated-effects-in-crello/';
+        break;
+      case 5:
+        videoSrc =
+          'https://crello.com/tutorials/how-to-add-music-to-your-designs/';
+        break;
+      case 6:
+        videoSrc =
+          'https://crello.com/tutorials/learn-how-to-work-with-brand-kit-functionality/';
+        break;
+      case 7:
+        break;
+    }
+
+    document.querySelector('.modal__title').innerText = title;
+    document.querySelector('.modal__video iframe').src = videoSrc;
   }
 
-  function modalClose() {
-    gaEvent('pop-up closed', 'onboarding');
+  function closeModal() {
     modalEl.classList.remove('modal_active');
     document.querySelector('.modal__video iframe').src = document.querySelector(
       '.modal__video iframe'
