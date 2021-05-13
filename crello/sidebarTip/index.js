@@ -44,22 +44,24 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/crello/sidebarTip';
 
 let stylesList = `
   .konvajs-content canvas {
-    padding-right: 325px!important;
+    margin-left: -162px!important;
   }
   .sidebar-tip {
     position: absolute;
     top: 15px;
     right: 15px;
     width: 325px;
-    padding: 20px 20px 35px;
+    padding: 20px;
     font-family: ProximaRegular;
     background: #FFFFFF;
     box-shadow: 0px 0px 20px rgba(37, 87, 203, 0.15);
     border-radius: 7px;
+    transition: 0.35s;
+    overflow: hidden;
   }
 
   .sidebar-tip__title {
-    font-family: ProximaSemiBold;
+    font-family: ProximaBold;
     font-weight: bold;
     font-size: 16px;
     line-height: 1.25;
@@ -72,7 +74,20 @@ let stylesList = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 12px;
+  }
+
+  .sidebar-tip__head-collapse {
+    transition: 0.35s;
+    transform: rotate(180deg);
+    line-height: 1;
+  }
+
+  .sidebar-tip__head-collapse:hover {
+    opacity: 0.7;
+  }
+
+  .sidebar-tip__head-collapse-active {
+    transform: rotate(0);
   }
 
   .sidebar-tip__head-label {
@@ -81,15 +96,16 @@ let stylesList = `
     background: #2557CB;
     border-radius: 8px;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 1;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #FFFFFF;
     transition: 0.35s;
   }
 
-  .sidebar-tip__head-label:hover {
-    transform: scale(1.1);
+  .sidebar-tip__body {
+    margin-top: 12px;
+    padding-bottom: 15px;
   }
 
   .sidebar-tip__item + .sidebar-tip__item {
@@ -103,6 +119,11 @@ let stylesList = `
     color: #000000;
     padding-left: 34px;
     transition: 0.35s;
+  }
+
+  .sidebar-tip__item:last-child {
+    display: flex;
+    align-items: center;
   }
 
   .sidebar-tip__item_checked {
@@ -191,12 +212,12 @@ let stylesList = `
   .modal__body {
     position: relative;
     margin: auto;
-    max-width: 850px;
+    max-width: 832px;
     width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
     background-color: #f5f7fa;
     border-radius: 8px;
-    padding: 18px 35px;
+    padding: 30px;
     background: linear-gradient(110.26deg, #A84EB6 3.81%, #CD5493 49.11%, #F95D6A 91.21%);
   }
 
@@ -217,8 +238,9 @@ let stylesList = `
 
   .modal__title {
     margin-bottom: 15px;
-    font-ewight: bold;
+    font-weight: bold;
     font-family: ProximaBold;
+    margin-right: 30px;
     font-size: 18px;
     line-height: 21px;
     color: #fff;
@@ -253,7 +275,7 @@ function triggerInit() {
   <div class="sidebar-tip">
     <div class="sidebar-tip__head">
       <div class="sidebar-tip__head-label">Tip</div>
-      <button class="sidebar-tip__head-collapse">
+      <button class="sidebar-tip__head-collapse sidebar-tip__head-collapse-active">
         <img src='${REPO_DIR}/icon-collapse.svg'>
       </button>
     </div>
@@ -261,7 +283,7 @@ function triggerInit() {
     <div class="sidebar-tip__body">
       <div class="sidebar-tip__title">Design like a pro</div>
       <ul class="sidebar-tip__list">
-        <li class="sidebar-tip__item sidebar-tip__item_checked">
+        <li class="sidebar-tip__item">
           <p class="sidebar-tip__item-text">Select a template or add an image, video for the background. You can aslo upload your own.</p>
           <button class='sidebar-tip__item-details modal-trigger' data-index='1'>See how</button>
         </li>
@@ -297,10 +319,25 @@ function triggerInit() {
     .querySelector('.konvajs-content')
     .insertAdjacentHTML('beforeend', sidebarTipEl);
 
+  document
+    .querySelector('.sidebar-tip__head-collapse')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      if (this.classList.contains('sidebar-tip__head-collapse-active')) {
+        this.classList.remove('sidebar-tip__head-collapse-active');
+        document.querySelector('.sidebar-tip__body').style.display = 'none';
+        document.querySelector('.sidebar-tip').style = 'width: 140px;';
+      } else {
+        this.classList.add('sidebar-tip__head-collapse-active');
+        document.querySelector('.sidebar-tip').style = 'width: 140px;';
+        document.querySelector('.sidebar-tip__body').style.display = 'block';
+        document.querySelector('.sidebar-tip').removeAttribute('style');
+      }
+    });
+
   let checkedArr = JSON.parse(localStorage.getItem('sidebarTipChecked'));
   if (checkedArr) {
     for (let checkedNumItem of checkedArr) {
-      console.log(checkedNumItem);
       if (checkedNumItem) {
         document
           .querySelector('.sidebar-tip__item:nth-child(' + checkedNumItem + ')')
@@ -316,18 +353,21 @@ function triggerInit() {
     .forEach(function (item) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        console.log('before', checkedArr);
-
-        console.log(item.closest('.sidebar-tip__item'));
         item.parentElement.classList.add('sidebar-tip__item_checked');
-        console.log(checkedArr, item.dataset.index);
 
         if (!checkedArr.includes(item.dataset.index)) {
           checkedArr.push(item.dataset.index);
           localStorage.setItem('sidebarTipChecked', JSON.stringify(checkedArr));
         }
-        console.log('after', checkedArr);
       });
+    });
+
+  document
+    .querySelector('#downloadButtonTour')
+    .addEventListener('click', function () {
+      document
+        .querySelector('.sidebar-tip__item:last-child')
+        .classList.add('sidebar-tip__item_checked');
     });
 }
 
@@ -338,7 +378,10 @@ function initModal() {
       <div class="modal__body">
         <!-- Close modal -->
         <button class="modal__close">
-          <img src='${REPO_DIR}/icon-close.svg'>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L17 17" stroke="#ffffff"/>
+            <path d="M1 17L17 1" stroke="#ffffff"/>
+          </svg>        
         </button>
 
         <div class='modal__title'>Learn how to easily get started with Crello</div>
@@ -371,39 +414,39 @@ function initModal() {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       chooseVideo(btn.dataset.index, btn.previousElementSibling.innerText);
-      modalEl.classList.add('modal_active');
+      setTimeout(() => {
+        modalEl.classList.add('modal_active');
+      }, 500);
     });
   });
 
   function chooseVideo(index, title) {
     let videoSrc;
 
-    switch (index) {
+    switch (parseInt(index)) {
       case 1:
         videoSrc =
           'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 2:
         videoSrc =
-          'https://crello.com/tutorials/how-to-remove-backgrounds-from-images/';
+          'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 3:
         videoSrc =
-          'https://crello.com/tutorials/how-to-add-edit-texts-with-crello/';
+          'https://www.youtube.com/embed/UoaSJIYspp8?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 4:
         videoSrc =
-          'https://crello.com/tutorials/how-to-use-animated-effects-in-crello/';
+          'https://www.youtube.com/embed/jezPVBppz7E?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 5:
         videoSrc =
-          'https://crello.com/tutorials/how-to-add-music-to-your-designs/';
+          'https://www.youtube.com/embed/MblfcAe39Zk?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 6:
         videoSrc =
-          'https://crello.com/tutorials/learn-how-to-work-with-brand-kit-functionality/';
-        break;
-      case 7:
+          'https://www.youtube.com/embed/Kg7sLteN9eo?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
     }
 
