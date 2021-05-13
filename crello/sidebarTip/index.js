@@ -65,14 +65,26 @@ let stylesList = `
     margin-bottom: 10px;
   }
 
-  .sidebar-tip {}
+  .sidebar-tip__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-  .sidebar-tip {}
+  .sidebar-tip__head-label {
+    font-family: ProximaSemiBold;
+    padding: 7px 20px;
+    background: #2557CB;
+    border-radius: 8px;
+    font-family: Proxima Nova;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
 
-  .sidebar-tip {}
-
-  .sidebar-tip {}
-
+  .sidebar-tip__head-collapse {}
 
   .sidebar-tip__item {
     font-size: 11px;
@@ -106,7 +118,7 @@ let stylesList = `
     right: -18px;
     top: 50%;
     transform: translateY(-50%);
-    background: url(REPO_DIR + '/icon-details.svg') center no-repeat;
+    background: url('${REPO_DIR}/icon-details.svg') center no-repeat;
     background-size: contain;
 
   }
@@ -145,7 +157,9 @@ function triggerInit() {
   <div class="sidebar-tip">
     <div class="sidebar-tip__head">
       <div class="sidebar-tip__head-label">Tip</div>
-      <div class="sidebar-tip__head-collapse"></div>
+      <div class="sidebar-tip__head-collapse">
+        <img src='${REPO_DIR}/icon-collapse.svg'>
+      </div>
     </div>
 
     <div class="sidebar-tip__body">
