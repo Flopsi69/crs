@@ -45,6 +45,10 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/crello/sidebarTip';
 let stylesList = `
   .konvajs-content canvas {
     margin-left: -162px!important;
+    transition: 0.35s;
+  }
+  .konvajs-content__sidebarTip-collapse canvas {
+    margin-left: 0!important;
   }
   .sidebar-tip {
     position: absolute;
@@ -324,16 +328,46 @@ function triggerInit() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       if (this.classList.contains('sidebar-tip__head-collapse-active')) {
+        localStorage.setItem('sidebarTipCollapse', 'yes');
         this.classList.remove('sidebar-tip__head-collapse-active');
         document.querySelector('.sidebar-tip__body').style.display = 'none';
         document.querySelector('.sidebar-tip').style = 'width: 140px;';
+        document
+          .querySelector('.konvajs-content')
+          .classList.add('konvajs-content__sidebarTip-collapse');
       } else {
+        localStorage.setItem('sidebarTipCollapse', 'no');
         this.classList.add('sidebar-tip__head-collapse-active');
         document.querySelector('.sidebar-tip').style = 'width: 140px;';
         document.querySelector('.sidebar-tip__body').style.display = 'block';
         document.querySelector('.sidebar-tip').removeAttribute('style');
+        document
+          .querySelector('.konvajs-content')
+          .classList.remove('konvajs-content__sidebarTip-collapse');
       }
     });
+
+  document
+    .querySelectorAll('.konvajs-content canvas')
+    .forEach(function (canvas) {
+      canvas.addEventListener('click', function (e) {
+        console.log('firee');
+        if (document.querySelector('.sidebar-tip__head-collapse-active')) {
+          document.querySelector('.sidebar-tip__head-collapse').click();
+        }
+      });
+    });
+
+  if (localStorage.getItem('sidebarTipCollapse') == 'yes') {
+    document
+      .querySelector('.sidebar-tip__head-collapse')
+      .classList.remove('sidebar-tip__head-collapse-active');
+    document.querySelector('.sidebar-tip__body').style.display = 'none';
+    document.querySelector('.sidebar-tip').style = 'width: 140px;';
+    document
+      .querySelector('.konvajs-content')
+      .classList.add('konvajs-content__sidebarTip-collapse');
+  }
 
   let checkedArr = JSON.parse(localStorage.getItem('sidebarTipChecked'));
   if (checkedArr) {
