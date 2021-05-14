@@ -44,7 +44,7 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/crello/sidebarTip';
 
 let stylesList = `
   .konvajs-content canvas {
-    margin-left: -162px!important;
+    margin-left: -130px!important;
     transition: 0.35s;
   }
   .konvajs-content__sidebarTip-collapse canvas {
@@ -54,7 +54,7 @@ let stylesList = `
     position: absolute;
     top: 15px;
     right: 15px;
-    width: 325px;
+    width: 260px;
     padding: 20px;
     font-family: ProximaRegular;
     background: #FFFFFF;
@@ -460,7 +460,7 @@ function initModal() {
     switch (parseInt(index)) {
       case 1:
         videoSrc =
-          'https://www.youtube.com/embed/Ibqb5IIJbqE?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
+          'https://www.youtube.com/embed/mcdGHpLZbh8?feature=oembed&enablejsapi=1&origin=https%3A%2F%2Fcrello.com';
         break;
       case 2:
         videoSrc =
