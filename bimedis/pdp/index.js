@@ -254,7 +254,7 @@ let stylesList = `
     display: flex;
     flex-grow: 1;
   }
-  .lav-botton__contact {
+  .b-advert-show-wrapper .b-button.lav-botton__contact {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 18px;
@@ -267,7 +267,7 @@ let stylesList = `
     width: 100%;
     border-radius: 4px!important;
   }
-  .lav-botton__tradein {
+  .b-advert-show-wrapper .b-button.lav-botton__tradein {
     margin-left: 20px!important;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
@@ -285,6 +285,7 @@ let stylesList = `
   }
   .lav-buttons__report {
     display: flex;
+    align-items: center;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 300;
@@ -292,6 +293,11 @@ let stylesList = `
     line-height: 14px;
     text-decoration-line: underline;
     color: #4D4D4D;
+  }
+  .lav-buttons__report img {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
   }
 `;
 
@@ -312,6 +318,8 @@ function initExp() {
 function initRightSide() {
   let title = document.querySelector('.b-advert-header.m-h1').innerText;
   let sellerCompanyEl = document.querySelector('.e-company-name a');
+  let sellerName = document.querySelector('.e-card-title + .e-text').innerText;
+  let sellerLogo = document.querySelector('.b-user-logo-image');
   let bodyEl = `
     <div class='lav-body__wrap'>
       <div class='lav-body__info'></div>
@@ -332,6 +340,23 @@ function initRightSide() {
             <div class='lav-seller__head-label'></div>
           </div>
           <a href='${sellerCompanyEl.href}' class='lav-seller__company'>${sellerCompanyEl.innerText}</a>
+          <div class='lav-seller__rates'></div>
+          <div class='lav-seller__info'>
+            <div class='lav-seller__info-left'>
+              <div class='lav-seller__info-line'>
+                <div class='lav-seller__info-key'>Ships from:</div>
+                <div class='lav-seller__info-value'>Denmark</div>
+              </div>
+              <div class='lav-seller__info-line'>
+                <div class='lav-seller__info-key'>Contact name:</div>
+                <div class='lav-seller__info-value'>Jens Krohn</div>
+              </div>
+            </div>
+            <div class='lav-seller__info-right'>
+            <img src="${REPO_DIR}/map-placeholder.svg">
+            See on the map
+            </div>
+          </div>
         </div>
 
         <div class='lav-buttons__wrap'>
@@ -405,5 +430,12 @@ function initRightSide() {
     .insertAdjacentElement(
       'beforeend',
       document.querySelector('.sjs-add-to-favourites')
+    );
+
+  document
+    .querySelector('.lav-seller__rates')
+    .insertAdjacentElement(
+      'afterbegin',
+      document.querySelector('.b-user-rating-stars').cloneNode(true)
     );
 }
