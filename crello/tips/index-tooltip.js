@@ -225,7 +225,7 @@ let stylesList = `
     display: flex;
     padding: 15px;
     top: 0;
-    right: 0;
+    right: 150%;
     bottom: 0;
     left: 0;
     z-index: 1050;
@@ -234,7 +234,7 @@ let stylesList = `
     overflow-x: hidden;
     overflow-y: auto;
     background: rgba(0,0,0, .6);
-    transition: 0.35s;
+    transition: opacity 0.35s;
     pointer-events: none;
     opacity: 0;
   }
@@ -244,6 +244,7 @@ let stylesList = `
   }
   
   .modal_active {
+    right: 0;
     opacity: 1;
     pointer-events: auto;
   }

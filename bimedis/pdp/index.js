@@ -249,6 +249,7 @@ let stylesList = `
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    margin-top: 80px;
   }
   .lav-buttons {
     display: flex;
@@ -299,6 +300,45 @@ let stylesList = `
     width: 12px;
     height: 12px;
   }
+  .lav-seller__info-line {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+  }
+  .lav-seller__info-line + .lav-seller__info-line {
+    margin-top: 15px;
+  }
+  .lav-seller__info {
+    display: flex;
+  }
+  .lav-seller__info-left {
+    width: 300px;
+    margin-right: 20px;
+  }
+  .lav-seller__info-right {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration-line: underline;
+    color: #333333;
+  }
+  .lav-seller__info-right img {
+    margin-right: 6px;
+    height: 10px;
+    width: 12px;
+  }
+  .lav-seller__info-key {
+    font-weight: 300;
+  }
+  .lav-seller__info-value {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
 `;
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
@@ -436,6 +476,6 @@ function initRightSide() {
     .querySelector('.lav-seller__rates')
     .insertAdjacentElement(
       'afterbegin',
-      document.querySelector('.b-user-rating-stars').cloneNode(true)
+      document.querySelector('.b-user-rating-wrapper').cloneNode(true)
     );
 }
