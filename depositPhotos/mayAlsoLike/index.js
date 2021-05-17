@@ -43,11 +43,17 @@ let observer = new MutationObserver(mutations => {
 
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-      if (!(node instanceof HTMLElement) || node.classList.contains('countdown')) continue;
+      if (
+        !(node instanceof HTMLElement) ||
+        node.classList.contains('countdown')
+      )
+        continue;
       console.log(node);
-      
 
-      if (node.classList.contains('wrapper') || node.classList.contains('search-box__result')) {
+      if (
+        node.classList.contains('wrapper') ||
+        node.classList.contains('search-box__result')
+      ) {
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
@@ -239,7 +245,7 @@ function createAlsoBlock(items, link) {
       return false;
     }
   });
-  
+
   // var tempLocalEl = document.createElement('div').insertAdjacentElement('afterbegin', blockEl);
   // localStorage.setItem('mayAlsoBlock', tempLocalEl.innerHTML);
 
@@ -248,15 +254,16 @@ function createAlsoBlock(items, link) {
 
 function insertAfterRow(rows, blockEl) {
   var rowNumber = 0;
-  var containerWidth = document.querySelector('.search-box__content')
-    .offsetWidth;
+  var containerWidth = document.querySelector(
+    '.search-box__content'
+  ).offsetWidth;
   var rowWidth = 0;
   document
     .querySelectorAll('.search-box__content .flex-files>.file-container')
     .forEach(item => {
       rowWidth += item.offsetWidth + 10;
       console.log(rowWidth, containerWidth);
-      if (containerWidth == rowWidth) {
+      if (containerWidth - 20 <= rowWidth && containerWidth + 20 <= rowWidth) {
         rowNumber++;
         console.log('RowNumber:', rowNumber);
         rowWidth = 0;
@@ -309,7 +316,7 @@ function insertAfterRow(rows, blockEl) {
   // &&(rowNumber > 19 || rowNumber < 14)
 
   if (
-    (rowNumber > 17 && document.querySelectorAll('.lav-may').length < 3) || 
+    (rowNumber > 17 && document.querySelectorAll('.lav-may').length < 3) ||
     (rowNumber < 15 && document.querySelectorAll('.lav-may').length < 2)
   ) {
     console.log('One more time before last');

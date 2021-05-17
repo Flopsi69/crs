@@ -126,6 +126,9 @@ let stylesList = `
     align-items: center;
     font-size: 12px;
   }
+  .lav-body__meta-right span {
+    cursor: pointer;
+  }
   .sjs-add-to-favourites.m-round {
     position: static;
     margin-left: 5px;
@@ -204,11 +207,13 @@ let stylesList = `
     margin-top: 15px;
   }
   .lav-how__option {
+    position: relative;
     display: flex;
     align-items: center;
+    padding-bottom: 6px;
   }
   .lav-how__option + .lav-how__option {
-    margin-top: 15px;
+    margin-top: 9px;
   }
   .lav-how__option-value {
     font-family: 'Roboto', sans-serif;
@@ -217,10 +222,70 @@ let stylesList = `
     color: #485280;
     border-bottom: 1px dashed #485280;
   }
+  .lav-how__tip {
+    font-family: 'Roboto', sans-serif;
+    background: #fff;
+    position: absolute;
+    border: 1px solid #DADADA;
+    box-shadow: 0px 12px 36px rgb(0 0 0 / 10%);
+    border-radius: 2px;
+    padding: 12px 16px 16px;
+    z-index: 1;
+    top: 99%;
+    left: 0;
+    width: 550px;
+    display: none;
+  }
+  .lav-how__option:hover .lav-how__tip {
+    display: block;
+  }
+  .b-advert-show-wrapper .b-button.lav-how__tip-btn {
+    background: #485280;
+    border-radius: 4px!important;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    max-width: 145px;
+    width: 100%;
+  }
+  .lav-how__tip-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 21px;
+    color: #333333;
+  }
+  .lav-how__tip-descr {
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+    max-width: 320px;
+    padding-right: 15px;
+  }
+  .lav-how__tip-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .lav-seller {
+    position: relative;
+    padding-right; 120px;
     padding-top: 20px;
     margin-top: 15px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .lav-seller__logo {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 100px;
+    height: 50px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #fff;
   }
   .lav-seller__head {
     display: flex;
@@ -327,7 +392,7 @@ let stylesList = `
   }
   .lav-seller__info-right img {
     margin-right: 6px;
-    height: 10px;
+    height: 16px;
     width: 12px;
   }
   .lav-seller__info-key {
@@ -338,7 +403,12 @@ let stylesList = `
     align-items: center;
     margin-left: 20px;
   }
-  
+  .lav-seller__info-from{
+    flex-flow: row-reverse;
+  }
+  .lav-seller__info-from img {
+    margin-left: 10px;
+  }
 `;
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
@@ -359,7 +429,11 @@ function initRightSide() {
   let title = document.querySelector('.b-advert-header.m-h1').innerText;
   let sellerCompanyEl = document.querySelector('.e-company-name a');
   let sellerName = document.querySelector('.e-card-title + .e-text').innerText;
-  let sellerLogo = document.querySelector('.b-user-logo-image');
+  let sellerLogoLink =
+    document.querySelector('.b-user-logo-image').dataset.href;
+  let sellerLogoStyle = document
+    .querySelector('.b-user-logo-image')
+    .getAttribute('style');
   let bodyEl = `
     <div class='lav-body__wrap'>
       <div class='lav-body__info'></div>
@@ -370,7 +444,7 @@ function initRightSide() {
             <div class='lav-body__line'>Condition: <strong>Used</strong></div>
             <div class='lav-body__line'>Year: <strong>2015</strong></div>
           </div>
-          <div class='lav-body__meta-right'>Add to Favourites</div>
+          <div class='lav-body__meta-right'><span>Add to Favourites</span></div>
         </div>
         <div class='lav-body__price'>$10</div>
 
@@ -385,18 +459,18 @@ function initRightSide() {
             <div class='lav-seller__info-left'>
               <div class='lav-seller__info-line'>
                 <div class='lav-seller__info-key'>Ships from:</div>
-                <div class='lav-seller__info-value'>Denmark</div>
+                <div class='lav-seller__info-value lav-seller__info-from'></div>
               </div>
               <div class='lav-seller__info-line'>
                 <div class='lav-seller__info-key'>Contact name:</div>
-                <div class='lav-seller__info-value'>Jens Krohn</div>
+                <div class='lav-seller__info-value'>${sellerName}</div>
               </div>
             </div>
             <div class='lav-seller__info-right'>
-            <img src="${REPO_DIR}/map-placeholder.svg">
-            See on the map
+            <img src="${REPO_DIR}/map-placeholder.svg">See on the map
             </div>
           </div>
+          <a href="${sellerLogoLink}" class="lav-seller__logo" style="${sellerLogoStyle}"></a>
         </div>
 
         <div class='lav-buttons__wrap'>
@@ -435,12 +509,35 @@ function initRightSide() {
           <div class='lav-how__options'>
             <div class='lav-how__option'>
               <div class='lav-how__option-value'>Delivery options</div>
+              <div class='lav-how__tip'>
+                <div class='lav-how__tip-title'>Delivery options to Ukraine</div>
+                <div class='lav-how__tip-info'>
+                  <div class='lav-how__tip-descr'>Bimedis.com offers delivery services all over the world. For more details contact us.  </div>
+                  <button class='lav-how__tip-btn b-button m-button-blue '>Contact US</button>
+                </div>
+              </div>
             </div>
             <div class='lav-how__option'>
               <div class='lav-how__option-value'>Customs clearance</div>
+              <div class='lav-how__tip'>
+                <div class='lav-how__tip-title'>Customs clearance</div>
+                <div class='lav-how__tip-info'>
+                  <div class='lav-how__tip-descr'>Bimedis.com offers customs clearance services all ov
+                  er the world. For more details contact us. </div>
+                  <button class='lav-how__tip-btn b-button m-button-blue '>Contact US</button>
+                </div>
+              </div>
             </div>
             <div class='lav-how__option'>
               <div class='lav-how__option-value'>Additional services </div>
+              <div class='lav-how__tip'>
+                <div class='lav-how__tip-title'>Additional services</div>
+                <div class='lav-how__tip-info'>
+                  <div class='lav-how__tip-descr'>Bimedis.com offers customs clearance services all ov
+                  er the world. For more details contact us. </div>
+                  <button class='lav-how__tip-btn b-button m-button-blue '>Contact US</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -478,4 +575,18 @@ function initRightSide() {
       'afterbegin',
       document.querySelector('.b-user-rating-wrapper').cloneNode(true)
     );
+
+  document
+    .querySelector('.lav-seller__info-from')
+    .insertAdjacentHTML(
+      'afterbegin',
+      document.querySelector('.b-advert-table .e-advert-row .c .b-flag-img')
+        .parentElement.innerHTML
+    );
+
+  document
+    .querySelector('.lav-body__meta-right span')
+    .addEventListener('click', function () {
+      document.querySelector('.sjs-add-to-favourites.m-round').click();
+    });
 }
