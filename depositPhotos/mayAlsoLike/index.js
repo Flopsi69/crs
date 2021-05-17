@@ -258,6 +258,7 @@ function insertAfterRow(rows, blockEl) {
     '.search-box__content'
   ).offsetWidth;
   var rowWidth = 0;
+  var rowEnded = true;
   document
     .querySelectorAll('.search-box__content .flex-files>.file-container')
     .forEach(item => {
@@ -267,6 +268,7 @@ function insertAfterRow(rows, blockEl) {
         (rowWidth >= containerWidth - 10 && rowWidth <= containerWidth + 10) ||
         rowWidth == containerWidth
       ) {
+        rowEnded = true;
         rowNumber++;
         console.log('RowNumber:', rowNumber);
         rowWidth = 0;
@@ -277,6 +279,8 @@ function insertAfterRow(rows, blockEl) {
           }
           return false;
         });
+      } else {
+        rowEnded = false;
       }
     });
 
@@ -317,12 +321,15 @@ function insertAfterRow(rows, blockEl) {
   });
 
   // &&(rowNumber > 19 || rowNumber < 14)
-
   if (
     (rowNumber > 17 && document.querySelectorAll('.lav-may').length < 3) ||
     (rowNumber < 15 && document.querySelectorAll('.lav-may').length < 2)
   ) {
     console.log('One more time before last');
-    insertAfterRow([rowNumber], blockEl);
+    if (rowEnded) {
+      insertAfterRow([rowNumber - 1], blockEl);
+    } else {
+      insertAfterRow([rowNumber], blockEl);
+    }
   }
 }
