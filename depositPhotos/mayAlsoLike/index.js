@@ -48,12 +48,12 @@ let observer = new MutationObserver(mutations => {
         node.classList.contains('countdown')
       )
         continue;
-      console.log(node);
 
       if (
         node.classList.contains('wrapper') ||
         node.classList.contains('search-box__result')
       ) {
+        console.log('init');
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
