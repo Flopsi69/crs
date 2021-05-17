@@ -263,7 +263,10 @@ function insertAfterRow(rows, blockEl) {
     .forEach(item => {
       rowWidth += item.offsetWidth + 10;
       console.log(rowWidth, containerWidth);
-      if (containerWidth - 20 <= rowWidth && containerWidth + 20 <= rowWidth) {
+      if (
+        (rowWidth >= containerWidth - 10 && rowWidth <= containerWidth + 10) ||
+        rowWidth == containerWidth
+      ) {
         rowNumber++;
         console.log('RowNumber:', rowNumber);
         rowWidth = 0;
