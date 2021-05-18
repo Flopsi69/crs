@@ -205,6 +205,9 @@ let stylesList = `
   }
   .lav-how__options {
     margin-top: 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
   }
   .lav-how__option {
     position: relative;
@@ -221,6 +224,7 @@ let stylesList = `
     line-height: 21px;
     color: #485280;
     border-bottom: 1px dashed #485280;
+    display: inline-block;
   }
   .lav-how__tip {
     font-family: 'Roboto', sans-serif;
@@ -266,6 +270,32 @@ let stylesList = `
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .lav-how__tip-columns {
+    display: flex;
+    margin: 0 -10px;
+  }
+  .lav-how__tip-column {
+    width: 50%;
+    padding: 0 10px;
+  }
+  .lav-how__tip-block + .lav-how__tip-block {
+    margin-top: 15px;
+  }
+  .lav-how__tip-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: #485280;
+    margin-bottom: 5px;
+  }
+  .lav-how__tip-subcaption {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;
+    color: #4D4D4D;
   }
   .lav-seller {
     position: relative;
@@ -359,6 +389,7 @@ let stylesList = `
     line-height: 14px;
     text-decoration-line: underline;
     color: #4D4D4D;
+    cursor: pointer;
   }
   .lav-buttons__report img {
     margin-right: 5px;
@@ -532,10 +563,35 @@ function initRightSide() {
               <div class='lav-how__option-value'>Additional services </div>
               <div class='lav-how__tip'>
                 <div class='lav-how__tip-title'>Additional services</div>
-                <div class='lav-how__tip-info'>
-                  <div class='lav-how__tip-descr'>Bimedis.com offers customs clearance services all ov
-                  er the world. For more details contact us. </div>
-                  <button class='lav-how__tip-btn b-button m-button-blue '>Contact US</button>
+                <div class='lav-how__tip-columns'>
+                  <div class='lav-how__tip-column'>
+                    <div class='lav-how__tip-block'>
+                      <div class='lav-how__tip-subtitle'>Removal and Installation</div>
+                      <div class='lav-how__tip-subcaption'>150 vendors propose this service </div>
+                    </div>
+
+                    <div class='lav-how__tip-block'>
+                      <div class='lav-how__tip-subtitle'>Installation</div>
+                      <div class='lav-how__tip-subcaption'>150 vendors propose this service </div>
+                    </div>
+
+                    <div class='lav-how__tip-block'>
+                      <div class='lav-how__tip-subtitle'>Repair</div>
+                      <div class='lav-how__tip-subcaption'>150 vendors propose this service </div>
+                    </div>
+                  </div>
+
+                  <div class='lav-how__tip-column'>
+                    <div class='lav-how__tip-block'>
+                      <div class='lav-how__tip-subtitle'>RF Shielding /Shields MRI</div>
+                      <div class='lav-how__tip-subcaption'>150 vendors propose this service </div>
+                    </div>
+
+                    <div class='lav-how__tip-block'>
+                      <div class='lav-how__tip-subtitle'>Leasing</div>
+                      <div class='lav-how__tip-subcaption'>150 vendors propose this service </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -554,6 +610,25 @@ function initRightSide() {
       .querySelector('.lav-body__info')
       .insertAdjacentElement('beforeend', item);
   }
+
+  document
+    .querySelector('.b-place-advert-show-wrapper')
+    .closest('.b-advert-block')
+    .remove();
+
+  document
+    .querySelector('.lav-body')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.sjs-other-adverts-header')
+    );
+
+  document
+    .querySelector('.lav-body')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.b-popular-second-level-searches')
+    );
 
   document
     .querySelector('.lav-body__wrap')
@@ -588,5 +663,17 @@ function initRightSide() {
     .querySelector('.lav-body__meta-right span')
     .addEventListener('click', function () {
       document.querySelector('.sjs-add-to-favourites.m-round').click();
+    });
+
+  document
+    .querySelector('.lav-buttons__report')
+    .addEventListener('click', function () {
+      document.querySelector('.sjs-complaint').click();
+    });
+
+  document
+    .querySelector('.lav-botton__contact')
+    .addEventListener('click', function () {
+      document.querySelector('.sjs-send-message-open').click();
     });
 }
