@@ -1,9 +1,31 @@
 (function () {
+  try {
+    (function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 410340, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    window.hj =
+      window.hj ||
+      function () {
+        (hj.q = hj.q || []).push(arguments);
+      };
+    hj('trigger', 'artboard');
+  } catch (e) {}
+
   function gaEvent(action, label = '', value = '') {
     window.dataLayer = window.dataLayer || [];
     try {
       let eventObj = {
-        event: 'event-to-ga',
+        event: 'Experiment — artboard',
         eventCategory: 'Experiment — Tips',
         eventAction: action,
         eventLabel: label,
@@ -15,29 +37,7 @@
     }
   }
 
-  // gaEvent('loaded');
-
-  // try {
-  //   (function (h, o, t, j, a, r) {
-  //     h.hj =
-  //       h.hj ||
-  //       function () {
-  //         (h.hj.q = h.hj.q || []).push(arguments);
-  //       };
-  //     h._hjSettings = { hjid: 410340, hjsv: 6 };
-  //     a = o.getElementsByTagName('head')[0];
-  //     r = o.createElement('script');
-  //     r.async = 1;
-  //     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  //     a.appendChild(r);
-  //   })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-  //   window.hj =
-  //     window.hj ||
-  //     function () {
-  //       (hj.q = hj.q || []).push(arguments);
-  //     };
-  //   hj('trigger', 'tips_tutorial');
-  // } catch (e) {}
+  gaEvent('loaded');
 
   /* STYLES insert start */
 
@@ -456,12 +456,14 @@
         chooseVideo(btn.dataset.index, btn.previousElementSibling.innerText);
         setTimeout(() => {
           modalEl.classList.add('modal_active');
+          gaEvent('pop-up loaded', 'video pop-up');
         }, 500);
       });
     });
 
     function chooseVideo(index, title) {
       let videoSrc;
+      gaEvent('seehow click', 'seehow ' + index);
 
       switch (parseInt(index)) {
         case 1:
@@ -495,6 +497,8 @@
     }
 
     function closeModal() {
+      gaEvent('pop-up closed', 'video pop-up');
+
       modalEl.classList.remove('modal_active');
       document.querySelector('.modal__video iframe').src =
         document.querySelector('.modal__video iframe').src;
