@@ -498,7 +498,6 @@
 
     function closeModal() {
       gaEvent('pop-up closed', 'video pop-up');
-
       modalEl.classList.remove('modal_active');
       document.querySelector('.modal__video iframe').src =
         document.querySelector('.modal__video iframe').src;
