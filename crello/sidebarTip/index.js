@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     try {
       let eventObj = {
-        event: '‘paymentForm',
+        event: 'paymentForm',
         eventCategory: 'Experiment — Tips',
         eventAction: action,
         eventLabel: label,
