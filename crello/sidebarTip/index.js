@@ -32,6 +32,7 @@
         eventValue: value
       };
       dataLayer.push(eventObj);
+      console.log(eventObj);
     } catch (e) {
       console.log(e);
     }
