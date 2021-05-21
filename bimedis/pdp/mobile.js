@@ -1098,8 +1098,6 @@ function setProductInfo() {
   let lavProductInfoEl = `
     <div class='lav-product'>
       <div class='lav-product__title'>${title}</div>
-      <div class='lav-product'></div>
-      <div class='lav-product'></div>
       <div class='lav-product__meta'>
         <div class='lav-product__meta-left'>
           <div class='lav-product__line lav-product__line-condition'>Condition: <span></span></div>
