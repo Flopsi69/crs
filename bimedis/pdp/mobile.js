@@ -992,7 +992,7 @@ let observer = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
-      console.log(node);
+
       if (
         (!isInitExp && node.classList.contains('lSSlideOuter')) ||
         node.classList.contains('comment-model')
