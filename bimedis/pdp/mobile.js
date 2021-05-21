@@ -1587,8 +1587,6 @@ function initMapModal() {
       document.querySelector('.lav-seller').innerHTML
     );
 
-  console.log(mapsHtml);
-
   document
     .querySelector('.lav-seller .lav-seller__map')
     .addEventListener('click', function (e) {
