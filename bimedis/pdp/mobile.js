@@ -985,7 +985,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.classList.contains('lSSlideOuter ')) {
+      if (node.classList.contains('lSSlideOuter')) {
         initExp();
       }
       // проверить, не является ли вставленный элемент примером кода
@@ -1006,6 +1006,8 @@ document.body.appendChild(styles);
 
 // initExp();
 function initExp() {
+  console.log('init exp');
+
   // document
   //   .querySelector('body')
   //   .insertAdjacentHTML('beforeend', '<div class="b-blackout"></div>');
