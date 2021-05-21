@@ -1458,7 +1458,6 @@ function fetchSimilar(url) {
     .then(function (data) {
       var parser = new DOMParser();
       var doc = parser.parseFromString(data, 'text/html');
-      console.log(doc.querySelectorAll('.sjs-advert-list .e-product-item'));
       var items = doc.querySelectorAll('.sjs-advert-list .e-product-item');
       if (items.length) {
         if (items.length >= 3) {
@@ -1513,7 +1512,6 @@ function setSimilarProduct(items, count) {
       el.querySelectorAll(
         '.b-short-description-product-list .e-short-description-product-item'
       ).forEach(function (line) {
-        console.log('line', line);
         if (line.innerText.toLowerCase().includes('shipping from')) {
           elBlock
             .querySelector('.lav-similar__meta')
