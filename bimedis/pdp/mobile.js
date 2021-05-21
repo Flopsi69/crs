@@ -5,6 +5,11 @@ let fonts =
 document.querySelector('head').insertAdjacentHTML('beforeend', fonts);
 
 let stylesList = `
+.lav-product:before, .lav-product:after, .lav-seller__wrap:before, .lav-seller__wrap:after {
+  content: '';
+  clear:both;
+  display: table;
+}
 .new-scss .e-search {
   background: rgb(72, 82, 128);
   border-radius: 2px;
