@@ -118,6 +118,7 @@ let stylesList = `
 .lav-product {
   float: left;
   margin-top: 20px;
+  width: 100%;
 }
 .lav-product__title {
   font-family: 'Raleway', sans-serif;
