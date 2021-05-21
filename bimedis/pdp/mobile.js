@@ -977,6 +977,30 @@ let stylesList = `
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
 
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    // проверим новые узлы, есть ли что-то, что надо подсветить?
+
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      // if (
+      //   node.classList.contains('wrapper') ||
+      //   node.classList.contains('search-box__result')
+      // ) {
+      //   console.log('init');
+      //   initAlso();
+      // }
+      // проверить, не является ли вставленный элемент примером кода
+    }
+  }
+});
+
+let demoElem = document.body;
+
+observer.observe(demoElem, { childList: true, subtree: true });
+
 // connect to DOM
 let styles = document.createElement('style');
 styles.id = 'go-phone-styles';
@@ -984,7 +1008,7 @@ styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 /* STYLES insert end */
 
-initExp();
+// initExp();
 function initExp() {
   // document
   //   .querySelector('body')
