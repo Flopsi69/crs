@@ -975,6 +975,8 @@ let stylesList = `
 }
 `;
 
+var isInitExp = false;
+
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
 
 let observer = new MutationObserver(mutations => {
@@ -985,7 +987,7 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.classList.contains('lSSlideOuter')) {
+      if (node.classList.contains('lSSlideOuter') && !isInitExp) {
         initExp();
       }
       // проверить, не является ли вставленный элемент примером кода
@@ -1006,6 +1008,7 @@ document.body.appendChild(styles);
 
 // initExp();
 function initExp() {
+  isInitExp = true;
   console.log('init exp');
 
   // document
