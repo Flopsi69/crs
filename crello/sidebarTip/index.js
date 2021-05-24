@@ -21,11 +21,20 @@
     hj('trigger', 'artboard');
   } catch (e) {}
 
-  function gaEvent(action, label = '', value = '') {
+  function gaEvent(action, label, value) {
+    if (!action) {
+      action = '';
+    }
+    if (!label) {
+      label = '';
+    }
+    if (!value) {
+      value = '';
+    }
     window.dataLayer = window.dataLayer || [];
     try {
       let eventObj = {
-        event: 'paymentForm',
+        event: 'event-to-ga',
         eventCategory: 'Experiment — Tips',
         eventAction: action,
         eventLabel: label,
@@ -38,7 +47,13 @@
     }
   }
 
-  gaEvent('loaded');
+  dataLayer.push({
+    event: 'paymentForm',
+    eventCategory: 'Experiment — Tips',
+    eventAction: 'loaded',
+    eventLabel: '',
+    eventValue: ''
+  });
 
   /* STYLES insert start */
 
