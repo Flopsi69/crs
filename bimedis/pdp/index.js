@@ -958,6 +958,12 @@ setTimeout(() => {
   if (!isInitExp) {
     initExp();
   }
+}, 1500);
+
+setTimeout(() => {
+  if (!isInitExp) {
+    initExp();
+  }
 }, 3000);
 
 let demoElem = document.body;
