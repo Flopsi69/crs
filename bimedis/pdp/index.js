@@ -954,6 +954,12 @@ let observer = new MutationObserver(mutations => {
   }
 });
 
+setTimeout(() => {
+  if (!isInitExp) {
+    initExp();
+  }
+}, 3000);
+
 let demoElem = document.body;
 
 observer.observe(demoElem, { childList: true, subtree: true });
