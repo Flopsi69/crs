@@ -925,12 +925,15 @@ let stylesList = `
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
 
+console.log('exp start');
+
 // connect to DOM
 let styles = document.createElement('style');
 styles.id = 'go-phone-styles';
 styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 /* STYLES insert end */
+var isInitExp = false;
 
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
@@ -951,8 +954,14 @@ let observer = new MutationObserver(mutations => {
   }
 });
 
+let demoElem = document.body;
+
+observer.observe(demoElem, { childList: true, subtree: true });
+
 // initExp();
 function initExp() {
+  console.log('init exp');
+  isInitExp = true;
   initExpInner();
   document.querySelector('.b-search-result-button').innerHTML =
     "<img src='" +
