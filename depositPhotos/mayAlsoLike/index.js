@@ -142,6 +142,17 @@ document.body.appendChild(stylesAlso);
 
 function initAlso() {
   console.log('init');
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('lav-may__link')) {
+      console.log('yes');
+      e.preventDefault();
+      console.log('click show more');
+      gaEvent('click on button', 'show more button');
+      location.href = e.target.getAttribute('href');
+    } else {
+      console.log('no');
+    }
+  });
   if (document.querySelectorAll('.file-container__link').length) {
     document
       .querySelectorAll('.file-container__link')
@@ -225,15 +236,6 @@ function createAlsoBlock(items, link) {
       'beforeend',
       `<div class="lav-may__link-wrap"><a href='${link}' class="lav-may__link">See more</div>`
     );
-
-    blockEl
-      .querySelector('.lav-may__link')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log('click show more');
-        gaEvent('click on button', 'show more button');
-        location.href = this.getAttribute('href');
-      });
   }
 
   items.forEach(function (item, index) {
