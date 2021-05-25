@@ -22,7 +22,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'ga_event',
-      eventCategory: 'Experiment — also like',
+      eventCategory: 'Exp — PDP: improvements',
       eventAction: action
     };
     if (label) {

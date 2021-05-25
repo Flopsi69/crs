@@ -388,6 +388,17 @@
 
     let checkedArr = JSON.parse(localStorage.getItem('sidebarTipChecked'));
     if (checkedArr) {
+      if (checkedArr.length == 7) {
+        document
+          .querySelector('.sidebar-tip__head-collapse')
+          .classList.remove('sidebar-tip__head-collapse-active');
+        document.querySelector('.sidebar-tip__body').style.display = 'none';
+        document.querySelector('.sidebar-tip').style = 'width: 140px;';
+        document
+          .querySelector('.konvajs-content')
+          .classList.add('konvajs-content__sidebarTip-collapse');
+      }
+
       for (let checkedNumItem of checkedArr) {
         if (checkedNumItem) {
           document
