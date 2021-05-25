@@ -38,6 +38,7 @@ function gaEvent(action, label) {
 }
 
 console.log('start');
+gaEvent('loaded');
 
 /*** Analytics insert -end- ***/
 
@@ -59,7 +60,6 @@ let observer = new MutationObserver(mutations => {
         node.classList.contains('wrapper') ||
         node.classList.contains('search-box__result')
       ) {
-        gaEvent('loaded');
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
