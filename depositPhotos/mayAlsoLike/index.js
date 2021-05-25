@@ -315,13 +315,12 @@ function insertAfterRow(rows, blockEl) {
     });
   });
 
-  if (e.target.classList.contains('lav-may__link')) {
-    document.querySelectorAll('.lav-may__link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        console.log('click show more');
-        gaEvent('click on button', 'show more button');
-      })
-    })
+  document.querySelectorAll('.lav-may__link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      console.log('click show more');
+      gaEvent('click on button', 'show more button');
+    });
+  });
 
   // &&(rowNumber > 19 || rowNumber < 14)
   if (
