@@ -244,6 +244,8 @@ function createAlsoBlock(items, link) {
   // var tempLocalEl = document.createElement('div').insertAdjacentElement('afterbegin', blockEl);
   // localStorage.setItem('mayAlsoBlock', tempLocalEl.innerHTML);
 
+  gaEvent('block loaded', 'YMAL block loaded');
+
   insertAfterRow([8, 16], blockEl);
 }
 
