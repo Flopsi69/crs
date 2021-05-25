@@ -1,3 +1,40 @@
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2174050, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj('trigger', 'pdp__add_phone_number_des');
+
+function gaEvent(action, label) {
+  try {
+    var objData = {
+      event: 'ga_event',
+      eventCategory: 'Experiment — also like',
+      eventAction: action
+    };
+    if (label) {
+      objData.eventLabel = label;
+    }
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
+  } catch (e) {}
+}
+
+gaEvent('loaded');
+
 /* STYLES insert start */
 
 let fonts =
@@ -1028,6 +1065,12 @@ function initExp() {
     REPO_DIR +
     "/chevron-right.svg' /> View other adverts of this model";
 
+  document
+    .querySelector('.b-search-result-button')
+    .addEventListener('click', function () {
+      gaEvent('click on button View other', 'Back to listing');
+    });
+
   setProductInfo();
   serRelatedBlock();
   setSeller();
@@ -1066,8 +1109,14 @@ function initExp() {
 
   document
     .querySelectorAll('.sjs-contacts-callback-abtest')
-    .forEach(function (button) {
+    .forEach(function (button, index) {
       button.addEventListener('click', function () {
+        if (index == 1) {
+          gaEvent('click on button Contact us', 'Popup: Delivery options');
+        } else if (index == 2) {
+          gaEvent('click on button Contact us', 'Popup: Customs clearance');
+        }
+
         document.querySelector('#sjs-contacts-callback-advert_id').value =
           advertId;
         document.querySelector('#sjs-contacts-callback-button_id').value =
@@ -1138,6 +1187,12 @@ function setProductInfo() {
       'beforeend',
       document.querySelector('.sjs-add-to-favourites')
     );
+
+  document
+    .querySelector('.lav-body__meta-right')
+    .addEventListener('click', function () {
+      gaEvent('click on button Add to Favourites', 'Content');
+    });
 
   document.querySelector('.sjs-send-message-open').innerText = 'Contact seller';
 
@@ -1223,6 +1278,10 @@ function initNav() {
     link.addEventListener('click', function (e) {
       e.preventDefault();
       if (document.querySelector(link.getAttribute('href'))) {
+        gaEvent(
+          'click on button ' + link.innerText,
+          'Tabs with description of produc'
+        );
         $('html, body').animate(
           {
             scrollTop: $(link.getAttribute('href')).offset().top
@@ -1425,6 +1484,11 @@ function setHowToBuy() {
 
   document.querySelectorAll('.lav-how__option').forEach(function (option) {
     option.addEventListener('click', function () {
+      gaEvent(
+        'click on link ' +
+          option.querySelector('.lav-how__option-value').innerText,
+        'Section: How to buy this product?'
+      );
       if (!option.querySelector('.lav-how__tip.active')) {
         option.querySelector('.lav-how__tip').classList.add('active');
         option.insertAdjacentHTML(
