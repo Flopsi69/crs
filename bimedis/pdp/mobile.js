@@ -1189,7 +1189,7 @@ function setProductInfo() {
     );
 
   document
-    .querySelector('.lav-body__meta-right')
+    .querySelector('.lav-product__meta-right')
     .addEventListener('click', function () {
       gaEvent('click on button Add to Favourites', 'Content');
     });
