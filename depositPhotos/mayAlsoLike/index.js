@@ -27,13 +27,15 @@ function gaEvent(action, label) {
     label = '';
   }
   try {
-    dataLayer.push({
+    var objData = {
       event: 'event-to-ga',
       eventCategory: 'Experiment — also like',
       eventAction: action,
       eventLabel: label,
       eventValue: ''
-    });
+    };
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
   } catch (e) {}
 }
 
