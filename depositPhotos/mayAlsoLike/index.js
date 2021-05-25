@@ -143,6 +143,7 @@ document.body.appendChild(stylesAlso);
 function initAlso() {
   console.log('init');
   document.addEventListener('click', function (e) {
+    console.log(e.target);
     if (e.target.classList.contains('lav-may__link')) {
       console.log('yes');
       e.preventDefault();
@@ -153,6 +154,7 @@ function initAlso() {
       console.log('no');
     }
   });
+
   if (document.querySelectorAll('.file-container__link').length) {
     document
       .querySelectorAll('.file-container__link')
