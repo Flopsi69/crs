@@ -228,8 +228,11 @@ function createAlsoBlock(items, link) {
 
     blockEl
       .querySelector('.lav-may__link')
-      .addEventListener('click', function () {
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log('click show more');
         gaEvent('click on button', 'show more button');
+        location.href = this.getAttribute('href');
       });
   }
 
