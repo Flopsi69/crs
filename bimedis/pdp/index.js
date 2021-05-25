@@ -931,7 +931,27 @@ styles.id = 'go-phone-styles';
 styles.innerHTML = stylesList;
 document.body.appendChild(styles);
 /* STYLES insert end */
-initExp();
+
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    // проверим новые узлы, есть ли что-то, что надо подсветить?
+
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      if (
+        (!isInitExp && node.classList.contains('lSSlideOuter')) ||
+        node.classList.contains('comment-model')
+      ) {
+        initExp();
+      }
+      // проверить, не является ли вставленный элемент примером кода
+    }
+  }
+});
+
+// initExp();
 function initExp() {
   initExpInner();
   document.querySelector('.b-search-result-button').innerHTML =
