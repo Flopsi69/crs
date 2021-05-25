@@ -1,37 +1,43 @@
 /*** Analytics insert start ***/
 
-// try {
-//   (function (h, o, t, j, a, r) {
-//     h.hj =
-//       h.hj ||
-//       function () {
-//         (h.hj.q = h.hj.q || []).push(arguments);
-//       };
-//     h._hjSettings = { hjid: 2196497, hjsv: 6 };
-//     a = o.getElementsByTagName('head')[0];
-//     r = o.createElement('script');
-//     r.async = 1;
-//     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-//     a.appendChild(r);
-//   })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-//   window.hj =
-//     window.hj ||
-//     function () {
-//       (hj.q = hj.q || []).push(arguments);
-//     };
-//   hj('trigger', 'Cart_Clearpay');
-// } catch (e) {}
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'also_like');
+} catch (e) {}
 
-// function gaEvent(action) {
-//   try {
-//     dataLayer.push({
-//       event: 'event-to-ga',
-//       eventCategory: 'Exp - Cart Clearpay',
-//       eventAction: action
-//     });
-//   } catch (e) {}
-// }
-// gaEvent('loaded');
+function gaEvent(action, label) {
+  if (!label) {
+    label = '';
+  }
+  try {
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — also like',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: ''
+    });
+  } catch (e) {}
+}
+
+console.log('start');
 
 /*** Analytics insert -end- ***/
 
@@ -53,7 +59,7 @@ let observer = new MutationObserver(mutations => {
         node.classList.contains('wrapper') ||
         node.classList.contains('search-box__result')
       ) {
-        console.log('init');
+        gaEvent('loaded');
         initAlso();
       }
       // проверить, не является ли вставленный элемент примером кода
@@ -132,30 +138,16 @@ document.body.appendChild(stylesAlso);
 
 /*** STYLES insert -end- ***/
 
-/*** HTML insert start ***/
-// let licensesEl = ``;
-/*** HTML insert -end- ***/
-
-// setTimeout(() => {
-//   document.querySelector('#root>.wrapper').style.opacity = 1;
-// }, 3500);
-// setTimeout(() => {
-//   initAlso();
-// }, 2500);
-
 function initAlso() {
   console.log('init');
   if (document.querySelectorAll('.file-container__link').length) {
-    // if (localStorage.getItem('mayAlsoBlock')) {
-    //   insertAfterRow([8, 16], localStorage.getItem('mayAlsoBlock'), true);
-    // }
-
     document
       .querySelectorAll('.file-container__link')
       .forEach(function (photoEl) {
         // console.log(photoEl);
         photoEl.addEventListener('click', function () {
           console.log('Click element');
+          gaEvent('image click');
 
           if (!this.classList.contains('lav-may_dirty')) {
             if (document.querySelector('.lav-may_dirty')) {
@@ -231,6 +223,12 @@ function createAlsoBlock(items, link) {
       'beforeend',
       `<div class="lav-may__link-wrap"><a href='${link}' class="lav-may__link">See more</div>`
     );
+
+    blockEl
+      .querySelector('.lav-may__link')
+      .addEventListener('click', function () {
+        console.log('click on button', 'show more button');
+      });
   }
 
   items.forEach(function (item, index) {
