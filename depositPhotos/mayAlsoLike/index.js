@@ -142,18 +142,6 @@ document.body.appendChild(stylesAlso);
 
 function initAlso() {
   console.log('init');
-  document.addEventListener('click', function (e) {
-    console.log(e.target);
-    if (e.target.classList.contains('lav-may__link')) {
-      console.log('yes');
-      e.preventDefault();
-      console.log('click show more');
-      gaEvent('click on button', 'show more button');
-      location.href = e.target.getAttribute('href');
-    } else {
-      console.log('no');
-    }
-  });
 
   if (document.querySelectorAll('.file-container__link').length) {
     document
@@ -326,6 +314,14 @@ function insertAfterRow(rows, blockEl) {
       }, 300);
     });
   });
+
+  if (e.target.classList.contains('lav-may__link')) {
+    document.querySelectorAll('.lav-may__link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        console.log('click show more');
+        gaEvent('click on button', 'show more button');
+      })
+    })
 
   // &&(rowNumber > 19 || rowNumber < 14)
   if (
