@@ -229,7 +229,7 @@ function createAlsoBlock(items, link) {
     blockEl
       .querySelector('.lav-may__link')
       .addEventListener('click', function () {
-        console.log('click on button', 'show more button');
+        gaEvent('click on button', 'show more button');
       });
   }
 
