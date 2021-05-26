@@ -53,27 +53,27 @@ let stylesList = `
 //   color: rgb(255, 255, 255);
 //   position: relative;
 // }
-.new-scss .search__btn span {
-  filter: invert(118%) sepia(18%) saturate(36%) hue-rotate(
-    25deg
-    ) brightness(132%) contrast(101%);
-}
-.new-scss .search__btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 4px;
-  // pointer-events: none;
-}
+// .new-scss .search__btn span {
+//   filter: invert(118%) sepia(18%) saturate(36%) hue-rotate(
+//     25deg
+//     ) brightness(132%) contrast(101%);
+// }
+// .new-scss .search__btn {
+//   position: absolute;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   top: 4px;
+//   // pointer-events: none;
+// }
 // .new-scss .search__input:focus ~ .search__btn {
 //   position: static;
 //   transform: none;
 //   pointer-events: auto;
 // }
-.new-scss.scss-small-content .content > .container {
-  padding: 0 12px!important;
-  background: #FAFAFA;
-}
+// .new-scss.scss-small-content .content > .container {
+//   padding: 0 12px!important;
+//   background: #FAFAFA;
+// }
 .b-search-result-button-mobile {
   display: inline-flex;
   align-items: center;
