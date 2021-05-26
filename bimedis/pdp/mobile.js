@@ -1245,12 +1245,14 @@ function setProductInfo() {
 }
 
 function serRelatedBlock() {
-  document
-    .querySelector('.b-advert-block.b-comment-container')
-    .insertAdjacentElement(
-      'beforebegin',
-      document.querySelector('.b-popular-second-level-searches')
-    );
+  if (document.querySelector('.b-advert-block.b-comment-container')) {
+    document
+      .querySelector('.b-advert-block.b-comment-container')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('.b-popular-second-level-searches')
+      );
+  }
 }
 
 function initNav() {
