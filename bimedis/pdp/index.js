@@ -1389,7 +1389,11 @@ function initExpInner() {
       }
     });
 
-  initMapModal();
+  if (document.querySelector('.maps_html iframe')) {
+    initMapModal();
+  } else {
+    document.querySelector('.lav-seller__info-right').remove();
+  }
 }
 
 function fetchSimilar(url) {
