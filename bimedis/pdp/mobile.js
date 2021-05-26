@@ -70,10 +70,10 @@ let stylesList = `
 //   transform: none;
 //   pointer-events: auto;
 // }
-// .new-scss.scss-small-content .content > .container {
-//   padding: 0 12px!important;
-//   background: #FAFAFA;
-// }
+.new-scss.scss-small-content .content > .container {
+  padding: 0 12px!important;
+  background: #FAFAFA;
+}
 .b-search-result-button-mobile {
   display: inline-flex;
   align-items: center;
