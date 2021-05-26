@@ -1260,12 +1260,14 @@ function initExpInner() {
     relatedWrap.remove();
   }
 
-  document
-    .querySelector('.lav-body__wrap')
-    .insertAdjacentElement(
-      'afterend',
-      document.querySelector('.b-comment-container')
-    );
+  if (document.querySelector('.b-comment-container')) {
+    document
+      .querySelector('.lav-body__wrap')
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector('.b-comment-container')
+      );
+  }
 
   document
     .querySelector('.lav-body__meta-right')
