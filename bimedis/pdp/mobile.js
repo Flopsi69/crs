@@ -1327,12 +1327,7 @@ function setSeller() {
         <div class='lav-seller'>
           <div class='lav-seller__title'>Seller</div>
           <div class='lav-seller__logo'></div>
-          <a href="${companyNameEl.href}" class='lav-seller__company'>${
-    companyNameEl.innerText
-  }</a>
-
           <div class='lav-seller__rating'></div>
-
           <div class='lav-seller__meta'>
             <div class='lav-seller__meta-line'>
               <div class='lav-seller__meta-key'>Ships from:</div>
@@ -1368,6 +1363,15 @@ function setSeller() {
   document
     .querySelector('.lav-product')
     .insertAdjacentHTML('afterend', sellerEl);
+
+  if (companyNameEl) {
+    document
+      .querySelector('.lav-seller__logo')
+      .insertAdjacentHTML(
+        'afterend',
+        `<a href="${companyNameEl.href}" class='lav-seller__company'>${companyNameEl.innerText}</a>`
+      );
+  }
 
   document
     .querySelector('.lav-seller__meta-ships')
