@@ -1210,7 +1210,10 @@ function setProductInfo() {
       gaEvent('click on button Add to Favourites', 'Content');
     });
 
-  document.querySelector('.sjs-send-message-open').innerText = 'Contact seller';
+  if (document.querySelector('.sjs-send-message-open')) {
+    document.querySelector('.sjs-send-message-open').innerText =
+      'Contact seller';
+  }
 
   document
     .querySelector('.lav-product__meta-right span')
@@ -1395,12 +1398,14 @@ function setSeller() {
       document.querySelector('.sjs-complaint').click();
     });
 
-  document
-    .querySelector('.lav-seller__rating')
-    .insertAdjacentElement(
-      'afterbegin',
-      document.querySelector('.b-user-rating-wrapper').cloneNode(true)
-    );
+  if (document.querySelector('.b-user-rating-wrapper')) {
+    document
+      .querySelector('.lav-seller__rating')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector('.b-user-rating-wrapper').cloneNode(true)
+      );
+  }
 
   document
     .querySelector('.lav-seller .sjs-scroll-to')
