@@ -1015,6 +1015,8 @@ function initExpInner() {
   let sellerName;
   if (document.querySelector('.e-card-title + .e-text')) {
     sellerName = document.querySelector('.e-card-title + .e-text').innerText;
+  } else {
+    sellerName = '-';
   }
   let sellerLogoLink;
   if (document.querySelector('.b-user-logo-image')) {
