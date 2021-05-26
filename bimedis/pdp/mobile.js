@@ -1189,16 +1189,20 @@ function setProductInfo() {
     document.querySelector('.lav-product__price').remove();
   }
 
-  document
-    .querySelector('.lav-product__buttons')
-    .insertAdjacentElement('afterbegin', contactSellerBtnEl);
+  if (contactSellerBtnEl) {
+    document
+      .querySelector('.lav-product__buttons')
+      .insertAdjacentElement('afterbegin', contactSellerBtnEl);
+  }
 
-  document
-    .querySelector('.lav-product__meta-right')
-    .insertAdjacentElement(
-      'beforeend',
-      document.querySelector('.sjs-add-to-favourites')
-    );
+  if (document.querySelector('.sjs-add-to-favourites')) {
+    document
+      .querySelector('.lav-product__meta-right')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector('.sjs-add-to-favourites')
+      );
+  }
 
   document
     .querySelector('.lav-product__meta-right')
