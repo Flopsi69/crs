@@ -944,8 +944,9 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
       // console.log(node);
       if (
-        (!isInitExp && node.classList.contains('lSSlideOuter')) ||
-        node.classList.contains('comment-model')
+        !isInitExp &&
+        (node.classList.contains('lSSlideOuter') ||
+          node.classList.contains('comment-model'))
       ) {
         initExp();
       }

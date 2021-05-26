@@ -1030,8 +1030,9 @@ let observer = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       if (
-        (!isInitExp && node.classList.contains('lSSlideOuter')) ||
-        node.classList.contains('comment-model')
+        !isInitExp &&
+        (node.classList.contains('lSSlideOuter') ||
+          node.classList.contains('comment-model'))
       ) {
         initExp();
       }
