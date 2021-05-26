@@ -1013,11 +1013,17 @@ function initExpInner() {
   if (document.querySelector('.e-card-title + .e-text')) {
     sellerName = document.querySelector('.e-card-title + .e-text').innerText;
   }
-  let sellerLogoLink =
-    document.querySelector('.b-user-logo-image').dataset.href;
-  let sellerLogoStyle = document
-    .querySelector('.b-user-logo-image')
-    .getAttribute('style');
+  let sellerLogoLink;
+  if (document.querySelector('.b-user-logo-image')) {
+    sellerLogoLink = document.querySelector('.b-user-logo-image').dataset.href;
+  }
+  let sellerLogoStyle;
+  if (document.querySelector('.b-user-logo-image')) {
+    sellerLogoStyle = document
+      .querySelector('.b-user-logo-image')
+      .getAttribute('style');
+  }
+
   let bodyEl = `
     <div class='lav-body__wrap'>
       <div class='lav-body__info'></div>
