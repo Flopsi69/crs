@@ -1008,7 +1008,10 @@ function initExp() {
 
 function initExpInner() {
   let title = document.querySelector('.b-advert-header.m-h1').innerText;
-  let sellerCompanyEl = document.querySelector('.e-company-name a');
+  let sellerCompanyEl;
+  if (document.querySelector('.e-company-name a')) {
+    sellerCompanyEl = document.querySelector('.e-company-name a');
+  }
   let sellerName;
   if (document.querySelector('.e-card-title + .e-text')) {
     sellerName = document.querySelector('.e-card-title + .e-text').innerText;
