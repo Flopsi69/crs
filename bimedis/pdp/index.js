@@ -1285,19 +1285,21 @@ function initExpInner() {
       );
   }
 
-  document
-    .querySelector('.lav-seller__rates .sjs-scroll-to')
-    .addEventListener('click', function () {
-      document.querySelector('.b-advert-right-column .sjs-scroll-to').click();
-    });
-
-  document.querySelector('.lav-seller__rates .sjs-scroll-to').innerText =
+  if (document.querySelector('.lav-seller__rates .sjs-scroll-to')) {
     document
       .querySelector('.lav-seller__rates .sjs-scroll-to')
-      .innerText.replace(
-        /\(reviews: (\d+)\)/i,
-        'based on $1 reviews on Bimedis'
-      );
+      .addEventListener('click', function () {
+        document.querySelector('.b-advert-right-column .sjs-scroll-to').click();
+      });
+
+    document.querySelector('.lav-seller__rates .sjs-scroll-to').innerText =
+      document
+        .querySelector('.lav-seller__rates .sjs-scroll-to')
+        .innerText.replace(
+          /\(reviews: (\d+)\)/i,
+          'based on $1 reviews on Bimedis'
+        );
+  }
   let yearPDP = '';
   let conditionPDP = '';
   document
