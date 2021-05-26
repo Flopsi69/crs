@@ -1183,7 +1183,7 @@ function initExpInner() {
 
   if (sellerCompanyEl) {
     document
-      .querySelector('lav-seller__head')
+      .querySelector('.lav-seller__head')
       .insertAdjacentHTML(
         'afterend',
         `<a href='${sellerCompanyEl.href}' class='lav-seller__company'>${sellerCompanyEl.innerText}</a>`
