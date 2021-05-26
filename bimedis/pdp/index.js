@@ -1388,11 +1388,7 @@ function initExpInner() {
       }
     });
 
-  if (document.querySelector('.maps_html iframe')) {
-    initMapModal();
-  } else {
-    document.querySelector('.lav-seller__info-right').remove();
-  }
+  initMapModal();
 }
 
 function fetchSimilar(url) {
