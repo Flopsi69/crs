@@ -602,6 +602,10 @@ let stylesList = `
   }
   .lav-seller__info {
     display: flex;
+    margin-top: 15px;
+  }
+  .b-user-rating-stars {
+    margin-bottom: 5px;
   }
   .lav-seller__info-left {
     width: 300px;
