@@ -1373,13 +1373,17 @@ function setSeller() {
       );
   }
 
-  document
-    .querySelector('.lav-seller__meta-ships')
-    .insertAdjacentHTML('afterbegin', shipsFrom);
+  if (shipsFrom) {
+    document
+      .querySelector('.lav-seller__meta-ships')
+      .insertAdjacentHTML('afterbegin', shipsFrom);
+  }
 
-  document
-    .querySelector('.lav-seller__logo')
-    .insertAdjacentElement('afterbegin', compnyLogo);
+  if (compnyLogo) {
+    document
+      .querySelector('.lav-seller__logo')
+      .insertAdjacentElement('afterbegin', compnyLogo);
+  }
 
   document
     .querySelector('.lav-seller__btn')
