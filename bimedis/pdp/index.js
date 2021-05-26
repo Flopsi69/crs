@@ -1049,9 +1049,6 @@ function initExpInner() {
             <div class='lav-seller__head-caption'>Seller:</div>
             <div class='lav-seller__head-label'></div>
           </div>
-          <a href='${sellerCompanyEl.href}' class='lav-seller__company'>${
-    sellerCompanyEl.innerText
-  }</a>
           <div class='lav-seller__rates'></div>
           <div class='lav-seller__info'>
             <div class='lav-seller__info-left'>
@@ -1181,6 +1178,15 @@ function initExpInner() {
   document
     .querySelector('.b-adverts-switcher')
     .insertAdjacentHTML('afterend', bodyEl);
+
+  if (sellerCompanyEl) {
+    document
+      .querySelector('lav-seller__head')
+      .insertAdjacentHTML(
+        'afterend',
+        `<a href='${sellerCompanyEl.href}' class='lav-seller__company'>${sellerCompanyEl.innerText}</a>`
+      );
+  }
 
   if (document.querySelector('.sjs-advert-price')) {
     document.querySelector('.lav-body__price').innerText =
