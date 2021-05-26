@@ -1276,12 +1276,14 @@ function initExpInner() {
       document.querySelector('.sjs-add-to-favourites')
     );
 
-  document
-    .querySelector('.lav-seller__rates')
-    .insertAdjacentElement(
-      'afterbegin',
-      document.querySelector('.b-user-rating-wrapper').cloneNode(true)
-    );
+  if (document.querySelector('.b-user-rating-wrapper')) {
+    document
+      .querySelector('.lav-seller__rates')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector('.b-user-rating-wrapper').cloneNode(true)
+      );
+  }
 
   document
     .querySelector('.lav-seller__rates .sjs-scroll-to')
