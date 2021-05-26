@@ -28,7 +28,7 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'event-to-ga',
+      event: 'gaEv',
       eventCategory: 'Experiment — also like',
       eventAction: action,
       eventLabel: label,
