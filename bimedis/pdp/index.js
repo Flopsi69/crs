@@ -1381,7 +1381,6 @@ function initExpInner() {
           .querySelector('.b-other-advert-list .e-product-price .e-price')
           .innerText.trim()
       ) {
-        // no
       } else {
         el.querySelector(
           '.b-other-advert-list .e-product-price .e-price'
