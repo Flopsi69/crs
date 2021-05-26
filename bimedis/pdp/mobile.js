@@ -1407,18 +1407,22 @@ function setSeller() {
       );
   }
 
-  document
-    .querySelector('.lav-seller .sjs-scroll-to')
-    .addEventListener('click', function () {
-      documentq.querySelector('.b-advert-right-column .sjs-scroll-to').click();
-    });
+  if (document.querySelector('.lav-seller .sjs-scroll-to')) {
+    document
+      .querySelector('.lav-seller .sjs-scroll-to')
+      .addEventListener('click', function () {
+        documentq
+          .querySelector('.b-advert-right-column .sjs-scroll-to')
+          .click();
+      });
 
-  document.querySelector('.lav-seller .sjs-scroll-to').innerHTML = document
-    .querySelector('.lav-seller .sjs-scroll-to')
-    .innerText.replace(
-      /\(reviews: (\d+)\)/i,
-      'based on <span>$1 reviews</span> on Bimedis'
-    );
+    document.querySelector('.lav-seller .sjs-scroll-to').innerHTML = document
+      .querySelector('.lav-seller .sjs-scroll-to')
+      .innerText.replace(
+        /\(reviews: (\d+)\)/i,
+        'based on <span>$1 reviews</span> on Bimedis'
+      );
+  }
 
   if (document.querySelector('.m-trust')) {
     document
