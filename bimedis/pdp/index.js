@@ -935,10 +935,12 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
 console.log('exp start');
 
 // connect to DOM
-let styles = document.createElement('style');
-styles.id = 'go-phone-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+setTimeout(() => {
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+}, 300);
 /* STYLES insert end */
 var isInitExp = false;
 
