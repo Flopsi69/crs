@@ -1732,8 +1732,10 @@ function initMapModal() {
       document.querySelector('.lav-seller').innerHTML
     );
 
+  document.querySelector('.lav-seller .lav-seller__map').style.opacity = 0;
   setTimeout(() => {
     if (mapsHtml && mapsHtml.length > 165) {
+      document.querySelector('.lav-seller .lav-seller__map').style.opacity = 1;
       document
         .querySelector('.lav-seller .lav-seller__map')
         .addEventListener('click', function (e) {

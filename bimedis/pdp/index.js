@@ -1559,8 +1559,10 @@ function initMapModal() {
   document.querySelector('.lav-modal__info .lav-seller__info-right').remove();
   document.querySelector('.lav-modal__info .lav-seller__head-caption').remove();
 
+  document.querySelector('.lav-seller__info-right').style.opacity = 0;
   setTimeout(() => {
     if (mapsHtml && mapsHtml.length > 165) {
+      document.querySelector('.lav-seller__info-right').style.opacity = 1;
       document
         .querySelector('.lav-seller__info-right')
         .addEventListener('click', function (e) {
@@ -1573,7 +1575,7 @@ function initMapModal() {
     } else {
       document.querySelector('.lav-seller__info-right').remove();
     }
-  }, 3000);
+  }, 2500);
 
   document
     .querySelector('.lav-seller__info-right')
