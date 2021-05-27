@@ -1743,7 +1743,7 @@ function initMapModal() {
     } else {
       document.querySelector('.lav-seller .lav-seller__map').remove();
     }
-  }, 1500);
+  }, 2000);
 
   document.querySelector('.b-blackout').addEventListener('click', function (e) {
     e.preventDefault();

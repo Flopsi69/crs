@@ -1570,7 +1570,7 @@ function initMapModal() {
     } else {
       document.querySelector('.lav-seller__info-right').remove();
     }
-  }, 1000);
+  }, 3000);
 
   document
     .querySelector('.lav-seller__info-right')
