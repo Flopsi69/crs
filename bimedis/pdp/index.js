@@ -133,6 +133,9 @@ let stylesList = `
     display: flex;
     flex-wrap: wrap;
   }
+  .m-advert-top-block {
+    max-width: 100%;
+  }
   .b-popular-second-level-searches .e-link {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -1008,6 +1011,9 @@ function initExp() {
     });
 
   window.dispatchEvent(new Event('resize'));
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, 1000);
 }
 
 function initExpInner() {
