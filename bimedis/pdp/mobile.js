@@ -1339,6 +1339,8 @@ function setSeller() {
   document.querySelectorAll('.b-mini-card').forEach(function (card) {
     if (card.innerText.toLowerCase().includes('contact name')) {
       contactName = card.querySelector('.e-text').innerText;
+    } else {
+      contactName = '-';
     }
   });
 

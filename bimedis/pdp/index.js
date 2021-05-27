@@ -1557,7 +1557,7 @@ function initMapModal() {
   document.querySelector('.lav-modal__info .lav-seller__head-caption').remove();
 
   setTimeout(() => {
-    if (document.querySelector('.maps_html iframe')) {
+    if (mapsHtml && mapsHtml.length > 165) {
       document
         .querySelector('.lav-seller__info-right')
         .addEventListener('click', function (e) {
@@ -1578,8 +1578,10 @@ function initMapModal() {
       e.preventDefault();
       document.querySelector('.b-blackout').style.display = 'block';
       document.querySelector('.lav-modal').classList.remove('hidden');
-      document.querySelector('.lav-modal__map iframe').src =
-        document.querySelector('.maps_html iframe').src;
+      if (document.querySelector('.maps_html iframe')) {
+        document.querySelector('.lav-modal__map iframe').src =
+          document.querySelector('.maps_html iframe').src;
+      }
     });
 
   document.querySelector('.b-blackout').addEventListener('click', function (e) {
