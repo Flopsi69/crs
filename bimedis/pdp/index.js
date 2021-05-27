@@ -1007,8 +1007,13 @@ function initExp() {
         }
         document.querySelector('#sjs-contacts-callback-advert_id').value =
           advertId;
-        document.querySelector('#sjs-contacts-callback-button_id').value =
-          button.innerText;
+        if (button.dataset.label) {
+          document.querySelector('#sjs-contacts-callback-button_id').value =
+            button.dataset.label;
+        } else {
+          document.querySelector('#sjs-contacts-callback-button_id').value =
+            button.innerText;
+        }
       });
     });
 
