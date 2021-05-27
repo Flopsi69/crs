@@ -1556,6 +1556,22 @@ function initMapModal() {
   document.querySelector('.lav-modal__info .lav-seller__info-right').remove();
   document.querySelector('.lav-modal__info .lav-seller__head-caption').remove();
 
+  setTimeout(() => {
+    if (document.querySelector('.maps_html iframe')) {
+      document
+        .querySelector('.lav-seller__info-right')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector('.b-blackout').style.display = 'block';
+          document.querySelector('.lav-modal').classList.remove('hidden');
+          document.querySelector('.lav-modal__map iframe').src =
+            document.querySelector('.maps_html iframe').src;
+        });
+    } else {
+      document.querySelector('.lav-seller__info-right').remove();
+    }
+  }, 1500);
+
   document
     .querySelector('.lav-seller__info-right')
     .addEventListener('click', function (e) {

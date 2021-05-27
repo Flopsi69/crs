@@ -1730,14 +1730,20 @@ function initMapModal() {
       document.querySelector('.lav-seller').innerHTML
     );
 
-  document
-    .querySelector('.lav-seller .lav-seller__map')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('.b-blackout').style.display = 'block';
-      document.querySelector('.lav-modal').classList.remove('hidden');
-      document.querySelector('.lav-modal__map').innerHTML = mapsHtml;
-    });
+  setTimeout(() => {
+    if (mapsHtml) {
+      document
+        .querySelector('.lav-seller .lav-seller__map')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector('.b-blackout').style.display = 'block';
+          document.querySelector('.lav-modal').classList.remove('hidden');
+          document.querySelector('.lav-modal__map').innerHTML = mapsHtml;
+        });
+    } else {
+      document.querySelector('.lav-seller .lav-seller__map').remove();
+    }
+  }, 2000);
 
   document.querySelector('.b-blackout').addEventListener('click', function (e) {
     e.preventDefault();
