@@ -185,6 +185,9 @@ let stylesList = `
     width: 610px;
     flex-shrink: 0;
   }
+  .b-advert-block {
+    max-width: 100%!important;
+  }
   .lav-body__info .b-advert-block {
     padding: 20px!important;
     margin-bottom: 0;
