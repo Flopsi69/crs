@@ -1108,8 +1108,6 @@ function initExp() {
       console.log('Request failed');
     });
 
-  document.querySelector('.new-scss .search__input').placeholder = '';
-
   // document
   //   .querySelector('.new-scss .e-search')
   //   .addEventListener('click', function (e) {
