@@ -1130,7 +1130,7 @@ function initExpInner() {
                 <div class='lav-how__tip-title'>Delivery options to <span class='lav-country'></span></div>
                 <div class='lav-how__tip-info'>
                   <div class='lav-how__tip-descr'>Bimedis.com offers delivery services all over the world. For more details contact us.  </div>
-                  <button class='lav-how__tip-btn b-button m-button-blue sjs-contacts-callback-abtest'>Contact US</button>
+                  <button data-label='Delivery options' class='lav-how__tip-btn b-button m-button-blue sjs-contacts-callback-abtest'>Contact US</button>
                 </div>
               </div>
             </div>
@@ -1141,7 +1141,7 @@ function initExpInner() {
                 <div class='lav-how__tip-info'>
                   <div class='lav-how__tip-descr'>Bimedis.com offers customs clearance services all ov
                   er the world. For more details contact us. </div>
-                  <button class='lav-how__tip-btn b-button m-button-blue sjs-contacts-callback-abtest'>Contact US</button>
+                  <button data-label='Customs clearance' class='lav-how__tip-btn b-button m-button-blue sjs-contacts-callback-abtest'>Contact US</button>
                 </div>
               </div>
             </div>
