@@ -1731,7 +1731,7 @@ function initMapModal() {
     );
 
   setTimeout(() => {
-    if (mapsHtml) {
+    if (mapsHtml && mapsHtml.length > 165) {
       document
         .querySelector('.lav-seller .lav-seller__map')
         .addEventListener('click', function (e) {
