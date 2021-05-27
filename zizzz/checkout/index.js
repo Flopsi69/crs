@@ -53,18 +53,13 @@ let stylesList = `
   margin-bottom: 50px;
   text-align: center;
 }
-.lav-header {
-
-}
-.lav-header {
-
-}
 .checkout-index-index .am-checkout {
   margin: 0;
   padding: 0;
 }
 .checkout-index-index .am-checkout:not(.-modern) {
   background: #fff;
+  padding: 0 20px;
 }
 .checkout-index-index .opc-wrapper.am-opc-wrapper {
   border: 1px solid #E3E3E3;
@@ -509,18 +504,14 @@ function initExp() {
     .querySelector('.lav-steps__control-next')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      document.querySelector('.payment-methods .checkout').click();
+      // document.querySelector('.payment-methods .checkout').click();
+
       if (activeStep == 1) {
         activeStep++;
         initStepTwo();
       } else if (activeStep == 2) {
         activeStep++;
         initStepThree();
-        // if (isAgain) {
-        //   initStepThree(true);
-        // } else {
-        //   initStepThree();
-        // }
       } else if (activeStep == 3) {
         document.querySelector('.payment-methods .checkout').click();
       }
@@ -529,6 +520,10 @@ function initExp() {
   initHeader();
   initSummary();
   initStepOne();
+}
+
+function validateInputs() {
+  document.querySelectorAll('.field _required');
 }
 
 function initHeader() {
@@ -603,6 +598,16 @@ function initStepOne(isAgain) {
     document
       .querySelector('.lav-steps__control')
       .insertAdjacentElement('beforebegin', document.querySelector('#payment'));
+
+    document.addEventListener('click', function (e) {
+      console.log(e.target);
+      if (
+        e.target.classList.contains('payment-method') ||
+        e.target.classList.contains('payment-method-title')
+      ) {
+        e.target.querySelector('label').click();
+      }
+    });
 
     document
       .querySelector('.lav-steps__control')

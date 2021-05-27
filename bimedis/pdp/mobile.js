@@ -86,8 +86,8 @@ let stylesList = `
   border: 2px solid #FF7F00;
   border-radius: 4px;
   padding: 12px 22px;
-  width: auto;
-  height: auto;
+  width: auto!important;
+  height: auto!important;
   margin-left: 0;
 }
 .b-search-result-button-mobile img {
@@ -1016,6 +1016,9 @@ let stylesList = `
   width: 20px;
   height: 20px;
 }
+.new-scss.scss-small-content .content > .container {
+  opacity: 0;
+}
 `;
 
 var isInitExp = false;
@@ -1151,6 +1154,14 @@ function initExp() {
   });
 
   window.dispatchEvent(new Event('resize'));
+
+  if (
+    document.querySelector('.new-scss.scss-small-content .content > .container')
+  ) {
+    document.querySelector(
+      '.new-scss.scss-small-content .content > .container'
+    ).style.opacity = 1;
+  }
 }
 
 function setProductInfo() {
@@ -1594,10 +1605,10 @@ function setSimilarProduct(items, count) {
       elBlock.classList.add('lav-similar__item');
       elBlock.innerHTML = `
         <div class='lav-similar__top'>
-          <a class='lav-similar__image' href='${elLink}'>
+          <a class='lav-similar__image' href='${elLink}' target='_blank'>
             <img src='${imageSrc}' />
           </a>
-          <a href='${elLink}' class='lav-similar__title'>${title}</a>
+          <a href='${elLink}' target='_blank' class='lav-similar__title'>${title}</a>
         </div>
 
         <div class='lav-similar__info'>

@@ -925,8 +925,8 @@ let stylesList = `
   .lav-modal__body .lav-botton__contact:hover {
     background-color: #323a5f;
   }
-  @media(max-width: 1200px) {
-    
+  .new-scss.scss-small-content .content > .container {
+    opacity: 0;
   }
 `;
 
@@ -1016,6 +1016,14 @@ function initExp() {
   setTimeout(() => {
     window.dispatchEvent(new Event('resize'));
   }, 1000);
+
+  if (
+    document.querySelector('.new-scss.scss-small-content .content > .container')
+  ) {
+    document.querySelector(
+      '.new-scss.scss-small-content .content > .container'
+    ).style.opacity = 1;
+  }
 }
 
 function initExpInner() {
@@ -1445,11 +1453,11 @@ function setSimilarProduct(items, count) {
       let elBlock = document.createElement('div');
       elBlock.classList.add('lav-similar__item');
       elBlock.innerHTML = `
-        <a class='lav-similar__image' href='${elLink}'>
+        <a class='lav-similar__image' href='${elLink}' target='_blank'>
           <img src='${imageSrc}' />
         </a>
         <div class='lav-similar__info'>
-          <a href='${elLink}' class='lav-similar__title'>${title}</a>
+          <a href='${elLink}' target='_blank' class='lav-similar__title'>${title}</a>
           <div class='lav-similar__brand'>${brand}</div>
           <div class='lav-similar__meta'></div>
         </div>
