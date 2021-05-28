@@ -1090,7 +1090,7 @@ function initWrap() {
       "/chevron-right.svg' /> View other adverts of this model";
 
     document
-      .querySelector('.b-search-result-button')
+      .querySelector('.b-search-result-button-mobile')
       .addEventListener('click', function () {
         gaEvent('click on button View other', 'Back to listing');
       });
@@ -1202,7 +1202,7 @@ function initWrap() {
             <div class='lav-product__line lav-product__line-condition'>Condition: <span></span></div>
             <div class='lav-product__line lav-product__line-year'>Year: <span></span></div>
           </div>
-          <div class='lav-product__meta-right'><span>Add to Favourites</span></div>
+          <div class='lav-product__meta-right'><span>Add to Favorites</span></div>
         </div>
         <div class='lav-product__price'></div>
         <div class='lav-product__buttons'>
@@ -1387,7 +1387,7 @@ function initWrap() {
               <img src="${REPO_DIR}/map-placeholder.svg"> <span>See on the map</span>
             </div>
 
-            <button class='lav-seller__btn lav-seller__btn-report'>Report the add</button>
+            <button class='lav-seller__btn lav-seller__btn-report'>Report the ad</button>
           </div>
         </div>
         <div class='lav-seller__right'>
@@ -1489,7 +1489,7 @@ function initWrap() {
           </div>
           <div class='lav-how__step'>
             <div class='lav-how__step-num'>2</div>
-            <div class='lav-how__step-caption'>Agree on the price with seller</div>
+            <div class='lav-how__step-caption'>Agree on the price with the seller</div>
           </div>
           <div class='lav-how__step'>
             <div class='lav-how__step-num'>3</div>
@@ -1500,7 +1500,7 @@ function initWrap() {
             <div class='lav-how__step-caption'>Manage Customs clearance</div>
           </div>
         </div>
-        <div class='lav-how__caption'>Delegate accompanying services to Bimedis or manage everything by your own</div>
+        <div class='lav-how__caption'>Delegate accompanying services to Bimedis or manage everything on your own</div>
         <div class='lav-how__options'>
           <div class='lav-how__option'>
             <div class='lav-how__option-value'>Delivery options</div>

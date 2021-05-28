@@ -1079,7 +1079,7 @@ function initExpInner() {
             <div class='lav-body__line lav-body__line-condition'>Condition: <strong></strong></div>
             <div class='lav-body__line lav-body__line-year'>Year: <strong></strong></div>
           </div>
-          <div class='lav-body__meta-right'><span>Add to Favourites</span></div>
+          <div class='lav-body__meta-right'><span>Add to Favorites</span></div>
         </div>
         <div class='lav-body__price'></div>
 
@@ -1115,7 +1115,7 @@ function initExpInner() {
 
           <div class='lav-buttons__report'>
             <img src="${REPO_DIR}/report.svg">
-            Report the add
+            Report the ad
           </div>
         </div>
 
@@ -1128,7 +1128,7 @@ function initExpInner() {
             </div>
             <div class='lav-how__step'>
               <div class='lav-how__step-num'>2</div>
-              <div class='lav-how__step-caption'>Agree on the price with seller</div>
+              <div class='lav-how__step-caption'>Agree on the price with the seller</div>
             </div>
             <div class='lav-how__step'>
               <div class='lav-how__step-num'>3</div>
@@ -1139,7 +1139,7 @@ function initExpInner() {
               <div class='lav-how__step-caption'>Manage Customs clearance</div>
             </div>
           </div>
-          <div class='lav-how__caption'>Delegate accompanying services to Bimedis or manage everything by your own</div>
+          <div class='lav-how__caption'>Delegate accompanying services to Bimedis or manage everything on your own</div>
           <div class='lav-how__options'>
             <div class='lav-how__option lav-how__option-delivery'>
               <div class='lav-how__option-value'>Delivery options</div>
