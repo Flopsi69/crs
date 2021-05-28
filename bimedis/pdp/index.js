@@ -1006,10 +1006,17 @@ function initExp() {
     .querySelectorAll('.sjs-contacts-callback-abtest')
     .forEach(function (button, index) {
       button.addEventListener('click', function () {
-        if (index == 1) {
-          gaEvent('click on button Contact us', 'Popup: Delivery options');
+        if (index == 0) {
+          gaEvent('click on button Trade in', 'Content');
+        } else if (index == 1) {
+          gaEvent('click on button Contact us', 'Hover: Delivery options');
         } else if (index == 2) {
-          gaEvent('click on button Contact us', 'Popup: Customs clearance');
+          gaEvent('click on button Contact us', 'Hover: Customs clearance');
+        } else if (index > 2) {
+          gaEvent(
+            'click on button ' + button.innerText,
+            'Hover: Additional services'
+          );
         }
         document.querySelector('#sjs-contacts-callback-advert_id').value =
           advertId;
@@ -1134,7 +1141,7 @@ function initExpInner() {
           </div>
           <div class='lav-how__caption'>Delegate accompanying services to Bimedis or manage everything by your own</div>
           <div class='lav-how__options'>
-            <div class='lav-how__option'>
+            <div class='lav-how__option lav-how__option-delivery'>
               <div class='lav-how__option-value'>Delivery options</div>
               <div class='lav-how__option-to'>to <span class='lav-country'></span></div>
               <div class='lav-how__tip'>
@@ -1145,7 +1152,7 @@ function initExpInner() {
                 </div>
               </div>
             </div>
-            <div class='lav-how__option'>
+            <div class='lav-how__option lav-how__option-clearance'>
               <div class='lav-how__option-value'>Customs clearance</div>
               <div class='lav-how__tip'>
                 <div class='lav-how__tip-title'>Customs clearance</div>
@@ -1156,7 +1163,7 @@ function initExpInner() {
                 </div>
               </div>
             </div>
-            <div class='lav-how__option'>
+            <div class='lav-how__option lav-how__option-additional'>
               <div class='lav-how__option-value'>Additional services </div>
               <div class='lav-how__tip'>
                 <div class='lav-how__tip-title'>Additional services</div>
@@ -1211,6 +1218,39 @@ function initExpInner() {
   document
     .querySelector('.b-adverts-switcher')
     .insertAdjacentHTML('afterend', bodyEl);
+
+  document
+    .querySelector('.lav-how__option-delivery')
+    .addEventListener('mouseover', function () {
+      gaEvent(
+        'hover on link Delivery options',
+        'Section: How to buy this product?'
+      );
+    });
+
+  document
+    .querySelector('.lav-how__option-clearance')
+    .addEventListener('mouseover', function () {
+      gaEvent(
+        'hover on link Customs clearance',
+        'Section: How to buy this product?'
+      );
+    });
+
+  document
+    .querySelector('.lav-how__option-additional')
+    .addEventListener('mouseover', function () {
+      gaEvent(
+        'hover on link Additional services',
+        'Section: How to buy this product?'
+      );
+    });
+
+  document
+    .querySelector('.lav-similar__button-one')
+    .addEventListener('click', function () {
+      gaEvent('click on button Show more', 'Content');
+    });
 
   if (sellerCompanyEl) {
     document
@@ -1385,6 +1425,7 @@ function initExpInner() {
   document
     .querySelector('.lav-buttons__report')
     .addEventListener('click', function () {
+      gaEvent('click on button Report the add', 'Content');
       document.querySelector('.sjs-complaint').click();
     });
 
@@ -1523,6 +1564,12 @@ function setSimilarProduct(items, count) {
       document
         .querySelector('.lav-similar')
         .insertAdjacentElement('beforeend', elBlock);
+
+      elBlock.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click').function(){
+          gaEvent('click on product card', 'Similar Products');
+        }
+      })
     }
   });
 }
