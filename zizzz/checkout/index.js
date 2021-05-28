@@ -24,6 +24,7 @@ let stylesList = `
   background: #f7f7f7;
   border-bottom: 1px solid #e5e5e5;
   padding: 10px 0;
+  margin: 0 -20px;
 }
 .lav-header__container {
   display: flex;
@@ -130,6 +131,7 @@ let stylesList = `
   padding-right: 0;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 }
 .minicart-items .product-item-details .details-qty .label span, .minicart-items .details-qty .label:after {
   display: none;
@@ -219,6 +221,15 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   font-size: 16px;
   line-height: 23px;
   color: #A1A1A1;
+}
+@media (max-width: 1200px) {
+  .lav-steps__nav {
+    font-size: 11px;
+  }
+  .lav-steps__nav-num {
+    width: 20px;
+    height: 20px;
+  }
 }
 .lav-steps__nav-current, .lav-steps__nav-next {
   display: flex;
@@ -405,6 +416,81 @@ input[type="checkbox"] {
 }
 .am-submit-summary + .am-submit-summary {
   display: none!important;
+}
+@media (max-width: 768px) {
+  .lav-wrap {
+    display: block;
+  }
+  .lav-steps {
+    padding: 0;
+  }
+  .checkout-index-index .opc-wrapper.am-opc-wrapper {
+    border: none;
+  }
+  .lav-summary {
+    padding: 0;
+    width: 100%;
+    border-left: none;
+  }
+  .checkout-index-index .opc-wrapper .form-login {
+    margin: 0;
+  }
+  .opc-wrapper .form-login, .opc-wrapper .form-shipping-address, .opc-wrapper .methods-shipping {
+    background: none!important;
+  }
+  .lav-link {
+    font-size: 16px;
+  }
+  .opc-wrapper .form-login .fieldset .field .label, .opc-wrapper .form-shipping-address .fieldset .field .label {
+    margin-bottom: 10px;
+  }
+  .checkout-index-index .opc-wrapper .form-login {
+    padding-top: 0;
+    margin-bottom: 20px
+  }
+  .opc-wrapper .form-login, .opc-wrapper .form-shipping-address, .opc-wrapper .methods-shipping {
+    padding: 0;
+  }
+  .checkout-payment-method .payment-option-title {
+    margin: 0px;
+  }
+  .checkout-payment-method .payment-option {
+    margin: 0;
+  }
+  .lav-steps__control {
+    margin-top: 25px;
+    display: block;
+  }
+  .lav-steps__control-next {
+    max-width: 100%;
+  }
+  .opc-wrapper .form-login+.form-shipping-address {
+    margin-top: 0!important;
+  }
+  .opc-wrapper .methods-shipping {
+    margin: 20px 0 12px;
+  }
+  .checkout-index-index .opc-estimated-wrapper {
+    margin: 0;
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+  }
+  .minicart-wrapper {
+    position: absolute;
+  }
+  .opc-estimated-wrapper .estimated-block {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    float: none;
+  }
 }
 
 // font-family: 'Varela Round';
