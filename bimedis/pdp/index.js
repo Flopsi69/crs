@@ -1221,7 +1221,7 @@ function initExpInner() {
 
   document
     .querySelector('.lav-how__option-delivery')
-    .addEventListener('mouseover', function () {
+    .addEventListener('mouseenter', function () {
       gaEvent(
         'hover on link Delivery options',
         'Section: How to buy this product?'
@@ -1230,7 +1230,7 @@ function initExpInner() {
 
   document
     .querySelector('.lav-how__option-clearance')
-    .addEventListener('mouseover', function () {
+    .addEventListener('mouseenter', function () {
       gaEvent(
         'hover on link Customs clearance',
         'Section: How to buy this product?'
@@ -1239,7 +1239,7 @@ function initExpInner() {
 
   document
     .querySelector('.lav-how__option-additional')
-    .addEventListener('mouseover', function () {
+    .addEventListener('mouseenter', function () {
       gaEvent(
         'hover on link Additional services',
         'Section: How to buy this product?'
