@@ -1566,10 +1566,10 @@ function setSimilarProduct(items, count) {
         .insertAdjacentElement('beforeend', elBlock);
 
       elBlock.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click').function(){
+        link.addEventListener('click', function () {
           gaEvent('click on product card', 'Similar Products');
-        }
-      })
+        });
+      });
     }
   });
 }
