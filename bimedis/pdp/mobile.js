@@ -1133,10 +1133,17 @@ function initWrap() {
       .querySelectorAll('.sjs-contacts-callback-abtest')
       .forEach(function (button, index) {
         button.addEventListener('click', function () {
-          if (index == 1) {
+          if (index == 0) {
+            gaEvent('click on button Trade in', 'Content');
+          } else if (index == 1) {
             gaEvent('click on button Contact us', 'Popup: Delivery options');
           } else if (index == 2) {
             gaEvent('click on button Contact us', 'Popup: Customs clearance');
+          } else if (index > 2) {
+            gaEvent(
+              'click on button ' + button.innerText,
+              'Popup: Additional services'
+            );
           }
 
           document.querySelector('#sjs-contacts-callback-advert_id').value =
@@ -1380,7 +1387,7 @@ function initWrap() {
               <img src="${REPO_DIR}/map-placeholder.svg"> <span>See on the map</span>
             </div>
 
-            <button class='lav-seller__btn'>Report the add</button>
+            <button class='lav-seller__btn lav-seller__btn-report'>Report the add</button>
           </div>
         </div>
         <div class='lav-seller__right'>
@@ -1400,6 +1407,12 @@ function initWrap() {
     document
       .querySelector('.lav-product')
       .insertAdjacentHTML('afterend', sellerEl);
+
+    document
+      .querySelector('.lav-seller__more')
+      .addEventListener('click', function () {
+        gaEvent('click on button Show more', 'Content');
+      });
 
     if (companyNameEl) {
       document
@@ -1426,6 +1439,7 @@ function initWrap() {
       .querySelector('.lav-seller__btn')
       .addEventListener('click', function () {
         document.querySelector('.sjs-complaint').click();
+        gaEvent('click on button Report the add', 'Content');
       });
 
     if (document.querySelector('.b-user-rating-wrapper')) {
@@ -1666,6 +1680,12 @@ function initWrap() {
         document
           .querySelector('.lav-similar__inner')
           .insertAdjacentElement('beforeend', elBlock);
+
+        elBlock.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            gaEvent('click on product card', 'Similar Products');
+          });
+        });
       }
     });
   }
@@ -1737,6 +1757,7 @@ function initWrap() {
       .querySelector('.lav-modal__body .lav-bottom__contact')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('click on button Contact seller', 'Popup: See on the map');
         document.querySelector('.lav-modal').classList.add('hidden');
         document.querySelector('.sjs-send-message-open').click();
       });
@@ -1758,6 +1779,7 @@ function initWrap() {
           .querySelector('.lav-seller .lav-seller__map')
           .addEventListener('click', function (e) {
             e.preventDefault();
+            gaEvent('click on button See on the map', 'Content');
             document.querySelector('.b-blackout').style.display = 'block';
             document.querySelector('.lav-modal').classList.remove('hidden');
             document.querySelector('.lav-modal__map').innerHTML = mapsHtml;
