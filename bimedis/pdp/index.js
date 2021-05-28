@@ -164,6 +164,7 @@ let stylesList = `
   }
   .b-advert-left-column {
     width: 100%;
+    max-width: 100%;
   }
   .lav-body__wrap {
     display: flex;
@@ -184,6 +185,8 @@ let stylesList = `
   .lav-body__info {
     width: 610px;
     flex-shrink: 0;
+    overflow: hidden;
+    max-width: 100%;
   }
   .b-advert-block {
     max-width: 100%!important;
