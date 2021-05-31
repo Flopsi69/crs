@@ -139,7 +139,7 @@ stylesAlso.innerHTML = stylesListAlso;
 document.body.appendChild(stylesAlso);
 
 /*** STYLES insert -end- ***/
-
+initAlso();
 function initAlso() {
   console.log('init');
 

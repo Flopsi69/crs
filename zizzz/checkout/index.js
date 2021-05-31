@@ -18,6 +18,19 @@ function gaEvent(action, label = '') {
 
 // gaEvent('loaded');
 
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+    }
+  }
+});
+
+let demoElem = document.body;
+
+observer.observe(demoElem, { childList: true, subtree: true });
+
 /* STYLES insert start */
 let stylesList = `
 .lav-header {
@@ -49,10 +62,24 @@ let stylesList = `
 .lav-header__right {
   color: #515151;
 }
-.lav-header__sub {
+.authentication-wrapper {
+  display: none;
+}
+.lav-header__sub-wrap {
   margin-top: 30px;
   margin-bottom: 50px;
   text-align: center;
+}
+.authentication-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow: initial!important;
+}
+.lav-header__sub-wrap a {
+  display: inline-block;
+  line-height: 0;
 }
 .checkout-index-index .am-checkout {
   margin: 0;
@@ -122,6 +149,7 @@ let stylesList = `
   line-height: 19px;
   color: #616666;
   margin-bottom: 0;
+  padding-right: 15px;
 }
 .checkout-index-index .opc-block-summary .minicart-items .product-item-details {
   padding-left: 0;
@@ -152,7 +180,7 @@ let stylesList = `
   font-size: 13px;
   line-height: 1;
   color: #333333;
-  border: 1px solid #616666;
+  border: 1px solid lightgray;
   padding: 10px;
 }
 .checkout-header, .opc-wrapper .step-title {
@@ -196,6 +224,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   width: 100%;
 }
 .lav-summary__head {
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -417,6 +446,9 @@ input[type="checkbox"] {
 .am-submit-summary + .am-submit-summary {
   display: none!important;
 }
+.lav-header__logo {
+  display: none;
+}
 @media (max-width: 768px) {
   .lav-wrap {
     display: block;
@@ -491,6 +523,49 @@ input[type="checkbox"] {
     justify-content: space-between;
     float: none;
   }
+  .lav-summary__head {
+    border-width: 1px;
+  }
+  .lav-steps__control {
+    margin-top: 25px;
+  }
+  .lav-steps__control-back {
+    display: none;
+  }
+  .lav-summary {
+    margin-top: 50px;
+  }
+  .lav-header__sub-wrap {
+    display: none;
+  }
+  .lav-wrap {
+    padding-top: 90px;
+  }
+  .lav-header__logo {
+    display: block;
+    line-height: 0;
+  }
+  .lav-header__logo img {
+    height: 38px;
+    width: auto;
+  }
+  .lav-header__center {
+    display: none;
+  }
+  .lav-header {
+    padding: 5px 0;
+    z-index: 10;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); 
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+  }
+  .lav-header__right, .lav-header__left {
+    font-size: 12px;
+  }
 }
 
 // font-family: 'Varela Round';
@@ -518,8 +593,6 @@ var activeStep = 1;
 // }, 500);
 initExp();
 function initExp() {
-  // let shippingAdressEl = document.querySelector('.')
-
   let initBlock = `
     <div class="opc-wrapper layout-2-columns am-opc-wrapper am-submit-summary" data-bind="css: $data.additionalClasses">
       <div class='lav-wrap'>
@@ -561,6 +634,13 @@ function initExp() {
     .insertAdjacentHTML('beforebegin', initBlock);
 
   document
+    .querySelector('.lav-summary__head')
+    .insertAdjacentElement(
+      'afterbegin',
+      document.querySelector('.authentication-dropdown')
+    );
+
+  document
     .querySelector('.lav-link-auth')
     .addEventListener('click', function (e) {
       e.preventDefault();
@@ -590,18 +670,43 @@ function initExp() {
     .querySelector('.lav-steps__control-next')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      // document.querySelector('.payment-methods .checkout').click();
-
+      document.querySelector('.payment-methods .checkout.amasty').click();
       if (activeStep == 1) {
-        activeStep++;
-        initStepTwo();
+        if (
+          document.querySelector('[name="lastname"] + .field-error') ||
+          document.querySelector('[name="lastname"] + .field-error') ||
+          document.querySelector('#customer-email + .mage-error')
+        ) {
+          console.log('error step 1');
+        } else {
+          activeStep++;
+          initStepTwo();
+        }
       } else if (activeStep == 2) {
-        activeStep++;
-        initStepThree();
+        if (
+          document.querySelector('[name="street[0]"] + .field-error') ||
+          document.querySelector('[name="city"] + .field-error') ||
+          document.querySelector('[name="telephone"] + .field-error') ||
+          document.querySelector('[name="postcode"] + .field-error') ||
+          document.querySelector('[name="country_id"] + .field-error') ||
+          document.querySelector('#shipping-new-address-form .message.warning')
+        ) {
+          console.log('error step 2');
+        } else {
+          activeStep++;
+          initStepThree();
+        }
       } else if (activeStep == 3) {
-        document.querySelector('.payment-methods .checkout').click();
+        if (document.querySelectorAll('.field-error').length) {
+          console.log('error step 3');
+        } else {
+          document.querySelector('.payment-methods .checkout.amasty').click();
+        }
       }
     });
+
+  document.querySelector('.opc-estimated-wrapper .estimated-label').innerText =
+    'Grand Total';
 
   initHeader();
   initSummary();
@@ -618,12 +723,17 @@ function initHeader() {
       <div class='lav-header__container'>
         <div class='lav-header__left'>Try for 30 nights</div>
         <div class='lav-header__center'>Free shipping</div>
+        <a href='/' class='lav-header__logo'>
+          <img data-pagespeed-high-res-src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp" title="Zizzz - Babyschlafsäcke und Duvets" alt="Zizzz - Babyschlafsäcke und Duvets" width="147" height="97" src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp"></img>
+        </a>
         <a href='tel:+41225752474' class='lav-header__right'>+41 22 575 24 74</a>
       </div>
     </header>
-    <div class='lav-header__sub'>
+    <div class='lav-header__sub-wrap'>
+    <a href='/' class='lav-header__sub'>
       <img data-pagespeed-high-res-src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp" title="Zizzz - Babyschlafsäcke und Duvets" alt="Zizzz - Babyschlafsäcke und Duvets" width="147" height="97" src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp"></img>
-    </div>
+    </a>
+  </div>
   `;
 
   document
