@@ -60,8 +60,8 @@ let stylesList = `
     background: #F4F8FC;
     border-radius: 5px;
     padding: 15px 12px;
-    margin-top: 30px;
-    margin-bottom: 40px;
+    padding-left: 45px;
+    margin: 30px -25px 40px;
   }
   .lav-build__discount {
     font-size: 15px;
@@ -70,6 +70,21 @@ let stylesList = `
     color: #3856A5;
     display: flex;
     text-align: left;
+  }
+  .lav-build__discount_active {
+    position: relative;
+    color: #018659;
+  }
+  .lav-build__discount_active:before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url(${REPO_DIR}/icon-check.svg) center no-repeat;
+    background-size: contain;
   }
   .lav-build__discount-value {
     font-weight: 900;
@@ -214,8 +229,8 @@ function initExp() {
   let lavBuild = `
     <div class='lav-build'>
       <div class='lav-build__title'>Your order</div>
-      <div class='lav-build__caption'>Add 14 products to your box</div>
-      <div class='lav-build__caption lav-build__caption-sub'>Get <span>Free Shipping + 10% OFF</span></div>
+      <div class='lav-build__caption'>Add <span class='lav-build__caption-value'>14</span> products to your box</div>
+      <div class='lav-build__caption lav-build__caption-sub'>Get <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
 
       <div class='lav-build__discounts'>
         <div class='lav-build__discount'>
@@ -248,29 +263,54 @@ function initExp() {
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
 
+  let inBasket = parseInt(
+    document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+  );
+
+  if (document.querySelector('.info-text .reset')) {
+    document
+      .querySelector('.info-text .reset')
+      .addEventListener('click', function () {
+        clickControl();
+      });
+  }
+
   document.addEventListener('click', function (e) {
     if (
       e.target.closest('.added-container') ||
       e.target.closest('.not-added-container')
     ) {
-      let inBasket = parseInt(
-        document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
-      );
-      if (
-        document.querySelector('.progress-text .action-button') &&
-        (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
-      ) {
-        document.querySelector('.progress-text .action-button').click();
-        setItems(true);
-        setBasketDiscount(inBasket);
-      } else {
-        setItems();
-      }
+      console.log('click control');
+      clickControl();
     }
   });
 
   createBuildItemsRow(3);
   setItems();
+  setBasketDiscount(
+    parseInt(
+      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+    )
+  );
+}
+
+function clickControl() {
+  setTimeout(() => {
+    let inBasket = parseInt(
+      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+    );
+    console.log('inBasket', inBasket);
+    if (
+      document.querySelector('.progress-text .action-button') &&
+      (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
+    ) {
+      document.querySelector('.progress-text .action-button').click();
+      setItems(true);
+    } else {
+      setItems();
+    }
+    setBasketDiscount(inBasket);
+  }, 50);
 }
 
 function setItems(isFull) {
@@ -328,7 +368,6 @@ function setItems(isFull) {
         .addEventListener('click', function (e) {
           e.preventDefault();
           product.querySelector('.add').click();
-          setItems();
         });
 
       targetItem
@@ -336,7 +375,6 @@ function setItems(isFull) {
         .addEventListener('click', function (e) {
           e.preventDefault();
           product.querySelector('.remove').click();
-          setItems();
         });
 
       i++;
@@ -346,17 +384,61 @@ function setItems(isFull) {
       document.querySelectorAll('.lav-build__item')[i].innerHTML = '';
       i++;
     }
-  }, 250);
+  }, 100);
 }
 
 function setBasketDiscount(count) {
-  if (count >= 14 && count <= 27) {
+  setCaption(count);
+  if (count >= 14) {
+    controlDiscount(true, 1);
+  } else {
+    controlDiscount(false, 1);
+  }
+  if (count >= 28) {
+    controlDiscount(true, 2);
+  } else {
+    controlDiscount(false, 2);
+  }
+  if (count >= 42) {
+    controlDiscount(true, 3);
+  } else {
+    controlDiscount(false, 3);
+  }
+  if (count >= 56) {
+    controlDiscount(true, 4);
+  } else {
+    controlDiscount(false, 4);
+  }
+}
+
+function setCaption(count) {
+  let countEl = document.querySelector('.lav-build__caption-value');
+  let percentEl = document.querySelector('.lav-build__caption-sub-value');
+
+  if (count < 14) {
+    countEl.innerText = 14 - count;
+    percentEl.innerText = 10;
+  } else if (count < 28) {
+    countEl.innerText = 28 - count;
+    percentEl.innerText = 15;
+  } else if (count < 42) {
+    countEl.innerText = 42 - count;
+    percentEl.innerText = 20;
+  } else if (count < 56) {
+    countEl.innerText = 56 - count;
+    percentEl.innerText = 25;
+  }
+}
+
+function controlDiscount(isActive, i) {
+  if (isActive) {
     document
-      .querySelector('.lav-build__discount:nth-child(1)')
-      .classList.add('.lav-build__discount_active');
-  } else if (count >= 28 && count <= 41) {
-  } else if (count >= 42 && count <= 55) {
-  } else if (count >= 56) {
+      .querySelector('.lav-build__discount:nth-child(' + i + ')')
+      .classList.add('lav-build__discount_active');
+  } else {
+    document
+      .querySelector('.lav-build__discount:nth-child(' + i + ')')
+      .classList.remove('lav-build__discount_active');
   }
 }
 

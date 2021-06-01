@@ -1228,9 +1228,15 @@ function initExpInner() {
     </div>
   `;
 
-  document
-    .querySelector('.b-adverts-switcher')
-    .insertAdjacentHTML('afterend', bodyEl);
+  if (document.querySelector('.b-adverts-switcher')) {
+    document
+      .querySelector('.b-adverts-switcher')
+      .insertAdjacentHTML('afterend', bodyEl);
+  } else {
+    document
+      .querySelector('.new-scss.scss-small-content .content>.container')
+      .insertAdjacentHTML('afterend', bodyEl);
+  }
 
   if (!document.querySelector('.e-role-item.m-pro')) {
     document.querySelector('.lav-seller__logo').remove();
