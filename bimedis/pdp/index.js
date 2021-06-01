@@ -53,6 +53,9 @@ let stylesList = `
     color: #353C5F;
     margin-top: auto;
   }
+  .b-other-advert-list .e-product-item:last-child {
+    border-bottom: 1px solid #DADADA;
+  }
   .b-advert-right-column {
     display: none;
   }
