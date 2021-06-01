@@ -932,7 +932,9 @@ let stylesList = `
     background-color: #323a5f;
   }
 }
-.b-other-advert-list .e-product-price {margin-top: auto;}
+.b-other-advert-list .e-product-price {
+  margin-top: auto;
+}
 .b-other-advert-list .e-product-price .e-price {
   font-weight: bold;
   font-size: 18px;
