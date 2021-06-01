@@ -1232,10 +1232,6 @@ function initExpInner() {
     document
       .querySelector('.b-adverts-switcher')
       .insertAdjacentHTML('afterend', bodyEl);
-  } else {
-    document
-      .querySelector('.new-scss.scss-small-content .content>.container')
-      .insertAdjacentHTML('afterend', bodyEl);
   }
 
   if (!document.querySelector('.e-role-item.m-pro')) {
