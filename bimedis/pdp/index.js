@@ -52,6 +52,7 @@ let stylesList = `
     letter-spacing: 0.015em;
     color: #353C5F;
     margin-top: auto;
+    height: auto;
   }
   .b-other-advert-list .e-product-item:last-child {
     border-bottom: 1px solid #DADADA;
