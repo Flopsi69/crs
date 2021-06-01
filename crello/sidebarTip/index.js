@@ -41,7 +41,7 @@
         eventValue: value
       };
       dataLayer.push(eventObj);
-      console.log(eventObj);
+      console.log('FireEvent', eventObj);
     } catch (e) {
       console.log(e);
     }
@@ -345,6 +345,7 @@
       .addEventListener('click', function (e) {
         e.preventDefault();
         if (this.classList.contains('sidebar-tip__head-collapse-active')) {
+          gaEvent('tips block hide');
           localStorage.setItem('sidebarTipCollapse', 'yes');
           this.classList.remove('sidebar-tip__head-collapse-active');
           document.querySelector('.sidebar-tip__body').style.display = 'none';
@@ -353,9 +354,9 @@
             .querySelector('.konvajs-content')
             .classList.add('konvajs-content__sidebarTip-collapse');
         } else {
+          gaEvent('’tips block show');
           localStorage.setItem('sidebarTipCollapse', 'no');
           this.classList.add('sidebar-tip__head-collapse-active');
-          document.querySelector('.sidebar-tip').style = 'width: 140px;';
           document.querySelector('.sidebar-tip__body').style.display = 'block';
           document.querySelector('.sidebar-tip').removeAttribute('style');
           document
@@ -368,9 +369,16 @@
       .querySelectorAll('.konvajs-content canvas')
       .forEach(function (canvas) {
         canvas.addEventListener('click', function (e) {
-          console.log('firee');
           if (document.querySelector('.sidebar-tip__head-collapse-active')) {
-            document.querySelector('.sidebar-tip__head-collapse').click();
+            console.log('firee');
+            gaEvent('Tip block Auto hide');
+            localStorage.setItem('sidebarTipCollapse', 'yes');
+            this.classList.remove('sidebar-tip__head-collapse-active');
+            document.querySelector('.sidebar-tip__body').style.display = 'none';
+            document.querySelector('.sidebar-tip').style = 'width: 140px;';
+            document
+              .querySelector('.konvajs-content')
+              .classList.add('konvajs-content__sidebarTip-collapse');
           }
         });
       });

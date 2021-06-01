@@ -94,7 +94,6 @@ let stylesList = `
     width: 51px;
     height: 51px;
     transition: 0.2s;
-    overflow: hidden;
     line-height: 0;
   }
   .lav-build__item-count {
@@ -113,7 +112,7 @@ let stylesList = `
     font-size: 10px;
     border-radius: 50%;
   }
-  .lav-build__item img {
+  .lav-build__item>img {
     object-fit: cover;
     width: 51px;
     height: 51px;
@@ -134,6 +133,7 @@ let stylesList = `
     pointer-events: none;
   }
   .lav-build__control {
+    opacity: 0;
     position: absolute;
     bottom: 5px;
     left: 5px;
@@ -141,24 +141,43 @@ let stylesList = `
     display: flex;
     background: #FC4E38;
     border-radius: 12px;
+    padding: 1px;
+    transition: 0.2s
+  }
+  .lav-build__item:hover .lav-build__control {
+    opacity: 1;
   }
   .lav-build__control-btn {
+    display: flex;
+    align-items: center;
     background: none;
     border: none;
     outline: none;
     color: #fff;
-    padding: 0;
+    cursor: pointer;
+    transition: .2s;
+    padding: 2px 4px;
+  }
+  .lav-build__control-btn img + img {
+    display: none;
+  }
+  .lav-build__control-btn:hover {
+    transform: scale(1.5);
   }
   .lav-build__control-input {
     background: none;
     outline: none;
     color: #fff;
     text-align: center;
-    width: 30px;
+    width: 10px;
     border: none;
     font-size: 10px;
     line-height: 1;
+    flex: 1;
     font-weight: 900;
+    padding: 0;
+    margin-top: -2px;
+    pointer-events: none;
   }
   
 `;
@@ -211,23 +230,7 @@ function initExp() {
         </div>
       </div>
 
-      <div class='lav-build__list'>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-        <div class='lav-build__item'></div>
-      </div>
+      <div class='lav-build__list'></div>
 
       <div class='lav-build__checkout-wrap'>
         <button class='button primary blue lav-build__checkout'>Proceed to Checkout</button>
@@ -239,43 +242,136 @@ function initExp() {
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
 
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.closest('.added-container') ||
+      e.target.closest('.not-added-container')
+    ) {
+      setItems();
+    }
+  });
+
+  createBuildItemsRow(3);
   setItems();
 }
 
 function setItems() {
-  document
-    .querySelectorAll('.products .product.with-amount')
-    .forEach(function (product, i) {
-      if (document.querySelector('.lav-build__item:nth-child(' + i + ')')) {
-        let productCount = product.querySelector(
-          '.added-container input'
-        ).value;
-        let targetItem = document.querySelector(
-          '.lav-build__item:nth-child(' + i + ')'
-        );
-        targetItem.insertAdjacentElement(
-          'afterbegin',
-          product.querySelector('.image img').cloneNode(true)
-        );
+  checkFullPack();
+  setTimeout(() => {
+    let addedItems = [];
+    let productArr = Array.from(
+      document.querySelectorAll('.products .product.with-amount')
+    );
+    let i = 0;
 
-        targetItem.insertAdjacentHTML(
-          'afterbegin',
-          "<div class='lav-build__item-count'>" + productCount + '</div>'
-        );
+    for (let product of productArr) {
+      if (
+        addedItems.includes(product.querySelector('.title').innerText.trim())
+      ) {
+        continue;
+      }
+      if (!document.querySelectorAll('.lav-build__item')[i]) {
+        createBuildItemsRow();
+      }
+      addedItems.push(product.querySelector('.title').innerText.trim());
 
-        targetItem.insertAdjacentHTML(
-          'afterbegin',
-          `<div class='lav-build__control'>
+      let targetItem = document.querySelectorAll('.lav-build__item')[i];
+      targetItem.innerHTML = '';
+
+      let productCount = product.querySelector('.added-container input').value;
+
+      targetItem.insertAdjacentElement(
+        'afterbegin',
+        product.querySelector('.image img').cloneNode(true)
+      );
+
+      targetItem.insertAdjacentHTML(
+        'afterbegin',
+        `
+          <div class='lav-build__item-count'>${productCount}</div>
+          <div class='lav-build__control'>
             <button class='lav-build__control-btn lav-build__control-minus'>
-              <img src='${REPO_DIR}/icon-minus.svg'>
-              <img src='${REPO_DIR}/icon-basket.svg'>
+              <img class='lav-build__icon-minus' src='${REPO_DIR}/icon-minus.svg'>
+              <img class='lav-build__icon-basket' src='${REPO_DIR}/icon-basket.svg'>
             </button>
-            <input class='lav-build__control-input'>
+            <input class='lav-build__control-input' value='${productCount}' disabled>
             <button class='lav-build__control-btn lav-build__control-plus'>
               <img src='${REPO_DIR}/icon-plus.svg'>
             </button>
           </div>`
-        );
+      );
+
+      checkCountInput(targetItem, productCount);
+
+      targetItem
+        .querySelector('.lav-build__control-plus')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          product.querySelector('.add').click();
+          setItems();
+        });
+
+      targetItem
+        .querySelector('.lav-build__control-minus')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          product.querySelector('.remove').click();
+          setItems();
+        });
+
+      i++;
+    }
+  }, 250);
+}
+
+function checkFullPack() {
+  if (document.querySelector('.progress-text .progress-text-count')) {
+    console.log('1');
+    parseInt(document.querySelector('.progress-text-count').innerText);
+  } else {
+    document.querySelector('.progress-text .action-button').click();
+    setTimeout(() => {
+      let indx = Array.from(document.querySelectorAll('.plan')).findIndex(
+        function (el) {
+          return el.classList.contains('active');
+        }
+      );
+      if (document.querySelectorAll('.plan')[indx + 1]) {
+        document.querySelectorAll('.plan')[indx + 1].click();
+        document.querySelector('.default-close').click();
+      } else {
+        console.log('max el');
       }
-    });
+    }, 10);
+    // document
+    //   .querySelector('.plan.active')
+    //   .parentElement.nextElementSibling.querySelector('.plan')
+    //   .click();
+    // document.querySelector('.default-close').click();
+  }
+}
+
+function checkCountInput(item, count) {
+  if (parseInt(count) == 1) {
+    item.querySelector('.lav-build__item-count').style.opacity = 0;
+    item.querySelector('.lav-build__icon-minus').style.display = 'none';
+    item.querySelector('.lav-build__icon-basket').style.display = 'block';
+  } else {
+    item.querySelector('.lav-build__icon-minus').style.display = 'block';
+    item.querySelector('.lav-build__icon-basket').style.display = 'none';
+  }
+}
+
+function createBuildItemsRow(rows) {
+  let count = 1 * 5;
+  if (rows) {
+    count = rows * 5;
+  }
+
+  while (count > 0) {
+    count--;
+    document
+      .querySelector('.lav-build__list')
+      .insertAdjacentHTML('beforeend', "<div class='lav-build__item'></div>");
+  }
 }
