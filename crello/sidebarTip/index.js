@@ -354,7 +354,7 @@
             .querySelector('.konvajs-content')
             .classList.add('konvajs-content__sidebarTip-collapse');
         } else {
-          gaEvent('’tips block show');
+          gaEvent('tips block show');
           localStorage.setItem('sidebarTipCollapse', 'no');
           this.classList.add('sidebar-tip__head-collapse-active');
           document.querySelector('.sidebar-tip__body').style.display = 'block';
