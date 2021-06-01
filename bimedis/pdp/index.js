@@ -931,6 +931,16 @@ let stylesList = `
   .lav-modal__body .lav-botton__contact:hover {
     background-color: #323a5f;
   }
+}
+.b-other-advert-list .e-product-price {margin-top: auto;}
+.b-other-advert-list .e-product-price .e-price {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.015em;
+  color: #353C5F;
+  margin-top: auto;
+}
 `;
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
