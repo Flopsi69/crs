@@ -179,7 +179,13 @@ let stylesList = `
     margin-top: -2px;
     pointer-events: none;
   }
-  
+  .css-1rupe80 button:disabled {
+    background-color: rgb(255, 255, 255);
+    color: rgb(21, 32, 107);
+  }
+  .not-added-container circle {
+    fill: #3856A7;
+  }
 `;
 
 // connect to DOM
@@ -247,7 +253,19 @@ function initExp() {
       e.target.closest('.added-container') ||
       e.target.closest('.not-added-container')
     ) {
-      setItems();
+      let inBasket = parseInt(
+        document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+      );
+      if (
+        document.querySelector('.progress-text .action-button') &&
+        (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
+      ) {
+        document.querySelector('.progress-text .action-button').click();
+        setItems(true);
+        setBasketDiscount(inBasket);
+      } else {
+        setItems();
+      }
     }
   });
 
@@ -255,8 +273,10 @@ function initExp() {
   setItems();
 }
 
-function setItems() {
-  checkFullPack();
+function setItems(isFull) {
+  if (isFull) {
+    setTimeout(toggleBox, 50);
+  }
   setTimeout(() => {
     let addedItems = [];
     let productArr = Array.from(
@@ -321,33 +341,38 @@ function setItems() {
 
       i++;
     }
+
+    while (document.querySelectorAll('.lav-build__item').length > i) {
+      document.querySelectorAll('.lav-build__item')[i].innerHTML = '';
+      i++;
+    }
   }, 250);
 }
 
-function checkFullPack() {
-  if (document.querySelector('.progress-text .progress-text-count')) {
-    console.log('1');
-    parseInt(document.querySelector('.progress-text-count').innerText);
+function setBasketDiscount(count) {
+  if (count >= 14 && count <= 27) {
+    document
+      .querySelector('.lav-build__discount:nth-child(1)')
+      .classList.add('.lav-build__discount_active');
+  } else if (count >= 28 && count <= 41) {
+  } else if (count >= 42 && count <= 55) {
+  } else if (count >= 56) {
+  }
+}
+
+function toggleBox(count) {
+  console.log(document.querySelectorAll('.plan'));
+  let indx = Array.from(document.querySelectorAll('.plan')).findIndex(function (
+    el
+  ) {
+    return el.classList.contains('active');
+  });
+
+  if (document.querySelectorAll('.plan')[parseInt(indx) + 1]) {
+    document.querySelectorAll('.plan')[indx + 1].click();
+    document.querySelector('.default-close').click();
   } else {
-    document.querySelector('.progress-text .action-button').click();
-    setTimeout(() => {
-      let indx = Array.from(document.querySelectorAll('.plan')).findIndex(
-        function (el) {
-          return el.classList.contains('active');
-        }
-      );
-      if (document.querySelectorAll('.plan')[indx + 1]) {
-        document.querySelectorAll('.plan')[indx + 1].click();
-        document.querySelector('.default-close').click();
-      } else {
-        console.log('max el');
-      }
-    }, 10);
-    // document
-    //   .querySelector('.plan.active')
-    //   .parentElement.nextElementSibling.querySelector('.plan')
-    //   .click();
-    // document.querySelector('.default-close').click();
+    console.log('max el');
   }
 }
 
