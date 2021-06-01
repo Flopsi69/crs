@@ -931,9 +931,6 @@ let stylesList = `
   .lav-modal__body .lav-botton__contact:hover {
     background-color: #323a5f;
   }
-  .new-scss.scss-small-content .content > .container {
-    opacity: 0;
-  }
 `;
 
 const REPO_DIR = 'https://flopsi69.github.io/crs/bimedis/pdp';
@@ -1218,6 +1215,13 @@ function initExpInner() {
   document
     .querySelector('.b-adverts-switcher')
     .insertAdjacentHTML('afterend', bodyEl);
+
+  if (!document.querySelector('.e-role-item.m-pro')) {
+    document.querySelector('.lav-seller__logo').remove();
+    document
+      .querySelector('.lav-seller__info-line + .lav-seller__info-line')
+      .remove();
+  }
 
   document
     .querySelector('.lav-how__option-delivery')
