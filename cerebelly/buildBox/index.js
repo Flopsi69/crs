@@ -313,9 +313,23 @@ function initExp() {
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
 
-  let inBasket = parseInt(
-    document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
-  );
+  document
+    .querySelector('.lav-build__checkout')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.e-right-quiz>button').click();
+      let observer = new MutationObserver(mutations => {
+        for (let mutation of mutations) {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            console.log('node', node);
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // document.querySelector('.action-button-wrapp .action').click();
+    });
 
   if (document.querySelector('.info-text .reset')) {
     document
