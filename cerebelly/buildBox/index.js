@@ -24,6 +24,7 @@ if (location.href.includes('box-builder')) {
         console.log(node);
         if (node.querySelector('.mainContainer') && !isInitExp) {
           initExp();
+          observerGlobal.disconnect();
         }
       }
     }
