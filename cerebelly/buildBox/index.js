@@ -360,10 +360,10 @@ function initExp() {
 
 function clickControl(isToggleClick, targetClick, isDown) {
   setTimeout(() => {
-    if (
-      document.querySelector('.progress-text').innerText.includes('at least') &&
-      !document.querySelector('.progress-text').innerText.includes('is full')
-    ) {
+    let inBasket = parseInt(
+      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+    );
+    if (inBasket <= 6) {
       document
         .querySelector('.lav-build__checkout')
         .classList.add('lav-build__checkout_disabled');
@@ -372,9 +372,6 @@ function clickControl(isToggleClick, targetClick, isDown) {
         .querySelector('.lav-build__checkout')
         .classList.remove('lav-build__checkout_disabled');
     }
-    let inBasket = parseInt(
-      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
-    );
     console.log('inBasket', inBasket);
     if (
       ((isToggleClick &&
