@@ -4,7 +4,7 @@
     try {
       let eventObj = {
         event: 'event-to-ga',
-        eventCategory: 'Experiment — Tips',
+        eventCategory: 'experiment - tips & tutorial',
         eventAction: action,
         eventLabel: label,
         eventValue: value

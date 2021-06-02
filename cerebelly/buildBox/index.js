@@ -201,6 +201,9 @@ let stylesList = `
   .not-added-container circle {
     fill: #3856A7;
   }
+  .e-page-content-wrap {
+    transition: 0.3s;
+  }
 `;
 
 // connect to DOM
@@ -280,8 +283,20 @@ function initExp() {
       e.target.closest('.added-container') ||
       e.target.closest('.not-added-container')
     ) {
-      console.log('click control');
-      clickControl();
+      if (e.target.closest('.add') || e.target.classList.contains('add')) {
+        clickControl(true, e.target);
+      } else if (
+        e.target.closest('.remove') ||
+        e.target.classList.contains('remove')
+      ) {
+        if (e.target.closest('.remove')) {
+          clickControl(true, e.target.closest('.remove'), true);
+        } else {
+          clickControl(true, e.target.classList.contains('remove'), true);
+        }
+      } else {
+        clickControl();
+      }
     }
   });
 
@@ -294,29 +309,63 @@ function initExp() {
   );
 }
 
-function clickControl() {
+function clickControl(isToggleClick, targetClick, isDown) {
   setTimeout(() => {
     let inBasket = parseInt(
       document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
     );
     console.log('inBasket', inBasket);
     if (
-      document.querySelector('.progress-text .action-button') &&
+      ((isToggleClick &&
+        document.querySelector('.progress-text .action-button') &&
+        document.querySelector('.e-header-inner.box-full')) ||
+        isDown) &&
       (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
     ) {
-      document.querySelector('.progress-text .action-button').click();
-      setItems(true);
+      document.querySelector('.e-page-content-wrap + div').style.opacity = 0;
+      document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
+
+      if (!isDown) {
+        document.querySelector('.progress-text .action-button').click();
+      } else {
+        document.querySelector('.e-right-quiz > .button').click();
+      }
+      let observer = new MutationObserver(mutations => {
+        for (let mutation of mutations) {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            console.log('node', node);
+            if (node.querySelector('.box-blueprint-title .action-button')) {
+              node.querySelector('.box-blueprint-title .action-button').click();
+            }
+            if (node.querySelector('.plans')) {
+              toggleBox(isDown);
+              observer.disconnect();
+              setTimeout(() => {
+                if (!isDown) {
+                  targetClick.click();
+                }
+                document.querySelector(
+                  '.e-page-content-wrap'
+                ).style.opacity = 1;
+                document.querySelector(
+                  '.e-page-content-wrap + div'
+                ).style.opacity = 1;
+              }, 1000);
+            }
+          }
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
     } else {
       setItems();
     }
     setBasketDiscount(inBasket);
-  }, 50);
+  }, 150);
 }
 
-function setItems(isFull) {
-  if (isFull) {
-    setTimeout(toggleBox, 50);
-  }
+function setItems() {
   setTimeout(() => {
     let addedItems = [];
     let productArr = Array.from(
@@ -367,7 +416,7 @@ function setItems(isFull) {
         .querySelector('.lav-build__control-plus')
         .addEventListener('click', function (e) {
           e.preventDefault();
-          product.querySelector('.add').click();
+          product.querySelector('.add .notification').click();
         });
 
       targetItem
@@ -406,8 +455,10 @@ function setBasketDiscount(count) {
   }
   if (count >= 56) {
     controlDiscount(true, 4);
+    document.querySelector('.lav-build__caption').style.display = 'none';
   } else {
     controlDiscount(false, 4);
+    document.querySelector('.lav-build__caption').style.display = 'block';
   }
 }
 
@@ -442,7 +493,7 @@ function controlDiscount(isActive, i) {
   }
 }
 
-function toggleBox(count) {
+function toggleBox(isDown) {
   console.log(document.querySelectorAll('.plan'));
   let indx = Array.from(document.querySelectorAll('.plan')).findIndex(function (
     el
@@ -450,12 +501,22 @@ function toggleBox(count) {
     return el.classList.contains('active');
   });
 
-  if (document.querySelectorAll('.plan')[parseInt(indx) + 1]) {
-    document.querySelectorAll('.plan')[indx + 1].click();
+  if (isDown) {
+    indx = parseInt(indx) - 1;
+  } else {
+    indx = parseInt(indx) + 1;
+  }
+
+  console.log(indx, document.querySelectorAll('.plan')[indx], isDown);
+
+  if (document.querySelectorAll('.plan')[indx]) {
+    document.querySelectorAll('.plan')[indx].click();
     document.querySelector('.default-close').click();
   } else {
     console.log('max el');
   }
+
+  setItems();
 }
 
 function checkCountInput(item, count) {
