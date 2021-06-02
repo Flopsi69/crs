@@ -232,6 +232,9 @@ let observerGlobal = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
+      if (node.querySelector('.mainContainer')) {
+        initExp();
+      }
     }
   }
 });
@@ -239,12 +242,12 @@ let observerGlobal = new MutationObserver(mutations => {
 observerGlobal.observe(document.body, { childList: true, subtree: true });
 
 // connect to DOM
-setTimeout(() => {
-  let styles = document.createElement('style');
-  styles.id = 'go-phone-styles';
-  styles.innerHTML = stylesList;
-  document.body.appendChild(styles);
-}, 300);
+// setTimeout(() => {
+let styles = document.createElement('style');
+styles.id = 'go-phone-styles';
+styles.innerHTML = stylesList;
+document.body.appendChild(styles);
+// }, 300);
 
 /* STYLES insert end */
 
@@ -259,8 +262,9 @@ setTimeout(() => {
 //   }
 // }, 500);
 
-initExp();
 function initExp() {
+  console.log('init');
+
   let lavBuild = `
     <div class='lav-build'>
       <div class='lav-build__title'>Your order</div>
