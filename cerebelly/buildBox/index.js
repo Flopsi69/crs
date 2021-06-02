@@ -26,15 +26,35 @@ let stylesList = `
     align-items: flex-start;
   }
   .lav-build {
-    // position: sticky;
-    top: 80px;
+    position: sticky;
+    max-height: 85vh;
+    top: 75px;
     text-align: center;
     width: 400px;
     background-color: #EBEEF6;
     border-radius: 15px;
     padding: 40px 45px 45px;
-    margin-top: 100px;
+    margin-top: 110px;
+    overflow-y: auto;
   }
+
+  .lav-build::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .lav-build::-webkit-scrollbar {
+    width: 3px;
+    background-color: #F5F5F5;
+  }
+
+  .lav-build::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+  }
+
   .lav-build__title {
     font-weight: 600;
     font-size: 32px;
@@ -206,6 +226,18 @@ let stylesList = `
   }
 `;
 
+let observerGlobal = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+    }
+  }
+});
+
+observerGlobal.observe(document.body, { childList: true, subtree: true });
+
 // connect to DOM
 setTimeout(() => {
   let styles = document.createElement('style');
@@ -285,6 +317,8 @@ function initExp() {
     ) {
       if (e.target.closest('.add') || e.target.classList.contains('add')) {
         clickControl(true, e.target);
+      } else if (e.target.closest('.not-added-container')) {
+        clickControl(true, e.target.closest('.quantity').querySelector('.add'));
       } else if (
         e.target.closest('.remove') ||
         e.target.classList.contains('remove')
