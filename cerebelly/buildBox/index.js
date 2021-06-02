@@ -13,6 +13,8 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
+var isInitExp = false;
+
 /* STYLES insert start */
 let stylesList = `
   .css-tbsmoq .boxmenuContainer {
@@ -230,7 +232,7 @@ let observerGlobal = new MutationObserver(mutations => {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.querySelector('.mainContainer')) {
+      if (node.querySelector('.mainContainer') && !isInitExp) {
         initExp();
       }
     }
@@ -258,6 +260,7 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 // }, 500);
 
 function initExp() {
+  isInitExp = true;
   console.log('init');
 
   let styles = document.createElement('style');
