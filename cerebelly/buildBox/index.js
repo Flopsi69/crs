@@ -13,15 +13,15 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
-var isInitExp = false;
-
-let observerGlobal = new MutationObserver(mutations => {
+// var isInitExp = false;
+var REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
+var observerGlobal = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.querySelector('.mainContainer') && !isInitExp) {
+      if (node.querySelector('.mainContainer')) {
         initExp();
       }
     }
@@ -267,11 +267,10 @@ function initStyles() {
 // }, 500);
 
 function initExp() {
-  console.log('init');
+  console.log('initExp');
   isInitExp = true;
-  const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 
-  initStyles();
+  initStyles(REPO_DIR);
 
   let lavBuild = `
     <div class='lav-build'>
