@@ -13,10 +13,11 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
-var isInitExp = false;
-var REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
+let isInitExp = false;
+const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
+
 if (location.href.includes('box-builder')) {
-  var observerGlobal = new MutationObserver(mutations => {
+  let observerGlobal = new MutationObserver(mutations => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
