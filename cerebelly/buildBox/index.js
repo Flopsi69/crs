@@ -322,13 +322,14 @@ function initExp() {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
+            if (node.querySelector('.action-button-wrapp .action')) {
+              document.querySelector('.action-button-wrapp .action').click();
+            }
             console.log('node', node);
           }
         }
       });
       observer.observe(document.body, { childList: true, subtree: true });
-
-      // document.querySelector('.action-button-wrapp .action').click();
     });
 
   if (document.querySelector('.info-text .reset')) {
