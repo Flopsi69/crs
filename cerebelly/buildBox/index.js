@@ -13,8 +13,6 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
-const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
-
 /* STYLES insert start */
 let stylesList = `
   .css-tbsmoq .boxmenuContainer {
@@ -243,10 +241,7 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 
 // connect to DOM
 // setTimeout(() => {
-let styles = document.createElement('style');
-styles.id = 'go-phone-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
+
 // }, 300);
 
 /* STYLES insert end */
@@ -264,6 +259,13 @@ document.body.appendChild(styles);
 
 function initExp() {
   console.log('init');
+
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+
+  const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 
   let lavBuild = `
     <div class='lav-build'>
