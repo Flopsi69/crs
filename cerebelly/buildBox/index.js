@@ -361,7 +361,8 @@ function initExp() {
 function clickControl(isToggleClick, targetClick, isDown) {
   setTimeout(() => {
     if (
-      document.querySelector('.progress-text').innerText.includes('at least')
+      document.querySelector('.progress-text').innerText.includes('at least') &&
+      !document.querySelector('.progress-text').innerText.includes('is full')
     ) {
       document
         .querySelector('.lav-build__checkout')
