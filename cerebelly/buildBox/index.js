@@ -270,7 +270,7 @@ function initExp() {
   console.log('initExp');
   isInitExp = true;
 
-  initStyles(REPO_DIR);
+  initStyles();
 
   let lavBuild = `
     <div class='lav-build'>
