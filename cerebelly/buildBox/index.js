@@ -30,9 +30,9 @@ if (location.href.includes('box-builder')) {
       }
     }
   });
-}
 
-observerGlobal.observe(document.body, { childList: true, subtree: true });
+  observerGlobal.observe(document.body, { childList: true, subtree: true });
+}
 
 function initStyles() {
   /* STYLES insert start */
