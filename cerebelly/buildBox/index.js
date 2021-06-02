@@ -15,217 +15,6 @@ function gaEvent(action, label = '') {
 
 var isInitExp = false;
 
-/* STYLES insert start */
-let stylesList = `
-  .css-tbsmoq .boxmenuContainer {
-    display: none;
-  }
-  .mainContainer .pageContainer {
-    display: flex;
-    padding-right: 35px;
-    align-items: flex-start;
-  }
-  .lav-build {
-    position: sticky;
-    max-height: 85vh;
-    top: 75px;
-    text-align: center;
-    width: 400px;
-    background-color: #EBEEF6;
-    border-radius: 15px;
-    padding: 40px 45px 45px;
-    margin-top: 110px;
-    overflow-y: auto;
-  }
-
-  .lav-build::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #F5F5F5;
-  }
-
-  .lav-build::-webkit-scrollbar {
-    width: 3px;
-    background-color: #F5F5F5;
-  }
-
-  .lav-build::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-  }
-
-  .lav-build__title {
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 43px;
-    letter-spacing: 0.006em;
-    color: #15206B;
-    margin-bottom: 5px;
-  }
-  .lav-build__caption {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 27px;
-    letter-spacing: 0.007em;
-    color: #3856A7;
-  }
-  .lav-build__caption-sub {
-    color: #15226A;
-  }
-  .lav-build__caption span {
-    font-weight: 900;
-  }
-  .lav-build__discounts {
-    background: #F4F8FC;
-    border-radius: 5px;
-    padding: 15px 12px;
-    padding-left: 45px;
-    margin: 30px -25px 40px;
-  }
-  .lav-build__discount {
-    font-size: 15px;
-    line-height: 23px;
-    letter-spacing: 0.003em;
-    color: #3856A5;
-    display: flex;
-    text-align: left;
-  }
-  .lav-build__discount_active {
-    position: relative;
-    color: #018659;
-  }
-  .lav-build__discount_active:before {
-    content: '';
-    position: absolute;
-    left: -32px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    background: url(${REPO_DIR}/icon-check.svg) center no-repeat;
-    background-size: contain;
-  }
-  .lav-build__discount-value {
-    font-weight: 900;
-  }
-  .lav-build__discount-caption {
-    font-weight: 600;
-    margin-left: 3px;
-  }
-  .lav-build__discount + .lav-build__discount {
-    margin-top: 5px;
-  }
-  .lav-build__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 25px;
-  }
-  .lav-build__item {
-    position: relative;
-    background: #FFFFFF;
-    border-radius: 3px;
-    width: 51px;
-    height: 51px;
-    transition: 0.2s;
-    line-height: 0;
-  }
-  .lav-build__item-count {
-    position: absolute;
-    left: -5px;
-    top: -5px;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    background: #FC4D38;
-    color: #fff;
-    font-weight: bold;
-    font-size: 10px;
-    border-radius: 50%;
-  }
-  .lav-build__item>img {
-    object-fit: cover;
-    width: 51px;
-    height: 51px;
-    border-radius: 3px;
-  }
-  .lav-build__item:hover {
-    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
-    transform: scale(1.1);
-  }
-  .lav-build__checkout {
-    padding-top: 12px!important;
-    padding-bottom: 12px!important;
-    letter-spacing: 0.09em!important;
-  }
-  .lav-build__checkout_disabled {
-    background-color: #B9C4E0!important;
-    border-color: #B9C4E0!important;
-    pointer-events: none;
-  }
-  .lav-build__control {
-    opacity: 0;
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
-    display: flex;
-    background: #FC4E38;
-    border-radius: 12px;
-    padding: 1px;
-    transition: 0.2s
-  }
-  .lav-build__item:hover .lav-build__control {
-    opacity: 1;
-  }
-  .lav-build__control-btn {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    outline: none;
-    color: #fff;
-    cursor: pointer;
-    transition: .2s;
-    padding: 2px 4px;
-  }
-  .lav-build__control-btn img + img {
-    display: none;
-  }
-  .lav-build__control-btn:hover {
-    transform: scale(1.5);
-  }
-  .lav-build__control-input {
-    background: none;
-    outline: none;
-    color: #fff;
-    text-align: center;
-    width: 10px;
-    border: none;
-    font-size: 10px;
-    line-height: 1;
-    flex: 1;
-    font-weight: 900;
-    padding: 0;
-    margin-top: -2px;
-    pointer-events: none;
-  }
-  .css-1rupe80 button:disabled {
-    background-color: rgb(255, 255, 255);
-    color: rgb(21, 32, 107);
-  }
-  .not-added-container circle {
-    fill: #3856A7;
-  }
-  .e-page-content-wrap {
-    transition: 0.3s;
-  }
-`;
-
 let observerGlobal = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
@@ -240,6 +29,224 @@ let observerGlobal = new MutationObserver(mutations => {
 });
 
 observerGlobal.observe(document.body, { childList: true, subtree: true });
+
+function initStyles() {
+  /* STYLES insert start */
+  let stylesList = `
+    .css-tbsmoq .boxmenuContainer {
+      display: none;
+    }
+    .mainContainer .pageContainer {
+      display: flex;
+      padding-right: 35px;
+      align-items: flex-start;
+    }
+    .lav-build {
+      position: sticky;
+      max-height: 85vh;
+      top: 75px;
+      text-align: center;
+      width: 400px;
+      background-color: #EBEEF6;
+      border-radius: 15px;
+      padding: 40px 45px 45px;
+      margin-top: 110px;
+      overflow-y: auto;
+    }
+
+    .lav-build::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+    }
+
+    .lav-build::-webkit-scrollbar {
+      width: 3px;
+      background-color: #F5F5F5;
+    }
+
+    .lav-build::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #555;
+    }
+
+    .lav-build__title {
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 43px;
+      letter-spacing: 0.006em;
+      color: #15206B;
+      margin-bottom: 5px;
+    }
+    .lav-build__caption {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 27px;
+      letter-spacing: 0.007em;
+      color: #3856A7;
+    }
+    .lav-build__caption-sub {
+      color: #15226A;
+    }
+    .lav-build__caption span {
+      font-weight: 900;
+    }
+    .lav-build__discounts {
+      background: #F4F8FC;
+      border-radius: 5px;
+      padding: 15px 12px;
+      padding-left: 45px;
+      margin: 30px -25px 40px;
+    }
+    .lav-build__discount {
+      font-size: 15px;
+      line-height: 23px;
+      letter-spacing: 0.003em;
+      color: #3856A5;
+      display: flex;
+      text-align: left;
+    }
+    .lav-build__discount_active {
+      position: relative;
+      color: #018659;
+    }
+    .lav-build__discount_active:before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      background: url(${REPO_DIR}/icon-check.svg) center no-repeat;
+      background-size: contain;
+    }
+    .lav-build__discount-value {
+      font-weight: 900;
+    }
+    .lav-build__discount-caption {
+      font-weight: 600;
+      margin-left: 3px;
+    }
+    .lav-build__discount + .lav-build__discount {
+      margin-top: 5px;
+    }
+    .lav-build__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    .lav-build__item {
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 3px;
+      width: 51px;
+      height: 51px;
+      transition: 0.2s;
+      line-height: 0;
+    }
+    .lav-build__item-count {
+      position: absolute;
+      left: -5px;
+      top: -5px;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      background: #FC4D38;
+      color: #fff;
+      font-weight: bold;
+      font-size: 10px;
+      border-radius: 50%;
+    }
+    .lav-build__item>img {
+      object-fit: cover;
+      width: 51px;
+      height: 51px;
+      border-radius: 3px;
+    }
+    .lav-build__item:hover {
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+      transform: scale(1.1);
+    }
+    .lav-build__checkout {
+      padding-top: 12px!important;
+      padding-bottom: 12px!important;
+      letter-spacing: 0.09em!important;
+    }
+    .lav-build__checkout_disabled {
+      background-color: #B9C4E0!important;
+      border-color: #B9C4E0!important;
+      pointer-events: none;
+    }
+    .lav-build__control {
+      opacity: 0;
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+      display: flex;
+      background: #FC4E38;
+      border-radius: 12px;
+      padding: 1px;
+      transition: 0.2s
+    }
+    .lav-build__item:hover .lav-build__control {
+      opacity: 1;
+    }
+    .lav-build__control-btn {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      outline: none;
+      color: #fff;
+      cursor: pointer;
+      transition: .2s;
+      padding: 2px 4px;
+    }
+    .lav-build__control-btn img + img {
+      display: none;
+    }
+    .lav-build__control-btn:hover {
+      transform: scale(1.5);
+    }
+    .lav-build__control-input {
+      background: none;
+      outline: none;
+      color: #fff;
+      text-align: center;
+      width: 10px;
+      border: none;
+      font-size: 10px;
+      line-height: 1;
+      flex: 1;
+      font-weight: 900;
+      padding: 0;
+      margin-top: -2px;
+      pointer-events: none;
+    }
+    .css-1rupe80 button:disabled {
+      background-color: rgb(255, 255, 255);
+      color: rgb(21, 32, 107);
+    }
+    .not-added-container circle {
+      fill: #3856A7;
+    }
+    .e-page-content-wrap {
+      transition: 0.3s;
+    }
+    `;
+
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+}
 
 // connect to DOM
 // setTimeout(() => {
@@ -260,15 +267,11 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 // }, 500);
 
 function initExp() {
-  isInitExp = true;
   console.log('init');
-
-  let styles = document.createElement('style');
-  styles.id = 'go-phone-styles';
-  styles.innerHTML = stylesList;
-  document.body.appendChild(styles);
-
+  isInitExp = true;
   const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
+
+  initStyles();
 
   let lavBuild = `
     <div class='lav-build'>
