@@ -363,6 +363,8 @@ function clickControl(isToggleClick, targetClick, isDown) {
     let inBasket = parseInt(
       document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
     );
+    console.log('inBasket', inBasket);
+
     if (inBasket <= 6) {
       document
         .querySelector('.lav-build__checkout')
@@ -372,7 +374,6 @@ function clickControl(isToggleClick, targetClick, isDown) {
         .querySelector('.lav-build__checkout')
         .classList.remove('lav-build__checkout_disabled');
     }
-    console.log('inBasket', inBasket);
     if (
       ((isToggleClick &&
         document.querySelector('.progress-text .action-button') &&
