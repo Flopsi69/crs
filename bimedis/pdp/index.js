@@ -1050,14 +1050,8 @@ function initExp() {
 
   clearInterval(intervalInitExp);
   setTimeout(() => {
-    if (
-      document.querySelector(
-        '.new-scss.scss-small-content .content > .container'
-      )
-    ) {
-      document.querySelector(
-        '.new-scss.scss-small-content .content > .container'
-      ).style.opacity = 1;
+    if (document.querySelector('.wrap .content .content')) {
+      document.querySelector('.wrap .content .content').style.opacity = 1;
     }
   }, 100);
 }
