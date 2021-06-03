@@ -311,7 +311,7 @@ function initExp() {
     </div>
   `;
 
-  console.log(document.querySelector('.pageContainer'));
+  console.log('test', document.querySelector('.pageContainer'));
 
   document
     .querySelector('.pageContainer')
