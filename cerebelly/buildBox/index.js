@@ -25,7 +25,7 @@ let observerGlobal = new MutationObserver(mutations => {
       if (
         node.querySelector('.pageContainer .container') &&
         node.querySelector('.products') &&
-        && node.querySelector('.category')
+        node.querySelector('.category') &&
         !isInitExp
       ) {
         initExp();
