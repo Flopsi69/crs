@@ -277,7 +277,7 @@ function initExp() {
   console.log('initExp');
   isInitExp = true;
 
-  if (document.querySelector('#go-phone-styles')) {
+  if (!document.querySelector('#go-phone-styles')) {
     initStyles();
   }
 
