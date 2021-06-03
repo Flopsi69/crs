@@ -1050,8 +1050,8 @@ function initExp() {
 
   clearInterval(intervalInitExp);
   setTimeout(() => {
-    if (document.querySelector('body')) {
-      // document.querySelector('body').style.opacity = 1;
+    if (document.querySelector('.wrap .content .content')) {
+      document.querySelector('.wrap .content .content').style.opacity = 1;
     }
   }, 100);
 }
