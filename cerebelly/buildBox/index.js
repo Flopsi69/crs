@@ -16,23 +16,25 @@ function gaEvent(action, label = '') {
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 
-if (location.href.includes('box-builder')) {
-  let observerGlobal = new MutationObserver(mutations => {
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-        if (!(node instanceof HTMLElement)) continue;
-        console.log(node);
-        if (node.querySelector('.mainContainer') && !isInitExp) {
-          initExp();
-          observerGlobal.disconnect();
-        }
+let observerGlobal = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      if (
+        node.querySelector('.mainContainer') &&
+        node.querySelector('.products') &&
+        !isInitExp
+      ) {
+        initExp();
+        observerGlobal.disconnect();
       }
     }
-  });
+  }
+});
 
-  observerGlobal.observe(document.body, { childList: true, subtree: true });
-}
+observerGlobal.observe(document.body, { childList: true, subtree: true });
 
 function initStyles() {
   /* STYLES insert start */
