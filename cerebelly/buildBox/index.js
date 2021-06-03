@@ -23,8 +23,9 @@ let observerGlobal = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
       if (
-        node.querySelector('.pageContainer') &&
+        node.querySelector('.pageContainer .container') &&
         node.querySelector('.products') &&
+        && node.querySelector('.category')
         !isInitExp
       ) {
         initExp();
