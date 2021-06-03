@@ -311,6 +311,8 @@ function initExp() {
     </div>
   `;
 
+  console.log(document.querySelector('.pageContainer'));
+
   document
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
