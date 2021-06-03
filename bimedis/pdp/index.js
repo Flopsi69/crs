@@ -1048,17 +1048,18 @@ function initExp() {
     window.dispatchEvent(new Event('resize'));
   }, 1000);
 
+  clearInterval(intervalInitExp);
   setTimeout(() => {
     if (
       document.querySelector(
         '.new-scss.scss-small-content .content > .container'
       )
     ) {
-      // document.querySelector(
-      //   '.new-scss.scss-small-content .content > .container'
-      // ).style.opacity = 1;
+      document.querySelector(
+        '.new-scss.scss-small-content .content > .container'
+      ).style.opacity = 1;
     }
-  }, 500);
+  }, 100);
 }
 
 function initExpInner() {
