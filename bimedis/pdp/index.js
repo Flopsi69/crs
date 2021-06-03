@@ -1054,9 +1054,9 @@ function initExp() {
         '.new-scss.scss-small-content .content > .container'
       )
     ) {
-      document.querySelector(
-        '.new-scss.scss-small-content .content > .container'
-      ).style.opacity = 1;
+      // document.querySelector(
+      //   '.new-scss.scss-small-content .content > .container'
+      // ).style.opacity = 1;
     }
   }, 500);
 }
