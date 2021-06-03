@@ -29,7 +29,7 @@ let observerGlobal = new MutationObserver(mutations => {
         !isInitExp
       ) {
         initExp();
-        observerGlobal.disconnect();
+        // observerGlobal.disconnect();
       }
     }
   }
@@ -277,7 +277,9 @@ function initExp() {
   console.log('initExp');
   isInitExp = true;
 
-  initStyles();
+  if (document.querySelector('#go-phone-styles')) {
+    initStyles();
+  }
 
   let lavBuild = `
     <div class='lav-build'>
@@ -313,6 +315,10 @@ function initExp() {
   `;
 
   console.log('test', document.querySelector('.pageContainer .category'));
+
+  if (document.querySelector('.lav-build')) {
+    return false;
+  }
 
   document
     .querySelector('.pageContainer')
