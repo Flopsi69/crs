@@ -1048,13 +1048,17 @@ function initExp() {
     window.dispatchEvent(new Event('resize'));
   }, 1000);
 
-  if (
-    document.querySelector('.new-scss.scss-small-content .content > .container')
-  ) {
-    document.querySelector(
-      '.new-scss.scss-small-content .content > .container'
-    ).style.opacity = 1;
-  }
+  setTimeout(() => {
+    if (
+      document.querySelector(
+        '.new-scss.scss-small-content .content > .container'
+      )
+    ) {
+      document.querySelector(
+        '.new-scss.scss-small-content .content > .container'
+      ).style.opacity = 1;
+    }
+  }, 500);
 }
 
 function initExpInner() {
