@@ -312,7 +312,7 @@ function initExp() {
     </div>
   `;
 
-  console.log('test', document.querySelector('.pageContainer'));
+  console.log('test', document.querySelector('.pageContainer .category'));
 
   document
     .querySelector('.pageContainer')
