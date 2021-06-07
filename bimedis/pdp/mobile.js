@@ -767,9 +767,9 @@ function initWrap() {
     width: 14px;
     height: 14px;
   }
-  .to-top-btn {
-    display: none!important;
-  }
+  // .to-top-btn {
+  //   display: none!important;
+  // }
   .lav-overlay {
     position: fixed;
     left: 0;

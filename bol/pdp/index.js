@@ -40,6 +40,9 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
+    .items-info > img {
+      display: none;
+    }
     .prod_class .title h1 {
       text-align: center;
       font-weight: bold;
@@ -169,6 +172,7 @@ function initStyles() {
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
+      margin-bottom: 37px;
     }
     .lav-info__block-title {
       font-weight: bold;
@@ -217,7 +221,7 @@ function initStyles() {
       margin-top: 3px;
     }
     .lav-combo__zoom {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
@@ -225,7 +229,7 @@ function initStyles() {
       color: #096DD9;
       border: 1px solid #DFDFDF;
       border-radius: 6px;
-      padding: 8px 10px;
+      padding: 8px 12px;
     }
     .lav-combo__zoom img {
       margin-right: 8px;
@@ -411,7 +415,7 @@ function initStaticBlock() {
                 <li>- Heavy Machinery</li>
                 <li>- Military</li>
               </ul>
-              <div class='lav-combo__zoom'><img src='${REPO_DIR}/img/ico-4.svg'>Click to zoom</div>
+              <div class='lav-combo__zoom'><img src='${REPO_DIR}/img/icon-zoom.svg'>Click to zoom</div>
             </div>
           </div>
         </div>
