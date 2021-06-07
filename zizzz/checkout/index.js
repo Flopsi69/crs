@@ -23,6 +23,9 @@ let observer = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
+      if (node.classList.contains('modal-popup')) {
+        initExp();
+      }
     }
   }
 });
@@ -591,9 +594,9 @@ var activeStep = 1;
 //     console.log('try one more..');
 //   }
 // }, 500);
-initExp();
+// initExp();
 function initExp() {
-  console.log('init');
+  console.log('initExp');
   let initBlock = `
     <div class="opc-wrapper layout-2-columns am-opc-wrapper am-submit-summary" data-bind="css: $data.additionalClasses">
       <div class='lav-wrap'>
