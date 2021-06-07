@@ -2,8 +2,8 @@ function gaEvent(action, label = '') {
   window.dataLayer = window.dataLayer || [];
   try {
     let eventObj = {
-      event: 'ga_event',
-      eventCategory: 'Exp — PDP: add phone number',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Bundle Builder',
       eventAction: action
     };
     if (label) {
@@ -12,6 +12,26 @@ function gaEvent(action, label = '') {
     dataLayer.push(eventObj);
   } catch (e) {}
 }
+
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2171597, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj('trigger', 'bundle_builder');
 
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
@@ -274,6 +294,7 @@ function initStyles() {
 // }, 500);
 
 function initExp() {
+  gaEvent('loaded');
   console.log('initExp');
   // isInitExp = true;
 
@@ -327,6 +348,7 @@ function initExp() {
   document
     .querySelector('.lav-build__checkout')
     .addEventListener('click', function (e) {
+      gaEvent('Proceed to Checkout clicked');
       e.preventDefault();
       document.querySelector('.e-right-quiz>button').click();
       let observer = new MutationObserver(mutations => {
@@ -501,6 +523,7 @@ function setItems() {
         .querySelector('.lav-build__control-plus')
         .addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('+ clicked');
           product.querySelector('.add .notification').click();
         });
 
@@ -508,6 +531,15 @@ function setItems() {
         .querySelector('.lav-build__control-minus')
         .addEventListener('click', function (e) {
           e.preventDefault();
+          if (product.querySelector('.added-container input').value == '1') {
+            console.log(
+              'qty:',
+              product.querySelector('.added-container input').value
+            );
+            gaEvent('Item deleted');
+          } else {
+            gaEvent('- clicked');
+          }
           product.querySelector('.remove').click();
         });
 

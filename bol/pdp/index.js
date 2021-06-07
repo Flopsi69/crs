@@ -260,7 +260,7 @@ function initStyles() {
       border-radius: 6px;
       padding: 18px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
     }
     .lav-compability__caption {
@@ -273,7 +273,7 @@ function initStyles() {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 18px;
+      padding: 10px 18px 8px;
       font-weight: bold;
       font-size: 16px;
       line-height: 1;
@@ -283,6 +283,7 @@ function initStyles() {
     }
     .lav-compability__call img {
       margin-left: 20px;
+      width: 28px;
     }
   `;
 
