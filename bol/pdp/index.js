@@ -188,9 +188,49 @@ function initStyles() {
       width: 100%;
       text-align: center;
     }
+    .lav-combo {
+      display: flex;
+    }
     .lav-combo__wrap {
       max-width: 335px;
       width: 100%;
+    }
+    .lav-combo__info {
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 19px;
+      color: #231F20;
+    }
+    .lav-combo__title {
+      font-weight: bold;
+    }
+    .lav-combo__green {
+      margin: 10px 0;
+      color: #7CB305;
+    }
+    .lav-combo__list-caption {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
+    .lav-combo__list li + li {
+      margin-top: 3px;
+    }
+    .lav-combo__zoom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 21px;
+      color: #096DD9;
+      border: 1px solid #DFDFDF;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+    .lav-combo__zoom img {
+      margin-right: 8px;
+      width: 20px;
+      height: 20px;
     }
     .lav-feautures__icon {
       margin-bottom: 15px;
@@ -353,7 +393,7 @@ function initStaticBlock() {
         </div>
 
         <div class='lav-info__block lav-combo__wrap'>
-          <div class='lav-info__block-title'>Max performance with Combo optics and 5W</div>
+          <div class='lav-info__block-title'>Max performance with <br> Combo optics and 5W</div>
           <div class='lav-combo'>
             <div class='lav-combo__image'>
               <img src='${REPO_DIR}/img/combo-light.png' />
