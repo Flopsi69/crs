@@ -441,7 +441,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       } else {
         document.querySelector('.e-right-quiz > .button').click();
       }
-      let observer = new MutationObserver(mutations => {
+      let observerPlans = new MutationObserver(mutations => {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
@@ -451,7 +451,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
             }
             if (node.querySelector('.plans')) {
               toggleBox(isDown);
-              observer.disconnect();
+              observerPlans.disconnect();
               setTimeout(() => {
                 if (!isDown) {
                   targetClick.click();
@@ -468,7 +468,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
         }
       });
 
-      observer.observe(document.body, { childList: true, subtree: true });
+      observerPlans.observe(document.body, { childList: true, subtree: true });
     } else {
       setItems();
     }
