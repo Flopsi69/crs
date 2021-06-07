@@ -685,7 +685,8 @@ function initExp() {
           if (
             document.querySelector('[name="firstname"] + .field-error') ||
             document.querySelector('[name="lastname"] + .field-error') ||
-            document.querySelector('#customer-email + .mage-error')
+            document.querySelector('#customer-email + .mage-error').style
+              .display == 'block'
           ) {
             console.log('error step 1');
           } else {
