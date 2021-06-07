@@ -376,7 +376,9 @@ function initExp() {
   document.addEventListener('click', function (e) {
     if (
       e.target.closest('.added-container') ||
-      e.target.closest('.not-added-container')
+      e.target.closest('.not-added-container') ||
+      (e.target.closest('.main') &&
+        document.querySelector('.products .added-container'))
     ) {
       if (e.target.closest('.add') || e.target.classList.contains('add')) {
         clickControl(true, e.target);
