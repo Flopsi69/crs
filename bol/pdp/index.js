@@ -152,11 +152,37 @@ function initStyles() {
       font-size: 16px;
       line-height: 19px;
       color: #096DD9;
-      max-width: 195px;
-      width: 100%;
+      width: 195px;
+      max-width: 100%;
+      transition: 0.35s;
+    }
+    .lav-options__item:hover {
+      background-color: #eae8e8;
     }
     .lav-options__item + .lav-options__item {
       margin-left: 30px;
+    }
+    .lav-info {
+      display: flex;
+      justify-content: space-between;
+    }
+    .lav-info__block {
+
+    }
+    .lav-info__block-title {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 26px;
+      text-align: center;
+      color: #000000;
+    }
+    .lav-feautures__wrap {
+      max-width: 460px;
+      width: 100%;
+    }
+    .lav-combo {
+      max-width: 335px;
+      width: 100%;
     }
   `;
 
@@ -257,7 +283,7 @@ function initStaticBlock() {
       </div>
 
       <div class='lav-info'>
-        <div class='lav-info__block'>
+        <div class='lav-info__block lav-feautures__wrap'>
           <div class='lav-info__block-title'>Key Features</div>
           <div class='lav-feautures'>
             <div class='lav-feautures__item'>
@@ -299,10 +325,12 @@ function initStaticBlock() {
           </div>
         </div>
 
-        <div class='lav-info__block'>
+        <div class='lav-info__block lav-combo__wrap'>
           <div class='lav-info__block-title'>Max performance with Combo optics and 5W</div>
           <div class='lav-combo'>
-            <div class='lav-combo__image'></div>
+            <div class='lav-combo__image'>
+              <img src='${REPO_DIR}/img/combo-light.png' />
+            </div>
             <div class='lav-combo__info'>
               <div class='lav-combo__title'>COMBO with 5Wprovides:</div>
               <div class='lav-combo__green'>Over 75 % more 
