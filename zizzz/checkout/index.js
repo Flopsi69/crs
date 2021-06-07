@@ -99,6 +99,7 @@ let stylesList = `
   border: 1px solid #E3E3E3;
   max-width: 900px;
   margin: auto auto 70px;
+  opacity: 0.15;
 }
 .checkout-index-index .opc-block-summary .minicart-items-wrapper {
   padding: 0;
@@ -599,6 +600,9 @@ var activeStep = 1;
 // }, 500);
 // initExp();
 function initExp() {
+  document.querySelector(
+    '.checkout-index-index .opc-wrapper.am-opc-wrapper'
+  ).style.opacity = 1;
   console.log('initExp');
   let initBlock = `
     <div class="opc-wrapper layout-2-columns am-opc-wrapper am-submit-summary" data-bind="css: $data.additionalClasses">
