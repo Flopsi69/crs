@@ -22,7 +22,7 @@ var initExp = false;
 
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
-    for (let node of mutation.addedNodes) {
+    for (let node of mutation.removedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
       if (node.classList.contains('modal-popup') && !initExp) {
