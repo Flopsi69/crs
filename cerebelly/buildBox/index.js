@@ -399,11 +399,13 @@ function initExp() {
 
   createBuildItemsRow(3);
   setItems();
-  setBasketDiscount(
-    parseInt(
-      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
-    )
-  );
+  if (cument.querySelector('.e-right-quiz>button')) {
+    setBasketDiscount(
+      parseInt(
+        document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+      )
+    );
+  }
 }
 
 function clickControl(isToggleClick, targetClick, isDown) {
