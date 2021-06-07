@@ -399,7 +399,7 @@ function initExp() {
 
   createBuildItemsRow(3);
   setItems();
-  if (cument.querySelector('.e-right-quiz>button')) {
+  if (document.querySelector('.e-right-quiz>button')) {
     setBasketDiscount(
       parseInt(
         document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
