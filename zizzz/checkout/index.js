@@ -16,6 +16,8 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
+var initExp = false;
+
 // gaEvent('loaded');
 
 let observer = new MutationObserver(mutations => {
@@ -23,7 +25,8 @@ let observer = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.classList.contains('modal-popup')) {
+      if (node.classList.contains('modal-popup') && !initExp) {
+        initExp = !initExp;
         initExp();
       }
     }
