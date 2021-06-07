@@ -357,8 +357,8 @@ function initExp() {
             if (!(node instanceof HTMLElement)) continue;
             if (node.querySelector('.action-button-wrapp .action')) {
               document.querySelector('.action-button-wrapp .action').click();
+              observer.disconnect();
             }
-            console.log('node', node);
           }
         }
       });
