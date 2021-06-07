@@ -29,6 +29,7 @@ let observer = new MutationObserver(mutations => {
       if (node.id == 'checkout-loader' && !isInitExp) {
         isInitExp = !isInitExp;
         initExp();
+        observer.disconnect();
       }
     }
   }
