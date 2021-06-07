@@ -680,38 +680,42 @@ function initExp() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector('.payment-methods .checkout.amasty').click();
-      if (activeStep == 1) {
-        if (
-          document.querySelector('[name="lastname"] + .field-error') ||
-          document.querySelector('[name="lastname"] + .field-error') ||
-          document.querySelector('#customer-email + .mage-error')
-        ) {
-          console.log('error step 1');
-        } else {
-          activeStep++;
-          initStepTwo();
+      setTimeout(() => {
+        if (activeStep == 1) {
+          if (
+            document.querySelector('[name="firstname"] + .field-error') ||
+            document.querySelector('[name="lastname"] + .field-error') ||
+            document.querySelector('#customer-email + .mage-error')
+          ) {
+            console.log('error step 1');
+          } else {
+            activeStep++;
+            initStepTwo();
+          }
+        } else if (activeStep == 2) {
+          if (
+            document.querySelector('[name="street[0]"] + .field-error') ||
+            document.querySelector('[name="city"] + .field-error') ||
+            document.querySelector('[name="telephone"] + .field-error') ||
+            document.querySelector('[name="postcode"] + .field-error') ||
+            document.querySelector('[name="country_id"] + .field-error') ||
+            document.querySelector(
+              '#shipping-new-address-form .message.warning'
+            )
+          ) {
+            console.log('error step 2');
+          } else {
+            activeStep++;
+            initStepThree();
+          }
+        } else if (activeStep == 3) {
+          if (document.querySelectorAll('.field-error').length) {
+            console.log('error step 3');
+          } else {
+            document.querySelector('.payment-methods .checkout.amasty').click();
+          }
         }
-      } else if (activeStep == 2) {
-        if (
-          document.querySelector('[name="street[0]"] + .field-error') ||
-          document.querySelector('[name="city"] + .field-error') ||
-          document.querySelector('[name="telephone"] + .field-error') ||
-          document.querySelector('[name="postcode"] + .field-error') ||
-          document.querySelector('[name="country_id"] + .field-error') ||
-          document.querySelector('#shipping-new-address-form .message.warning')
-        ) {
-          console.log('error step 2');
-        } else {
-          activeStep++;
-          initStepThree();
-        }
-      } else if (activeStep == 3) {
-        if (document.querySelectorAll('.field-error').length) {
-          console.log('error step 3');
-        } else {
-          document.querySelector('.payment-methods .checkout.amasty').click();
-        }
-      }
+      }, 800);
     });
 
   document.querySelector('.opc-estimated-wrapper .estimated-label').innerText =
