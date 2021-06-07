@@ -419,7 +419,14 @@ function initStaticBlock() {
             </div>
           </div>
         </div>
+      </div>
 
+      <div class='lav-compability'>
+        <div class='lav-compability__caption'>Compatibility</div>
+        <a href='#' class='lav-compability__cal'>
+          Call us 800-348-1287 to assist
+          <img src='${REPO_DIR}/img/'>
+        </a>
       </div>
     </div>
   `;
