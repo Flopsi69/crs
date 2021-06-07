@@ -25,7 +25,9 @@ let stylesList = `
     display: none!important;
   }
   .lav-licenses {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    max-width: 400px;
   }
   .lav-license {
     position: relative;
@@ -35,6 +37,9 @@ let stylesList = `
     border: 3px solid transparent;
     transition: 0.35s;
     cursor: pointer;
+  }
+  .lav-license + .lav-license {
+    margin-top: 10px;
   }
   .lav-license:before {
     content: '';
@@ -70,11 +75,14 @@ let stylesList = `
   }
   .lav-license__title {
     font-weight: 800;
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 7px;
     line-height: 1.2;
-    color: #3C3C3C;
+    color: #fff;
     text-transform: lowercase;
+  }
+  .lav-license_active .lav-license__title {
+    color: #3C3C3C;
   }
   .lav-license__title:first-letter {
     text-transform: uppercase;
@@ -82,6 +90,9 @@ let stylesList = `
   .lav-license__list {
     font-size: 12px;
     line-height: 1.2;
+    color: #ffffff;
+  }
+  .lav-license_active .lav-license__list {
     color: #3C3C3C;
   }
   .lav-license__item {
@@ -120,15 +131,15 @@ let stylesList = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.2;
-    color: #565656;
-    padding: 16px 20px;
+    color: #fff;
+    padding: 18px 20px;
     transition: 0.35s;
     cursor: pointer;
   }
   .lav-size:hover {
-    background-color: antiquewhite;
+    background-color: #212020;
   }
   .lav-size.lav-size_extended:hover {
     background: transparent;
@@ -159,14 +170,14 @@ let stylesList = `
   }
   .lav-sizes {
     position: relative;
-    margin: 0 -20px 25px;
+    margin: 10px 0 25px;
   }
   .lav-sizes__list {
     position: absolute;
     left: 0;
     right: 0;
     /* box-shadow: 0 0 20px; */
-    background: white;
+    background: #212020;
     z-index: 1;
     border-bottom: 3px solid #d4d4d4;
     box-shadow: 5px 5px 10px rgb(0, 0, 0, 80%);
@@ -175,8 +186,11 @@ let stylesList = `
   .lav-sizes__list .lav-size {
     border-bottom: 1px dashed #C9C9C9;
   }
+  .lav-sizes__list .lav-size:hover {
+    background-color: #171616;
+  }
   .lav-sizes__list .lav-size_active {
-    background-color: #e6e2df;
+    background-color: #484849;
     font-weight: bold;
     pointer-events: none;
   }
@@ -185,6 +199,8 @@ let stylesList = `
   }
   .lav-sizes__value .lav-size__icon {
     display: block;
+    width: 10px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
   }
   .lav-sizes__list .lav-size_extended {
     display: none;
@@ -201,143 +217,16 @@ let stylesList = `
   .lav-sizes_extended .lav-sizes__list {
     display: none!important;
   }
-  .go-modal__wrap {
-    position: fixed;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 999;
-    background: rgba(60, 60, 60, 0.43);
-  }
-  .go-modal {
-    position: relative;
-    background: #E6EEF9;
-    border-radius: 20px;
-    max-width: 1000px;
-    width: 100%;
-    padding: 60px;
-    box-sizing: border-box;
-    max-height: 100vh;
-    overflow: auto;
-  }
-  .go-modal__body {
-    display: flex;
-    margin: 0 -10px;
-    font-size: 12px;
-    line-height: 14px;
-    color: #565656;
-  }
-  .go-modal__block {
-    background: #fff;
-    border-radius: 20px;
-    margin: 0 10px;
-    flex: 1;
-    padding: 30px;
-  }
-  .go-modal__title {
-    font-size: 24px;
-    line-height: 28px;
-    color: #3C3C3C;
-    font-weight: 700;
-    font-family: Arial Black, Arial;
-    margin-bottom: 17px;
-    text-transform: lowercase;
-  }
-  .go-modal__title:first-letter {
-    text-transform: uppercase;
-  }
-  .go-modal__list {
-    font-size: 12px;
-    line-height: 14px;
-    color: #565656;
-  }
-  .go-modal__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .go-modal__item + .go-modal__item {
-    margin-top: 20px;
-  }
-  .go-modal__descr {
-    flex-grow: 1;
-    line-height: 1.35;
-  }
-  .go-modal__close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-    transition: 0.35s;
-  }
-  .go-modal__close:hover {
-    opacity: 0.6;
-  }
-  .go-modal__close img {
-    width: 100%;
-    height: 100%;
-    filter: contrast(0);
-  }
-  .go-modal__status {
-    position: relative;
-    width: 105px;
-    margin-left: 30px;
-    color: #8AC770;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    padding-left: 28px;
-  }
-  .go-modal__status:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    margin-top: -10px;
-    width: 18px;
-    height: 18px;
-    background: url(${REPO_DIR}/icon-include.svg) center no-repeat;
-    background-size: cover;
-  }
-  .go-modal__status.go-modal__status_note, .go-modal__status.go-modal__status_exclude {
-    color: #f04f4f;
-  }
-  .go-modal__status.go-modal__status_note:before {
-    background: url(${REPO_DIR}/icon-exclude.svg) center no-repeat;
-    background-size: cover;
-  }
-  .go-modal__status.go-modal__status_exclude:before {
-    background: url(${REPO_DIR}/icon-exclude2.svg) center no-repeat;
-    background-size: cover;
-  }
-  .price-table-upgrade__content {
-    display: none;
-  }
-  .go-modal__caption {
-    color: #9E9E9E;
-    font-size: 12px;
-    margin-top: 25px;
-  }
-  .go-modal__caption a {
-    line-height: 1.2;
-    color: #5991D8;
-    border-bottom: 1px solid #5991D8;
-    transition: 0.35s;
-  }
-  .go-modal__caption a:hover {
-    opacity: 0.6;
-    text-decoration: none;
-  }
   .lav-size__abr a {
     margin-left: 5px;
   }
 `;
 
+// if (!document.querySelector('.auth-box')) {
+let styles = document.createElement('style');
+styles.innerHTML = stylesList;
+document.body.appendChild(styles);
+// }
 /*** STYLES insert -end- ***/
 
 /*** HTML insert start ***/
@@ -673,15 +562,13 @@ if (lang == 'ru') {
 // TODO
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
-    // проверим новые узлы, есть ли что-то, что надо подсветить?
     for (let node of mutation.addedNodes) {
-      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
 
       console.log(node);
 
       // TODO
-      if (node.classList.contains('price-table-upgrade')) {
+      if (false && node.classList.contains('price-table-upgrade')) {
         node
           .querySelectorAll('.price-table-upgrade__item')
           .forEach(function (el, index) {
@@ -721,6 +608,7 @@ let observer = new MutationObserver(mutations => {
       }
 
       if (
+        false &&
         node.classList.contains('wrapper') &&
         node.querySelector('.file-view-upgrade')
       ) {
@@ -750,12 +638,14 @@ let observer = new MutationObserver(mutations => {
 
 let demoElem = document.querySelector('#root');
 
-// observer.observe(demoElem, { childList: true, subtree: true });
+// TODO
+observer.observe(demoElem, { childList: true, subtree: true });
 
 // setTimeout(() => {
 //   document.querySelector('#root>.wrapper').style.opacity = 1;
 // }, 3500);
 
+init();
 function init() {
   localStorage.setItem('lavLicenseType', 'none');
   let sizesEl = createSizes();
@@ -884,7 +774,7 @@ function createSizeItem(sizeEl) {
         <div class='lav-size__dim'>${dim}</div>
         <div class='lav-size__params'>${params}</div>
       </div>
-      <img class='lav-size__icon' src='/icon-dropdown.svg' >
+      <img class='lav-size__icon' src='${REPO_DIR}/icon-dropdown.svg' >
   `;
 
   newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
