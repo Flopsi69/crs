@@ -679,7 +679,7 @@ function initExp() {
     .querySelector('.lav-steps__control-next')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      // document.querySelector('.payment-methods .checkout.amasty').click();
+      document.querySelector('.payment-methods .checkout.amasty').click();
       if (activeStep == 1) {
         if (
           document.querySelector('[name="lastname"] + .field-error') ||
@@ -724,6 +724,8 @@ function initExp() {
   document.querySelector(
     '.checkout-index-index .opc-wrapper.am-opc-wrapper'
   ).style.opacity = 1;
+
+  document.querySelector('.payment-method').click();
 }
 
 function validateInputs() {
@@ -883,7 +885,7 @@ function initStepThree() {
     '.lav-steps__nav-current .lav-steps__nav-caption'
   ).innerText = 'Payment method';
   document.querySelector('.lav-steps__control-next-text').innerText =
-    'Place on order';
+    'Place an order';
 
   let stepThree = document.createElement('style');
   stepThree.id = 'stepThree';
