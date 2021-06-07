@@ -601,9 +601,6 @@ var activeStep = 1;
 // }, 500);
 // initExp();
 function initExp() {
-  document.querySelector(
-    '.checkout-index-index .opc-wrapper.am-opc-wrapper'
-  ).style.opacity = 1;
   console.log('initExp');
   let initBlock = `
     <div class="opc-wrapper layout-2-columns am-opc-wrapper am-submit-summary" data-bind="css: $data.additionalClasses">
@@ -723,6 +720,10 @@ function initExp() {
   initHeader();
   initSummary();
   initStepOne();
+
+  document.querySelector(
+    '.checkout-index-index .opc-wrapper.am-opc-wrapper'
+  ).style.opacity = 1;
 }
 
 function validateInputs() {
