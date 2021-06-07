@@ -16,7 +16,7 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
-var initExp = false;
+var isInitExp = false;
 
 // gaEvent('loaded');
 
@@ -26,8 +26,8 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
       // if (node.classList.contains('modal-popup') && !initExp) {
-      if (node.id == 'checkout-loader' && !initExp) {
-        initExp = !initExp;
+      if (node.id == 'checkout-loader' && !isInitExp) {
+        isInitExp = !isInitExp;
         initExp();
       }
     }
