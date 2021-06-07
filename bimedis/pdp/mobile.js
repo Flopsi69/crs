@@ -1187,6 +1187,12 @@ function initWrap() {
         '.new-scss.scss-small-content .content > .container'
       ).style.opacity = 1;
     }
+    clearInterval(intervalInitExp);
+    setTimeout(() => {
+      if (document.querySelector('.wrap .content .content')) {
+        document.querySelector('.wrap .content .content').style.opacity = 1;
+      }
+    }, 100);
   }
 
   function setProductInfo() {

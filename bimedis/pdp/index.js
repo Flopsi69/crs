@@ -135,7 +135,8 @@ let stylesList = `
     padding: 14px 18px;
   }
   .new-scss.scss-small-content .content > .container {
-    max-width: 1360px!important;
+    max-width: 1390px!important;
+    padding: 0px 15px!important;
   }
   .b-popular-second-level-searches.m-white-bg {
     float: right;

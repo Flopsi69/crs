@@ -49,6 +49,9 @@ function initStyles() {
       margin-top: 15px;
       margin-bottom: 35px;
     }
+    .text-center.two-pic {
+      display: none; 
+    }
     .form-add-to-cart .price {
       position: relative;
       padding-right: 90px;
@@ -165,9 +168,7 @@ function initStyles() {
     .lav-info {
       display: flex;
       justify-content: space-between;
-    }
-    .lav-info__block {
-
+      margin-top: 40px;
     }
     .lav-info__block-title {
       font-weight: bold;
@@ -175,14 +176,40 @@ function initStyles() {
       line-height: 26px;
       text-align: center;
       color: #000000;
+      margin-bottom: 40px;
+    }
+    .lav-feautures {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 50px 55px;
     }
     .lav-feautures__wrap {
-      max-width: 460px;
+      max-width: 510px;
       width: 100%;
+      text-align: center;
     }
-    .lav-combo {
+    .lav-combo__wrap {
       max-width: 335px;
       width: 100%;
+    }
+    .lav-feautures__icon {
+      margin-bottom: 15px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lav-feautures__icon img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .lav-feautures__caption {
+      font-size: 15px;
+      line-height: 18px;
+      color: #5F6262;      
+    }
+    .lav-static img {
+      width: auto;
     }
   `;
 
