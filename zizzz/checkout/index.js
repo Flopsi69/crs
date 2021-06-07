@@ -371,7 +371,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   margin-top: 35px; 
 }
 #payment {
-  display: none;
+  display: none!important;
 }
 .checkout-payment-method .payment-option-title {
   padding: 0;
@@ -679,7 +679,7 @@ function initExp() {
     .querySelector('.lav-steps__control-next')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      document.querySelector('.payment-methods .checkout.amasty').click();
+      // document.querySelector('.payment-methods .checkout.amasty').click();
       if (activeStep == 1) {
         if (
           document.querySelector('[name="lastname"] + .field-error') ||
@@ -892,7 +892,7 @@ function initStepThree() {
       display: none;
     }
     #payment {
-      display: block;
+      display: block!important;
     }
     .checkout-index-index .additional-options {
       display: block;
