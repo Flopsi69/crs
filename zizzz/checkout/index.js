@@ -861,8 +861,7 @@ function initStepTwo(isAgain) {
   document.querySelector(
     '.lav-steps__nav-next .lav-steps__nav-caption'
   ).innerText = 'Payment method';
-  document.querySelector('.lav-steps__control-next-text').innerText =
-    'Payment method';
+  document.querySelector('.lav-steps__control-next-text').innerText = 'Next';
 
   let stepTwo = document.createElement('style');
   stepTwo.id = 'stepTwo';
