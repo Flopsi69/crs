@@ -775,7 +775,7 @@ function initStepOne(isAgain) {
     '.lav-steps__nav-next .lav-steps__nav-caption'
   ).innerText = 'Shipping information';
   document.querySelector('.lav-steps__control-next-text').innerText =
-    'Shipping information';
+    'Choose Shipping Method';
 
   if (isAgain) {
     document.querySelector('#stepTwo').remove();
