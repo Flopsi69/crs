@@ -593,6 +593,7 @@ var activeStep = 1;
 // }, 500);
 initExp();
 function initExp() {
+  console.log('init');
   let initBlock = `
     <div class="opc-wrapper layout-2-columns am-opc-wrapper am-submit-summary" data-bind="css: $data.additionalClasses">
       <div class='lav-wrap'>
