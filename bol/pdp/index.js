@@ -255,6 +255,35 @@ function initStyles() {
     .lav-static img {
       width: auto;
     }
+    .lav-compability {
+      border: 1px solid #DFDFDF;
+      border-radius: 6px;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lav-compability__caption {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 1;
+      color: #000000;
+    }
+    .lav-compability__call {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1;
+      color: #096DD9;
+      border: 1px solid #096DD9;
+      border-radius: 6px;
+    }
+    .lav-compability__call img {
+      margin-left: 20px;
+    }
   `;
 
   let styles = document.createElement('style');
@@ -423,9 +452,9 @@ function initStaticBlock() {
 
       <div class='lav-compability'>
         <div class='lav-compability__caption'>Compatibility</div>
-        <a href='#' class='lav-compability__cal'>
+        <a href='#' class='lav-compability__call'>
           Call us 800-348-1287 to assist
-          <img src='${REPO_DIR}/img/'>
+          <img src='${REPO_DIR}/img/ico-3.svg'>
         </a>
       </div>
     </div>
