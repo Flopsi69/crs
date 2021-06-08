@@ -395,7 +395,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
 .checkout-index-index .additional-options {
   margin: 0;
   display: none;
-  margin-top: 35px; 
+  margin-top: 25px; 
 }
 #payment {
   display: none!important;
@@ -430,7 +430,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
 }
 .checkout-index-index .opc-wrapper.am-opc-wrapper .field.amcheckout-comment {
   margin-bottom: 0;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 .admin__field-label {
   font-size: 13px;
