@@ -577,9 +577,22 @@ function setBasketDiscount(count) {
   if (count >= 56) {
     controlDiscount(true, 4);
     document.querySelector('.lav-build__caption').style.display = 'none';
+    document.querySelector('.lav-build__caption-sub').style.display = 'none';
+    if (!document.querySelector('.lav-build__caption-temp2')) {
+      document.querySelector('.lav-build__discounts').insertAdjacentHTML(
+        'beforebegin',
+        `div class='lav-build__caption lav-build__caption-temp1'>Congratulations!</div>
+    <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You got Free Shipping + 25% OFF</span></div>`
+      );
+    }
   } else {
     controlDiscount(false, 4);
     document.querySelector('.lav-build__caption').style.display = 'block';
+    if (document.querySelector('.lav-build__caption-temp2')) {
+      document.querySelector('.lav-build__caption-temp2').remove();
+      document.querySelector('.lav-build__caption-temp1').remove();
+      document.querySelector('.lav-build__caption-sub').style.display = 'block';
+    }
   }
 }
 
