@@ -125,7 +125,7 @@ let stylesList = `
   border-left: 1px solid #E3E3E3;
   background: #fff;
   width: 315px;
-  padding: 30px;
+  padding: 30px 30px 10px;;
   flex-shrink: 0;
 }
 .lav-summary .step-title, .opc-block-summary .items-in-cart>.title {
@@ -693,45 +693,67 @@ function initExp() {
     .querySelector('.lav-steps__control-next')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      document.querySelector('.payment-methods .checkout.amasty').click();
-      setTimeout(() => {
-        if (activeStep == 1) {
-          if (
-            document.querySelector('[name="firstname"] + .field-error') ||
-            document.querySelector('[name="lastname"] + .field-error') ||
-            (document.querySelector('#customer-email + .mage-error') &&
-              document.querySelector('#customer-email + .mage-error').style
-                .display == 'block')
-          ) {
-            console.log('error step 1');
-          } else {
-            activeStep++;
-            initStepTwo();
-          }
-        } else if (activeStep == 2) {
-          if (
-            document.querySelector('[name="street[0]"] + .field-error') ||
-            document.querySelector('[name="city"] + .field-error') ||
-            document.querySelector('[name="telephone"] + .field-error') ||
-            document.querySelector('[name="postcode"] + .field-error') ||
-            document.querySelector('[name="country_id"] + .field-error') ||
-            document.querySelector(
-              '#shipping-new-address-form .message.warning'
-            )
-          ) {
-            console.log('error step 2');
-          } else {
-            activeStep++;
-            initStepThree();
-          }
-        } else if (activeStep == 3) {
-          if (document.querySelectorAll('.field-error').length) {
-            console.log('error step 3');
-          } else {
-            document.querySelector('.payment-methods .checkout.amasty').click();
-          }
+      // document.querySelector('.payment-methods .checkout.amasty').click();
+      // setTimeout(() => {
+      if (activeStep == 1) {
+        if (
+          document.querySelector('[name="firstname"] + .field-error') ||
+          document.querySelector('[name="lastname"] + .field-error') ||
+          (document.querySelector('#customer-email + .mage-error') &&
+            document.querySelector('#customer-email + .mage-error').style
+              .display == 'block')
+        ) {
+          console.log('error step 1');
+        } else {
+          activeStep++;
+          initStepTwo();
         }
-      }, 800);
+      } else if (activeStep == 2) {
+        if (
+          document.querySelector('[name="street[0]"] + .field-error') ||
+          document.querySelector('[name="city"] + .field-error') ||
+          document.querySelector('[name="telephone"] + .field-error') ||
+          document.querySelector('[name="postcode"] + .field-error') ||
+          document.querySelector('[name="country_id"] + .field-error') ||
+          document.querySelector('#shipping-new-address-form .message.warning')
+        ) {
+          console.log('error step 2');
+        } else {
+          activeStep++;
+          initStepThree();
+        }
+      } else if (activeStep == 3) {
+        if (document.querySelectorAll('.field-error').length) {
+          console.log('error step 3');
+        } else {
+          document.querySelector('.payment-methods .checkout.amasty').click();
+          setTimeout(() => {
+            if (
+              document.querySelector('[name="firstname"] + .field-error') ||
+              document.querySelector('[name="lastname"] + .field-error') ||
+              (document.querySelector('#customer-email + .mage-error') &&
+                document.querySelector('#customer-email + .mage-error').style
+                  .display == 'block')
+            ) {
+              initStepOne();
+              activeStep = 1;
+            } else if (
+              document.querySelector('[name="street[0]"] + .field-error') ||
+              document.querySelector('[name="city"] + .field-error') ||
+              document.querySelector('[name="telephone"] + .field-error') ||
+              document.querySelector('[name="postcode"] + .field-error') ||
+              document.querySelector('[name="country_id"] + .field-error') ||
+              document.querySelector(
+                '#shipping-new-address-form .message.warning'
+              )
+            ) {
+              initStepTwo();
+              activeStep = 2;
+            }
+          }, 800);
+        }
+      }
+      // }, 800);
     });
 
   document.querySelector('.opc-estimated-wrapper .estimated-label').innerText =
@@ -884,6 +906,19 @@ function initStepTwo(isAgain) {
     }
     #shipping-new-address-form>.field.street, #shipping-new-address-form>.field.street .field, #shipping-new-address-form>.field.street ~ .field {
       display: block!important;
+    }
+    #shipping-new-address-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+    }
+    #shipping-new-address-form > .field {
+      width: 48%;
+    }
+    .table-checkout-shipping-method tbody td {
+      padding-bottom: 10px;
+      padding-top: 10px;
     }
     .lav-steps__control-back {
       opacity: 1;
