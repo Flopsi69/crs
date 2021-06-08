@@ -367,14 +367,30 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   border: none;
 }
 .minicart-items {
-  max-height: 245px;
+  max-height: 450px;
+  margin-bottom: 20px;
   overflow-y: auto;
+}
+.minicart-items ::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+.minicart-items ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.minicart-items ::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.minicart-items ::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 .minicart-items .product-item:last-child {
   border-bottom: 1px solid #ccc;
-}
-.checkout-index-index .opc-block-summary .minicart-items-wrapper {
-  margin-bottom: 30px;
 }
 .checkout-index-index .additional-options {
   margin: 0;
@@ -723,37 +739,38 @@ function initExp() {
           initStepThree();
         }
       } else if (activeStep == 3) {
-        if (document.querySelectorAll('.field-error').length) {
-          console.log('error step 3');
-        } else {
-          document.querySelector('.payment-methods .checkout.amasty').click();
-          setTimeout(() => {
-            if (
-              document.querySelector('[name="firstname"] + .field-error') ||
-              document.querySelector('[name="lastname"] + .field-error') ||
-              (document.querySelector('#customer-email + .mage-error') &&
-                document.querySelector('#customer-email + .mage-error').style
-                  .display == 'block')
-            ) {
-              console.log('ye1s');
-              activeStep = 1;
-              initStepOne(true);
-            } else if (
-              document.querySelector('[name="street[0]"] + .field-error') ||
-              document.querySelector('[name="city"] + .field-error') ||
-              document.querySelector('[name="telephone"] + .field-error') ||
-              document.querySelector('[name="postcode"] + .field-error') ||
-              document.querySelector('[name="country_id"] + .field-error') ||
-              document.querySelector(
-                '#shipping-new-address-form .message.warning'
-              )
-            ) {
-              console.log('ye2s');
-              activeStep = 2;
-              initStepTwo(true);
-            }
-          }, 800);
-        }
+        // if (document.querySelectorAll('.field-error').length) {
+        //   console.log('error step 3');
+        // } else {
+        document.querySelector('.payment-methods .checkout.amasty').click();
+        setTimeout(() => {
+          if (
+            document.querySelector('[name="firstname"] + .field-error') ||
+            document.querySelector('[name="lastname"] + .field-error') ||
+            (document.querySelector('#customer-email + .mage-error') &&
+              document.querySelector('#customer-email + .mage-error').style
+                .display == 'block')
+          ) {
+            console.log('ye1s');
+            activeStep = 1;
+            initStepTwo(true);
+            initStepOne(true);
+          } else if (
+            document.querySelector('[name="street[0]"] + .field-error') ||
+            document.querySelector('[name="city"] + .field-error') ||
+            document.querySelector('[name="telephone"] + .field-error') ||
+            document.querySelector('[name="postcode"] + .field-error') ||
+            document.querySelector('[name="country_id"] + .field-error') ||
+            document.querySelector(
+              '#shipping-new-address-form .message.warning'
+            )
+          ) {
+            console.log('ye2s');
+            activeStep = 2;
+            initStepTwo(true);
+          }
+        }, 800);
+        // }
       }
       // }, 800);
     });
@@ -855,7 +872,6 @@ function initStepOne(isAgain) {
       .insertAdjacentElement('beforebegin', document.querySelector('#payment'));
 
     document.addEventListener('click', function (e) {
-      console.log(e.target);
       if (
         e.target.classList.contains('payment-method') ||
         e.target.classList.contains('payment-method-title')
