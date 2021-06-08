@@ -421,19 +421,20 @@ function initExp() {
     .addEventListener('click', function (e) {
       gaEvent('Proceed to Checkout clicked');
       e.preventDefault();
-      document.querySelector('.e-nav .button.primary.red').click();
-      let observer = new MutationObserver(mutations => {
-        for (let mutation of mutations) {
-          for (let node of mutation.addedNodes) {
-            if (!(node instanceof HTMLElement)) continue;
-            if (node.querySelector('.action-button-wrapp .action')) {
-              document.querySelector('.action-button-wrapp .action').click();
-              observer.disconnect();
-            }
-          }
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
+      location.href = 'https://cerebelly.com/checkout';
+      //   document.querySelector('.e-nav .button.primary.red').click();
+      //   let observer = new MutationObserver(mutations => {
+      //     for (let mutation of mutations) {
+      //       for (let node of mutation.addedNodes) {
+      //         if (!(node instanceof HTMLElement)) continue;
+      //         if (node.querySelector('.action-button-wrapp .action')) {
+      //           document.querySelector('.action-button-wrapp .action').click();
+      //           observer.disconnect();
+      //         }
+      //       }
+      //     }
+      //   });
+      //   observer.observe(document.body, { childList: true, subtree: true });
     });
 
   if (document.querySelector('.info-text .reset')) {
