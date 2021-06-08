@@ -537,7 +537,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
                 document.querySelector(
                   '.e-page-content-wrap + div'
                 ).style.opacity = 1;
-              }, 1000);
+              }, 300);
             }
           }
         }
