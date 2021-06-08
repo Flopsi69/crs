@@ -338,7 +338,7 @@ function initStyles() {
 //     console.log('try one more..');
 //   }
 // }, 500);
-
+// initExp();
 function initExp() {
   gaEvent('loaded');
   console.log('initExp');
@@ -351,15 +351,15 @@ function initExp() {
   let lavBuild = `
     <div class='lav-build'>
       <div class='lav-build__title'>Your order</div>
-      <div class='lav-build__caption'>Add <span class='lav-build__caption-value'>14</span> products to your box</div>
-      <div class='lav-build__caption lav-build__caption-sub'>Get <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
+      <div class='lav-build__caption'>Add <span class='lav-build__caption-value'>-</span> products to your box</div>
+      <div class='lav-build__caption lav-build__caption-sub'>to get <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
 
       <div class='lav-build__discounts'>
         <div class='lav-build__discount'>
           <div class='lav-build__discount-tip'>
             <img src='${REPO_DIR}/icon-close.svg' />
             Congratulations! <br>
-            You achieved <span>10% OFF</span> and <br> <span>Free Shipping</span>
+            You've unlocked <span>10% OFF</span> and <span>Free Shipping</span>
           </div>
           <div class='lav-build__discount-value'>14-27 items → 10% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
@@ -368,7 +368,7 @@ function initExp() {
           <div class='lav-build__discount-tip'>
             <img src='${REPO_DIR}/icon-close.svg' />
             Congratulations! <br>
-            You achieved <span>15% OFF</span> and <br> <span>Free Shipping</span>
+            You've unlocked <span>15% OFF</span> and <span>Free Shipping</span>
           </div>
           <div class='lav-build__discount-value'>28-41 items → 15% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
@@ -377,7 +377,7 @@ function initExp() {
           <div class='lav-build__discount-tip'>
             <img src='${REPO_DIR}/icon-close.svg' />
             Congratulations! <br>
-            You achieved <span>20% OFF</span> and <br> <span>Free Shipping</span>
+            You've unlocked <span>20% OFF</span> and <span>Free Shipping</span>
           </div>
           <div class='lav-build__discount-value'>42-55 items → 20% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
@@ -386,7 +386,7 @@ function initExp() {
           <div class='lav-build__discount-tip'>
             <img src='${REPO_DIR}/icon-close.svg' />
             Congratulations! <br>
-            You achieved <span>25% OFF</span> and <br> <span>Free Shipping</span>
+            You've unlocked <span>25% OFF</span> and <span>Free Shipping</span>
           </div>
           <div class='lav-build__discount-value'>56 + items → 25% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
