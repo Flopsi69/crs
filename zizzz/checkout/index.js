@@ -752,8 +752,9 @@ function initExp() {
                 .display == 'block')
           ) {
             console.log('ye1s');
-            activeStep = 1;
+            activeStep = 2;
             initStepTwo(true);
+            activeStep = 2;
             initStepOne(true);
           } else if (
             document.querySelector('[name="street[0]"] + .field-error') ||
