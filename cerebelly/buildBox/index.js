@@ -629,6 +629,23 @@ function setItems() {
 }
 
 function setBasketDiscount(count) {
+  if (count >= 56) {
+    document.querySelector(
+      '.lav-build__discount:nth-child(4) .lav-build__discount-tip'
+    ).style.display = 'block';
+  } else if (count >= 42) {
+    document.querySelector(
+      '.lav-build__discount:nth-child(3) .lav-build__discount-tip'
+    ).style.display = 'block';
+  } else if (count >= 28) {
+    document.querySelector(
+      '.lav-build__discount:nth-child(2) .lav-build__discount-tip'
+    ).style.display = 'block';
+  } else if (count >= 14) {
+    document.querySelector(
+      '.lav-build__discount:nth-child(1) .lav-build__discount-tip'
+    ).style.display = 'block';
+  }
   setCaption(count);
   if (count >= 14) {
     controlDiscount(true, 1);
