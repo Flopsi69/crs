@@ -640,11 +640,11 @@ function setBasketDiscount(count) {
     ind = 1;
   }
   if (ind) {
-    if (document.querySelector('.lav-build__discount.active')) {
-      document.querySelector('.lav-build__discount.active').style.display =
+    if (document.querySelector('.lav-build__discount-tip.active')) {
+      document.querySelector('.lav-build__discount-tip.active').style.display =
         'none';
       document
-        .querySelector('.lav-build__discount.active')
+        .querySelector('.lav-build__discount-tip.active')
         .classList.remove('active');
     }
     document
