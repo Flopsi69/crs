@@ -489,6 +489,15 @@ input[type="checkbox"] {
   display: none;
 }
 @media (max-width: 768px) {
+  .select, .toolbar select {
+    heigth: 39px;
+  }
+  #shipping-new-address-form {
+    display: block!important;
+  }
+  #shipping-new-address-form > .field {
+    width: 100%!important;
+  }
   .lav-wrap {
     display: block;
   }
