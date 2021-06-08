@@ -78,7 +78,7 @@ function initStyles() {
       border-radius: 15px;
       padding: 40px 45px 45px;
       margin-top: 110px;
-      overflow-y: auto;
+      // overflow-y: auto;
     }
 
     .lav-build::-webkit-scrollbar-track {
@@ -164,6 +164,7 @@ function initStyles() {
     }
     .lav-build__discount-tip {
       position: absolute;
+      display: none;
       left: -55px;
       top: 50%;
       transform: translate(-100%, -54%);
@@ -635,17 +636,17 @@ function setBasketDiscount(count) {
     if (!document.querySelector('.lav-build__caption-temp2')) {
       document.querySelector('.lav-build__discounts').insertAdjacentHTML(
         'beforebegin',
-        `div class='lav-build__caption lav-build__caption-temp1'>Congratulations!</div>
+        `<div class='lav-build__caption lav-build__caption-temp1'>Congratulations!</div>
     <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You got Free Shipping + 25% OFF</span></div>`
       );
     }
   } else {
     controlDiscount(false, 4);
     document.querySelector('.lav-build__caption').style.display = 'block';
+    document.querySelector('.lav-build__caption-sub').style.display = 'block';
     if (document.querySelector('.lav-build__caption-temp2')) {
       document.querySelector('.lav-build__caption-temp2').remove();
       document.querySelector('.lav-build__caption-temp1').remove();
-      document.querySelector('.lav-build__caption-sub').style.display = 'block';
     }
   }
 }
