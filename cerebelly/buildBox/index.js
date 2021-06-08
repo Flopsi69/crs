@@ -514,7 +514,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       if (!isDown) {
         document.querySelector('.progress-text .action-button').click();
       } else {
-        document.querySelector('.e-right > .button').click();
+        document.querySelector('.e-nav .button.primary.red').click();
       }
       let observerPlans = new MutationObserver(mutations => {
         for (let mutation of mutations) {
