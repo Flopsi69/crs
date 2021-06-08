@@ -1,17 +1,43 @@
-function gaEvent(action, label = '') {
+try {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'multiple_steps_checkout');
+} catch (e) {}
+
+function gaEvent(action, label = '', value = '') {
   window.dataLayer = window.dataLayer || [];
+  if (!label) {
+    label = '';
+  }
+  if (!value) {
+    value = '';
+  }
 
   try {
     let eventObj = {
-      event: 'ga_event',
-      eventCategory: 'Exp — PDP: add phone number',
-      eventAction: action
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — multiple steps checkout',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
     };
-
-    if (label) {
-      eventObj['eventLabel'] = label;
-    }
-
+    console.log('fireEvent', eventObj);
     dataLayer.push(eventObj);
   } catch (e) {}
 }
@@ -27,6 +53,7 @@ let observer = new MutationObserver(mutations => {
       console.log(node);
       // if (node.classList.contains('modal-popup') && !initExp) {
       if (node.id == 'checkout-loader' && !isInitExp) {
+        gaEvent('loaded');
         isInitExp = !isInitExp;
         initExp();
         observer.disconnect();
@@ -713,6 +740,7 @@ function initExp() {
     .querySelector('.lav-steps__control-back')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('button click', 'back button');
       activeStep--;
       if (activeStep == 2) {
         initStepTwo(true);
@@ -728,6 +756,7 @@ function initExp() {
       // document.querySelector('.payment-methods .checkout.amasty').click();
       // setTimeout(() => {
       if (activeStep == 1) {
+        gaEvent('button click', 'shiping method');
         if (
           document.querySelector('[name="firstname"] + .field-error') ||
           document.querySelector('[name="lastname"] + .field-error') ||
@@ -741,6 +770,7 @@ function initExp() {
           initStepTwo();
         }
       } else if (activeStep == 2) {
+        gaEvent('button click', 'next button');
         if (
           document.querySelector('[name="street[0]"] + .field-error') ||
           document.querySelector('[name="city"] + .field-error') ||
