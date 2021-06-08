@@ -729,7 +729,7 @@ function initExp() {
         if (
           document.querySelector('[name="street[0]"] + .field-error') ||
           document.querySelector('[name="city"] + .field-error') ||
-          document.querySelector('[name="telephone"] + .field-error') ||
+          document.querySelector('[name="telephone"] ~ .field-error') ||
           document.querySelector('[name="postcode"] + .field-error') ||
           document.querySelector('[name="country_id"] + .field-error') ||
           document.querySelector('#shipping-new-address-form .message.warning')
