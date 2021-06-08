@@ -164,9 +164,9 @@ function initStyles() {
     }
     .lav-build__discount-tip {
       position: absolute;
-      left: -10px;
+      left: -55px;
       top: 50%;
-      transform: translate(-100%, -50%);
+      transform: translate(-100%, -54%);
       width: 180px;
       background: #FD4E39;
       box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.25);
@@ -178,6 +178,7 @@ function initStyles() {
       color: #FFFFFF;
       z-index: 10;
       padding: 15px 10px;
+      border-radius: 7px;
     }
     .lav-build__discount-tip span {
       font-weight: bold;
@@ -186,6 +187,8 @@ function initStyles() {
       position: absolute;
       top: 5px;
       left: 5px;
+      cursor: pointer;
+      transition: 0.2s;
     }
     .lav-build__discount-tip img:hover {
       opacity: 0.5;
@@ -196,7 +199,7 @@ function initStyles() {
       width: 16px;
       height: 16px;
       position: absolute;
-      right: -8px;
+      right: 0;
       top: 50%;
       transform: rotate(45deg) translateY(-50%);
     }
@@ -354,7 +357,7 @@ function initExp() {
           <div class='lav-build__discount-tip'>
             <img src='${REPO_DIR}/icon-close.svg' />
             Congratulations! <br>
-            You achieved 10% OFF and <br> Free Shipping
+            You achieved <span>10% OFF</span> and <br> <span>Free Shipping</span>
           </div>
           <div class='lav-build__discount-value'>14-27 items → 10% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
