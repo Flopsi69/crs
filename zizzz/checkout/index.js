@@ -275,6 +275,9 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
     height: 20px;
   }
 }
+.fieldset.address [name$=".company"] {
+  display: none;
+}
 .lav-steps__nav-current, .lav-steps__nav-next {
   display: flex;
   align-items: center;
@@ -292,6 +295,9 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
 }
 .lav-steps__nav-current {
   color: #E32128;
+}
+.checkout-index-index .opc-wrapper.am-opc-wrapper .discount-code .payment-option-title {
+  display: none;
 }
 .lav-steps__nav-current .lav-steps__nav-num {
   border-color: #E32128;
@@ -313,7 +319,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 30px
+  margin-top: 25px
 }
 .lav-steps__control-back {
   font-size: 16px;
@@ -941,6 +947,9 @@ function initStepTwo(isAgain) {
       flex-wrap: wrap;
       justify-content: space-between;
       width: 100%;
+    }
+    .checkout-index-index .opc-wrapper.am-opc-wrapper .discount-code .payment-option-title {
+      display: block;
     }
     #shipping-new-address-form > .field {
       width: 48%;
