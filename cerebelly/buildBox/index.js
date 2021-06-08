@@ -378,8 +378,6 @@ function initExp() {
     </div>
   `;
 
-  console.log('test', document.querySelector('.pageContainer .category'));
-
   if (document.querySelector('.lav-build')) {
     return false;
   }
@@ -387,6 +385,13 @@ function initExp() {
   document
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
+
+  document.querySelectorAll('.lav-build__discount-tip img').forEach(element => {
+    element.addEventListener('click', function () {
+      gaEvent('congratulation tooltip closed');
+      element.parentElement.style.display = 'none';
+    });
+  });
 
   document
     .querySelector('.lav-build__checkout')
