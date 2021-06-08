@@ -521,7 +521,6 @@ function clickControl(isToggleClick, targetClick, isDown) {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
-            console.log('node', node);
             if (node.querySelector('.box-blueprint-title .action-button')) {
               node.querySelector('.box-blueprint-title .action-button').click();
             }
