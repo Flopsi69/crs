@@ -71,6 +71,7 @@ function initStyles() {
     .lav-build {
       position: sticky;
       max-height: 85vh;
+      z-index: 99;
       top: 75px;
       text-align: center;
       width: 400px;
@@ -364,14 +365,29 @@ function initExp() {
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
         </div>
         <div class='lav-build__discount'>
+          <div class='lav-build__discount-tip'>
+            <img src='${REPO_DIR}/icon-close.svg' />
+            Congratulations! <br>
+            You achieved <span>15% OFF</span> and <br> <span>Free Shipping</span>
+          </div>
           <div class='lav-build__discount-value'>28-41 items → 15% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
         </div>
         <div class='lav-build__discount'>
+          <div class='lav-build__discount-tip'>
+            <img src='${REPO_DIR}/icon-close.svg' />
+            Congratulations! <br>
+            You achieved <span>20% OFF</span> and <br> <span>Free Shipping</span>
+          </div>
           <div class='lav-build__discount-value'>42-55 items → 20% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
         </div>
         <div class='lav-build__discount'>
+          <div class='lav-build__discount-tip'>
+            <img src='${REPO_DIR}/icon-close.svg' />
+            Congratulations! <br>
+            You achieved <span>25% OFF</span> and <br> <span>Free Shipping</span>
+          </div>
           <div class='lav-build__discount-value'>56 + items → 25% OFF</div>
           <div class='lav-build__discount-caption'>+ Free Shipping</div>
         </div>
