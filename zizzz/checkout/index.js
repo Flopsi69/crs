@@ -735,8 +735,9 @@ function initExp() {
                 document.querySelector('#customer-email + .mage-error').style
                   .display == 'block')
             ) {
+              console.log('ye1s');
               activeStep = 1;
-              initStepOne();
+              initStepOne(true);
             } else if (
               document.querySelector('[name="street[0]"] + .field-error') ||
               document.querySelector('[name="city"] + .field-error') ||
@@ -747,8 +748,9 @@ function initExp() {
                 '#shipping-new-address-form .message.warning'
               )
             ) {
+              console.log('ye2s');
               activeStep = 2;
-              initStepTwo();
+              initStepTwo(true);
             }
           }, 800);
         }
