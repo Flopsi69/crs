@@ -439,7 +439,7 @@ input[type="checkbox"] {
 }
 .payment-group .amcheckout-wrapper {
   display: grid;
-  gap: 15px;
+  gap: 10px;
 }
 .checkout-index-index .opc-wrapper.am-opc-wrapper .payment-method-content, .checkout-index-index .opc-wrapper.am-opc-wrapper .payment-option-content {
   padding: 0;
@@ -455,7 +455,7 @@ input[type="checkbox"] {
   border-top: none;
 }
 .payment-method {
-  padding: 20px;
+  padding: 12px;
 }
 .checkout-payment-method .payment-method._active .payment-method-content {
   margin-top: 30px;
@@ -735,8 +735,8 @@ function initExp() {
                 document.querySelector('#customer-email + .mage-error').style
                   .display == 'block')
             ) {
-              initStepOne();
               activeStep = 1;
+              initStepOne();
             } else if (
               document.querySelector('[name="street[0]"] + .field-error') ||
               document.querySelector('[name="city"] + .field-error') ||
@@ -747,8 +747,8 @@ function initExp() {
                 '#shipping-new-address-form .message.warning'
               )
             ) {
-              initStepTwo();
               activeStep = 2;
+              initStepTwo();
             }
           }, 800);
         }
