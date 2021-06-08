@@ -755,7 +755,7 @@ function initExp() {
             console.log('ye1s');
             activeStep = 2;
             initStepTwo(true);
-            activeStep = 2;
+            activeStep = 1;
             initStepOne(true);
           } else if (
             document.querySelector('[name="street[0]"] + .field-error') ||
