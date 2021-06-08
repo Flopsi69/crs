@@ -370,6 +370,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   max-height: 450px;
   margin-bottom: 20px;
   overflow-y: auto;
+  padding-right: 5px;
 }
 .minicart-items ::-webkit-scrollbar {
   width: 2px;
@@ -617,7 +618,7 @@ document.body.appendChild(styles);
 
 /* STYLES insert end */
 
-var activeStep = 1;
+window.activeStep = 1;
 
 // CODE START ***
 // var intervalInit = setInterval(() => {
