@@ -421,7 +421,7 @@ function initExp() {
     .addEventListener('click', function (e) {
       gaEvent('Proceed to Checkout clicked');
       e.preventDefault();
-      document.querySelector('.e-right-quiz>button').click();
+      document.querySelector('.e-right .button.primary.red').click();
       let observer = new MutationObserver(mutations => {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
@@ -472,10 +472,12 @@ function initExp() {
 
   createBuildItemsRow(3);
   setItems();
-  if (document.querySelector('.e-right-quiz>button')) {
+  if (document.querySelector('.e-right .button.primary.red')) {
     setBasketDiscount(
       parseInt(
-        document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+        document
+          .querySelector('.e-right .button.primary.red')
+          .innerText.split('(')[1]
       )
     );
   }
@@ -484,7 +486,9 @@ function initExp() {
 function clickControl(isToggleClick, targetClick, isDown) {
   setTimeout(() => {
     let inBasket = parseInt(
-      document.querySelector('.e-right-quiz>button').innerText.split('(')[1]
+      document
+        .querySelector('.e-right .button.primary.red')
+        .innerText.split('(')[1]
     );
     console.log('inBasket', inBasket);
 
@@ -510,7 +514,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       if (!isDown) {
         document.querySelector('.progress-text .action-button').click();
       } else {
-        document.querySelector('.e-right-quiz > .button').click();
+        document.querySelector('.e-right > .button').click();
       }
       let observerPlans = new MutationObserver(mutations => {
         for (let mutation of mutations) {
