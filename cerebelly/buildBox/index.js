@@ -164,6 +164,9 @@ function initStyles() {
     }
     .lav-build__discount-tip {
       position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translate(-100%, -50%);
       width: 180px;
       background: #FD4E39;
       box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.25);
@@ -183,6 +186,16 @@ function initStyles() {
       top: 5px;
       left: 5px;
       padding: 15px 10px;
+    }
+    .lav-build__discount-tip:before {
+      content: '';
+      background: #FD4E39;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: rotate(45deg) translateY(-50%);
     }
     .lav-build__list {
       display: grid;
