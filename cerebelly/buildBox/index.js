@@ -633,7 +633,7 @@ function setItems() {
 }
 
 function setBasketDiscount(count) {
-  let ind = false;
+  let ind = '';
   if (count >= 56) {
     ind = 4;
   } else if (count >= 42) {
@@ -643,14 +643,14 @@ function setBasketDiscount(count) {
   } else if (count >= 14) {
     ind = 1;
   }
+  if (document.querySelector('.lav-build__discount-tip.active')) {
+    document.querySelector('.lav-build__discount-tip.active').style.display =
+      'none';
+    document
+      .querySelector('.lav-build__discount-tip.active')
+      .classList.remove('active');
+  }
   if (ind) {
-    if (document.querySelector('.lav-build__discount-tip.active')) {
-      document.querySelector('.lav-build__discount-tip.active').style.display =
-        'none';
-      document
-        .querySelector('.lav-build__discount-tip.active')
-        .classList.remove('active');
-    }
     document
       .querySelector(
         '.lav-build__discount:nth-child(' + ind + ') .lav-build__discount-tip'
