@@ -74,9 +74,15 @@ let stylesList = `
   display: none;
 }
 .lav-header__sub-wrap {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
+}
+.lav-header__sub-wrap img {
+  width: 80px;
+}
+.checkout-index-index .opc-wrapper .form-login {
+  margin-bottom: 0!important;
 }
 .authentication-dropdown {
   position: absolute;
@@ -108,7 +114,7 @@ let stylesList = `
   max-height: none;
 }
 .column.main .opc-block-summary .product-item {
-  padding: 25px 0;
+  padding: 20px 0;
 }
 .checkout-index-index .opc-block-summary {
   margin: 0;
@@ -307,7 +313,7 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 50px
+  margin-top: 30px
 }
 .lav-steps__control-back {
   font-size: 16px;
@@ -360,6 +366,10 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
 .opc-block-summary .table-totals {
   border: none;
 }
+.minicart-items {
+  max-height: 245px;
+  overflow-y: auto;
+}
 .minicart-items .product-item:last-child {
   border-bottom: 1px solid #ccc;
 }
@@ -390,6 +400,9 @@ input[type="text"], input[type="password"], input[type="url"], input[type="tel"]
   font-size: 13px;
   line-height: 1.3;
   color: #616666;
+}
+.fieldset>.field, .fieldset>.fields>.field {
+  margin-bottom: 15px;
 }
 .checkout-payment-method .payment-option-title .action-toggle:after {
   font-size: 12px;
