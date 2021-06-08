@@ -177,15 +177,18 @@ function initStyles() {
       letter-spacing: 0.002em;
       color: #FFFFFF;
       z-index: 10;
-      span {
-        font-weight: bold;
-      }
+      padding: 15px 10px;
+    }
+    .lav-build__discount-tip span {
+      font-weight: bold;
     }
     .lav-build__discount-tip img {
       position: absolute;
       top: 5px;
       left: 5px;
-      padding: 15px 10px;
+    }
+    .lav-build__discount-tip img:hover {
+      opacity: 0.5;
     }
     .lav-build__discount-tip:before {
       content: '';
