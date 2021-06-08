@@ -421,7 +421,7 @@ function initExp() {
     .addEventListener('click', function (e) {
       gaEvent('Proceed to Checkout clicked');
       e.preventDefault();
-      document.querySelector('.e-right .button.primary.red').click();
+      document.querySelector('.e-nav .button.primary.red').click();
       let observer = new MutationObserver(mutations => {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
@@ -472,11 +472,11 @@ function initExp() {
 
   createBuildItemsRow(3);
   setItems();
-  if (document.querySelector('.e-right .button.primary.red')) {
+  if (document.querySelector('.e-nav .button.primary.red')) {
     setBasketDiscount(
       parseInt(
         document
-          .querySelector('.e-right .button.primary.red')
+          .querySelector('.e-nav .button.primary.red')
           .innerText.split('(')[1]
       )
     );
@@ -487,7 +487,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
   setTimeout(() => {
     let inBasket = parseInt(
       document
-        .querySelector('.e-right .button.primary.red')
+        .querySelector('.e-nav .button.primary.red')
         .innerText.split('(')[1]
     );
     console.log('inBasket', inBasket);
