@@ -629,21 +629,31 @@ function setItems() {
 }
 
 function setBasketDiscount(count) {
+  let ind = false;
   if (count >= 56) {
-    document.querySelector(
-      '.lav-build__discount:nth-child(4) .lav-build__discount-tip'
-    ).style.display = 'block';
+    ind = 4;
   } else if (count >= 42) {
-    document.querySelector(
-      '.lav-build__discount:nth-child(3) .lav-build__discount-tip'
-    ).style.display = 'block';
+    ind = 3;
   } else if (count >= 28) {
-    document.querySelector(
-      '.lav-build__discount:nth-child(2) .lav-build__discount-tip'
-    ).style.display = 'block';
+    ind = 2;
   } else if (count >= 14) {
+    ind = 1;
+  }
+  if (ind) {
+    if (document.querySelector('.lav-build__discount.active')) {
+      document.querySelector('.lav-build__discount.active').style.display =
+        'none';
+      document
+        .querySelector('.lav-build__discount.active')
+        .classList.remove('active');
+    }
+    document
+      .querySelector(
+        '.lav-build__discount:nth-child(' + ind + ') .lav-build__discount-tip'
+      )
+      .classList.add('active');
     document.querySelector(
-      '.lav-build__discount:nth-child(1) .lav-build__discount-tip'
+      '.lav-build__discount:nth-child(' + ind + ') .lav-build__discount-tip'
     ).style.display = 'block';
   }
   setCaption(count);
