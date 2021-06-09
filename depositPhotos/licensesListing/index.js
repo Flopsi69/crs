@@ -154,12 +154,32 @@ let stylesList = `
     text-decoration: none;
   }
   .lav-license__modal-trigger {
-    font-size: 8px;
-    line-height: 10px;
+    margin-top: 35px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-bottom: 1px solid rgb(156, 156, 156, 50%);
+    transition: 0.2s;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
     color: #9C9C9C;
-    margin-top: 12px;
-    display: inline-block;
-    border-bottom: 1px solid rgb(156, 156, 156, 50%);
+  }
+  .lav-license__modal-trigger:hover {
+    border-color: transparent;
+    text-decoration: none;
+    opacity: 0.5;
+  }
+  .lav-license__modal-trigger img {
+    width: 15px;
+    margin-right: 0;
+    height: 15px;
+    padding-right: 8px;
+    padding-bottom: 3px;
+    background: #282828;
+    margin-bottom: -4px;
   }
   .price-table-classic__content {
     display: none!important;
@@ -219,7 +239,7 @@ let stylesList = `
   .lav-license__title {
     font-weight: 800;
     font-size: 14px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     line-height: 1.2;
     color: #fff;
     text-transform: lowercase;
@@ -261,14 +281,6 @@ let stylesList = `
   .lav-license__item.lav-license__item_exclude:before {
     background: url(${REPO_DIR}/icon-exclude.svg) center no-repeat;
     background-size: cover;
-  }
-  .lav-license__modal-trigger {
-    font-size: 12px;
-    line-height: 1;
-    color: #9C9C9C;
-    margin-top: 12px;
-    display: inline-block;
-    border-bottom: 1px solid rgb(156, 156, 156, 50%);
   }
   .lav-size {
     display: flex;
@@ -375,8 +387,7 @@ document.body.appendChild(styles);
 /*** HTML insert start ***/
 let licensesEl;
 // ToDO
-// let lang = document.querySelector('html').lang;
-let lang = 'engl';
+let lang = document.querySelector('html').lang;
 
 if (lang == 'ru') {
   licensesEl = `
@@ -722,6 +733,11 @@ let observer = new MutationObserver(mutations => {
           .insertAdjacentElement('beforebegin', createSizes());
 
         createLicenses();
+
+        let imgEl = document.createElement('img');
+        imgEl.src = REPO_DIR + '/icon-quest.svg';
+        $('.lav-license__modal-trigger').prepend(imgEl);
+        $('.price-table-classic').after($('.lav-license__modal-trigger'));
       }
 
       // TODO
@@ -816,6 +832,11 @@ function init() {
       .insertAdjacentElement('beforebegin', createSizes());
 
     createLicenses();
+
+    let imgEl = document.createElement('img');
+    imgEl.src = REPO_DIR + '/icon-quest.svg';
+    $('.lav-license__modal-trigger').prepend(imgEl);
+    $('.price-table-classic').after($('.lav-license__modal-trigger'));
   }
 
   document.addEventListener('click', function (e) {
@@ -834,10 +855,6 @@ function createLicenses() {
     .querySelector('.price-table-classic')
     .insertAdjacentHTML('beforebegin', licensesEl);
 
-  $('.lav-license__modal-trigger').prepend(
-    `<img class='lav-size__icon' src='${REPO_DIR}/icon-quest.svg' >`
-  );
-  lav - license__modal - trigger;
   // document
   //   .querySelector('.price-table-upgrade__download-btn')
   //   .addEventListener('click', function () {
@@ -996,7 +1013,6 @@ function createSizeItem(sizeEl) {
 
 function createModal() {
   let modalHTML;
-  let lang = 'test';
 
   if (lang == 'ru') {
     modalHTML = `
