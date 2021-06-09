@@ -407,6 +407,12 @@
   .lav-size__abr a {
     margin-left: 5px;
   }
+  .lav-size__abr .price-table-classic__redownload-item_ok {
+    right: auto;
+    left: 8px;
+    top: -18px;
+    margin-left: 0;
+  }
 `;
 
   // if (!document.querySelector('.auth-box')) {
