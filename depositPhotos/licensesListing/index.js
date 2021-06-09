@@ -1,26 +1,28 @@
-/*** Analytics insert start ***/
-function gaEvent(action, label = '', value = '') {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-    event: 'event-to-ga',
-    eventCategory: 'Experiment — EL',
-    eventAction: action,
-    eventLabel: label,
-    eventValue: value
-  });
-}
+(function () {
+  /*** Analytics insert start ***/
+  function gaEvent(action, label = '', value = '') {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: 'event-to-ga',
+      eventCategory: 'Experiment — EL',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: value
+    });
+  }
 
-// setTimeout(() => {
-//   console.log('loaded');
-//   gaEvent('loaded');
-// }, 1500);
+  // setTimeout(() => {
+  //   console.log('loaded');
+  //   gaEvent('loaded');
+  // }, 1500);
 
-/*** Analytics insert -end- ***/
+  /*** Analytics insert -end- ***/
 
-const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
-/*** STYLES insert start ***/
+  const REPO_DIR =
+    'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
+  /*** STYLES insert start ***/
 
-let stylesList = `
+  let stylesList = `
   .go-modal__wrap {
     position: fixed;
     display: none;
@@ -154,7 +156,7 @@ let stylesList = `
     text-decoration: none;
   }
   .lav-license__modal-trigger {
-    margin-top: 35px;
+    margin-top: 15px;
     margin-bottom: 25px;
     display: flex;
     justify-content: center;
@@ -183,9 +185,6 @@ let stylesList = `
   }
   .price-table-classic__content {
     display: none!important;
-  }
-  .price-table-classic_black .price-table-classic__note {
-    margin-top: 15px;
   }
   .lav-licenses {
     margin-bottom: 20px;
@@ -377,20 +376,20 @@ let stylesList = `
   }
 `;
 
-// if (!document.querySelector('.auth-box')) {
-let styles = document.createElement('style');
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
-// }
-/*** STYLES insert -end- ***/
+  // if (!document.querySelector('.auth-box')) {
+  let styles = document.createElement('style');
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+  // }
+  /*** STYLES insert -end- ***/
 
-/*** HTML insert start ***/
-let licensesEl;
-// ToDO
-let lang = document.querySelector('html').lang;
+  /*** HTML insert start ***/
+  let licensesEl;
+  // ToDO
+  let lang = document.querySelector('html').lang;
 
-if (lang == 'ru') {
-  licensesEl = `
+  if (lang == 'ru') {
+    licensesEl = `
       <div class='lav-licenses'>
         <div class='lav-license lav-license_standard lav-license_active'>
           <div class='lav-license__label'>
@@ -421,8 +420,8 @@ if (lang == 'ru') {
         </div>
       </div>
   `;
-} else if (lang == 'es-es') {
-  licensesEl = `
+  } else if (lang == 'es-es') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -453,8 +452,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'pt-br') {
-  licensesEl = `
+  } else if (lang == 'pt-br') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -485,8 +484,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'it') {
-  licensesEl = `
+  } else if (lang == 'it') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -517,8 +516,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'pl') {
-  licensesEl = `
+  } else if (lang == 'pl') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -549,8 +548,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'nl') {
-  licensesEl = `
+  } else if (lang == 'nl') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -581,8 +580,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'de') {
-  licensesEl = `
+  } else if (lang == 'de') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -613,8 +612,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'fr') {
-  licensesEl = `
+  } else if (lang == 'fr') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -646,8 +645,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else if (lang == 'tr') {
-  licensesEl = `
+  } else if (lang == 'tr') {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -679,8 +678,8 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-} else {
-  licensesEl = `
+  } else {
+    licensesEl = `
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
@@ -711,251 +710,256 @@ if (lang == 'ru') {
       </div>
     </div>
   `;
-}
+  }
 
-/*** HTML insert -end- ***/
-// TODO
-let observer = new MutationObserver(mutations => {
-  for (let mutation of mutations) {
-    for (let node of mutation.addedNodes) {
-      if (!(node instanceof HTMLElement)) continue;
+  /*** HTML insert -end- ***/
+  // TODO
+  let observer = new MutationObserver(mutations => {
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
 
-      console.log(node);
+        console.log(node);
 
-      if (
-        node.classList.contains('modal-container') &&
-        node.querySelector('.price-table-classic__download-btn')
-      ) {
-        localStorage.setItem('lavLicenseType', 'none');
+        if (
+          node.classList.contains('modal-container') &&
+          node.querySelector('.price-table-classic__download-btn')
+        ) {
+          localStorage.setItem('lavLicenseType', 'none');
 
-        document
-          .querySelector('.price-table-classic')
-          .insertAdjacentElement('beforebegin', createSizes());
+          document
+            .querySelector('.price-table-classic')
+            .insertAdjacentElement('beforebegin', createSizes());
 
-        createLicenses();
+          createLicenses();
+        }
 
-        let imgEl = document.createElement('img');
-        imgEl.src = REPO_DIR + '/icon-quest.svg';
-        $('.lav-license__modal-trigger').prepend(imgEl);
-        $('.price-table-classic').after($('.lav-license__modal-trigger'));
-      }
-
-      // TODO
-      if (false && node.classList.contains('price-table-upgrade')) {
-        node
-          .querySelectorAll('.price-table-upgrade__item')
-          .forEach(function (el, index) {
-            if (el.querySelector('.price-table-upgrade__ind-item')) {
-              let ind = index + 1;
-              if (
-                !document.querySelector(
-                  '.lav-sizes__list .lav-size:nth-child(' +
-                    ind +
-                    ') .price-table-upgrade__ind-item'
-                )
-              ) {
-                document
-                  .querySelector(
+        // TODO
+        if (false && node.classList.contains('price-table-upgrade')) {
+          node
+            .querySelectorAll('.price-table-upgrade__item')
+            .forEach(function (el, index) {
+              if (el.querySelector('.price-table-upgrade__ind-item')) {
+                let ind = index + 1;
+                if (
+                  !document.querySelector(
                     '.lav-sizes__list .lav-size:nth-child(' +
                       ind +
-                      ') .lav-size__abr'
+                      ') .price-table-upgrade__ind-item'
                   )
-                  .insertAdjacentElement(
-                    'beforeend',
-                    el
-                      .querySelector('.price-table-upgrade__ind-item')
-                      .cloneNode(true)
-                  );
+                ) {
+                  document
+                    .querySelector(
+                      '.lav-sizes__list .lav-size:nth-child(' +
+                        ind +
+                        ') .lav-size__abr'
+                    )
+                    .insertAdjacentElement(
+                      'beforeend',
+                      el
+                        .querySelector('.price-table-upgrade__ind-item')
+                        .cloneNode(true)
+                    );
 
-                document
-                  .querySelector('.lav-size_active  .lav-size__abr')
-                  .insertAdjacentElement(
-                    'beforeend',
-                    el
-                      .querySelector('.price-table-upgrade__ind-item')
-                      .cloneNode(true)
-                  );
+                  document
+                    .querySelector('.lav-size_active  .lav-size__abr')
+                    .insertAdjacentElement(
+                      'beforeend',
+                      el
+                        .querySelector('.price-table-upgrade__ind-item')
+                        .cloneNode(true)
+                    );
+                }
+              }
+            });
+        }
+
+        if (
+          false &&
+          node.classList.contains('wrapper') &&
+          node.querySelector('.file-view-upgrade')
+        ) {
+          let setIntervalEl = setInterval(() => {
+            if (
+              node.querySelectorAll('.price-table-upgrade__item').length > 1
+            ) {
+              clearInterval(setIntervalEl);
+              // TODO
+              if (document.querySelector('.auth-box')) {
+                document.querySelector('#root>.wrapper').style.opacity = 1;
+              } else {
+                init();
               }
             }
-          });
+          }, 300);
+        }
+        if (
+          node.parentElement &&
+          node.parentElement.classList.contains('plans-component') &&
+          localStorage.getItem('lavLicenseType') == 'extended'
+        ) {
+          setTimeout(() => {
+            document.querySelectorAll('[data-key]')[1].click();
+            document.querySelector('#root>.wrapper').style.opacity = 1;
+          }, 300);
+        }
       }
-
-      if (
-        false &&
-        node.classList.contains('wrapper') &&
-        node.querySelector('.file-view-upgrade')
-      ) {
-        let setIntervalEl = setInterval(() => {
-          if (node.querySelectorAll('.price-table-upgrade__item').length > 1) {
-            clearInterval(setIntervalEl);
-            // TODO
-            if (document.querySelector('.auth-box')) {
-              document.querySelector('#root>.wrapper').style.opacity = 1;
-            } else {
-              init();
-            }
-          }
-        }, 300);
-      }
-      if (
-        node.parentElement &&
-        node.parentElement.classList.contains('plans-component') &&
-        localStorage.getItem('lavLicenseType') == 'extended'
-      ) {
-        setTimeout(() => {
-          document.querySelectorAll('[data-key]')[1].click();
-          document.querySelector('#root>.wrapper').style.opacity = 1;
-        }, 300);
-      }
-    }
-  }
-});
-
-// TODO
-observer.observe(document.body, { childList: true, subtree: true });
-
-// setTimeout(() => {
-//   document.querySelector('#root>.wrapper').style.opacity = 1;
-// }, 3500);
-
-init();
-function init() {
-  console.log('initExp');
-  createModal();
-  if (
-    document.querySelector('.modal-container') &&
-    document.querySelector('.price-table-classic__download-btn')
-  ) {
-    localStorage.setItem('lavLicenseType', 'none');
-    document
-      .querySelector('.price-table-classic')
-      .insertAdjacentElement('beforebegin', createSizes());
-
-    createLicenses();
-
-    let imgEl = document.createElement('img');
-    imgEl.src = REPO_DIR + '/icon-quest.svg';
-    $('.lav-license__modal-trigger').prepend(imgEl);
-    $('.price-table-classic').after($('.lav-license__modal-trigger'));
-  }
-
-  document.addEventListener('click', function (e) {
-    if (
-      document.querySelector('.lav-sizes__list') &&
-      document.querySelector('.lav-sizes__list').style.display == 'block' &&
-      !e.target.closest('.lav-sizes')
-    ) {
-      document.querySelector('.lav-sizes__list').style.display = 'none';
     }
   });
-}
 
-function createLicenses() {
-  document
-    .querySelector('.price-table-classic')
-    .insertAdjacentHTML('beforebegin', licensesEl);
-
-  // document
-  //   .querySelector('.price-table-upgrade__download-btn')
-  //   .addEventListener('click', function () {
-  //     gaEvent('download button click', 'download button click B');
-  //   });
+  // TODO
+  observer.observe(document.body, { childList: true, subtree: true });
 
   // setTimeout(() => {
   //   document.querySelector('#root>.wrapper').style.opacity = 1;
-  // }, 300);
+  // }, 3500);
 
-  document
-    .querySelector('.lav-license__modal-trigger')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('.go-modal__wrap').style.display = 'flex';
-    });
-
-  document.querySelectorAll('.lav-license').forEach(license => {
-    license.addEventListener('click', function (e) {
-      e.preventDefault();
+  init();
+  function init() {
+    console.log('initExp');
+    createModal();
+    if (
+      document.querySelector('.modal-container') &&
+      document.querySelector('.price-table-classic__download-btn')
+    ) {
+      localStorage.setItem('lavLicenseType', 'none');
       document
-        .querySelector('.lav-license_active')
-        .classList.remove('lav-license_active');
-      this.classList.add('lav-license_active');
+        .querySelector('.price-table-classic')
+        .insertAdjacentElement('beforebegin', createSizes());
 
-      if (this.classList.contains('lav-license_extended')) {
-        // gaEvent('click on checkbox B', 'EL license B');
-        localStorage.setItem('lavLicenseType', 'extended');
-        blockEvents = true;
+      createLicenses();
+    }
 
-        document
-          .querySelector('.lav-sizes')
-          .classList.add('lav-sizes_extended');
-        document.querySelector('.lav-sizes__list .lav-size_extended').click();
-      } else if (document.querySelector('.lav-sizes_extended')) {
-        // gaEvent('click on checkbox B', 'Standart license B');
-        localStorage.setItem('lavLicenseType', 'none');
-        blockEvents = true;
-
-        document
-          .querySelector('.lav-sizes')
-          .classList.remove('lav-sizes_extended');
-        document.querySelector('.lav-sizes__list .lav-size_init').click();
+    document.addEventListener('click', function (e) {
+      if (
+        document.querySelector('.lav-sizes__list') &&
+        document.querySelector('.lav-sizes__list').style.display == 'block' &&
+        !e.target.closest('.lav-sizes')
+      ) {
+        document.querySelector('.lav-sizes__list').style.display = 'none';
       }
     });
-  });
-}
+  }
 
-let sizesEl = createSizes();
-function createSizes() {
-  let sizesEL = document.createElement('div');
-  sizesEL.classList.add('lav-sizes');
-  let sizesListEl = document.createElement('div');
-  sizesListEl.classList.add('lav-sizes__list');
-  let sizesValueEl = document.createElement('div');
-  sizesValueEl.classList.add('lav-sizes__value');
-  sizesValueEl.addEventListener('click', function () {
-    // gaEvent('image size selector click', 'Size selector B');
-    if (document.querySelector('.lav-sizes__list').style.display == 'block') {
-      document.querySelector('.lav-sizes__list').style.display = 'none';
-    } else {
-      document.querySelector('.lav-sizes__list').style.display = 'block';
-    }
-  });
+  function createLicenses() {
+    document
+      .querySelector('.price-table-classic')
+      .insertAdjacentHTML('beforebegin', licensesEl);
 
-  document.querySelectorAll('.price-table-classic__row').forEach(sizeEl => {
-    let newSizeEl = createSizeItem(sizeEl);
-    if (newSizeEl.classList.contains('lav-size_active')) {
-      sizesValueEl.insertAdjacentElement(
-        'beforeend',
-        newSizeEl.cloneNode(true)
+    document
+      .querySelector('.lav-license__modal-trigger')
+      .insertAdjacentHTML(
+        'afterbegin',
+        `<img src='${REPO_DIR}/icon-quest.svg'>`
       );
+    document
+      .querySelector('.price-table-classic')
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector('.lav-license__modal-trigger')
+      );
+
+    // document
+    //   .querySelector('.price-table-upgrade__download-btn')
+    //   .addEventListener('click', function () {
+    //     gaEvent('download button click', 'download button click B');
+    //   });
+
+    // setTimeout(() => {
+    //   document.querySelector('#root>.wrapper').style.opacity = 1;
+    // }, 300);
+
+    document
+      .querySelector('.lav-license__modal-trigger')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector('.go-modal__wrap').style.display = 'flex';
+      });
+
+    document.querySelectorAll('.lav-license').forEach(license => {
+      license.addEventListener('click', function (e) {
+        e.preventDefault();
+        document
+          .querySelector('.lav-license_active')
+          .classList.remove('lav-license_active');
+        this.classList.add('lav-license_active');
+
+        if (this.classList.contains('lav-license_extended')) {
+          // gaEvent('click on checkbox B', 'EL license B');
+          localStorage.setItem('lavLicenseType', 'extended');
+          blockEvents = true;
+
+          document
+            .querySelector('.lav-sizes')
+            .classList.add('lav-sizes_extended');
+          document.querySelector('.lav-sizes__list .lav-size_extended').click();
+        } else if (document.querySelector('.lav-sizes_extended')) {
+          // gaEvent('click on checkbox B', 'Standart license B');
+          localStorage.setItem('lavLicenseType', 'none');
+          blockEvents = true;
+
+          document
+            .querySelector('.lav-sizes')
+            .classList.remove('lav-sizes_extended');
+          document.querySelector('.lav-sizes__list .lav-size_init').click();
+        }
+      });
+    });
+  }
+
+  let sizesEl = createSizes();
+  function createSizes() {
+    let sizesEL = document.createElement('div');
+    sizesEL.classList.add('lav-sizes');
+    let sizesListEl = document.createElement('div');
+    sizesListEl.classList.add('lav-sizes__list');
+    let sizesValueEl = document.createElement('div');
+    sizesValueEl.classList.add('lav-sizes__value');
+    sizesValueEl.addEventListener('click', function () {
+      // gaEvent('image size selector click', 'Size selector B');
+      if (document.querySelector('.lav-sizes__list').style.display == 'block') {
+        document.querySelector('.lav-sizes__list').style.display = 'none';
+      } else {
+        document.querySelector('.lav-sizes__list').style.display = 'block';
+      }
+    });
+
+    document.querySelectorAll('.price-table-classic__row').forEach(sizeEl => {
+      let newSizeEl = createSizeItem(sizeEl);
+      if (newSizeEl.classList.contains('lav-size_active')) {
+        sizesValueEl.insertAdjacentElement(
+          'beforeend',
+          newSizeEl.cloneNode(true)
+        );
+      }
+      sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
+    });
+
+    sizesEL.insertAdjacentElement('beforeend', sizesValueEl);
+    sizesEL.insertAdjacentElement('beforeend', sizesListEl);
+
+    return sizesEL;
+  }
+
+  function createSizeItem(sizeEl) {
+    let newSizeEl = document.createElement('div');
+    newSizeEl.classList.add('lav-size');
+    let abr = sizeEl.querySelector('.price-table-classic__size').innerHTML;
+    let dim =
+      sizeEl.querySelector('.price-table-classic__text-size').innerText +
+      sizeEl.querySelector('.price-table-classic__text-type').innerText;
+    let params = sizeEl.querySelector(
+      '.price-table-classic__text-size-details'
+    ).innerText;
+
+    if (sizeEl.querySelector('.icon-size-extended')) {
+      newSizeEl.classList.add('lav-size_extended');
     }
-    sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
-  });
+    if (sizeEl.classList.contains('price-table-classic__row_active')) {
+      newSizeEl.classList.add('lav-size_active', 'lav-size_init');
+    }
 
-  sizesEL.insertAdjacentElement('beforeend', sizesValueEl);
-  sizesEL.insertAdjacentElement('beforeend', sizesListEl);
-
-  return sizesEL;
-}
-
-function createSizeItem(sizeEl) {
-  let newSizeEl = document.createElement('div');
-  newSizeEl.classList.add('lav-size');
-  let abr = sizeEl.querySelector('.price-table-classic__size').innerHTML;
-  let dim =
-    sizeEl.querySelector('.price-table-classic__text-size').innerText +
-    sizeEl.querySelector('.price-table-classic__text-type').innerText;
-  let params = sizeEl.querySelector(
-    '.price-table-classic__text-size-details'
-  ).innerText;
-
-  if (sizeEl.querySelector('.icon-size-extended')) {
-    newSizeEl.classList.add('lav-size_extended');
-  }
-  if (sizeEl.classList.contains('price-table-classic__row_active')) {
-    newSizeEl.classList.add('lav-size_active', 'lav-size_init');
-  }
-
-  let innerElHTML = `
+    let innerElHTML = `
       <div class='lav-size__abr'>${abr}</div>
       <div class='lav-size__info'>
         <div class='lav-size__dim'>${dim}</div>
@@ -964,58 +968,58 @@ function createSizeItem(sizeEl) {
       <img class='lav-size__icon' src='${REPO_DIR}/icon-dropdown.svg' >
   `;
 
-  newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
+    newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
-  // TODO
-  // if (sizeEl.querySelector('.price-table-upgrade__ind-item_ok')) {
-  //   newSizeEl
-  //     .querySelector('.lav-size__abr')
-  //     .insertAdjacentElement(
-  //       'beforeend',
-  //       sizeEl
-  //         .querySelector('.price-table-upgrade__ind-item_ok')
-  //         .cloneNode(true)
-  //     );
-  // }
-
-  newSizeEl.addEventListener('click', function (e) {
-    e.preventDefault();
     // TODO
-    // if (!blockEvents) {
-    //   gaEvent('size click', 'image size clicked B');
+    // if (sizeEl.querySelector('.price-table-upgrade__ind-item_ok')) {
+    //   newSizeEl
+    //     .querySelector('.lav-size__abr')
+    //     .insertAdjacentElement(
+    //       'beforeend',
+    //       sizeEl
+    //         .querySelector('.price-table-upgrade__ind-item_ok')
+    //         .cloneNode(true)
+    //     );
     // }
-    blockEvents = false;
-    console.log(
-      Array.from(
+
+    newSizeEl.addEventListener('click', function (e) {
+      e.preventDefault();
+      // TODO
+      // if (!blockEvents) {
+      //   gaEvent('size click', 'image size clicked B');
+      // }
+      blockEvents = false;
+      console.log(
+        Array.from(
+          document.querySelectorAll('.lav-sizes__list .lav-size')
+        ).indexOf(this)
+      );
+      let elIndex = Array.from(
         document.querySelectorAll('.lav-sizes__list .lav-size')
-      ).indexOf(this)
-    );
-    let elIndex = Array.from(
-      document.querySelectorAll('.lav-sizes__list .lav-size')
-    ).indexOf(this);
+      ).indexOf(this);
 
-    document.querySelectorAll('.price-table-classic__row')[elIndex].click();
+      document.querySelectorAll('.price-table-classic__row')[elIndex].click();
 
-    document
-      .querySelector('.lav-sizes__list .lav-size_active')
-      .classList.remove('lav-size_active');
-    this.classList.add('lav-size_active');
+      document
+        .querySelector('.lav-sizes__list .lav-size_active')
+        .classList.remove('lav-size_active');
+      this.classList.add('lav-size_active');
 
-    document.querySelector('.lav-sizes__list').style.display = 'none';
-    document.querySelector('.lav-sizes__value').innerHTML = '';
-    document
-      .querySelector('.lav-sizes__value')
-      .insertAdjacentElement('beforeend', this.cloneNode(true));
-  });
+      document.querySelector('.lav-sizes__list').style.display = 'none';
+      document.querySelector('.lav-sizes__value').innerHTML = '';
+      document
+        .querySelector('.lav-sizes__value')
+        .insertAdjacentElement('beforeend', this.cloneNode(true));
+    });
 
-  return newSizeEl;
-}
+    return newSizeEl;
+  }
 
-function createModal() {
-  let modalHTML;
+  function createModal() {
+    let modalHTML;
 
-  if (lang == 'ru') {
-    modalHTML = `
+    if (lang == 'ru') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1086,8 +1090,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'es-es') {
-    modalHTML = `
+    } else if (lang == 'es-es') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1158,8 +1162,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'pt-br') {
-    modalHTML = `
+    } else if (lang == 'pt-br') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1230,8 +1234,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'it') {
-    modalHTML = `
+    } else if (lang == 'it') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1302,8 +1306,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'pl') {
-    modalHTML = `
+    } else if (lang == 'pl') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1374,8 +1378,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'nl') {
-    modalHTML = `
+    } else if (lang == 'nl') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1446,8 +1450,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'de') {
-    modalHTML = `
+    } else if (lang == 'de') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1518,8 +1522,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'fr') {
-    modalHTML = `
+    } else if (lang == 'fr') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1590,8 +1594,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else if (lang == 'tr') {
-    modalHTML = `
+    } else if (lang == 'tr') {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1662,8 +1666,8 @@ function createModal() {
         </div>
       </div>
     `;
-  } else {
-    modalHTML = `
+    } else {
+      modalHTML = `
       <div class='go-modal__wrap'>
         <div class="go-modal">
           <div class='go-modal__close'>
@@ -1734,13 +1738,14 @@ function createModal() {
         </div>
       </div>
     `;
+    }
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    document
+      .querySelector('.go-modal__close')
+      .addEventListener('click', function () {
+        document.querySelector('.go-modal__wrap').style.display = 'none';
+      });
   }
-
-  document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-  document
-    .querySelector('.go-modal__close')
-    .addEventListener('click', function () {
-      document.querySelector('.go-modal__wrap').style.display = 'none';
-    });
-}
+})();
