@@ -418,7 +418,6 @@
 
   /*** HTML insert start ***/
   let licensesEl;
-  // ToDO
   let lang = document.querySelector('html').lang;
 
   if (lang == 'ru') {
@@ -746,7 +745,6 @@
   }
 
   /*** HTML insert -end- ***/
-  // TODO
   let observer = new MutationObserver(mutations => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
@@ -767,18 +765,17 @@
           createLicenses();
         }
 
-        // TODO
-        if (false && node.classList.contains('price-table-upgrade')) {
+        if (node.classList.contains('price-table-classic')) {
           node
             .querySelectorAll('.price-table-upgrade__item')
             .forEach(function (el, index) {
-              if (el.querySelector('.price-table-upgrade__ind-item')) {
+              if (el.querySelector('.icon-round-ok')) {
                 let ind = index + 1;
                 if (
                   !document.querySelector(
                     '.lav-sizes__list .lav-size:nth-child(' +
                       ind +
-                      ') .price-table-upgrade__ind-item'
+                      ') .icon-round-ok'
                   )
                 ) {
                   document
@@ -789,18 +786,14 @@
                     )
                     .insertAdjacentElement(
                       'beforeend',
-                      el
-                        .querySelector('.price-table-upgrade__ind-item')
-                        .cloneNode(true)
+                      el.querySelector('.icon-round-ok').cloneNode(true)
                     );
 
                   document
                     .querySelector('.lav-size_active  .lav-size__abr')
                     .insertAdjacentElement(
                       'beforeend',
-                      el
-                        .querySelector('.price-table-upgrade__ind-item')
-                        .cloneNode(true)
+                      el.querySelector('.lav-size_active').cloneNode(true)
                     );
                 }
               }
@@ -840,12 +833,7 @@
     }
   });
 
-  // TODO
   observer.observe(document.body, { childList: true, subtree: true });
-
-  // setTimeout(() => {
-  //   document.querySelector('#root>.wrapper').style.opacity = 1;
-  // }, 3500);
 
   init();
   function init() {
@@ -1003,21 +991,17 @@
 
     newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
-    // TODO
-    // if (sizeEl.querySelector('.price-table-upgrade__ind-item_ok')) {
-    //   newSizeEl
-    //     .querySelector('.lav-size__abr')
-    //     .insertAdjacentElement(
-    //       'beforeend',
-    //       sizeEl
-    //         .querySelector('.price-table-upgrade__ind-item_ok')
-    //         .cloneNode(true)
-    //     );
-    // }
+    if (sizeEl.querySelector('.icon-round-ok')) {
+      newSizeEl
+        .querySelector('.lav-size__abr')
+        .insertAdjacentElement(
+          'beforeend',
+          sizeEl.querySelector('.icon-round-ok').cloneNode(true)
+        );
+    }
 
     newSizeEl.addEventListener('click', function (e) {
       e.preventDefault();
-      // TODO
       if (!blockEvents) {
         gaEvent('size click', 'image size clicked B');
       }
