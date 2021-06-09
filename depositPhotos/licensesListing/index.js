@@ -803,7 +803,11 @@
                     .querySelector('.lav-size_active  .lav-size__abr')
                     .insertAdjacentElement(
                       'beforeend',
-                      el.querySelector('.lav-size_active').cloneNode(true)
+                      el
+                        .querySelector(
+                          '.price-table-classic__redownload-item_ok'
+                        )
+                        .cloneNode(true)
                     );
                 }
               }
