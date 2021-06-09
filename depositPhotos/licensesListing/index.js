@@ -44,15 +44,12 @@
 
   gaEvent('loaded');
 
-  // setTimeout(() => {
-  //   console.log('loaded');
-  //   gaEvent('loaded');
-  // }, 1500);
-
   /*** Analytics insert -end- ***/
 
   const REPO_DIR =
     'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
+  let blockEvents = false;
+
   /*** STYLES insert start ***/
 
   let stylesList = `
