@@ -775,13 +775,15 @@
           node
             .querySelectorAll('.price-table-upgrade__item')
             .forEach(function (el, index) {
-              if (el.querySelector('.icon-round-ok')) {
+              if (
+                el.querySelector('.price-table-classic__redownload-item_ok')
+              ) {
                 let ind = index + 1;
                 if (
                   !document.querySelector(
                     '.lav-sizes__list .lav-size:nth-child(' +
                       ind +
-                      ') .icon-round-ok'
+                      ') .price-table-classic__redownload-item_ok'
                   )
                 ) {
                   document
@@ -792,7 +794,11 @@
                     )
                     .insertAdjacentElement(
                       'beforeend',
-                      el.querySelector('.icon-round-ok').cloneNode(true)
+                      el
+                        .querySelector(
+                          '.price-table-classic__redownload-item_ok'
+                        )
+                        .cloneNode(true)
                     );
 
                   document
@@ -978,13 +984,16 @@
 
     newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
-    if (sizeEl.querySelector('.icon-round-ok')) {
+    if (sizeEl.querySelector('.price-table-classic__redownload-item_ok')) {
       console.log('newSizeEl', newSizeEl);
+      console.log('sizeEl', sizeEl);
       newSizeEl
         .querySelector('.lav-size__abr')
         .insertAdjacentElement(
           'beforeend',
-          sizeEl.querySelector('.icon-round-ok').cloneNode(true)
+          sizeEl
+            .querySelector('.price-table-classic__redownload-item_ok')
+            .cloneNode(true)
         );
     }
 
