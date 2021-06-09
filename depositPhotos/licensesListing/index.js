@@ -771,7 +771,7 @@
 
         if (node.classList.contains('price-table-classic')) {
           node
-            .querySelectorAll('.price-table-upgrade__item')
+            .querySelectorAll('.price-table-classic__row')
             .forEach(function (el, index) {
               if (
                 el.querySelector('.price-table-classic__redownload-item_ok')
