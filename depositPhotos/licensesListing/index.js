@@ -151,7 +151,7 @@ let stylesList = `
     margin: 0 12px;
   }
   .lav-size__dim {
-    margin-right: 10px;
+    margin-right: 30px;
   }
   .lav-size__abr {
     display: flex;
@@ -558,7 +558,6 @@ if (lang == 'ru') {
 }
 
 /*** HTML insert -end- ***/
-
 // TODO
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
@@ -566,6 +565,17 @@ let observer = new MutationObserver(mutations => {
       if (!(node instanceof HTMLElement)) continue;
 
       console.log(node);
+
+      if (
+        node.classList.contains('modal-container') &&
+        node.querySelector('.price-table-classic__download-btn')
+      ) {
+        document
+          .querySelector('.price-table-classic')
+          .insertAdjacentElement('beforebegin', createSizes());
+
+        createLicenses();
+      }
 
       // TODO
       if (false && node.classList.contains('price-table-upgrade')) {
@@ -636,10 +646,8 @@ let observer = new MutationObserver(mutations => {
   }
 });
 
-let demoElem = document.querySelector('#root');
-
 // TODO
-observer.observe(demoElem, { childList: true, subtree: true });
+observer.observe(document.body, { childList: true, subtree: true });
 
 // setTimeout(() => {
 //   document.querySelector('#root>.wrapper').style.opacity = 1;
@@ -647,27 +655,17 @@ observer.observe(demoElem, { childList: true, subtree: true });
 
 init();
 function init() {
+  console.log('initExp');
+
   localStorage.setItem('lavLicenseType', 'none');
-  let sizesEl = createSizes();
 
   document
-    .querySelector('.price-table-classic__content')
-    .insertAdjacentElement('beforebegin', sizesEl);
+    .querySelector('.price-table-classic')
+    .insertAdjacentElement('beforebegin', createSizes());
 
   createLicenses();
 
-  document
-    .querySelector('.lav-sizes__value')
-    .addEventListener('click', function () {
-      // gaEvent('image size selector click', 'Size selector B');
-      if (document.querySelector('.lav-sizes__list').style.display == 'block') {
-        document.querySelector('.lav-sizes__list').style.display = 'none';
-      } else {
-        document.querySelector('.lav-sizes__list').style.display = 'block';
-      }
-    });
-
-  document.querySelector('#root').addEventListener('click', function (e) {
+  document.addEventListener('click', function (e) {
     if (
       document.querySelector('.lav-sizes__list') &&
       document.querySelector('.lav-sizes__list').style.display == 'block' &&
@@ -680,7 +678,7 @@ function init() {
 
 function createLicenses() {
   document
-    .querySelector('.price-table-classic__content')
+    .querySelector('.price-table-classic')
     .insertAdjacentHTML('beforebegin', licensesEl);
 
   // document
@@ -732,6 +730,14 @@ function createSizes() {
   sizesListEl.classList.add('lav-sizes__list');
   let sizesValueEl = document.createElement('div');
   sizesValueEl.classList.add('lav-sizes__value');
+  sizesValueEl.addEventListener('click', function () {
+    // gaEvent('image size selector click', 'Size selector B');
+    if (document.querySelector('.lav-sizes__list').style.display == 'block') {
+      document.querySelector('.lav-sizes__list').style.display = 'none';
+    } else {
+      document.querySelector('.lav-sizes__list').style.display = 'block';
+    }
+  });
 
   document.querySelectorAll('.price-table-classic__row').forEach(sizeEl => {
     let newSizeEl = createSizeItem(sizeEl);
@@ -798,15 +804,16 @@ function createSizeItem(sizeEl) {
     //   gaEvent('size click', 'image size clicked B');
     // }
     blockEvents = false;
-
-    let elIndex =
+    console.log(
       Array.from(
         document.querySelectorAll('.lav-sizes__list .lav-size')
-      ).indexOf(this) + 1;
+      ).indexOf(this)
+    );
+    let elIndex = Array.from(
+      document.querySelectorAll('.lav-sizes__list .lav-size')
+    ).indexOf(this);
 
-    document
-      .querySelector('.price-table-classic__row:nth-child(' + elIndex + ')')
-      .click();
+    document.querySelectorAll('.price-table-classic__row')[elIndex].click();
 
     document
       .querySelector('.lav-sizes__list .lav-size_active')

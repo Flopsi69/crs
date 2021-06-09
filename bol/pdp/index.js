@@ -40,6 +40,15 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
+    #main-product-image {
+      position: relative;
+    }
+    .lav-zoom {
+      position: absolute;
+      pointer-events: none;
+      right: 13px;
+      bottom: 18px;
+    }
     .items-info > img {
       display: none;
     }
@@ -210,6 +219,7 @@ function initStyles() {
     }
     .lav-combo__green {
       margin: 10px 0;
+      font-weight: bold;
       color: #7CB305;
     }
     .lav-combo__list-caption {
@@ -230,11 +240,16 @@ function initStyles() {
       border: 1px solid #DFDFDF;
       border-radius: 6px;
       padding: 8px 12px;
+      cursor: pointer;
+      transition: 0.2s;
     }
     .lav-combo__zoom img {
       margin-right: 8px;
       width: 20px;
       height: 20px;
+    }
+    .lav-combo__zoom:hover {
+      background: #e6e2e2;
     }
     .lav-feautures__icon {
       margin-bottom: 15px;
@@ -280,6 +295,10 @@ function initStyles() {
       color: #096DD9;
       border: 1px solid #096DD9;
       border-radius: 6px;
+      transition: 0.2s;
+    }
+    .lav-compability__call:hover {
+      background: #e4e4e4;
     }
     .lav-compability__call img {
       margin-left: 20px;
@@ -320,16 +339,8 @@ function initStyles() {
       width: 100%;
     }
     .lav-spec__table-wrap {
-      overflow: hidden;
-    }
-    .lav-spec__table th {
-      background-color: #333333;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 16px;
-      color: #FFFFFF;
-      padding: 10px;
-      text-align: center;
+      // overflow: hidden;
+      padding-left: 40px;
     }
     .lav-spec__table td {
       font-size: 14px;
@@ -339,6 +350,17 @@ function initStyles() {
       text-align: center;
       border: 1px solid #C4C4C4;
     }
+
+    .lav-spec__table tr:first-child td {
+      background-color: #333333;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: #FFFFFF;
+      padding: 10px;
+      text-align: center;
+    }
+    
     .lav-spec__table td:first-child {
       font-weight: bold;
     }
@@ -431,9 +453,167 @@ function initStyles() {
       font-size: 16px;
       line-height: 19px;
       color: #333333;
+      transition: 0.2s;
+    }
+    .lav-quest__call-btn:hover {
+      background: #e4e4e4;
     }
     .lav-quest__call-btn img {
       filter: brightness(0);
+    }
+    .lav-inc {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 0;
+      border-top: 1px solid #DFDFDF;
+      border-bottom: 1px solid #DFDFDF;
+      margin-top: 40px;
+    }
+    .lav-inc__block {
+      width: 48%;
+    }
+    .lav-inc__block-title {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      text-transform: uppercase;
+      color: #5B9400;
+      margin-bottom: 15px;
+    }
+    .lav-inc__list {
+      font-size: 16px;
+      line-height: 1;
+      color: #000000;
+      list-style: disc;
+      line-height: 1.5;
+      padding-left: 22px;
+    }
+    .lav-inc__list li {
+      list-style: disc;
+      max-width: 350px;
+    }
+    .lav-inc__list-blue {
+      color: #096DD9;
+    }
+    .lav-inc__list a:hover {
+      opacity: 0.5;
+    }
+    .lav-inc__list li + li{
+      margin-top: 10px;
+    }
+    .lav-descr {
+      font-size: 16px;
+      line-height: 28px;
+      color: #333;
+    }
+    .lav-descr p {
+      margin-top: 5px;
+    }
+    .lav-descr__title {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 26px;
+      text-align: center;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+    .lav-descr img {
+      max-width: 100%;
+      margin: 12px 0;
+    }
+    .lav-descr__block + .lav-descr__block {
+      padding-top: 40px;
+      margin-top: 25px;
+      border-top: 1px solid #DFDFDF;
+    }
+    .lav-spec__table td {
+      position: relative;
+    }
+    .lav-spec__tip {
+      position: absolute;
+      top: 50%;
+      left: -35px;
+      transform: translateY(-50%);
+      z-index: 99;
+    }
+    .lav-spec__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #5b9400;
+      color: #fff;
+      z-index: 9;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .lav-spec__icon:hover {
+      opacity: 0.5;
+    }
+    .lav-spec__tip-title {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: #5B9400;
+    }
+    .lav-spec__tip-descr {
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+    .lav-spec__tip-body {
+      display: none;
+      border: 1px solid #7cb305;
+      box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.11);
+      border-radius: 6px;
+      position: absolute;
+      left: 35px;
+      top: 50%;
+      color: #000;
+      background: #fff;
+      width: 330px;
+      padding: 13px;
+      transform: translateY(-50%);
+      text-align: left;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19px;
+    }
+    .lav-spec__tip-body:before, .lav-spec__tip-body:after {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 39%;
+      border: 10px solid transparent;
+      border-top: 10px solid #7cb305;
+      transform: rotate(90deg);
+    }
+    .lav-spec__tip-body::after {
+      border-top: 10px solid #fff;
+      left: -19px;
+    }
+    .lav-spec__tip-close {
+      color: #7cb305;
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      opacity: 1;
+      display: block;
+      z-index: 9;
+      cursor: pointer;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1;
+      text-shadow: 0 1px 0 #fff;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .lav-spec__tip-close:hover {
+      opacity: 0.4;
     }
   `;
 
@@ -473,6 +653,7 @@ function initExp() {
     );
   }
   initStaticBlock();
+  initDescr();
 }
 
 function changeDom() {
@@ -481,6 +662,10 @@ function changeDom() {
     .removeClass('col-lg-8')
     .next()
     .removeClass('col-lg-4');
+
+  $('#main-product-image').append(
+    `<img class='lav-zoom' src='${REPO_DIR}/img/ico-4.svg'>`
+  );
 }
 
 function setDiscount() {
@@ -531,9 +716,9 @@ function initStaticBlock() {
       <div class='lav-options'>
         <div class='lav-options__caption'>See other options</div>
         <div class='lav-options__list'>
-          <div class='lav-options__item'>20 inch <br> double row</div>
-          <div class='lav-options__item'>30 inch <br> double row</div>
-          <div class='lav-options__item'>40 inch <br> double row</div>
+          <a href='https://www.blackoakled.com/collections/20-inch-led-light-bars/20-Inch' class='lav-options__item'>20 inch <br> double row</a>
+          <a href='https://www.blackoakled.com/collections/30-inch-led-light-bars/30-Inch' class='lav-options__item'>30 inch <br> double row</a>
+          <a href='https://www.blackoakled.com/collections/40-inch-led-light-bars/40-Inch' class='lav-options__item'>40 inch <br> double row</a>
         </div>
       </div>
 
@@ -588,8 +773,7 @@ function initStaticBlock() {
             </div>
             <div class='lav-combo__info'>
               <div class='lav-combo__title'>COMBO with 5Wprovides:</div>
-              <div class='lav-combo__green'>Over 75 % more 
-              Light & Visibility</div>
+              <div class='lav-combo__green'>Over 75 % more  <br> Light & Visibility</div>
               <div class='lav-combo__vis'>Visibility up to <strong>780m</strong></div>
               <div class='lav-combo__list-caption'>Best for:</div>
               <ul class='lav-combo__list'>
@@ -607,7 +791,7 @@ function initStaticBlock() {
 
       <div class='lav-compability'>
         <div class='lav-compability__caption'>Compatibility</div>
-        <a href='#' class='lav-compability__call'>
+        <a href='tel:18003481287' class='lav-compability__call'>
           Call us 800-348-1287 to assist
           <img src='${REPO_DIR}/img/ico-3.svg'>
         </a>
@@ -679,14 +863,132 @@ function initStaticBlock() {
 
         <div class='lav-quest__call'>
           <div class='lav-quest__call-title'>We are here to assist in choosing the best fit </div>
-          <a class='lav-quest__call-btn'>
+          <a href='tel:18003481287' class='lav-quest__call-btn'>
             <span>Call us <b>800-348-1287</b> to assist</span>
             <img src='${REPO_DIR}/img/ico-3.svg'>
           </a>
+        </div>
+      </div>
+
+      <div class='lav-inc'>
+        <div class='lav-inc__block'>
+          <div class='lav-inc__block-title'>What is included in the package?</div>
+          <ul class='lav-inc__list lav-inc__list-blue'>
+            <li>Mounting Hardware</li>
+            <li>Black Powder Coated, L-Shape </li>
+            <li>Brackets</li>
+            <li>Dash Controller & Under Dash Module with Wiring Harness and Hardware</li>
+          </ul>
+        </div>
+        <div class='lav-inc__block'>
+          <div class='lav-inc__block-title'>SOLD SEPARATELY</div>
+          <ul class='lav-inc__list'>
+            <li>Underside Low-Profile Mounts</li>
+            <li>Light Covers</li>
+          </ul>
         </div>
       </div>
     </div>
   `;
 
   $('.items-info').prepend(blockEl);
+}
+
+function initDescr() {
+  $('.prod_desc')
+    .before('<div class="lav-descr"></div>')
+    .parent()
+    .removeClass('col-lg-10')
+    .addClass('col-lg-12')
+    .next()
+    .remove();
+  let tabTitle;
+  $('.prod_desc .ui-tabs-nav .ui-tabs-anchor').each((i, el) => {
+    tabTitle = $(el).text().trim();
+    if (
+      tabTitle.toLowerCase() == 'overview' ||
+      tabTitle.toLowerCase() == 'video' ||
+      tabTitle.toLowerCase() == 'product q+a'
+    ) {
+      let descrBlock = $(document.createElement('div'))
+        .addClass('lav-descr__block')
+        .append(
+          '<div class="lav-descr__title">' + $(el).text().trim() + '</div>'
+        )
+        .append($($(el).attr('href')).html());
+      $('.lav-descr').append(descrBlock);
+    }
+
+    if (
+      tabTitle.toLowerCase() == 'specs' &&
+      $($(el).attr('href')).find('.product-spec').length
+    ) {
+      $('.lav-spec__table-wrap')
+        .html('')
+        .append(
+          $($(el).attr('href'))
+            .find('.product-spec')
+            .addClass('lav-spec__table')
+            .removeClass('product-spec')
+        );
+
+      $('.lav-spec__table tr td:first-child').each((i, el) => {
+        setRowSpec(i, el);
+      });
+    }
+  });
+
+  $('.prod_desc').remove();
+}
+
+function setRowSpec(index, el) {
+  let textTitle;
+  let textTip = false;
+  switch ($(el).text().trim().toLowerCase()) {
+    case 'total wattage':
+      textTip = 'Is the power produced or used per second';
+      break;
+    case 'amp draw':
+      textTip =
+        'Amp Draw Correlates to the amount of amperage drawn from a 12V, 24V or 36V system.';
+      break;
+    case 'weight':
+      textTip = 'Total weight of the product';
+      break;
+    case 'raw lumens':
+      textTip = 'This is a measure of the theoretical output of a light.';
+      break;
+    case 'guarantee':
+      textTip =
+        'Provide a formal assurance, especially that certain conditions will be fulfilled relating to a product, service, or transaction.';
+      break;
+    case 'ip rating':
+      textTip =
+        'Is the measurement of protection that LED light will have against liquid (water) and solid (dirt, dust etc.) objects.';
+      break;
+    case 'e-mark':
+      textTip =
+        'The e-mark is an EU mark for approved vehicles and vehicle components sold into the EU.';
+      break;
+  }
+
+  if (textTip) {
+    textTitle = $(el).text().trim();
+    $(el).append(
+      `<div class="lav-spec__tip"><span span class="lav-spec__icon" >!</span><div class="lav-spec__tip-body"><div class="lav-spec__tip-title">${textTitle}</div><div class="lav-spec__tip-descr">${textTip}</div><span class="lav-spec__tip-close">×</span></div></div>`
+    );
+
+    $(el)
+      .find('.lav-spec__icon')
+      .on('click', function () {
+        $('.lav-spec__tip-body').hide();
+        $(this).siblings('.lav-spec__tip-body').show();
+      });
+
+    $(el)
+      .find('.lav-spec__tip-close')
+      .on('click', function () {
+        $(this).parent().hide();
+      });
+  }
 }
