@@ -312,6 +312,7 @@
     background-size: cover;
   }
   .lav-size {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -982,8 +983,6 @@
     newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
     if (sizeEl.querySelector('.price-table-classic__redownload-item_ok')) {
-      console.log('newSizeEl', newSizeEl);
-      console.log('sizeEl', sizeEl);
       newSizeEl
         .querySelector('.lav-size__abr')
         .insertAdjacentElement(
