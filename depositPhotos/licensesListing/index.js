@@ -1,15 +1,48 @@
 (function () {
   /*** Analytics insert start ***/
-  function gaEvent(action, label = '', value = '') {
+  function gaEvent(action, label, value) {
+    if (!label) {
+      label = '';
+    }
+    if (!value) {
+      value = '';
+    }
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
+    var eventObj = {
       event: 'event-to-ga',
-      eventCategory: 'Experiment — EL',
+      eventCategory: 'Experiment — modal PDP with EL',
       eventAction: action,
       eventLabel: label,
       eventValue: value
-    });
+    };
+    console.log('EventFire:', eventObj);
+
+    dataLayer.push(eventObj);
   }
+
+  try {
+    (function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 410340, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    window.hj =
+      window.hj ||
+      function () {
+        (hj.q = hj.q || []).push(arguments);
+      };
+    hj('trigger', 'modal_pdp_with_EL');
+  } catch (e) {}
+
+  gaEvent('loaded');
 
   // setTimeout(() => {
   //   console.log('loaded');
@@ -885,7 +918,7 @@
         this.classList.add('lav-license_active');
 
         if (this.classList.contains('lav-license_extended')) {
-          // gaEvent('click on checkbox B', 'EL license B');
+          gaEvent('click on checkbox B', 'EL license B');
           localStorage.setItem('lavLicenseType', 'extended');
           blockEvents = true;
 
@@ -894,7 +927,7 @@
             .classList.add('lav-sizes_extended');
           document.querySelector('.lav-sizes__list .lav-size_extended').click();
         } else if (document.querySelector('.lav-sizes_extended')) {
-          // gaEvent('click on checkbox B', 'Standart license B');
+          gaEvent('click on checkbox B', 'Standart license B');
           localStorage.setItem('lavLicenseType', 'none');
           blockEvents = true;
 
@@ -916,7 +949,7 @@
     let sizesValueEl = document.createElement('div');
     sizesValueEl.classList.add('lav-sizes__value');
     sizesValueEl.addEventListener('click', function () {
-      // gaEvent('image size selector click', 'Size selector B');
+      gaEvent('image size selector click', 'Size selector B');
       if (document.querySelector('.lav-sizes__list').style.display == 'block') {
         document.querySelector('.lav-sizes__list').style.display = 'none';
       } else {
@@ -985,9 +1018,9 @@
     newSizeEl.addEventListener('click', function (e) {
       e.preventDefault();
       // TODO
-      // if (!blockEvents) {
-      //   gaEvent('size click', 'image size clicked B');
-      // }
+      if (!blockEvents) {
+        gaEvent('size click', 'image size clicked B');
+      }
       blockEvents = false;
       console.log(
         Array.from(
