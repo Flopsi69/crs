@@ -998,6 +998,7 @@
     newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
     if (sizeEl.querySelector('.icon-round-ok')) {
+      console.log(newSizeEl);
       newSizeEl
         .querySelector('.lav-size__abr')
         .insertAdjacentElement(
