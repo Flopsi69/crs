@@ -396,6 +396,7 @@
     display: none;
   }
   .lav-sizes_extended .lav-sizes__list .lav-size_extended {
+    pointer-event: none;
     display: flex;
   }
   .lav-sizes_extended .lav-sizes__value .lav-size__icon {
@@ -411,7 +412,6 @@
     right: auto;
     left: 8px;
     top: -18px;
-    margin-left: 0;
   }
 `;
 
@@ -807,25 +807,6 @@
         }
 
         if (
-          false &&
-          node.classList.contains('wrapper') &&
-          node.querySelector('.file-view-upgrade')
-        ) {
-          let setIntervalEl = setInterval(() => {
-            if (
-              node.querySelectorAll('.price-table-upgrade__item').length > 1
-            ) {
-              clearInterval(setIntervalEl);
-              // TODO
-              if (document.querySelector('.auth-box')) {
-                document.querySelector('#root>.wrapper').style.opacity = 1;
-              } else {
-                init();
-              }
-            }
-          }, 300);
-        }
-        if (
           node.parentElement &&
           node.parentElement.classList.contains('plans-component') &&
           localStorage.getItem('lavLicenseType') == 'extended'
@@ -998,7 +979,7 @@
     newSizeEl.insertAdjacentHTML('afterbegin', innerElHTML);
 
     if (sizeEl.querySelector('.icon-round-ok')) {
-      console.log(newSizeEl);
+      console.log('newSizeEl', newSizeEl);
       newSizeEl
         .querySelector('.lav-size__abr')
         .insertAdjacentElement(
