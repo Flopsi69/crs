@@ -615,6 +615,99 @@ function initStyles() {
     .lav-spec__tip-close:hover {
       opacity: 0.4;
     }
+    .lav-option__wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lav-option__caption {
+      font-size: 15px;
+      line-height: 18px;
+      color: #096DD9;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lav-option__caption:hover {
+      color: #0b54a2;
+      opacity: 0.7;
+    }
+    .selector-wrapper .selector-wrapper + .selector-wrapper {
+      margin-top: 20px!important;
+    }
+    .modal {
+      position: fixed;
+      display: flex;
+      padding: 15px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      outline: 0;
+      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(22, 22, 22, 0.39);
+      transition: 0.3s;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .modal_active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal__body {
+      position: relative;
+      margin: auto;
+      display: none;
+      max-width: 350px;
+      width: 100%;
+      background-color: #FFFFFF;
+      box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.07);
+      border-radius: 6px;
+    }
+    .modal__close {
+      border-radius: 50%;
+      background-color: #fff;
+      outline: none;
+      line-height: 0;
+      cursor: pointer;
+      padding: 5px;
+      transition: 0.2s;
+      border: none;
+    }
+    .modal__close-icon {
+      width: 10px;
+      height: 10px;
+      fill: #333333;
+    }
+    .modal__close:hover {
+      background: red;
+    }
+    .modal__head {
+      background: #333333;
+      padding: 13px 18px;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 18px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 6px 6px 0 0;
+    }
+    .modal__inner-block {
+      padding: 17px 30px 17px 20px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .modal__inner-block span {
+      color: #7CB305;
+      font-weight: 700;
+    }
+    .modal__inner-block + .modal__inner-block {
+      border-top: 1px solid #C4C4C4;
+    }
   `;
 
   let styles = document.createElement('style');
@@ -654,6 +747,8 @@ function initExp() {
   }
   initStaticBlock();
   initDescr();
+  initOptions();
+  initModal();
 }
 
 function changeDom() {
@@ -783,7 +878,7 @@ function initStaticBlock() {
                 <li>- Heavy Machinery</li>
                 <li>- Military</li>
               </ul>
-              <div class='lav-combo__zoom'><img src='${REPO_DIR}/img/icon-zoom.svg'>Click to zoom</div>
+              <div class='lav-combo__zoom modal-trigger' data-modal-target='.modal-zoom'><img src='${REPO_DIR}/img/icon-zoom.svg'>Click to zoom</div>
             </div>
           </div>
         </div>
@@ -991,4 +1086,91 @@ function setRowSpec(index, el) {
         $(this).parent().hide();
       });
   }
+}
+
+function initOptions() {
+  let optionName;
+  $('.selector-wrapper .selector-wrapper').each((i, el) => {
+    optionName = $(el).find('label').text().trim().toLowerCase();
+    if (optionName == 'optics' || optionName == 'led') {
+      $(el).prepend(
+        $(document.createElement('div'))
+          .addClass('lav-option__wrap')
+          .append(
+            '<span class="lav-option__caption modal-trigger" data-modal-target=".modal-' +
+              optionName +
+              '">What’s the difference?</span>'
+          )
+      );
+
+      $(el).find('.lav-option__wrap').prepend($(el).find('label'));
+    }
+  });
+}
+
+function initModal() {
+  let modalEl = `
+  <div class="modal">
+    <div class="modal__body modal-zoom">
+      <img src="https://cdn.shopify.com/s/files/1/0761/3599/files/Truck_Overhead_Blue_1024x1024.jpg?v=1572884778" alt="Flood lights">
+    </div>
+    <div class="modal__body modal-optics">
+      <div class='modal__head'>
+        <div class='modal__head-title'>What’s the difference?</div>
+        <button class="modal__close">
+          <svg class="modal__close-icon" fill='white' xmlns="http://www.w3.org/2000/svg" width="357" height="357" viewBox="0 0 357 357"><path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z"/></svg>
+        </button>
+      </div>
+      <div class='modal__inner'>
+        <div class='modal__inner-block'>
+          <span>Combo</span> - Best of both worlds, the floods sit on the outside giving you the side blow-out of light while still shooting far with the Spots piercing far ahead.
+        </div>
+        <div class='modal__inner-block'>
+          <span>Spot</span> - Great for those who need those piercing beams of light that seem to travel forever.
+        </div>
+        <div class='modal__inner-block'>
+          <span>Flood</span> - Wide-spread light to illuminate the side and front of your rig. Perfect for those who want a wider cone of light than a spot.
+        </div>
+      </div>
+    </div>
+
+    <div class="modal__body modal-led">
+      <div class='modal__head'>
+        <div class='modal__head-title'>What’s the difference?</div>
+        <button class="modal__close">
+          <svg class="modal__close-icon" fill='white' xmlns="http://www.w3.org/2000/svg" width="357" height="357" viewBox="0 0 357 357"><path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z"/></svg>
+        </button>
+      </div>
+      <div class='modal__inner'>
+        <div class='modal__inner-block'>
+        Our <span>5W</span> LEDs produce over 75% better light output than our <span>3W</span> and are way more efficient, keeping the power draw very low.
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  $('body').append(modalEl);
+  $('.modal__close').click(function (e) {
+    e.preventDefault();
+    modalClose();
+  });
+
+  $('.modal').click(function (e) {
+    if ($(e.target).hasClass('modal_active')) {
+      modalClose();
+    }
+  });
+
+  function modalClose() {
+    $('.modal').removeClass('modal_active');
+    $('.modal__body').slideUp();
+  }
+
+  $('.modal-trigger').click(function (e) {
+    e.preventDefault();
+    let target = $(this).data('modal-target');
+    $('.modal').addClass('modal_active');
+    $(target).slideDown();
+  });
 }
