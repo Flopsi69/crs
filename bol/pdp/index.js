@@ -43,9 +43,14 @@ function initStyles() {
     #main-product-image {
       position: relative;
     }
-    .lav-zoom {
+    #main-product-image:after {
+      content: '';
       position: absolute;
       pointer-events: none;
+      width: 37px;
+      height: 37px;
+      background: url(${REPO_DIR}/img/ico-4.svg) center no-repeat;
+      background-size: contain;
       right: 13px;
       bottom: 18px;
     }
@@ -711,6 +716,118 @@ function initStyles() {
     .modal__inner-block + .modal__inner-block {
       border-top: 1px solid #C4C4C4;
     }
+    .lav-dropdown {
+      width: 100%;
+    }
+    .lav-dropdown__list {
+      display: none;
+      z-index: 10;
+      background: #fff;
+      border: 1px solid #DFDFDF;
+      box-sizing: border-box;
+      box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.13);
+      border-radius: 0px 0px 5px 5px;
+      padding: 17px;
+      margin: 0 -15px 30px;
+    }
+    .lav-dropdown__head {
+      color: #231f20;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid #c4c4c4;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 18px;
+      padding: 13px 15px;
+      margin: 12px 0;
+      position: relative;
+      transition: 0.2s;
+      cursor: pointer
+    }
+    .lav-dropdown__head:hover {
+      background-color: rgba(33,33,33,0.1);
+    }
+    .lav-dropdown__head:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 11px;
+      height: 23px;
+      width: 23px;
+      transform: rotate(180deg);
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD6SURBVHgB1ZU9DoJAEIVnVwtLEgq04wgI9O4ROII3MJ4APIGlpdjZegMPQOFRSKiJzkRIjAacIWyiL9nszv58L5nszipjjFNV1R4AEmwOjKO8ruvtxHXdAwZrbDMYT4HWeq6iKLqDHZUa7MmxCQcRXCl1k+xnwxG8K4piST33DAvegDMaU881+ApvwXEcG4rxdiVcA80Bh2GYYpg20xuKOQZ98LwFIyR7M81aAwxPXYApdMtgCo7wfL0fIgNc93G4ggFwvwv8ot7133lEfwsX13ppyaXaEnA3S9PCBg+Bi0TwEiyJ4Bewo3zied4VP9MFCPPZI8rEmX7/B7rmRIas1GKyAAAAAElFTkSuQmCC");
+    }
+    .lav-dropdown__head.active:after {
+      transform: rotate(0deg);
+    }
+    .lav-dropdown__item {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid #096dd9;
+      border-radius: 4px;
+      padding: 10px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lav-dropdown__item + .lav-dropdown__item {
+      margin-top: 16px;
+    }
+    .lav-dropdown__item-left {
+      width: 62%;
+      display: flex;
+      align-items: center;
+    }
+    .lav-dropdown__item-right {
+      width: 38%;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .lav-dropdown__item.active {
+      background: rgba(9, 109, 217, 0.09);
+    }
+    .lav-dropdown__item.active .lav-dropdown__item-cart {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjkiIGhlaWdodD0iMjkiIHZpZXdCb3g9IjAgMCAyOSAyOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik0yMC45NzEgMTguMTg0N0wyMi44NTQxIDEwLjE3NjlDMjIuOTg4IDkuNTA0NjggMjIuNTQwMSA4Ljg2NDU4IDIxLjkzNTggOC44NjQ1OEg2LjUyMzM3TDYuMTYzNyA2Ljg1ODkzQzYuMDc0MDggNi4zNTkwMSA1LjY4ODQ0IDYgNS4yNDEwNyA2SDEuMjE3OTJDMC42OTc4MDkgNiAwLjI3NjE4NCA2LjQ4MDk0IDAuMjc2MTg0IDcuMDc0MjJWNy43OTAzNkMwLjI3NjE4NCA4LjM4MzY1IDAuNjk3ODA5IDguODY0NTggMS4yMTc5MiA4Ljg2NDU4SDMuOTYwMDdMNi43MTY1NCAyNC4yMzY0QzYuMDU3MDkgMjQuNjY5IDUuNjEyNzEgMjUuNDgwMiA1LjYxMjcxIDI2LjQxMDJDNS42MTI3MSAyNy43OTQ1IDYuNTk2NTEgMjguOTE2NyA3LjgxMDEgMjguOTE2N0M5LjAyMzY5IDI4LjkxNjcgMTAuMDA3NSAyNy43OTQ1IDEwLjAwNzUgMjYuNDEwMkMxMC4wMDc1IDI1LjcwODYgOS43NTQ1MSAyNS4wNzQ4IDkuMzQ3MzMgMjQuNjE5OEgxNy41NzM3QzE3LjE2NjYgMjUuMDc0OCAxNi45MTM2IDI1LjcwODYgMTYuOTEzNiAyNi40MTAyQzE2LjkxMzYgMjcuNzk0NSAxNy44OTc0IDI4LjkxNjcgMTkuMTExIDI4LjkxNjdDMjAuMzI0NiAyOC45MTY3IDIxLjMwODQgMjcuNzk0NSAyMS4zMDg0IDI2LjQxMDJDMjEuMzA4NCAyNS40MTc4IDIwLjgwMjYgMjQuNTYwMiAyMC4wNjkyIDI0LjE1NDFMMjAuMjg1NyAyMy4wNjc1QzIwLjQxOTYgMjIuMzk1MyAxOS45NzE3IDIxLjc1NTIgMTkuMzY3NCAyMS43NTUySDguODM0OTFMOC41NDk5NSAxOS4wMjA4SDIwLjA1MjdDMjAuNDkyNCAxOS4wMjA4IDIwLjg3MzYgMTguNjczOCAyMC45NzEgMTguMTg0N1oiIGZpbGw9IiMwOTZERDkiLz4KPC9nPgo8cGF0aCBkPSJNMjMuMzMgMEMyMC41ODgzIDAgMTguMzU3NyAyLjY5MTU0IDE4LjM1NzcgNS45OTk5N0MxOC4zNTc3IDkuMzA4MzkgMjAuNTg4MyAxMiAyMy4zMyAxMkMyNi4wNzE4IDEyIDI4LjMwMjQgOS4zMDgzOSAyOC4zMDI0IDUuOTk5OTdDMjguMzAyNCAyLjY5MTU0IDI2LjA3MTggMCAyMy4zMyAwWk0yNi4xODUzIDQuOTg2NTJMMjMuMDYxNCA4Ljc1NkMyMi45Mjg1IDguOTE2MjggMjIuNzUyIDkuMDA0NDkgMjIuNTY0MSA5LjAwNDQ5QzIyLjM3NjMgOS4wMDQ0OSAyMi4xOTk4IDguOTE2MjggMjIuMDY2OSA4Ljc1NkwyMC40NzQ4IDYuODM0ODVDMjAuMzQyIDYuNjc0NTggMjAuMjY4OCA2LjQ2MTUyIDIwLjI2ODggNi4yMzQ4OEMyMC4yNjg4IDYuMDA4MTcgMjAuMzQyIDUuNzk1MTEgMjAuNDc0OCA1LjYzNDg0QzIwLjYwNzYgNS40NzQ1NiAyMC43ODQxIDUuMzg2MjggMjAuOTcyIDUuMzg2MjhDMjEuMTU5OSA1LjM4NjI4IDIxLjMzNjUgNS40NzQ1NiAyMS40NjkyIDUuNjM0OUwyMi41NjQxIDYuOTU1OTRMMjUuMTkwNyAzLjc4NjVDMjUuMzIzNSAzLjYyNjIzIDI1LjUwMDEgMy41MzgwMSAyNS42ODc5IDMuNTM4MDFDMjUuODc1OCAzLjUzODAxIDI2LjA1MjMgMy42MjYyMyAyNi4xODUyIDMuNzg2NUMyNi40NTk0IDQuMTE3NDUgMjYuNDU5NCA0LjY1NTcgMjYuMTg1MyA0Ljk4NjUyWiIgZmlsbD0iIzdDQjMwNSIvPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMCI+CjxyZWN0IHdpZHRoPSIyMi42MDE3IiBoZWlnaHQ9IjIyLjkxNjciIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjI3NjE4NCA2KSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=");
+      background-repeat: no-repeat;
+      width: 28px;
+      height: 38px;
+      text-indent: -999px;
+      font-size: 0;
+    }
+    .lav-dropdown__item-left img {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+      margin-right: 9px;
+    }
+    .lav-dropdown__item-left span {
+      position: relative;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 18px;
+      width: auto;
+      order: unset;
+      color: #000000;
+    }
+    .lav-dropdown__item-price {
+      display: inline-block;
+      color: #b00;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 18px;
+      margin-right: 15px;
+   }
+    .lav-dropdown__item-cart {
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 18px;
+      color: #096dd9;
+      background: transparent;
+      border: 0;
+   }
+    
   `;
 
   let styles = document.createElement('style');
@@ -752,6 +869,7 @@ function initExp() {
   initDescr();
   initOptions();
   initModal();
+  test_accessory();
 }
 
 function changeDom() {
@@ -760,23 +878,29 @@ function changeDom() {
     .removeClass('col-lg-8')
     .next()
     .removeClass('col-lg-4');
-
-  $('#main-product-image').append(
-    `<img class='lav-zoom' src='${REPO_DIR}/img/ico-4.svg'>`
-  );
 }
 
 function setDiscount() {
   let discountVal = $('#comparePrice-manual').text().trim().replace('$', '');
+  console.log('discountVal', discountVal);
+  let currentPrice;
 
-  discountVal =
-    100 -
-    ($('#productPrice-manual .money').text().trim().replace('$', '') * 100) /
-      discountVal;
+  if ($('#productPrice-manual .money .money').length) {
+    currentPrice = $('#productPrice-manual .money .money')
+      .text()
+      .trim()
+      .replace('$', '');
+  } else {
+    currentPrice = $('#productPrice-manual .money')
+      .text()
+      .trim()
+      .replace('$', '');
+  }
 
-  console.log(discountVal);
+  discountVal = 100 - (currentPrice * 100) / discountVal;
+
+  console.log('discountVal', discountVal);
   discountVal = Math.round(discountVal);
-  console.log(discountVal);
 
   let disocuntEl = `
    <div class='lav-discount'>
@@ -801,9 +925,25 @@ function setDiscount() {
 }
 
 function setTotalPrice() {
-  let totalPrice =
-    $('#productPrice-manual .money').text().trim().replace('$', '') *
-    $('#quantity').val();
+  let totalPrice;
+  if ($('#productPrice-manual .money .money').length) {
+    totalPrice =
+      $('#productPrice-manual .money .money').text().trim().replace('$', '') *
+      $('#quantity').val();
+  } else {
+    totalPrice =
+      $('#productPrice-manual .money').text().trim().replace('$', '') *
+      $('#quantity').val();
+  }
+
+  $('.lav-dropdown__item.active').each((i, el) => {
+    totalPrice =
+      totalPrice +
+      parseFloat(
+        $(el).find('.lav-dropdown__item-price').text().trim().replace('$', '')
+      );
+  });
+  console.log(totalPrice);
 
   $('.lav-total__value').text('$' + totalPrice.toFixed(2));
 }
@@ -1011,7 +1151,7 @@ function initDescr() {
       let descrBlock = $(document.createElement('div'))
         .addClass('lav-descr__block')
         .append(
-          '<div class="lav-descr__title">' + $(el).text().trim() + '</div>'
+          '<div class="lav-descr__title">' + $(el).text().trim() + ' </div>'
         )
         .append($($(el).attr('href')).html());
       $('.lav-descr').append(descrBlock);
@@ -1176,4 +1316,222 @@ function initModal() {
     $('.modal').addClass('modal_active');
     $(target).slideDown();
   });
+}
+
+function test_accessory() {
+  let products = getAcc();
+  console.log(products);
+  let url = window.location.href;
+  if (url.indexOf('double-row-led/products') > -1) {
+    additional_prod_html_generate(products['double-row-led']);
+  }
+  if (url.indexOf('single-row-led-light-bars/products') > -1) {
+    additional_prod_html_generate(products['single_rows']);
+  }
+  if (url.indexOf('led-light-pods/products') > -1) {
+    additional_prod_html_generate(products['led_light_pods']);
+  }
+  if (
+    products['accentLightsProdsUrls'].indexOf(window.location.pathname) > -1
+  ) {
+    additional_prod_html_generate(products['rbg_controller']);
+  }
+}
+
+function additional_prod_html_generate(additionalProdObj) {
+  console.log('fire', additionalProdObj);
+  var html = `
+    <div class="lav-dropdown__wrap">
+      <div class="lav-dropdown">
+        <div class="lav-dropdown__head">Mounting and Accessories</div>
+        <div class="lav-dropdown__list"></div>
+      </div>
+    </div>
+  `;
+
+  $('#addToCartForm .selector-wrapper').first().append(html);
+
+  $('.lav-dropdown__head').on('click', function () {
+    if (!$('.lav-dropdown__item.active').length) {
+      $('.lav-dropdown__head').toggleClass('active');
+      $('.lav-dropdown__list').slideToggle();
+    }
+  });
+
+  $.each(additionalProdObj, function (key, value) {
+    $('.lav-dropdown__list').append(`
+    <div class="lav-dropdown__item" data-id='${value['id']}'>
+      <a href="${value['url']}" class='lav-dropdown__item-left'> 
+        <img src="${value['img']}" alt="" />
+        <span>${value['name']}</span>
+      </a>
+      <div class='lav-dropdown__item-right'>
+        <span class="lav-dropdown__item-price">&#36;${value['price']}</span>
+        <a href='${value['url']}' type="button" class="lav-dropdown__item-cart">+Add</a>
+      </div>
+    </div>
+    `);
+  });
+
+  $('.lav-dropdown__item-cart').on('click', function (e) {
+    e.preventDefault();
+    $(this).closest('.lav-dropdown__item').toggleClass('active');
+    setTotalPrice();
+  });
+
+  $('.form-add-to-cart').on('submit', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    let items = [];
+    $('.lav-dropdown__item.active').each((i, el) => {
+      items.push({
+        quantity: 1,
+        id: $(el).data('id')
+      });
+    });
+
+    console.log('items', items);
+
+    if (items.length) {
+      $.post('/cart/add.js', {
+        items: items
+      }).done(function () {
+        console.log('submited');
+        $('.form-add-to-cart').submit();
+      });
+    }
+
+    return false;
+  });
+}
+
+function getAcc() {
+  let additionalProducts = {
+    'double-row-led': {
+      1: {
+        id: 516619844,
+        name: 'O Type Bracket',
+        price: '55.25',
+        url: '/collections/led-light-bar-mounts-2/products/o-type-bracket-in-pair',
+        img: '//cdn.shopify.com/s/files/1/0761/3599/products/accessories-o-type-bracket-in-pair-1_medium.jpg?v=1467206343'
+      },
+
+      2: {
+        id: 516545668,
+        name: 'Lens cover',
+        price: '21.25',
+        url: '/collections/covers-hardware/products/lens-cover-for-10-dual-row-light',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/accessories-new-lens-cover-for-10-dual-row-light-1_medium.jpg?v=1449621325'
+      },
+
+      3: {
+        id: 24992579528,
+        name: 'Security Hardware',
+        price: '21.25',
+        url: '/collections/covers-hardware/products/security-hardware',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/Screen_Shot_2016-08-24_at_10.39.28_AM_medium.png?v=1472053578'
+      },
+
+      4: {
+        id: 25072439240,
+        name: 'Sound Dampeners',
+        price: '25.50',
+        url: '/collections/covers-hardware/products/sound-dampers',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/IMG_1975_medium.jpg?v=1472584246'
+      }
+    },
+    single_rows: {
+      1: {
+        id: 516619844,
+        name: 'O Type Bracket',
+        price: '55.25',
+        url: '/collections/led-light-bar-mounts-2/products/o-type-bracket-in-pair',
+        img: '//cdn.shopify.com/s/files/1/0761/3599/products/accessories-o-type-bracket-in-pair-1_medium.jpg?v=1467206343'
+      },
+
+      2: {
+        id: 8089627080,
+        name: 'Single Row Cover',
+        price: '17.00',
+        url: '/collections/covers-hardware/products/single-row-cover',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/Screen_Shot_2016-10-25_at_9.36.27_AM_medium.png?v=1507580376'
+      },
+
+      3: {
+        id: 24992579528,
+        name: 'Security Hardware',
+        price: '21.25',
+        url: '/collections/covers-hardware/products/security-hardware',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/Screen_Shot_2016-08-24_at_10.39.28_AM_medium.png?v=1472053578'
+      },
+
+      4: {
+        id: 25072439240,
+        name: 'Sound Dampeners',
+        price: '25.50',
+        url: '/collections/covers-hardware/products/sound-dampers',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/IMG_1975_medium.jpg?v=1472584246'
+      }
+    },
+    led_light_pods: {
+      1: {
+        id: 32911125053501,
+        name: 'GoPOD Clamp On Mount Kit',
+        price: '72.25',
+        url: '/products/new-black-oak-gopod-clamp-mount-mount-only?_pos=1&_sid=95e2d8dba&_ss=r',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/20502_medium.jpg?v=1602771016'
+      },
+      // todo
+      2: {
+        id: 516604100,
+        name: 'Lens cover for 2" pod light',
+        price: '17.00',
+        url: '/collections/covers-hardware/products/lens-cover-for-2-work-light',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/accessories-new-lens-cover-for-2-work-light-1_medium.jpg?v=1596114332'
+      },
+
+      3: {
+        id: 32911315763261,
+        name: 'GoPOD Suction Cup Mount Kit',
+        price: '72.25',
+        url: '/products/new-gopod-suction-on-mount-mount-only?_pos=2&_sid=95e2d8dba&_ss=r',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/IMG_1987_medium.jpg?v=1602704583'
+      },
+
+      4: {
+        id: 25532700360,
+        name: '2-Piece Connect Cable',
+        price: '29.75',
+        url: '/collections/wiring-kits/products/connect-cable-for-2pcs',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/accessories-new-connect-cable-for-2pcs-1_medium.jpg?v=1449621334'
+      }
+    },
+    rbg_controller: {
+      1: {
+        id: 32954904281149,
+        name: 'RGB Controller - Black Oak LED',
+        price: '46.75',
+        url: '/products/new-rbg-controller-black-oak-led?_pos=1&_sid=fd602eedf&_ss=r',
+        img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/RGBControllerCroppedWebsite_medium.jpg?v=1605709083'
+      }
+    },
+    accentLightsProdsUrls: [
+      '/products/new-marine-accent-light',
+      '/products/new-marine-accent-light-rgbw',
+      '/products/new-marine-accent-light-black-housing',
+      '/products/new-led-off-road-rock-lights',
+      '/products/black-oak-led-dock-light-fld6',
+      '/products/black-oak-led-underwater-light-fl3',
+      '/products/black-oak-led-underwater-light-fl12',
+      '/products/black-oak-led-underwater-light-fl6',
+      '/products/33-36-foot-boat-led-lighting-kit-center-console-boat',
+      '/products/21-26-foot-boat-led-lighting-kit-center-console-boat',
+      '/products/27-32-foot-boat-led-lighting-kit-center-console-boat',
+      '/products/16-20-foot-boat-led-lighting-kit-center-console-boat,',
+      '/products/37-foot-larger-boat-led-lighting-kit-center-console-boat',
+      '/products/new-marine-flush-mount-spreader-light'
+    ]
+  };
+  return additionalProducts;
 }
