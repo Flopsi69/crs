@@ -1112,7 +1112,7 @@ function initModal() {
   let modalEl = `
   <div class="modal">
     <div class="modal__body modal-zoom">
-      <img src="https://cdn.shopify.com/s/files/1/0761/3599/files/Truck_Overhead_Blue_1024x1024.jpg?v=1572884778" alt="Flood lights">
+      <img src="${REPO_DIR}/img/image-zoomed.jpeg" alt="Flood lights">
     </div>
     <div class="modal__body modal-optics">
       <div class='modal__head'>
