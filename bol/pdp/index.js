@@ -666,6 +666,9 @@ function initStyles() {
       box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.07);
       border-radius: 6px;
     }
+    .modal__body img {
+      max-width: 100%;
+    }
     .modal__close {
       border-radius: 50%;
       background-color: #fff;
