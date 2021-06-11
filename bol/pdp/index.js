@@ -818,7 +818,7 @@ function initStyles() {
       font-size: 15px;
       line-height: 18px;
       margin-right: 15px;
-   }
+    }
     .lav-dropdown__item-cart {
       font-weight: bold;
       font-size: 15px;
@@ -826,8 +826,42 @@ function initStyles() {
       color: #096dd9;
       background: transparent;
       border: 0;
-   }
-    
+    }
+    .lav-dropdown__item-options {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .lav-dropdown__item-option {
+      cursor: pointer;
+      padding: 4px 8px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      min-width: 20%;
+      transition: 0.2s;
+      flex: 1;
+      max-width: 25%;
+      margin: 3px;
+      text-align: center;
+    }
+    .lav-dropdown__item-option:hover {
+      background-color: #dadad1;
+    }
+    .lav-dropdown__item-option.active {
+      background-color: #0a6cd9;
+      color: #fff;
+    }
+    .lav-fake-btn {
+      height: 45px;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      transform: translateY(100%);
+      cursor: pointer;
+    }
   `;
 
   let styles = document.createElement('style');
@@ -852,6 +886,8 @@ function initStyles() {
 
 initExp();
 function initExp() {
+  console.log('InitExp');
+
   initStyles();
   changeDom();
   if ($('#comparePrice-manual').length) {
@@ -870,6 +906,90 @@ function initExp() {
   initOptions();
   initModal();
   test_accessory();
+  // $('.form-add-to-cart').on('submit', function (e) {
+  //   makeOrder(e);
+  //   return false;
+  // });
+
+  $('#content .pro_main_c .desc_blk').append(
+    "<div class='lav-fake-btn'></div>"
+  );
+  $('.lav-fake-btn').on('click', function (e) {
+    makeOrder(e);
+    return false;
+  });
+}
+
+function makeOrder(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  let items = [];
+  $('.lav-dropdown__item.active').each((i, el) => {
+    if ($(el).data('id')) {
+      items.push({
+        quantity: 1,
+        id: $(el).data('id')
+      });
+    } else {
+      items.push({
+        quantity: 1,
+        id: $(el).find('.lav-dropdown__item-option.active').data('id')
+      });
+    }
+  });
+
+  items.push({
+    quantity: parseInt($('#quantity').val()),
+    id: $('.form-add-to-cart').serialize().split('&')[0].split('=')[1]
+  });
+
+  console.log('items', items);
+  console.log('items', JSON.stringify(items));
+
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(items)
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+  if (items.length) {
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ items: items })
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(result => {
+        console.log(result);
+        location.href = 'https://www.blackoakled.com/cart';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+    // $.post('/cart/add.js', {
+    //   items: items
+    // }).success(function () {
+    //   console.log('submited');
+
+    //   return false;
+    // });
+  }
+
+  return false;
 }
 
 function changeDom() {
@@ -937,11 +1057,19 @@ function setTotalPrice() {
   }
 
   $('.lav-dropdown__item.active').each((i, el) => {
-    totalPrice =
-      totalPrice +
-      parseFloat(
-        $(el).find('.lav-dropdown__item-price').text().trim().replace('$', '')
-      );
+    if ($(el).find('.lav-dropdown__item-option.active').length) {
+      totalPrice =
+        totalPrice +
+        parseFloat(
+          $(el).find('.lav-dropdown__item-option.active').data('price')
+        );
+    } else {
+      totalPrice =
+        totalPrice +
+        parseFloat(
+          $(el).find('.lav-dropdown__item-price').text().trim().replace('$', '')
+        );
+    }
   });
   console.log(totalPrice);
 
@@ -1322,13 +1450,23 @@ function test_accessory() {
   let products = getAcc();
   console.log(products);
   let url = window.location.href;
-  if (url.indexOf('double-row-led/products') > -1) {
+  let title = $('#content .title h1').text().trim().toLowerCase();
+  if (
+    url.indexOf('double-row-led/products') > -1 ||
+    title.includes('double row')
+  ) {
     additional_prod_html_generate(products['double-row-led']);
   }
-  if (url.indexOf('single-row-led-light-bars/products') > -1) {
+  if (
+    url.indexOf('single-row-led-light-bars/products') > -1 ||
+    title.includes('single row')
+  ) {
     additional_prod_html_generate(products['single_rows']);
   }
-  if (url.indexOf('led-light-pods/products') > -1) {
+  if (
+    url.indexOf('led-light-pods/products') > -1 ||
+    title.includes('pod light')
+  ) {
     additional_prod_html_generate(products['led_light_pods']);
   }
   if (
@@ -1359,8 +1497,10 @@ function additional_prod_html_generate(additionalProdObj) {
   });
 
   $.each(additionalProdObj, function (key, value) {
-    $('.lav-dropdown__list').append(`
-    <div class="lav-dropdown__item" data-id='${value['id']}'>
+    let el = document.createElement('div');
+    $(el).addClass('lav-dropdown__item');
+    // data-id='${value['id']}'
+    $(el).append(`
       <a href="${value['url']}" class='lav-dropdown__item-left'> 
         <img src="${value['img']}" alt="" />
         <span>${value['name']}</span>
@@ -1369,40 +1509,51 @@ function additional_prod_html_generate(additionalProdObj) {
         <span class="lav-dropdown__item-price">&#36;${value['price']}</span>
         <a href='${value['url']}' type="button" class="lav-dropdown__item-cart">+Add</a>
       </div>
-    </div>
     `);
+
+    if (value['idList']) {
+      $(el).append(`<div class='lav-dropdown__item-options'></div>`);
+      for (let item of value['idList']) {
+        let priceItem = item['price'] ? item['price'] : value['price'];
+        $(el)
+          .find('.lav-dropdown__item-options')
+          .append(
+            `<div class='lav-dropdown__item-option' data-id='${item['id']}' data-price='${priceItem}'>${item['name']}</div>`
+          );
+      }
+    } else {
+      $(el).data('id', value['id']);
+    }
+
+    $('.lav-dropdown__list').append($(el));
+  });
+
+  $('.lav-dropdown__item-option').on('click', function () {
+    $(this).addClass('active').siblings('.active').removeClass('active');
+    setTotalPrice();
   });
 
   $('.lav-dropdown__item-cart').on('click', function (e) {
     e.preventDefault();
-    $(this).closest('.lav-dropdown__item').toggleClass('active');
-    setTotalPrice();
-  });
-
-  $('.form-add-to-cart').on('submit', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    let items = [];
-    $('.lav-dropdown__item.active').each((i, el) => {
-      items.push({
-        quantity: 1,
-        id: $(el).data('id')
-      });
-    });
-
-    console.log('items', items);
-
-    if (items.length) {
-      $.post('/cart/add.js', {
-        items: items
-      }).done(function () {
-        console.log('submited');
-        $('.form-add-to-cart').submit();
-      });
+    if (
+      !$(this)
+        .closest('.lav-dropdown__item')
+        .find('.lav-dropdown__item-option.active').length
+    ) {
+      $(this)
+        .closest('.lav-dropdown__item')
+        .find('.lav-dropdown__item-option')
+        .first()
+        .click();
     }
-
-    return false;
+    $(this).closest('.lav-dropdown__item').toggleClass('active');
+    if (!$(this).closest('.lav-dropdown__item.active').length) {
+      $(this)
+        .closest('.lav-dropdown__item')
+        .find('.active')
+        .removeClass('active');
+    }
+    setTotalPrice();
   });
 }
 
@@ -1410,7 +1561,43 @@ function getAcc() {
   let additionalProducts = {
     'double-row-led': {
       1: {
-        id: 516619844,
+        idList: [
+          {
+            id: '21116151748',
+            name: '1.0'
+          },
+          {
+            id: '17519288388',
+            name: '1.25'
+          },
+          {
+            id: '13395875844',
+            name: '1.5'
+          },
+          {
+            id: '1610025156',
+            name: '1.75'
+          },
+          {
+            id: '3459582468',
+            name: '2.0'
+          },
+          {
+            id: '13236978756',
+            name: '2.25',
+            price: '63.75'
+          },
+          {
+            id: '3459582532',
+            name: '2.5',
+            price: '63.75'
+          },
+          {
+            id: '13237126724',
+            name: '3.0',
+            price: '63.75'
+          }
+        ],
         name: 'O Type Bracket',
         price: '55.25',
         url: '/collections/led-light-bar-mounts-2/products/o-type-bracket-in-pair',
@@ -1418,7 +1605,24 @@ function getAcc() {
       },
 
       2: {
-        id: 516545668,
+        idList: [
+          {
+            id: '1609781188',
+            name: 'Amber'
+          },
+          {
+            id: '13927610948',
+            name: 'Black'
+          },
+          {
+            id: '26817119688',
+            name: 'Red'
+          },
+          {
+            id: '33012881653821',
+            name: 'Smoke'
+          }
+        ],
         name: 'Lens cover',
         price: '21.25',
         url: '/collections/covers-hardware/products/lens-cover-for-10-dual-row-light',
@@ -1443,7 +1647,43 @@ function getAcc() {
     },
     single_rows: {
       1: {
-        id: 516619844,
+        idList: [
+          {
+            id: '21116151748',
+            name: '1.0'
+          },
+          {
+            id: '17519288388',
+            name: '1.25'
+          },
+          {
+            id: '13395875844',
+            name: '1.5'
+          },
+          {
+            id: '1610025156',
+            name: '1.75'
+          },
+          {
+            id: '3459582468',
+            name: '2.0'
+          },
+          {
+            id: '13236978756',
+            name: '2.25',
+            price: '63.75'
+          },
+          {
+            id: '3459582532',
+            name: '2.5',
+            price: '63.75'
+          },
+          {
+            id: '13237126724',
+            name: '3.0',
+            price: '63.75'
+          }
+        ],
         name: 'O Type Bracket',
         price: '55.25',
         url: '/collections/led-light-bar-mounts-2/products/o-type-bracket-in-pair',
@@ -1451,7 +1691,20 @@ function getAcc() {
       },
 
       2: {
-        id: 8089627080,
+        idList: [
+          {
+            id: '26689319304',
+            name: 'Clear'
+          },
+          {
+            id: '8932792500285',
+            name: 'Black'
+          },
+          {
+            id: '28547734372413',
+            name: 'Amber'
+          }
+        ],
         name: 'Single Row Cover',
         price: '17.00',
         url: '/collections/covers-hardware/products/single-row-cover',
@@ -1482,9 +1735,21 @@ function getAcc() {
         url: '/products/new-black-oak-gopod-clamp-mount-mount-only?_pos=1&_sid=95e2d8dba&_ss=r',
         img: 'https://cdn.shopify.com/s/files/1/0761/3599/products/20502_medium.jpg?v=1602771016'
       },
-      // todo
       2: {
-        id: 516604100,
+        idList: [
+          {
+            id: '1609951684',
+            name: 'Amber'
+          },
+          {
+            id: '1609971076',
+            name: 'Black'
+          },
+          {
+            id: '33012882079805',
+            name: 'White'
+          }
+        ],
         name: 'Lens cover for 2" pod light',
         price: '17.00',
         url: '/collections/covers-hardware/products/lens-cover-for-2-work-light',
