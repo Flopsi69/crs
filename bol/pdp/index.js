@@ -1,43 +1,37 @@
-function gaEvent(action, label = '') {
+function gaEvent(action) {
   window.dataLayer = window.dataLayer || [];
   try {
     let eventObj = {
-      event: 'ga_event',
-      eventCategory: 'Exp — PDP: add phone number',
+      event: 'event-to-ga',
+      eventCategory: 'Exp - PDP improvements',
       eventAction: action
     };
-    if (label) {
-      eventObj['eventLabel'] = label;
-    }
     dataLayer.push(eventObj);
   } catch (e) {}
 }
 
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 1831568, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj('trigger', 'PDP_improvements');
+
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
-
-// let observerGlobal = new MutationObserver(mutations => {
-//   for (let mutation of mutations) {
-//     for (let node of mutation.addedNodes) {
-//       if (!(node instanceof HTMLElement)) continue;
-//       console.log(node);
-//       // if (
-//       //   node.querySelector('.pageContainer .container') &&
-//       //   node.querySelector('.products') &&
-//       //   node.querySelector('.category') &&
-//       //   !isInitExp
-//       // ) {
-//       //   initExp();
-//       //   // observerGlobal.disconnect();
-//       // }
-//     }
-//   }
-// });
-
-// observerGlobal.observe(document.querySelector('body'), {
-//   childList: true,
-//   subtree: true
-// });
 
 function initStyles() {
   /* STYLES insert start */
@@ -864,6 +858,9 @@ function initStyles() {
       transform: translateY(100%);
       cursor: pointer;
     }
+    .owl-carousel .item {
+      width: auto!important;
+    }
   `;
 
   let styles = document.createElement('style');
@@ -888,6 +885,7 @@ function initStyles() {
 
 document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
+  gaEvent('loaded');
 });
 function initExp() {
   console.log('InitExp');
@@ -1047,7 +1045,7 @@ function setDiscount() {
   $('.qty a').on('click', function () {
     setTimeout(() => {
       setTotalPrice();
-    }, 500);
+    }, 200);
   });
   $('.form-add-to-cart .text-center img').css('max-width', '350px');
 }
