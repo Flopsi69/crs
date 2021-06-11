@@ -1044,7 +1044,11 @@ function setDiscount() {
   $('.quantity').append(totalEl);
   setTotalPrice();
 
-  $('.qty a').on('click', setTotalPrice);
+  $('.qty a').on('click', function () {
+    setTimeout(() => {
+      setTotalPrice();
+    }, 500);
+  });
   $('.form-add-to-cart .text-center img').css('max-width', '350px');
 }
 
