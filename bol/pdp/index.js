@@ -1250,6 +1250,8 @@ function initDescr() {
   let tabTitle;
   $('.prod_desc .ui-tabs-nav .ui-tabs-anchor').each((i, el) => {
     tabTitle = $(el).text().trim();
+    console.log(tabTitle);
+
     // if (
     //   tabTitle.toLowerCase() == 'overview' ||
     //   tabTitle.toLowerCase() == 'video' ||
