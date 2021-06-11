@@ -1190,34 +1190,7 @@ function initStaticBlock() {
       
       <div class='lav-spec'>
         <div class='lav-spec__title'>Specifications</div>
-        <div class='lav-spec__table-wrap'>
-          <table class='lav-spec__table'>
-            <thead>
-              <tr>
-                <th>5 Watt / Osram</th>
-                <th>5 Watt / Osram</th>
-                <th>5 Watt / Osram</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Total Wattage</td>
-                <td>100w</td>
-                <td>60w</td>
-              </tr>
-              <tr>
-                <td>Total Wattage</td>
-                <td>100w</td>
-                <td>60w</td>
-              </tr>
-              <tr>
-                <td>Total Wattage</td>
-                <td>100w</td>
-                <td>60w</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div class='lav-spec__table-wrap'></div>
       </div>
       
       <div class='lav-spec-sub'>Our lights are built to run off of 9-36V DC, but we offer power converters for 110V AC</div>
@@ -1310,7 +1283,11 @@ function initDescr() {
     }
   });
 
-  $('.prod_desc').remove();
+  if (!$('.lav-spec__table-wrap table').length) {
+    $('.lav-spec__table-wrap').css('display', 'none');
+  }
+
+  $('.prod_desc').css('display', 'none');
 }
 
 function setRowSpec(index, el) {
