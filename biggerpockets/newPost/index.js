@@ -16,6 +16,21 @@ function gaEvent(action, label = '') {
   } catch (e) {}
 }
 
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+
+      console.log(node);
+    }
+  }
+});
+
+observer.observe(document.querySelector('body'), {
+  childList: true,
+  subtree: true
+});
+
 const REPO_DIR = 'https://flopsi69.github.io/crs/biggerpockets/newPost';
 
 /* STYLES insert start */
