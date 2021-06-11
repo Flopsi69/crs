@@ -33,6 +33,16 @@ hj('trigger', 'PDP_improvements');
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+
+      console.log(node);
+    }
+  }
+});
+
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
