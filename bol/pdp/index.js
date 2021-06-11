@@ -886,7 +886,7 @@ function initStyles() {
 //   }
 // }, 500);
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
 });
 function initExp() {
