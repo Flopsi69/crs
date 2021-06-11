@@ -34,7 +34,10 @@ let observerGlobal = new MutationObserver(mutations => {
   }
 });
 
-observerGlobal.observe(document.body, { childList: true, subtree: true });
+observerGlobal.observe(document.querySelector('body'), {
+  childList: true,
+  subtree: true
+});
 
 function initStyles() {
   /* STYLES insert start */
