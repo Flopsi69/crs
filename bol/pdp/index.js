@@ -16,26 +16,25 @@ function gaEvent(action, label = '') {
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 
-// let observerGlobal = new MutationObserver(mutations => {
-//   for (let mutation of mutations) {
-//     for (let node of mutation.addedNodes) {
-//       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
-//       if (!(node instanceof HTMLElement)) continue;
-//       console.log(node);
-//       if (
-//         node.querySelector('.pageContainer .container') &&
-//         node.querySelector('.products') &&
-//         node.querySelector('.category') &&
-//         !isInitExp
-//       ) {
-//         initExp();
-//         // observerGlobal.disconnect();
-//       }
-//     }
-//   }
-// });
+let observerGlobal = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      // if (
+      //   node.querySelector('.pageContainer .container') &&
+      //   node.querySelector('.products') &&
+      //   node.querySelector('.category') &&
+      //   !isInitExp
+      // ) {
+      //   initExp();
+      //   // observerGlobal.disconnect();
+      // }
+    }
+  }
+});
 
-// observerGlobal.observe(document.body, { childList: true, subtree: true });
+observerGlobal.observe(document.body, { childList: true, subtree: true });
 
 function initStyles() {
   /* STYLES insert start */
@@ -884,7 +883,7 @@ function initStyles() {
 //   }
 // }, 500);
 
-initExp();
+// initExp();
 function initExp() {
   console.log('InitExp');
 
