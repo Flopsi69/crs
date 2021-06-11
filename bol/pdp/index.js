@@ -1250,19 +1250,13 @@ function initDescr() {
   let tabTitle;
   $('.prod_desc .ui-tabs-nav .ui-tabs-anchor').each((i, el) => {
     tabTitle = $(el).text().trim();
-    if (
-      tabTitle.toLowerCase() == 'overview' ||
-      tabTitle.toLowerCase() == 'video' ||
-      tabTitle.toLowerCase() == 'product q+a'
-    ) {
-      let descrBlock = $(document.createElement('div'))
-        .addClass('lav-descr__block')
-        .append(
-          '<div class="lav-descr__title">' + $(el).text().trim() + ' </div>'
-        )
-        .append($($(el).attr('href')).html());
-      $('.lav-descr').append(descrBlock);
-    }
+    // if (
+    //   tabTitle.toLowerCase() == 'overview' ||
+    //   tabTitle.toLowerCase() == 'video' ||
+    //   tabTitle.toLowerCase() == 'product q+a'
+    // ) {
+
+    // }
 
     if (
       tabTitle.toLowerCase() == 'specs' &&
@@ -1280,6 +1274,14 @@ function initDescr() {
       $('.lav-spec__table tr td:first-child').each((i, el) => {
         setRowSpec(i, el);
       });
+    } else {
+      let descrBlock = $(document.createElement('div'))
+        .addClass('lav-descr__block')
+        .append(
+          '<div class="lav-descr__title">' + $(el).text().trim() + ' </div>'
+        )
+        .append($($(el).attr('href')).html());
+      $('.lav-descr').append(descrBlock);
     }
   });
 
