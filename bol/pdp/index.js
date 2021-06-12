@@ -901,10 +901,10 @@ function initStyles() {
 document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
   gaEvent('loaded');
-  console.log(document.querySelector('.prod_desc'));
-  console.log(document.querySelector('.prod_desc #tabs-2'));
 });
 function initExp() {
+  console.log(document.querySelector('.prod_desc'));
+  console.log(document.querySelector('.prod_desc #tabs-2'));
   console.log('InitExp');
 
   initStyles();
