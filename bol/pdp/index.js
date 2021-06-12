@@ -1264,26 +1264,21 @@ function initStaticBlock() {
 }
 
 function initDescr() {
-  $('.prod_desc')
-    .before('<div class="lav-descr"></div>')
-    .parent()
-    .removeClass('col-lg-10')
-    .addClass('col-lg-12')
-    .next()
-    .remove();
+  if (!$('.lav-descr').length) {
+    $('.prod_desc').css('display', 'none');
+
+    $('.prod_desc')
+      .before('<div class="lav-descr"></div>')
+      .parent()
+      .removeClass('col-lg-10')
+      .addClass('col-lg-12')
+      .next()
+      .remove();
+  }
+
   let tabTitle;
   $('.prod_desc .ui-tabs-nav .ui-tabs-anchor').each((i, el) => {
     tabTitle = $(el).text().trim();
-    console.log('tabTitle', tabTitle);
-
-    // if (
-    //   tabTitle.toLowerCase() == 'overview' ||
-    //   tabTitle.toLowerCase() == 'video' ||
-    //   tabTitle.toLowerCase() == 'product q+a'
-    // ) {
-
-    // }
-
     if (
       tabTitle.toLowerCase() == 'specs' &&
       $($(el).attr('href')).find('.product-spec').length
@@ -1316,9 +1311,9 @@ function initDescr() {
 
   if (!$('.lav-spec__table-wrap table').length) {
     $('.lav-spec__table-wrap').css('display', 'none');
+  } else {
+    $('.lav-spec__table-wrap').css('display', 'block');
   }
-
-  $('.prod_desc').css('display', 'none');
 }
 
 function setRowSpec(index, el) {
