@@ -903,8 +903,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   gaEvent('loaded');
 });
 function initExp() {
-  console.log(document.querySelector('.prod_desc'));
-  console.log(document.querySelector('.prod_desc #tabs-2'));
   console.log('InitExp');
 
   initStyles();
@@ -921,6 +919,15 @@ function initExp() {
     );
   }
   initStaticBlock();
+  let intervarlDescr = setInterval(() => {
+    if (!$('.lav-descr').html()) {
+      console.log('try init descr');
+      initDescr();
+    } else {
+      clearInterval(intervarlDescr);
+      console.log('clear');
+    }
+  }, 1000);
   initDescr();
   initOptions();
   initModal();
@@ -1267,7 +1274,7 @@ function initDescr() {
   let tabTitle;
   $('.prod_desc .ui-tabs-nav .ui-tabs-anchor').each((i, el) => {
     tabTitle = $(el).text().trim();
-    console.log(tabTitle);
+    console.log('tabTitle', tabTitle);
 
     // if (
     //   tabTitle.toLowerCase() == 'overview' ||
@@ -1281,6 +1288,8 @@ function initDescr() {
       tabTitle.toLowerCase() == 'specs' &&
       $($(el).attr('href')).find('.product-spec').length
     ) {
+      console.log('true1');
+
       $('.lav-spec__table-wrap')
         .html('')
         .append(
@@ -1294,6 +1303,7 @@ function initDescr() {
         setRowSpec(i, el);
       });
     } else {
+      console.log('true2');
       let descrBlock = $(document.createElement('div'))
         .addClass('lav-descr__block')
         .append(
