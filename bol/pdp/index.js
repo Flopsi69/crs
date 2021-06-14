@@ -1200,7 +1200,7 @@ function initStaticBlock() {
 
       <div class='lav-compability'>
         <div class='lav-compability__caption'>Compatibility</div>
-        <a href='tel:18003481287' class='lav-compability__call'>
+        <a href='tel:8003481287' class='lav-compability__call'>
           Call us 800-348-1287 to assist
           <img src='${REPO_DIR}/img/ico-3.svg'>
         </a>
@@ -1244,7 +1244,7 @@ function initStaticBlock() {
 
         <div class='lav-quest__call'>
           <div class='lav-quest__call-title'>We are here to assist in choosing the best fit </div>
-          <a href='tel:18003481287' class='lav-quest__call-btn'>
+          <a href='tel:8003481287' class='lav-quest__call-btn'>
             <span>Call us <b>800-348-1287</b> to assist</span>
             <img src='${REPO_DIR}/img/ico-3.svg'>
           </a>
