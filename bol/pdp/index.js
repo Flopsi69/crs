@@ -1433,13 +1433,13 @@ function initOptions() {
     }
   });
 
-  $(".lav-option__caption.modal-trigger").on('click').function(){
+  $('.lav-option__caption.modal-trigger').on('click', function () {
     if ($(this).data('modal-target').includes('optics')) {
       gaEvent("What's difference/Optics");
     } else {
       gaEvent("What's difference/LED");
     }
-  }
+  });
 }
 
 function initModal() {
