@@ -1260,6 +1260,19 @@ function initStaticBlock() {
   `;
 
   $('.items-info').prepend(blockEl);
+
+  document.querySelectorAll('.lav-options__item').forEach(item => {
+    item.addEventListener('click', function () {
+      if (item.innerText.includes('20 inch')) {
+        gaEvent('20 inch option');
+      } else if (item.innerText.includes('30 inch')) {
+        gaEvent('30 inch option');
+      }
+      if (item.innerText.includes('40 inch')) {
+        gaEvent('40 inch option');
+      }
+    });
+  });
 }
 
 function initDescr() {
