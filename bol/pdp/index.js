@@ -398,6 +398,11 @@ function initStyles() {
       max-width: 420px;
       width: 100%;
     }
+    .lav-quest__links {
+      border: 1px solid #DFDFDF;
+      padding: 20px;
+      border-radius: 0 6px 6px 6px;
+    }
     .lav-quest__label {
       display: inline-block;
       background: #333;
