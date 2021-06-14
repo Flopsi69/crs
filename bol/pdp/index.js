@@ -934,14 +934,15 @@ function initExp() {
     if (!$('.lav-descr').html()) {
       console.log('try init descr');
       initDescr();
-      initOptions();
     } else {
       clearInterval(intervarlDescr);
       console.log('clear');
     }
   }, 1000);
   initModal();
+  initOptions();
   test_accessory();
+
   // $('.form-add-to-cart').on('submit', function (e) {
   //   makeOrder(e);
   //   return false;
