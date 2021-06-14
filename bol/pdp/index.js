@@ -960,6 +960,21 @@ function initExp() {
     makeOrder(e);
     return false;
   });
+
+  $('.minus_btn').on('click', function (e) {
+    console.log('click quantity');
+    if (
+      document.querySelector('#quantity') &&
+      document.querySelector('#quantity').value == '1'
+    ) {
+      console.log(1);
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      console.log(2);
+      return false;
+    }
+  });
 }
 
 function makeOrder(e) {
