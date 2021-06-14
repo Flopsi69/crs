@@ -1422,11 +1422,6 @@ function initOptions() {
   $('.selector-wrapper .selector-wrapper').each((i, el) => {
     optionName = $(el).find('label').text().trim().toLowerCase();
     if (optionName == 'optics' || optionName == 'led') {
-      if (optionName == 'optics') {
-        gaEvent("What's difference/Optics");
-      } else {
-        gaEvent("What's difference/LED");
-      }
       $(el).prepend(
         $(document.createElement('div'))
           .addClass('lav-option__wrap')
@@ -1440,6 +1435,14 @@ function initOptions() {
       $(el).find('.lav-option__wrap').prepend($(el).find('label'));
     }
   });
+
+  $(".lav-option__caption.modal-trigger").on('click').function(){
+    if ($(this).data('modal-target').includes('optics')) {
+      gaEvent("What's difference/Optics");
+    } else {
+      gaEvent("What's difference/LED");
+    }
+  }
 }
 
 function initModal() {
