@@ -1277,8 +1277,8 @@ function initStaticBlock() {
     gaEvent('Call us/Compatibilit');
   });
 
-  $('.lav-compability__call').on('click', function () {
-    gaEvent('lav-combo__zoom');
+  $('.lav-combo__zoom').on('click', function () {
+    gaEvent('Zoom in combo diagram');
   });
 
   $('.lav-quest__call-btn').on('click', function () {
@@ -1327,8 +1327,6 @@ function initDescr() {
       tabTitle.toLowerCase() == 'specs' &&
       $($(el).attr('href')).find('.product-spec').length
     ) {
-      console.log('true1');
-
       $('.lav-spec__table-wrap')
         .html('')
         .append(
@@ -1342,7 +1340,6 @@ function initDescr() {
         setRowSpec(i, el);
       });
     } else {
-      console.log('true2');
       let descrBlock = $(document.createElement('div'))
         .addClass('lav-descr__block')
         .append(
