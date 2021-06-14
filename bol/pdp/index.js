@@ -972,7 +972,6 @@ function initExp() {
       e.stopImmediatePropagation();
       e.stopPropagation();
       console.log('prevent');
-
       return false;
     }
   });
