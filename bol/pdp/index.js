@@ -981,9 +981,6 @@ function makeOrder(e) {
     id: $('.form-add-to-cart').serialize().split('&')[0].split('=')[1]
   });
 
-  console.log('items', items);
-  console.log('items', JSON.stringify(items));
-
   fetch('/cart/add.js', {
     method: 'POST',
     headers: {
@@ -1526,7 +1523,6 @@ function initModal() {
 
 function test_accessory() {
   let products = getAcc();
-  console.log(products);
   let url = window.location.href;
   let title = $('#content .title h1').text().trim().toLowerCase();
   if (
@@ -1555,7 +1551,6 @@ function test_accessory() {
 }
 
 function additional_prod_html_generate(additionalProdObj) {
-  console.log('fire', additionalProdObj);
   var html = `
     <div class="lav-dropdown__wrap">
       <div class="lav-dropdown">
