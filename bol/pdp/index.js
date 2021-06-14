@@ -391,7 +391,7 @@ function initStyles() {
     .lav-quest {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       margin-top: 40px;
     }
     .lav-quest__form-wrap {
@@ -1230,15 +1230,11 @@ function initStaticBlock() {
       <div class='lav-quest'>
         <div class="lav-quest__form-wrap">
           <div class='lav-quest__label'>Have a question?</div>
+          <div class="lav-quest__links">
+            <a class="button_v3" href="https://www.blackoakled.com/pages/contact-sales">Contact Sales</a>
 
-          <a class="button_v3" href="https://www.blackoakled.com/pages/contact-sales">Contact Sales</a>
-
-          <a class="button_v3" href="https://www.blackoakled.com/pages/contact-support">Contact Support</a>
-          // <form class="lav-quest__form">
-          //   <textarea class='lav-quest__area' name="lav-quest__area" placeholder="Type here and we’ll contact you the same day" required=""></textarea>
-          //   <input type="email" name="question-email" placeholder="Email to respond" required="">
-          //   <button class="btn btn-success lav-quest__btn" type="submit" value="Submit">Submit</button>
-          // </form>
+            <a class="button_v3" href="https://www.blackoakled.com/pages/contact-support">Contact Support</a>
+          </div>
         </div>
 
         <div class='lav-quest__call'>
@@ -1270,6 +1266,12 @@ function initStaticBlock() {
       </div>
     </div>
   `;
+
+  // <form class="lav-quest__form">
+  //   <textarea class='lav-quest__area' name="lav-quest__area" placeholder="Type here and we’ll contact you the same day" required=""></textarea>
+  //   <input type="email" name="question-email" placeholder="Email to respond" required="">
+  //   <button class="btn btn-success lav-quest__btn" type="submit" value="Submit">Submit</button>
+  // </form>
 
   $('.items-info').prepend(blockEl);
 
@@ -1510,7 +1512,7 @@ function initModal() {
     $('.modal__body').slideUp();
   }
 
-  $('.modal-trigger').click(function (e) {
+  $(document).on('click', '.modal-trigger', function (e) {
     e.preventDefault();
     let target = $(this).data('modal-target');
     $('.modal').addClass('modal_active');
