@@ -6,6 +6,7 @@ function gaEvent(action) {
       eventCategory: 'Exp - PDP improvements',
       eventAction: action
     };
+    console.log('fireEvent', eventObj);
     dataLayer.push(eventObj);
   } catch (e) {}
 }
@@ -899,11 +900,21 @@ function initStyles() {
 // }, 500);
 
 document.addEventListener('DOMContentLoaded', function (event) {
-  initExp();
-  gaEvent('loaded');
+  if (!isInitExp) {
+    initExp();
+  }
 });
+
+setTimeout(() => {
+  if (!isInitExp) {
+    initExp();
+  }
+}, 2500);
+
 function initExp() {
   console.log('InitExp');
+  isInitExp = true;
+  gaEvent('loaded');
 
   initStyles();
   changeDom();
@@ -1222,11 +1233,14 @@ function initStaticBlock() {
         <div class="lav-quest__form-wrap">
           <div class='lav-quest__label'>Have a question?</div>
 
-          <form class="lav-quest__form">
-            <textarea class='lav-quest__area' name="lav-quest__area" placeholder="Type here and we’ll contact you the same day" required=""></textarea>
-            <input type="email" name="question-email" placeholder="Email to respond" required="">
-            <button class="btn btn-success lav-quest__btn" type="submit" value="Submit">Submit</button>
-          </form>
+          <a class="button_v3" href="https://www.blackoakled.com/pages/contact-sales">Contact Sales</a>
+
+          <a class="button_v3" href="https://www.blackoakled.com/pages/contact-support">Contact Support</a>
+          // <form class="lav-quest__form">
+          //   <textarea class='lav-quest__area' name="lav-quest__area" placeholder="Type here and we’ll contact you the same day" required=""></textarea>
+          //   <input type="email" name="question-email" placeholder="Email to respond" required="">
+          //   <button class="btn btn-success lav-quest__btn" type="submit" value="Submit">Submit</button>
+          // </form>
         </div>
 
         <div class='lav-quest__call'>
@@ -1260,6 +1274,26 @@ function initStaticBlock() {
   `;
 
   $('.items-info').prepend(blockEl);
+
+  $('.lav-compability__call').on('click', function () {
+    gaEvent('Call us/Compatibilit');
+  });
+
+  $('.lav-compability__call').on('click', function () {
+    gaEvent('lav-combo__zoom');
+  });
+
+  $('.lav-quest__call-btn').on('click', function () {
+    gaEvent('Call us/Assist');
+  });
+
+  $('.owl-next').on('click', function () {
+    gaEvent('right arrow images');
+  });
+
+  $('.owl-prev').on('click', function () {
+    gaEvent('left arrow images');
+  });
 
   document.querySelectorAll('.lav-options__item').forEach(item => {
     item.addEventListener('click', function () {
@@ -1368,6 +1402,7 @@ function setRowSpec(index, el) {
     $(el)
       .find('.lav-spec__icon')
       .on('click', function () {
+        gaEvent('info tooltip on tech spec table');
         $('.lav-spec__tip-body').hide();
         $(this).siblings('.lav-spec__tip-body').show();
       });
@@ -1375,6 +1410,7 @@ function setRowSpec(index, el) {
     $(el)
       .find('.lav-spec__tip-close')
       .on('click', function () {
+        gaEvent('close info tooltip on tech spec table');
         $(this).parent().hide();
       });
   }
@@ -1385,6 +1421,11 @@ function initOptions() {
   $('.selector-wrapper .selector-wrapper').each((i, el) => {
     optionName = $(el).find('label').text().trim().toLowerCase();
     if (optionName == 'optics' || optionName == 'led') {
+      if (optionName == 'optics') {
+        gaEvent("What's difference/Optics");
+      } else {
+        gaEvent("What's difference/LED");
+      }
       $(el).prepend(
         $(document.createElement('div'))
           .addClass('lav-option__wrap')
@@ -1446,10 +1487,22 @@ function initModal() {
   $('.modal__close').click(function (e) {
     e.preventDefault();
     modalClose();
+    if (
+      $(this).closest('.modal__body').hasClass('modal-led') ||
+      $(this).closest('.modal__body').hasClass('modal-optics')
+    ) {
+      gaEvent("close What's difference");
+    }
   });
 
   $('.modal').click(function (e) {
     if ($(e.target).hasClass('modal_active')) {
+      if (
+        $('.modal-led').css('display') == 'block' ||
+        $('.modal-optics').css('display') == 'block'
+      ) {
+        gaEvent("close What's difference");
+      }
       modalClose();
     }
   });
@@ -1511,6 +1564,11 @@ function additional_prod_html_generate(additionalProdObj) {
   $('#addToCartForm .selector-wrapper').first().append(html);
 
   $('.lav-dropdown__head').on('click', function () {
+    if ($('.lav-dropdown__head').hasClass('active')) {
+      gaEvent('close Mounting and Accessories');
+    } else {
+      gaEvent('unfold Mounting and Accessories');
+    }
     if (!$('.lav-dropdown__item.active').length) {
       $('.lav-dropdown__head').toggleClass('active');
       $('.lav-dropdown__list').slideToggle();
@@ -1556,6 +1614,7 @@ function additional_prod_html_generate(additionalProdObj) {
 
   $('.lav-dropdown__item-cart').on('click', function (e) {
     e.preventDefault();
+    gaEvent('Add item on Mounting and Accessories');
     if (
       !$(this)
         .closest('.lav-dropdown__item')
