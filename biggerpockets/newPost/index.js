@@ -38,6 +38,7 @@ let stylesList = `
   .lav-up {
     position: relative;
     display: flex;
+    align-items: flex-start;
     max-width: 565px;
     background: #FFFFFF;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.09);
@@ -46,8 +47,8 @@ let stylesList = `
   }
   .lav-up__close {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 23px;
+    right: 23px;
     width: 18px;
     height: 18px;
     transition: 0.2s;
@@ -60,10 +61,18 @@ let stylesList = `
     opacity: 0.8;
   }
   .lav-up__photo {
+    position: relative;
     margin-right: 30px;
     width: 100px;
     line-height: 0;
     flex-shrink: 0;
+    border: 3px solid #4197ED;
+    border-radius: 50px;
+  }
+  .lav-up__photo-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
   .lav-up__photo img {
     max-width: 100%;
@@ -109,11 +118,20 @@ function initExp() {
     <div class="lav-up">
       <svg class="lav-up__close" fill='#99A0A6' xmlns="http://www.w3.org/2000/svg" width="357" height="357" viewBox="0 0 357 357"><path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z"/></svg>
 
-      <div class="lav-up__photo"></div>
+      <div class="lav-up__photo">
+        <img class='lav-up__photo-icon' src='${REPO_DIR}/icon-photo.svg'/>
+      </div>
       <div class="lav-up__info">
         <div class="lav-up__title">Upgrade to PRO</div>
 
-        <div class="lav-up__descr">Get a <strong>10X</strong> more attention, comments, and replies with <br> a PRO badge & many other features.</div>
+        <div class="lav-up__descr">
+        Pro members get
+         <ul>
+          <li>54% more colleague requests than free members</li>
+          <li>exclusive access to member-only forums</li>
+         </ul>
+         and more other benefits.
+        </div>
 
         <a class="button lav-up__link" href="https://www.biggerpockets.com/membership-types">Upgrade to PRO</a>
       </div>
