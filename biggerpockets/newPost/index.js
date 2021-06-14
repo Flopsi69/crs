@@ -66,8 +66,6 @@ let stylesList = `
     width: 100px;
     line-height: 0;
     flex-shrink: 0;
-    border: 3px solid #4197ED;
-    border-radius: 50px;
   }
   .lav-up__photo-icon {
     position: absolute;
@@ -77,6 +75,8 @@ let stylesList = `
   .lav-up__photo img {
     max-width: 100%;
     max-height: 100%;
+    border: 3px solid #4197ED;
+    border-radius: 100%;
   }
   .lav-up__title {
     margin-bottom: 20px;
