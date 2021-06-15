@@ -170,6 +170,7 @@ function initStyles() {
     }
     .lav-options__list {
       display: flex;
+      overflow-x: auto;
     }
     .lav-options__caption {
       font-size: 22px;
@@ -208,6 +209,9 @@ function initStyles() {
       text-align: center;
       color: #000000;
       margin-bottom: 40px;
+    }
+    .lav-descr iframe {
+      max-width: 100%;
     }
     .lav-feautures {
       display: grid;
