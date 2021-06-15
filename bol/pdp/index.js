@@ -112,6 +112,7 @@ function initStyles() {
     }
     .lav-free-shipping {
       font-weight: bold;
+      white-space: nowrap;
       font-size: 14px;
       line-height: 1;
       text-align: center;
@@ -882,6 +883,145 @@ function initStyles() {
     .owl-carousel .item {
       width: auto!important;
     }
+    @media(max-width: 767px) {
+      .form-add-to-cart {
+        margin: 30px -15px 0;
+      }
+      .div.prod_class .title h1 {
+        font-size: 22px;
+        line-height: 26px;
+        margin-bottom: 0;
+      }
+      .template-product .owl-carousel {
+        margin-top: 0;
+      }
+      .owl-item .item {
+        height: 100px!important;
+      }
+      .pro_main_c .col-lg-12 .col-md-7 {
+        padding: 0;
+      }
+      .lav-discount {
+        right: -8px;
+        top: -4px;
+      }
+      .lav-free-shipping {
+        font-size: 12px;
+        position: relative;
+        top: -3px;
+      }
+      #productPrice-manual .money {
+        padding-left: 0!important;
+      }
+      #content .pro_main_c .desc_blk .review_row {
+        padding: 0;
+      }
+      .form-add-to-cart .rte {
+        margin-top: 15px;
+      }
+      .lav-discount__value {
+        padding: 11px 10px 9px;
+      }
+      .template-product .qty {
+        width: auto;
+      }
+      .mobile-only-show-block {
+        display: none!important;
+      }
+      .lav-options {
+        display: block;
+      }
+      .lav-options__caption {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 17px;
+      }
+      .options__list {
+        overflow-x: auto;
+      }
+      .lav-options__item {
+        min-width: 120px;
+      }
+      .lav-options__item + .lav-options__item {
+        margin-left: 12px;
+      }
+      .lav-quest {
+        flex-flow: column-reverse;
+        margin-top: 30px;
+      }
+      .lav-quest__call {
+        padding: 0;
+        border: none;
+        margin-bottom: 35px;
+      }
+      .lav-quest__links a {
+        flex-grow: 1;
+        white-space: nowrap;
+      }
+      .lav-quest__links a + a {
+        margin-left: 10px;
+      }
+      .lav-quest__links {
+        display: flex;
+      }
+      .lav-inc {
+        display: block;
+        margin-top: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .lav-inc__block {
+        width: 100%;
+      }
+      .lav-inc__block + .lav-inc__block {
+        margin-top: 35px;
+      }
+      .lav-descr__block {
+        max-width: 100%;
+      }
+      .lav-descr__title {
+        margin-bottom: 10px;
+      }
+      .lav-descr__block + .lav-descr__block {
+        padding-top: 20px;
+        margin-top: 15px
+      }
+      .lav-options {
+        padding-bottom: 0;
+        border: none;
+      }
+      .lav-spec__title {
+        margin-bottom: 20px
+      }
+      .lav-spec__table-wrap {
+        padding-left: 20px;
+      }
+      .lav-spec__tip {
+        left: -27px;
+      }
+      .lav-spec__tip-body {
+        width: 300px;
+      }
+      .lav-pluses {
+        display: block;
+      }
+      .lav-pluses__item {
+        max-width: 100%;
+        line-height: 24px;
+      }
+      .lav-pluses__item + .lav-pluses__item {
+        margin-top: 25px;
+      }
+      .lav-info {
+        display: block;
+      }
+      .lav-feautures {
+        gap: 20px;
+      }
+      .lav-combo__wrap {
+        max-width: 100%;
+      }
+    }
   `;
 
   let styles = document.createElement('style');
@@ -962,7 +1102,7 @@ function initExp() {
   });
 
   $('.minus_btn').on('click', function (e) {
-    console.log('click quantity');
+    console.log('click quantity', document.querySelector('#quantity').value);
     if (
       (document.querySelector('#quantity') &&
         document.querySelector('#quantity').value == '1') ||
@@ -971,7 +1111,7 @@ function initExp() {
       e.preventDefault();
       e.stopImmediatePropagation();
       e.stopPropagation();
-      console.log('prevent');
+      console.log('prevent', document.querySelector('#quantity').value);
       return false;
     }
   });
@@ -1294,6 +1434,12 @@ function initStaticBlock() {
   // </form>
 
   $('.items-info').prepend(blockEl);
+
+  if ($(window).width() < 767) {
+    $('.lav-quest').before($('.lav-options'));
+    $('.lav-info').before($('.lav-compability'));
+    $('.lav-compability').before($('.lav-combo__wrap'));
+  }
 
   $('.lav-compability__call').on('click', function () {
     gaEvent('Call us/Compatibilit');

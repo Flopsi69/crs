@@ -62,21 +62,23 @@ let stylesList = `
   }
   .lav-up__photo {
     position: relative;
-    margin-right: 30px;
+    margin-right: 35px;
     width: 100px;
     line-height: 0;
     flex-shrink: 0;
+    margin-top: 10px;
   }
   .lav-up__photo-icon {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: -7px;
+    top: -7px;
   }
-  .lav-up__photo img {
+  .lav-up__photo .avatar {
     max-width: 100%;
     max-height: 100%;
     border: 3px solid #4197ED;
     border-radius: 100%;
+    box-sizing: border-box;
   }
   .lav-up__title {
     margin-bottom: 20px;
@@ -90,6 +92,11 @@ let stylesList = `
     line-height: 21px;
     color: #34414D;
     margin-bottom: 20px;
+  }
+  .lav-up__descr ul {
+    list-style: disc;
+    margin: 5px 0;
+    padding-left: 25px;
   }
   .lav-up__link {
     max-width: 205px;
