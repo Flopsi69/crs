@@ -310,13 +310,13 @@ function initStyles() {
       font-weight: bold;
       font-size: 16px;
       line-height: 1;
-      color: #096DD9;
+      color: #096DD9!important;
       border: 1px solid #096DD9;
       border-radius: 6px;
       transition: 0.2s;
     }
     .lav-compability__call:hover {
-      background: #e4e4e4;
+      background: #e4e4e4!important;
     }
     .lav-compability__call img {
       margin-left: 20px;
@@ -990,6 +990,9 @@ function initStyles() {
         padding-bottom: 0;
         border: none;
       }
+      .lav-spec {
+        padding-top: 40px;
+      }
       .lav-spec__title {
         margin-bottom: 20px
       }
@@ -1004,6 +1007,7 @@ function initStyles() {
       }
       .lav-pluses {
         display: block;
+        margin-top: 40px;
       }
       .lav-pluses__item {
         max-width: 100%;
@@ -1020,6 +1024,31 @@ function initStyles() {
       }
       .lav-combo__wrap {
         max-width: 100%;
+        padding-top: 20px;
+        margin-top: 25px;
+        border-top: 1px solid #DFDFDF;
+        border-bottom: 1px solid #DFDFDF;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        max-width: 311px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .lav-info {
+        padding-bottom: 50px;
+        border-bottom: 1px solid #DFDFDF;
+      }
+      .lav-compability {
+        display: block
+        padding: 22px 16px 25px;
+      }
+      .lav-compability__caption {
+        text-align: center;
+        margin-bottom: 25px;
+      }
+      .lav-combo__image {
+        text-align: center;
+        width: 150px;
       }
     }
   `;
