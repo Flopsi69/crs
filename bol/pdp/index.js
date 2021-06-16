@@ -891,7 +891,7 @@ function initStyles() {
       .form-add-to-cart {
         margin: 30px -15px 0;
       }
-      .div.prod_class .title h1 {
+      .template-product .prod_class .title h1 {
         font-size: 22px;
         line-height: 26px;
         margin-bottom: 0;
