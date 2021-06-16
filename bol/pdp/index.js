@@ -48,6 +48,8 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 //   childList: true,
 //   subtree: true
 // });
+document.querySelector('body').style.opacity = '0';
+document.querySelector('body').style.transtion = '0.3s';
 
 function initStyles() {
   /* STYLES insert start */
@@ -1118,6 +1120,7 @@ function initExp() {
     } else {
       clearInterval(intervarlDescr);
       console.log('clear');
+      document.querySelector('body').style.opacity = '1';
     }
   }, 250);
   initModal();
