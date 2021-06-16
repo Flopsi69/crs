@@ -1043,7 +1043,7 @@ function initStyles() {
         border-bottom: 1px solid #DFDFDF;
       }
       .lav-compability {
-        display: block
+        display: block;
         padding: 22px 16px 25px;
       }
       .lav-compability__caption {
