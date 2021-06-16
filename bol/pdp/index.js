@@ -49,13 +49,13 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 //   subtree: true
 // });
 if (document.querySelector('body')) {
-  document.querySelector('body').style.opacity = '0.3';
+  document.querySelector('body').style.opacity = '0.15';
   document.querySelector('body').style.transtion = '0.3s';
 } else {
   setTimeout(() => {
-    document.querySelector('body').style.opacity = '0.3';
+    document.querySelector('body').style.opacity = '0.15';
     document.querySelector('body').style.transtion = '0.3s';
-  }, 400);
+  }, 300);
 }
 
 function initStyles() {
@@ -1142,11 +1142,6 @@ function initExp() {
     });
   }
 
-  // $('.form-add-to-cart').on('submit', function (e) {
-  //   makeOrder(e);
-  //   return false;
-  // });
-
   $('#content .pro_main_c .desc_blk').append(
     "<div class='lav-fake-btn'></div>"
   );
@@ -1169,6 +1164,13 @@ function initExp() {
       opacity: 1,
       pointerEvents: 'auto'
     });
+  });
+
+  $('.featured-image-div').on('click', function () {
+    console.log(this.querySelector('img').src);
+    $('modal-zoom-slider').find('img')[0].src = this.querySelector('img').src;
+    $('.modal').addClass('modal_active');
+    $('.modal-zoom-slider').slideDown();
   });
 }
 
@@ -1667,6 +1669,9 @@ function initModal() {
   <div class="modal">
     <div class="modal__body modal-zoom">
       <img src="${REPO_DIR}/img/image-zoomed.jpeg" alt="Flood lights">
+    </div>
+    <div class="modal__body modal-zoom-slider">
+      <img src="" alt="Flood lights">
     </div>
     <div class="modal__body modal-optics">
       <div class='modal__head'>
