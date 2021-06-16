@@ -1166,12 +1166,15 @@ function initExp() {
     });
   });
 
-  $('#main-product-image').on('click', function () {
-    console.log(this.querySelector('img').src);
-    $('.modal-zoom-slider').find('img')[0].src = this.querySelector('img').src;
-    $('.modal').addClass('modal_active');
-    $('.modal-zoom-slider').slideDown();
-  });
+  if ($(window).width() < 768) {
+    $('#main-product-image').on('click', function () {
+      console.log(this.querySelector('img').src);
+      $('.modal-zoom-slider').find('img')[0].src =
+        this.querySelector('img').src;
+      $('.modal').addClass('modal_active');
+      $('.modal-zoom-slider').slideDown();
+    });
+  }
 }
 
 function makeOrder(e) {
