@@ -756,30 +756,18 @@
 
         console.log(node);
 
-        // if (
-        //   node.classList.contains('modal-container') &&
-        //   node.querySelector('.price-table-classic__download-btn')
-        // ) {
-        //   localStorage.setItem('lavLicenseType', 'none');
-
-        //   document
-        //     .querySelector('.price-table-classic')
-        //     .insertAdjacentElement('beforebegin', createSizes());
-
-        //   createLicenses();
-        // }
-
-        // if (
-        //   node.classList.contains('modal-overlay') &&
-        //   document.querySelector('.price-table-classic')
-        // ) {
-        //   document
-        //     .querySelector('.price-table-classic')
-        //     .insertAdjacentElement('beforebegin', createSizes());
-        //   createLicenses();
-        // }
-
         if (
+          node.classList.contains('modal-container') &&
+          node.querySelector('.price-table-classic__download-btn')
+        ) {
+          localStorage.setItem('lavLicenseType', 'none');
+
+          document
+            .querySelector('.price-table-classic')
+            .insertAdjacentElement('beforebegin', createSizes());
+
+          createLicenses();
+        } else if (
           node.classList.contains('view-file-box__image') &&
           document.querySelector('.price-table-classic') &&
           node.querySelector('.price-table-classic__download-btn')
@@ -795,6 +783,16 @@
             .insertAdjacentElement('beforebegin', createSizes());
           createLicenses();
         }
+
+        // else if (
+        //   node.classList.contains('modal-overlay') &&
+        //   document.querySelector('.price-table-classic')
+        // ) {
+        //   document
+        //     .querySelector('.price-table-classic')
+        //     .insertAdjacentElement('beforebegin', createSizes());
+        //   createLicenses();
+        // }
 
         if (node.classList.contains('price-table-classic')) {
           node
