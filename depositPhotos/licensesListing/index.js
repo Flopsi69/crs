@@ -769,6 +769,16 @@
           createLicenses();
         }
 
+        if (
+          node.classList.contains('modal-overlay') &&
+          document.querySelector('.price-table-classic')
+        ) {
+          document
+            .querySelector('.price-table-classic')
+            .insertAdjacentElement('beforebegin', createSizes());
+          createLicenses();
+        }
+
         if (node.classList.contains('price-table-classic')) {
           node
             .querySelectorAll('.price-table-classic__row')
@@ -858,6 +868,8 @@
   }
 
   function createLicenses() {
+    console.log('createLicenses');
+
     document
       .querySelector('.price-table-classic')
       .insertAdjacentHTML('beforebegin', licensesEl);
