@@ -1054,6 +1054,9 @@ function initStyles() {
         text-align: center;
         width: 150px;
       }
+      .a_plus img {
+        max-width: 100%;
+      }
     }
   `;
 
@@ -1116,9 +1119,11 @@ function initExp() {
       clearInterval(intervarlDescr);
       console.log('clear');
     }
-  }, 1000);
+  }, 250);
   initModal();
-  initOptions();
+  setTimeout(() => {
+    initOptions();
+  }, 600);
   test_accessory();
 
   // $('.form-add-to-cart').on('submit', function (e) {
