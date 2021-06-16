@@ -1166,9 +1166,9 @@ function initExp() {
     });
   });
 
-  $('.featured-image-div').on('click', function () {
+  $('#main-product-image').on('click', function () {
     console.log(this.querySelector('img').src);
-    $('modal-zoom-slider').find('img')[0].src = this.querySelector('img').src;
+    $('.modal-zoom-slider').find('img')[0].src = this.querySelector('img').src;
     $('.modal').addClass('modal_active');
     $('.modal-zoom-slider').slideDown();
   });
