@@ -769,8 +769,7 @@
           createLicenses();
         } else if (
           node.classList.contains('view-file-box__image') &&
-          document.querySelector('.price-table-classic') &&
-          node.querySelector('.price-table-classic__download-btn')
+          document.querySelector('.price-table-classic')
         ) {
           if (document.querySelector('.lav-sizes')) {
             document.querySelector('.lav-sizes').remove();
