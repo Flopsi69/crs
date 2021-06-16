@@ -784,6 +784,15 @@
           document.querySelector('.price-table-classic') &&
           node.querySelector('.price-table-classic__download-btn')
         ) {
+          if (document.querySelector('.lav-sizes')) {
+            document.querySelector('.lav-sizes').remove();
+          }
+          if (document.querySelector('.lav-licenses')) {
+            document.querySelector('.lav-licenses').remove();
+          }
+          document
+            .querySelector('.price-table-classic')
+            .insertAdjacentElement('beforebegin', createSizes());
           createLicenses();
         }
 
