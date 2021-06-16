@@ -893,6 +893,10 @@
       .querySelector('.price-table-classic')
       .insertAdjacentHTML('beforebegin', licensesEl);
 
+    if (!document.querySelector('.lav-size_extended')) {
+      document.querySelector('.lav-license_extended').remove();
+    }
+
     document
       .querySelector('.lav-license__modal-trigger')
       .insertAdjacentHTML(
