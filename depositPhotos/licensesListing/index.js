@@ -778,8 +778,8 @@
           if (document.querySelector('.lav-licenses')) {
             document.querySelector('.lav-licenses').remove();
           }
-          if (document.querySelector('lav-license__modal-trigger')) {
-            document.querySelector('lav-license__modal-trigger').remove();
+          if (document.querySelector('.lav-license__modal-trigger')) {
+            document.querySelector('.lav-license__modal-trigger').remove();
           }
 
           document
