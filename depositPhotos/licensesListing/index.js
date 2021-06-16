@@ -769,13 +769,20 @@
           createLicenses();
         }
 
+        // if (
+        //   node.classList.contains('modal-overlay') &&
+        //   document.querySelector('.price-table-classic')
+        // ) {
+        //   document
+        //     .querySelector('.price-table-classic')
+        //     .insertAdjacentElement('beforebegin', createSizes());
+        //   createLicenses();
+        // }
+
         if (
-          node.classList.contains('modal-overlay') &&
+          node.classList.contains('view-file-box__image') &&
           document.querySelector('.price-table-classic')
         ) {
-          document
-            .querySelector('.price-table-classic')
-            .insertAdjacentElement('beforebegin', createSizes());
           createLicenses();
         }
 
