@@ -999,9 +999,14 @@
     let dim =
       sizeEl.querySelector('.price-table-classic__text-size').innerText +
       sizeEl.querySelector('.price-table-classic__text-type').innerText;
-    let params = sizeEl.querySelector(
-      '.price-table-classic__text-size-details'
-    ).innerText;
+    let params;
+    if (sizeEl.querySelector('.price-table-classic__text-size-details')) {
+      params = sizeEl.querySelector(
+        '.price-table-classic__text-size-details'
+      ).innerText;
+    } else {
+      params = 'Scalable to any size';
+    }
 
     if (sizeEl.querySelector('.icon-size-extended')) {
       newSizeEl.classList.add('lav-size_extended');
