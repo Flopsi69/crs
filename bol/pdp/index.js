@@ -1257,7 +1257,11 @@ function changeDom() {
 }
 
 function setDiscount() {
-  let discountVal = $('#comparePrice-manual').text().trim().replace('$', '');
+  let discountVal = $('#comparePrice-manual')
+    .text()
+    .trim()
+    .replace('$', '')
+    .replace(',', '');
   console.log('discountVal', discountVal);
   let currentPrice;
 
@@ -1265,12 +1269,14 @@ function setDiscount() {
     currentPrice = $('#productPrice-manual .money .money')
       .text()
       .trim()
-      .replace('$', '');
+      .replace('$', '')
+      .replace(',', '');
   } else {
     currentPrice = $('#productPrice-manual .money')
       .text()
       .trim()
-      .replace('$', '');
+      .replace('$', '')
+      .replace(',', '');
   }
 
   discountVal = 100 - (currentPrice * 100) / discountVal;
@@ -1308,12 +1314,18 @@ function setTotalPrice() {
   let totalPrice;
   if ($('#productPrice-manual .money .money').length) {
     totalPrice =
-      $('#productPrice-manual .money .money').text().trim().replace('$', '') *
-      $('#quantity').val();
+      $('#productPrice-manual .money .money')
+        .text()
+        .trim()
+        .replace('$', '')
+        .replace(',', '') * $('#quantity').val();
   } else {
     totalPrice =
-      $('#productPrice-manual .money').text().trim().replace('$', '') *
-      $('#quantity').val();
+      $('#productPrice-manual .money')
+        .text()
+        .trim()
+        .replace('$', '')
+        .replace(',', '') * $('#quantity').val();
   }
 
   $('.lav-dropdown__item.active').each((i, el) => {
@@ -1327,7 +1339,12 @@ function setTotalPrice() {
       totalPrice =
         totalPrice +
         parseFloat(
-          $(el).find('.lav-dropdown__item-price').text().trim().replace('$', '')
+          $(el)
+            .find('.lav-dropdown__item-price')
+            .text()
+            .trim()
+            .replace('$', '')
+            .replace(',', '')
         );
     }
   });
