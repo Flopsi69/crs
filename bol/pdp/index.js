@@ -1069,6 +1069,9 @@ function initStyles() {
       .a_plus img {
         max-width: 100%;
       }
+      #quantity {
+        pointer-events: none;
+      }
     }
   `;
 
