@@ -1308,6 +1308,11 @@ function setDiscount() {
     }, 200);
   });
   $('.form-add-to-cart .text-center img').css('max-width', '350px');
+
+  $(document).on('input', '#quantity', function () {
+    this.value = this.value.replace(/\D/g, '');
+    setTotalPrice();
+  });
 }
 
 function setTotalPrice() {
