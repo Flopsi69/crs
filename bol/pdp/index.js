@@ -1670,7 +1670,10 @@ function initOptions() {
   let optionName;
   $('.selector-wrapper .selector-wrapper').each((i, el) => {
     optionName = $(el).find('label').text().trim().toLowerCase();
-    if (optionName == 'optics' || optionName == 'led') {
+    if (
+      optionName.toLowerCase().includes('optics') ||
+      optionName.toLowerCase().includes('led')
+    ) {
       $(el).prepend(
         $(document.createElement('div'))
           .addClass('lav-option__wrap')
