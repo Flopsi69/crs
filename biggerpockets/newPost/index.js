@@ -108,14 +108,14 @@ let stylesList = `
 // connect to DOM
 
 /* STYLES insert end */
-// if (
-//   sessionStorage.getItem('closeExpBanner') != 'yes' &&
-//   !document.querySelector('.nav-section-pro-only')
-// ) {
-document.addEventListener('DOMContentLoaded', function (event) {
-  initExp();
-});
-// }
+if (
+  sessionStorage.getItem('closeExpBanner') != 'yes' &&
+  !document.querySelector('.nav-section-pro-only')
+) {
+  document.addEventListener('DOMContentLoaded', function (event) {
+    initExp();
+  });
+}
 function initExp() {
   console.log('initExp');
   let styles = document.createElement('style');
