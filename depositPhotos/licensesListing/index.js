@@ -1798,6 +1798,14 @@
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
     document
+      .querySelector('.go-modal__wrap')
+      .addEventListener('click', function (e) {
+        if (e.target.classList.contains('go-modal__wrap')) {
+          document.querySelector('.go-modal__wrap').style.display = 'none';
+        }
+      });
+
+    document
       .querySelector('.go-modal__close')
       .addEventListener('click', function () {
         document.querySelector('.go-modal__wrap').style.display = 'none';
