@@ -1136,19 +1136,23 @@ function initExp() {
       document.querySelector('body').style.opacity = '1';
 
       $('.minus_btn').on('click', function (e) {
-        if ($('#quantity').val() == '1' || $('#quantity').val() == '0') {
-          $('.qty .minus_btn').css({
-            opacity: 0,
-            pointerEvents: 'none'
-          });
-        }
+        setTimeout(() => {
+          if ($('#quantity').val() == '1' || $('#quantity').val() == '0') {
+            $('.qty .minus_btn').css({
+              opacity: 0,
+              pointerEvents: 'none'
+            });
+          }
+        }, 100);
       });
 
       $('.plus_btn').on('click', function () {
-        $('.qty .minus_btn').css({
-          opacity: 1,
-          pointerEvents: 'auto'
-        });
+        setTimeout(() => {
+          $('.qty .minus_btn').css({
+            opacity: 1,
+            pointerEvents: 'auto'
+          });
+        }, 100);
       });
     }
   }, 250);
