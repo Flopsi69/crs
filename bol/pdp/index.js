@@ -1674,6 +1674,11 @@ function initOptions() {
       optionName.toLowerCase().includes('optics') ||
       optionName.toLowerCase().includes('led')
     ) {
+      if (optionName.toLowerCase().includes('optics')) {
+        optionName = 'optics';
+      } else {
+        optionName = 'led';
+      }
       $(el).prepend(
         $(document.createElement('div'))
           .addClass('lav-option__wrap')
