@@ -1134,6 +1134,22 @@ function initExp() {
       clearInterval(intervarlDescr);
       console.log('clear');
       document.querySelector('body').style.opacity = '1';
+
+      $('.minus_btn').on('click', function (e) {
+        if ($('#quantity').val() == '1' || $('#quantity').val() == '0') {
+          $('.qty .minus_btn').css({
+            opacity: 0,
+            pointerEvents: 'none'
+          });
+        }
+      });
+
+      $('.plus_btn').on('click', function () {
+        $('.qty .minus_btn').css({
+          opacity: 1,
+          pointerEvents: 'auto'
+        });
+      });
     }
   }, 250);
   initModal();
@@ -1154,22 +1170,6 @@ function initExp() {
   $('.lav-fake-btn').on('click', function (e) {
     makeOrder(e);
     return false;
-  });
-
-  $('.minus_btn').on('click', function (e) {
-    if ($('#quantity').val() == '1' || $('#quantity').val() == '0') {
-      $('.qty .minus_btn').css({
-        opacity: 0,
-        pointerEvents: 'none'
-      });
-    }
-  });
-
-  $('.plus_btn').on('click', function () {
-    $('.qty .minus_btn').css({
-      opacity: 1,
-      pointerEvents: 'auto'
-    });
   });
 
   // if ($(window).width() < 768) {
