@@ -164,4 +164,9 @@ function initExp() {
       sessionStorage.setItem('closeExpBanner', 'yes');
       document.querySelector('.lav-up').remove();
     });
+
+  if (document.querySelector('#topic_title')) {
+    console.log('click topic');
+    document.querySelector('#topic_title').click();
+  }
 }
