@@ -411,6 +411,21 @@
     left: 8px;
     top: -18px;
   }
+  .lav-license_standard_free .lav-license__label:before {
+    content: 'Free';
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background: red;
+    padding: 3px 7px;
+    color: #fff;
+    font-size: 10px;
+    border-radius: 5px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 `;
 
   // if (!document.querySelector('.auth-box')) {
@@ -892,6 +907,21 @@
     document
       .querySelector('.price-table-classic')
       .insertAdjacentHTML('beforebegin', licensesEl);
+
+    if (
+      document.querySelector(
+        '.price-table-classic__row .price-table-classic__text_red.price-table-classic__text'
+      ) &&
+      document
+        .querySelector(
+          '.price-table-classic__row .price-table-classic__text_red.price-table-classic__text'
+        )
+        .innerText.trim() == 'Free'
+    ) {
+      document
+        .querySelector('.lav-license_standard')
+        .classList.add('lav-license_standard_free');
+    }
 
     if (!document.querySelector('.lav-size_extended')) {
       document.querySelector('.lav-license_extended').remove();
