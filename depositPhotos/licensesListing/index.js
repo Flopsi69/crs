@@ -952,12 +952,14 @@
     //   document.querySelector('#root>.wrapper').style.opacity = 1;
     // }, 300);
 
-    document
-      .querySelector('.lav-license__modal-trigger')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector('.go-modal__wrap').style.display = 'flex';
-      });
+    if (document.querySelector('.lav-license__modal-trigger')) {
+      document
+        .querySelector('.lav-license__modal-trigger')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector('.go-modal__wrap').style.display = 'flex';
+        });
+    }
 
     document.querySelectorAll('.lav-license').forEach(license => {
       license.addEventListener('click', function (e) {
