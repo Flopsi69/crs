@@ -927,18 +927,20 @@
       document.querySelector('.lav-license_extended').remove();
     }
 
-    document
-      .querySelector('.lav-license__modal-trigger')
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<img src='${REPO_DIR}/icon-quest.svg'>`
-      );
-    document
-      .querySelector('.price-table-classic')
-      .insertAdjacentElement(
-        'afterend',
-        document.querySelector('.lav-license__modal-trigger')
-      );
+    if (document.querySelector('.lav-license__modal-trigger')) {
+      document
+        .querySelector('.lav-license__modal-trigger')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<img src='${REPO_DIR}/icon-quest.svg'>`
+        );
+      document
+        .querySelector('.price-table-classic')
+        .insertAdjacentElement(
+          'afterend',
+          document.querySelector('.lav-license__modal-trigger')
+        );
+    }
 
     // document
     //   .querySelector('.price-table-upgrade__download-btn')
