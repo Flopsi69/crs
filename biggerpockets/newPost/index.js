@@ -103,6 +103,30 @@ let stylesList = `
     width: 100%;
     text-align: center;
   }
+  @media (max-width: 768px) {
+    .forums-container {
+      padding-top: 10px;
+    }
+    .lav-up {
+      padding: 30px 20px;
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+    .lav-up__photo {
+      margin-right: 20px;
+      width: 65px;
+    }
+    .lav-up__photo-icon {
+      width: 30px;
+    }
+    .lav-up__title {
+      margin-bottom: 15px;
+    }
+    .lav-up__close {
+      top: 10px;
+      right: 10px;
+    }
+  }
 `;
 
 // connect to DOM
@@ -159,6 +183,9 @@ function initExp() {
         .querySelector('.site-navigation .nav-user .avatar')
         .cloneNode(true)
     );
+
+  document.querySelector('.lav-up__photo img').src =
+    document.querySelector('.lav-up__photo img').dataset.src;
 
   document
     .querySelector('.lav-up__close')
