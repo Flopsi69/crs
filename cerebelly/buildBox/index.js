@@ -49,9 +49,10 @@ let observerGlobal = new MutationObserver(mutations => {
         !isInitExp
       ) {
         if (
-          document.querySelector('.e-right .e-nav-link') &&
-          document.querySelector('.e-right .e-nav-link').innerText.trim() ==
-            'Log in'
+          (document.querySelector('.e-right .e-nav-link') &&
+            document.querySelector('.e-right .e-nav-link').innerText.trim() ==
+              'Log in') ||
+          parseInt(localStorage.getItem('ajs_user_id'))
         ) {
           initExp();
         } else {
