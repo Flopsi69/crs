@@ -42,8 +42,6 @@
     hj('trigger', 'modal_pdp_with_EL');
   } catch (e) {}
 
-  gaEvent('loaded');
-
   /*** Analytics insert -end- ***/
 
   let isExpInited = false;
@@ -882,8 +880,11 @@
       !isExpInited &&
       !document.querySelector('[data-qa="FooterEnterprise"]')
     ) {
+      gaEvent('loaded');
       isExpInited = true;
       init();
+    } else {
+      observer.disconnect();
     }
   }, 1000);
 
