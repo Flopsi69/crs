@@ -153,7 +153,7 @@ function initExp() {
 
       <div class="lav-up__photo">
         <img src='${REPO_DIR}/photo.png'/>
-        <img class='lav-up__photo-icon' src='${REPO_DIR}/photo-icon.svg'/>
+        <img class='lav-up__photo-icon' src='${REPO_DIR}/icon-photo.svg'/>
       </div>
       <div class="lav-up__info">
         <div class="lav-up__title">Upgrade to PRO</div>
