@@ -20,107 +20,264 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/biggerpockets/signUp';
 
 /* STYLES insert start */
 let stylesList = `
-  .why-create-content .content-body {
+  // .why-create-content .content-body {
+  //   display: none;
+  // }
+  // .why-create-content .heading {
+  //   font-weight: 600;
+  //   font-size: 24px;
+  //   color: black;
+  //   line-height: 33px;
+  //   text-align: center;
+  //   margin-bottom: 0;
+  // }
+  // .why-create-content .content-end {
+  //   text-align: center;
+  //   font-weight: 600;
+  //   font-size: 24px;
+  //   line-height: 33px;
+  //   color: #000000;
+  //   margin-top: 30px;
+  // }
+  // .lav-caption {
+  //   max-width: 250px;
+  //   margin: 20px auto 30px;
+  //   text-align: center;
+  //   font-weight: 600;
+  //   font-size: 14px;
+  //   line-height: 19px;
+  //   color: #000000;
+  //   letter-spacing: 0.3px;
+  // }
+  // .lav-list {
+  //   font-size: 14px;
+  //   line-height: 19px;
+  //   color: #000000;
+  // }
+  // .lav-list__item + .lav-list__item {
+  //   margin-top: 15px;
+  // }
+  // .lav-list__item {
+  //   position: relative;
+  //   padding-left: 20px;
+  // }
+  // .lav-list__item:before {
+  //   content: '';
+  //   position: absolute;
+  //   left: -15px;
+  //   top: 1px;
+  //   width: 22px;
+  //   height: 22px;
+  //   background: url(${REPO_DIR}/img/icon-check.svg) center no-repeat;
+  //   background-size: contain;
+  // }
+  // .onboarding-header-logo {
+  //   text-align: center;
+  //   padding-top: 0;
+  // }
+  // .log-in-container, .sign-up-container {
+  //   padding: 20px;
+  //   width: 320px;
+  // }
+  // .log-in-signup-wrapper .sign-up-container .primary-prompt {
+  //   margin-top: 10px;
+  //   font-weight: 600;
+  //   font-size: 24px;
+  //   line-height: 33px;
+  //   color: #000000;
+  // }
+  // .sign-up-secondary-prompt {
+  //   font-weight: 600;
+  //   font-size: 14px;
+  //   line-height: 19px;
+  //   text-align: center;
+  //   letter-spacing: 0.2px;
+  //   color: #000000;
+  //   margin-bottom: 20px!important;
+  // }
+  // .signup-form .oauth-sign-up-container-bottom .google-log-in-button {
+  //   margin-bottom: 15px;
+  // }
+  // .log-in-container label, .sign-up-container label {
+  //   font-weight: 600;
+  //   font-size: 12px;
+  //   line-height: 16px;
+  //   color: #000000;
+  // }
+  // .sign-up-section-seperator .sign-up-notice {
+  //   font-size: 10px;
+  //   padding: 0 15px;
+  //   font-weight: 600;
+  // }
+  // .signup-form .sign-up-section-seperator {
+  //   margin-bottom: 15px;
+  // }
+  // .log-in-container .heading, .log-in-container p, .sign-up-container .heading, .sign-up-container p {
+  //   margin-bottom: 12px;
+  // }
+  // .log-in-container .subtext, .sign-up-container .subtext {
+  //   font-size: 10px;
+  //   line-height: 14px;
+  //   color: #C7C7C7;
+  // }
+  
+  .global-signup .why-create-content .content-body {
     display: none;
   }
-  .why-create-content .heading {
-    font-weight: 600;
-    font-size: 24px;
-    color: black;
-    line-height: 33px;
-    text-align: center;
-    margin-bottom: 0;
+  .global-signup .why-create-content .content-end {
+    font-size: 28px;
+    line-height: 38px;
+    color: #34414D;
+    font-weight: 400;
+    margin-top: 40px;
   }
-  .why-create-content .content-end {
-    text-align: center;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 33px;
-    color: #000000;
-    margin-top: 30px;
+
+  .global-signup .signup-form .user-tos .subtext {
+    padding-top: 0;
+  }
+
+  .global-signup .why-create-container {
+    padding: 35px 40px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.09);
+  }
+
+  .global-signup .why-create-container {
+    margin-left: 20px;
+  }
+
+  .global-signup .why-create-container:before {
+    display: none!important;
+  }
+
+  .global-signup .why-create-content {
+    margin-top: 0;
+  }
+  
+  .global-signup .why-create-content .heading {
+    margin-bottom: 0;
+    padding-bottom: 7px;
   }
   .lav-caption {
-    max-width: 250px;
-    margin: 20px auto 30px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 19px;
-    color: #000000;
+    margin: 10px auto 25px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: #5D6771;
     letter-spacing: 0.3px;
   }
   .lav-list {
-    font-size: 14px;
-    line-height: 19px;
-    color: #000000;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #5D6771
   }
   .lav-list__item + .lav-list__item {
-    margin-top: 15px;
+    margin-top: 18px;
   }
   .lav-list__item {
     position: relative;
-    padding-left: 20px;
+    padding-left: 40px;
   }
   .lav-list__item:before {
     content: '';
     position: absolute;
-    left: -15px;
+    left: 0;
     top: 1px;
     width: 22px;
     height: 22px;
     background: url(${REPO_DIR}/img/icon-check.svg) center no-repeat;
     background-size: contain;
   }
-  .onboarding-header-logo {
-    text-align: center;
+  .global-signup {
+    padding: 0;
+  }
+  .global-signup .modal {
+    padding: 0;
+    max-width: 100%;
+    min-height: 100vh;
+  }
+  .global-signup .sign-up-container {
+    background: #FFFFFF;
+    padding: 40px;
+    box-shadow: 0px 0px 3px 1px rgb(0 0 0 / 9%)!important;
+  }
+  .global-signup .log-in-signup-wrapper .log-in-sign-up-container .log-in-sign-up-inner {
+    max-width: 880px;
+  }
+  .global-signup .sign-up-container {
+    width: 430px
+  }
+  .global-signup .onboarding-header-logo {
     padding-top: 0;
   }
-  .log-in-container, .sign-up-container {
-    padding: 20px;
-    width: 320px;
+  .global-signup .onboarding-header-logo a {
+    display: inline-block;
   }
-  .log-in-signup-wrapper .sign-up-container .primary-prompt {
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 33px;
-    color: #000000;
+  .global-signup .onboarding-logo-link>object {
+    height: 17px;
+    width: auto;
   }
-  .sign-up-secondary-prompt {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 19px;
-    text-align: center;
-    letter-spacing: 0.2px;
-    color: #000000;
-    margin-bottom: 20px!important;
+  .global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt {
+    margin-top: 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
   }
-  .signup-form .oauth-sign-up-container-bottom .google-log-in-button {
-    margin-bottom: 15px;
+
+  .global-signup.modal-container .modal header .close {
+    width: 24px;
+    height: 24px;
+    right: 50px;
+    top: 50px;
+    font-size: 22px;
   }
-  .log-in-container label, .sign-up-container label {
-    font-weight: 600;
+  .global-signup .sign-up-secondary-prompt {
+    text-align: left;
+    color: #5D6771;
+    font-weight: 300;
     font-size: 12px;
     line-height: 16px;
-    color: #000000;
+    margin-bottom: 25px;
   }
-  .sign-up-section-seperator .sign-up-notice {
-    font-size: 10px;
+  .global-signup .sign-up-container  .oauth-sign-up-container-bottom .google-log-in-button {
+    margin-bottom: 20px;
+  }
+  .sign-up-container .sign-up-section-seperator .sign-up-notice {
+    text-transform: lowercase;
     padding: 0 15px;
-    font-weight: 600;
   }
-  .signup-form .sign-up-section-seperator {
+
+  .sign-up-container label {
+    font-size: 14px;
+    line-height: 21px;
+    color: #5D6771;
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+  .sign-up-container p {
     margin-bottom: 15px;
   }
-  .log-in-container .heading, .log-in-container p, .sign-up-container .heading, .sign-up-container p {
-    margin-bottom: 12px;
+  .sign-up-container p.button-container {
+    margin-bottom: 0;
   }
-  .log-in-container .subtext, .sign-up-container .subtext {
-    font-size: 10px;
-    line-height: 14px;
-    color: #C7C7C7;
+  .sign-up-container .subtext {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: #99A0A6;
   }
-  
+  .sign-up-container .sign-up-section-seperator {
+    margin-bottom: 15px;
+  }
+  .global-signup .signup-form #social_user_full_name + .subtext {
+    display: none;
+  }
+  .lav-label-subtext {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    color: #99A0A6;
+    padding-left: 10px;
+  }
 `;
 
 // connect to DOM
@@ -152,7 +309,7 @@ function addSideText() {
   let sideEl = `
     <div class='lav-caption'>Become a part of biggest and growing real estate investors community!</div>
     <ul class='lav-list'>
-      <li class='lav-list__item'>Avoid mistakes by tapping into the collective knowledge of more than <strong>2 million</strong> members. </li>
+      <li class='lav-list__item'>Avoid mistakes by tapping into the collective knowledge of more than <br> <strong>2 million</strong> members. </li>
       <li class='lav-list__item'>Determine a property’s cash flow potential in minutes with interactive calculators and tools.</li>
       <li class='lav-list__item'>Access our Marketplace to find investor-friendly agents, financing options, and more.</li>
       <li class='lav-list__item'>Plus, <strong>get a free copy</strong> of the Ultimate Beginner’s Guide to Real Estate Investing.</li>
@@ -160,24 +317,59 @@ function addSideText() {
   `;
 
   document
-    .querySelector('.why-create-content .heading')
+    .querySelector('.global-signup .why-create-content .heading')
     .insertAdjacentHTML('afterend', sideEl);
 }
 
 function moveForm() {
   document
-    .querySelector('.signup-form + .oauth-sign-up-container-bottom ')
+    .querySelector(
+      '.global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt'
+    )
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.global-signup .onboarding-header-logo')
+    );
+
+  document
+    .querySelector(
+      '.global-signup .signup-form + .oauth-sign-up-container-bottom '
+    )
     .insertAdjacentElement(
       'beforeend',
       document.querySelector(
-        '.signup-form + .oauth-sign-up-container-bottom .sign-up-section-seperator'
+        '.global-signup .signup-form + .oauth-sign-up-container-bottom .sign-up-section-seperator'
       )
     );
 
   document
-    .querySelector('.sign-up-secondary-prompt')
+    .querySelector('.global-signup .sign-up-secondary-prompt')
     .insertAdjacentElement(
       'afterend',
-      document.querySelector('.signup-form + .oauth-sign-up-container-bottom')
+      document.querySelector(
+        '.global-signup .signup-form + .oauth-sign-up-container-bottom'
+      )
     );
+
+  document
+    .querySelector(".global-signup [for='social_user_full_name']")
+    .insertAdjacentHTML(
+      'beforeend',
+      "<span class='lav-label-subtext'>Use your real name</span>"
+    );
+
+  document
+    .querySelector(".global-signup [for='social_user_password']")
+    .insertAdjacentHTML(
+      'beforeend',
+      "<span class='lav-label-subtext'>Use at least 8 characters.</span>"
+    );
+
+  document.querySelector(
+    '.global-signup .signup-form #social_user_password + .subtext'
+  ).innerHTML = document
+    .querySelector(
+      '.global-signup .signup-form #social_user_password + .subtext'
+    )
+    .innerHTML.replace('Use at least 8 characters. ', '');
 }

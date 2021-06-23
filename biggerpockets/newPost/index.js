@@ -76,7 +76,7 @@ let stylesList = `
   .lav-up__photo .avatar {
     max-width: 100%;
     max-height: 100%;
-    border: 3px solid #4197ED;
+    // border: 3px solid #4197ED;
     border-radius: 100%;
     box-sizing: border-box;
   }
@@ -132,14 +132,14 @@ let stylesList = `
 // connect to DOM
 
 /* STYLES insert end */
-if (
-  sessionStorage.getItem('closeExpBanner') != 'yes' &&
-  !document.querySelector('.nav-section-pro-only')
-) {
-  document.addEventListener('DOMContentLoaded', function (event) {
-    initExp();
-  });
-}
+// if (
+//   sessionStorage.getItem('closeExpBanner') != 'yes' &&
+//   !document.querySelector('.nav-section-pro-only')
+// ) {
+//   document.addEventListener('DOMContentLoaded', function (event) {
+initExp();
+//   });
+// }
 function initExp() {
   console.log('initExp');
   let styles = document.createElement('style');
@@ -152,7 +152,7 @@ function initExp() {
       <svg class="lav-up__close" fill='#99A0A6' xmlns="http://www.w3.org/2000/svg" width="357" height="357" viewBox="0 0 357 357"><path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z"/></svg>
 
       <div class="lav-up__photo">
-        <img class='lav-up__photo-icon' src='${REPO_DIR}/icon-photo.svg'/>
+        <img class='lav-up__photo-icon' src='${REPO_DIR}/photo.png'/>
       </div>
       <div class="lav-up__info">
         <div class="lav-up__title">Upgrade to PRO</div>
@@ -162,8 +162,9 @@ function initExp() {
          <ul>
           <li>54% more colleague requests than free members</li>
           <li>exclusive access to member-only forums</li>
+          <li>Unlimited use of property analysis calculators</li>
+          <li>And much more!</li>
          </ul>
-         and more other benefits.
         </div>
 
         <a class="button lav-up__link" href="https://www.biggerpockets.com/membership-types">Upgrade to PRO</a>
@@ -175,14 +176,14 @@ function initExp() {
     .querySelector('.forums-content')
     .insertAdjacentHTML('afterbegin', blockEl);
 
-  document
-    .querySelector('.lav-up__photo')
-    .insertAdjacentElement(
-      'afterbegin',
-      document
-        .querySelector('.site-navigation .nav-user .avatar')
-        .cloneNode(true)
-    );
+  // document
+  //   .querySelector('.lav-up__photo')
+  //   .insertAdjacentElement(
+  //     'afterbegin',
+  //     document
+  //       .querySelector('.site-navigation .nav-user .avatar')
+  //       .cloneNode(true)
+  //   );
 
   document.querySelector('.lav-up__photo img').src =
     document.querySelector('.lav-up__photo img').dataset.src;
