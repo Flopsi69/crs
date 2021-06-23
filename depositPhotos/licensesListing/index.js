@@ -770,15 +770,6 @@
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        if (
-          !isExpInited &&
-          node.classList.contains('wrapper') &&
-          !document.querySelector('[data-qa="FooterEnterprise"]')
-        ) {
-          isExpInited = true;
-          init();
-        }
-
         // console.log(node);
 
         // if (
@@ -883,6 +874,21 @@
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
+
+  setTimeout(() => {
+    console.log('timeout');
+
+    if (
+      !isExpInited &&
+      !document.querySelector('[data-qa="FooterEnterprise"]')
+    ) {
+      isExpInited = true;
+      init();
+    }
+  }, 1000);
+
+  // &&
+  // !document.querySelector("[href='/subscribe/billing/balance.html']")
 
   function init() {
     console.log('initExp');
