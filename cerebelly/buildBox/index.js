@@ -52,7 +52,7 @@ let observerGlobal = new MutationObserver(mutations => {
           (document.querySelector('.e-right .e-nav-link') &&
             document.querySelector('.e-right .e-nav-link').innerText.trim() ==
               'Log in') ||
-          parseInt(localStorage.getItem('ajs_user_id'))
+          !parseInt(localStorage.getItem('ajs_user_id'))
         ) {
           initExp();
         } else {
