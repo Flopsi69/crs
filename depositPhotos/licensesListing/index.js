@@ -46,6 +46,7 @@
 
   /*** Analytics insert -end- ***/
 
+  let isExpInited = false;
   const REPO_DIR =
     'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
   let blockEvents = false;
@@ -769,7 +770,16 @@
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
+        if (
+          !isExpInited &&
+          node.classList.contains('wrapper') &&
+          !document.querySelector('[data-qa="FooterEnterprise"]')
+        ) {
+          isExpInited = true;
+          init();
+        }
+
+        // console.log(node);
 
         // if (
         //   node.classList.contains('modal-container') &&
@@ -874,7 +884,6 @@
 
   observer.observe(document.body, { childList: true, subtree: true });
 
-  init();
   function init() {
     console.log('initExp');
     createModal();
