@@ -156,7 +156,7 @@ function initExp() {
         <img class='lav-up__photo-icon' src='${REPO_DIR}/icon-photo.svg'/>
       </div>
       <div class="lav-up__info">
-        <div class="lav-up__title">Upgrade to PRO</div>
+        <div class="lav-up__title">Upgrade to BiggerPockets Pro</div>
 
         <div class="lav-up__descr">
         Pro members get
