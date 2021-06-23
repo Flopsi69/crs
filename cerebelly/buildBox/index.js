@@ -41,14 +41,22 @@ let observerGlobal = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
       if (!(node instanceof HTMLElement)) continue;
-      console.log(node);
+      // console.log(node);
       if (
         node.querySelector('.pageContainer .container') &&
         node.querySelector('.products') &&
         node.querySelector('.category') &&
         !isInitExp
       ) {
-        initExp();
+        if (
+          document.querySelector('.e-right .e-nav-link') &&
+          document.querySelector('.e-right .e-nav-link').innerText.trim() ==
+            'Log in'
+        ) {
+          initExp();
+        } else {
+          console.log('User authed!');
+        }
         // observerGlobal.disconnect();
       }
     }
