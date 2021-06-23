@@ -185,9 +185,6 @@ function initExp() {
   //       .cloneNode(true)
   //   );
 
-  document.querySelector('.lav-up__photo img').src =
-    document.querySelector('.lav-up__photo img').dataset.src;
-
   document
     .querySelector('.lav-up__close')
     .addEventListener('click', function () {
