@@ -478,7 +478,9 @@ function initExp() {
           clickControl(true, e.target.classList.contains('remove'), true);
         }
       } else {
-        clickControl();
+        setTimeout(() => {
+          clickControl();
+        }, 300);
       }
     }
   });
