@@ -1839,7 +1839,7 @@ if (location.href.includes('stock-photos')) {
         });
     }
   })();
-} else  (location.href.includes('stock-photos')) {
+} else {
   (function () {
     setTimeout(() => {
       console.log('loaded');
