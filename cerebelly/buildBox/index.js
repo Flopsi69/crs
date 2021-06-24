@@ -521,11 +521,6 @@ function clickControl(isToggleClick, targetClick, isDown) {
       document.querySelector('.e-page-content-wrap + div').style.opacity = 0;
       document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
 
-      if (!isDown) {
-        document.querySelector('.progress-text .action-button').click();
-      } else {
-        document.querySelector('.e-nav .button.primary.red').click();
-      }
       let observerPlans = new MutationObserver(mutations => {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
@@ -551,8 +546,13 @@ function clickControl(isToggleClick, targetClick, isDown) {
           }
         }
       });
-
       observerPlans.observe(document.body, { childList: true, subtree: true });
+
+      if (!isDown) {
+        document.querySelector('.progress-text .action-button').click();
+      } else {
+        document.querySelector('.e-nav .button.primary.red').click();
+      }
     } else {
       setItems();
     }
