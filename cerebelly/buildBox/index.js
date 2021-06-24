@@ -568,7 +568,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       setItems();
     }
     setBasketDiscount(inBasket);
-  }, 150);
+  }, 200);
 }
 
 function setItems() {
