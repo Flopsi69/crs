@@ -353,6 +353,11 @@ function initStyles() {
 // initExp();
 function initExp() {
   gaEvent('loaded');
+
+  if (document.querySelector('.lav-build')) {
+    return false;
+  }
+
   console.log('initExp');
   // isInitExp = true;
 
@@ -445,10 +450,6 @@ function initExp() {
       </div>
     </div>
   `;
-
-  if (document.querySelector('.lav-build')) {
-    return false;
-  }
 
   document
     .querySelector('.pageContainer')
