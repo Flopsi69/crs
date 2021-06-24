@@ -357,6 +357,39 @@ function initExp() {
   // isInitExp = true;
 
   if (!document.querySelector('#go-phone-styles')) {
+    document.addEventListener('click', function (e) {
+      if (
+        e.target.closest('.added-container') ||
+        e.target.closest('.not-added-container') ||
+        (e.target.closest('.main') &&
+          document.querySelector('.products .added-container'))
+      ) {
+        if (e.target.closest('.add') || e.target.classList.contains('add')) {
+          clickControl(true, e.target);
+        } else if (e.target.closest('.not-added-container')) {
+          clickControl(
+            true,
+            e.target.closest('.quantity').querySelector('.add')
+          );
+        } else if (
+          e.target.closest('.remove') ||
+          e.target.classList.contains('remove')
+        ) {
+          if (e.target.closest('.remove')) {
+            clickControl(true, e.target.closest('.remove'), true);
+          } else {
+            clickControl(true, e.target.classList.contains('remove'), true);
+          }
+        } else {
+          setTimeout(() => {
+            clickControl();
+          }, 300);
+        }
+      }
+    });
+  }
+
+  if (!document.querySelector('#go-phone-styles')) {
     initStyles();
   }
 
@@ -455,39 +488,6 @@ function initExp() {
       .addEventListener('click', function () {
         clickControl();
       });
-  }
-
-  if (!document.querySelector('#go-phone-styles')) {
-    document.addEventListener('click', function (e) {
-      if (
-        e.target.closest('.added-container') ||
-        e.target.closest('.not-added-container') ||
-        (e.target.closest('.main') &&
-          document.querySelector('.products .added-container'))
-      ) {
-        if (e.target.closest('.add') || e.target.classList.contains('add')) {
-          clickControl(true, e.target);
-        } else if (e.target.closest('.not-added-container')) {
-          clickControl(
-            true,
-            e.target.closest('.quantity').querySelector('.add')
-          );
-        } else if (
-          e.target.closest('.remove') ||
-          e.target.classList.contains('remove')
-        ) {
-          if (e.target.closest('.remove')) {
-            clickControl(true, e.target.closest('.remove'), true);
-          } else {
-            clickControl(true, e.target.classList.contains('remove'), true);
-          }
-        } else {
-          setTimeout(() => {
-            clickControl();
-          }, 300);
-        }
-      }
-    });
   }
 
   createBuildItemsRow(3);
