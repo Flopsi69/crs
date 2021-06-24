@@ -56,6 +56,9 @@ let observerGlobal = new MutationObserver(mutations => {
         ) {
           initExp();
         } else {
+          if (document.querySelector('#go-phone-styles')) {
+            document.querySelector('#go-phone-styles').remove();
+          }
           console.log('User authed!');
         }
         // observerGlobal.disconnect();
