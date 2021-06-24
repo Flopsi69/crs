@@ -159,10 +159,10 @@ function initExp() {
         <div class="lav-up__title">Upgrade to BiggerPockets Pro</div>
 
         <div class="lav-up__descr">
-        Pro members get
+        Pro members get:
          <ul>
           <li>54% more colleague requests than free members</li>
-          <li>exclusive access to member-only forums</li>
+          <li>Exclusive access to member-only forums</li>
           <li>Unlimited use of property analysis calculators</li>
           <li>And much more!</li>
          </ul>
