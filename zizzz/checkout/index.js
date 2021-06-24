@@ -42,6 +42,50 @@ function gaEvent(action, label = '', value = '') {
   } catch (e) {}
 }
 
+let newClientText,
+  loginText,
+  persInfoText,
+  shippingText,
+  shipMethodText,
+  orderText,
+  backShoppingText,
+  grandTotalText,
+  nightsText,
+  freeText,
+  paymentText,
+  nextText,
+  placeText;
+
+if (location.href.includes('zizzz.de') || location.href.includes('/de/')) {
+  newClientText = 'Neuer Kunde';
+  loginText = 'Login';
+  persInfoText = 'Persönliche Informationen';
+  shippingText = 'Versandinformationen';
+  shipMethodText = 'Versandmethode auswählen';
+  orderText = 'Deine Bestellung';
+  backShoppingText = 'Zurück zum Einkaufen';
+  grandTotalText = 'Gesamtsumme';
+  nightsText = '30 Nächte testen';
+  freeText = 'Kostenloser Versand';
+  paymentText = 'Zahlungsmethode';
+  nextText = 'Nächster';
+  placeText = 'Eine Bestellung aufgeben';
+} else {
+  newClientText = 'New client';
+  loginText = 'Log in';
+  persInfoText = 'Personal Information';
+  shippingText = 'Shipping information';
+  shipMethodText = 'Choose Shipping Method';
+  orderText = 'Your order';
+  backShoppingText = 'Back to shopping';
+  grandTotalText = 'Grand Total';
+  nightsText = 'Try for 30 nights';
+  freeText = 'Free shipping';
+  paymentText = 'Payment method';
+  nextText = 'Next';
+  placeText = 'Place an order';
+}
+
 var isInitExp = false;
 
 // gaEvent('loaded');
@@ -680,31 +724,31 @@ function initExp() {
       <div class='lav-wrap'>
         <div class='lav-steps'>
           <div class='lav-summary__head'>
-            <div class='lav-title lav-summary__title'>New client</div>
-            <a class='lav-link lav-link-auth' href='#'>Log in</a>
+            <div class='lav-title lav-summary__title'>${newClientText}</div>
+            <a class='lav-link lav-link-auth' href='#'>${loginText}</a>
           </div>
           <div class='lav-steps__body'>
             <div class='lav-steps__nav'>
               <div class='lav-steps__nav-current'>
                 <div class='lav-steps__nav-num'>1</div>
-                <div class='lav-steps__nav-caption'>Personal Information</div>
+                <div class='lav-steps__nav-caption'>${persInfoText}</div>
               </div>
               <div class='lav-steps__nav-next'>
                 <div class='lav-steps__nav-num'>2</div>
-                <div class='lav-steps__nav-caption'>Shipping information</div>
+                <div class='lav-steps__nav-caption'>${shippingText}</div>
               </div>
             </div>
 
             <div class='lav-steps__control'>
               <a class='lav-steps__control-back' href='#'>Back</a>
-              <button class='lav-steps__control-next'><span class='lav-steps__control-next-text'>Choose Shipping Method</span><span class='lav-steps__control-next-arrow'>&nbsp;&nbsp;&rarr;</span></button>
+              <button class='lav-steps__control-next'><span class='lav-steps__control-next-text'>${shipMethodText}</span><span class='lav-steps__control-next-arrow'>&nbsp;&nbsp;&rarr;</span></button>
             </div>
           </div>
         </div>
         <div class='lav-summary'>
           <div class='lav-summary__head'>
-            <div class='lav-title lav-summary__title'>Your order</div>
-            <a class='lav-summary__back lav-link' href=''>Back to shopping</a>
+            <div class='lav-title lav-summary__title'>${orderText}</div>
+            <a class='lav-summary__back lav-link' href=''>${backShoppingText}</a>
           </div>
         </div>
       </div>
@@ -823,7 +867,7 @@ function initExp() {
     });
 
   document.querySelector('.opc-estimated-wrapper .estimated-label').innerText =
-    'Grand Total';
+    grandTotalText;
 
   initHeader();
   initSummary();
@@ -844,8 +888,8 @@ function initHeader() {
   let headerEl = `
     <header class='lav-header'>
       <div class='lav-header__container'>
-        <div class='lav-header__left'>Try for 30 nights</div>
-        <div class='lav-header__center'>Free shipping</div>
+        <div class='lav-header__left'>${nightsText}</div>
+        <div class='lav-header__center'>${freeText}</div>
         <a href='/' class='lav-header__logo'>
           <img data-pagespeed-high-res-src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp" title="Zizzz - Babyschlafsäcke und Duvets" alt="Zizzz - Babyschlafsäcke und Duvets" width="147" height="97" src="https://www.zizzz.ch/de/pub/media/logo/default/xlogo.png.pagespeed.ic.Lv6ne9Q2CA.webp"></img>
         </a>
@@ -875,9 +919,9 @@ function initStepOne(isAgain) {
     '2';
   document.querySelector(
     '.lav-steps__nav-next .lav-steps__nav-caption'
-  ).innerText = 'Shipping information';
+  ).innerText = shippingText;
   document.querySelector('.lav-steps__control-next-text').innerText =
-    'Choose Shipping Method';
+    shipMethodText;
 
   if (isAgain) {
     document.querySelector('#stepTwo').remove();
@@ -955,13 +999,13 @@ function initStepTwo(isAgain) {
   ).innerText = '2';
   document.querySelector(
     '.lav-steps__nav-current .lav-steps__nav-caption'
-  ).innerText = 'Shipping information';
+  ).innerText = shippingText;
   document.querySelector('.lav-steps__nav-next .lav-steps__nav-num').innerText =
     '3';
   document.querySelector(
     '.lav-steps__nav-next .lav-steps__nav-caption'
-  ).innerText = 'Payment method';
-  document.querySelector('.lav-steps__control-next-text').innerText = 'Next';
+  ).innerText = paymentText;
+  document.querySelector('.lav-steps__control-next-text').innerText = nextText;
 
   let stepTwo = document.createElement('style');
   stepTwo.id = 'stepTwo';
@@ -1005,9 +1049,8 @@ function initStepThree() {
   ).innerText = '3';
   document.querySelector(
     '.lav-steps__nav-current .lav-steps__nav-caption'
-  ).innerText = 'Payment method';
-  document.querySelector('.lav-steps__control-next-text').innerText =
-    'Place an order';
+  ).innerText = paymentText;
+  document.querySelector('.lav-steps__control-next-text').innerText = placeText;
 
   let stepThree = document.createElement('style');
   stepThree.id = 'stepThree';
