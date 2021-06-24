@@ -41,6 +41,8 @@ try {
   hj('trigger', 'modal_pdp_with_EL');
 } catch (e) {}
 
+const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
+
 let licensesEl;
 let lang = document.querySelector('html').lang;
 
