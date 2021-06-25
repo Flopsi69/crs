@@ -530,7 +530,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
     ) {
       document.querySelector('.e-page-content-wrap + div').style.opacity = 0;
-      document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
+      // document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
 
       let observerPlans = new MutationObserver(mutations => {
         for (let mutation of mutations) {
@@ -546,13 +546,13 @@ function clickControl(isToggleClick, targetClick, isDown) {
                 if (!isDown) {
                   targetClick.click();
                 }
-                document.querySelector(
-                  '.e-page-content-wrap'
-                ).style.opacity = 1;
+                // document.querySelector(
+                //   '.e-page-content-wrap'
+                // ).style.opacity = 1;
                 document.querySelector(
                   '.e-page-content-wrap + div'
                 ).style.opacity = 1;
-              }, 300);
+              }, 400);
             }
           }
         }
