@@ -43,7 +43,8 @@ let stylesList = `
     background: #FFFFFF;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.09);
     padding: 30px;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
+    margin-top: 15px;
   }
   .lav-up__close {
     position: absolute;
@@ -132,14 +133,15 @@ let stylesList = `
 // connect to DOM
 
 /* STYLES insert end */
-if (
-  sessionStorage.getItem('closeExpBanner') != 'yes' &&
-  !document.querySelector('.nav-section-pro-only')
-) {
-  document.addEventListener('DOMContentLoaded', function (event) {
-    initExp();
-  });
-}
+// if (
+//   sessionStorage.getItem('closeExpBanner') != 'yes' &&
+//   !document.querySelector('.nav-section-pro-only')
+// ) {
+//   document.addEventListener('DOMContentLoaded', function (event) {
+//     initExp();
+//   });
+// }
+initExp();
 function initExp() {
   console.log('initExp');
   let styles = document.createElement('style');
@@ -173,9 +175,15 @@ function initExp() {
     </div>
   `;
 
-  document
-    .querySelector('.forums-content')
-    .insertAdjacentHTML('afterbegin', blockEl);
+  if (location.pathname == '/forums') {
+    document
+      .querySelector('.forums-container')
+      .insertAdjacentHTML('afterbegin', blockEl);
+  } else {
+    document
+      .querySelector('.forums-content')
+      .insertAdjacentHTML('afterbegin', blockEl);
+  }
 
   // document
   //   .querySelector('.lav-up__photo')

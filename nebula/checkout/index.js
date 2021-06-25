@@ -127,7 +127,9 @@
     color: #505985;
   }
   .lav-diff__normal span {
+    font-family: "Roboto";
     text-decoration: line-through;
+    color: #EC1C1D;
   }
   .lav-diff__now {
     margin-top: 5px;
@@ -136,6 +138,106 @@
     line-height: 1.4;
     color: #0B0F41;
     font-family: 'SpaceGrotesk-Bold';
+  }
+  .lav-diff__now span {
+    font-family: "Roboto";
+  }
+  .order__images-main {
+    position: relative;
+    padding-top: 10px;
+  }
+  .lav-remove {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .lav-remove:hover {
+    transform: scale(1.07);
+    opacity: 0.75;
+  }
+  .order__label {
+    margin-bottom: 0!important;
+  }
+  .order__wrap {
+    margin-top: 0!important;
+    padding: 30px 0;
+  }
+  .choose-plan-check-label .plan-name {
+    font-size: 16px!important;
+    font-family: 'Roboto';
+    font-weight: 400!important;
+  }
+  .choose-plan-check-label .chosen-plan-price {
+    font-family: 'Roboto';
+    font-size: 16px!important;
+    margin-top: 10px;
+  }
+  .plan-tooltip {
+    top: -5px;
+    margin-left: 7px;
+    padding-right: 10px;
+  }
+  .fa-exclamation-circle:before {
+    color: #505985;
+  }
+  .choose-plan-check-label .chosen-plan-name {
+    position: relative;
+    display: flex;
+    margin-left: 7px;
+    margin-right: -10px;
+  }
+  .order__subtotal {
+    padding-left: 175px;
+    margin-top: 10px!important;
+  }
+  .lav-summary {
+    margin-top: 30px;
+    padding-left: 175px;
+    font-family: "Roboto";
+  }
+  .lav-summary__row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .lav-summary__row + .lav-summary__row {
+    margin-top: 10px;
+  }
+  .lav-summary__caption {
+    color: #505985;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-right: 10px;
+  }
+  .lav-summary__value {
+    font-weight: bold;
+    text-align: right;
+  }
+  .lav-summary__price {
+    display: flex;
+    align-items: center;
+  }
+  .lav-summary__price-old {
+    color: #EC1C1D;
+    font-size: 12px;
+    margin-right: 13px;
+    font-weight: 400;
+    text-decoration-line: line-through;
+  }
+  .lav-summary__price-save {
+    font-size: 14px;
+    font-weight: bold;
+    color: #EC1C1D;
+  }
+  .order__save-wrap {
+    display: none!important;
+  }
+  .order__subtotal-caption {
+    font-family: 'Roboto';
+    font-size: 24px;
+    line-height: 1.4;
+    color: #0B0F41;
   }
   `;
 
@@ -158,8 +260,13 @@
       .querySelector('.order__images-main')
       .insertAdjacentHTML(
         'afterbegin',
-        `<img src='${REPO_DIR}/img/icon-close.svg' />`
+        `<img class='lav-remove' src='${REPO_DIR}/img/icon-close.svg' />`
       );
+
+    order.querySelector('.lav-remove').addEventListener('click', function (e) {
+      e.preventDefault();
+      order.querySelector('.order_remove a').click();
+    });
 
     order
       .querySelector('.order_remove')
@@ -167,30 +274,6 @@
         'afterend',
         "<div class='lav-diff'><div class='lav-diff__normal'>Normally: <span></span></div><div class='lav-diff__now'>Now: <span></span></div></div>"
       );
-
-    order
-      .querySelector('.lav-diff__now span')
-      .insertAdjacentHTML(
-        'afterbegin',
-        order
-          .querySelector('.order__price-original + span')
-          .innerText.replace(','),
-        ''
-      );
-
-    order
-      .querySelector('.lav-diff__normal span')
-      .insertAdjacentHTML(
-        'afterbegin',
-        order.querySelector('.order__price-original').innerText.replace(',', '')
-      );
-
-    // order
-    //   .querySelector('.order_remove')
-    //   .insertAdjacentElement(
-    //     'afterend',
-    //     order.querySelector('.order__price-original-wrap')
-    //   );
 
     let reportBlock = `
       <div class='lav-report'>
@@ -201,9 +284,76 @@
     order
       .querySelector('.reporting')
       .insertAdjacentHTML('afterbegin', reportBlock);
+
+    order.querySelectorAll('.choose-plan-check-label').forEach(function (el) {
+      el.querySelector('.chosen-plan-name').insertAdjacentElement(
+        'beforeend',
+        el.querySelector('.plan-tooltip')
+      );
+    });
+
+    let summaryEl = `
+      <div class='lav-summary'>
+        <div class='lav-summary__row'>
+          <div class='lav-summary__caption'>Ultra Deep Whole Genome Sequencing:</div>
+          <div class='lav-summary__value lav-summary__price'>
+            <div class='lav-summary__price-old'>$2999</div>
+            <div class='lav-summary__price-new'>$999</div>
+          </div>
+        </div>
+        <div class='lav-summary__row'>
+          <div class='lav-summary__caption'>You save:</div>
+          <div class='lav-summary__value lav-summary__price-save'>$0</div>
+        </div>
+      </div>
+    `;
+
+    order
+      .querySelector('.order__subtotal')
+      .insertAdjacentHTML('beforebegin', summaryEl);
+
+    order
+      .querySelector('.order__subtotal-quantity')
+      .addEventListener('click', function () {
+        setPrices(order);
+      });
+
+    order
+      .querySelector('.order__subtotal')
+      .insertAdjacentHTML(
+        'afterbegin',
+        "<div class='order__subtotal-caption'>Total:</div>"
+      );
+    setPrices(order);
   }
 
-  function getReportBlock() {
-    return;
+  function setPrices(parent) {
+    parent.querySelector('.lav-diff__now span').innerText = parent
+      .querySelector('.order__price-original + span')
+      .innerText.replace(',', '');
+
+    parent.querySelector('.lav-diff__normal span').innerText = parent
+      .querySelector('.order__price-original')
+      .innerText.replace(',', '');
+
+    parent.querySelector('.lav-summary__price-old').innerText = parent
+      .querySelector('.order__price-original')
+      .innerText.replace(',', '');
+    parent.querySelector('.lav-summary__price-new').innerText = parent
+      .querySelector('.order__price-original + span')
+      .innerText.replace(',', '');
+
+    parent.querySelector('.lav-summary__price-save').innerText =
+      '$' +
+      (parseInt(
+        parent
+          .querySelector('.lav-summary__price-old')
+          .innerText.replace('$', '')
+      ) -
+        parseInt(
+          parent
+            .querySelector('.lav-summary__price-new')
+            .innerText.replace('$', '')
+        ));
   }
 })();
