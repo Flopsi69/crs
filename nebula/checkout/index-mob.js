@@ -46,13 +46,21 @@
 
   let stylesList = `
   .order__label {
-    padding-bottom: 20px;
-    padding-top: 30px;
-    border-bottom: 1px solid #EBECF3;
+    text-align: left!important;
+    text-transform: none!important;
+    margin-bottom: 15px!important;
+    margin-top: 15px!important;
   }
   .order__quantity {
     color: #2e3aca;
     font-family: 'SpaceGrotesk-SemiBold';
+  }
+  .order__images {
+    justify-content: space-between!important;
+  }
+  .order__title {
+    font-size: 24px!important;
+    margin-bottom: 30px;
   }
   .order_remove {
     display: none;
@@ -66,71 +74,42 @@
   .plan-offers {
     display: none;
   }
-  .reporting {
-    border: 1px solid #ECECEC;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 30px;
-    margin-top: 25px;
+  .order__wrap {
+    padding: 30px 12px!important;
   }
   .plan-selection__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: none!important;
-    width: 100%;
-    margin-left: 0!important;
-    flex: 1;
-    margin-bottom: 0!important;
+    background-color: #ffffff!important;
+    margin-bottom: 15px!important;
   }
-  .plan-selection__item .checkbox {
-    float: none!imoprtant;
-    padding-left: 0!important;
+  .plan-selection__item_active {
+    background-color:  #3F4CEC!important;
   }
-  .plan-selection__item .checkmark {
-    right: 0;
-    margin: auto;
-    border-radius: 50%!important;
-    height: 20px!important;
-    width: 20px!important;
-    border-color: #505985!important;
+  .checkmark {
+    border-radius:  50%!important;
   }
-
-  .plan-selection__item .checkbox .checkmark:after {
-    background: #505985!important;
-    border-radius: 50%;
-    width: 10px!important;
+  .checkbox input:checked~.checkmark[data-v-6a3956f5]:after {
+    background: white!important;
     height: 10px!important;
-    left: 3px!important;
-    top: 3px!important;
+    width: 10px!important;
+    border-radius: 50%!important;
+    top: 2px!important;
+    left: 2px!important;
   }
-  
-  .plan-selection-cart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .lav-report__link {
+    text-align: center;
+    margin-top: 20px;
   }
   .lav-report {
-    margin-bottom: 22px;
-    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 18px;
+    font-size: 16px;
     line-height: 1.4;
     font-family: 'SpaceGrotesk-SemiBold';
     color: #0B0F41;
   }
   .lav-report a {
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: underline;
-    padding-left: 10px;
-  }
-  .choose-plan-check-label {
-    position: static!important;
-    padding-top: 35px!important;
-  }
-  .order__info {
-    padding-left: 35px!important;
-  }
-  .order__images {
-    max-width: 140px!important;
   }
   .lav-diff {
     margin-top: 30px;
@@ -157,10 +136,6 @@
   .lav-diff__now span {
     font-family: "Roboto";
   }
-  .order__images-main {
-    position: relative;
-    padding-top: 10px;
-  }
   .lav-remove {
     position: absolute;
     left: 0;
@@ -172,44 +147,8 @@
     transform: scale(1.07);
     opacity: 0.75;
   }
-  .order__label {
-    margin-bottom: 0!important;
-  }
-  .order__wrap {
-    margin-top: 0!important;
-    padding: 30px 0;
-  }
-  .choose-plan-check-label .plan-name {
-    font-size: 16px!important;
-    font-family: 'Roboto';
-    font-weight: 400!important;
-  }
-  .choose-plan-check-label .chosen-plan-price {
-    font-family: 'Roboto';
-    font-size: 16px!important;
-    margin-top: 10px;
-  }
-  .plan-tooltip {
-    top: -5px;
-    margin-left: 7px;
-    padding-right: 10px;
-  }
-  .fa-exclamation-circle:before {
-    color: #505985;
-  }
-  .choose-plan-check-label .chosen-plan-name {
-    position: relative;
-    display: flex;
-    margin-left: 7px;
-    margin-right: -10px;
-  }
-  .order__subtotal {
-    padding-left: 175px;
-    margin-top: 10px!important;
-  }
   .lav-summary {
     margin-top: 30px;
-    padding-left: 175px;
     font-family: "Roboto";
   }
   .lav-summary__row {
@@ -245,6 +184,20 @@
     font-weight: bold;
     color: #EC1C1D;
   }
+  .order__subtotal {
+    margin-top: 15px!important;
+  }
+  .order__subtotal {
+    flex-wrap: nowrap!important;
+    display: flex;
+  }
+  .plan-selection__caption {
+    border: 1px solid #ECF7FD!important;
+  }
+  .order__price-current {
+    font-size: 24px!important;
+    font-family: "Roboto"!important;
+  }
   .order__save-wrap {
     display: none!important;
   }
@@ -257,7 +210,6 @@
   .modal {
     position: fixed;
     display: flex;
-    padding: 15px;
     top: 0;
     right: 150%;
     bottom: 0;
@@ -284,16 +236,14 @@
     margin: auto;
     max-width: 1040px;
     width: 100%;
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    background-color: #f5f7fa;
-    border-radius: 20px;
-    padding: 60px;
+    background-color: #ECECEC;
+    padding: 50px 10px 35px;
   }
   
   .modal__close {
     position: absolute;
-    top: 35px;
-    right: 35px;
+    top: 10px;
+    right: 10px;
     font-size: 24px;
     outline: none;
     line-height: 0;
@@ -306,7 +256,7 @@
     color: #505985;
     transition: 0.2s;
     cursor: pointer;
-    background: none;
+    background: #ffffff;
   }
   .modal__close:hover {
     border-color: red;
@@ -325,23 +275,32 @@
     margin: 0;
   }
   .modal__descr p + p {
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .modal__image {
     max-width: 430px;
     width: 100%;
     flex-shrink: 0;
-    margin-left: 12px;
+    text-align: center;
+  }
+  .modal__image img {
+    max-width: 90%;
   }
 
   .modal__title {
     font-family: 'Roboto';
+    margin-top: 10px;
     font-weight: bold;
     font-size: 24px;
     line-height: 1.5;
     text-align: center;
     color: #0B0F41;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
+  }
+  .order__subtotal-caption span {
+    padding-left: 7px;
+    font-size: 14px;
+    white-space: nowrap;
   }
   `;
 
@@ -369,46 +328,37 @@
         `<img class='lav-remove' src='${REPO_DIR}/img/icon-close.svg' />`
       );
 
+    order
+      .querySelector('.order__images')
+      .insertAdjacentElement(
+        'beforebegin',
+        order.querySelector('.order__title')
+      );
+
     order.querySelector('.lav-remove').addEventListener('click', function (e) {
       e.preventDefault();
       order.querySelector('.order_remove a').click();
     });
 
     order
-      .querySelector('.order_remove')
+      .querySelector('.order__images')
       .insertAdjacentHTML(
-        'afterend',
+        'beforeend',
         "<div class='lav-diff'><div class='lav-diff__normal'>Normally: <span></span></div><div class='lav-diff__now'>Now: <span></span></div></div>"
       );
 
     let reportBlock = `
       <div class='lav-report'>
-        Get the full benefit of this test by subscribing to Nebula Explore™ Reporting <a class='modal-trigger' href='#'>Why subscribe?</a>
+        Get the full benefit of this test by subscribing to Nebula Explore™ Reporting
+        <div class='lav-report__link'>
+          <a class='modal-trigger' href='#'>Why subscribe?</a>
+        </div>
       </div>
     `;
 
     order
       .querySelector('.reporting')
-      .insertAdjacentHTML('afterbegin', reportBlock);
-
-    order.querySelectorAll('.choose-plan-check-label').forEach(function (el) {
-      el.querySelector('.chosen-plan-name').insertAdjacentElement(
-        'beforeend',
-        el.querySelector('.plan-tooltip')
-      );
-      el.querySelector('.plan-tooltip').addEventListener(
-        'mouseenter',
-        function () {
-          if (el.classList.contains('yearly-label')) {
-            gaEvent('click on info for Yearly Subscription');
-          } else if (el.classList.contains('monthly-label')) {
-            gaEvent('click on info for Monthly Subscription');
-          } else if (el.classList.contains('lifetime-label')) {
-            gaEvent('click on info for ULA Subscription');
-          }
-        }
-      );
-    });
+      .insertAdjacentHTML('beforebegin', reportBlock);
 
     let summaryEl = `
       <div class='lav-summary'>
@@ -440,8 +390,16 @@
       .querySelector('.order__subtotal')
       .insertAdjacentHTML(
         'afterbegin',
-        "<div class='order__subtotal-caption'>Total:</div>"
+        "<div class='order__subtotal-caption'>Total<span></span></div>"
       );
+
+    order.querySelector('.order__subtotal-caption span').innerText =
+      'by ' +
+      order
+        .querySelector('.order__title')
+        .innerText.replace('Whole Genome Sequencing', 'WGS')
+        .trim() +
+      ':';
     setPrices(order);
   }
 
@@ -482,17 +440,15 @@
           <!-- Close modal -->
           <button class="modal__close">&times;</button>
           
+          <div class='modal__image'>
+            <img src='${REPO_DIR}/img/modal-image.svg' />
+          </div>
           <div class='modal__title'>Why subscribe to Nebula Explore™ Reporting?</div>
-          <div class='modal__row'>
-            <div class='modal__descr'>
-              <p>1. New DNA reports every week that are based on the latest genomic research and learn how they apply to your DNA results.</p>
-              <p>2. Access to exploration tools that will enable you to examine any of your ~20,000 genes and generate your personalized reports.</p>
-              <p>3. Access to deep ancestry analysis that will enable you to do your full genealogical research. Get deeper insights than with any other DNA test on the market.</p>
-              <p>4. Access to premium support provided by geneticists at Nebula Genomics.</p>
-            </div>
-            <div class='modal__image'>
-              <img src='${REPO_DIR}/img/modal-image.svg' />
-            </div>
+          <div class='modal__descr'>
+            <p>1. New DNA reports every week that are based on the latest genomic research and learn how they apply to your DNA results.</p>
+            <p>2. Access to exploration tools that will enable you to examine any of your ~20,000 genes and generate your personalized reports.</p>
+            <p>3. Access to deep ancestry analysis that will enable you to do your full genealogical research. Get deeper insights than with any other DNA test on the market.</p>
+            <p>4. Access to premium support provided by geneticists at Nebula Genomics.</p>
           </div>
         </div>
       </div>
