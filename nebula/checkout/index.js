@@ -239,6 +239,72 @@
     line-height: 1.4;
     color: #0B0F41;
   }
+  .modal {
+    position: fixed;
+    display: flex;
+    padding: 15px;
+    top: 0;
+    right: 150%;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    outline: 0;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: rgb(11 15 65 / 50%);
+    transition: opacity 0.35s;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .modal_active {
+    right: 0;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .modal__body {
+    position: relative;
+    margin: auto;
+    max-width: 1040px;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    background-color: #f5f7fa;
+    border-radius: 20px;
+    padding: 60px;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    outline: none;
+    line-height: 0;
+    cursor: pointer;
+    transition: 0.35s;
+    border-radius: 50%;
+    border: 1px solid #EBECF3;
+    height: 30px;
+    width: 30px;
+    color: #505985;
+    transition: 0.2s;
+    cursor: pointer;
+    background: none;
+  }
+  .modal__close:hover {
+    border-color: red;
+  }
+
+  .modal__title {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.5;
+    text-align: center;
+    color: #0B0F41;
+    margin-bottom: 40px;
+  }
   `;
 
   let stylesEl = document.createElement('style');
@@ -249,10 +315,11 @@
   /* STYLES insert end */
   initExp();
   function initExp() {
+    console.log('Exp init!');
     document.querySelectorAll('.order_main_wrap').forEach(function (orderEl) {
       initOrderStyle(orderEl);
     });
-    console.log('Exp init!');
+    initModal();
   }
 
   function initOrderStyle(order) {
@@ -277,7 +344,7 @@
 
     let reportBlock = `
       <div class='lav-report'>
-        Get the full benefit of this test by subscribing to Nebula Explore™ Reporting <a href='#'>Why subscribe?</a>
+        Get the full benefit of this test by subscribing to Nebula Explore™ Reporting <a class='modal-trigger' href='#'>Why subscribe?</a>
       </div>
     `;
 
@@ -355,5 +422,60 @@
             .querySelector('.lav-summary__price-new')
             .innerText.replace('$', '')
         ));
+  }
+
+  function initModal() {
+    let modal = `
+      <div class="modal">
+        <div class="modal__body modal-subscribe">
+          <!-- Close modal -->
+          <button class="modal__close">&times;</button>
+          
+          <div class='modal__title'>Why subscribe to Nebula Explore™ Reporting?</div>
+          <div class='modal__row'>
+            <div class='modal__descr'>
+              <p>1. New DNA reports every week that are based on the latest genomic research and learn how they apply to your DNA results.</p>
+              <p>2. Access to exploration tools that will enable you to examine any of your ~20,000 genes and generate your personalized reports.</p>
+              <p>3. Access to deep ancestry analysis that will enable you to do your full genealogical research. Get deeper insights than with any other DNA test on the market.</p>
+              <p>4. Access to premium support provided by geneticists at Nebula Genomics.</p>
+            </div>
+            <div class='modal__image'>
+            <img class='lav-remove' src='${REPO_DIR}/img/modal-image.svg' />
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.querySelector('body').insertAdjacentHTML('beforeend', modal);
+
+    let modalEl = document.querySelector('.modal');
+
+    document
+      .querySelector('.modal__close')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        modalClose();
+      });
+
+    modalEl.addEventListener('click', function (e) {
+      if (e.target.classList.contains('modal_active')) {
+        modalClose();
+      }
+    });
+
+    document.querySelectorAll('.modal-trigger').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        modalEl.classList.add('modal_active');
+      });
+    });
+
+    function modalClose() {
+      gaEvent('pop-up closed', 'onboarding');
+      modalEl.classList.remove('modal_active');
+      document.querySelector('.modal__video iframe').src =
+        document.querySelector('.modal__video iframe').src;
+    }
   }
 })();
