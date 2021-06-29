@@ -101,8 +101,7 @@ let stylesList = `
     padding: 40px;
     box-shadow: 0px 0px 3px 1px rgb(0 0 0 / 9%)!important;
   }
-  // TODO
-  .global-signup .log-in-signup-wrapper .log-in-sign-up-container .log-in-sign-up-inner {
+  .log-in-signup-wrapper .log-in-sign-up-container .log-in-sign-up-inner {
     max-width: 880px;
   }
   .global-signup .sign-up-container, .page-content .log-in-sign-up-inner .sign-up-container {
