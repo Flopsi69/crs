@@ -260,12 +260,12 @@ function addSideTextPage() {
   ) {
     document.querySelector(
       '.page-content .log-in-sign-up-inner .why-create-content .heading'
-    ).innerText = ' Join the biggest real estate investing community.';
+    ).innerText = 'Join the biggest real estate investing community.';
   } else {
     setTimeout(() => {
       document.querySelector(
         '.page-content .log-in-sign-up-inner .why-create-content .heading'
-      ).innerText = ' Join the biggest real estate investing community.';
+      ).innerText = 'Join the biggest real estate investing community.';
     }, 800);
   }
 
@@ -360,7 +360,7 @@ function addSideText() {
 
   document.querySelector(
     '.global-signup .why-create-content .heading'
-  ).innerText = ' Join the biggest real estate investing community.';
+  ).innerText = 'Join the biggest real estate investing community.';
 
   document
     .querySelector('.global-signup .why-create-content .heading')
