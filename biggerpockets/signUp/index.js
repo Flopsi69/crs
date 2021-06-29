@@ -196,14 +196,12 @@ let stylesList = `
 //   }
 // }, 500);
 
-let isInitExp = false;
-
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
-      if (node.classList.contains('log-in-signup-wrapper') && !isInitExp) {
+      if (node.classList.contains('log-in-signup-wrapper')) {
         console.log('init');
         initExp();
       }
@@ -224,8 +222,6 @@ function initExp() {
     styles.innerHTML = stylesList;
     document.body.appendChild(styles);
   }
-
-  isInitExp = true;
   console.log('initExp');
   addSideText();
   moveForm();
