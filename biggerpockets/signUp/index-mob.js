@@ -226,9 +226,9 @@ let demoElem = document.querySelector('body');
 
 observer.observe(demoElem, { childList: true, subtree: true });
 
-document.addEventListener('DOMContentLoaded', function (event) {
-  initExp();
-});
+// document.addEventListener('DOMContentLoaded', function (event) {
+initExp();
+// });
 
 function initExp() {
   if (!document.querySelector('#go-phone-styles')) {
