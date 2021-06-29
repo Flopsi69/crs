@@ -209,6 +209,22 @@ document.body.appendChild(styles);
 //     console.log('try one more..');
 //   }
 // }, 500);
+
+let isInitExp = false;
+
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+      // if (node.classList.contains('log-in-signup-wrapper') && !isInitExp) {
+      //   console.log('init');
+      //   initExp();
+      // }
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
 });
