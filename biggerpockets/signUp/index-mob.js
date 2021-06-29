@@ -191,12 +191,6 @@ let stylesList = `
   }
 `;
 
-// connect to DOM
-let styles = document.createElement('style');
-styles.id = 'go-phone-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
-
 /* STYLES insert end */
 
 // CODE START ***
@@ -233,6 +227,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
 });
 function initExp() {
+  if (!document.querySelector('#go-phone-styles')) {
+    let styles = document.createElement('style');
+    styles.id = 'go-phone-styles';
+    styles.innerHTML = stylesList;
+    document.body.appendChild(styles);
+  }
+
   console.log('initExp');
   addSideText();
   moveForm();
