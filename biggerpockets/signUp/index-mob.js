@@ -208,7 +208,9 @@ document.body.appendChild(styles);
 //     console.log('try one more..');
 //   }
 // }, 500);
-initExp();
+document.addEventListener('DOMContentLoaded', function (event) {
+  initExp();
+});
 function initExp() {
   console.log('initExp');
   addSideText();

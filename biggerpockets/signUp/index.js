@@ -144,6 +144,7 @@ let stylesList = `
   .sign-up-container .sign-up-section-seperator .sign-up-notice {
     text-transform: lowercase;
     padding: 0 15px;
+    display: inline-block;
   }
 
   .sign-up-container label {
@@ -157,7 +158,7 @@ let stylesList = `
     margin-bottom: 15px;
   }
   .sign-up-container p.button-container {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
   .sign-up-container .subtext {
     font-weight: 300;
@@ -198,7 +199,10 @@ document.body.appendChild(styles);
 //     console.log('try one more..');
 //   }
 // }, 500);
-initExp();
+document.addEventListener('DOMContentLoaded', function (event) {
+  initExp();
+});
+
 function initExp() {
   console.log('initExp');
   addSideText();
