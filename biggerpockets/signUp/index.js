@@ -21,10 +21,10 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/biggerpockets/signUp';
 /* STYLES insert start */
 let stylesList = `
   
-  .global-signup .why-create-content .content-body {
+  .global-signup .why-create-content .content-body, .page-content .log-in-sign-up-inner .why-create-content .content-body {
     display: none;
   }
-  .global-signup .why-create-content .content-end {
+  .global-signup .why-create-content .content-end, .page-content .log-in-sign-up-inner .why-create-content .content-end {
     font-size: 28px;
     line-height: 38px;
     color: #34414D;
@@ -32,28 +32,28 @@ let stylesList = `
     margin-top: 40px;
   }
 
-  .global-signup .signup-form .user-tos .subtext {
+  .global-signup .signup-form .user-tos .subtext, .page-content .log-in-sign-up-inner .signup-form .user-tos .subtext{
     padding-top: 0;
   }
 
-  .global-signup .why-create-container {
+  .global-signup .why-create-container, .page-content .log-in-sign-up-inner .why-create-container{
     padding: 35px 40px;
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.09);
   }
 
-  .global-signup .why-create-container {
+  .global-signup .why-create-container, .page-content .log-in-sign-up-inner .why-create-container{
     margin-left: 20px;
   }
 
-  .global-signup .why-create-container:before {
+  .global-signup .why-create-container:before, .page-content .log-in-sign-up-inner .why-create-container:before {
     display: none!important;
   }
 
-  .global-signup .why-create-content {
+  .global-signup .why-create-content, .page-content .log-in-sign-up-inner .why-create-content{
     margin-top: 0;
   }
   
-  .global-signup .why-create-content .heading {
+  .global-signup .why-create-content .heading, .page-content .log-in-sign-up-inner .why-create-content .heading {
     margin-bottom: 12px;
     padding-bottom: 7px;
     font-size: 1.5rem;
@@ -218,7 +218,11 @@ let demoElem = document.querySelector('body');
 
 observer.observe(demoElem, { childList: true, subtree: true });
 document.addEventListener('DOMContentLoaded', function (event) {
-  initExpPage();
+  console.log('check');
+
+  if (document.querySelector('.page-content .log-in-sign-up-inner ')) {
+    initExpPage();
+  }
 });
 
 function initStyles() {
