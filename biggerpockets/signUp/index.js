@@ -88,7 +88,7 @@ let stylesList = `
     background: url(${REPO_DIR}/img/icon-check.svg) center no-repeat;
     background-size: contain;
   }
-  .global-signup {
+  .global-signup, .page-content .log-in-sign-up-inner {
     padding: 0;
   }
   .global-signup .modal {
@@ -96,28 +96,29 @@ let stylesList = `
     max-width: 100%;
     min-height: 100vh;
   }
-  .global-signup .sign-up-container {
+  .global-signup .sign-up-container, .page-content .log-in-sign-up-inner .sign-up-container{
     background: #FFFFFF;
     padding: 40px;
     box-shadow: 0px 0px 3px 1px rgb(0 0 0 / 9%)!important;
   }
+  // TODO
   .global-signup .log-in-signup-wrapper .log-in-sign-up-container .log-in-sign-up-inner {
     max-width: 880px;
   }
-  .global-signup .sign-up-container {
+  .global-signup .sign-up-container, .page-content .log-in-sign-up-inner .sign-up-container {
     width: 430px
   }
-  .global-signup .onboarding-header-logo {
+  .global-signup .onboarding-header-logo, .page-content .log-in-sign-up-inner .onboarding-header-logo {
     padding-top: 0;
   }
-  .global-signup .onboarding-header-logo a {
+  .global-signup .onboarding-header-logo a, .page-content .log-in-sign-up-inner .onboarding-header-logo a{
     display: inline-block;
   }
-  .global-signup .onboarding-logo-link>object {
+  .global-signup .onboarding-logo-link>object, .page-content .log-in-sign-up-inner .onboarding-logo-link>object{
     height: 17px;
     width: auto;
   }
-  .global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt {
+  .global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt, .page-content .log-in-sign-up-inner .log-in-signup-wrapper .sign-up-container .primary-prompt {
     margin-top: 0;
     text-align: left;
     display: flex;
@@ -131,7 +132,7 @@ let stylesList = `
     top: 50px;
     font-size: 22px;
   }
-  .global-signup .sign-up-secondary-prompt {
+  .global-signup .sign-up-secondary-prompt, .page-content .log-in-sign-up-inner .sign-up-secondary-prompt {
     text-align: left;
     color: #5D6771;
     font-weight: 300;
@@ -139,7 +140,7 @@ let stylesList = `
     line-height: 16px;
     margin-bottom: 25px;
   }
-  .global-signup .sign-up-container  .oauth-sign-up-container-bottom .google-log-in-button {
+  .global-signup .sign-up-container  .oauth-sign-up-container-bottom .google-log-in-button, .sign-up-container  .oauth-sign-up-container-bottom .google-log-in-button {
     margin-bottom: 20px;
   }
   .sign-up-container .sign-up-section-seperator .sign-up-notice {
@@ -170,7 +171,7 @@ let stylesList = `
   .sign-up-container .sign-up-section-seperator {
     margin-bottom: 15px;
   }
-  .global-signup .signup-form #social_user_full_name + .subtext {
+  .global-signup .signup-form #social_user_full_name + .subtext, .page-content .log-in-sign-up-inner .signup-form #social_user_full_name + .subtext {
     display: none;
   }
   .lav-label-subtext {
@@ -216,15 +217,113 @@ let observer = new MutationObserver(mutations => {
 let demoElem = document.querySelector('body');
 
 observer.observe(demoElem, { childList: true, subtree: true });
-// document.addEventListener('DOMContentLoaded', function (event) {
-// });
+document.addEventListener('DOMContentLoaded', function (event) {
+  initExpPage();
+});
+
+function initStyles() {
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+}
+
+function initExpPage() {
+  console.log('initExpPage');
+  if (!document.querySelector('#go-phone-styles')) {
+    initStyles();
+  }
+  addSideTextPage();
+  moveFormPage();
+}
+
+function addSideTextPage() {
+  let sideEl = `
+    <div class='lav-caption'>Become a part of biggest and growing real estate investors community!</div>
+    <ul class='lav-list'>
+      <li class='lav-list__item'>Avoid mistakes by tapping into the collective knowledge of more than <br> <strong>2&nbsp;000&nbsp;000</strong> members. </li>
+      <li class='lav-list__item'>Determine a property’s cash flow potential in minutes with interactive calculators and tools.</li>
+      <li class='lav-list__item'>Access our Marketplace to find investor-friendly agents, financing options, and more.</li>
+      <li class='lav-list__item'>Plus, <strong>get a free copy</strong> of the Ultimate Beginner’s Guide to Real Estate Investing.</li>
+    <ul>
+  `;
+
+  document.querySelector(
+    '.page-content .log-in-sign-up-inner .why-create-content .heading'
+  ).innerText = ' Join the biggest real estate investing community.';
+
+  document
+    .querySelector(
+      '.page-content .log-in-sign-up-inner .why-create-content .heading'
+    )
+    .insertAdjacentHTML('afterend', sideEl);
+}
+
+function moveFormPage() {
+  if (
+    document.querySelector(
+      '.page-content .log-in-sign-up-inner .onboarding-header-logo'
+    )
+  ) {
+    document
+      .querySelector(
+        '.page-content .log-in-sign-up-inner .onboarding-header-logo'
+      )
+      .remove();
+  }
+
+  document
+    .querySelector(
+      '.page-content .log-in-sign-up-inner .signup-form + .oauth-sign-up-container-bottom '
+    )
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector(
+        '.page-content .log-in-sign-up-inner .signup-form + .oauth-sign-up-container-bottom .sign-up-section-seperator'
+      )
+    );
+
+  document
+    .querySelector(
+      '.page-content .log-in-sign-up-inner  .sign-up-secondary-prompt'
+    )
+    .insertAdjacentElement(
+      'afterend',
+      document.querySelector(
+        '.page-content .log-in-sign-up-inner  .signup-form + .oauth-sign-up-container-bottom'
+      )
+    );
+
+  document
+    .querySelector(
+      ".page-content .log-in-sign-up-inner [for='social_user_full_name']"
+    )
+    .insertAdjacentHTML(
+      'beforeend',
+      "<span class='lav-label-subtext'>Use your real name</span>"
+    );
+
+  document
+    .querySelector(
+      ".page-content .log-in-sign-up-inner [for='social_user_password']"
+    )
+    .insertAdjacentHTML(
+      'beforeend',
+      "<span class='lav-label-subtext'>Use at least 8 characters.</span>"
+    );
+
+  document.querySelector(
+    '.page-content .log-in-sign-up-inner .signup-form #social_user_password + .subtext'
+  ).innerHTML = document
+    .querySelector(
+      '.page-content .log-in-sign-up-inner .signup-form #social_user_password + .subtext'
+    )
+    .innerHTML.replace('Use at least 8 characters. ', '');
+}
 
 function initExp() {
   if (!document.querySelector('#go-phone-styles')) {
-    let styles = document.createElement('style');
-    styles.id = 'go-phone-styles';
-    styles.innerHTML = stylesList;
-    document.body.appendChild(styles);
+    initStyles();
   }
   console.log('initExp');
   addSideText();
@@ -255,14 +354,6 @@ function moveForm() {
   if (document.querySelector('.global-signup .onboarding-header-logo')) {
     document.querySelector('.global-signup .onboarding-header-logo').remove();
   }
-  // document
-  //   .querySelector(
-  //     '.global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt'
-  //   )
-  //   .insertAdjacentElement(
-  //     'beforeend',
-  //     document.querySelector('.global-signup .onboarding-header-logo')
-  //   );
 
   document
     .querySelector(
