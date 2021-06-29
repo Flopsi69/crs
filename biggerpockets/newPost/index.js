@@ -133,15 +133,23 @@ let stylesList = `
 // connect to DOM
 
 /* STYLES insert end */
-// if (
-//   sessionStorage.getItem('closeExpBanner') != 'yes' &&
-//   !document.querySelector('.nav-section-pro-only')
-// ) {
-//   document.addEventListener('DOMContentLoaded', function (event) {
-//     initExp();
-//   });
-// }
-initExp();
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (!document.querySelector('.nav-section-pro-only')) {
+    if (
+      (location.href.includes('/topics/new') &&
+        sessionStorage.getItem('closeExpBanner1') != 'yes') ||
+      (location.pathname == '/forums' &&
+        sessionStorage.getItem('closeExpBanner2') != 'yes') ||
+      (location.href.includes('/forums/') &&
+        location.href.includes('/topics/') &&
+        sessionStorage.getItem('closeExpBanner3') != 'yes')
+    ) {
+      initExp();
+    }
+  }
+});
+
+// initExp();
 function initExp() {
   console.log('initExp');
   let styles = document.createElement('style');
@@ -197,7 +205,23 @@ function initExp() {
   document
     .querySelector('.lav-up__close')
     .addEventListener('click', function () {
-      sessionStorage.setItem('closeExpBanner', 'yes');
+      if (
+        location.href.includes('/topics/new') &&
+        sessionStorage.getItem('closeExpBanner1') != 'yes'
+      ) {
+        sessionStorage.setItem('closeExpBanner1', 'yes');
+      } else if (
+        location.pathname == '/forums' &&
+        sessionStorage.getItem('closeExpBanner2') != 'yes'
+      ) {
+        sessionStorage.setItem('closeExpBanner2', 'yes');
+      } else if (
+        location.href.includes('/forums/') &&
+        location.href.includes('/topics/') &&
+        sessionStorage.getItem('closeExpBanner3') != 'yes'
+      ) {
+        sessionStorage.setItem('closeExpBanner3', 'yes');
+      }
       document.querySelector('.lav-up').remove();
     });
 
