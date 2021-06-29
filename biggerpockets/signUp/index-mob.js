@@ -250,6 +250,10 @@ function addSideText() {
     </ul>
   `;
 
+  document.querySelector(
+    '.global-signup .why-create-content .heading'
+  ).innerText = ' Join the biggest real estate investing community.';
+
   document
     .querySelector('.log-in-signup-wrapper .why-create-content .heading')
     .insertAdjacentHTML('afterend', sideEl);

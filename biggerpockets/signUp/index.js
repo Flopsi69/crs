@@ -238,20 +238,27 @@ function addSideText() {
     <ul>
   `;
 
+  document.querySelector(
+    '.global-signup .why-create-content .heading'
+  ).innerText = ' Join the biggest real estate investing community.';
+
   document
     .querySelector('.global-signup .why-create-content .heading')
     .insertAdjacentHTML('afterend', sideEl);
 }
 
 function moveForm() {
-  document
-    .querySelector(
-      '.global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt'
-    )
-    .insertAdjacentElement(
-      'beforeend',
-      document.querySelector('.global-signup .onboarding-header-logo')
-    );
+  if (document.querySelector('.global-signup .onboarding-header-logo')) {
+    document.querySelector('.global-signup .onboarding-header-logo').remove();
+  }
+  // document
+  //   .querySelector(
+  //     '.global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt'
+  //   )
+  //   .insertAdjacentElement(
+  //     'beforeend',
+  //     document.querySelector('.global-signup .onboarding-header-logo')
+  //   );
 
   document
     .querySelector(
