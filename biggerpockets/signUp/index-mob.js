@@ -225,6 +225,10 @@ let observer = new MutationObserver(mutations => {
   }
 });
 
+let demoElem = document.querySelector('body');
+
+observer.observe(demoElem, { childList: true, subtree: true });
+
 document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
 });
