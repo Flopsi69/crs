@@ -200,11 +200,16 @@ document.body.appendChild(styles);
 //   }
 // }, 500);
 
+let isInitExp = false;
+
 let observer = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
+      if (node.classList.contains('log-in-signup-wrapper') && !isInitExp) {
+        initExp();
+      }
     }
   }
 });
@@ -212,11 +217,11 @@ let observer = new MutationObserver(mutations => {
 let demoElem = document.querySelector('body');
 
 observer.observe(demoElem, { childList: true, subtree: true });
-document.addEventListener('DOMContentLoaded', function (event) {
-  initExp();
-});
+// document.addEventListener('DOMContentLoaded', function (event) {
+// });
 
 function initExp() {
+  isInitExp = true;
   console.log('initExp');
   addSideText();
   moveForm();
