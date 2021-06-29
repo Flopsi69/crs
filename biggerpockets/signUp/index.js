@@ -117,7 +117,7 @@ let stylesList = `
     height: 17px;
     width: auto;
   }
-  .global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt, .page-content .log-in-sign-up-inner .log-in-signup-wrapper .sign-up-container .primary-prompt {
+  .global-signup .log-in-signup-wrapper .sign-up-container .primary-prompt, .page-content .log-in-sign-up-inner .sign-up-container .primary-prompt {
     margin-top: 0;
     text-align: left;
     display: flex;
