@@ -54,8 +54,9 @@ let stylesList = `
   }
   
   .global-signup .why-create-content .heading {
-    margin-bottom: 0;
+    margin-bottom: 12px;
     padding-bottom: 7px;
+    font-size: 1.5rem;
   }
   .lav-caption {
     margin: 10px auto 25px;
