@@ -217,13 +217,15 @@ let observer = new MutationObserver(mutations => {
 let demoElem = document.querySelector('body');
 
 observer.observe(demoElem, { childList: true, subtree: true });
-document.addEventListener('DOMContentLoaded', function (event) {
-  console.log('check');
+console.log('3');
 
-  if (document.querySelector('.page-content .log-in-sign-up-inner ')) {
-    initExpPage();
-  }
-});
+// document.addEventListener('DOMContentLoaded', function (event) {
+console.log('check');
+
+if (document.querySelector('.page-content .log-in-sign-up-inner ')) {
+  initExpPage();
+}
+// });
 
 function initStyles() {
   let styles = document.createElement('style');
