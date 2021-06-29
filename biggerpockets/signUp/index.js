@@ -180,6 +180,9 @@ let stylesList = `
     color: #99A0A6;
     padding-left: 10px;
   }
+  .lav-list__item strong {
+    font-weight: 700;
+  }
 `;
 
 // connect to DOM
@@ -232,7 +235,7 @@ function addSideText() {
   let sideEl = `
     <div class='lav-caption'>Become a part of biggest and growing real estate investors community!</div>
     <ul class='lav-list'>
-      <li class='lav-list__item'>Avoid mistakes by tapping into the collective knowledge of more than <br> <strong>2 million</strong> members. </li>
+      <li class='lav-list__item'>Avoid mistakes by tapping into the collective knowledge of more than <br> <strong>2&nbsp;000&nbsp;000</strong> members. </li>
       <li class='lav-list__item'>Determine a property’s cash flow potential in minutes with interactive calculators and tools.</li>
       <li class='lav-list__item'>Access our Marketplace to find investor-friendly agents, financing options, and more.</li>
       <li class='lav-list__item'>Plus, <strong>get a free copy</strong> of the Ultimate Beginner’s Guide to Real Estate Investing.</li>
