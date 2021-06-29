@@ -218,10 +218,12 @@ observer.observe(demoElem, { childList: true, subtree: true });
 // });
 
 function initExp() {
-  let styles = document.createElement('style');
-  styles.id = 'go-phone-styles';
-  styles.innerHTML = stylesList;
-  document.body.appendChild(styles);
+  if (!document.querySelector('#go-phone-styles')) {
+    let styles = document.createElement('style');
+    styles.id = 'go-phone-styles';
+    styles.innerHTML = stylesList;
+    document.body.appendChild(styles);
+  }
 
   isInitExp = true;
   console.log('initExp');
