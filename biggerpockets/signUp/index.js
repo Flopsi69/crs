@@ -199,6 +199,19 @@ document.body.appendChild(styles);
 //     console.log('try one more..');
 //   }
 // }, 500);
+
+let observer = new MutationObserver(mutations => {
+  for (let mutation of mutations) {
+    for (let node of mutation.addedNodes) {
+      if (!(node instanceof HTMLElement)) continue;
+      console.log(node);
+    }
+  }
+});
+
+let demoElem = document.querySelector('body');
+
+observer.observe(demoElem, { childList: true, subtree: true });
 document.addEventListener('DOMContentLoaded', function (event) {
   initExp();
 });
