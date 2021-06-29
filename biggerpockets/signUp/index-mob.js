@@ -227,10 +227,12 @@ let demoElem = document.querySelector('body');
 observer.observe(demoElem, { childList: true, subtree: true });
 
 // document.addEventListener('DOMContentLoaded', function (event) {
+console.log('check');
 initExp();
 // });
 
 function initExp() {
+  console.log('initExp');
   if (!document.querySelector('#go-phone-styles')) {
     let styles = document.createElement('style');
     styles.id = 'go-phone-styles';
@@ -238,7 +240,6 @@ function initExp() {
     document.body.appendChild(styles);
   }
 
-  console.log('initExp');
   addSideText();
   moveForm();
 }
