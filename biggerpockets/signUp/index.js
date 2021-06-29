@@ -182,10 +182,6 @@ let stylesList = `
 `;
 
 // connect to DOM
-let styles = document.createElement('style');
-styles.id = 'go-phone-styles';
-styles.innerHTML = stylesList;
-document.body.appendChild(styles);
 
 /* STYLES insert end */
 
@@ -207,7 +203,14 @@ let observer = new MutationObserver(mutations => {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
       console.log(node);
+      if (node.classList.contains('log-in-signup-wrapper')) {
+        console.log(
+          node.classList.contains('log-in-signup-wrapper'),
+          isInitExp
+        );
+      }
       if (node.classList.contains('log-in-signup-wrapper') && !isInitExp) {
+        console.log('init');
         initExp();
       }
     }
@@ -221,6 +224,11 @@ observer.observe(demoElem, { childList: true, subtree: true });
 // });
 
 function initExp() {
+  let styles = document.createElement('style');
+  styles.id = 'go-phone-styles';
+  styles.innerHTML = stylesList;
+  document.body.appendChild(styles);
+
   isInitExp = true;
   console.log('initExp');
   addSideText();
