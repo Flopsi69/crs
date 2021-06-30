@@ -506,7 +506,6 @@
       .querySelector('.modal__close')
       .addEventListener('click', function (e) {
         e.preventDefault();
-        gaEvent('close Subscription info pop-up');
         modalClose();
       });
 
@@ -525,7 +524,7 @@
     });
 
     function modalClose() {
-      gaEvent('pop-up closed', 'onboarding');
+      gaEvent('close Subscription info pop-up');
       modalEl.classList.remove('modal_active');
       document.querySelector('.modal__video iframe').src =
         document.querySelector('.modal__video iframe').src;
