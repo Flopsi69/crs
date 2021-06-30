@@ -313,7 +313,10 @@
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-        console.log(node);
+        if (node.classList.contains('cart-page')) {
+          initExp();
+          observer.disconnect();
+        }
       }
     }
   });
@@ -323,7 +326,6 @@
 
   /* STYLES insert end */
   gaEvent('loaded');
-  initExp();
   function initExp() {
     console.log('Exp init!');
     document.querySelectorAll('.order_main_wrap').forEach(function (orderEl) {
@@ -494,8 +496,6 @@
     function modalClose() {
       gaEvent('close Subscription info pop-up');
       modalEl.classList.remove('modal_active');
-      document.querySelector('.modal__video iframe').src =
-        document.querySelector('.modal__video iframe').src;
     }
   }
 })();

@@ -356,6 +356,7 @@
         if (!(node instanceof HTMLElement)) continue;
         if (node.classList.contains('cart-page')) {
           initExp();
+          observer.disconnect();
         }
         console.log(node);
       }
@@ -545,8 +546,6 @@
     function modalClose() {
       gaEvent('close Subscription info pop-up');
       modalEl.classList.remove('modal_active');
-      document.querySelector('.modal__video iframe').src =
-        document.querySelector('.modal__video iframe').src;
     }
   }
 })();
