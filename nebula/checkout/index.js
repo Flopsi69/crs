@@ -354,6 +354,9 @@
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
+        if (node.classList.contains('cart-page')) {
+          initExp();
+        }
         console.log(node);
       }
     }
@@ -364,7 +367,7 @@
 
   /* STYLES insert end */
   gaEvent('loaded');
-  initExp();
+  // initExp();
   function initExp() {
     console.log('Exp init!');
     document.querySelectorAll('.order_main_wrap').forEach(function (orderEl) {
