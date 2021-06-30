@@ -358,16 +358,13 @@
           initExp();
           observer.disconnect();
         }
-        console.log(node);
       }
     }
   });
 
-  let demoElem = document.querySelector('body');
-  observer.observe(demoElem, { childList: true, subtree: true });
-
-  document.addEventListener('DOMContentLoaded', function (event) {
-    console.log('DOM fully loaded and parsed');
+  observer.observe(document.querySelector('body'), {
+    childList: true,
+    subtree: true
   });
 
   /* STYLES insert end */
