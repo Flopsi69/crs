@@ -309,6 +309,18 @@
   stylesEl.innerHTML = stylesList;
   document.body.appendChild(stylesEl);
 
+  let observer = new MutationObserver(mutations => {
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+        console.log(node);
+      }
+    }
+  });
+
+  let demoElem = document.querySelector('body');
+  observer.observe(demoElem, { childList: true, subtree: true });
+
   /* STYLES insert end */
   gaEvent('loaded');
   initExp();
