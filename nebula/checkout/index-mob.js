@@ -321,8 +321,10 @@
     }
   });
 
-  let demoElem = document.querySelector('body');
-  observer.observe(demoElem, { childList: true, subtree: true });
+  observer.observe(document.querySelector('body'), {
+    childList: true,
+    subtree: true
+  });
 
   /* STYLES insert end */
   gaEvent('loaded');
