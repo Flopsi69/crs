@@ -134,7 +134,12 @@ let stylesList = `
 
 /* STYLES insert end */
 document.addEventListener('DOMContentLoaded', function (event) {
-  if (!document.querySelector('.nav-section-pro-only')) {
+  if (
+    document.querySelector('.section-partial') &&
+    document.querySelector('.section-partial').innerText.toLowerCase() ==
+      'pricing'
+  ) {
+    console.log('-----no-Pro-----');
     if (
       (location.href.includes('/topics/new') &&
         sessionStorage.getItem('closeExpBanner1') != 'yes') ||
@@ -146,10 +151,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
     ) {
       initExp();
     }
+  } else {
+    console.log('-----Pro-----');
   }
 });
 
-// initExp();
+initExp();
 function initExp() {
   console.log('initExp');
   let styles = document.createElement('style');
