@@ -2281,7 +2281,10 @@ if (location.href.includes('stock-photos')) {
                 }
               }
             }, 300);
-          } else if (
+          } else {
+            // document.querySelector('#root>.wrapper').style.opacity = 1;
+          }
+          if (
             node.parentElement.classList.contains('plans-component') &&
             localStorage.getItem('lavLicenseType') == 'extended'
           ) {
@@ -2289,8 +2292,6 @@ if (location.href.includes('stock-photos')) {
               document.querySelectorAll('[data-key]')[1].click();
               document.querySelector('#root>.wrapper').style.opacity = 1;
             }, 300);
-          } else {
-            // document.querySelector('#root>.wrapper').style.opacity = 1;
           }
         }
       }
