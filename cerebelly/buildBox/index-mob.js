@@ -52,8 +52,14 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
+    .e-nav .e-right-quiz {
+      flex-flow: row-reverse;
+      justify-content: flex-start!important;
+      margin-right: -10px;
+    }
     .lav-build {
       position: fixed;
+      display: none;
       top: 0;
       left: 0;
       bottom: 0;
@@ -192,6 +198,20 @@ function initStyles() {
       margin: auto;
       filter: drop-shadow(0px 7px 21px rgba(56, 86, 167, 0.25));
       border-radius: 3px;
+    }
+    .lav-header__discount-wrap {
+      position: relative;
+      margin-right: 20px;
+    }
+    .lav-header__discount-num {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 12px;
+      color: #fff;
     }
     .lav-build__modal>img {
       height: 175px;
@@ -457,6 +477,51 @@ function initExp() {
         .classList.remove('lav-build__checkout_disabled');
     }
   }
+
+  let headerDiscountEl = `
+  <div class='lav-header__discount-wrap'>
+    <img class='lav-header__discount' src='${REPO_DIR}/icon-discount.svg' />
+    <img class='lav-header__discount-value' src='${REPO_DIR}/icon-discount-value.svg' />
+    <span class='lav-header__discount-num'>-</span>
+  </div>
+`;
+
+  document
+    .querySelector('.e-nav .e-right-quiz')
+    .insertAdjacentHTML('beforeend', headerDiscountEl);
+
+  checkHeaderDiscount();
+
+  document
+    .querySelector('.lav-header__discount-wrap')
+    .addEventListener('click', function () {
+      document.querySelector('.lav-build').style.display = 'block';
+    });
+}
+
+function checkHeaderDiscount() {
+  if (
+    parseInt(
+      document
+        .querySelector('.e-nav .button.primary.red')
+        .innerText.split('(')[1]
+    )
+  ) {
+    document.querySelector('.lav-header__discount-value').style.display =
+      'block';
+    document.querySelector('.lav-header__discount-num').style.display = 'block';
+    document.querySelector('.lav-header__discount-num').innerText = parseInt(
+      document
+        .querySelector('.e-nav .button.primary.red')
+        .innerText.split('(')[1]
+    );
+    document.querySelector('.lav-header__discount').style.display = 'none';
+  } else {
+    document.querySelector('.lav-header__discount-value').style.display =
+      'none';
+    document.querySelector('.lav-header__discount-num').style.display = 'none';
+    document.querySelector('.lav-header__discount').style.display = 'block';
+  }
 }
 
 function clickControl(isToggleClick, targetClick, isDown) {
@@ -523,6 +588,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       setItems();
     }
     setBasketDiscount(inBasket);
+    checkHeaderDiscount();
   }, 200);
 }
 
