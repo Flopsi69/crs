@@ -41,7 +41,7 @@ try {
   hj('trigger', 'modal_pdp_with_EL');
 } catch (e) {}
 
-// const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
+let REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
 
 let licensesEl;
 let lang = document.querySelector('html').lang;
@@ -375,8 +375,7 @@ if (location.href.includes('stock-photos')) {
     /*** Analytics insert -end- ***/
 
     let isExpInited = false;
-    const REPO_DIR =
-      'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
+    REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licensesListing';
     let blockEvents = false;
 
     /*** STYLES insert start ***/
@@ -1850,7 +1849,7 @@ if (location.href.includes('stock-photos')) {
 
     /*** Analytics insert -end- ***/
 
-    const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
+    REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/licenses';
     var blockEvents = false;
     /*** STYLES insert start ***/
 
