@@ -52,14 +52,6 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
-    .css-tbsmoq .boxmenuContainer {
-      display: none;
-    }
-    .mainContainer .pageContainer {
-      display: flex;
-      padding-right: 35px;
-      align-items: flex-start;
-    }
     .lav-build {
       position: fixed;
       top: 0;
@@ -71,27 +63,15 @@ function initStyles() {
       z-index: 99;
       text-align: center;
       background-color: #EBF0FF;
-      padding: 30px 25px 25px;
+      padding: 40px 25px 25px;
       overflow-y: auto;
     }
-
-    .lav-build::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      border-radius: 10px;
-      background-color: #F5F5F5;
+    .lav-build__close {
+      right: 5px;
+      top: 30px;
+      position: absolute;
+      padding: 10px;
     }
-
-    .lav-build::-webkit-scrollbar {
-      width: 3px;
-      background-color: #F5F5F5;
-    }
-
-    .lav-build::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-      background-color: #555;
-    }
-
     .lav-build__title {
       font-weight: 600;
       font-size: 22px;
@@ -111,11 +91,11 @@ function initStyles() {
       font-weight: 900;
     }
     .lav-build__discounts {
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
     .lav-build__discount {
-      font-size: 15px;
-      line-height: 23px;
+      font-size: 14px;
+      line-height: 22px;
       letter-spacing: 0.003em;
       color: #3856A5;
       display: flex;
@@ -147,54 +127,28 @@ function initStyles() {
     .lav-build__discount + .lav-build__discount {
       margin-top: 5px;
     }
-    .lav-build__discount-tip {
-      position: absolute;
-      display: none;
-      left: -55px;
-      top: 50%;
-      transform: translate(-100%, -54%);
-      width: 180px;
-      background: #FD4E39;
-      box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.25);
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 14px;
-      text-align: center;
-      letter-spacing: 0.002em;
-      color: #FFFFFF;
-      z-index: 10;
-      padding: 15px 10px;
-      border-radius: 7px;
+    .lav-build__list-wrap {
+      position: relative;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      transition: 0.3s;
     }
-    .lav-build__discount-tip span {
-      font-weight: bold;
-    }
-    .lav-build__discount-tip img {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .lav-build__discount-tip img:hover {
-      opacity: 0.5;
-    }
-    .lav-build__discount-tip:before {
+    .lav-build__list-wrap.lav-blured:before {
       content: '';
-      background: #FD4E39;
-      width: 16px;
-      height: 16px;
       position: absolute;
-      right: 0;
-      top: 50%;
-      transform: rotate(45deg) translateY(-50%);
+      left: -15px;
+      right: -15px;
+      top: -15px;
+      bottom: -15px;
+      z-index: 10;
+      background: #EBF0FF;
+      opacity: 0.7;
+      border-radius: 5px;
     }
     .lav-build__list {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       gap: 10px;
-      margin-bottom: 25px;
-      margin-top: 25px;
     }
     .lav-build__item {
       position: relative;
@@ -227,6 +181,23 @@ function initStyles() {
       object-fit: cover;
       border-radius: 3px;
     }
+    .lav-build__modal {
+      position: absolute;
+      z-index: 10;
+      height: 175px;
+      width: 175px;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      filter: drop-shadow(0px 7px 21px rgba(56, 86, 167, 0.25));
+      border-radius: 3px;
+    }
+    .lav-build__modal>img {
+      height: 175px;
+      width: 175px;
+      border-radius: 3px;
+    }
     .lav-build__checkout {
       padding-top: 12px!important;
       padding-bottom: 12px!important;
@@ -240,13 +211,24 @@ function initStyles() {
     .lav-build__control {
       display: none;
       position: absolute;
-      bottom: 5px;
-      left: 5px;
-      right: 5px;
+      bottom: 30px;
+      z-index: 1;
+      left: 50%;
+      transform: translateX(-50%);
       background: #FC4E38;
-      border-radius: 12px;
-      padding: 1px;
+      border-radius: 31px;
+      padding: 6px 12px;
       transition: 0.2s
+    }
+    .lav-build__modal .lav-build__control {
+      display: flex;
+    }
+    .lav-build__item-close {
+      position: absolute;
+      right: 17px;
+      top: 17px;
+      width: 14px!important;
+      height: 14px!important;
     }
     .lav-build__control-btn {
       display: flex;
@@ -257,7 +239,10 @@ function initStyles() {
       color: #fff;
       cursor: pointer;
       transition: .2s;
-      padding: 2px 4px;
+      padding: 1px;
+    }
+    .lav-build__control-btn img {
+      width: 17px;
     }
     .lav-build__control-btn img + img {
       display: none;
@@ -268,7 +253,7 @@ function initStyles() {
       border-radius: 5px;
       padding: 5px 10px;
       text-align: left;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .lav-build__tip-caption {
       font-weight: bold;
@@ -285,24 +270,20 @@ function initStyles() {
       letter-spacing: 0.003em;
       color: #3856A5;
     }
-    .lav-build__control-btn:hover {
-      transform: scale(1.5);
-    }
     .lav-build__control-input {
       background: none;
       outline: none;
       color: #fff;
       text-align: center;
-      width: 10px;
       border: none;
-      font-size: 10px;
+      font-size: 18px;
+      width: 60px;
       line-height: 1;
-      flex: 1;
       font-weight: 900;
       padding: 0;
-      margin-top: -2px;
       pointer-events: none;
     }
+    // TODO
     .css-1rupe80 button:disabled {
       background-color: rgb(255, 255, 255);
       color: rgb(21, 32, 107);
@@ -325,13 +306,11 @@ function initStyles() {
 
 initExp();
 function initExp() {
-  console.log('initExp');
-
-  gaEvent('loaded');
-
   if (document.querySelector('.lav-build')) {
     return false;
   }
+  console.log('initExp');
+  gaEvent('loaded');
 
   if (!document.querySelector('#go-phone-styles')) {
     initStyles();
@@ -358,7 +337,7 @@ function initExp() {
           if (e.target.closest('.remove')) {
             clickControl(true, e.target.closest('.remove'), true);
           } else {
-            clickControl(true, e.target.classList.contains('remove'), true);
+            clickControl(true, e.target, true);
           }
         } else {
           setTimeout(() => {
@@ -371,7 +350,7 @@ function initExp() {
 
   let lavBuild = `
     <div class='lav-build'>
-      <img class='lav-build' src='${REPO_DIR}/icon-close.svg' />
+      <img class='lav-build__close' src='${REPO_DIR}/icon-close2.svg' />
       <div class='lav-build__title'>Your order</div>
       <div class='lav-build__discounts'>
         <div class='lav-build__discount'>
@@ -395,7 +374,9 @@ function initExp() {
       <div class='lav-build__caption'>Add <span class='lav-build__caption-value'>0</span> products -</div>
       <div class='lav-build__caption lav-build__caption-sub'>Get <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
 
-      <div class='lav-build__list'></div>
+      <div class='lav-build__list-wrap'>
+        <div class='lav-build__list'></div>
+      </div>
 
       <div class='lav-build__tip'>
         <div class='lav-build__tip-caption'>Tip: </div>
@@ -413,12 +394,11 @@ function initExp() {
     .querySelector('.pageContainer')
     .insertAdjacentHTML('beforeend', lavBuild);
 
-  document.querySelectorAll('.lav-build__discount-tip img').forEach(element => {
-    element.addEventListener('click', function () {
-      gaEvent('congratulation tooltip closed');
-      element.parentElement.style.display = 'none';
+  document
+    .querySelector('.lav-build__close')
+    .addEventListener('click', function () {
+      document.querySelector('.lav-build').style.display = 'none';
     });
-  });
 
   document
     .querySelector('.lav-build__checkout')
@@ -451,6 +431,7 @@ function initExp() {
 
   createBuildItemsRow(3);
   setItems();
+
   if (document.querySelector('.e-nav .button.primary.red')) {
     setBasketDiscount(
       parseInt(
@@ -459,6 +440,22 @@ function initExp() {
           .innerText.split('(')[1]
       )
     );
+
+    if (
+      parseInt(
+        document
+          .querySelector('.e-nav .button.primary.red')
+          .innerText.split('(')[1]
+      ) <= 6
+    ) {
+      document
+        .querySelector('.lav-build__checkout')
+        .classList.add('lav-build__checkout_disabled');
+    } else {
+      document
+        .querySelector('.lav-build__checkout')
+        .classList.remove('lav-build__checkout_disabled');
+    }
   }
 }
 
@@ -576,29 +573,131 @@ function setItems() {
 
       checkCountInput(targetItem, productCount);
 
-      targetItem
-        .querySelector('.lav-build__control-plus')
-        .addEventListener('click', function (e) {
-          e.preventDefault();
-          gaEvent('+ clicked');
-          product.querySelector('.add .notification').click();
-        });
+      targetItem.addEventListener('click', function () {
+        if (document.querySelector('.lav-build__modal')) {
+          document.querySelector('.lav-build__modal').remove();
+        }
+        document
+          .querySelector('.lav-build__list-wrap')
+          .classList.add('lav-blured');
 
-      targetItem
-        .querySelector('.lav-build__control-minus')
-        .addEventListener('click', function (e) {
-          e.preventDefault();
-          if (product.querySelector('.added-container input').value == '1') {
-            console.log(
-              'qty:',
-              product.querySelector('.added-container input').value
-            );
-            gaEvent('Item deleted');
-          } else {
-            gaEvent('- clicked');
-          }
-          product.querySelector('.remove').click();
-        });
+        let cloneItem = targetItem.cloneNode(true);
+
+        cloneItem.classList.add('lav-build__modal');
+        cloneItem.classList.remove('lav-build__item');
+
+        cloneItem.querySelector('.lav-build__item-count').remove();
+
+        cloneItem.insertAdjacentHTML(
+          'afterbegin',
+          ` <img class='lav-build__item-close' src='${REPO_DIR}/icon-close2.svg' />`
+        );
+
+        cloneItem
+          .querySelector('.lav-build__item-close')
+          .addEventListener('click', function () {
+            document.querySelector('.lav-build__modal').remove();
+            document
+              .querySelector('.lav-build__list-wrap')
+              .classList.remove('lav-blured');
+          });
+
+        document
+          .querySelector('.lav-build__list-wrap')
+          .insertAdjacentElement('afterbegin', cloneItem);
+
+        cloneItem
+          .querySelector('.lav-build__control-plus')
+          .addEventListener('click', function (e) {
+            e.preventDefault();
+            gaEvent('+ clicked');
+            product.querySelector('.add .notification').click();
+            let timeoutTime;
+            if (
+              document.querySelector('.lav-build__caption-value').innerText ==
+              '1'
+            ) {
+              timeoutTime = 1200;
+              console.log('big timeout');
+            } else {
+              timeoutTime = 150;
+            }
+            setTimeout(() => {
+              if (product.querySelector('input')) {
+                console.log('get input');
+                cloneItem.querySelector('.lav-build__control-input').value =
+                  product.querySelector('input').value;
+              } else {
+                console.log('remove item need');
+              }
+
+              if (
+                cloneItem.querySelector('.lav-build__control-input').value == 1
+              ) {
+                document.querySelector(
+                  '.lav-build__modal .lav-build__control-btn img'
+                ).style.display = 'none';
+                document.querySelector(
+                  '.lav-build__modal .lav-build__control-btn img + img'
+                ).style.display = 'block';
+              } else {
+                document.querySelector(
+                  '.lav-build__modal .lav-build__control-btn img'
+                ).style.display = 'block';
+                document.querySelector(
+                  '.lav-build__modal .lav-build__control-btn img + img'
+                ).style.display = 'none';
+              }
+            }, timeoutTime);
+          });
+
+        cloneItem
+          .querySelector('.lav-build__control-minus')
+          .addEventListener('click', function (e) {
+            e.preventDefault();
+            if (product.querySelector('.added-container input').value == '1') {
+              document.querySelector('.lav-build__modal').remove();
+              document
+                .querySelector('.lav-build__list-wrap')
+                .classList.remove('lav-blured');
+              console.log(
+                'qty:',
+                product.querySelector('.added-container input').value
+              );
+              gaEvent('Item deleted');
+            } else {
+              gaEvent('- clicked');
+            }
+            product.querySelector('.remove').click();
+            setTimeout(() => {
+              if (product.querySelector('input')) {
+                cloneItem.querySelector('.lav-build__control-input').value =
+                  product.querySelector('input').value;
+
+                if (
+                  cloneItem.querySelector('.lav-build__control-input').value ==
+                  1
+                ) {
+                  document.querySelector(
+                    '.lav-build__modal .lav-build__control-btn img'
+                  ).style.display = 'none';
+                  document.querySelector(
+                    '.lav-build__modal .lav-build__control-btn img + img'
+                  ).style.display = 'block';
+                } else {
+                  document.querySelector(
+                    '.lav-build__modal .lav-build__control-btn img'
+                  ).style.display = 'block';
+                  document.querySelector(
+                    '.lav-build__modal .lav-build__control-btn img + img'
+                  ).style.display = 'none';
+                }
+              } else {
+                console.log('remove item need');
+              }
+            }, 150);
+          });
+      });
 
       i++;
     }
@@ -621,24 +720,9 @@ function setBasketDiscount(count) {
   } else if (count >= 14) {
     ind = 1;
   }
-  if (document.querySelector('.lav-build__discount-tip.active')) {
-    document.querySelector('.lav-build__discount-tip.active').style.display =
-      'none';
-    document
-      .querySelector('.lav-build__discount-tip.active')
-      .classList.remove('active');
-  }
-  if (ind) {
-    document
-      .querySelector(
-        '.lav-build__discount:nth-child(' + ind + ') .lav-build__discount-tip'
-      )
-      .classList.add('active');
-    document.querySelector(
-      '.lav-build__discount:nth-child(' + ind + ') .lav-build__discount-tip'
-    ).style.display = 'block';
-  }
+
   setCaption(count);
+
   if (count >= 14) {
     controlDiscount(true, 1);
   } else {
