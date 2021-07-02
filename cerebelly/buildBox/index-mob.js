@@ -418,6 +418,7 @@ function initExp() {
     .querySelector('.lav-build__close')
     .addEventListener('click', function () {
       document.querySelector('.lav-build').style.display = 'none';
+      document.querySelector('.e-header-modal').style.display = 'block';
     });
 
   document
@@ -496,6 +497,7 @@ function initExp() {
     .querySelector('.lav-header__discount-wrap')
     .addEventListener('click', function () {
       document.querySelector('.lav-build').style.display = 'block';
+      document.querySelector('.e-header-modal').style.display = 'none';
     });
 }
 

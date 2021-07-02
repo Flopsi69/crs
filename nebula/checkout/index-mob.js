@@ -13,7 +13,7 @@
     try {
       let eventObj = {
         event: 'event-to-ga',
-        eventCategory: 'Exp - Checkout_more_inf',
+        eventCategory: 'Exp - Checkout_more_info',
         eventAction: action,
         eventLabel: label,
         eventValue: value
