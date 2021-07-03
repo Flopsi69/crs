@@ -52,6 +52,9 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
+  .css-11qaux4 .header-progress-wrap {
+    display: none;
+  }
     .e-nav .e-right-quiz {
       flex-flow: row-reverse;
       justify-content: flex-start!important;
@@ -199,9 +202,35 @@ function initStyles() {
       filter: drop-shadow(0px 7px 21px rgba(56, 86, 167, 0.25));
       border-radius: 3px;
     }
+    .lav-header__caption {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 160px;
+      transform: translateX(-55%) translateY(13px);
+      padding: 10px;
+      background: #3856A7;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+    .lav-header__caption:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 55%;
+      transform: translateX(-50%) rotate(45deg);
+      border: 5px solid #3856a7;
+    }
+    .lav-header__caption span {
+      font-weight: bold;
+    }
     .lav-header__discount-wrap {
       position: relative;
-      margin-right: 20px;
+      margin-right: 25px;
     }
     .lav-header__discount-num {
       position: absolute;
@@ -419,6 +448,13 @@ function initExp() {
     .addEventListener('click', function () {
       document.querySelector('.lav-build').style.display = 'none';
       document.querySelector('.e-header-modal').style.display = 'block';
+      setCaption(
+        parseInt(
+          document
+            .querySelector('.e-nav .button.primary.red')
+            .innerText.split('(')[1]
+        )
+      );
     });
 
   document
@@ -453,6 +489,37 @@ function initExp() {
   createBuildItemsRow(3);
   setItems();
 
+  let headerDiscountEl = `
+  <div class='lav-header__discount-wrap'>
+    <img class='lav-header__discount' src='${REPO_DIR}/icon-discount.svg' />
+    <img class='lav-header__discount-value' src='${REPO_DIR}/icon-discount-value.svg' />
+    <span class='lav-header__discount-num'>-</span>
+    <div class='lav-header__caption'>
+      Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to get <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
+    </div>
+  </div>
+`;
+
+  document
+    .querySelector('.e-nav .e-right-quiz')
+    .insertAdjacentHTML('beforeend', headerDiscountEl);
+
+  checkHeaderDiscount();
+
+  document
+    .querySelector('.lav-header__discount-wrap')
+    .addEventListener('click', function () {
+      document.querySelector('.lav-build').style.display = 'block';
+      document.querySelector('.e-header-modal').style.display = 'none';
+      setCaption(
+        parseInt(
+          document
+            .querySelector('.e-nav .button.primary.red')
+            .innerText.split('(')[1]
+        )
+      );
+    });
+
   if (document.querySelector('.e-nav .button.primary.red')) {
     setBasketDiscount(
       parseInt(
@@ -478,27 +545,6 @@ function initExp() {
         .classList.remove('lav-build__checkout_disabled');
     }
   }
-
-  let headerDiscountEl = `
-  <div class='lav-header__discount-wrap'>
-    <img class='lav-header__discount' src='${REPO_DIR}/icon-discount.svg' />
-    <img class='lav-header__discount-value' src='${REPO_DIR}/icon-discount-value.svg' />
-    <span class='lav-header__discount-num'>-</span>
-  </div>
-`;
-
-  document
-    .querySelector('.e-nav .e-right-quiz')
-    .insertAdjacentHTML('beforeend', headerDiscountEl);
-
-  checkHeaderDiscount();
-
-  document
-    .querySelector('.lav-header__discount-wrap')
-    .addEventListener('click', function () {
-      document.querySelector('.lav-build').style.display = 'block';
-      document.querySelector('.e-header-modal').style.display = 'none';
-    });
 }
 
 function checkHeaderDiscount() {
@@ -810,12 +856,18 @@ function setBasketDiscount(count) {
     controlDiscount(true, 4);
     document.querySelector('.lav-build__caption').style.display = 'none';
     document.querySelector('.lav-build__caption-sub').style.display = 'none';
+
     if (!document.querySelector('.lav-build__caption-temp2')) {
       document.querySelector('.lav-build__discounts').insertAdjacentHTML(
-        'beforebegin',
+        'afterend',
         `<div class='lav-build__caption lav-build__caption-temp1'>Congratulations!</div>
-    <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You got Free Shipping + 25% OFF</span></div>`
+         <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You got Free Shipping + 25% OFF</span></div>`
       );
+    } else {
+      document.querySelector('.lav-build__caption-temp1').style.display =
+        'block';
+      document.querySelector('.lav-build__caption-temp2').style.display =
+        'block';
     }
   } else {
     controlDiscount(false, 4);
@@ -831,19 +883,37 @@ function setBasketDiscount(count) {
 function setCaption(count) {
   let countEl = document.querySelector('.lav-build__caption-value');
   let percentEl = document.querySelector('.lav-build__caption-sub-value');
+  let countTwoEl = document.querySelector('.lav-header__caption-value');
+  let percentTwoEl = document.querySelector('.lav-header__caption-sub-value');
+  if (
+    count == 0 ||
+    document.querySelector('.lav-build').style.display == 'block'
+  ) {
+    document.querySelector('.lav-header__caption').style.display = 'none';
+  } else {
+    document.querySelector('.lav-header__caption').style.display = 'block';
+  }
 
   if (count < 14) {
     countEl.innerText = 14 - count;
+    countTwoEl.innerText = 14 - count;
     percentEl.innerText = 10;
+    percentTwoEl.innerText = 10;
   } else if (count < 28) {
     countEl.innerText = 28 - count;
+    countTwoEl.innerText = 28 - count;
     percentEl.innerText = 15;
+    percentTwoEl.innerText = 15;
   } else if (count < 42) {
     countEl.innerText = 42 - count;
+    countTwoEl.innerText = 42 - count;
     percentEl.innerText = 20;
+    percentTwoEl.innerText = 20;
   } else if (count < 56) {
     countEl.innerText = 56 - count;
+    countTwoEl.innerText = 56 - count;
     percentEl.innerText = 25;
+    percentTwoEl.innerText = 25;
   }
 }
 
