@@ -1,16 +1,37 @@
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2171597, hjsv: 6 };
+  a = o.getElementsByTagName('head')[0];
+  r = o.createElement('script');
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj('trigger', 'bundle_builder');
+
 function gaEvent(action, label = '') {
-  // window.dataLayer = window.dataLayer || [];
-  // try {
-  //   let eventObj = {
-  //     event: 'event-to-ga',
-  //     eventCategory: 'Exp: Bundle Builder',
-  //     eventAction: action
-  //   };
-  //   if (label) {
-  //     eventObj['eventLabel'] = label;
-  //   }
-  //   dataLayer.push(eventObj);
-  // } catch (e) {}
+  window.dataLayer = window.dataLayer || [];
+  try {
+    let eventObj = {
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Bundle Builder',
+      eventAction: action
+    };
+    if (label) {
+      eventObj['eventLabel'] = label;
+    }
+    dataLayer.push(eventObj);
+    console.log('eventFire:', eventObj);
+  } catch (e) {}
 }
 
 let isInitExp = false;
@@ -460,7 +481,7 @@ function initExp() {
   document
     .querySelector('.lav-build__checkout')
     .addEventListener('click', function (e) {
-      gaEvent('Proceed to Checkout clicked');
+      gaEvent('Proceed to Checkout tapped');
       e.preventDefault();
       location.href = 'https://cerebelly.com/checkout';
       //   document.querySelector('.e-nav .button.primary.red').click();
@@ -691,6 +712,7 @@ function setItems() {
         if (document.querySelector('.lav-build__modal')) {
           document.querySelector('.lav-build__modal').remove();
         }
+        gaEvent('Item selected (Edit controls)');
         document
           .querySelector('.lav-build__list-wrap')
           .classList.add('lav-blured');
@@ -724,7 +746,7 @@ function setItems() {
           .querySelector('.lav-build__control-plus')
           .addEventListener('click', function (e) {
             e.preventDefault();
-            gaEvent('+ clicked');
+            gaEvent('+ tapped');
             product.querySelector('.add .notification').click();
             let timeoutTime;
             if (
@@ -780,7 +802,7 @@ function setItems() {
               );
               gaEvent('Item deleted');
             } else {
-              gaEvent('- clicked');
+              gaEvent('- tapped');
             }
             product.querySelector('.remove').click();
             setTimeout(() => {
