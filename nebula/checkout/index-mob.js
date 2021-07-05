@@ -328,6 +328,7 @@
 
   /* STYLES insert end */
   gaEvent('loaded');
+
   function initExp() {
     console.log('Exp init!');
     document.querySelectorAll('.order_main_wrap').forEach(function (orderEl) {
@@ -379,7 +380,7 @@
     let summaryEl = `
       <div class='lav-summary'>
         <div class='lav-summary__row'>
-          <div class='lav-summary__caption'>Ultra Deep Whole Genome Sequencing:</div>
+          <div class='lav-summary__caption'></div>
           <div class='lav-summary__value lav-summary__price'>
             <div class='lav-summary__price-old'>$2999</div>
             <div class='lav-summary__price-new'>$999</div>
@@ -395,6 +396,9 @@
     order
       .querySelector('.order__subtotal')
       .insertAdjacentHTML('beforebegin', summaryEl);
+
+    order.querySelector('.lav-summary__caption').innerText =
+      order.querySelector('.order__title').innerText.trim() + ':';
 
     order
       .querySelector('.order__subtotal-quantity')
