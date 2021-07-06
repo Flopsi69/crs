@@ -508,6 +508,7 @@ function initExp() {
   }
 
   createBuildItemsRow(3);
+  setItems();
 
   let headerDiscountEl = `
   <div class='lav-header__discount-wrap'>
@@ -524,7 +525,6 @@ function initExp() {
     .querySelector('.e-nav .e-right-quiz')
     .insertAdjacentHTML('beforeend', headerDiscountEl);
 
-  setItems();
   checkHeaderDiscount();
 
   document
