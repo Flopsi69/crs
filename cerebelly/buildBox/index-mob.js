@@ -881,9 +881,9 @@ function setBasketDiscount(count) {
     controlDiscount(true, 4);
     document.querySelector('.lav-build__caption').style.display = 'none';
     document.querySelector('.lav-build__caption-sub').style.display = 'none';
-    document.querySelector('.lav-build__caption-process').style.display =
+    document.querySelector('.lav-header__caption-process').style.display =
       'none';
-    document.querySelector('.lav-build__caption-full').style.display = 'block';
+    document.querySelector('.lav-header__caption-full').style.display = 'block';
 
     if (!document.querySelector('.lav-build__caption-temp2')) {
       document.querySelector('.lav-build__discounts').insertAdjacentHTML(
@@ -901,9 +901,9 @@ function setBasketDiscount(count) {
     controlDiscount(false, 4);
     document.querySelector('.lav-build__caption').style.display = 'block';
     document.querySelector('.lav-build__caption-sub').style.display = 'block';
-    document.querySelector('.lav-build__caption-process').style.display =
+    document.querySelector('.lav-header__caption-process').style.display =
       'block';
-    document.querySelector('.lav-build__caption-full').style.display = 'none';
+    document.querySelector('.lav-header__caption-full').style.display = 'none';
     if (document.querySelector('.lav-build__caption-temp2')) {
       document.querySelector('.lav-build__caption-temp2').remove();
       document.querySelector('.lav-build__caption-temp1').remove();
