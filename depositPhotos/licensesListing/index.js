@@ -2273,7 +2273,7 @@ if (location.href.includes('stock-photos')) {
                 node.querySelectorAll('.price-table-upgrade__item').length > 1
               ) {
                 clearInterval(setIntervalEl);
-                if (document.querySelector('.auth-box')) {
+                if (document.querySelector('[data-qa="FooterEnterprise"]')) {
                   document.querySelector('#root>.wrapper').style.opacity = 1;
                 } else {
                   init();
@@ -2303,7 +2303,7 @@ if (location.href.includes('stock-photos')) {
     setTimeout(() => {
       document.querySelector('#root>.wrapper').style.opacity = 1;
     }, 3500);
-    init();
+    // init();
 
     function init() {
       localStorage.setItem('lavLicenseType', 'none');
