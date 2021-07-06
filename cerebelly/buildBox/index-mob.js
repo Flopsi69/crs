@@ -535,6 +535,12 @@ function initExp() {
   document
     .querySelector('.lav-header__discount-wrap')
     .addEventListener('click', function () {
+      if (document.querySelector('.lav-build__modal')) {
+        document.querySelector('.lav-build__modal').remove();
+      }
+      document
+        .querySelector('.lav-build__list-wrap')
+        .classList.remove('lav-blured');
       document.querySelector('.lav-build').style.display = 'block';
       document.querySelector('.e-header-modal').style.display = 'none';
       setCaption(
@@ -716,6 +722,9 @@ function setItems() {
       targetItem.addEventListener('click', function () {
         if (document.querySelector('.lav-build__modal')) {
           document.querySelector('.lav-build__modal').remove();
+          document
+            .querySelector('.lav-build__list-wrap')
+            .classList.remove('lav-blured');
         }
         gaEvent('Item selected (Edit controls)');
         document
