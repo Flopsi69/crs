@@ -515,11 +515,13 @@ function initExp() {
     <img class='lav-header__discount' src='${REPO_DIR}/icon-discount.svg' />
     <img class='lav-header__discount-value' src='${REPO_DIR}/icon-discount-value.svg' />
     <span class='lav-header__discount-num'>-</span>
-    <div class='lav-header__caption lav-header__caption-process'>
-      Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to get <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
-    </div>
-    <div class='lav-header__caption lav-header__caption-full'>
-    Congratulations! <br> <span class='lav-header__caption-sub'>You got Free Shipping + 25% OFF</span>
+    <div class='lav-header__caption'>
+      <div class='lav-header__caption-process'>
+        Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to get <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
+      </div>
+      <div class='lav-header__caption-full'>
+        Congratulations! <br> <span class='lav-header__caption-sub'>You got Free Shipping + 25% OFF</span>
+      </div>
     </div>
   </div>
 `;
