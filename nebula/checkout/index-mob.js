@@ -271,6 +271,11 @@
     line-height: 1.5;
     color: #505985;
   }
+  .modal__descr-main {
+  }
+  .modal__descr-sub {
+    display: none;
+  }
   .modal__descr p {
     margin: 0;
   }
@@ -377,6 +382,15 @@
       .querySelector('.reporting')
       .insertAdjacentHTML('beforebegin', reportBlock);
 
+    if (
+      order
+        .querySelector('.order__title')
+        .innerText.toLowerCase()
+        .includes('basic')
+    ) {
+      order.querySelector('.modal-trigger').classList.add('modal-trigger-sub');
+    }
+
     let summaryEl = `
       <div class='lav-summary'>
         <div class='lav-summary__row'>
@@ -464,11 +478,16 @@
             <img src='${REPO_DIR}/img/modal-image.svg' />
           </div>
           <div class='modal__title'>Why subscribe to Nebula Explore™ Reporting?</div>
-          <div class='modal__descr'>
+          <div class='modal__descr modal__descr-main'>
             <p>1. New DNA reports every week that are based on the latest genomic research and learn how they apply to your DNA results.</p>
             <p>2. Access to exploration tools that will enable you to examine any of your ~20,000 genes and generate your personalized reports.</p>
             <p>3. Access to deep ancestry analysis that will enable you to do your full genealogical research. Get deeper insights than with any other DNA test on the market.</p>
             <p>4. Access to premium support provided by geneticists at Nebula Genomics.</p>
+          </div>
+          <div class='modal__descr modal__descr-sub'>
+            <p>1. New DNA reports every week that are based on the latest genomic research and learn how they apply to your DNA results.</p>
+            <p>2. Learn where your ancestors came from and start exploring your family history.</p>
+            <p>3. Access to premium support provided by geneticists at Nebula Genomics.</p>
           </div>
         </div>
       </div>
@@ -495,6 +514,13 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         gaEvent('click on Why subscribe');
+        if (btn.classList.contains('modal-trigger-sub')) {
+          document.querySelector('.modal__descr-main').style.display = 'none';
+          document.querySelector('.modal__descr-sub').style.display = 'block';
+        } else {
+          document.querySelector('.modal__descr-main').style.display = 'block';
+          document.querySelector('.modal__descr-sub').style.display = 'none';
+        }
         modalEl.classList.add('modal_active');
       });
     });
