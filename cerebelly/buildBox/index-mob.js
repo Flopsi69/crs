@@ -400,6 +400,17 @@ function initExp() {
 
       if (
         e.target.closest('.action.add') ||
+        (e.target.classList.contains('action') &&
+          e.target.classList.contains('add'))
+      ) {
+        console.log('click bundle');
+
+        setTimeout(() => {
+          clickControl();
+        }, 500);
+      }
+
+      if (
         e.target.closest('.added-container') ||
         e.target.closest('.not-added-container') ||
         (e.target.closest('.main') &&
