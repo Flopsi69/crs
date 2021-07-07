@@ -399,6 +399,7 @@ function initExp() {
       }
 
       if (
+        e.target.closest('.action.add') ||
         e.target.closest('.added-container') ||
         e.target.closest('.not-added-container') ||
         (e.target.closest('.main') &&
