@@ -652,7 +652,11 @@ function clickControl(isToggleClick, targetClick, isDown) {
         isDown) &&
       (inBasket == 13 || inBasket == 27 || inBasket == 41 || inBasket == 55)
     ) {
-      document.querySelector('.e-page-content-wrap + div').style.opacity = 0;
+      if (
+        !document.querySelector('.e-page-content-wrap + div .box-content-wrap')
+      ) {
+        document.querySelector('.e-page-content-wrap + div').style.opacity = 0;
+      }
       // document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
 
       let observerPlans = new MutationObserver(mutations => {
@@ -995,7 +999,6 @@ function controlDiscount(isActive, i) {
 }
 
 function toggleBox(isDown) {
-  console.log(document.querySelectorAll('.plan'));
   let indx = Array.from(document.querySelectorAll('.plan')).findIndex(function (
     el
   ) {
