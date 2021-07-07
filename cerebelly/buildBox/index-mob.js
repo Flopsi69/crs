@@ -395,6 +395,7 @@ function initExp() {
         e.target.closest('.products-not-empty.info-button')
       ) {
         document.querySelector('.lav-build').style.display = 'none';
+        document.querySelector('.lav-header__caption').style.display = 'block';
       }
 
       if (
