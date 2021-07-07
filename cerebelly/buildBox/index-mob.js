@@ -408,7 +408,7 @@ function initExp() {
 
         setTimeout(() => {
           clickControl();
-        }, 500);
+        }, 200);
       }
 
       if (
@@ -434,9 +434,9 @@ function initExp() {
             clickControl(true, e.target, true);
           }
         } else {
-          setTimeout(() => {
-            clickControl();
-          }, 300);
+          // setTimeout(() => {
+          clickControl();
+          // }, 300);
         }
       }
     });
@@ -697,7 +697,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
     }
     setBasketDiscount(inBasket);
     checkHeaderDiscount();
-  }, 200);
+  }, 0);
 }
 
 function setItems() {
