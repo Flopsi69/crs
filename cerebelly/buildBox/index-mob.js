@@ -40,7 +40,6 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 let observerGlobal = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
-      м;
       if (!(node instanceof HTMLElement)) continue;
       if (
         node.querySelector('.pageContainer .container') &&
