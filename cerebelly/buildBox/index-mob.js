@@ -955,6 +955,7 @@ function setCaption(count) {
   let countTwoEl = document.querySelector('.lav-header__caption-value');
   let percentTwoEl = document.querySelector('.lav-header__caption-sub-value');
   if (
+    !count ||
     count == 0 ||
     document.querySelector('.lav-build').style.display == 'block'
   ) {
