@@ -40,9 +40,8 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 let observerGlobal = new MutationObserver(mutations => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
-      // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
+      м;
       if (!(node instanceof HTMLElement)) continue;
-      // console.log(node);
       if (
         node.querySelector('.pageContainer .container') &&
         node.querySelector('.products') &&
@@ -73,6 +72,12 @@ observerGlobal.observe(document.body, { childList: true, subtree: true });
 function initStyles() {
   /* STYLES insert start */
   let stylesList = `
+  .e-header-modal {
+    display: none!important;
+  }
+  .summary-table .product-rows.accordion + .add-box {
+    display: none;
+  }
   .css-11qaux4 .header-progress-wrap {
     display: none;
   }
@@ -385,8 +390,14 @@ function initExp() {
   if (!document.querySelector('#go-phone-styles')) {
     initStyles();
 
-    // TODO
     document.addEventListener('click', function (e) {
+      if (
+        e.target.classList.contains('blue') &&
+        e.target.closest('.products-not-empty.info-button')
+      ) {
+        document.querySelector('.lav-build').style.display = 'none';
+      }
+
       if (
         e.target.closest('.added-container') ||
         e.target.closest('.not-added-container') ||
