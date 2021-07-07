@@ -400,6 +400,7 @@ function initExp() {
 
       if (
         e.target.closest('.action.add') ||
+        e.target.closest('.actions') ||
         (e.target.classList.contains('action') &&
           e.target.classList.contains('add'))
       ) {
