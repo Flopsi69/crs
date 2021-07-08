@@ -8,7 +8,7 @@ function gaEvent(action, label, value) {
   }
   window.dataLayer = window.dataLayer || [];
   var eventObj = {
-    event: 'event-to-ga',
+    event: 'gaEv',
     eventCategory: 'Experiment — modal PDP with EL',
     eventAction: action,
     eventLabel: label,
