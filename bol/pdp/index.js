@@ -1318,7 +1318,9 @@ function setDiscount() {
 
   $(document).on('input', '#quantity', function () {
     this.value = this.value.replace(/\D/g, '');
-    setTotalPrice();
+    setTimeout(() => {
+      setTotalPrice();
+    }, 400);
   });
 }
 
@@ -1677,7 +1679,9 @@ function initOptions() {
       .find('select')
       .on('change', function () {
         console.log('select change');
-        setTotalPrice();
+        setTimeout(() => {
+          setTotalPrice();
+        }, 400);
       });
     optionName = $(el).find('label').text().trim().toLowerCase();
     if (
