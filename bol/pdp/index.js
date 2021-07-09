@@ -1673,6 +1673,12 @@ function setRowSpec(index, el) {
 function initOptions() {
   let optionName;
   $('.selector-wrapper .selector-wrapper').each((i, el) => {
+    $(el)
+      .find('select')
+      .on('change', function () {
+        console.log('select change');
+        setTotalPrice();
+      });
     optionName = $(el).find('label').text().trim().toLowerCase();
     if (
       optionName.toLowerCase().includes('optics') ||
