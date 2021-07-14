@@ -928,7 +928,7 @@ function setBasketDiscount(count) {
       document.querySelector('.lav-build__discounts').insertAdjacentHTML(
         'afterend',
         `<div class='lav-build__caption lav-build__caption-temp1'>Congratulations!</div>
-         <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You got Free Shipping + 25% OFF</span></div>`
+         <div class="lav-build__caption lav-build__caption-sub lav-build__caption-temp2"><span>You unlocked Free Shipping + 25% OFF</span></div>`
       );
     } else {
       document.querySelector('.lav-build__caption-temp1').style.display =
