@@ -48,15 +48,15 @@ const REPO_DIR = 'https://flopsi69.github.io/crs/bol/pdp';
 //   childList: true,
 //   subtree: true
 // });
-if (document.querySelector('body')) {
-  document.querySelector('body').style.opacity = '0.15';
-  document.querySelector('body').style.transtion = '0.3s';
-} else {
-  setTimeout(() => {
-    document.querySelector('body').style.opacity = '0.15';
-    document.querySelector('body').style.transtion = '0.3s';
-  }, 300);
-}
+// if (document.querySelector('body')) {
+//   document.querySelector('body').style.opacity = '0.15';
+//   document.querySelector('body').style.transtion = '0.3s';
+// } else {
+//   setTimeout(() => {
+//     document.querySelector('body').style.opacity = '0.15';
+//     document.querySelector('body').style.transtion = '0.3s';
+//   }, 300);
+// }
 
 function initStyles() {
   /* STYLES insert start */
@@ -1133,7 +1133,7 @@ function initExp() {
     } else {
       clearInterval(intervarlDescr);
       console.log('clear');
-      document.querySelector('body').style.opacity = '1';
+      // document.querySelector('body').style.opacity = '1';
 
       $('.minus_btn').on('click', function (e) {
         setTimeout(() => {
