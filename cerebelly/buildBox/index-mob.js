@@ -474,7 +474,7 @@ function initExp() {
 
       <div class='lav-build__tip'>
         <div class='lav-build__tip-caption'>Tip: </div>
-        <div class='lav-build__tip-value'>Your quantity selected should last your baby 14 days.</div>
+        <div class='lav-build__tip-value'>When choosing the number of products for your little one, pick the best quantity to last two weeks, as our meal plans ship every 14 days so you never run out!</div>
       </div>
 
 
@@ -541,7 +541,7 @@ function initExp() {
     <span class='lav-header__discount-num'>-</span>
     <div class='lav-header__caption'>
       <div class='lav-header__caption-process'>
-        Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to get <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
+        Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to unlock <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
       </div>
       <div class='lav-header__caption-full'>
         Congratulations! <br> <span class='lav-header__caption-sub'>You got Free Shipping + 25% OFF</span>
