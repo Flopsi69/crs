@@ -466,7 +466,7 @@ function initExp() {
       </div>
 
       <div class='lav-build__caption'>Add <span class='lav-build__caption-value'>0</span> products -</div>
-      <div class='lav-build__caption lav-build__caption-sub'>Get <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
+      <div class='lav-build__caption lav-build__caption-sub'>Unlock <span>Free Shipping + <span class='lav-build__caption-sub-value'>10</span>% OFF</span></div>
 
       <div class='lav-build__list-wrap'>
         <div class='lav-build__list'></div>
@@ -544,7 +544,7 @@ function initExp() {
         Add <span class='lav-header__caption-value'>13</span> more products <br> to your order to unlock <br> <span class='lav-header__caption-sub'>Free Shipping + <span class='lav-header__caption-sub-value'>10</span>% OFF</span>
       </div>
       <div class='lav-header__caption-full'>
-        Congratulations! <br> <span class='lav-header__caption-sub'>You got Free Shipping + 25% OFF</span>
+        Congratulations! <br> <span class='lav-header__caption-sub'>You unlocked Free Shipping + 25% OFF</span>
       </div>
     </div>
   </div>
