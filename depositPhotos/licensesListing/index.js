@@ -2352,6 +2352,10 @@ if (location.href.includes('stock-photos')) {
           gaEvent('download button click', 'download button click B');
         });
 
+      if (!document.querySelector('.lav-size_extended')) {
+        document.querySelector('.lav-license_extended').remove();
+      }
+
       setTimeout(() => {
         document.querySelector('#root>.wrapper').style.opacity = 1;
       }, 300);
