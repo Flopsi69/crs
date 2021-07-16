@@ -782,6 +782,7 @@ if (location.href.includes('stock-photos')) {
             if (document.querySelector('.lav-license__modal-trigger')) {
               document.querySelector('.lav-license__modal-trigger').remove();
             }
+            localStorage.setItem('lavLicenseType', 'none');
 
             document
               .querySelector('.price-table-classic')
@@ -868,6 +869,7 @@ if (location.href.includes('stock-photos')) {
     function init() {
       initStyles();
       console.log('initExp');
+      localStorage.setItem('lavLicenseType', 'none');
       createModal();
       if (
         document.querySelector('.modal-container') &&
