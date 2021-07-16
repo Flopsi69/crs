@@ -1857,6 +1857,9 @@ if (location.href.includes('stock-photos')) {
 
     let stylesList = `
     @media screen and (min-width: 1441px) {
+      .file-view-page-upgrade_vertical .file-view-upgrade__info-box {
+        min-height: 100px;
+      }
       .file-thumb__image {
         --step-large-image-max-height: 400px;
       }
