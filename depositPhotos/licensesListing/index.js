@@ -2311,6 +2311,7 @@ if (location.href.includes('stock-photos')) {
     // init();
 
     function init() {
+      console.log('initExp');
       localStorage.setItem('lavLicenseType', 'none');
       createModal();
       let sizesEl = createSizes();
