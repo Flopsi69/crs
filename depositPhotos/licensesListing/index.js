@@ -941,7 +941,7 @@ if (location.href.includes('stock-photos')) {
         document
           .querySelector('.lav-license__modal-trigger-wrap')
           .insertAdjacentElement(
-            'afterend',
+            'beforeend',
             document.querySelector('.lav-license__modal-trigger')
           );
       }
@@ -1041,6 +1041,11 @@ if (location.href.includes('stock-photos')) {
       if (sizeEl.querySelector('.price-table-classic__label')) {
         price = sizeEl
           .querySelector('.price-table-classic__label')
+          .innerText.trim();
+      }
+      if (sizeEl.querySelector('.price-table-classic__redownload') && !price) {
+        price = sizeEl
+          .querySelector('.price-table-classic__redownload')
           .innerText.trim();
       }
       let dim =
