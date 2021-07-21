@@ -653,6 +653,9 @@ if (location.href.includes('stock-photos')) {
       transition: 0.35s;
       cursor: pointer;
     }
+    .lav-size_active {
+      padding-right: 30px;
+    }
     .lav-size:hover {
       background-color: #212020;
     }
@@ -721,7 +724,7 @@ if (location.href.includes('stock-photos')) {
       width: 10px;
       filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
       position: absolute;
-      right: 0;
+      right: 10px;
     }
     .lav-sizes__list .lav-size_extended {
       display: none;
