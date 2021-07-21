@@ -668,6 +668,9 @@ if (location.href.includes('stock-photos')) {
     .lav-size__dim {
       margin-right: 30px;
     }
+    .lav-size__price {
+      margin-left: 30px;
+    }
     .lav-size__abr {
       display: flex;
       align-items: center;
@@ -1034,6 +1037,9 @@ if (location.href.includes('stock-photos')) {
       let newSizeEl = document.createElement('div');
       newSizeEl.classList.add('lav-size');
       let abr = sizeEl.querySelector('.price-table-classic__size').innerHTML;
+      let price = sizeEl
+        .querySelector('.price-table-classic__label')
+        .innerText.trim();
       let dim =
         sizeEl.querySelector('.price-table-classic__text-size').innerText +
         sizeEl.querySelector('.price-table-classic__text-type').innerText;
@@ -1059,6 +1065,7 @@ if (location.href.includes('stock-photos')) {
       <div class='lav-size__info'>
         <div class='lav-size__dim'>${dim}</div>
         <div class='lav-size__params'>${params}</div>
+        <div class='lav-size__price'>${price}</div>
       </div>
       <img class='lav-size__icon' src='${REPO_DIR}/icon-dropdown.svg' >
   `;
