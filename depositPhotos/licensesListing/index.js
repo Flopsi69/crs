@@ -662,8 +662,8 @@ if (location.href.includes('stock-photos')) {
     }
     .lav-size__info {
       display: flex;
+      flex-grow; 1;
       align-items: center;
-      margin: 0 12px;
     }
     .lav-size__dim {
       margin-right: 30px;
@@ -2033,8 +2033,8 @@ if (location.href.includes('stock-photos')) {
     }
     .lav-size__info {
       display: flex;
-      flex-grow: 1;
       align-items: center;
+      margin: 0 12px;
     }
     .lav-size__dim {
       margin-right: 10px;
