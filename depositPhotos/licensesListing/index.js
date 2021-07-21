@@ -881,7 +881,7 @@ if (location.href.includes('stock-photos')) {
     function init() {
       initStyles();
       console.log('initExp');
-      localStorage.setItem('lavLicenseType', 'none');
+      // localStorage.setItem('lavLicenseType', 'none');
       createModal();
       if (
         document.querySelector('.modal-container') &&
