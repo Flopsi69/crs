@@ -662,7 +662,7 @@ if (location.href.includes('stock-photos')) {
     }
     .lav-size__info {
       display: flex;
-      flex-grow; 1;
+      flex-grow: 1;
       align-items: center;
     }
     .lav-size__dim {
@@ -720,6 +720,8 @@ if (location.href.includes('stock-photos')) {
       display: block;
       width: 10px;
       filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+      position: absolute;
+      right: 0;
     }
     .lav-sizes__list .lav-size_extended {
       display: none;
