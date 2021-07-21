@@ -653,7 +653,7 @@ if (location.href.includes('stock-photos')) {
       transition: 0.35s;
       cursor: pointer;
     }
-    .lav-size_active {
+    .lav-size__value .lav-size_active {
       padding-right: 30px;
     }
     .lav-size:hover {
