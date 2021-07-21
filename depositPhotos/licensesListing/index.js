@@ -849,12 +849,13 @@ if (location.href.includes('stock-photos')) {
           if (
             node.parentElement &&
             node.parentElement.classList.contains('plans-component') &&
-            localStorage.getItem('lavLicenseType') == 'extended'
+            localStorage.getItem('lavLicenseType') == 'extended' &&
+            document.querySelectorAll('[data-key]')
           ) {
-            setTimeout(() => {
-              document.querySelectorAll('[data-key]')[1].click();
-              document.querySelector('#root>.wrapper').style.opacity = 1;
-            }, 300);
+            // setTimeout(() => {
+            document.querySelectorAll('[data-key]')[1].click();
+            document.querySelector('#root>.wrapper').style.opacity = 1;
+            // }, 300);
           }
         }
       }
@@ -2330,12 +2331,13 @@ if (location.href.includes('stock-photos')) {
           }
           if (
             node.parentElement.classList.contains('plans-component') &&
-            localStorage.getItem('lavLicenseType') == 'extended'
+            localStorage.getItem('lavLicenseType') == 'extended' &&
+            document.querySelectorAll('[data-key]')
           ) {
-            setTimeout(() => {
-              document.querySelectorAll('[data-key]')[1].click();
-              document.querySelector('#root>.wrapper').style.opacity = 1;
-            }, 300);
+            // setTimeout(() => {
+            document.querySelectorAll('[data-key]')[1].click();
+            document.querySelector('#root>.wrapper').style.opacity = 1;
+            // }, 300);
           }
         }
       }
