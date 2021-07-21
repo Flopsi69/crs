@@ -1037,9 +1037,12 @@ if (location.href.includes('stock-photos')) {
       let newSizeEl = document.createElement('div');
       newSizeEl.classList.add('lav-size');
       let abr = sizeEl.querySelector('.price-table-classic__size').innerHTML;
-      let price = sizeEl
-        .querySelector('.price-table-classic__label')
-        .innerText.trim();
+      let price = '';
+      if (sizeEl.querySelector('.price-table-classic__label')) {
+        price = sizeEl
+          .querySelector('.price-table-classic__label')
+          .innerText.trim();
+      }
       let dim =
         sizeEl.querySelector('.price-table-classic__text-size').innerText +
         sizeEl.querySelector('.price-table-classic__text-type').innerText;
