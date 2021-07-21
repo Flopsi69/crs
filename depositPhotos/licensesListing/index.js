@@ -2241,10 +2241,21 @@ if (location.href.includes('stock-photos')) {
   `;
 
     // connect to DOM
-    if (!document.querySelector('.auth-box')) {
+    if (
+      !document.querySelector('.auth-box') &&
+      !document.querySelector('.file-view-upgrade__auth-box')
+    ) {
       let styles = document.createElement('style');
       styles.innerHTML = stylesList;
+      stylesList.id = 'lav-pdp-styles';
       document.body.appendChild(styles);
+    }
+
+    if (
+      document.querySelector('.file-view-upgrade__auth-box') &&
+      document.querySelector('#lav-pdp-styles')
+    ) {
+      document.querySelector('#lav-pdp-styles').remove();
     }
 
     /*** STYLES insert -end- ***/
