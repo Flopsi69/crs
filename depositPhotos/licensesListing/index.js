@@ -519,13 +519,15 @@ if (location.href.includes('stock-photos')) {
       display: flex;
       justify-content: center;
       align-items: center;
-      // border-bottom: 1px solid rgb(156, 156, 156, 50%);
       transition: 0.2s;
       text-decoration: underline;
       cursor: pointer;
       font-size: 12px;
       line-height: 1;
       color: #9C9C9C;
+    }
+    .lav-license__modal-trigger-wrap {
+      text-align: center;
     }
     .lav-license__modal-trigger:hover {
       border-color: transparent;
@@ -929,6 +931,12 @@ if (location.href.includes('stock-photos')) {
           );
         document
           .querySelector('.price-table-classic')
+          .insertAdjacentHTML(
+            'afterend',
+            `<div class='lav-license__modal-trigger-wrap'></div>`
+          );
+        document
+          .querySelector('.lav-license__modal-trigger-wrap')
           .insertAdjacentElement(
             'afterend',
             document.querySelector('.lav-license__modal-trigger')
