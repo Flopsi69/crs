@@ -516,7 +516,7 @@ if (location.href.includes('stock-photos')) {
     .lav-license__modal-trigger {
       margin-top: 15px;
       margin-bottom: 25px;
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
       transition: 0.2s;
@@ -669,7 +669,8 @@ if (location.href.includes('stock-photos')) {
       margin-right: 30px;
     }
     .lav-size__price {
-      margin-left: 30px;
+      padding-left: 15px;
+      margin-left: auto;
     }
     .lav-size__abr {
       display: flex;
@@ -2032,8 +2033,8 @@ if (location.href.includes('stock-photos')) {
     }
     .lav-size__info {
       display: flex;
+      flex-grow: 1;
       align-items: center;
-      margin: 0 12px;
     }
     .lav-size__dim {
       margin-right: 10px;
