@@ -381,6 +381,9 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert start ***/
 
     let stylesList = `
+    .plans-component form + form > div, .plans-component form + form > ul {
+      opacity: 0;
+    }
     .go-modal__wrap {
       position: fixed;
       display: none;
@@ -779,14 +782,6 @@ if (location.href.includes('stock-photos')) {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
-          if (
-            node.parentElement.classList.contains('plans-component') &&
-            document.querySelector('form + form > ul') &&
-            document.querySelector('form + form > div')
-          ) {
-            document.querySelector('form + form > div').style.opacity = 0;
-            document.querySelector('form + form > ul').style.opacity = 0;
-          }
 
           if (
             node.parentElement &&
@@ -797,12 +792,16 @@ if (location.href.includes('stock-photos')) {
             // setTimeout(() => {
             document.querySelectorAll('[data-key]')[1].click();
             if (
-              document.querySelector('form + form > ul') &&
-              document.querySelector('form + form > div')
+              document.querySelector('.plans-component form + form > ul') &&
+              document.querySelector('.plans-component form + form > div')
             ) {
               setTimeout(() => {
-                document.querySelector('form + form > div').style.opacity = 1;
-                document.querySelector('form + form > ul').style.opacity = 1;
+                document.querySelector(
+                  '.plans-component form + form > div'
+                ).style.opacity = 0;
+                document.querySelector(
+                  '.plans-component form + form > ul'
+                ).style.opacity = 0;
               }, 500);
             }
             console.log('click data-key 1');
@@ -1903,6 +1902,9 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert start ***/
 
     let stylesList = `
+    .plans-component form + form > div, .plans-component form + form > ul {
+      opacity: 0;
+    }
     @media screen and (min-width: 1441px) {
       .file-view-page-upgrade_vertical .file-view-upgrade__info-box {
         min-height: 100px;
