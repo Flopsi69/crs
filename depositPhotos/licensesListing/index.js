@@ -15,16 +15,16 @@ if (
     document.querySelector('.plans-component form + form > ul') &&
     document.querySelector('.plans-component form + form > div')
   ) {
-    setTimeout(() => {
-      console.log('true 0');
+    // setTimeout(() => {
+    console.log('true 0');
 
-      document.querySelector(
-        '.plans-component form + form > div'
-      ).style.opacity = 1;
-      document.querySelector(
-        '.plans-component form + form > ul'
-      ).style.opacity = 1;
-    }, 500);
+    document.querySelector(
+      '.plans-component form + form > div'
+    ).style.opacity = 1;
+    document.querySelector(
+      '.plans-component form + form > ul'
+    ).style.opacity = 1;
+    // }, 500);
   }
 }
 
