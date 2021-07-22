@@ -1,6 +1,7 @@
 let stylesTempCheckout = document.createElement('style');
 stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-component form + form > ul {
   opacity: 0;
+  transition: 0.35s;
 }`;
 document.body.prepend(stylesTempCheckout);
 
@@ -1941,10 +1942,6 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert start ***/
 
     let stylesList = `
-    .plans-component form + form > div, .plans-component form + form > ul {
-      opacity: 0;
-      transition: 0.35s;
-    }
     @media screen and (min-width: 1441px) {
       .file-view-page-upgrade_vertical .file-view-upgrade__info-box {
         min-height: 100px;
