@@ -924,6 +924,7 @@ if (location.href.includes('stock-photos')) {
     function init() {
       initStyles();
       console.log('initExp');
+      gaEvent('activated', 'Modal PDP');
       // localStorage.setItem('lavLicenseType', 'none');
       createModal();
       if (
@@ -1011,6 +1012,7 @@ if (location.href.includes('stock-photos')) {
           .querySelector('.lav-license__modal-trigger')
           .addEventListener('click', function (e) {
             e.preventDefault();
+            gaEvent('click on What is extended license', 'Modal PDP');
             document.querySelector('.go-modal__wrap').style.display = 'flex';
           });
       }
@@ -1901,6 +1903,15 @@ if (location.href.includes('stock-photos')) {
       document.body.insertAdjacentHTML('beforeend', modalHTML);
 
       document
+        .querySelector('.go-modal__caption a')
+        .addEventListener('click', function () {
+          gaEvent(
+            'click on You can read more about licenses here',
+            'Extended license popup'
+          );
+        });
+
+      document
         .querySelector('.go-modal__wrap')
         .addEventListener('click', function (e) {
           if (e.target.classList.contains('go-modal__wrap')) {
@@ -1911,6 +1922,7 @@ if (location.href.includes('stock-photos')) {
       document
         .querySelector('.go-modal__close')
         .addEventListener('click', function () {
+          gaEvent('click background to close popup', 'Extended license popup');
           document.querySelector('.go-modal__wrap').style.display = 'none';
         });
     }
@@ -2424,6 +2436,7 @@ if (location.href.includes('stock-photos')) {
 
     function init() {
       console.log('initExp');
+      gaEvent('activated', 'PDP');
       localStorage.setItem('lavLicenseType', 'none');
       createModal();
       let sizesEl = createSizes();
@@ -2481,6 +2494,7 @@ if (location.href.includes('stock-photos')) {
           .querySelector('.lav-license__modal-trigger')
           .addEventListener('click', function (e) {
             e.preventDefault();
+            gaEvent('click on What is extended license', 'PDP');
             document.querySelector('.go-modal__wrap').style.display = 'flex';
           });
       }
@@ -3342,8 +3356,18 @@ if (location.href.includes('stock-photos')) {
       document.body.insertAdjacentHTML('beforeend', modalHTML);
 
       document
+        .querySelector('.go-modal__caption a')
+        .addEventListener('click', function () {
+          gaEvent(
+            'click on You can read more about licenses here',
+            'Extended license popup'
+          );
+        });
+
+      document
         .querySelector('.go-modal__close')
         .addEventListener('click', function () {
+          gaEvent('click background to close popup', 'Extended license popup');
           document.querySelector('.go-modal__wrap').style.display = 'none';
         });
 
