@@ -3,7 +3,7 @@ stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-compo
   opacity: 0;
   transition: 0.35s;
 }`;
-document.body.appendChild(stylesTempCheckout);
+document.body.prepend(stylesTempCheckout);
 
 if (
   document.querySelector('.plans-component') &&
@@ -797,12 +797,14 @@ if (location.href.includes('stock-photos')) {
           if (!(node instanceof HTMLElement)) continue;
 
           if (document.querySelector('form[name="16"]')) {
-            document.querySelector(
-              '.plans-component form + form > div'
-            ).style.opacity = 1;
-            document.querySelector(
-              '.plans-component form + form > ul'
-            ).style.opacity = 1;
+            setTimeout(() => {
+              document.querySelector(
+                '.plans-component form + form > div'
+              ).style.opacity = 1;
+              document.querySelector(
+                '.plans-component form + form > ul'
+              ).style.opacity = 1;
+            }, 300);
           }
           if (
             node.parentElement &&
