@@ -1915,6 +1915,10 @@ if (location.href.includes('stock-photos')) {
         .querySelector('.go-modal__wrap')
         .addEventListener('click', function (e) {
           if (e.target.classList.contains('go-modal__wrap')) {
+            gaEvent(
+              'click background to close popup',
+              'Extended license popup'
+            );
             document.querySelector('.go-modal__wrap').style.display = 'none';
           }
         });
@@ -1922,7 +1926,7 @@ if (location.href.includes('stock-photos')) {
       document
         .querySelector('.go-modal__close')
         .addEventListener('click', function () {
-          gaEvent('click background to close popup', 'Extended license popup');
+          gaEvent('click X to close popup', 'Extended license popup');
           document.querySelector('.go-modal__wrap').style.display = 'none';
         });
     }
@@ -3367,7 +3371,7 @@ if (location.href.includes('stock-photos')) {
       document
         .querySelector('.go-modal__close')
         .addEventListener('click', function () {
-          gaEvent('click background to close popup', 'Extended license popup');
+          gaEvent('click X to close popup', 'Extended license popup');
           document.querySelector('.go-modal__wrap').style.display = 'none';
         });
 
@@ -3375,6 +3379,10 @@ if (location.href.includes('stock-photos')) {
         .querySelector('.go-modal__wrap')
         .addEventListener('click', function (e) {
           if (e.target.classList.contains('go-modal__wrap')) {
+            gaEvent(
+              'click background to close popup',
+              'Extended license popup'
+            );
             document.querySelector('.go-modal__wrap').style.display = 'none';
           }
         });
