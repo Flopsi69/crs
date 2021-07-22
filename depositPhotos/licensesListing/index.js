@@ -12,6 +12,7 @@ if (
 ) {
   // setTimeout(() => {
   document.querySelectorAll('[data-key]')[1].click();
+  console.log('click data-key 0');
   if (
     document.querySelector('.plans-component form + form > ul') &&
     document.querySelector('.plans-component form + form > div')
