@@ -779,7 +779,21 @@ if (location.href.includes('stock-photos')) {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
+          if (node.parentElement.classList.contains('plans-component')) {
+          }
 
+          if (
+            node.parentElement &&
+            node.parentElement.classList.contains('plans-component') &&
+            localStorage.getItem('lavLicenseType') == 'extended' &&
+            document.querySelectorAll('[data-key]')
+          ) {
+            // setTimeout(() => {
+            document.querySelectorAll('[data-key]')[1].click();
+            console.log('click data-key 1');
+            document.querySelector('#root>.wrapper').style.opacity = 1;
+            // }, 300);
+          }
           if (
             node.classList.contains('view-file-box__image') &&
             document.querySelector('.price-table-classic')
@@ -844,18 +858,6 @@ if (location.href.includes('stock-photos')) {
                   }
                 }
               });
-          }
-
-          if (
-            node.parentElement &&
-            node.parentElement.classList.contains('plans-component') &&
-            localStorage.getItem('lavLicenseType') == 'extended' &&
-            document.querySelectorAll('[data-key]')
-          ) {
-            // setTimeout(() => {
-            document.querySelectorAll('[data-key]')[1].click();
-            document.querySelector('#root>.wrapper').style.opacity = 1;
-            // }, 300);
           }
         }
       }
@@ -2336,6 +2338,7 @@ if (location.href.includes('stock-photos')) {
           ) {
             // setTimeout(() => {
             document.querySelectorAll('[data-key]')[1].click();
+            console.log('click data-key 2');
             document.querySelector('#root>.wrapper').style.opacity = 1;
             // }, 300);
           }
