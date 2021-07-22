@@ -26,6 +26,7 @@ if (
       ).style.opacity = 1;
     }, 500);
   }
+}
 
 /*** Analytics insert start ***/
 function gaEvent(action, label, value) {
