@@ -816,7 +816,7 @@ if (location.href.includes('stock-photos')) {
             node.parentElement &&
             node.parentElement.classList.contains('plans-component') &&
             localStorage.getItem('lavLicenseType') == 'extended' &&
-            document.querySelectorAll('[data-key]')
+            document.querySelector('form[name="8"]')
           ) {
             // setTimeout(() => {
             document.querySelectorAll('[data-key]')[1].click();
@@ -848,6 +848,13 @@ if (location.href.includes('stock-photos')) {
             console.log('click data-key 1');
             document.querySelector('#root>.wrapper').style.opacity = 1;
             // }, 300);
+          } else {
+            document.querySelector(
+              '.plans-component form + form > div'
+            ).style.opacity = 1;
+            document.querySelector(
+              '.plans-component form + form > ul'
+            ).style.opacity = 1;
           }
           if (
             node.classList.contains('view-file-box__image') &&
