@@ -3,7 +3,7 @@ stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-compo
   opacity: 0;
   transition: 0.35s;
 }`;
-document.body.prepend(stylesTempCheckout);
+document.body.appendChild(stylesTempCheckout);
 
 if (
   document.querySelector('.plans-component') &&
