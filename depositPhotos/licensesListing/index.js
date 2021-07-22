@@ -381,7 +381,7 @@ if (lang == 'ru') {
           <div class='lav-license__item lav-license__item_include'>Unlimited usage for resale, print, advertising</div>
 
         </div>
-        <div class='lav-license__modal-trigger'>What’s an extended lisence?</div>
+        <div class='lav-license__modal-trigger'>What’s an extended license?</div>
       </div>
     </div>
   </div>
