@@ -370,6 +370,12 @@ if (lang == 'ru') {
 `;
 }
 
+let stylesTempCheckout = document.createElement('style');
+stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-component form + form > ul {
+  opacity: 0;
+}`;
+document.body.appendChild(stylesTempCheckout);
+
 if (location.href.includes('stock-photos')) {
   (function () {
     /*** Analytics insert -end- ***/
@@ -381,9 +387,6 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert start ***/
 
     let stylesList = `
-    .plans-component form + form > div, .plans-component form + form > ul {
-      opacity: 0;
-    }
     .go-modal__wrap {
       position: fixed;
       display: none;
