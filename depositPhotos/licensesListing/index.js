@@ -779,7 +779,13 @@ if (location.href.includes('stock-photos')) {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
-          if (node.parentElement.classList.contains('plans-component')) {
+          if (
+            node.parentElement.classList.contains('plans-component') &&
+            document.querySelector('form + form > ul') &&
+            document.querySelector('form + form > div')
+          ) {
+            document.querySelector('form + form > div').style.opacity = 0;
+            document.querySelector('form + form > ul').style.opacity = 0;
           }
 
           if (
@@ -790,6 +796,15 @@ if (location.href.includes('stock-photos')) {
           ) {
             // setTimeout(() => {
             document.querySelectorAll('[data-key]')[1].click();
+            if (
+              document.querySelector('form + form > ul') &&
+              document.querySelector('form + form > div')
+            ) {
+              setTimeout(() => {
+                document.querySelector('form + form > div').style.opacity = 1;
+                document.querySelector('form + form > ul').style.opacity = 1;
+              }, 500);
+            }
             console.log('click data-key 1');
             document.querySelector('#root>.wrapper').style.opacity = 1;
             // }, 300);
