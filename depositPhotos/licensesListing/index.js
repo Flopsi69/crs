@@ -3,7 +3,9 @@ stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-compo
   opacity: 0;
   transition: 0.35s;
 }`;
-document.body.prepend(stylesTempCheckout);
+if (localStorage.getItem('lavLicenseType') == 'extended') {
+  document.body.prepend(stylesTempCheckout);
+}
 
 if (
   document.querySelector('.plans-component') &&
