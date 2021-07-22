@@ -796,6 +796,14 @@ if (location.href.includes('stock-photos')) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
+          if (document.querySelector('form[name="16"]')) {
+            document.querySelector(
+              '.plans-component form + form > div'
+            ).style.opacity = 1;
+            document.querySelector(
+              '.plans-component form + form > ul'
+            ).style.opacity = 1;
+          }
           if (
             node.parentElement &&
             node.parentElement.classList.contains('plans-component') &&
