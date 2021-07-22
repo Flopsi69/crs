@@ -834,6 +834,7 @@ if (location.href.includes('stock-photos')) {
             }
             // document.querySelector('#root>.wrapper').style.opacity = 1;
           }
+
           if (
             node.classList.contains('view-file-box__image') &&
             document.querySelector('.price-table-classic')
@@ -2311,6 +2312,43 @@ if (location.href.includes('stock-photos')) {
           // отслеживаем только узлы-элементы, другие (текстовые) пропускаем
           if (!(node instanceof HTMLElement)) continue;
 
+          if (document.querySelector('form[name="16"]')) {
+            setTimeout(() => {
+              document.querySelector(
+                '.plans-component form + form > div'
+              ).style.opacity = 1;
+              document.querySelector(
+                '.plans-component form + form > ul'
+              ).style.opacity = 1;
+            }, 300);
+          }
+          if (
+            node.parentElement &&
+            node.parentElement.classList.contains('plans-component') &&
+            localStorage.getItem('lavLicenseType') == 'extended' &&
+            document.querySelector('form[name="8"]')
+          ) {
+            // setTimeout(() => {
+            document.querySelectorAll('[data-key]')[1].click();
+            console.log('click data-key 1');
+            if (
+              document.querySelector('.plans-component form + form > ul') &&
+              document.querySelector('.plans-component form + form > div')
+            ) {
+            } else {
+              setTimeout(() => {
+                console.log('true 2');
+                document.querySelector(
+                  '.plans-component form + form > div'
+                ).style.opacity = 1;
+                document.querySelector(
+                  '.plans-component form + form > ul'
+                ).style.opacity = 1;
+              }, 1000);
+            }
+            // document.querySelector('#root>.wrapper').style.opacity = 1;
+          }
+
           console.log(node);
 
           if (node.classList.contains('price-table-upgrade')) {
@@ -2370,17 +2408,6 @@ if (location.href.includes('stock-photos')) {
             }, 300);
           } else {
             // document.querySelector('#root>.wrapper').style.opacity = 1;
-          }
-          if (
-            node.parentElement.classList.contains('plans-component') &&
-            localStorage.getItem('lavLicenseType') == 'extended' &&
-            document.querySelectorAll('[data-key]')
-          ) {
-            // setTimeout(() => {
-            document.querySelectorAll('[data-key]')[1].click();
-            console.log('click data-key 2');
-            document.querySelector('#root>.wrapper').style.opacity = 1;
-            // }, 300);
           }
         }
       }
