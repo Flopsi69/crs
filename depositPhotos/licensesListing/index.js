@@ -1943,6 +1943,7 @@ if (location.href.includes('stock-photos')) {
     let stylesList = `
     .plans-component form + form > div, .plans-component form + form > ul {
       opacity: 0;
+      transition: 0.35s;
     }
     @media screen and (min-width: 1441px) {
       .file-view-page-upgrade_vertical .file-view-upgrade__info-box {
