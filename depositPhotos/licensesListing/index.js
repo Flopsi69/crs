@@ -10,24 +10,8 @@ if (
   localStorage.getItem('lavLicenseType') == 'extended' &&
   document.querySelectorAll('[data-key]')
 ) {
-  // setTimeout(() => {
   document.querySelectorAll('[data-key]')[1].click();
-  console.log('click data-key 0');
-  if (
-    document.querySelector('.plans-component form + form > ul') &&
-    document.querySelector('.plans-component form + form > div')
-  ) {
-    // setTimeout(() => {
-    console.log('true 0');
-
-    document.querySelector(
-      '.plans-component form + form > div'
-    ).style.opacity = 1;
-    document.querySelector(
-      '.plans-component form + form > ul'
-    ).style.opacity = 1;
-    // }, 500);
-  }
+  console.log('click 0');
 }
 
 /*** Analytics insert start ***/
@@ -820,20 +804,11 @@ if (location.href.includes('stock-photos')) {
           ) {
             // setTimeout(() => {
             document.querySelectorAll('[data-key]')[1].click();
+            console.log('click data-key 1');
             if (
               document.querySelector('.plans-component form + form > ul') &&
               document.querySelector('.plans-component form + form > div')
             ) {
-              setTimeout(() => {
-                console.log('true 1');
-
-                document.querySelector(
-                  '.plans-component form + form > div'
-                ).style.opacity = 1;
-                document.querySelector(
-                  '.plans-component form + form > ul'
-                ).style.opacity = 1;
-              }, 500);
             } else {
               setTimeout(() => {
                 console.log('true 2');
@@ -845,16 +820,7 @@ if (location.href.includes('stock-photos')) {
                 ).style.opacity = 1;
               }, 1000);
             }
-            console.log('click data-key 1');
-            document.querySelector('#root>.wrapper').style.opacity = 1;
-            // }, 300);
-          } else {
-            document.querySelector(
-              '.plans-component form + form > div'
-            ).style.opacity = 1;
-            document.querySelector(
-              '.plans-component form + form > ul'
-            ).style.opacity = 1;
+            // document.querySelector('#root>.wrapper').style.opacity = 1;
           }
           if (
             node.classList.contains('view-file-box__image') &&
