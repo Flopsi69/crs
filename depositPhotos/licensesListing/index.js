@@ -796,13 +796,25 @@ if (location.href.includes('stock-photos')) {
               document.querySelector('.plans-component form + form > div')
             ) {
               setTimeout(() => {
+                console.log('true 1');
+
                 document.querySelector(
                   '.plans-component form + form > div'
-                ).style.opacity = 0;
+                ).style.opacity = 1;
                 document.querySelector(
                   '.plans-component form + form > ul'
-                ).style.opacity = 0;
+                ).style.opacity = 1;
               }, 500);
+            } else {
+              setTimeout(() => {
+                console.log('true 2');
+                document.querySelector(
+                  '.plans-component form + form > div'
+                ).style.opacity = 1;
+                document.querySelector(
+                  '.plans-component form + form > ul'
+                ).style.opacity = 1;
+              }, 1000);
             }
             console.log('click data-key 1');
             document.querySelector('#root>.wrapper').style.opacity = 1;
