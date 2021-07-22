@@ -1241,7 +1241,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Вы можете узнать больше о лицензиях <a href='https://ru.depositphotos.com/license.html'>здесь</a></div>
+              <div class='go-modal__caption'>Вы можете узнать больше о лицензиях <a href='https://ru.depositphotos.com/license.html' target='_blank'>здесь</a></div>
             </div>
           </div>
         </div>
@@ -1313,7 +1313,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Puede leer más sobre las licencias <a href='https://sp.depositphotos.com/license.html'>aquí</a></div>
+              <div class='go-modal__caption'>Puede leer más sobre las licencias <a href='https://sp.depositphotos.com/license.html' target='_blank'>aquí</a></div>
             </div>
           </div>
         </div>
@@ -1385,7 +1385,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Você pode ler mais sobre licenças <a href='https://pt.depositphotos.com/license.html'>aqui</a></div>
+              <div class='go-modal__caption'>Você pode ler mais sobre licenças <a href='https://pt.depositphotos.com/license.html' target='_blank'>aqui</a></div>
             </div>
           </div>
         </div>
@@ -1457,7 +1457,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Illimitato</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Puoi leggere di più sulle licenze <a href='https://it.depositphotos.com/license.html'>qui</a></div>
+              <div class='go-modal__caption'>Puoi leggere di più sulle licenze <a href='https://it.depositphotos.com/license.html' target='_blank'>qui</a></div>
             </div>
           </div>
         </div>
@@ -1529,7 +1529,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Więcej o licencjach przeczytasz <a href='https://pl.depositphotos.com/license.html'>tutaj</a></div>
+              <div class='go-modal__caption'>Więcej o licencjach przeczytasz <a href='https://pl.depositphotos.com/license.html' target='_blank'>tutaj</a></div>
             </div>
           </div>
         </div>
@@ -1601,7 +1601,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>U kunt hier meer lezen over <a href='https://depositphotos.com/nl/license.html'>licenties</a></div>
+              <div class='go-modal__caption'>U kunt hier meer lezen over <a href='https://depositphotos.com/nl/license.html' target='_blank'>licenties</a></div>
             </div>
           </div>
         </div>
@@ -1673,7 +1673,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Weitere Informationen zu Lizenzen finden Sie <a href='https://de.depositphotos.com/license.html'>hier</a></div>
+              <div class='go-modal__caption'>Weitere Informationen zu Lizenzen finden Sie <a href='https://de.depositphotos.com/license.html' target='_blank'>hier</a></div>
             </div>
           </div>
         </div>
@@ -1745,7 +1745,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Illimitée</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Vous pouvez en savoir plus sur les licences <a href='https://fr.depositphotos.com/license.html'>ici</a></div>
+              <div class='go-modal__caption'>Vous pouvez en savoir plus sur les licences <a href='https://fr.depositphotos.com/license.html' target='_blank'>ici</a></div>
             </div>
           </div>
         </div>
@@ -1817,7 +1817,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Sınırsız</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Burada lisanslar hakkında daha fazla bilgi <a href='https://tr.depositphotos.com/license.html'>edinebilirsiniz</a></div>
+              <div class='go-modal__caption'>Burada lisanslar hakkında daha fazla bilgi <a href='https://tr.depositphotos.com/license.html' target='_blank'>edinebilirsiniz</a></div>
             </div>
           </div>
         </div>
@@ -1889,7 +1889,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Unlimited</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html'>here</a></div>
+              <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html' target='_blank'>here</a></div>
             </div>
           </div>
         </div>
@@ -2656,7 +2656,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Без ограничений</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Вы можете узнать больше о лицензиях <a href='https://ru.depositphotos.com/license.html'>здесь</a></div>
+              <div class='go-modal__caption'>Вы можете узнать больше о лицензиях <a href='https://ru.depositphotos.com/license.html' target='_blank'>здесь</a></div>
             </div>
           </div>
         </div>
@@ -2728,7 +2728,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Ilimitada</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Puede leer más sobre las licencias <a href='https://sp.depositphotos.com/license.html'>aquí</a></div>
+              <div class='go-modal__caption'>Puede leer más sobre las licencias <a href='https://sp.depositphotos.com/license.html' target='_blank'>aquí</a></div>
             </div>
           </div>
         </div>
@@ -2800,7 +2800,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Ilimitado</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Você pode ler mais sobre licenças <a href='https://pt.depositphotos.com/license.html'>aqui</a></div>
+              <div class='go-modal__caption'>Você pode ler mais sobre licenças <a href='https://pt.depositphotos.com/license.html' target='_blank'>aqui</a></div>
             </div>
           </div>
         </div>
@@ -2872,7 +2872,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Illimitato</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Puoi leggere di più sulle licenze <a href='https://it.depositphotos.com/license.html'>qui</a></div>
+              <div class='go-modal__caption'>Puoi leggere di più sulle licenze <a href='https://it.depositphotos.com/license.html' target='_blank'>qui</a></div>
             </div>
           </div>
         </div>
@@ -2944,7 +2944,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Bez ograniczeń</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Więcej o licencjach przeczytasz <a href='https://pl.depositphotos.com/license.html'>tutaj</a></div>
+              <div class='go-modal__caption'>Więcej o licencjach przeczytasz <a href='https://pl.depositphotos.com/license.html' target='_blank'>tutaj</a></div>
             </div>
           </div>
         </div>
@@ -3016,7 +3016,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Onbeperkt</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>U kunt hier meer lezen over <a href='https://depositphotos.com/nl/license.html'>licenties</a></div>
+              <div class='go-modal__caption'>U kunt hier meer lezen over <a href='https://depositphotos.com/nl/license.html' target='_blank'>licenties</a></div>
             </div>
           </div>
         </div>
@@ -3088,7 +3088,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>unbegrenzt</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Weitere Informationen zu Lizenzen finden Sie <a href='https://de.depositphotos.com/license.html'>hier</a></div>
+              <div class='go-modal__caption'>Weitere Informationen zu Lizenzen finden Sie <a href='https://de.depositphotos.com/license.html' target='_blank'>hier</a></div>
             </div>
           </div>
         </div>
@@ -3160,7 +3160,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Illimitée</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Vous pouvez en savoir plus sur les licences <a href='https://fr.depositphotos.com/license.html'>ici</a></div>
+              <div class='go-modal__caption'>Vous pouvez en savoir plus sur les licences <a href='https://fr.depositphotos.com/license.html' target='_blank'>ici</a></div>
             </div>
           </div>
         </div>
@@ -3232,7 +3232,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Sınırsız</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>Burada lisanslar hakkında daha fazla bilgi <a href='https://tr.depositphotos.com/license.html'>edinebilirsiniz</a></div>
+              <div class='go-modal__caption'>Burada lisanslar hakkında daha fazla bilgi <a href='https://tr.depositphotos.com/license.html' target='_blank'>edinebilirsiniz</a></div>
             </div>
           </div>
         </div>
@@ -3304,7 +3304,7 @@ if (location.href.includes('stock-photos')) {
                   <div class='go-modal__status go-modal__status_include'>Unlimited</div>
                 </div>
               </div>
-              <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html'>here</a></div>
+              <div class='go-modal__caption'>You can read more about licenses <a href='https://depositphotos.com/license.html' target='_blank'>here</a></div>
             </div>
           </div>
         </div>
