@@ -4,6 +4,29 @@ stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-compo
 }`;
 document.body.prepend(stylesTempCheckout);
 
+if (
+  document.querySelector('.plans-component') &&
+  localStorage.getItem('lavLicenseType') == 'extended' &&
+  document.querySelectorAll('[data-key]')
+) {
+  // setTimeout(() => {
+  document.querySelectorAll('[data-key]')[1].click();
+  if (
+    document.querySelector('.plans-component form + form > ul') &&
+    document.querySelector('.plans-component form + form > div')
+  ) {
+    setTimeout(() => {
+      console.log('true 0');
+
+      document.querySelector(
+        '.plans-component form + form > div'
+      ).style.opacity = 1;
+      document.querySelector(
+        '.plans-component form + form > ul'
+      ).style.opacity = 1;
+    }, 500);
+  }
+
 /*** Analytics insert start ***/
 function gaEvent(action, label, value) {
   if (!label) {
