@@ -1,8 +1,8 @@
 let stylesTempCheckout = document.createElement('style');
-stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-component form + form > ul {
-  opacity: 0;
-  transition: 0.35s;
-}`;
+// stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-component form + form > ul {
+//   opacity: 0;
+//   transition: 0.35s;
+// }`;
 if (localStorage.getItem('lavLicenseType') == 'extended') {
   document.body.prepend(stylesTempCheckout);
 }
