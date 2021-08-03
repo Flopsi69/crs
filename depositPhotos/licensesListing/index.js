@@ -2495,9 +2495,6 @@ if (location.href.includes('stock-photos')) {
           document.querySelector('.lav-sizes__list').style.display = 'none';
         }
       });
-
-      document.querySelector('.file-view-upgrade__prices-box').style.opacity =
-        '1';
     }
 
     function createLicenses() {
@@ -2560,6 +2557,9 @@ if (location.href.includes('stock-photos')) {
           }
         });
       });
+
+      document.querySelector('.file-view-upgrade__prices-box').style.opacity =
+        '1';
     }
 
     function createSizes() {
