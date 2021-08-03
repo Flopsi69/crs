@@ -789,7 +789,7 @@ if (location.href.includes('stock-photos')) {
       transition: 0.4s;
     }
     .file-view__bottom-wrapper {
-      min-height: 280px;
+      height: 280px;
     }
   `;
 
@@ -1066,6 +1066,8 @@ if (location.href.includes('stock-photos')) {
         'px';
 
       document.querySelector('.file-view__right').style.opacity = 1;
+      document.querySelector('.file-view__bottom-wrapper').style.height =
+        'auto';
     }
 
     function createSizes() {
