@@ -783,6 +783,9 @@ if (location.href.includes('stock-photos')) {
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+    .file-view__right {
+      height: 450px;
+    }
   `;
 
     function initStyles() {
@@ -1051,6 +1054,11 @@ if (location.href.includes('stock-photos')) {
             document.querySelector('.lav-sizes__list').style.display = 'none';
           }
         });
+
+      document.querySelector('.file-view__price-table-wrapper').style.height =
+        document.querySelector('.file-view__price-table-wrapper').offsetHeight +
+        10 +
+        'px';
     }
 
     function createSizes() {
