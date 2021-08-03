@@ -30,7 +30,7 @@ function gaEvent(action, label, value) {
     eventCategory: 'Experiment — modal PDP with EL',
     eventAction: action,
     eventLabel: label,
-    eventValue: value
+    eventValue: value,
   };
   console.log('EventFire:', eventObj);
 
@@ -793,7 +793,7 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert -end- ***/
 
     /*** HTML insert -end- ***/
-    let observer = new MutationObserver(mutations => {
+    let observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
@@ -1017,7 +1017,7 @@ if (location.href.includes('stock-photos')) {
           });
       }
 
-      document.querySelectorAll('.lav-license').forEach(license => {
+      document.querySelectorAll('.lav-license').forEach((license) => {
         license.addEventListener('click', function (e) {
           e.preventDefault();
           document
@@ -1068,16 +1068,18 @@ if (location.href.includes('stock-photos')) {
         }
       });
 
-      document.querySelectorAll('.price-table-classic__row').forEach(sizeEl => {
-        let newSizeEl = createSizeItem(sizeEl);
-        if (newSizeEl.classList.contains('lav-size_active')) {
-          sizesValueEl.insertAdjacentElement(
-            'beforeend',
-            newSizeEl.cloneNode(true)
-          );
-        }
-        sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
-      });
+      document
+        .querySelectorAll('.price-table-classic__row')
+        .forEach((sizeEl) => {
+          let newSizeEl = createSizeItem(sizeEl);
+          if (newSizeEl.classList.contains('lav-size_active')) {
+            sizesValueEl.insertAdjacentElement(
+              'beforeend',
+              newSizeEl.cloneNode(true)
+            );
+          }
+          sizesListEl.insertAdjacentElement('beforeend', newSizeEl);
+        });
 
       sizesEL.insertAdjacentElement('beforeend', sizesValueEl);
       sizesEL.insertAdjacentElement('beforeend', sizesListEl);
@@ -2321,7 +2323,7 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert -end- ***/
 
     /*** HTML insert -end- ***/
-    let observer = new MutationObserver(mutations => {
+    let observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         // проверим новые узлы, есть ли что-то, что надо подсветить?
         for (let node of mutation.addedNodes) {
@@ -2464,6 +2466,7 @@ if (location.href.includes('stock-photos')) {
         });
 
       document.querySelector('#root').addEventListener('click', function (e) {
+        console.log('close');
         if (
           document.querySelector('.lav-sizes__list') &&
           document.querySelector('.lav-sizes__list').style.display == 'block' &&
@@ -2503,7 +2506,7 @@ if (location.href.includes('stock-photos')) {
           });
       }
 
-      document.querySelectorAll('.lav-license').forEach(license => {
+      document.querySelectorAll('.lav-license').forEach((license) => {
         license.addEventListener('click', function (e) {
           e.preventDefault();
           document
@@ -2546,7 +2549,7 @@ if (location.href.includes('stock-photos')) {
 
       document
         .querySelectorAll('.price-table-upgrade__content ._row')
-        .forEach(sizeEl => {
+        .forEach((sizeEl) => {
           let newSizeEl = createSizeItem(sizeEl);
           if (newSizeEl.classList.contains('lav-size_active')) {
             sizesValueEl.insertAdjacentElement(
