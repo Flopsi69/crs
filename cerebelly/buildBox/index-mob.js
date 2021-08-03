@@ -1,3 +1,5 @@
+console.log(2);
+
 (function (h, o, t, j, a, r) {
   h.hj =
     h.hj ||
@@ -24,7 +26,7 @@ function gaEvent(action, label = '') {
     let eventObj = {
       event: 'event-to-ga',
       eventCategory: 'Exp: Bundle Builder',
-      eventAction: action
+      eventAction: action,
     };
     if (label) {
       eventObj['eventLabel'] = label;
@@ -37,7 +39,7 @@ function gaEvent(action, label = '') {
 let isInitExp = false;
 const REPO_DIR = 'https://flopsi69.github.io/crs/cerebelly/buildBox';
 
-let observerGlobal = new MutationObserver(mutations => {
+let observerGlobal = new MutationObserver((mutations) => {
   for (let mutation of mutations) {
     for (let node of mutation.addedNodes) {
       if (!(node instanceof HTMLElement)) continue;
@@ -660,7 +662,7 @@ function clickControl(isToggleClick, targetClick, isDown) {
       }
       // document.querySelector('.e-page-content-wrap').style.opacity = 0.4;
 
-      let observerPlans = new MutationObserver(mutations => {
+      let observerPlans = new MutationObserver((mutations) => {
         for (let mutation of mutations) {
           for (let node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
