@@ -2443,7 +2443,7 @@ if (location.href.includes('stock-photos')) {
                   init();
                 }
               }
-            }, 300);
+            }, 100);
           } else {
             // document.querySelector('#root>.wrapper').style.opacity = 1;
           }
@@ -2514,7 +2514,7 @@ if (location.href.includes('stock-photos')) {
 
       setTimeout(() => {
         document.querySelector('#root>.wrapper').style.opacity = 1;
-      }, 300);
+      }, 200);
 
       if (document.querySelector('.lav-license__modal-trigger')) {
         document
