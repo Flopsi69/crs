@@ -784,12 +784,9 @@ if (location.href.includes('stock-photos')) {
       letter-spacing: 1px;
     }
     .file-view__right {
-      // opacity: 0;
+      opacity: 0;
       height: 450px;
       transition: 0.4s;
-    }
-    .price-table-classic__footer  {
-      display: none;
     }
   `;
 
@@ -1066,8 +1063,6 @@ if (location.href.includes('stock-photos')) {
         'px';
 
       document.querySelector('.file-view__right').style.opacity = 1;
-      document.querySelector('.price-table-classic__footer').style.display =
-        'block';
     }
 
     function createSizes() {
