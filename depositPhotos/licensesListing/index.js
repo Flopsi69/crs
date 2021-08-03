@@ -786,7 +786,7 @@ if (location.href.includes('stock-photos')) {
     .file-view__right {
       opacity: 0;
       height: 450px;
-      transition: height 0.4s;
+      transition: 0.4s;
     }
   `;
 
