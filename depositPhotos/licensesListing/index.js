@@ -922,6 +922,17 @@ if (location.href.includes('stock-photos')) {
     }, 1000);
 
     function init() {
+      document.querySelector('#root').addEventListener('click', function (e) {
+        console.log(e.target);
+        if (
+          document.querySelector('.lav-sizes__list') &&
+          document.querySelector('.lav-sizes__list').style.display == 'block' &&
+          !e.target.closest('.lav-sizes')
+        ) {
+          console.log('click', e.target);
+          document.querySelector('.lav-sizes__list').style.display = 'none';
+        }
+      });
       initStyles();
       console.log('initExp');
       gaEvent('activated', 'Modal PDP');
@@ -938,18 +949,6 @@ if (location.href.includes('stock-photos')) {
 
         createLicenses();
       }
-
-      document.querySelector('#root').addEventListener('click', function (e) {
-        console.log(e.target);
-        if (
-          document.querySelector('.lav-sizes__list') &&
-          document.querySelector('.lav-sizes__list').style.display == 'block' &&
-          !e.target.closest('.lav-sizes')
-        ) {
-          console.log('click', e.target);
-          document.querySelector('.lav-sizes__list').style.display = 'none';
-        }
-      });
     }
 
     function createLicenses() {
