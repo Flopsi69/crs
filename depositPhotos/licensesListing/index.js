@@ -788,6 +788,9 @@ if (location.href.includes('stock-photos')) {
       height: 450px;
       transition: 0.4s;
     }
+    .file-view__bottom-wrapper {
+      min-height: 280px;
+    }
   `;
 
     function initStyles() {
