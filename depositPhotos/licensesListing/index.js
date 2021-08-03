@@ -785,6 +785,7 @@ if (location.href.includes('stock-photos')) {
     }
     .file-view__right {
       height: 450px;
+      transition: height 0.4s;
     }
   `;
 
@@ -852,6 +853,7 @@ if (location.href.includes('stock-photos')) {
               document.querySelector('.lav-license__modal-trigger').remove();
             }
             localStorage.setItem('lavLicenseType', 'none');
+            document.querySelector('.file-view__right').opacity = 0;
 
             document
               .querySelector('.price-table-classic')
@@ -1055,10 +1057,12 @@ if (location.href.includes('stock-photos')) {
           }
         });
 
-      document.querySelector('.file-view__price-table-wrapper').style.height =
+      document.querySelector('.file-view__right').style.height =
         document.querySelector('.file-view__price-table-wrapper').offsetHeight +
         10 +
         'px';
+
+      document.querySelector('.file-view__right').opacity = 1;
     }
 
     function createSizes() {
