@@ -1,5 +1,3 @@
-console.log('initExpGlobal');
-
 let stylesTempCheckout = document.createElement('style');
 // stylesTempCheckout.innerHTML = `.plans-component form + form > div, .plans-component form + form > ul {
 //   opacity: 0;
