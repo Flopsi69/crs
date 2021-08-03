@@ -853,7 +853,7 @@ if (location.href.includes('stock-photos')) {
               document.querySelector('.lav-license__modal-trigger').remove();
             }
             localStorage.setItem('lavLicenseType', 'none');
-            document.querySelector('.file-view__right').opacity = 0;
+            document.querySelector('.file-view__right').style.opacity = 0;
 
             document
               .querySelector('.price-table-classic')
@@ -1062,7 +1062,7 @@ if (location.href.includes('stock-photos')) {
         10 +
         'px';
 
-      document.querySelector('.file-view__right').opacity = 1;
+      document.querySelector('.file-view__right').style.opacity = 1;
     }
 
     function createSizes() {
