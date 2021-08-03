@@ -2558,8 +2558,10 @@ if (location.href.includes('stock-photos')) {
         });
       });
 
-      document.querySelector('.file-view-upgrade__prices-box').style.opacity =
-        '1';
+      setTimeout(() => {
+        document.querySelector('.file-view-upgrade__prices-box').style.opacity =
+          '1';
+      }, 300);
     }
 
     function createSizes() {
