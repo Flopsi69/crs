@@ -784,6 +784,7 @@ if (location.href.includes('stock-photos')) {
       letter-spacing: 1px;
     }
     .file-view__right {
+      opacity: 0;
       height: 450px;
       transition: height 0.4s;
     }
@@ -853,7 +854,6 @@ if (location.href.includes('stock-photos')) {
               document.querySelector('.lav-license__modal-trigger').remove();
             }
             localStorage.setItem('lavLicenseType', 'none');
-            document.querySelector('.file-view__right').style.opacity = 0;
 
             document
               .querySelector('.price-table-classic')
