@@ -945,6 +945,7 @@ if (location.href.includes('stock-photos')) {
           document.querySelector('.lav-sizes__list').style.display == 'block' &&
           !e.target.closest('.lav-sizes')
         ) {
+          console.log('click', e.target);
           document.querySelector('.lav-sizes__list').style.display = 'none';
         }
       });
@@ -2466,12 +2467,12 @@ if (location.href.includes('stock-photos')) {
         });
 
       document.querySelector('#root').addEventListener('click', function (e) {
-        console.log('close');
         if (
           document.querySelector('.lav-sizes__list') &&
           document.querySelector('.lav-sizes__list').style.display == 'block' &&
           !e.target.closest('.lav-sizes')
         ) {
+          console.log('click2', e.target);
           document.querySelector('.lav-sizes__list').style.display = 'none';
         }
       });
