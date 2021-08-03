@@ -2387,7 +2387,7 @@ if (location.href.includes('stock-photos')) {
             // document.querySelector('#root>.wrapper').style.opacity = 1;
           }
 
-          console.log(node);
+          // console.log(node);
 
           if (node.classList.contains('price-table-upgrade')) {
             node
