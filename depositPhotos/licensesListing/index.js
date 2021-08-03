@@ -939,7 +939,8 @@ if (location.href.includes('stock-photos')) {
         createLicenses();
       }
 
-      document.addEventListener('click', function (e) {
+      document.querySelector('#root').addEventListener('click', function (e) {
+        console.log(e.target);
         if (
           document.querySelector('.lav-sizes__list') &&
           document.querySelector('.lav-sizes__list').style.display == 'block' &&
