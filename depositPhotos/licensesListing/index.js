@@ -1042,14 +1042,12 @@ if (location.href.includes('stock-photos')) {
       document
         .querySelector('.file-view-modal')
         .addEventListener('click', function (e) {
-          console.log(e.target);
           if (
             document.querySelector('.lav-sizes__list') &&
             document.querySelector('.lav-sizes__list').style.display ==
               'block' &&
             !e.target.closest('.lav-sizes')
           ) {
-            console.log('click', e.target);
             document.querySelector('.lav-sizes__list').style.display = 'none';
           }
         });
