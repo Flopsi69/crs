@@ -1967,10 +1967,6 @@ if (location.href.includes('stock-photos')) {
     /*** STYLES insert start ***/
 
     let stylesList = `
-    .file-view-upgrade__prices-box {
-      opacity: 0;
-      transition: 0.4s;
-    }
     @media screen and (min-width: 1441px) {
       .file-view-page-upgrade_vertical .file-view-upgrade__info-box {
         min-height: 100px;
