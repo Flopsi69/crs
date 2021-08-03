@@ -789,7 +789,7 @@ if (location.href.includes('stock-photos')) {
       transition: 0.4s;
     }
     .file-view__bottom-wrapper {
-      height: 280px;
+      height: 300px;
     }
   `;
 
