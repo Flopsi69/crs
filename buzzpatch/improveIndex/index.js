@@ -118,30 +118,6 @@ let stylesList = `
 
 // connect to DOM
 
-/* STYLES insert end */
-// document.addEventListener('DOMContentLoaded', function (event) {
-//   if (
-//     document.querySelector('.section-partial') &&
-//     document.querySelector('.section-partial').innerText.toLowerCase() ==
-//       'pricing'
-//   ) {
-//     console.log('-----no-Pro-----');
-//     if (
-//       (location.href.includes('/topics/new') &&
-//         sessionStorage.getItem('closeExpBanner1') != 'yes') ||
-//       (location.pathname == '/forums' &&
-//         sessionStorage.getItem('closeExpBanner2') != 'yes') ||
-//       (location.href.includes('/forums/') &&
-//         location.href.includes('/topics/') &&
-//         sessionStorage.getItem('closeExpBanner3') != 'yes')
-//     ) {
-//       initExp();
-//     }
-//   } else {
-//     console.log('-----Pro-----');
-//   }
-// });
-
 let styles = document.createElement('style');
 styles.id = 'lav-styles';
 styles.innerHTML = stylesList;
@@ -149,6 +125,33 @@ document.body.appendChild(styles);
 
 initExp();
 function initExp() {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: 'event-to-ga',
+    eventCategory: 'Exp — Price change button set mobile',
+    eventAction: 'loaded',
+  });
+
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 2247058, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'price_change_button_set_mobile');
+
   console.log('initExp');
   $('.prices .js-total').html(
     $('.prices .js-total')
