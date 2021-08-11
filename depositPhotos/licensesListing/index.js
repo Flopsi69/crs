@@ -389,6 +389,14 @@ if (lang == 'ru') {
 }
 
 if (location.href.includes('stock-photos')) {
+  let stockPhotosIterval = setInterval(() => {
+    if (!location.href.includes('stock-photos')) {
+      clearInterval(stockPhotosIterval);
+      if (document.querySelector('#lav-modal-exp')) {
+        document.querySelector('#lav-modal-exp').remove();
+      }
+    }
+  }, 1000);
   (function () {
     /*** Analytics insert -end- ***/
 
@@ -795,6 +803,7 @@ if (location.href.includes('stock-photos')) {
 
     function initStyles() {
       let styles = document.createElement('style');
+      styles.id = 'lav-modal-exp';
       styles.innerHTML = stylesList;
       document.body.appendChild(styles);
     }
