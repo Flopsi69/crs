@@ -390,6 +390,9 @@ if (lang == 'ru') {
 
 if (location.href.includes('stock-photos')) {
   if (!document.querySelector('#lav-modal-exp')) {
+    let styles = document.createElement('style');
+    styles.id = 'lav-modal-exp';
+    styles.innerHTML = stylesList;
     document.body.appendChild(styles);
   }
 
