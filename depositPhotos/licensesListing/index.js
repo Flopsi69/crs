@@ -859,7 +859,8 @@ if (location.href.includes('stock-photos')) {
 
           if (
             node.classList.contains('view-file-box__image') &&
-            document.querySelector('.price-table-classic')
+            document.querySelector('.price-table-classic') &&
+            location.href.includes('stock-photos')
           ) {
             if (document.querySelector('.lav-sizes')) {
               document.querySelector('.lav-sizes').remove();
