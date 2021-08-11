@@ -2619,7 +2619,7 @@ if (location.href.includes('stock-photos')) {
 
       if (abr.toLocaleLowerCase() == 'el') {
         newSizeEl.classList.add('lav-size_extended');
-        abr = `<i class="icon icon-size  icon-size-air icon-size-photo icon-size-xl active"></i>`;
+        abr = 'xl';
       }
       if (sizeEl.classList.contains('price-table-upgrade__item_active')) {
         newSizeEl.classList.add('lav-size_active', 'lav-size_init');
