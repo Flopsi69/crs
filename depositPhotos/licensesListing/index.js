@@ -936,7 +936,7 @@ if (location.href.includes('stock-photos')) {
         !isExpInited &&
         !document.querySelector('[data-qa="FooterEnterprise"]')
       ) {
-        gaEvent('loaded');
+        // gaEvent('loaded');
         isExpInited = true;
         init();
       } else {
@@ -947,7 +947,7 @@ if (location.href.includes('stock-photos')) {
     function init() {
       initStyles();
       console.log('initExp');
-      gaEvent('activated', 'Modal PDP');
+      // gaEvent('activated', 'Modal PDP');
       // localStorage.setItem('lavLicenseType', 'none');
       createModal();
       if (
@@ -1971,8 +1971,8 @@ if (location.href.includes('stock-photos')) {
 } else {
   (function () {
     setTimeout(() => {
-      console.log('loaded');
-      gaEvent('loaded');
+      // console.log('loaded');
+      // gaEvent('loaded');
     }, 1500);
 
     /*** Analytics insert -end- ***/
@@ -2477,7 +2477,7 @@ if (location.href.includes('stock-photos')) {
 
     function init() {
       console.log('initExp');
-      gaEvent('activated', 'PDP');
+      // gaEvent('activated', 'PDP');
       localStorage.setItem('lavLicenseType', 'none');
       createModal();
       let sizesEl = createSizes();
