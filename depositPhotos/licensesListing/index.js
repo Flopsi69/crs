@@ -979,7 +979,7 @@ if (location.href.includes('stock-photos')) {
           }
         }
       }
-    }, 200);
+    }, 600);
 
     function init() {
       if (
