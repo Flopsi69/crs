@@ -513,9 +513,9 @@ if (location.href.includes('stock-photos')) {
       background: url(${REPO_DIR}/icon-exclude2.svg) center no-repeat;
       background-size: cover;
     }
-    .price-table-upgrade__content {
-      display: none;
-    }
+    // .price-table-upgrade__content {
+    //   display: none;
+    // }
     .go-modal__caption {
       color: #9E9E9E;
       font-size: 12px;
@@ -794,7 +794,10 @@ if (location.href.includes('stock-photos')) {
   `;
 
     function initStyles() {
-      if (!document.querySelector('#lav-modal-exp')) {
+      if (
+        !document.querySelector('#lav-modal-exp') &&
+        !document.querySelector('[data-qa="FooterEnterprise"]')
+      ) {
         let styles = document.createElement('style');
         styles.id = 'lav-modal-exp';
         styles.innerHTML = stylesList;
@@ -2314,9 +2317,6 @@ if (location.href.includes('stock-photos')) {
       background: url(${REPO_DIR}/icon-exclude2.svg) center no-repeat;
       background-size: cover;
     }
-    .price-table-upgrade__content {
-      display: none;
-    }
     .go-modal__caption {
       color: #9E9E9E;
       font-size: 12px;
@@ -2340,7 +2340,8 @@ if (location.href.includes('stock-photos')) {
     // connect to DOM
     if (
       !document.querySelector('.auth-box') &&
-      !document.querySelector('.file-view-upgrade__auth-box')
+      !document.querySelector('.file-view-upgrade__auth-box') &&
+      !document.querySelector('[data-qa="FooterEnterprise"]')
     ) {
       let styles = document.createElement('style');
       styles.innerHTML = stylesList;
@@ -2348,11 +2349,13 @@ if (location.href.includes('stock-photos')) {
       document.body.appendChild(styles);
     }
 
-    if (
-      document.querySelector('.file-view-upgrade__auth-box') &&
-      document.querySelector('#lav-pdp-styles')
-    ) {
-      document.querySelector('#lav-pdp-styles').remove();
+    if (document.querySelector('#lav-pdp-styles')) {
+      if (
+        document.querySelector('.file-view-upgrade__auth-box') ||
+        document.querySelector('[data-qa="FooterEnterprise"]')
+      ) {
+        document.querySelector('#lav-pdp-styles').remove();
+      }
     }
 
     /*** STYLES insert -end- ***/
@@ -2454,6 +2457,9 @@ if (location.href.includes('stock-photos')) {
                 clearInterval(setIntervalEl);
                 if (document.querySelector('[data-qa="FooterEnterprise"]')) {
                   document.querySelector('#root>.wrapper').style.opacity = 1;
+                  if (document.querySelector('#lav-pdp-styles')) {
+                    document.querySelector('#lav-pdp-styles').remove();
+                  }
                 } else {
                   init();
                 }
@@ -2468,7 +2474,9 @@ if (location.href.includes('stock-photos')) {
 
     let demoElem = document.querySelector('#root');
 
-    observer.observe(demoElem, { childList: true, subtree: true });
+    if (!document.querySelector('[data-qa="FooterEnterprise"]')) {
+      observer.observe(demoElem, { childList: true, subtree: true });
+    }
 
     setTimeout(() => {
       document.querySelector('#root>.wrapper').style.opacity = 1;
