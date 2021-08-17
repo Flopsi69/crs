@@ -2338,7 +2338,6 @@ if (location.href.includes('stock-photos')) {
       margin-left: 5px;
     }
   `;
-
     // connect to DOM
     if (
       !document.querySelector('.auth-box') &&
@@ -2348,7 +2347,7 @@ if (location.href.includes('stock-photos')) {
     ) {
       let styles = document.createElement('style');
       styles.innerHTML = stylesList;
-      stylesList.id = 'lav-pdp-styles';
+      styles.id = 'lav-pdp-styles';
       document.body.appendChild(styles);
     }
 
