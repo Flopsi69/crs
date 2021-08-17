@@ -954,7 +954,11 @@ if (location.href.includes('stock-photos')) {
     observer.observe(document.body, { childList: true, subtree: true });
 
     setTimeout(() => {
-      console.log('timeout');
+      console.log(
+        'timeout',
+        document.querySelector('[data-qa="FooterEnterprise"]'),
+        document.querySelector('[data-qa="UserBarEnterprise"]')
+      );
 
       if (
         !isExpInited &&
