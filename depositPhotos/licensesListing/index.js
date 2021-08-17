@@ -971,7 +971,7 @@ if (location.href.includes('stock-photos')) {
       } else {
         observer.disconnect();
       }
-    }, 1700);
+    }, 2500);
 
     function init() {
       initStyles();
