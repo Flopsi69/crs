@@ -796,7 +796,8 @@ if (location.href.includes('stock-photos')) {
     function initStyles() {
       if (
         !document.querySelector('#lav-modal-exp') &&
-        !document.querySelector('[data-qa="FooterEnterprise"]')
+        !document.querySelector('[data-qa="FooterEnterprise"]') &&
+        !document.querySelector('[data-qa="UserBarEnterprise"]')
       ) {
         let styles = document.createElement('style');
         styles.id = 'lav-modal-exp';
@@ -937,7 +938,8 @@ if (location.href.includes('stock-photos')) {
 
       if (
         !isExpInited &&
-        !document.querySelector('[data-qa="FooterEnterprise"]')
+        !document.querySelector('[data-qa="FooterEnterprise"]') &&
+        !document.querySelector('[data-qa="UserBarEnterprise"]')
       ) {
         // gaEvent('loaded');
         isExpInited = true;
@@ -2341,7 +2343,8 @@ if (location.href.includes('stock-photos')) {
     if (
       !document.querySelector('.auth-box') &&
       !document.querySelector('.file-view-upgrade__auth-box') &&
-      !document.querySelector('[data-qa="FooterEnterprise"]')
+      !document.querySelector('[data-qa="FooterEnterprise"]') &&
+      !document.querySelector('[data-qa="UserBarEnterprise"]')
     ) {
       let styles = document.createElement('style');
       styles.innerHTML = stylesList;
@@ -2352,7 +2355,8 @@ if (location.href.includes('stock-photos')) {
     if (document.querySelector('#lav-pdp-styles')) {
       if (
         document.querySelector('.file-view-upgrade__auth-box') ||
-        document.querySelector('[data-qa="FooterEnterprise"]')
+        document.querySelector('[data-qa="FooterEnterprise"]') ||
+        document.querySelector('[data-qa="UserBarEnterprise"]')
       ) {
         document.querySelector('#lav-pdp-styles').remove();
       }
@@ -2455,7 +2459,10 @@ if (location.href.includes('stock-photos')) {
                 node.querySelectorAll('.price-table-upgrade__item').length > 1
               ) {
                 clearInterval(setIntervalEl);
-                if (document.querySelector('[data-qa="FooterEnterprise"]')) {
+                if (
+                  document.querySelector('[data-qa="FooterEnterprise"]') ||
+                  document.querySelector('[data-qa="UserBarEnterprise"]')
+                ) {
                   document.querySelector('#root>.wrapper').style.opacity = 1;
                   if (document.querySelector('#lav-pdp-styles')) {
                     document.querySelector('#lav-pdp-styles').remove();
@@ -2474,7 +2481,10 @@ if (location.href.includes('stock-photos')) {
 
     let demoElem = document.querySelector('#root');
 
-    if (!document.querySelector('[data-qa="FooterEnterprise"]')) {
+    if (
+      !document.querySelector('[data-qa="FooterEnterprise"]') &&
+      !document.querySelector('[data-qa="UserBarEnterprise"]')
+    ) {
       observer.observe(demoElem, { childList: true, subtree: true });
     }
 
