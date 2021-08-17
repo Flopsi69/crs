@@ -971,6 +971,12 @@ if (location.href.includes('stock-photos')) {
           init();
         } else if (observer) {
           observer.disconnect();
+          if (document.querySelector('#lav-modal-exp')) {
+            document.querySelector('#lav-modal-exp').remove();
+          }
+          if (document.querySelector('.file-view__right')) {
+            document.querySelector('.file-view__right').style.opacity = 1;
+          }
         }
       }
     }, 200);
