@@ -953,42 +953,49 @@ if (location.href.includes('stock-photos')) {
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    setTimeout(() => {
+    let itervalListExp = setInterval(() => {
       console.log(
         'timeout',
         document.querySelector('[data-qa="FooterEnterprise"]'),
         document.querySelector('[data-qa="UserBarEnterprise"]')
       );
+      if (!document.querySelector('[data-server-rendered="true"]')) {
+        clearInterval(itervalListExp);
+        if (
+          !isExpInited &&
+          !document.querySelector('[data-qa="FooterEnterprise"]') &&
+          !document.querySelector('[data-qa="UserBarEnterprise"]')
+        ) {
+          // gaEvent('loaded');
+          isExpInited = true;
+          init();
+        } else if (observer) {
+          observer.disconnect();
+        }
+      }
+    }, 200);
 
+    function init() {
       if (
-        !isExpInited &&
         !document.querySelector('[data-qa="FooterEnterprise"]') &&
         !document.querySelector('[data-qa="UserBarEnterprise"]')
       ) {
-        // gaEvent('loaded');
-        isExpInited = true;
-        init();
-      } else {
-        observer.disconnect();
-      }
-    }, 2500);
+        initStyles();
+        console.log('initExp');
+        // gaEvent('activated', 'Modal PDP');
+        // localStorage.setItem('lavLicenseType', 'none');
+        createModal();
+        if (
+          document.querySelector('.modal-container') &&
+          document.querySelector('.price-table-classic__download-btn')
+        ) {
+          localStorage.setItem('lavLicenseType', 'none');
+          document
+            .querySelector('.price-table-classic')
+            .insertAdjacentElement('beforebegin', createSizes());
 
-    function init() {
-      initStyles();
-      console.log('initExp');
-      // gaEvent('activated', 'Modal PDP');
-      // localStorage.setItem('lavLicenseType', 'none');
-      createModal();
-      if (
-        document.querySelector('.modal-container') &&
-        document.querySelector('.price-table-classic__download-btn')
-      ) {
-        localStorage.setItem('lavLicenseType', 'none');
-        document
-          .querySelector('.price-table-classic')
-          .insertAdjacentElement('beforebegin', createSizes());
-
-        createLicenses();
+          createLicenses();
+        }
       }
     }
 
