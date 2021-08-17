@@ -3,6 +3,15 @@ let stylesTempCheckout = document.createElement('style');
 //   opacity: 0;
 //   transition: 0.35s;
 // }`;
+
+if (
+  (document.querySelector('[data-qa="FooterEnterprise"]') ||
+    document.querySelector('[data-qa="UserBarEnterprise"]')) &&
+  document.querySelector('.file-view-upgrade__prices-box')
+) {
+  document.querySelector('.file-view-upgrade__prices-box').style.opacity = '1';
+}
+
 if (localStorage.getItem('lavLicenseType') == 'extended') {
   document.body.prepend(stylesTempCheckout);
 }
