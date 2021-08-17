@@ -812,6 +812,10 @@ if (location.href.includes('stock-photos')) {
         styles.id = 'lav-modal-exp';
         styles.innerHTML = stylesList;
         document.body.appendChild(styles);
+      } else {
+        if (document.querySelector('.file-view__right')) {
+          document.querySelector('.file-view__right').style.opacity = 1;
+        }
       }
     }
 
@@ -820,8 +824,15 @@ if (location.href.includes('stock-photos')) {
         // clearInterval(stockPhotosIterval);
         if (document.querySelector('#lav-modal-exp')) {
           document.querySelector('#lav-modal-exp').remove();
+          if (document.querySelector('.file-view__right')) {
+            document.querySelector('.file-view__right').style.opacity = 1;
+          }
         }
-      } else {
+      } else if (
+        !document.querySelector('#lav-modal-exp') &&
+        !document.querySelector('[data-qa="FooterEnterprise"]') &&
+        !document.querySelector('[data-qa="UserBarEnterprise"]')
+      ) {
         initStyles();
       }
     }, 2000);
