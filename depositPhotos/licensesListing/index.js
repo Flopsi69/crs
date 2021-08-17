@@ -2358,6 +2358,11 @@ if (location.href.includes('stock-photos')) {
         document.querySelector('[data-qa="UserBarEnterprise"]')
       ) {
         document.querySelector('#lav-pdp-styles').remove();
+        if (document.querySelector('.file-view-upgrade__prices-box')) {
+          document.querySelector(
+            '.file-view-upgrade__prices-box'
+          ).style.opacity = '1';
+        }
       }
     }
 
@@ -2463,6 +2468,13 @@ if (location.href.includes('stock-photos')) {
                   document.querySelector('[data-qa="UserBarEnterprise"]')
                 ) {
                   document.querySelector('#root>.wrapper').style.opacity = 1;
+                  if (
+                    document.querySelector('.file-view-upgrade__prices-box')
+                  ) {
+                    document.querySelector(
+                      '.file-view-upgrade__prices-box'
+                    ).style.opacity = '1';
+                  }
                   if (document.querySelector('#lav-pdp-styles')) {
                     document.querySelector('#lav-pdp-styles').remove();
                   }
