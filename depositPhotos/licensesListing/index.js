@@ -78,7 +78,7 @@ if (lang == 'ru') {
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
-          <img src='${REPO_DIR}/label-sl.svg'>
+          <img src='${REPO_DIR}/label-sl-ru.svg'>
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>Стандартная лицензия</div>
@@ -91,7 +91,7 @@ if (lang == 'ru') {
 
       <div class='lav-license lav-license_extended'>
         <div class='lav-license__label'>
-          <img src='${REPO_DIR}/label-el.svg'>
+          <img src='${REPO_DIR}/label-el-ru.svg'>
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>Расширенная лицензия</div>
@@ -110,7 +110,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-es.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCIA ESTÁNDAR</div>
@@ -123,7 +123,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-es.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCIA AMPLIADA</div>
@@ -142,7 +142,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-pt-br.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENÇA PADRÃO</div>
@@ -155,7 +155,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-pt-br.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENÇA ESTENDIDA</div>
@@ -174,7 +174,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-it.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENZA STANDARD</div>
@@ -187,7 +187,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-it.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENZA ESTESA</div>
@@ -206,7 +206,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-pl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCJA STANDARDOWA</div>
@@ -219,7 +219,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-pl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCJA ROZSZERZONA</div>
@@ -238,7 +238,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-nl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DE STANDAARD LICENTIE</div>
@@ -251,7 +251,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-nl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DE UITGEBREIDE LICENTIE</div>
@@ -270,7 +270,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-de.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DIE STANDARDLIZENZ</div>
@@ -283,7 +283,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-de.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DIE ERWEITERTE LIZENZ</div>
@@ -302,7 +302,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-fr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENCE STANDARD</div>
@@ -315,7 +315,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-fr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENCE ÉTENDUE</div>
@@ -335,7 +335,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-tr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>STANDART LİSANS</div>
@@ -348,7 +348,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-tr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>GENİŞLETİLMİŞ LİSANS</div>
@@ -368,7 +368,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-sl.svg'>
+        <img src='${REPO_DIR}/label-sl-en.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Standard license</div>
@@ -381,7 +381,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/label-el.svg'>
+        <img src='${REPO_DIR}/label-el-en.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Extended license</div>
