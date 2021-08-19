@@ -616,11 +616,11 @@ if (location.href.includes('stock-photos')) {
       // pointer-events: none;
     }
     .lav-license__label img {
-      width: 50px;
+      width: 75px;
       margin-top: 18px;
     }
     .lav-license__info {
-      margin-left: 18px;
+      margin-left: 13px;
     }
     .lav-license__title {
       font-weight: 800;
@@ -2103,11 +2103,11 @@ if (location.href.includes('stock-photos')) {
       // pointer-events: none;
     }
     .lav-license__label img {
-      width: 50px;
+      width: 75px;
       margin-top: 18px;
     }
     .lav-license__info {
-      margin-left: 18px;
+      margin-left: 13px;
     }
     .lav-license__title {
       font-weight: 800;
