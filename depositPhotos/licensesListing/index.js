@@ -78,7 +78,7 @@ if (lang == 'ru') {
     <div class='lav-licenses'>
       <div class='lav-license lav-license_standard lav-license_active'>
         <div class='lav-license__label'>
-          <img src='${REPO_DIR}/icon-sl-ru.svg'>
+          <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-ru.svg'>
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>Стандартная лицензия</div>
@@ -91,7 +91,7 @@ if (lang == 'ru') {
 
       <div class='lav-license lav-license_extended'>
         <div class='lav-license__label'>
-          <img src='${REPO_DIR}/icon-el-ru.svg'>
+          <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-ru.svg'>
         </div>
         <div class='lav-license__info'>
           <div class='lav-license__title'>Расширенная лицензия</div>
@@ -110,7 +110,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-es.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-es.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCIA ESTÁNDAR</div>
@@ -123,7 +123,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-es.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-es.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCIA AMPLIADA</div>
@@ -142,7 +142,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-pt-br.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-pt-br.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENÇA PADRÃO</div>
@@ -155,7 +155,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-pt-br.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-pt-br.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENÇA ESTENDIDA</div>
@@ -174,7 +174,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-it.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-it.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENZA STANDARD</div>
@@ -187,7 +187,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-it.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-it.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENZA ESTESA</div>
@@ -206,7 +206,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-pl.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-pl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCJA STANDARDOWA</div>
@@ -219,7 +219,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-pl.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-pl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LICENCJA ROZSZERZONA</div>
@@ -238,7 +238,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-nl.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-nl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DE STANDAARD LICENTIE</div>
@@ -251,7 +251,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-nl.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-nl.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DE UITGEBREIDE LICENTIE</div>
@@ -270,7 +270,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-de.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-de.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DIE STANDARDLIZENZ</div>
@@ -283,7 +283,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-de.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-de.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>DIE ERWEITERTE LIZENZ</div>
@@ -302,7 +302,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-fr.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-fr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENCE STANDARD</div>
@@ -315,7 +315,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-fr.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-fr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENCE ÉTENDUE</div>
@@ -335,7 +335,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-tr.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-tr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>STANDART LİSANS</div>
@@ -348,7 +348,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-tr.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-tr.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>GENİŞLETİLMİŞ LİSANS</div>
@@ -368,7 +368,7 @@ if (lang == 'ru') {
   <div class='lav-licenses'>
     <div class='lav-license lav-license_standard lav-license_active'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-sl-en.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-sl-en.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Standard license</div>
@@ -381,7 +381,7 @@ if (lang == 'ru') {
 
     <div class='lav-license lav-license_extended'>
       <div class='lav-license__label'>
-        <img src='${REPO_DIR}/icon-el-en.svg'>
+        <img src='https://flopsi69.github.io/crs/depositPhotos/licensesListing/icon-el-en.svg'>
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>Extended license</div>
