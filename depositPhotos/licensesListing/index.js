@@ -351,7 +351,6 @@ if (lang == 'ru') {
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>GENİŞLETİLMİŞ LİSANS</div>
-        <div class='lav-license__title-price'>$51 / görüntü başına</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Sınırsız web kullanımı</div>
           <div class='lav-license__item lav-license__item_include'>Yeniden satış, baskı, reklam için sınırsız kullanım</div>
