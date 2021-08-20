@@ -319,7 +319,6 @@ if (lang == 'ru') {
       </div>
       <div class='lav-license__info'>
         <div class='lav-license__title'>LA LICENCE ÉTENDUE</div>
-        <div class='lav-license__title-price'>$51 / par image</div>
         <div class='lav-license__list'>
           <div class='lav-license__item lav-license__item_include'>Utilisation Internet illimitée</div>
           <div class='lav-license__item lav-license__item_include'>Utilisation illimitée pour la revente, l'impression, la publicité</div>
