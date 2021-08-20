@@ -29,12 +29,16 @@
   /* STYLES insert start */
   const REPO_DIR = 'https://flopsi69.github.io/crs/nebula/landings';
 
-  let stylesList = ``;
+  let stylesList = `
+  .learn {
+    display: block!important;
+  }
+  `;
 
-  // let stylesEl = document.createElement('style');
-  // stylesEl.id = 'lav-styles';
-  // stylesEl.innerHTML = stylesList;
-  // document.body.appendChild(stylesEl);
+  let stylesEl = document.createElement('style');
+  stylesEl.id = 'lav-styles';
+  stylesEl.innerHTML = stylesList;
+  document.body.appendChild(stylesEl);
 
   // let observer = new MutationObserver(mutations => {
   //   for (let mutation of mutations) {
