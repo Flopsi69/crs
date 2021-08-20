@@ -1115,10 +1115,12 @@ if (location.href.includes('stock-photos')) {
           }
         });
 
-      document.querySelector('.file-view__right').style.height =
-        document.querySelector('.file-view__price-table-wrapper').offsetHeight +
-        10 +
-        'px';
+      // document.querySelector('.file-view__right').style.height =
+      //   document.querySelector('.file-view__price-table-wrapper').offsetHeight +
+      //   10 +
+      //   'px';
+
+      document.querySelector('.file-view__right').style.height = 'auto';
 
       document.querySelector('.file-view__right').style.opacity = 1;
       document.querySelector('.file-view__bottom-wrapper').style.height =
