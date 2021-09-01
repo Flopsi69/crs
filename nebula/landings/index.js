@@ -14,7 +14,8 @@
   })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
   hj('trigger', 'hp_9_cta');
 
-  console.log('initExp');
+  console.log('initHJ');
+
   function gaEvent(action, label, value) {
     if (!action) {
       action = '';
@@ -37,65 +38,44 @@
     }
   }
 
-  /* STYLES insert start */
-  const REPO_DIR = 'https://flopsi69.github.io/crs/nebula/landings';
-
   let stylesList = `
   .learn {
     display: block!important;
   }
   `;
 
-  let stylesEl = document.createElement('style');
-  stylesEl.id = 'lav-styles';
-  stylesEl.innerHTML = stylesList;
-  document.body.appendChild(stylesEl);
-
-  gaEvent('loaded');
-
-  document.addEventListener('click', function (e) {
-    if (
-      e.target.classList.contains('learn__item') ||
-      e.target.closest('.learn__item')
-    ) {
-      if (e.target.classList.contains('learn__item')) {
-        gaEvent(
-          'click on the new CTA',
-          e.target.querySelector('.learn__item-caption').innerText
-        );
-      } else {
-        gaEvent(
-          'click on the new CTA',
-          e.target.closest('.learn__item').querySelector('.learn__item-caption')
-            .innerText
-        );
-      }
-    }
-  });
-
-  // let observer = new MutationObserver(mutations => {
-  //   for (let mutation of mutations) {
-  //     for (let node of mutation.addedNodes) {
-  //       if (!(node instanceof HTMLElement)) continue;
-  //       if (node.classList.contains('cart-page')) {
-  //         initExp();
-  //         observer.disconnect();
-  //       }
-  //     }
-  //   }
-  // });
-
-  // observer.observe(document.querySelector('body'), {
-  //   childList: true,
-  //   subtree: true
-  // });
-  /* STYLES insert end */
+  if (location.href.includes('/whole-genome-sequencing-dna-test')) {
+    initExp();
+  }
 
   function initExp() {
-    console.log('Exp init!');
-    document.querySelectorAll('.order_main_wrap').forEach(function (orderEl) {
-      initOrderStyle(orderEl);
+    console.log('initExp');
+    gaEvent('loaded');
+
+    let stylesEl = document.createElement('style');
+    stylesEl.id = 'lav-styles';
+    stylesEl.innerHTML = stylesList;
+    document.body.appendChild(stylesEl);
+
+    document.addEventListener('click', function (e) {
+      if (
+        e.target.classList.contains('learn__item') ||
+        e.target.closest('.learn__item')
+      ) {
+        if (e.target.classList.contains('learn__item')) {
+          gaEvent(
+            'click on the new CTA',
+            e.target.querySelector('.learn__item-caption').innerText
+          );
+        } else {
+          gaEvent(
+            'click on the new CTA',
+            e.target
+              .closest('.learn__item')
+              .querySelector('.learn__item-caption').innerText
+          );
+        }
+      }
     });
-    initModal();
   }
 })();
