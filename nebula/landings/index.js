@@ -60,12 +60,12 @@
     ) {
       if (e.target.classList.contains('learn__item')) {
         gaEvent(
-          'click on Why subscribe',
+          'click on the new CTA',
           e.target.querySelector('.learn__item-caption').innerText
         );
       } else {
         gaEvent(
-          'click on Why subscribe',
+          'click on the new CTA',
           e.target.closest('.learn__item').querySelector('.learn__item-caption')
             .innerText
         );
