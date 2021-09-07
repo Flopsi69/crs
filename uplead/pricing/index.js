@@ -33,6 +33,7 @@
       background-color: #00A2BB!important;
     }
     .uael-rbs-slider {
+      opacity: 0;
       border: 1px solid #00A2BB!important;
       background: transparent!important;
     }
@@ -91,8 +92,8 @@
   initExp();
   function initExp() {
     document.querySelector('.uael-rbs-switch').checked = 'checked';
-    document.querySelector('.uael-rbs-section-1').stylesEl.display = 'none';
-    document.querySelector('.uael-rbs-section-2').stylesEl.display = 'block';
+    document.querySelector('.uael-rbs-section-1').style.display = 'none';
+    document.querySelector('.uael-rbs-section-2').style.display = 'block';
     var tableEl = document.querySelector('.uael-rbs-section-2');
     var priceCaption = document.querySelector(
       '.uael-rbs-section-1 .month-subtext'
@@ -158,5 +159,7 @@
             .replace(/\$[\d,]+/, '$299');
         }
       });
+
+    document.querySelector('.uael-rbs-slider').style.opacity = '1';
   }
 })();
