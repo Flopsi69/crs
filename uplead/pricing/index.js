@@ -90,6 +90,9 @@
   /* STYLES insert end */
   initExp();
   function initExp() {
+    document.querySelector('.uael-rbs-switch').checked = 'checked';
+    document.querySelector('.uael-rbs-section-1').stylesEl.display = 'none';
+    document.querySelector('.uael-rbs-section-2').stylesEl.display = 'block';
     var tableEl = document.querySelector('.uael-rbs-section-2');
     var priceCaption = document.querySelector(
       '.uael-rbs-section-1 .month-subtext'
