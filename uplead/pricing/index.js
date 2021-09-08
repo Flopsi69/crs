@@ -17,7 +17,7 @@
     function () {
       (hj.q = hj.q || []).push(arguments);
     };
-  hj('trigger', 'returned_visitors_discount');
+  hj('trigger', 'pricing_page_buy_annual_plan');
 
   function gaEvent(action, label, value) {
     if (!action) {
