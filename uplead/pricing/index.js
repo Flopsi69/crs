@@ -1,22 +1,34 @@
 (function () {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 864509, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'returned_visitors_discount');
+
   function gaEvent(action, label, value) {
     if (!action) {
       action = '';
-    }
-    if (!label) {
-      label = '';
-    }
-    if (!value) {
-      value = '';
     }
     window.dataLayer = window.dataLayer || [];
     try {
       let eventObj = {
         event: 'event-to-ga',
-        eventCategory: 'Exp - Checkout_more_info',
+        eventCategory: 'Exp - Pricing page buy annual plan',
         eventAction: action,
-        eventLabel: label,
-        eventValue: value,
       };
       dataLayer.push(eventObj);
       console.log('FireEvent', eventObj);
@@ -91,7 +103,13 @@
   /* STYLES insert end */
   initExp();
   function initExp() {
+    gaEvent('loaded');
     document.querySelector('.uael-rbs-switch').checked = 'checked';
+    document
+      .querySelector('.uael-rbs-switch')
+      .addEventListener('change', function () {
+        gaEvent('Clicks on switcher');
+      });
     document.querySelector('.uael-rbs-section-1').style.display = 'none';
     document.querySelector('.uael-rbs-section-2').style.display = 'block';
     var tableEl = document.querySelector('.uael-rbs-section-2');
