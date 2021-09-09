@@ -105,11 +105,6 @@
   function initExp() {
     gaEvent('loaded');
     document.querySelector('.uael-rbs-switch').checked = 'checked';
-    document
-      .querySelector('.uael-rbs-switch')
-      .addEventListener('change', function () {
-        gaEvent('Clicks on switcher');
-      });
     document.querySelector('.uael-rbs-section-1').style.display = 'none';
     document.querySelector('.uael-rbs-section-2').style.display = 'block';
     var tableEl = document.querySelector('.uael-rbs-section-2');
