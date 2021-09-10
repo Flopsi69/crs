@@ -898,7 +898,9 @@ if (location.href.includes('stock-photos')) {
             document
               .querySelector('.price-table-classic')
               .insertAdjacentElement('beforebegin', createSizes());
-            createLicenses();
+            if (!document.querySelector('.lav-licenses')) {
+              createLicenses();
+            }
           }
 
           if (node.classList.contains('price-table-classic')) {
@@ -998,7 +1000,9 @@ if (location.href.includes('stock-photos')) {
             .querySelector('.price-table-classic')
             .insertAdjacentElement('beforebegin', createSizes());
 
-          createLicenses();
+          if (!document.querySelector('.lav-licenses')) {
+            createLicenses();
+          }
         }
       }
     }
