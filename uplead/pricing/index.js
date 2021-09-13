@@ -59,6 +59,7 @@
       background-color: #fff!important;
     }
     .lav-annually {
+      color: #69727A;
       font-family: var(--e-global-typography-text-font-family),Sans-serif;
       margin-top: -16px;
       margin-bottom: 16px;
