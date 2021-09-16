@@ -158,10 +158,16 @@ console.log('testik1');
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles';
   stylesEl.innerHTML = stylesList;
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.appendChild(stylesEl);
-    initExp();
-  });
+
+  let initInterval = setInterval(() => {
+    console.log('try');
+    if (document.querySelector('body')) {
+      console.log('Fire!');
+      clearInterval(initInterval);
+      document.querySelector('body').appendChild(stylesEl);
+      initExp();
+    }
+  }, 500);
 
   // let observer = new MutationObserver(mutations => {
   //   for (let mutation of mutations) {
