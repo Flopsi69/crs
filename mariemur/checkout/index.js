@@ -2,20 +2,6 @@ console.log('testik1');
 
 (function () {
   console.log('testik2');
-  (function (h, o, t, j, a, r) {
-    h.hj =
-      h.hj ||
-      function () {
-        (h.hj.q = h.hj.q || []).push(arguments);
-      };
-    h._hjSettings = { hjid: 2442662, hjsv: 6 };
-    a = o.getElementsByTagName('head')[0];
-    r = o.createElement('script');
-    r.async = 1;
-    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-    a.appendChild(r);
-  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-  hj('trigger', 'chekout_improvements');
 
   function gaEvent(action) {
     if (!action) {
@@ -172,7 +158,10 @@ console.log('testik1');
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles';
   stylesEl.innerHTML = stylesList;
-  document.body.appendChild(stylesEl);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.appendChild(stylesEl);
+    initExp();
+  });
 
   // let observer = new MutationObserver(mutations => {
   //   for (let mutation of mutations) {
@@ -192,7 +181,6 @@ console.log('testik1');
   // });
 
   /* STYLES insert end */
-  initExp();
   function initExp() {
     console.log('testik3');
     gaEvent('loaded');
@@ -205,6 +193,21 @@ console.log('testik1');
         e.preventDefault();
         gaEvent('Click Continue to shipping');
       });
+
+    (function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 2442662, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    hj('trigger', 'chekout_improvements');
   }
 
   function addGuarantee() {

@@ -149,7 +149,10 @@ console.log('testik1');
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles';
   stylesEl.innerHTML = stylesList;
-  document.body.appendChild(stylesEl);
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.appendChild(stylesEl);
+    initExp();
+  });
 
   // let observer = new MutationObserver(mutations => {
   //   for (let mutation of mutations) {
