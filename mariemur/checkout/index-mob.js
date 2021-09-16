@@ -36,6 +36,9 @@
   const REPO_DIR = 'https://flopsi69.github.io/crs/mariemur/checkout';
 
   let stylesList = `
+    .main__content {
+      padding-bottom: 0;
+    }
     .order-summary__sections  {
       min-height: 100%;
       height: auto;
@@ -46,15 +49,16 @@
       color: #fff;
       text-align: center;
       padding: 14px;
+      margin-bottom: 22px;
     }
     .lav-guarantee__title {
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.15;
     }
     .lav-guarantee__caption {
-      margin-top: 6px;
+      margin-top: 8px;
       font-weight: 300;
       font-size: 12px;
       line-height: 14px;
@@ -62,45 +66,18 @@
     }
     .lav-comments__wrap {
       position: relative;
-      margin-top: 16px;
-    }
-    .lav-comments__inner {
-      overflow: hidden;
-    }
-    .lav-comments__next {
-      position: absolute;
-      transition: 0.3s;
-      cursor: pointer;
-      z-index: 10;
-      right: 0;
-      top: 50%;
-      border: 1px solid #F5F5F5;
-      width: 32px;
-      height: 32px;
-      background: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: translate(50%, -50%);
-    }
-    .lav-comments__next:hover {
-      border-color: #d6d6d6;
-      transform: scale(1.1) translate(50%, -50%);
+      background: #F5F5F5;
+      padding: 60px 14px 40px;
+      margin: 0 -14px;
     }
     .lav-comments {
-      display: flex;
       transition: 0.4s;
-      transform: translateX(0%);
     }
     .lav-comment {
-      border-radius: 4px;
       box-sizing: border-box;
-      flex-shrink: 0;
-      width: 100%;
-      border: 1px solid #D6D6D6;
-      padding: 14px;
-      background: #fff;
+      padding-top: 28px;
+      padding-bottom: 20px;
+      border-top: 1px solid #D6D6D6;
     }
     .lav-comment__head {
       display: flex;
@@ -150,18 +127,19 @@
       margin-right: 10px;
     }
     .lav-comment__descr {
-      margin-top: 8px;
+      margin-top: 12px;
       font-weight: 300;
-      font-size: 12px;
-      line-height: 16px;
+      font-size: 14px;
+      line-height: 20px;
       color: #5E5E5E;
     }
     .lav-payments {
-      margin-top: 20px;
+      margin-top: 55px;
+      margin-bottom: 55px;
       text-align: center;
     }
     .lav-payments img {
-      max-width: 75%;
+      max-width: 92%;
     }
 
   `;
@@ -193,8 +171,8 @@
   function initExp() {
     gaEvent('loaded');
     addGuarantee();
-    addComments();
     addPayments();
+    addComments();
     document
       .querySelector('#continue_button')
       .addEventListener('click', function (e) {
@@ -216,9 +194,7 @@
       </div>
     `;
 
-    document
-      .querySelector('.order-summary__sections')
-      .insertAdjacentHTML('beforeend', guaranteeEl);
+    document.querySelector('nav').insertAdjacentHTML('afterend', guaranteeEl);
 
     fetch('https://ipinfo.io/json?token=ad3627629fa51d')
       .then((response) => response.json())
@@ -236,91 +212,61 @@
   function addComments() {
     let commentsEl = `
       <div class='lav-comments__wrap'>
-        <div class='lav-comments__next'>
-          <img src="${REPO_DIR}/img/arrow-right.svg">
-        </div>
-        <div class='lav-comments__inner'>
-          <div class='lav-comments'>
-            <div class="lav-comment">
-              <div class="lav-comment__head">
-                <div class="lav-comment__name">Jessica N.</div>
-                <div class="lav-comment__date">04/16/2021</div>
-              </div>
-              <div class="lav-comment__country">
-                <img src="${REPO_DIR}/img/flag-us.png" alt="">
-                United States
-              </div>
-              <div class="lav-comment__rate">
-                <img src="${REPO_DIR}/img/stars.svg" alt="">
-                Super Sexy and Comfy
-              </div>
-              <div class="lav-comment__descr">I bought a pair of these to go with a bra in the same fabric, but my partner had such a positive reaction to them that I bought 3 more pairs. They're comfortable to wear and well made. Excited to have these as my go-to sexy panty.</div>
+        <div class='lav-comments'>
+          <div class="lav-comment">
+            <div class="lav-comment__head">
+              <div class="lav-comment__name">Jessica N.</div>
+              <div class="lav-comment__date">04/16/2021</div>
             </div>
-            
-            <div class="lav-comment">
-              <div class="lav-comment__head">
-                <div class="lav-comment__name">Catherine B.</div>
-                <div class="lav-comment__date">11/11/2020</div>
-              </div>
-              <div class="lav-comment__country">
-                <img src="${REPO_DIR}/img/flag-us.png" alt="">
-                United States
-              </div>
-              <div class="lav-comment__rate">
-                <img src="${REPO_DIR}/img/stars.svg" alt="">
-                Amazing
-              </div>
-              <div class="lav-comment__descr">This is the sexiest bra I've ever owned. </div>
+            <div class="lav-comment__country">
+              <img src="${REPO_DIR}/img/flag-us.png" alt="">
+              United States
             </div>
-            
-            <div class="lav-comment">
-              <div class="lav-comment__head">
-                <div class="lav-comment__name">Lynn V.</div>
-                <div class="lav-comment__date">02/11/2021</div>
-              </div>
-              <div class="lav-comment__country">
-                <img src="${REPO_DIR}/img/flag-ca.png" alt="">
-                Canada
-              </div>
-              <div class="lav-comment__rate">
-                <img src="${REPO_DIR}/img/stars.svg" alt="">
-                Sooo sexy..
-              </div>
-              <div class="lav-comment__descr">The product was exactly what my boyfriend wanted! LOL.. mesh is a hard product to find. I bought both the bra and panty, which fit amazingly! I bought two more pieces after this and have the same amazing feel.</div>
+            <div class="lav-comment__rate">
+              <img src="${REPO_DIR}/img/stars.svg" alt="">
+              Super Sexy and Comfy
             </div>
+            <div class="lav-comment__descr">I bought a pair of these to go with a bra in the same fabric, but my partner had such a positive reaction to them that I bought 3 more pairs. They're comfortable to wear and well made. Excited to have these as my go-to sexy panty.</div>
+          </div>
+          
+          <div class="lav-comment">
+            <div class="lav-comment__head">
+              <div class="lav-comment__name">Catherine B.</div>
+              <div class="lav-comment__date">11/11/2020</div>
+            </div>
+            <div class="lav-comment__country">
+              <img src="${REPO_DIR}/img/flag-us.png" alt="">
+              United States
+            </div>
+            <div class="lav-comment__rate">
+              <img src="${REPO_DIR}/img/stars.svg" alt="">
+              Amazing
+            </div>
+            <div class="lav-comment__descr">This is the sexiest bra I've ever owned. </div>
+          </div>
+          
+          <div class="lav-comment">
+            <div class="lav-comment__head">
+              <div class="lav-comment__name">Lynn V.</div>
+              <div class="lav-comment__date">02/11/2021</div>
+            </div>
+            <div class="lav-comment__country">
+              <img src="${REPO_DIR}/img/flag-ca.png" alt="">
+              Canada
+            </div>
+            <div class="lav-comment__rate">
+              <img src="${REPO_DIR}/img/stars.svg" alt="">
+              Sooo sexy..
+            </div>
+            <div class="lav-comment__descr">The product was exactly what my boyfriend wanted! LOL.. mesh is a hard product to find. I bought both the bra and panty, which fit amazingly! I bought two more pieces after this and have the same amazing feel.</div>
           </div>
         </div>
       </div>
     `;
 
     document
-      .querySelector('.order-summary__sections')
+      .querySelector('.main__content')
       .insertAdjacentHTML('beforeend', commentsEl);
-
-    let initialSlider = 0;
-    let slidesLength = document.querySelectorAll('.lav-comment').length;
-
-    function nextSlide() {
-      if (initialSlider + 1 == slidesLength) {
-        initialSlider = 0;
-      } else {
-        initialSlider++;
-      }
-
-      document.querySelector('.lav-comments').style.transform =
-        'translateX(-' + initialSlider * 100 + '%)';
-    }
-
-    let sliderInterval = setInterval(nextSlide, 8000);
-
-    document
-      .querySelector('.lav-comments__next')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        nextSlide();
-        clearInterval(sliderInterval);
-        sliderInterval = setInterval(nextSlide, 8000);
-      });
   }
 
   function addPayments() {
@@ -331,7 +277,7 @@
     `;
 
     document
-      .querySelector('.order-summary__sections')
+      .querySelector('.main__content')
       .insertAdjacentHTML('beforeend', paymentsEL);
   }
 })();
