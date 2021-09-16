@@ -1,4 +1,6 @@
+console.log('testik1');
 (function () {
+  console.log('testik2');
   (function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||
@@ -169,6 +171,7 @@
   /* STYLES insert end */
   initExp();
   function initExp() {
+    console.log('testik3');
     gaEvent('loaded');
     addGuarantee();
     addPayments();
@@ -210,6 +213,7 @@
   }
 
   function addComments() {
+    console.log('testik4');
     let commentsEl = `
       <div class='lav-comments__wrap'>
         <div class='lav-comments'>
