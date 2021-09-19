@@ -187,7 +187,6 @@ console.log('testik1');
     document
       .querySelector('#continue_button')
       .addEventListener('click', function (e) {
-        e.preventDefault();
         gaEvent('Click Continue to shipping');
       });
   }
