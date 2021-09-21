@@ -93,6 +93,11 @@
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
         console.log(node);
+
+        if (node.classList.contains('accountPlans__freeUser-container')) {
+          initExp();
+        }
+
         if (node.classList.contains('enterpriseSuggestion')) {
           if (document.querySelector('#billing-switch').checked) {
             document.body.appendChild(tempStylesEl);
@@ -117,8 +122,6 @@
     subtree: true,
   });
 
-  /* STYLES insert end */
-  initExp();
   function initExp() {
     gaEvent('loaded');
     document
