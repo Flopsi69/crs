@@ -133,11 +133,6 @@
       .querySelector('.accountPlans__freeUser-switch-labelAnnual')
       .click();
 
-    document
-      .querySelector('.uael-rbs-switch')
-      .addEventListener('change', function () {
-        gaEvent('Clicks on switcher');
-      });
     setTimeout(() => {
       document.querySelector(
         '.accountPlans__freeUser-container'
