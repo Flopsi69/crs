@@ -219,6 +219,17 @@
   function addComments() {
     let commentsEl = `
       <div class='lav-comments__wrap'>
+        <div class='lav-comments__head'>
+          <div class='lav-comments__title'>Reviews</div>
+          <div class='lav-comments__info'>
+            <div class='lav-comments__info-rate'>
+              <span>4.8</span>
+              <img src="${REPO_DIR}/img/stars.svg" alt="">
+            </div>
+            <div class='lav-comments__info-caption'>Based on 24 Reviews</div>
+          </div>
+        </div>
+
         <div class='lav-comments'>
           <div class="lav-comment">
             <div class="lav-comment__head">
