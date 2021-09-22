@@ -18,14 +18,15 @@
   }
 
   /* STYLES insert start */
-  const REPO_DIR = 'https://flopsi69.github.io/crs/uplead/subscriptions';
+  const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/recently';
 
   let stylesList = `
   .lav-slider__wrap {
     position: fixed;
+    box-sizing: border-box;
     z-index: 1000;
     bottom: 70px;
-    left: 0;
+    left: 240px;
     right: 0;
     margin: auto;
     max-width: 1000px;
