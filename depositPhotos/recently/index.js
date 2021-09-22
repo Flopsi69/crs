@@ -52,6 +52,43 @@
   .lav-slider__slide img {
     max-height: 96px;
   }
+  .lav-recently {
+    position: fixed;
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
+    bottom: 10px;
+    right: 18.7%;
+    z-index: 99999;
+    width: 170px;
+    height: 33px;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+  .lav-recently:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 5px;
+    background-color: #fff;
+  }
+  .lav-recently__caption {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3C3C3C;
+  }
+  .lav-recently__icon {
+    line-height: 0;
+  }
+  .lav-recently img {
+    margin-right: 7px;
+  }
   `;
 
   let stylesEl = document.createElement('style');
@@ -88,6 +125,8 @@
         <div class='lav-recently__caption'>Recently viewed</div>
       </div>
     `;
+
+    document.querySelector('main').insertAdjacentHTML('afterend', recentlyEl);
   }
 
   function initRecentlySlider() {
@@ -127,5 +166,19 @@
     `;
 
     document.querySelector('main').insertAdjacentHTML('afterend', recentlyEl);
+  }
+
+  let recentlyStorage;
+  function initSessionStorage() {
+    if (sessionStorage.getItem('recently')) {
+      recentlyStorage = JSON.parse(sessionStorage.getItem('recently'));
+    } else {
+      recentlyStorage = [];
+    }
+  }
+
+  function setSessionItem(data) {
+    recentlyStorage.push(data);
+    sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
   }
 })();
