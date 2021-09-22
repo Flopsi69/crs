@@ -141,7 +141,42 @@
     .lav-payments img {
       max-width: 92%;
     }
-
+    .lav-comments__head {
+      margin-bottom: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lav-comments__title {
+      font-size: 26px;
+      line-height: 32px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #000000;
+    }
+    .lav-comments__info {
+      text-align: right;
+    }
+    .lav-comments__info-rate {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      color: #000000;
+    }
+    .lav-comments__info-rate img {
+      margin-left: 10px;
+    }
+    .lav-comments__info-caption {
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 14px;
+      color: #000000;
+      margin-top: 7px;
+    }
   `;
 
   let stylesEl = document.createElement('style');
