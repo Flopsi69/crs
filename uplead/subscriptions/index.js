@@ -1,40 +1,40 @@
 (function () {
-  // (function (h, o, t, j, a, r) {
-  //   h.hj =
-  //     h.hj ||
-  //     function () {
-  //       (h.hj.q = h.hj.q || []).push(arguments);
-  //     };
-  //   h._hjSettings = { hjid: 864509, hjsv: 6 };
-  //   a = o.getElementsByTagName('head')[0];
-  //   r = o.createElement('script');
-  //   r.async = 1;
-  //   r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  //   a.appendChild(r);
-  // })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-  // window.hj =
-  //   window.hj ||
-  //   function () {
-  //     (hj.q = hj.q || []).push(arguments);
-  //   };
-  // hj('trigger', 'pricing_page_buy_annual_plan');
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 864509, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('trigger', 'pricing_page_buy_annual_plan_app');
 
   function gaEvent(action, label, value) {
     if (!action) {
       action = '';
     }
-    // window.dataLayer = window.dataLayer || [];
-    // try {
-    //   let eventObj = {
-    //     event: 'event-to-ga',
-    //     eventCategory: 'Exp - Pricing page buy annual plan',
-    //     eventAction: action,
-    //   };
-    //   dataLayer.push(eventObj);
-    //   console.log('FireEvent', eventObj);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    window.dataLayer = window.dataLayer || [];
+    try {
+      let eventObj = {
+        event: 'event-to-ga',
+        eventCategory: 'Exp - Pricing page buy annual plan_app',
+        eventAction: action,
+      };
+      dataLayer.push(eventObj);
+      console.log('FireEvent', eventObj);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   /* STYLES insert start */
@@ -79,6 +79,8 @@
     }
   `;
 
+  let isFlagSwitcher = false;
+
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles';
   stylesEl.innerHTML = stylesList;
@@ -99,6 +101,9 @@
         }
 
         if (node.classList.contains('enterpriseSuggestion')) {
+          if (isFlagSwitcher) {
+            gaEvent('Clicks on switcher');
+          }
           if (document.querySelector('#billing-switch').checked) {
             document.body.appendChild(tempStylesEl);
           } else {
@@ -127,10 +132,17 @@
     document
       .querySelector('.accountPlans__freeUser-switch-labelAnnual')
       .click();
+
+    document
+      .querySelector('.uael-rbs-switch')
+      .addEventListener('change', function () {
+        gaEvent('Clicks on switcher');
+      });
     setTimeout(() => {
       document.querySelector(
         '.accountPlans__freeUser-container'
       ).style.opacity = '1';
+      isFlagSwitcher = true;
     }, 400);
   }
 
