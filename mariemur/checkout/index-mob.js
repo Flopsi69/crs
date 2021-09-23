@@ -36,6 +36,9 @@
   const REPO_DIR = 'https://flopsi69.github.io/crs/mariemur/checkout';
 
   let stylesList = `
+    s.total-recap__original-price {
+      text-decoration: line-through;
+    }
     .main__content {
       padding-bottom: 0;
     }
