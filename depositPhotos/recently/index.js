@@ -1,3 +1,4 @@
+console.log('initExp');
 (function () {
   document.head.insertAdjacentHTML(
     'beforeend',
