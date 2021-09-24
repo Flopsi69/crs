@@ -341,7 +341,7 @@ console.log('initExp');
 
   function initRecentlySlider() {
     let recentlyEl = `
-      <div class='lav-slider__wrap'>
+      <div class='lav-slider__wrap' style='display: none;'>
         <div class='lav-slider__head'>
           <div class='lav-slider__title'>${recentlyText}</div>
           <div class='lav-slider__close'>
