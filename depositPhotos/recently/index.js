@@ -214,6 +214,11 @@ console.log('initExp');
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
         console.log(node);
+
+        if (node.classList.contains('.fav-panel-box')) {
+          initExp();
+        }
+
         if (
           node.classList.contains('files-slider') &&
           node.closest('.file-view__related[data-tab="similar"]')
@@ -260,8 +265,8 @@ console.log('initExp');
 
   let recentlyStorage = [];
 
-  initExp();
   function initExp() {
+    console.log('initExpInner');
     initSessionStorage();
     initRecentlyTrigger();
     initRecentlySlider();
