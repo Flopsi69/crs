@@ -215,7 +215,7 @@ console.log('initExp');
         if (!(node instanceof HTMLElement)) continue;
         console.log(node);
 
-        if (node.classList.contains('.fav-panel-box')) {
+        if (node.classList.contains('fav-panel-box')) {
           initExp();
         }
 
