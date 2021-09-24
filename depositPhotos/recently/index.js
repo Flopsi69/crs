@@ -49,9 +49,8 @@ console.log('initExp');
     recentlyText = 'Vu récemment';
   } else if (lang == 'tr') {
     recentlyText = 'Son Görüntülenen';
-  } else {
-    recentlyText = 'Recent';
   }
+
   let stylesList = `
   .lav-slider__wrap {
     position: fixed;
