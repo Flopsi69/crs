@@ -217,12 +217,12 @@
           node.classList.contains('view-file-box__image') &&
           node.closest('.file-view-modal')
         ) {
-          // setSessionItem([
-          //   node.src,
-          //   node
-          //     .closest('.file-view-modal')
-          //     .querySelector('.file-view__title-link').href,
-          // ]);
+          setSessionItem([
+            node.src,
+            node
+              .closest('.file-view-modal')
+              .querySelector('.file-view__title-link').href,
+          ]);
         }
       }
     }
@@ -385,7 +385,7 @@
   }
 
   function setSessionItem(data) {
-    if (recentlyStorage.find((item) => item[0] == data[0])) {
+    if (recentlyStorage.find((item) => item[1] == data[1])) {
       console.log('Already in storage', data);
       return false;
     }
