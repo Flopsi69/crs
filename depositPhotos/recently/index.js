@@ -27,6 +27,30 @@
   /* STYLES insert start */
   const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/recently';
 
+  let recentlyText = 'Recently viewed';
+  let lang = document.querySelector('html').lang;
+
+  if (lang == 'ru') {
+    recentlyText = 'Недавно просмотренные';
+  } else if (lang == 'es-es') {
+    recentlyText = 'Visto recientemente';
+  } else if (lang == 'pt-br') {
+    recentlyText = 'Visualizado recentemente';
+  } else if (lang == 'it') {
+    recentlyText = 'Visualizzato recentemente';
+  } else if (lang == 'pl') {
+    recentlyText = 'Ostatnio oglądane';
+  } else if (lang == 'nl') {
+    recentlyText = 'Recent bekeken';
+  } else if (lang == 'de') {
+    recentlyText = 'Zuletzt angesehen';
+  } else if (lang == 'fr') {
+    recentlyText = 'Vu récemment';
+  } else if (lang == 'tr') {
+    recentlyText = 'Son Görüntülenen';
+  } else {
+    recentlyText = 'Recent';
+  }
   let stylesList = `
   .lav-slider__wrap {
     position: fixed;
@@ -252,7 +276,7 @@
     let recentlyEl = `
       <div class='lav-modal-slider__wrap'>
         <div class='lav-modal-slider__head'>
-          <div class='lav-modal-slider__title'>Recently viewed</div>
+          <div class='lav-modal-slider__title'>${recentlyText}</div>
         </div>
         <div class='lav-modal-slider splide'>
           <div class="splide__track">
@@ -287,7 +311,7 @@
         <div class='lav-recently__icon'>
           <img src='${REPO_DIR}//img/eye.svg'>
         </div>
-        <div class='lav-recently__caption'>Recently viewed</div>
+        <div class='lav-recently__caption'>${recentlyText}</div>
       </div>
     `;
 
@@ -313,7 +337,7 @@
     let recentlyEl = `
       <div class='lav-slider__wrap'>
         <div class='lav-slider__head'>
-          <div class='lav-slider__title'>Recently viewed</div>
+          <div class='lav-slider__title'>${recentlyText}</div>
           <div class='lav-slider__close'>
             <img src='${REPO_DIR}/img/close.svg'>
           </div>
