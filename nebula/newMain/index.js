@@ -32,23 +32,23 @@
     }
     .lav-library {
       order: 4;
-      padding: 120px 8vw 50px;
+      padding: 120px 4vw 50px;
     }
     .lav-access {
       order: 5;
-      padding: 55px 8vw 75px;
+      padding: 55px 4vw 75px;
     }
     .lav-ancestry {
       order: 6;
-      padding: 75px 8vw;
+      padding: 75px 4vw;
     }
     .lav-tools {
       order: 7;
-      padding: 75px 8vw 140px;
+      padding: 75px 4vw 140px;
     }
     .lav-privacy {
       order: 8;
-      padding: 120px 8vw 50px;
+      padding: 120px 4vw 50px;
     }
     .lav-title {
       font-size: 36px;
@@ -59,7 +59,7 @@
       margin-bottom: 55px;
     }
     .lav-inner {
-      display: flex:
+      display: flex;
     }
     .lav-subtitle {
       font-weight: bold;
@@ -76,14 +76,77 @@
       color: #505985;
     }
     .lav-info {
+      position: relative;
       padding: 80px;
       background: #FFFFFF;
       border: 1px solid #ECECEC;
       box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
       border-radius: 20px;
     }
+    .lav-library__inner {
+      align-items: center;
+    }
     .lav-library__info {
       max-width: 645px;
+    }
+    .lav-library__info:before {
+      content: '';
+      position: absolute;
+      top: 70px;
+      right: -60px;
+      width: 173px;
+      height: 122px;
+      background: url(${REPO_DIR}/img/ancestry-before.svg) center no-repeat;
+    }
+    .lav-access__info {
+      max-width: 420px;
+      margin-right: 30px;
+      margin-left: 100px;
+      padding-top: 122px;
+    }
+    .lav-access__info:before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: -110px;
+      width: 173px;
+      height: 122px;
+      background: url(${REPO_DIR}/img/access-before.svg) center no-repeat;
+    }
+    .lav-access__info:after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: 43px;
+      width: 106px;
+      height: 106px;
+      background: url(${REPO_DIR}/img/access-after.svg) center no-repeat;
+    }
+    .lav-access__image {
+      position: relative;
+      padding: 80px;
+      background: #FFFFFF;
+      flex-grow: 1;
+      text-align: center;
+      border: 1px solid #ECECEC;
+      box-shadow: 0px 0px 12px rgb(0 0 0 / 8%);
+      border-radius: 20px;
+    }
+    .lav-ancestry:before {
+      content: '';
+      position: absolute;
+      bottom: 30px;
+      right: -60px;
+      width: 173px;
+      height: 122px;
+      background: url(${REPO_DIR}/img/ancestry-before.svg) center no-repeat;
+    }
+    .lav-ancestry__info {
+      align-items: center;
+    }
+    .lav-ancestry__info {
+      max-width: 645px;
+      width: 100%;
     }
     .jumb {
       display: none!important;
