@@ -135,7 +135,7 @@
       box-shadow: 0px 0px 12px rgb(0 0 0 / 8%);
       border-radius: 20px;
     }
-    .lav-ancestry:before {
+    .lav-ancestry__info:before {
       content: '';
       position: absolute;
       bottom: 30px;
@@ -144,12 +144,48 @@
       height: 122px;
       background: url(${REPO_DIR}/img/ancestry-before.svg) center no-repeat;
     }
-    .lav-ancestry__info {
+    .lav-ancestry__inner {
       align-items: center;
     }
     .lav-ancestry__info {
       max-width: 645px;
       width: 100%;
+      margin-left: 30px;
+    }
+    .lav-tools__info:before {
+      content: '';
+      position: absolute;
+      top: 220px;
+      left: -110px;
+      width: 173px;
+      height: 122px;
+      background: url(${REPO_DIR}/img/tools-before.svg) center no-repeat;
+    }
+    .lav-tools__info:after {
+      content: '';
+      position: absolute;
+      bottom: -38px;
+      right: -66px;
+      width: 106px;
+      height: 106px;
+      background: url(${REPO_DIR}/img/tools-after.svg) center no-repeat;
+    }
+    .lav-tools__info {
+      max-width: 420px;
+      width: 100%;
+      margin-right: 30px;
+      margin-left: 100px;
+      padding-top: 150px;
+    }
+    .lav-tools__image {
+      position: relative;
+      padding: 80px;
+      background: #FFFFFF;
+      flex-grow: 1;
+      text-align: center;
+      border: 1px solid #ECECEC;
+      box-shadow: 0px 0px 12px rgb(0 0 0 / 8%);
+      border-radius: 20px;
     }
     .jumb {
       display: none!important;
