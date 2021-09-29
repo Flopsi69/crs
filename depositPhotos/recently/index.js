@@ -428,6 +428,17 @@ console.log('initExp');
       0
     );
 
+    if (document.querySelector('.lav-modal-slider')) {
+      window.modalSplide.add(
+        '<li class= "splide__slide lav-modal-slider__slide" > <a class="lav-modal-slider__link" href="' +
+          data[1] +
+          '"><img class="lav-modal-slider__image" src="' +
+          data[0] +
+          '"></a></li>',
+        0
+      );
+    }
+
     recentlyStorage.push(data);
     sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
     console.log('storage update', data);
