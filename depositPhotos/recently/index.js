@@ -1,5 +1,27 @@
 console.log('initExp');
 (function () {
+  try {
+    (function (h, o, t, j, a, r) {
+      h.hj =
+        h.hj ||
+        function () {
+          (h.hj.q = h.hj.q || []).push(arguments);
+        };
+      h._hjSettings = { hjid: 410340, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script');
+      r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    window.hj =
+      window.hj ||
+      function () {
+        (hj.q = hj.q || []).push(arguments);
+      };
+    hj('trigger', 'recently_viewed');
+  } catch (e) {}
+
   document.head.insertAdjacentHTML(
     'beforeend',
     '<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>'
@@ -11,18 +33,26 @@ console.log('initExp');
     if (!action) {
       action = '';
     }
+    if (!label) {
+      labael = '';
+    }
+    if (!value) {
+      value = '';
+    }
     window.dataLayer = window.dataLayer || [];
-    // try {
-    //   let eventObj = {
-    //     event: 'event-to-ga',
-    //     eventCategory: 'Exp - Pricing page buy annual plan_app',
-    //     eventAction: action,
-    //   };
-    //   dataLayer.push(eventObj);
-    //   console.log('FireEvent', eventObj);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      let eventObj = {
+        event: 'event-to-ga',
+        eventCategory: 'Experiment - Recently Viewed Block',
+        eventAction: action,
+        eventLabel: label,
+        eventValue: value,
+      };
+      dataLayer.push(eventObj);
+      console.log('FireEvent', eventObj);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   /* STYLES insert start */
@@ -265,10 +295,31 @@ console.log('initExp');
   let recentlyStorage = [];
 
   function initExp() {
+    gaEvent('loaded');
     console.log('initExpInner');
     initSessionStorage();
     initRecentlyTrigger();
     initRecentlySlider();
+
+    document.addEventListener('click', function (e) {
+      console.log(e.target);
+      if (
+        e.target.classList.contains('lav-modal-slider__slide') ||
+        e.target.closest('.lav-modal-slider__slide')
+      ) {
+        gaEvent('click on Products', 'Modal window');
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      console.log(e.target);
+      if (
+        e.target.classList.contains('lav-slider__slide') ||
+        e.target.closest('.lav-slider__slide')
+      ) {
+        gaEvent('click on Products', 'Recently viewed block');
+      }
+    });
 
     document.querySelectorAll('.file-container__link').forEach(function (el) {
       el.addEventListener('click', function () {
@@ -308,6 +359,18 @@ console.log('initExp');
       // gap: '10px',
       // rewind: true,
     }).mount();
+
+    document
+      .querySelector('.lav-modal-slider .splide__arrow--prev')
+      .addEventListener('click', function () {
+        gaEvent('click to scroll left', 'Modal window');
+      });
+
+    document
+      .querySelector('.lav-modal-slider .splide__arrow--next')
+      .addEventListener('click', function () {
+        gaEvent('click to scroll right', 'Modal window');
+      });
   }
 
   function initRecentlyTrigger() {
@@ -326,6 +389,15 @@ console.log('initExp');
       .querySelector('.lav-recently')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('click on Recently Viewed', 'Recently viewed block');
+        if (!sessionStorage.getItem('firstClickFired')) {
+          sessionStorage.setItem('firstClickFired', 'yes');
+          gaEvent(
+            'first click on Recently Viewed',
+            'Recently viewed block',
+            recentlyStorage.length
+          );
+        }
         if (document.querySelector('.lav-slider__wrap')) {
           if (
             document.querySelector('.lav-slider__wrap').style.display == 'block'
@@ -362,6 +434,7 @@ console.log('initExp');
       .querySelector('.lav-slider__close')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('click on X to close', 'Recently viewed block');
         if (document.querySelector('.lav-slider__wrap')) {
           document.querySelector('.lav-slider__wrap').style.display = 'none';
         }
@@ -376,6 +449,18 @@ console.log('initExp');
       // gap: '10px',
       // rewind: true,
     }).mount();
+
+    document
+      .querySelector('.lav-slider__wrap .splide__arrow--prev')
+      .addEventListener('click', function () {
+        gaEvent('click to scroll left', 'Recently viewed block');
+      });
+
+    document
+      .querySelector('.lav-slider__wrap .splide__arrow--next')
+      .addEventListener('click', function () {
+        gaEvent('click to scroll right', 'Recently viewed block');
+      });
   }
 
   function buildSlider(parent, isModal) {
