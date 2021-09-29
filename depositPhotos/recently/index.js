@@ -302,7 +302,6 @@ console.log('initExp');
     initRecentlySlider();
 
     document.body.addEventListener('click', function (e) {
-      console.log(e.target);
       if (
         e.target.classList.contains('lav-modal-slider__slide') ||
         e.target.closest('.lav-modal-slider__slide')
@@ -312,7 +311,6 @@ console.log('initExp');
     });
 
     document.body.addEventListener('click', function (e) {
-      console.log(e.target);
       if (
         e.target.classList.contains('lav-slider__slide') ||
         e.target.closest('.lav-slider__slide')
