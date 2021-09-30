@@ -49,6 +49,20 @@
     .lav-privacy {
       order: 8;
       padding: 120px 4vw 50px;
+      background: #F9F9F9;
+    }
+    .lav-meet {
+      order: 9;
+      padding: 120px 4vw;
+      background-color: #3F4CEC;
+    }
+    .lav-founder {
+      padding: 120px 4.5vw;
+      background: #0B0F41 url(${REPO_DIR}/img/founder-bg.jpeg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      order: 10;
     }
     .lav-title {
       font-size: 36px;
@@ -164,6 +178,7 @@
     .lav-tools__info:after {
       content: '';
       position: absolute;
+      z-index: 1;
       bottom: -38px;
       right: -66px;
       width: 106px;
@@ -186,6 +201,129 @@
       border: 1px solid #ECECEC;
       box-shadow: 0px 0px 12px rgb(0 0 0 / 8%);
       border-radius: 20px;
+    }
+    .lav-privacy__image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 80px;
+      background: #F9F9F9;
+      flex-grow: 1;
+      text-align: center;
+      border: 1px solid #ECECEC;
+      box-shadow: 0px 0px 12px rgb(0 0 0 / 8%);
+      border-radius: 20px;
+    }
+    .lav-privacy__info-descr {
+      font-family: 'SpaceGrotesk-Regular';
+    }
+    .lav-privacy__info-caption {
+      font-size: 30px;
+      line-height: 1.5;
+      color: #505985;
+    }
+    .lav-privacy__info {
+      max-width: 645px;
+      width: 100%;
+      margin-left: 30px
+    }
+    .lav-privacy__info-caption span {
+      font-family: 'SpaceGrotesk-Bold';
+    }
+    .lav-privacy__info-list {
+      font-size: 23px;
+      line-height: 1.5;
+      color: #505985;
+      margin-top: 28px;
+      margin-bottom: 28px;
+      padding-left: 40px;
+    }
+    .lav-privacy__info-list li + li {
+      margin-top: 17px;
+    }
+    .lav-privacy__info-link {
+      font-size: 22px;
+      line-height: 1.4;
+      text-decoration-line: underline;
+      color: #3F4CEC;
+      transition: 0.3s;
+    }
+    .lav-privacy__info-link:hover {
+      opacity: 0.7;
+    }
+    .lav-founder>img {
+      margin-right: 8vw;
+    }
+    .lav-founder__info {
+      max-width: 645px;
+    }
+    .lav-founder__title {
+      color: #17AB67;
+      font-family: SpaceGrotesk-Bold;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .lav-founder__caption {
+      font-family: SpaceGrotesk-Bold;
+      font-size: 36px;
+      color: #fff;
+      margin: 12px 0 28px;
+    }
+    .lav-founder__descr {
+      font-family: SpaceGrotesk-Regular;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #ECECEC;
+    }
+    .lav-founder__descr a {
+      color: inherit;
+      transition: 0.3s;
+    }
+    .lav-founder__descr a:hover {
+      opacity: .6;
+    }
+    .lav-founder__descr p {
+      margin: 0;
+    }
+    .lav-founder__descr p:first-child {
+      font-family: SpaceGrotesk-Medium;
+      line-height: 1.4;
+    }
+    .lav-founder__descr p + p {
+      margin-top: 12px;
+    }
+    .lav-meet__inner {
+      max-width: 870px;
+      width: 100%;
+    }
+    .lav-meet iframe {
+      width: 100%;
+      height: 500px;
+    }
+    .lav-meet__title {
+      font-family: SpaceGrotesk-Bold;
+      font-weight: bold;
+      font-size: 36px;
+      line-height: 1.2;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .lav-meet__subtitle {
+      font-family: SpaceGrotesk-Bold;
+      font-size: 28px;
+      line-height: 1.4;
+      color: #ECECEC;
+      margin-bottom: 55px;
+      text-align: center;
+    }
+    .lav-meet__caption {
+      font-size: 32px;
+      line-height: 1.5;
+      color: #ECECEC;
+      margin-top: 30px;
     }
     .jumb {
       display: none!important;
@@ -376,8 +514,7 @@
         <div class='lav-privacy__image'>
           <img src='${REPO_DIR}/img/privacy-img.svg'>
         </div>
-        <div class='lav-privacy__info lav-info'>
-          <div class='lav-privacy__subtitle lav-subtitle'>Discover Your Roots </div>
+        <div class='lav-privacy__info'>
           <div class='lav-privacy__info-descr'>
             <div class='lav-privacy__info-caption'>Nebula Genomics is the leading <span>privacy-focused personal genomics service.</span> Our mission is to make direct-to-consumer DNA testing secure. In partnership with Oasis Labs, we give you access to cutting-edge privacy-preserving technology.</div>
             <ul class='lav-privacy__info-list'>
@@ -391,6 +528,40 @@
         </div>
       </div>
     </div>
+
+    <div class='lav-meet'>
+      <div class='lav-meet__inner'>
+        <div class='lav-meet__title'>Meet George Church</div>
+        <div class='lav-meet__subtitle'>Founder of Nebula Genomics</div>
+        <div class='lav-meet__video'>
+          <iframe src="https://www.youtube.com/embed/4kuYQwfmUTc?enablejsapi=1&amp;origin=https%3A%2F%2Fnebula.org" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="video"></iframe>
+        </div>
+        <div class='lav-meet__caption'>The visionary behind Nebula Genomics whose contributions to the development of DNA Sequencing technology have enabled personal genomics.</div>
+      </div>
+    </div>
+
+    <div class="lav-founder">
+      <img alt="George Church" src="https://portal.nebula.org/api/public-images/brochure/georch-church@2x.png" height="550">
+      <div class="lav-founder__info">
+        <div class="lav-founder__title">OUR FOUNDER</div>
+        <div class="lav-founder__caption">Professor George Church</div>
+        <div class="lav-founder__descr">
+          <p>
+            <a href="https://en.wikipedia.org/wiki/George_Church_(geneticist)" target="_blank">George Church</a> is a Professor of Genetics at Harvard Medical School and Professor of Health Sciences and Technology at Harvard University and the Massachusetts Institute of Technology (MIT).
+          </p>
+          <p>
+            His pioneering work has contributed to the development of DNA sequencing and genome engineering technologies for which he received multiple awards including the 2011 Bower Award and Prize for Achievement in Science from the Franklin Institute and election to the National Academy of Sciences and Engineering.
+          </p>
+          <p>
+            He co-authored over 550 publications, more than 150 patents, and a book titled “<a href="https://www.amazon.com/Regenesis-Synthetic-Biology-Reinvent-Ourselves/dp/0465075703">Regenesis: How Synthetic Biology Will Reinvent Nature and Ourselves</a>”. He also initiated the Personal Genome Project and started over 20 companies.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    
+
+    
   `;
 
   // let observer = new MutationObserver(mutations => {
