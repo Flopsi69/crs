@@ -281,7 +281,13 @@ console.log('initExp');
         }
 
         if (node.classList.contains('fav-panel-box')) {
-          initExp();
+          if (
+            location.href.includes('stock-photos') ||
+            location.href.includes('similar-images') ||
+            location.href.includes('vector-images')
+          ) {
+            initExp();
+          }
         }
 
         if (
