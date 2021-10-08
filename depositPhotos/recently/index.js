@@ -185,6 +185,11 @@ console.log('initExp');
     opacity: 0;
     pointer-events: none;
   }
+  @media (max-width: 770px) {
+    .lav-recently {
+      display: none;
+    }
+  }
   @media screen and (min-width: 991px) and (max-width: 1290px) {
     .lav-recently {
       left: calc(490px + 278 * (100vw - 990px) / 300);
