@@ -210,6 +210,7 @@ console.log('initExp');
     bottom: -10px;
     height: 10px;
     background-color: #fff;
+    transition: 0.3s;
   }
   .lav-recently:hover:before {
     background-color: #e6e6e6;
@@ -275,7 +276,7 @@ console.log('initExp');
           document.querySelector('.lav-recently')
         ) {
           document
-            .querySelector('.lav-recently_backward')
+            .querySelector('.lav-recently')
             .classList.add('lav-recently_backward');
         }
 
