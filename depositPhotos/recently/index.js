@@ -169,7 +169,7 @@ console.log('initExp');
     margin-left: 135px;
     width: 170px;
     height: 33px;
-    z-index: 9999999;
+    z-index: 1;
     padding: 12px 16px;
     background: #FFFFFF;
     border-radius: 3px 3px 0 0;
@@ -179,10 +179,9 @@ console.log('initExp');
     justify-content: center;
     color: #3C3C3C;
     cursor: pointer;
-    transition: 0.3s;
   }
-  .lav-recently_backward {
-    z-index: 1;
+  .lav-recently_forward {
+    z-index: 9999999;
   }
   .lav-recently_disabled {
     opacity: 0;
@@ -210,7 +209,6 @@ console.log('initExp');
     bottom: -10px;
     height: 10px;
     background-color: #fff;
-    transition: 0.3s;
   }
   .lav-recently:hover:before {
     background-color: #e6e6e6;
@@ -265,19 +263,19 @@ console.log('initExp');
 
         if (
           node.querySelector('.fav-panel-closed') &&
-          document.querySelector('.lav-recently_backward')
-        ) {
-          document
-            .querySelector('.lav-recently_backward')
-            .classList.remove('lav-recently_backward');
-        }
-        if (
-          node.classList.contains('fav-folders-select') &&
           document.querySelector('.lav-recently')
         ) {
           document
             .querySelector('.lav-recently')
-            .classList.add('lav-recently_backward');
+            .classList.add('lav-recently_forward');
+        }
+        if (
+          node.classList.contains('fav-folders-select') &&
+          document.querySelector('.lav-recently_forward')
+        ) {
+          document
+            .querySelector('.lav-recently_forward')
+            .classList.remove('lav-recently_forward');
         }
 
         if (node.classList.contains('fav-panel-box')) {
@@ -554,6 +552,12 @@ console.log('initExp');
       document
         .querySelector('.lav-recently_disabled')
         .classList.remove('lav-recently_disabled');
+    }
+
+    if (document.querySelector('.fav-panel-closed')) {
+      document
+        .querySelector('.lav-recently')
+        .classList.add('lav-recently_forward');
     }
 
     window.mainSplide.add(
