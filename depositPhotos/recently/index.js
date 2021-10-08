@@ -140,8 +140,8 @@ console.log('initExp');
   }
   .lav-modal-slider__title {
     font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 1;
     color: #fff;
     margin-bottom: 10px;
   }
@@ -161,8 +161,6 @@ console.log('initExp');
     display: block;
     padding: 0 5px;
   }
-
-
   .lav-recently {
     position: fixed;
     box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
@@ -181,6 +179,11 @@ console.log('initExp');
     justify-content: center;
     color: #3C3C3C;
     cursor: pointer;
+    transition: 0.3s;
+  }
+  .lav-recently_disabled {
+    opacity: 0;
+    pointer-events: none;
   }
   @media screen and (min-width: 991px) and (max-width: 1290px) {
     .lav-recently {
@@ -390,6 +393,12 @@ console.log('initExp');
 
     document.querySelector('main').insertAdjacentHTML('afterend', recentlyEl);
 
+    if (!recentlyStorage.length) {
+      document
+        .querySelector('.lav-recently')
+        .classList.add('lav-recently_disabled');
+    }
+
     document
       .querySelector('.lav-recently')
       .addEventListener('click', function (e) {
@@ -507,6 +516,12 @@ console.log('initExp');
     if (recentlyStorage.find((item) => item[1] == data[1])) {
       console.log('Already in storage', data);
       return false;
+    }
+
+    if (document.querySelector('.lav-recently_disabled').length) {
+      document
+        .querySelector('.lav-recently_disabled')
+        .classList.remove('lav-recently_disabled');
     }
 
     window.mainSplide.add(
