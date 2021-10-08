@@ -518,7 +518,7 @@ console.log('initExp');
       return false;
     }
 
-    if (document.querySelector('.lav-recently_disabled').length) {
+    if (document.querySelector('.lav-recently_disabled')) {
       document
         .querySelector('.lav-recently_disabled')
         .classList.remove('lav-recently_disabled');
