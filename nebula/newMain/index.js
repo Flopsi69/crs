@@ -21,6 +21,9 @@
   const REPO_DIR = 'https://flopsi69.github.io/crs/nebula/newMain';
 
   let stylesList = `
+    .choose-plan-component, .why-nebula-component, .what-30x-offers-component, .full-genome-access-component {
+      display: none!important;
+    }
     .learn {
       order: 1;
     }
@@ -48,10 +51,11 @@
     }
     .lav-privacy {
       order: 8;
-      padding: 120px 4vw 50px;
+      padding: 120px 4vw;
       background: #F9F9F9;
     }
     .lav-meet {
+      position: relative;
       order: 9;
       padding: 120px 4vw;
       background-color: #3F4CEC;
@@ -63,6 +67,30 @@
       align-items: center;
       justify-content: space-between;
       order: 10;
+    }
+    .plans {
+      order: 11;
+    }
+    .lav-results {
+      order: 12;
+      padding: 120px 4vw;
+      background: #fff;
+      position: relative;
+    }
+    .cta {
+      order: 13;
+    }
+    .user-testimonials-component {
+      order: 14;
+    }
+    .mini-faqs + .cta {
+      order: 15;
+    }
+    .mini-faqs {
+      order: 16;
+    }
+    .cta-2-component {
+      order: 17;
     }
     .lav-title {
       font-size: 36px;
@@ -294,9 +322,28 @@
     .lav-founder__descr p + p {
       margin-top: 12px;
     }
+    .lav-meet:before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      left: 0;
+      width: 255px;
+      height: 197px;
+      background: url(${REPO_DIR}/img/meet-before.svg) center no-repeat;
+    }
+    .lav-meet:after {
+      content: '';
+      position: absolute;
+      bottom: 110px;
+      right: 0;
+      width: 172px;
+      height: 80px;
+      background: url(${REPO_DIR}/img/meet-after.svg) center no-repeat;
+    }
     .lav-meet__inner {
       max-width: 870px;
       width: 100%;
+      margin: auto;
     }
     .lav-meet iframe {
       width: 100%;
@@ -325,8 +372,34 @@
       color: #ECECEC;
       margin-top: 30px;
     }
+    .lav-results__inner {
+      display: flex;
+      justify-content: space-between;
+      font-family: SpaceGrotesk-Regular;
+      margin-top: 80px;
+    }
+    .lav-results__block {
+      max-width: 310px;
+      width: 100%;
+    }
+    .lav-results__block:first-child {
+      max-width: 420px;
+      width: 100%;
+    }
+    .lav-results__subtitle {
+      font-size: 20px;
+      line-height: 1.4;
+      color: #0B0F41;
+      margin-bottom: 16px;
+      font-family: SpaceGrotesk-Bold;
+    }
+    .lav-results__caption {
+      font-size: 18px;
+      line-height: 1.4;
+      color: #505985;
+    }
     .jumb {
-      display: none!important;
+      
     }
     .why-30x-component {
       padding: 50px 8vw 100px!important;
@@ -559,7 +632,29 @@
       </div>
     </div>
 
-    
+    <div class='lav-results'>
+      <div class='lav-results__title lav-title'>
+        Get Results Within 8 Weeks
+      </div>
+
+      <div class='lav-results__inner'>
+        <div class='lav-results__block'>
+          <div class='lav-results__subtitle'>1. Order</div>
+          <div class='lav-results__caption'>We’ll send you Home DNA Testing Kit within 72 hours after purchase. It should reach you within 14 days in the US or within 2-6 weeks if you’re outside the US.</div>
+        </div>
+
+        <div class='lav-results__block'>
+          <div class='lav-results__subtitle'>2. Give sample</div>
+          <div class='lav-results__caption'>Put your saliva sample in the tube and mail it back to us.</div>
+        </div>
+
+        <div class='lav-results__block'>
+          <div class='lav-results__subtitle'>3. Get results</div>
+          <div class='lav-results__caption'>We’ll process your sample within 
+          8 weeks. You’ll get an email when your results are ready to view online.</div>
+        </div>
+      </div>
+    </div>
 
     
   `;

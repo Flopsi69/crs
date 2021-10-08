@@ -167,7 +167,8 @@ console.log('initExp');
     position: fixed;
     box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
     bottom: 10px;
-    right: 18.7%;
+    left: 60%;
+    margin-left: 135px;
     z-index: 99999;
     width: 170px;
     height: 33px;
@@ -180,6 +181,11 @@ console.log('initExp');
     justify-content: center;
     color: #3C3C3C;
     cursor: pointer;
+  }
+  @media screen and (min-width: 991px) and (max-width: 1290px) {
+    .lav-recently {
+      left: calc(490px + 278 * (100vw - 990px) / 300);
+    }
   }
   .lav-recently:hover {
     color: #0395d9;
@@ -199,8 +205,9 @@ console.log('initExp');
   }
   .lav-recently__caption {
     font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
   }
   .lav-recently__icon {
     line-height: 0;
