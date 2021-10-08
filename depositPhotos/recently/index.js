@@ -167,9 +167,9 @@ console.log('initExp');
     bottom: 10px;
     left: 60%;
     margin-left: 135px;
-    z-index: 99999;
     width: 170px;
     height: 33px;
+    z-index: 9999999;
     padding: 12px 16px;
     background: #FFFFFF;
     border-radius: 3px 3px 0 0;
@@ -180,6 +180,9 @@ console.log('initExp');
     color: #3C3C3C;
     cursor: pointer;
     transition: 0.3s;
+  }
+  .lav-recently_backward {
+    z-index: 1;
   }
   .lav-recently_disabled {
     opacity: 0;
@@ -258,6 +261,23 @@ console.log('initExp');
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
         console.log(node);
+
+        if (
+          node.querySelector('.fav-panel-closed') &&
+          document.querySelector('.lav-recently_backward')
+        ) {
+          document
+            .querySelector('.lav-recently_backward')
+            .classList.remove('lav-recently_backward');
+        }
+        if (
+          node.classList.contains('fav-folders-select') &&
+          document.querySelector('.lav-recently')
+        ) {
+          document
+            .querySelector('.lav-recently_backward')
+            .classList.add('lav-recently_backward');
+        }
 
         if (node.classList.contains('fav-panel-box')) {
           initExp();
