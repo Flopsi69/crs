@@ -327,7 +327,7 @@ console.log('initExp');
 
   function checkLocationExp() {
     if (
-      location.href.includes('stock-photos') ||
+      location.href.includes('stock-photo') ||
       location.href.includes('similar-images') ||
       location.href.includes('vector-images')
     ) {
