@@ -243,6 +243,12 @@ console.log('initExp');
   .lav-modal-slider .splide__arrow[disabled] svg {
     fill: #969696;
   }
+  .splide__arrow {
+    opacity: 0;
+  }
+  .splide__arrow_active {
+    opacity: 1;
+  }
   `;
 
   let stylesEl = document.createElement('style');
@@ -350,6 +356,7 @@ console.log('initExp');
     initSessionStorage();
     initRecentlyTrigger();
     initRecentlySlider();
+    checkArrows();
 
     document.body.addEventListener('click', function (e) {
       if (
@@ -416,7 +423,6 @@ console.log('initExp');
       // autoWidth: true,
       perPage: 8,
       pagination: false,
-      arrows: false,
       // gap: '10px',
       // rewind: true,
     }).mount();
@@ -513,7 +519,6 @@ console.log('initExp');
       autoWidth: true,
       // perPage: 10,
       pagination: false,
-      arrows: 'slider',
       // gap: '10px',
       // rewind: true,
     }).mount();
@@ -566,6 +571,33 @@ console.log('initExp');
     }
   }
 
+  function checkArrows() {
+    if (document.querySelectorAll('.lav-modal-slider__slide').length > 8) {
+      document
+        .querySelector('.lav-modal-slider__wrap splide__arrow')
+        .forEach(function (item) {
+          item.classList.add('splide__arrow_active');
+        });
+    }
+
+    var widthSliderItems = 0;
+    document.querySelectorAll('.lav-slider__slide').forEach(function (slide) {
+      widthSliderItems += slide.offsetWidth;
+    });
+
+    if (
+      document.querySelector('.lav-slider__wrap .splide__list') &&
+      document.querySelector('.lav-slider__wrap .splide__list').offsetWidth <
+        widthSliderItems
+    ) {
+      document
+        .querySelector('.lav-slider__wrap splide__arrow')
+        .forEach(function (item) {
+          item.classList.add('splide__arrow_active');
+        });
+    }
+  }
+
   function setSessionItem(data) {
     if (recentlyStorage.find((item) => item[1] == data[1])) {
       console.log('Already in storage', data);
@@ -606,6 +638,7 @@ console.log('initExp');
 
     recentlyStorage.push(data);
     sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
+    checkArrows();
     console.log('storage update', data);
   }
 
