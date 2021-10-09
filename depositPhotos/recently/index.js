@@ -490,6 +490,8 @@ console.log('initExp');
           }
         }
       });
+
+    setTimeout(checkArrows, 1000);
   }
 
   function initRecentlySlider() {
