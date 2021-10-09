@@ -416,7 +416,7 @@ console.log('initExp');
       // autoWidth: true,
       perPage: 8,
       pagination: false,
-      arrows: 'slider',
+      arrows: false,
       // gap: '10px',
       // rewind: true,
     }).mount();
