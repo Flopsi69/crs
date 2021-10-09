@@ -360,6 +360,10 @@ console.log('initExp');
     initRecentlySlider();
     checkArrows();
 
+    document
+      .querySelector('.lav-recently')
+      .classList.add('lav-recently_forward');
+
     document.body.addEventListener('click', function (e) {
       if (
         e.target.classList.contains('lav-modal-slider__slide') ||
@@ -577,7 +581,7 @@ console.log('initExp');
   function checkArrows() {
     if (document.querySelectorAll('.lav-modal-slider__slide').length > 8) {
       document
-        .querySelector('.lav-modal-slider__wrap .splide__arrow')
+        .querySelectorAll('.lav-modal-slider__wrap .splide__arrow')
         .forEach(function (item) {
           item.classList.add('splide__arrow_active');
         });
@@ -594,7 +598,7 @@ console.log('initExp');
         widthSliderItems
     ) {
       document
-        .querySelector('.lav-slider__wrap .splide__arrow')
+        .querySelectorAll('.lav-slider__wrap .splide__arrow')
         .forEach(function (item) {
           item.classList.add('splide__arrow_active');
         });
