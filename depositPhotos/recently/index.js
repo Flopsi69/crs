@@ -445,6 +445,8 @@ console.log('initExp');
       .addEventListener('click', function () {
         gaEvent('click to scroll right', 'Modal window');
       });
+
+    checkArrows();
   }
 
   function initRecentlyTrigger() {
@@ -541,6 +543,7 @@ console.log('initExp');
       .addEventListener('click', function () {
         gaEvent('click to scroll right', 'Recently viewed block');
       });
+    checkArrows();
   }
 
   function buildSlider(parent, isModal) {
