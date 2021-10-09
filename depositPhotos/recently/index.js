@@ -270,7 +270,7 @@ console.log('initExp');
             .classList.add('lav-recently_forward');
         }
         if (
-          node.classList.contains('fav-panel_opened') &&
+          node.querySelector('.fav-panel_opened') &&
           document.querySelector('.lav-recently_forward')
         ) {
           document
