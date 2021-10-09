@@ -234,13 +234,13 @@ console.log('initExp');
   .splide__arrow--next {
     right: -1.8em;
   }
-  .splide__arrow[disabled] {
+  .splide__arrow[disabled] svg {
     fill: #D1D1D1;
   }
-  .lav-modal-slider .splide__arrow {
+  .lav-modal-slider .splide__arrow svg {
     fill: #fff;
   }
-  .lav-modal-slider .splide__arrow[disabled] {
+  .lav-modal-slider .splide__arrow[disabled] svg {
     fill: #969696;
   }
   `;
@@ -416,6 +416,7 @@ console.log('initExp');
       // autoWidth: true,
       perPage: 8,
       pagination: false,
+      arrows: 'slider',
       // gap: '10px',
       // rewind: true,
     }).mount();
@@ -512,6 +513,7 @@ console.log('initExp');
       autoWidth: true,
       // perPage: 10,
       pagination: false,
+      arrows: 'slider',
       // gap: '10px',
       // rewind: true,
     }).mount();
