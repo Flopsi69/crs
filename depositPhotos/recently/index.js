@@ -346,6 +346,7 @@ console.log('initExp');
   function initExp() {
     gaEvent('loaded');
     console.log('initExpInner');
+    checkUserAuth();
     initSessionStorage();
     initRecentlyTrigger();
     initRecentlySlider();
@@ -373,6 +374,18 @@ console.log('initExp');
         setSessionItem([this.querySelector('img').src, this.href]);
       });
     });
+  }
+
+  function checkUserAuth() {
+    if (document.querySelector('[data-qa="GuestBar"]')) {
+      sessionStorage.setItem('isUserAuthed', 'no');
+    } else if (document.querySelector('[data-qa="UserBar"]')) {
+      if (sessionStorage.getItem('isUserAuthed') == 'no') {
+        recentlyStorage = [];
+        sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
+      }
+      sessionStorage.setItem('isUserAuthed', 'yes');
+    }
   }
 
   function initModalSlider() {
