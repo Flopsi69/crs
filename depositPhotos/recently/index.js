@@ -245,9 +245,11 @@ console.log('initExp');
   }
   .splide__arrow {
     opacity: 0;
+    display: none;
   }
   .splide__arrow_active {
     opacity: 1;
+    display: block;
   }
   `;
 
@@ -379,6 +381,7 @@ console.log('initExp');
     document.querySelectorAll('.file-container__link').forEach(function (el) {
       el.addEventListener('click', function () {
         setSessionItem([this.querySelector('img').src, this.href]);
+        checkArrows();
       });
     });
   }
@@ -574,7 +577,7 @@ console.log('initExp');
   function checkArrows() {
     if (document.querySelectorAll('.lav-modal-slider__slide').length > 8) {
       document
-        .querySelector('.lav-modal-slider__wrap splide__arrow')
+        .querySelector('.lav-modal-slider__wrap .splide__arrow')
         .forEach(function (item) {
           item.classList.add('splide__arrow_active');
         });
@@ -591,7 +594,7 @@ console.log('initExp');
         widthSliderItems
     ) {
       document
-        .querySelector('.lav-slider__wrap splide__arrow')
+        .querySelector('.lav-slider__wrap .splide__arrow')
         .forEach(function (item) {
           item.classList.add('splide__arrow_active');
         });
