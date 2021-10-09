@@ -487,6 +487,10 @@ console.log('initExp');
             document.querySelector('.lav-slider__wrap').style.display = 'none';
           } else {
             document.querySelector('.lav-slider__wrap').style.display = 'block';
+            checkArrows();
+            setTimeout(function () {
+              checkArrows();
+            }, 2000);
           }
         }
       });
@@ -545,6 +549,7 @@ console.log('initExp');
       .addEventListener('click', function () {
         gaEvent('click to scroll right', 'Recently viewed block');
       });
+
     checkArrows();
   }
 
@@ -584,6 +589,7 @@ console.log('initExp');
   }
 
   function checkArrows() {
+    console.log('checkArrows');
     if (document.querySelectorAll('.lav-modal-slider__slide').length > 8) {
       document
         .querySelectorAll('.lav-modal-slider__wrap .splide__arrow')
