@@ -393,7 +393,7 @@ console.log('initExp');
   function checkUserAuth() {
     if (document.querySelector('[data-qa="GuestBar"]')) {
       sessionStorage.setItem('isUserAuthed', 'no');
-    } else if (document.querySelector('[data-qa="UserBar"]')) {
+    } else {
       if (sessionStorage.getItem('isUserAuthed') == 'no') {
         recentlyStorage = [];
         sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
