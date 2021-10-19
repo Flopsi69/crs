@@ -418,8 +418,8 @@ console.log('initExp');
     `;
 
     document
-      .querySelector('.file-view__bottom')
-      .insertAdjacentHTML('afterend', recentlyEl);
+      .querySelector('.file-view__bottom-wrapper')
+      .insertAdjacentHTML('beforeend', recentlyEl);
 
     buildSlider(
       document.querySelector('.lav-modal-slider .splide__list'),
