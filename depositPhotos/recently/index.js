@@ -302,27 +302,33 @@ console.log('initExp');
             initExp();
           }
         }
-
+        // files-slider
         if (
-          node.classList.contains('files-slider') &&
-          node.closest('.file-view__related[data-tab="similar"]') &&
+          node.classList.contains('file-view__tabs') &&
+          node.closest('.file-view__bottom-wrapper') &&
           checkLocationExp()
         ) {
-          let i = 8;
-          while (
-            document.querySelector(
-              '.file-view__related[data-tab="similar"] ._slider-item:nth-child(' +
-                i +
-                ')'
-            )
+          if (
+            node
+              .closest('.file-view__bottom-wrapper')
+              .querySelector('.file-view__related[data-tab="similar"]')
           ) {
-            document
-              .querySelector(
+            let i = 8;
+            while (
+              document.querySelector(
                 '.file-view__related[data-tab="similar"] ._slider-item:nth-child(' +
                   i +
                   ')'
               )
-              .remove();
+            ) {
+              document
+                .querySelector(
+                  '.file-view__related[data-tab="similar"] ._slider-item:nth-child(' +
+                    i +
+                    ')'
+                )
+                .remove();
+            }
           }
 
           initModalSlider();
