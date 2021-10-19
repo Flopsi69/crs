@@ -83,7 +83,7 @@ console.log('initExp');
 
   let stylesList = `
   .file-view-modal .file-view__bottom, .file-view-modal .file-view_classic .file-view__info-wrapper {
-    min-height: auto;
+    min-height: auto!important;
   }
   .lav-slider__wrap {
     position: fixed;
