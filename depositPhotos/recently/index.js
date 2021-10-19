@@ -96,6 +96,17 @@ console.log('initExp');
     border-radius: 10px;
     box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
   }
+  @media (max-width: 990px) {
+    .lav-slider__wrap {
+      left: 5%;
+      right: 5%;
+    }
+  }
+  @media (max-width: 770px) {
+    .lav-slider__wrap {
+      display: none!important;
+    }
+  }
   .lav-slider__head {
     display: flex;
     align-items: center;
