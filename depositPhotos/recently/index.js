@@ -19,7 +19,7 @@ console.log('initExp');
       function () {
         (hj.q = hj.q || []).push(arguments);
       };
-    hj('trigger', 'recently_viewed');
+      hj('event', 'recently_viewed');
   } catch (e) {}
 
   document.head.insertAdjacentHTML(
