@@ -1,4 +1,4 @@
-console.log('initExp');
+// console.log('initExp');
 (function () {
   try {
     (function (h, o, t, j, a, r) {
@@ -19,7 +19,7 @@ console.log('initExp');
       function () {
         (hj.q = hj.q || []).push(arguments);
       };
-      hj('event', 'recently_viewed');
+    hj('event', 'recently_viewed');
   } catch (e) {}
 
   document.head.insertAdjacentHTML(
@@ -49,9 +49,9 @@ console.log('initExp');
         eventValue: value,
       };
       dataLayer.push(eventObj);
-      console.log('FireEvent', eventObj);
+      // console.log('FireEvent', eventObj);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -281,7 +281,7 @@ console.log('initExp');
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-        console.log(node);
+        // console.log(node);
 
         if (
           node.querySelector('.fav-panel-closed') &&
@@ -373,7 +373,7 @@ console.log('initExp');
 
   function initExp() {
     gaEvent('loaded');
-    console.log('initExpInner');
+    // console.log('initExpInner');
     checkUserAuth();
     initSessionStorage();
     initRecentlyTrigger();
@@ -609,7 +609,7 @@ console.log('initExp');
   }
 
   function checkArrows() {
-    console.log('checkArrows');
+    // console.log('checkArrows');
     if (document.querySelectorAll('.lav-modal-slider__slide').length > 8) {
       document
         .querySelectorAll('.lav-modal-slider__wrap .splide__arrow')
@@ -638,7 +638,7 @@ console.log('initExp');
 
   function setSessionItem(data) {
     if (recentlyStorage.find((item) => item[1] == data[1])) {
-      console.log('Already in storage', data);
+      // console.log('Already in storage', data);
       return false;
     }
 
@@ -677,7 +677,7 @@ console.log('initExp');
     recentlyStorage.push(data);
     sessionStorage.setItem('recently', JSON.stringify(recentlyStorage));
     checkArrows();
-    console.log('storage update', data);
+    // console.log('storage update', data);
   }
 
   // ### Libsn ###
@@ -926,7 +926,7 @@ console.log('initExp');
           };
         };
       function H(t) {
-        console.error('[SPLIDE] ' + t);
+        // console.error('[SPLIDE] ' + t);
       }
       function j(t, n) {
         if (!t) throw new Error(n);
