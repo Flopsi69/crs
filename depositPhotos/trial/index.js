@@ -384,6 +384,11 @@
     background: #C4C4C4;
     border-radius: 7px;
   }
+  .lav-modal__video video {
+    max-width: 100%;
+    height: 55vh;
+    max-height: 320px;
+  }
   `;
 
   let stylesEl = document.createElement('style');
@@ -529,7 +534,11 @@
           </div>
         </div>
 
-        <div class="lav-modal__video"></div>
+        <div class="lav-modal__video">
+          <video controls>
+            <source src="${REPO_DIR}/video.mov" type="video/mp4">
+          </video>
+        </div>
       </div>
     </div>
   `;
