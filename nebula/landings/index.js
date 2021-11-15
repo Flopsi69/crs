@@ -56,26 +56,25 @@
     stylesEl.id = 'lav-styles';
     stylesEl.innerHTML = stylesList;
     document.body.appendChild(stylesEl);
-
-    document.addEventListener('click', function (e) {
-      if (
-        e.target.classList.contains('learn__item') ||
-        e.target.closest('.learn__item')
-      ) {
-        if (e.target.classList.contains('learn__item')) {
-          gaEvent(
-            'click on the new CTA',
-            e.target.querySelector('.learn__item-caption').innerText
-          );
-        } else {
-          gaEvent(
-            'click on the new CTA',
-            e.target
-              .closest('.learn__item')
-              .querySelector('.learn__item-caption').innerText
-          );
-        }
-      }
-    });
   }
+
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.classList.contains('learn__item') ||
+      e.target.closest('.learn__item')
+    ) {
+      if (e.target.classList.contains('learn__item')) {
+        gaEvent(
+          'click on the new CTA',
+          e.target.querySelector('.learn__item-caption').innerText
+        );
+      } else {
+        gaEvent(
+          'click on the new CTA',
+          e.target.closest('.learn__item').querySelector('.learn__item-caption')
+            .innerText
+        );
+      }
+    }
+  });
 })();
