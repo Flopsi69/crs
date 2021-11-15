@@ -50,13 +50,14 @@
 
   function initExp() {
     console.log('initExp');
-    gaEvent('loaded');
 
     let stylesEl = document.createElement('style');
     stylesEl.id = 'lav-styles';
     stylesEl.innerHTML = stylesList;
     document.body.appendChild(stylesEl);
   }
+
+  gaEvent('loaded');
 
   document.addEventListener('click', function (e) {
     if (
