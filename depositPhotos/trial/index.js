@@ -408,10 +408,10 @@
     }
   });
 
-  // observer.observe(document.querySelector('body'), {
-  //   childList: true,
-  //   subtree: true,
-  // });
+  observer.observe(document.querySelector('body'), {
+    childList: true,
+    subtree: true,
+  });
   /***  END_Observer ***/
 
   // Start Script
