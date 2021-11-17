@@ -403,7 +403,7 @@
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        if (node.classList.contains('.wrapper')) {
+        if (node.classList.contains('wrapper')) {
           initExp();
         }
         console.log(node);
