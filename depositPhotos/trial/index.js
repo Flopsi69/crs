@@ -508,7 +508,9 @@
         .querySelector('.lav-footer__cancel')
         .addEventListener('click', function (e) {
           e.preventDefault();
-          modalEl.classList.add('lav-modal_active');
+          document
+            .querySelector('.lav-modal')
+            .classList.add('lav-modal_active');
         });
     }
   }
