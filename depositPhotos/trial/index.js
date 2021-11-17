@@ -502,6 +502,15 @@
     document
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
+
+    if (document.querySelector('.lav-footer__cancel')) {
+      document
+        .querySelector('.lav-footer__cancel')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          modalEl.classList.add('lav-modal_active');
+        });
+    }
   }
 
   function buildSummaryBlock() {
@@ -577,12 +586,5 @@
     function modalClose() {
       modalEl.classList.remove('lav-modal_active');
     }
-
-    document
-      .querySelector('.lav-footer__cancel')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        modalEl.classList.add('lav-modal_active');
-      });
   }
 })();
