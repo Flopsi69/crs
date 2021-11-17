@@ -403,6 +403,9 @@
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        if (node.classList.contains('.wrapper')) {
+          initExp();
+        }
         console.log(node);
       }
     }
@@ -418,70 +421,79 @@
   initExp();
   function initExp() {
     console.log('initExp');
-    document
-      .querySelector('.billing-trial__cell')
-      .insertAdjacentHTML(
-        'afterbegin',
-        '<div class="lav-hat">Start Free Trial</div>'
-      );
-    document.querySelector('.billing-trial__payment-title').innerText =
-      'Payment Method';
-    buildInfoBlock();
-    buildSummaryBlock();
-    initModal();
+    if (!document.querySelector('.lav-hat')) {
+      document
+        .querySelector('.billing-trial__cell')
+        .insertAdjacentHTML(
+          'afterbegin',
+          '<div class="lav-hat">Start Free Trial</div>'
+        );
+      document.querySelector('.billing-trial__payment-title').innerText =
+        'Payment Method';
+    }
+
+    if (!document.querySelector('.lav-info')) {
+      buildInfoBlock();
+    }
+    if (!document.querySelector('.lav-summary')) {
+      buildSummaryBlock();
+    }
+    if (!document.querySelector('.lav-modal')) {
+      initModal();
+    }
   }
 
   function buildInfoBlock() {
     var infoBlock = `
     <div class="lav-info">
-  <div class="lav-head">
-    <div class="lav-head__title">Let’s Start your 7 Days Trial!</div>
-  </div>
-
-  <div class="lav-timeline">
-    <!-- Left col -->
-    <div class="lav-timeline__block">
-      <div class="lav-timeline__title lav-timeline__title_blue ">Start Free trial</div>
-      <div class="lav-timeline__date">04.05.2021</div>
-      <div class="lav-timeline__image">
-        <img src="${REPO_DIR}/img/timeline-left.svg" alt="">
+      <div class="lav-head">
+        <div class="lav-head__title">Let’s Start your 7 Days Trial!</div>
       </div>
-      <div class="lav-timeline__subtitle">What will you get now:</div>
-      <ul class="lav-timeline__list">
-        <li class="lav-timeline__item">Search and save images you like</li>
-        <li class="lav-timeline__item">Download any 10 images or vectors for free</li>
-        <li class="lav-timeline__item">No billing today</li>
-        <li class="lav-timeline__item">Free to cancel any time before trial ends</li>
-      </ul>
-    </div>
 
-    <!-- Right col -->
-    <div class="lav-timeline__block">
-      <div class="lav-timeline__title lav-timeline__title_green">You pay here</div>
-      <div class="lav-timeline__date">11.05.2021</div>
-      <div class="lav-timeline__image lav-timeline__image-right">
-        <img src="${REPO_DIR}/img/timeline-right.svg" alt="">
+      <div class="lav-timeline">
+        <!-- Left col -->
+        <div class="lav-timeline__block">
+          <div class="lav-timeline__title lav-timeline__title_blue ">Start Free trial</div>
+          <div class="lav-timeline__date">04.05.2021</div>
+          <div class="lav-timeline__image">
+            <img src="${REPO_DIR}/img/timeline-left.svg" alt="">
+          </div>
+          <div class="lav-timeline__subtitle">What will you get now:</div>
+          <ul class="lav-timeline__list">
+            <li class="lav-timeline__item">Search and save images you like</li>
+            <li class="lav-timeline__item">Download any 10 images or vectors for free</li>
+            <li class="lav-timeline__item">No billing today</li>
+            <li class="lav-timeline__item">Free to cancel any time before trial ends</li>
+          </ul>
+        </div>
+
+        <!-- Right col -->
+        <div class="lav-timeline__block">
+          <div class="lav-timeline__title lav-timeline__title_green">You pay here</div>
+          <div class="lav-timeline__date">11.05.2021</div>
+          <div class="lav-timeline__image lav-timeline__image-right">
+            <img src="${REPO_DIR}/img/timeline-right.svg" alt="">
+          </div>
+          <div class="lav-timeline__subtitle">And much more after paid subscription</div>
+          <ul class="lav-timeline__list">
+            <li class="lav-timeline__item">Flexible Plan activation for $99 per year</li>
+            <li class="lav-timeline__item">Download any images or vectors according to your plan
+              (10 images or vectors each month) </li>
+            <li class="lav-timeline__item">Unused download transfer to the next month</li>
+            <li class="lav-timeline__item">Additional images are $1 each</li>
+          </ul>
+        </div>
       </div>
-      <div class="lav-timeline__subtitle">And much more after paid subscription</div>
-      <ul class="lav-timeline__list">
-        <li class="lav-timeline__item">Flexible Plan activation for $99 per year</li>
-        <li class="lav-timeline__item">Download any images or vectors according to your plan
-          (10 images or vectors each month) </li>
-        <li class="lav-timeline__item">Unused download transfer to the next month</li>
-        <li class="lav-timeline__item">Additional images are $1 each</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="lav-footer">
-    <div class="lav-footer__caption">Amount due today</div>
+      <div class="lav-footer">
+        <div class="lav-footer__caption">Amount due today</div>
 
-    <div class="lav-footer__info">
-      <div class="lav-footer__price">$0.00</div>
-      <a href="#" class="lav-footer__cancel">How do I cancel?</a>
+        <div class="lav-footer__info">
+          <div class="lav-footer__price">$0.00</div>
+          <a href="#" class="lav-footer__cancel">How do I cancel?</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
     `;
 
     document
