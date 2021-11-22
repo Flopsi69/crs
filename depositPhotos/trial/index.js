@@ -457,7 +457,7 @@
         <!-- Left col -->
         <div class="lav-timeline__block">
           <div class="lav-timeline__title lav-timeline__title_blue ">Start Free trial</div>
-          <div class="lav-timeline__date">04.05.2021</div>
+          <div class="lav-timeline__date lav-timeline__date-from">04.05.2021</div>
           <div class="lav-timeline__image">
             <img src="${REPO_DIR}/img/timeline-left.svg" alt="">
           </div>
@@ -473,7 +473,7 @@
         <!-- Right col -->
         <div class="lav-timeline__block">
           <div class="lav-timeline__title lav-timeline__title_green">You pay here</div>
-          <div class="lav-timeline__date">11.05.2021</div>
+          <div class="lav-timeline__date lav-timeline__date-to">11.05.2021</div>
           <div class="lav-timeline__image lav-timeline__image-right">
             <img src="${REPO_DIR}/img/timeline-right.svg" alt="">
           </div>
@@ -502,6 +502,13 @@
     document
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
+
+    document.querySelector('.lav-timeline__date-from').innerText =
+      new Date().toLocaleDateString();
+
+    document.querySelector('.lav-timeline__date-to').innerText = new Date(
+      new Date().getTime() + 604800000
+    ).toLocaleDateString();
 
     if (document.querySelector('.lav-footer__cancel')) {
       document
