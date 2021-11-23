@@ -99,13 +99,28 @@
     display: none;
   }
   .lav-head {
+    display: flex;
+    align-items: center;
     margin-bottom: 50px;
+  }
+  .lav-head__caption {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 18px;
+    color: #3C3C3C;
   }
   .lav-head__title {
     font-weight: bold;
     font-size: 32px;
     line-height: 37px;
     color: #3C3C3C;
+  }
+  .lav-head__image {
+    margin-right: 32px;
+    max-height: 155px;
+    max-width: 230px;
+    width: auto;
+    flex-shrink: 0;
   }
   .lav-timeline {
     display: flex;
@@ -420,8 +435,28 @@
   });
   /***  END_Observer ***/
 
+  document.body.addEventListener('click', function (e) {
+    // e.preventDefault();
+    if (
+      (e.target.href && e.target.href.includes('trial.html')) ||
+      (e.target.closest('a') &&
+        e.target.closest('a').href.includes('trial.html'))
+    ) {
+      if (e.target.closest('.file-view-modal')) {
+        localStorage.setItem(
+          'trialImage',
+          adocument.querySelector('.view-file-box__image').src
+        );
+        console.log(e.target, e.target.closest('a'));
+      }
+    }
+  });
+
   // Start Script
-  initExp();
+  if (location.href.includes('/subscribe/trial.html')) {
+    initExp();
+  }
+
   function initExp() {
     console.log('initExp');
     if (!document.querySelector('.lav-hat')) {
@@ -445,18 +480,20 @@
       initModal();
     }
 
-    document.querySelectorAll('.lav-curr').forEach(function (currItem) {
-      if (document.querySelector('.d-curr')) {
-        currItem.innerText = document.querySelector('.d-curr').innerText;
-      }
-    });
+    // document.querySelectorAll('.lav-curr').forEach(function (currItem) {
+    //   if (document.querySelector('.d-curr')) {
+    //     currItem.innerText = document.querySelector('.d-curr').innerText;
+    //   }
+    // });
   }
 
   function buildInfoBlock() {
     var infoBlock = `
     <div class="lav-info">
       <div class="lav-head">
-        <div class="lav-head__title">Let’s Start your 7 Days Trial!</div>
+        <div class="lav-head__info">
+          <div class="lav-head__title">Let’s Start your 7 Days Trial!</div>
+        </div>
       </div>
 
       <div class="lav-timeline">
@@ -508,6 +545,21 @@
     document
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
+
+    if (localStorage.getItem('trialImage')) {
+      document
+        .querySelector('.lav-head')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<img src="${localStorage.getItem('trialImage')}" />`
+        );
+      document
+        .querySelector('.lav-head__info')
+        .insertAdjacentHTML(
+          'beforeend',
+          "<div class='lav-head__caption'>And Download this Image</div>"
+        );
+    }
 
     document.querySelector('.lav-timeline__date-from').innerText =
       new Date().toLocaleDateString();
