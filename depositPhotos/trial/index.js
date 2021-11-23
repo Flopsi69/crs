@@ -444,6 +444,12 @@
     if (!document.querySelector('.lav-modal')) {
       initModal();
     }
+
+    document.querySelectorAll('.lav-curr').forEach(function (currItem) {
+      if (document.querySelector('.d-curr')) {
+        currItem.innerText = document.querySelector('.d-curr').innerText;
+      }
+    });
   }
 
   function buildInfoBlock() {
@@ -492,7 +498,7 @@
         <div class="lav-footer__caption">Amount due today</div>
 
         <div class="lav-footer__info">
-          <div class="lav-footer__price">$0.00</div>
+          <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
           <a href="#" class="lav-footer__cancel">How do I cancel?</a>
         </div>
       </div>
@@ -527,11 +533,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Order Summary</div>
       <div class="lav-summary__caption">Free Trial</div>
-      <div class="lav-summary__subprice">$0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Total</div>
-        <div class="lav-summary__footer-value">$0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
       </div>
     </div>
     `;
