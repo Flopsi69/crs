@@ -121,6 +121,7 @@
     max-width: 230px;
     width: auto;
     flex-shrink: 0;
+    border-radius: 4px;
   }
   .lav-timeline {
     display: flex;
@@ -445,7 +446,7 @@
       if (e.target.closest('.file-view-modal')) {
         localStorage.setItem(
           'trialImage',
-          adocument.querySelector('.view-file-box__image').src
+          document.querySelector('.view-file-box__image').src
         );
         console.log(e.target, e.target.closest('a'));
       }
@@ -551,7 +552,9 @@
         .querySelector('.lav-head')
         .insertAdjacentHTML(
           'afterbegin',
-          `<img src="${localStorage.getItem('trialImage')}" />`
+          `<img class="lav-head__image" src="${localStorage.getItem(
+            'trialImage'
+          )}" />`
         );
       document
         .querySelector('.lav-head__info')
