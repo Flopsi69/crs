@@ -444,7 +444,7 @@
         e.target.closest('a').href.includes('trial.html'))
     ) {
       if (e.target.closest('.file-view-modal')) {
-        localStorage.setItem(
+        sessionStorage.setItem(
           'trialImage',
           document.querySelector('.view-file-box__image').src
         );
@@ -547,12 +547,12 @@
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
 
-    if (localStorage.getItem('trialImage')) {
+    if (sessionStorage.getItem('trialImage')) {
       document
         .querySelector('.lav-head')
         .insertAdjacentHTML(
           'afterbegin',
-          `<img class="lav-head__image" src="${localStorage.getItem(
+          `<img class="lav-head__image" src="${sessionStorage.getItem(
             'trialImage'
           )}" />`
         );
