@@ -436,22 +436,22 @@
   });
   /***  END_Observer ***/
 
-  document.body.addEventListener('click', function (e) {
-    // e.preventDefault();
-    if (
-      (e.target.href && e.target.href.includes('trial.html')) ||
-      (e.target.closest('a') &&
-        e.target.closest('a').href.includes('trial.html'))
-    ) {
-      if (e.target.closest('.file-view-modal')) {
-        sessionStorage.setItem(
-          'trialImage',
-          document.querySelector('.view-file-box__image').src
-        );
-        console.log(e.target, e.target.closest('a'));
-      }
-    }
-  });
+  // document.body.addEventListener('click', function (e) {
+  //   // e.preventDefault();
+  //   if (
+  //     (e.target.href && e.target.href.includes('trial.html')) ||
+  //     (e.target.closest('a') &&
+  //       e.target.closest('a').href.includes('trial.html'))
+  //   ) {
+  //     if (e.target.closest('.file-view-modal')) {
+  //       sessionStorage.setItem(
+  //         'ItemMaxSizeLoad',
+  //         document.querySelector('.view-file-box__image').src
+  //       );
+  //       console.log(e.target, e.target.closest('a'));
+  //     }
+  //   }
+  // });
 
   // Start Script
   if (location.href.includes('/subscribe/trial.html')) {
@@ -547,13 +547,13 @@
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
 
-    if (sessionStorage.getItem('trialImage')) {
+    if (sessionStorage.getItem('ItemMaxSizeLoad')) {
       document
         .querySelector('.lav-head')
         .insertAdjacentHTML(
           'afterbegin',
           `<img class="lav-head__image" src="${sessionStorage.getItem(
-            'trialImage'
+            'ItemMaxSizeLoad'
           )}" />`
         );
       document
