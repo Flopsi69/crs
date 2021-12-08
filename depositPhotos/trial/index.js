@@ -378,7 +378,7 @@
           </div>
           <div class="lav-timeline__subtitle">Und noch so viel mehr für zahlende Abonnenten</div>
           <ul class="lav-timeline__list">
-            <li class="lav-timeline__item">Ungenutzte Downloads werden auf den folgenden Monat übertragen</li>
+            <li class="lav-timeline__item">Flexibler Tarif ab 99 $ pro Jahr</li>
             <li class="lav-timeline__item">Laden Sie beliebige in Ihrem Tarif enthaltene Bilder oder Vektorgrafiken herunter 
             (10 Bilder/Vektorgrafiken pro Monat)</li>
             <li class="lav-timeline__item">Zusätzliche Bilder sind für 1 $ pro Bild erhältlich</li>
