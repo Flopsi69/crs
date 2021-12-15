@@ -644,13 +644,15 @@
     max-width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
-    padding: 40px;
+    padding: 42px 40px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 40px 0 rgb(0 0 0 / 8%);
     margin-right: 27px;
   }
   .billing-trial__cell {
+    max-width: 403px;
+    min-height: 650px;
     padding: 40px;
     padding-top: 64px;
     background-color: #fff;
@@ -663,7 +665,7 @@
   .lav-head {
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 57px;
   }
   .lav-head__caption {
     margin-top: 20px;
@@ -713,7 +715,7 @@
     color: #696969;
   }
   .lav-timeline__image {
-    margin: 24px 0 35px;
+    margin: 17px 0 30px;
     height: 24px;
     display: flex;
     align-items: center;
@@ -815,7 +817,7 @@
   }
   @media screen and (min-width: 991px) {
     .billing-trial {
-      max-width: 1260px;
+      max-width: 1250px;
     }
   }
   .billing-process_trial .billing-process__btn {
@@ -928,6 +930,9 @@
     cursor: pointer;
     transition: 0.35s;
   }
+  .lav-modal__close:hover{
+    opacity: 0.35;
+  }
   .lav-modal__title {
     margin-bottom: 20px;
     font-weight: bold;
@@ -966,6 +971,15 @@
     max-width: 100%;
     height: 55vh;
     max-height: 320px;
+  }
+  .billing-process_trial .billing-process__label {
+    color: #3C3C3C;
+  }
+  .billing-process_trial .icon-secure-small {
+    width: 14px;
+    height: 17px;
+    background: url(${REPO_DIR}/img/icon-shield.svg) center no-repeat;
+    background-size: contain;
   }
   `;
 
