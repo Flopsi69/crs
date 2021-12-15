@@ -645,7 +645,7 @@
     max-width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
-    padding: 42px 40px;
+    padding: 48px 40px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 40px 0 rgb(0 0 0 / 8%);
@@ -763,8 +763,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 40px;
-    padding-top: 30px;
+    margin-top: 41px;
+    padding-top: 31px;
     border-top: 1px solid #DBDBDB;
   }
   .lav-footer__caption {
@@ -979,6 +979,7 @@
   }
   .billing-process_trial .billing-process__label {
     color: #3C3C3C;
+    font-size: 10.5px;
   }
   .billing-process_trial .icon-secure-small {
     width: 14px;
