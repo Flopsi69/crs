@@ -992,6 +992,7 @@
   @media (max-width: 1250px) {
     .lav-info {
       flex-shrink: 1;
+      min-width: 0;
     }
     .billing-trial__cell {
       min-width: 420px;
