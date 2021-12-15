@@ -970,12 +970,15 @@
     display: flex;
     justify-content: space-between;
     margin: 0 -15px;
+    min-height: 100px;
+    padding-bottom: 15px;
+    box-sizing: border-box;
   }
   .lav-modal__video {
     background: #C4C4C4;
     border-radius: 7px;
     // margin-top: auto;
-    margin-top: 54px;
+    // margin-top: 54px;
   }
   .lav-modal__video video {
     width: 560px;
