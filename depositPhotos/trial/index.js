@@ -87,15 +87,15 @@
         <div class="lav-modal__steps">
           <div class="lav-modal__step">
             <div class="lav-modal__step-title">Step 1</div>
-            <div class="lav-modal__step-caption">Go to your account settings</div>
+            <div class="lav-modal__step-caption">Go to Profile</div>
           </div>
           <div class="lav-modal__step">
             <div class="lav-modal__step-title">Step 2</div>
-            <div class="lav-modal__step-caption">Billing details</div>
+            <div class="lav-modal__step-caption">Click Menu tab</div>
           </div>
           <div class="lav-modal__step">
             <div class="lav-modal__step-title">Step 3</div>
-            <div class="lav-modal__step-caption">Click “Cancel Trial”</div>
+            <div class="lav-modal__step-caption">Click on Settings</div>
           </div>
           <div class="lav-modal__step">
             <div class="lav-modal__step-title">Step 4</div>
@@ -908,7 +908,10 @@
   .lav-modal__body {
     position: relative;
     margin: auto;
-    max-width: 780px;
+    max-width: 754px;
+    min-height: 568px;
+    display: flex;
+    flex-flow: column;
     width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
     padding: 20px 100px 45px;
@@ -947,7 +950,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #1F53C9;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
   }
   .lav-modal__step {
     padding: 0 15px;
@@ -967,6 +970,7 @@
   .lav-modal__video {
     background: #C4C4C4;
     border-radius: 7px;
+    margin-top: auto;
   }
   .lav-modal__video video {
     max-width: 100%;
