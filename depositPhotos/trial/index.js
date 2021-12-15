@@ -989,6 +989,14 @@
     top: 102%;
     right: 0;
   }
+  @media (max-width: 1250px) {
+    .lav-info {
+      flex-shrink: 1;
+    }
+    .billing-trial__cell {
+      min-width: 420px;
+    }
+  }
   `;
 
   let stylesEl = document.createElement('style');
