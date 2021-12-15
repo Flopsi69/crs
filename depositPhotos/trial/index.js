@@ -645,7 +645,7 @@
     max-width: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
-    padding: 48px 40px;
+    padding: 47px 40px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 40px 0 rgb(0 0 0 / 8%);
@@ -667,6 +667,9 @@
     display: flex;
     align-items: center;
     margin-bottom: 57px;
+  }
+  .lav-head_image {
+    margin-bottom: 40px;
   }
   .lav-head__caption {
     margin-top: 20px;
@@ -716,7 +719,7 @@
     color: #696969;
   }
   .lav-timeline__image {
-    margin: 17px 0 30px;
+    margin: 18px 0 30px;
     height: 24px;
     display: flex;
     align-items: center;
@@ -726,7 +729,7 @@
     margin-left: -15px;
   }
   .lav-timeline__subtitle {
-    margin-bottom: 26px;
+    margin-bottom: 25px;
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -908,7 +911,7 @@
   .lav-modal__body {
     position: relative;
     margin: auto;
-    max-width: 754px;
+    max-width: 764px;
     min-height: 568px;
     display: flex;
     flex-flow: column;
@@ -933,6 +936,7 @@
     line-height: 0;
     cursor: pointer;
     transition: 0.35s;
+    background: none;
   }
   .lav-modal__close:hover{
     opacity: 0.35;
@@ -965,13 +969,13 @@
   .lav-modal__steps {
     display: flex;
     justify-content: space-between;
-    margin: 0 -15px 20px;
+    margin: 0 -15px;
   }
   .lav-modal__video {
     background: #C4C4C4;
     border-radius: 7px;
     // margin-top: auto;
-    margin-bottom: 54px;
+    margin-top: 54px;
   }
   .lav-modal__video video {
     width: 560px;
@@ -1106,6 +1110,7 @@
             'ItemMaxSizeLoad'
           )}" />`
         );
+      document.querySelector('.lav-head').classList.add('lav-head_image');
       document
         .querySelector('.lav-head__info')
         .insertAdjacentHTML('beforeend', downloadCaption);
