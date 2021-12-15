@@ -635,6 +635,7 @@
     border-radius: 0;
     box-shadow: none;
     align-items: flex-start;
+    margin-bottom: 75px;
   }
   .billing-trial__order-info, .billing-trial__cell-title {
     display: none;
@@ -981,6 +982,13 @@
     background: url(${REPO_DIR}/img/icon-shield.svg) center no-repeat;
     background-size: contain;
   }
+  .billing-trial__currency-select {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 102%;
+    right: 0;
+  }
   `;
 
   let stylesEl = document.createElement('style');
@@ -1052,6 +1060,15 @@
     }
     if (!document.querySelector('.lav-modal')) {
       initModal();
+    }
+
+    if (document.querySelector('.billing-trial__currency-select')) {
+      document
+        .querySelector('.billing-trial__cell')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('.billing-trial__currency-select')
+        );
     }
 
     // document.querySelectorAll('.lav-curr').forEach(function (currItem) {
