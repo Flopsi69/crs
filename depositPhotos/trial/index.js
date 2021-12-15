@@ -970,12 +970,12 @@
   .lav-modal__video {
     background: #C4C4C4;
     border-radius: 7px;
-    margin-top: auto;
+    // margin-top: auto;
+    margin-bottom: 54px;
   }
   .lav-modal__video video {
-    max-width: 100%;
-    height: 55vh;
-    max-height: 320px;
+    width: 560px;
+    height: 349px;
   }
   .billing-process_trial .billing-process__label {
     color: #3C3C3C;
