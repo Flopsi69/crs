@@ -626,6 +626,9 @@
 
   /***  InitStyles ***/
   let stylesList = `
+  .billing-trial {
+    transition: 0.35s;
+  }
   .fields-group__part .field-box {
     margin-left: 0;
   }
@@ -1092,6 +1095,9 @@
         );
     }
 
+    if (document.querySelector('.billing-trial')) {
+      document.querySelector('.billing-trial').style.opacity = '1';
+    }
     // document.querySelectorAll('.lav-curr').forEach(function (currItem) {
     //   if (document.querySelector('.d-curr')) {
     //     currItem.innerText = document.querySelector('.d-curr').innerText;
