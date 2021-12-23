@@ -1,5 +1,12 @@
 (function () {
   console.log('Optimize activated!');
+  let projectCurr;
+  if (document.querySelector('.trial-prices__amount .d-curr')) {
+    projectCurr = document.querySelector(
+      '.trial-prices__amount .d-curr'
+    ).innerText;
+  }
+
   // Vars
   const REPO_DIR = 'https://flopsi69.github.io/crs/depositPhotos/trial';
 
@@ -1014,8 +1021,6 @@
     }
   }
   `;
-
-  let projectCurr;
 
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles-trial';
