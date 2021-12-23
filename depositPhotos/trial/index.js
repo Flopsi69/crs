@@ -922,12 +922,12 @@
     position: relative;
     margin: auto;
     max-width: 764px;
-    min-height: 568px;
+    // min-height: 568px;
     display: flex;
     flex-flow: column;
     width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    padding: 20px 97px 45px;
+    padding: 20px 102px 40px;
     background: #F4F4F5;
     border-radius: 10px;
     text-align: center;
@@ -992,7 +992,7 @@
   }
   .lav-modal__video video {
     width: 100%;
-    height: 349px;
+    height: 308px;
   }
   .billing-process_trial .billing-process__label {
     color: #3C3C3C;
