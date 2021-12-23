@@ -972,19 +972,19 @@
   .lav-modal__steps {
     display: flex;
     justify-content: space-between;
-    margin: 0 -15px;
-    min-height: 100px;
-    padding-bottom: 15px;
+    margin: 0 -10px;
     box-sizing: border-box;
   }
   .lav-modal__video {
     background: #C4C4C4;
     border-radius: 7px;
     // margin-top: auto;
-    // margin-top: 54px;
+    margin-top: 54px;
+    overflow: hidden;
+    line-height: 0;
   }
   .lav-modal__video video {
-    width: 560px;
+    width: 100%;
     height: 349px;
   }
   .billing-process_trial .billing-process__label {
