@@ -51,7 +51,7 @@
       <div class="lav-footer__caption">Amount due today</div>
 
       <div class="lav-footer__info">
-        <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-footer__price"><span class='lav-curr'>${projectCurr}</span>0.00</div>
         <a href="#" class="lav-footer__cancel">How do I cancel?</a>
       </div>
     </div>
@@ -62,11 +62,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Order Summary</div>
       <div class="lav-summary__caption">Free Trial</div>
-      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>${projectCurr}</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Total</div>
-        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>${projectCurr}</span>0.00</div>
       </div>
     </div>
     `;
@@ -99,7 +99,7 @@
           </div>
           <div class="lav-modal__step">
             <div class="lav-modal__step-title">Step 4</div>
-            <div class="lav-modal__step-caption">Set toggle with Auto-Renewal to Off</div>
+            <div class="lav-modal__step-caption">Set toggle with <span style='white-space:nowrap;'>Auto-Renewal</span> to Off</div>
           </div>
         </div>
 
@@ -168,7 +168,7 @@
         <div class="lav-footer__caption">Сегодня к списанию</div>
 
         <div class="lav-footer__info">
-          <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
+          <div class="lav-footer__price"><span class='lav-curr'>${projectCurr}</span>0.00</div>
           <a href="#" class="lav-footer__cancel">Как отменить подписку?</a>
         </div>
       </div>
@@ -179,11 +179,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Итог заказа</div>
       <div class="lav-summary__caption">пробный период</div>
-      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>${projectCurr}</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Итого</div>
-        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>${projectCurr}</span>0.00</div>
       </div>
     </div>
     `;
@@ -279,7 +279,7 @@
         <div class="lav-footer__caption">Importe a pagar hoy</div>
 
         <div class="lav-footer__info">
-          <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
+          <div class="lav-footer__price"><span class='lav-curr'>${projectCurr}</span>0.00</div>
           <a href="#" class="lav-footer__cancel">¿Cómo puedo cancelar?</a>
         </div>
       </div>
@@ -290,11 +290,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Resumen del pedido</div>
       <div class="lav-summary__caption">la prueba gratuita</div>
-      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>${projectCurr}</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Resumen</div>
-        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>${projectCurr}</span>0.00</div>
       </div>
     </div>
     `;
@@ -391,7 +391,7 @@
         <div class="lav-footer__caption">Heute fälliger Betrag</div>
 
         <div class="lav-footer__info">
-          <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
+          <div class="lav-footer__price"><span class='lav-curr'>${projectCurr}</span>0.00</div>
           <a href="#" class="lav-footer__cancel">Wie kann ich kündigen?</a>
         </div>
       </div>
@@ -402,11 +402,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Bestellübersicht</div>
       <div class="lav-summary__caption">Kostenlose Probephase</div>
-      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>${projectCurr}</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Total</div>
-        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>${projectCurr}</span>0.00</div>
       </div>
     </div>
     `;
@@ -502,7 +502,7 @@
         <div class="lav-footer__caption">Somme due aujourd’hui</div>
 
         <div class="lav-footer__info">
-          <div class="lav-footer__price"><span class='lav-curr'>$</span>0.00</div>
+          <div class="lav-footer__price"><span class='lav-curr'>${projectCurr}</span>0.00</div>
           <a href="#" class="lav-footer__cancel">Comment puis-je annuler ?</a>
         </div>
       </div>
@@ -513,11 +513,11 @@
     <div class="lav-summary">
       <div class="lav-summary__title">Résumé de la commande</div>
       <div class="lav-summary__caption">la période d’essai</div>
-      <div class="lav-summary__subprice"><span class='lav-curr'>$</span>0.00</div>
+      <div class="lav-summary__subprice"><span class='lav-curr'>${projectCurr}</span>0.00</div>
     
       <div class="lav-summary__footer">
         <div class="lav-summary__footer-caption">Résumé</div>
-        <div class="lav-summary__footer-value"><span class='lav-curr'>$</span>0.00</div>
+        <div class="lav-summary__footer-value"><span class='lav-curr'>${projectCurr}</span>0.00</div>
       </div>
     </div>
     `;
@@ -960,7 +960,7 @@
     margin-bottom: 5px;
   }
   .lav-modal__step {
-    padding: 0 15px;
+    padding: 0 10px;
     max-width: 202px;
     width: 100%;
   }
@@ -1015,6 +1015,8 @@
   }
   `;
 
+  let projectCurr;
+
   let stylesEl = document.createElement('style');
   stylesEl.id = 'lav-styles-trial';
   stylesEl.innerHTML = stylesList;
@@ -1067,6 +1069,11 @@
   }
 
   function initExp() {
+    if (document.querySelector('.trial-prices__amount .d-curr')) {
+      projectCurr = document.querySelector(
+        '.trial-prices__amount .d-curr'
+      ).innerText;
+    }
     console.log('initExp');
     if (!document.querySelector('.lav-hat')) {
       document
