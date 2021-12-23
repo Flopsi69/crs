@@ -921,13 +921,13 @@
   .lav-modal__body {
     position: relative;
     margin: auto;
-    max-width: 764px;
+    max-width: 765px;
     // min-height: 568px;
     display: flex;
     flex-flow: column;
     width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    padding: 20px 102px 40px;
+    padding: 20px 100px 40px;
     background: #F4F4F5;
     border-radius: 10px;
     text-align: center;
@@ -992,7 +992,7 @@
   }
   .lav-modal__video video {
     width: 100%;
-    height: 308px;
+    height: 310px;
   }
   .billing-process_trial .billing-process__label {
     color: #3C3C3C;
