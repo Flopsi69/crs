@@ -1110,7 +1110,10 @@
       .querySelector('.billing-trial__wrap')
       .insertAdjacentHTML('afterbegin', infoBlock);
 
-    if (sessionStorage.getItem('ItemMaxSizeLoad')) {
+    if (
+      sessionStorage.getItem('ItemMaxSizeLoad') &&
+      sessionStorage.getItem('ItemMaxSizeLoad') != 'null'
+    ) {
       document
         .querySelector('.lav-head')
         .insertAdjacentHTML(
