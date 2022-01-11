@@ -49,7 +49,6 @@
           <li class="lav-timeline__item">Download any images or vectors according to your plan
             (10 images or vectors each month) </li>
           <li class="lav-timeline__item">Unused download transfer to the next month</li>
-          <li class="lav-timeline__item">Additional images are $1 each</li>
         </ul>
       </div>
     </div>
@@ -166,7 +165,6 @@
             <li class="lav-timeline__item">Активация гибкого плана за 99$ в год</li>
             <li class="lav-timeline__item">Скачивайте любые изображений или векторы согласно своему плану (10 изображений или векторов в месяц)</li>
             <li class="lav-timeline__item">Неиспользованные скачивания переносятся на следующий месяц</li>
-            <li class="lav-timeline__item">Дополнительные изображения по 1$ каждое</li>
           </ul>
         </div>
       </div>
@@ -277,7 +275,6 @@
             <li class="lav-timeline__item">Activación del plan flexible por 99 dólares al año</li>
             <li class="lav-timeline__item">Descargue cualquier imagen o vector según su plan (10 imágenes o vectores cada mes)</li>
             <li class="lav-timeline__item">Las descargas no utilizadas se transfieren al mes siguiente</li>
-            <li class="lav-timeline__item">Las imágenes adicionales cuestan 1$ cada una</li>
           </ul>
         </div>
       </div>
@@ -388,7 +385,6 @@
             <li class="lav-timeline__item">Flexibler Tarif ab 99 $ pro Jahr</li>
             <li class="lav-timeline__item">Laden Sie beliebige in Ihrem Tarif enthaltene Bilder oder Vektorgrafiken herunter 
             (10 Bilder/Vektorgrafiken pro Monat)</li>
-            <li class="lav-timeline__item">Zusätzliche Bilder sind für 1 $ pro Bild erhältlich</li>
             <li class="lav-timeline__item">Ungenutzte Downloads werden auf den folgenden Monat übertragen</li>
           </ul>
         </div>
@@ -500,7 +496,6 @@
             <li class="lav-timeline__item">Activation d'un Plan Flexible pour 99 $ par an</li>
             <li class="lav-timeline__item">Téléchargez des images et des vecteurs en fonction de votre plan (10 images et vecteurs tous le mois)</li>
             <li class="lav-timeline__item">Transfert des téléchargements inutilisés sur le mois suivant</li>
-            <li class="lav-timeline__item">Chaque image supplémentaire pour 1 $</li>
           </ul>
         </div>
       </div>
