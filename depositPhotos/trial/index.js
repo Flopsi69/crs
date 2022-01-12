@@ -595,6 +595,7 @@
 
   /***  GaEvents ***/
   function gaEvent(action) {
+    console.log('action', action);
     if (!action) {
       action = '';
     }
