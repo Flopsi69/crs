@@ -1,4 +1,26 @@
 (function () {
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 410340, hjsv: 6 };
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj('event', 'trial_subscription_on_rework');
+
+  gaEvent('loaded');
+
   console.log('Optimize activated!');
   let projectCurr;
   if (document.querySelector('.trial-prices__amount .d-curr')) {
@@ -572,24 +594,16 @@
   /***  END_HotJar ***/
 
   /***  GaEvents ***/
-  function gaEvent(action, label, value) {
+  function gaEvent(action) {
     if (!action) {
       action = '';
-    }
-    if (!label) {
-      labael = '';
-    }
-    if (!value) {
-      value = '';
     }
     window.dataLayer = window.dataLayer || [];
     try {
       let eventObj = {
         event: 'event-to-ga',
-        eventCategory: 'Experiment - Recently Viewed Block',
+        eventCategory: 'Exp — Trial subscription on the PP UI rework',
         eventAction: action,
-        eventLabel: label,
-        eventValue: value,
       };
       dataLayer.push(eventObj);
       // console.log('FireEvent', eventObj);
@@ -687,8 +701,33 @@
           '.trial-prices__amount .d-curr'
         ).innerText;
       }
+
+      if (document.querySelector('._cardNumber')) {
+        document
+          .querySelector('._cardNumber')
+          .addEventListener('click', function () {
+            gaEvent('Click on Card number input');
+          });
+
+        document
+          .querySelector('._masked-exp')
+          .addEventListener('click', function () {
+            gaEvent('Click on Expiry date input');
+          });
+
+        document.querySelector('._cvv').addEventListener('click', function () {
+          gaEvent('Click on CVV input');
+        });
+      }
     }, 200);
     console.log('initExp');
+    if (document.querySelector('.billing-process__btn')) {
+      document
+        .querySelector('.billing-process__btn')
+        .addEventListener('click', function () {
+          gaEvent('Click on Start free trial button');
+        });
+    }
     if (!document.querySelector('.lav-hat')) {
       document
         .querySelector('.billing-trial__cell')
@@ -761,6 +800,7 @@
         .querySelector('.lav-footer__cancel')
         .addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('Click on How do I cancel button');
           document
             .querySelector('.lav-modal')
             .classList.add('lav-modal_active');
@@ -783,11 +823,13 @@
       .querySelector('.lav-modal__close')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('Close popup through cross icon');
         modalClose();
       });
 
     modalEl.addEventListener('click', function (e) {
       if (e.target.classList.contains('lav-modal_active')) {
+        gaEvent('Close popup (click out of popup');
         modalClose();
       }
     });
