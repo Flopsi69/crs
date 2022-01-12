@@ -690,35 +690,35 @@
     initExp();
   }
 
+  var isEventInputFire = false;
+
   function initExp() {
     if (document.querySelector('.trial-prices__amount .d-curr')) {
       projectCurr = document.querySelector(
         '.trial-prices__amount .d-curr'
       ).innerText;
     }
+
+    if (!isEventInputFire) {
+      isEventInputFire = true;
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('_cardNumber')) {
+          gaEvent('Click on Card number input');
+        }
+        if (e.target.classList.contains('_masked-exp')) {
+          gaEvent('Click on Expiry date input');
+        }
+        if (e.target.classList.contains('_cvv')) {
+          gaEvent('Click on CVV input');
+        }
+      });
+    }
+
     setTimeout(() => {
       if (document.querySelector('.trial-prices__amount .d-curr')) {
         projectCurr = document.querySelector(
           '.trial-prices__amount .d-curr'
         ).innerText;
-      }
-
-      if (document.querySelector('._cardNumber')) {
-        document
-          .querySelector('._cardNumber')
-          .addEventListener('click', function () {
-            gaEvent('Click on Card number input');
-          });
-
-        document
-          .querySelector('._masked-exp')
-          .addEventListener('click', function () {
-            gaEvent('Click on Expiry date input');
-          });
-
-        document.querySelector('._cvv').addEventListener('click', function () {
-          gaEvent('Click on CVV input');
-        });
       }
     }, 200);
     console.log('initExp');
