@@ -1,4 +1,6 @@
 (function () {
+  var isEventInputFire = false;
+
   (function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||
@@ -690,8 +692,6 @@
     initExp();
   }
 
-  var isEventInputFire = false;
-
   function initExp() {
     if (document.querySelector('.trial-prices__amount .d-curr')) {
       projectCurr = document.querySelector(
@@ -700,7 +700,9 @@
     }
 
     if (!isEventInputFire) {
+      console.log('isEventInputFire', isEventInputFire);
       isEventInputFire = true;
+      console.log('isEventInputFire', isEventInputFire);
       document.addEventListener('click', function (e) {
         if (e.target.classList.contains('_cardNumber')) {
           gaEvent('Click on Card number input');
