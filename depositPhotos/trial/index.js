@@ -710,27 +710,27 @@
       // console.log('isEventInputFire', isEventInputFire);
       var tempIter = 0;
       var initEvInterval = setInterval(() => {
-        console.log('try');
         if (
           document.querySelector('.adyen-checkout__field--cardNumber iframe')
         ) {
-          console.log('fire');
           clearInterval(initEvInterval);
-          document
-            .querySelector('.adyen-checkout__field--cardNumber iframe')
-            .addEventListener('click', function () {
-              gaEvent('Click on Card number input');
-            });
-          document
-            .querySelector('.adyen-checkout__field--expiryDate iframe')
-            .addEventListener('click', function () {
-              gaEvent('Click on Expiry date input');
-            });
-          document
-            .querySelector('.adyen-checkout__field__cvc iframe')
-            .addEventListener('click', function () {
-              gaEvent('Click on CVV input');
-            });
+          setTimeout(() => {
+            document
+              .querySelector('.adyen-checkout__field--cardNumber iframe')
+              .addEventListener('click', function () {
+                gaEvent('Click on Card number input');
+              });
+            document
+              .querySelector('.adyen-checkout__field--expiryDate iframe')
+              .addEventListener('click', function () {
+                gaEvent('Click on Expiry date input');
+              });
+            document
+              .querySelector('.adyen-checkout__field__cvc iframe')
+              .addEventListener('click', function () {
+                gaEvent('Click on CVV input');
+              });
+          }, 1500);
         }
 
         if (tempIter < 30) {
