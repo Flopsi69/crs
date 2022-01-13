@@ -703,18 +703,13 @@
       console.log('isEventInputFire', isEventInputFire);
       isEventInputFire = true;
       console.log('isEventInputFire', isEventInputFire);
-      gaEvent(
-        'testik',
-        document.querySelector('.adyen-checkout__field--cardNumber')
-      );
-      document
-        .querySelector('.adyen-checkout__field--cardNumber')
-        .addEventListener('click', function () {
-          gaEvent('Click on Card number input');
-        });
+      // document
+      //   .querySelector('.adyen-checkout__field--cardNumber')
+      //   .addEventListener('click', function () {
+      //     gaEvent('Click on Card number input');
+      //   });
       document.addEventListener('click', function (e) {
-        console.log('e.target', e.target.name);
-        c;
+        console.log('e.target', e.target);
         if (
           e.target.classList.contains('_cardNumber') ||
           e.target.closest('.adyen-checkout__field--cardNumber')
