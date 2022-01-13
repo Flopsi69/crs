@@ -699,15 +699,45 @@
       ).innerText;
     }
 
+    let script = document.createElement('script');
+    script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
+    script.async = false;
+    document.head.appendChild(script);
+
     if (!isEventInputFire) {
       console.log('isEventInputFire', isEventInputFire);
       isEventInputFire = true;
       console.log('isEventInputFire', isEventInputFire);
-      // document
-      //   .querySelector('.adyen-checkout__field--cardNumber')
-      //   .addEventListener('click', function () {
-      //     gaEvent('Click on Card number input');
-      //   });
+      var tempIter = 0;
+      var initEvInterval = setInterval(() => {
+        if (tempIter < 30) {
+          tempIter++;
+        } else {
+          clearInterval(initEvInterval);
+          return false;
+        }
+        if (
+          document.querySelector('.adyen-checkout__field--cardNumber iframe')
+        ) {
+          clearInterval(initEvInterval);
+          document
+            .querySelector('.adyen-checkout__field--cardNumber iframe')
+            .addEventListener('click', function () {
+              gaEvent('Click on Card number input');
+            });
+          document
+            .querySelector('.adyen-checkout__field--expiryDate iframe')
+            .addEventListener('click', function () {
+              gaEvent('Click on Expiry date input');
+            });
+          document
+            .querySelector('.adyen-checkout__field__cvc iframe')
+            .addEventListener('click', function () {
+              gaEvent('Click on CVV input');
+            });
+        }
+      }, 1000);
+
       document.addEventListener('click', function (e) {
         console.log('e.target', e.target);
         if (
