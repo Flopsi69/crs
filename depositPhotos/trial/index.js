@@ -23,7 +23,7 @@
 
   gaEvent('loaded');
 
-  console.log('Optimize activated!');
+  // console.log('Optimize activated!');
   let projectCurr;
   if (document.querySelector('.trial-prices__amount .d-curr')) {
     projectCurr = document.querySelector(
@@ -705,9 +705,9 @@
     document.head.appendChild(script);
 
     if (!isEventInputFire) {
-      console.log('isEventInputFire', isEventInputFire);
+      // console.log('isEventInputFire', isEventInputFire);
       isEventInputFire = true;
-      console.log('isEventInputFire', isEventInputFire);
+      // console.log('isEventInputFire', isEventInputFire);
       var tempIter = 0;
       var initEvInterval = setInterval(() => {
         if (tempIter < 30) {
@@ -719,6 +719,7 @@
         if (
           document.querySelector('.adyen-checkout__field--cardNumber iframe')
         ) {
+          console.log('events');
           clearInterval(initEvInterval);
           document
             .querySelector('.adyen-checkout__field--cardNumber iframe')
@@ -739,7 +740,6 @@
       }, 1000);
 
       document.addEventListener('click', function (e) {
-        console.log('e.target', e.target);
         if (
           e.target.classList.contains('_cardNumber') ||
           e.target.closest('.adyen-checkout__field--cardNumber')
@@ -801,7 +801,6 @@
         ).innerText;
       }
     }, 200);
-    console.log('initExp');
     if (document.querySelector('.billing-process__btn')) {
       document
         .querySelector('.billing-process__btn')
