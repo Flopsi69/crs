@@ -597,7 +597,7 @@
 
   /***  GaEvents ***/
   function gaEvent(action) {
-    console.log('action', action);
+    // console.log('action', action);
     if (!action) {
       action = '';
     }
@@ -708,38 +708,38 @@
       // console.log('isEventInputFire', isEventInputFire);
       isEventInputFire = true;
       // console.log('isEventInputFire', isEventInputFire);
-      var tempIter = 0;
-      var initEvInterval = setInterval(() => {
-        if (
-          document.querySelector('.adyen-checkout__field--cardNumber iframe')
-        ) {
-          clearInterval(initEvInterval);
-          setTimeout(() => {
-            document
-              .querySelector('.adyen-checkout__field--cardNumber iframe')
-              .addEventListener('click', function () {
-                gaEvent('Click on Card number input');
-              });
-            document
-              .querySelector('.adyen-checkout__field--expiryDate iframe')
-              .addEventListener('click', function () {
-                gaEvent('Click on Expiry date input');
-              });
-            document
-              .querySelector('.adyen-checkout__field__cvc iframe')
-              .addEventListener('click', function () {
-                gaEvent('Click on CVV input');
-              });
-          }, 1500);
-        }
+      // var tempIter = 0;
+      // var initEvInterval = setInterval(() => {
+      //   if (
+      //     document.querySelector('.adyen-checkout__field--cardNumber iframe')
+      //   ) {
+      //     clearInterval(initEvInterval);
+      //     setTimeout(() => {
+      //       document
+      //         .querySelector('.adyen-checkout__field--cardNumber iframe')
+      //         .addEventListener('click', function () {
+      //           gaEvent('Click on Card number input');
+      //         });
+      //       document
+      //         .querySelector('.adyen-checkout__field--expiryDate iframe')
+      //         .addEventListener('click', function () {
+      //           gaEvent('Click on Expiry date input');
+      //         });
+      //       document
+      //         .querySelector('.adyen-checkout__field__cvc iframe')
+      //         .addEventListener('click', function () {
+      //           gaEvent('Click on CVV input');
+      //         });
+      //     }, 1500);
+      //   }
 
-        if (tempIter < 30) {
-          tempIter++;
-        } else {
-          clearInterval(initEvInterval);
-          return false;
-        }
-      }, 1000);
+      //   if (tempIter < 30) {
+      //     tempIter++;
+      //   } else {
+      //     clearInterval(initEvInterval);
+      //     return false;
+      //   }
+      // }, 1000);
 
       document.addEventListener('click', function (e) {
         if (
