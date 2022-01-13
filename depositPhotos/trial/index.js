@@ -707,19 +707,19 @@
         console.log('e.target', e.target.name);
         if (
           e.target.classList.contains('_cardNumber') ||
-          e.target.classList.contains('adyen-checkout__field--cardNumber')
+          e.target.closest('.adyen-checkout__field--cardNumber')
         ) {
           gaEvent('Click on Card number input');
         }
         if (
           e.target.classList.contains('_masked-exp') ||
-          e.target.classList.contains('adyen-checkout__field--expiryDate')
+          e.target.closest('.adyen-checkout__field--expiryDate')
         ) {
           gaEvent('Click on Expiry date input');
         }
         if (
           e.target.classList.contains('_cvv') ||
-          e.target.classList.contains('adyen-checkout__field__cvc')
+          e.target.closest('.adyen-checkout__field__cvc')
         ) {
           gaEvent('Click on CVV input');
         }
