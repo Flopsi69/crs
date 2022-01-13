@@ -704,14 +704,57 @@
       isEventInputFire = true;
       console.log('isEventInputFire', isEventInputFire);
       document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('_cardNumber')) {
+        console.log('e.target', e.target.name);
+        if (
+          e.target.classList.contains('_cardNumber') ||
+          e.target.classList.contains('adyen-checkout__field--cardNumber')
+        ) {
           gaEvent('Click on Card number input');
         }
-        if (e.target.classList.contains('_masked-exp')) {
+        if (
+          e.target.classList.contains('_masked-exp') ||
+          e.target.classList.contains('adyen-checkout__field--expiryDate')
+        ) {
           gaEvent('Click on Expiry date input');
         }
-        if (e.target.classList.contains('_cvv')) {
+        if (
+          e.target.classList.contains('_cvv') ||
+          e.target.classList.contains('adyen-checkout__field__cvc')
+        ) {
           gaEvent('Click on CVV input');
+        }
+        if (
+          e.target.classList.contains('input') &&
+          e.target.name == 'firstName'
+        ) {
+          gaEvent('Click on First Name input');
+        }
+        if (
+          e.target.classList.contains('input') &&
+          e.target.name == 'lastName'
+        ) {
+          gaEvent('Click on Last Name input');
+        }
+        if (
+          e.target.classList.contains('input') &&
+          e.target.name == 'address'
+        ) {
+          gaEvent('Click on Street Address input');
+        }
+        if (e.target.classList.contains('input') && e.target.name == 'city') {
+          gaEvent('Click on City input');
+        }
+        if (e.target.classList.contains('input') && e.target.name == 'state') {
+          gaEvent('Click on State input');
+        }
+        if (e.target.classList.contains('input') && e.target.name == 'zip') {
+          gaEvent('Click on ZIP input');
+        }
+        if (
+          e.target.classList.contains('select') &&
+          e.target.name == 'country'
+        ) {
+          gaEvent('Click on Country input');
         }
       });
     }
