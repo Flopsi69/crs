@@ -710,16 +710,11 @@
       // console.log('isEventInputFire', isEventInputFire);
       var tempIter = 0;
       var initEvInterval = setInterval(() => {
-        if (tempIter < 30) {
-          tempIter++;
-        } else {
-          clearInterval(initEvInterval);
-          return false;
-        }
+        console.log('try');
         if (
           document.querySelector('.adyen-checkout__field--cardNumber iframe')
         ) {
-          console.log('events');
+          console.log('fire');
           clearInterval(initEvInterval);
           document
             .querySelector('.adyen-checkout__field--cardNumber iframe')
@@ -736,6 +731,13 @@
             .addEventListener('click', function () {
               gaEvent('Click on CVV input');
             });
+        }
+
+        if (tempIter < 30) {
+          tempIter++;
+        } else {
+          clearInterval(initEvInterval);
+          return false;
         }
       }, 1000);
 
