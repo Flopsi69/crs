@@ -351,6 +351,7 @@ function buildCards(list) {
 }
 
 function createCardEl(item, excludeList) {
+  console.log(item);
   const el = document.createElement('li');
   const isExludeItem = item.composition.tags.some((tag) => {
     return excludeList.includes(tag);
