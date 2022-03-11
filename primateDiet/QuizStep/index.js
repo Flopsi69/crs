@@ -378,10 +378,10 @@ function createCardEl(item, excludeList) {
         <button class='lav-card__choose'>
           <span class='lav-card__choose-default'><img src='${
             settings.dir
-          }/img/icon-plus.svg'> Choose</span>
+          }/img/icon-plus.svg'> WYBIERAM</span>
           <span class='lav-card__choose-active'><img src='${
             settings.dir
-          }/img/icon-check.svg'> Chosen</span>
+          }/img/icon-check.svg'> WYBRANY</span>
         </button>
       </div>
     </div>
