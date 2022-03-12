@@ -282,11 +282,13 @@ function init() {
     setTimeout(() => {
       init();
     }, 500);
+    return false;
   }
   console.log('init func');
   buildCards(menu[Object.keys(menu)[0]]);
   replaceHeader();
   replaceFooter();
+  window.scrollTo(0, 0);
 }
 
 function countExclude() {
