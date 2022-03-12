@@ -89,7 +89,6 @@ if (settings.observe) {
             .querySelector('.buttons-wrapper .col-ternary')
             .addEventListener('click', function (e) {
               if (!isPassed) {
-                console.log('click prevent');
                 e.preventDefault();
                 e.stopPropagation();
                 init();
@@ -278,13 +277,13 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 function init() {
+  console.log('init func');
   if (!menu) {
     setTimeout(() => {
       init();
     }, 500);
     return false;
   }
-  console.log('init func');
   buildCards(menu[Object.keys(menu)[0]]);
   replaceHeader();
   replaceFooter();
@@ -335,7 +334,6 @@ function countExclude() {
     }
   });
 
-  console.log(excludeList);
   return excludeList;
 }
 
@@ -358,7 +356,6 @@ function buildCards(list) {
 }
 
 function createCardEl(item, excludeList) {
-  console.log(item);
   const el = document.createElement('li');
   const isExludeItem = item.composition.tags.some((tag) => {
     return excludeList.includes(tag);
@@ -454,7 +451,6 @@ function replaceFooter() {
   });
   copyEl.querySelector('.btn.next').addEventListener('click', function (e) {
     e.preventDefault();
-    console.log('clickNext');
     isPassed = true;
     document.querySelector('.buttons-wrapper_original .btn.next').click();
     removeCopy();
