@@ -278,6 +278,11 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 function init() {
+  if (!menu) {
+    setTimeout(() => {
+      init();
+    }, 500);
+  }
   console.log('init func');
   buildCards(menu[Object.keys(menu)[0]]);
   replaceHeader();
