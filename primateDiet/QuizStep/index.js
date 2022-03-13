@@ -1,11 +1,11 @@
 console.log('initExp');
 gaEvent('loaded');
 
-document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('next')) {
-    gaEvent('Click on Lecimy Dalej (Go on)');
-  }
-});
+// document.addEventListener('click', function (e) {
+//   if (e.target.classList.contains('next')) {
+//     gaEvent('Click on Lecimy Dalej (Go on)');
+//   }
+// });
 
 /********* Settings **********/
 const settings = {
@@ -61,19 +61,6 @@ fetch('https://primate.diet/api/v1/content-menu')
   .then((res) => {
     menu = res.menu;
   });
-
-// if (document.querySelector('.excluder')) {
-//   document
-//     .querySelector('.buttons-wrapper .col-ternary')
-//     .addEventListener('click', function (e) {
-//       if (!isPassed) {
-//         console.log('click prevent');
-//         e.preventDefault();
-//         e.stopPropagation();
-//         init();
-//       }
-//     });
-// }
 
 // Observe
 if (settings.observe) {
@@ -456,6 +443,7 @@ function replaceFooter() {
   });
   copyEl.querySelector('.btn.next').addEventListener('click', function (e) {
     e.preventDefault();
+    gaEvent('Click on Lecimy Dalej (Go on)');
     isPassed = true;
     document.querySelector('.buttons-wrapper_original .btn.next').click();
     removeCopy();
