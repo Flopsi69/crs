@@ -1,4 +1,11 @@
 console.log('initExp');
+gaEvent('loaded');
+
+document.addEventListener('click', function (e) {
+  if (e.target.classList.contains('next')) {
+    gaEvent('Click on Lecimy Dalej (Go on)');
+  }
+});
 
 /********* Settings **********/
 const settings = {
@@ -16,19 +23,14 @@ if (settings.hj) {
         function () {
           (h.hj.q = h.hj.q || []).push(arguments);
         };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
+      h._hjSettings = { hjid: 1350427, hjsv: 6 };
       a = o.getElementsByTagName('head')[0];
       r = o.createElement('script');
       r.async = 1;
       r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
+    hj('event', 'menu_flow');
   } catch (e) {}
 }
 
@@ -39,8 +41,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Menu flow',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -405,6 +407,9 @@ function createCardEl(item, excludeList) {
 
   el.querySelector('.lav-card__choose').addEventListener('click', function (e) {
     e.preventDefault();
+    if (!this.closest('.lav-card').classList.contains('lav-card_active')) {
+      gaEvent('Click on Wybieram (Choose)');
+    }
     this.closest('.lav-card').classList.toggle('lav-card_active');
     this.classList.toggle('lav-card__choose_active');
   });
