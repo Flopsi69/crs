@@ -10,7 +10,7 @@ gaEvent('loaded');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/primateDiet/QuizStep',
-  hj: false,
+  hj: true,
   observe: true,
 };
 
