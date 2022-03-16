@@ -69,6 +69,13 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .woocommerce ul.products li.product a.btn {
+    padding: 14px;
+    display: block;
+  }
+  #cms-theme.woocommerce .products, #cms-theme.woocommerce-page .products {
+    padding: 0 24px;
+  }
   .cms-product-meta, .left-sidebar-wrap {
     display: none;
   }
@@ -216,20 +223,11 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 init();
-var cards;
+var cards = [];
 function init() {
   console.log('init');
   addTitle();
   addDistances();
-  fetch(
-    'https://mammutmarsch.de/wp-admin/admin-ajax.php?action=store_search&lat=52.52000659999999&lng=13.404954&max_results=200&search_radius=1000'
-  )
-    .then((data) => data.json())
-    .then((res) => {
-      cards = res;
-      buildCards(cards);
-      console.log(cards);
-    });
 }
 
 function addDistances() {
@@ -248,6 +246,10 @@ function addDistances() {
   `;
 
   document.querySelector('#masthead').insertAdjacentHTML('afterend', el);
+
+  document
+    .querySelector('.products')
+    .insertAdjacentHTML('beforebegin', '<div class="lav-products"></div>');
 
   document.querySelectorAll('.lav-dis__item').forEach((item) => {
     item.addEventListener('click', () => {
@@ -278,6 +280,37 @@ function addDistances() {
       }
 
       this.classList.toggle('active');
+
+      if (this.classList.contains('active')) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (pos) {
+              var lat = pos.coords.latitude;
+              var lng = pos.coords.longitude;
+
+              fetch(
+                `https://mammutmarsch.de/wp-admin/admin-ajax.php?action=store_search&lat=${lat}&lng=${lng}&max_results=200&search_radius=200`
+              )
+                .then((data) => data.json())
+                .then((res) => {
+                  console.log(res);
+                  if (res) {
+                    cards = res;
+                  }
+                  filtersItems();
+                });
+            },
+            function (error) {
+              alert('Refresh Page');
+            }
+          );
+        } else {
+          alert(
+            'It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.'
+          );
+        }
+      }
+
       filtersItems();
     });
 
@@ -313,24 +346,36 @@ function addTitle() {
 }
 
 function buildCards(cards) {
-  document.querySelector('.products').innerHTML = '';
+  document.querySelector('.lav-products').innerHTML = '';
 
   cards.forEach((card) => {
+    let maxPrice = 0;
+    let minPrice = 100000;
+    for (let key in card.prices) {
+      if (card.prices[key]['price_num'] > maxPrice) {
+        maxPrice = card.prices[key]['price_num'];
+      }
+      if (card.prices[key]['price_num'] < minPrice) {
+        minPrice = card.prices[key]['price_num'];
+      }
+    }
     const cardEl = `
       <div class='lav-card' data-id='${card.ng_event_id}'>
         <a href='${card.ng_event_permalink}' class='lav-card__image'>
-          <img src='https://mammutmarsch.de/wp-content/uploads/2019/12/münchen-300x300.jpg' />
+          <img src='${card.event_image}' />
         </a>
         <div class='lav-card__info'>
           <a href='${card.ng_event_permalink}' class='lav-card__title'>${card.ng_event_title}</a>
           <div class='lav-card__date'>${card.ng_event_date}</div>
-          <div class='lav-card__price'>47,50 - 47,50</div>
+          <div class='lav-card__price'>${minPrice}&euro; - ${maxPrice}&euro;</div>
         </div>
         <a href='${card.ng_event_permalink}' class='lav-card__btn'>ANMELDEN</a>
       </div>
     `;
 
-    document.querySelector('.products').insertAdjacentHTML('beforeend', cardEl);
+    document
+      .querySelector('.lav-products')
+      .insertAdjacentHTML('beforeend', cardEl);
   });
 }
 
@@ -340,15 +385,38 @@ function filtersItems() {
   var filteredCards = cards;
 
   if (document.querySelector('.lav-dis__item.active')) {
-    filteredCards = cards.filter((item) =>
-      item.ng_event_distance.includes(
-        document.querySelector('.lav-dis__item.active').dataset.distance
-      )
-    );
+    document.querySelectorAll('.products .product').forEach(function (item) {
+      if (
+        !item
+          .querySelector('h3')
+          .innerText.includes(
+            document.querySelector('.lav-dis__item.active').dataset.distance
+          )
+      ) {
+        item.style.display = 'none';
+      } else {
+        item.style.display = 'block';
+      }
+    });
+    // filteredCards = cards.filter((item) =>
+    //   item.ng_event_distance.includes(
+    //     document.querySelector('.lav-dis__item.active').dataset.distance
+    //   )
+    // );
+    // document.querySelector('.lav-products').style.display = 'block';
+    // document.querySelector('.products').style.display = 'none';
+  } else {
+    document.querySelectorAll('.products .product').forEach(function (item) {
+      item.style.display = 'block';
+    });
   }
 
   if (document.querySelector('.lav-dis__nearest.active')) {
-    console.log('test');
+    document.querySelector('.lav-products').style.display = 'block';
+    document.querySelector('.products').style.display = 'none';
+  } else {
+    document.querySelector('.lav-products').style.display = 'none';
+    document.querySelector('.products').style.display = 'block';
   }
 
   console.log(filteredCards);
