@@ -7,6 +7,11 @@ const settings = {
   observe: false,
 };
 
+let script = document.createElement('script');
+script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
+script.async = false;
+document.head.appendChild(script);
+
 //Hotjar
 if (settings.hj) {
   try {
@@ -154,7 +159,7 @@ const styles = `
   }
   .lav-dis__nearest.active {
     color: #FEFB0F;
-    font-weigth: bold;
+    font-weight: bold;
     border-color: #FEFB0F; 
   }
   .lav-title {
