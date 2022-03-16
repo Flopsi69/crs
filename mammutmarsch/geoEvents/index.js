@@ -306,7 +306,7 @@ function addDistances() {
                 });
             },
             function (error) {
-              alert('Refresh Page');
+              alert('Please enable location and refresh page!');
             }
           );
         } else {
