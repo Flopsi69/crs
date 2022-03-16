@@ -282,12 +282,20 @@ function init() {
 function countExclude() {
   let excludeList = [];
   document.querySelectorAll('.exclusion-item.active').forEach(function (item) {
-    switch (item.innerText) {
+    switch (item.innerText.trim()) {
       case 'Nie jem mięsa':
-        excludeList = [...excludeList, 'M', 'DR', 'BR', 'WW', 'WP', 'CL', 'KN'];
+        excludeList = excludeList.concat([
+          'M',
+          'DR',
+          'BR',
+          'WW',
+          'WP',
+          'CL',
+          'KN',
+        ]);
         break;
       case 'Nie jem ryb':
-        excludeList = [...excludeList, 'R', 'SK', 'MC'];
+        excludeList = excludeList.concat(['R', 'SK', 'MC']);
         break;
       case 'Nie jem produktów odzwierzęcych':
         excludeList = [
@@ -309,15 +317,14 @@ function countExclude() {
         ];
         break;
       case 'Nie jem produktów mlecznych':
-        excludeList = [...excludeList, 'N', 'L', 'ML'];
+        excludeList = excludeList.concat(['N', 'L', 'ML']);
         break;
       case 'Ograniczam gluten':
-        excludeList = [...excludeList, 'G'];
+        excludeList = excludeList.concat(['G']);
         break;
       case 'Nie jem laktozy':
-        excludeList = [...excludeList, 'L', 'ML'];
+        excludeList = excludeList.concat(['L', 'ML']);
         break;
-
       default:
         break;
     }
