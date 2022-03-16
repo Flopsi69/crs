@@ -323,6 +323,8 @@ function countExclude() {
     }
   });
 
+  console.log('excludeList', excludeList);
+
   return excludeList;
 }
 
