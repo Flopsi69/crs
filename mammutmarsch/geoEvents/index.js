@@ -254,7 +254,7 @@ function addDistances() {
 
   document.querySelectorAll('.lav-dis__item').forEach((item) => {
     item.addEventListener('click', () => {
-      gaEvent('Click on ' + item.innerText);
+      gaEvent('Click on ' + item.dataset.distance + ' km');
 
       if (
         document.querySelector('.lav-dis__item.active') &&
