@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/mammutmarsch/geoEvents/',
-  hj: false,
+  hj: true,
   observe: false,
 };
 
@@ -21,19 +21,14 @@ if (settings.hj) {
         function () {
           (h.hj.q = h.hj.q || []).push(arguments);
         };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
+      h._hjSettings = { hjid: 1191175, hjsv: 6 };
       a = o.getElementsByTagName('head')[0];
       r = o.createElement('script');
       r.async = 1;
       r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
       a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
+    hj('event', 'listing_filtering');
   } catch (e) {}
 }
 
@@ -44,8 +39,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Event listing filtering',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -230,6 +225,7 @@ document.body.appendChild(stylesEl);
 init();
 var cards = [];
 function init() {
+  gaEvent('loaded');
   console.log('init');
   addTitle();
   addDistances();
@@ -258,6 +254,7 @@ function addDistances() {
 
   document.querySelectorAll('.lav-dis__item').forEach((item) => {
     item.addEventListener('click', () => {
+      gaEvent('Click on ' + item.innerHTML);
       if (
         document.querySelector('.lav-dis__item.active') &&
         !item.classList.contains('active')
@@ -278,6 +275,7 @@ function addDistances() {
   document
     .querySelector('.lav-dis__nearest')
     .addEventListener('click', function () {
+      gaEvent('Nearest events link click');
       if (document.querySelector('.lav-dis__item.active')) {
         document
           .querySelector('.lav-dis__item.active')
