@@ -114,6 +114,11 @@ const styles = `
     margin-right: -24px;
     transition: 0.3s;
   }
+  @media (max-height: 400px) {
+    .lav-dis__item {
+      padding: 12px 0;
+    }
+  }
   .lav-dis_fixed .lav-dis__list {
     padding: 14px 0;
   }
@@ -124,6 +129,11 @@ const styles = `
     padding: 17px 14px;
     transition: 0.3s;
     line-height: 1;
+  }
+  @media (max-height: 400px) {
+    .lav-dis__item {
+      padding: 12px;
+    }
   }
   .lav-dis_fixed .lav-dis__item{
     padding: 9px 10px 8px;
@@ -184,6 +194,11 @@ const styles = `
     display: block;
     color: #010101;
   }
+  @media (max-height: 400px) {
+    .lav-dis__title {
+      padding-top: 10px;
+    }
+  }
   .lav-card__date {
     margin: 10px 0;
     color: #47545B;
@@ -208,6 +223,11 @@ const styles = `
   }
   .lav-card__btn:hover {
     opacity: 0.7;
+  }
+  @media (max-height: 400px) {
+    .lav-dis__title {
+      padding-top: 10px;
+    }
   }
 `;
 
