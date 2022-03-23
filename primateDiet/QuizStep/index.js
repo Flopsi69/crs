@@ -14,25 +14,7 @@ const settings = {
   observe: true,
 };
 
-//Hotjar
-if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 1350427, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    hj('event', 'menu_flow');
-  } catch (e) {}
-}
+var isHjInit = false;
 
 // Alalytic
 function gaEvent(action, label) {
@@ -74,6 +56,31 @@ if (settings.observe) {
           node.classList.contains('excluder') ||
           node.querySelector('.excluder')
         ) {
+          if (!isHjInit && settings.hj) {
+            isHjInit = true;
+            try {
+              (function (h, o, t, j, a, r) {
+                h.hj =
+                  h.hj ||
+                  function () {
+                    (h.hj.q = h.hj.q || []).push(arguments);
+                  };
+                h._hjSettings = { hjid: 1350427, hjsv: 6 };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                a.appendChild(r);
+              })(
+                window,
+                document,
+                'https://static.hotjar.com/c/hotjar-',
+                '.js?sv='
+              );
+              hj('event', 'menu_flow');
+            } catch (e) {}
+          }
+
           document
             .querySelector('.buttons-wrapper .col-ternary')
             .addEventListener('click', function (e) {
