@@ -166,12 +166,13 @@ const styles = `
     padding: 17px 0;
     background: #fff;
     border-bottom: 1px solid  rgb(90 115 134 / 20%)
+    color: #183B56;
   }
   .lav-header__inner {
     padding-left: 50px;
     padding-right: 50px;
     display: flex;
-    align-items; center;
+    align-items: center;
     justify-content: space-between;
   }
   .lav-header__logo {
@@ -179,6 +180,17 @@ const styles = `
   }
   .lav-header__logo img {
     max-width: 145px;
+  }
+  .lav-header__descr {
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+  }
+  .lav-price_old {
+    text-decoration: line-through;
+  }
+  .lav-mark {
+    font-weight: 900;
   }
   .lav-intro {
     text-align: center;
@@ -451,7 +463,7 @@ const styles = `
   .lav-total__chat {
     line-height: 0;
     margin-top: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
   }
   .lav-faq {
     color: #183B56;
@@ -478,6 +490,7 @@ const styles = `
     box-shadow: 0px 0.93065px 2.79195px rgba(24, 59, 86, 0.04), 0px 11.1678px 46.5325px rgba(63, 87, 180, 0.09);
     border-radius: 10px;
     padding: 25px 30px;
+    cursor: pointer;
   }
   .lav-faq__item + .lav-faq__item {
     margin-top: 20px;
@@ -490,10 +503,14 @@ const styles = `
     padding-right: 25px;
   }
   .lav-faq__body {
+    display: none;
     padding-top: 15px;
     font-size: 16px;
     line-height: 28px;
     color: #5A7386;
+  }
+  .lav-faq__item_active .lav-faq__body {
+    display: block;
   }
   .lav-faq__head:before {
     content: '';
@@ -505,6 +522,10 @@ const styles = `
     height: 18px;
     background: url('${settings.dir}/img/faq-icon.svg') center no-repeat;
     background-size: contain;
+    transition: 0.3s;
+  }
+  .lav-faq__item_active .lav-faq__head:before {
+    transform: translateY(-50%) rotate(45deg);
   }
   .lav-footer {
     background: #232323;
@@ -520,7 +541,7 @@ const newPage = `
   <div class='lav-header'>
     <div class='lav-header__inner'>
       <div class='lav-header__logo'>
-        <img src='https://s3.amazonaws.com/samcart-foundation-prod/marketplace-4554/assets/imEWEXr7ri3qUcGA.png'>
+        <img src='${settings.dir}/img/logo.png'>
       </div>
       <div class='lav-header__info'>
         <div class='lav-header__descr'>
@@ -751,6 +772,11 @@ const newPage = `
       </div>
     </div>
 
+    <div class='lav-video'>
+      <div class='lav-container'>
+      </div>
+    </div>
+
     <div class='lav-section lav-faq'>
       <div class='lav-container'>
         <div class='lav-faq__title'>You might be thinking...</div>
@@ -818,4 +844,16 @@ init();
 function init() {
   console.log('init');
   document.querySelector('header').insertAdjacentHTML('afterend', newPage);
+  for (let item of document.querySelectorAll('.lav-faq__item')) {
+    item.addEventListener('click', function () {
+      item.classList.toggle('lav-faq__item_active');
+    });
+  }
+
+  for (let item of document.querySelectorAll('.lav-btn_blue')) {
+    item.addEventListener('click', function () {
+      location.href =
+        'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+    });
+  }
 }
