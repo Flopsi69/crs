@@ -101,6 +101,9 @@ const styles = `
     font-style: normal;
   }
 
+  .row.section {
+    display: none;
+  }
   .lav-white-label {
     background: #FFFFFF;
     border-radius: 10px;
@@ -359,6 +362,7 @@ const styles = `
   }
   .lav-grid {
     color: #183B56; 
+    padding-bottom: 110px;
   }
   .lav-grid__row {
     display: flex;
@@ -416,6 +420,100 @@ const styles = `
   .lav-grid__btn-wrap .lav-grid__btn {
     margin-top: 0;
   }
+  .lav-total {
+    color: #183B56;
+    padding: 75px 0;
+    background: #fff;
+    text-align: center;
+  }
+  .lav-total__title {
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 100px;
+    text-align: center;
+  }
+  .lav-total__image {
+    margin-bottom: 20px;
+    line-height: 0;
+  }
+  .lav-total__subtitle {
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 60px;
+    margin-bottom: 22px;
+  }
+  .lav-total__caption {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 38px;
+    color: #5A7386;
+  }
+  .lav-total__chat {
+    line-height: 0;
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+  .lav-faq {
+    color: #183B56;
+    padding: 100px 0;
+  }
+  .lav-faq__title {
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 100px;
+    text-align: center;
+  }
+  .lav-faq__btn-wrap {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .lav-faq__list {
+    margin-top: 50px;
+    max-width: 730px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lav-faq__item {
+    background: #FFFFFF;
+    box-shadow: 0px 0.93065px 2.79195px rgba(24, 59, 86, 0.04), 0px 11.1678px 46.5325px rgba(63, 87, 180, 0.09);
+    border-radius: 10px;
+    padding: 25px 30px;
+  }
+  .lav-faq__item + .lav-faq__item {
+    margin-top: 20px;
+  }
+  .lav-faq__head {
+    position: relative;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    padding-right: 25px;
+  }
+  .lav-faq__body {
+    padding-top: 15px;
+    font-size: 16px;
+    line-height: 28px;
+    color: #5A7386;
+  }
+  .lav-faq__head:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    background: url('${settings.dir}/img/faq-icon.svg') center no-repeat;
+    background-size: contain;
+  }
+  .lav-footer {
+    background: #232323;
+  }
+  .lav-footer {}
+  .lav-footer {}
+  .lav-footer {}
+  .lav-footer {}
+  .lav-footer {}
 `;
 
 const newPage = `
@@ -643,8 +741,8 @@ const newPage = `
         <div class='lav-total__caption'>
           I totally understand the skepticism. There are a lot of fakes out there, but there are 24,812 real people inside this community whose lives have been changed by this program. Here are just a few...
         </div>
-        <div class='lav-total__caption'>
-          <img src='${settings.dir}/img/grid10.png'>
+        <div class='lav-total__chat'>
+          <img src='${settings.dir}/img/total-chat.png'>
         </div>
 
         <div class='lav-total__btn-wrap'>
@@ -652,9 +750,59 @@ const newPage = `
         </div>
       </div>
     </div>
-    <div class='lav-section'>
+
+    <div class='lav-section lav-faq'>
       <div class='lav-container'>
-      
+        <div class='lav-faq__title'>You might be thinking...</div>
+        <div class='lav-faq__list'>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>Am I locked into a subscription?</div>
+            <div class='lav-faq__body'>Absolutely not! You're never locked into any subscription or long-term contract with SamCart.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>What if I don't have a product?</div>
+            <div class='lav-faq__body'>That's totally fine! We'll walk you through how to create your first product in a matter of days with just $100.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>What types of products does this work for?</div>
+            <div class='lav-faq__body'>SamCart's pages support and work for any type of product you want to sell. You can sell digital products like ebooks and online courses, physical products like t-shirts or skateboards, and even services like custom web design or coaching. You can charge 1-time payments...recurring subscriptions...fixed payment plans...free trials...paid trials...and anything in between.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>How long does this 40% discount last?</div>
+            <div class='lav-faq__body'>This discount is only valid for today. After that, you'll have to pay $588 per year for SamCart...and you won't get any of these bonuses. So act now!</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>Do I need any other tools?</div>
+            <div class='lav-faq__body'>The good news about this approach is that you only need a couple things. And I’m giving you all of those things, so no...you don’t need anything else. There are always other tools that help as you grow...and I’ll show you my favorite tools for getting critical tasks done...but there is not going to be some other big investment needed to make this work...so don’t worry!</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>Is there a payment plan?</div>
+            <div class='lav-faq__body'>No there is not a payment plan right now since it wouldn’t be fair to the other people paying for SamCart...plus the price is already so low, at just $349. But if you want to break it up into payments, just use a credit card or use PayPal Credit on this page.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>What happens my SamCart yearly subscription renews?</div>
+            <div class='lav-faq__body'>After your first year, if you want to keep using SamCart, you can continue using it and you will be grandfathered into this 40% discounted rate for as long as you’re a customer. You can always change to monthly billing, or upgrade to another plan if you want...it’s totally up to you...since we never force you into long term contracts or commitments.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>Will this work with my current website?</div>
+            <div class='lav-faq__body'>If you already have a website or blog, this is the perfect addition to that site. You can create your page with SamCart and link to it from your blog sidebar, or the navigation at the top of bottom of your site, or even from each individual blog post...so that people can easily find your product and buy it. You can even make your page show up on the same URL so people don’t get confused.</div>
+          </div>
+          <div class='lav-faq__item'>
+            <div class='lav-faq__head'>Can I sell things other than digital products?</div>
+            <div class='lav-faq__body'>Totally. We have tens of thousands of business selling skateboards, custom web design, coaching programs, live events, tshirts, and the list goes on and on. SamCart supports absolutely any type of product, and the 1 Page Masterclass works no matter what you’re selling...I just highly recommend that you start with digital products if you’re not sure where to start...because that’s the easiest way to start making real money online...but in the end, it’s up to you.</div>
+          </div>
+        </div>
+        <div class='lav-faq__btn-wrap'>
+          <button class='lav-btn lav-btn_blue lav-faq__btn'>Start earning now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='lav-footer'>
+    <div class='lav-container'>
+      <div class='lav-faq__title'>You might be thinking...</div>
+      <div class='lav-faq__btn-wrap'>
+        <button class='lav-btn lav-btn_blue lav-faq__btn'>Start earning now</button>
       </div>
     </div>
   </div>
@@ -668,6 +816,6 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
-  document.querySelector('header').insertAdjacentHTML('afterend', newPage);
   console.log('init');
+  document.querySelector('header').insertAdjacentHTML('afterend', newPage);
 }
