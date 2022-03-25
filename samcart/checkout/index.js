@@ -359,6 +359,7 @@ const styles = `
   }
   .lav-gifts__img img {
     max-width: 733px;
+    width: 100%;
   }
   .lav-master {
     text-align: center;
@@ -587,6 +588,7 @@ const styles = `
       width: 26px;
       height: 26px;
       right: 0;
+      top: -3.5px;
       transform: translateY(-100%);
     }
     .lav-intro__caption {
@@ -594,12 +596,149 @@ const styles = `
       font-size: 14px;
       line-height: 20px;
     }
+    .lav-intro__caption br {
+      display: none;
+    }
     .lav-intro__image {
-      margin-top: 40px;
-      margin-bottom: 50px;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
     .lav-container {
       max-width: 500px;
+    }
+    .lav-dis__caption {
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .lav-dis {
+      padding: 30px 0 40px;
+    }
+    .lav-dis__title {
+      font-size: 18px;
+      line-height: 122.11%;
+    }
+    .lav-dis__title span {
+      display: block;
+      font-weibht: 900;
+    }
+    .lav-dis__list {
+      display: block;
+      margin-top: 40px;
+    }
+    .lav-dis__col {
+      max-width: 100%!important;
+    }
+    .lav-dis__col + .lav-dis__col {
+      margin-top: 20px;
+    }
+    .lav-dis__item + .lav-dis__item {
+      margin-top: 20px;
+    }
+    .lav-dis__item {
+      font-size: 14px;
+      line-height: 17px;
+    }
+    .lav-tick {
+      padding-left: 25px;
+    }
+    .lav-tick:before {
+      width: 15px;
+      height: 15px;
+      top: 0;
+    }
+    .lav-gifts {
+      padding-top: 100px;
+      padding-bottom: 80px;
+    }
+    .lav-gifts__title {
+      font-size: 36px;
+      line-height: 45px;
+      font-weight: 900;
+    }
+    .lav-gifts__caption {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-gifts__img {
+      margin-bottom: 40px;
+      padding: 20px 50px;
+    }
+    .lav-master__title {
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+    .lav-master__list {
+      margin-top: 30px;
+      display: block;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-master__item + .lav-master__item {
+      margin-top: 20px;
+    }
+    .lav-master__col + .lav-master__col {
+      margin-top: 20px;
+    }
+    .lav-master__label {
+      margin-bottom: 30px;
+    }
+    .lav-white-label {
+      font-size: 14px;
+      line-height: 17px
+    }
+    .lav-grid {
+      text-align: center;
+    }
+    .lav-grid__row {
+      flex-flow: column-reverse;
+    }
+    .lav-grid__row:nth-child(even) {
+      flex-flow: column-reverse;
+    }
+    .lav-grid__image {
+      margin-bottom: 15px;
+    }
+    .lav-grid__info {
+      max-width: 100%;
+    }
+    .lav-grid__note, .lav-grid__btn {
+      margin-top: 30px;
+    }
+    .lav-grid__title {
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 31px;
+      margin-bottom: 20px;
+    }
+    .lav-grid__descr {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-grid__row + .lav-grid__row {
+      margin-top: 80px;
+    }
+    .lav-grid__row:nth-child(8) .lav-grid__image img {
+      padding-left: 30px;
+    }
+    .lav-grid__btn-wrap {
+      margin-top: 30px;
+    }
+    .lav-total {
+      padding: 40px 0;
+    }
+    .lav-total__title {
+      font-size: 36px;
+      line-height: 45px;
+    }
+    .lav-total__image {
+      margin-top: 10px;
+      margin-bottom: 45px;
+    }
+    .lav-total__subtitle {
+
     }
   }
 `;
@@ -828,7 +967,8 @@ const newPage = `
       <div class='lav-container'>
         <div class='lav-total__title'>A total value of over $15,656!</div>
         <div class='lav-total__image'>
-          <img src='${settings.dir}/img/total-image.png'>
+          <img class='lav-desk' src='${settings.dir}/img/total-image.png'>
+          <img class='lav-mob' src='${settings.dir}/img/total-image-mob.png'>
         </div>
         <div class='lav-total__subtitle'>"How do I know this is for real?"</div>
         <div class='lav-total__caption'>
