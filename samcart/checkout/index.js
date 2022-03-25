@@ -632,9 +632,24 @@ const newPage = `
         </div>
       </div>
     </div>
-    <div class='lav-section'>
+
+    <div class='lav-section lav-total'>
       <div class='lav-container'>
-      
+        <div class='lav-total__title'>A total value of over $15,656!</div>
+        <div class='lav-total__image'>
+          <img src='${settings.dir}/img/total-image.png'>
+        </div>
+        <div class='lav-total__subtitle'>"How do I know this is for real?"</div>
+        <div class='lav-total__caption'>
+          I totally understand the skepticism. There are a lot of fakes out there, but there are 24,812 real people inside this community whose lives have been changed by this program. Here are just a few...
+        </div>
+        <div class='lav-total__caption'>
+          <img src='${settings.dir}/img/grid10.png'>
+        </div>
+
+        <div class='lav-total__btn-wrap'>
+          <button class='lav-btn lav-btn_blue lav-total__btn'>Start earning now</button>
+        </div>
       </div>
     </div>
     <div class='lav-section'>
