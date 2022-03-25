@@ -69,12 +69,36 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Bold.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-black.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
   header {
     display: none;
   }
   body {
     padding-top: 80px;
     background: #F7FAFD;
+    font-family: "Gilroy";
   }
   .lav-container {
     padding: 0 15px;
@@ -135,7 +159,7 @@ const styles = `
     color: #183B56;
     background: url('${settings.dir}/img/intro-lines.png') center no-repeat;
     background-size: 100% auto;
-    padding: 60px 0 100px;
+    padding: 50px 0 100px;
   }
   .lav-intro__congrate {
     font-weight: 600;
@@ -157,6 +181,20 @@ const styles = `
   .lav-intro__image {
     line-height: 0;
   }
+  .lav-tick {
+    position: relative;
+    padding-left: 49px;
+  }
+  .lav-tick:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 29px;
+    height: 29px;
+    background: url('${settings.dir}/img/icon-tick.svg') center no-repeat;
+    background-size: contain;
+  }
   .lav-intro__btn {
   }
   .lav-intro {
@@ -165,7 +203,7 @@ const styles = `
   .lav-dis {
     background: #fff;
     padding-top: 56px;
-    padding-bottom: 42px;
+    padding-bottom: 50px;
     text-align: center;
     color: #183B56;
   }
@@ -191,16 +229,23 @@ const styles = `
   .lav-dis__col {
     padding: 0 15px;
     text-align: left;
+    max-width: 355px;
+  }
+  .lav-dis__col:first-child {
+    max-width: 320px;
+  }
+  .lav-dis__col:last-child {
+    max-width: 275px;
   }
   .lav-dis__item {
     position: relative;
     font-weight: 400;
     font-size: 18px;
-    line-height: 21px;
+    line-height: 29px;
     color: #5F7384;
   }
   .lav-dis__item + .lav-dis__item {
-    margin-top: 25px;
+    margin-top: 29px;
   }
 `;
 
