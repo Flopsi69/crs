@@ -142,6 +142,11 @@ const styles = `
     line-height: 17px;
     letter-spacing: -0.01em;
     color: #183B56;
+    transition: 0.3s;
+  }
+  .lav-btn_trans:hover {
+    color: #fff;
+    background: #183B56;
   }
   .lav-btn_blue {
     background: #183B56;
@@ -165,7 +170,7 @@ const styles = `
     z-index: 100;
     padding: 17px 0;
     background: #fff;
-    border-bottom: 1px solid  rgb(90 115 134 / 20%)
+    border-bottom: 1px solid  rgb(90 115 134 / 20%);
     color: #183B56;
   }
   .lav-header__inner {
@@ -545,7 +550,7 @@ const newPage = `
       </div>
       <div class='lav-header__info'>
         <div class='lav-header__descr'>
-          <span class='mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='mark'>$349.00</span>
+          <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark'>$349.00</span>
         </div>
         <div class='lav-header__paypal'></div>
         <div class='lav-header__card'></div>
