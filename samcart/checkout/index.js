@@ -180,16 +180,35 @@ const styles = `
     align-items: center;
     justify-content: space-between;
   }
+  .lav-header__btn {
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .lav-header__btn:hover {
+    opacity: 0.5;
+  }
+  .lav-header__btn img {
+    max-width: 147px;
+    cursor: pointer;
+  }
+  .lav-header__btn + .lav-header__btn {
+    margin-left: 13px;
+  }
   .lav-header__logo {
     line-height: 0;
   }
   .lav-header__logo img {
     max-width: 145px;
   }
+  .lav-header__info {
+    display: flex;
+    align-items: center;
+  }
   .lav-header__descr {
     font-size: 12px;
     line-height: 22px;
     letter-spacing: 0.05em;
+    margin-right: 30px;
   }
   .lav-price_old {
     text-decoration: line-through;
@@ -540,6 +559,49 @@ const styles = `
   .lav-footer {}
   .lav-footer {}
   .lav-footer {}
+  .lav-mob {
+    display: none;
+  }
+  @media (max-width: 1000px) {
+    .lav-desk {
+      display: none;
+    }
+    .lav-mob {
+      display: block;
+    }
+    .lav-intro {
+      padding-top: 60px;
+      padding-bottom: 80px;
+      background: url(${settings.dir}/img/intro-lines-mob.png) center no-repeat;
+      background-size: 100% auto;
+    }
+    .lav-intro__congrate {
+      font-size: 24px;
+      line-height: 29px;
+    }
+    .lav-intro__mark {
+      font-size: 45px;
+      line-height: 56px;
+    }
+    .lav-intro__mark:before {
+      width: 26px;
+      height: 26px;
+      right: 0;
+      transform: translateY(-100%);
+    }
+    .lav-intro__caption {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-intro__image {
+      margin-top: 40px;
+      margin-bottom: 50px;
+    }
+    .lav-container {
+      max-width: 500px;
+    }
+  }
 `;
 
 const newPage = `
@@ -552,10 +614,14 @@ const newPage = `
         <div class='lav-header__descr'>
           <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark'>$349.00</span>
         </div>
-        <div class='lav-header__paypal'></div>
-        <div class='lav-header__card'></div>
+        <div class='lav-header__btn lav-header__paypal'>
+          <img src='${settings.dir}/img/btn-paypal.png'>
+        </div>
+        <div class='lav-header__btn lav-header__card lav-checkout'>
+          <img src='${settings.dir}/img/btn-card.png'>
+        </div>
       </div>
-      <button class='lav-btn lav-btn_trans lav-header__cta'>Start earning now</button>
+      <button class='lav-btn lav-btn_trans lav-checkout lav-header__cta'>Start earning now</button>
     </div>
   </div>
 
@@ -567,11 +633,12 @@ const newPage = `
         <div class='lav-intro__caption'>You're about to get exclusive access to a proven system for launching your own 6-figure <br> online business with just 1 simple page!</div>
 
         <div class='lav-intro__image'>
-          <img src='${settings.dir}/img/intro.png'>
+          <img class='lav-desk' src='${settings.dir}/img/intro.png'>
+          <img class='lav-mob' src='${settings.dir}/img/intro-mob.png'>
         </div>
 
         <div class='lav-intro__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-intro__btn'>Start earning now</button>
+          <button class='lav-btn lav-btn_blue lav-checkout lav-intro__btn'>Start earning now</button>
         </div>
       </div>
     </div>
@@ -626,7 +693,7 @@ const newPage = `
         </div>
         
         <div class='lav-gifts__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-gifts__btn'>Start earning now</button>
+          <button class='lav-btn lav-btn_blue lav-checkout lav-gifts__btn'>Start earning now</button>
         </div>
       </div>
     </div>
@@ -649,7 +716,7 @@ const newPage = `
             <div class='lav-grid__title'>Traffic Tactics<span>™</span></div>
             <div class='lav-grid__descr'>Discover how to get unlimited traffic from Facebook, YouTube, Instagram, Podcasting, SEO, Content Marketing, Facebook Ads, YouTube Ads, Google Ads, and the list goes on and on.</div>
             <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
-            <button class='lav-btn lav-btn_blue lav-grid__btn'>Start earning now</button>
+            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
           </div>
           <div class='lav-grid__image'>
             <img src='${settings.dir}/img/grid2.png'>
@@ -683,7 +750,7 @@ const newPage = `
             <div class='lav-grid__title'>Product Creation Masterclass<span>™</span></div>
             <div class='lav-grid__descr'>Discover how to quickly create your first product in less than 72 hours. Get our simple frameworks for deciding on your niche, your product, the name, the price and everything else so you don't have to worry about doing any of it yourself!</div>
             <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value- Yours FREE!</div>
-            <button class='lav-btn lav-btn_blue lav-grid__btn'>Start earning now</button>
+            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
           </div>
           <div class='lav-grid__image'>
             <img src='${settings.dir}/img/grid5.png'>
@@ -718,7 +785,7 @@ const newPage = `
             <div class='lav-grid__title'>1 Page Wednesday<span>™</span> Calls</div>
             <div class='lav-grid__descr'>Watch me take a page that’s underperforming and tweak it so that it starts turning visitors into paying customers on autopilot.</div>
             <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value - Yours FREE!</div>
-            <button class='lav-btn lav-btn_blue lav-grid__btn'>Start earning now</button>
+            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
           </div>
           <div class='lav-grid__image'>
             <img src='${settings.dir}/img/grid8.png'>
@@ -752,7 +819,7 @@ const newPage = `
         </div>
 
         <div class='lav-grid__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-grid__btn'>Start earning now</button>
+          <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
         </div>
       </div>
     </div>
@@ -772,7 +839,7 @@ const newPage = `
         </div>
 
         <div class='lav-total__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-total__btn'>Start earning now</button>
+          <button class='lav-btn lav-btn_blue lav-checkout lav-total__btn'>Start earning now</button>
         </div>
       </div>
     </div>
@@ -824,7 +891,7 @@ const newPage = `
           </div>
         </div>
         <div class='lav-faq__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-faq__btn'>Start earning now</button>
+          <button class='lav-btn lav-btn_blue lav-checkout lav-faq__btn'>Start earning now</button>
         </div>
       </div>
     </div>
@@ -833,7 +900,7 @@ const newPage = `
     <div class='lav-container'>
       <div class='lav-faq__title'>You might be thinking...</div>
       <div class='lav-faq__btn-wrap'>
-        <button class='lav-btn lav-btn_blue lav-faq__btn'>Start earning now</button>
+        <button class='lav-btn lav-btn_blue lav-checkout lav-faq__btn'>Start earning now</button>
       </div>
     </div>
   </div>
@@ -855,10 +922,28 @@ function init() {
     });
   }
 
-  for (let item of document.querySelectorAll('.lav-btn_blue')) {
-    item.addEventListener('click', function () {
+  for (let item of document.querySelectorAll('.lav-checkout')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
       location.href =
         'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
     });
   }
+
+  document
+    .querySelector('.lav-header__paypal')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector("[for='payPalRadio']").click();
+      document.querySelector('[name="fname"]').value = 'test';
+      document.querySelector('[name="lname"]').value = 'test';
+      document.querySelector('[name="email"]').value = 'test@test.test';
+      document.querySelector('[name="email_confirmation"]').value =
+        'test@test.test';
+      document.querySelector('[name="phone"]').value = '0000000000000';
+      document.querySelector('[name="custom_ubiGdEid"]').value = '$1 - $1,000';
+      setTimeout(() => {
+        document.querySelector('.main-cta').click();
+      }, 500);
+    });
 }
