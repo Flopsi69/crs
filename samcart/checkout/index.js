@@ -87,10 +87,29 @@ const styles = `
 
   @font-face {
     font-family: "Gilroy";
-    src: url("${settings.dir}/Gilroy/Gilroy-black.woff") format("woff"),
-      url("${settings.dir}/Gilroy/Gilroy-black.ttf") format("truetype");
+    src: url("${settings.dir}/Gilroy/Gilroy-Black.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Black.ttf") format("truetype");
     font-weight: 900;
     font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-SemiBold.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .lav-white-label {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #183B56;
   }
   header {
     display: none;
@@ -102,7 +121,7 @@ const styles = `
   }
   .lav-container {
     padding: 0 15px;
-    max-width: 1110px;
+    max-width: 1140px;
     margin: auto;
   }
   .lav-btn {
@@ -130,6 +149,10 @@ const styles = `
     letter-spacing: -0.01em;
     color: #FFFFFF;
     padding: 18px 40px;
+    transition: 0.3s;
+  }
+  .lav-btn_blue:hover {
+    backgrond-color: #07528c;
   }
   .lav-header {
     position: fixed;
@@ -159,7 +182,7 @@ const styles = `
     color: #183B56;
     background: url('${settings.dir}/img/intro-lines.png') center no-repeat;
     background-size: 100% auto;
-    padding: 50px 0 100px;
+    padding: 40px 0 100px;
   }
   .lav-intro__congrate {
     font-weight: 600;
@@ -168,9 +191,21 @@ const styles = `
     color: #183B56;
   }
   .lav-intro__mark {
+    positon: relative;
     font-weight: 900;
     font-size: 70px;
     line-height: 87px;
+  }
+  .lav-intro__mark:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-110%, -50%);
+    background: url('${settings.dir}/img/icon-confiti.png') center no-repeat;
+    background-size: contain;
+    width: 65px;
+    height: 65px;
   }
   .lav-intro__caption {
     margin-top: 8px;
@@ -183,12 +218,12 @@ const styles = `
   }
   .lav-tick {
     position: relative;
-    padding-left: 49px;
+    padding-left: 45px;
   }
   .lav-tick:before {
     content: '';
     position: absolute;
-    top: -3px;
+    top: -1px;
     left: 0;
     width: 29px;
     height: 29px;
@@ -198,10 +233,18 @@ const styles = `
   .lav-intro__btn {
   }
   .lav-intro {
+    // content: '';
+    // position: absolute;
+    // top: -1px;
+    // left: 0;
+    // width: 29px;
+    // height: 29px;
+    // background: center no-repeat;
+    // background-size: contain;
   }
 
   .lav-dis {
-    background: #fff;
+    background: #fff url('${settings.dir}/img/dis-dots.svg') left 20px no-repeat;
     padding-top: 56px;
     padding-bottom: 50px;
     text-align: center;
@@ -221,21 +264,20 @@ const styles = `
     font-weight: 700;
   }
   .lav-dis__list {
-    margin-top: 80px;
     display: flex;
     justify-content: space-between;
-    margin: 80px -15px 0;
+    margin: 75px -15px 0;
   }
   .lav-dis__col {
     padding: 0 15px;
     text-align: left;
-    max-width: 355px;
+    max-width: 370px;
   }
   .lav-dis__col:first-child {
-    max-width: 320px;
+    max-width: 340px;
   }
   .lav-dis__col:last-child {
-    max-width: 275px;
+    max-width: 300px;
   }
   .lav-dis__item {
     position: relative;
@@ -246,6 +288,73 @@ const styles = `
   }
   .lav-dis__item + .lav-dis__item {
     margin-top: 29px;
+  }
+  .lav-gifts {
+    padding: 120px 0 110px;
+    color: #183B56;
+  }
+  .lav-gifts__title {
+    text-align: center;
+    font-size: 80px;
+    line-height: 94px;
+    text-align: center;
+  }
+  .lav-gifts__title span {
+    font-weight: 900;
+  }
+  .lav-gifts__caption {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    line-height: 38px;
+    color: #5A7386;
+  }
+  .lav-gifts__img {
+    background: #FFFFFF;
+    box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.04), 0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09);
+    border-radius: 40px;
+    padding: 65px;
+    margin: 40px 0 50px;
+    text-align: center;
+  }
+  .lav-gifts__img img {
+    max-width: 733px;
+  }
+  .lav-master {
+    text-align: center;
+  }
+  .lav-master__title {
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 62px;
+    text-align: center;
+  }
+  v-master__title span {
+    font-weight: 400;
+  }
+  .lav-master__list {
+    margin-top: 40px;
+    display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+    font-size: 18px;
+    line-height: 27px;
+    color: #5F7384;
+    text-align: left;
+  }
+  .lav-master__col {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .lav-master__item + .lav-master__item {
+    margin-top: 30px;
+  }
+  .lav-master__label {
+    margin: 30px auto 40px;
+    display: inline-block;
+  }
+  .lav-gifts__btn-wrap {
+    text-align: center;
   }
 `;
 
@@ -312,10 +421,12 @@ const newPage = `
       <div class='lav-container'>
         <div class='lav-gifts__title'>Plus, <span>Get $15,656 in FREE</span> gifts!</div>
         <div class='lav-gifts__caption'>When you try SamCart today, we will add these gifts to your order...</div>
-        <img class='lav-gifts__img' src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-4554/assets/92a2f05f-0a0a-4c86-a2e3-3262659bfdca" alt="Your Image">
+        <div class='lav-gifts__img'>
+          <img src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-4554/assets/92a2f05f-0a0a-4c86-a2e3-3262659bfdca" alt="Your Image">
+        </div>
 
         <div class='lav-master'>
-          <div class='lav-master__title'>The 1 Page Masterclass™</div>
+          <div class='lav-master__title'>The 1 Page Masterclass<span>™</span></div>
           <div class='lav-master__list'>
             <div class='lav-master__col'>
               <div class='lav-master__item lav-tick'>My simple product creation secrets that help me quickly create amazing products that people line up to buy</div>
@@ -327,7 +438,7 @@ const newPage = `
               <div class='lav-master__item lav-tick'>Cheat sheets, scripts & templates that will speed up the process of creating products, building your page, making ads and landing sales.</div>
             </div>
           </div>
-          <div class='lav-master__caption'>Normally $4,995.00 - Yours FREE!</div>
+          <div class='lav-master__label lav-white-label'>Normally $4,995.00 - Yours FREE!</div>
         </div>
         
         <div class='lav-gifts__btn-wrap'>
