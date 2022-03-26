@@ -1,0 +1,27 @@
+<svg width="303" height="110" viewBox="0 0 303 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="329" y="110" width="329" height="83" transform="rotate(-180 329 110)" fill="url(#paint0_linear_340_23)"/>
+<circle r="3" transform="matrix(1 0 0 -1 191 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 245 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 191 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 245 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 191 39)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 245 39)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 209 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 263 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 209 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 263 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 209 39)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 263 39)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 227 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 281 3)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 227 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 281 21)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 227 39)" fill="#E3E7F3"/>
+<circle r="3" transform="matrix(1 0 0 -1 281 39)" fill="#E3E7F3"/>
+<defs>
+<linearGradient id="paint0_linear_340_23" x1="138.441" y1="152" x2="658" y2="152" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EAF2FB"/>
+<stop offset="1" stop-color="#F7FAFD"/>
+</linearGradient>
+</defs>
+</svg>

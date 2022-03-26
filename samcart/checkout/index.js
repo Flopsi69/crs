@@ -270,25 +270,23 @@ const styles = `
     background: url('${settings.dir}/img/icon-tick.svg') center no-repeat;
     background-size: contain;
   }
-  .lav-intro__btn {
-  }
-  .lav-intro {
-    // content: '';
-    // position: absolute;
-    // top: -1px;
-    // left: 0;
-    // width: 29px;
-    // height: 29px;
-    // background: center no-repeat;
-    // background-size: contain;
-  }
-
   .lav-dis {
+    position: relative;
     background: #fff url('${settings.dir}/img/dis-dots.svg') left 30px no-repeat;
     padding-top: 56px;
     padding-bottom: 50px;
     text-align: center;
     color: #183B56;
+  }
+  .lav-dis:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+    background: #fff url('${settings.dir}/img/dis-dots.svg') center no-repeat;
+    background-size: contain;
+    width: 300px;
+    height: 110px;
   }
   .lav-dis__caption {
     margin-bottom: 15px;
@@ -398,7 +396,7 @@ const styles = `
     text-align: center;
   }
   .lav-grid {
-    color: #183B56; 
+    color: #183B56;
     padding-bottom: 110px;
   }
   .lav-grid__row {
@@ -571,7 +569,7 @@ const styles = `
       display: block;
     }
     .lav-intro {
-      padding-top: 60px;
+      padding-top: 40px;
       padding-bottom: 80px;
       background: url(${settings.dir}/img/intro-lines-mob.png) center no-repeat;
       background-size: 100% auto;
@@ -738,13 +736,93 @@ const styles = `
       margin-bottom: 45px;
     }
     .lav-total__subtitle {
-
+      font-size: 26px;
+      line-height: 31px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .lav-total__caption {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-total__chat {
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    .lav-faq__title {
+      font-size: 36px;
+      line-height: 45px;
+    }
+    .lav-faq__list {
+      margin-top: 30px;
+    }
+    .lav-faq__head {
+      font-size: 16px;
+      line-height: 19px;
+    }
+    .lav-faq__item {
+      padding: 20px 28px;
+    }
+    .lav-faq__body {
+      font-size: 14px;
+      line-height: 23px;
+    }
+    .lav-faq {
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+    .lav-header__top {
+      text-align: center;
+      padding: 12px;
+      border-bottom: 1px solid rgb(90 115 134 / 20%);
+    }
+    .lav-header__top img{
+      max-width: 72px;
+    }
+    .lav-header {
+      padding: 0;
+    }
+    .lav-header__inner {
+      padding: 10px;
+    }
+    .lav-header__descr {
+      letter-spacing: 0;
+      font-size: 10px;
+      line-height: 13px;
+      width: 158px;
+      padding-right: 6px;
+      margin-right: 5px;
+      border-right: 1px dashed rgb(90 115 134 / 30%);
+    }
+    .lav-header__price-new {
+      font-weight: 900;
+      font-size: 10px;
+      line-height: 13px;
+    }
+    .lav-header__price-old {
+      text-decoration: line-through;
+      font-size: 10px;
+      line-height: 13px;
+    }
+    .lav-header__buttons {
+      display: flex;
+      margin-left: 10px;
+    }
+    .lav-header__info {
+      min-width: 0;
+      justify-content: space-between;
+    }
+    .lav-header__btn img {
+      max-width: 70px;
+    }
+    .lav-header__btn + .lav-header__btn {
+      margin-left: 5px;
     }
   }
 `;
 
 const newPage = `
-  <div class='lav-header'>
+  <div class='lav-header lav-desk'>
     <div class='lav-header__inner'>
       <div class='lav-header__logo'>
         <img src='${settings.dir}/img/logo.png'>
@@ -761,6 +839,32 @@ const newPage = `
         </div>
       </div>
       <button class='lav-btn lav-btn_trans lav-checkout lav-header__cta'>Start earning now</button>
+    </div>
+  </div>
+
+  <div class='lav-header lav-mob'>
+    <div class='lav-header__top'>
+      <div class='lav-header__logo'>
+        <img src='${settings.dir}/img/logo.png'>
+      </div>
+    </div>
+    <div class='lav-header__inner'>
+      <div class='lav-header__info'>
+        <div class='lav-header__descr'>
+          <span class='lav-mark'>40% Off</span> 1 Year Subscription </br> to the new SamCart Launch Plan
+        </div>
+        <div class='lav-header__price'>
+          <div class='lav-header__price-new'>$349.00</div><div class='lav-header__price-old'>$588.00</div>
+        </div>
+        <div class='lav-header__buttons'>
+          <div class='lav-header__btn lav-header__paypal'>
+            <img src='${settings.dir}/img/btn-paypal.png'>
+          </div>
+          <div class='lav-header__btn lav-header__card lav-checkout'>
+            <img src='${settings.dir}/img/btn-card.png'>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -975,7 +1079,8 @@ const newPage = `
           I totally understand the skepticism. There are a lot of fakes out there, but there are 24,812 real people inside this community whose lives have been changed by this program. Here are just a few...
         </div>
         <div class='lav-total__chat'>
-          <img src='${settings.dir}/img/total-chat.png'>
+          <img class='lav-desk' src='${settings.dir}/img/total-chat.png'>
+          <img class='lav-mob' src='${settings.dir}/img/total-chat-mob.png'>
         </div>
 
         <div class='lav-total__btn-wrap'>
@@ -1070,9 +1175,8 @@ function init() {
     });
   }
 
-  document
-    .querySelector('.lav-header__paypal')
-    .addEventListener('click', function (e) {
+  for (let item of document.querySelectorAll('.lav-header__paypal')) {
+    item.addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector("[for='payPalRadio']").click();
       document.querySelector('[name="fname"]').value = 'test';
@@ -1086,4 +1190,5 @@ function init() {
         document.querySelector('.main-cta').click();
       }, 500);
     });
+  }
 }
