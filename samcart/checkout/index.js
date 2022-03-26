@@ -282,8 +282,8 @@ const styles = `
     content: '';
     position: absolute;
     right: 0;
-    bottom: -30px;
-    background: #fff url('${settings.dir}/img/dis-dots.svg') center no-repeat;
+    bottom: -50px;
+    background: #fff url('${settings.dir}/img/lav-dis-after.svg') center no-repeat;
     background-size: contain;
     width: 300px;
     height: 110px;
@@ -396,8 +396,20 @@ const styles = `
     text-align: center;
   }
   .lav-grid {
+    position: relative;
     color: #183B56;
     padding-bottom: 110px;
+  }
+  .lav-grid:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: tranclateY(-50%);
+    background: #fff url('${settings.dir}/img/lav-grid-after.svg') center no-repeat;
+    background-size: contain;
+    width: 215px;
+    height: 131px;
   }
   .lav-grid__row {
     display: flex;
