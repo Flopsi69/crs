@@ -100,7 +100,9 @@ const styles = `
     font-weight: 600;
     font-style: normal;
   }
-
+  .lav-wrap + section {
+    display: none;
+  }
   .row.section {
     display: none;
   }
@@ -282,8 +284,8 @@ const styles = `
     content: '';
     position: absolute;
     right: 0;
-    bottom: -50px;
-    background: #fff url('${settings.dir}/img/lav-dis-after.svg') center no-repeat;
+    bottom: -40px;
+    background: url('${settings.dir}/img/lav-dis-after.svg') center no-repeat;
     background-size: contain;
     width: 300px;
     height: 110px;
@@ -397,6 +399,7 @@ const styles = `
   }
   .lav-grid {
     position: relative;
+    z-index: 1;
     color: #183B56;
     padding-bottom: 110px;
   }
@@ -405,8 +408,8 @@ const styles = `
     position: absolute;
     left: 0;
     bottom: 0;
-    transform: tranclateY(-50%);
-    background: #fff url('${settings.dir}/img/lav-grid-after.svg') center no-repeat;
+    transform: translateY(30%);
+    background: url('${settings.dir}/img/lav-grid-after.svg') center no-repeat;
     background-size: contain;
     width: 215px;
     height: 131px;
@@ -468,10 +471,21 @@ const styles = `
     margin-top: 0;
   }
   .lav-total {
+    position: relative;
     color: #183B56;
     padding: 75px 0;
     background: #fff;
     text-align: center;
+  }
+  .lav-total:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    background:  url('${settings.dir}/img/lav-dis-after.svg') center no-repeat;
+    background-size: contain;
+    width: 300px;
+    height: 110px;
   }
   .lav-total__title {
     font-weight: 900;
@@ -565,14 +579,17 @@ const styles = `
   .lav-footer {
     background: #232323;
   }
-  .lav-footer {}
-  .lav-footer {}
-  .lav-footer {}
-  .lav-footer {}
-  .lav-footer {}
   .lav-mob {
     display: none;
   }
+  .tpl-2__footer {
+    padding: 33px 0;
+    font-size: 12px;
+    background-color: #173145;
+    color: #fff;
+  }
+
+  
   @media (max-width: 1000px) {
     .lav-desk {
       display: none;
@@ -832,6 +849,130 @@ const styles = `
     }
   }
 `;
+
+const stylesCheckout = `
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Bold.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Black.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-SemiBold.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .row.section, .sandbox-header {
+    display: none;
+  }
+
+  body {
+    padding-top: 22px;
+    padding-bottom: 15px;
+    background: #F7FAFD;
+    font-family: "Gilroy";
+    color: #183B56;
+  }
+  .lav-top {
+    text-align: center;
+  }
+  .lav-title {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 33px;
+    max-width: 760px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top; 20px;
+    margin-bottom: 40px;
+  }
+  .lav-timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 43px;
+    align-items: flex-end;
+    text-align: left;
+    padding: 0 15px;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lav-timeline {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url(${settings.dir}/img/checkout-dots.svg) bottom/90px;
+  }
+  .lav-timeline__item {
+    position: relative;
+    padding-bottom: 8px;
+  }
+  .lav-timeline__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #046BD9;
+    border-radius: 21px;
+    width: 70px;
+    height: 4px;
+  }
+  .lav-timeline__item:last-child:before {
+    width: 100%;
+  }
+  .lav-timeline__title {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .lav-timeline__date {
+    font-family: "Roboto";
+    font-weight: 400;
+    margin-top: 1px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #5A7386;
+  }
+  .tpl-6__content {
+    background: none;
+  }
+`;
+
+const stylesEl = document.createElement('style');
+if (location.href.includes('/products/courses-special-offer-subscribe/')) {
+  stylesEl.innerHTML = stylesCheckout;
+} else {
+  stylesEl.innerHTML = styles;
+}
+document.body.appendChild(stylesEl);
+/*** STYLES / end ***/
 
 const newPage = `
   <div class='lav-header lav-desk'>
@@ -1153,54 +1294,79 @@ const newPage = `
       </div>
     </div>
   </div>
-  <div class='lav-footer'>
-    <div class='lav-container'>
-      <div class='lav-faq__title'>You might be thinking...</div>
-      <div class='lav-faq__btn-wrap'>
-        <button class='lav-btn lav-btn_blue lav-checkout lav-faq__btn'>Start earning now</button>
-      </div>
-    </div>
-  </div>
 `;
 
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
-/*** STYLES / end ***/
+const newCheckout = `
+  <div class='lav-top'>
+    <div class='lav-logo'>
+      <img src='${settings.dir}/img/logo.png'>
+    </div>
+    <div class='lav-title'>You are one step away from placing your order and starting earning passive income.</div>
+    <div class='lav-timeline'>
+      <div class='lav-timeline__item'>
+        <div class='lav-timeline__title'>You Place order</div>
+        <div class='lav-timeline__date'>11.11.2021</div>
+      </div>
+      <div class='lav-timeline__item'>
+        <div class='lav-timeline__title'>Get access to samcart<br>and set up your store</div>
+        <div class='lav-timeline__date'>11.11.2021</div>
+      </div>
+      <div class='lav-timeline__item'>
+        <div class='lav-timeline__title'>Start Accepting orders</div>
+        <div class='lav-timeline__date'>11.11.2021</div>
+      </div>
+      <div class='lav-timeline__item'>
+        <div class='lav-timeline__title'>30 days 100% money-back guarantee</div>
+        <div class='lav-timeline__date lav-timeline__date_expire'>11.11.2021</div>
+      </div>
+    </div>
+    <div class='lav-logo'></div>
+    <div class='lav-logo'></div>
+    <div class='lav-logo'></div>
+  </div>
+`;
 
 /********* Custom Code **********/
 init();
 function init() {
-  console.log('init');
-  document.querySelector('header').insertAdjacentHTML('afterend', newPage);
-  for (let item of document.querySelectorAll('.lav-faq__item')) {
-    item.addEventListener('click', function () {
-      item.classList.toggle('lav-faq__item_active');
-    });
-  }
+  if (!location.href.includes('/products/courses-special-offer-subscribe/')) {
+    console.log('init');
+    document.querySelector('header').insertAdjacentHTML('afterend', newPage);
+    for (let item of document.querySelectorAll('.lav-faq__item')) {
+      item.addEventListener('click', function () {
+        item.classList.toggle('lav-faq__item_active');
+      });
+    }
 
-  for (let item of document.querySelectorAll('.lav-checkout')) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      location.href =
-        'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
-    });
-  }
+    for (let item of document.querySelectorAll('.lav-checkout')) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        location.href =
+          'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+      });
+    }
 
-  for (let item of document.querySelectorAll('.lav-header__paypal')) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector("[for='payPalRadio']").click();
-      document.querySelector('[name="fname"]').value = 'test';
-      document.querySelector('[name="lname"]').value = 'test';
-      document.querySelector('[name="email"]').value = 'test@test.test';
-      document.querySelector('[name="email_confirmation"]').value =
-        'test@test.test';
-      document.querySelector('[name="phone"]').value = '0000000000000';
-      document.querySelector('[name="custom_ubiGdEid"]').value = '$1 - $1,000';
-      setTimeout(() => {
-        document.querySelector('.main-cta').click();
-      }, 500);
-    });
+    for (let item of document.querySelectorAll('.lav-header__paypal')) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector("[for='payPalRadio']").click();
+        document.querySelector('[name="fname"]').value = 'test';
+        document.querySelector('[name="lname"]').value = 'test';
+        document.querySelector('[name="email"]').value = 'test@test.test';
+        document.querySelector('[name="email_confirmation"]').value =
+          'test@test.test';
+        document.querySelector('[name="phone"]').value = '0000000000000';
+        document.querySelector('[name="custom_ubiGdEid"]').value =
+          '$1 - $1,000';
+        setTimeout(() => {
+          document.querySelector('.main-cta').click();
+        }, 500);
+      });
+    }
+  } else {
+    document
+      .querySelector('#paymentForm')
+      .insertAdjacentHTML('beforebegin', newCheckout);
+    return false;
   }
 }
