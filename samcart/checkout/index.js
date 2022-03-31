@@ -908,10 +908,13 @@ const stylesCheckout = `
     margin-bottom: 40px;
   }
   #fullWidth .tpl-6__content {
-    padding: 0 15px;
+    padding: 0 15px!important;
     max-width: 1140px;
     margin-left: auto;
     margin-right: auto;
+  }
+  #fullWidth .tpl-6 {
+    padding: 0!important;
   }
   .lav-timeline {
     position: relative;
@@ -928,7 +931,8 @@ const stylesCheckout = `
     bottom: 0;
     left: 15px;
     right: 15px;
-    background: url(${settings.dir}/img/checkout-dots.svg) bottom;
+    background: url(${settings.dir}/img/checkout-dots.png) bottom left;
+    background-size: contain;
   }
   .lav-timeline__item {
     position: relative;
@@ -1464,7 +1468,7 @@ const newPage = `
 const newCheckout = `
   <div class='lav-top'>
     <div class='lav-logo'>
-      <img src='${settings.dir}/img/logo.png'>
+      <img src='${settings.dir}/img/logo.svg'>
     </div>
     <div class='lav-title'>You are one step away from placing your order and starting earning passive income.</div>
     <div class='lav-timeline'>
@@ -1598,6 +1602,16 @@ function init() {
         'beforeend',
         document.querySelector('#order-summary-widget').cloneNode(true)
       );
+
+    setTimeout(() => {
+      document.querySelector('.lav-summary #order-summary-widget').remove();
+      document
+        .querySelector('.lav-summary')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('#order-summary-widget').cloneNode(true)
+        );
+    }, 2000);
 
     return false;
   }
