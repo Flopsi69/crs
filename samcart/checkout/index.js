@@ -889,7 +889,6 @@ const stylesCheckout = `
 
   body {
     padding-top: 22px;
-    padding-bottom: 15px;
     background: #F7FAFD;
     font-family: "Gilroy";
     color: #183B56;
@@ -905,8 +904,14 @@ const stylesCheckout = `
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top; 20px;
+    margin-top: 20px;
     margin-bottom: 40px;
+  }
+  #fullWidth .tpl-6__content {
+    padding: 0 15px;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lav-timeline {
     position: relative;
@@ -915,18 +920,15 @@ const stylesCheckout = `
     margin-bottom: 43px;
     align-items: flex-end;
     text-align: left;
-    padding: 0 15px;
-    max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .lav-timeline {
+  .lav-timeline:before {
     content: '';
     position: absolute;
+    height: 4px;
     bottom: 0;
-    left: 0;
-    right: 0;
-    background: url(${settings.dir}/img/checkout-dots.svg) bottom/90px;
+    left: 15px;
+    right: 15px;
+    background: url(${settings.dir}/img/checkout-dots.svg) bottom;
   }
   .lav-timeline__item {
     position: relative;
@@ -960,8 +962,171 @@ const stylesCheckout = `
     line-height: 12px;
     color: #5A7386;
   }
-  .tpl-6__content {
-    background: none;
+  .bg-white {
+    background: none!important;
+  }
+  .main-cta {
+    background: #183B56!important;
+    border-radius: 10px;
+    max-width: 262px;
+    height: 58px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  #payment-request-button + p {
+    font-size: 10px;
+    line-height: 18px;
+    color: #5A7386;
+  }
+  #payment-request-button + p a {
+    color: #046BD9;
+  }
+  .tpl-6__checkout__subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #183B56;
+    margin-bottom: 18px;
+  }
+  #fullWidth #paymentForm {
+    max-width: 1140px;
+    padding: 0 15px;
+  }
+  .lav-caption {
+    font-size: 10px;
+    line-height: 15px;
+    color: #5A7386;
+  }
+  .lav-caption + .lav-caption {
+    margin-top: 10px;
+  }
+  .lav-main {
+    display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  .lav-main__block {
+    width: 50%;
+    padding: 0 15px;
+  }
+  .lav-main__sublock {
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 26px;
+  }
+  .lav-payment {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  .lav-main__title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    margin-bottom: 20px;
+  }
+  .lav-row {
+    display: flex;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .lav-row + .lav-row {
+    margin-top: 20px;
+  }
+  .lav-group {
+    position: relative;
+    width: 50%;
+    padding: 0 8px;
+  }
+  .lav-group_full {
+    width: 100%;
+  }
+  .lav-payment {
+    position: relative;
+    background: url(${settings.dir}/img/payments.png) top right;
+    background-repeat: no-repeat;
+    background-size: 167px;
+  }
+  .lav-lable {
+    position: absolute;
+    left: 30px;
+    top: -6px;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5A7386;
+  }
+  .lav-group input {
+    background: #FFFFFF;
+    box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #183B56;
+    padding: 10px 20px;
+  }
+  #order-summary-widget {
+    background: #FFFFFF;
+    box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
+    border-radius: 15px;
+    padding: 25px;
+  }
+  #order-summary-widget #summary-totals .total-row .invoice-item-label {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #183B56;
+  }
+  #order-summary-widget #summary-totals .total-row .invoice-item-amount {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #183B56;
+  }
+  #order-summary-widget .product-item {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: none;
+  }
+  #order-summary-widget .product-item + .product-item  {
+    margin-top: 20px;
+  }
+  #order-summary-widget .product-item-name, #order-summary-widget .product-price-col {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #183B56;
+  }
+  #order-summary-widget #summary-totals .total-row {
+    font-size: 16px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgb(90 115 134 / 15%);
+  }
+  .price-item-detail {
+    font-size: 8px;
+    line-height: 9px;
+    color: #5A7386;
+    margin-top: 7px;
+  }
+  #fullWidth #paymentForm > * {
+    display: none;
+  }
+  #fullWidth #paymentForm > .tpl-6__order {
+    display: block;
   }
 `;
 
@@ -978,7 +1143,7 @@ const newPage = `
   <div class='lav-header lav-desk'>
     <div class='lav-header__inner'>
       <div class='lav-header__logo'>
-        <img src='${settings.dir}/img/logo.png'>
+        <img src='${settings.dir}/img/logo.svg'>
       </div>
       <div class='lav-header__info'>
         <div class='lav-header__descr'>
@@ -998,7 +1163,7 @@ const newPage = `
   <div class='lav-header lav-mob'>
     <div class='lav-header__top'>
       <div class='lav-header__logo'>
-        <img src='${settings.dir}/img/logo.png'>
+        <img src='${settings.dir}/img/logo.svg'>
       </div>
     </div>
     <div class='lav-header__inner'>
@@ -1320,15 +1485,74 @@ const newCheckout = `
         <div class='lav-timeline__date lav-timeline__date_expire'>11.11.2021</div>
       </div>
     </div>
-    <div class='lav-logo'></div>
-    <div class='lav-logo'></div>
-    <div class='lav-logo'></div>
   </div>
+
+  <div class='lav-main'>
+    <div class='lav-info lav-main__block'>
+      <div class='lav-main__title'>Payment Information</div>
+
+      <div class='lav-contact lav-block'>
+        <div class='lav-main__sublock'>Contact</div>
+        <div class='lav-row'>
+          <div class='lav-group'>
+            <label class='lav-lable'>First name</label>
+            <input type='text' class='lav-input'>
+          </div>
+          <div class='lav-group'>
+            <label class='lav-lable'>Last name</label>
+            <input type='text' class='lav-input'>
+          </div>
+        </div>
+        <div class='lav-row'>
+          <div class='lav-group'>
+            <label class='lav-lable'>Email address</label>
+            <input type='text' class='lav-input'>
+          </div>
+          <div class='lav-group'>
+            <label class='lav-lable'>Phone number</label>
+            <input type='text' class='lav-input'>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-payment lav-block'>
+        <div class='lav-main__sublock'>Payment Methods</div>
+        <div class='lav-row'>
+          <div class='lav-group lav-group_full'>
+            <label class='lav-lable'>Credit card Number</label>
+            <input type='text' class='lav-input'>
+          </div>
+        </div>
+        <div class='lav-row'>
+          <div class='lav-group'>
+            <label class='lav-lable'>Expiration</label>
+            <input type='text' class='lav-input'>
+          </div>
+          <div class='lav-group'>
+            <label class='lav-lable'>Cvv</label>
+            <input type='text' class='lav-input'>
+          </div>
+        </div>
+      </div>
+
+      <div class='lav-caption'>You'll also be able to instantly access all of the free gifts right from inside your SamCart account, which makes it super easy to build your pages and go through the trainings at the same time.</div>
+      <div class='lav-caption'>I'll see you on the inside!</div>
+
+    </div>
+
+    <div class='lav-summary lav-main__block'>
+      <div class='lav-main__title'>Order Summary</div>
+    </div>
+  </div>
+
 `;
 
 /********* Custom Code **********/
 init();
 function init() {
+  for (let videoEl of document.querySelectorAll('video')) {
+    videoEl.remove();
+  }
   if (!location.href.includes('/products/courses-special-offer-subscribe/')) {
     console.log('init');
     document.querySelector('header').insertAdjacentHTML('afterend', newPage);
@@ -1367,6 +1591,14 @@ function init() {
     document
       .querySelector('#paymentForm')
       .insertAdjacentHTML('beforebegin', newCheckout);
+
+    document
+      .querySelector('.lav-summary')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector('#order-summary-widget').cloneNode(true)
+      );
+
     return false;
   }
 }
