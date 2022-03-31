@@ -1135,7 +1135,7 @@ const stylesCheckout = `
 `;
 
 const stylesEl = document.createElement('style');
-if (location.href.includes('/products/courses-special-offer-subscribe/')) {
+if (location.href.includes('/products/courses-special-offer-subscribe')) {
   stylesEl.innerHTML = stylesCheckout;
 } else {
   stylesEl.innerHTML = styles;
@@ -1557,7 +1557,7 @@ function init() {
   for (let videoEl of document.querySelectorAll('video')) {
     videoEl.remove();
   }
-  if (!location.href.includes('/products/courses-special-offer-subscribe/')) {
+  if (!location.href.includes('/products/courses-special-offer-subscribe')) {
     console.log('init');
     document.querySelector('header').insertAdjacentHTML('afterend', newPage);
     for (let item of document.querySelectorAll('.lav-faq__item')) {
