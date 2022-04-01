@@ -103,7 +103,10 @@ const styles = `
   .lav-wrap + section {
     display: none;
   }
-  .row.section {
+  .tpl-6 {
+    padding-bottom: 0!important;
+  }
+  .row.section, .tpl-6__content {
     display: none;
   }
   .lav-white-label {
@@ -591,6 +594,9 @@ const styles = `
 
   
   @media (max-width: 1000px) {
+    .lav-total:after, .lav-dis:after {
+      display: none;
+    }
     .lav-desk {
       display: none;
     }
@@ -1559,7 +1565,9 @@ function init() {
   }
   if (!location.href.includes('/products/courses-special-offer-subscribe')) {
     console.log('init');
-    document.querySelector('header').insertAdjacentHTML('afterend', newPage);
+    document
+      .querySelector('.row.section')
+      .insertAdjacentHTML('beforebegin', newPage);
     for (let item of document.querySelectorAll('.lav-faq__item')) {
       item.addEventListener('click', function () {
         item.classList.toggle('lav-faq__item_active');
