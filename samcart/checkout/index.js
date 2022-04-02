@@ -1163,6 +1163,14 @@ const stylesCheckout = `
     position: absolute;
     width: 40px;
     height: 10px;
+    position: absolute;
+    height: 4px;
+    left: 15px;
+    top: 0;
+    transform: translateY(-100%);
+    background: url(${settings.dir}/img/tip-arrow.svg) center no-repeat;
+    background-size: contain;
+   
   }
 `;
 
