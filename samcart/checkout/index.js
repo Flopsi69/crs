@@ -1138,6 +1138,32 @@ const stylesCheckout = `
   #fullWidth #paymentForm > .tpl-6__order {
     display: block;
   }
+  .lav-tip {
+    position: relative;
+
+  }
+  .lav-tip__info {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 50;
+    bottom: -100%;
+    left: 0;
+    padding: 15px;
+    background: #E2E6F3;
+    box-shadow: 0px 0.688073px 2.06422px rgba(24, 59, 86, 0.04), 0px 8.25688px 34.4037px rgba(63, 87, 180, 0.09);
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 16px;
+    color: #5A7386;
+  }
+  .lav-tip__info:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 10px;
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -1502,7 +1528,15 @@ const newCheckout = `
       <div class='lav-main__title'>Payment Information</div>
 
       <div class='lav-contact lav-block'>
-        <div class='lav-main__sublock'>Contact</div>
+        <div class='lav-main__sublock'>
+          Contact
+          <span class='lav-tip'>
+            <img src='${settings.dir}/img/tip.svg'>
+            <div class='lav-tip__info'>
+              Get access to samcart<br>and set up your store. Get access to samcart<br>and set up your store
+            </div>
+          </span>
+        </div>
         <div class='lav-row'>
           <div class='lav-group'>
             <label class='lav-lable'>First name</label>
