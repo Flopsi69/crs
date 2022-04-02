@@ -1175,6 +1175,14 @@ const stylesCheckout = `
     background: url(${settings.dir}/img/tip-arrow.svg) center no-repeat;
     background-size: contain;
   }
+  .lav-tip__info_reverse {
+    left: initial;
+    right: -29px;
+  }
+  .lav-tip__info_reverse:before {
+    left: initial;
+    right: 15px;
+  }
   .lav-tip:hover .lav-tip__info {
     opacity: 1;
     pointer-events: auto;
@@ -1536,7 +1544,7 @@ const newCheckout = `
           30 days 100% money-back guarantee
           <span class='lav-tip'>
             <img src='${settings.dir}/img/tip.svg'>
-            <div class='lav-tip__info'>
+            <div class='lav-tip__info lav-tip__info_reverse'>
               We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
             </div>
           </span>
