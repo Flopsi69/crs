@@ -1564,63 +1564,73 @@ function init() {
     videoEl.remove();
   }
   if (!location.href.includes('/products/courses-special-offer-subscribe')) {
-    console.log('init');
-    document
-      .querySelector('.row.section')
-      .insertAdjacentHTML('beforebegin', newPage);
-    for (let item of document.querySelectorAll('.lav-faq__item')) {
-      item.addEventListener('click', function () {
-        item.classList.toggle('lav-faq__item_active');
-      });
-    }
+    if (document.querySelector('.row.section')) {
+      console.log('init');
+      document
+        .querySelector('.row.section')
+        .insertAdjacentHTML('beforebegin', newPage);
+      for (let item of document.querySelectorAll('.lav-faq__item')) {
+        item.addEventListener('click', function () {
+          item.classList.toggle('lav-faq__item_active');
+        });
+      }
 
-    for (let item of document.querySelectorAll('.lav-checkout')) {
-      item.addEventListener('click', function (e) {
-        e.preventDefault();
-        location.href =
-          'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
-      });
-    }
+      for (let item of document.querySelectorAll('.lav-checkout')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          location.href =
+            'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+        });
+      }
 
-    for (let item of document.querySelectorAll('.lav-header__paypal')) {
-      item.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector("[for='payPalRadio']").click();
-        document.querySelector('[name="fname"]').value = 'test';
-        document.querySelector('[name="lname"]').value = 'test';
-        document.querySelector('[name="email"]').value = 'test@test.test';
-        document.querySelector('[name="email_confirmation"]').value =
-          'test@test.test';
-        document.querySelector('[name="phone"]').value = '0000000000000';
-        document.querySelector('[name="custom_ubiGdEid"]').value =
-          '$1 - $1,000';
-        setTimeout(() => {
-          document.querySelector('.main-cta').click();
-        }, 500);
-      });
+      for (let item of document.querySelectorAll('.lav-header__paypal')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector("[for='payPalRadio']").click();
+          document.querySelector('[name="fname"]').value = 'test';
+          document.querySelector('[name="lname"]').value = 'test';
+          document.querySelector('[name="email"]').value = 'test@test.test';
+          document.querySelector('[name="email_confirmation"]').value =
+            'test@test.test';
+          document.querySelector('[name="phone"]').value = '0000000000000';
+          document.querySelector('[name="custom_ubiGdEid"]').value =
+            '$1 - $1,000';
+          setTimeout(() => {
+            document.querySelector('.main-cta').click();
+          }, 500);
+        });
+      }
+    } else {
+      setTimeout(() => {
+        init();
+      }, 1000);
     }
   } else {
-    document
-      .querySelector('#paymentForm')
-      .insertAdjacentHTML('beforebegin', newCheckout);
+    if (document.querySelector('#paymentForm')) {
+      document
+        .querySelector('#paymentForm')
+        .insertAdjacentHTML('beforebegin', newCheckout);
 
-    document
-      .querySelector('.lav-summary')
-      .insertAdjacentElement(
-        'beforeend',
-        document.querySelector('#order-summary-widget').cloneNode(true)
-      );
-
-    setTimeout(() => {
-      document.querySelector('.lav-summary #order-summary-widget').remove();
       document
         .querySelector('.lav-summary')
         .insertAdjacentElement(
           'beforeend',
           document.querySelector('#order-summary-widget').cloneNode(true)
         );
-    }, 2000);
 
-    return false;
+      setTimeout(() => {
+        document.querySelector('.lav-summary #order-summary-widget').remove();
+        document
+          .querySelector('.lav-summary')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector('#order-summary-widget').cloneNode(true)
+          );
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        init();
+      }, 1000);
+    }
   }
 }
