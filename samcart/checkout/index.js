@@ -1140,15 +1140,17 @@ const stylesCheckout = `
   }
   .lav-tip {
     position: relative;
-
+    top: -5px;
   }
   .lav-tip__info {
     opacity: 0;
     pointer-events: none;
     position: absolute;
+    width: 230px;
     z-index: 50;
-    bottom: -100%;
-    left: 0;
+    transform: translateY(100%);
+    bottom: -10px;
+    left: -29px;
     padding: 15px;
     background: #E2E6F3;
     box-shadow: 0px 0.688073px 2.06422px rgba(24, 59, 86, 0.04), 0px 8.25688px 34.4037px rgba(63, 87, 180, 0.09);
@@ -1157,6 +1159,9 @@ const stylesCheckout = `
     font-size: 10px;
     line-height: 16px;
     color: #5A7386;
+    transition: 0.3s;
+    text-transform: initial;
+    letter-spacing: initial;
   }
   .lav-tip__info:before {
     content: '';
@@ -1164,13 +1169,15 @@ const stylesCheckout = `
     width: 40px;
     height: 10px;
     position: absolute;
-    height: 4px;
     left: 15px;
-    top: 0;
+    top: 1px;
     transform: translateY(-100%);
     background: url(${settings.dir}/img/tip-arrow.svg) center no-repeat;
     background-size: contain;
-   
+  }
+  .lav-tip:hover .lav-tip__info {
+    opacity: 1;
+    pointer-events: auto;
   }
 `;
 
@@ -1525,7 +1532,15 @@ const newCheckout = `
         <div class='lav-timeline__date'>11.11.2021</div>
       </div>
       <div class='lav-timeline__item'>
-        <div class='lav-timeline__title'>30 days 100% money-back guarantee</div>
+        <div class='lav-timeline__title'>
+          30 days 100% money-back guarantee
+          <span class='lav-tip'>
+            <img src='${settings.dir}/img/tip.svg'>
+            <div class='lav-tip__info'>
+              We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
+            </div>
+          </span>
+        </div>
         <div class='lav-timeline__date lav-timeline__date_expire'>11.11.2021</div>
       </div>
     </div>
@@ -1541,7 +1556,7 @@ const newCheckout = `
           <span class='lav-tip'>
             <img src='${settings.dir}/img/tip.svg'>
             <div class='lav-tip__info'>
-              Get access to samcart<br>and set up your store. Get access to samcart<br>and set up your store
+              We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
             </div>
           </span>
         </div>
