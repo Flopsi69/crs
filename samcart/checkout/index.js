@@ -888,7 +888,9 @@ const stylesCheckout = `
     font-weight: 600;
     font-style: normal;
   }
-
+  .lav-main__title_expand {
+    display: none;
+  }
   .row.section, .sandbox-header {
     display: none;
   }
@@ -1141,6 +1143,7 @@ const stylesCheckout = `
   .lav-tip {
     position: relative;
     top: -5px;
+    flex-shrink: 0;
   }
   .lav-tip__info {
     opacity: 0;
@@ -1186,6 +1189,159 @@ const stylesCheckout = `
   .lav-tip:hover .lav-tip__info {
     opacity: 1;
     pointer-events: auto;
+  }
+  @media (max-width: 1000px) {
+    .lav-title {
+      font-size: 20px;
+      line-height: 24px;
+      margin-top: 30px;
+    }
+    .lav-timeline__title {
+      font-size: 9px;
+      line-height: 11px;
+      letter-spacing: 1px;
+    }
+    .lav-timeline__date {
+      margin-top: 12px;
+      font-size: 10px;
+      line-height: 12px;
+    }
+    .lav-timeline__item {
+      padding-bottom: 14px;
+      max-width: 85px;
+    }
+    .lav-tip {
+      top: -3px;
+    }
+    .lav-timeline__item:before {
+      width: 25px;
+    }
+    .lav-timeline__item:last-child .lav-timeline__title {
+      display: flex;
+    }
+    .lav-timeline__item + .lav-timeline__item {
+      margin-left: 8px;
+    }
+    .lav-main {
+      flex-flow: column-reverse;
+    }
+    .lav-main__block {
+      width: auto;
+      margin: 0 15px;
+      background: #FFFFFF;
+      box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .lav-main__block + .lav-main__block {
+      margin-bottom: 40px;
+    }
+    .lav-main__title {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 0;
+      padding-bottom: 20px;
+    }
+    .lav-summary .lav-main__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgb(4 107 217 / 15%);
+    }
+    .lav-main__title_expand {
+      display: flex;
+      align-items: center;
+      font-size: 10px;
+      line-height: 1;
+      text-align: right;
+      text-transform: capitalize;
+      color: #046BD9;
+    }
+    .lav-main__title_expand img {
+      margin-left: 10px;
+    }
+    #order-summary-widget {
+      padding: 0;
+      letter-spacing: 0;
+    }
+    #order-summary-widget .product-item-name, #order-summary-widget .product-price-col {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    #product-list {
+      padding-top: 20px;
+      display: none;
+    }
+    #order-summary-widget .product-item .product-label-col div {
+      margin-top: 7px;
+      font-size: 10px;
+      line-height: 12px;
+    }
+    #order-summary-widget .product-item + .product-item {
+      margin-top: 14px;
+    }
+    #order-summary-widget #summary-totals .total-row {
+      margin-top: 0;
+      padding-top: 20px;
+      border: none;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    .lav-tip__info_reverse {
+      right: -10px;
+      bottom: 8px;
+    }
+    .lav-row {
+      display: block;
+      margin: 0;
+    }
+    .lav-group {
+      width: auto;
+      padding: 0;
+    }
+    .lav-group + .lav-group {
+      margin-top: 26px;
+    }
+    .lav-group input {
+      background: #FFFFFF;
+      border: 1px solid rgba(90, 115, 134, 0.5);
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+    .lav-lable {
+      padding: 0 5px;
+      background: white;
+      left: 13px;
+    }
+    .lav-payment {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px dashed rgb(4 107 217 / 15%);
+    }
+    .lav-payment {
+      background-size: 146px;
+      background-position-y: 15px;
+    }
+    .lav-payment .lav-row:last-child {
+      margin-top: 26px;
+      display: flex;
+    }
+    .lav-payment .lav-row:last-child .lav-group {
+      width: 50%;
+    }
+    .lav-payment .lav-row:last-child .lav-group + .lav-group {
+      margin-top: 0;
+      margin-left: 14px;
+    }
+    .lav-info  {
+      margin-bottom: 16px;
+    }
+    .tpl-6__order .btn {
+      max-width: 220px;
+    }
+    #payment-request-button + p a {
+      display: block;
+    }
   }
 `;
 
@@ -1616,7 +1772,10 @@ const newCheckout = `
     </div>
 
     <div class='lav-summary lav-main__block'>
-      <div class='lav-main__title'>Order Summary</div>
+      <div class='lav-main__title'>
+       <div class='lav-main__title_value'>Order Summary</div>
+       <div class='lav-main__title_expand'>Show all <img src='${settings.dir}/img/summary-icon-right.svg'></div>
+      </div>
     </div>
   </div>
 
@@ -1675,6 +1834,29 @@ function init() {
       document
         .querySelector('#paymentForm')
         .insertAdjacentHTML('beforebegin', newCheckout);
+
+      const today = new Date();
+
+      for (let item of document.querySelectorAll('.lav-timeline__date')) {
+        item.innerText = today.toLocaleDateString();
+      }
+
+      document
+        .querySelector('.lav-main__title_expand')
+        .addEventListener('click', function () {
+          this.classList.toggle('lav-active');
+          if (this.classList.contains('lav-active')) {
+            this.innerHTML = `Hide <img src='${settings.dir}/img/summary-icon-close.svg'>`;
+            document.querySelector('#product-list').style.display = 'block';
+          } else {
+            this.innerHTML = `Show All <img src='${settings.dir}/img/summary-icon-right.svg'>`;
+            document.querySelector('#product-list').style.display = 'none';
+          }
+        });
+
+      document.querySelector('.lav-timeline__date_expire').innerText = new Date(
+        today.setDate(today.getDate() + 30)
+      ).toLocaleDateString();
 
       document
         .querySelector('.lav-summary')
