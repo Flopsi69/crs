@@ -519,7 +519,8 @@ const styles = `
   }
   .lav-faq {
     color: #183B56;
-    padding: 100px 0;
+    padding: 60px 0 100px;
+    background: #F7FAFD;
   }
   .lav-faq__title {
     font-weight: 900;
@@ -591,6 +592,165 @@ const styles = `
     background-color: #173145;
     color: #fff;
   }
+  .lav-plans {
+    background: url('${settings.dir}/img/plans-bg.png') center no-repeat;
+    padding-top: 70px;
+    padding-bottom: 75px;
+  }
+  .lav-plans__title {
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 40px;
+    text-align: center;
+    color: #172F44;
+    margin-bottom: 72px;
+  }
+  .lav-plans__row {
+    display: flex;
+    justify-content: center;
+  }
+  .lav-plan + .lav-plan {
+    margin-left: 60px;
+  }
+  .lav-plan {
+    max-width: 380px;
+    color: #172F44;
+  }
+  .lav-plan__inner {
+    background: #FFFFFF;
+    box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.04), 0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09);
+    border-radius: 40px;
+    padding: 32px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+  }
+  .lav-plan_active {
+    transform: scale(1.05);
+    border-color: #1C80E2;
+  }
+  .lav-plan__title {
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+  .lav-plan__price {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 59px;
+    text-transform: uppercase;
+    color: #00A39E;
+  }
+  .lav-plan__price span {
+    color: #172F44;
+    font-size: 16px;
+  }
+  .lav-plan__caption {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #5A7386;
+  }
+  .lav-plan__text {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #172F44;
+    margin-bottom: 18px;
+    margin-top: 18px;
+  }
+  .lav-plan__btn-wrap {}
+
+  .lav-plan__btn {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #00A39E;
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #00A39E;
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .lav-plan__btn:hover {
+    opacity: 0.7;
+  }
+  .lav-plan__btn_active {
+    color: #fff;
+    background: linear-gradient(91.61deg, #49D5D4 0%, #1C7FE1 38%);
+    border-color: #46cbd6;
+  }
+  .lav-plan__lines {
+    font-family: 'Roboto';
+    font-size: 16px;
+    line-height: 24px;
+    color: #172F44;
+  }
+  .lav-plan__info {
+    padding: 0 34px;
+  }
+  .lav-plan__line span {
+    font-weight: 500;
+  }
+  .lav-plan__line + .lav-plan__line {
+    margin-top: 7px;
+  }
+  .lav-plan__list-wrap {
+    margin-top: 10px;
+  }
+  .lav-plan__list-title {
+    font-family: 'Roboto';
+    font-size: 16px;
+    line-height: 24px;
+    color: #172F44;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #E5E5E5;
+    font-weight: 500;
+  }
+  .lav-plan__list-item {
+    position: relative;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #212529;
+    padding-left: 20px;
+  }
+  .lav-plan__list-item-last {
+    padding: 0;
+  }
+  .lav-plan__list-item-last:before {
+    display: none;
+  }
+  .lav-plan__list-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(${settings.dir}/img/icon-check.svg);
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+  }
+  .lav-plan__list-item + .lav-plan__list-item {
+    margin-top: 15px;
+  }
+  .lav-plan {}
+
 
   
   @media (max-width: 1000px) {
@@ -1630,7 +1790,84 @@ const newPage = `
       </div>
     </div>
 
-    
+    <div class='lav-section lav-plans'>
+      <div class='lav-container'>
+        <div class='lav-plans__title'>Unlock 17+ additional trainings that will speed <br> up your results even more.</div>
+        <div class='lav-plans__row'>
+          <div class='lav-plan'>
+            <div class='lav-plan_active lav-plan__inner'>
+              <div class='lav-plan__image'>
+                <img src='${settings.dir}/img/plan1.png'>
+              </div>
+              <div class='lav-plan__title'>Launch</div>
+              <div class='lav-plan__price'>$349<span>/YR</span></div>
+              <div class='lav-plan__caption'>Billed Annually</div>
+              <div class='lav-plan__text'>Get 1 full year of SamCart Launch plus all the bonuses described above:</div>
+              <div class='lav-plan__btn-wrap'>
+                <div class='lav-plan__btn lav-plan__btn_active'>Launch Plan Only</div>
+              </div>
+            </div>
+
+            <div class='lav-plan__info'>
+              <div class='lav-plan__lines'>
+                <div class='lav-plan__line'><span>Unlimited</span> Products & Pages</div>
+                <div class='lav-plan__line'><span>Unlimited</span> Courses</div>
+                <div class='lav-plan__line'><span>Unlimited</span> Students</div>
+              </div>
+
+              <div class='lav-plan__list-wrap'>
+                <div class='lav-plan__list-title'>PLUS:</div>
+                <div class='lav-plan__list'>
+                  <div class='lav-plan__list-item'>The 1 Page Masterclass</div>
+                  <div class='lav-plan__list-item'>Traffic Tactics</div>
+                  <div class='lav-plan__list-item'>Course Creation Challenge</div>
+                  <div class='lav-plan__list-item'>1 Page Wednesdays</div>
+                  <div class='lav-plan__list-item'>Facebook Group Acces</div>
+                  <div class='lav-plan__list-item'>Top Sell Strategies</div>
+                  <div class='lav-plan__list-item'>My Course Page Template</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class='lav-plan'>
+            <div class='lav-plan__inner'>
+              <div class='lav-plan__image'>
+                <img src='${settings.dir}/img/plan2.png'>
+              </div>
+              <div class='lav-plan__title'>ADD CREATORU NOW!</div>
+              <div class='lav-plan__price'>$469<span>/YR</span></div>
+              <div class='lav-plan__caption'>Billed Annually</div>
+              <div class='lav-plan__text'>Access EVERY premium training we’ve ever created for only $120 extra in CreatorU!</div>
+              <div class='lav-plan__btn-wrap'>
+                <div class='lav-plan__btn'>Launch Plan Only</div>
+              </div>
+            </div>
+
+            <div class='lav-plan__info'>
+              <div class='lav-plan__lines'>
+                <div class='lav-plan__line'><span>Everything in the main package</span></div>
+              </div>
+
+              <div class='lav-plan__list-wrap'>
+                <div class='lav-plan__list-title'>PLUS:</div>
+                <div class='lav-plan__list'>
+                  <div class='lav-plan__list-item'>Scaling with SamCart</div>
+                  <div class='lav-plan__list-item'>The Ultimate Upsell</div>
+                  <div class='lav-plan__list-item'>The 4X Formula</div>
+                  <div class='lav-plan__list-item'>The 1 Page Blueprint</div>
+                  <div class='lav-plan__list-item'>The 5 Minute VSL</div>
+                  <div class='lav-plan__list-item'>The Going Pro Gameplan</div>
+                  <div class='lav-plan__list-item'>The Ultimate Upsell Script</div>
+                  <div class='lav-plan__list-item'>Product Creation Masterclass</div>
+                  <div class='lav-plan__list-item lav-plan__list-item-last'>And much more</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class='lav-video'>
       <div class='lav-container'>
@@ -1814,6 +2051,35 @@ function init() {
           e.preventDefault();
           location.href =
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+        });
+      }
+
+      for (let item of document.querySelectorAll('.lav-plan__inner')) {
+        item.addEventListener('click', function (e) {
+          document.querySelector(
+            '.lav-plan_active .lav-plan__btn_active'
+          ).innerText = 'Launch Plan Only';
+          document
+            .querySelector('.lav-plan_active .lav-plan__btn_active')
+            .classList.remove('lav-plan__btn_active');
+          document
+            .querySelector('.lav-plan_active')
+            .classList.remove('lav-plan_active');
+          item.classList.add('lav-plan_active');
+          item
+            .querySelector('.lav-plan__btn')
+            .classList.add('lav-plan__btn_active');
+
+          item.querySelector('.lav-plan__btn').innerText = 'Selected';
+
+          item
+            .querySelector('.lav-plan__btn')
+            .addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              location.href =
+                'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+            });
         });
       }
 
