@@ -2071,15 +2071,17 @@ function init() {
             .classList.add('lav-plan__btn_active');
 
           item.querySelector('.lav-plan__btn').innerText = 'Selected';
+        });
+      }
 
-          item
-            .querySelector('.lav-plan__btn')
-            .addEventListener('click', function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              location.href =
-                'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
-            });
+      for (let item of document.querySelectorAll('.lav-plan__btn')) {
+        item.addEventListener('click', function (e) {
+          if (item.classList.contains('lav-plan__btn_active')) {
+            e.preventDefault();
+            e.stopPropagation();
+            location.href =
+              'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+          }
         });
       }
 
