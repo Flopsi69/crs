@@ -1804,7 +1804,7 @@ const newPage = `
               <div class='lav-plan__caption'>Billed Annually</div>
               <div class='lav-plan__text'>Get 1 full year of SamCart Launch plus all the bonuses described above:</div>
               <div class='lav-plan__btn-wrap'>
-                <div class='lav-plan__btn lav-plan__btn_active'>Launch Plan Only</div>
+                <div class='lav-plan__btn lav-plan__btn_active'>Selected</div>
               </div>
             </div>
 
