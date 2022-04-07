@@ -1357,7 +1357,7 @@ if (document.querySelector('body')) {
 } else {
   setTimeout(() => {
     document.body.appendChild(stylesEl);
-  }, timeout);
+  }, 1000);
 }
 
 /*** STYLES / end ***/
@@ -1629,6 +1629,8 @@ const newPage = `
         </div>
       </div>
     </div>
+
+    
 
     <div class='lav-video'>
       <div class='lav-container'>
