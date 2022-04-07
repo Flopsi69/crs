@@ -1351,7 +1351,15 @@ if (location.href.includes('/products/courses-special-offer-subscribe')) {
 } else {
   stylesEl.innerHTML = styles;
 }
-document.body.appendChild(stylesEl);
+
+if (document.querySelector('body')) {
+  document.body.appendChild(stylesEl);
+} else {
+  setTimeout(() => {
+    document.body.appendChild(stylesEl);
+  }, timeout);
+}
+
 /*** STYLES / end ***/
 
 const newPage = `
