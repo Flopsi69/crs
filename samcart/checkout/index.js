@@ -1804,7 +1804,7 @@ const newPage = `
               <div class='lav-plan__caption'>Billed Annually</div>
               <div class='lav-plan__text'>Get 1 full year of SamCart Launch plus all the bonuses described above:</div>
               <div class='lav-plan__btn-wrap'>
-                <div class='lav-plan__btn lav-plan__btn_active'>Selected</div>
+                <div class='lav-plan__btn lav-plan__btn_active'>Start earning now</div>
               </div>
             </div>
 
@@ -2070,7 +2070,7 @@ function init() {
             .querySelector('.lav-plan__btn')
             .classList.add('lav-plan__btn_active');
 
-          item.querySelector('.lav-plan__btn').innerText = 'Selected';
+          item.querySelector('.lav-plan__btn').innerText = 'Start earning now';
         });
       }
 
