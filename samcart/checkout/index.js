@@ -2119,7 +2119,16 @@ function init() {
       console.log(localStorage.getItem('plan'));
       console.log(document.querySelector('#product-option-545632'));
       if (localStorage.getItem('plan') == '2') {
-        document.querySelector('#product-option-545632').click();
+        var summaryInterval = setInterval(() => {
+          if (!document.querySelector('#product-option-545632')) {
+            return false;
+          }
+          document.querySelector('#product-option-545632').click();
+          if (document.querySelector('#product-option-545632').checked) {
+            clearInterval(summaryInterval);
+            addSummary();
+          }
+        }, 400);
       }
 
       document
@@ -2149,28 +2158,35 @@ function init() {
         today.setDate(today.getDate() + 30)
       ).toLocaleDateString();
 
-      var cloneSummary = document
-        .querySelector('#order-summary-widget')
-        .cloneNode(true);
-      cloneSummary.classList.add('lav-summary-inner');
-
-      document
-        .querySelector('.lav-summary')
-        .insertAdjacentElement('beforeend', cloneSummary);
-
-      setTimeout(() => {
-        document.querySelector('.lav-summary #order-summary-widget').remove();
-        document
-          .querySelector('.lav-summary')
-          .insertAdjacentElement(
-            'beforeend',
-            document.querySelector('#order-summary-widget').cloneNode(true)
-          );
-      }, 2000);
+      addSummary();
     } else {
       setTimeout(() => {
         init();
       }, 1000);
     }
   }
+}
+
+function addSummary() {
+  if (document.querySelector('.lav-summary #order-summary-widget')) {
+    document.querySelector('.lav-summary #order-summary-widget').remove();
+  }
+  var cloneSummary = document
+    .querySelector('#order-summary-widget')
+    .cloneNode(true);
+  cloneSummary.classList.add('lav-summary-inner');
+
+  document
+    .querySelector('.lav-summary')
+    .insertAdjacentElement('beforeend', cloneSummary);
+
+  setTimeout(() => {
+    document.querySelector('.lav-summary #order-summary-widget').remove();
+    document
+      .querySelector('.lav-summary')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector('#order-summary-widget').cloneNode(true)
+      );
+  }, 2000);
 }
