@@ -1223,7 +1223,7 @@ const stylesCheckout = `
     background-size: 167px;
     min-height: 100px;
   }
-  .lav-lable {
+  .lav-label {
     position: absolute;
     left: 30px;
     top: -6px;
@@ -1235,17 +1235,27 @@ const stylesCheckout = `
   }
   .lav-group input {
     background: #FFFFFF;
-    box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
-    border-radius: 5px;
+    //box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
+    //border-radius: 5px;
     outline: none;
     border: none;
     height: 40px;
     width: 100%;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    color: #183B56;
-    padding: 10px 20px;
+    //font-weight: 600;
+    //font-size: 14px;
+    //line-height: 17px;
+    //color: #183B56;
+    //padding: 10px 20px;
+    
+    display: block;
+    width: 100%;
+    padding: 0.45875rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.458;
+    color: #232427;
+    border: 1px solid #DADCE0;
+    border-radius: 6px;
   }
   #order-summary-widget {
     background: #FFFFFF;
@@ -1461,6 +1471,9 @@ const stylesCheckout = `
       width: auto;
       padding: 0;
     }
+    .form-group div.card-num-row {
+      padding-top: 0;
+    }
     .lav-group + .lav-group {
       margin-top: 26px;
     }
@@ -1470,7 +1483,7 @@ const stylesCheckout = `
       box-sizing: border-box;
       border-radius: 5px;
     }
-    .lav-lable {
+    .lav-label {
       padding: 0 5px;
       background: white;
       left: 13px;
@@ -1975,22 +1988,22 @@ const newCheckout = `
         </div>
         <div class='lav-row'>
           <div class='lav-group'>
-            <label class='lav-lable'>First name</label>
-            <input type='text' class='lav-input lav-input-name'>
+            <!-- <label class='lav-label'>First name</label> -->
+            <input type='text' class='lav-input lav-input-name' placeholder="First name">
           </div>
           <div class='lav-group'>
-            <label class='lav-lable'>Last name</label>
-            <input type='text' class='lav-input lav-input-last'>
+            <!-- <label class='lav-label'>Last name</label> -->
+            <input type='text' class='lav-input lav-input-last' placeholder="Last name">
           </div>
         </div>
         <div class='lav-row'>
           <div class='lav-group'>
-            <label class='lav-lable'>Email address</label>
-            <input type='text' class='lav-input lav-input-mail'>
+            <!-- <label class='lav-label'>Email address</label> -->
+            <input type='text' class='lav-input lav-input-mail' placeholder="Email address">
           </div>
           <div class='lav-group'>
-            <label class='lav-lable'>Phone number</label>
-            <input type='text' class='lav-input lav-input-phone'>
+            <!-- <label class='lav-label'>Phone number</label> -->
+            <input type='text' class='lav-input lav-input-phone' placeholder="Phone number">
           </div>
         </div>
       </div>
@@ -2040,37 +2053,19 @@ function init() {
         });
       }
 
-      console.log(document.querySelector('.payment-form'));
-
-      document
-        .querySelector('.lav-payment')
-        .insertAdjacentElement(
-          'beforeend',
-          document.querySelector('.payment-form')
-        );
-
-      setTimeout(() => {
-        document
-          .querySelector('.lav-payment')
-          .insertAdjacentElement(
-            'beforeend',
-            document.querySelector('.payment-form')
-          );
-      }, 1500);
-
       // <div class='lav-row'>
       //   <div class='lav-group lav-group_full'>
-      //     <label class='lav-lable'>Credit card Number</label>
+      //     <label class='lav-label'>Credit card Number</label>
       //     <input type='text' class='lav-input'>
       //   </div>
       // </div>
       // <div class='lav-row'>
       //   <div class='lav-group'>
-      //     <label class='lav-lable'>Expiration</label>
+      //     <label class='lav-label'>Expiration</label>
       //     <input type='text' class='lav-input'>
       //   </div>
       //   <div class='lav-group'>
-      //     <label class='lav-lable'>Cvv</label>
+      //     <label class='lav-label'>Cvv</label>
       //     <input type='text' class='lav-input'>
       //   </div>
       // </div>
@@ -2205,6 +2200,24 @@ function init() {
       for (let item of document.querySelectorAll('.lav-timeline__date')) {
         item.innerText = today.toLocaleDateString();
       }
+
+      console.log(document.querySelector('.payment-form'));
+
+      document
+        .querySelector('.lav-payment')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('.payment-form')
+        );
+
+      // setTimeout(() => {
+      //   document
+      //     .querySelector('.lav-payment')
+      //     .insertAdjacentElement(
+      //       'beforeend',
+      //       document.querySelector('.payment-form')
+      //     );
+      // }, 1500);
 
       document
         .querySelector('.lav-main__title_expand')
