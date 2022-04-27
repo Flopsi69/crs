@@ -2096,14 +2096,27 @@ function init() {
         item.addEventListener('click', function (e) {
           e.preventDefault();
           document.querySelector("[for='payPalRadio']").click();
-          document.querySelector('[name="fname"]').value = 'test';
-          document.querySelector('[name="lname"]').value = 'test';
-          document.querySelector('[name="email"]').value = 'test@test.test';
-          document.querySelector('[name="email_confirmation"]').value =
-            'test@test.test';
-          document.querySelector('[name="phone"]').value = '0000000000000';
-          document.querySelector('[name="custom_ubiGdEid"]').value =
-            '$1 - $1,000';
+          if (document.querySelector('[name="fname"]')) {
+            document.querySelector('[name="fname"]').value = 'test';
+          }
+          if (document.querySelector('[name="lname"]')) {
+            document.querySelector('[name="lname"]').value = 'test';
+          }
+          if (document.querySelector('[name="email"]')) {
+            document.querySelector('[name="email"]').value = 'test@test.test';
+          }
+          if (document.querySelector('[name="email_confirmation"]')) {
+            document.querySelector('[name="email_confirmation"]').value =
+              'test@test.test';
+          }
+          if (document.querySelector('[name="phone"]')) {
+            document.querySelector('[name="phone"]').value = '0000000000000';
+          }
+          if (document.querySelector('[name="custom_ubiGdEid"]')) {
+            document.querySelector('[name="custom_ubiGdEid"]').value =
+              '$1 - $1,000';
+          }
+
           setTimeout(() => {
             document.querySelector('.main-cta').click();
           }, 500);
