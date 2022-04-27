@@ -1362,6 +1362,9 @@ const stylesCheckout = `
     opacity: 1;
     pointer-events: auto;
   }
+  .form-group div.card-num-row {
+    padding-top: 0;
+  }
   @media (max-width: 1000px) {
     .lav-title {
       font-size: 20px;
@@ -1470,9 +1473,6 @@ const stylesCheckout = `
     .lav-group {
       width: auto;
       padding: 0;
-    }
-    .form-group div.card-num-row {
-      padding-top: 0;
     }
     .lav-group + .lav-group {
       margin-top: 26px;
