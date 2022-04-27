@@ -2116,8 +2116,6 @@ function init() {
     }
   } else {
     if (document.querySelector('#paymentForm')) {
-      console.log(localStorage.getItem('plan'));
-      console.log(document.querySelector('#product-option-545632'));
       if (localStorage.getItem('plan') == '2') {
         var summaryInterval = setInterval(() => {
           if (!document.querySelector('#product-option-545632')) {
@@ -2125,6 +2123,17 @@ function init() {
           }
           document.querySelector('#product-option-545632').click();
           if (document.querySelector('#product-option-545632').checked) {
+            clearInterval(summaryInterval);
+            addSummary();
+          }
+        }, 400);
+      } else {
+        var summaryInterval = setInterval(() => {
+          if (!document.querySelector('#product-option-603893')) {
+            return false;
+          }
+          document.querySelector('#product-option-603893').click();
+          if (document.querySelector('#product-option-603893').checked) {
             clearInterval(summaryInterval);
             addSummary();
           }
