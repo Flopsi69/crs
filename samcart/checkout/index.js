@@ -1257,7 +1257,10 @@ const stylesCheckout = `
     border: 1px solid #DADCE0;
     border-radius: 6px;
     font-family: 'Roboto';
-    font-weight: 500;
+    font-weight: 400;
+  }
+  .lav-group input:placeholder {
+    color: #232427;
   }
   #order-summary-widget {
     background: #FFFFFF;
