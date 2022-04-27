@@ -1975,43 +1975,27 @@ const newCheckout = `
         <div class='lav-row'>
           <div class='lav-group'>
             <label class='lav-lable'>First name</label>
-            <input type='text' class='lav-input'>
+            <input type='text' class='lav-input lav-input-name'>
           </div>
           <div class='lav-group'>
             <label class='lav-lable'>Last name</label>
-            <input type='text' class='lav-input'>
+            <input type='text' class='lav-input lav-input-last'>
           </div>
         </div>
         <div class='lav-row'>
           <div class='lav-group'>
             <label class='lav-lable'>Email address</label>
-            <input type='text' class='lav-input'>
+            <input type='text' class='lav-input lav-input-mail'>
           </div>
           <div class='lav-group'>
             <label class='lav-lable'>Phone number</label>
-            <input type='text' class='lav-input'>
+            <input type='text' class='lav-input lav-input-phone'>
           </div>
         </div>
       </div>
 
       <div class='lav-payment lav-block'>
         <div class='lav-main__sublock'>Payment Methods</div>
-        <div class='lav-row'>
-          <div class='lav-group lav-group_full'>
-            <label class='lav-lable'>Credit card Number</label>
-            <input type='text' class='lav-input'>
-          </div>
-        </div>
-        <div class='lav-row'>
-          <div class='lav-group'>
-            <label class='lav-lable'>Expiration</label>
-            <input type='text' class='lav-input'>
-          </div>
-          <div class='lav-group'>
-            <label class='lav-lable'>Cvv</label>
-            <input type='text' class='lav-input'>
-          </div>
-        </div>
       </div>
 
       <div class='lav-caption'>You'll also be able to instantly access all of the free gifts right from inside your SamCart account, which makes it super easy to build your pages and go through the trainings at the same time.</div>
@@ -2054,6 +2038,49 @@ function init() {
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
         });
       }
+
+      document
+        .querySelector('.lav-payment')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('.payment-form')
+        );
+
+      // <div class='lav-row'>
+      //   <div class='lav-group lav-group_full'>
+      //     <label class='lav-lable'>Credit card Number</label>
+      //     <input type='text' class='lav-input'>
+      //   </div>
+      // </div>
+      // <div class='lav-row'>
+      //   <div class='lav-group'>
+      //     <label class='lav-lable'>Expiration</label>
+      //     <input type='text' class='lav-input'>
+      //   </div>
+      //   <div class='lav-group'>
+      //     <label class='lav-lable'>Cvv</label>
+      //     <input type='text' class='lav-input'>
+      //   </div>
+      // </div>
+
+      // for (let item of document.querySelectorAll('.lav-input')) {
+      //   item.addEventListener('change', function () {
+      //     console.log('change', item);
+      //     var value = item.value;
+      //     if (item.classList.contains('lav-input-name')) {
+
+      //     }
+      //     if (item.classList.contains('lav-input-last')) {
+
+      //     }
+      //     if (item.classList.contains('lav-input-mail')) {
+
+      //     }
+      //     if (item.classList.contains('lav-input-phone')) {
+
+      //     }
+      //   })
+      // }
 
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
