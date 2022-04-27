@@ -1221,6 +1221,7 @@ const stylesCheckout = `
     background: url(${settings.dir}/img/payments.png) top right;
     background-repeat: no-repeat;
     background-size: 167px;
+    min-height: 100px;
   }
   .lav-lable {
     position: absolute;
@@ -2039,12 +2040,23 @@ function init() {
         });
       }
 
+      console.log(document.querySelector('.payment-form'));
+
       document
         .querySelector('.lav-payment')
         .insertAdjacentElement(
           'beforeend',
           document.querySelector('.payment-form')
         );
+
+      setTimeout(() => {
+        document
+          .querySelector('.lav-payment')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector('.payment-form')
+          );
+      }, 1500);
 
       // <div class='lav-row'>
       //   <div class='lav-group lav-group_full'>
