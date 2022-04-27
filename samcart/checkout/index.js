@@ -1251,11 +1251,13 @@ const stylesCheckout = `
     width: 100%;
     padding: 0.45875rem 1rem;
     font-size: 1rem;
-    font-weight: 400;
+    // font-weight: 400;
     line-height: 1.458;
     color: #232427;
     border: 1px solid #DADCE0;
     border-radius: 6px;
+    font-family: 'Roboto';
+    font-weight: 500;
   }
   #order-summary-widget {
     background: #FFFFFF;
