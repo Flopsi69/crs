@@ -2117,9 +2117,11 @@ function init() {
   } else {
     if (document.querySelector('#paymentForm')) {
       if (localStorage.getItem('plan') == '1') {
-        document.querySelector('.pricing.tier').click();
+        // document.querySelector('.pricing.tier').click();
       } else if (localStorage.getItem('plan') == '2') {
-        document.querySelectorAll('.pricing.tier')[1].click();
+        document.querySelector('#product-option-545632').click();
+
+        // document.querySelectorAll('.pricing.tier')[1].click();
       }
 
       document
@@ -2149,12 +2151,15 @@ function init() {
         today.setDate(today.getDate() + 30)
       ).toLocaleDateString();
 
+      var cloneSummary = document
+        .querySelector('#order-summary-widget')
+        .cloneNode(true);
+      cloneSummary.classList.add('lav-summary');
+      cloneSummary.id = '';
+
       document
         .querySelector('.lav-summary')
-        .insertAdjacentElement(
-          'beforeend',
-          document.querySelector('#order-summary-widget').cloneNode(true)
-        );
+        .insertAdjacentElement('beforeend', cloneSummary);
 
       setTimeout(() => {
         document.querySelector('.lav-summary #order-summary-widget').remove();
