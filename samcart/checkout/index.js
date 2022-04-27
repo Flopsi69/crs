@@ -2055,6 +2055,10 @@ function init() {
         });
       }
 
+      if (localStorage.getItem('plan') == '2') {
+        document.querySelectorAll('.lav-plan__inner')[1].click();
+      }
+
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
           if (item.dataset.tab == '1') {
