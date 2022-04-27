@@ -1795,7 +1795,7 @@ const newPage = `
         <div class='lav-plans__title'>Unlock 17+ additional trainings that will speed <br> up your results even more.</div>
         <div class='lav-plans__row'>
           <div class='lav-plan'>
-            <div class='lav-plan_active lav-plan__inner'>
+            <div class='lav-plan_active lav-plan__inner' data-tab='1'>
               <div class='lav-plan__image'>
                 <img src='${settings.dir}/img/plan1.png'>
               </div>
@@ -1831,7 +1831,7 @@ const newPage = `
           </div>
 
           <div class='lav-plan'>
-            <div class='lav-plan__inner'>
+            <div class='lav-plan__inner' data-tab='2'>
               <div class='lav-plan__image'>
                 <img src='${settings.dir}/img/plan2.png'>
               </div>
@@ -2056,6 +2056,12 @@ function init() {
 
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
+          if ((item.dataset.tab = '1')) {
+            localStorage.setItem('plan', '1');
+          } else {
+            localStorage.setItem('plan', '2');
+          }
+
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
           ).innerText = 'Launch Plan Only';
@@ -2109,6 +2115,12 @@ function init() {
     }
   } else {
     if (document.querySelector('#paymentForm')) {
+      if (localStorage.getItem('plan') == '1') {
+        document.querySelector('.pricing.tier').click();
+      } else if (localStorage.getItem('plan') == '2') {
+        document.querySelectorAll('.pricing.tier')[1].click();
+      }
+
       document
         .querySelector('#paymentForm')
         .insertAdjacentHTML('beforebegin', newCheckout);
