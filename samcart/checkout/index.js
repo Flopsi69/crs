@@ -623,6 +623,7 @@ const styles = `
     padding: 32px 20px;
     text-align: center;
     margin-bottom: 30px;
+    cursor: pointer;
     transition: 0.3s;
     border: 1px solid transparent;
   }
@@ -2056,7 +2057,7 @@ function init() {
 
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
-          if ((item.dataset.tab = '1')) {
+          if (item.dataset.tab == '1') {
             localStorage.setItem('plan', '1');
           } else {
             localStorage.setItem('plan', '2');
