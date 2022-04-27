@@ -2154,8 +2154,7 @@ function init() {
       var cloneSummary = document
         .querySelector('#order-summary-widget')
         .cloneNode(true);
-      cloneSummary.classList.add('lav-summary');
-      cloneSummary.id = '';
+      cloneSummary.classList.add('lav-summary-inner');
 
       document
         .querySelector('.lav-summary')
