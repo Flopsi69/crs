@@ -2124,7 +2124,7 @@ function init() {
           document.querySelector('#product-option-545632').click();
           if (document.querySelector('#product-option-545632').checked) {
             clearInterval(summaryInterval);
-            addSummary();
+            setTimeout(addSummary, 1000);
           }
         }, 400);
       } else {
@@ -2135,7 +2135,7 @@ function init() {
           document.querySelector('#product-option-603893').click();
           if (document.querySelector('#product-option-603893').checked) {
             clearInterval(summaryInterval);
-            addSummary();
+            setTimeout(addSummary, 1000);
           }
         }, 400);
       }
