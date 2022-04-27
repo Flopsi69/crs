@@ -2116,12 +2116,10 @@ function init() {
     }
   } else {
     if (document.querySelector('#paymentForm')) {
-      if (localStorage.getItem('plan') == '1') {
-        // document.querySelector('.pricing.tier').click();
-      } else if (localStorage.getItem('plan') == '2') {
+      console.log(localStorage.getItem('plan'));
+      console.log(document.querySelector('#product-option-545632'));
+      if (localStorage.getItem('plan') == '2') {
         document.querySelector('#product-option-545632').click();
-
-        // document.querySelectorAll('.pricing.tier')[1].click();
       }
 
       document
