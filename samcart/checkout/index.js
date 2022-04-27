@@ -1256,8 +1256,7 @@ const stylesCheckout = `
     color: #232427;
     border: 1px solid #DADCE0;
     border-radius: 6px;
-    font-family: 'Roboto';
-    font-weight: 400;
+    font-weight: 600;
   }
   .lav-group input:placeholder {
     color: #232427;
