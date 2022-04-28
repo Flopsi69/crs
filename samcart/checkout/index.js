@@ -2312,6 +2312,10 @@ function init() {
       }, 1000);
     }
   } else {
+    if (!document.querySelector('#paymentForm')) {
+      setTimeout(init, 1000);
+      return false;
+    }
     document
       .querySelector('#paymentForm')
       .insertAdjacentHTML('beforebegin', newCheckout);
