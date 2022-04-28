@@ -2395,9 +2395,9 @@ function init() {
           }
         });
 
-      document.querySelector('.lav-timeline__date_expire').innerText = new Date(
-        today.setDate(today.getDate() + 30)
-      ).toLocaleDateString();
+      document.querySelector('.lav-timeline__date_expire').innerText =
+        'Until ' +
+        new Date(today.setDate(today.getDate() + 30)).toLocaleDateString();
 
       addSummary();
     } else {
