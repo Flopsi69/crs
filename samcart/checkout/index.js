@@ -754,10 +754,20 @@ const styles = `
     margin-top: 15px;
   }
   .lav-plan {}
-
-
-  
   @media (max-width: 1000px) {
+    .lav-header__inner {
+      justify-content: center;
+    }
+    .lav-plans__row {
+      display: block;
+    }
+    .lav-plan {
+      max-width: 100%;
+    }
+    .lav-plan + .lav-plan {
+      margin-left: 0;
+      margin-top: 60px;
+    }
     .lav-total:after, .lav-dis:after {
       display: none;
     }
@@ -1552,7 +1562,7 @@ const newPage = `
       </div>
       <div class='lav-header__info'>
         <div class='lav-header__descr'>
-          <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark'>$349.00</span>
+          <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark lav-price_old_new'>$349.00</span>
         </div>
         <div class='lav-header__btn lav-header__paypal'>
           <img src='${settings.dir}/img/btn-paypal.png'>
@@ -2105,8 +2115,12 @@ function init() {
         item.addEventListener('click', function (e) {
           if (item.dataset.tab == '1') {
             localStorage.setItem('plan', '1');
+            document.querySelector('.lav-price_old').innerText = '$588.00';
+            document.querySelector('.lav-price_new').innerText = '$349.00';
           } else {
             localStorage.setItem('plan', '2');
+            document.querySelector('.lav-price_old').innerText = '$588.00';
+            document.querySelector('.lav-price_new').innerText = '$469.00';
           }
 
           document.querySelector(
