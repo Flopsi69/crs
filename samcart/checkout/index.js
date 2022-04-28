@@ -1612,7 +1612,7 @@ const newPage = `
           <img src='${settings.dir}/img/btn-paypal.png'>
         </div>
         <div class='lav-header__btn lav-header__btn_hidden lav-header__google'>
-          GooglePay
+          <img src='${settings.dir}/img/btn-google.png'>
         </div>
         <div class='lav-header__btn lav-header__btn_hidden lav-header__apple'>
           <img src='${settings.dir}/img/btn-applepay.png'>
@@ -2241,6 +2241,16 @@ function init() {
           }, 500);
         });
       }
+
+      if (document.querySelector("[for='digitalWalletRadio']")) {
+        document
+          .querySelector('.lav-header__google')
+          .classList.remove('lav-header__btn_hidden');
+      }
+
+      // TODO for apple
+      // if (document.querySelector("[for='digitalWalletRadio']")) {
+      // }
 
       // Google pay
       for (let item of document.querySelectorAll('.lav-header__google')) {
