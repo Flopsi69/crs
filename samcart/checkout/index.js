@@ -1087,6 +1087,7 @@ const styles = `
       margin: 1px 2.5px;
       text-align: center;
       flex-grow: 1;
+      height: 20px;
     }
     .lav-header__btn + .lav-header__btn {
       margin: 1px 2.5px;
