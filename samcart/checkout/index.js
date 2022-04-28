@@ -2279,15 +2279,8 @@ function init() {
           e.preventDefault();
           document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'google');
-          // if (document.querySelector('#payment-request-button')) {
-          //   setTimeout(() => {
-          //     document.querySelector('.main-cta').click();
-          //   }, 500);
-          // } else {
-          //   setTimeout(() => {
-          //     document.querySelector('.main-cta').click();
-          //   }, 2000);
-          // }
+          location.href =
+            'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
         });
       }
 
