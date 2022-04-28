@@ -2326,6 +2326,7 @@ function init() {
           if (document.querySelector('#product-option-545632').checked) {
             clearInterval(summaryInterval);
             setTimeout(addSummary, 1000);
+            setTimeout(addSummary, 4000);
           }
         }, 400);
       } else {
