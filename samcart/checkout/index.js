@@ -191,6 +191,10 @@ const styles = `
   .lav-header__btn {
     transition: 0.3s;
     cursor: pointer;
+    border-radius: 50px;
+  }
+  .lav-header__apple {
+    border: 1px solid black;
   }
   .lav-header__btn_hidden {
     display: none;
@@ -1057,6 +1061,7 @@ const styles = `
     }
     .lav-header__btn img {
       max-width: 70px;
+      height: 20px;
     }
     .lav-header__btn {
       margin: 1px 2.5px;
@@ -2256,7 +2261,7 @@ function init() {
       }
 
       // Apple pay
-      for (let item of document.querySelectorAll('.llav-header__apple')) {
+      for (let item of document.querySelectorAll('.lav-header__apple')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
           console.log('apple');
