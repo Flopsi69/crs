@@ -2256,7 +2256,7 @@ function init() {
       }
 
       if (document.querySelector("[for='digitalWalletRadio']")) {
-        for (let item of document.querySelector('.lav-header__google')) {
+        for (let item of document.querySelectorAll('.lav-header__google')) {
           item.classList.remove('lav-header__btn_hidden');
         }
       }
