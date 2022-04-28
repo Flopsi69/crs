@@ -2058,7 +2058,10 @@ function init() {
         .insertAdjacentHTML('beforebegin', newPage);
       for (let item of document.querySelectorAll('.lav-faq__item')) {
         item.addEventListener('click', function () {
-          if (document.querySelector('.lav-faq__item_active')) {
+          if (
+            document.querySelector('.lav-faq__item_active') &&
+            !item.classList.contains('lav-faq__item_active')
+          ) {
             document
               .querySelector('.lav-faq__item_active')
               .classList.remove('lav-faq__item_active');
