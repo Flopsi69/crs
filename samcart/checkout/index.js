@@ -2157,7 +2157,7 @@ function init() {
       }
 
       for (let item of document.querySelectorAll('.lav-input')) {
-        item.addEventListener('change', function () {
+        item.addEventListener('input', function () {
           var value = item.value;
           console.log('change', item, value);
           if (item.classList.contains('lav-input-name')) {
