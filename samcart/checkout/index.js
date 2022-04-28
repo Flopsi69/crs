@@ -2156,25 +2156,6 @@ function init() {
         });
       }
 
-      for (let item of document.querySelectorAll('.lav-input')) {
-        item.addEventListener('input', function () {
-          var value = item.value;
-          console.log('change', item, value);
-          if (item.classList.contains('lav-input-name')) {
-            document.querySelector('#fname').value = value;
-          }
-          if (item.classList.contains('lav-input-last')) {
-            document.querySelector('#lname').value = value;
-          }
-          if (item.classList.contains('lav-input-mail')) {
-            document.querySelector('#email').value = value;
-          }
-          if (item.classList.contains('lav-input-phone')) {
-            document.querySelector('#phone').value = value;
-          }
-        });
-      }
-
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
           if (item.dataset.tab == '1') {
@@ -2330,6 +2311,25 @@ function init() {
       }
 
       const today = new Date();
+
+      for (let item of document.querySelectorAll('.lav-input')) {
+        item.addEventListener('input', function () {
+          var value = item.value;
+          console.log('change', item, value);
+          if (item.classList.contains('lav-input-name')) {
+            document.querySelector('#fname').value = value;
+          }
+          if (item.classList.contains('lav-input-last')) {
+            document.querySelector('#lname').value = value;
+          }
+          if (item.classList.contains('lav-input-mail')) {
+            document.querySelector('#email').value = value;
+          }
+          if (item.classList.contains('lav-input-phone')) {
+            document.querySelector('#phone').value = value;
+          }
+        });
+      }
 
       for (let item of document.querySelectorAll('.lav-timeline__date')) {
         item.innerText = today.toLocaleDateString();
