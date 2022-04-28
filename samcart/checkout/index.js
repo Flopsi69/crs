@@ -2362,7 +2362,7 @@ function init() {
           }
         }, 1500);
         document.querySelector('.lav-info').remove();
-        document.querySelector('.lav-main__block').style.width = '100%';
+        document.querySelector('.lav-main__block').style.width = 'initial';
       } else {
         document
           .querySelector('.lav-payment')
