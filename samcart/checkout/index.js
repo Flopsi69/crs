@@ -192,9 +192,22 @@ const styles = `
     transition: 0.3s;
     cursor: pointer;
     border-radius: 50px;
+    height: 40px;
+  }
+  .lav-header__btn img {
+    max-height: 100%;
   }
   .lav-header__apple {
     border: 1px solid black;
+  }
+  .lav-header__google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+  }
+  .lav-header__google img {
+    padding: 5px 36px;
   }
   .lav-header__btn_hidden {
     display: none;
@@ -1644,7 +1657,7 @@ const newPage = `
             <img src='${settings.dir}/img/btn-paypal.png'>
           </div>
           <div class='lav-header__btn lav-header__btn_hidden lav-header__google'>
-            GooglePay
+            <img src='${settings.dir}/img/btn-google.png'>
           </div>
           <div class='lav-header__btn lav-header__btn_hidden lav-header__apple'>
             <img src='${settings.dir}/img/btn-applepay.png'>
@@ -2243,9 +2256,9 @@ function init() {
       }
 
       if (document.querySelector("[for='digitalWalletRadio']")) {
-        document
-          .querySelector('.lav-header__google')
-          .classList.remove('lav-header__btn_hidden');
+        for (let item of document.querySelector('.lav-header__google')) {
+          item.classList.remove('lav-header__btn_hidden');
+        }
       }
 
       // TODO for apple
