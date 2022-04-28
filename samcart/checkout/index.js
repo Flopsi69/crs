@@ -2331,6 +2331,11 @@ function init() {
         .querySelector('#paymentForm')
         .insertAdjacentHTML('beforebegin', newCheckout);
 
+      if (localStorage.getItem('paymentType') == 'google') {
+        document.querySelector("[for='digitalWalletRadio']").click();
+        document.querySelector('.lav-payment').remove();
+      }
+
       const today = new Date();
 
       for (let item of document.querySelectorAll('.lav-timeline__date')) {
