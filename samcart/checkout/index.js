@@ -2156,41 +2156,24 @@ function init() {
         });
       }
 
-      // <div class='lav-row'>
-      //   <div class='lav-group lav-group_full'>
-      //     <label class='lav-label'>Credit card Number</label>
-      //     <input type='text' class='lav-input'>
-      //   </div>
-      // </div>
-      // <div class='lav-row'>
-      //   <div class='lav-group'>
-      //     <label class='lav-label'>Expiration</label>
-      //     <input type='text' class='lav-input'>
-      //   </div>
-      //   <div class='lav-group'>
-      //     <label class='lav-label'>Cvv</label>
-      //     <input type='text' class='lav-input'>
-      //   </div>
-      // </div>
-
-      // for (let item of document.querySelectorAll('.lav-input')) {
-      //   item.addEventListener('change', function () {
-      //     console.log('change', item);
-      //     var value = item.value;
-      //     if (item.classList.contains('lav-input-name')) {
-
-      //     }
-      //     if (item.classList.contains('lav-input-last')) {
-
-      //     }
-      //     if (item.classList.contains('lav-input-mail')) {
-
-      //     }
-      //     if (item.classList.contains('lav-input-phone')) {
-
-      //     }
-      //   })
-      // }
+      for (let item of document.querySelectorAll('.lav-input')) {
+        item.addEventListener('change', function () {
+          var value = item.value;
+          console.log('change', item, value);
+          if (item.classList.contains('lav-input-name')) {
+            document.querySelector('#fname').value = value;
+          }
+          if (item.classList.contains('lav-input-last')) {
+            document.querySelector('#lname').value = value;
+          }
+          if (item.classList.contains('lav-input-mail')) {
+            document.querySelector('#email').value = value;
+          }
+          if (item.classList.contains('lav-input-phone')) {
+            document.querySelector('#phone').value = value;
+          }
+        });
+      }
 
       for (let item of document.querySelectorAll('.lav-plan__inner')) {
         item.addEventListener('click', function (e) {
