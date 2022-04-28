@@ -797,6 +797,13 @@ const styles = `
       line-height: 35px;
       margin-bottom: 50px;
     }
+    .lav-header__google {
+      height: 20px;
+      flex-basis: 46%;
+    }
+    .lav-header__google img {
+      padding: 3px 10px;
+    }
     .lav-plan_active {
       transform: scale(1.01);
     }
