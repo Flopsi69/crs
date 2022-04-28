@@ -2150,6 +2150,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-checkout')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          localStorage.setItem('paymentType', 'card');
           location.href =
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
         });
