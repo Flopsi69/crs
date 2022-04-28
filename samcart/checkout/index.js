@@ -761,6 +761,14 @@ const styles = `
     .lav-plans__row {
       display: block;
     }
+    .lav-plans__title {
+      font-size: 28px;
+      line-height: 1.4;
+      margin-bottom: 50px;
+    }
+    .lav-plans__title br {
+      display: none;
+    }
     .lav-plan {
       max-width: 100%;
     }
