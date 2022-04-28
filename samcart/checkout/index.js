@@ -192,6 +192,9 @@ const styles = `
     transition: 0.3s;
     cursor: pointer;
   }
+  .lav-header__btn_hidden {
+    display: none;
+  }
   .lav-header__btn:hover {
     opacity: 0.5;
   }
@@ -217,6 +220,10 @@ const styles = `
     line-height: 22px;
     letter-spacing: 0.05em;
     margin-right: 30px;
+  }
+  .lav-header__card {
+    border-radius: 50px;
+    background: #e76243;
   }
   .lav-price_old {
     text-decoration: line-through;
@@ -1003,7 +1010,7 @@ const styles = `
     }
     .lav-header__top {
       text-align: center;
-      padding: 12px;
+      padding: 9px;
       border-bottom: 1px solid rgb(90 115 134 / 20%);
     }
     .lav-header__top img{
@@ -1036,8 +1043,14 @@ const styles = `
     }
     .lav-header__buttons {
       display: flex;
-      margin-left: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: 7.5px;
+      margin-right: -2.5px;
+      max-width: 150px;
     }
+    width: 100%;
+    text-align: center;
     .lav-header__info {
       min-width: 0;
       justify-content: space-between;
@@ -1045,8 +1058,13 @@ const styles = `
     .lav-header__btn img {
       max-width: 70px;
     }
+    .lav-header__btn {
+      margin: 1px 2.5px;
+      text-align: center;
+      flex-grow: 1;
+    }
     .lav-header__btn + .lav-header__btn {
-      margin-left: 5px;
+      margin: 1px 2.5px;
     }
   }
 `;
@@ -1588,6 +1606,12 @@ const newPage = `
         <div class='lav-header__btn lav-header__paypal'>
           <img src='${settings.dir}/img/btn-paypal.png'>
         </div>
+        <div class='lav-header__btn lav-header__btn_hidden lav-header__google'>
+          GooglePay
+        </div>
+        <div class='lav-header__btn lav-header__btn_hidden lav-header__apple'>
+          <img src='${settings.dir}/img/btn-applepay.png'>
+        </div>
         <div class='lav-header__btn lav-header__card lav-checkout'>
           <img src='${settings.dir}/img/btn-card.png'>
         </div>
@@ -1613,6 +1637,12 @@ const newPage = `
         <div class='lav-header__buttons'>
           <div class='lav-header__btn lav-header__paypal'>
             <img src='${settings.dir}/img/btn-paypal.png'>
+          </div>
+          <div class='lav-header__btn lav-header__btn_hidden lav-header__google'>
+            GooglePay
+          </div>
+          <div class='lav-header__btn lav-header__btn_hidden lav-header__apple'>
+            <img src='${settings.dir}/img/btn-applepay.png'>
           </div>
           <div class='lav-header__btn lav-header__card lav-checkout'>
             <img src='${settings.dir}/img/btn-card.png'>
@@ -2204,6 +2234,32 @@ function init() {
           setTimeout(() => {
             document.querySelector('.main-cta').click();
           }, 500);
+        });
+      }
+
+      // Google pay
+      for (let item of document.querySelectorAll('.lav-header__google')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector("[for='digitalWalletRadio']").click();
+
+          // if (document.querySelector('#payment-request-button')) {
+          //   setTimeout(() => {
+          //     document.querySelector('.main-cta').click();
+          //   }, 500);
+          // } else {
+          //   setTimeout(() => {
+          //     document.querySelector('.main-cta').click();
+          //   }, 2000);
+          // }
+        });
+      }
+
+      // Apple pay
+      for (let item of document.querySelectorAll('.llav-header__apple')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          console.log('apple');
         });
       }
 
