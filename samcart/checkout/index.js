@@ -2303,6 +2303,10 @@ function init() {
       }, 1000);
     }
   } else {
+    document
+      .querySelector('#paymentForm')
+      .insertAdjacentHTML('beforebegin', newCheckout);
+
     if (document.querySelector('#paymentForm')) {
       if (localStorage.getItem('plan') == '2') {
         var summaryInterval = setInterval(() => {
@@ -2338,7 +2342,7 @@ function init() {
 
       if (localStorage.getItem('paymentType') == 'google') {
         document.querySelector("[for='digitalWalletRadio']").click();
-        document.querySelector('.lav-payment').remove();
+        // document.querySelector('.lav-payment').remove();
       } else {
         document
           .querySelector('.lav-payment')
