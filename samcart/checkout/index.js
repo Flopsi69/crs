@@ -596,7 +596,8 @@ const styles = `
     color: #fff;
   }
   .lav-plans {
-    background: #fff url('${settings.dir}/img/plans-bg.png') center no-repeat;
+    background: #fff url('${settings.dir}/img/plans-bg.png') 0 15% no-repeat;
+    background-size: 100% auto;
     padding-top: 70px;
     padding-bottom: 75px;
   }
