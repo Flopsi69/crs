@@ -596,17 +596,20 @@ const styles = `
     color: #fff;
   }
   .lav-plans {
-    background: url('${settings.dir}/img/plans-bg.png') center no-repeat;
+    background: #fff url('${settings.dir}/img/plans-bg.png') center no-repeat;
     padding-top: 70px;
     padding-bottom: 75px;
   }
   .lav-plans__title {
     font-weight: 400;
-    font-size: 31px;
-    line-height: 40px;
+    font-size: 40px;
+    line-height: 48px;
     text-align: center;
     color: #172F44;
-    margin-bottom: 72px;
+    margin-bottom: 60px;
+  }
+  .lav-plans__title span {
+    font-weight: 700;
   }
   .lav-plans__row {
     display: flex;
@@ -758,12 +761,15 @@ const styles = `
     .lav-header__inner {
       justify-content: center;
     }
+    .lav-plans {
+      background-image: none;
+    }
     .lav-plans__row {
       display: block;
     }
     .lav-plans__title {
-      font-size: 28px;
-      line-height: 1.4;
+      font-size: 26px;
+      line-height: 35px;
       margin-bottom: 50px;
     }
     .lav-plan_active {
@@ -1838,7 +1844,7 @@ const newPage = `
 
     <div class='lav-section lav-plans'>
       <div class='lav-container'>
-        <div class='lav-plans__title'>Unlock 17+ additional trainings that will speed <br> up your results even more.</div>
+        <div class='lav-plans__title'><span>Unlock 17+ additional trainings</span><br> that will speed up your results even more.</div>
         <div class='lav-plans__row'>
           <div class='lav-plan'>
             <div class='lav-plan_active lav-plan__inner' data-tab='1'>
@@ -2013,7 +2019,7 @@ const newCheckout = `
           <span class='lav-tip'>
             <img src='${settings.dir}/img/tip.svg'>
             <div class='lav-tip__info'>
-              We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
+              Just fill out your contact information below, and let us know what stage you're currently at in your online business. This will help us better serve you once you're inside the community.
             </div>
           </span>
         </div>
@@ -2136,7 +2142,7 @@ function init() {
             document.querySelector('.lav-price_new').innerText = '$349.00';
           } else {
             localStorage.setItem('plan', '2');
-            document.querySelector('.lav-price_old').innerText = '$588.00';
+            document.querySelector('.lav-price_old').innerText = '$708.00';
             document.querySelector('.lav-price_new').innerText = '$469.00';
           }
 
