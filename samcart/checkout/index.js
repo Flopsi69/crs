@@ -2218,6 +2218,7 @@ function init() {
           if (item.classList.contains('lav-plan__btn_active')) {
             e.preventDefault();
             e.stopPropagation();
+            localStorage.setItem('paymentType', 'card');
             location.href =
               'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
           }
@@ -2270,7 +2271,7 @@ function init() {
         item.addEventListener('click', function (e) {
           e.preventDefault();
           document.querySelector("[for='digitalWalletRadio']").click();
-
+          localStorage.setItem('paymentType', 'google');
           // if (document.querySelector('#payment-request-button')) {
           //   setTimeout(() => {
           //     document.querySelector('.main-cta').click();
@@ -2287,6 +2288,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__apple')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          localStorage.setItem('paymentType', 'apple');
           console.log('apple');
         });
       }
