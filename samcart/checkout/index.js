@@ -2338,8 +2338,6 @@ function init() {
         item.innerText = today.toLocaleDateString();
       }
 
-      console.log(document.querySelector('.payment-form'));
-
       if (localStorage.getItem('paymentType') == 'google') {
         document.querySelector("[for='digitalWalletRadio']").click();
         // document.querySelector('.lav-payment').remove();
