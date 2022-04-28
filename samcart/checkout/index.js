@@ -127,6 +127,9 @@ const styles = `
     background: #F7FAFD;
     font-family: "Gilroy";
   }
+  .lav-wrap {
+    background: #F7FAFD;
+  }
   .lav-container {
     padding: 0 15px;
     max-width: 1140px;
@@ -2045,6 +2048,11 @@ function init() {
         .insertAdjacentHTML('beforebegin', newPage);
       for (let item of document.querySelectorAll('.lav-faq__item')) {
         item.addEventListener('click', function () {
+          if (document.querySelector('.lav-faq__item_active')) {
+            document
+              .querySelector('.lav-faq__item_active')
+              .classList.remove('lav-faq__item_active');
+          }
           item.classList.toggle('lav-faq__item_active');
         });
       }
