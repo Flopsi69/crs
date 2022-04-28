@@ -1562,7 +1562,7 @@ const newPage = `
       </div>
       <div class='lav-header__info'>
         <div class='lav-header__descr'>
-          <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark lav-price_old_new'>$349.00</span>
+          <span class='lav-mark'>40% Off</span> a 1 Year Subscription to the new<br/><span class='lav-mark'>SamCart Launch Plan&nbsp;-</span> <span class='lav-price_old'>$588.00</span> <span class='lav-mark lav-price_new'>$349.00</span>
         </div>
         <div class='lav-header__btn lav-header__paypal'>
           <img src='${settings.dir}/img/btn-paypal.png'>
