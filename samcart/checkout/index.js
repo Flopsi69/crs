@@ -2363,7 +2363,8 @@ function init() {
         }, 1500);
         document.querySelector('.lav-info').remove();
         document.querySelector('.lav-main__block').style.width = 'initial';
-        document.querySelector('.lav-main').style.margin = '0';
+        document.querySelector('.lav-main').style.cssText =
+          'margin: 0; display: block;';
       } else {
         document
           .querySelector('.lav-payment')
