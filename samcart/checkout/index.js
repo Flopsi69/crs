@@ -2355,7 +2355,8 @@ function init() {
             document.querySelector("[for='digitalWalletRadio']").click();
           }
         }, 1500);
-        document.querySelector('.lav-payment').remove();
+        document.querySelector('.lav-info').remove();
+        document.querySelector('.lav-main__block').style.width = '100%';
       } else {
         document
           .querySelector('.lav-payment')
