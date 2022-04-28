@@ -1268,8 +1268,7 @@ const stylesCheckout = `
     line-height: 19px;
     margin-bottom: 26px;
   }
-  .lav-payment {
-    margin-top: 15px;
+  .lav-block {
     margin-bottom: 20px;
   }
   .lav-main__title {
@@ -1570,9 +1569,10 @@ const stylesCheckout = `
       background: white;
       left: 13px;
     }
+    .lav-block {
+      margin-bottom: 22px;
+    }
     .lav-payment {
-      margin-top: 22px;
-      padding-top: 22px;
       border-top: 1px dashed rgb(4 107 217 / 15%);
     }
     .lav-payment {
@@ -2328,15 +2328,6 @@ function init() {
         }, 400);
       }
 
-      document
-        .querySelector('#paymentForm')
-        .insertAdjacentHTML('beforebegin', newCheckout);
-
-      if (localStorage.getItem('paymentType') == 'google') {
-        document.querySelector("[for='digitalWalletRadio']").click();
-        document.querySelector('.lav-payment').remove();
-      }
-
       const today = new Date();
 
       for (let item of document.querySelectorAll('.lav-timeline__date')) {
@@ -2345,12 +2336,17 @@ function init() {
 
       console.log(document.querySelector('.payment-form'));
 
-      document
-        .querySelector('.lav-payment')
-        .insertAdjacentElement(
-          'beforeend',
-          document.querySelector('.payment-form')
-        );
+      if (localStorage.getItem('paymentType') == 'google') {
+        document.querySelector("[for='digitalWalletRadio']").click();
+        document.querySelector('.lav-payment').remove();
+      } else {
+        document
+          .querySelector('.lav-payment')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector('.payment-form')
+          );
+      }
 
       // setTimeout(() => {
       //   document
