@@ -2347,7 +2347,14 @@ function init() {
       }
 
       if (localStorage.getItem('paymentType') == 'google') {
-        document.querySelector("[for='digitalWalletRadio']").click();
+        if (document.querySelector("[for='digitalWalletRadio']")) {
+          document.querySelector("[for='digitalWalletRadio']").click();
+        }
+        setTimeout(() => {
+          if (document.querySelector("[for='digitalWalletRadio']")) {
+            document.querySelector("[for='digitalWalletRadio']").click();
+          }
+        }, 1500);
         document.querySelector('.lav-payment').remove();
       } else {
         document
