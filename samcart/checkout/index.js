@@ -2270,6 +2270,14 @@ function init() {
         }
       }
 
+      setTimeout(() => {
+        if (document.querySelector("[for='digitalWalletRadio']")) {
+          for (let item of document.querySelectorAll('.lav-header__google')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 2000);
+
       // TODO for apple
       // if (document.querySelector("[for='digitalWalletRadio']")) {
       // }
