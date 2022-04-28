@@ -766,6 +766,12 @@ const styles = `
       line-height: 1.4;
       margin-bottom: 50px;
     }
+    .lav-plan_active {
+      transform: scale(1.01);
+    }
+    .lav-plan__info {
+      padding: 0 20px;
+    }
     .lav-plans__title br {
       display: none;
     }
