@@ -1435,6 +1435,9 @@ const stylesCheckout = `
     background-size: 167px;
     min-height: 100px;
   }
+  .lav-payment_hide {
+    display: none;
+  }
   .lav-label {
     position: absolute;
     left: 30px;
