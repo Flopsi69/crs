@@ -474,6 +474,24 @@ const styles = `
     width: 1140px;
     height: 82px;
   }
+  .lav-grid__row:nth-child(2):after {
+    left: -605px;
+    bottom: -30px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid1-after.svg') center no-repeat;
+    background-size: contain;
+    width: 1140px;
+    height: 82px;
+  }
+  .lav-grid__row:nth-child(3):after {
+    right: -165px;
+    bottom: -16px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid3-after.svg') center no-repeat;
+    background-size: contain;
+    width: 1140px;
+    height: 82px;
+  }
   .lav-grid__row:nth-child(even) {
     flex-flow: row-reverse;
   }
