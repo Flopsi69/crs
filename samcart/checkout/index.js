@@ -2569,7 +2569,7 @@ function init() {
           .querySelector('.lav-payment')
           .insertAdjacentElement(
             'beforeend',
-            document.querySelector('.payment-form')
+            document.querySelector('#payments')
           );
       }, 1500);
 
