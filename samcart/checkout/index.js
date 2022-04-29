@@ -555,6 +555,9 @@ const styles = `
   .lav-grid__row + .lav-grid__row {
     margin-top: 110px;
   }
+  .lav-grid__row:before, .lav-grid__row:after {
+    display: none;
+  }
   .lav-grid__info {
     max-width: 575px;
     padding: 0 15px;
@@ -2518,38 +2521,40 @@ function init() {
             document.querySelector('#payments')
           );
 
-        if (document.querySelector('.tpl-6__checkout__subtitle + .row')) {
-          document
-            .querySelector('.lav-contact')
-            .insertAdjacentElement(
-              'beforeend',
-              document.querySelector('.tpl-6__checkout__subtitle + .row')
-            );
+        // if (document.querySelector('.tpl-6__checkout__subtitle + .row')) {
 
-          document
-            .querySelector('.lav-contact')
-            .insertAdjacentElement(
-              'beforeend',
-              document.querySelector('.tpl-6__checkout__subtitle + .row')
-            );
-        } else {
-          setTimeout(() => {
-            document
-              .querySelector('.lav-contact')
-              .insertAdjacentElement(
-                'beforeend',
-                document.querySelector('.tpl-6__checkout__subtitle + .row')
-              );
+        // } else {
+        //   setTimeout(() => {
+        //     document
+        //       .querySelector('.lav-contact')
+        //       .insertAdjacentElement(
+        //         'beforeend',
+        //         document.querySelector('.tpl-6__checkout__subtitle + .row')
+        //       );
 
-            document
-              .querySelector('.lav-contact')
-              .insertAdjacentElement(
-                'beforeend',
-                document.querySelector('.tpl-6__checkout__subtitle + .row')
-              );
-          }, 1500);
-        }
+        //     document
+        //       .querySelector('.lav-contact')
+        //       .insertAdjacentElement(
+        //         'beforeend',
+        //         document.querySelector('.tpl-6__checkout__subtitle + .row')
+        //       );
+        //   }, 1500);
+        // }
       }
+
+      document
+        .querySelector('.lav-contact')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('.tpl-6__checkout__subtitle + .row')
+        );
+
+      document
+        .querySelector('.lav-contact')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('.tpl-6__checkout__subtitle + .row')
+        );
 
       // setTimeout(() => {
       //   document
