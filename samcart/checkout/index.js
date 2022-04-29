@@ -2535,12 +2535,12 @@ function init() {
         //   }, 1500);
         // }
       }
-      document
-        .querySelector('.lav-payment')
-        .insertAdjacentElement(
-          'beforeend',
-          document.querySelector('#payments')
-        );
+      // document
+      //   .querySelector('.lav-payment')
+      //   .insertAdjacentElement(
+      //     'beforeend',
+      //     document.querySelector('#payments')
+      //   );
 
       document
         .querySelector('.lav-contact')
