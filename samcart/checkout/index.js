@@ -1243,6 +1243,15 @@ const stylesCheckout = `
   }
   .form-group label {
     border-radius: 8px;
+    color: black;
+  }
+  .tpl-6__payment {
+    padding: 0!important;
+    background: none;
+    margin-bottom: 0px!important;
+  }
+  #payments > .row > .order-sm-1 {
+    display: none!important;
   }
   #fullWidth #paymentForm {
     padding: 0;
