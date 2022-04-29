@@ -207,7 +207,7 @@ const styles = `
     border: 1px solid black;
   }
   .lav-header__google img {
-    padding: 5px 36px;
+    padding: 10px 36px 8px;
   }
   .lav-header__btn_hidden {
     display: none;
@@ -913,7 +913,7 @@ const styles = `
       flex-basis: 46%;
     }
     .lav-header__google img {
-      padding: 10px 36px 8px;
+      padding: 4px;
     }
     .lav-plan_active {
       transform: scale(1.01);
@@ -1863,127 +1863,129 @@ const newPage = `
     </div>
 
     <div class='lav-section lav-grid'>
-      <div class='lav-container'>
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>The 1 Page Workshop<span>™</span></div>
-            <div class='lav-grid__descr'>I break down each of the 7 steps of my blueprint so you know exactly how to apply each one to YOUR product. Plus, you get to watch as I run through examples of actual customers who are using the Blueprint with mind-blowing results.</div>
-            <div class='lav-grid__note lav-white-label'>A <span>$199.00</span> Value- Yours FREE!</div>
+      <div class='lav-grid__inner' style='overflow:hidden;'>
+        <div class='lav-container'>
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>The 1 Page Workshop<span>™</span></div>
+              <div class='lav-grid__descr'>I break down each of the 7 steps of my blueprint so you know exactly how to apply each one to YOUR product. Plus, you get to watch as I run through examples of actual customers who are using the Blueprint with mind-blowing results.</div>
+              <div class='lav-grid__note lav-white-label'>A <span>$199.00</span> Value- Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid1.png'>
+            </div>
           </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid1.png'>
+          
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>Traffic Tactics<span>™</span></div>
+              <div class='lav-grid__descr'>Discover how to get unlimited traffic from Facebook, YouTube, Instagram, Podcasting, SEO, Content Marketing, Facebook Ads, YouTube Ads, Google Ads, and the list goes on and on.</div>
+              <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid2.png'>
+            </div>
           </div>
-        </div>
-        
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>Traffic Tactics<span>™</span></div>
-            <div class='lav-grid__descr'>Discover how to get unlimited traffic from Facebook, YouTube, Instagram, Podcasting, SEO, Content Marketing, Facebook Ads, YouTube Ads, Google Ads, and the list goes on and on.</div>
-            <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>1 Page Launch<span>™</span></div>
+              <div class='lav-grid__descr'>Discover how to pull off a 5 or 6-figure product launch with nothing but your one page!</div>
+              <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid3.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>The $237k Swipe File<span>™</span></div>
+              <div class='lav-grid__descr'>Get all of our best performing pages, video scripts, templates, emails, ads, and sales messages...so you have an endless supply of ideas for selling your own product or service!</div>
+              <div class='lav-grid__note lav-white-label'>A <span>$2,997.00</span> Value- Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid4.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>Product Creation Masterclass<span>™</span></div>
+              <div class='lav-grid__descr'>Discover how to quickly create your first product in less than 72 hours. Get our simple frameworks for deciding on your niche, your product, the name, the price and everything else so you don't have to worry about doing any of it yourself!</div>
+              <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value- Yours FREE!</div>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid5.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>My "Product Vault" <span>(New!)</span></div>
+              <div class='lav-grid__descr'>Over the last 10 years, I’ve created dozens of reports in a bunch of different niches...and used them to make millions of dollars.</div>
+              <div class='lav-grid__descr'>And my guess is, you would learn a ton by seeing all of those actual reports that I sold...plus the pages that I created to sell them. So I’ve decided to release them all from the vault, and give you full access to all of them.</div>
+              <div class='lav-grid__note lav-white-label'>Not Normally Sold - Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid6.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>The Private Facebook Group<span>™</span></div>
+              <div class='lav-grid__descr'>Join over 25,000+ other entreprenuers in our exclusive group so you can network and build relationships with the top sellers on the internet. Get questions answered, brainstorm ideas, and get results faster than ever with this community by your side.</div>
+              <div class='lav-grid__note lav-white-label'>A <span>$1,997.00</span> Value- Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid7.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>1 Page Wednesday<span>™</span> Calls</div>
+              <div class='lav-grid__descr'>Watch me take a page that’s underperforming and tweak it so that it starts turning visitors into paying customers on autopilot.</div>
+              <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value - Yours FREE!</div>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid8.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>Expert Bonus Trainings<span>™</span> <span>(New!)</span></div>
+              <div class='lav-grid__descr'>Discover the secrets used by our top sellers at SamCart, that they don't share anywhere else. Learn from Nicole Walters, Mike Dillard, James Wedmore, Kim Jimenez, Tori Torres, Rocky Ullah, and many more!</div>
+              <div class='lav-grid__note lav-white-label'>Normally Not Sold - Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid9.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__row'>
+            <div class='lav-grid__info'>
+              <div class='lav-grid__title'>NEW BONUS - My Personal Page Template<span>™</span></div>
+              <div class='lav-grid__descr'>Listen, if you and I were to both launch an identical product to an identical audience, I would beat you by several times over...Why?</div>
+              <div class='lav-grid__descr'>Because whenever I launch a new product or offer I NEVER start from scratch... I use this 1-Page template that has been tweaked, tested, and designed to convert at 40 to 50 times what the average website does as my starting point.</div>
+              <div class='lav-grid__descr'>I simply update the text and images to fit my new product and I'm done.</div>
+              <div class='lav-grid__descr'>I literally cannot go wrong, and now you can't either.</div>
+              <div class='lav-grid__descr'>This proven template is yours as my gift when you take advantage of this offer today.</div>
+              <div class='lav-grid__note lav-white-label'>Not Normally Sold - Yours FREE!</div>
+            </div>
+            <div class='lav-grid__image'>
+              <img src='${settings.dir}/img/grid10.png'>
+            </div>
+          </div>
+
+          <div class='lav-grid__btn-wrap'>
             <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
           </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid2.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>1 Page Launch<span>™</span></div>
-            <div class='lav-grid__descr'>Discover how to pull off a 5 or 6-figure product launch with nothing but your one page!</div>
-            <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid3.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>The $237k Swipe File<span>™</span></div>
-            <div class='lav-grid__descr'>Get all of our best performing pages, video scripts, templates, emails, ads, and sales messages...so you have an endless supply of ideas for selling your own product or service!</div>
-            <div class='lav-grid__note lav-white-label'>A <span>$2,997.00</span> Value- Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid4.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>Product Creation Masterclass<span>™</span></div>
-            <div class='lav-grid__descr'>Discover how to quickly create your first product in less than 72 hours. Get our simple frameworks for deciding on your niche, your product, the name, the price and everything else so you don't have to worry about doing any of it yourself!</div>
-            <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value- Yours FREE!</div>
-            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid5.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>My "Product Vault" <span>(New!)</span></div>
-            <div class='lav-grid__descr'>Over the last 10 years, I’ve created dozens of reports in a bunch of different niches...and used them to make millions of dollars.</div>
-            <div class='lav-grid__descr'>And my guess is, you would learn a ton by seeing all of those actual reports that I sold...plus the pages that I created to sell them. So I’ve decided to release them all from the vault, and give you full access to all of them.</div>
-            <div class='lav-grid__note lav-white-label'>Not Normally Sold - Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid6.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>The Private Facebook Group<span>™</span></div>
-            <div class='lav-grid__descr'>Join over 25,000+ other entreprenuers in our exclusive group so you can network and build relationships with the top sellers on the internet. Get questions answered, brainstorm ideas, and get results faster than ever with this community by your side.</div>
-            <div class='lav-grid__note lav-white-label'>A <span>$1,997.00</span> Value- Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid7.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>1 Page Wednesday<span>™</span> Calls</div>
-            <div class='lav-grid__descr'>Watch me take a page that’s underperforming and tweak it so that it starts turning visitors into paying customers on autopilot.</div>
-            <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value - Yours FREE!</div>
-            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid8.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>Expert Bonus Trainings<span>™</span> <span>(New!)</span></div>
-            <div class='lav-grid__descr'>Discover the secrets used by our top sellers at SamCart, that they don't share anywhere else. Learn from Nicole Walters, Mike Dillard, James Wedmore, Kim Jimenez, Tori Torres, Rocky Ullah, and many more!</div>
-            <div class='lav-grid__note lav-white-label'>Normally Not Sold - Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid9.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__row'>
-          <div class='lav-grid__info'>
-            <div class='lav-grid__title'>NEW BONUS - My Personal Page Template<span>™</span></div>
-            <div class='lav-grid__descr'>Listen, if you and I were to both launch an identical product to an identical audience, I would beat you by several times over...Why?</div>
-            <div class='lav-grid__descr'>Because whenever I launch a new product or offer I NEVER start from scratch... I use this 1-Page template that has been tweaked, tested, and designed to convert at 40 to 50 times what the average website does as my starting point.</div>
-            <div class='lav-grid__descr'>I simply update the text and images to fit my new product and I'm done.</div>
-            <div class='lav-grid__descr'>I literally cannot go wrong, and now you can't either.</div>
-            <div class='lav-grid__descr'>This proven template is yours as my gift when you take advantage of this offer today.</div>
-            <div class='lav-grid__note lav-white-label'>Not Normally Sold - Yours FREE!</div>
-          </div>
-          <div class='lav-grid__image'>
-            <img src='${settings.dir}/img/grid10.png'>
-          </div>
-        </div>
-
-        <div class='lav-grid__btn-wrap'>
-          <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
         </div>
       </div>
     </div>
