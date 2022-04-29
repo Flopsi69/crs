@@ -2424,6 +2424,71 @@ function init() {
         }
       }, 5000);
 
+      if (
+        document.querySelector(
+          "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+        )
+      ) {
+        for (let item of document.querySelectorAll('.lav-header__apple')) {
+          item.classList.remove('lav-header__btn_hidden');
+        }
+      }
+      setTimeout(() => {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
+          for (let item of document.querySelectorAll('.lav-header__apple')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 1000);
+      setTimeout(() => {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
+          for (let item of document.querySelectorAll('.lav-header__apple')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 2000);
+      setTimeout(() => {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
+          for (let item of document.querySelectorAll('.lav-header__apple')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 3000);
+      setTimeout(() => {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
+          for (let item of document.querySelectorAll('.lav-header__apple')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 4000);
+      setTimeout(() => {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
+          for (let item of document.querySelectorAll('.lav-header__apple')) {
+            item.classList.remove('lav-header__btn_hidden');
+          }
+        }
+      }, 5000);
+
       // TODO for apple
       // if (document.querySelector("[for='digitalWalletRadio']")) {
       // }
@@ -2443,8 +2508,10 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__apple')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          // document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'apple');
-          console.log('apple');
+          location.href =
+            'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
         });
       }
 
@@ -2516,7 +2583,10 @@ function init() {
         item.innerText = today.toLocaleDateString();
       }
 
-      if (localStorage.getItem('paymentType') == 'google') {
+      if (
+        localStorage.getItem('paymentType') == 'google' ||
+        localStorage.getItem('paymentType') == 'apple'
+      ) {
         if (document.querySelector('#digitalWalletRadio')) {
           document.querySelector('#digitalWalletRadio').click();
         }
