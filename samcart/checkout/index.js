@@ -606,7 +606,7 @@ const styles = `
     background: #fff;
     text-align: center;
   }
-  .lav-total:before {
+  .lav-plans:before {
     content: '';
     position: absolute;
     left: 0;
@@ -617,7 +617,7 @@ const styles = `
     width: 215px;
     height: 131px;
   }
-  .lav-plans:after {
+  .lav-total:after {
     content: '';
     position: absolute;
     right: 0;
