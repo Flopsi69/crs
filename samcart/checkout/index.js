@@ -2507,7 +2507,9 @@ function init() {
             document.querySelector("[for='payPalRadio']").click();
           }
         }, 1500);
-        document.querySelector('.lav-payment').remove();
+        document
+          .querySelector('.lav-payment')
+          .classList.add('lav-payment_hide');
       } else {
         document
           .querySelector('.lav-payment')
