@@ -2490,18 +2490,14 @@ function init() {
           .querySelector('.lav-contact')
           .insertAdjacentElement(
             'beforeend',
-            document.querySelector(
-              '.tpl-6__checkout__subtitle + .row.mobile-display'
-            )
+            document.querySelector('.tpl-6__checkout__subtitle + .row')
           );
 
         document
           .querySelector('.lav-contact')
           .insertAdjacentElement(
             'beforeend',
-            document.querySelector(
-              '.tpl-6__checkout__subtitle + .row.mobile-display + .row'
-            )
+            document.querySelector('.tpl-6__checkout__subtitle + .row')
           );
       }
 
