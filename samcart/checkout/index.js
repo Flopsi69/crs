@@ -465,9 +465,7 @@ const styles = `
     content: '';
     position: absolute;
   }
-  .lav-grid__row:nth-child(1) {
-    content: '';
-    position: absolute;
+  .lav-grid__row:nth-child(1):after {
     left: -155px;
     bottom: -10px;
     transform: translateY(100%);
