@@ -2514,15 +2514,7 @@ function init() {
           .querySelector('.lav-payment')
           .classList.add('lav-payment_hide');
       } else {
-        document
-          .querySelector('.lav-payment')
-          .insertAdjacentElement(
-            'beforeend',
-            document.querySelector('#payments')
-          );
-
         // if (document.querySelector('.tpl-6__checkout__subtitle + .row')) {
-
         // } else {
         //   setTimeout(() => {
         //     document
@@ -2531,7 +2523,6 @@ function init() {
         //         'beforeend',
         //         document.querySelector('.tpl-6__checkout__subtitle + .row')
         //       );
-
         //     document
         //       .querySelector('.lav-contact')
         //       .insertAdjacentElement(
@@ -2541,6 +2532,12 @@ function init() {
         //   }, 1500);
         // }
       }
+      document
+        .querySelector('.lav-payment')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector('#payments')
+        );
 
       document
         .querySelector('.lav-contact')
