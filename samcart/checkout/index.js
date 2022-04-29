@@ -455,10 +455,26 @@ const styles = `
     height: 131px;
   }
   .lav-grid__row {
+    positon: relative;
     display: flex;
     justify-content: space-between;
     margin-left: -15px;
     margin-right: -15px;
+  }
+  .lav-grid__row:after {
+    content: '';
+    position: absolute;
+  }
+  .lav-grid__row:nth-child(1) {
+    content: '';
+    position: absolute;
+    left: -155px;
+    bottom: -10px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid1-after.svg') center no-repeat;
+    background-size: contain;
+    width: 1140px;
+    height: 82px;
   }
   .lav-grid__row:nth-child(even) {
     flex-flow: row-reverse;
