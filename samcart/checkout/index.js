@@ -1238,6 +1238,12 @@ const stylesCheckout = `
     font-weight: 600;
     font-style: normal;
   }
+  .form-control {
+    background: white;
+  }
+  .form-group label {
+    border-radius: 8px;
+  }
   #fullWidth #paymentForm {
     padding: 0;
   }
@@ -2197,26 +2203,7 @@ const newCheckout = `
               </div>
             </span>
           </div>
-          <div class='lav-row'>
-            <div class='lav-group'>
-              <!-- <label class='lav-label'>First name</label> -->
-              <input type='text' class='lav-input lav-input-name' placeholder="First name">
-            </div>
-            <div class='lav-group'>
-              <!-- <label class='lav-label'>Last name</label> -->
-              <input type='text' class='lav-input lav-input-last' placeholder="Last name">
-            </div>
-          </div>
-          <div class='lav-row'>
-            <div class='lav-group'>
-              <!-- <label class='lav-label'>Email address</label> -->
-              <input type='text' class='lav-input lav-input-mail' placeholder="Email address">
-            </div>
-            <div class='lav-group'>
-              <!-- <label class='lav-label'>Phone number</label> -->
-              <input type='text' class='lav-input lav-input-phone' placeholder="Phone number">
-            </div>
-          </div>
+          <!-- todo -->
         </div>
 
         <div class='lav-payment lav-block'>
