@@ -1238,6 +1238,9 @@ const stylesCheckout = `
     font-weight: 600;
     font-style: normal;
   }
+  #fullWidth #paymentForm {
+    padding: 0;
+  }
   .lav-main__title_expand {
     display: none;
   }
@@ -1501,7 +1504,7 @@ const stylesCheckout = `
   #fullWidth #paymentForm > * {
     display: none;
   }
-  #fullWidth #paymentForm > .tpl-6__order {
+  #fullWidth #paymentForm > .tpl-6__order, #fullWidth #paymentForm > .lav-checkout-wrap {
     display: block;
   }
   .lav-tip {
@@ -2146,92 +2149,93 @@ const newPage = `
 `;
 
 const newCheckout = `
-  <div class='lav-top'>
-    <div class='lav-logo'>
-      <img src='${settings.dir}/img/logo.svg'>
-    </div>
-    <div class='lav-title'>You are one step away from placing your order and starting earning passive income.</div>
-    <div class='lav-timeline'>
-      <div class='lav-timeline__item'>
-        <div class='lav-timeline__title'>You Place order</div>
-        <div class='lav-timeline__date'>11.11.2021</div>
+  <div class='lav-checkout-wrap'>
+    <div class='lav-top'>
+      <div class='lav-logo'>
+        <img src='${settings.dir}/img/logo.svg'>
       </div>
-      <div class='lav-timeline__item'>
-        <div class='lav-timeline__title'>Get access to samcart<br>and set up your store</div>
-        <div class='lav-timeline__date'>11.11.2021</div>
-      </div>
-      <div class='lav-timeline__item'>
-        <div class='lav-timeline__title'>Start Accepting orders</div>
-        <div class='lav-timeline__date'>11.11.2021</div>
-      </div>
-      <div class='lav-timeline__item'>
-        <div class='lav-timeline__title'>
-          30 days 100% money-back guarantee
-          <span class='lav-tip'>
-            <img src='${settings.dir}/img/tip.svg'>
-            <div class='lav-tip__info lav-tip__info_reverse'>
-              We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
-            </div>
-          </span>
+      <div class='lav-title'>You are one step away from placing your order and starting earning passive income.</div>
+      <div class='lav-timeline'>
+        <div class='lav-timeline__item'>
+          <div class='lav-timeline__title'>You Place order</div>
+          <div class='lav-timeline__date'>11.11.2021</div>
         </div>
-        <div class='lav-timeline__date lav-timeline__date_expire'>11.11.2021</div>
+        <div class='lav-timeline__item'>
+          <div class='lav-timeline__title'>Get access to samcart<br>and set up your store</div>
+          <div class='lav-timeline__date'>11.11.2021</div>
+        </div>
+        <div class='lav-timeline__item'>
+          <div class='lav-timeline__title'>Start Accepting orders</div>
+          <div class='lav-timeline__date'>11.11.2021</div>
+        </div>
+        <div class='lav-timeline__item'>
+          <div class='lav-timeline__title'>
+            30 days 100% money-back guarantee
+            <span class='lav-tip'>
+              <img src='${settings.dir}/img/tip.svg'>
+              <div class='lav-tip__info lav-tip__info_reverse'>
+                We know our templates work. And they work for nearly every type of product or service. And we’re so confident that if they don’t work for you, simply let us know within 30 days and we’ll refund your invesment.
+              </div>
+            </span>
+          </div>
+          <div class='lav-timeline__date lav-timeline__date_expire'>11.11.2021</div>
+        </div>
+      </div>
+    </div>
+
+    <div class='lav-main'>
+      <div class='lav-info lav-main__block'>
+        <div class='lav-main__title'>Payment Information</div>
+
+        <div class='lav-contact lav-block'>
+          <div class='lav-main__sublock'>
+            Contact
+            <span class='lav-tip'>
+              <img src='${settings.dir}/img/tip.svg'>
+              <div class='lav-tip__info'>
+                Just fill out your contact information below, and let us know what stage you're currently at in your online business. This will help us better serve you once you're inside the community.
+              </div>
+            </span>
+          </div>
+          <div class='lav-row'>
+            <div class='lav-group'>
+              <!-- <label class='lav-label'>First name</label> -->
+              <input type='text' class='lav-input lav-input-name' placeholder="First name">
+            </div>
+            <div class='lav-group'>
+              <!-- <label class='lav-label'>Last name</label> -->
+              <input type='text' class='lav-input lav-input-last' placeholder="Last name">
+            </div>
+          </div>
+          <div class='lav-row'>
+            <div class='lav-group'>
+              <!-- <label class='lav-label'>Email address</label> -->
+              <input type='text' class='lav-input lav-input-mail' placeholder="Email address">
+            </div>
+            <div class='lav-group'>
+              <!-- <label class='lav-label'>Phone number</label> -->
+              <input type='text' class='lav-input lav-input-phone' placeholder="Phone number">
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-payment lav-block'>
+          <div class='lav-main__sublock'>Payment Methods</div>
+        </div>
+
+        <div class='lav-caption'>You'll also be able to instantly access all of the free gifts right from inside your SamCart account, which makes it super easy to build your pages and go through the trainings at the same time.</div>
+        <div class='lav-caption'>I'll see you on the inside!</div>
+
+      </div>
+
+      <div class='lav-summary lav-main__block'>
+        <div class='lav-main__title'>
+        <div class='lav-main__title_value'>Order Summary</div>
+        <div class='lav-main__title_expand'>Show all <img src='${settings.dir}/img/summary-icon-right.svg'></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class='lav-main'>
-    <div class='lav-info lav-main__block'>
-      <div class='lav-main__title'>Payment Information</div>
-
-      <div class='lav-contact lav-block'>
-        <div class='lav-main__sublock'>
-          Contact
-          <span class='lav-tip'>
-            <img src='${settings.dir}/img/tip.svg'>
-            <div class='lav-tip__info'>
-              Just fill out your contact information below, and let us know what stage you're currently at in your online business. This will help us better serve you once you're inside the community.
-            </div>
-          </span>
-        </div>
-        <div class='lav-row'>
-          <div class='lav-group'>
-            <!-- <label class='lav-label'>First name</label> -->
-            <input type='text' class='lav-input lav-input-name' placeholder="First name">
-          </div>
-          <div class='lav-group'>
-            <!-- <label class='lav-label'>Last name</label> -->
-            <input type='text' class='lav-input lav-input-last' placeholder="Last name">
-          </div>
-        </div>
-        <div class='lav-row'>
-          <div class='lav-group'>
-            <!-- <label class='lav-label'>Email address</label> -->
-            <input type='text' class='lav-input lav-input-mail' placeholder="Email address">
-          </div>
-          <div class='lav-group'>
-            <!-- <label class='lav-label'>Phone number</label> -->
-            <input type='text' class='lav-input lav-input-phone' placeholder="Phone number">
-          </div>
-        </div>
-      </div>
-
-      <div class='lav-payment lav-block'>
-        <div class='lav-main__sublock'>Payment Methods</div>
-      </div>
-
-      <div class='lav-caption'>You'll also be able to instantly access all of the free gifts right from inside your SamCart account, which makes it super easy to build your pages and go through the trainings at the same time.</div>
-      <div class='lav-caption'>I'll see you on the inside!</div>
-
-    </div>
-
-    <div class='lav-summary lav-main__block'>
-      <div class='lav-main__title'>
-       <div class='lav-main__title_value'>Order Summary</div>
-       <div class='lav-main__title_expand'>Show all <img src='${settings.dir}/img/summary-icon-right.svg'></div>
-      </div>
-    </div>
-  </div>
-
 `;
 
 /********* Custom Code **********/
@@ -2398,7 +2402,7 @@ function init() {
     }
     document
       .querySelector('#paymentForm')
-      .insertAdjacentHTML('beforebegin', newCheckout);
+      .insertAdjacentHTML('afterbegin', newCheckout);
 
     if (document.querySelector('#paymentForm')) {
       if (localStorage.getItem('plan') == '2') {
