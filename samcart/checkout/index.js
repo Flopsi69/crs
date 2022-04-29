@@ -1433,7 +1433,7 @@ const stylesCheckout = `
     background: url(${settings.dir}/img/payments.png) top right;
     background-repeat: no-repeat;
     background-size: 167px;
-    min-height: 100px;
+    min-height: 60px;
   }
   .lav-payment_hide {
     display: none;
@@ -2500,10 +2500,10 @@ function init() {
             document.querySelector('#digitalWalletRadio').click();
           }
         }, 3000);
-        document.querySelector('.lav-info').style.display = 'none';
-        document.querySelector('.lav-summary').style.width = 'initial';
-        document.querySelector('.lav-main').style.cssText =
-          'margin: 0; display: block;';
+        // document.querySelector('.lav-info').style.display = 'none';
+        // document.querySelector('.lav-summary').style.width = 'initial';
+        // document.querySelector('.lav-main').style.cssText =
+        //   'margin: 0; display: block;';
       } else if (localStorage.getItem('paymentType') == 'paypal') {
         if (document.querySelector("[for='payPalRadio']")) {
           document.querySelector("[for='payPalRadio']").click();
