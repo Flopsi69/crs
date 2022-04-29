@@ -1526,7 +1526,7 @@ const stylesCheckout = `
     margin-top: 7px;
   }
   #fullWidth #paymentForm > * {
-    // display: none;
+    display: none;
   }
   #fullWidth #paymentForm > .tpl-6__order, #fullWidth #paymentForm > .lav-checkout-wrap {
     display: block;
@@ -2556,14 +2556,14 @@ function init() {
           document.querySelector('.tpl-6__checkout__subtitle + .row')
         );
 
-      // setTimeout(() => {
-      //   document
-      //     .querySelector('.lav-payment')
-      //     .insertAdjacentElement(
-      //       'beforeend',
-      //       document.querySelector('.payment-form')
-      //     );
-      // }, 1500);
+      setTimeout(() => {
+        document
+          .querySelector('.lav-payment')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector('.payment-form')
+          );
+      }, 1500);
 
       document
         .querySelector('.lav-main__title_expand')
