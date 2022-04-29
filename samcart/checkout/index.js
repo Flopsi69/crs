@@ -855,7 +855,7 @@ const styles = `
       flex-basis: 46%;
     }
     .lav-header__google img {
-      padding: 3px 10px;
+      padding: 10px 36px 8px;
     }
     .lav-plan_active {
       transform: scale(1.01);
