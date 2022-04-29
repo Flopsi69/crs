@@ -2201,31 +2201,34 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__paypal')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
-          document.querySelector("[for='payPalRadio']").click();
-          if (document.querySelector('[name="fname"]')) {
-            document.querySelector('[name="fname"]').value = 'test';
-          }
-          if (document.querySelector('[name="lname"]')) {
-            document.querySelector('[name="lname"]').value = 'test';
-          }
-          if (document.querySelector('[name="email"]')) {
-            document.querySelector('[name="email"]').value = 'test@test.test';
-          }
-          if (document.querySelector('[name="email_confirmation"]')) {
-            document.querySelector('[name="email_confirmation"]').value =
-              'test@test.test';
-          }
-          if (document.querySelector('[name="phone"]')) {
-            document.querySelector('[name="phone"]').value = '0000000000000';
-          }
-          if (document.querySelector('[name="custom_ubiGdEid"]')) {
-            document.querySelector('[name="custom_ubiGdEid"]').value =
-              '$1 - $1,000';
-          }
+          localStorage.setItem('paymentType', 'paypal');
+          location.href =
+            'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
+          // document.querySelector("[for='payPalRadio']").click();
+          // if (document.querySelector('[name="fname"]')) {
+          //   document.querySelector('[name="fname"]').value = 'test';
+          // }
+          // if (document.querySelector('[name="lname"]')) {
+          //   document.querySelector('[name="lname"]').value = 'test';
+          // }
+          // if (document.querySelector('[name="email"]')) {
+          //   document.querySelector('[name="email"]').value = 'test@test.test';
+          // }
+          // if (document.querySelector('[name="email_confirmation"]')) {
+          //   document.querySelector('[name="email_confirmation"]').value =
+          //     'test@test.test';
+          // }
+          // if (document.querySelector('[name="phone"]')) {
+          //   document.querySelector('[name="phone"]').value = '0000000000000';
+          // }
+          // if (document.querySelector('[name="custom_ubiGdEid"]')) {
+          //   document.querySelector('[name="custom_ubiGdEid"]').value =
+          //     '$1 - $1,000';
+          // }
 
-          setTimeout(() => {
-            document.querySelector('.main-cta').click();
-          }, 500);
+          // setTimeout(() => {
+          //   document.querySelector('.main-cta').click();
+          // }, 500);
         });
       }
 
@@ -2348,6 +2351,16 @@ function init() {
         document.querySelector('.lav-main__block').style.width = 'initial';
         document.querySelector('.lav-main').style.cssText =
           'margin: 0; display: block;';
+      } else if (localStorage.getItem('paymentType') == 'paypal') {
+        if (document.querySelector("[for='payPalRadio']")) {
+          document.querySelector("[for='payPalRadio']").click();
+        }
+        setTimeout(() => {
+          if (document.querySelector("[for='payPalRadio']")) {
+            document.querySelector("[for='payPalRadio']").click();
+          }
+        }, 1500);
+        document.querySelector('.lav-payment').remove();
       } else {
         document
           .querySelector('.lav-payment')
