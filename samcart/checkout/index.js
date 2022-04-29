@@ -455,7 +455,7 @@ const styles = `
     height: 131px;
   }
   .lav-grid__row {
-    positon: relative;
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-left: -15px;
@@ -467,16 +467,19 @@ const styles = `
   }
   .lav-grid__row:nth-child(1):after {
     left: -155px;
-    bottom: -10px;
+    bottom: 10px;
     transform: translateY(100%);
     background: url('${settings.dir}/img/lav-grid1-after.svg') center no-repeat;
     background-size: contain;
     width: 1140px;
     height: 82px;
   }
+  .lav-grid__row:nth-child(2) {
+    align-items: center;
+  }
   .lav-grid__row:nth-child(2):after {
-    left: -605px;
-    bottom: -30px;
+    left: -740px;
+    bottom: 10px;
     transform: translateY(100%);
     background: url('${settings.dir}/img/lav-grid1-after.svg') center no-repeat;
     background-size: contain;
@@ -485,12 +488,66 @@ const styles = `
   }
   .lav-grid__row:nth-child(3):after {
     right: -165px;
-    bottom: -16px;
+    bottom: -9px;
     transform: translateY(100%);
     background: url('${settings.dir}/img/lav-grid3-after.svg') center no-repeat;
     background-size: contain;
+    width: 700px;
+    height: 50px;
+  }
+  .lav-grid__row:nth-child(4):after {
+    left: -165px;
+    bottom: -9px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid4-after.svg') center no-repeat;
+    background-size: contain;
+    width: 1077px;
+    height: 109px;
+  }
+  .lav-grid__row:nth-child(5):after {
+    right: -165px;
+    bottom: -9px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid5-after.svg') center no-repeat;
+    background-size: contain;
+    width: 895px;
+    height: 80px;
+  }
+  .lav-grid__row:nth-child(6):after {
+    right: -165px;
+    bottom: -9px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid6-after.svg') center no-repeat;
+    background-size: contain;
+    width: 1368px;
+    height: 59px;
+  }
+  .lav-grid__row:nth-child(7):after {
+    right: -165px;
+    bottom: -9px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid7-after.svg') center no-repeat;
+    background-size: contain;
+    width: 763px;
+    height: 96px;
+  }
+  .lav-grid__row:nth-child(8):after {
+    left: -155px;
+    bottom: 10px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid1-after.svg') center no-repeat;
+    background-size: contain;
     width: 1140px;
     height: 82px;
+  }
+  .lav-grid__row:nth-child(9):after {
+    right: -155px;
+    bottom: 10px;
+    transform: translateY(100%);
+    background: url('${settings.dir}/img/lav-grid9-after.svg') center no-repeat;
+    background-size: contain;
+    width: 357px;
+    height: 81px;
   }
   .lav-grid__row:nth-child(even) {
     flex-flow: row-reverse;
