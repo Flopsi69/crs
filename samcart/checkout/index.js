@@ -304,11 +304,21 @@ const styles = `
   }
   .lav-dis {
     position: relative;
-    background: #fff url('${settings.dir}/img/dis-dots.svg') left 30px no-repeat;
+    background: #fff;
     padding-top: 56px;
     padding-bottom: 50px;
     text-align: center;
     color: #183B56;
+  }
+  .lav-dis:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -40px;
+    background: url('${settings.dir}/img/lav-dis-before.png') center no-repeat;
+    background-size: contain;
+    width: 215px;
+    height: 157px;
   }
   .lav-dis:after {
     content: '';
@@ -506,6 +516,17 @@ const styles = `
     padding: 75px 0;
     background: #fff;
     text-align: center;
+  }
+  .lav-total:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(30%);
+    background: url('${settings.dir}/img/lav-grid-after.svg') center no-repeat;
+    background-size: contain;
+    width: 215px;
+    height: 131px;
   }
   .lav-total:after {
     content: '';
