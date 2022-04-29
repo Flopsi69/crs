@@ -2483,7 +2483,25 @@ function init() {
           .querySelector('.lav-payment')
           .insertAdjacentElement(
             'beforeend',
-            document.querySelector('.payment-form')
+            document.querySelector('#payments')
+          );
+
+        document
+          .querySelector('.lav-contact')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector(
+              '.tpl-6__checkout__subtitle + .row.mobile-display'
+            )
+          );
+
+        document
+          .querySelector('.lav-contact')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector(
+              '.tpl-6__checkout__subtitle + .row.mobile-display + .row'
+            )
           );
       }
 
