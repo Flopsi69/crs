@@ -2500,7 +2500,7 @@ function init() {
             document.querySelector('#digitalWalletRadio').click();
           }
         }, 3000);
-        document.querySelector('.lav-info').remove();
+        document.querySelector('.lav-info').style.display = 'none';
         document.querySelector('.lav-main__block').style.width = 'initial';
         document.querySelector('.lav-main').style.cssText =
           'margin: 0; display: block;';
