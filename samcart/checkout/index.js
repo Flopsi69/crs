@@ -560,7 +560,7 @@ const styles = `
     width: 215px;
     height: 131px;
   }
-  .lav-total:after {
+  .lav-plans:after {
     content: '';
     position: absolute;
     right: 0;
