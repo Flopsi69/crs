@@ -1526,7 +1526,7 @@ const stylesCheckout = `
     margin-top: 7px;
   }
   #fullWidth #paymentForm > * {
-    display: none;
+    // display: none;
   }
   #fullWidth #paymentForm > .tpl-6__order, #fullWidth #paymentForm > .lav-checkout-wrap {
     display: block;
