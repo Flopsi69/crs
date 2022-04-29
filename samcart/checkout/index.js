@@ -2486,12 +2486,7 @@ function init() {
         item.innerText = today.toLocaleDateString();
       }
 
-      if (
-        localStorage.getItem('paymentType') == 'google' &&
-        document.querySelector(
-          "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-        )
-      ) {
+      if (localStorage.getItem('paymentType') == 'google') {
         if (document.querySelector('#digitalWalletRadio')) {
           document.querySelector('#digitalWalletRadio').click();
         }
@@ -2500,6 +2495,11 @@ function init() {
             document.querySelector('#digitalWalletRadio').click();
           }
         }, 1500);
+        setTimeout(() => {
+          if (document.querySelector('#digitalWalletRadio')) {
+            document.querySelector('#digitalWalletRadio').click();
+          }
+        }, 3000);
         document.querySelector('.lav-info').remove();
         document.querySelector('.lav-main__block').style.width = 'initial';
         document.querySelector('.lav-main').style.cssText =
