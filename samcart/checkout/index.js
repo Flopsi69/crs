@@ -2518,19 +2518,37 @@ function init() {
             document.querySelector('#payments')
           );
 
-        document
-          .querySelector('.lav-contact')
-          .insertAdjacentElement(
-            'beforeend',
-            document.querySelector('.tpl-6__checkout__subtitle + .row')
-          );
+        if (document.querySelector('.tpl-6__checkout__subtitle + .row')) {
+          document
+            .querySelector('.lav-contact')
+            .insertAdjacentElement(
+              'beforeend',
+              document.querySelector('.tpl-6__checkout__subtitle + .row')
+            );
 
-        document
-          .querySelector('.lav-contact')
-          .insertAdjacentElement(
-            'beforeend',
-            document.querySelector('.tpl-6__checkout__subtitle + .row')
-          );
+          document
+            .querySelector('.lav-contact')
+            .insertAdjacentElement(
+              'beforeend',
+              document.querySelector('.tpl-6__checkout__subtitle + .row')
+            );
+        } else {
+          setTimeout(() => {
+            document
+              .querySelector('.lav-contact')
+              .insertAdjacentElement(
+                'beforeend',
+                document.querySelector('.tpl-6__checkout__subtitle + .row')
+              );
+
+            document
+              .querySelector('.lav-contact')
+              .insertAdjacentElement(
+                'beforeend',
+                document.querySelector('.tpl-6__checkout__subtitle + .row')
+              );
+          }, 1500);
+        }
       }
 
       // setTimeout(() => {
