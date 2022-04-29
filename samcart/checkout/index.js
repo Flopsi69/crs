@@ -2349,14 +2349,18 @@ function init() {
         });
       }
 
-      if (document.querySelector("[for='digitalWalletRadio']")) {
-        for (let item of document.querySelectorAll('.lav-header__google')) {
-          item.classList.remove('lav-header__btn_hidden');
-        }
-      }
+      // if (document.querySelector("[for='digitalWalletRadio'] .google-pay:not(.ng-hide)")) {
+      //   for (let item of document.querySelectorAll('.lav-header__google')) {
+      //     item.classList.remove('lav-header__btn_hidden');
+      //   }
+      // }
 
       setTimeout(() => {
-        if (document.querySelector("[for='digitalWalletRadio']")) {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
+          )
+        ) {
           for (let item of document.querySelectorAll('.lav-header__google')) {
             item.classList.remove('lav-header__btn_hidden');
           }
@@ -2371,7 +2375,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__google')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
-          document.querySelector("[for='digitalWalletRadio']").click();
+          // document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'google');
           location.href =
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
@@ -2455,13 +2459,18 @@ function init() {
         item.innerText = today.toLocaleDateString();
       }
 
-      if (localStorage.getItem('paymentType') == 'google') {
-        if (document.querySelector("[for='digitalWalletRadio']")) {
-          document.querySelector("[for='digitalWalletRadio']").click();
+      if (
+        localStorage.getItem('paymentType') == 'google' &&
+        document.querySelector(
+          "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
+        )
+      ) {
+        if (document.querySelector('#digitalWalletRadio')) {
+          document.querySelector('#digitalWalletRadio').click();
         }
         setTimeout(() => {
-          if (document.querySelector("[for='digitalWalletRadio']")) {
-            document.querySelector("[for='digitalWalletRadio']").click();
+          if (document.querySelector('#digitalWalletRadio')) {
+            document.querySelector('#digitalWalletRadio').click();
           }
         }, 1500);
         document.querySelector('.lav-info').remove();
