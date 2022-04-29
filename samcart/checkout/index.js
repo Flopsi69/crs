@@ -2500,6 +2500,9 @@ function init() {
             document.querySelector('#digitalWalletRadio').click();
           }
         }, 3000);
+        document
+          .querySelector('.lav-payment')
+          .classList.add('lav-payment_hide');
         // document.querySelector('.lav-info').style.display = 'none';
         // document.querySelector('.lav-summary').style.width = 'initial';
         // document.querySelector('.lav-main').style.cssText =
@@ -2513,6 +2516,11 @@ function init() {
             document.querySelector("[for='payPalRadio']").click();
           }
         }, 1500);
+        setTimeout(() => {
+          if (document.querySelector('#payPalRadio')) {
+            document.querySelector('#payPalRadio').click();
+          }
+        }, 3000);
         document
           .querySelector('.lav-payment')
           .classList.add('lav-payment_hide');
