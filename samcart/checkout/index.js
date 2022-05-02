@@ -904,8 +904,35 @@ const styles = `
       width: 100%;
       height: 40px;
     }
+    .lav-gifts:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateY(-43%);
+      background: url('${settings.dir}/img/lav-mob-v.svg') center no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 53px;
+    }
     .lav-grid__row:before, .lav-grid__row:after {
       display: none;
+    }
+    .lav-grid__row:nth-child(1):after, .lav-grid__row:nth-child(3):after, .lav-grid__row:nth-child(5):after, .lav-grid__row:nth-child(7):after, .lav-grid__row:nth-child(9):after {
+      display: block;
+      bottom: 0;
+      right: 0;
+      left: initial;
+      height: 69px;
+      width: 78px;
+    }
+    .lav-grid__row:nth-child(2):after, .lav-grid__row:nth-child(4):after, .lav-grid__row:nth-child(6):after, .lav-grid__row:nth-child(8):after {
+      display: block;
+      bottom: 0;
+      left: 0;
+      right: initial;
+      height: 69px;
+      width: 78px;
     }
     .lav-header__inner {
       justify-content: center;
@@ -996,7 +1023,7 @@ const styles = `
       margin-bottom: 20px;
     }
     .lav-dis {
-      padding: 30px 0 40px;
+      padding: 50px 0 40px;
     }
     .lav-dis__title {
       font-size: 18px;
@@ -1032,6 +1059,7 @@ const styles = `
       top: 0;
     }
     .lav-gifts {
+      position: relative;
       padding-top: 100px;
       padding-bottom: 80px;
     }
