@@ -1312,7 +1312,7 @@ const stylesCheckout = `
     bottom: 0;
     left: 15px;
     right: 15px;
-    background: url(${settings.dir}/img/checkout-dots.png) bottom left;
+    background: url(${settings.dir}/img/checkout-lines.svg) bottom left;
     background-size: contain;
   }
   .lav-timeline__item {
