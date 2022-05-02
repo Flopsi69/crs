@@ -181,7 +181,7 @@ const styles = `
 const modalEl = `
   <style>
     .lav-modal {
-      position: relative;
+      padding-top: 48px;
       display: flex;
       position: fixed;
       z-index: 999999;
@@ -203,13 +203,16 @@ const modalEl = `
       font-size: 28px;
       line-height: 34px;
       color: #3856A7;
-      span {
-        color: #FC4D38;
-      }
+    }
+    .lav-modal__title span {
+      color: #FC4D38;
     }
     .lav-confirm__image {
       margin: 16px 0 32px;
       line-height: 0;
+    }
+    .lav-confirm__image img {
+      max-width: 100%;
     }
     .lav-cancel__image {
       text-align: center;
@@ -217,7 +220,7 @@ const modalEl = `
       line-height: 0;
     }
     .lav-modal__list {
-      font-weight: 700;
+      margin-left: 22px;
       font-size: 14px;
       line-height: 140%;
       color: #3856A7;      
@@ -246,6 +249,28 @@ const modalEl = `
     .lav-confirm__caption-wrap div {
       display: inline;
     }
+    .lav-modal__btn {
+      background: #E95B44;
+      border-radius: 20px;
+      width: 100%;
+      height: 44px;
+      outline: none;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 0.2em;
+      color: #FFFFFF;
+      border: none;
+      text-transform: none;
+    }
+    .lav-modal__close {
+      position: absolute;
+      top: 17px;
+      right: 30px;
+    }
+    .lav-modal strong {
+      font-weight: 900;
+    }
   </style>
   <div class='lav-confirm lav-modal'>
     <div class='lav-modal__close'>
@@ -263,7 +288,7 @@ const modalEl = `
         <li class='lav-confirm__item'>Complete control over confirmlation or rescheduling. </li>
       </ul>
       <div class='lav-confirm__note'>
-        Subscribers can get 2<strong>8 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discounted
+        Subscribers can get <strong>28 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discounted
       </div>
       <div class='lav-confirm__caption-wrap'>
         <div class='lav-confirm__caption lav-caption'>Skip offer and choose one-time purchase</div>
