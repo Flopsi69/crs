@@ -1300,7 +1300,7 @@ const stylesCheckout = `
   .lav-timeline {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin-bottom: 43px;
     align-items: flex-end;
     text-align: left;
@@ -1310,14 +1310,23 @@ const stylesCheckout = `
     position: absolute;
     height: 4px;
     bottom: 0;
-    left: 15px;
-    right: 15px;
+    left: -1px;
+    right: -1px;
     background: url(${settings.dir}/img/checkout-lines.svg) bottom left;
     background-size: contain;
   }
   .lav-timeline__item {
     position: relative;
     padding-bottom: 8px;
+  }
+  .lav-timeline__item:nth-child(2) {
+    margin-left: 44px
+  }
+  .lav-timeline__item:nth-child(3) {
+    margin-left: 55px
+  }
+  .lav-timeline__item:nth-child(4) {
+    margin-left: 96px;
   }
   .lav-timeline__item:before {
     content: '';
@@ -1328,6 +1337,7 @@ const stylesCheckout = `
     border-radius: 21px;
     width: 70px;
     height: 4px;
+    display: none;
   }
   .lav-timeline__item:last-child:before {
     width: 100%;
@@ -1378,7 +1388,7 @@ const stylesCheckout = `
   }
   #fullWidth #paymentForm {
     max-width: 1140px;
-    padding: 0 15px;
+    // padding: 0 15px;
   }
   .lav-caption {
     font-size: 10px;
