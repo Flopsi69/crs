@@ -2593,6 +2593,15 @@ function addSummary() {
 
 function checkPayments() {
   let i = 1000;
+  console.log(
+    i,
+    document.querySelector(
+      "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
+    ),
+    document.querySelector(
+      "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+    )
+  );
   while (8000 <= i) {
     setTimeout(() => {
       for (let item of document.querySelectorAll('.lav-header__google')) {
