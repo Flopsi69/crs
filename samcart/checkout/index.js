@@ -2358,139 +2358,8 @@ function init() {
       //     item.classList.remove('lav-header__btn_hidden');
       //   }
       // }
-      if (
-        document.querySelector(
-          "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-        )
-      ) {
-        for (let item of document.querySelectorAll('.lav-header__google')) {
-          item.classList.remove('lav-header__btn_hidden');
-        }
-      }
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__google')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 1000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__google')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 2000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__google')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 3000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__google')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 4000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__google')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 5000);
-
-      if (
-        document.querySelector(
-          "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-        )
-      ) {
-        for (let item of document.querySelectorAll('.lav-header__apple')) {
-          item.classList.remove('lav-header__btn_hidden');
-        }
-      }
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__apple')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 1000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__apple')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 2000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__apple')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 3000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__apple')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 4000);
-      setTimeout(() => {
-        if (
-          document.querySelector(
-            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-          )
-        ) {
-          for (let item of document.querySelectorAll('.lav-header__apple')) {
-            item.classList.remove('lav-header__btn_hidden');
-          }
-        }
-      }, 5000);
-
-      // TODO for apple
-      // if (document.querySelector("[for='digitalWalletRadio']")) {
-      // }
+      
+      checkPayments();
 
       // Google pay
       for (let item of document.querySelectorAll('.lav-header__google')) {
@@ -2720,4 +2589,39 @@ function addSummary() {
         document.querySelector('#order-summary-widget').cloneNode(true)
       );
   }, 2000);
+}
+
+function checkPayments() {
+  let i = 1000;
+  while (8000 <= i) {
+    setTimeout(() => {
+      if (
+        document.querySelector(
+          "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
+        )
+      ) {
+        for (let item of document.querySelectorAll('.lav-header__google')) {
+          item.classList.remove('lav-header__btn_hidden');
+        } else {
+          item.classList.add('lav-header__btn_hidden');
+        }
+      }
+
+      if (
+        document.querySelector(
+          "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+        )
+      ) {
+        for (let item of document.querySelectorAll('.lav-header__apple')) {
+          item.classList.remove('lav-header__btn_hidden');
+        }
+      } else {
+        for (let item of document.querySelectorAll('.lav-header__apple')) {
+          item.classList.add('lav-header__btn_hidden');
+        }
+      }
+    }, i);
+
+    i += 1000;
+  }
 }
