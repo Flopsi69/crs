@@ -1649,10 +1649,24 @@ const stylesCheckout = `
       margin-top: 30px;
     }
     #fullWidth #paymentForm {
-      max-width: 540px;
+      max-width: 375px;
     }
     .lav-timeline {
       // justify-content: space-between;
+    }
+    .lav-timeline__item:first-child {
+      width: 51px;
+    }
+    .lav-timeline__item:nth-child(2) {
+      width: 80px;
+      margin-left: 16px;
+    }
+    .lav-timeline__item:nth-child(3) {
+      width: 71px;
+      margin-left: 30px;
+    }
+     .lav-timeline__item:nth-child(4) {
+      margin-left: 25px;
     }
     .lav-timeline:before {
       content: '';
@@ -1661,7 +1675,7 @@ const stylesCheckout = `
       bottom: 0;
       left: -1px;
       right: -1px;
-      background: url(${settings.dir}/img/checkout-lines.svg) bottom left;
+      background: url(${settings.dir}/img/checkout-lines-mob.svg) bottom left;
       background-size: cover;
     }
     .lav-timeline__title {
