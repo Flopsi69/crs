@@ -2358,7 +2358,7 @@ function init() {
       //     item.classList.remove('lav-header__btn_hidden');
       //   }
       // }
-      
+
       checkPayments();
 
       // Google pay
@@ -2595,28 +2595,26 @@ function checkPayments() {
   let i = 1000;
   while (8000 <= i) {
     setTimeout(() => {
-      if (
-        document.querySelector(
-          "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-        )
-      ) {
-        for (let item of document.querySelectorAll('.lav-header__google')) {
+      for (let item of document.querySelectorAll('.lav-header__google')) {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
+          )
+        ) {
           item.classList.remove('lav-header__btn_hidden');
         } else {
           item.classList.add('lav-header__btn_hidden');
         }
       }
 
-      if (
-        document.querySelector(
-          "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-        )
-      ) {
-        for (let item of document.querySelectorAll('.lav-header__apple')) {
+      for (let item of document.querySelectorAll('.lav-header__apple')) {
+        if (
+          document.querySelector(
+            "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
+          )
+        ) {
           item.classList.remove('lav-header__btn_hidden');
-        }
-      } else {
-        for (let item of document.querySelectorAll('.lav-header__apple')) {
+        } else {
           item.classList.add('lav-header__btn_hidden');
         }
       }
