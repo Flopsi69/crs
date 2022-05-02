@@ -555,9 +555,6 @@ const styles = `
   .lav-grid__row + .lav-grid__row {
     margin-top: 110px;
   }
-  .lav-grid__row:before, .lav-grid__row:after {
-    display: none;
-  }
   .lav-grid__info {
     max-width: 575px;
     padding: 0 15px;
@@ -895,8 +892,10 @@ const styles = `
   .lav-plan__list-item + .lav-plan__list-item {
     margin-top: 15px;
   }
-  .lav-plan {}
   @media (max-width: 1000px) {
+    .lav-grid__row:before, .lav-grid__row:after {
+      display: none;
+    }
     .lav-header__inner {
       justify-content: center;
     }
