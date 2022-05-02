@@ -930,6 +930,8 @@ const styles = `
       left: initial;
       height: 69px;
       width: 78px;
+      background: url('${settings.dir}/img/lav-mob-r.svg') right no-repeat;
+      background-size: contain;
     }
     .lav-grid__row:nth-child(2):after, .lav-grid__row:nth-child(4):after, .lav-grid__row:nth-child(6):after, .lav-grid__row:nth-child(8):after {
       display: block;
@@ -938,6 +940,8 @@ const styles = `
       right: initial;
       height: 69px;
       width: 78px;
+      background: url('${settings.dir}/img/lav-mob-l.svg') left no-repeat;
+      background-size: contain;
     }
     .lav-header__inner {
       justify-content: center;
@@ -1643,6 +1647,22 @@ const stylesCheckout = `
       font-size: 20px;
       line-height: 24px;
       margin-top: 30px;
+    }
+    #fullWidth #paymentForm {
+      max-width: 540px;
+    }
+    .lav-timeline {
+      // justify-content: space-between;
+    }
+    .lav-timeline:before {
+      content: '';
+      position: absolute;
+      height: 4px;
+      bottom: 0;
+      left: -1px;
+      right: -1px;
+      background: url(${settings.dir}/img/checkout-lines.svg) bottom left;
+      background-size: cover;
     }
     .lav-timeline__title {
       font-size: 9px;
