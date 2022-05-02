@@ -2612,7 +2612,7 @@ function checkPayments() {
       "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
     )
   );
-  while (8000 <= i) {
+  while (8000 >= i) {
     setTimeout(() => {
       for (let item of document.querySelectorAll('.lav-header__google')) {
         if (
