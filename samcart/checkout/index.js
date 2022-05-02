@@ -892,7 +892,7 @@ const styles = `
   .lav-plan__list-item + .lav-plan__list-item {
     margin-top: 15px;
   }
-  @media (max-width: 1000px) {
+  @media (max-width: 1080px) {
     .lav-dis:before, .lav-total:before, .lav-faq:before {
       content: '';
       position: absolute;
@@ -1642,14 +1642,14 @@ const stylesCheckout = `
   .form-group div.card-num-row {
     padding-top: 0;
   }
-  @media (max-width: 1000px) {
+  @media (max-width: 1080px) {
     .lav-title {
       font-size: 20px;
       line-height: 24px;
       margin-top: 30px;
     }
     #fullWidth #paymentForm {
-      max-width: 375px;
+      max-width: 345px;
     }
     .lav-timeline {
       // justify-content: space-between;
@@ -1659,14 +1659,14 @@ const stylesCheckout = `
     }
     .lav-timeline__item:nth-child(2) {
       width: 80px;
-      margin-left: 16px;
+      margin-left: 12px;
     }
     .lav-timeline__item:nth-child(3) {
       width: 71px;
-      margin-left: 30px;
+      margin-left: 20px;
     }
      .lav-timeline__item:nth-child(4) {
-      margin-left: 25px;
+      margin-left: 18px;
     }
     .lav-timeline:before {
       content: '';
@@ -1701,9 +1701,9 @@ const stylesCheckout = `
     .lav-timeline__item:last-child .lav-timeline__title {
       display: flex;
     }
-    .lav-timeline__item + .lav-timeline__item {
-      margin-left: 8px;
-    }
+    // .lav-timeline__item + .lav-timeline__item {
+    //   margin-left: 8px;
+    // }
     .lav-main {
       flex-flow: column-reverse;
     }
