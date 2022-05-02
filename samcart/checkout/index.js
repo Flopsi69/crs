@@ -893,27 +893,32 @@ const styles = `
     margin-top: 15px;
   }
   @media (max-width: 1000px) {
-    .lav-dis:before {
+    .lav-dis:before, .lav-total:before, .lav-faq:before {
       content: '';
       position: absolute;
       left: 0;
       top: 0;
+      bottom: initial;
       transform: translateY(-50%);
       background: url('${settings.dir}/img/lav-mob-h.svg') center no-repeat;
       background-size: cover;
       width: 100%;
       height: 40px;
     }
-    .lav-gifts:before {
+    .lav-gifts:before, .lav-plans:before {
       content: '';
       position: absolute;
       left: 0;
       top: 0;
+      bottom: initial;
       transform: translateY(-43%);
       background: url('${settings.dir}/img/lav-mob-v.svg') center no-repeat;
       background-size: cover;
       width: 100%;
       height: 53px;
+    }
+    .lav-grid:after {
+      display: none;
     }
     .lav-grid__row:before, .lav-grid__row:after {
       display: none;
@@ -1181,6 +1186,7 @@ const styles = `
       line-height: 23px;
     }
     .lav-faq {
+      position: relative;
       padding-top: 80px;
       padding-bottom: 60px;
     }
