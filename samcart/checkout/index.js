@@ -1324,7 +1324,7 @@ const stylesCheckout = `
     left: -1px;
     right: -1px;
     background: url(${settings.dir}/img/checkout-lines.svg) bottom left;
-    background-size: contain;
+    background-size: cover;
   }
   .lav-timeline__item {
     position: relative;
@@ -1337,7 +1337,7 @@ const stylesCheckout = `
     margin-left: 55px
   }
   .lav-timeline__item:nth-child(4) {
-    margin-left: 96px;
+    margin-left: 99px;
   }
   .lav-timeline__item:before {
     content: '';
@@ -2614,15 +2614,6 @@ function addSummary() {
 
 function checkPayments() {
   let i = 1000;
-  console.log(
-    i,
-    document.querySelector(
-      "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
-    ),
-    document.querySelector(
-      "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
-    )
-  );
   while (8000 >= i) {
     setTimeout(() => {
       for (let item of document.querySelectorAll('.lav-header__google')) {
