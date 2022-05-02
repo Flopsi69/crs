@@ -893,6 +893,17 @@ const styles = `
     margin-top: 15px;
   }
   @media (max-width: 1000px) {
+    .lav-dis:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateY(-50%);
+      background: url('${settings.dir}/img/lav-mob-h.svg') center no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 40px;
+    }
     .lav-grid__row:before, .lav-grid__row:after {
       display: none;
     }
