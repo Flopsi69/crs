@@ -181,6 +181,7 @@ const styles = `
 const modalEl = `
   <style>
     .lav-modal {
+      position: relative;
       display: flex;
       position: fixed;
       z-index: 999999;
@@ -206,12 +207,54 @@ const modalEl = `
         color: #FC4D38;
       }
     }
+    .lav-confirm__image {
+      margin: 16px 0 32px;
+      line-height: 0;
+    }
+    .lav-cancel__image {
+      text-align: center;
+      margin: 32px 0;
+      line-height: 0;
+    }
+    .lav-modal__list {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 140%;
+      color: #3856A7;      
+    }
+    .lav-modal__list li {
+
+    }
+    .lav-modal__list li + li {
+      margin-top: 5px;
+    }
+    .lav-confirm__note {
+      padding: 30px 18px;
+      margin: 24px 0 44px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 140%;
+      text-align: center;
+      color: #3856A7;
+    }
+    .lav-confirm__caption-wrap {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .lav-confirm__caption-wrap div {
+      display: inline;
+    }
   </style>
   <div class='lav-confirm lav-modal'>
+    <div class='lav-modal__close'>
+      <img src='${settings.dir}/img/close.svg'>
+    </div>
     <div class='lav-confirm__inner lav-modal__inner'>
       <div class='lav-confirm__title lav-modal__title'>A flexible subscription adjusted <span>to your needs</span></div>
       <div class='lav-confirm__image'>
-        <img src='${settings.dir}'>
+        <img src='${settings.dir}/img/confirm.png'>
       </div>
       <ul class='lav-confirm__list lav-modal__list'>
         <li class='lav-confirm__item'><strong>15% OFF</strong> our science-backed baby food.</li>
@@ -231,7 +274,7 @@ const modalEl = `
     <div class='lav-cancel__inner lav-modal__inner' style='display: none;'>
       <div class='lav-cancel__title lav-modal__title'>A flexible subscription adjusted <span>to your needs</span></div>
       <div class='lav-cancel__image'>
-        <img src=''>
+        <img src='${settings.dir}/img/calendar.svg'>
       </div>
       <ul class='lav-cancel__list lav-modal__list'>
         <li class='lav-cancel__item'>Need to reschedule a shipment? Just click 'My subscriptions' and select the next shipment date.</li>
