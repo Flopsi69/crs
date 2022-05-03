@@ -3,33 +3,17 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/samcart/checkout',
-  hj: false,
+  hj: true,
   observe: false,
 };
 
 //Hotjar
 if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
+  if (location.href.includes('/products/courses-special-offer-subscribe')) {
+  } else {
+    gaEvent('loaded');
+    clarity('set', 'webinar_checkout_redesign', 'variant_1');
+  }
 }
 
 // Alalytic
@@ -39,11 +23,10 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp — Webinar Checkout Redesign',
       eventAction: action,
       eventLabel: label,
-      eventValue: '',
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -1996,7 +1979,7 @@ const newPage = `
               <div class='lav-grid__title'>Traffic Tactics<span>™</span></div>
               <div class='lav-grid__descr'>Discover how to get unlimited traffic from Facebook, YouTube, Instagram, Podcasting, SEO, Content Marketing, Facebook Ads, YouTube Ads, Google Ads, and the list goes on and on.</div>
               <div class='lav-grid__note lav-white-label'>Normally <span>$1,997.00</span> - Yours FREE!</div>
-              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn lav-traffic__btn'>Start earning now</button>
             </div>
             <div class='lav-grid__image'>
               <img src='${settings.dir}/img/grid2.png'>
@@ -2030,7 +2013,7 @@ const newPage = `
               <div class='lav-grid__title'>Product Creation Masterclass<span>™</span></div>
               <div class='lav-grid__descr'>Discover how to quickly create your first product in less than 72 hours. Get our simple frameworks for deciding on your niche, your product, the name, the price and everything else so you don't have to worry about doing any of it yourself!</div>
               <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value- Yours FREE!</div>
-              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn lav-creation__btn'>Start earning now</button>
             </div>
             <div class='lav-grid__image'>
               <img src='${settings.dir}/img/grid5.png'>
@@ -2065,7 +2048,7 @@ const newPage = `
               <div class='lav-grid__title'>1 Page Wednesday<span>™</span> Calls</div>
               <div class='lav-grid__descr'>Watch me take a page that’s underperforming and tweak it so that it starts turning visitors into paying customers on autopilot.</div>
               <div class='lav-grid__note lav-white-label'>A <span>$497.00</span> Value - Yours FREE!</div>
-              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+              <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn lav-wednesday__btn'>Start earning now</button>
             </div>
             <div class='lav-grid__image'>
               <img src='${settings.dir}/img/grid8.png'>
@@ -2099,7 +2082,7 @@ const newPage = `
           </div>
 
           <div class='lav-grid__btn-wrap'>
-            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn'>Start earning now</button>
+            <button class='lav-btn lav-btn_blue lav-checkout lav-grid__btn lav-bonus__btn'>Start earning now</button>
           </div>
         </div>
       </div>
@@ -2360,6 +2343,46 @@ function init() {
       for (let item of document.querySelectorAll('.lav-checkout')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          if (item.classList.contains('lav-header__card')) {
+            gaEvent('Click on Start Earning button', 'Header');
+          }
+          if (item.classList.contains('lav-intro__btn')) {
+            gaEvent('Click on Start Earning button', 'First screen');
+          }
+          if (item.classList.contains('lav-gifts__btn')) {
+            gaEvent(
+              'Click on Start Earning button',
+              'The 1 Page Masterclass section'
+            );
+          }
+          if (item.classList.contains('lav-traffic__btn')) {
+            gaEvent('Click on Start Earning button', 'Traffic Tactics section');
+          }
+          if (item.classList.contains('lav-creation__btn')) {
+            gaEvent(
+              'Click on Start Earning button',
+              'Product Creation Masterclass section'
+            );
+          }
+          if (item.classList.contains('lav-wednesday__btn')) {
+            gaEvent(
+              'Click on Start Earning button',
+              '1 Page Wednesday Calls section'
+            );
+          }
+          if (item.classList.contains('lav-bonus__btn')) {
+            gaEvent('Click on Start Earning button', 'New Bonus section');
+          }
+          if (item.classList.contains('lav-total__btn')) {
+            gaEvent(
+              'Click on Start Earning button',
+              'How do I know this is for real section'
+            );
+          }
+          if (item.classList.contains('lav-faq__btn')) {
+            gaEvent('Click on Start Earning button', 'FAQ section');
+          }
+
           localStorage.setItem('paymentType', 'card');
           location.href =
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
@@ -2372,10 +2395,12 @@ function init() {
             localStorage.setItem('plan', '1');
             document.querySelector('.lav-price_old').innerText = '$588.00';
             document.querySelector('.lav-price_new').innerText = '$349.00';
+            gaEvent('Click on Launch Plan section', 'excluding button');
           } else {
             localStorage.setItem('plan', '2');
             document.querySelector('.lav-price_old').innerText = '$708.00';
             document.querySelector('.lav-price_new').innerText = '$469.00';
+            gaEvent('Click on Creator U Plan section', 'excluding button');
           }
 
           document.querySelector(
@@ -2401,6 +2426,18 @@ function init() {
           if (item.classList.contains('lav-plan__btn_active')) {
             e.preventDefault();
             e.stopPropagation();
+            if (item.closest('[data-tab]').dataset.tab == '1') {
+              gaEvent(
+                'Click on CTA Start Earning button',
+                'Launch Plan section'
+              );
+            } else {
+              gaEvent(
+                'Click on CTA Start Earning button',
+                'Creator U Plan section'
+              );
+            }
+
             localStorage.setItem('paymentType', 'card');
             location.href =
               'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
@@ -2411,6 +2448,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__paypal')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('Click on Pay Pal button');
           localStorage.setItem('paymentType', 'paypal');
           location.href =
             'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
@@ -2465,6 +2503,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__apple')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('Click on Apple Pay button');
           // document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'apple');
           location.href =
@@ -2622,12 +2661,28 @@ function init() {
         );
 
       setTimeout(() => {
+        if (document.querySelector('.main-cta')) {
+          document
+            .querySelector('.main-cta')
+            .addEventListener('click', function () {
+              gaEvent('Click on Place Order Now button');
+            });
+        }
+
         document
           .querySelector('.lav-payment')
           .insertAdjacentElement(
             'beforeend',
             document.querySelector('#payments')
           );
+
+        document.querySelectorAll('.row input').forEach((item) => {
+          item.addEventListener('click', function () {
+            if (item.name) {
+              gaEvent('Click on contact input', item.name);
+            }
+          });
+        });
       }, 1500);
 
       document
