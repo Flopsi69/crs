@@ -9,7 +9,12 @@ const settings = {
 
 //Hotjar
 if (settings.hj) {
-  clarity('set', 'subscription_impr', 'variant_1');
+  var clarityInterval = setInterval(() => {
+    if (clarity) {
+      clearInterval(clarityInterval);
+      clarity('set', 'subscription_impr', 'variant_1');
+    }
+  }, 200);
   gaEvent('loaded');
 }
 
@@ -123,6 +128,8 @@ const styles = `
     padding: 0 15px;
     text-align: center;
     width: 100%;
+    margin-top: 15px;
+    order: -1;
   }
   .lav-caption__cancel-wrap div {
     display: inline;
@@ -200,6 +207,9 @@ const styles = `
   .lav-subscribe__item.active {
     color: #15206B;
     background: #F3F4FB;
+  }
+  .col-12.col-md-8:not(.custom-column) {
+    order: -2;
   }
 `;
 
