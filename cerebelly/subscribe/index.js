@@ -369,7 +369,7 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
-  if (!document.querySelecotr('.subscribe-all')) {
+  if (!document.querySelector('.subscribe-all')) {
     setTimeout(init, 1000);
     return false;
   }
