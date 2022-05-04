@@ -3,47 +3,23 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
-  hj: false,
+  hj: true,
   observe: false,
 };
 
 //Hotjar
 if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
+  clarity('set', 'subscription_impr', 'variant_1');
+  gaEvent('loaded');
 }
 
 // Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
+function gaEvent(action) {
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Subscription improvements',
       eventAction: action,
-      eventLabel: label,
-      eventValue: '',
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -74,14 +50,20 @@ const styles = `
     color: #FC4D38!important;
   }
 
-  .subscribe-all {
+  .subscribe-all, .box .wrapper .subscribe-delivery .subscribe,.box .wrapper .subscribe-delivery .delivery {
     display: none!important;
   }
-
+  .box .cart-total-mobile {
+    margin-top: 0!important;
+  }
   // .subscribe-all *:not(.test),
   // .action .subscribe {
   //   display: none !important;
   // }
+  .box .wrapper .lines {
+    margin-bottom: 22px!important;
+    margin-top: 22px!important;
+  }
 
   .lav-caption {
     color: #3856A7;
@@ -117,7 +99,8 @@ const styles = `
     margin: 32px 0 15px!important;
   }
   .e-page-content-wrap .box .wrapper .info {
-    margin-bottom: 8px!important;
+    margin-bottom: 15px!important;
+    order: -2;
   }
   .box .wrapper .lines .toggle .items-count {
     font-size: 12px;
@@ -128,6 +111,10 @@ const styles = `
   }
   .box .wrapper .subtotal {
     font-size: 14px!important;
+  }
+  .box .wrapper {
+    display: flex;
+    flex-flow: column;
   }
   .tm-text {
     display: none;
@@ -176,31 +163,81 @@ const styles = `
   .summary-table .sum-row .caption, .summary-table .sum-row .total {
     font-weight: 700!important;
   }
+  .lav-subscribe {
+    position: relative;
+    order: -1;
+  }
+  .lav-subscribe__value {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 12px;
+    color: #3856A7;
+  }
+  .lav-subscribe__value img {
+    margin-left: 7px;
+    width: 9px;
+  }
+  .lav-subscribe__list {
+    position: absolute;
+    bottom: -15px;
+    transform: translateY(100%);
+    background: #FFFFFF;
+    border-radius: 10px;
+    z-index: 99;
+    filter: drop-shadow(0px 2px 3px rgba(21, 32, 107, 0.1));
+    display: none;
+  }
+  .lav-subscribe__list.active {
+    display: block;
+  }
+  .lav-subscribe__item {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #3856A7;
+  }
+  .lav-subscribe__item.active {
+    color: #15206B;
+    background: #F3F4FB;
+  }
 `;
 
 const modalEl = `
   <style>
     .lav-modal {
       padding-top: 48px;
-      display: flex;
+      display: none;
       position: fixed;
       z-index: 999999;
       left: 0;
       top: 0;
       right: 0;
       bottom: 0;
+      transition: 0.3s;
       background: rgba(206, 211, 242, 0.94);
       margin-top: auto;
+      opacity: 0;
+    }
+    .lav-modal.active {
+      display: flex;
     }
     .lav-modal__inner {
       background: #E3EAFD;
       border-radius: 10px 10px 0 0;
       margin-top: auto;
       padding: 30px 25px 17px;
+      max-height: 100%;
+      overflow: auto;
+      transition: 0.5s;
+      transform: translateY(100%);
+    }
+    .lav-modal__inner.active {
+      transform: translateY(0);
     }
     .lav-modal__title {
       font-weight: 700;
-      font-size: 28px;
+      font-size: 26px;
       line-height: 34px;
       color: #3856A7;
     }
@@ -208,7 +245,7 @@ const modalEl = `
       color: #FC4D38;
     }
     .lav-confirm__image {
-      margin: 16px 0 32px;
+      margin: 18px 0 32px;
       line-height: 0;
     }
     .lav-confirm__image img {
@@ -218,6 +255,9 @@ const modalEl = `
       text-align: center;
       margin: 32px 0;
       line-height: 0;
+    }
+    .lav-cancel__list {
+      margin-bottom: 32px;
     }
     .lav-modal__list {
       margin-left: 22px;
@@ -261,7 +301,7 @@ const modalEl = `
       letter-spacing: 0.2em;
       color: #FFFFFF;
       border: none;
-      text-transform: none;
+      text-transform: uppercase;
     }
     .lav-modal__close {
       position: absolute;
@@ -272,7 +312,7 @@ const modalEl = `
       font-weight: 900;
     }
   </style>
-  <div class='lav-confirm lav-modal'>
+  <div class='lav-modal'>
     <div class='lav-modal__close'>
       <img src='${settings.dir}/img/close.svg'>
     </div>
@@ -296,8 +336,8 @@ const modalEl = `
       <button class="button primary red lav-confirm__btn lav-modal__btn">Continue</button>
     </div>
 
-    <div class='lav-cancel__inner lav-modal__inner' style='display: none;'>
-      <div class='lav-cancel__title lav-modal__title'>A flexible subscription adjusted <span>to your needs</span></div>
+    <div class='lav-cancel__inner lav-modal__inner'>
+      <div class='lav-cancel__title lav-modal__title'>Cancel or reschedule your subscription <span>anytime</span></div>
       <div class='lav-cancel__image'>
         <img src='${settings.dir}/img/calendar.svg'>
       </div>
@@ -327,8 +367,6 @@ function init() {
     document.querySelector('.subscribe-all .container-checkbox').click();
   }
 
-  initModal();
-
   document
     .querySelector('.subscribe-all')
     .insertAdjacentHTML(
@@ -339,17 +377,214 @@ function init() {
   document.querySelector('.custom-column').insertAdjacentHTML(
     'beforebegin',
     `
-      <div class='lav-caption__cancel-wrap'>
-        <div class="lav-caption lav-caption__cancel">How to cancel subscription?</div>
-      </div>
-      `
+    <div class='lav-caption__cancel-wrap'>
+      <div class="lav-caption lav-caption__cancel">How to cancel subscription?</div>
+    </div>
+    `
   );
 
-  // let inputEvent = new Event('input');
+  initModal();
+  initSubscr();
+}
 
-  // document.querySelector('.select__input').dispatchEvent(inputEvent);
+function initSubscr() {
+  let subscribeEl = `
+    <div class='lav-subscribe'>
+      <div class='lav-subscribe__value'><span>2 weeks</span><img src="/wp-content/themes/cerebelly/build/static/media/arrow-down.8b5f8633c844e2c5e5e4c918aec0443b.svg" class="arrow" alt="Arrow"></div>
+      <div class='lav-subscribe__list'>
+        <div class='lav-subscribe__item active'>2 weeks</div>
+        <div class='lav-subscribe__item'>1 month</div>
+        <div class='lav-subscribe__item'>One-time purchase</div>
+      </div>
+    </div>
+  `;
+
+  document.querySelectorAll('.e-page-content-wrap .box').forEach((item) => {
+    item.querySelector('.info').insertAdjacentHTML('afterend', subscribeEl);
+
+    item.querySelector('.remove-box').addEventListener('click', function () {
+      gaEvent('Item deleted');
+    });
+
+    // if (!item.querySelector('.delivery')) {
+    //   item.querySelector('.lav-subscribe__item:nth-child(2)').remove();
+    // }
+
+    item.querySelectorAll('.lav-subscribe__item').forEach((subEl) => {
+      gaEvent(subEl.innerText + ' selected');
+      subEl.addEventListener('click', function () {
+        if (subEl.classList.contains('active')) {
+          return false;
+        }
+
+        if (subEl.innerText.includes('purchase')) {
+          item.classList.add('box_confirm');
+          openModal('.lav-confirm__inner');
+        } else {
+          if (!item.querySelector('.container-checkbox input').checked) {
+            item.querySelector('.container-checkbox').click();
+          }
+          if (item.querySelector('.lav-subscribe__item.active')) {
+            item
+              .querySelector('.lav-subscribe__item.active')
+              .classList.remove('active');
+          }
+
+          subEl.classList.add('active');
+          item.querySelector('.lav-subscribe__value span').innerText =
+            subEl.innerText;
+          setTimeout(() => {
+            if (
+              item.querySelectorAll('.lav-subscribe__item').length == 3 &&
+              item.querySelector('.select__input')
+            ) {
+              if (subEl.innerText.includes('1')) {
+                item.querySelector('.select__input').value = 'every 4 weeks';
+              } else {
+                item.querySelector('.select__input').value = 'every 2 weeks';
+              }
+              item
+                .querySelector('.select__input')
+                .dispatchEvent(new Event('input'));
+              setTimeout(() => {
+                item.querySelector('.select__option').click();
+              }, 100);
+            }
+          }, 150);
+        }
+      });
+    });
+
+    item.querySelector('.lav-subscribe').addEventListener('click', function () {
+      item.querySelector('.lav-subscribe__list').classList.toggle('active');
+    });
+  });
+}
+
+function openModal(modal) {
+  document.querySelector('.lav-modal__inner:not(' + modal + ')').style.display =
+    'none';
+  if (document.querySelector('.lav-modal__inner.active')) {
+    document
+      .querySelector('.lav-modal__inner.active')
+      .classList.remove('active');
+  }
+  document.querySelector('.lav-modal').classList.add('active');
+  setTimeout(() => {
+    document.querySelector('.lav-modal').style.opacity = '1';
+    document.querySelector(modal).classList.add('active');
+  }, 200);
+}
+
+function closeModal() {
+  if (document.querySelector('.box_confirm')) {
+    document.querySelector('.box_confirm').classList.remove('box_confirm');
+  }
+  document.querySelector('.lav-modal__inner.active').classList.remove('active');
+  document.querySelector('.lav-modal').style.opacity = '0';
+  setTimeout(() => {
+    document.querySelector('.lav-modal').classList.remove('active');
+  }, 500);
+  setTimeout(() => {
+    document.querySelector('.lav-modal__inner[style]').removeAttribute('style');
+  }, 550);
 }
 
 function initModal() {
   document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
+
+  document
+    .querySelector('.lav-modal__close')
+    .addEventListener('click', function () {
+      if (
+        document
+          .querySelector('.lav-confirm__inner')
+          .classList.contains('active')
+      ) {
+        gaEvent('Subscription value pop up closed');
+      } else {
+        gaEvent('Reschedule subscription pop up closed');
+      }
+      closeModal();
+    });
+
+  document
+    .querySelector('.lav-cancel__btn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+    });
+
+  document
+    .querySelector('.lav-confirm__btn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+      // if (
+      //   !document.querySelector('.box_confirm') &&
+      //   !document.querySelector(
+      //     '.subscribe-all .container-checkbox .hidden-checkbox'
+      //   ).checked
+      // ) {
+      //   document.querySelector('.subscribe-all .container-checkbox').click();
+      // }
+    });
+
+  document
+    .querySelector('.lav-confirm__caption')
+    .addEventListener('click', function () {
+      gaEvent('Skip offer tapped');
+      if (document.querySelector('.box_confirm')) {
+        document
+          .querySelector('.box_confirm .lav-subscribe__item.active')
+          .classList.remove('active');
+
+        document.querySelector(
+          '.box_confirm .lav-subscribe__value span'
+        ).innerText = 'One-time purchase';
+        document
+          .querySelector('.box_confirm .lav-subscribe__item:last-child')
+          .classList.add('active');
+
+        if (document.querySelector('.box_confirm .hidden-checkbox').checked) {
+          document.querySelector('.box_confirm .container-checkbox').click();
+        }
+      } else {
+        if (
+          document.querySelector(
+            '.subscribe-all .container-checkbox .hidden-checkbox'
+          ).checked
+        ) {
+          document.querySelector('.subscribe-all .container-checkbox').click();
+        }
+
+        document
+          .querySelectorAll('.e-page-content-wrap .box')
+          .forEach((item) => {
+            item.querySelector('.lav-subscribe__value span').innerText =
+              'One-time purchase';
+            item
+              .querySelector('.lav-subscribe__list .active')
+              .classList.remove('active');
+            item
+              .querySelector('.lav-subscribe__item:last-child')
+              .classList.add('active');
+          });
+      }
+
+      closeModal();
+    });
+
+  document
+    .querySelector('.lav-caption__head')
+    .addEventListener('click', function () {
+      openModal('.lav-confirm__inner');
+    });
+
+  document
+    .querySelector('.lav-caption__cancel')
+    .addEventListener('click', function () {
+      gaEvent('How to cancel subscription tapped');
+      openModal('.lav-cancel__inner');
+    });
 }
