@@ -369,6 +369,10 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
+  if (!document.querySelecotr('.subscribe-all')) {
+    setTimeout(init, 1000);
+    return false;
+  }
   if (
     !document.querySelector(
       '.subscribe-all .container-checkbox .hidden-checkbox'
