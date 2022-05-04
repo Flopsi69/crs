@@ -10,7 +10,7 @@ const settings = {
 //Hotjar
 if (settings.hj) {
   var clarityInterval = setInterval(() => {
-    if (clarity) {
+    if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
       clarity('set', 'subscription_impr', 'variant_1');
     }
