@@ -399,7 +399,9 @@ function init() {
     `
   );
 
-  initModal();
+  if (!settings) {
+    initModal();
+  }
   initSubscr();
 }
 
