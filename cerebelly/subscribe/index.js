@@ -1,7 +1,7 @@
 console.log('initExp');
 
 /********* Settings **********/
-if (!settings && !settings.hj) {
+if (!settings) {
   var settings = {
     dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
     hj: true,
