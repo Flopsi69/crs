@@ -399,7 +399,8 @@ function init() {
     `
   );
 
-  if (!settings) {
+  if (!isModalInit) {
+    isModalInit = true;
     initModal();
   }
   initSubscr();
