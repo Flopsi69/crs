@@ -508,10 +508,7 @@ function closeModal() {
 }
 
 function initModal() {
-  if (!isModalInit) {
-    isModalInit = true;
-    document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
-  }
+  document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
 
   document
     .querySelector('.lav-modal__close')
