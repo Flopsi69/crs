@@ -400,10 +400,7 @@ function init() {
     `
   );
 
-  if (!isModalInit) {
-    isModalInit = true;
-    initModal();
-  }
+  initModal();
   initSubscr();
 }
 
@@ -511,7 +508,10 @@ function closeModal() {
 }
 
 function initModal() {
-  document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
+  if (!isModalInit) {
+    isModalInit = true;
+    document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
+  }
 
   document
     .querySelector('.lav-modal__close')
