@@ -584,6 +584,9 @@ function initModal() {
         document
           .querySelectorAll('.e-page-content-wrap .box')
           .forEach((item) => {
+            if (item.querySelector('.hidden-checkbox').checked) {
+              item.querySelector('.hidden-checkbox').click();
+            }
             item.querySelector('.lav-subscribe__value span').innerText =
               'One-time purchase';
             item
