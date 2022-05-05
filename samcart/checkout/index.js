@@ -1,63 +1,62 @@
 console.log('initExp');
 
-/******** Settings *********/
-if (!settings && !settings.hj) {
-  var settings = {
-    dir: 'https://flopsi69.github.io/crs/samcart/checkout',
-    hj: true,
-    observe: false,
-  };
+/********* Settings **********/
+const settings = {
+  dir: 'https://flopsi69.github.io/crs/samcart/checkout',
+  hj: true,
+  observe: false,
+};
 
-  //Hotjar
-  if (settings.hj) {
-    if (location.href.includes('/products/courses-special-offer-subscribe')) {
-    } else {
-      gaEvent('loaded');
-      var clarityInterval = setInterval(() => {
-        if (typeof clarity == 'function') {
-          clearInterval(clarityInterval);
-          clarity('set', 'webinar_checkout_redesign', 'variant_1');
-        }
-      }, 200);
-    }
-  }
-
-  // Alalytic
-  function gaEvent(action, label) {
-    if (!label) {
-      label = '';
-    }
-    try {
-      var objData = {
-        event: 'event-to-ga',
-        eventCategory: 'Exp — Webinar Checkout Redesign',
-        eventAction: action,
-        eventLabel: label,
-      };
-      console.log('EventFire:', objData);
-      dataLayer.push(objData);
-    } catch (e) {}
-  }
-
-  // Observe
-  if (settings.observe) {
-    let observer = new MutationObserver((mutations) => {
-      for (let mutation of mutations) {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-
-          // Code Here
-        }
+//Hotjar
+if (settings.hj) {
+  if (location.href.includes('/products/courses-special-offer-subscribe')) {
+  } else {
+    gaEvent('loaded');
+    var clarityInterval = setInterval(() => {
+      if (typeof clarity == 'function') {
+        clearInterval(clarityInterval);
+        clarity('set', 'webinar_checkout_redesign', 'variant_1');
       }
-    });
-
-    let demoElem = document.body;
-
-    observer.observe(demoElem, { childList: true, subtree: true });
+    }, 200);
   }
+}
 
-  // Styles
-  var styles = `
+// Alalytic
+function gaEvent(action, label) {
+  if (!label) {
+    label = '';
+  }
+  try {
+    var objData = {
+      event: 'event-to-ga',
+      eventCategory: 'Exp — Webinar Checkout Redesign',
+      eventAction: action,
+      eventLabel: label,
+    };
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
+  } catch (e) {}
+}
+
+// Observe
+if (settings.observe) {
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+
+        // Code Here
+      }
+    }
+  });
+
+  let demoElem = document.body;
+
+  observer.observe(demoElem, { childList: true, subtree: true });
+}
+
+// Styles
+const styles = `
   @font-face {
     font-family: "Gilroy";
     src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
@@ -1246,7 +1245,7 @@ if (!settings && !settings.hj) {
   }
 `;
 
-  var stylesCheckout = `
+const stylesCheckout = `
   @font-face {
     font-family: "Gilroy";
     src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
@@ -1817,24 +1816,24 @@ if (!settings && !settings.hj) {
   }
 `;
 
-  var stylesEl = document.createElement('style');
-  if (location.href.includes('/products/courses-special-offer-subscribe')) {
-    stylesEl.innerHTML = stylesCheckout;
-  } else {
-    stylesEl.innerHTML = styles;
-  }
+const stylesEl = document.createElement('style');
+if (location.href.includes('/products/courses-special-offer-subscribe')) {
+  stylesEl.innerHTML = stylesCheckout;
+} else {
+  stylesEl.innerHTML = styles;
+}
 
-  if (document.querySelector('body')) {
+if (document.querySelector('body')) {
+  document.body.appendChild(stylesEl);
+} else {
+  setTimeout(() => {
     document.body.appendChild(stylesEl);
-  } else {
-    setTimeout(() => {
-      document.body.appendChild(stylesEl);
-    }, 1000);
-  }
+  }, 1000);
+}
 
-  /*** STYLES / end ***/
+/*** STYLES / end ***/
 
-  var newPage = `
+const newPage = `
   <div class='lav-header lav-desk'>
     <div class='lav-header__inner'>
       <div class='lav-header__logo'>
@@ -2249,7 +2248,7 @@ if (!settings && !settings.hj) {
   </div>
 `;
 
-  var newCheckout = `
+const newCheckout = `
   <div class='lav-checkout-wrap'>
     <div class='lav-top'>
       <div class='lav-logo'>
@@ -2319,7 +2318,6 @@ if (!settings && !settings.hj) {
     </div>
   </div>
 `;
-}
 
 /********* Custom Code **********/
 init();
