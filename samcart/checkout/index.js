@@ -1,62 +1,63 @@
 console.log('initExp');
 
 /********* Settings **********/
-const settings = {
-  dir: 'https://flopsi69.github.io/crs/samcart/checkout',
-  hj: true,
-  observe: false,
-};
+if (!settings && !settings.hj) {
+  var settings = {
+    dir: 'https://flopsi69.github.io/crs/samcart/checkout',
+    hj: true,
+    observe: false,
+  };
 
-//Hotjar
-if (settings.hj) {
-  if (location.href.includes('/products/courses-special-offer-subscribe')) {
-  } else {
-    gaEvent('loaded');
-    var clarityInterval = setInterval(() => {
-      if (typeof clarity == 'function') {
-        clearInterval(clarityInterval);
-        clarity('set', 'webinar_checkout_redesign', 'variant_1');
-      }
-    }, 200);
-  }
-}
-
-// Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
-  try {
-    var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp — Webinar Checkout Redesign',
-      eventAction: action,
-      eventLabel: label,
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {}
-}
-
-// Observe
-if (settings.observe) {
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue;
-
-        // Code Here
-      }
+  //Hotjar
+  if (settings.hj) {
+    if (location.href.includes('/products/courses-special-offer-subscribe')) {
+    } else {
+      gaEvent('loaded');
+      var clarityInterval = setInterval(() => {
+        if (typeof clarity == 'function') {
+          clearInterval(clarityInterval);
+          clarity('set', 'webinar_checkout_redesign', 'variant_1');
+        }
+      }, 200);
     }
-  });
+  }
 
-  let demoElem = document.body;
+  // Alalytic
+  function gaEvent(action, label) {
+    if (!label) {
+      label = '';
+    }
+    try {
+      var objData = {
+        event: 'event-to-ga',
+        eventCategory: 'Exp — Webinar Checkout Redesign',
+        eventAction: action,
+        eventLabel: label,
+      };
+      console.log('EventFire:', objData);
+      dataLayer.push(objData);
+    } catch (e) {}
+  }
 
-  observer.observe(demoElem, { childList: true, subtree: true });
-}
+  // Observe
+  if (settings.observe) {
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
 
-// Styles
-const styles = `
+          // Code Here
+        }
+      }
+    });
+
+    let demoElem = document.body;
+
+    observer.observe(demoElem, { childList: true, subtree: true });
+  }
+
+  // Styles
+  var styles = `
   @font-face {
     font-family: "Gilroy";
     src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
@@ -1245,7 +1246,7 @@ const styles = `
   }
 `;
 
-const stylesCheckout = `
+  var stylesCheckout = `
   @font-face {
     font-family: "Gilroy";
     src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
@@ -1816,24 +1817,24 @@ const stylesCheckout = `
   }
 `;
 
-const stylesEl = document.createElement('style');
-if (location.href.includes('/products/courses-special-offer-subscribe')) {
-  stylesEl.innerHTML = stylesCheckout;
-} else {
-  stylesEl.innerHTML = styles;
-}
+  var stylesEl = document.createElement('style');
+  if (location.href.includes('/products/courses-special-offer-subscribe')) {
+    stylesEl.innerHTML = stylesCheckout;
+  } else {
+    stylesEl.innerHTML = styles;
+  }
 
-if (document.querySelector('body')) {
-  document.body.appendChild(stylesEl);
-} else {
-  setTimeout(() => {
+  if (document.querySelector('body')) {
     document.body.appendChild(stylesEl);
-  }, 1000);
-}
+  } else {
+    setTimeout(() => {
+      document.body.appendChild(stylesEl);
+    }, 1000);
+  }
 
-/*** STYLES / end ***/
+  /*** STYLES / end ***/
 
-const newPage = `
+  var newPage = `
   <div class='lav-header lav-desk'>
     <div class='lav-header__inner'>
       <div class='lav-header__logo'>
@@ -2248,7 +2249,7 @@ const newPage = `
   </div>
 `;
 
-const newCheckout = `
+  var newCheckout = `
   <div class='lav-checkout-wrap'>
     <div class='lav-top'>
       <div class='lav-logo'>
@@ -2318,6 +2319,7 @@ const newCheckout = `
     </div>
   </div>
 `;
+}
 
 /********* Custom Code **********/
 init();
