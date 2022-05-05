@@ -1,6 +1,6 @@
 console.log('initExp');
 
-/********* Settings **********/
+/******** Settings *********/
 if (!settings && !settings.hj) {
   var settings = {
     dir: 'https://flopsi69.github.io/crs/samcart/checkout',
