@@ -216,148 +216,150 @@ if (!settings) {
 `;
 
   var modalEl = `
-  <style>
-    .lav-modal {
-      padding-top: 48px;
-      display: none;
-      position: fixed;
-      z-index: 999999;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      transition: 0.3s;
-      background: rgba(206, 211, 242, 0.94);
-      margin-top: auto;
-      opacity: 0;
-    }
-    .lav-modal.active {
-      display: flex;
-    }
-    .lav-modal__inner {
-      background: #E3EAFD;
-      border-radius: 10px 10px 0 0;
-      margin-top: auto;
-      padding: 30px 25px 17px;
-      max-height: 100%;
-      overflow: auto;
-      transition: 0.5s;
-      transform: translateY(100%);
-    }
-    .lav-modal__inner.active {
-      transform: translateY(0);
-    }
-    .lav-modal__title {
-      font-weight: 700;
-      font-size: 26px;
-      line-height: 34px;
-      color: #3856A7;
-    }
-    .lav-modal__title span {
-      color: #FC4D38;
-    }
-    .lav-confirm__image {
-      margin: 18px 0 32px;
-      line-height: 0;
-    }
-    .lav-confirm__image img {
-      max-width: 100%;
-    }
-    .lav-cancel__image {
-      text-align: center;
-      margin: 32px 0;
-      line-height: 0;
-    }
-    .lav-cancel__list {
-      margin-bottom: 32px;
-    }
-    .lav-modal__list {
-      margin-left: 22px;
-      font-size: 14px;
-      line-height: 140%;
-      color: #3856A7;      
-    }
-    .lav-modal__list li {
+  <div class='lav-modal-wrapper'>
+    <style>
+      .lav-modal {
+        padding-top: 48px;
+        display: none;
+        position: fixed;
+        z-index: 999999;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        transition: 0.3s;
+        background: rgba(206, 211, 242, 0.94);
+        margin-top: auto;
+        opacity: 0;
+      }
+      .lav-modal.active {
+        display: flex;
+      }
+      .lav-modal__inner {
+        background: #E3EAFD;
+        border-radius: 10px 10px 0 0;
+        margin-top: auto;
+        padding: 30px 25px 17px;
+        max-height: 100%;
+        overflow: auto;
+        transition: 0.5s;
+        transform: translateY(100%);
+      }
+      .lav-modal__inner.active {
+        transform: translateY(0);
+      }
+      .lav-modal__title {
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 34px;
+        color: #3856A7;
+      }
+      .lav-modal__title span {
+        color: #FC4D38;
+      }
+      .lav-confirm__image {
+        margin: 18px 0 32px;
+        line-height: 0;
+      }
+      .lav-confirm__image img {
+        max-width: 100%;
+      }
+      .lav-cancel__image {
+        text-align: center;
+        margin: 32px 0;
+        line-height: 0;
+      }
+      .lav-cancel__list {
+        margin-bottom: 32px;
+      }
+      .lav-modal__list {
+        margin-left: 22px;
+        font-size: 14px;
+        line-height: 140%;
+        color: #3856A7;      
+      }
+      .lav-modal__list li {
 
-    }
-    .lav-modal__list li + li {
-      margin-top: 5px;
-    }
-    .lav-confirm__note {
-      padding: 30px 18px;
-      margin: 24px 0 44px;
-      background: #FFFFFF;
-      border-radius: 20px;
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 140%;
-      text-align: center;
-      color: #3856A7;
-    }
-    .lav-confirm__caption-wrap {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .lav-confirm__caption-wrap div {
-      display: inline;
-    }
-    .lav-modal__btn {
-      background: #E95B44;
-      border-radius: 20px;
-      width: 100%;
-      height: 44px;
-      outline: none;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 14px;
-      letter-spacing: 0.2em;
-      color: #FFFFFF;
-      border: none;
-      text-transform: uppercase;
-    }
-    .lav-modal__close {
-      position: absolute;
-      top: 17px;
-      right: 30px;
-    }
-    .lav-modal strong {
-      font-weight: 900;
-    }
-  </style>
-  <div class='lav-modal'>
-    <div class='lav-modal__close'>
-      <img src='${settings.dir}/img/close.svg'>
-    </div>
-    <div class='lav-confirm__inner lav-modal__inner'>
-      <div class='lav-confirm__title lav-modal__title'>A flexible subscription adjusted <span>to your needs</span></div>
-      <div class='lav-confirm__image'>
-        <img src='${settings.dir}/img/confirm.png'>
+      }
+      .lav-modal__list li + li {
+        margin-top: 5px;
+      }
+      .lav-confirm__note {
+        padding: 30px 18px;
+        margin: 24px 0 44px;
+        background: #FFFFFF;
+        border-radius: 20px;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 140%;
+        text-align: center;
+        color: #3856A7;
+      }
+      .lav-confirm__caption-wrap {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .lav-confirm__caption-wrap div {
+        display: inline;
+      }
+      .lav-modal__btn {
+        background: #E95B44;
+        border-radius: 20px;
+        width: 100%;
+        height: 44px;
+        outline: none;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 14px;
+        letter-spacing: 0.2em;
+        color: #FFFFFF;
+        border: none;
+        text-transform: uppercase;
+      }
+      .lav-modal__close {
+        position: absolute;
+        top: 17px;
+        right: 30px;
+      }
+      .lav-modal strong {
+        font-weight: 900;
+      }
+    </style>
+    <div class='lav-modal'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/close.svg'>
       </div>
-      <ul class='lav-confirm__list lav-modal__list'>
-        <li class='lav-confirm__item'><strong>15% OFF</strong> our science-backed baby food.</li>
-        <li class='lav-confirm__item'>Easily customize each order exactly how you'd like.</li>
-        <li class='lav-confirm__item'>Never run out of baby food with flexible shipping options.</li>
-        <li class='lav-confirm__item'>Complete control over confirmlation or rescheduling. </li>
-      </ul>
-      <div class='lav-confirm__note'>
-        Subscribers can get <strong>28 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discounted
+      <div class='lav-confirm__inner lav-modal__inner'>
+        <div class='lav-confirm__title lav-modal__title'>A flexible subscription adjusted <span>to your needs</span></div>
+        <div class='lav-confirm__image'>
+          <img src='${settings.dir}/img/confirm.png'>
+        </div>
+        <ul class='lav-confirm__list lav-modal__list'>
+          <li class='lav-confirm__item'><strong>15% OFF</strong> our science-backed baby food.</li>
+          <li class='lav-confirm__item'>Easily customize each order exactly how you'd like.</li>
+          <li class='lav-confirm__item'>Never run out of baby food with flexible shipping options.</li>
+          <li class='lav-confirm__item'>Complete control over confirmlation or rescheduling. </li>
+        </ul>
+        <div class='lav-confirm__note'>
+          Subscribers can get <strong>28 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discounted
+        </div>
+        <div class='lav-confirm__caption-wrap'>
+          <div class='lav-confirm__caption lav-caption'>Skip offer and choose one-time purchase</div>
+        </div>
+        <button class="button primary red lav-confirm__btn lav-modal__btn">Continue</button>
       </div>
-      <div class='lav-confirm__caption-wrap'>
-        <div class='lav-confirm__caption lav-caption'>Skip offer and choose one-time purchase</div>
-      </div>
-      <button class="button primary red lav-confirm__btn lav-modal__btn">Continue</button>
-    </div>
 
-    <div class='lav-cancel__inner lav-modal__inner'>
-      <div class='lav-cancel__title lav-modal__title'>Cancel or reschedule your subscription <span>anytime</span></div>
-      <div class='lav-cancel__image'>
-        <img src='${settings.dir}/img/calendar.svg'>
+      <div class='lav-cancel__inner lav-modal__inner'>
+        <div class='lav-cancel__title lav-modal__title'>Cancel or reschedule your subscription <span>anytime</span></div>
+        <div class='lav-cancel__image'>
+          <img src='${settings.dir}/img/calendar.svg'>
+        </div>
+        <ul class='lav-cancel__list lav-modal__list'>
+          <li class='lav-cancel__item'>Need to reschedule a shipment? Just click 'My subscriptions' and select the next shipment date.</li>
+          <li class='lav-cancel__item'>No longer interested in Clean Label Certified food? Leave us by heading to 'Account settings' and clicking on 'Cancel'.</li>
+        </ul>
+        <button class="button primary red lav-cancel__btn lav-modal__btn">Got it</button>
       </div>
-      <ul class='lav-cancel__list lav-modal__list'>
-        <li class='lav-cancel__item'>Need to reschedule a shipment? Just click 'My subscriptions' and select the next shipment date.</li>
-        <li class='lav-cancel__item'>No longer interested in Clean Label Certified food? Leave us by heading to 'Account settings' and clicking on 'Cancel'.</li>
-      </ul>
-      <button class="button primary red lav-cancel__btn lav-modal__btn">Got it</button>
     </div>
   </div>
 `;
@@ -508,6 +510,10 @@ function closeModal() {
 }
 
 function initModal() {
+  if (document.querySelector('.lav-modal-wrapper')) {
+    document.querySelector('.lav-modal-wrapper').remove();
+  }
+
   document.querySelector('body').insertAdjacentHTML('beforeend', modalEl);
 
   document
