@@ -1357,7 +1357,8 @@ const stylesCheckout = `
     padding-bottom: 8px;
   }
   .lav-timeline__item:nth-child(2) {
-    margin-left: 44px
+    margin-left: 78px;
+    width: 189px;
   }
   .lav-timeline__item:nth-child(3) {
     margin-left: 55px
