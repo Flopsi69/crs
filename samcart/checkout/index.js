@@ -12,7 +12,12 @@ if (settings.hj) {
   if (location.href.includes('/products/courses-special-offer-subscribe')) {
   } else {
     gaEvent('loaded');
-    clarity('set', 'webinar_checkout_redesign', 'variant_1');
+    var clarityInterval = setInterval(() => {
+      if (typeof clarity == 'function') {
+        clearInterval(clarityInterval);
+        clarity('set', 'webinar_checkout_redesign', 'variant_1');
+      }
+    }, 200);
   }
 }
 
