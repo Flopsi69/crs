@@ -2254,14 +2254,14 @@ const newCheckout = `
       <div class='lav-logo'>
         <img src='${settings.dir}/img/logo.svg'>
       </div>
-      <div class='lav-title'>You are one step away from placing your order and starting earning passive income.</div>
+      <div class='lav-title'>You are one step away from placing your order and earning passive income online.</div>
       <div class='lav-timeline'>
         <div class='lav-timeline__item'>
-          <div class='lav-timeline__title'>You Place order</div>
+          <div class='lav-timeline__title'>Place order</div>
           <div class='lav-timeline__date'>11.11.2021</div>
         </div>
         <div class='lav-timeline__item'>
-          <div class='lav-timeline__title'>Get access to samcart<br>and set up your store</div>
+          <div class='lav-timeline__title'>Get access to samcart<br>and set up your marketplace</div>
           <div class='lav-timeline__date'>11.11.2021</div>
         </div>
         <div class='lav-timeline__item'>
