@@ -1,55 +1,56 @@
 console.log('initExp');
 
 /********* Settings **********/
-const settings = {
-  dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
-  hj: true,
-  observe: false,
-};
+if (!settings && !settings.hj) {
+  var settings = {
+    dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
+    hj: true,
+    observe: false,
+  };
 
-//Hotjar
-if (settings.hj) {
-  var clarityInterval = setInterval(() => {
-    if (typeof clarity == 'function') {
-      clearInterval(clarityInterval);
-      clarity('set', 'subscription_impr', 'variant_1');
-    }
-  }, 200);
-  gaEvent('loaded');
-}
-
-// Alalytic
-function gaEvent(action) {
-  try {
-    var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp: Subscription improvements',
-      eventAction: action,
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {}
-}
-
-// Observe
-if (settings.observe) {
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue;
-
-        // Code Here
+  //Hotjar
+  if (settings.hj) {
+    var clarityInterval = setInterval(() => {
+      if (typeof clarity == 'function') {
+        clearInterval(clarityInterval);
+        clarity('set', 'subscription_impr', 'variant_1');
       }
-    }
-  });
+    }, 200);
+    gaEvent('loaded');
+  }
 
-  let demoElem = document.body;
+  // Alalytic
+  function gaEvent(action) {
+    try {
+      var objData = {
+        event: 'event-to-ga',
+        eventCategory: 'Exp: Subscription improvements',
+        eventAction: action,
+      };
+      console.log('EventFire:', objData);
+      dataLayer.push(objData);
+    } catch (e) {}
+  }
 
-  observer.observe(demoElem, { childList: true, subtree: true });
-}
+  // Observe
+  if (settings.observe) {
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
 
-// Styles
-const styles = `
+          // Code Here
+        }
+      }
+    });
+
+    let demoElem = document.body;
+
+    observer.observe(demoElem, { childList: true, subtree: true });
+  }
+
+  // Styles
+  var styles = `
   .css-1gs8fg8 .summary-table .sum-row.total.coupon .total, 
   .css-x4jdip .box .wrapper .total, .box .wrapper .lines .content .sum-row .total.with-discount span:last-child, .css-xf71d4 .text-green {
     color: #FC4D38!important;
@@ -213,7 +214,7 @@ const styles = `
   }
 `;
 
-const modalEl = `
+  var modalEl = `
   <style>
     .lav-modal {
       padding-top: 48px;
@@ -360,10 +361,11 @@ const modalEl = `
   </div>
 `;
 
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
-/*** STYLES / end ***/
+  var stylesEl = document.createElement('style');
+  stylesEl.innerHTML = styles;
+  document.body.appendChild(stylesEl);
+  /*** STYLES / end ***/
+}
 
 /********* Custom Code **********/
 init();
