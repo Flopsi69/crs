@@ -60,8 +60,8 @@ if (!settings) {
     color: #3856A7!important;
   }
 
-  .summary-table .sum-row.order-total .caption, .summary-table .sum-row.order-total .total {
-    color: #3856A7;
+  .summary-table .sum-row.order-total .total {
+    color: #3856A7!important;
   }
 
   .subscribe-all, .box .wrapper .subscribe-delivery .subscribe,.box .wrapper .subscribe-delivery .delivery {
@@ -175,6 +175,7 @@ if (!settings) {
   }
   .summary-table .sum-row.order-total .total .total {
     font-size: 13px!important;
+    color: #FC4D38!important;
   }
   .summary-table .sum-row .caption, .summary-table .sum-row .total {
     font-weight: 700!important;
