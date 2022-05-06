@@ -2166,7 +2166,7 @@ const newPage = `
               <div class='lav-plan__caption'>Billed Annually</div>
               <div class='lav-plan__text'>Access EVERY premium training we’ve ever created for only $120 extra in CreatorU!</div>
               <div class='lav-plan__btn-wrap'>
-                <div class='lav-plan__btn'>Launch Plan Only</div>
+                <div class='lav-plan__btn'>Launch Plan + CreatorU</div>
               </div>
             </div>
 
