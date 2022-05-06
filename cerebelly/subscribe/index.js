@@ -56,7 +56,7 @@ if (!settings) {
   .css-x4jdip .box .wrapper .total, .box .wrapper .lines .content .sum-row .total.with-discount span:last-child, .css-xf71d4 .text-green {
     color: #FC4D38!important;
   }
-  box .wrapper .lines .content .sum-row .total:not(.with-discount) span {
+  .box .wrapper .lines .content .sum-row .total:not(.with-discount) span {
     color: #3856A7!important;
   }
 
