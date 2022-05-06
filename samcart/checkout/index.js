@@ -2402,16 +2402,18 @@ function init() {
             document.querySelector('.lav-price_old').innerText = '$588.00';
             document.querySelector('.lav-price_new').innerText = '$349.00';
             gaEvent('Click on Launch Plan section', 'excluding button');
+            document.querySelector(
+              '.lav-plan_active .lav-plan__btn_active'
+            ).innerText = 'Launch Plan + CreatorU';
           } else {
             localStorage.setItem('plan', '2');
             document.querySelector('.lav-price_old').innerText = '$708.00';
             document.querySelector('.lav-price_new').innerText = '$469.00';
             gaEvent('Click on Creator U Plan section', 'excluding button');
+            document.querySelector(
+              '.lav-plan_active .lav-plan__btn_active'
+            ).innerText = 'Launch Plan Only';
           }
-
-          document.querySelector(
-            '.lav-plan_active .lav-plan__btn_active'
-          ).innerText = 'Launch Plan Only';
           document
             .querySelector('.lav-plan_active .lav-plan__btn_active')
             .classList.remove('lav-plan__btn_active');
