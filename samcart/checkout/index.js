@@ -2349,8 +2349,11 @@ function init() {
       for (let item of document.querySelectorAll('.lav-checkout')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
-          if (item.classList.contains('lav-header__card')) {
+          if (item.classList.contains('lav-header__cta')) {
             gaEvent('Click on Start Earning button', 'Header');
+          }
+          if (item.classList.contains('lav-header__card')) {
+            gaEvent('Click on Pay Card button', 'Header');
           }
           if (item.classList.contains('lav-intro__btn')) {
             gaEvent('Click on Start Earning button', 'First screen');
@@ -2500,6 +2503,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__google')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('Click on Google Pay button', 'Header');
           // document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'google');
           location.href =
@@ -2511,7 +2515,7 @@ function init() {
       for (let item of document.querySelectorAll('.lav-header__apple')) {
         item.addEventListener('click', function (e) {
           e.preventDefault();
-          gaEvent('Click on Apple Pay button');
+          gaEvent('Click on Apple Pay button', 'Header');
           // document.querySelector("[for='digitalWalletRadio']").click();
           localStorage.setItem('paymentType', 'apple');
           location.href =
