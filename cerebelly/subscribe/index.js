@@ -56,6 +56,13 @@ if (!settings) {
   .css-x4jdip .box .wrapper .total, .box .wrapper .lines .content .sum-row .total.with-discount span:last-child, .css-xf71d4 .text-green {
     color: #FC4D38!important;
   }
+  // box .wrapper .lines .content .sum-row .total:not(.with-discount) span, .box .wrapper .subtotal, .box .wrapper .lines .content .sum-row .total.with-discount span:first-child,  .summary-table .sum-row .total {
+  //   color: #3856A7!important;
+  // }
+
+  .summary-table .sum-row.order-total .caption, .summary-table .sum-row.order-total .total {
+    color: #3856A7;
+  }
 
   .subscribe-all, .box .wrapper .subscribe-delivery .subscribe,.box .wrapper .subscribe-delivery .delivery {
     display: none!important;
