@@ -412,6 +412,18 @@ function init() {
 
   initModal();
   initSubscr();
+
+  document.addEventListener('click', function (e) {
+    if (
+      document.querySelector('.lav-subscribe__list.active') &&
+      !e.target.classList.contains('lav-subscribe') &&
+      !e.target.closest('.lav-subscribe')
+    ) {
+      document
+        .querySelector('.lav-subscribe__list.active')
+        .classList.remove('active');
+    }
+  });
 }
 
 function initSubscr() {
