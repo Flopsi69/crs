@@ -2343,6 +2343,10 @@ function init() {
               .classList.remove('lav-faq__item_active');
           }
           item.classList.toggle('lav-faq__item_active');
+          gaEvent(
+            'Click on FAQ',
+            item.querySelector('.lav-faq__head').innerText.trim()
+          );
         });
       }
 
