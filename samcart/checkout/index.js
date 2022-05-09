@@ -2714,6 +2714,18 @@ function init() {
         'Until ' +
         new Date(today.setDate(today.getDate() + 30)).toLocaleDateString();
 
+      document
+        .querySelector('.lav-timeline__title .lav-tip')
+        .addEventListener('mouseenter', function () {
+          gaEvent('Hover over tooltip moneyback guarantee');
+        });
+
+      document
+        .querySelector('lav-main__sublock .lav-tip')
+        .addEventListener('mouseenter', function () {
+          gaEvent('Hover over tooltip contact');
+        });
+
       addSummary();
     } else {
       setTimeout(() => {
