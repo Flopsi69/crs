@@ -2704,6 +2704,7 @@ function init() {
       document
         .querySelector('.lav-main__title_expand')
         .addEventListener('click', function () {
+          gaEvent('Tap on Show All');
           this.classList.toggle('lav-active');
           if (this.classList.contains('lav-active')) {
             this.innerHTML = `Hide <img src='${settings.dir}/img/summary-icon-close.svg'>`;
