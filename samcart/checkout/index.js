@@ -2721,7 +2721,7 @@ function init() {
         });
 
       document
-        .querySelector('lav-main__sublock .lav-tip')
+        .querySelector('.lav-main__sublock .lav-tip')
         .addEventListener('mouseenter', function () {
           gaEvent('Hover over tooltip contact');
         });
