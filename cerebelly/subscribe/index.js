@@ -424,6 +424,18 @@ function init() {
         .classList.remove('active');
     }
   });
+
+  document
+    .querySelector('.lav-timeline__title .lav-tip')
+    .addEventListener('mouseenter', function () {
+      gaEvent('Hover over tooltip moneyback guarantee');
+    });
+
+  document
+    .querySelector('lav-main__sublock .lav-tip')
+    .addEventListener('mouseenter', function () {
+      gaEvent('Hover over tooltip contact');
+    });
 }
 
 function initSubscr() {
