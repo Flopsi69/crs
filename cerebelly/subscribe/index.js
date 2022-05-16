@@ -147,7 +147,7 @@ if (!settings) {
     order: -1;
   }
   .lav-caption__cancel-wrap div {
-    display: inline;
+    display: inline-block;
   }
   .css-tucdor .summary-table {
     padding-top: 42px;
@@ -314,7 +314,7 @@ if (!settings) {
         margin-bottom: 20px;
       }
       .lav-confirm__caption-wrap div {
-        display: inline;
+        display: inline-block;
       }
       .lav-modal__btn {
         background: #E95B44;
