@@ -40,9 +40,10 @@ if (!settings) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
-          document.body.insertAdjacentText('beforeend', JSON.stringify(node));
-          document.body.insertAdjacentText('beforeend', '===============');
-
+          // document.body.insertAdjacentText('beforeend', JSON.stringify(node));
+          // document.body.insertAdjacentText('beforeend', '===============');
+          console.dir(node.parentElement);
+          console.dir(node.classList);
           console.dir(node);
           // alert(node);
         }
