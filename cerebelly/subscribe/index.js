@@ -640,3 +640,13 @@ function initModal() {
       openModal('.lav-cancel__inner');
     });
 }
+
+setInterval(() => {
+  if (
+    location.href == 'https://cerebelly.com/cart' &&
+    !document.querySelector('.lav-caption__head') &&
+    document.querySelector('.cart-menu')
+  ) {
+    init();
+  }
+}, 1000);
