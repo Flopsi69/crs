@@ -585,6 +585,7 @@ function initModal() {
     .querySelector('.lav-confirm__btn')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Tap on the Continue button');
       closeModal();
       // if (
       //   !document.querySelector('.box_confirm') &&
