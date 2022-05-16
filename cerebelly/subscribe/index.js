@@ -1,5 +1,5 @@
 console.log('initExp');
-
+var isIniting = false;
 /********* Settings **********/
 if (!settings) {
   var isModalInit = false;
@@ -387,6 +387,7 @@ if (!settings) {
 /********* Custom Code **********/
 init();
 function init() {
+  isIniting = true;
   console.log('init');
   if (!document.querySelector('.subscribe-all')) {
     setTimeout(init, 1000);
@@ -430,6 +431,7 @@ function init() {
         .classList.remove('active');
     }
   });
+  isIniting = false;
 }
 
 function initSubscr() {
@@ -643,6 +645,7 @@ function initModal() {
 
 setInterval(() => {
   if (
+    !isIniting &&
     location.href == 'https://cerebelly.com/cart' &&
     !document.querySelector('.lav-caption__head') &&
     document.querySelector('.cart-menu')
