@@ -6,7 +6,7 @@ if (!settings) {
   var settings = {
     dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
     hj: true,
-    observe: false,
+    observe: true,
   };
 
   //Hotjar
@@ -40,7 +40,7 @@ if (!settings) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
-          // Code Here
+          console.log(node);
         }
       }
     });
