@@ -6,7 +6,7 @@ if (!settings) {
   var settings = {
     dir: 'https://flopsi69.github.io/crs/cerebelly/subscribe',
     hj: true,
-    observe: true,
+    observe: false,
   };
 
   //Hotjar
@@ -44,7 +44,7 @@ if (!settings) {
           // document.body.insertAdjacentText('beforeend', '===============');
           // console.dir(node.parentElement);
           // console.dir(node.classList);
-          console.warn(node);
+          console.warning(node);
           console.dir(node);
           // alert(node);
         }
