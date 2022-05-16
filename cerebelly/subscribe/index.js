@@ -40,8 +40,8 @@ if (!settings) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
-          console.error(node);
-          alert(node);
+          console.dir(node);
+          // alert(node);
         }
       }
     });
