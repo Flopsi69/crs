@@ -42,8 +42,9 @@ if (!settings) {
 
           // document.body.insertAdjacentText('beforeend', JSON.stringify(node));
           // document.body.insertAdjacentText('beforeend', '===============');
-          console.dir(node.parentElement);
-          console.dir(node.classList);
+          // console.dir(node.parentElement);
+          // console.dir(node.classList);
+          console.warn(node);
           console.dir(node);
           // alert(node);
         }
