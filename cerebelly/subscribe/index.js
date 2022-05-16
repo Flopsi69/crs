@@ -577,6 +577,7 @@ function initModal() {
     .querySelector('.lav-cancel__btn')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Tap on the Go It button');
       closeModal();
     });
 
@@ -646,6 +647,7 @@ function initModal() {
   document
     .querySelector('.lav-caption__head')
     .addEventListener('click', function () {
+      gaEvent('Why subscribing is better tapped');
       openModal('.lav-confirm__inner');
     });
 
