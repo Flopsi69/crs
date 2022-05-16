@@ -380,13 +380,7 @@ if (!settings) {
 
   var stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
-  if (document.body) {
-    document.body.appendChild(stylesEl);
-  } else {
-    setTimeout(() => {
-      document.body.appendChild(stylesEl);
-    }, 1500);
-  }
+  document.body.appendChild(stylesEl);
   /*** STYLES / end ***/
 }
 

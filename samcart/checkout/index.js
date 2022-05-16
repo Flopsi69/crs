@@ -1824,11 +1824,17 @@ if (location.href.includes('/products/courses-special-offer-subscribe')) {
   stylesEl.innerHTML = styles;
 }
 
-if (document.querySelector('body')) {
+if (document.body) {
   document.body.appendChild(stylesEl);
 } else {
   setTimeout(() => {
-    document.body.appendChild(stylesEl);
+    if (document.body) {
+      document.body.appendChild(stylesEl);
+    } else {
+      setTimeout(() => {
+        document.body.appendChild(stylesEl);
+      }, 2200);
+    }
   }, 1000);
 }
 
