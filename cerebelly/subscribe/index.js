@@ -419,7 +419,7 @@ function init() {
     .querySelector('.subscribe-all')
     .insertAdjacentHTML(
       'beforebegin',
-      `<div class="lav-caption lav-caption__head">Why subscribing is better?</div>`
+      `<div class="lav-caption lav-caption__head">Why subscribing is better</div>`
     );
 
   document.querySelector('.custom-column').insertAdjacentHTML(
