@@ -352,10 +352,10 @@ if (!settings) {
           <li class='lav-confirm__item'><strong>15% OFF</strong> our science-backed baby food.</li>
           <li class='lav-confirm__item'>Easily customize each order exactly how you'd like.</li>
           <li class='lav-confirm__item'>Never run out of baby food with flexible shipping options.</li>
-          <li class='lav-confirm__item'>Complete control over confirmlation or rescheduling. </li>
+          <li class='lav-confirm__item'>Complete control over cancellation or rescheduling. </li>
         </ul>
         <div class='lav-confirm__note'>
-          Subscribers can get <strong>28 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discounted
+          Subscribers can get <strong>28 more days</strong> of our baby food <strong>for FREE</strong> each year by taking advantage of the 15% discount
         </div>
         <div class='lav-confirm__caption-wrap'>
           <div class='lav-confirm__caption lav-caption'>Skip offer and choose one-time purchase</div>
@@ -370,7 +370,7 @@ if (!settings) {
         </div>
         <ul class='lav-cancel__list lav-modal__list'>
           <li class='lav-cancel__item'>Need to reschedule a shipment? Just click 'My subscriptions' and select the next shipment date.</li>
-          <li class='lav-cancel__item'>No longer interested in Clean Label Certified food? Leave us by heading to 'Account settings' and clicking on 'Cancel'.</li>
+          <li class='lav-cancel__item'>No longer interested in Clean Label Certified food? Simply head to 'Account settings' and click on 'Cancel'.</li>
         </ul>
         <button class="button primary red lav-cancel__btn lav-modal__btn">Got it</button>
       </div>
@@ -426,7 +426,7 @@ function init() {
     'beforebegin',
     `
     <div class='lav-caption__cancel-wrap'>
-      <div class="lav-caption lav-caption__cancel">How to cancel subscription?</div>
+      <div class="lav-caption lav-caption__cancel">How to cancel your subscription?</div>
     </div>
     `
   );
