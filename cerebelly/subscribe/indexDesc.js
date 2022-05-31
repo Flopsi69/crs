@@ -122,6 +122,8 @@ if (!settings) {
   }
   .e-page-content-wrap .box .image {
     margin-right: 25px!important;
+    min-height: 110px;
+    object-fit: cover;
   }
   .e-page-content-wrap .box {
     padding: 0!important;
