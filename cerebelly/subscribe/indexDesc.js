@@ -241,6 +241,11 @@ if (!settings) {
     font-size: 14px;
     line-height: 14px;
     color: #3856A7;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .lav-subscribe__item:hover {
+    background: #F3F4FB;
   }
   .lav-subscribe__item.active {
     color: #15206B;
@@ -369,6 +374,7 @@ if (!settings) {
       .lav-confirm__btn {
         max-width: 268px;
         width: 100%;
+        box-sizing: border-box;
       }
       .lav-confirm__caption-wrap {
         margin-top: 20px;
@@ -412,6 +418,11 @@ if (!settings) {
         position: absolute;
         top: 25px;
         right: 60px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .lav-modal__close:hover {
+        opacity: 0.8;
       }
       .lav-modal strong {
         font-weight: 900;
