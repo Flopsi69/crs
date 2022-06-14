@@ -7,7 +7,14 @@ const settings = {
 };
 
 //Clarity
-clarity('set', 'redesign_landing_page', 'variant_1');
+initClarity();
+function initClarity() {
+  if (clarity) {
+    clarity('set', 'redesign_landing_page', 'variant_1');
+  } else {
+    setTimeout(initClarity, 1000);
+  }
+}
 
 // Alalytic
 function gaEvent(action, label) {
