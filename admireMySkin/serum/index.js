@@ -9,7 +9,7 @@ const settings = {
 //Clarity
 initClarity();
 function initClarity() {
-  if (clarity) {
+  if (typeof clarity == 'function') {
     clarity('set', 'redesign_landing_page', 'variant_1');
   } else {
     setTimeout(initClarity, 1000);
