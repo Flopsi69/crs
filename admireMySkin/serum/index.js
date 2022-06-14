@@ -3,34 +3,11 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/admireMySkin/serum',
-  hj: false,
   observe: false,
 };
 
-//Hotjar
-if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
-}
+//Clarity
+clarity('set', 'redesign_landing_page', 'variant_1');
 
 // Alalytic
 function gaEvent(action, label) {
@@ -39,11 +16,10 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Redesign landing page',
       eventAction: action,
       eventLabel: label,
-      eventValue: '',
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -705,6 +681,15 @@ const styles = `
     font-weight: 400;
     transition: 0.3s;
   }
+  .lav-offer__paypal {
+    width: 100%;
+    margin-top: 16px;
+    background-color: #EEC86A;
+    height: 48px;
+  }
+  .lav-offer__paypal img {
+    height: 20px;
+  }
   .lav-offer__buy-disabled {
     filter: grayscale(100%);
     pointer-events: none;
@@ -811,6 +796,58 @@ const styles = `
   .lav-guaranty__safe-image img {
     max-width: 100%;
   }
+  .lav-delivery {
+    position: relative;
+    background: #F9F9F9;
+    margin-top: 32px;
+    padding: 24px;
+    padding-left: 54px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .lav-delivery__item {
+    position: relative;
+    padding-left: 30px;
+  }
+  .lav-delivery__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    // top: 50%;
+    bottom: 18px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #3FA9DE;
+    // transform: translateY(-50%);
+  }
+  .lav-delivery__title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #232323;
+  }
+  .lav-delivery__caption {
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #6B6E74;
+  }
+  .lav-delivery__item + .lav-delivery__item {
+    padding-top: 34px;
+  }
+  .lav-delivery__item + .lav-delivery__item:after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    left: 6px;
+    bottom: 20px;
+    background-color: #3FA9DE;
+    width: 2px;
+  }
+  .lav-delivery {}
   .lav-faq {
     margin-top: 40px;
   }
@@ -861,14 +898,13 @@ const styles = `
     color: #6B6E74;
     margin-top: 16px;
   }
+  .lav-faq__item-descr ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
   .active  .lav-faq__item-descr {
     display: block;
   }
-  .lav-faq {}
-  .lav-faq {}
-  .lav-faq {}
-  .lav-faq {}
-
 `;
 
 const newPage = `
@@ -1143,14 +1179,39 @@ const newPage = `
         </div>
       </div>
       <div class='lav-offer__benefits'>
-      <div class='lav-offer__benefits-item'>Marula Glow oil FREE</div>
-      <div class='lav-offer__benefits-divider'></div>
-      <div class='lav-offer__benefits-item'>Same day Shipping FREE</div>
+        <div class='lav-offer__benefits-item'>Marula Glow oil FREE</div>
+        <div class='lav-offer__benefits-divider'></div>
+        <div class='lav-offer__benefits-item'>Same day Shipping FREE</div>
       </div>
       <button class='lav-offer__buy lav-btn'>Add To Cart</button>
       <button class='lav-offer__paypal lav-btn'>
         <img src='${settings.dir}/img/paypal.png'>
       </button>
+    </div>
+
+    <div class='lav-guaranty'>
+      <div class='lav-guaranty__safe'>
+        <div class='lav-guaranty__safe-title'>Guaranteed SAFE Checkout</div>
+        <div class='lav-guaranty__safe-image'>
+          <img src='${settings.dir}/img/safe.png'>
+        </div>
+      </div>
+    </div>
+
+    <div class='lav-delivery'>
+      <div class='lav-delivery__item'>
+        <div class='lav-delivery__title'>Place order</div>
+        <div class='lav-delivery__caption lav-delivery__caption-today'>Today&nbsp;&nbsp;<span>Jun 17, 2021</span></div>
+      </div>
+      <div class='lav-delivery__item'>
+        <div class='lav-delivery__title'>Delivery</div>
+        <div class='lav-delivery__caption lav-delivery__caption-delivery'>1-4 days
+        <span>Jun 18 -21, 2021</span></div>
+      </div>
+      <div class='lav-delivery__item'>
+        <div class='lav-delivery__title'>100% money back guarantee</div>
+        <div class='lav-delivery__caption'>After 60 days</div>
+      </div>
     </div>
 
     <div class='lav-guaranty'>
@@ -1160,12 +1221,6 @@ const newPage = `
       <div class='lav-guaranty__title'>60-DAY MONEY BACK GUARANTEE</div>
       <div class='lav-guaranty__caption'>
         We want to make sure you LOVE the brightening serum. So if you haven't noticed any visible results after 60 days, message our support team for a full refund!
-      </div>
-      <div class='lav-guaranty__safe'>
-        <div class='lav-guaranty__safe-title'>Guaranteed SAFE Checkout</div>
-        <div class='lav-guaranty__safe-image'>
-          <img src='${settings.dir}/img/safe.png'>
-        </div>
       </div>
     </div>
 
@@ -1192,43 +1247,13 @@ const newPage = `
             </svg>
           </div>
           <div class='lav-faq__item-descr'>
-            Because of the potency of this product, spot test first. Apply serum to clean skin every other day and work up to daily use. Always wear sunscreen during the day on areas where serum has been applied. To boost results, we highly recommend using our Clinically Effective Retinoid Cream.
-          </div>
-        </div>
-
-        <div class='lav-faq__item'>
-          <div class='lav-faq__item-title'>
-            Applying to the specific area
-            <svg width="12" height="6" viewBox="0 0 12 6" fill="#3C3C3C" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.00003 6.00003C5.87216 6.00003 5.74416 5.95116 5.64653 5.85353L0.646531 0.853531C0.451156 0.658156 0.451156 0.341781 0.646531 0.146531C0.841906 -0.0487188 1.15828 -0.0488437 1.35353 0.146531L6.00003 4.79303L10.6465 0.146531C10.8419 -0.0488437 11.1583 -0.0488437 11.3535 0.146531C11.5488 0.341906 11.5489 0.658281 11.3535 0.853531L6.35353 5.85353C6.25591 5.95116 6.12791 6.00003 6.00003 6.00003Z"/>
-            </svg>
-          </div>
-          <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
-          </div>
-        </div>
-
-        <div class='lav-faq__item'>
-          <div class='lav-faq__item-title'>
-            Combination with other treatments&nbsp;&&nbsp;make&nbsp;up
-            <svg width="12" height="6" viewBox="0 0 12 6" fill="#3C3C3C" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.00003 6.00003C5.87216 6.00003 5.74416 5.95116 5.64653 5.85353L0.646531 0.853531C0.451156 0.658156 0.451156 0.341781 0.646531 0.146531C0.841906 -0.0487188 1.15828 -0.0488437 1.35353 0.146531L6.00003 4.79303L10.6465 0.146531C10.8419 -0.0488437 11.1583 -0.0488437 11.3535 0.146531C11.5488 0.341906 11.5489 0.658281 11.3535 0.853531L6.35353 5.85353C6.25591 5.95116 6.12791 6.00003 6.00003 6.00003Z"/>
-            </svg>
-          </div>
-          <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
-          </div>
-        </div>
-
-        <div class='lav-faq__item'>
-          <div class='lav-faq__item-title'>
-            Effectiveness for different problems
-            <svg width="12" height="6" viewBox="0 0 12 6" fill="#3C3C3C" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.00003 6.00003C5.87216 6.00003 5.74416 5.95116 5.64653 5.85353L0.646531 0.853531C0.451156 0.658156 0.451156 0.341781 0.646531 0.146531C0.841906 -0.0487188 1.15828 -0.0488437 1.35353 0.146531L6.00003 4.79303L10.6465 0.146531C10.8419 -0.0488437 11.1583 -0.0488437 11.3535 0.146531C11.5488 0.341906 11.5489 0.658281 11.3535 0.853531L6.35353 5.85353C6.25591 5.95116 6.12791 6.00003 6.00003 6.00003Z"/>
-            </svg>
-          </div>
-          <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
+            <ul>
+              <li>Apply 1-2 pumps of serum to a clear skin to cover treatment area and improve skin tone.</li>
+              <li>Use serum once daily, on a daily basis.</li>
+              <li>Always wear sunscreen during the day on areas where serum has been applied.</li>
+            </ul>
+            <p>Because of the potency of this Brightening Serum, spot test first.</p>
+            <p>Some users of this product may experience a minor skin irritation. If irritation becomes severe, discontinue use and seek medical advice. </p>
           </div>
         </div>
 
@@ -1240,19 +1265,7 @@ const newPage = `
             </svg>
           </div>
           <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
-          </div>
-        </div>
-
-        <div class='lav-faq__item'>
-          <div class='lav-faq__item-title'>
-            Baked by science
-            <svg width="12" height="6" viewBox="0 0 12 6" fill="#3C3C3C" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.00003 6.00003C5.87216 6.00003 5.74416 5.95116 5.64653 5.85353L0.646531 0.853531C0.451156 0.658156 0.451156 0.341781 0.646531 0.146531C0.841906 -0.0487188 1.15828 -0.0488437 1.35353 0.146531L6.00003 4.79303L10.6465 0.146531C10.8419 -0.0488437 11.1583 -0.0488437 11.3535 0.146531C11.5488 0.341906 11.5489 0.658281 11.3535 0.853531L6.35353 5.85353C6.25591 5.95116 6.12791 6.00003 6.00003 6.00003Z"/>
-            </svg>
-          </div>
-          <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
+            To boost results, we highly recommend using our “Clinically Effective Retinoid Cream” and “Citrus Glow Drops.”
           </div>
         </div>
 
@@ -1264,7 +1277,7 @@ const newPage = `
             </svg>
           </div>
           <div class='lav-faq__item-descr'>
-            With a unique formulation that includes Synovea® HR, Kojic Acid, Azelaic Acid, Lactic Acid, Salicylic Acid and Vitamin C, Admire my Skin Brightening Serum outperforms other dark spot correctors and creams on the market.
+            Admire My Skin was founded on believing that advanced products that deliver results should be available to everyone. Our products deliver visible results using proven clinical-grade ingredients – no prescription required.
           </div>
         </div>
       </div>
@@ -1281,6 +1294,7 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
+  gaEvent('loaded');
   document
     .querySelector('.gryffeditor')
     .insertAdjacentHTML('beforebegin', newPage);
@@ -1288,12 +1302,17 @@ function init() {
 
   for (let item of document.querySelectorAll('.lav-faq__item')) {
     item.addEventListener('click', function () {
+      gaEvent(
+        'Click on Faq item',
+        item.querySelector('.lav-faq__item-title').innerText
+      );
       item.classList.toggle('active');
     });
   }
 
   for (let item of document.querySelectorAll('.lav-brief__buy')) {
     item.addEventListener('click', function () {
+      gaEvent('Click on Shop now button');
       document
         .querySelector('.lav-special')
         .scrollIntoView({ behavior: 'smooth' });
@@ -1311,6 +1330,8 @@ function init() {
       if (document.querySelector('.lav-card.active')) {
         document.querySelector('.lav-card.active').classList.remove('active');
       }
+
+      gaEvent('Click on tab on section before and after', item.innerText);
 
       item.classList.add('active');
       document
@@ -1351,6 +1372,7 @@ function init() {
     .querySelector('.lav-offer__buy')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click on payment method', 'Add to cart');
       this.classList.add('lav-offer__buy-disabled');
       document.querySelector('.gf_add-to-cart').click();
     });
@@ -1359,6 +1381,7 @@ function init() {
     .querySelector('.lav-offer__paypal')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click on payment method', 'PayPal');
       this.classList.add('lav-offer__buy-disabled');
       document
         .querySelector('.lav-offer__buy')
@@ -1380,11 +1403,13 @@ function init() {
     .querySelector('.lav-ingredients__info')
     .addEventListener('click', function () {
       this.classList.toggle('active');
+      gaEvent('Click at Full ingredients list');
     });
 
   addOfferPopup();
   changeFeedabcks();
   initSlider();
+  initDelivery();
 }
 
 function changeFeedabcks() {
@@ -1399,6 +1424,18 @@ function changeFeedabcks() {
       '.wc_review_listing_select select.wc_select_drop'
     ).value = 'highest-rating';
     $('.wc_review_listing_select select.wc_select_drop').change();
+
+    document
+      .querySelector('.wc_tab_links a[data-tab="wc_reviews_tab"]')
+      .addEventListener('click', function () {
+        gaEvent('Click on Reviews tab');
+      });
+
+    document
+      .querySelector('.wc_tab_links a[data-tab="wc_questions_tab"]')
+      .addEventListener('click', function () {
+        gaEvent('Click on Questions tab');
+      });
   } else {
     setTimeout(changeFeedabcks, 1000);
   }
@@ -1419,13 +1456,34 @@ function addOfferPopup() {
 
 function initSlider() {
   if (typeof $().owlCarousel == 'function') {
-    $('.lav-jumb__slider').owlCarousel({
+    var owl = $('.lav-jumb__slider');
+    owl.owlCarousel({
       loop: true,
       margin: 10,
-      autoplay: true,
+      // autoplay: true,
       items: 1,
+    });
+    owl.on('changed.owl.carousel', function (event) {
+      gaEvent('Slide the photo slider');
     });
   } else {
     setTimeout(initSlider, 1000);
   }
+}
+
+function initDelivery() {
+  var today = new Date()
+    .toDateString()
+    .replace(/\w+/, '')
+    .trim()
+    .replace(' 2022', ', 2022');
+
+  var day = parseInt(today.match(/\d+/)[0]);
+  var range = [day + 1, day + 4];
+  console.log(range);
+
+  document.querySelector('.lav-delivery__caption-today span').innerText = today;
+
+  document.querySelector('.lav-delivery__caption-delivery span').innerText =
+    today.replace(day, range.join());
 }
