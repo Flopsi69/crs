@@ -1482,8 +1482,9 @@ function addOfferPopup() {
     document.querySelector(
       '.lav-offer__popup .rc_popup__how_it_works strong'
     ).innerText =
-      document.querySelector('.lav-offer__popup .rc_popup__how_it_works strong')
-        .innerText + 's';
+      document
+        .querySelector('.lav-offer__popup .rc_popup__how_it_works strong')
+        .innerText.replace('subscriptions', 'subscription') + 's';
   } else {
     setTimeout(addOfferPopup, 1000);
   }
