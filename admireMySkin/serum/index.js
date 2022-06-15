@@ -1467,6 +1467,12 @@ function addOfferPopup() {
         'afterbegin',
         document.querySelector('.rc_popup__block').cloneNode(true).innerHTML
       );
+
+    document.querySelector(
+      '.lav-offer__popup .rc_popup__how_it_works strong'
+    ).innerText =
+      document.querySelector('.lav-offer__popup .rc_popup__how_it_works strong')
+        .innerText + 's';
   } else {
     setTimeout(addOfferPopup, 1000);
   }
