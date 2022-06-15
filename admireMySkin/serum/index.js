@@ -1371,16 +1371,6 @@ function init() {
   }
 
   document
-    .querySelector('#r-1640116839081')
-    .insertAdjacentElement(
-      'afterend',
-      document.querySelector('#r-1638224949854')
-    );
-
-  document.querySelector('#e-1640116839147 .text-edit h1').innerText =
-    'Real People Real Results';
-
-  document
     .querySelector('.lav-offer__buy')
     .addEventListener('click', function (e) {
       e.preventDefault();
@@ -1425,9 +1415,30 @@ function init() {
     });
 
   addOfferPopup();
-  changeFeedabcks();
   initSlider();
   initDelivery();
+  changeFeedabcks();
+  initChanges();
+}
+
+function initChanges() {
+  if (
+    document.querySelector('#r-1640116839081') &&
+    document.querySelector('#r-1638224949854') &&
+    document.querySelector('#e-1640116839147 .text-edit h1')
+  ) {
+    document
+      .querySelector('#r-1640116839081')
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector('#r-1638224949854')
+      );
+
+    document.querySelector('#e-1640116839147 .text-edit h1').innerText =
+      'Real People Real Results';
+  } else {
+    setTimeout(initChanges, 1000);
+  }
 }
 
 function changeFeedabcks() {
