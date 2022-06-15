@@ -1355,7 +1355,7 @@ function init() {
           'none';
         document.querySelector('.active .lav-card__info-full').style.display =
           'block';
-        gaEvent('Click at Read more');
+        gaEvent('Click on Read more');
       } else {
         item.innerText = 'Read More';
         document.querySelector('.active .lav-card__info-brief').style.display =
@@ -1417,7 +1417,7 @@ function init() {
   document
     .querySelector('.lav-offer__subscription')
     .addEventListener('click', function () {
-      gaEvent('Click at Subscription Details');
+      gaEvent('Click on Subscription Details');
     });
 
   addOfferPopup();
