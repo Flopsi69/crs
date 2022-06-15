@@ -1509,5 +1509,5 @@ function initDelivery() {
   document.querySelector('.lav-delivery__caption-today span').innerText = today;
 
   document.querySelector('.lav-delivery__caption-delivery span').innerText =
-    today.replace(day, range.join());
+    today.replace(day, range.join('-'));
 }
