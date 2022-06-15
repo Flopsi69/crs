@@ -190,6 +190,10 @@ const styles = `
     margin-right: -16px;
   }
 
+  .lav-head span {
+    text-transform: lowercase;
+  }
+
   .lav-jumb {
     margin-top: 22px;
     margin-bottom: 32px;
@@ -923,7 +927,7 @@ const newPage = `
       <button class="lav-brief__buy lav-btn">Shop Now</button>
     </div>
 
-    <div class='lav-head'>Limited time offer  65% off + free glow oil</div>
+    <div class='lav-head'>Limited time offer  65% off + <span>free glow oil</span></div>
 
     <div class='lav-jumb'>
       <div class='lav-jumb__title'>Suffer from dark spots or uneven skin tone?</div>
@@ -1159,7 +1163,7 @@ const newPage = `
             I was hesitant to share my pictures because my before was so embarrassing, but I want fellow melasma sufferers to know there is something that actually works. I’ve spent thousands of&nbsp;... 
           </div>
           <div class='lav-card__info-descr lav-card__info-full'>
-            I was hesitant to share my pictures because my before was so embarrassing, but I want fellow melasma sufferers to know there is something that actually works. I’ve spent thousands of dollars on serums, chemical peels, and even prescription bleaching creams, and nothing ever worked for my stubborn melasma . It was so bad, it couldn’t even be covered by layers of makeup. I always thought the more expensive a product was, the better it would work, so I had zero expectations for this based on the low price point. After years of trying everything out there, this is the only product that has worked! I followed the instructions carefully and took a 30 day pause every 3 months, plus wore pure zinc sunscreen every day. It not only lightened my dark patches, they are almost completely gone after a year. I would give it 100 stars if I could.
+            I was hesitant to share my pictures because my before was so embarrassing, but I want fellow melasma sufferers to know there is something that actually works. I’ve spent thousands of dollars on serums, chemical peels, and even prescription bleaching creams, and nothing ever worked for my stubborn melasma. It was so bad, it couldn’t even be covered by layers of makeup. I always thought the more expensive a product was, the better it would work, so I had zero expectations for this based on the low price point. After years of trying everything out there, this is the only product that has worked! I followed the instructions carefully and took a 30 day pause every 3 months, plus wore pure zinc sunscreen every day. It not only lightened my dark patches, they are almost completely gone after a year. I would give it 100 stars if I could.
           </div>
           <div class='lav-card__info-toggle'>Read More</div>
         </div>
