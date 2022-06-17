@@ -1611,6 +1611,7 @@ function initSlider() {
       loop: true,
       margin: 10,
       autoplay: true,
+      autoplayTimeout: 2700,
       items: 1,
     });
     owl.on('changed.owl.carousel', function (event) {
