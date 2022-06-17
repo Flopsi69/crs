@@ -1388,6 +1388,9 @@ function init() {
       e.preventDefault();
       gaEvent('Click on payment method', 'Add to cart');
       this.classList.add('lav-offer__buy-disabled');
+      setTimeout(() => {
+        this.classList.remove('lav-offer__buy-disabled');
+      }, 1000);
       document.querySelector('.gf_add-to-cart').click();
     });
 
@@ -1397,6 +1400,9 @@ function init() {
       e.preventDefault();
       gaEvent('Click on payment method', 'PayPal');
       this.classList.add('lav-offer__buy-disabled');
+      setTimeout(() => {
+        this.classList.remove('lav-offer__buy-disabled');
+      }, 1000);
       document.querySelector('.gf_add-to-cart').click();
     });
 
