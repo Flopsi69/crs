@@ -1409,7 +1409,11 @@ function init() {
   var fixedPriceEl = document.querySelector('.lav-fixed');
 
   window.onscroll = function () {
-    if (document.querySelector('.lav-feedbacks').offsetTop < window.scrollY) {
+    if (
+      document.querySelector('.lav-feedbacks').offsetTop < window.scrollY &&
+      (document.querySelector('.lav-special').offsetTop - 50 > window.scrollY ||
+        document.querySelector('.lav-guaranty').offsetTop < window.scrollY)
+    ) {
       fixedPriceEl.classList.add('active');
     } else {
       fixedPriceEl.classList.remove('active');
