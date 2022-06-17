@@ -1434,6 +1434,101 @@ function init() {
   initDelivery();
   changeFeedabcks();
   initChanges();
+  initCustomSwiper();
+}
+
+function initCustomSwiper() {
+  document
+    .querySelector('.lav-other')
+    .addEventListener('touchstart', handleTouchStart, false);
+  document
+    .querySelector('.lav-other')
+    .addEventListener('touchmove', handleTouchMove, false);
+
+  var xDown = null;
+  var yDown = null;
+
+  function getTouches(evt) {
+    return evt.touches || evt.originalEvent.touches;
+  }
+
+  function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+  }
+
+  function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+      return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        swipeNext();
+
+        /* right swipe */
+      } else {
+        swipePrev();
+        /* left swipe */
+      }
+    } else {
+      if (yDiff > 0) {
+        /* down swipe */
+      } else {
+        /* up swipe */
+      }
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;
+  }
+}
+
+function swipeNext() {
+  var nextEl = document.querySelector(
+    '.lav-other__nav-item.active'
+  ).nextElementSibling;
+  var nextElNum = 1;
+  if (nextEl) {
+    nextElNum = nextEl.dataset.target;
+  }
+
+  document
+    .querySelector('.lav-other__nav-item.active')
+    .classList.remove('active');
+  document.querySelector('.lav-card.active').classList.remove('active');
+  document
+    .querySelector('.lav-other__nav-item[data-target="' + nextElNum + '"]')
+    .classList.add('active');
+  document.querySelector('.lav-card-' + nextElNum).classList.add('active');
+}
+
+function swipePrev() {
+  var prevEl = document.querySelector(
+    '.lav-other__nav-item.active'
+  ).previousElementSibling;
+
+  var prevElNum = 4;
+  if (prevEl) {
+    prevElNum = prevEl.dataset.target;
+  }
+
+  document
+    .querySelector('.lav-other__nav-item.active')
+    .classList.remove('active');
+  document.querySelector('.lav-card.active').classList.remove('active');
+  document
+    .querySelector('.lav-other__nav-item[data-target="' + prevElNum + '"]')
+    .classList.add('active');
+  document.querySelector('.lav-card-' + prevElNum).classList.add('active');
 }
 
 function initChanges() {
