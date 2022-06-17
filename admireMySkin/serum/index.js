@@ -387,6 +387,9 @@ const styles = `
   .lav-help__item {
     margin-bottom: 0;
   }
+  .lav-help__item img {
+    border-radius: 8px;
+  }
   .lav-help__item + .lav-help__item  {
     margin-top: 3px;
   }
