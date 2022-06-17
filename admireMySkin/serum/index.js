@@ -1032,7 +1032,7 @@ const newPage = `
     </div>
 
     <div class='lav-block lav-sutable'>
-      <div class='lav-title'>Sutable for</div>
+      <div class='lav-title'>Suitable for</div>
       <div class='lav-sutable__list-wrap'>
         <ul class='lav-sutable__list'>
           <li class='lav-sutable__item'>Dry Skin</li>
