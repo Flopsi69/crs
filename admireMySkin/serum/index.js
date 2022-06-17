@@ -919,6 +919,10 @@ const styles = `
   .active  .lav-faq__item-descr {
     display: block;
   }
+  .owl-carousel .owl-stage, .owl-carousel.owl-drag .owl-item{
+    -ms-touch-action: auto;
+        touch-action: auto;
+  }
 `;
 
 const newPage = `
@@ -1308,6 +1312,11 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
+  if (document.querySelector('.lav-offer__buy-disabled')) {
+    for (const item of document.querySelectorAll('.lav-offer__buy-disabled')) {
+      item.classList.remove('lav-offer__buy-disabled');
+    }
+  }
   gaEvent('loaded');
   document
     .querySelector('.gryffeditor')
@@ -1388,9 +1397,6 @@ function init() {
       e.preventDefault();
       gaEvent('Click on payment method', 'PayPal');
       this.classList.add('lav-offer__buy-disabled');
-      document
-        .querySelector('.lav-offer__buy')
-        .classList.add('lav-offer__buy-disabled');
       document.querySelector('.gf_add-to-cart').click();
     });
 
@@ -1499,11 +1505,11 @@ function initSlider() {
     owl.owlCarousel({
       loop: true,
       margin: 10,
-      // autoplay: true,
+      autoplay: true,
       items: 1,
     });
     owl.on('changed.owl.carousel', function (event) {
-      gaEvent('Slide the photo slider');
+      // gaEvent('Slide the photo slider');
     });
   } else {
     setTimeout(initSlider, 1000);
