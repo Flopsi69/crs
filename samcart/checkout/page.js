@@ -1460,8 +1460,79 @@ const styles = `
     position: relative;
     background: url(${settings.dir}/img/payments.png) top right;
     background-repeat: no-repeat;
-    background-size: 167px;
+    background-size: 260px;
     min-height: 60px;
+  }
+  .lav-payment__list {
+    margin-bottom: 40px;
+  }
+  .lav-payment__item {
+    position: relative;
+    padding-left: 28px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #183B56;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .lav-payment__item-card {
+    flex-wrap: wrap;
+  }
+  #payments {
+    width: 100%;
+  }
+  .lav-payment__item.active #payments {
+    margin-top: 25px;
+  }
+  .lav-payment__item.lav-header__btn_hidden {
+    display: none;
+  }
+  .lav-payment__item:hover {
+    opacity: 0.8;
+  }
+  .lav-payment__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    border: 1px solid #183B56;
+  }
+  .lav-payment__item.active:after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #183B56;
+  }
+   .lav-payment__item-card:before {
+    transform: none;
+    top: 6px;
+  }
+  .lav-payment__item-card.active:after {
+    transform: none;
+    top: 10px;
+  }
+  .lav-payment__item img {
+    margin-left: 15px;
+    max-height: 18px;
+    max-width: 98px;
+  }
+  .lav-payment__item .lav-payment__item-visa {
+    max-height: 28px;
+  }
+  .lav-payment__item + .lav-payment__item {
+    margin-top: 28px;
   }
   .lav-payment_hide {
     display: none;
@@ -1552,13 +1623,17 @@ const styles = `
     line-height: 9px;
     color: #5A7386;
     margin-top: 7px;
-    font-weight: 500;
+    font-weight: 600;
   }
   #fullWidth #paymentForm > * {
     display: none;
   }
   #fullWidth #paymentForm > .tpl-6__order, #fullWidth #paymentForm > .lav-checkout-wrap {
     display: block;
+  }
+  #payment-request-button {
+    max-width: 262px;
+    margin: auto;
   }
   .lav-tip {
     position: relative;
@@ -2289,6 +2364,24 @@ const newCheckout = `
 
         <div class='lav-payment lav-block'>
           <div class='lav-main__sublock'>Payment Methods</div>
+          <div class='lav-payment__list'>
+            <div class='lav-payment__item lav-payment__item-card' data-type='card'>
+              Credit card
+              <img class='lav-payment__item-visa' src='${settings.dir}/img/payment-card.png'>
+            </div>
+            <div class='lav-payment__item lav-payment__item-paypal' data-type='paypal'>
+              PayPal
+              <img src='${settings.dir}/img/payment-paypal.png'>
+            </div>
+            <div class='lav-payment__item lav-payment__item-google' data-type='google'>
+              Google pay
+              <img src='${settings.dir}/img/payment-google.png'>
+            </div>
+            <div class='lav-payment__item lav-payment__item-apple' data-type='apple'>
+              Apple pay
+              <img src='${settings.dir}/img/payment-apple.png'>
+            </div>
+          </div>
         </div>
 
         <div class='lav-caption'>You'll also be able to instantly access all of the free gifts right from inside your SamCart account, which makes it super easy to build your pages and go through the trainings at the same time.</div>
@@ -2458,7 +2551,7 @@ function init() {
         maintainceCard('paypal');
         // location.href =
         //   'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
-        // document.querySelector("[for='payPalRadio']").click();
+        // document.querySelector("#payPalRadio").click();
         // if (document.querySelector('[name="fname"]')) {
         //   document.querySelector('[name="fname"]').value = 'test';
         // }
@@ -2524,21 +2617,41 @@ function init() {
   }
 }
 
-function maintainceCard(type) {
+function maintainceCard(type, disableScroll) {
+  console.log(type, disableScroll);
   localStorage.setItem('paymentType', type);
+  if (document.querySelector('.lav-payment__item.active')) {
+    document
+      .querySelector('.lav-payment__item.active')
+      .classList.remove('active');
+  }
   if (type == 'apple' || type == 'google') {
     document.querySelector('#digitalWalletRadio').click();
-    document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    if (type == 'apple') {
+      document
+        .querySelector('.lav-payment__item-apple')
+        .classList.add('active');
+    } else {
+      document
+        .querySelector('.lav-payment__item-google')
+        .classList.add('active');
+    }
+    // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else if (type == 'paypal') {
-    document.querySelector('.lav-payment').classList.add('lav-payment_hide');
-    document.querySelector("[for='payPalRadio']").click();
-    document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    document.querySelector("#payPalRadio").click();
+    document.querySelector('.lav-payment__item-paypal').classList.add('active');
+    // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else {
-    document.querySelector('.lav-payment').classList.remove('lav-payment_hide');
+    // document.querySelector('.lav-payment').classList.remove('lav-payment_hide');
   }
 
   if (type == 'card') {
     document.querySelector('#creditCardRadio').click();
+    document.querySelector('.lav-payment__item-card').classList.add('active');
+  }
+
+  if (disableScroll) {
+    return false;
   }
 
   document.querySelector('.lav-checkout-wrap').scrollIntoView();
@@ -2617,14 +2730,23 @@ function initCheckout() {
         document.querySelector('#digitalWalletRadio').click();
       }
     }, 3000);
-    document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    if (localStorage.getItem('paymentType') == 'google') {
+      document
+        .querySelector('.lav-payment__item-google')
+        .classList.add('active');
+    } else {
+      document
+        .querySelector('.lav-payment__item-apple')
+        .classList.add('active');
+    }
   } else if (localStorage.getItem('paymentType') == 'paypal') {
-    if (document.querySelector("[for='payPalRadio']")) {
-      document.querySelector("[for='payPalRadio']").click();
+    if (document.querySelector("#payPalRadio")) {
+      document.querySelector("#payPalRadio").click();
     }
     setTimeout(() => {
-      if (document.querySelector("[for='payPalRadio']")) {
-        document.querySelector("[for='payPalRadio']").click();
+      if (document.querySelector("#payPalRadio")) {
+        document.querySelector("#payPalRadio").click();
       }
     }, 1500);
     setTimeout(() => {
@@ -2632,8 +2754,10 @@ function initCheckout() {
         document.querySelector('#payPalRadio').click();
       }
     }, 3000);
-    document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
+    document.querySelector('.lav-payment__item-paypal').classList.add('active');
   } else {
+    document.querySelector('.lav-payment__item-card').classList.add('active');
   }
 
   document
@@ -2660,16 +2784,40 @@ function initCheckout() {
     }
 
     document
-      .querySelector('.lav-payment')
+      .querySelector('.lav-payment__item-card')
       .insertAdjacentElement('beforeend', document.querySelector('#payments'));
 
-    document.querySelectorAll('.row input').forEach((item) => {
-      item.addEventListener('click', function () {
-        if (item.name) {
-          gaEvent('Click on contact input', item.name);
-        }
+    document
+      .querySelectorAll('.row input:not([type=radio])')
+      .forEach((item) => {
+        item.addEventListener('click', function () {
+          if (item.name) {
+            gaEvent('Click on contact input', item.name);
+          }
+        });
       });
-    });
+
+    console.log('initEvents');
+    for (let item of document.querySelectorAll('.lav-payment__item')) {
+      console.log('initEvents', item);
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.target.classList.contains('tpl-6__payment') || e.target.closest('.tpl-6__payment')) return false;
+        console.log(item);
+        if (this.classList.contains('active')) return false;
+        console.log(1);
+        // if (document.querySelector('.lav-payment__item.active')) {
+        //   console.log(2);
+        //   document
+        //     .querySelector('.lav-payment__item.active')
+        //     .classList.remove('active');
+        // }
+        // console.log(3);
+        // item.classList.add('active');
+        maintainceCard(item.dataset.type, true);
+      });
+    }
   }, 1500);
 
   document
@@ -2733,7 +2881,9 @@ function checkPayments() {
   let i = 1000;
   while (8000 >= i) {
     setTimeout(() => {
-      for (let item of document.querySelectorAll('.lav-header__google')) {
+      for (let item of document.querySelectorAll(
+        '.lav-header__google, .lav-payment__item-google'
+      )) {
         if (
           document.querySelector(
             "[for='digitalWalletRadio'] .google-pay:not(.ng-hide)"
@@ -2745,7 +2895,9 @@ function checkPayments() {
         }
       }
 
-      for (let item of document.querySelectorAll('.lav-header__apple')) {
+      for (let item of document.querySelectorAll(
+        '.lav-header__apple, .lav-payment__item-apple'
+      )) {
         if (
           document.querySelector(
             "[for='digitalWalletRadio'] .apple-pay:not(.ng-hide)"
