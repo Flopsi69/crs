@@ -2626,7 +2626,7 @@ function maintainceCard(type, disableScroll) {
       .classList.remove('active');
   }
   if (type == 'apple' || type == 'google') {
-    document.querySelector('#digitalWalletRadio').click();
+    $('#digitalWalletRadio').click();
     if (type == 'apple') {
       document
         .querySelector('.lav-payment__item-apple')
@@ -2638,7 +2638,7 @@ function maintainceCard(type, disableScroll) {
     }
     // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else if (type == 'paypal') {
-    document.querySelector("#payPalRadio").click();
+    $("#payPalRadio").click();
     document.querySelector('.lav-payment__item-paypal').classList.add('active');
     // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else {
@@ -2646,7 +2646,7 @@ function maintainceCard(type, disableScroll) {
   }
 
   if (type == 'card') {
-    document.querySelector('#creditCardRadio').click();
+    $('#creditCardRadio').click();
     document.querySelector('.lav-payment__item-card').classList.add('active');
   }
 
