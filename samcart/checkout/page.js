@@ -1478,6 +1478,9 @@ const styles = `
     cursor: pointer;
     transition: 0.3s;
   }
+  .lav-payment__item-safe {
+    display: none;
+  }
   .lav-payment__item-card {
     flex-wrap: wrap;
   }
@@ -1748,16 +1751,22 @@ const styles = `
     .lav-main {
       flex-flow: column-reverse;
     }
+    #fullWidth .tpl-6__content {
+      padding: 0 20px!important;
+    }
+    #fullWidth #paymentForm {
+      padding-bottom: 40px!important;
+    }
     .lav-main__block {
       width: auto;
-      margin: 0 15px;
+      margin: 0;
       background: #FFFFFF;
       box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
       border-radius: 15px;
       padding: 20px;
     }
     .lav-main__block + .lav-main__block {
-      margin-bottom: 40px;
+      margin-bottom: 10px;
     }
     .lav-main__title {
       font-size: 18px;
@@ -1787,10 +1796,19 @@ const styles = `
       padding: 0;
       letter-spacing: 0;
       margin-bottom: 10px;
+      box-shadow: none;
+    }
+    #order-summary-widget .product-item {
+      display: flex;
+      justify-content: space-between;
     }
     #order-summary-widget .product-item-name, #order-summary-widget .product-price-col {
       font-size: 12px;
       line-height: 14px;
+      font-weight: 500;
+    }
+    #order-summary-widget .product-price-col {
+      margin-left: 10px;
     }
     #product-list {
       padding-top: 20px;
@@ -1838,14 +1856,23 @@ const styles = `
       left: 13px;
     }
     .lav-block {
+      margin-bottom: 10px;
+    }
+    .lav-block + .lav-block {
       margin-bottom: 22px;
+    }
+    .lav-payment__item-safe {
+      width: 113%;
+      max-width: inherit;
+      margin: 0;
+      max-height: inherit;
+      margin-left: -32px;
+      display: block;
     }
     .lav-payment {
       border-top: 1px dashed rgb(4 107 217 / 15%);
-    }
-    .lav-payment {
-      background-size: 146px;
-      background-position-y: 15px;
+      padding-top: 20px;
+      background: none;
     }
     .lav-payment .lav-row:last-child {
       margin-top: 26px;
@@ -1859,14 +1886,44 @@ const styles = `
       margin-left: 14px;
     }
     .lav-info  {
-      margin-bottom: 16px;
+      margin-bottom: 40px;
     }
     .tpl-6__order .btn {
-      max-width: 220px;
+      max-width: 220px!important;
+      margin-bottom: 15px!important;
+      padding: 0;
+    }
+    .lav-payment__list {
+      margin-bottom: 25px;
+    }
+    .lav-caption {
+      font-size: 12px;
+      line-height: 18px;
+    }
+    #cards {
+      padding: 0;
+    }
+    .extra-row {
+      display: flex!important;
+    }
+    #payments .form-group .col-md-12 {
+      padding: 0 7px;
+    }
+    #payments .form-group .col-md-6 {
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 7px;
+    }
+    .lav-payment__item.active #payments {
+      margin-top: 15px;
+    }
+    .lav-payment__item {
+      justify-content: space-between;
     }
     #payment-request-button + p a {
       display: block;
-      font-weight: 500;
+      font-weight: 600;
     }
   }
 `;
@@ -2368,6 +2425,8 @@ const newCheckout = `
             <div class='lav-payment__item lav-payment__item-card' data-type='card'>
               Credit card
               <img class='lav-payment__item-visa' src='${settings.dir}/img/payment-card.png'>
+
+              <img src='${settings.dir}/img/payments2.png' class='lav-payment__item-safe' />
             </div>
             <div class='lav-payment__item lav-payment__item-paypal' data-type='paypal'>
               PayPal
@@ -2638,7 +2697,7 @@ function maintainceCard(type, disableScroll) {
     }
     // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else if (type == 'paypal') {
-    $("#payPalRadio").click();
+    $('#payPalRadio').click();
     document.querySelector('.lav-payment__item-paypal').classList.add('active');
     // document.querySelector('.lav-payment').classList.add('lav-payment_hide');
   } else {
@@ -2741,12 +2800,12 @@ function initCheckout() {
         .classList.add('active');
     }
   } else if (localStorage.getItem('paymentType') == 'paypal') {
-    if (document.querySelector("#payPalRadio")) {
-      document.querySelector("#payPalRadio").click();
+    if (document.querySelector('#payPalRadio')) {
+      document.querySelector('#payPalRadio').click();
     }
     setTimeout(() => {
-      if (document.querySelector("#payPalRadio")) {
-        document.querySelector("#payPalRadio").click();
+      if (document.querySelector('#payPalRadio')) {
+        document.querySelector('#payPalRadio').click();
       }
     }, 1500);
     setTimeout(() => {
@@ -2784,8 +2843,11 @@ function initCheckout() {
     }
 
     document
-      .querySelector('.lav-payment__item-card')
-      .insertAdjacentElement('beforeend', document.querySelector('#payments'));
+      .querySelector('.lav-payment__item-safe')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('#payments')
+      );
 
     document
       .querySelectorAll('.row input:not([type=radio])')
@@ -2797,24 +2859,17 @@ function initCheckout() {
         });
       });
 
-    console.log('initEvents');
     for (let item of document.querySelectorAll('.lav-payment__item')) {
-      console.log('initEvents', item);
       item.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        if (e.target.classList.contains('tpl-6__payment') || e.target.closest('.tpl-6__payment')) return false;
+        if (
+          e.target.classList.contains('tpl-6__payment') ||
+          e.target.closest('.tpl-6__payment')
+        )
+          return false;
         console.log(item);
         if (this.classList.contains('active')) return false;
-        console.log(1);
-        // if (document.querySelector('.lav-payment__item.active')) {
-        //   console.log(2);
-        //   document
-        //     .querySelector('.lav-payment__item.active')
-        //     .classList.remove('active');
-        // }
-        // console.log(3);
-        // item.classList.add('active');
         maintainceCard(item.dataset.type, true);
       });
     }
