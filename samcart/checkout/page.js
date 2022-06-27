@@ -1296,6 +1296,9 @@ const styles = `
     top: 50%;
     transform: translate(-50%, -44%);
   }
+  .lav-top__image-mob {
+    display: none;
+  }
   
   #fullWidth .tpl-6__content {
     padding: 0 15px!important;
@@ -1698,49 +1701,62 @@ const styles = `
     .lav-timeline {
       // justify-content: space-between;
     }
-    // .lav-timeline__item:first-child {
-    //   width: 51px;
-    // }
-    // .lav-timeline__item:nth-child(2) {
-    //   width: 80px;
-    //   margin-left: 12px;
-    // }
-    // .lav-timeline__item:nth-child(3) {
-    //   width: 71px;
-    //   margin-left: 20px;
-    // }
-    //  .lav-timeline__item:nth-child(4) {
-    //   margin-left: 18px;
-    // }
-    // .lav-timeline:before {
-    //   content: '';
-    //   position: absolute;
-    //   height: 4px;
-    //   bottom: 0;
-    //   left: -1px;
-    //   right: -1px;
-    //   background: url(${settings.dir}/img/checkout-lines-mob.svg) bottom left;
-    //   background-size: cover;
-    // }
+    .lav-top {
+      margin-top: 20px;
+      margin-bottom: 40px;
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .lav-top__image {
+      width: 98vw;
+    }
+     .lav-timeline__item:nth-child(4) {
+      max-width: 88px;
+    }
+    .lav-faq:after {
+      display: none;
+    }
+    .lav-top__image {
+      display: none;
+    }
+    .lav-top__image-mob {
+      display: block;
+    }
     .lav-timeline__title {
       font-size: 9px;
       line-height: 11px;
-      letter-spacing: 1px;
+      letter-spacing: 0.6px;
     }
     .lav-timeline__date {
-      margin-top: 12px;
       font-size: 10px;
       line-height: 12px;
+      padding-bottom: 0;
     }
-    .lav-timeline__item {
-      padding-bottom: 14px;
-      max-width: 85px;
+    .lav-timeline__item:nth-child(odd) {
+      display: flex;
+      flex-flow: column-reverse;
+      justify-content: flex-end;
+    }
+    .lav-timeline__item:nth-child(odd) .lav-timeline__title {
+      min-height: 34px;
+      margin-bottom: 18px;
+    }
+    .lav-timeline__item:nth-child(even) .lav-timeline__date {
+      min-height: 34px;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 18px;
+    }
+    .lav-timeline:before {
+      top: 42px;
     }
     .lav-tip {
       top: -3px;
     }
     .lav-timeline__item:before {
-      width: 25px;
+      width: 8px;
+      height: 8px;
+      top: 39px;
     }
     .lav-timeline__item:last-child .lav-timeline__title {
       display: flex;
@@ -1861,7 +1877,7 @@ const styles = `
     .lav-block + .lav-block {
       margin-bottom: 22px;
     }
-    .lav-payment__item-safe {
+    .lav-payment__item.active .lav-payment__item-safe {
       width: 113%;
       max-width: inherit;
       margin: 0;
@@ -2370,6 +2386,7 @@ const newCheckout = `
   <div class='lav-checkout-wrap'>
     <div class='lav-top'>
       <img class='lav-top__image' src='${settings.dir}/img/timeline.png'>
+      <img class='lav-top__image lav-top__image-mob' src='${settings.dir}/img/timeline-mob.png'>
       <div class='lav-timeline'>
         <div class='lav-timeline__item'>
           <div class='lav-timeline__date'>11.11.2021</div>
@@ -2416,7 +2433,6 @@ const newCheckout = `
               </div>
             </span>
           </div>
-          <!-- todo -->
         </div>
 
         <div class='lav-payment lav-block'>
