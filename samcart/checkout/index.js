@@ -671,6 +671,9 @@ const styles = `
     margin-right: -40px;
     flex: 1;
   }
+  .lav-storie__image img + img {
+    display: none;
+  }
   .lav-storie__info {
     flex: 1;
   }
@@ -1381,6 +1384,64 @@ const styles = `
     .lav-header__btn + .lav-header__btn {
       margin: 1px 2.5px;
     }
+    .lav-stories__title {
+      font-size: 36px;
+      line-height: 45px;
+      letter-spacing: -1px;
+    }
+    .lav-stories__title br {
+      display: none;
+    }
+    .lav-stories__descr {
+      margin-top: 20px;
+    }
+    .lav-stories__descr br {
+      display: none;
+    }
+    .lav-stories__nav-item {
+      white-space: nowrap;
+    }
+    .lav-storie__info {
+      text-align: center;
+    }
+    .lav-stories__nav {
+      gap: 12px;
+      margin-top: 48px;
+      overflow-y: auto;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 0 15px;
+    }
+    .lav-storie {
+      display: block;
+      margin-top: 40px;
+    }
+    .lav-storie__image {
+      margin-right: 0;
+    }
+    .lav-storie__image img {
+      display: none;
+    }
+    .lav-storie__image img + img {
+      display: block;
+    }
+    .lav-storie__title {
+      margin-top: 20px;
+      font-size: 26px;
+      line-height: 32px;
+      text-align: left;
+    }
+    .lav-storie__descr {
+      text-align: left;
+    }
+    .lav-storie + .lav-storie {
+      margin-top: 40px;
+    }
+    .lav-total__image img {
+      filter: drop-shadow(0px 1px 8px rgba(24, 59, 86, 0.07)) drop-shadow(0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09));
+      border-radius: 20px;
+      overflow: hidden;
+    }
   }
 `;
 
@@ -1565,7 +1626,6 @@ const stylesCheckout = `
   }
   #fullWidth #paymentForm {
     max-width: 1140px;
-    // padding: 0 15px;
   }
   .lav-caption {
     font-size: 10px;
@@ -1636,23 +1696,15 @@ const stylesCheckout = `
   }
   .lav-group input {
     background: #FFFFFF;
-    //box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
-    //border-radius: 5px;
     outline: none;
     border: none;
     height: 40px;
     width: 100%;
-    //font-weight: 600;
-    //font-size: 14px;
-    //line-height: 17px;
-    //color: #183B56;
-    //padding: 10px 20px;
     
     display: block;
     width: 100%;
     padding: 0.45875rem 1rem;
     font-size: 1rem;
-    // font-weight: 400;
     line-height: 1.458;
     color: #232427;
     border: 1px solid #DADCE0;
@@ -1770,6 +1822,7 @@ const stylesCheckout = `
   .form-group div.card-num-row {
     padding-top: 0;
   }
+
   @media (max-width: 1080px) {
     .lav-title {
       font-size: 20px;
@@ -1778,9 +1831,6 @@ const stylesCheckout = `
     }
     #fullWidth #paymentForm {
       max-width: 345px;
-    }
-    .lav-timeline {
-      // justify-content: space-between;
     }
     .lav-timeline__item:first-child {
       width: 51px;
@@ -1829,9 +1879,6 @@ const stylesCheckout = `
     .lav-timeline__item:last-child .lav-timeline__title {
       display: flex;
     }
-    // .lav-timeline__item + .lav-timeline__item {
-    //   margin-left: 8px;
-    // }
     .lav-main {
       flex-flow: column-reverse;
     }
@@ -1952,54 +1999,6 @@ const stylesCheckout = `
     }
     #payment-request-button + p a {
       display: block;
-    }
-    .lav-stories {
-
-    }
-    .lav-stories {}
-    .lav-stories__title {
-      font-size: 36px;
-      line-height: 45px;
-      letter-spacing: -1px;
-    }
-    .lav-stories__title br {
-      display: none;
-    }
-    .lav-stories__descr {
-      margin-top: 20px;
-    }
-    .lav-stories__descr br {
-      display: none;
-    }
-    .lav-stories__nav-item {
-      white-space: nowrap;
-    }
-    .lav-storie__info {
-      text-align: center;
-    }
-    .lav-stories__nav {
-      gap: 12px;
-      margin-top: 48px;
-      overflow-y: auto;
-      margin-left: -15px;
-      margin-right: -15px;
-      padding: 0 15px;
-    }
-    .lav-storie {
-      display: block;
-      margin-top: 40px;
-    }
-    .lav-storie__image {
-      margin-right: 0;
-    }
-    .lav-storie__title {
-      margin-top: 10px;
-      font-size: 26px;
-      line-height: 32px;
-      text-align: left;
-    }
-    .lav-storie__descr {
-      text-align: left;
     }
   }
 `;
@@ -2307,6 +2306,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie1-1.png' />
+                <img src='${settings.dir}/img/storie1-1-mob.png' />
               </div>
               <div class='lav-storie__info'>
                 <div class='lav-storie__title'>How Caitlin Bacher turned 1 Course into $1,000,000</div>
@@ -2333,6 +2333,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie1-2.png' />
+                <img src='${settings.dir}/img/storie1-2-mob.png' />
               </div>
               <div class='lav-storie__info'>
                 <div class='lav-storie__title'>How Maurice Bowman went from Homelessness to $1,000,000</div>
@@ -2363,6 +2364,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie2-1.png' />
+                <img src='${settings.dir}/img/storie2-1-mob.png' />
               </div>
               <div class='lav-storie__info'>
                 <div class='lav-storie__title'>How Cara Stein Made $180,000 in 12 Months</div>
@@ -2391,6 +2393,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie2-2.png' />
+                <img src='${settings.dir}/img/storie2-2-mob.png' />
               </div>
 
               <div class='lav-storie__info'>
@@ -2418,6 +2421,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie3-1.png' />
+                <img src='${settings.dir}/img/storie3-1-mob.png' />
               </div>
               <div class='lav-storie__info'>
                 <div class='lav-storie__title'>How SamCart Closes More Clients For This Digital Agency</div>
@@ -2446,6 +2450,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie3-2.png' />
+                <img src='${settings.dir}/img/storie3-2-mob.png' />
               </div>
 
               <div class='lav-storie__info'>
@@ -2473,6 +2478,7 @@ const newPage = `
             <div class='lav-storie'>
               <div class='lav-storie__image'>
                 <img src='${settings.dir}/img/storie4.png' />
+                <img src='${settings.dir}/img/storie4-mob.png' />
               </div>
               <div class='lav-storie__info'>
                 <div class='lav-storie__title'>SamCart Stories: How Nick Wolny Doubled AOV with a Simple Switch</div>
