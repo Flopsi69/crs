@@ -1237,6 +1237,7 @@ const styles = `
     }
     .lav-grid {
       text-align: center;
+      padding-bottom: 80px;
     }
     .lav-grid__row {
       flex-flow: column-reverse;
@@ -1952,6 +1953,54 @@ const stylesCheckout = `
     #payment-request-button + p a {
       display: block;
     }
+    .lav-stories {
+
+    }
+    .lav-stories {}
+    .lav-stories__title {
+      font-size: 36px;
+      line-height: 45px;
+      letter-spacing: -1px;
+    }
+    .lav-stories__title br {
+      display: none;
+    }
+    .lav-stories__descr {
+      margin-top: 20px;
+    }
+    .lav-stories__descr br {
+      display: none;
+    }
+    .lav-stories__nav-item {
+      white-space: nowrap;
+    }
+    .lav-storie__info {
+      text-align: center;
+    }
+    .lav-stories__nav {
+      gap: 12px;
+      margin-top: 48px;
+      overflow-y: auto;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 0 15px;
+    }
+    .lav-storie {
+      display: block;
+      margin-top: 40px;
+    }
+    .lav-storie__image {
+      margin-right: 0;
+    }
+    .lav-storie__title {
+      margin-top: 10px;
+      font-size: 26px;
+      line-height: 32px;
+      text-align: left;
+    }
+    .lav-storie__descr {
+      text-align: left;
+    }
   }
 `;
 
@@ -2277,7 +2326,7 @@ const newPage = `
                   <p>For Caitlyn selling online courses through SamCart has completely changed her life. She used to have really big dreams for her family, and now her income can support those dreams.</p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
 
@@ -2305,7 +2354,7 @@ const newPage = `
                   <p>Maurice now has a dozen different digital products he sells using SamCart, and he reinvests the money he makes online back into his community and other brick-and-mortar businesses.</p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
           </div>
@@ -2335,7 +2384,7 @@ const newPage = `
                   <p>Cara has found SamCart’s systems so intuitive and effective that she’s even shifted into selling online training courses using our platform. </p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
 
@@ -2360,7 +2409,7 @@ const newPage = `
                   <p>Dr. Leslie has also been able to use the community that her 1-page sales funnel has created to upsell e-book buyers into her new 8-week online training course. </p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
           </div>
@@ -2390,7 +2439,7 @@ const newPage = `
                   <p>Centralized automation for CRM, online course access, transferring data to apps, email marketing integration, payment methods, & more.</p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
 
@@ -2415,7 +2464,7 @@ const newPage = `
                   <p>Thanks to SamCart Remiah can launch a new online course in less than a week, and launch a new e-Book using SamCart’s one-pager sales pages in less than 10 minutes.</p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
           </div>
@@ -2439,7 +2488,7 @@ const newPage = `
                   <p>Using SamCart, Nick went from having a total of roughly 30 clients over several years to over 350 in just a single year. His larger customer base has allowed him to acquire more market feedback, beta-test ideas, and gave him a larger pool of buyers for his high-ticket consultation services.</p>
                 </div>
 
-                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Try Samcart for <span>FREE</span></button>
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
               </div>
             </div>
           </div>
