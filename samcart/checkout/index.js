@@ -1437,7 +1437,7 @@ const styles = `
     .lav-storie + .lav-storie {
       margin-top: 40px;
     }
-    .lav-total__image img {
+    .lav-storie__image img {
       filter: drop-shadow(0px 1px 8px rgba(24, 59, 86, 0.07)) drop-shadow(0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09));
       border-radius: 20px;
       overflow: hidden;
@@ -2309,7 +2309,7 @@ const newPage = `
                 <img src='${settings.dir}/img/storie1-1-mob.png' />
               </div>
               <div class='lav-storie__info'>
-                <div class='lav-storie__title'>How Caitlin Bacher turned 1 Course into $1,000,000</div>
+                <div class='lav-storie__title'>How Caitlin Bacher turned 1&nbsp;Course into $1,000,000</div>
                 <div class='lav-storie__descr lav-storie__descr-brief'>
                   <p>In 2016 Caitlyn was running three online courses for social media traffic but had been stuck at the 200k/yr mark for years.</p>
 
