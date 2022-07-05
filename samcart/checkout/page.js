@@ -649,7 +649,7 @@ const styles = `
     background: #F7FAFD;
   }
   .lav-summary {
-    padding-top: 100px;
+    padding-top: 40px;
   }
   .lav-faq:after {
     content: '';
@@ -1194,7 +1194,7 @@ const styles = `
     .lav-faq {
       position: relative;
       padding-top: 80px;
-      padding-bottom: 60px;
+      padding-bottom: 0;
     }
     .lav-header__top {
       text-align: center;
@@ -1284,7 +1284,7 @@ const styles = `
     box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.04), 0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09);
     border-radius: 40px;
     padding: 60px 150px;
-    margin-top: 120px;
+    // margin-top: 120px;
     margin-bottom: 120px;
   }
   .lav-top__image {
@@ -1421,6 +1421,7 @@ const styles = `
     color: #183B56;
     max-width: 1030px;
     margin: auto;
+    padding-top: 120px;
   }
   .lav-main {
     max-width: 730px;
@@ -1637,6 +1638,9 @@ const styles = `
   #fullWidth #paymentForm > .tpl-6__order, #fullWidth #paymentForm > .lav-checkout-wrap {
     display: block;
   }
+  .lav-checkout-wrap {
+    padding-top: 80px;
+  }
   #payment-request-button {
     max-width: 262px;
     margin: auto;
@@ -1702,7 +1706,7 @@ const styles = `
       // justify-content: space-between;
     }
     .lav-top {
-      margin-top: 20px;
+      // margin-top: 20px;
       margin-bottom: 40px;
       padding: 20px;
       border-radius: 20px;
