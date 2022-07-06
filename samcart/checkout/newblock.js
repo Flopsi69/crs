@@ -594,6 +594,147 @@ const styles = `
     background: #fff;
     text-align: center;
   }
+  .lav-stories__caption {
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5A7386;    
+    text-align: center;
+  }
+  .lav-stories__title {
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 54px;
+    color: #183B56;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .lav-stories__descr {
+    margin-top: 32px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #5A7386;
+    text-align: center;
+  }
+  .lav-stories__nav {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .lav-stories__nav-item {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #183B56;
+    border: 2px solid #183B56;
+    filter: drop-shadow(0px 0.857534px 2.5726px rgba(24, 59, 86, 0.04)) drop-shadow(0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09));
+    border-radius: 10px;
+    padding: 20px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-stories__nav-item:not(.active):hover {
+    color: #07528c;
+    border-color: #07528c;
+  }
+  .lav-stories__nav-item.active {
+    background: #183B56;
+    color: #fff;
+    font-weight: 900;
+  }
+  .lav-stories {
+    padding-bottom: 96px;
+  }
+  .lav-stories__tab {
+    display: none;
+  }
+  .lav-stories__tab.active {
+    display: block;
+  }
+  .lav-storie {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 80px;
+  }
+
+  .lav-storie + .lav-storie {
+    margin-top: 80px;
+    flex-flow: row-reverse;
+  }
+
+  .lav-storie__image {
+    margin-right: -40px;
+    flex: 1;
+  }
+  .lav-storie__image img + img {
+    display: none;
+  }
+  .lav-storie__info {
+    flex: 1;
+  }
+
+  .lav-storie__title {
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 45px;
+    color: #183B56;
+  }
+
+  .lav-storie__descr {
+    font-size: 18px;
+    line-height: 34px;
+    color: #5A7386;
+    margin-top: 20px;
+    font-weight: 300;
+  }
+
+  .lav-storie__descr-full {
+    display: none;
+  }
+
+  .lav-storie__more {
+    color: #183B56;
+    font-weight: 700;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+
+  .lav-storie__mark {
+    font-weight: 600;
+  }
+
+  .lav-storie__more:hover {
+    opacity: 0.7;
+  }
+
+  .lav-storie__descr p {
+    margin: 0;
+    font-family: 'Gilroy';
+    font-size: 18px;
+    line-height: 34px;
+    color: #5A7386;
+  }
+
+  .lav-storie__descr p + p {
+    margin-top: 15px;
+  }
+
+  .lav-storie__btn {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .lav-storie__btn span {
+    font-weight: 900;
+  }
+
   .lav-plans:before {
     content: '';
     position: absolute;
@@ -1099,6 +1240,7 @@ const styles = `
     }
     .lav-grid {
       text-align: center;
+      padding-bottom: 80px;
     }
     .lav-grid__row {
       flex-flow: column-reverse;
@@ -1241,6 +1383,64 @@ const styles = `
     }
     .lav-header__btn + .lav-header__btn {
       margin: 1px 2.5px;
+    }
+    .lav-stories__title {
+      font-size: 36px;
+      line-height: 45px;
+      letter-spacing: -1px;
+    }
+    .lav-stories__title br {
+      display: none;
+    }
+    .lav-stories__descr {
+      margin-top: 20px;
+    }
+    .lav-stories__descr br {
+      display: none;
+    }
+    .lav-stories__nav-item {
+      white-space: nowrap;
+    }
+    .lav-storie__info {
+      text-align: center;
+    }
+    .lav-stories__nav {
+      gap: 12px;
+      margin-top: 48px;
+      overflow-y: auto;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 0 15px;
+    }
+    .lav-storie {
+      display: block;
+      margin-top: 40px;
+    }
+    .lav-storie__image {
+      margin-right: 0;
+    }
+    .lav-storie__image img {
+      display: none;
+    }
+    .lav-storie__image img + img {
+      display: block;
+    }
+    .lav-storie__title {
+      margin-top: 20px;
+      font-size: 26px;
+      line-height: 32px;
+      text-align: left;
+    }
+    .lav-storie__descr {
+      text-align: left;
+    }
+    .lav-storie + .lav-storie {
+      margin-top: 40px;
+    }
+    .lav-storie__image img {
+      filter: drop-shadow(0px 1px 8px rgba(24, 59, 86, 0.07)) drop-shadow(0px 10.2904px 42.8767px rgba(63, 87, 180, 0.09));
+      border-radius: 20px;
+      overflow: hidden;
     }
   }
 `;
@@ -1426,7 +1626,6 @@ const stylesCheckout = `
   }
   #fullWidth #paymentForm {
     max-width: 1140px;
-    // padding: 0 15px;
   }
   .lav-caption {
     font-size: 10px;
@@ -1497,23 +1696,15 @@ const stylesCheckout = `
   }
   .lav-group input {
     background: #FFFFFF;
-    //box-shadow: 0px 0.857534px 2.5726px rgba(24, 59, 86, 0.01), 0px 2.29px 6.88px rgba(63, 87, 180, 0.03);
-    //border-radius: 5px;
     outline: none;
     border: none;
     height: 40px;
     width: 100%;
-    //font-weight: 600;
-    //font-size: 14px;
-    //line-height: 17px;
-    //color: #183B56;
-    //padding: 10px 20px;
     
     display: block;
     width: 100%;
     padding: 0.45875rem 1rem;
     font-size: 1rem;
-    // font-weight: 400;
     line-height: 1.458;
     color: #232427;
     border: 1px solid #DADCE0;
@@ -1631,6 +1822,7 @@ const stylesCheckout = `
   .form-group div.card-num-row {
     padding-top: 0;
   }
+
   @media (max-width: 1080px) {
     .lav-title {
       font-size: 20px;
@@ -1639,9 +1831,6 @@ const stylesCheckout = `
     }
     #fullWidth #paymentForm {
       max-width: 345px;
-    }
-    .lav-timeline {
-      // justify-content: space-between;
     }
     .lav-timeline__item:first-child {
       width: 51px;
@@ -1690,9 +1879,6 @@ const stylesCheckout = `
     .lav-timeline__item:last-child .lav-timeline__title {
       display: flex;
     }
-    // .lav-timeline__item + .lav-timeline__item {
-    //   margin-left: 8px;
-    // }
     .lav-main {
       flex-flow: column-reverse;
     }
@@ -2100,6 +2286,223 @@ const newPage = `
       </div>
     </div>
 
+    <div class='lav-section lav-stories'>
+      <div class='lav-container'>
+        <div class='lav-stories__caption'>Success Stories</div>
+        <div class='lav-stories__title'>Will Samcart work for your <br> business?</div>
+        <div class='lav-stories__descr'>
+        Find out how over 22,000+ entrepreneurs worldwide use Samcart to monetize <br> their business ideas.
+        </div>
+
+        <div class='lav-stories__nav'>
+          <div class='lav-stories__nav-item active' data-target='1'>Online Courses</div>
+          <div class='lav-stories__nav-item' data-target='2'>Digital Prducts</div>
+          <div class='lav-stories__nav-item' data-target='3'>Agencies</div>
+          <div class='lav-stories__nav-item' data-target='4'>Service Providers</div>
+        </div>
+
+        <div class='lav-stories__tabs'>
+          <div class='lav-stories__tab active' data-tab='1'>
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie1-1.png' />
+                <img src='${settings.dir}/img/storie1-1-mob.png' />
+              </div>
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How Caitlin Bacher turned 1&nbsp;Course into $1,000,000</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>In 2016 Caitlyn was running three online courses for social media traffic but had been stuck at the 200k/yr mark for years.</p>
+
+                  <p>One day she asked herself if her future million-dollar self would make the micro-investment in SamCart. The answer was yes, so she made the plunge...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>In 2016 Caitlyn was running three online courses for social media traffic but had been stuck at the 200k/yr mark for years.</p>
+
+                  <p>One day she asked herself if her future million-dollar self would make the micro-investment in SamCart. The answer was yes, so she made the plunge.</p>
+
+                  <p>After making the jump, Caitlyn was able to use SamCart to streamline her process, get super specific, and made $1,000,000 in 2017 by using SamCart to sell one course through one webinar.</p>
+
+                  <p>For Caitlyn selling online courses through SamCart has completely changed her life. She used to have really big dreams for her family, and now her income can support those dreams.</p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie1-2.png' />
+                <img src='${settings.dir}/img/storie1-2-mob.png' />
+              </div>
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How Maurice Bowman went from Homelessness to $1,000,000</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>Almost overnight, Maurice became one of Samcart’s top sellers. </p>
+
+                  <p>He hit the ground running and made over $500k with his e-book in less than five months, and translated that audience demand into high-ticket <span class='lav-storie__mark'>$5000 online course upsells...</span>&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+                
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>Almost overnight, Maurice became one of Samcart’s top sellers.</p>
+
+                  <p>He hit the ground running and made over $500k with his e-book in less than five months, and translated that audience demand into high-ticket <span class='lav-storie__mark'>$5000 online course upsells.</span></p>
+
+                  <p> SamCart allowed Maurice to scale down from using multiple software, and instead get all the features he needed to sell his online financial literacy course from one place.</p>
+
+                  <p> Using SamCart’s Order Bumps feature, Maurice took a small ticket item that sells for $7 and was making him $952/week, and added SamCart’s One Click Upsells and Order Bumps to raise that figure to $3,793/week.</p>
+
+                  <p>Maurice now has a dozen different digital products he sells using SamCart, and he reinvests the money he makes online back into his community and other brick-and-mortar businesses.</p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class='lav-stories__tab' data-tab='2'>
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie2-1.png' />
+                <img src='${settings.dir}/img/storie2-1-mob.png' />
+              </div>
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How Cara Stein Made $180,000 in 12 Months</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>Using SamCart done-for-you process Cara was able to create and sell her e-Book with ease, making $180,000 in less than 2 weeks of work. </p>
+
+                  <p>SamCart’s one-click Order Bump feature gave Cara’s online business a 67% revenue boost by allowing customers to easily buy more of what she was selling...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>Using SamCart done-for-you process Cara was able to create and sell her e-Book with ease, making $180,000 in less than 2 weeks of work. </p>
+
+                  <p>SamCart’s one-click Order Bump feature gave Cara’s online business a 67% revenue boost by allowing customers to easily buy more of what she was selling.</p>
+
+                  <p>Using SamCart’s one-pager sales pages, Cara created an efficient funnel that allowed her to track performance, avoid complex systems, and easily diagnose conversion issues without having to keep her eyes on a million different moving parts.</p>
+
+                  <p>Using SamCart’s integrated payment methods, Cara’s customers can use a variety of payment options - including Paypal, Stripe, and Credit Cards, and this payment flexibility has boosted Cara’s conversions by 17%.</p>
+
+                  <p>Cara has found SamCart’s systems so intuitive and effective that she’s even shifted into selling online training courses using our platform. </p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie2-2.png' />
+                <img src='${settings.dir}/img/storie2-2-mob.png' />
+              </div>
+
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How Dr. Leslie Lewis Grew Her Business in a Pandemic</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>Hesitant after being burned by other online platforms, Leslie found that SamCart’s One Page Blueprint was exactly what she needed to bring her spirituality & herbal wellness business into the online world.</p>
+
+                  <p>After taking our 1-Page Masterclass, Dr. Leslie began filling in the content blocks on the template and created a sales...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+                
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>Hesitant after being burned by other online platforms, Leslie found that SamCart’s One Page Blueprint was exactly what she needed to bring her spirituality & herbal wellness business into the online world. </p>
+                  <p>After taking our 1-Page Masterclass, Dr. Leslie began filling in the content blocks on the template and created a sales page that spoke her story & effectively communicated the value of her product to her audience.</p>
+                  <p>Using SamCart’s Order Bump system, Dr. Leslie boosted her AOV by 63% by offering physical and audio copies of her e-book to customers. </p>
+                  <p>Using our bonus downloads feature, Dr. Leslie got the idea to translate her expertise into an additional e-book (which she put together in less than half an afternoon) allowing her to increase the value she delivered to her audience. </p>
+                  <p>Dr. Leslie has also been able to use the community that her 1-page sales funnel has created to upsell e-book buyers into her new 8-week online training course. </p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class='lav-stories__tab' data-tab='3'>
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie3-1.png' />
+                <img src='${settings.dir}/img/storie3-1-mob.png' />
+              </div>
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How SamCart Closes More Clients For This Digital Agency</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>SAMA Labs is a digital marketing agency, focused on providing web design, creative services, and managed advertising campaigns for e-commerce brands. But like most agencies, John and his team were spending far too much time on the nitty gritty work of closing and billing their clients!</p>
+
+                  <p>This time-suck meant their team was spending less...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>SAMA Labs is a digital marketing agency, focused on providing web design, creative services, and managed advertising campaigns for e-commerce brands. But like most agencies, John and his team were spending far too much time on the nitty gritty work of closing and billing their clients!</p>
+
+                  <p>This time-suck meant their team was spending less time providing outstanding service, closing new deals, and growing the agency.</p>
+
+                  <p>SAMA Labs started using SamCart to simplify the billing process, close more deals, and grow his brand.</p>
+
+                  <p>They cut down on long-winded billing agreements by sending clients to a personalized product page, recaptured missing revenue and cut down hours of wasted manpower by using SamCarts automated Subscription Saver feature to keep clients paying their invoices on time.</p>
+
+                  <p>Centralized automation for CRM, online course access, transferring data to apps, email marketing integration, payment methods, & more.</p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie3-2.png' />
+                <img src='${settings.dir}/img/storie3-2-mob.png' />
+              </div>
+
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>How Remiah Trask Earns Six Figures Through Web Design</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>SamCart allowed Remiah to productize his business and offer clients different tiers of packages that they can pay for in just a few clicks. </p>
+
+                  <p>Remiah uses SamCart to streamline his proposal and invoice process, saving time and allowing him to send new clients to his perfect ‘one-pager’ sales page that he “created...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+                
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p> SamCart allowed Remiah to productize his business and offer clients different tiers of packages that they can pay for in just a few clicks. </p>
+                  <p>Remiah uses SamCart to streamline his proposal and invoice process, saving time and allowing him to send new clients to his perfect ‘one-pager’ sales page that he “created in SamCart within 10 minutes. “</p>
+                  <p>Since beginning to use SamCart his revenue has doubled and then some…and continues to grow 20% per year…</p>
+                  <p>Thanks to SamCart’s one-click recurring billing and Subscription Saver features, Remiah has managed to recapture between $2-5000/month in missing revenue and guarantee $10,000/month in recurring revenue even if he’s on vacation!</p>
+                  <p>Thanks to SamCart Remiah can launch a new online course in less than a week, and launch a new e-Book using SamCart’s one-pager sales pages in less than 10 minutes.</p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class='lav-stories__tab' data-tab='4'>
+            <div class='lav-storie'>
+              <div class='lav-storie__image'>
+                <img src='${settings.dir}/img/storie4.png' />
+                <img src='${settings.dir}/img/storie4-mob.png' />
+              </div>
+              <div class='lav-storie__info'>
+                <div class='lav-storie__title'>SamCart Stories: How Nick Wolny Doubled AOV with a Simple Switch</div>
+                <div class='lav-storie__descr lav-storie__descr-brief'>
+                  <p>By offering consultation calls to customers who had bought smaller productized packages, Nick was able to secure a win-win from every discovery call.</p>
+
+                  <p>Using SamCart, Nick went from having a total of roughly 30 clients over several years to over 350 in just a single...&nbsp;<span class='lav-storie__more'>See more</span></p>
+                </div>
+
+                <div class='lav-storie__descr lav-storie__descr-full'>
+                  <p>By offering consultation calls to customers who had bought smaller productized packages, Nick was able to secure a win-win from every discovery call.</p>
+
+                  <p>Using SamCart, Nick went from having a total of roughly 30 clients over several years to over 350 in just a single year. His larger customer base has allowed him to acquire more market feedback, beta-test ideas, and gave him a larger pool of buyers for his high-ticket consultation services.</p>
+                </div>
+
+                <button class='lav-btn lav-btn_blue lav-checkout lav-storie__btn'>Start earning now</button>
+              </div>
+            </div>
+          </div>
+     
+        </div>
+      </div>
+    </div>
+
     <div class='lav-section lav-total'>
       <div class='lav-container'>
         <div class='lav-total__title'>A total value of over $15,656!</div>
@@ -2498,6 +2901,45 @@ function init() {
           // setTimeout(() => {
           //   document.querySelector('.main-cta').click();
           // }, 500);
+        });
+      }
+
+      for (let item of document.querySelectorAll('.lav-storie__more')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          let parentEl = item.closest('.lav-storie');
+          parentEl.querySelector('.lav-storie__descr-brief').remove();
+          parentEl.querySelector('.lav-storie__descr-full').style.display =
+            'block';
+        });
+      }
+
+      for (let item of document.querySelectorAll('.lav-stories__nav-item')) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (item.classList.contains('active')) {
+            return false;
+          }
+
+          if (document.querySelector('.lav-stories__nav-item.active')) {
+            document
+              .querySelector('.lav-stories__nav-item.active')
+              .classList.remove('active');
+          }
+
+          item.classList.add('active');
+
+          let target = item.dataset.target;
+
+          if (document.querySelector('.lav-stories__tab.active')) {
+            document
+              .querySelector('.lav-stories__tab.active')
+              .classList.remove('active');
+          }
+
+          document
+            .querySelector('.lav-stories__tab[data-tab="' + target + '"]')
+            .classList.add('active');
         });
       }
 

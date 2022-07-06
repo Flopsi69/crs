@@ -15,7 +15,7 @@ if (settings.hj) {
   var clarityInterval = setInterval(() => {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', 'webinar_checkout_redesign', 'variant_1');
+      clarity('set', 'payment_redesigned_checkout', 'variant_1');
     }
   }, 200);
   // }
@@ -29,7 +29,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'event-to-ga',
-      eventCategory: 'Exp — Webinar Checkout Redesign',
+      eventCategory: 'Exp — Add payment block to the redesigned checkout',
       eventAction: action,
       eventLabel: label,
     };
@@ -2507,10 +2507,20 @@ function init() {
             .classList.remove('lav-faq__item_active');
         }
         item.classList.toggle('lav-faq__item_active');
-        gaEvent(
-          'Click on FAQ',
-          item.querySelector('.lav-faq__head').innerText.trim()
-        );
+
+        if (item.classList.contains('lav-faq__item_active')) {
+          gaEvent(
+            'Open question ' +
+              item.querySelector('.lav-faq__head').innerText.trim(),
+            'You might be thinking'
+          );
+        } else {
+          gaEvent(
+            'Close question ' +
+              item.querySelector('.lav-faq__head').innerText.trim(),
+            'You might be thinking'
+          );
+        }
       });
     }
 
@@ -2518,47 +2528,35 @@ function init() {
       item.addEventListener('click', function (e) {
         e.preventDefault();
         if (item.classList.contains('lav-header__cta')) {
-          gaEvent('Click on Start Earning button', 'Header');
+          gaEvent('Start earning now', 'Top banner');
         }
         if (item.classList.contains('lav-header__card')) {
-          gaEvent('Click on Pay Card button', 'Header');
+          gaEvent('Pay with card', 'Top banner');
         }
         if (item.classList.contains('lav-intro__btn')) {
-          gaEvent('Click on Start Earning button', 'First screen');
+          gaEvent('Start earning now', 'Congratulations! You Made It!');
         }
         if (item.classList.contains('lav-gifts__btn')) {
-          gaEvent(
-            'Click on Start Earning button',
-            'The 1 Page Masterclass section'
-          );
+          gaEvent('Start earning now', 'The 1 Page Masterclass');
         }
         if (item.classList.contains('lav-traffic__btn')) {
-          gaEvent('Click on Start Earning button', 'Traffic Tactics section');
+          gaEvent('Start earning now', 'Traffic Tactics');
         }
         if (item.classList.contains('lav-creation__btn')) {
-          gaEvent(
-            'Click on Start Earning button',
-            'Product Creation Masterclass section'
-          );
+          gaEvent('Start earning now', 'Product Creation Masterclass');
         }
         if (item.classList.contains('lav-wednesday__btn')) {
-          gaEvent(
-            'Click on Start Earning button',
-            '1 Page Wednesday Calls section'
-          );
+          gaEvent('Start earning now', '1 Page Wednesday Calls');
         }
         if (item.classList.contains('lav-bonus__btn')) {
-          gaEvent('Click on Start Earning button', 'New Bonus section');
+          gaEvent('Start earning now', 'New bonus - My Personal Page Template');
         }
         if (item.classList.contains('lav-total__btn')) {
-          gaEvent(
-            'Click on Start Earning button',
-            'How do I know this is for real section'
-          );
+          gaEvent('Start earning now', 'How do I know this is for real');
         }
-        if (item.classList.contains('lav-faq__btn')) {
-          gaEvent('Click on Start Earning button', 'FAQ section');
-        }
+        // if (item.classList.contains('lav-faq__btn')) {
+        //   gaEvent('Start earning now', 'FAQ section');
+        // }
 
         maintainceCard('card');
       });
@@ -2572,7 +2570,7 @@ function init() {
           document.querySelector('#product-option-454784').click();
           document.querySelector('.lav-price_old').innerText = '$588.00';
           document.querySelector('.lav-price_new').innerText = '$349.00';
-          gaEvent('Click on Launch Plan section', 'excluding button');
+          gaEvent('Launch Plan Only', 'Unlock 17+ additional trainings');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
           ).innerText = 'Launch Plan + CreatorU';
@@ -2581,7 +2579,7 @@ function init() {
           document.querySelector('#product-option-545632').click();
           document.querySelector('.lav-price_old').innerText = '$708.00';
           document.querySelector('.lav-price_new').innerText = '$469.00';
-          gaEvent('Click on Creator U Plan section', 'excluding button');
+          // gaEvent('Click on Creator U Plan section', 'excluding button');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
           ).innerText = 'Launch Plan Only';
@@ -2610,12 +2608,12 @@ function init() {
           e.preventDefault();
           e.stopPropagation();
           if (item.closest('[data-tab]').dataset.tab == '1') {
-            gaEvent('Click on CTA Start Earning button', 'Launch Plan section');
+            gaEvent('Start earning now', 'Unlock 17+ additional trainings');
           } else {
-            gaEvent(
-              'Click on CTA Start Earning button',
-              'Creator U Plan section'
-            );
+            // gaEvent(
+            //   'Click on CTA Start Earning button',
+            //   'Creator U Plan section'
+            // );
           }
 
           maintainceCard('card');
@@ -2626,7 +2624,7 @@ function init() {
     for (let item of document.querySelectorAll('.lav-header__paypal')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        gaEvent('Click on Pay Pal button');
+        gaEvent('PayPal', 'Top banner');
         maintainceCard('paypal');
         // location.href =
         //   'https://checkout.samcart.com/products/courses-special-offer-subscribe/';
@@ -2670,7 +2668,7 @@ function init() {
     for (let item of document.querySelectorAll('.lav-header__google')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        gaEvent('Click on Google Pay button', 'Header');
+        gaEvent('GooglePay', 'Top banner');
         maintainceCard('google');
       });
     }
@@ -2679,7 +2677,7 @@ function init() {
     for (let item of document.querySelectorAll('.lav-header__apple')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        gaEvent('Click on Apple Pay button', 'Header');
+        gaEvent('ApplePay', 'Top banner');
         maintainceCard('apple');
       });
     }
@@ -2858,7 +2856,7 @@ function initCheckout() {
       document
         .querySelector('.main-cta')
         .addEventListener('click', function () {
-          gaEvent('Click on Place Order Now button');
+          gaEvent('Place Order Now', 'Order summary');
         });
     }
 
@@ -2874,7 +2872,7 @@ function initCheckout() {
       .forEach((item) => {
         item.addEventListener('click', function () {
           if (item.name) {
-            gaEvent('Click on contact input', item.name);
+            // gaEvent('Click on contact input', item.name);
           }
         });
       });
@@ -2898,7 +2896,7 @@ function initCheckout() {
   document
     .querySelector('.lav-main__title_expand')
     .addEventListener('click', function () {
-      gaEvent('Tap on Show All');
+      // gaEvent('Tap on Show All');
       this.classList.toggle('lav-active');
       if (this.classList.contains('lav-active')) {
         this.innerHTML = `Hide <img src='${settings.dir}/img/summary-icon-close.svg'>`;
@@ -2916,13 +2914,13 @@ function initCheckout() {
   document
     .querySelector('.lav-timeline__title .lav-tip')
     .addEventListener('mouseenter', function () {
-      gaEvent('Hover over tooltip moneyback guarantee');
+      // gaEvent('Hover over tooltip moneyback guarantee');
     });
 
   document
     .querySelector('.lav-main__sublock .lav-tip')
     .addEventListener('mouseenter', function () {
-      gaEvent('Hover over tooltip contact');
+      // gaEvent('Hover over tooltip contact');
     });
 
   addSummary();
