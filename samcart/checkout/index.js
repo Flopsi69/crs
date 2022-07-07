@@ -705,6 +705,10 @@ const styles = `
   .lav-faq__item_active .lav-faq__head:before {
     transform: translateY(-50%) rotate(45deg);
   }
+  .lav-faq .lav-container {
+    position: relative;
+    z-index: 1;
+  }
   .lav-footer {
     background: #232323;
   }
@@ -1230,8 +1234,12 @@ const styles = `
       justify-content: space-between;
     }
     .lav-header__btn img {
-      max-width: 70px;
+      max-width: 60px;
       height: 20px;
+    }
+    .lav-header__paypal {
+      background: #f7c557;
+      border-radius: 50px;
     }
     .lav-header__btn {
       margin: 1px 2.5px;
