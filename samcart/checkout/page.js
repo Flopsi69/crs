@@ -1778,6 +1778,7 @@ const styles = `
     //   margin-left: 8px;
     // }
     .lav-main {
+      display: flex;
       flex-flow: column-reverse;
     }
     #fullWidth .tpl-6__content {
@@ -1915,7 +1916,8 @@ const styles = `
       margin-left: 14px;
     }
     .lav-info  {
-      margin-bottom: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .tpl-6__order .btn {
       max-width: 220px!important;
@@ -2579,7 +2581,7 @@ function init() {
           document.querySelector('#product-option-454784').click();
           document.querySelector('.lav-price_old').innerText = '$588.00';
           document.querySelector('.lav-price_new').innerText = '$349.00';
-          gaEvent('Launch Plan Only', 'Unlock 17+ additional trainings');
+          gaEvent('Launch Plan Only - 349', 'Unlock 17+ additional trainings');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
           ).innerText = 'Launch Plan + CreatorU';
@@ -2588,7 +2590,7 @@ function init() {
           document.querySelector('#product-option-545632').click();
           document.querySelector('.lav-price_old').innerText = '$708.00';
           document.querySelector('.lav-price_new').innerText = '$469.00';
-          // gaEvent('Click on Creator U Plan section', 'excluding button');
+          gaEvent('Launch Plan Only - 469', 'Unlock 17+ additional trainings');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
           ).innerText = 'Launch Plan Only';
@@ -2617,12 +2619,15 @@ function init() {
           e.preventDefault();
           e.stopPropagation();
           if (item.closest('[data-tab]').dataset.tab == '1') {
-            gaEvent('Start earning now', 'Unlock 17+ additional trainings');
+            gaEvent(
+              'Start earning now - 349',
+              'Unlock 17+ additional trainings'
+            );
           } else {
-            // gaEvent(
-            //   'Click on CTA Start Earning button',
-            //   'Creator U Plan section'
-            // );
+            gaEvent(
+              'Start earning now - 469',
+              'Unlock 17+ additional trainings'
+            );
           }
 
           maintainceCard('card');
