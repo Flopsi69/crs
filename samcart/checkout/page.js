@@ -2886,7 +2886,7 @@ function initCheckout() {
       .forEach((item) => {
         item.addEventListener('click', function () {
           if (item.name) {
-            // gaEvent('Click on contact input', item.name);
+            gaEvent(item.name + ' - input field name');
           }
         });
       });
@@ -2900,8 +2900,9 @@ function initCheckout() {
           e.target.closest('.tpl-6__payment')
         )
           return false;
-        console.log(item);
         if (this.classList.contains('active')) return false;
+
+        gaEvent(item.innerText, 'Order summary');
         maintainceCard(item.dataset.type, true);
       });
     }
@@ -2910,14 +2911,15 @@ function initCheckout() {
   document
     .querySelector('.lav-main__title_expand')
     .addEventListener('click', function () {
-      // gaEvent('Tap on Show All');
       this.classList.toggle('lav-active');
       if (this.classList.contains('lav-active')) {
         this.innerHTML = `Hide <img src='${settings.dir}/img/summary-icon-close.svg'>`;
         document.querySelector('#product-list').style.display = 'block';
+        gaEvent('Show All', 'Order summary');
       } else {
         this.innerHTML = `Show All <img src='${settings.dir}/img/summary-icon-right.svg'>`;
         document.querySelector('#product-list').style.display = 'none';
+        gaEvent('Hide', 'Order summary');
       }
     });
 
@@ -2928,13 +2930,13 @@ function initCheckout() {
   document
     .querySelector('.lav-timeline__title .lav-tip')
     .addEventListener('mouseenter', function () {
-      // gaEvent('Hover over tooltip moneyback guarantee');
+      gaEvent('Money back tip', 'Order summary');
     });
 
   document
     .querySelector('.lav-main__sublock .lav-tip')
     .addEventListener('mouseenter', function () {
-      // gaEvent('Hover over tooltip contact');
+      gaEvent('Contact tip', 'Order summary');
     });
 
   addSummary();
