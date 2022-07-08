@@ -2886,7 +2886,7 @@ function initCheckout() {
       .forEach((item) => {
         item.addEventListener('click', function () {
           if (item.name) {
-            gaEvent(item.name + ' - input field name');
+            gaEvent(item.name + ' - input field name', 'Order summary');
           }
         });
       });
