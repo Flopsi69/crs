@@ -90,7 +90,7 @@ function init() {
 
 function initMainPage() {
   var mainInterval = setInterval(() => {
-    if (document.querySelector('.order-summary-page')) {
+    if (document.querySelector('.plans__wrap')) {
       clearInterval(mainInterval);
       document.querySelector('.plans__wrap').remove();
       document.querySelector('.plans__wrap').style.display = 'block';
