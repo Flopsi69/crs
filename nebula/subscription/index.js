@@ -143,7 +143,7 @@ function initMainPage() {
         });
 
       for (let item of document.querySelectorAll('.plan-tip')) {
-        item.addEventListener('hover', function () {
+        item.addEventListener('mouseover', function () {
           gaEvent('click on link', 'Membership info link clicked');
         });
       }
