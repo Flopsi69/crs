@@ -2825,6 +2825,10 @@ function init() {
             localStorage.setItem('plan', '1');
             document.querySelector('.lav-price_old').innerText = '$588.00';
             document.querySelector('.lav-price_new').innerText = '$349.00';
+            document.querySelector('.lav-header__price-old').innerText =
+              '$588.00';
+            document.querySelector('.lav-header__price-new').innerText =
+              '$349.00';
             gaEvent('Click on Launch Plan section', 'excluding button');
             document.querySelector(
               '.lav-plan_active .lav-plan__btn_active'
@@ -2833,6 +2837,10 @@ function init() {
             localStorage.setItem('plan', '2');
             document.querySelector('.lav-price_old').innerText = '$708.00';
             document.querySelector('.lav-price_new').innerText = '$469.00';
+            document.querySelector('.lav-header__price-old').innerText =
+              '$708.00';
+            document.querySelector('.lav-header__price-neww').innerText =
+              '$469.00';
             gaEvent('Click on Creator U Plan section', 'excluding button');
             document.querySelector(
               '.lav-plan_active .lav-plan__btn_active'
