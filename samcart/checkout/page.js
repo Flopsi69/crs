@@ -2596,7 +2596,7 @@ function init() {
           document.querySelector('.lav-price_new').innerText = '$469.00';
           document.querySelector('.lav-header__price-old').innerText =
             '$708.00';
-          document.querySelector('.lav-header__price-neww').innerText =
+          document.querySelector('.lav-header__price-new').innerText =
             '$469.00';
           gaEvent('Launch Plan Only - 469', 'Unlock 17+ additional trainings');
           document.querySelector(

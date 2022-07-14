@@ -2436,7 +2436,7 @@ function init() {
             document.querySelector('.lav-price_new').innerText = '$469.00';
             document.querySelector('.lav-header__price-old').innerText =
               '$708.00';
-            document.querySelector('.lav-header__price-neww').innerText =
+            document.querySelector('.lav-header__price-new').innerText =
               '$469.00';
             gaEvent('Click on Creator U Plan section', 'excluding button');
             document.querySelector(
