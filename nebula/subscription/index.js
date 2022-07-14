@@ -118,11 +118,11 @@ function initMainPage() {
           gaEvent('click on link', 'Nebula Explore™ Reporting Membership link');
         });
 
-      document
-        .querySelector('.plans .plans__caption span')
-        .addEventListener('click', function () {
+      for (let item of document.querySelectorAll('.plan__descr span')) {
+        item.addEventListener('click', function () {
           gaEvent('click on link', 'Nebula Explore™ Reporting Membership link');
         });
+      }
 
       for (let item of document.querySelectorAll('.plan__option_modal')) {
         item.addEventListener('click', function () {
