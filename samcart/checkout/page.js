@@ -2581,6 +2581,10 @@ function init() {
           document.querySelector('#product-option-454784').click();
           document.querySelector('.lav-price_old').innerText = '$588.00';
           document.querySelector('.lav-price_new').innerText = '$349.00';
+          document.querySelector('.lav-header__price-old').innerText =
+            '$588.00';
+          document.querySelector('.lav-header__price-new').innerText =
+            '$349.00';
           gaEvent('Launch Plan Only - 349', 'Unlock 17+ additional trainings');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
@@ -2590,6 +2594,10 @@ function init() {
           document.querySelector('#product-option-545632').click();
           document.querySelector('.lav-price_old').innerText = '$708.00';
           document.querySelector('.lav-price_new').innerText = '$469.00';
+          document.querySelector('.lav-header__price-old').innerText =
+            '$708.00';
+          document.querySelector('.lav-header__price-neww').innerText =
+            '$469.00';
           gaEvent('Launch Plan Only - 469', 'Unlock 17+ additional trainings');
           document.querySelector(
             '.lav-plan_active .lav-plan__btn_active'
