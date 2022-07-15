@@ -190,7 +190,7 @@ function init() {
       for (let item of document.querySelectorAll('.select-vehicle-col')) {
         item.addEventListener('click', function () {
           const value =
-            item.innerText == '1'
+            item.querySelector('.marker').innerText == '1'
               ? 'Year'
               : item.innerText == '2'
               ? 'Make'
@@ -221,7 +221,7 @@ function init() {
         gaEvent('Clicks on the OEM parts section', 'Header menu');
       }
 
-      if (item.closest('.type-grid')) {
+      if (item.closest('.ptype-grid')) {
         gaEvent('Clicks on the OEM parts section', 'Product categories block');
       }
 
