@@ -158,6 +158,35 @@ const styles = `
   .lav-modal__close:hover {
     opacity: 0.65;
   }
+  @media(max-width: 992px) {
+    .lav-modal__title br {
+      display: none;
+    }
+    .lav-modal__title span {
+      white-space: normal;
+    }
+    .lav-modal__inner {
+      padding: 20px;
+    }
+    .lav-modal__caption {
+      margin-top: 10px;
+    }
+    .lav-modal__actions {
+      margin-top: 20px;
+      display: block;
+    }
+    .lav-modal__btn {
+      width: 100%;
+      font-weight: 600;
+    }
+    .lav-modal {
+      padding: 30px;
+    }
+    .lav-modal__choose {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
 `;
 
 const stylesEl = document.createElement('style');
