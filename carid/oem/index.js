@@ -318,7 +318,7 @@ function addGarageEvents() {
       document.addEventListener('click', function (e) {
         if (
           e.target.closest('.mygarage-dd-container') &&
-          e.target.closest('gbox') &&
+          e.target.closest('.gbox') &&
           e.target.classList.contains('js-link-opener') &&
           !e.target.classList.contains('lav-link-intercept')
         ) {
