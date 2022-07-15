@@ -454,7 +454,8 @@ function initModal() {
 function openModal(item) {
   document.querySelector('.lav-modal').classList.add('active');
   if (item) {
-    document.querySelector('.lav-modal__title span').innerText = item.innerText;
+    document.querySelector('.lav-modal__title span').innerText =
+      typeof item == 'string' ? item : item.innerText;
   }
 }
 
