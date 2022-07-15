@@ -286,20 +286,22 @@ function init() {
       .getAttribute('style')
       .includes('oem-parts.svg')
   ) {
-    document
-      .querySelector('.ptype-inner-wrap .item i')
-      .setAttribute(
-        'style',
-        "background-image:url('/images/pages/dep-icons/repair-parts.png'),url('/images/pages/dep-icons/auto-repair-parts.svg')"
-      );
+    if (window.outerWidth > 992) {
+      document
+        .querySelector('.ptype-inner-wrap .item i')
+        .setAttribute(
+          'style',
+          "background-image:url('/images/pages/dep-icons/repair-parts.png'),url('/images/pages/dep-icons/auto-repair-parts.svg')"
+        );
 
-    document
-      .querySelector('.ptype-inner-wrap .item')
-      .classList.add('lav-label-oem');
+      document
+        .querySelector('.ptype-inner-wrap .item')
+        .classList.add('lav-label-oem');
 
-    document.querySelector('.ptype-inner-wrap .item').innerHTML = document
-      .querySelector('.ptype-inner-wrap .item')
-      .innerHTML.replace('Oem', 'OEM');
+      document.querySelector('.ptype-inner-wrap .item').innerHTML = document
+        .querySelector('.ptype-inner-wrap .item')
+        .innerHTML.replace('Oem', 'OEM');
+    }
   }
 }
 
