@@ -3,32 +3,14 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/carid/oem',
-  hj: false,
+  clarity: true,
   observe: false,
 };
 
 //Hotjar
-if (settings.hj) {
+if (settings.clarity) {
   try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
+    clarity('set', 'new_navigation_flow_desktop', 'variant_1');
   } catch (e) {}
 }
 
@@ -39,8 +21,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: New navigation flow',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -187,6 +169,7 @@ document.body.appendChild(stylesEl);
 init();
 var isAddedVehicleEvents = false;
 function init() {
+  gaEvent('loaded');
   if (location.pathname == '/oem-parts.html') {
     initModal();
     document.querySelector('body').classList.add('lav-oem-parts');
@@ -196,7 +179,32 @@ function init() {
     }
 
     addGarageEvents();
+
+    document
+      .querySelector('.select-vehicle-button.-after-selects')
+      .addEventListener('click', function () {
+        gaEvent('Clicks on the YMM GO button');
+      });
+
+    for (let item of document.querySelectorAll('.select-vehicle-col')) {
+      item.addEventListener('click', function () {
+        const value =
+          item.innerText == '1'
+            ? 'Year'
+            : item.innerText == '2'
+            ? 'Make'
+            : 'Model';
+        gaEvent('Clicks on the YMM input', value);
+      });
+    }
+
+    for (let item of document.querySelectorAll('. ptype-grid .li')) {
+      item.addEventListener('click', function () {
+        gaEvent('Clicks on product categories OEM ' + item.innerText);
+      });
+    }
   }
+
   if (location.pathname == '/') {
     document.querySelector('body').classList.add('lav-main');
   }
@@ -207,6 +215,18 @@ function init() {
   for (let item of document.querySelectorAll('.lav-oem-link')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      if (item.closest('.header-menu-wrapper')) {
+        gaEvent('Clicks on the OEM parts section', 'Header menu');
+      }
+
+      if (item.closest('.type-grid')) {
+        gaEvent('Clicks on the OEM parts section', 'Product categories block');
+      }
+
+      if (item.closest('.header-menu-wrapper')) {
+        gaEvent('Clicks on the OEM parts section', 'Header menu');
+      }
+
       handleOemRouter();
     });
   }
@@ -215,8 +235,10 @@ function init() {
     if (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')) {
       if (
         location.pathname == '/oem-parts.html' &&
-        document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
-          .innerText == '0'
+        (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
+          .innerText == '0' ||
+          !document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
+            .innerText)
       ) {
         document
           .querySelector('.main-select-bar-h .my-garage-line-vehicles')
@@ -247,6 +269,10 @@ function init() {
     document
       .querySelector('.ptype-inner-wrap .item')
       .classList.add('lav-label-oem');
+
+    document.querySelector('.ptype-inner-wrap .item').innerHTML = document
+      .querySelector('.ptype-inner-wrap .item')
+      .innerHTML.replace('Oem', 'OEM');
   }
 }
 
@@ -291,7 +317,9 @@ function addGarageEvents() {
 
 function handleOemRouter() {
   if (
-    document.querySelector('.header-top .js-my-garage-counter').innerText == '0'
+    document.querySelector('.header-top .js-my-garage-counter').innerText ==
+      '0' ||
+    !document.querySelector('.header-top .js-my-garage-counter').innerText
   ) {
     location.href = '/oem-parts.html';
     return false;
@@ -322,7 +350,7 @@ function addNavItems() {
     .querySelector('.js-head-depts')
     .insertAdjacentHTML(
       'afterbegin',
-      '<li class="item lav-oem-link"><a class="head-dd-main" href="#">OEM parts</a></li>'
+      '<li class="item lav-oem-link"><a class="head-dd-main" href="#">OEM Parts</a></li>'
     );
 
   if (location.pathname == '/') {
@@ -330,40 +358,19 @@ function addNavItems() {
       .querySelector('.body-bg-type1 .ptype-grid')
       .insertAdjacentHTML(
         'afterbegin',
-        '<li class="li lav-oem-link"><img class="ptype-grid-img -departments lazy-loaded -no-touch" src="https://images.carid.com/pages/dep-icons/repair-parts.png"><a class="ptype-grid-a -simple-title -departments" href="#">OEM parts</a></li>'
+        '<li class="li lav-oem-link"><img class="ptype-grid-img -departments lazy-loaded -no-touch" src="https://images.carid.com/pages/dep-icons/repair-parts.png"><a class="ptype-grid-a -simple-title -departments" href="#">OEM Parts</a></li>'
       );
   }
 
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('js-panel-back')) {
+      handleSidebar();
+    }
+  });
+
   document
     .querySelector('.js-hamburger')
-    .addEventListener('click', function () {
-      var hambInterval = setInterval(() => {
-        if (document.querySelector('.lav-oem-side-link')) return false;
-
-        if (
-          document.querySelectorAll(
-            '.panel-content .panel-content-spacing ul li'
-          ).length
-        ) {
-          clearInterval(hambInterval);
-          document
-            .querySelector('.panel-content .panel-content-spacing ul')
-            .insertAdjacentHTML(
-              'afterbegin',
-              '<li><span class="lav-oem-link lav-oem-side-link js-left-dd-ajax left-dd-title -arrow -icon" style="background-image: url(/images/pages/dep-icons/auto-repair-parts.svg);"><span class="left-dd-main hover-item">OEM Parts</span></span></li>'
-            );
-
-          document
-            .querySelector(
-              '.panel-content .panel-content-spacing ul .lav-oem-link'
-            )
-            .addEventListener('click', function (e) {
-              e.preventDefault();
-              handleOemRouter();
-            });
-        }
-      }, 100);
-    });
+    .addEventListener('click', handleSidebar);
 
   var oemPartsCategories = `
     <div class="tab">
@@ -375,10 +382,48 @@ function addNavItems() {
     document
       .querySelector('.js-nav-category-spoiler .link:first-child')
       .insertAdjacentHTML('afterend', '<div class="link">OEM Parts</div>');
+
+    documtn
+      .querySelector('.js-nav-category-spoiler + .content .tab:nth-child(2)')
+      .addEventListener('click', function () {
+        gaEvent(
+          'Clicks on the OEM parts section',
+          'Product categories block of the home page menu'
+        );
+      });
+
     document
       .querySelector('.js-nav-category-spoiler + .content .tab:first-child')
       .insertAdjacentHTML('afterend', oemPartsCategories);
   }
+}
+
+function handleSidebar() {
+  var hambInterval = setInterval(() => {
+    if (document.querySelector('.lav-oem-side-link')) return false;
+
+    if (
+      document.querySelectorAll('.panel-content .panel-content-spacing ul li')
+        .length
+    ) {
+      clearInterval(hambInterval);
+
+      document
+        .querySelector('.panel-content .panel-content-spacing ul')
+        .insertAdjacentHTML(
+          'afterbegin',
+          '<li><span class="lav-oem-link lav-oem-side-link js-left-dd-ajax left-dd-title -arrow -icon" style="background-image: url(/images/pages/dep-icons/auto-repair-parts.svg);"><span class="left-dd-main hover-item">OEM Parts</span></span></li>'
+        );
+
+      document
+        .querySelector('.panel-content .panel-content-spacing ul .lav-oem-link')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          gaEvent('Clicks on the OEM parts section', 'Hamburger menu');
+          handleOemRouter();
+        });
+    }
+  }, 100);
 }
 
 function initModal() {
@@ -412,6 +457,7 @@ function initModal() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       closeModal();
+      gaEvent("Clicks on buttons 'Choose other vehicle'");
       // if (
       //   document.querySelector(
       //     '.lav-oem-parts .select-vehicle-content-spacer .select-vehicle-col .value'
@@ -430,6 +476,7 @@ function initModal() {
     .querySelector('.lav-modal__market')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Clicks on buttons Shop aftermarket products');
       if (document.querySelector('.lav-link-intercept')) {
         document.querySelector('.lav-link-intercept').click();
       } else {
