@@ -383,7 +383,7 @@ function addNavItems() {
       .querySelector('.js-nav-category-spoiler .link:first-child')
       .insertAdjacentHTML('afterend', '<div class="link">OEM Parts</div>');
 
-    documtn
+    document
       .querySelector('.js-nav-category-spoiler + .content .tab:nth-child(2)')
       .addEventListener('click', function () {
         gaEvent(
