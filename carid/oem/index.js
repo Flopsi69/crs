@@ -162,6 +162,9 @@ const styles = `
     .lav-modal__title br {
       display: none;
     }
+    .gbox .js-mygarage-open-create-popup {
+      display: none;
+    }
     .lav-modal__title span {
       white-space: normal;
     }
@@ -311,28 +314,55 @@ function addGarageEvents() {
   if (document.querySelectorAll('.my-garage-line .js-link-opener').length) {
     isAddedVehicleEvents = true;
 
-    for (let item of document.querySelectorAll(
-      '.my-garage-line .js-link-opener'
-    )) {
-      item.addEventListener('click', function (e) {
-        if (!item.classList.contains('lav-link-intercept')) {
+    if (window.outerWidth < 992) {
+      document.addEventListener('click', function (e) {
+        if (
+          e.target.closest('.mygarage-dd-container') &&
+          e.target.closest('gbox') &&
+          e.target.classList.contains('js-link-opener') &&
+          !e.target.classList.contains('lav-link-intercept')
+        ) {
           e.preventDefault();
 
-          item.classList.add('lav-link-intercept');
+          e.target.classList.add('lav-link-intercept');
 
-          var link = item.href.replace('accessories', 'oem-parts');
+          var link = e.target.href.replace('accessories', 'oem-parts');
 
           fetch(link)
             .then((res) => res.text())
             .then((data) => {
               if (data.includes('<title>404 Not Found</title>')) {
-                openModal(item);
+                openModal(e.target);
               } else {
                 location.href = link;
               }
             });
         }
       });
+    } else {
+      for (let item of document.querySelectorAll(
+        '.my-garage-line .js-link-opener'
+      )) {
+        item.addEventListener('click', function (e) {
+          if (!item.classList.contains('lav-link-intercept')) {
+            e.preventDefault();
+
+            item.classList.add('lav-link-intercept');
+
+            var link = item.href.replace('accessories', 'oem-parts');
+
+            fetch(link)
+              .then((res) => res.text())
+              .then((data) => {
+                if (data.includes('<title>404 Not Found</title>')) {
+                  openModal(item);
+                } else {
+                  location.href = link;
+                }
+              });
+          }
+        });
+      }
     }
 
     return false;
