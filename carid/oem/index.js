@@ -190,9 +190,9 @@ function init() {
   if (location.pathname == '/oem-parts.html') {
     initModal();
     document.querySelector('body').classList.add('lav-oem-parts');
-    if (localStorage.getItem('isNotOem') == 'yes') {
+    if (localStorage.getItem('isNotOem')) {
+      openModal(localStorage.getItem('isNotOem'));
       localStorage.removeItem('isNotOem');
-      openModal();
     }
 
     addGarageEvents();
@@ -305,8 +305,10 @@ function handleOemRouter() {
     .then((res) => res.text())
     .then((data) => {
       if (data.includes('<title>404 Not Found</title>')) {
-        localStorage.setItem('isNotOem', 'yes');
-        console.log(localStorage.isNotOem);
+        localStorage.setItem(
+          'isNotOem',
+          document.querySelector('.js-link-opener.-main').innerText
+        );
         location.href = '/oem-parts.html';
       } else {
         location.href = link;
