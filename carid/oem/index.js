@@ -192,7 +192,7 @@ function init() {
           const value =
             item.querySelector('.marker').innerText == '1'
               ? 'Year'
-              : item.innerText == '2'
+              : item.querySelector('.marker').innerText == '2'
               ? 'Make'
               : 'Model';
           gaEvent('Clicks on the YMM input', value);
