@@ -180,29 +180,31 @@ function init() {
 
     addGarageEvents();
 
-    document
-      .querySelector('.select-vehicle-button.-after-selects')
-      .addEventListener('click', function () {
-        gaEvent('Clicks on the YMM GO button');
-      });
+    setTimeout(() => {
+      document
+        .querySelector('.select-vehicle-button.-after-selects')
+        .addEventListener('click', function () {
+          gaEvent('Clicks on the YMM GO button');
+        });
 
-    for (let item of document.querySelectorAll('.select-vehicle-col')) {
-      item.addEventListener('click', function () {
-        const value =
-          item.innerText == '1'
-            ? 'Year'
-            : item.innerText == '2'
-            ? 'Make'
-            : 'Model';
-        gaEvent('Clicks on the YMM input', value);
-      });
-    }
+      for (let item of document.querySelectorAll('.select-vehicle-col')) {
+        item.addEventListener('click', function () {
+          const value =
+            item.innerText == '1'
+              ? 'Year'
+              : item.innerText == '2'
+              ? 'Make'
+              : 'Model';
+          gaEvent('Clicks on the YMM input', value);
+        });
+      }
 
-    for (let item of document.querySelectorAll('. ptype-grid .li')) {
-      item.addEventListener('click', function () {
-        gaEvent('Clicks on product categories OEM ' + item.innerText);
-      });
-    }
+      for (let item of document.querySelectorAll('.ptype-grid .li')) {
+        item.addEventListener('click', function () {
+          gaEvent('Clicks on product categories OEM ' + item.innerText);
+        });
+      }
+    }, 1500);
   }
 
   if (location.pathname == '/') {
@@ -221,10 +223,6 @@ function init() {
 
       if (item.closest('.type-grid')) {
         gaEvent('Clicks on the OEM parts section', 'Product categories block');
-      }
-
-      if (item.closest('.header-menu-wrapper')) {
-        gaEvent('Clicks on the OEM parts section', 'Header menu');
       }
 
       handleOemRouter();
@@ -384,7 +382,7 @@ function addNavItems() {
       .insertAdjacentHTML('afterend', '<div class="link">OEM Parts</div>');
 
     document
-      .querySelector('.js-nav-category-spoiler + .content .tab:nth-child(2)')
+      .querySelector('.js-nav-category-spoiler .link:nth-child(2)')
       .addEventListener('click', function () {
         gaEvent(
           'Clicks on the OEM parts section',
