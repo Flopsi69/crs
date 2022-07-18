@@ -158,8 +158,11 @@ const styles = `
   .lav-modal__close:hover {
     opacity: 0.65;
   }
-  .lav-oem-parts .mygarage-dd-container.-empty {
+  .lav-oem-parts .main-select-bar-h .mygarage-dd-container.-empty {
     display: none!important;
+  }
+  .my-garage-line_disabled {
+    pointer-events: none;
   }
   @media(max-width: 992px) {
     .lav-modal__title br {
@@ -276,6 +279,10 @@ function init() {
         document
           .querySelector('.main-select-bar-h .my-garage-line-vehicles')
           .classList.add('hide-arrow');
+
+        document
+          .querySelector('.main-select-bar-h .my-garage-line')
+          .classList.add('my-garage-line_disabled');
       } else {
         document
           .querySelector('.main-select-bar-h .my-garage-line-vehicles')
