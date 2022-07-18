@@ -267,29 +267,9 @@ function init() {
     });
   }
 
-  setTimeout(() => {
-    if (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')) {
-      if (
-        location.pathname == '/oem-parts.html' &&
-        (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
-          .innerText == '0' ||
-          !document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
-            .innerText)
-      ) {
-        document
-          .querySelector('.main-select-bar-h .my-garage-line-vehicles')
-          .classList.add('hide-arrow');
-
-        document
-          .querySelector('.main-select-bar-h .my-garage-line')
-          .classList.add('my-garage-line_disabled');
-      } else {
-        document
-          .querySelector('.main-select-bar-h .my-garage-line-vehicles')
-          .classList.remove('hide-arrow');
-      }
-    }
-  }, 1000);
+  handleArrow();
+  setTimeout(handleArrow, 1000);
+  setTimeout(handleArrow, 2000);
 
   if (
     location.pathname.includes('-oem-parts') &&
@@ -314,6 +294,30 @@ function init() {
       document.querySelector('.ptype-inner-wrap .item').innerHTML = document
         .querySelector('.ptype-inner-wrap .item')
         .innerHTML.replace('Oem', 'OEM');
+    }
+  }
+}
+
+function handleArrow() {
+  if (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')) {
+    if (
+      location.pathname == '/oem-parts.html' &&
+      (document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
+        .innerText == '0' ||
+        !document.querySelector('.main-select-bar-h .my-garage-line-vehicles')
+          .innerText)
+    ) {
+      document
+        .querySelector('.main-select-bar-h .my-garage-line-vehicles')
+        .classList.add('hide-arrow');
+
+      document
+        .querySelector('.main-select-bar-h .my-garage-line')
+        .classList.add('my-garage-line_disabled');
+    } else {
+      document
+        .querySelector('.main-select-bar-h .my-garage-line-vehicles')
+        .classList.remove('hide-arrow');
     }
   }
 }
