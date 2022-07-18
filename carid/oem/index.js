@@ -318,6 +318,10 @@ function handleArrow() {
       document
         .querySelector('.main-select-bar-h .my-garage-line-vehicles')
         .classList.remove('hide-arrow');
+
+      document
+        .querySelector('.main-select-bar-h .my-garage-line')
+        .classList.remove('my-garage-line_disabled');
     }
   }
 }
