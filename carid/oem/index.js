@@ -158,6 +158,9 @@ const styles = `
   .lav-modal__close:hover {
     opacity: 0.65;
   }
+  .lav-oem-parts .main-select-bar-h .mygarage-dd-container.-empty {
+    display: none;
+  }
   @media(max-width: 992px) {
     .lav-modal__title br {
       display: none;
