@@ -207,7 +207,10 @@ document.body.appendChild(stylesEl);
 init();
 var isAddedVehicleEvents = false;
 function init() {
-  gaEvent('loaded');
+  if (!localStorage.getItem('loadedFired')) {
+    localStorage.setItem('loadedFired', 'yes');
+    gaEvent('loaded');
+  }
   if (location.pathname == '/oem-parts.html') {
     initModal();
     document.querySelector('body').classList.add('lav-oem-parts');
