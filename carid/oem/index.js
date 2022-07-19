@@ -247,6 +247,16 @@ function init() {
 
   if (location.pathname == '/') {
     document.querySelector('body').classList.add('lav-main');
+
+    setTimeout(() => {
+      for (let item of document.querySelectorAll(
+        '.universal-tabs .tab:nth-child(2) .li'
+      )) {
+        item.addEventListener('click', function () {
+          gaEvent('Clicks on product categories OEM ' + item.innerText);
+        });
+      }
+    }, 1200);
   }
   console.log('init');
 
