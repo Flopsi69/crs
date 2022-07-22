@@ -176,7 +176,7 @@ const styles = `
     left: 0;
     right: 0;
     background: #FFFFFF;
-    box-shadow: rgb(0 0 0 / 15%) 0px 6px 7px;  
+    box-shadow: rgb(0 0 0) 0px 6px 7px;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -294,11 +294,15 @@ function handleTopBanner() {
         item.classList.add('promo_bar-hide');
       }
       document.querySelector('body').classList.add('lav-promo-hided');
+      document
+        .querySelector('.e-main-container')
+        .classList.remove('with-promo');
     } else {
       for (let item of document.querySelectorAll('#promo_bar')) {
         item.classList.remove('promo_bar-hide');
       }
       document.querySelector('body').classList.remove('lav-promo-hided');
+      document.querySelector('.e-main-container').classList.add('with-promo');
     }
   };
 }
