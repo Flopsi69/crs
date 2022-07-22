@@ -247,8 +247,10 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
-  initFill();
-  handleTopBanner();
+  setTimeout(initFill, 1000);
+  setInterval(() => {
+    handleTopBanner();
+  }, 1500);
   document.addEventListener('click', function (e) {
     if (
       e.target.classList.contains('remove') ||
@@ -285,15 +287,16 @@ function init() {
   });
 }
 
-function handleTopBanner(isStop) {
-  if (!document.querySelector('#promo_bar')) {
-    if (!isStop) {
-      setTimeout(() => {
-        handleTopBanner(true);
-      }, 1500);
-    }
-
+function handleTopBanner() {
+  if (
+    !document.querySelector('#promo_bar') ||
+    document.querySelector('.promo_bar-handled')
+  ) {
     return false;
+  }
+
+  for (let item of document.querySelectorAll('#promo_bar')) {
+    item.classList.add('promo_bar-handled');
   }
 
   window.onscroll = function () {
