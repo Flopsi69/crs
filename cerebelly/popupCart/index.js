@@ -285,8 +285,16 @@ function init() {
   });
 }
 
-function handleTopBanner() {
-  if (!document.querySelector('#promo_bar')) return false;
+function handleTopBanner(isStop) {
+  if (!document.querySelector('#promo_bar')) {
+    if (!isStop) {
+      setTimeout(() => {
+        handleTopBanner(true);
+      }, 1500);
+    }
+
+    return false;
+  }
 
   window.onscroll = function () {
     if (window.pageYOffset > 100) {
