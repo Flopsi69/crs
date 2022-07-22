@@ -100,11 +100,20 @@ if (settings.observe) {
     }
   });
 
-  let observeTarget = document.querySelector(
-    '.e-page-content > div:last-child'
-  );
+  let observeTarget;
+  observeTarget = document.querySelector('.e-page-content > div:last-child');
 
-  observer.observe(observeTarget, { childList: true, subtree: true });
+  if (observeTarget) {
+    observer.observe(observeTarget, { childList: true, subtree: true });
+  } else {
+    setTimeout(() => {
+      observeTarget = document.querySelector(
+        '.e-page-content > div:last-child'
+      );
+
+      observer.observe(observeTarget, { childList: true, subtree: true });
+    }, 1000);
+  }
 }
 
 // Styles
@@ -244,7 +253,11 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
+if (observeTarget) {
+  init();
+} else {
+  setTimeout(init, 1200);
+}
 function init() {
   console.log('init');
   setTimeout(initFill, 1000);
