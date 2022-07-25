@@ -908,6 +908,10 @@ const styles = `
     margin-top: 15px;
   }
   @media (max-width: 1080px) {
+    .form-group [id^='custom_'] {
+      font-size: 9px!important;
+      top: 13px;
+    }
     .lav-dis:before, .lav-total:before, .lav-faq:before {
       content: '';
       position: absolute;
@@ -1673,6 +1677,10 @@ const stylesCheckout = `
     padding-top: 0;
   }
   @media (max-width: 1080px) {
+    .form-group [id^='custom_'] {
+      font-size: 9px!important;
+      top: 13px;
+    }
     .lav-title {
       font-size: 20px;
       line-height: 24px;

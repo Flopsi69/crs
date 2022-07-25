@@ -103,7 +103,7 @@ const styles = `
   .form-group [id^='custom_'] {
     background-color: #fff;
   }
-.form-group [id^='custom_']:hover {
+  .form-group [id^='custom_']:hover {
     background-color: #fff!important;
   }
 
@@ -922,6 +922,10 @@ const styles = `
     margin-top: 15px;
   }
   @media (max-width: 1080px) {
+    .form-group [id^='custom_'] {
+        font-size: 9px!important;
+        top: 13px;
+      }
     .lav-dis:before, .lav-total:before, .lav-faq:before {
       content: '';
       position: absolute;
