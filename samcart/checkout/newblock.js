@@ -1,5 +1,17 @@
 console.log('initExp');
 
+if (location.pathname.includes('/courses-special-offer')) {
+  localStorage.setItem('redirectDiscountActivate', 'yes');
+}
+
+if (
+  location.pathname.includes('samcart-launch-special-offer-40-discount') &&
+  localStorage.getItem('redirectDiscountActivate') == 'yes'
+) {
+  localStorage.removeItem('redirectDiscountActivate');
+  location.href = 'https://checkout.samcart.com/products/courses-special-offer';
+}
+
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/samcart/checkout',
@@ -3007,6 +3019,15 @@ function init() {
     document
       .querySelector('#paymentForm')
       .insertAdjacentHTML('afterbegin', newCheckout);
+
+    if (document.querySelector(".form-group [id^='custom_']")) {
+      document
+        .querySelector('.lav-contact')
+        .insertAdjacentElement(
+          'beforeend',
+          document.querySelector(".form-group [id^='custom_']").parentElement
+        );
+    }
 
     if (document.querySelector('#paymentForm')) {
       if (localStorage.getItem('plan') == '2') {
