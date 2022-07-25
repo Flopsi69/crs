@@ -100,6 +100,16 @@ const styles = `
     font-weight: 600;
     font-style: normal;
   }
+  .form-group [id^='custom_'] {
+    background-color: #fff;
+  }
+.form-group [id^='custom_']:hover {
+    background-color: #fff!important;
+  }
+
+  .form-group [id^='custom_'] + label {
+    z-index: 99;
+  }
   .lav-wrap + section {
     display: none;
   }
@@ -2773,15 +2783,6 @@ function initCheckout() {
     .querySelector('#paymentForm')
     .insertAdjacentHTML('afterbegin', newCheckout);
 
-  if (document.querySelector(".form-group [id^='custom_']")) {
-    document
-      .querySelector('.lav-contact')
-      .insertAdjacentElement(
-        'beforeend',
-        document.querySelector(".form-group [id^='custom_']").parentElement
-      );
-  }
-
   if (localStorage.getItem('plan') == '2') {
     var summaryInterval = setInterval(() => {
       if (!document.querySelector('#product-option-545632')) {
@@ -2893,6 +2894,15 @@ function initCheckout() {
       'beforeend',
       document.querySelector('.tpl-6__checkout__subtitle + .row')
     );
+
+  if (document.querySelector(".form-group [id^='custom_']")) {
+    document
+      .querySelector('.lav-contact')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector(".form-group [id^='custom_']").parentElement
+      );
+  }
 
   setTimeout(() => {
     if (document.querySelector('.main-cta')) {

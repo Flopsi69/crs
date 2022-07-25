@@ -100,6 +100,17 @@ const styles = `
     font-weight: 600;
     font-style: normal;
   }
+
+  .form-group [id^='custom_'] {
+    background-color: #fff;
+  }
+.form-group [id^='custom_']:hover {
+    background-color: #fff!important;
+  }
+
+  .form-group [id^='custom_'] + label {
+    z-index: 99;
+  }
   .lav-wrap + section {
     display: none;
   }
@@ -1496,6 +1507,16 @@ const stylesCheckout = `
       url("${settings.dir}/Gilroy/Gilroy-SemiBold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
+  }
+  .form-group [id^='custom_'] {
+    background-color: #fff;
+  }
+.form-group [id^='custom_']:hover {
+    background-color: #fff!important;
+  }
+
+  .form-group [id^='custom_'] + label {
+    z-index: 99;
   }
   .form-control {
     background: white;
@@ -3020,15 +3041,6 @@ function init() {
       .querySelector('#paymentForm')
       .insertAdjacentHTML('afterbegin', newCheckout);
 
-    if (document.querySelector(".form-group [id^='custom_']")) {
-      document
-        .querySelector('.lav-contact')
-        .insertAdjacentElement(
-          'beforeend',
-          document.querySelector(".form-group [id^='custom_']").parentElement
-        );
-    }
-
     if (document.querySelector('#paymentForm')) {
       if (localStorage.getItem('plan') == '2') {
         var summaryInterval = setInterval(() => {
@@ -3160,6 +3172,15 @@ function init() {
           'beforeend',
           document.querySelector('.tpl-6__checkout__subtitle + .row')
         );
+
+      if (document.querySelector(".form-group [id^='custom_']")) {
+        document
+          .querySelector('.lav-contact')
+          .insertAdjacentElement(
+            'beforeend',
+            document.querySelector(".form-group [id^='custom_']").parentElement
+          );
+      }
 
       setTimeout(() => {
         if (document.querySelector('.main-cta')) {
