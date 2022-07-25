@@ -1,4 +1,4 @@
-console.log('initExp');
+console.dir('initExp');
 
 // TODO
 // Discount procent 15/25
@@ -50,7 +50,7 @@ function gaEvent(action, label) {
       eventLabel: label,
       eventValue: '',
     };
-    console.log('EventFire:', objData);
+    console.dir('EventFire:', objData);
     dataLayer.push(objData);
   } catch (e) {}
 }
@@ -254,12 +254,14 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 if (observeTarget) {
+  console.dir('init 1');
   init();
 } else {
-  setTimeout(init, 1200);
+  console.dir('init 2');
+  setTimeout(init, 1600);
 }
 function init() {
-  console.log('init');
+  console.dir('init');
   setTimeout(initFill, 1000);
   setInterval(() => {
     handleTopBanner();
