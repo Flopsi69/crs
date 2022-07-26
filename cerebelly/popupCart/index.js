@@ -101,21 +101,18 @@ if (settings.observe) {
     }
   });
 
-  if (document.querySelector('.e-page-content > div:last-child')) {
-    observeTarget = document.querySelector('.e-page-content > div:last-child');
-
-    observer.observe(observeTarget, { childList: true, subtree: true });
-  } else {
-    setTimeout(() => {
+  let intrevalObserver = setInterval(() => {
+    if (document.querySelector('.e-page-content > div:last-child')) {
+      clearInterval(intrevalObserver);
       observeTarget = document.querySelector(
         '.e-page-content > div:last-child'
       );
 
-      console.dir('initObserver', observeTarget);
+      init();
 
       observer.observe(observeTarget, { childList: true, subtree: true });
-    }, 1500);
-  }
+    }
+  }, 1000);
 }
 
 // Styles
@@ -255,17 +252,10 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-if (observeTarget) {
-  console.dir('init 1');
-  init();
-} else {
-  console.dir('init 2');
-  setTimeout(init, 1300);
-}
 function init() {
   console.dir('init');
-  initFill();
-  // setTimeout(initFill, 1500);
+  // initFill();
+  setTimeout(initFill, 300);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
