@@ -254,8 +254,8 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 function init() {
   console.dir('init');
-  // initFill();
-  setTimeout(initFill, 300);
+  initFill();
+  setTimeout(initFill, 2000);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
