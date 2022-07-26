@@ -1458,6 +1458,9 @@ const stylesCheckout = `
     font-size: 10px;
     line-height: 18px;
     color: #5A7386;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
   #payment-request-button + p a {
     color: #046BD9;
@@ -2747,6 +2750,12 @@ function init() {
             document.querySelector(".form-group [id^='custom_']").parentElement
           );
       }
+
+      document
+        .querySelector(".form-group [id^='custom_']")
+        .addEventListener('click', function () {
+          gaEvent('Digital seller - input field name', 'Order summary');
+        });
 
       setTimeout(() => {
         if (document.querySelector('.main-cta')) {
