@@ -258,11 +258,12 @@ if (observeTarget) {
   init();
 } else {
   console.dir('init 2');
-  setTimeout(init, 1600);
+  setTimeout(init, 1300);
 }
 function init() {
   console.dir('init');
-  setTimeout(initFill, 1000);
+  initFill();
+  setTimeout(initFill, 1500);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
