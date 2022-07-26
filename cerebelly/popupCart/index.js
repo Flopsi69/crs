@@ -254,8 +254,8 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 function init() {
   console.dir('init');
-  initFill();
-  setTimeout(initFill, 2000);
+  // initFill();
+  setTimeout(initFill, 1500);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
@@ -332,7 +332,7 @@ function initFill() {
   setTimeout(() => {
     document.querySelector('.default-close').click();
     document.body.classList.remove('lav-temp-init');
-  }, 1600);
+  }, 600);
 }
 
 function fillCartData(parent) {
