@@ -56,8 +56,9 @@ function gaEvent(action, label) {
 }
 
 // Observe
+let observer;
 if (settings.observe) {
-  let observer = new MutationObserver((mutations) => {
+  observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
@@ -100,14 +101,15 @@ if (settings.observe) {
     }
   });
 
-  let observeTarget;
-  observeTarget = document.querySelector('.e-page-content > div:last-child');
+  if (document.querySelector('.e-page-content > div:last-child')) {
+    let observeTarget = document.querySelector(
+      '.e-page-content > div:last-child'
+    );
 
-  if (observeTarget) {
     observer.observe(observeTarget, { childList: true, subtree: true });
   } else {
     setTimeout(() => {
-      observeTarget = document.querySelector(
+      let observeTarget = document.querySelector(
         '.e-page-content > div:last-child'
       );
 
