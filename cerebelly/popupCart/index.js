@@ -111,6 +111,8 @@ if (settings.observe) {
         '.e-page-content > div:last-child'
       );
 
+      consolel.dir('initObserver', observeTarget);
+
       observer.observe(observeTarget, { childList: true, subtree: true });
     }, 1000);
   }
