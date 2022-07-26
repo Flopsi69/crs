@@ -329,10 +329,14 @@ function handleTopBanner() {
 function initFill() {
   document.body.classList.add('lav-temp-init');
   document.querySelector('.mobile-cart-box').click();
+
+  document.querySelector('.mobile-cart-box').click();
+
+  document.querySelector('.mobile-cart-box').click();
   setTimeout(() => {
     document.querySelector('.default-close').click();
     document.body.classList.remove('lav-temp-init');
-  }, 600);
+  }, 1200);
 }
 
 function fillCartData(parent) {
