@@ -114,7 +114,7 @@ if (settings.observe) {
       console.dir('initObserver', observeTarget);
 
       observer.observe(observeTarget, { childList: true, subtree: true });
-    }, 1000);
+    }, 1500);
   }
 }
 
