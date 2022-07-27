@@ -51,6 +51,7 @@ if (settings.observe) {
 
         // Code Here
         if (
+          !isProgress &&
           node.closest('.modal') &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined')
@@ -58,7 +59,7 @@ if (settings.observe) {
           if (!isProgress) {
             isProgress++;
           } else {
-            isProgress = 0;
+            // isProgress = 0;
           }
           isProgress = true;
           console.dir('ShowProduct modal');
@@ -67,7 +68,7 @@ if (settings.observe) {
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
             }
-            isProgress = false;
+            isProgress = 0;
           }, 700);
         }
 
