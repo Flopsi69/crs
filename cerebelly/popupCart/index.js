@@ -277,7 +277,7 @@ function init() {
   console.dir('init');
   gaEvent('loaded');
   // initFill();
-  setTimeout(initFill, 1700);
+  setTimeout(initFill, 2000);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
