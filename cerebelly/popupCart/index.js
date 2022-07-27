@@ -54,27 +54,12 @@ if (settings.observe) {
           node.querySelector('.cart-product') &&
           !node.closest('.undefined')
         ) {
+          console.dir('ShowProduct modal');
           setTimeout(() => {
-            if (document.querySelector('.button.continue')) {
-              document
-                .querySelector('.button.continue')
-                .addEventListener('click', function () {
-                  gaEvent('Continue shopping in cart link click');
-                });
-            }
-            if (document.querySelector('.default-close')) {
-              document
-                .querySelector('.default-close')
-                .addEventListener('click', function () {
-                  if (!document.querySelector('.lav-temp-init')) {
-                    gaEvent('Cart closed by X');
-                  }
-                });
-            }
+            fillCartData(node);
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
             }
-            fillCartData(node);
           }, 200);
         }
 
@@ -294,6 +279,7 @@ function init() {
         gaEvent('Account icon clicked');
       });
   }
+
   document.addEventListener('click', function (e) {
     if (
       e.target.classList.contains('remove') ||
@@ -306,7 +292,6 @@ function init() {
         document.querySelector('.modal') &&
         document.querySelector('.modal .cart-product')
       ) {
-        gaEvent('Checkout Now CTA cick in cart');
         fillCartData(document.querySelector('.modal'));
       }
 
@@ -327,6 +312,22 @@ function init() {
           fillCartData(document.querySelector('.modal'));
         }
       }, 1500);
+    }
+
+    if (!document.querySelector('.lav-temp-init')) {
+      if (
+        e.target.classList.contains('mobile-cart-box') ||
+        e.target.closest('.mobile-cart-box')
+      ) {
+        gaEvent('Continue shopping in cart link click');
+      }
+
+      if (
+        e.target.classList.contains('default-close') ||
+        e.target.closest('.default-close')
+      ) {
+        gaEvent('Cart closed by X');
+      }
     }
   });
 }
