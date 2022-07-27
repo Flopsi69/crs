@@ -14,7 +14,12 @@ const settings = {
 
 //Clarity
 if (settings.clarity) {
-  clarity('set', 'sticky_button', 'variant_1');
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == 'function') {
+      clearInterval(clarityInterval);
+      clarity('set', 'sticky_button', 'variant_1');
+    }
+  }, 1000);
 }
 
 // Alalytic
