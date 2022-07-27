@@ -91,6 +91,7 @@ if (settings.observe) {
         if (
           node.classList.contains('modal') &&
           !document.querySelector('.modal') &&
+          window.innerWidth < 900 &&
           document.querySelector('.lav-sticky_hide')
         ) {
           document
@@ -178,53 +179,55 @@ const styles = `
   .modal.undefined.css-n8qisr {
     opacity: 0!important;
   }
-  .lav-sticky {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #FFFFFF;
-    box-shadow: rgb(0 0 0) 0px 6px 7px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 99;
-    transition: 0.35s;
-  }
-  .lav-sticky__price {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1;
-    color: #3956A7;
-  }
-  .lav-sticky__btn {
-    margin-left: 7px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(252, 77, 56);
-    border-color: rgb(252, 77, 56);
-    border-radius: 25px;
-    padding: 10px 20px;
-    border: 2px solid;
-    border-collapse: collapse;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: center;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.2s ease 0s;
-    text-decoration: none;
-  }
-  .lav-sticky__btn:hover {
-    color: rgb(252, 77, 56);
-    background-color: rgb(255, 178, 196);
-    border-color: rgb(255, 178, 196);
-  }
-  .lav-sticky_hide {
-    opacity: 0;
-    pointer-events: none;
+  @media(max-width: 900px) {
+    .lav-sticky {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      box-shadow: rgb(0 0 0) 0px 6px 7px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 99;
+      transition: 0.35s;
+    }
+    .lav-sticky__price {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1;
+      color: #3956A7;
+    }
+    .lav-sticky__btn {
+      margin-left: 7px;
+      color: rgb(255, 255, 255);
+      background-color: rgb(252, 77, 56);
+      border-color: rgb(252, 77, 56);
+      border-radius: 25px;
+      padding: 10px 20px;
+      border: 2px solid;
+      border-collapse: collapse;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s ease 0s;
+      text-decoration: none;
+    }
+    .lav-sticky__btn:hover {
+      color: rgb(252, 77, 56);
+      background-color: rgb(255, 178, 196);
+      border-color: rgb(255, 178, 196);
+    }
+    .lav-sticky_hide {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
   .lav-temp-init .e-page-content>div:last-child {
     display: none!important;
@@ -243,6 +246,24 @@ const styles = `
   }
   .cart-product-wrapper_free {
 
+  }
+  @media(min-width: 900px) {
+    .modal .main {
+      margin-right: 0;
+    }
+    .lav-sticky {
+      display: flex;
+      align-items: center;
+      margin-left: 13px;
+    }
+    .lav-sticky__price {
+      margin-right: 18px;
+      margin-left: 13px;
+      font-size: 18px;
+      line-height: 1;
+      color: #3956A7;
+      font-weight: 700;
+    }
   }
 `;
 
@@ -339,7 +360,7 @@ function initFill() {
 function fillCartData(parent) {
   if (!parent || !parent.querySelector('.custom .cart-product')) return false;
 
-  if (document.querySelector('.lav-sticky')) {
+  if (window.innerWidth < 900 && document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
   }
 
@@ -410,15 +431,30 @@ function fillCartData(parent) {
 
   if (totalCartPrice > 0) {
     if (!document.querySelector('.lav-sticky')) {
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        `
-        <div class='lav-sticky lav-sticky_hide'>
-          <div class='lav-sticky__price'>$${totalCartPrice}</div>
-          <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
-        </div>
-        `
-      );
+      if (
+        window.innerWidth > 900 &&
+        document.querySelector('.mobile-cart-box')
+      ) {
+        document.querySelector('.mobile-cart-box').insertAdjacentHTML(
+          'afterend',
+          `
+          <div class='lav-sticky'>
+            <div class='lav-sticky__price'>$${totalCartPrice}</div>
+            <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
+          </div>
+          `
+        );
+      } else {
+        document.body.insertAdjacentHTML(
+          'beforeend',
+          `
+          <div class='lav-sticky lav-sticky_hide'>
+            <div class='lav-sticky__price'>$${totalCartPrice}</div>
+            <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
+          </div>
+          `
+        );
+      }
 
       document
         .querySelector('.lav-sticky__btn')
