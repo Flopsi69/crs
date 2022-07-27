@@ -41,7 +41,7 @@ function gaEvent(action, label) {
 }
 
 // Observe
-let observer, observeTarget;
+let observer, observeTarget, isProgress;
 if (settings.observe) {
   observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
@@ -50,16 +50,19 @@ if (settings.observe) {
 
         // Code Here
         if (
-          node.classList.contains('modal') &&
+          !isProgress &&
+          node.closest('.modal') &&
           node.querySelector('.cart-product') &&
-          !node.classList.contains('undefined')
+          !node.closest('.undefined')
         ) {
+          isProgress = true;
           console.dir('ShowProduct modal');
           setTimeout(() => {
             fillCartData(node);
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
             }
+            isProgress = false;
           }, 200);
         }
 
