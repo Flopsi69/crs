@@ -274,7 +274,7 @@ function init() {
   console.dir('init');
   gaEvent('loaded');
   // initFill();
-  setTimeout(initFill, 2000);
+  setTimeout(initFill, 1000);
   if (window.innerWidth < 900) {
     setInterval(() => {
       handleTopBanner();
