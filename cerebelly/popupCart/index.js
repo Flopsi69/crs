@@ -66,7 +66,9 @@ if (settings.observe) {
               document
                 .querySelector('.default-close')
                 .addEventListener('click', function () {
-                  gaEvent('Cart closed by X');
+                  if (!document.querySelector('.lav-temp-init')) {
+                    gaEvent('Cart closed by X');
+                  }
                 });
             }
             if (!document.querySelector('.lav-temp-init')) {
