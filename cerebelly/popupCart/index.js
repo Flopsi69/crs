@@ -63,7 +63,7 @@ if (settings.observe) {
               gaEvent('Cart pop up shown');
             }
             isProgress = false;
-          }, 200);
+          }, 700);
         }
 
         if (
