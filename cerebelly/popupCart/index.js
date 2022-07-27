@@ -61,7 +61,7 @@ if (settings.observe) {
           }
           console.dir('ShowProduct modal');
           setTimeout(() => {
-            fillCartData(node);
+            fillCartData('.modal .custom .cart-wrapper');
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
             }
@@ -385,6 +385,10 @@ function initFill() {
 
 function fillCartData(parent) {
   if (!parent || !parent.querySelector('.custom .cart-product')) return false;
+
+  if (typeof parent == 'string') {
+    parent = document.querySelector(parent);
+  }
 
   console.dir('fillCartData');
 
