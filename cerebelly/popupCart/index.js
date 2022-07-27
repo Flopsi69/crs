@@ -418,7 +418,8 @@ function fillCartData(parent) {
   )
     .reduce((prev, curr) => {
       console.dir(prev);
-      console.dir(curr);
+      console.dir(curr.innerText);
+      console.dir(parseFloat(curr.innerText.replace('$', '')));
       console.dir(+parseFloat(curr.innerText.replace('$', '')).toFixed(2));
       return prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2);
     }, 0)
