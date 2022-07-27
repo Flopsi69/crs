@@ -279,7 +279,7 @@ function init() {
   console.dir('init');
   gaEvent('loaded');
   // initFill();
-  setTimeout(initFill, 1500);
+  setTimeout(initFill, 1000);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
@@ -367,7 +367,7 @@ function initFill() {
     setTimeout(() => {
       document.body.classList.remove('lav-temp-init');
     }, 500);
-  }, 1000);
+  }, 2000);
 }
 
 function fillCartData(parent) {
