@@ -278,9 +278,11 @@ function init() {
   gaEvent('loaded');
   // initFill();
   setTimeout(initFill, 2000);
-  setInterval(() => {
-    handleTopBanner();
-  }, 1500);
+  if (window.innerWidth < 900) {
+    setInterval(() => {
+      handleTopBanner();
+    }, 1500);
+  }
   if (document.querySelector('.e-my-account')) {
     document
       .querySelector('.e-my-account')
