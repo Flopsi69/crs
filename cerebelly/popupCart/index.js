@@ -8,33 +8,13 @@ console.dir('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/cerebelly/popupCart',
-  hj: false,
+  clarity: true,
   observe: true,
 };
 
-//Hotjar
-if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
+//Clarity
+if (settings.clarity) {
+  clarity('set', 'sticky_button', 'variant_1');
 }
 
 // Alalytic
@@ -44,8 +24,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Sticky button',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -69,7 +49,24 @@ if (settings.observe) {
           node.querySelector('.cart-product') &&
           !node.closest('.undefined')
         ) {
-          fillCartData(node);
+          setTimeout(() => {
+            if (document.querySelector('.button.continue')) {
+              document
+                .querySelector('.button.continue')
+                .addEventListener('click', function () {
+                  gaEvent('Continue shopping in cart link click');
+                });
+            }
+            if (document.querySelector('.default-close')) {
+              document
+                .querySelector('.default-close')
+                .addEventListener('click', function () {
+                  gaEvent('Cart closed by X');
+                });
+            }
+            gaEvent('Cart pop up shown');
+            fillCartData(node);
+          }, 200);
         }
 
         if (
@@ -275,11 +272,19 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 function init() {
   console.dir('init');
+  gaEvent('loaded');
   // initFill();
   setTimeout(initFill, 1500);
   setInterval(() => {
     handleTopBanner();
   }, 1500);
+  if (document.querySelector('.e-my-account')) {
+    document
+      .querySelector('.e-my-account')
+      .addEventListener('click', function () {
+        gaEvent('Account icon clicked');
+      });
+  }
   document.addEventListener('click', function (e) {
     if (
       e.target.classList.contains('remove') ||
@@ -292,6 +297,7 @@ function init() {
         document.querySelector('.modal') &&
         document.querySelector('.modal .cart-product')
       ) {
+        gaEvent('Checkout Now CTA cick in cart');
         fillCartData(document.querySelector('.modal'));
       }
 
@@ -353,8 +359,10 @@ function initFill() {
 
   setTimeout(() => {
     document.querySelector('.default-close').click();
-    document.body.classList.remove('lav-temp-init');
-  }, 1200);
+    setTimeout(() => {
+      document.body.classList.remove('lav-temp-init');
+    }, 100);
+  }, 1000);
 }
 
 function fillCartData(parent) {
@@ -380,6 +388,7 @@ function fillCartData(parent) {
     parent
       .querySelector('.lav-checkout')
       .addEventListener('click', function () {
+        gaEvent('Checkout Now CTA cick in cart');
         parent.querySelector('.checkout').click();
       });
   }
@@ -460,6 +469,7 @@ function fillCartData(parent) {
         .querySelector('.lav-sticky__btn')
         .addEventListener('click', function (e) {
           e.preventDefault();
+          gaEvent('Checkout Now sticky click');
           location.href = '/cart';
         });
     }
