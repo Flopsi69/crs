@@ -51,7 +51,7 @@ if (settings.observe) {
 
         // Code Here
         if (
-          !isProgress &&
+          // !isProgress &&
           node.closest('.modal') &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined')
