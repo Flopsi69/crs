@@ -227,10 +227,8 @@ const styles = `
     }
   }
   .lav-temp-init .e-page-content>div:last-child {
-    // display: none!important;
     opacity: 0!important;
     pointer-events: none!important;
-    visibility: hidden!important;
   }
   .cart-wrapper .cart-product-actions button.checkout {
     display: none!important;
@@ -274,7 +272,7 @@ function init() {
   console.dir('init');
   gaEvent('loaded');
   // initFill();
-  setTimeout(initFill, 1000);
+  setTimeout(initFill, 2000);
   if (window.innerWidth < 900) {
     setInterval(() => {
       handleTopBanner();
@@ -414,11 +412,11 @@ function fillCartData(parent) {
   }
 
   const totalCartPrice = +Array.from(
-    document.querySelectorAll('.modal .custom .product-price')
+    parent.querySelectorAll('.custom .product-price')
   )
     .reduce((prev, curr) => {
       console.dir(prev);
-      console.dir(curr.innerText);
+      console.dir(curr);
       console.dir(parseFloat(curr.innerText.replace('$', '')));
       console.dir(+parseFloat(curr.innerText.replace('$', '')).toFixed(2));
       return prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2);
