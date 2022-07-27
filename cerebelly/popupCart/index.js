@@ -460,11 +460,14 @@ function fillCartData(parent) {
   }
 
   if (totalCartPrice > 0) {
+    console.dir(totalCartPrice);
     if (!document.querySelector('.lav-sticky')) {
+      console.dir('noLavSticky');
       if (
         window.innerWidth > 900 &&
         document.querySelector('.mobile-cart-box')
       ) {
+        console.dir('lav-sticky add');
         document.querySelector('.mobile-cart-box').insertAdjacentHTML(
           'afterend',
           `
