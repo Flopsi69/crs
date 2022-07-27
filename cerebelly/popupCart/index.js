@@ -35,7 +35,7 @@ function gaEvent(action, label) {
       eventLabel: label,
       eventValue: '',
     };
-    console.dir('EventFire:', objData);
+    console.dir(objData);
     dataLayer.push(objData);
   } catch (e) {}
 }
@@ -111,7 +111,7 @@ if (settings.observe) {
         '.e-page-content > div:last-child'
       );
 
-      setTimeout(init, 1000);
+      setTimeout(init, 1500);
 
       observer.observe(observeTarget, { childList: true, subtree: true });
     }
@@ -366,7 +366,7 @@ function initFill() {
     document.querySelector('.default-close').click();
     setTimeout(() => {
       document.body.classList.remove('lav-temp-init');
-    }, 100);
+    }, 500);
   }, 1000);
 }
 
