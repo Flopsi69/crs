@@ -58,10 +58,7 @@ if (settings.observe) {
         ) {
           if (!isProgress) {
             isProgress++;
-          } else {
-            // isProgress = 0;
           }
-          isProgress = true;
           console.dir('ShowProduct modal');
           setTimeout(() => {
             fillCartData(node);
@@ -389,6 +386,8 @@ function initFill() {
 function fillCartData(parent) {
   if (!parent || !parent.querySelector('.custom .cart-product')) return false;
 
+  console.dir('fillCartData');
+
   if (window.innerWidth < 900 && document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
   }
@@ -459,8 +458,9 @@ function fillCartData(parent) {
     document.querySelector('.lav-free-shipping').remove();
   }
 
+  console.dir('totalCartPrice');
+  console.dir(totalCartPrice);
   if (totalCartPrice > 0) {
-    console.dir(totalCartPrice);
     if (!document.querySelector('.lav-sticky')) {
       console.dir('noLavSticky');
       if (
