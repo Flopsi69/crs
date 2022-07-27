@@ -35,7 +35,7 @@ function gaEvent(action, label) {
       eventLabel: label,
       eventValue: '',
     };
-    console.dir(objData);
+    console.dir(objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {}
 }
@@ -69,7 +69,9 @@ if (settings.observe) {
                   gaEvent('Cart closed by X');
                 });
             }
-            gaEvent('Cart pop up shown');
+            if (!document.querySelector('.lav-temp-init')) {
+              gaEvent('Cart pop up shown');
+            }
             fillCartData(node);
           }, 200);
         }
