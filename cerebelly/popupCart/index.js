@@ -109,11 +109,11 @@ if (settings.observe) {
         '.e-page-content > div:last-child'
       );
 
-      init();
+      setTimeout(init, 1000);
 
       observer.observe(observeTarget, { childList: true, subtree: true });
     }
-  }, 1000);
+  }, 500);
 }
 
 // Styles
