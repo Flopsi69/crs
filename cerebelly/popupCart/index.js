@@ -41,7 +41,8 @@ function gaEvent(action, label) {
 }
 
 // Observe
-let observer, observeTarget, isProgress;
+let observer, observeTarget;
+let isProgress = 0;
 if (settings.observe) {
   observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
@@ -50,11 +51,15 @@ if (settings.observe) {
 
         // Code Here
         if (
-          !isProgress &&
           node.closest('.modal') &&
-          node.querySelector('.cart-product') &&
+          node.querySelector('.cart-product .title') &&
           !node.closest('.undefined')
         ) {
+          if (!isProgress) {
+            isProgress++;
+          } else {
+            isProgress = 0;
+          }
           isProgress = true;
           console.dir('ShowProduct modal');
           setTimeout(() => {
