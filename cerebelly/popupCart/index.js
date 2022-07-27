@@ -417,9 +417,8 @@ function fillCartData(parent) {
     document.querySelectorAll('.modal .custom .product-price')
   )
     .reduce((prev, curr) => {
-      console.dir(
-        prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2)
-      );
+      console.dir(prev);
+      console.dir(+parseFloat(curr.innerText.replace('$', '')).toFixed(2));
       return prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2);
     }, 0)
     .toFixed(2);
