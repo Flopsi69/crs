@@ -61,7 +61,7 @@ if (settings.observe) {
           }
           console.dir('ShowProduct modal');
           setTimeout(() => {
-            fillCartData(document.querySelector('.modal .custom'));
+            fillCartData(document.querySelector('.modal'));
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
             }
