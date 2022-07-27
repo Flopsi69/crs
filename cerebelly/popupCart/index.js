@@ -230,7 +230,7 @@ const styles = `
     }
   }
   .lav-temp-init .e-page-content>div:last-child {
-    display: none!important;
+    // display: none!important;
     opacity: 0!important;
     pointer-events: none!important;
     visibility: hidden!important;
@@ -377,7 +377,7 @@ function initFill() {
   document.querySelector('.mobile-cart-box').click();
 
   setTimeout(() => {
-    // document.querySelector('.default-close').click();
+    document.querySelector('.default-close').click();
     setTimeout(() => {
       document.body.classList.remove('lav-temp-init');
     }, 500);
