@@ -381,7 +381,7 @@ function initFill() {
     setTimeout(() => {
       document.body.classList.remove('lav-temp-init');
     }, 500);
-  }, 2000);
+  }, 2500);
 }
 
 function fillCartData(parent) {
