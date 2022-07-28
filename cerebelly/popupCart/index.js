@@ -320,15 +320,16 @@ function init() {
 
     if (!document.querySelector('.lav-temp-init')) {
       if (
-        e.target.classList.contains('mobile-cart-box') ||
-        e.target.closest('.mobile-cart-box')
+        e.target.classList.contains('continue') ||
+        e.target.closest('.modal .custom')
       ) {
         gaEvent('Continue shopping in cart link click');
       }
 
       if (
-        e.target.classList.contains('default-close') ||
-        e.target.closest('.default-close')
+        (e.target.classList.contains('default-close') ||
+          e.target.closest('.default-close')) &&
+        !e.target.closest('undefined')
       ) {
         gaEvent('Cart closed by X');
       }
