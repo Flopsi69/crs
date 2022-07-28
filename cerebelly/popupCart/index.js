@@ -58,15 +58,15 @@ if (settings.observe) {
           !node.classList.contains('undefined') &&
           !isProgress
         ) {
-          console.dir('ShowProduct modal');
+          console.dir('ShowProduct modal fire');
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
-            if (!document.querySelector('.lav-temp-init') && !isProgress) {
+            if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
               isProgress++;
               setTimeout(() => {
                 isProgress = 0;
-              }, 2000);
+              }, 3000);
             }
           }, 700);
         }
@@ -116,9 +116,9 @@ if (settings.observe) {
         '.e-page-content > div:last-child'
       );
 
-      setTimeout(init, 1500);
-
       observer.observe(observeTarget, { childList: true, subtree: true });
+
+      setTimeout(init, 1500);
     }
   }, 500);
 }
@@ -288,6 +288,7 @@ function init() {
       handleTopBanner();
     }, 1500);
   }
+
   if (document.querySelector('.e-my-account')) {
     document
       .querySelector('.e-my-account')
