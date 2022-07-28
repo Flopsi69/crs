@@ -62,13 +62,6 @@ if (settings.observe) {
           isProgress = true;
           console.dir('ShowProduct modal fire');
           setTimeout(() => {
-            // if (
-            //   document
-            //     .querySelector('. modal .custom .button')
-            //     ?.innerText.toLowerCase() == 'shop all'
-            // ) {
-            //   document.querySelector('.lav-sticky').remove();
-            // }
             fillCartData(document.querySelector('.modal'));
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
@@ -338,6 +331,13 @@ function init() {
             .innerText.toLowerCase() == 'shop all'
         ) {
           document.querySelector('.lav-sticky').remove();
+
+          if (
+            document.querySelectorAll('.modal') &&
+            document.querySelectorAll('.modal').length > 1
+          ) {
+            document.querySelector('.modal').remove();
+          }
         }
       }, 500);
 
