@@ -293,17 +293,6 @@ function init() {
       e.target.closest('.add') ||
       e.target.closest('.cart-product-reset')
     ) {
-      if (document.querySelector('.lav-sticky')) {
-        document.querySelector('.lav-sticky').remove();
-      }
-
-      if (
-        document.querySelector('.modal') &&
-        document.querySelector('.modal .cart-product')
-      ) {
-        fillCartData(document.querySelector('.modal'));
-      }
-
       setTimeout(function () {
         if (
           document.querySelector('.modal') &&
@@ -516,6 +505,15 @@ function fillCartData(parent) {
   } else if (document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').remove();
   }
+
+  setTimeout(() => {
+    if (
+      !document.querySelector('.modal .custom .cart-product') &&
+      document.querySelector('.lav-sticky')
+    ) {
+      document.querySelector('.lav-sticky').remove();
+    }
+  }, 1000);
 
   if (totalCartCount > 0) {
     document.querySelector('.mobile-cart-box').dataset.count = totalCartCount;
