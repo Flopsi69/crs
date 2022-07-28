@@ -510,7 +510,7 @@ function fillCartData(parent) {
         '$' + totalCartPrice;
     }
   } else if (document.querySelector('.lav-sticky')) {
-    document.querySelector('.lav-price-sticky').remove();
+    document.querySelector('.lav-sticky').remove();
   }
 
   if (totalCartCount > 0) {
