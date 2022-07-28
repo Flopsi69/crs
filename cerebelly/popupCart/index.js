@@ -55,7 +55,7 @@ if (settings.observe) {
         if (
           (node.closest('.modal') || node.classList.contains('modal')) &&
           (node.querySelector('.cart-product .title') ||
-            node.querySelector('.button').innerText.toLocaleLowerCase() ==
+            node.querySelector('.button')?.innerText.toLowerCase() ==
               'shop all') &&
           !node.closest('.undefined') &&
           !node.classList.contains('undefined') &&
@@ -537,7 +537,7 @@ function fillCartData(parent) {
       document.querySelector('.lav-sticky') &&
       document
         .querySelector('.modal .custom .button')
-        .innerText.toLocaleLowerCase() == 'shop all'
+        .innerText.toLowerCase() == 'shop all'
     ) {
       document.querySelector('.lav-sticky').remove();
     }
