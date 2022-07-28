@@ -364,7 +364,7 @@ function handleTopBanner() {
         .querySelector('.e-main-container')
         .classList.remove('with-promo');
 
-      document.body.classList.remove('body-static');
+      document.body.classList.add('body-static');
     } else {
       for (let item of document.querySelectorAll('#promo_bar')) {
         item.classList.remove('promo_bar-hide');
@@ -373,6 +373,7 @@ function handleTopBanner() {
       document.querySelector('.e-main-container').classList.add('with-promo');
       document.body.classList.add('body-static');
     }
+    remove;
 
     lastScrollTop = st <= 0 ? 0 : st;
   };
