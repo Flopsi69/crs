@@ -51,14 +51,12 @@ if (settings.observe) {
 
         // Code Here
         if (
-          // !isProgress &&
+          !isProgress &&
           node.closest('.modal') &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined')
         ) {
-          if (!isProgress) {
-            isProgress++;
-          }
+          isProgress++;
           // console.dir('ShowProduct modal');
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
