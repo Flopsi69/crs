@@ -77,9 +77,9 @@ if (settings.observe) {
           // !isUndefined
         ) {
           // isUndefined = true;
-          // node.querySelector('.default-close').click();
+          node.querySelector('.default-close').click();
           setTimeout(() => {
-            // document.querySelector('.mobile-cart-box').click();
+            document.querySelector('.mobile-cart-box').click();
             // isUndefined = false;
           }, 500);
         }
