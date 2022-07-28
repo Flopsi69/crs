@@ -468,7 +468,10 @@ function fillCartData(parent) {
   }
 
   if (totalCartPrice > 0) {
-    if (!document.querySelector('.lav-sticky')) {
+    if (
+      !document.querySelector('.lav-sticky') &&
+      location.pathname == '/shop'
+    ) {
       if (
         window.innerWidth > 900 &&
         document.querySelector('.mobile-cart-box')
