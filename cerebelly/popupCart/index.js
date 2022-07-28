@@ -51,19 +51,20 @@ if (settings.observe) {
 
         // Code Here
         if (
-          !isProgress &&
           node.closest('.modal') &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined')
         ) {
-          isProgress++;
-          // console.dir('ShowProduct modal');
+          console.dir('ShowProduct modal');
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
-            if (!document.querySelector('.lav-temp-init')) {
+            if (!document.querySelector('.lav-temp-init') && !isProgress) {
               gaEvent('Cart pop up shown');
+              isProgress++;
+              setTimeout(() => {
+                isProgress = 0;
+              }, 2000);
             }
-            isProgress = 0;
           }, 700);
         }
 
