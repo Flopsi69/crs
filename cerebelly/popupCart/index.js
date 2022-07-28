@@ -329,7 +329,7 @@ function init() {
 
       if (
         (e.target.classList.contains('default-close') ||
-          e.target.closest('.default-close')) &&
+          e.target.closest('.default-close-container')) &&
         !e.target.closest('.undefined')
       ) {
         gaEvent('Cart closed by X');
