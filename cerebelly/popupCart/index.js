@@ -302,7 +302,8 @@ function init() {
       setTimeout(function () {
         if (
           document.querySelector('.modal') &&
-          document.querySelector('.modal .cart-product') && !document.querySelector('.modal.undefined')
+          document.querySelector('.modal .cart-product') &&
+          !document.querySelector('.modal.undefined')
         ) {
           fillCartData(document.querySelector('.modal'));
         } else if (document.querySelector('.lav-sticky')) {
@@ -310,30 +311,31 @@ function init() {
         }
       }, 700);
 
-    //   setTimeout(function () {
-    //     if (
-    //       document.querySelector('.modal') &&
-    //       document.querySelector('.modal .cart-product')
-    //     ) {
-    //       fillCartData(document.querySelector('.modal'));
-    //     }
-    //   }, 1500);
-    // }
+      //   setTimeout(function () {
+      //     if (
+      //       document.querySelector('.modal') &&
+      //       document.querySelector('.modal .cart-product')
+      //     ) {
+      //       fillCartData(document.querySelector('.modal'));
+      //     }
+      //   }, 1500);
+      // }
 
-    if (!document.querySelector('.lav-temp-init')) {
-      if (
-        e.target.classList.contains('continue') &&
-        e.target.closest('.modal .custom')
-      ) {
-        gaEvent('Continue shopping in cart link click');
-      }
+      if (!document.querySelector('.lav-temp-init')) {
+        if (
+          e.target.classList.contains('continue') &&
+          e.target.closest('.modal .custom')
+        ) {
+          gaEvent('Continue shopping in cart link click');
+        }
 
-      if (
-        (e.target.classList.contains('default-close') ||
-          e.target.closest('.default-close-container')) &&
-        !e.target.closest('.undefined')
-      ) {
-        gaEvent('Cart closed by X');
+        if (
+          (e.target.classList.contains('default-close') ||
+            e.target.closest('.default-close-container')) &&
+          !e.target.closest('.undefined')
+        ) {
+          gaEvent('Cart closed by X');
+        }
       }
     }
   });
