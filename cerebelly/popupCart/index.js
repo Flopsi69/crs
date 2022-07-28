@@ -73,7 +73,8 @@ if (settings.observe) {
 
         if (
           node.classList.contains('undefined') &&
-          node.querySelector('.cart-product')
+          node.classList.contains('modal')
+          // node.querySelector('.cart-product')
           // !isUndefined
         ) {
           // isUndefined = true;
@@ -300,7 +301,8 @@ function init() {
       e.target.closest('.add') ||
       e.target.closest('.cart-product-reset')
     ) {
-      console.dir('e.target: ' + e.target);
+      console.dir(e.target);
+
       setTimeout(function () {
         if (
           document.querySelector('.modal') &&
