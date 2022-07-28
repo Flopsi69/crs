@@ -371,9 +371,8 @@ function handleTopBanner() {
       }
       document.querySelector('body').classList.remove('lav-promo-hided');
       document.querySelector('.e-main-container').classList.add('with-promo');
-      document.body.classList.add('body-static');
+      document.body.classList.remove('body-static');
     }
-    remove;
 
     lastScrollTop = st <= 0 ? 0 : st;
   };
