@@ -313,20 +313,20 @@ function init() {
           !document.querySelector('.modal.undefined')
         ) {
           fillCartData(document.querySelector('.modal'));
-        } else if (document.querySelector('.lav-sticky')) {
-          document.querySelector('.lav-sticky').remove();
+        } else {
+          initFill();
         }
       }, 700);
 
-      setTimeout(function () {
-        if (
-          document.querySelector('.modal') &&
-          document.querySelector('.modal .cart-product') &&
-          !document.querySelector('.modal.undefined')
-        ) {
-          fillCartData(document.querySelector('.modal'));
-        }
-      }, 1500);
+      // setTimeout(function () {
+      //   if (
+      //     document.querySelector('.modal') &&
+      //     document.querySelector('.modal .cart-product') &&
+      //     !document.querySelector('.modal.undefined')
+      //   ) {
+      //     fillCartData(document.querySelector('.modal'));
+      //   }
+      // }, 1500);
     }
 
     if (!document.querySelector('.lav-temp-init')) {
@@ -397,7 +397,7 @@ function initFill() {
     setTimeout(() => {
       document.body.classList.remove('lav-temp-init');
     }, 500);
-  }, 2500);
+  }, 2000);
 }
 
 function fillCartData(parent) {
