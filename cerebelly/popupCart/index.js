@@ -73,8 +73,8 @@ if (settings.observe) {
 
         if (
           node.classList.contains('undefined') &&
-          node.classList.contains('modal')
-          // node.querySelector('.cart-product')
+          node.classList.contains('modal') &&
+          node.querySelector('.cart-wrapper')
           // !isUndefined
         ) {
           // isUndefined = true;
