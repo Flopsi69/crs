@@ -514,7 +514,7 @@ function fillCartData(parent) {
       document.querySelector('.lav-sticky') &&
       document
         .querySelector('.modal .custom .button')
-        .innerText.toLocaleLowerCase()
+        .innerText.toLocaleLowerCase() == 'shop all'
     ) {
       document.querySelector('.lav-sticky').remove();
     }
