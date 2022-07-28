@@ -316,7 +316,8 @@ function init() {
       setTimeout(function () {
         if (
           document.querySelector('.modal') &&
-          document.querySelector('.modal .cart-product')
+          document.querySelector('.modal .cart-product') &&
+          !document.querySelector('.modal.undefined')
         ) {
           fillCartData(document.querySelector('.modal'));
         }
