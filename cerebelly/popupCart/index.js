@@ -66,7 +66,7 @@ if (settings.observe) {
               gaEvent('Cart pop up shown');
               setTimeout(() => {
                 isProgress = false;
-              }, 3000);
+              }, 2500);
             }
           }, 700);
         }
@@ -316,9 +316,12 @@ function init() {
           fillCartData(document.querySelector('.modal'));
         } else {
           document.querySelector('.mobile-cart-box').click();
+          setTimeout(() => {
+            fillCartData(document.querySelector('.modal'));
+          }, 400);
           // initFill();
         }
-      }, 1000);
+      }, 500);
 
       // setTimeout(function () {
       //   if (
