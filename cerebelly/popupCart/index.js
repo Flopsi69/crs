@@ -508,8 +508,11 @@ function fillCartData(parent) {
 
   setTimeout(() => {
     if (
-      !document.querySelector('.modal .custom .cart-product') &&
-      document.querySelector('.lav-sticky')
+      document.querySelector('.modal .custom') &&
+      document.querySelector('.lav-sticky') &&
+      document
+        .querySelector('.modal .custom .button')
+        .innerText.toLocaleLowerCase()
     ) {
       document.querySelector('.lav-sticky').remove();
     }
