@@ -54,9 +54,7 @@ if (settings.observe) {
         console.dir();
         if (
           (node.closest('.modal') || node.classList.contains('modal')) &&
-          (node.querySelector('.cart-product .title') ||
-            node.querySelector('.button')?.innerText.toLowerCase() ==
-              'shop all') &&
+          node.querySelector('.cart-product .title') &&
           !node.closest('.undefined') &&
           !node.classList.contains('undefined') &&
           !isProgress
@@ -64,6 +62,13 @@ if (settings.observe) {
           isProgress = true;
           console.dir('ShowProduct modal fire');
           setTimeout(() => {
+            // if (
+            //   document
+            //     .querySelector('. modal .custom .button')
+            //     ?.innerText.toLowerCase() == 'shop all'
+            // ) {
+            //   document.querySelector('.lav-sticky').remove();
+            // }
             fillCartData(document.querySelector('.modal'));
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
@@ -324,6 +329,16 @@ function init() {
           }, 500);
           // initFill();
         }
+
+        if (
+          document.querySelector('.modal .custom') &&
+          document.querySelector('.lav-sticky') &&
+          document
+            .querySelector('.modal .custom .button')
+            .innerText.toLowerCase() == 'shop all'
+        ) {
+          document.querySelector('.lav-sticky').remove();
+        }
       }, 1000);
 
       // setTimeout(function () {
@@ -530,18 +545,6 @@ function fillCartData(parent) {
   } else if (document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').remove();
   }
-
-  setTimeout(() => {
-    if (
-      document.querySelector('.modal .custom') &&
-      document.querySelector('.lav-sticky') &&
-      document
-        .querySelector('.modal .custom .button')
-        .innerText.toLowerCase() == 'shop all'
-    ) {
-      document.querySelector('.lav-sticky').remove();
-    }
-  }, 1000);
 
   if (totalCartCount > 0) {
     document.querySelector('.mobile-cart-box').dataset.count = totalCartCount;
