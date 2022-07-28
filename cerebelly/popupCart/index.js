@@ -51,8 +51,9 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue;
 
         // Code Here
+        console.dir();
         if (
-          node.closest('.modal') &&
+          (node.closest('.modal') || node.classList.contains('modal')) &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined') &&
           !node.classList.contains('undefined') &&
