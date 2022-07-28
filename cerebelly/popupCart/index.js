@@ -55,7 +55,8 @@ if (settings.observe) {
           node.closest('.modal') &&
           node.querySelector('.cart-product .title') &&
           !node.closest('.undefined') &&
-          !node.classList.contains('undefined')
+          !node.classList.contains('undefined') &&
+          !isProgress
         ) {
           console.dir('ShowProduct modal');
           setTimeout(() => {
