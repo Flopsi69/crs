@@ -384,7 +384,8 @@ function initFill() {
 function fillCartData(parent) {
   if (!parent || !parent.querySelector('.custom .cart-product')) return false;
 
-  // console.dir('fillCartData');
+  console.dir('fillCartData');
+  console.dir(parent);
 
   if (window.innerWidth < 900 && document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
