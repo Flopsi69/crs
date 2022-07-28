@@ -323,22 +323,25 @@ function init() {
           // initFill();
         }
 
-        if (
-          document.querySelector('.modal .custom') &&
-          document.querySelector('.lav-sticky') &&
-          document
-            .querySelector('.modal .custom .button')
-            .innerText.toLowerCase() == 'shop all'
-        ) {
-          document.querySelector('.lav-sticky').remove();
-
+        setTimeout(() => {
           if (
-            document.querySelectorAll('.modal') &&
-            document.querySelectorAll('.modal').length > 1
+            document.querySelector('.modal .custom') &&
+            document
+              .querySelector('.modal .custom .button')
+              .innerText.toLowerCase() == 'shop all'
           ) {
-            document.querySelector('.modal').remove();
+            if (document.querySelector('.lav-sticky')) {
+              document.querySelector('.lav-sticky').remove();
+            }
+
+            if (
+              document.querySelectorAll('.modal') &&
+              document.querySelectorAll('.modal').length > 1
+            ) {
+              document.querySelector('.modal').remove();
+            }
           }
-        }
+        }, 500);
       }, 500);
 
       // setTimeout(function () {
