@@ -73,17 +73,20 @@ if (settings.observe) {
 
         if (
           node.classList.contains('undefined') &&
-          node.classList.contains('modal') &&
-          node.querySelector('.cart-wrapper')
+          node.classList.contains('modal')
           // !isUndefined
         ) {
-          // isUndefined = true;
-          console.dir('undefined fire');
-          node.querySelector('.default-close').click();
           setTimeout(() => {
-            document.querySelector('.mobile-cart-box').click();
-            // isUndefined = false;
-          }, 500);
+            if (node.querySelector('.cart-wrapper')) {
+              console.dir('undefined fire');
+              node.querySelector('.default-close').click();
+              setTimeout(() => {
+                document.querySelector('.mobile-cart-box').click();
+                // isUndefined = false;
+              }, 500);
+            }
+          }, 300);
+          // isUndefined = true;
         }
 
         console.dir(node);
