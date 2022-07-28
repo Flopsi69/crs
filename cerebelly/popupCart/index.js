@@ -314,9 +314,9 @@ function init() {
         ) {
           fillCartData(document.querySelector('.modal'));
         } else {
-          initFill();
+          // initFill();
         }
-      }, 700);
+      }, 1000);
 
       // setTimeout(function () {
       //   if (
