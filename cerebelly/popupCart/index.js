@@ -117,10 +117,10 @@ const styles = `
   .promo_bar-hide {
     display: none!important;
   }
-  .e-main-container.with-promo .e-page-content-wrap .boxmenuContainer {
-    top: 46px!important;
-  }
-  .element-filter__static {
+  // .e-main-container.with-promo .e-page-content-wrap .boxmenuContainer {
+  //   top: 46px!important;
+  // }
+  .body-static .element-filter {
     position: static!important;
   }
   .modal .custom .checkout {
@@ -364,26 +364,17 @@ function handleTopBanner() {
         .querySelector('.e-main-container')
         .classList.remove('with-promo');
 
-      if (document.querySelector('.element-filter')) {
-        document
-          .querySelector('.element-filter')
-          .classList.add('element-filter__static');
-      }
+      document.body.classList.add('body-static');
     } else {
-      // upscroll code
       for (let item of document.querySelectorAll('#promo_bar')) {
         item.classList.remove('promo_bar-hide');
       }
       document.querySelector('body').classList.remove('lav-promo-hided');
       document.querySelector('.e-main-container').classList.add('with-promo');
-      if (document.querySelector('.element-filter')) {
-        document
-          .querySelector('.element-filter')
-          .classList.remove('element-filter__static');
-      }
+      document.body.classList.remove('body-static');
     }
 
-    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    lastScrollTop = st <= 0 ? 0 : st;
   };
 }
 
