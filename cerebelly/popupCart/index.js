@@ -300,6 +300,7 @@ function init() {
       e.target.closest('.add') ||
       e.target.closest('.cart-product-reset')
     ) {
+      console.dir('e.target: ' + e.target);
       setTimeout(function () {
         if (
           document.querySelector('.modal') &&
