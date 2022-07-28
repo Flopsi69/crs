@@ -314,7 +314,7 @@ function init() {
         ) {
           fillCartData(document.querySelector('.modal'));
         } else {
-          // initFill();
+          initFill();
         }
       }, 1000);
 
