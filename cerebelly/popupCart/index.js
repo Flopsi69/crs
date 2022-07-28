@@ -313,31 +313,30 @@ function init() {
         }
       }, 700);
 
-      //   setTimeout(function () {
-      //     if (
-      //       document.querySelector('.modal') &&
-      //       document.querySelector('.modal .cart-product')
-      //     ) {
-      //       fillCartData(document.querySelector('.modal'));
-      //     }
-      //   }, 1500);
-      // }
-
-      if (!document.querySelector('.lav-temp-init')) {
+      setTimeout(function () {
         if (
-          e.target.classList.contains('continue') &&
-          e.target.closest('.modal .custom')
+          document.querySelector('.modal') &&
+          document.querySelector('.modal .cart-product')
         ) {
-          gaEvent('Continue shopping in cart link click');
+          fillCartData(document.querySelector('.modal'));
         }
+      }, 1500);
+    }
 
-        if (
-          (e.target.classList.contains('default-close') ||
-            e.target.closest('.default-close-container')) &&
-          !e.target.closest('.undefined')
-        ) {
-          gaEvent('Cart closed by X');
-        }
+    if (!document.querySelector('.lav-temp-init')) {
+      if (
+        e.target.classList.contains('continue') &&
+        e.target.closest('.modal .custom')
+      ) {
+        gaEvent('Continue shopping in cart link click');
+      }
+
+      if (
+        (e.target.classList.contains('default-close') ||
+          e.target.closest('.default-close-container')) &&
+        !e.target.closest('.undefined')
+      ) {
+        gaEvent('Cart closed by X');
       }
     }
   });
