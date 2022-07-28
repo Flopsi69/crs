@@ -43,6 +43,7 @@ function gaEvent(action, label) {
 // Observe
 let observer, observeTarget;
 let isProgress = 0;
+let isUndefined = false;
 if (settings.observe) {
   observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
@@ -70,11 +71,14 @@ if (settings.observe) {
 
         if (
           node.classList.contains('undefined') &&
-          node.querySelector('.cart-product')
+          node.querySelector('.cart-product') &&
+          !isUndefined
         ) {
+          isUndefined = true;
           node.querySelector('.default-close').click();
           setTimeout(() => {
             document.querySelector('.mobile-cart-box').click();
+            isUndefined = false;
           }, 500);
         }
 
