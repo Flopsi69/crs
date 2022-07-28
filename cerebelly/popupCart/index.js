@@ -91,9 +91,9 @@ if (settings.observe) {
               setTimeout(() => {
                 document.querySelector('.mobile-cart-box').click();
                 // isUndefined = false;
-              }, 500);
+              }, 50);
             }
-          }, 300);
+          }, 100);
           // isUndefined = true;
         }
 
@@ -326,7 +326,7 @@ function init() {
           document.querySelector('.mobile-cart-box').click();
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
-          }, 500);
+          }, 400);
           // initFill();
         }
 
@@ -339,7 +339,7 @@ function init() {
         ) {
           document.querySelector('.lav-sticky').remove();
         }
-      }, 1000);
+      }, 500);
 
       // setTimeout(function () {
       //   if (
