@@ -299,6 +299,8 @@ function init() {
           document.querySelector('.modal .cart-product')
         ) {
           fillCartData(document.querySelector('.modal'));
+        } else if (document.querySelector('.lav-sticky')) {
+          document.querySelector('.lav-sticky').remove();
         }
       }, 700);
 
