@@ -59,7 +59,7 @@ if (settings.observe) {
           if (!isProgress) {
             isProgress++;
           }
-          console.dir('ShowProduct modal');
+          // console.dir('ShowProduct modal');
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
             if (!document.querySelector('.lav-temp-init')) {
@@ -79,7 +79,7 @@ if (settings.observe) {
           }, 100);
         }
 
-        console.dir(node);
+        // console.dir(node);
       }
 
       for (let node of mutation.removedNodes) {
@@ -384,7 +384,7 @@ function initFill() {
 function fillCartData(parent) {
   if (!parent || !parent.querySelector('.custom .cart-product')) return false;
 
-  console.dir('fillCartData');
+  // console.dir('fillCartData');
 
   if (window.innerWidth < 900 && document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
@@ -415,10 +415,6 @@ function fillCartData(parent) {
     parent.querySelectorAll('.custom .product-price')
   )
     .reduce((prev, curr) => {
-      console.dir(prev);
-      console.dir(curr);
-      console.dir(parseFloat(curr.innerText.replace('$', '')));
-      console.dir(+parseFloat(curr.innerText.replace('$', '')).toFixed(2));
       return prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2);
     }, 0)
     .toFixed(2);
@@ -460,16 +456,12 @@ function fillCartData(parent) {
     document.querySelector('.lav-free-shipping').remove();
   }
 
-  console.dir('totalCartPrice');
-  console.dir(totalCartPrice);
   if (totalCartPrice > 0) {
     if (!document.querySelector('.lav-sticky')) {
-      console.dir('noLavSticky');
       if (
         window.innerWidth > 900 &&
         document.querySelector('.mobile-cart-box')
       ) {
-        console.dir('lav-sticky add');
         document.querySelector('.mobile-cart-box').insertAdjacentHTML(
           'afterend',
           `
