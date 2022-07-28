@@ -75,7 +75,7 @@ if (settings.observe) {
           node.querySelector('.default-close').click();
           setTimeout(() => {
             document.querySelector('.mobile-cart-box').click();
-          }, 100);
+          }, 500);
         }
 
         console.dir(node);
