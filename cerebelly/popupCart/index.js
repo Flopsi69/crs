@@ -505,8 +505,10 @@ function fillCartData(parent) {
         });
     }
 
-    document.querySelector('.lav-sticky__price').innerHTML =
-      '$' + totalCartPrice;
+    if (document.querySelector('.lav-sticky__price')) {
+      document.querySelector('.lav-sticky__price').innerHTML =
+        '$' + totalCartPrice;
+    }
   } else if (document.querySelector('.lav-sticky')) {
     document.querySelector('.lav-price-sticky').remove();
   }
