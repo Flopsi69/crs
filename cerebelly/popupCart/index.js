@@ -78,7 +78,7 @@ if (settings.observe) {
           }, 100);
         }
 
-        // console.dir(node);
+        console.dir(node);
       }
 
       for (let node of mutation.removedNodes) {
