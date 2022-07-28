@@ -159,7 +159,7 @@ const styles = `
   .cart-product-actions {
     padding-bottom: 20px!important;
   }
-  .mobile-cart-box[data-count]:after {
+  .mobile-cart-box[data-count].active:after {
     content: attr(data-count)!important;
     font-weight: 600;
     font-size: 12px;
