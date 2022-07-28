@@ -54,7 +54,9 @@ if (settings.observe) {
         console.dir();
         if (
           (node.closest('.modal') || node.classList.contains('modal')) &&
-          node.querySelector('.cart-product .title') &&
+          (node.querySelector('.cart-product .title') ||
+            node.querySelector('.button').innerText.toLocaleLowerCase() ==
+              'shop all') &&
           !node.closest('.undefined') &&
           !node.classList.contains('undefined') &&
           !isProgress
