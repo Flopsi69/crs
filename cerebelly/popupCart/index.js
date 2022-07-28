@@ -318,10 +318,10 @@ function init() {
           document.querySelector('.mobile-cart-box').click();
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
-          }, 400);
+          }, 500);
           // initFill();
         }
-      }, 500);
+      }, 1000);
 
       // setTimeout(function () {
       //   if (
