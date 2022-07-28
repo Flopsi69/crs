@@ -77,6 +77,7 @@ if (settings.observe) {
           // !isUndefined
         ) {
           // isUndefined = true;
+          console.dir('undefined fire');
           node.querySelector('.default-close').click();
           setTimeout(() => {
             document.querySelector('.mobile-cart-box').click();
