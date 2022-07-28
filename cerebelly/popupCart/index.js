@@ -315,6 +315,7 @@ function init() {
         ) {
           fillCartData(document.querySelector('.modal'));
         } else {
+          document.querySelector('.mobile-cart-box').click();
           // initFill();
         }
       }, 1000);
