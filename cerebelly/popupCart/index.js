@@ -72,13 +72,13 @@ if (settings.observe) {
         if (
           node.classList.contains('undefined') &&
           node.querySelector('.cart-product') &&
-          !isUndefined
+          // !isUndefined
         ) {
-          isUndefined = true;
-          node.querySelector('.default-close').click();
+          // isUndefined = true;
+          // node.querySelector('.default-close').click();
           setTimeout(() => {
-            document.querySelector('.mobile-cart-box').click();
-            isUndefined = false;
+            // document.querySelector('.mobile-cart-box').click();
+            // isUndefined = false;
           }, 500);
         }
 
