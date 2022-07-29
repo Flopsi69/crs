@@ -472,6 +472,8 @@ function handleTopBanner() {
     item.classList.add('promo_bar-handled');
   }
 
+  var lastScrollTop = 0;
+
   window.onscroll = function () {
     if (
       (document.querySelector('.e-my-account .e-nav-link-submenu') &&
@@ -504,7 +506,6 @@ function handleTopBanner() {
       return false;
     }
 
-    var lastScrollTop = 0;
     var st = window.pageYOffset || document.documentElement.scrollTop;
 
     if (st > lastScrollTop) {
