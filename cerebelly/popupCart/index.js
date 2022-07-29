@@ -389,7 +389,8 @@ function handleTopBanner() {
   isScrollFired = true;
   window.onscroll = function () {
     if (
-      document.querySelector('.e-my-account .e-nav-link-submenu') ||
+      (document.querySelector('.e-my-account .e-nav-link-submenu') &&
+        location.pathname == '/shop') ||
       location.pathname != '/shop'
     ) {
       for (let item of document.querySelectorAll('#promo_bar')) {
@@ -397,18 +398,24 @@ function handleTopBanner() {
       }
 
       document.querySelector('body').classList.remove('lav-promo-hided');
-      if (
-        document.querySelector('.e-main-container') &&
-        location.pathname == '/shop'
-      ) {
+
+      document.body.classList.remove('body-static');
+
+      if (location.pathname == '/shop') {
         document
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
-      } else if (document.querySelectorAll('#promo_bar').length) {
-        document.querySelector('.e-main-container').classList.add('with-promo');
-      }
+      } else {
+        if (document.querySelector('.lav-sticky')) {
+          document.querySelector('.lav-sticky').remove();
+        }
 
-      document.body.classList.remove('body-static');
+        if (document.querySelectorAll('#promo_bar').length) {
+          document
+            .querySelector('.e-main-container')
+            .classList.add('with-promo');
+        }
+      }
 
       return false;
     }
@@ -419,6 +426,7 @@ function handleTopBanner() {
     ) {
       return false;
     }
+
     var st = window.pageYOffset || document.documentElement.scrollTop;
 
     if (st > lastScrollTop) {
