@@ -54,7 +54,6 @@ if (settings.observe) {
         console.dir();
         if (
           (node.closest('.modal') || node.classList.contains('modal')) &&
-          node.querySelector('.cart-product .title') &&
           !node.closest('.undefined') &&
           !node.classList.contains('undefined') &&
           !isProgress
@@ -62,13 +61,17 @@ if (settings.observe) {
           isProgress = true;
           console.dir('ShowProduct modal fire');
           setTimeout(() => {
-            fillCartData(document.querySelector('.modal'));
+            if (node.querySelector('.cart-product .title')) {
+              fillCartData(document.querySelector('.modal'));
+            }
+
             if (!document.querySelector('.lav-temp-init')) {
               gaEvent('Cart pop up shown');
-              setTimeout(() => {
-                isProgress = false;
-              }, 2500);
             }
+
+            setTimeout(() => {
+              isProgress = false;
+            }, 2500);
           }, 700);
         }
 
