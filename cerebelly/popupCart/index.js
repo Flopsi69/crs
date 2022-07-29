@@ -331,7 +331,7 @@ function init() {
           if (document.querySelector('.lav-sticky')) {
             document.querySelector('.lav-sticky').remove();
           }
-        } else {
+        } else if (!document.querySelector('.modal.undefined')) {
           document.querySelector('.mobile-cart-box').click();
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
