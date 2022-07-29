@@ -307,7 +307,7 @@ function countProducts() {
   // console.dir(products);
 
   handleSticky(products.price);
-  countQuantity(products.boxes);
+  countQuantity(Object.values(products.boxes));
 
   if (
     document.querySelector('.modal') &&
