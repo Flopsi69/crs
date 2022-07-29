@@ -304,6 +304,8 @@ function init() {
 function countProducts() {
   const products = JSON.parse(localStorage.v3Cart).cart;
 
+  console.dir(products);
+
   handleSticky(products.price);
   countQuantity(products.boxes);
 
