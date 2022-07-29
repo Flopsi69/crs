@@ -379,6 +379,19 @@ function handleTopBanner() {
   let lastScrollTop = 0;
 
   window.onscroll = function () {
+    if (document.querySelector('.e-my-account .e-nav-link-submenu')) {
+      document.querySelector('body').classList.remove('lav-promo-hided');
+      if (document.querySelector('.e-main-container')) {
+        document
+          .querySelector('.e-main-container')
+          .classList.remove('with-promo');
+      }
+
+      document.body.classList.remove('body-static');
+
+      return false;
+    }
+
     if (
       document.querySelector('.modal') &&
       document.querySelector('.modal .cart-product')
