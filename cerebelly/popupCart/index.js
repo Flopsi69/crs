@@ -321,6 +321,16 @@ function init() {
           !document.querySelector('.modal.undefined')
         ) {
           fillCartData(document.querySelector('.modal'));
+        } else if (
+          document.querySelector('.modal') &&
+          document
+            .querySelector('.modal .custom .button')
+            .innerText.toLowerCase() == 'shop all'
+        ) {
+          console.dir('Fire empty');
+          if (document.querySelector('.lav-sticky')) {
+            document.querySelector('.lav-sticky').remove();
+          }
         } else {
           document.querySelector('.mobile-cart-box').click();
           setTimeout(() => {
@@ -335,10 +345,6 @@ function init() {
               .querySelector('.modal .custom .button')
               .innerText.toLowerCase() == 'shop all'
           ) {
-            if (document.querySelector('.lav-sticky')) {
-              document.querySelector('.lav-sticky').remove();
-            }
-
             // if (
             //   document.querySelectorAll('.modal') &&
             //   document.querySelectorAll('.modal').length > 1
