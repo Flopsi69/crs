@@ -385,9 +385,15 @@ function handleTopBanner() {
   }
   isScrollFired = true;
   window.onscroll = function () {
-    if (document.querySelector('.e-my-account .e-nav-link-submenu')) {
+    if (
+      document.querySelector('.e-my-account .e-nav-link-submenu') ||
+      location.pathname != '/shop'
+    ) {
       document.querySelector('body').classList.remove('lav-promo-hided');
-      if (document.querySelector('.e-main-container')) {
+      if (
+        document.querySelector('.e-main-container') &&
+        location.pathname == '/shop'
+      ) {
         document
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
@@ -399,9 +405,8 @@ function handleTopBanner() {
     }
 
     if (
-      (document.querySelector('.modal') &&
-        document.querySelector('.modal .cart-product')) ||
-      location.pathname != '/shop'
+      document.querySelector('.modal') &&
+      document.querySelector('.modal .cart-product')
     ) {
       return false;
     }
