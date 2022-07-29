@@ -461,6 +461,7 @@ function handleTopBanner() {
 }
 
 function initFill() {
+  console.dir('initFill');
   document.body.classList.add('lav-temp-init');
   document.querySelector('.mobile-cart-box').click();
 
