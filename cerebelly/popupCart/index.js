@@ -304,7 +304,7 @@ function init() {
 function countProducts() {
   const products = JSON.parse(localStorage.v3Cart).cart;
 
-  console.dir(products);
+  // console.dir(products);
 
   handleSticky(products.price);
   countQuantity(products.boxes);
@@ -379,6 +379,7 @@ function handleSticky(price) {
 }
 
 function countQuantity(products) {
+  console.dir(products);
   if (!products.length) {
     document.querySelector('.mobile-cart-box').removeAttribute('data-count');
     return false;
@@ -398,6 +399,8 @@ function countQuantity(products) {
       totalCount += product.count;
     }
   });
+
+  console.dir(totalCount);
 
   document.querySelector('.mobile-cart-box').dataset.count = totalCount;
 }
