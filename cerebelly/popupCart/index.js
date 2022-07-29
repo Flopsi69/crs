@@ -325,7 +325,7 @@ function init() {
           document.querySelector('.modal') &&
           document
             .querySelector('.modal .custom .button')
-            .innerText.toLowerCase() == 'shop all'
+            ?.innerText.toLowerCase() == 'shop all'
         ) {
           console.dir('Fire empty');
           if (document.querySelector('.lav-sticky')) {
