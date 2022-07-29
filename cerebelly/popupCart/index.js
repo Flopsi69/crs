@@ -288,8 +288,8 @@ document.body.appendChild(stylesEl);
 function init() {
   console.dir('init');
   gaEvent('loaded');
-  // initFill();
-  setTimeout(initFill, 2000);
+  document.querySelector('body').classList.add('lav-temp-init');
+  setTimeout(initFill, 1700);
   if (window.innerWidth < 900) {
     setInterval(() => {
       handleTopBanner();
@@ -326,7 +326,6 @@ function init() {
           setTimeout(() => {
             fillCartData(document.querySelector('.modal'));
           }, 400);
-          // initFill();
         }
 
         setTimeout(() => {
