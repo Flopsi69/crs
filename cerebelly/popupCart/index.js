@@ -1,10 +1,5 @@
 console.dir('initExp');
 
-// TODO
-// Discount procent 15/25
-// hide and show sticky
-// checkout move ot tob bottom panel
-
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/cerebelly/popupCart',
@@ -43,15 +38,12 @@ function gaEvent(action, label) {
 // Observe
 let observer, observeTarget;
 let isProgress = false;
-let isUndefined = false;
 if (settings.observe) {
   observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // Code Here
-        console.dir();
         if (
           (node.closest('.modal') || node.classList.contains('modal')) &&
           !node.closest('.undefined') &&
@@ -59,38 +51,25 @@ if (settings.observe) {
           !isProgress
         ) {
           isProgress = true;
-          console.dir('ShowProduct modal fire');
+          gaEvent('Cart pop up shown');
           setTimeout(() => {
-            if (node.querySelector('.cart-product .title')) {
-              fillCartData(document.querySelector('.modal'));
-            }
-
-            if (!document.querySelector('.lav-temp-init')) {
-              gaEvent('Cart pop up shown');
-            }
-
-            setTimeout(() => {
-              isProgress = false;
-            }, 2500);
-          }, 700);
+            isProgress = false;
+          }, 2500);
         }
 
         if (
           node.classList.contains('undefined') &&
           node.classList.contains('modal')
-          // !isUndefined
         ) {
-          setTimeout(() => {
-            if (node.querySelector('.cart-wrapper')) {
-              console.dir('undefined fire');
-              node.querySelector('.default-close').click();
-              setTimeout(() => {
-                document.querySelector('.mobile-cart-box').click();
-                // isUndefined = false;
-              }, 50);
-            }
-          }, 100);
-          // isUndefined = true;
+          // setTimeout(() => {
+          if (node.querySelector('.cart-wrapper')) {
+            console.dir('undefined fire');
+            node.querySelector('.default-close').click();
+            setTimeout(() => {
+              document.querySelector('.mobile-cart-box').click();
+            }, 150);
+          }
+          // }, 100);
         }
 
         console.dir(node);
@@ -288,13 +267,13 @@ document.body.appendChild(stylesEl);
 function init() {
   console.dir('init');
   gaEvent('loaded');
-  document.querySelector('body').classList.add('lav-temp-init');
-  setTimeout(initFill, 1700);
-  if (window.innerWidth < 900) {
-    setInterval(() => {
+
+  setInterval(function () {
+    countProducts();
+    if (window.innerWidth < 900) {
       handleTopBanner();
-    }, 1500);
-  }
+    }
+  }, 1500);
 
   if (document.querySelector('.e-my-account')) {
     document
@@ -306,73 +285,168 @@ function init() {
 
   document.addEventListener('click', function (e) {
     if (
-      e.target.classList.contains('remove') ||
-      e.target.closest('.remove') ||
-      e.target.classList.contains('add') ||
-      e.target.closest('.add') ||
-      e.target.closest('.cart-product-reset')
+      e.target.classList.contains('continue') &&
+      e.target.closest('.modal .custom')
     ) {
-      // console.dir(e.target);
-
-      setTimeout(function () {
-        if (
-          document.querySelector('.modal') &&
-          document.querySelector('.modal .cart-product') &&
-          !document.querySelector('.modal.undefined')
-        ) {
-          fillCartData(document.querySelector('.modal'));
-        } else if (
-          document.querySelector('.modal') &&
-          document
-            .querySelector('.modal .custom .button')
-            ?.innerText.toLowerCase() == 'shop all'
-        ) {
-          console.dir('Fire empty');
-          if (document.querySelector('.lav-sticky')) {
-            document.querySelector('.lav-sticky').remove();
-          }
-        } else if (!document.querySelector('.modal.undefined')) {
-          document.querySelector('.mobile-cart-box').click();
-          setTimeout(() => {
-            fillCartData(document.querySelector('.modal'));
-          }, 400);
-        }
-
-        setTimeout(() => {
-          if (
-            document.querySelector('.modal .custom') &&
-            document
-              .querySelector('.modal .custom .button')
-              .innerText.toLowerCase() == 'shop all'
-          ) {
-            // if (
-            //   document.querySelectorAll('.modal') &&
-            //   document.querySelectorAll('.modal').length > 1
-            // ) {
-            //   document.querySelector('.modal').remove();
-            // }
-          }
-        }, 500);
-      }, 800);
+      gaEvent('Continue shopping in cart link click');
     }
 
-    if (!document.querySelector('.lav-temp-init')) {
-      if (
-        e.target.classList.contains('continue') &&
-        e.target.closest('.modal .custom')
-      ) {
-        gaEvent('Continue shopping in cart link click');
-      }
-
-      if (
-        (e.target.classList.contains('default-close') ||
-          e.target.closest('.default-close-container')) &&
-        !e.target.closest('.undefined')
-      ) {
-        gaEvent('Cart closed by X');
-      }
+    if (
+      (e.target.classList.contains('default-close') ||
+        e.target.closest('.default-close-container')) &&
+      !e.target.closest('.undefined')
+    ) {
+      gaEvent('Cart closed by X');
     }
   });
+}
+
+function countProducts() {
+  const products = JSON.parse(localStorage.v3Cart).cart;
+
+  handleSticky(products.price);
+  countQuantity(products.boxes);
+
+  if (
+    document.querySelector('.modal') &&
+    document.querySelector('.modal .cart-product') &&
+    !document.querySelector('.modal.undefined')
+  ) {
+    handleCartModal(products.price);
+  }
+}
+
+function handleSticky(price) {
+  const windowWidth = window.innerWidth;
+  if (
+    document.querySelector('.lav-sticky') &&
+    (!parseFloat(price) || (!location.pathname == '/shop' && windowWidth < 900))
+  ) {
+    document.querySelector('.lav-sticky').remove();
+    return false;
+  }
+
+  if (!document.querySelector('.lav-sticky')) {
+    const procentDiscount = document.querySelector('.e-my-account span')
+      ? 15
+      : 25;
+
+    if (windowWidth < 900) {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `
+        <div class='lav-sticky lav-sticky_hide'>
+          <div class='lav-sticky__price'>$${price}</div>
+          <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
+        </div>
+        `
+      );
+    } else if (document.querySelector('.mobile-cart-box')) {
+      document.querySelector('.mobile-cart-box').insertAdjacentHTML(
+        'afterend',
+        `
+        <div class='lav-sticky'>
+          <div class='lav-sticky__price'>$${price}</div>
+          <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
+        </div>
+        `
+      );
+    }
+
+    document
+      .querySelector('.lav-sticky__btn')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        gaEvent('Checkout Now sticky click');
+        location.href = '/cart';
+      });
+  }
+
+  if (windowWidth < 900) {
+    if (
+      document.querySelector('.modal .custom') &&
+      document.querySelector('.modal .cart-product')
+    ) {
+      document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
+    } else {
+      document.querySelector('.lav-sticky').classList.remove('lav-sticky_hide');
+    }
+  }
+
+  document.querySelector('.lav-sticky__price').innerText = '$' + price;
+}
+
+function countQuantity(products) {
+  if (!products.length) {
+    document.querySelector('.mobile-cart-box').removeAttribute('data-count');
+    return false;
+  }
+
+  let totalCount = 0;
+
+  products.forEach((product) => {
+    if (product.productCount) {
+      totalCount += product.productCount;
+    } else if (
+      product.title.toLowerCase().includes('bundle') ||
+      product.type.toLowerCase().includes('bundle')
+    ) {
+      totalCount++;
+    } else {
+      totalCount += product.count;
+    }
+  });
+
+  document.querySelector('.mobile-cart-box').dataset.count = totalCount;
+}
+
+function handleCartModal(price) {
+  if (!document.querySelector('.lav-checkout')) {
+    const procentDiscount = document.querySelector('.e-my-account span')
+      ? 15
+      : 25;
+
+    document
+      .querySelector('.modal .checkout')
+      .insertAdjacentHTML(
+        'beforebegin',
+        `<button tabindex="0" class="button primary red lav-checkout">CHECKOUT NOW - GET ${procentDiscount}% OFF</button>`
+      );
+
+    document
+      .querySelector('.lav-checkout')
+      .addEventListener('click', function () {
+        gaEvent('Checkout Now CTA cick in cart');
+        document.querySelector('.modal .checkout').click();
+      });
+  }
+
+  if (price > 45) {
+    document
+      .querySelector('.cart-product-wrapper')
+      .classList.add('cart-product-wrapper_free');
+
+    if (!document.querySelector('.lav-free-shipping')) {
+      document.querySelector('.lav-checkout').insertAdjacentHTML(
+        'beforebegin',
+        `
+        <div class='lav-free-shipping'>
+          <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.28569 6.42845H8.99981V7.71414H1.28569V6.42845ZM0 3.21423H6.42844V4.49992H0V3.21423Z" fill="#3956A7"/>
+            <path d="M17.9481 6.818L16.0196 2.31809C15.9701 2.20243 15.8877 2.10386 15.7827 2.0346C15.6776 1.96535 15.5546 1.92846 15.4288 1.92853H13.5003V0.642844C13.5003 0.472351 13.4325 0.308841 13.312 0.188285C13.1914 0.0677281 13.0279 0 12.8574 0H2.57191V1.28569H12.2146V9.35723C11.9216 9.52733 11.6653 9.75373 11.4603 10.0234C11.2553 10.293 11.1057 10.6006 11.0202 10.9283H6.98053C6.82407 10.3224 6.45197 9.79425 5.93398 9.44299C5.41599 9.09173 4.78767 8.94145 4.1668 9.02031C3.54594 9.09917 2.97514 9.40176 2.56142 9.87136C2.14769 10.341 1.91943 10.9453 1.91943 11.5712C1.91943 12.197 2.14769 12.8014 2.56142 13.271C2.97514 13.7406 3.54594 14.0432 4.1668 14.1221C4.78767 14.2009 5.41599 14.0506 5.93398 13.6994C6.45197 13.3481 6.82407 12.82 6.98053 12.214H11.0202C11.16 12.7657 11.4798 13.2551 11.929 13.6046C12.3782 13.9541 12.9311 14.1439 13.5003 14.1439C14.0694 14.1439 14.6223 13.9541 15.0715 13.6046C15.5207 13.2551 15.8405 12.7657 15.9803 12.214H17.3573C17.5278 12.214 17.6913 12.1463 17.8119 12.0257C17.9324 11.9052 18.0002 11.7417 18.0002 11.5712V7.07128C18.0002 6.98419 17.9825 6.89801 17.9481 6.818V6.818ZM4.50044 12.8569C4.24616 12.8569 3.99758 12.7815 3.78615 12.6402C3.57472 12.4989 3.40993 12.2981 3.31262 12.0632C3.21531 11.8283 3.18985 11.5698 3.23946 11.3204C3.28907 11.071 3.41152 10.8419 3.59132 10.6621C3.77113 10.4823 4.00022 10.3598 4.24962 10.3102C4.49901 10.2606 4.75752 10.2861 4.99245 10.3834C5.22738 10.4807 5.42818 10.6455 5.56945 10.8569C5.71072 11.0683 5.78613 11.3169 5.78613 11.5712C5.78579 11.9121 5.65022 12.2389 5.40918 12.4799C5.16814 12.721 4.84132 12.8565 4.50044 12.8569V12.8569ZM13.5003 3.21422H15.0045L16.3828 6.42844H13.5003V3.21422ZM13.5003 12.8569C13.246 12.8569 12.9974 12.7815 12.786 12.6402C12.5745 12.4989 12.4097 12.2981 12.3124 12.0632C12.2151 11.8283 12.1897 11.5698 12.2393 11.3204C12.2889 11.071 12.4113 10.8419 12.5911 10.6621C12.7709 10.4823 13 10.3598 13.2494 10.3102C13.4988 10.2606 13.7573 10.2861 13.9923 10.3834C14.2272 10.4807 14.428 10.6455 14.5693 10.8569C14.7105 11.0683 14.7859 11.3169 14.7859 11.5712C14.7856 11.9121 14.65 12.2389 14.409 12.4799C14.168 12.721 13.8411 12.8565 13.5003 12.8569ZM16.7145 10.9283H15.9803C15.8387 10.3777 15.5184 9.88962 15.0696 9.54061C14.6208 9.1916 14.0688 9.00139 13.5003 8.99981V7.71413H16.7145V10.9283Z" fill="#3956A7"/>
+          </svg>
+        
+          Your order qualifies for&nbsp;<span>FREE</span>&nbsp;Shipping
+        </div>
+      `
+      );
+    }
+  } else if (document.querySelector('.lav-free-shipping')) {
+    document
+      .querySelector('.cart-product-wrapper')
+      .classList.remove('cart-product-wrapper_free');
+    document.querySelector('.lav-free-shipping').remove();
+  }
 }
 
 let isScrollFired = false;
@@ -385,16 +459,16 @@ function handleTopBanner() {
     return false;
   }
 
+  if (isScrollFired) {
+    return false;
+  }
+
+  isScrollFired = true;
+
   for (let item of document.querySelectorAll('#promo_bar')) {
     item.classList.add('promo_bar-handled');
   }
 
-  let lastScrollTop = 0;
-
-  if (isScrollFired) {
-    return false;
-  }
-  isScrollFired = true;
   window.onscroll = function () {
     if (
       (document.querySelector('.e-my-account .e-nav-link-submenu') &&
@@ -414,9 +488,9 @@ function handleTopBanner() {
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
       } else {
-        if (document.querySelector('.lav-sticky')) {
-          document.querySelector('.lav-sticky').remove();
-        }
+        // if (document.querySelector('.lav-sticky')) {
+        //   document.querySelector('.lav-sticky').remove();
+        // }
 
         if (document.querySelectorAll('#promo_bar').length) {
           document
@@ -436,6 +510,7 @@ function handleTopBanner() {
     }
 
     var st = window.pageYOffset || document.documentElement.scrollTop;
+    let lastScrollTop = 0;
 
     if (st > lastScrollTop) {
       for (let item of document.querySelectorAll('#promo_bar')) {
@@ -458,147 +533,4 @@ function handleTopBanner() {
 
     lastScrollTop = st <= 0 ? 0 : st;
   };
-}
-
-function initFill() {
-  console.dir('initFill');
-  document.body.classList.add('lav-temp-init');
-  document.querySelector('.mobile-cart-box').click();
-
-  setTimeout(() => {
-    document.querySelector('.default-close').click();
-    setTimeout(() => {
-      document.body.classList.remove('lav-temp-init');
-    }, 500);
-  }, 2700);
-}
-
-function fillCartData(parent) {
-  if (!parent || !parent.querySelector('.custom .cart-product')) return false;
-
-  console.dir('fillCartData');
-  console.dir(parent);
-
-  if (window.innerWidth < 900 && document.querySelector('.lav-sticky')) {
-    document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
-  }
-
-  let procentDiscount = 25;
-  if (document.querySelector('.e-my-account span')) {
-    procentDiscount = 15;
-  }
-
-  if (!parent.querySelector('.lav-checkout')) {
-    parent
-      .querySelector('.checkout')
-      .insertAdjacentHTML(
-        'beforebegin',
-        `<button tabindex="0" class="button primary red lav-checkout">CHECKOUT NOW - GET ${procentDiscount}% OFF</button>`
-      );
-
-    parent
-      .querySelector('.lav-checkout')
-      .addEventListener('click', function () {
-        gaEvent('Checkout Now CTA cick in cart');
-        parent.querySelector('.checkout').click();
-      });
-  }
-
-  const totalCartPrice = +Array.from(
-    parent.querySelectorAll('.custom .product-price')
-  )
-    .reduce((prev, curr) => {
-      return prev + +parseFloat(curr.innerText.replace('$', '')).toFixed(2);
-    }, 0)
-    .toFixed(2);
-
-  const totalCartCount = Array.from(
-    document.querySelectorAll('.modal .custom .cart-product')
-  ).reduce((prev, curr) => {
-    return (
-      prev +
-      (curr.querySelector('input')
-        ? parseInt(curr.querySelector('input').value)
-        : 1)
-    );
-  }, 0);
-
-  if (totalCartPrice > 45) {
-    parent
-      .querySelector('.cart-product-wrapper')
-      .classList.add('cart-product-wrapper_free');
-    if (!document.querySelector('.lav-free-shipping')) {
-      parent.querySelector('.lav-checkout').insertAdjacentHTML(
-        'beforebegin',
-        `
-      <div class='lav-free-shipping'>
-        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.28569 6.42845H8.99981V7.71414H1.28569V6.42845ZM0 3.21423H6.42844V4.49992H0V3.21423Z" fill="#3956A7"/>
-          <path d="M17.9481 6.818L16.0196 2.31809C15.9701 2.20243 15.8877 2.10386 15.7827 2.0346C15.6776 1.96535 15.5546 1.92846 15.4288 1.92853H13.5003V0.642844C13.5003 0.472351 13.4325 0.308841 13.312 0.188285C13.1914 0.0677281 13.0279 0 12.8574 0H2.57191V1.28569H12.2146V9.35723C11.9216 9.52733 11.6653 9.75373 11.4603 10.0234C11.2553 10.293 11.1057 10.6006 11.0202 10.9283H6.98053C6.82407 10.3224 6.45197 9.79425 5.93398 9.44299C5.41599 9.09173 4.78767 8.94145 4.1668 9.02031C3.54594 9.09917 2.97514 9.40176 2.56142 9.87136C2.14769 10.341 1.91943 10.9453 1.91943 11.5712C1.91943 12.197 2.14769 12.8014 2.56142 13.271C2.97514 13.7406 3.54594 14.0432 4.1668 14.1221C4.78767 14.2009 5.41599 14.0506 5.93398 13.6994C6.45197 13.3481 6.82407 12.82 6.98053 12.214H11.0202C11.16 12.7657 11.4798 13.2551 11.929 13.6046C12.3782 13.9541 12.9311 14.1439 13.5003 14.1439C14.0694 14.1439 14.6223 13.9541 15.0715 13.6046C15.5207 13.2551 15.8405 12.7657 15.9803 12.214H17.3573C17.5278 12.214 17.6913 12.1463 17.8119 12.0257C17.9324 11.9052 18.0002 11.7417 18.0002 11.5712V7.07128C18.0002 6.98419 17.9825 6.89801 17.9481 6.818V6.818ZM4.50044 12.8569C4.24616 12.8569 3.99758 12.7815 3.78615 12.6402C3.57472 12.4989 3.40993 12.2981 3.31262 12.0632C3.21531 11.8283 3.18985 11.5698 3.23946 11.3204C3.28907 11.071 3.41152 10.8419 3.59132 10.6621C3.77113 10.4823 4.00022 10.3598 4.24962 10.3102C4.49901 10.2606 4.75752 10.2861 4.99245 10.3834C5.22738 10.4807 5.42818 10.6455 5.56945 10.8569C5.71072 11.0683 5.78613 11.3169 5.78613 11.5712C5.78579 11.9121 5.65022 12.2389 5.40918 12.4799C5.16814 12.721 4.84132 12.8565 4.50044 12.8569V12.8569ZM13.5003 3.21422H15.0045L16.3828 6.42844H13.5003V3.21422ZM13.5003 12.8569C13.246 12.8569 12.9974 12.7815 12.786 12.6402C12.5745 12.4989 12.4097 12.2981 12.3124 12.0632C12.2151 11.8283 12.1897 11.5698 12.2393 11.3204C12.2889 11.071 12.4113 10.8419 12.5911 10.6621C12.7709 10.4823 13 10.3598 13.2494 10.3102C13.4988 10.2606 13.7573 10.2861 13.9923 10.3834C14.2272 10.4807 14.428 10.6455 14.5693 10.8569C14.7105 11.0683 14.7859 11.3169 14.7859 11.5712C14.7856 11.9121 14.65 12.2389 14.409 12.4799C14.168 12.721 13.8411 12.8565 13.5003 12.8569ZM16.7145 10.9283H15.9803C15.8387 10.3777 15.5184 9.88962 15.0696 9.54061C14.6208 9.1916 14.0688 9.00139 13.5003 8.99981V7.71413H16.7145V10.9283Z" fill="#3956A7"/>
-        </svg>
-      
-        Your order qualifies for&nbsp;<span>FREE</span>&nbsp;Shipping
-      </div>
-    `
-      );
-    }
-  } else if (document.querySelector('.lav-free-shipping')) {
-    parent
-      .querySelector('.cart-product-wrapper')
-      .classList.remove('cart-product-wrapper_free');
-    document.querySelector('.lav-free-shipping').remove();
-  }
-
-  if (totalCartPrice > 0) {
-    if (
-      !document.querySelector('.lav-sticky') &&
-      location.pathname == '/shop'
-    ) {
-      if (
-        window.innerWidth > 900 &&
-        document.querySelector('.mobile-cart-box')
-      ) {
-        document.querySelector('.mobile-cart-box').insertAdjacentHTML(
-          'afterend',
-          `
-          <div class='lav-sticky'>
-            <div class='lav-sticky__price'>$${totalCartPrice}</div>
-            <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
-          </div>
-          `
-        );
-      } else {
-        document.body.insertAdjacentHTML(
-          'beforeend',
-          `
-          <div class='lav-sticky lav-sticky_hide'>
-            <div class='lav-sticky__price'>$${totalCartPrice}</div>
-            <button class='lav-sticky__btn button primary red'>CHECKOUT NOW - GET ${procentDiscount}% OFF</button>
-          </div>
-          `
-        );
-      }
-
-      document
-        .querySelector('.lav-sticky__btn')
-        .addEventListener('click', function (e) {
-          e.preventDefault();
-          gaEvent('Checkout Now sticky click');
-          location.href = '/cart';
-        });
-    }
-
-    if (document.querySelector('.lav-sticky__price')) {
-      document.querySelector('.lav-sticky__price').innerHTML =
-        '$' + totalCartPrice;
-    }
-  } else if (document.querySelector('.lav-sticky')) {
-    document.querySelector('.lav-sticky').remove();
-  }
-
-  if (totalCartCount > 0) {
-    document.querySelector('.mobile-cart-box').dataset.count = totalCartCount;
-  } else {
-    document.querySelector('.mobile-cart-box').removeAttribute('data-count');
-  }
 }
