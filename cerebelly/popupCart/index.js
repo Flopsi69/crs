@@ -312,7 +312,7 @@ function init() {
       e.target.closest('.add') ||
       e.target.closest('.cart-product-reset')
     ) {
-      console.dir(e.target);
+      // console.dir(e.target);
 
       setTimeout(function () {
         if (
