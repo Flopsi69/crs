@@ -135,6 +135,9 @@ const styles = `
   .body-static .element-filter {
     position: static!important;
   }
+  .e-main-container.with-promo .b-header {
+    background: #3856a7;
+  }
   .modal .custom .checkout {
     font-weight: 700!important;
     letter-spacing: 0.05em!important;
@@ -401,6 +404,8 @@ function handleTopBanner() {
         document
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
+      } else if (document.querySelectorAll('#promo_bar').length) {
+        document.querySelector('.e-main-container').classList.add('with-promo');
       }
 
       document.body.classList.remove('body-static');
