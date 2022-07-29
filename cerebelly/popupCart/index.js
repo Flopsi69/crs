@@ -389,6 +389,10 @@ function handleTopBanner() {
       document.querySelector('.e-my-account .e-nav-link-submenu') ||
       location.pathname != '/shop'
     ) {
+      for (let item of document.querySelectorAll('#promo_bar')) {
+        item.classList.remove('promo_bar-hide');
+      }
+
       document.querySelector('body').classList.remove('lav-promo-hided');
       if (
         document.querySelector('.e-main-container') &&
