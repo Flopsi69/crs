@@ -340,12 +340,12 @@ function init() {
               document.querySelector('.lav-sticky').remove();
             }
 
-            if (
-              document.querySelectorAll('.modal') &&
-              document.querySelectorAll('.modal').length > 1
-            ) {
-              document.querySelector('.modal').remove();
-            }
+            // if (
+            //   document.querySelectorAll('.modal') &&
+            //   document.querySelectorAll('.modal').length > 1
+            // ) {
+            //   document.querySelector('.modal').remove();
+            // }
           }
         }, 500);
       }, 500);
