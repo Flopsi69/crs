@@ -458,10 +458,6 @@ function handleCartModal(price) {
 let isScrollFired = false;
 
 function handleTopBanner() {
-  for (let item of document.querySelectorAll('#promo_bar')) {
-    item.classList.add('promo_bar-handled');
-  }
-
   if (
     isScrollFired ||
     !document.querySelector('#promo_bar') ||
@@ -471,6 +467,10 @@ function handleTopBanner() {
   }
 
   isScrollFired = true;
+
+  for (let item of document.querySelectorAll('#promo_bar')) {
+    item.classList.add('promo_bar-handled');
+  }
 
   window.onscroll = function () {
     if (
