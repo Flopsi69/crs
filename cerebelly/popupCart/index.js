@@ -273,7 +273,7 @@ function init() {
     if (window.innerWidth < 900) {
       handleTopBanner();
     }
-  }, 1500);
+  }, 1000);
 
   if (document.querySelector('.e-my-account')) {
     document
@@ -328,6 +328,10 @@ function handleSticky(price) {
     return false;
   }
 
+  if (!parseFloat(price)) {
+    return false;
+  }
+
   if (!document.querySelector('.lav-sticky')) {
     const procentDiscount = document.querySelector('.e-my-account span')
       ? 15
@@ -379,7 +383,6 @@ function handleSticky(price) {
 }
 
 function countQuantity(products) {
-  console.dir(products);
   if (!products.length) {
     document.querySelector('.mobile-cart-box').removeAttribute('data-count');
     return false;
@@ -399,8 +402,6 @@ function countQuantity(products) {
       totalCount += product.count;
     }
   });
-
-  console.dir(totalCount);
 
   document.querySelector('.mobile-cart-box').dataset.count = totalCount;
 }
@@ -457,22 +458,19 @@ function handleCartModal(price) {
 let isScrollFired = false;
 
 function handleTopBanner() {
+  for (let item of document.querySelectorAll('#promo_bar')) {
+    item.classList.add('promo_bar-handled');
+  }
+
   if (
+    isScrollFired ||
     !document.querySelector('#promo_bar') ||
     document.querySelector('.promo_bar-handled')
   ) {
     return false;
   }
 
-  if (isScrollFired) {
-    return false;
-  }
-
   isScrollFired = true;
-
-  for (let item of document.querySelectorAll('#promo_bar')) {
-    item.classList.add('promo_bar-handled');
-  }
 
   window.onscroll = function () {
     if (
@@ -492,16 +490,8 @@ function handleTopBanner() {
         document
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
-      } else {
-        // if (document.querySelector('.lav-sticky')) {
-        //   document.querySelector('.lav-sticky').remove();
-        // }
-
-        if (document.querySelectorAll('#promo_bar').length) {
-          document
-            .querySelector('.e-main-container')
-            .classList.add('with-promo');
-        }
+      } else if (document.querySelectorAll('#promo_bar').length) {
+        document.querySelector('.e-main-container').classList.add('with-promo');
       }
 
       return false;
@@ -514,8 +504,8 @@ function handleTopBanner() {
       return false;
     }
 
+    var lastScrollTop = 0;
     var st = window.pageYOffset || document.documentElement.scrollTop;
-    let lastScrollTop = 0;
 
     if (st > lastScrollTop) {
       for (let item of document.querySelectorAll('#promo_bar')) {
