@@ -371,7 +371,8 @@ function handleSticky(price) {
   if (windowWidth < 900) {
     if (
       document.querySelector('.modal .custom') &&
-      document.querySelector('.modal .cart-product')
+      document.querySelector('.modal .cart-product') &&
+      !document.querySelector('.modal.undefined')
     ) {
       document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
     } else {
@@ -395,7 +396,8 @@ function countQuantity(products) {
       totalCount += product.productCount;
     } else if (
       product.title.toLowerCase().includes('bundle') ||
-      product.type.toLowerCase().includes('bundle')
+      product.type.toLowerCase().includes('bundle') ||
+      product.type.toLowerCase().includes('personalized')
     ) {
       totalCount++;
     } else {
