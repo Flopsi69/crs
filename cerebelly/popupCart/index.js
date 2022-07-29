@@ -343,16 +343,6 @@ function init() {
           }
         }, 500);
       }, 500);
-
-      // setTimeout(function () {
-      //   if (
-      //     document.querySelector('.modal') &&
-      //     document.querySelector('.modal .cart-product') &&
-      //     !document.querySelector('.modal.undefined')
-      //   ) {
-      //     fillCartData(document.querySelector('.modal'));
-      //   }
-      // }, 1500);
     }
 
     if (!document.querySelector('.lav-temp-init')) {
@@ -389,6 +379,12 @@ function handleTopBanner() {
   let lastScrollTop = 0;
 
   window.onscroll = function () {
+    if (
+      document.querySelector('.modal') &&
+      document.querySelector('.modal .cart-product')
+    ) {
+      return false;
+    }
     var st = window.pageYOffset || document.documentElement.scrollTop;
 
     if (st > lastScrollTop) {
