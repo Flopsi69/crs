@@ -353,7 +353,7 @@ function init() {
             // }
           }
         }, 500);
-      }, 500);
+      }, 800);
     }
 
     if (!document.querySelector('.lav-temp-init')) {
