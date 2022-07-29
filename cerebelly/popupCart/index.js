@@ -364,6 +364,8 @@ function init() {
   });
 }
 
+let isScrollFired = false;
+
 function handleTopBanner() {
   if (
     !document.querySelector('#promo_bar') ||
@@ -378,6 +380,10 @@ function handleTopBanner() {
 
   let lastScrollTop = 0;
 
+  if (isScrollFired) {
+    return false;
+  }
+  isScrollFired = true;
   window.onscroll = function () {
     if (document.querySelector('.e-my-account .e-nav-link-submenu')) {
       document.querySelector('body').classList.remove('lav-promo-hided');
@@ -393,8 +399,9 @@ function handleTopBanner() {
     }
 
     if (
-      document.querySelector('.modal') &&
-      document.querySelector('.modal .cart-product')
+      (document.querySelector('.modal') &&
+        document.querySelector('.modal .cart-product')) ||
+      location.pathname != '/shop'
     ) {
       return false;
     }
