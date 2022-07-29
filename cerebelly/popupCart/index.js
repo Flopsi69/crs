@@ -93,7 +93,7 @@ if (settings.observe) {
           // isUndefined = true;
         }
 
-        // console.dir(node);
+        console.dir(node);
       }
 
       for (let node of mutation.removedNodes) {
