@@ -321,14 +321,12 @@ function countProducts() {
 function handleSticky(price) {
   const windowWidth = window.innerWidth;
   if (
-    document.querySelector('.lav-sticky') &&
-    (!parseFloat(price) || (location.pathname != '/shop' && windowWidth < 900))
+    !parseFloat(price) ||
+    (location.pathname != '/shop' && windowWidth < 900)
   ) {
-    document.querySelector('.lav-sticky').remove();
-    return false;
-  }
-
-  if (!parseFloat(price)) {
+    if (document.querySelector('.lav-sticky')) {
+      document.querySelector('.lav-sticky').remove();
+    }
     return false;
   }
 
