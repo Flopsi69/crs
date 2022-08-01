@@ -69,7 +69,21 @@ if (settings.observe) {
 
 // Styles
 const styles = `
-  
+  @media (min-width: 992px) and (max-width: 1430px) {
+    .plan__subscr-val {
+      display: block!important;
+    }
+    .plan__subscr-val span {
+      display: block!important;
+    }
+    .plan__subscr-val span:first-child {
+      margin-bottom: 5px;
+    }
+    .plan__summary {
+      padding-left: 15px!important;
+      padding-right: 15px!important;
+    }
+  }
 `;
 
 const stylesEl = document.createElement('style');
