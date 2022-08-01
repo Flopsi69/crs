@@ -284,9 +284,15 @@ function init() {
   }
 
   document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('mobile-cart-box')) {
+    if (
+      (e.target.classList.contains('mobile-cart-box') ||
+        e.target.closest('.mobile-cart-box')) &&
+      e.target.closest('.modal:not(.undefined')
+    ) {
+      console.dir('CartFire');
       gaEvent('Cart icon clicked');
     }
+
     if (
       e.target.classList.contains('continue') &&
       e.target.closest('.modal .custom')
