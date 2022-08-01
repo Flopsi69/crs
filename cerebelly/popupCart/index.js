@@ -61,15 +61,15 @@ if (settings.observe) {
           node.classList.contains('undefined') &&
           node.classList.contains('modal')
         ) {
-          // setTimeout(() => {
-          if (node.querySelector('.cart-wrapper')) {
-            console.dir('undefined fire');
-            node.querySelector('.default-close').click();
-            setTimeout(() => {
-              document.querySelector('.mobile-cart-box').click();
-            }, 150);
-          }
-          // }, 100);
+          setTimeout(() => {
+            if (node.querySelector('.cart-wrapper')) {
+              console.dir('undefined fire');
+              node.querySelector('.default-close').click();
+              setTimeout(() => {
+                document.querySelector('.mobile-cart-box').click();
+              }, 150);
+            }
+          }, 150);
         }
 
         console.dir(node);
