@@ -284,6 +284,9 @@ function init() {
   }
 
   document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('mobile-cart-box')) {
+      gaEvent('Cart icon clicked');
+    }
     if (
       e.target.classList.contains('continue') &&
       e.target.closest('.modal .custom')
