@@ -284,10 +284,12 @@ function init() {
   }
 
   document.addEventListener('click', function (e) {
+    console.dir('e.target');
+    console.dir(e.target);
     if (
       (e.target.classList.contains('mobile-cart-box') ||
         e.target.closest('.mobile-cart-box')) &&
-      e.target.closest('.modal:not(.undefined')
+      e.target.closest('.modal:not(.undefined)')
     ) {
       console.dir('CartFire');
       gaEvent('Cart icon clicked');
