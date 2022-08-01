@@ -7,31 +7,6 @@ const settings = {
   observe: false,
 };
 
-//Hotjar
-if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
-}
-
 // Alalytic
 function gaEvent(action, label) {
   if (!label) {
@@ -138,9 +113,27 @@ function initMainPage() {
         });
       }
 
-      for (let item of document.querySelectorAll('.plan__btn')) {
+      for (let item of document.querySelectorAll('.plan__details')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on block', 'More details under CTA selected');
+        });
+      }
+
+      for (let item of document.querySelectorAll('.plan_basic .plan__btn')) {
         item.addEventListener('click', function () {
           gaEvent('click on CTA', 'Buy Standard DNA Bundle');
+        });
+      }
+
+      for (let item of document.querySelectorAll('.plan_best .plan__btn')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on CTA', 'Buy Deep DNA Bundle');
+        });
+      }
+
+      for (let item of document.querySelectorAll('.plan_ultra .plan__btn')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on CTA', 'Buy UltraDeep DNA Bundle');
         });
       }
 
@@ -150,17 +143,11 @@ function initMainPage() {
         });
       }
 
-      for (let item of document.querySelectorAll('.plan__option_modal')) {
-        item.addEventListener('click', function () {
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('plan__option_modal')) {
           gaEvent('click on link', 'Nebula Membership info');
-        });
-      }
-
-      for (let item of document.querySelectorAll('.plan__option_modal')) {
-        item.addEventListener('click', function () {
-          gaEvent('click on link', 'Nebula Explore™ Reporting Membership link');
-        });
-      }
+        }
+      });
 
       for (let item of document.querySelectorAll('.plan__subscr-item')) {
         item.addEventListener('click', function () {
