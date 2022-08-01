@@ -289,7 +289,7 @@ function init() {
     if (
       (e.target.classList.contains('mobile-cart-box') ||
         e.target.closest('.mobile-cart-box')) &&
-      e.target.closest('.modal:not(.undefined)')
+      e.target.closest('.e-header-inner')
     ) {
       console.dir('CartFire');
       gaEvent('Cart icon clicked');
