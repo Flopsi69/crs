@@ -424,7 +424,8 @@ function handleCartModal(price) {
       .querySelector('.lav-checkout')
       .addEventListener('click', function () {
         gaEvent('Checkout Now CTA cick in cart');
-        document.querySelector('.modal:not(.undefined) .checkout').click();
+        // document.querySelector('.modal:not(.undefined) .checkout').click();
+        location.href = '/cart';
       });
   }
 
