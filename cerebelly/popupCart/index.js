@@ -75,20 +75,20 @@ if (settings.observe) {
         console.dir(node);
       }
 
-      for (let node of mutation.removedNodes) {
-        if (!(node instanceof HTMLElement)) continue;
+      // for (let node of mutation.removedNodes) {
+      //   if (!(node instanceof HTMLElement)) continue;
 
-        if (
-          node.classList.contains('modal') &&
-          !document.querySelector('.modal') &&
-          window.innerWidth < 900 &&
-          document.querySelector('.lav-sticky_hide')
-        ) {
-          document
-            .querySelector('.lav-sticky_hide')
-            .classList.remove('lav-sticky_hide');
-        }
-      }
+      //   if (
+      //     node.classList.contains('modal') &&
+      //     !document.querySelector('.modal') &&
+      //     window.innerWidth < 900 &&
+      //     document.querySelector('.lav-sticky_hide')
+      //   ) {
+      //     document
+      //       .querySelector('.lav-sticky_hide')
+      //       .classList.remove('lav-sticky_hide');
+      //   }
+      // }
     }
   });
 
@@ -312,7 +312,7 @@ function countProducts() {
   if (
     document.querySelector('.modal') &&
     document.querySelector('.modal .cart-product') &&
-    !document.querySelector('.modal.undefined')
+    document.querySelector('.modal:not(.undefined)')
   ) {
     handleCartModal(products.price);
   }
@@ -370,7 +370,7 @@ function handleSticky(price) {
     if (
       document.querySelector('.modal .custom') &&
       document.querySelector('.modal .cart-product') &&
-      !document.querySelector('.modal.undefined')
+      document.querySelector('.modal:not(.undefined)')
     ) {
       document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
     } else {
@@ -407,13 +407,14 @@ function countQuantity(products) {
 }
 
 function handleCartModal(price) {
+  console.dir('handleCartModal');
   if (!document.querySelector('.lav-checkout')) {
     const procentDiscount = document.querySelector('.e-my-account span')
       ? 15
       : 25;
 
     document
-      .querySelector('.modal .checkout')
+      .querySelector('.modal:not(.undefined) .checkout')
       .insertAdjacentHTML(
         'beforebegin',
         `<button tabindex="0" class="button primary red lav-checkout">CHECKOUT NOW - GET ${procentDiscount}% OFF</button>`
@@ -423,7 +424,7 @@ function handleCartModal(price) {
       .querySelector('.lav-checkout')
       .addEventListener('click', function () {
         gaEvent('Checkout Now CTA cick in cart');
-        document.querySelector('.modal .checkout').click();
+        document.querySelector('.modal:not(.undefined) .checkout').click();
       });
   }
 
@@ -500,8 +501,8 @@ function handleTopBanner() {
     }
 
     if (
-      document.querySelector('.modal') &&
-      document.querySelector('.modal .cart-product')
+      document.querySelector('.modal:not(.undefined)') &&
+      document.querySelector('.modal:not(.undefined) .cart-product')
     ) {
       return false;
     }
