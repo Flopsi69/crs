@@ -67,9 +67,9 @@ if (settings.observe) {
               node.querySelector('.default-close').click();
               setTimeout(() => {
                 document.querySelector('.mobile-cart-box').click();
-              }, 150);
+              }, 200);
             }
-          }, 150);
+          }, 350);
         }
 
         console.dir(node);
