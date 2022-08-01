@@ -138,6 +138,24 @@ function initMainPage() {
         });
       }
 
+      for (let item of document.querySelectorAll('.plan__btn')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on CTA', 'Buy Standard DNA Bundle');
+        });
+      }
+
+      for (let item of document.querySelectorAll('.plan-tip__descr span')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on link', 'Return policy on tooltip');
+        });
+      }
+
+      for (let item of document.querySelectorAll('.plan__option_modal')) {
+        item.addEventListener('click', function () {
+          gaEvent('click on link', 'Nebula Membership info');
+        });
+      }
+
       for (let item of document.querySelectorAll('.plan__option_modal')) {
         item.addEventListener('click', function () {
           gaEvent('click on link', 'Nebula Explore™ Reporting Membership link');
