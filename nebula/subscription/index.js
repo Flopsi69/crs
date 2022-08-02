@@ -119,33 +119,59 @@ function initMainPage() {
         });
       }
 
-      for (let item of document.querySelectorAll('.plan_basic .plan__btn')) {
-        item.addEventListener('click', function () {
-          gaEvent('click on CTA', 'Buy Standard DNA Bundle');
-        });
-      }
+      if (false && window.innerWidth > 992) {
+        for (let item of document.querySelectorAll('.plan_basic .plan__btn')) {
+          item.addEventListener('click', function () {
+            gaEvent('click on CTA', 'Buy Standard DNA Bundle');
+          });
+        }
 
-      for (let item of document.querySelectorAll('.plan_best .plan__btn')) {
-        item.addEventListener('click', function () {
-          gaEvent('click on CTA', 'Buy Deep DNA Bundle');
-        });
-      }
+        for (let item of document.querySelectorAll('.plan_best .plan__btn')) {
+          item.addEventListener('click', function () {
+            gaEvent('click on CTA', 'Buy Deep DNA Bundle');
+          });
+        }
 
-      for (let item of document.querySelectorAll('.plan_ultra .plan__btn')) {
-        item.addEventListener('click', function () {
-          gaEvent('click on CTA', 'Buy UltraDeep DNA Bundle');
-        });
-      }
-
-      for (let item of document.querySelectorAll('.plan-tip__descr span')) {
-        item.addEventListener('click', function () {
-          gaEvent('click on link', 'Return policy on tooltip');
-        });
+        for (let item of document.querySelectorAll('.plan_ultra .plan__btn')) {
+          item.addEventListener('click', function () {
+            gaEvent('click on CTA', 'Buy UltraDeep DNA Bundle');
+          });
+        }
       }
 
       document.addEventListener('click', function (e) {
         if (e.target.classList.contains('plan__option_modal')) {
           gaEvent('click on link', 'Nebula Membership info');
+        }
+
+        // if (window.innerWidth < 992) {
+        if (
+          e.target.classList.contains('plan__btn') ||
+          e.target.closest('.plan__btn')
+        ) {
+          if (e.target.closest('.plan_basic ')) {
+            gaEvent('click on CTA', 'Buy Standard DNA Bundle');
+          }
+
+          if (e.target.closest('.plan_best')) {
+            gaEvent('click on CTA', 'Buy Deep DNA Bundle');
+          }
+
+          if (e.target.closest('.plan_ultra ')) {
+            gaEvent('click on CTA', 'Buy UltraDeep DNA Bundle');
+          }
+        }
+        // }
+
+        if (e.target.closest('.plan-tip')) {
+          if (e.target.tagName == 'IMG' && window.innerWidth <= 992) {
+            gaEvent('click on link', 'Membership info link clicked');
+          }
+          if (
+            e.target.closest('.plan-tip__descr') &&
+            e.target.tagName == 'SPAN'
+          )
+            gaEvent('click on link', 'Return policy on tooltip');
         }
       });
 
@@ -161,10 +187,12 @@ function initMainPage() {
           gaEvent('click on CTA', 'Learn more (subscription) CTA');
         });
 
-      for (let item of document.querySelectorAll('.plan-tip')) {
-        item.addEventListener('mouseenter', function () {
-          gaEvent('click on link', 'Membership info link clicked');
-        });
+      if (window.innerWidth > 992) {
+        for (let item of document.querySelectorAll('.plan-tip')) {
+          item.addEventListener('mouseenter', function () {
+            gaEvent('click on link', 'Membership info link clicked');
+          });
+        }
       }
 
       document
