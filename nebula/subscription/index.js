@@ -164,7 +164,10 @@ function initMainPage() {
         // }
 
         if (e.target.closest('.plan-tip')) {
-          if (e.target.tagName == 'IMG' && window.innerWidth <= 992) {
+          if (
+            e.target.classList.contains('plan-tip__info-inner') &&
+            window.innerWidth <= 992
+          ) {
             gaEvent('click on link', 'Membership info link clicked');
           }
           if (
