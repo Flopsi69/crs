@@ -407,9 +407,12 @@ function addGarageEvents() {
 
 function handleOemRouter() {
   if (
-    document.querySelector('.header-top .js-my-garage-counter').innerText ==
-      '0' ||
-    !document.querySelector('.header-top .js-my-garage-counter').innerText
+    document.querySelector(
+      '.header-top .js-garage-header-menu .js-header-garage-mmy'
+    ).innerText == '0' ||
+    !document.querySelector(
+      '.header-top .js-garage-header-menu .js-header-garage-mmy'
+    ).innerText
   ) {
     location.href = '/oem-parts.html';
     return false;
