@@ -180,7 +180,7 @@ const styles = `
       right: 0;
       background: #FFFFFF;
       box-shadow: rgb(0 0 0) 0px 6px 7px;
-      padding: 10px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -198,13 +198,15 @@ const styles = `
       color: rgb(255, 255, 255);
       background-color: rgb(252, 77, 56);
       border-color: rgb(252, 77, 56);
-      border-radius: 25px;
-      padding: 10px 20px;
+      border-radius: 60px;
+      padding: 10px;
+      flex-grow: 1;
+      height: 60px;
       border: 2px solid;
       border-collapse: collapse;
       text-transform: uppercase;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 16px;
       text-align: center;
       letter-spacing: 0.05em;
@@ -364,6 +366,8 @@ function handleSticky(price) {
         `
       );
     }
+
+    gaEvent('Sticky block appeared onscreen');
 
     document
       .querySelector('.lav-sticky__btn')
