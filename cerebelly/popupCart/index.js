@@ -332,7 +332,7 @@ function handleSticky(price) {
   const windowWidth = window.innerWidth;
   if (
     !parseFloat(price) ||
-    (location.pathname != '/shop' && windowWidth < 900)
+    (!location.href.includes('/shop') && windowWidth < 900)
   ) {
     if (document.querySelector('.lav-sticky')) {
       document.querySelector('.lav-sticky').remove();
@@ -491,8 +491,8 @@ function handleTopBanner() {
   window.onscroll = function () {
     if (
       (document.querySelector('.e-my-account .e-nav-link-submenu') &&
-        location.pathname == '/shop') ||
-      location.pathname != '/shop'
+        location.href.includes('/shop')) ||
+      !location.href.includes('/shop')
     ) {
       for (let item of document.querySelectorAll('#promo_bar')) {
         item.classList.remove('promo_bar-hide');
@@ -502,7 +502,7 @@ function handleTopBanner() {
 
       document.body.classList.remove('body-static');
 
-      if (location.pathname == '/shop') {
+      if (location.href.includes('/shop')) {
         document
           .querySelector('.e-main-container')
           .classList.remove('with-promo');
