@@ -91,6 +91,14 @@ function init() {
     initMainPage();
   } else if (location.href.includes('portal.nebula.org/cart')) {
     initCartPage();
+  } else if (
+    location.href.includes('nebula.org/order-status') &&
+    localStorage.getItem('gaPlans')
+  ) {
+    JSON.parse(localStorage.getItem('gaPlans')).forEach((planName) => {
+      gaEvent('buy subcription plan', planName);
+    });
+    localStorage.removeItem('gaPlans');
   }
 }
 
@@ -211,6 +219,20 @@ function initCartPage() {
   var cartInterval = setInterval(() => {
     if (document.querySelector('.order-summary-page')) {
       clearInterval(cartInterval);
+
+      if (
+        document.querySelector('.order-summary-page').querySelectorAll('.order')
+          .length
+      ) {
+        let cartItems = [];
+        for (let item of document
+          .querySelector('.order-summary-page')
+          .querySelectorAll('.order')) {
+          cartItems.push(item.querySelector('.order__title').innerText);
+        }
+        localStorage.setItem('gaPlans', JSON.stringify(cartItems));
+      }
+
       document.querySelector('.order-summary-page').remove();
       document.querySelector('.order-summary-page').style.display = 'block';
 
