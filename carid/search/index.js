@@ -49,19 +49,14 @@ if (settings.observe) {
           if (node.querySelector('.mygarage-vehicle-title')) {
             localStorage.setItem('showSearch', 'yes');
             if (localStorage.getItem('startDate')) {
-              localStorage.removeItem('startDate');
               let time =
                 (new Date().getTime() -
                   parseInt(localStorage.getItem('startDate'))) /
                 1000;
-              console.log(
-                time,
-                new Date().getTime(),
-                parseInt(localStorage.getItem('startDate'))
-              );
               gaEvent(
                 `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
               );
+              localStorage.removeItem('startDate');
             }
           }
         }
@@ -80,19 +75,14 @@ if (settings.observe) {
                   'First select popup'
                 );
                 if (localStorage.getItem('startDate')) {
-                  localStorage.removeItem('startDate');
                   let time =
                     (new Date().getTime() -
                       parseInt(localStorage.getItem('startDate'))) /
                     1000;
-                  console.log(
-                    time,
-                    new Date().getTime(),
-                    parseInt(localStorage.getItem('startDate'))
-                  );
                   gaEvent(
                     `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
                   );
+                  localStorage.removeItem('startDate');
                 }
               });
 
@@ -334,18 +324,13 @@ function init() {
       document.querySelector('.lav-add-popup')
     ) {
       if (localStorage.getItem('startDate')) {
-        localStorage.removeItem('startDate');
         let time =
           (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
           1000;
-        console.log(
-          time,
-          new Date().getTime(),
-          parseInt(localStorage.getItem('startDate'))
-        );
         gaEvent(
           `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
         );
+        localStorage.removeItem('startDate');
       }
     }
 
