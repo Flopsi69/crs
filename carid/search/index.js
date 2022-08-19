@@ -48,6 +48,16 @@ if (settings.observe) {
         if (node.classList.contains('mygarage-dd-container')) {
           if (node.querySelector('.mygarage-vehicle-title')) {
             localStorage.setItem('showSearch', 'yes');
+            if (localStorage.getItem('startDate')) {
+              localStorage.removeItem('startDate');
+              gaEvent(
+                `Popup was closed after ${
+                  parseInt(
+                    localStorage.getItem('startDate') - new Date().getTime()
+                  ) / 1000
+                } seconds', 'Popup: Select vehicle`
+              );
+            }
           }
         }
 
@@ -64,6 +74,16 @@ if (settings.observe) {
                   'Clicks on the cross pictogramme',
                   'First select popup'
                 );
+                if (localStorage.getItem('startDate')) {
+                  localStorage.removeItem('startDate');
+                  gaEvent(
+                    `Popup was closed after ${
+                      parseInt(
+                        localStorage.getItem('startDate') - new Date().getTime()
+                      ) / 1000
+                    } seconds', 'Popup: Select vehicle`
+                  );
+                }
               });
 
             for (let item of document.querySelectorAll(
@@ -301,6 +321,22 @@ function init() {
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
+      document.querySelector('.lav-add-popup')
+    ) {
+      if (localStorage.getItem('startDate')) {
+        localStorage.removeItem('startDate');
+        gaEvent(
+          `Popup was closed after ${
+            parseInt(localStorage.getItem('startDate') - new Date().getTime()) /
+            1000
+          } seconds', 'Popup: Select vehicle`
+        );
+      }
+    }
+
+    if (
+      (e.target.classList.contains('gbox') ||
+        e.target.classList.contains('gbox_wrap')) &&
       document.querySelector('.search-field-wrap')
     ) {
       gaEvent(
@@ -502,6 +538,8 @@ function handleSearch() {
             "<div class='lav-add__caption'>First select the vehicle that you need a part for</div>"
           );
       }
+
+      localStorage.setItem('startDate', JSON.stringify(new Date().getTime()));
 
       clearInterval(addNewInterval);
     }, 400);
