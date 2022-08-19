@@ -335,6 +335,51 @@ function init() {
         'Header. Search menu'
       );
     }
+
+    if (
+      e.target.classList.contains('cat-link') &&
+      document.querySelector('.search-field-wrap') &&
+      e.target.closest('.autoc-section-row')
+    ) {
+      gaEvent(
+        `Click on ${e.target.innerText} button in ${
+          e.target
+            .closest('.autoc-section-row')
+            .querySelector('.autoc-section-title').innerText
+        }`,
+        'Header. Search menu'
+      );
+    }
+
+    if (
+      e.target.closest('.autoc-prod-li') &&
+      e.target.closest('.autoc-products-section') &&
+      document.querySelector('.search-field-wrap')
+    ) {
+      gaEvent(
+        `Click on ${e.target.querySelector('.title').innerText} button in ${
+          e.target
+            .closest('.autoc-products-section')
+            .querySelector('.autoc-section-title').innerText
+        }`,
+        'Header. Search menu'
+      );
+    }
+
+    if (
+      e.target.closest('.autoc-brands-li') &&
+      e.target.closest('.autoc-brands') &&
+      document.querySelector('.search-field-wrap')
+    ) {
+      gaEvent(
+        `Click on brand icon in ${
+          e.target
+            .closest('.autoc-brands')
+            .querySelector('.autoc-section-title').innerText
+        }`,
+        'Header. Search menu'
+      );
+    }
   });
   if (localStorage.getItem('showSearch') == 'yes') {
     localStorage.removeItem('showSearch');
