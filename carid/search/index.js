@@ -336,7 +336,7 @@ function init() {
       gaEvent(
         `Click on Search button. ${
           document.querySelector('#search-field').value
-        }'`,
+        }`,
         'Header. Search menu'
       );
     }
@@ -358,44 +358,23 @@ function changeSearch() {
   if (!document.querySelector('#dummy-search-input-for-preact-render'))
     return false;
 
-  document
-    .querySelector('#dummy-search-input-for-preact-render')
-    .insertAdjacentHTML(
-      'beforeend',
-      `<button class='lav-search__btn lav-search__btn-top'>
-        <span class='lav-search__btn-full'>Search</span>
-        <span class='lav-search__btn-brief'>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9659 11.2549H12.7559L17.7459 16.2549L16.2559 17.7449L11.2559 12.7549V11.9649L10.9859 11.6849C9.84586 12.6649 8.36586 13.2549 6.75586 13.2549C3.16586 13.2549 0.255859 10.3449 0.255859 6.75488C0.255859 3.16488 3.16586 0.254883 6.75586 0.254883C10.3459 0.254883 13.2559 3.16488 13.2559 6.75488C13.2559 8.36488 12.6659 9.84488 11.6859 10.9849L11.9659 11.2549ZM2.25586 6.75488C2.25586 9.24488 4.26586 11.2549 6.75586 11.2549C9.24586 11.2549 11.2559 9.24488 11.2559 6.75488C11.2559 4.26488 9.24586 2.25488 6.75586 2.25488C4.26586 2.25488 2.25586 4.26488 2.25586 6.75488Z" fill="#ffffff"/>
-          </svg>
-        </span>
-      </button > `
-    );
-
-  setTimeout(() => {
+  setInterval(() => {
     if (!document.querySelector('.lav-search__btn-top')) {
       document
         .querySelector('#dummy-search-input-for-preact-render')
         .insertAdjacentHTML(
           'beforeend',
           `<button class='lav-search__btn lav-search__btn-top'>
-          <span class='lav-search__btn-full'>Search</span>
-          <span class='lav-search__btn-brief'>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9659 11.2549H12.7559L17.7459 16.2549L16.2559 17.7449L11.2559 12.7549V11.9649L10.9859 11.6849C9.84586 12.6649 8.36586 13.2549 6.75586 13.2549C3.16586 13.2549 0.255859 10.3449 0.255859 6.75488C0.255859 3.16488 3.16586 0.254883 6.75586 0.254883C10.3459 0.254883 13.2559 3.16488 13.2559 6.75488C13.2559 8.36488 12.6659 9.84488 11.6859 10.9849L11.9659 11.2549ZM2.25586 6.75488C2.25586 9.24488 4.26586 11.2549 6.75586 11.2549C9.24586 11.2549 11.2559 9.24488 11.2559 6.75488C11.2559 4.26488 9.24586 2.25488 6.75586 2.25488C4.26586 2.25488 2.25586 4.26488 2.25586 6.75488Z" fill="#ffffff"/>
-            </svg>
-          </span>
-        </button > `
+            <span class='lav-search__btn-full'>Search</span>
+            <span class='lav-search__btn-brief'>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9659 11.2549H12.7559L17.7459 16.2549L16.2559 17.7449L11.2559 12.7549V11.9649L10.9859 11.6849C9.84586 12.6649 8.36586 13.2549 6.75586 13.2549C3.16586 13.2549 0.255859 10.3449 0.255859 6.75488C0.255859 3.16488 3.16586 0.254883 6.75586 0.254883C10.3459 0.254883 13.2559 3.16488 13.2559 6.75488C13.2559 8.36488 12.6659 9.84488 11.6859 10.9849L11.9659 11.2549ZM2.25586 6.75488C2.25586 9.24488 4.26586 11.2549 6.75586 11.2549C9.24586 11.2549 11.2559 9.24488 11.2559 6.75488C11.2559 4.26488 9.24586 2.25488 6.75586 2.25488C4.26586 2.25488 2.25586 4.26488 2.25586 6.75488Z" fill="#ffffff"/>
+              </svg>
+            </span>
+          </button > `
         );
     }
-  }, 1200);
-
-  // document
-  //   .querySelector('.lav-search__btn-top')
-  //   .addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     handleSearch();
-  //   });
+  }, 1000);
 
   document
     .querySelector('#dummy-search-input-for-preact-render')
