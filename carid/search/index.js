@@ -292,7 +292,8 @@ function init() {
   console.log('init');
   document.addEventListener('click', function (e) {
     if (
-      (e.target.classList.contains('gbox') || e.target.closest('.gbox')) &&
+      (e.target.classList.contains('gbox') ||
+        e.target.classList.contains('gbox_wrap')) &&
       document.querySelector('#search-field')
     ) {
       gaEvent(
