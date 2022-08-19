@@ -290,6 +290,50 @@ init();
 var isProcessing = false;
 function init() {
   console.log('init');
+  document.addEventListener('click', function (e) {
+    if (
+      (e.target.classList.contains('gbox') || e.target.closest('.gbox')) &&
+      document.querySelector('#search-field')
+    ) {
+      gaEvent(
+        'Clicks on the background space closes pop-up',
+        'Header. Search menu'
+      );
+    }
+
+    if (
+      e.target.classList.contains('gbox_close') &&
+      document.querySelector('#search-field')
+    ) {
+      gaEvent(
+        'Clicks on the closing search cross pictogramme',
+        'Header. Search menu'
+      );
+    }
+
+    if (e.target.classList.contains('js-recent-searches-summary-item')) {
+      gaEvent('Click on last searches terms', 'Header. Search menu');
+    }
+
+    if (
+      e.target.classList.contains('action') &&
+      e.target.closest('.recent-searches-summary')
+    ) {
+      gaEvent('Click on Clear History link', 'Header. Search menu');
+    }
+
+    if (
+      e.target.classList.contains('search-btn') &&
+      document.querySelector('#search-field')
+    ) {
+      gaEvent(
+        `Click on Search button. ${
+          document.querySelector('#search-field').value
+        }'`,
+        'Header. Search menu'
+      );
+    }
+  });
   if (localStorage.getItem('showSearch') == 'yes') {
     localStorage.removeItem('showSearch');
     document.querySelector('.header-search-label').click();
