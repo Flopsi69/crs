@@ -54,7 +54,8 @@ if (settings.observe) {
                   parseInt(localStorage.getItem('startDate'))) /
                 1000;
               gaEvent(
-                `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
+                `Popup was closed after ${time} seconds`,
+                'Popup: Select vehicle'
               );
               localStorage.removeItem('startDate');
             }
@@ -328,7 +329,8 @@ function init() {
           (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
           1000;
         gaEvent(
-          `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
+          `Popup was closed after ${time} seconds`,
+          'Popup: Select vehicle'
         );
         localStorage.removeItem('startDate');
       }
