@@ -290,6 +290,12 @@ init();
 var isProcessing = false;
 function init() {
   console.log('init');
+  document.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter' && document.activeElement) {
+      gaEvent('Click on Search button enter', 'Header. Search menu');
+    }
+  });
+
   document.addEventListener('click', function (e) {
     console.log(e.target);
     if (
@@ -383,6 +389,7 @@ function init() {
       );
     }
   });
+
   if (localStorage.getItem('showSearch') == 'yes') {
     localStorage.removeItem('showSearch');
     document.querySelector('.header-search-label').click();
