@@ -97,7 +97,7 @@ if (settings.observe) {
               .addEventListener('click', function () {
                 gaEvent(`Click on Go button`, 'Popup: Select vehicle');
               });
-          }, 600);
+          }, 200);
         }
       }
     }
