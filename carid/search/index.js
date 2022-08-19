@@ -52,9 +52,9 @@ if (settings.observe) {
               localStorage.removeItem('startDate');
               gaEvent(
                 `Popup was closed after ${
-                  parseInt(
-                    localStorage.getItem('startDate') - new Date().getTime()
-                  ) / 1000
+                  (new Date().getTime() -
+                    parseInt(localStorage.getItem('startDate'))) /
+                  1000
                 } seconds', 'Popup: Select vehicle`
               );
             }
@@ -78,9 +78,9 @@ if (settings.observe) {
                   localStorage.removeItem('startDate');
                   gaEvent(
                     `Popup was closed after ${
-                      parseInt(
-                        localStorage.getItem('startDate') - new Date().getTime()
-                      ) / 1000
+                      (new Date().getTime() -
+                        parseInt(localStorage.getItem('startDate'))) /
+                      1000
                     } seconds', 'Popup: Select vehicle`
                   );
                 }
@@ -327,7 +327,8 @@ function init() {
         localStorage.removeItem('startDate');
         gaEvent(
           `Popup was closed after ${
-            parseInt(localStorage.getItem('startDate') - new Date().getTime()) /
+            (new Date().getTime() -
+              parseInt(localStorage.getItem('startDate'))) /
             1000
           } seconds', 'Popup: Select vehicle`
         );
