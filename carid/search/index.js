@@ -50,12 +50,12 @@ if (settings.observe) {
             localStorage.setItem('showSearch', 'yes');
             if (localStorage.getItem('startDate')) {
               localStorage.removeItem('startDate');
+              let time =
+                (new Date().getTime() -
+                  parseInt(localStorage.getItem('startDate'))) /
+                1000;
               gaEvent(
-                `Popup was closed after ${
-                  (new Date().getTime() -
-                    parseInt(localStorage.getItem('startDate'))) /
-                  1000
-                } seconds', 'Popup: Select vehicle`
+                `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
               );
             }
           }
@@ -76,12 +76,12 @@ if (settings.observe) {
                 );
                 if (localStorage.getItem('startDate')) {
                   localStorage.removeItem('startDate');
+                  let time =
+                    (new Date().getTime() -
+                      parseInt(localStorage.getItem('startDate'))) /
+                    1000;
                   gaEvent(
-                    `Popup was closed after ${
-                      (new Date().getTime() -
-                        parseInt(localStorage.getItem('startDate'))) /
-                      1000
-                    } seconds', 'Popup: Select vehicle`
+                    `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
                   );
                 }
               });
@@ -325,12 +325,11 @@ function init() {
     ) {
       if (localStorage.getItem('startDate')) {
         localStorage.removeItem('startDate');
+        let time =
+          (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
+          1000;
         gaEvent(
-          `Popup was closed after ${
-            (new Date().getTime() -
-              parseInt(localStorage.getItem('startDate'))) /
-            1000
-          } seconds', 'Popup: Select vehicle`
+          `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
         );
       }
     }
