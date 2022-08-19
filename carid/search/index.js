@@ -291,6 +291,7 @@ var isProcessing = false;
 function init() {
   console.log('init');
   document.addEventListener('click', function (e) {
+    console.log(e.target);
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
