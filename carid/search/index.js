@@ -54,6 +54,11 @@ if (settings.observe) {
                 (new Date().getTime() -
                   parseInt(localStorage.getItem('startDate'))) /
                 1000;
+              console.log(
+                time,
+                new Date().getTime(),
+                parseInt(localStorage.getItem('startDate'))
+              );
               gaEvent(
                 `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
               );
@@ -80,6 +85,11 @@ if (settings.observe) {
                     (new Date().getTime() -
                       parseInt(localStorage.getItem('startDate'))) /
                     1000;
+                  console.log(
+                    time,
+                    new Date().getTime(),
+                    parseInt(localStorage.getItem('startDate'))
+                  );
                   gaEvent(
                     `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
                   );
@@ -328,6 +338,11 @@ function init() {
         let time =
           (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
           1000;
+        console.log(
+          time,
+          new Date().getTime(),
+          parseInt(localStorage.getItem('startDate'))
+        );
         gaEvent(
           `Popup was closed after ${time} seconds', 'Popup: Select vehicle`
         );
