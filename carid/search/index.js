@@ -357,7 +357,9 @@ function init() {
       document.querySelector('.search-field-wrap')
     ) {
       gaEvent(
-        `Click on ${e.target.querySelector('.title').innerText} button in ${
+        `Click on ${
+          e.target.closest('.autoc-prod-li').querySelector('.title').innerText
+        } button in ${
           e.target
             .closest('.autoc-products-section')
             .querySelector('.autoc-section-title').innerText
