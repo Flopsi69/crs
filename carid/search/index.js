@@ -303,11 +303,6 @@ function init() {
       );
     }
 
-    console.log(
-      e.target.classList.contains('gbox_close'),
-      document.querySelector('.search-field-wrap')
-    );
-
     if (
       e.target.classList.contains('gbox_close') &&
       document.querySelector('.search-field-wrap')
