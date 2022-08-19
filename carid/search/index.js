@@ -295,7 +295,7 @@ function init() {
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
-      document.querySelector('#search-field')
+      document.querySelector('.search-field-wrap')
     ) {
       gaEvent(
         'Clicks on the background space closes pop-up',
@@ -303,9 +303,14 @@ function init() {
       );
     }
 
+    console.log(
+      e.target.classList.contains('gbox_close'),
+      document.querySelector('.search-field-wrap')
+    );
+
     if (
       e.target.classList.contains('gbox_close') &&
-      document.querySelector('#search-field')
+      document.querySelector('.search-field-wrap')
     ) {
       gaEvent(
         'Clicks on the closing search cross pictogramme',
@@ -326,7 +331,7 @@ function init() {
 
     if (
       e.target.classList.contains('search-btn') &&
-      document.querySelector('#search-field')
+      document.querySelector('.search-field-wrap')
     ) {
       gaEvent(
         `Click on Search button. ${
