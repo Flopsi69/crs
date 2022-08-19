@@ -376,7 +376,7 @@ function init() {
       gaEvent(
         `Click on brand icon in ${
           e.target
-            .closest('.autoc-brands')
+            .closest('.autoc-section')
             .querySelector('.autoc-section-title').innerText
         }`,
         'Header. Search menu'
