@@ -55,9 +55,8 @@ if (settings.observe) {
           node.classList.contains('select-vehicle') &&
           node.closest('.gbox_portal')
         ) {
+          node.closest('.gbox_portal').classList.add('lav-add-popup');
           setTimeout(() => {
-            node.closest('.gbox_portal').classList.add('lav-add-popup');
-
             document
               .querySelector('.lav-add-popup .gbox_close')
               .addEventListener('click', function () {
@@ -97,7 +96,7 @@ if (settings.observe) {
               .addEventListener('click', function () {
                 gaEvent(`Click on Go button`, 'Popup: Select vehicle');
               });
-          }, 200);
+          }, 800);
         }
       }
     }
