@@ -343,11 +343,14 @@ function changeSearch() {
     .querySelector('.lav-search__btn-top')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click on Search input', 'Header. Search menu');
       handleSearch();
     });
 
   document
-    .querySelector('#dummy-search-input-for-preact-render')
+    .querySelector(
+      '#dummy-search-input-for-preact-render .js-header-search-label'
+    )
     .addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent('Click on Search input', 'Header. Search menu');
