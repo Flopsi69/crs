@@ -339,12 +339,12 @@ function init() {
     if (
       e.target.classList.contains('cat-link') &&
       document.querySelector('.search-field-wrap') &&
-      e.target.closest('.autoc-section-row')
+      e.target.closest('.autoc-section')
     ) {
       gaEvent(
         `Click on ${e.target.innerText} button in ${
           e.target
-            .closest('.autoc-section-row')
+            .closest('.autoc-section')
             .querySelector('.autoc-section-title').innerText
         }`,
         'Header. Search menu'
