@@ -55,44 +55,49 @@ if (settings.observe) {
           node.classList.contains('select-vehicle') &&
           node.closest('.gbox_portal')
         ) {
-          node.closest('.gbox_portal').classList.add('lav-add-popup');
+          setTimeout(() => {
+            node.closest('.gbox_portal').classList.add('lav-add-popup');
 
-          document
-            .querySelector('.lav-add-popup .gbox_close')
-            .addEventListener('click', function () {
-              gaEvent('Clicks on the cross pictogramme', 'First select popup');
-            });
+            document
+              .querySelector('.lav-add-popup .gbox_close')
+              .addEventListener('click', function () {
+                gaEvent(
+                  'Clicks on the cross pictogramme',
+                  'First select popup'
+                );
+              });
 
-          for (let item of document.querySelectorAll(
-            '.lav-add-popup .nav .link'
-          )) {
-            item.addEventListener('click', function () {
-              gaEvent(
-                `Click on ${item.innerText} navigation button`,
-                'Popup: Select vehicle'
-              );
-            });
-          }
+            for (let item of document.querySelectorAll(
+              '.lav-add-popup .nav .link'
+            )) {
+              item.addEventListener('click', function () {
+                gaEvent(
+                  `Click on ${item.innerText} navigation button`,
+                  'Popup: Select vehicle'
+                );
+              });
+            }
 
-          for (let item of document.querySelectorAll(
-            '.lav-add-popup .select-vehicle-col'
-          )) {
-            item.addEventListener('click', function () {
-              if (item.querySelector('.marker').innerText == '1') {
-                gaEvent(`Click on Year select`, 'Popup: Select vehicle');
-              } else if (item.querySelector('.marker').innerText == '2') {
-                gaEvent(`Click on Make select`, 'Popup: Select vehicle');
-              } else if (item.querySelector('.marker').innerText == '3') {
-                gaEvent(`Click on Model select`, 'Popup: Select vehicle');
-              }
-            });
-          }
+            for (let item of document.querySelectorAll(
+              '.lav-add-popup .select-vehicle-col'
+            )) {
+              item.addEventListener('click', function () {
+                if (item.querySelector('.marker').innerText == '1') {
+                  gaEvent(`Click on Year select`, 'Popup: Select vehicle');
+                } else if (item.querySelector('.marker').innerText == '2') {
+                  gaEvent(`Click on Make select`, 'Popup: Select vehicle');
+                } else if (item.querySelector('.marker').innerText == '3') {
+                  gaEvent(`Click on Model select`, 'Popup: Select vehicle');
+                }
+              });
+            }
 
-          document
-            .querySelector('.lav-add-popup .select-vehicle-button')
-            .addEventListener('click', function () {
-              gaEvent(`Click on Go button`, 'Popup: Select vehicle');
-            });
+            document
+              .querySelector('.lav-add-popup .select-vehicle-button')
+              .addEventListener('click', function () {
+                gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+              });
+          }, 600);
         }
       }
     }
