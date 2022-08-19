@@ -288,6 +288,7 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 init();
+var isProcessing = false;
 function init() {
   console.log('init');
   if (localStorage.getItem('showSearch') == 'yes') {
@@ -339,21 +340,20 @@ function changeSearch() {
     }
   }, 1200);
 
-  document
-    .querySelector('.lav-search__btn-top')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      gaEvent('Click on Search input', 'Header. Search menu');
-      handleSearch();
-    });
+  // document
+  //   .querySelector('.lav-search__btn-top')
+  //   .addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     handleSearch();
+  //   });
 
   document
-    .querySelector(
-      '#dummy-search-input-for-preact-render .js-header-search-label'
-    )
+    .querySelector('#dummy-search-input-for-preact-render')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Search input', 'Header. Search menu');
+      if (!isProcessing) {
+        gaEvent('Click on Search input', 'Header. Search menu');
+      }
       handleSearch();
     });
 }
@@ -406,6 +406,7 @@ function handleSidebar() {
 }
 
 function handleSearch() {
+  isProcessing = true;
   // document.querySelector('.js-garage-header-menu .title').innerText ==
   //   'Select vehicle'
   if (!document.querySelector('.mygarage-vehicle-title')) {
@@ -429,4 +430,5 @@ function handleSearch() {
   } else {
     document.querySelector('.header-search-label').click();
   }
+  isProcessing = false;
 }
