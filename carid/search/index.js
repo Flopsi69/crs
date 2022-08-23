@@ -127,13 +127,6 @@ if (settings.observe) {
                         );
                       }
                     });
-
-                    item
-                      .closest('.lav-add-popup')
-                      .querySelector('.select-vehicle-button')
-                      .addEventListener('click', function () {
-                        gaEvent(`Click on Go button`, 'Popup: Select vehicle');
-                      });
                   }
                 }, 500);
               });
@@ -152,12 +145,6 @@ if (settings.observe) {
                 }
               });
             }
-
-            document
-              .querySelector('.lav-add-popup .select-vehicle-button')
-              .addEventListener('click', function () {
-                gaEvent(`Click on Go button`, 'Popup: Select vehicle');
-              });
           }, 800);
         }
       }
@@ -361,6 +348,13 @@ function init() {
 
   document.addEventListener('click', function (e) {
     console.log(e.target);
+    if (
+      e.target.classList.contains('select-vehicle-button') ||
+      e.target.closest('.lav-add-popup')
+    ) {
+      gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+    }
+
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
