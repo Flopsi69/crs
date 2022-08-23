@@ -96,6 +96,34 @@ if (settings.observe) {
                   `Click on ${item.innerText} navigation button`,
                   'Popup: Select vehicle'
                 );
+                setTimeout(() => {
+                  for (let item of document.querySelectorAll(
+                    '.lav-add-popup .select-vehicle-col'
+                  )) {
+                    item.addEventListener('click', function () {
+                      if (item.querySelector('.marker').innerText == '1') {
+                        gaEvent(
+                          `Click on Year select`,
+                          'Popup: Select vehicle'
+                        );
+                      } else if (
+                        item.querySelector('.marker').innerText == '2'
+                      ) {
+                        gaEvent(
+                          `Click on Make select`,
+                          'Popup: Select vehicle'
+                        );
+                      } else if (
+                        item.querySelector('.marker').innerText == '3'
+                      ) {
+                        gaEvent(
+                          `Click on Model select`,
+                          'Popup: Select vehicle'
+                        );
+                      }
+                    });
+                  }
+                }, 500);
               });
             }
 
