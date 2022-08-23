@@ -340,7 +340,7 @@ function init() {
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
-      document.querySelector('.search-submit-loader')
+      e.target.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         'Clicks on the background space closes pop-up',
