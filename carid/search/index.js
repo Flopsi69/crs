@@ -383,7 +383,7 @@ function init() {
 
     if (
       e.target.classList.contains('cat-link') &&
-      document.querySelector('.search-submit-loader') &&
+      isSearch &&
       e.target.closest('.autoc-section')
     ) {
       gaEvent(
@@ -399,7 +399,7 @@ function init() {
     if (
       e.target.closest('.autoc-prod-li') &&
       e.target.closest('.autoc-products-section') &&
-      document.querySelector('.search-submit-loader')
+      isSearch
     ) {
       gaEvent(
         `Click on ${
@@ -416,7 +416,7 @@ function init() {
     if (
       e.target.closest('.autoc-brands-li') &&
       e.target.closest('.autoc-brands') &&
-      document.querySelector('.search-submit-loader')
+      isSearch
     ) {
       gaEvent(
         `Click on brand icon in ${
