@@ -92,8 +92,12 @@ if (settings.observe) {
               '.lav-add-popup .nav .link'
             )) {
               item.addEventListener('click', function () {
+                let text = item.innerText;
+                if (item.querySelector('.link-title')) {
+                  text = item.querySelector('.link-title').innerText;
+                }
                 gaEvent(
-                  `Click on ${item.innerText} navigation button`,
+                  `Click on ${text} navigation button`,
                   'Popup: Select vehicle'
                 );
                 setTimeout(() => {
