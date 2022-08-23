@@ -127,11 +127,11 @@ if (settings.observe) {
                       }
                     });
 
-                    document
-                      .querySelector('.lav-add-popup .select-vehicle-button')
-                      .addEventListener('click', function () {
-                        gaEvent(`Click on Go button`, 'Popup: Select vehicle');
-                      });
+                    // document
+                    //   .querySelector('.lav-add-popup .select-vehicle-button')
+                    //   .addEventListener('click', function () {
+                    //     gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+                    //   });
                   }
                 }, 500);
               });
@@ -151,11 +151,13 @@ if (settings.observe) {
               });
             }
 
-            document
-              .querySelector('.lav-add-popup .select-vehicle-button')
-              .addEventListener('click', function () {
-                gaEvent(`Click on Go button`, 'Popup: Select vehicle');
-              });
+            setTimeout(() => {
+              document
+                .querySelector('.lav-add-popup .select-vehicle-button')
+                .addEventListener('click', function () {
+                  gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+                });
+            }, 500);
           }, 800);
         }
       }
