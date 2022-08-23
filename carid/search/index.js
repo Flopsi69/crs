@@ -46,7 +46,8 @@ if (settings.observe) {
         if (node.classList.contains('mygarage-dd-container')) {
           if (
             node.querySelector('.mygarage-vehicle-title') &&
-            document.querySelector('.lav-add-popup')
+            document.querySelector('.lav-add-popup') &&
+            document.querySelector('.lav-add__caption')
           ) {
             localStorage.setItem('showSearch', 'yes');
             if (localStorage.getItem('startDate')) {
