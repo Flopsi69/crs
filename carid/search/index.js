@@ -412,7 +412,8 @@ function init() {
     if (
       e.target.classList.contains('cat-link') &&
       isSearch &&
-      e.target.closest('.autoc-section')
+      (e.target.closest('.autoc-section') ||
+        e.target.closest('.autoc-section-row'))
     ) {
       gaEvent(
         `Click on ${e.target.innerText} button in ${
