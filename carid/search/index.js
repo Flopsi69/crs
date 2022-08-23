@@ -128,8 +128,9 @@ if (settings.observe) {
                       }
                     });
 
-                    document
-                      .querySelector('.lav-add-popup .select-vehicle-button')
+                    item
+                      .closest('.lav-add-popup')
+                      .querySelector('.select-vehicle-button')
                       .addEventListener('click', function () {
                         gaEvent(`Click on Go button`, 'Popup: Select vehicle');
                       });
