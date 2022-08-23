@@ -309,6 +309,7 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 init();
+var isSearch = false;
 var isProcessing = false;
 function init() {
   console.log('init');
@@ -340,18 +341,17 @@ function init() {
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
-      e.target.querySelector('.search-submit-loader')
+      isSearch
     ) {
+      isSearch = false;
       gaEvent(
         'Clicks on the background space closes pop-up',
         'Header. Search menu'
       );
     }
 
-    if (
-      e.target.classList.contains('gbox_close') &&
-      document.querySelector('.search-submit-loader')
-    ) {
+    if (e.target.classList.contains('gbox_close') && isSearch) {
+      isSearch = false;
       gaEvent(
         'Clicks on the closing search cross pictogramme',
         'Header. Search menu'
@@ -434,6 +434,7 @@ function init() {
       if (!document.querySelector('.lav-search__btn-top')) return false;
       clearInterval(clickSearch);
       localStorage.removeItem('showSearch');
+      isSearch = true;
       document.querySelector('.header-search-label').click();
     }, 200);
   }
@@ -552,6 +553,7 @@ function handleSearch() {
       clearInterval(addNewInterval);
     }, 400);
   } else {
+    isSearch = true;
     document.querySelector('.header-search-label').click();
   }
   isProcessing = false;
