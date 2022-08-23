@@ -43,11 +43,12 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // console.log(node);
+        console.log(node);
 
         if (node.classList.contains('mygarage-dd-container')) {
           if (node.querySelector('.mygarage-vehicle-title')) {
             localStorage.setItem('showSearch', 'yes');
+            console.log('fire');
             if (localStorage.getItem('startDate')) {
               let time =
                 (new Date().getTime() -
@@ -429,9 +430,11 @@ function init() {
   });
 
   if (localStorage.getItem('showSearch') == 'yes') {
+    console.log('fire2');
     localStorage.removeItem('showSearch');
     document.querySelector('.header-search-label').click();
   }
+
   if (!localStorage.getItem('loadedFiredSearch')) {
     localStorage.setItem('loadedFiredSearch', 'yes');
     gaEvent('loaded');
