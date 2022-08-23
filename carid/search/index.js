@@ -433,9 +433,13 @@ function init() {
   });
 
   if (localStorage.getItem('showSearch') == 'yes') {
-    console.log('fire2');
-    localStorage.removeItem('showSearch');
-    document.querySelector('.header-search-label').click();
+    let clickSearch = setInterval(() => {
+      if (!document.querySelector('.lav-search__btn-top')) return false;
+      clearInterval(clickSearch);
+      console.log('fire2');
+      localStorage.removeItem('showSearch');
+      document.querySelector('.header-search-label').click();
+    }, 200);
   }
 
   if (!localStorage.getItem('loadedFiredSearch')) {
