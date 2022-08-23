@@ -43,8 +43,6 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
-
         if (node.classList.contains('mygarage-dd-container')) {
           if (
             node.querySelector('.mygarage-vehicle-title') &&
