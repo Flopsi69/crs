@@ -49,7 +49,6 @@ if (settings.observe) {
             document.querySelector('.lav-add-popup')
           ) {
             localStorage.setItem('showSearch', 'yes');
-            console.log('fire');
             if (localStorage.getItem('startDate')) {
               let time =
                 (new Date().getTime() -
@@ -341,7 +340,7 @@ function init() {
     if (
       (e.target.classList.contains('gbox') ||
         e.target.classList.contains('gbox_wrap')) &&
-      document.querySelector('.search-field-wrap')
+      document.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         'Clicks on the background space closes pop-up',
@@ -351,7 +350,7 @@ function init() {
 
     if (
       e.target.classList.contains('gbox_close') &&
-      document.querySelector('.search-field-wrap')
+      document.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         'Clicks on the closing search cross pictogramme',
@@ -372,7 +371,7 @@ function init() {
 
     if (
       e.target.classList.contains('search-btn') &&
-      document.querySelector('.search-field-wrap')
+      document.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         `Click on Search button. ${
@@ -384,7 +383,7 @@ function init() {
 
     if (
       e.target.classList.contains('cat-link') &&
-      document.querySelector('.search-field-wrap') &&
+      document.querySelector('.search-submit-loader') &&
       e.target.closest('.autoc-section')
     ) {
       gaEvent(
@@ -400,7 +399,7 @@ function init() {
     if (
       e.target.closest('.autoc-prod-li') &&
       e.target.closest('.autoc-products-section') &&
-      document.querySelector('.search-field-wrap')
+      document.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         `Click on ${
@@ -417,7 +416,7 @@ function init() {
     if (
       e.target.closest('.autoc-brands-li') &&
       e.target.closest('.autoc-brands') &&
-      document.querySelector('.search-field-wrap')
+      document.querySelector('.search-submit-loader')
     ) {
       gaEvent(
         `Click on brand icon in ${
@@ -434,16 +433,15 @@ function init() {
     let clickSearch = setInterval(() => {
       if (!document.querySelector('.lav-search__btn-top')) return false;
       clearInterval(clickSearch);
-      console.log('fire2');
       localStorage.removeItem('showSearch');
       document.querySelector('.header-search-label').click();
     }, 200);
   }
 
-  if (!localStorage.getItem('loadedFiredSearch')) {
-    localStorage.setItem('loadedFiredSearch', 'yes');
-    gaEvent('loaded');
-  }
+  // if (!localStorage.getItem('loadedFiredSearch')) {
+  // localStorage.setItem('loadedFiredSearch', 'yes');
+  gaEvent('loaded');
+  // }
 
   addSidebarSearch();
   changeSearch();
