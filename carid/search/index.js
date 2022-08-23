@@ -46,7 +46,10 @@ if (settings.observe) {
         console.log(node);
 
         if (node.classList.contains('mygarage-dd-container')) {
-          if (node.querySelector('.mygarage-vehicle-title')) {
+          if (
+            node.querySelector('.mygarage-vehicle-title') &&
+            document.querySelector('.lav-add-popup')
+          ) {
             localStorage.setItem('showSearch', 'yes');
             console.log('fire');
             if (localStorage.getItem('startDate')) {
@@ -293,11 +296,11 @@ const styles = `
     .lav-add__caption {
       font-size: 20px;
       line-height: 24px;
-      padding: 50px 5px 0;
+      padding: 0 5px;
       margin-bottom: 10px;
     }
     .gbox_portal .select-vehicle {
-      padding: 5px 7px;
+      padding: 55px 7px 5px;
     }
   }
 `;
