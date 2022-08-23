@@ -126,6 +126,12 @@ if (settings.observe) {
                         );
                       }
                     });
+
+                    document
+                      .querySelector('.lav-add-popup .select-vehicle-button')
+                      .addEventListener('click', function () {
+                        gaEvent(`Click on Go button`, 'Popup: Select vehicle');
+                      });
                   }
                 }, 500);
               });
