@@ -45,7 +45,11 @@ if (settings.observe) {
 
         if (node.classList.contains('mygarage-dd-container')) {
           if (
-            node.querySelector('.mygarage-vehicle-title') &&
+            (node.querySelector('.mygarage-vehicle-title') ||
+              (node.href &&
+                (node.href.includes('powersportsid') ||
+                  node.href.includes('truckid') ||
+                  node.href.includes('motorcycleid')))) &&
             document.querySelector('.lav-add-popup') &&
             document.querySelector('.lav-add__caption')
           ) {
