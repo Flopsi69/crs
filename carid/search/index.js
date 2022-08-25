@@ -42,7 +42,11 @@ if (settings.observe) {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-
+        console.log(
+          node.href,
+          document.querySelector('.lav-add-popup'),
+          document.querySelector('.lav-add__caption')
+        );
         if (
           document.querySelector('.lav-add-popup') &&
           document.querySelector('.lav-add__caption') &&
