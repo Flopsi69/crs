@@ -415,20 +415,28 @@ function init() {
       );
     }
 
-    if (
-      e.target.classList.contains('cat-link') &&
-      isSearch &&
-      (e.target.closest('.autoc-section') ||
-        e.target.closest('.autoc-section-row'))
-    ) {
-      gaEvent(
-        `Click on ${e.target.innerText} button in ${
-          e.target
-            .closest('.autoc-section')
-            .querySelector('.autoc-section-title').innerText
-        }`,
-        'Header. Search menu'
-      );
+    if (e.target.classList.contains('cat-link') && isSearch) {
+      if (e.target.closest('.autoc-section')) {
+        gaEvent(
+          `Click on ${e.target.innerText} button in ${
+            e.target
+              .closest('.autoc-section')
+              .querySelector('.autoc-section-title').innerText
+          }`,
+          'Header. Search menu'
+        );
+      }
+
+      if (e.target.closest('.autoc-section-row')) {
+        gaEvent(
+          `Click on ${e.target.innerText} button in ${
+            e.target
+              .closest('.autoc-section-row')
+              .querySelector('.autoc-section-title').innerText
+          }`,
+          'Header. Search menu'
+        );
+      }
     }
 
     if (
