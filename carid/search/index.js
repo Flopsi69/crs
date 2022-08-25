@@ -43,13 +43,30 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        if (
+          document.querySelector('.lav-add-popup') &&
+          document.querySelector('.lav-add__caption') &&
+          node.href &&
+          (node.href.includes('powersportsid') ||
+            node.href.includes('truckid') ||
+            node.href.includes('motorcycleid'))
+        ) {
+          if (localStorage.getItem('startDate')) {
+            let time =
+              (new Date().getTime() -
+                parseInt(localStorage.getItem('startDate'))) /
+              1000;
+            gaEvent(
+              `Popup was closed after ${time} seconds`,
+              'Popup: Select vehicle'
+            );
+            localStorage.removeItem('startDate');
+          }
+        }
+
         if (node.classList.contains('mygarage-dd-container')) {
           if (
-            (node.querySelector('.mygarage-vehicle-title') ||
-              (node.href &&
-                (node.href.includes('powersportsid') ||
-                  node.href.includes('truckid') ||
-                  node.href.includes('motorcycleid')))) &&
+            node.querySelector('.mygarage-vehicle-title') &&
             document.querySelector('.lav-add-popup') &&
             document.querySelector('.lav-add__caption')
           ) {
