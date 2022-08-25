@@ -42,30 +42,23 @@ if (settings.observe) {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-        console.log(
-          node.href,
-          document.querySelector('.lav-add-popup'),
-          document.querySelector('.lav-add__caption')
-        );
+
         if (
-          document.querySelector('.lav-add-popup') &&
-          document.querySelector('.lav-add__caption') &&
+          localStorage.getItem('startDate') &&
           node.href &&
           (node.href.includes('powersportsid') ||
             node.href.includes('truckid') ||
             node.href.includes('motorcycleid'))
         ) {
-          if (localStorage.getItem('startDate')) {
-            let time =
-              (new Date().getTime() -
-                parseInt(localStorage.getItem('startDate'))) /
-              1000;
-            gaEvent(
-              `Popup was closed after ${time} seconds`,
-              'Popup: Select vehicle'
-            );
-            localStorage.removeItem('startDate');
-          }
+          let time =
+            (new Date().getTime() -
+              parseInt(localStorage.getItem('startDate'))) /
+            1000;
+          gaEvent(
+            `Popup was closed after ${time} seconds`,
+            'Popup: Select vehicle'
+          );
+          localStorage.removeItem('startDate');
         }
 
         if (node.classList.contains('mygarage-dd-container')) {
