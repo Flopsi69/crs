@@ -43,6 +43,15 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        if (node.href) {
+          console.log(
+            localStorage.getItem('startDate'),
+            node.href,
+            node.href.includes('powersportsid'),
+            node.href.includes('truckid'),
+            node.href.includes('motorcycleid')
+          );
+        }
         if (
           localStorage.getItem('startDate') &&
           node.href &&
