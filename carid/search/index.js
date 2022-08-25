@@ -43,33 +43,6 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        if (node.href) {
-          console.log(
-            localStorage.getItem('startDate'),
-            node.href,
-            node.href.includes('powersportsid'),
-            node.href.includes('truckid'),
-            node.href.includes('motorcycleid')
-          );
-        }
-        if (
-          localStorage.getItem('startDate') &&
-          node.href &&
-          (node.href.includes('powersportsid') ||
-            node.href.includes('truckid') ||
-            node.href.includes('motorcycleid'))
-        ) {
-          let time =
-            (new Date().getTime() -
-              parseInt(localStorage.getItem('startDate'))) /
-            1000;
-          gaEvent(
-            `Popup was closed after ${time} seconds`,
-            'Popup: Select vehicle'
-          );
-          localStorage.removeItem('startDate');
-        }
-
         if (node.classList.contains('mygarage-dd-container')) {
           if (
             node.querySelector('.mygarage-vehicle-title') &&
@@ -375,6 +348,23 @@ function init() {
 
   document.addEventListener('click', function (e) {
     console.log(e.target);
+    if (
+      localStorage.getItem('startDate') &&
+      e.target.href &&
+      (e.target.href.includes('powersportsid') ||
+        e.target.href.includes('truckid') ||
+        e.target.href.includes('motorcycleid'))
+    ) {
+      let time =
+        (new Date().getTime() - parseInt(localStorage.getItem('startDate'))) /
+        1000;
+      gaEvent(
+        `Popup was closed after ${time} seconds`,
+        'Popup: Select vehicle'
+      );
+      localStorage.removeItem('startDate');
+    }
+
     if (
       e.target.classList.contains('select-vehicle-button') &&
       e.target.closest('.lav-add-popup')
