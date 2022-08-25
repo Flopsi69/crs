@@ -105,7 +105,8 @@ if (settings.observe) {
                   for (let item of document.querySelectorAll(
                     '.lav-add-popup .select-vehicle-col'
                   )) {
-                    item.addEventListener('click', function () {
+                    item.addEventListener('click', function (e) {
+                      if (e.target.classList.contains('item')) return false;
                       if (item.querySelector('.marker').innerText == '1') {
                         gaEvent(
                           `Click on Year select`,
