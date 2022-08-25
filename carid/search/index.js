@@ -349,7 +349,7 @@ function init() {
   document.addEventListener('click', function (e) {
     console.log(e.target);
     if (
-      e.target.classList.contains('select-vehicle-button') ||
+      e.target.classList.contains('select-vehicle-button') &&
       e.target.closest('.lav-add-popup')
     ) {
       gaEvent(`Click on Go button`, 'Popup: Select vehicle');
