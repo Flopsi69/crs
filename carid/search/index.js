@@ -15,9 +15,12 @@ if (settings.clarity) {
 }
 
 // Alalytic
-function gaEvent(action, label) {
+function gaEvent(action, label, value) {
   if (!label) {
     label = '';
+  }
+  if (!value) {
+    value = '';
   }
   let device = 'Desktop';
   if (window.innerWidth < 992) {
@@ -29,7 +32,7 @@ function gaEvent(action, label) {
       eventCategory: 'Exp: Site search ' + device,
       eventAction: action,
       eventLabel: label,
-      eventValue: '',
+      eventValue: value,
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -537,6 +540,7 @@ function changeSearch() {
       e.preventDefault();
       if (!isProcessing) {
         gaEvent('Click on Search input', 'Header. Search menu');
+        gaEvent('set', 'site_search', 'search_clicked');
       }
       handleSearch();
     });
@@ -583,6 +587,7 @@ function handleSidebar() {
         .addEventListener('click', function (e) {
           e.preventDefault();
           gaEvent('Clicks on the search field', 'hamburger menu');
+          gaEvent('set', 'site_search', 'search_clicked');
           handleSearch();
         });
     }
