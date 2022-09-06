@@ -2,7 +2,7 @@ console.log('initExp');
 
 /********* Settings **********/
 const settings = {
-  dir: 'https://flopsi69.github.io/crs/compramais/steps',
+  dir: 'https://flopsi69.github.io/crs/comparamais/steps',
   hj: false,
   observe: false,
 };
@@ -73,6 +73,10 @@ const styles = `
     display: none;
   }
 
+  .container--hero {
+    padding-bottom: 75px;
+  }
+
   .lav-intro {
     display: grid;
     grid-template-columns: 1fr 1fr
@@ -108,7 +112,12 @@ const styles = `
     cursor: pointer;
   }
   .review__star {
-    margin: 0 9px;
+    display: flex;
+    align-items: center;
+    margin: 0 7px;
+  }
+  .review__star img {
+    margin-top: -2px;
   }
   .review__count {
     font-weight: 400;
@@ -121,6 +130,7 @@ const styles = `
     font-size: 18px;
     line-height: 26px;
     color: #1F1F1F;
+    margin-left: 4px;
   }
   .lav-info__list {
     margin-top: 45px;
@@ -140,7 +150,7 @@ const styles = `
     height: 28px;
     left: 0;
     top: 0;
-    background: url(${settings.dir}/img/green-arrow.svg) center no-repeat;
+    background: url(${settings.dir}/img/gree-arrow.svg) center no-repeat;
     background-size: contain;
   }
 
@@ -208,8 +218,8 @@ const styles = `
     margin-top: 40px;
   }
 
-  .simulator-container {
-
+  .reviews__widget-container {
+    display: none;
   }
 `;
 
@@ -223,10 +233,10 @@ let introInfoEl = `
       <div class='lav-info__title'>Mortgage loans</div>
       <div class='lav-info__caption'>Compare and apply for the best home loan</div>
       <a href='https://www.reviews.co.uk/company-reviews/store/www-comparamais-pt?utm_source=www-comparamais-pt&utm_medium=widget&utm_campaign=text-banner' class='lav-info__review'>
-        <img class='review__site" src='${settings.dir}/img/review.svg'>
+        <img class='review__site' src='${settings.dir}/img/review.svg'>
 
         <div class='review__star'>
-          <img class='review__star" src='${settings.dir}/img/star.svg'>
+          <img src='${settings.dir}/img/star.svg'>
 
           <span>4.6</span>
         </div>
