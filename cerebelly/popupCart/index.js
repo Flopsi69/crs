@@ -343,11 +343,11 @@ function handleSticky(price) {
     return false;
   }
 
-  if (!document.querySelector('.lav-sticky')) {
-    const procentDiscount = document.querySelector('.e-my-account span')
-      ? 15
-      : 25;
+  const procentDiscount = document.querySelector('.e-my-account span')
+    ? 15
+    : 25;
 
+  if (!document.querySelector('.lav-sticky')) {
     if (windowWidth < 900) {
       document.body.insertAdjacentHTML(
         'beforeend',
@@ -379,6 +379,10 @@ function handleSticky(price) {
         gaEvent('Checkout Now sticky click');
         location.href = '/cart';
       });
+  } else {
+    document.querySelector(
+      '.lav-sticky__btn'
+    ).innerText = `CHECKOUT NOW - GET ${procentDiscount}% OFF`;
   }
 
   if (windowWidth < 900) {
