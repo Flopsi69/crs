@@ -1183,34 +1183,31 @@ function initSteps() {
     });
   }
 
-  document
-    .querySelector('.lav-show-report')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('.lav-report').innerHTML = '';
-      for (let item of document.querySelectorAll(
-        '.page__simulator .capture-info__numbers tr'
-      )) {
-        let el = `
-        <div class='lav-report__item'>
-          <div class='lav-report__key'>
-            ${item.querySelector('th').innerText}
-          </div>
-          <div class='lav-report__value'>
-           ${item.querySelector('td').innerText}
-          </div>
-        </div>
-      `;
-        document
-          .querySelector('.lav-report')
-          .insertAdjacentHTML('beforeend', el);
-      }
-    });
-
   for (let item of document.querySelectorAll('.lav-step__next')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
       if (item.classList.contains('disabled')) return false;
+
+      if (item.classList.contains('lav-show-report')) {
+        document.querySelector('.lav-report').innerHTML = '';
+        for (let item of document.querySelectorAll(
+          '.page__simulator .capture-info__numbers tr'
+        )) {
+          let el = `
+          <div class='lav-report__item'>
+            <div class='lav-report__key'>
+              ${item.querySelector('th').innerText}
+            </div>
+            <div class='lav-report__value'>
+             ${item.querySelector('td').innerText}
+            </div>
+          </div>
+        `;
+          document
+            .querySelector('.lav-report')
+            .insertAdjacentHTML('beforeend', el);
+        }
+      }
 
       if (document.querySelector('.lav-step.active').dataset.step == '3') {
         nextPage(true);

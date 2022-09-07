@@ -252,7 +252,7 @@ const styles = `
       align-items: center;
       margin-left: 13px;
     }
-    .lav-sticky.lav-hidden {
+    .lav-sticky__btn.lav-hidden {
       display: none;
     }
     .lav-sticky__price {
