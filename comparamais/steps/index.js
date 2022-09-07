@@ -455,6 +455,10 @@ const styles = `
     width: 100%;
   }
 
+  .lav-step .lav-input.lav-error {
+    border-color: red;
+  }
+
   .lav-final__group .lav-input {
     margin-top: 10px;
     font-weight: 400;
@@ -811,6 +815,19 @@ const styles = `
     line-height: 48px;
     color: #FFFFFF;
   }
+
+  .lav-terms-error {
+    display: none;
+    color: red;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .lav-terms-error.active {
+    display: block;
+  }
 `;
 
 let banks = [
@@ -969,7 +986,7 @@ let stepsEl = `
           </div>
 
           <div class='lav-final__group'>
-            <div class='lav-step__title'>Your name</div>
+            <div class='lav-step__title'>Your Phone</div>
             <input type='text' class='lav-input' placeholder='+351 102 204 305' />
           </div>
 
@@ -984,6 +1001,8 @@ let stepsEl = `
         </div>
 
         <button class='lav-step__next lav-show-report'>View the Report</button>
+
+        <p class='lav-terms-error'>Você deve concordar com nossos termos.</p>
       </div>
     </div>
 
@@ -1189,7 +1208,9 @@ function initSteps() {
       if (item.classList.contains('disabled')) return false;
 
       if (item.classList.contains('lav-show-report')) {
+        if (!validateForm()) return false;
         document.querySelector('.lav-report').innerHTML = '';
+
         for (let item of document.querySelectorAll(
           '.page__simulator .capture-info__numbers tr'
         )) {
@@ -1225,14 +1246,14 @@ function initSteps() {
       thousandsSeparator: ',',
     });
 
-    IMask(
-      document.querySelector(
-        '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
-      ),
-      {
-        mask: /^\S*@?\S*$/,
-      }
-    );
+    // IMask(
+    //   document.querySelector(
+    //     '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+    //   ),
+    //   {
+    //     mask: /^\S*@?\S*$/,
+    //   }
+    // );
 
     IMask(
       document.querySelector(
@@ -1269,6 +1290,9 @@ function initSteps() {
   document
     .querySelector('.lav-final__group-wrap .lav-final__group:first-child input')
     .addEventListener('input', function () {
+      if (this.classList.contains('lav-error')) {
+        this.classList.remove('lav-error');
+      }
       if (this.value) {
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(1) input'
@@ -1285,6 +1309,9 @@ function initSteps() {
       '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
     )
     .addEventListener('input', function () {
+      if (this.classList.contains('lav-error')) {
+        this.classList.remove('lav-error');
+      }
       if (this.value) {
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(2) input'
@@ -1301,6 +1328,9 @@ function initSteps() {
       '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
     )
     .addEventListener('input', function () {
+      if (this.classList.contains('lav-error')) {
+        this.classList.remove('lav-error');
+      }
       if (this.value) {
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
@@ -1361,4 +1391,56 @@ function nextPage(isPreloader) {
   if (isPreloader) {
     startPreloader();
   }
+}
+
+function validateForm() {
+  let isError = false;
+  let name = document.querySelector(
+    '.lav-final__group-wrap .lav-final__group:nth-child(1) input'
+  ).value;
+
+  let email = document.querySelector(
+    '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+  ).value;
+
+  let phone = document.querySelector(
+    '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
+  ).value;
+
+  console.log(name, email, phone);
+
+  if (!name) {
+    isError = true;
+    document
+      .querySelector(
+        '.lav-final__group-wrap .lav-final__group:nth-child(1) input'
+      )
+      .classList.add('lav-error');
+  }
+
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    isError = true;
+    document
+      .querySelector(
+        '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+      )
+      .classList.add('lav-error');
+  }
+
+  if (!phone || phone.length != 16) {
+    isError = true;
+    document
+      .querySelector(
+        '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
+      )
+      .classList.add('lav-error');
+  }
+
+  if (!document.querySelector('.lav-terms.active')) {
+    document.querySelector('.lav-terms-error').classList.add('active');
+  } else {
+    document.querySelector('.lav-terms-error').classList.remove('active');
+  }
+
+  return !isError;
 }
