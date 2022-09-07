@@ -244,6 +244,9 @@ const styles = `
     .modal .main {
       margin-right: 0;
     }
+    .b-header .e-nav .e-right {
+      flex-shrink: 0;
+    }
     .lav-sticky {
       display: flex;
       align-items: center;
