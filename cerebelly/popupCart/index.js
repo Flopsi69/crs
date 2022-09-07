@@ -252,6 +252,9 @@ const styles = `
       align-items: center;
       margin-left: 13px;
     }
+    .lav-sticky.lav-hidden {
+      display: none;
+    }
     .lav-sticky__price {
       margin-right: 18px;
       margin-left: 13px;
@@ -368,6 +371,19 @@ function handleSticky(price) {
         </div>
         `
       );
+    }
+
+    if (windowWidth >= 900) {
+      if (
+        document.querySelector('.lav-sticky') &&
+        location.href == 'https://cerebelly.com/cart'
+      ) {
+        document.querySelector('.lav-sticky__btn').classList.add('lav-hidden');
+      } else if (document.querySelector('.lav-sticky__btn.lav-hidden')) {
+        document
+          .querySelector('.lav-sticky__btn.lav-hidden')
+          .classList.remove('lav-hidden');
+      }
     }
 
     gaEvent('Sticky block appeared onscreen');

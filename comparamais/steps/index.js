@@ -89,7 +89,8 @@ const styles = `
     margin-right: auto;
   }
   .lav-info {
-    align-self: center;
+    margin-top: 100px;
+    // align-self: center;
     // width: 580px;
   }
   .lav-info__title {
@@ -156,8 +157,182 @@ const styles = `
     background-size: contain;
   }
 
-  .lav-steps {
+  .lav-preloader {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    color: #262626;
+    margin-top: 40px;
+  }
 
+  .lav-preloader__item {
+    position: relative;
+    padding-left: 30px;
+    transition: 0.3s;
+    opacity: 0;
+  }
+
+  .lav-preloader__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    transform-origin: center;
+    line-height: 0;
+    width: 14px;
+    height: 14px;
+    background: url(${settings.dir}/img/load.svg) center no-repeat;
+    background-size: contain;
+  }
+
+  .lav-preloader__item.active, .lav-preloader__item.finish {
+    opacity: 1;
+  }
+
+  @-webkit-keyframes infinite-spinning {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes infinite-spinning {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  .lav-preloader__item.active:before {
+    -webkit-animation: infinite-spinning 2s infinite linear;
+    animation: infinite-spinning 2s infinite linear;
+  }
+
+  .lav-preloader__item.finish:before {
+    background: url(${settings.dir}/img/green-check.svg) center no-repeat;
+    background-size: contain;
+  }
+
+  .lav-preloader__item + .lav-preloader__item {
+    margin-top: 16px;
+  }
+
+  .lav-final {
+    // display: none;
+  }
+
+  .lav-final.active {
+    display: block;
+  }
+
+  .lav-final__group {
+    margin-top: 28px;
+  }
+
+  .lav-final__group-wrap {
+    margin-bottom: 40px;
+  }
+
+  .lav-final__check {
+    position: relative;
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #1F1F1F;
+    padding-left: 32px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .lav-final__check:before, .lav-final__check.active:after  {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #FFFFFF;
+    border: 1px solid #E6E7E7;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .lav-final__check.active:after {
+    background: url('${settings.dir}/img/check.svg') center no-repeat;
+    background-size: cover;
+    border-color: #0071EB;
+  }
+
+  .lav-final__check a {
+    color: #0071EB;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+
+  .lav-final__check a:hover {
+    opacity: 0.6;
+  }
+
+  .lav-final__check + .lav-final__check  {
+    margin-top: 16px;
+  }
+
+  .lav-report {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 -15px 40px;
+  }
+
+  .lav-report__item {
+    margin: 28px 15px 0;
+  }
+
+  // .lav-report__item:nth-child(3n+1) {
+  //   width: 160px;
+  // }
+
+  // .lav-report__item:nth-child(3n+2) {
+  //   width: 100px;
+  // }
+
+  // .lav-report__item:nth-child(3n+3) {
+  //   width: 145px;
+  // }
+
+  .lav-report__key {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #1F1F1F;
+  }
+
+  .lav-report__value {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 30px;
+    color: #229F55;
+    margin-top: 8px;
+  }
+
+  .lav-step__title-final {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 26px;
+    color: #1F1F1F;
+    margin-top: 8px;
   }
 
   .lav-step__head {
@@ -171,9 +346,18 @@ const styles = `
     font-size: 14px;
     line-height: 18px;
     color: #0071EB;
+    transition: 0.35s;
   }
   .lav-step__back img {
     margin-right: 7px;
+    transition: 0.35s;
+  }
+  .lav-step__back.disabled {
+    color: #9F9F9F;
+    pointer-events: none;
+  }
+  .lav-step__back.disabled img {
+    filter: grayscale(100%);
   }
   .lav-step__num {
     color: #1F1F1F;
@@ -255,9 +439,10 @@ const styles = `
     line-height: 20px;
     color: #474A48;
     margin-top: 28px;
+    margin-bottom: 40px;
   }
 
-  .lav-input {
+  .lav-step .lav-input {
     background: #F9F9F9;
     border: 1px solid #E6E7E7;
     border-radius: 8px;
@@ -268,6 +453,13 @@ const styles = `
     color: #1F1F1F;
     padding: 12px 20px;
     width: 100%;
+  }
+
+  .lav-final__group .lav-input {
+    margin-top: 10px;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .lav-step__salary {
@@ -309,14 +501,25 @@ const styles = `
     cursor: pointer;
     outline: none;
     margin-top: auto;
+    transition: 0.35s;
+  }
+
+  .lav-step__next.disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
   }
 
   .lav-step__next:hover {
     background-color: #0056b3;
   }
 
+  .page__simulator .capture-overlay {
+    opacity: 0.4;
+  }
+
   .lav-step {
     display: flex;
+    // display: none;
     flex-flow: column;
     padding: 56px;
     background: #FFFFFF;
@@ -324,6 +527,10 @@ const styles = `
     border-radius: 24px;
     border: none;
     min-height: 474px;
+  }
+
+  .lav-step.active {
+    display: flex;
   }
 
   .lav-step label {
@@ -687,14 +894,14 @@ let stepsEl = `
 
       <div class='lav-step__title'>Nationality</div>
 
-      <div class='lav-step__radio-list'>
-        <div class='lav-step__radio active'>Portugues</div>
-        <div class='lav-step__radio'>Permanent Resident</div>
-        <div class='lav-step__radio'>Temporary Resident</div>
-        <div class='lav-step__radio'>Non-Resident</div>
+      <div class='lav-step__radio-list lav-nation'>
+        <div class='lav-step__radio' data-idx='1'>Portugues</div>
+        <div class='lav-step__radio' data-idx='2'>Permanent Resident</div>
+        <div class='lav-step__radio' data-idx='3'>Temporary Resident</div>
+        <div class='lav-step__radio' data-idx='4'>Non-Resident</div>
       </div>
 
-      <button class='lav-step__next'>Continue</button>
+      <button class='lav-step__next disabled'>Continue</button>
     </div>
 
     <div class='lav-step' data-step='2'>
@@ -705,15 +912,15 @@ let stepsEl = `
 
       <div class='lav-step__title'>Work Situation</div>
 
-      <div class='lav-step__radio-list'>
-        <div class='lav-step__radio active'>Effective</div>
-        <div class='lav-step__radio'>Own Account</div>
-        <div class='lav-step__radio'>Term Contract</div>
-        <div class='lav-step__radio'>Retired</div>
-        <div class='lav-step__radio'>Unemployed</div>
+      <div class='lav-step__radio-list lav-situation'>
+        <div class='lav-step__radio' data-idx='1'>Effective</div>
+        <div class='lav-step__radio' data-idx='2'>Own Account</div>
+        <div class='lav-step__radio' data-idx='3'>Term Contract</div>
+        <div class='lav-step__radio' data-idx='4'>Retired</div>
+        <div class='lav-step__radio' data-idx='5'>Unemployed</div>
       </div>
 
-      <button class='lav-step__next'>Continue</button>
+      <button class='lav-step__next disabled'>Continue</button>
     </div>
 
     <div class='lav-step' data-step='3'>
@@ -725,27 +932,79 @@ let stepsEl = `
       <div class='lav-step__title'>Net Sallary</div>
 
       <div class='lav-step__salary'>
-        <input value='10,000' class='lav-input' />
+        <input type='tel' placeholder='10,000' class='lav-input' />
       </div>
 
       <div class='lav-step__caption'>Please exclude child benefits and make sure that health insurance and debt payments are deducted from your gross income.</div>
 
 
-      <button class='lav-step__next'>Continue</button>
+      <button class='lav-step__next disabled'>Continue</button>
     </div>
 
-    <div class='lav-step' data-step='2'></div>
-    <div class='lav-step' data-step='3'></div>
-    <div class='lav-step' data-step='4'></div>
-    <div class='lav-step' data-step='5'></div>
+    <div class='lav-step' data-step='4'>
+      <div class='lav-step__head'>
+        <div class='lav-step__back disabled'><img src='${settings.dir}/img/back.svg'>Back</div>
+        <div class='lav-step__num'><span>4</span>/4</div>
+      </div>
+
+      <div class="lav-preloader">
+        <div class="lav-preloader__item">Evaluating  your input</div>
+        <div class="lav-preloader__item">Scanning the market</div>
+        <div class="lav-preloader__item">Processing available mortgage offers</div>
+        <div class="lav-preloader__item">Creating your personal mortgage report...</div>
+      </div>
+
+      <div class='lav-final'>
+        <div class='lav-step__title-final'>Great! Your mortgage offer is ready!</div>
+
+        <div class='lav-final__group-wrap'>
+          <div class='lav-final__group'>
+            <div class='lav-step__title'>Your name</div>
+            <input type='text' class='lav-input' placeholder='John Doe' />
+          </div>
+
+          <div class='lav-final__group'>
+            <div class='lav-step__title'>Leave your email to view the report</div>
+            <input value='' type='text' class='lav-input' placeholder='forexample@gmail.com' />
+          </div>
+
+          <div class='lav-final__group'>
+            <div class='lav-step__title'>Your name</div>
+            <input type='text' class='lav-input' placeholder='+351 102 204 305' />
+          </div>
+
+          <div class='lav-final__group'>
+            <div class='lav-final__check lav-terms'>
+              I declare that I have read and accepted the <a href='https://www.comparamais.pt/termos-e-condicoes' target='_blank'>&nbsp;Terms and Conditions</a>.
+            </div>
+            <div class='lav-final__check lav-personal'>
+              I consent to Comparamais processing my personal data for marketing purposes.
+            </div>
+          </div>
+        </div>
+
+        <button class='lav-step__next lav-show-report'>View the Report</button>
+      </div>
+    </div>
+
+    <div class='lav-step' data-step='5'>
+      <div class='lav-step__title-final'>Report</div>
+
+      <div class='lav-report'></div>
+
+      <button class='lav-step__next'>View Banks</button>
+    </div>
   </div>
 `;
 
 /********* Custom Code **********/
+let imaskScript = document.createElement('script');
+imaskScript.src = 'https://unpkg.com/imask';
+document.body.append(imaskScript);
+
 init();
 function init() {
   console.log('init');
-
   initTopInfo();
   initFilters();
   initSteps();
@@ -754,7 +1013,9 @@ function init() {
     .querySelector('.lav-step .hls-simulator__button')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      e.stopPropagation();
+      document
+        .querySelector('.lav-step[data-step="1"]')
+        .classList.add('active');
     });
 }
 
@@ -772,12 +1033,20 @@ function initTopInfo() {
       )
     );
 
-  document.querySelector('.simulator-container').classList.add('lav-step');
+  document
+    .querySelector('.simulator-container')
+    .classList.add('lav-step', 'active');
 
   document.querySelector('.review__count').innerHTML =
     '(' +
     document.querySelector('.reviews-score strong:last-child').innerText +
     ' Reviews)';
+
+  for (let item of document.querySelectorAll(
+    '.hls-simulator__amount-range span'
+  )) {
+    item.innerText = item.innerText + '€';
+  }
 }
 
 function initFilters() {
@@ -865,4 +1134,234 @@ function initSteps() {
   document
     .querySelector('.page__simulator')
     .insertAdjacentHTML('beforeend', stepsEl);
+
+  for (let item of document.querySelectorAll('.lav-final__check')) {
+    item.addEventListener('click', function (e) {
+      if (e.target.tagName != 'A') {
+        e.preventDefault();
+        item.classList.toggle('active');
+        if (item.classList.contains('lav-terms')) {
+          document.querySelector('#termsAgreement').click();
+        } else if (item.classList.contains('lav-personal')) {
+          document.querySelector('#communicationAgreement').click();
+        }
+      }
+    });
+  }
+
+  for (let item of document.querySelectorAll('.lav-step__radio')) {
+    item.addEventListener('click', function () {
+      if (item.classList.contains('active')) return false;
+
+      if (item.closest('.lav-step__radio-list').querySelector('.active')) {
+        item
+          .closest('.lav-step__radio-list')
+          .querySelector('.active')
+          .classList.remove('active');
+      }
+      item.classList.add('active');
+
+      let idx = parseInt(item.dataset.idx) + 1;
+
+      if (item.closest('.lav-nation')) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
+        ).value = document.querySelector(
+          `.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) option:nth-child(${idx})`
+        ).value;
+      } else if (item.closest('.lav-situation')) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
+        ).value = document.querySelector(
+          `.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) option:nth-child(${idx})`
+        ).value;
+      }
+
+      document
+        .querySelector('.lav-step.active .lav-step__next')
+        .classList.remove('disabled');
+    });
+  }
+
+  document
+    .querySelector('.lav-show-report')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.lav-report').innerHTML = '';
+      for (let item of document.querySelectorAll(
+        '.page__simulator .capture-info__numbers tr'
+      )) {
+        let el = `
+        <div class='lav-report__item'>
+          <div class='lav-report__key'>
+            ${item.querySelector('th').innerText}
+          </div>
+          <div class='lav-report__value'>
+           ${item.querySelector('td').innerText}
+          </div>
+        </div>
+      `;
+        document
+          .querySelector('.lav-report')
+          .insertAdjacentHTML('beforeend', el);
+      }
+    });
+
+  for (let item of document.querySelectorAll('.lav-step__next')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (item.classList.contains('disabled')) return false;
+
+      if (document.querySelector('.lav-step.active').dataset.step == '3') {
+        nextPage(true);
+      } else {
+        nextPage();
+      }
+    });
+  }
+
+  let intervalMask = setInterval(() => {
+    if (!IMask) return false;
+    clearInterval(intervalMask);
+    IMask(document.querySelector('.lav-step__salary input'), {
+      mask: Number,
+      thousandsSeparator: ',',
+    });
+
+    IMask(
+      document.querySelector(
+        '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+      ),
+      {
+        mask: /^\S*@?\S*$/,
+      }
+    );
+
+    IMask(
+      document.querySelector(
+        '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
+      ),
+      {
+        mask: '+{351} 000 000 000',
+      }
+    );
+  }, 300);
+
+  document
+    .querySelector('.lav-step__salary input')
+    .addEventListener('input', function () {
+      if (this.value) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
+        ).value = this.value.replaceAll(',', '');
+
+        document
+          .querySelector('.lav-step[data-step="3"] .lav-step__next')
+          .classList.remove('disabled');
+      } else {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
+        ).value = '';
+
+        document
+          .querySelector('.lav-step[data-step="3"] .lav-step__next')
+          .classList.add('disabled');
+      }
+    });
+
+  document
+    .querySelector('.lav-final__group-wrap .lav-final__group:first-child input')
+    .addEventListener('input', function () {
+      if (this.value) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(1) input'
+        ).value = this.value;
+      } else {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(1) input'
+        ).value = '';
+      }
+    });
+
+  document
+    .querySelector(
+      '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+    )
+    .addEventListener('input', function () {
+      if (this.value) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(2) input'
+        ).value = this.value;
+      } else {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(2) input'
+        ).value = '';
+      }
+    });
+
+  document
+    .querySelector(
+      '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
+    )
+    .addEventListener('input', function () {
+      if (this.value) {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
+        ).value = this.value;
+      } else {
+        document.querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
+        ).value = '';
+      }
+    });
+}
+
+function startPreloader() {
+  console.log('startPreloader');
+  let idx = 0;
+  var delay = 2.3;
+
+  for (let item of document.querySelectorAll('.lav-preloader__item')) {
+    setTimeout(() => {
+      let el = document.querySelector('.lav-preloader__item.active');
+      if (el) {
+        el.classList.remove('active');
+        el.classList.add('finish');
+      }
+
+      item.classList.add('active');
+    }, idx * delay * 1000);
+
+    idx++;
+
+    if (idx == 3) {
+      setTimeout(() => {
+        let el = document.querySelector('.lav-preloader__item.active');
+
+        el.classList.remove('active');
+        el.classList.add('finish');
+
+        setTimeout(() => {
+          document
+            .querySelector('.lav-step__back.disabled')
+            .classList.remove('disabled');
+          document.querySelector('.lav-preloader').remove();
+          document.querySelector('.lav-final').classList.add('active');
+        }, 500);
+      }, idx * delay * 1000 + 3000);
+    }
+  }
+}
+
+function nextPage(isPreloader) {
+  let currentStep = document.querySelector('.lav-step.active');
+  currentStep.classList.remove('active');
+
+  if (currentStep.nextElementSibling) {
+    currentStep.nextElementSibling.classList.add('active');
+  }
+
+  if (isPreloader) {
+    startPreloader();
+  }
 }
