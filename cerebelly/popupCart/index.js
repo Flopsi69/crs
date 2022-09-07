@@ -427,11 +427,11 @@ function countQuantity(products) {
 
 function handleCartModal(price) {
   console.dir('handleCartModal');
-  if (!document.querySelector('.lav-checkout')) {
-    const procentDiscount = document.querySelector('.e-my-account span')
-      ? 15
-      : 25;
+  const procentDiscount = document.querySelector('.e-my-account span')
+    ? 15
+    : 25;
 
+  if (!document.querySelector('.lav-checkout')) {
     document
       .querySelector('.modal:not(.undefined) .checkout')
       .insertAdjacentHTML(
@@ -446,6 +446,10 @@ function handleCartModal(price) {
         // document.querySelector('.modal:not(.undefined) .checkout').click();
         location.href = '/cart';
       });
+  } else {
+    document.querySelector(
+      '.lav-sticky__btn'
+    ).innerText = `CHECKOUT NOW - GET ${procentDiscount}% OFF`;
   }
 
   if (price > 45) {
