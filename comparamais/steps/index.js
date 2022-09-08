@@ -852,6 +852,9 @@ const styles = `
     top: 28px;
     right: 28px;
   }
+  .lav-result-hide {
+    display: none;
+  }
   @media(max-width: 580px) {
     .lav-filter-close {
       display: block;
@@ -1162,6 +1165,9 @@ function init() {
       e.preventDefault();
       gaEvent('click button', 'step: Calculator');
       document
+        .querySelector('.container--hero + .container')
+        .classList.add('lav-result-hide');
+      document
         .querySelector('.lav-step[data-step="1"]')
         .classList.add('active');
     });
@@ -1451,6 +1457,9 @@ function initSteps() {
           .querySelector('.page__simulator')
           .classList.add('page__simulator__complete');
         nextPage();
+        document
+          .querySelector('.container--hero + .container')
+          .classList.remove('lav-result-hide');
         if (document.querySelector('#results')) {
           document.querySelector('#results').scrollIntoView();
         } else {
