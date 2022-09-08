@@ -29,9 +29,11 @@ function gaEvent(action, label) {
       eventAction: action,
       eventLabel: label,
     };
-    console.dir('crsEvent', objData.eventAction);
+    console.dir('crsEvent', objData);
     dataLayer.push(objData);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function gaEventClient(event, quality) {
@@ -44,7 +46,7 @@ function gaEventClient(event, quality) {
     if (quality) {
       objData.lead_quality = quality;
     }
-    console.dir('clientEvent', objData.eventAction);
+    console.dir('clientEvent', objData);
     dataLayer.push(objData);
   } catch (e) {
     console.log(e);
