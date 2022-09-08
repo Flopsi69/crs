@@ -3,15 +3,20 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/comparamais/steps',
-  hj: false,
+  clarity: false,
   observe: false,
 };
 
 //Hotjar
-if (settings.hj) {
+if (settings.clarity) {
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == 'function') {
+      clearInterval(clarityInterval);
+      clarity('set', 'new_flow', 'variant_1');
+    }
+  }, 1000);
 }
 
-// Alalytic
 // Alalytic
 function gaEvent(action, label) {
   if (!label) {

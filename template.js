@@ -3,33 +3,18 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/depositPhotos/mayAlsoLike',
-  hj: false,
+  clarity: false,
   observe: false,
 };
 
 //Hotjar
-if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
+if (settings.clarity) {
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == 'function') {
+      clearInterval(clarityInterval);
+      clarity('set', '', 'variant_1');
+    }
+  }, 1000);
 }
 
 // Alalytic
