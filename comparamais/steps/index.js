@@ -112,7 +112,7 @@ const styles = `
   }
   .lav-info__caption {
     font-weight: 500;
-    font-size: 27px;
+    font-size: 25px;
     line-height: 32px;
     color: #1F1F1F;
     margin-top: 8px;
@@ -955,8 +955,8 @@ document.body.appendChild(stylesEl);
 
 let introInfoEl = `
     <div class='lav-info'>
-      <div class='lav-info__title'>Mortgage loans</div>
-      <div class='lav-info__caption'>Compare and apply for the best home loan</div>
+      <div class='lav-info__title'>Crédito Habitação</div>
+      <div class='lav-info__caption'>Compare e adira ao melhor Crédito Habitação</div>
       <a href='https://www.reviews.co.uk/company-reviews/store/www-comparamais-pt?utm_source=www-comparamais-pt&utm_medium=widget&utm_campaign=text-banner' class='lav-info__review'>
         <img class='review__site' src='${settings.dir}/img/review.svg'>
 
@@ -969,35 +969,35 @@ let introInfoEl = `
         <div class='review__count'></div>
       </a>
       <div class='lav-info__list'>
-        <div class='lav-info__item'>Receive exclusive and personalized proposals from all banks</div>
-        <div class='lav-info__item'>Compare all charges and approval criteria for your credit</div>
-        <div class='lav-info__item'>Save thousands of euros with the lowest installments</div>
+        <div class='lav-info__item'>Receba propostas exclusivas e personalizadas de todos os bancos</div>
+        <div class='lav-info__item'>Compare todos os custos e critérios de aprovação para o seu crédito</div>
+        <div class='lav-info__item'>Poupe milhares de euros com os juros mais baixos</div>
       </div>
     </div>
 `;
 
 let filtersEl = `
   <div class="lav-filter__head">
-    <div class='lav-filter__head-title'>Filters</div>
-    <button class='lav-filter__head-reset'>Reset filters</button>
+    <div class='lav-filter__head-title'>Filtros</div>
+    <button class='lav-filter__head-reset'>Remover filtros</button>
   </div>
 
   <div class="lav-filter__choosen"></div>
 
   <div class="lav-sort">
-    <div class="lav-sort__value">Sort by: <span>Featured</span></div>
+    <div class="lav-sort__value">Escolher por: <span>Recomendado</span></div>
     <div class="lav-sort__dropdown">
-      <div class="lav-sort__item active">Featured</div>
-      <div class="lav-sort__item">Monthly Installment</div>
+      <div class="lav-sort__item active">Recomendado</div>
+      <div class="lav-sort__item">Prestação Mensal</div>
       <div class="lav-sort__item">TAN</div>
-      <div class="lav-sort__item">APR</div>
-      <div class="lav-sort__item">Euribor 12M</div>
+      <div class="lav-sort__item">TAEG</div>
+      <div class="lav-sort__item">Euribor 6M</div>
       <div class="lav-sort__item">Spread</div>
     </div>
   </div>
 
   <div class="lav-filter__body">
-    <div class="lav-filter__body-title">Banks</div>
+    <div class="lav-filter__body-title">Bancos</div>
     <div class="lav-filter__list"></div>
   </div>
 `;
@@ -1010,109 +1010,109 @@ let stepsEl = `
         <div class='lav-step__num'><span>1</span>/4</div>
       </div>
 
-      <div class='lav-step__title'>Nationality</div>
+      <div class='lav-step__title'>Nacionalidade</div>
 
       <div class='lav-step__radio-list lav-nation'>
-        <div class='lav-step__radio' data-idx='1'>Portugues</div>
-        <div class='lav-step__radio' data-idx='2'>Permanent Resident</div>
-        <div class='lav-step__radio' data-idx='3'>Temporary Resident</div>
-        <div class='lav-step__radio' data-idx='4'>Non-Resident</div>
+        <div class='lav-step__radio' data-idx='1'>Português</div>
+        <div class='lav-step__radio' data-idx='2'>Residente Permanente</div>
+        <div class='lav-step__radio' data-idx='3'>Residente Temporário</div>
+        <div class='lav-step__radio' data-idx='4'>Não-Residente</div>
       </div>
 
-      <button class='lav-step__next disabled'>Continue</button>
+      <button class='lav-step__next disabled'>Continuar</button>
     </div>
 
     <div class='lav-step' data-step='2'>
       <div class='lav-step__head'>
-        <div class='lav-step__back'><img src='${settings.dir}/img/back.svg'>Back</div>
+        <div class='lav-step__back'><img src='${settings.dir}/img/back.svg'>Voltar</div>
         <div class='lav-step__num'><span>2</span>/4</div>
       </div>
 
-      <div class='lav-step__title'>Work Situation</div>
+      <div class='lav-step__title'>Situação Laboral</div>
 
       <div class='lav-step__radio-list lav-situation'>
-        <div class='lav-step__radio' data-idx='1'>Effective</div>
-        <div class='lav-step__radio' data-idx='2'>Own Account</div>
-        <div class='lav-step__radio' data-idx='3'>Term Contract</div>
-        <div class='lav-step__radio' data-idx='4'>Retired</div>
-        <div class='lav-step__radio' data-idx='5'>Unemployed</div>
+        <div class='lav-step__radio' data-idx='1'>Efetivo</div>
+        <div class='lav-step__radio' data-idx='2'>Trabalhador Independente</div>
+        <div class='lav-step__radio' data-idx='3'>Contrato a Termo Certo</div>
+        <div class='lav-step__radio' data-idx='4'>Reformado</div>
+        <div class='lav-step__radio' data-idx='5'>Desempregado</div>
       </div>
 
-      <button class='lav-step__next disabled'>Continue</button>
+      <button class='lav-step__next disabled'>Continuar</button>
     </div>
 
     <div class='lav-step' data-step='3'>
       <div class='lav-step__head'>
-        <div class='lav-step__back'><img src='${settings.dir}/img/back.svg'>Back</div>
+        <div class='lav-step__back'><img src='${settings.dir}/img/back.svg'>Voltar</div>
         <div class='lav-step__num'><span>3</span>/4</div>
       </div>
 
-      <div class='lav-step__title'>Net Sallary</div>
+      <div class='lav-step__title'>Salário Líquido</div>
 
       <div class='lav-step__salary'>
         <input type='tel' placeholder='10,000' class='lav-input' />
       </div>
 
-      <div class='lav-step__caption'>Please exclude child benefits and make sure that health insurance and debt payments are deducted from your gross income.</div>
+      <div class='lav-step__caption'>Por favor, exclua pagamentos de apoios sociais e confirme o salário líquido após todos os descontos e deduções do seu vencimento bruto.</div>
 
 
-      <button class='lav-step__next disabled'>Continue</button>
+      <button class='lav-step__next disabled'>Continuar</button>
     </div>
 
     <div class='lav-step' data-step='4'>
       <div class='lav-step__head'>
-        <div class='lav-step__back disabled'><img src='${settings.dir}/img/back.svg'>Back</div>
+        <div class='lav-step__back disabled'><img src='${settings.dir}/img/back.svg'>Voltar</div>
         <div class='lav-step__num'><span>4</span>/4</div>
       </div>
 
       <div class="lav-preloader">
-        <div class="lav-preloader__item">Evaluating  your input</div>
-        <div class="lav-preloader__item">Scanning the market</div>
-        <div class="lav-preloader__item">Processing available mortgage offers</div>
-        <div class="lav-preloader__item">Creating your personal mortgage report...</div>
+        <div class="lav-preloader__item">A avaliar o seu pedido</div>
+        <div class="lav-preloader__item">A analisar o mercado</div>
+        <div class="lav-preloader__item">A processar as ofertas disponíveis</div>
+        <div class="lav-preloader__item">A criar o seu quadro de ofertas de crédito habitação...</div>
       </div>
 
       <div class='lav-final'>
-        <div class='lav-step__title-final'>Great! Your mortgage offer is ready!</div>
+        <div class='lav-step__title-final'>Excelente. O seu crédito Habitação está pronto!</div>
 
         <div class='lav-final__group-wrap'>
           <div class='lav-final__group'>
-            <div class='lav-step__title'>Your name</div>
+            <div class='lav-step__title'>O seu nome</div>
             <input type='text' class='lav-input' placeholder='John Doe' />
           </div>
 
           <div class='lav-final__group'>
-            <div class='lav-step__title'>Leave your email to view the report</div>
+            <div class='lav-step__title'>Indique o seu email para ver os resultados</div>
             <input value='' type='text' class='lav-input' placeholder='forexample@gmail.com' />
           </div>
 
           <div class='lav-final__group'>
-            <div class='lav-step__title'>Your Phone</div>
+            <div class='lav-step__title'>O seu contacto telefónico</div>
             <input type='text' class='lav-input' placeholder='+351 102 204 305' />
           </div>
 
           <div class='lav-final__group'>
             <div class='lav-final__check lav-terms'>
-              I declare that I have read and accepted the <a href='https://www.comparamais.pt/termos-e-condicoes' target='_blank'>&nbsp;Terms and Conditions</a>.
+            Declaro ter tomado conhecimento e aceito os <a href='https://www.comparamais.pt/termos-e-condicoes' target='_blank'>&nbsp;Termos e Condições</a>.
             </div>
             <div class='lav-final__check lav-personal'>
-              I consent to Comparamais processing my personal data for marketing purposes.
+              Consinto que a Comparamais trate os meus dados pessoais para efeitos de marketing.
             </div>
           </div>
         </div>
 
-        <button class='lav-step__next lav-show-report'>View the Report</button>
+        <button class='lav-step__next lav-show-report'>Ver as Ofertas</button>
 
         <p class='lav-terms-error'>Você deve concordar com nossos termos.</p>
       </div>
     </div>
 
     <div class='lav-step' data-step='5'>
-      <div class='lav-step__title-final'>Report</div>
+      <div class='lav-step__title-final'>Proposta</div>
 
       <div class='lav-report'></div>
 
-      <button class='lav-step__next lav-view-banks'>View Banks</button>
+      <button class='lav-step__next lav-view-banks'>Ver os Bancos</button>
     </div>
   </div>
 `;
@@ -1170,7 +1170,7 @@ function initTopInfo() {
   document.querySelector('.review__count').innerHTML =
     '(' +
     document.querySelector('.reviews-score strong:last-child').innerText +
-    ' Reviews)';
+    ' Avaliações)';
 
   for (let item of document.querySelectorAll(
     '.hls-simulator__amount-range span'
