@@ -1637,7 +1637,7 @@ function initSteps() {
 function startPreloader() {
   console.log('startPreloader');
   let idx = 0;
-  var delay = 2.3;
+  var delay = 0.7;
 
   for (let item of document.querySelectorAll('.lav-preloader__item')) {
     setTimeout(() => {
