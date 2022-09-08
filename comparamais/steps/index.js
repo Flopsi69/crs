@@ -1057,7 +1057,7 @@ let stepsEl = `
       <div class='lav-step__caption'>Por favor, exclua pagamentos de apoios sociais e confirme o salário líquido após todos os descontos e deduções do seu vencimento bruto.</div>
 
 
-      <button class='lav-step__next disabled'>Continuar</button>
+      <button class='lav-step__next lav-step-sallary disabled'>Continuar</button>
     </div>
 
     <div class='lav-step' data-step='4'>
@@ -1302,10 +1302,12 @@ function initSteps() {
         e.preventDefault();
         item.classList.toggle('active');
         if (item.classList.contains('lav-terms')) {
+          gaEvent('click checkbox terms', 'step: Form');
           document.querySelector('#termsAgreement').checked = 'checked';
           let event = new Event('change');
           document.querySelector('#termsAgreement').dispatchEvent(event);
         } else if (item.classList.contains('lav-personal')) {
+          gaEvent('click checkbox agreement', 'step: Form');
           document.querySelector('#communicationAgreement').checked = 'checked';
           let event = new Event('change');
           document
@@ -1331,6 +1333,8 @@ function initSteps() {
       let idx = parseInt(item.dataset.idx) + 1;
 
       if (item.closest('.lav-nation')) {
+        gaEvent('click radio', 'step: Nationality');
+
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
         ).value = document.querySelector(
@@ -1344,6 +1348,8 @@ function initSteps() {
           )
           .dispatchEvent(event);
       } else if (item.closest('.lav-situation')) {
+        gaEvent('click radio', 'step: Work Status');
+
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
         ).value = document.querySelector(
@@ -1392,6 +1398,23 @@ function initSteps() {
       e.preventDefault();
       if (item.classList.contains('disabled')) return false;
 
+      if (item.closest('.lav-step').dataset.step == '1') {
+        gaEvent('click button', 'step: Calculator');
+      }
+
+      if (item.closest('.lav-step').dataset.step == '2') {
+        gaEvent('click button', 'step: Nationality');
+      }
+
+      if (item.closest('.lav-step').dataset.step == '3') {
+        gaEvent('click button', 'step: Work Status');
+      }
+
+      if (item.closest('.lav-step').dataset.step == '4') {
+        gaEvent('click button', 'step: Sallary');
+        gaEventClient('viewCaptureForm');
+      }
+
       if (item.classList.contains('lav-show-report')) {
         if (!validateForm()) return false;
         document.querySelector('.lav-report').innerHTML = '';
@@ -1419,6 +1442,9 @@ function initSteps() {
             '.page__simulator .capture-overlay .capture-form button'
           )
           .click();
+
+        gaEventClient('submitCaptureForm', '50');
+        gaEvent('click button', 'step: Form');
       }
 
       if (item.classList.contains('lav-view-banks')) {
@@ -1436,6 +1462,8 @@ function initSteps() {
             }
           }, 1000);
         }
+        gaEvent('click button', 'step: Report');
+        gaEventClient('viewProductList');
         return false;
       }
 
@@ -1473,6 +1501,12 @@ function initSteps() {
       }
     );
   }, 300);
+
+  document
+    .querySelector('.lav-step__salary input')
+    .addEventListener('click', function () {
+      gaEvent('click input', 'step: Sallary');
+    });
 
   document
     .querySelector('.lav-step__salary input')
@@ -1577,6 +1611,28 @@ function initSteps() {
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
         )
         .dispatchEvent(event);
+    });
+
+  document
+    .querySelector('.lav-final__group-wrap .lav-final__group:first-child input')
+    .addEventListener('click', function () {
+      gaEvent('click input name', 'step: Form');
+    });
+
+  document
+    .querySelector(
+      '.lav-final__group-wrap .lav-final__group:nth-child(2) input'
+    )
+    .addEventListener('click', function () {
+      gaEvent('click input email', 'step: Form');
+    });
+
+  document
+    .querySelector(
+      '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
+    )
+    .addEventListener('click', function () {
+      gaEvent('click input phone', 'step: Form');
     });
 }
 
