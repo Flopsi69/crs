@@ -9,29 +9,9 @@ const settings = {
 
 //Hotjar
 if (settings.hj) {
-  try {
-    (function (h, o, t, j, a, r) {
-      h.hj =
-        h.hj ||
-        function () {
-          (h.hj.q = h.hj.q || []).push(arguments);
-        };
-      h._hjSettings = { hjid: 410340, hjsv: 6 };
-      a = o.getElementsByTagName('head')[0];
-      r = o.createElement('script');
-      r.async = 1;
-      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-      a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj =
-      window.hj ||
-      function () {
-        (hj.q = hj.q || []).push(arguments);
-      };
-    hj('trigger', 'also_like');
-  } catch (e) {}
 }
 
+// Alalytic
 // Alalytic
 function gaEvent(action, label) {
   if (!label) {
@@ -39,15 +19,31 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Simulator - New flow',
       eventAction: action,
       eventLabel: label,
-      eventValue: '',
     };
-    console.log('EventFire:', objData);
+    console.dir('crsEvent', objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {}
+}
+
+function gaEventClient(event, quality) {
+  try {
+    var objData = {
+      event: event,
+      form_page: 'Listing',
+      vertical: 'HL',
+    };
+    if (quality) {
+      objData.lead_quality = quality;
+    }
+    console.dir('clientEvent', objData.eventAction);
+    dataLayer.push(objData);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 // Observe
@@ -1122,7 +1118,13 @@ let imaskScript = document.createElement('script');
 imaskScript.src = 'https://unpkg.com/imask';
 document.body.append(imaskScript);
 
-init();
+let intrevalInit = setInterval(() => {
+  if (document.querySelector('.container--hero')) {
+    clearInterval(intrevalInit);
+    init();
+  }
+}, 300);
+
 function init() {
   console.log('init');
   initTopInfo();
