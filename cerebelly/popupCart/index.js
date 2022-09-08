@@ -373,19 +373,6 @@ function handleSticky(price) {
       );
     }
 
-    if (windowWidth >= 900) {
-      if (
-        document.querySelector('.lav-sticky') &&
-        location.href == 'https://cerebelly.com/cart'
-      ) {
-        document.querySelector('.lav-sticky__btn').classList.add('lav-hidden');
-      } else if (document.querySelector('.lav-sticky__btn.lav-hidden')) {
-        document
-          .querySelector('.lav-sticky__btn.lav-hidden')
-          .classList.remove('lav-hidden');
-      }
-    }
-
     gaEvent('Sticky block appeared onscreen');
 
     document
@@ -410,6 +397,19 @@ function handleSticky(price) {
       document.querySelector('.lav-sticky').classList.add('lav-sticky_hide');
     } else {
       document.querySelector('.lav-sticky').classList.remove('lav-sticky_hide');
+    }
+  }
+
+  if (windowWidth >= 900) {
+    if (
+      document.querySelector('.lav-sticky') &&
+      location.href.includes('cerebelly.com/cart')
+    ) {
+      document.querySelector('.lav-sticky__btn').classList.add('lav-hidden');
+    } else if (document.querySelector('.lav-sticky__btn.lav-hidden')) {
+      document
+        .querySelector('.lav-sticky__btn.lav-hidden')
+        .classList.remove('lav-hidden');
     }
   }
 

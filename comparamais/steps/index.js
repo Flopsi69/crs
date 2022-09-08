@@ -843,7 +843,24 @@ const styles = `
   .lav-terms-error.active {
     display: block;
   }
+  .lav-filter-close {
+    display: none;
+    position: absolute;
+    top: 28px;
+    right: 28px;
+  }
   @media(max-width: 580px) {
+    .lav-filter-close {
+      display: block;
+    }
+    .filters {
+      // padding: 75px 24px;
+      // width: 93%;
+    }
+    .filters__trigger:checked+.filters {
+      // left: initial;
+      // right: 0;
+    }
     .lav-info {
       display: block;
       padding: 0 10px;
@@ -885,6 +902,31 @@ const styles = `
     }
     .container--listing {
         padding-bottom: 20px;
+    }
+    .filters__trigger:checked~.col-9.col-md-12.col-sm-12:before {
+      // content: '';
+      // position: fixed;
+      // z-index: 99;
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      // top: 0;
+      // background-color: rgba(0,0,0,.7);
+    }
+    .hits__filters {
+      min-height: 0;
+    }
+    .lav-filter__head-title {
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: 600;
+      padding-top: 4px;
+    }
+    .lav-filter__head-reset {
+      font-weight: 500;
+    }
+    .lav-filter__choosen {
+      margin-top: 12px;
     }
   }
 `;
@@ -1084,6 +1126,7 @@ init();
 function init() {
   console.log('init');
   initTopInfo();
+  // initFilters();
   if (document.querySelector('.container--listing')) {
     document.querySelector('.lav-info').classList.add('lav-info__complete');
     document
@@ -1092,7 +1135,6 @@ function init() {
     return false;
   }
 
-  // initFilters();
   initSteps();
 
   document
@@ -1138,6 +1180,20 @@ function initTopInfo() {
 }
 
 function initFilters() {
+  document
+    .querySelector('.hits__filters__body')
+    .insertAdjacentHTML(
+      'afterend',
+      `<img class='lav-filter-close' src="${settings.dir}/img/filter-close.svg">`
+    );
+
+  document
+    .querySelector('.lav-filter-close')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.filters__closer--button').click();
+    });
+
   document
     .querySelector('.hits__filters__body')
     .insertAdjacentHTML('afterend', filtersEl);
@@ -1354,7 +1410,15 @@ function initSteps() {
           .querySelector('.page__simulator')
           .classList.add('page__simulator__complete');
         nextPage();
-        document.querySelector('#results').scrollIntoView();
+        if (document.querySelector('#results')) {
+          document.querySelector('#results').scrollIntoView();
+        } else {
+          setTimeout(() => {
+            if (document.querySelector('#results')) {
+              document.querySelector('#results').scrollIntoView();
+            }
+          }, 1000);
+        }
         return false;
       }
 
