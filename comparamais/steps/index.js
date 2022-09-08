@@ -1142,6 +1142,16 @@ function init() {
     return false;
   }
 
+  setTimeout(() => {
+    if (document.querySelector('.container--listing')) {
+      document.querySelector('.lav-info').classList.add('lav-info__complete');
+      document
+        .querySelector('.page__simulator')
+        .classList.add('page__simulator__complete');
+      return false;
+    }
+  }, 1000);
+
   initSteps();
 
   document
