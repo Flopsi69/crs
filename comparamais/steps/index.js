@@ -1400,19 +1400,19 @@ function initSteps() {
       e.preventDefault();
       if (item.classList.contains('disabled')) return false;
 
-      if (item.closest('.lav-step').dataset.step == '1') {
+      if (item.closest('.lav-step').classList.contains('simulator-container')) {
         gaEvent('click button', 'step: Calculator');
       }
 
-      if (item.closest('.lav-step').dataset.step == '2') {
+      if (item.closest('.lav-step').dataset.step == '1') {
         gaEvent('click button', 'step: Nationality');
       }
 
-      if (item.closest('.lav-step').dataset.step == '3') {
+      if (item.closest('.lav-step').dataset.step == '2') {
         gaEvent('click button', 'step: Work Status');
       }
 
-      if (item.closest('.lav-step').dataset.step == '4') {
+      if (item.closest('.lav-step').dataset.step == '3') {
         gaEvent('click button', 'step: Sallary');
         gaEventClient('viewCaptureForm');
       }
