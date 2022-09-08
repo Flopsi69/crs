@@ -1476,7 +1476,7 @@ function initSteps() {
   }
 
   let intervalMask = setInterval(() => {
-    if (!IMask) return false;
+    if (typeof IMask !== 'function') return false;
     clearInterval(intervalMask);
     IMask(document.querySelector('.lav-step__salary input'), {
       mask: Number,
