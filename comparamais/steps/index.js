@@ -74,7 +74,7 @@ const styles = `
   }
 
   .container--hero {
-    padding-bottom: 75px;
+    padding-bottom: 50px;
   }
 
   .lav-intro {
@@ -90,8 +90,19 @@ const styles = `
   }
   .lav-info {
     margin-top: 100px;
-    // align-self: center;
-    // width: 580px;
+  }
+  .lav-info__complete {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  #results {
+    padding-top: 25px;
+  }
+  .page__simulator__complete {
+    display: none;
   }
   .lav-info__title {
     font-weight: 700;
@@ -165,6 +176,10 @@ const styles = `
     margin-top: 40px;
   }
 
+  .lav-preloader__hidden {
+    display: none;
+  }
+
   .lav-preloader__item {
     position: relative;
     padding-left: 30px;
@@ -226,7 +241,7 @@ const styles = `
   }
 
   .lav-final {
-    // display: none;
+    display: none;
   }
 
   .lav-final.active {
@@ -347,6 +362,10 @@ const styles = `
     line-height: 18px;
     color: #0071EB;
     transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-step__back:hover {
+    opacity: 0.6;
   }
   .lav-step__back img {
     margin-right: 7px;
@@ -427,10 +446,6 @@ const styles = `
     transform: translateY(-50%);
     border-radius: 50px;
     background-color: #0071EB;
-  }
-
-  .lav-step + .lav-step {
-    margin-top: 20px;
   }
 
   .lav-step__caption {
@@ -518,12 +533,12 @@ const styles = `
   }
 
   .page__simulator .capture-overlay {
-    opacity: 0.4;
+    // opacity: 0.4;
+    display: none;
   }
 
   .lav-step {
-    display: flex;
-    // display: none;
+    display: none;
     flex-flow: column;
     padding: 56px;
     background: #FFFFFF;
@@ -598,16 +613,16 @@ const styles = `
   }
 
   .filters {
-    padding-right: 40px;
+    // padding-right: 40px;
   }
 
   .hits__filters {
-    border-radius: 0;
-    box-shadow: none;
+    // border-radius: 0;
+    // box-shadow: none;
   }
 
   .refinement__list {
-    padding: 0;
+    // padding: 0;
   }
 
   .lav-filter__head {
@@ -641,7 +656,7 @@ const styles = `
   }
 
   .hits__filters__header, .filter-reset, .hits__filters__body {
-    display: none;
+    // display: none;
   }
 
   .lav-sort {
@@ -828,6 +843,50 @@ const styles = `
   .lav-terms-error.active {
     display: block;
   }
+  @media(max-width: 580px) {
+    .lav-info {
+      display: block;
+      padding: 0 10px;
+      margin-top: 35px;
+    }
+    .lav-info__title {
+      font-size: 40px;
+      line-height: 30px;
+    }
+    .lav-info__caption {
+      margin-top: 12px;
+      font-size: 17px;
+      line-height: 23px;
+    }
+    .lav-info__review {
+      margin-top: 16px;
+    }
+    .lav-info__list {
+      margin-top: 24px;
+    }
+    .container--hero .page__simulator {
+      width: 100%;
+    }
+    .lav-step {
+      margin: 25px;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 20px;
+      min-height: auto;
+    }
+    .hls-simulator__amount-range {
+      color: #1F1F1F;
+    }
+    .hls-simulator__field-box--md {
+      width: 100%;
+    }
+    .lav-final__check {
+      display: block;
+    }
+    .container--listing {
+        padding-bottom: 20px;
+    }
+  }
 `;
 
 let banks = [
@@ -905,7 +964,7 @@ let stepsEl = `
   <div class='lav-steps'>
     <div class='lav-step' data-step='1'>
       <div class='lav-step__head'>
-        <div class='lav-step__back'><img src='${settings.dir}/img/back.svg'>Back</div>
+        <div class='lav-step__back'></div>
         <div class='lav-step__num'><span>1</span>/4</div>
       </div>
 
@@ -1011,7 +1070,7 @@ let stepsEl = `
 
       <div class='lav-report'></div>
 
-      <button class='lav-step__next'>View Banks</button>
+      <button class='lav-step__next lav-view-banks'>View Banks</button>
     </div>
   </div>
 `;
@@ -1025,7 +1084,15 @@ init();
 function init() {
   console.log('init');
   initTopInfo();
-  initFilters();
+  if (document.querySelector('.container--listing')) {
+    document.querySelector('.lav-info').classList.add('lav-info__complete');
+    document
+      .querySelector('.page__simulator')
+      .classList.add('page__simulator__complete');
+    return false;
+  }
+
+  // initFilters();
   initSteps();
 
   document
@@ -1043,18 +1110,20 @@ function initTopInfo() {
     .querySelector('.page__title')
     .insertAdjacentHTML('beforebegin', introInfoEl);
 
-  document
-    .querySelector('.hls-simulator__form-group.hls--inline')
-    .insertAdjacentElement(
-      'afterbegin',
-      document.querySelector(
-        '.hls-simulator__field-box + .hls-simulator__field-box--sm'
-      )
-    );
+  if (!document.querySelector('.container--listing')) {
+    document
+      .querySelector('.hls-simulator__form-group.hls--inline')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector(
+          '.hls-simulator__field-box + .hls-simulator__field-box--sm'
+        )
+      );
 
-  document
-    .querySelector('.simulator-container')
-    .classList.add('lav-step', 'active');
+    document
+      .querySelector('.simulator-container')
+      .classList.add('lav-step', 'active');
+  }
 
   document.querySelector('.review__count').innerHTML =
     '(' +
@@ -1160,9 +1229,15 @@ function initSteps() {
         e.preventDefault();
         item.classList.toggle('active');
         if (item.classList.contains('lav-terms')) {
-          document.querySelector('#termsAgreement').click();
+          document.querySelector('#termsAgreement').checked = 'checked';
+          let event = new Event('change');
+          document.querySelector('#termsAgreement').dispatchEvent(event);
         } else if (item.classList.contains('lav-personal')) {
-          document.querySelector('#communicationAgreement').click();
+          document.querySelector('#communicationAgreement').checked = 'checked';
+          let event = new Event('change');
+          document
+            .querySelector('#communicationAgreement')
+            .dispatchEvent(event);
         }
       }
     });
@@ -1188,17 +1263,54 @@ function initSteps() {
         ).value = document.querySelector(
           `.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) option:nth-child(${idx})`
         ).value;
+
+        let event = new Event('change');
+        document
+          .querySelector(
+            '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
+          )
+          .dispatchEvent(event);
       } else if (item.closest('.lav-situation')) {
         document.querySelector(
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
         ).value = document.querySelector(
           `.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) option:nth-child(${idx})`
         ).value;
+
+        let event = new Event('change');
+        document
+          .querySelector(
+            '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
+          )
+          .dispatchEvent(event);
       }
 
       document
         .querySelector('.lav-step.active .lav-step__next')
         .classList.remove('disabled');
+    });
+  }
+  for (let item of document.querySelectorAll('.lav-step__back')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (this.classList.contains('disabled')) return false;
+
+      let currentStep = document.querySelector('.lav-step.active');
+      currentStep.classList.remove('active');
+
+      if (currentStep.previousElementSibling) {
+        currentStep.previousElementSibling.classList.add('active');
+      }
+
+      document
+        .querySelector('.lav-preloader')
+        .classList.remove('lav-preloader__hidden');
+
+      document.querySelector('.lav-final').classList.remove('active');
+
+      for (let item of document.querySelectorAll('.lav-preloader__item')) {
+        item.classList.remove('finish', 'active');
+      }
     });
   }
 
@@ -1228,6 +1340,22 @@ function initSteps() {
             .querySelector('.lav-report')
             .insertAdjacentHTML('beforeend', el);
         }
+
+        document
+          .querySelector(
+            '.page__simulator .capture-overlay .capture-form button'
+          )
+          .click();
+      }
+
+      if (item.classList.contains('lav-view-banks')) {
+        document.querySelector('.lav-info').classList.add('lav-info__complete');
+        document
+          .querySelector('.page__simulator')
+          .classList.add('page__simulator__complete');
+        nextPage();
+        document.querySelector('#results').scrollIntoView();
+        return false;
       }
 
       if (document.querySelector('.lav-step.active').dataset.step == '3') {
@@ -1285,6 +1413,13 @@ function initSteps() {
           .querySelector('.lav-step[data-step="3"] .lav-step__next')
           .classList.add('disabled');
       }
+
+      let event = new Event('change');
+      document
+        .querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
+        )
+        .dispatchEvent(event);
     });
 
   document
@@ -1302,6 +1437,13 @@ function initSteps() {
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(1) input'
         ).value = '';
       }
+
+      let event = new Event('change');
+      document
+        .querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(1) input'
+        )
+        .dispatchEvent(event);
     });
 
   document
@@ -1321,6 +1463,13 @@ function initSteps() {
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(2) input'
         ).value = '';
       }
+
+      let event = new Event('change');
+      document
+        .querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(2) input'
+        )
+        .dispatchEvent(event);
     });
 
   document
@@ -1340,6 +1489,13 @@ function initSteps() {
           '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
         ).value = '';
       }
+
+      let event = new Event('change');
+      document
+        .querySelector(
+          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(3) input'
+        )
+        .dispatchEvent(event);
     });
 }
 
@@ -1369,10 +1525,14 @@ function startPreloader() {
         el.classList.add('finish');
 
         setTimeout(() => {
+          if (document.querySelector('.lav-step__back.disabled')) {
+            document
+              .querySelector('.lav-step__back.disabled')
+              .classList.remove('disabled');
+          }
           document
-            .querySelector('.lav-step__back.disabled')
-            .classList.remove('disabled');
-          document.querySelector('.lav-preloader').remove();
+            .querySelector('.lav-preloader')
+            .classList.add('lav-preloader__hidden');
           document.querySelector('.lav-final').classList.add('active');
         }, 500);
       }, idx * delay * 1000 + 3000);
@@ -1437,6 +1597,7 @@ function validateForm() {
   }
 
   if (!document.querySelector('.lav-terms.active')) {
+    isError = true;
     document.querySelector('.lav-terms-error').classList.add('active');
   } else {
     document.querySelector('.lav-terms-error').classList.remove('active');
