@@ -1160,6 +1160,7 @@ function init() {
     .querySelector('.lav-step .hls-simulator__button')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('click button', 'step: Calculator');
       document
         .querySelector('.lav-step[data-step="1"]')
         .classList.add('active');
@@ -1400,10 +1401,6 @@ function initSteps() {
       e.preventDefault();
       if (item.classList.contains('disabled')) return false;
 
-      if (item.closest('.lav-step').classList.contains('simulator-container')) {
-        gaEvent('click button', 'step: Calculator');
-      }
-
       if (item.closest('.lav-step').dataset.step == '1') {
         gaEvent('click button', 'step: Nationality');
       }
@@ -1414,7 +1411,6 @@ function initSteps() {
 
       if (item.closest('.lav-step').dataset.step == '3') {
         gaEvent('click button', 'step: Sallary');
-        gaEventClient('viewCaptureForm');
       }
 
       if (item.classList.contains('lav-show-report')) {
@@ -1673,6 +1669,7 @@ function startPreloader() {
             .querySelector('.lav-preloader')
             .classList.add('lav-preloader__hidden');
           document.querySelector('.lav-final').classList.add('active');
+          gaEventClient('viewCaptureForm');
         }, 500);
       }, idx * delay * 1000 + 3000);
     }
@@ -1705,8 +1702,6 @@ function validateForm() {
   let phone = document.querySelector(
     '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
   ).value;
-
-  console.log(name, email, phone);
 
   if (!name) {
     isError = true;
