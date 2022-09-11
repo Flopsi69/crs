@@ -859,6 +859,9 @@ const styles = `
   .lav-result-hide {
     display: none;
   }
+  .lav-mob-filter__actions {
+    display: none;
+  }
   @media(max-width: 580px) {
     .lav-filter-close {
       display: block;
@@ -937,6 +940,13 @@ const styles = `
     }
     .lav-filter__choosen {
       margin-top: 12px;
+    }
+    .lav-filter__head, .hits__filters .lav-filter__choosen, .hits__filters .lav-sort {
+      display: none;
+    }
+    .lav-mob-filter__actions {
+      display: flex;
+      margin-top: 20px;
     }
   }
 `;
@@ -1022,7 +1032,7 @@ let filtersMobEl = `
     <div class="lav-filter__choosen lav-filter__choosen-hide"></div>
 
     <div class='lav-mob-filter__actions'>
-      <button class='lav-open-filter'>Bancos</butt>
+      <button class='lav-open-filter'>Bancos</button>
       <div class="lav-sort">
         <div class="lav-sort__value">Recomendado</div>
         <div class="lav-sort__dropdown">
