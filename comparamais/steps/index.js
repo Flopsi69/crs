@@ -968,6 +968,9 @@ const styles = `
       font-size: 14px;
       line-height: 18px;
     }
+    .filters__trigger {
+      display: none;
+    }
   }
 `;
 
@@ -1288,6 +1291,12 @@ function initFilters() {
     .querySelector('#results')
     .insertAdjacentHTML('afterbegin', filtersMobEl);
 
+  document
+    .querySelector('.lav-open-filter')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.filters__trigger').click();
+    });
   // document
   //   .querySelector('.lav-filter__head-reset')
   //   .addEventListener('click', function (e) {
