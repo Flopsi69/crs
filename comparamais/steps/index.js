@@ -1201,7 +1201,7 @@ let intrevalInit = setInterval(() => {
 function init() {
   console.log('init');
   initTopInfo();
-  initFilters();
+  // initFilters();
   if (document.querySelector('.container--listing')) {
     document.querySelector('.lav-info').classList.add('lav-info__complete');
     document
