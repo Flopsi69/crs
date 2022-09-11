@@ -750,6 +750,10 @@ const styles = `
     flex-wrap: wrap;
   }
 
+  .lav-filter__choosen-hide {
+    display: none;
+  }
+
   .lav-filter__choosen-item {
     display: flex;
     align-items: center;
@@ -988,7 +992,7 @@ let filtersEl = `
     <button class='lav-filter__head-reset'>Remover filtros</button>
   </div>
 
-  <div class="lav-filter__choosen"></div>
+  <div class="lav-filter__choosen lav-filter__choosen-hide"></div>
 
   <div class="lav-sort">
     <div class="lav-sort__value">Escolher por: <span>Recomendado</span></div>
@@ -1278,8 +1282,15 @@ function initFilters() {
 
 function addChoosen() {
   document.querySelector('.lav-filter__choosen').innerHTML = '';
+  document
+    .querySelector('.lav-filter__choosen')
+    .classList.add('lav-filter__choosen-hide');
+
   for (let bank of banks) {
     if (bank.isActive) {
+      document
+        .querySelector('.lav-filter__choosen')
+        .classList.remove('lav-filter__choosen-hide');
       let el = document.createElement('div');
       el.classList.add('lav-filter__choosen-item');
       el.innerHTML = `<span>${bank.name}</span><img src='${settings.dir}/img/close.svg'>`;
