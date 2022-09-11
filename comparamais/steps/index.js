@@ -953,7 +953,7 @@ const styles = `
     .lav-open-filter {
 
     }
-    .lav-sort .lav-sort {
+    .lav-mob-filter__actions .lav-sort {
       margin: 0;
     }
     .lav-open-filter {
