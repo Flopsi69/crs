@@ -941,12 +941,32 @@ const styles = `
     .lav-filter__choosen {
       margin-top: 12px;
     }
-    .lav-filter__head, .hits__filters .lav-filter__choosen, .hits__filters .lav-sort {
+    .hits__filters .lav-filter__head, .hits__filters .lav-filter__choosen, .hits__filters .lav-sort {
       display: none;
     }
     .lav-mob-filter__actions {
-      display: flex;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
       margin-top: 20px;
+    }
+    .lav-open-filter {
+
+    }
+    .lav-sort .lav-sort {
+      margin: 0;
+    }
+    .lav-open-filter {
+      background: #0071EB;
+      border: 1px solid #0071EB;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      outline: none;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 18px;
     }
   }
 `;
@@ -1318,7 +1338,7 @@ function initFilters() {
       document.querySelector('.hits__filters .lav-sort__value span').innerText =
         item.innerText;
 
-      document.querySelector('.lav-mob-filters .lav-sort__value').innerText =
+      document.querySelector('.lav-mob-filter .lav-sort__value').innerText =
         item.innerText;
     });
   }
