@@ -969,7 +969,7 @@ const styles = `
       line-height: 18px;
     }
     .filters__trigger {
-      display: none;
+      display: none!important;
     }
   }
 `;
