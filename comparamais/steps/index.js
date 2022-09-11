@@ -664,7 +664,7 @@ const styles = `
 
   .lav-sort {
     position: relative;
-    margin: 32px 0;
+    margin: 28px 0 32px;;
   }
 
   .lav-sort__value {
@@ -1012,6 +1012,32 @@ let filtersEl = `
   </div>
 `;
 
+let filtersMobEl = `
+  <div class='lav-mob-filter'>
+    <div class="lav-filter__head">
+      <div class='lav-filter__head-title'>Filtros</div>
+      <button class='lav-filter__head-reset'>Remover filtros</button>
+    </div>
+
+    <div class="lav-filter__choosen lav-filter__choosen-hide"></div>
+
+    <div class='lav-mob-filter__actions'>
+      <button class='lav-open-filter'>Bancos</butt>
+      <div class="lav-sort">
+        <div class="lav-sort__value">Recomendado</div>
+        <div class="lav-sort__dropdown">
+          <div class="lav-sort__item active">Recomendado</div>
+          <div class="lav-sort__item">Prestação Mensal</div>
+          <div class="lav-sort__item">TAN</div>
+          <div class="lav-sort__item">TAEG</div>
+          <div class="lav-sort__item">Euribor 6M</div>
+          <div class="lav-sort__item">Spread</div>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
 let stepsEl = `
   <div class='lav-steps'>
     <div class='lav-step' data-step='1'>
@@ -1229,11 +1255,15 @@ function initFilters() {
     .insertAdjacentHTML('afterend', filtersEl);
 
   document
-    .querySelector('.lav-filter__head-reset')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('.filter-reset').click();
-    });
+    .querySelector('#results')
+    .insertAdjacentHTML('afterbegin', filtersMobEl);
+
+  // document
+  //   .querySelector('.lav-filter__head-reset')
+  //   .addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     document.querySelector('.filter-reset').click();
+  //   });
 
   for (let bank of banks) {
     let el = document.createElement('div');
@@ -1255,26 +1285,30 @@ function initFilters() {
       .insertAdjacentElement('beforeend', el);
   }
 
-  document
-    .querySelector('.lav-sort__value')
-    .addEventListener('click', function () {
-      document.querySelector('.lav-sort').classList.toggle('active');
+  for (let item of document.querySelectorAll('.lav-sort__value')) {
+    item.addEventListener('click', function () {
+      item.closest('.lav-sort').classList.toggle('active');
     });
+  }
 
   for (let item of document.querySelectorAll('.lav-sort__item')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
       if (item.classList.contains('active')) return false;
 
-      document
+      item
+        .closest('.lav-sort__dropdown')
         .querySelector('.lav-sort__item.active')
         .classList.remove('active');
 
-      document.querySelector('.lav-sort').classList.remove('active');
+      item.closest('.lav-sort').classList.remove('active');
 
       item.classList.add('active');
 
-      document.querySelector('.lav-sort__value span').innerText =
+      document.querySelector('.hits__filters .lav-sort__value span').innerText =
+        item.innerText;
+
+      document.querySelector('.lav-mob-filters .lav-sort__value').innerText =
         item.innerText;
     });
   }
