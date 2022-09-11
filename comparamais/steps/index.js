@@ -616,16 +616,16 @@ const styles = `
   }
 
   .filters {
-    // padding-right: 40px;
+    padding-right: 40px;
   }
 
   .hits__filters {
-    // border-radius: 0;
-    // box-shadow: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .refinement__list {
-    // padding: 0;
+    padding: 0;
   }
 
   .lav-filter__head {
@@ -659,7 +659,7 @@ const styles = `
   }
 
   .hits__filters__header, .filter-reset, .hits__filters__body {
-    // display: none;
+    display: none;
   }
 
   .lav-sort {
@@ -860,12 +860,12 @@ const styles = `
       display: block;
     }
     .filters {
-      // padding: 75px 24px;
-      // width: 93%;
+      padding: 75px 24px;
+      width: 93%;
     }
     .filters__trigger:checked+.filters {
-      // left: initial;
-      // right: 0;
+      left: initial;
+      right: 0;
     }
     .lav-info {
       display: block;
@@ -910,14 +910,14 @@ const styles = `
         padding-bottom: 20px;
     }
     .filters__trigger:checked~.col-9.col-md-12.col-sm-12:before {
-      // content: '';
-      // position: fixed;
-      // z-index: 99;
-      // left: 0;
-      // right: 0;
-      // bottom: 0;
-      // top: 0;
-      // background-color: rgba(0,0,0,.7);
+      content: '';
+      position: fixed;
+      z-index: 99;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background-color: rgba(0,0,0,.7);
     }
     .hits__filters {
       min-height: 0;
@@ -1138,7 +1138,7 @@ let intrevalInit = setInterval(() => {
 function init() {
   console.log('init');
   initTopInfo();
-  // initFilters();
+  initFilters();
   if (document.querySelector('.container--listing')) {
     document.querySelector('.lav-info').classList.add('lav-info__complete');
     document
