@@ -862,7 +862,13 @@ const styles = `
   .lav-mob-filter__actions {
     display: none;
   }
+  .lav-mob-filter {
+    display: none;
+  }
   @media(max-width: 580px) {
+    .lav-mob-filter {
+      display: block;
+    }
     .lav-filter-close {
       display: block;
     }
