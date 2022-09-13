@@ -865,6 +865,13 @@ const styles = `
   .lav-mob-filter {
     display: none;
   }
+  .filters + div {
+    display: flex;
+    flex-direction: column;
+  }
+  .filters + div .hl-simulator__panel {
+    order: -1;
+  }
   @media(max-width: 580px) {
     .lav-mob-filter {
       display: block;
@@ -1067,12 +1074,12 @@ let filtersMobEl = `
       <div class="lav-sort">
         <div class="lav-sort__value">Recomendado</div>
         <div class="lav-sort__dropdown">
-          <div class="lav-sort__item active">Recomendado</div>
-          <div class="lav-sort__item">Prestação Mensal</div>
-          <div class="lav-sort__item">TAN</div>
-          <div class="lav-sort__item">TAEG</div>
-          <div class="lav-sort__item">Euribor 6M</div>
-          <div class="lav-sort__item">Spread</div>
+          <div class="lav-sort__item active" data-sort='0'>Recomendado</div>
+          <div class="lav-sort__item" data-sort='1'>Prestação Mensal</div>
+          <div class="lav-sort__item" data-sort='2'>TAN</div>
+          <div class="lav-sort__item" data-sort='3'>TAEG</div>
+          <div class="lav-sort__item" data-sort='4'>Euribor 6M</div>
+          <div class="lav-sort__item" data-sort='5'>Spread</div>
         </div>
       </div>
     </div>
@@ -1860,15 +1867,16 @@ function handleFilter() {
     }, 1000);
     return false;
   }
-  console.log('filter');
+
+  handleBanksFilter();
+  handleSort();
+}
+
+function handleBanksFilter() {
   for (let item of document.querySelectorAll('.lav-card-active')) {
     item.classList.remove('lav-card-active');
   }
 
-  handleBanksFilter();
-}
-
-function handleBanksFilter() {
   let banksArr = [];
 
   for (let bank of banks) {
@@ -1892,4 +1900,94 @@ function handleBanksFilter() {
       }
     }
   }
+}
+
+function handleSort() {
+  let cards = document.querySelectorAll('.card');
+
+  cards.forEach((elem) => {
+    elem.style.order = '';
+  });
+
+  let sort = document.querySelector('.lav-sort__item.active').dataset.sort;
+
+  if (sort === '1') {
+    sortFunc = (a, b) =>
+      parseFloat(
+        a
+          .querySelector('.card__items-wrapper>div:nth-child(1) strong')
+          .innerText.split(' ')[1]
+          .replaceAll('.', '')
+          .replaceAll(',', '.')
+      ) -
+      parseFloat(
+        b
+          .querySelector('.card__items-wrapper>div:nth-child(1) strong')
+          .innerText.split(' ')[1]
+          .replaceAll('.', '')
+          .replaceAll(',', '.')
+      );
+  } else if (sort === '2') {
+    sortFunc = (a, b) =>
+      parseFloat(
+        a
+          .querySelector('.card__items-wrapper>div:nth-child(2) strong')
+          .innerText.replaceAll(',', '.')
+      ) -
+      parseFloat(
+        b
+          .querySelector('.card__items-wrapper>div:nth-child(2) strong')
+          .innerText.replaceAll(',', '.')
+      );
+  } else if (sort === '3') {
+    sortFunc = (a, b) =>
+      parseFloat(
+        a
+          .querySelector('.card__items-wrapper>div:nth-child(3) strong')
+          .innerText.replaceAll(',', '.')
+      ) -
+      parseFloat(
+        b
+          .querySelector('.card__items-wrapper>div:nth-child(3) strong')
+          .innerText.replaceAll(',', '.')
+      );
+  } else if (sort === '4') {
+    sortFunc = (a, b) =>
+      parseFloat(
+        a
+          .querySelector(
+            '.card__items-wrapper .card__additional-info span:first-child strong'
+          )
+          .innerText.replaceAll(',', '.')
+      ) -
+      parseFloat(
+        b
+          .querySelector(
+            '.card__items-wrapper .card__additional-info span:first-child strong'
+          )
+          .innerText.replaceAll(',', '.')
+      );
+  } else if (sort === '5') {
+    sortFunc = (a, b) =>
+      parseFloat(
+        a
+          .querySelector(
+            '.card__items-wrapper .card__additional-info span:last-child strong'
+          )
+          .innerText.replaceAll(',', '.')
+      ) -
+      parseFloat(
+        b
+          .querySelector(
+            '.card__items-wrapper .card__additional-info span:last-child strong'
+          )
+          .innerText.replaceAll(',', '.')
+      );
+  }
+
+  let sorted = [...cards].sort(sortFunc);
+
+  sorted.forEach((elem, index) => {
+    elem.style.order = index;
+  });
 }
