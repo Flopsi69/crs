@@ -1927,8 +1927,6 @@ function handleBanksFilter() {
     }
   }
 
-  console.log('filter', banksArr);
-
   if (banksArr.length) {
     document.querySelector('.filters + div').classList.add('lav-filter-active');
     for (let card of document.querySelectorAll('.card')) {
@@ -1946,7 +1944,6 @@ function handleBanksFilter() {
 }
 
 function handleSort() {
-  console.log('handleSort');
   let cards = document.querySelectorAll('.card');
 
   cards.forEach((elem) => {
@@ -1955,8 +1952,6 @@ function handleSort() {
 
   let sort = document.querySelector('.lav-sort__item.active').dataset.sort;
   let sortFunc;
-
-  console.log('sort', sort);
 
   if (sort === '1') {
     sortFunc = (a, b) =>
