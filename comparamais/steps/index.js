@@ -1307,14 +1307,15 @@ function initFilters() {
     document
       .querySelector('#results')
       .insertAdjacentHTML('afterbegin', filtersMobEl);
+
+    document
+      .querySelector('.lav-open-filter')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector('.filters__trigger').click();
+      });
   }
 
-  document
-    .querySelector('.lav-open-filter')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      document.querySelector('.filters__trigger').click();
-    });
   // document
   //   .querySelector('.lav-filter__head-reset')
   //   .addEventListener('click', function (e) {
@@ -1854,12 +1855,29 @@ function validateForm() {
 }
 
 function handleFilter() {
+  for (let item of document.querySelectorAll('.lav-card-active')) {
+    item.classList.remove('lav-card-active');
+  }
+
+  handleBanksFilter();
+}
+
+function handleBanksFilter() {
   let banksArr = [];
+
   for (let bank of banks) {
     if (bank.isActive) {
+      banksArr.push(bank.name);
     }
   }
 
-  for (let card of document.querySelectorAll('.card')) {
+  if (banksArr.length) {
+    for (let card of document.querySelectorAll('.card')) {
+      for (let bank of banksArr) {
+        if (card.querySelector('.card__logo img').alt.includes(bank)) {
+          card.classList.add('lav-card-active');
+        }
+      }
+    }
   }
 }
