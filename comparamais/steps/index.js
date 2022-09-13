@@ -872,6 +872,10 @@ const styles = `
   .filters + div .hl-simulator__panel {
     order: -1;
   }
+
+  .filters + div .end-of-listing {
+    order: 100;
+  }
   @media(max-width: 580px) {
     .lav-mob-filter {
       display: block;
