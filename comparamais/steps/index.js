@@ -1207,7 +1207,10 @@ imaskScript.src = 'https://unpkg.com/imask';
 document.body.append(imaskScript);
 
 let intrevalInit = setInterval(() => {
-  if (document.querySelector('.container--hero')) {
+  if (
+    document.querySelector('.container--hero') &&
+    document.querySelector('.hls-simulator__form-group.hls--inline')
+  ) {
     clearInterval(intrevalInit);
     init();
   }
