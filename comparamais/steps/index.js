@@ -1281,6 +1281,15 @@ function initTopInfo() {
     document
       .querySelector('.simulator-container')
       .classList.add('lav-step', 'active');
+  } else {
+    if (document.querySelector('.range-slider__range')) {
+      document
+        .querySelector('.range-slider__range')
+        .addEventListener('change', handleFilter);
+    }
+    for (let item of document.querySelectorAll('.hl-simulator__field-box')) {
+      item.addEventListener('change', handleFilter);
+    }
   }
 
   document.querySelector('.review__count').innerHTML =
@@ -1581,10 +1590,30 @@ function initSteps() {
           .classList.remove('lav-result-hide');
         if (document.querySelector('#results')) {
           document.querySelector('#results').scrollIntoView();
+          if (document.querySelector('.range-slider__range')) {
+            document
+              .querySelector('.range-slider__range')
+              .addEventListener('change', handleFilter);
+          }
+          for (let item of document.querySelectorAll(
+            '.hl-simulator__field-box'
+          )) {
+            item.addEventListener('change', handleFilter);
+          }
         } else {
           setTimeout(() => {
             if (document.querySelector('#results')) {
               document.querySelector('#results').scrollIntoView();
+              if (document.querySelector('.range-slider__range')) {
+                document
+                  .querySelector('.range-slider__range')
+                  .addEventListener('change', handleFilter);
+              }
+              for (let item of document.querySelectorAll(
+                '.hl-simulator__field-box'
+              )) {
+                item.addEventListener('change', handleFilter);
+              }
             }
           }, 1000);
         }
