@@ -1336,6 +1336,7 @@ function initFilters() {
       bank.isActive = bank.isActive ? false : true;
       el.classList.toggle('active');
       addChoosen();
+      handleFilter();
     });
 
     document
@@ -1400,6 +1401,7 @@ function addChoosen() {
         for (let item of document.querySelectorAll('.lav-filter__item')) {
           if (item.innerText == bank.name) item.classList.remove('active');
         }
+        handleFilter();
       });
     }
   }
