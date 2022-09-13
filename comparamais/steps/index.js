@@ -1050,12 +1050,12 @@ let filtersDescEl = `
   <div class="lav-sort">
     <div class="lav-sort__value">Escolher por: <span>Recomendado</span></div>
     <div class="lav-sort__dropdown">
-      <div class="lav-sort__item active">Recomendado</div>
-      <div class="lav-sort__item">Prestação Mensal</div>
-      <div class="lav-sort__item">TAN</div>
-      <div class="lav-sort__item">TAEG</div>
-      <div class="lav-sort__item">Euribor 6M</div>
-      <div class="lav-sort__item">Spread</div>
+      <div class="lav-sort__item active" data-sort='0'>Recomendado</div>
+      <div class="lav-sort__item" data-sort='1'>Prestação Mensal</div>
+      <div class="lav-sort__item" data-sort='2'>TAN</div>
+      <div class="lav-sort__item" data-sort='3'>TAEG</div>
+      <div class="lav-sort__item" data-sort='4'>Euribor 12M</div>
+      <div class="lav-sort__item" data-sort='5'>Spread</div>
     </div>
   </div>
 `;
@@ -1078,7 +1078,7 @@ let filtersMobEl = `
           <div class="lav-sort__item" data-sort='1'>Prestação Mensal</div>
           <div class="lav-sort__item" data-sort='2'>TAN</div>
           <div class="lav-sort__item" data-sort='3'>TAEG</div>
-          <div class="lav-sort__item" data-sort='4'>Euribor 6M</div>
+          <div class="lav-sort__item" data-sort='4'>Euribor 12M</div>
           <div class="lav-sort__item" data-sort='5'>Spread</div>
         </div>
       </div>
@@ -1903,6 +1903,7 @@ function handleBanksFilter() {
 }
 
 function handleSort() {
+  console.log('handleSort');
   let cards = document.querySelectorAll('.card');
 
   cards.forEach((elem) => {
@@ -1911,6 +1912,8 @@ function handleSort() {
 
   let sort = document.querySelector('.lav-sort__item.active').dataset.sort;
   let sortFunc;
+
+  console.log('sort', sort);
 
   if (sort === '1') {
     sortFunc = (a, b) =>
