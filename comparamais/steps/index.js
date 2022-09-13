@@ -1990,7 +1990,9 @@ function handleSort() {
   }
 
   if (sortFunc) {
-    let sorted = [...cards].sort(sortFunc);
+    let sorted = [...cards]
+      .filter((item) => item.style.display !== 'none')
+      .sort(sortFunc);
 
     sorted.forEach((elem, index) => {
       elem.style.order = index;
