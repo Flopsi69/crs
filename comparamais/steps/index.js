@@ -987,7 +987,7 @@ let banks = [
   { name: 'Bankinter', value: '', isActive: false },
   { name: 'BPI', value: '', isActive: false },
   { name: 'Caixa Agrícola', value: '', isActive: false },
-  { name: 'CGD', value: '', isActive: false },
+  { name: 'CGD', value: 'Caixa Geral', isActive: false },
   { name: 'CTT', value: '', isActive: false },
   { name: 'Eurobic', value: '', isActive: false },
   { name: 'Millennium BCP', value: '', isActive: false },
@@ -1870,7 +1870,11 @@ function handleBanksFilter() {
 
   for (let bank of banks) {
     if (bank.isActive) {
-      banksArr.push(bank.name);
+      if (bank.value) {
+        banksArr.push(bank.value);
+      } else {
+        banksArr.push(bank.name);
+      }
     }
   }
 
