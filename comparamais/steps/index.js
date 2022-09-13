@@ -1026,6 +1026,13 @@ let introInfoEl = `
 `;
 
 let filtersEl = `
+  <div class="lav-filter__body">
+    <div class="lav-filter__body-title">Bancos</div>
+    <div class="lav-filter__list"></div>
+  </div>
+`;
+
+let filtersDescEl = `
   <div class="lav-filter__head">
     <div class='lav-filter__head-title'>Filtros</div>
     <button class='lav-filter__head-reset'>Remover filtros</button>
@@ -1043,11 +1050,6 @@ let filtersEl = `
       <div class="lav-sort__item">Euribor 6M</div>
       <div class="lav-sort__item">Spread</div>
     </div>
-  </div>
-
-  <div class="lav-filter__body">
-    <div class="lav-filter__body-title">Bancos</div>
-    <div class="lav-filter__list"></div>
   </div>
 `;
 
@@ -1292,10 +1294,14 @@ function initFilters() {
       document.querySelector('.filters__closer--button').click();
     });
 
+  document
+    .querySelector('.hits__filters__body')
+    .insertAdjacentHTML('afterend', filtersEl);
+
   if (window.innerWidth > 580) {
     document
       .querySelector('.hits__filters__body')
-      .insertAdjacentHTML('afterend', filtersEl);
+      .insertAdjacentHTML('afterend', filtersDescEl);
   } else {
     document
       .querySelector('#results')
