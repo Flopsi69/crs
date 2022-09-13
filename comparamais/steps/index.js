@@ -1219,10 +1219,6 @@ function init() {
   }
 
   setTimeout(() => {
-    if (document.querySelector('.btn__load-more .btn')) {
-      document.querySelector('.btn__load-more .btn').click();
-    }
-
     if (document.querySelector('.container--listing')) {
       document.querySelector('.lav-info').classList.add('lav-info__complete');
       document
@@ -1857,6 +1853,13 @@ function validateForm() {
 }
 
 function handleFilter() {
+  if (document.querySelector('.btn__load-more .btn')) {
+    document.querySelector('.btn__load-more .btn').click();
+    setTimeout(() => {
+      handleFilter();
+    }, 1000);
+    return false;
+  }
   console.log('filter');
   for (let item of document.querySelectorAll('.lav-card-active')) {
     item.classList.remove('lav-card-active');
