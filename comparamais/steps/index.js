@@ -1216,8 +1216,9 @@ document.body.append(imaskScript);
 
 let intrevalInit = setInterval(() => {
   if (
-    document.querySelector('.container--hero') &&
-    document.querySelector('.hls-simulator__form-group.hls--inline')
+    (document.querySelector('.container--hero') &&
+      document.querySelector('.hls-simulator__form-group.hls--inline')) ||
+    document.querySelector('.container--listing')
   ) {
     clearInterval(intrevalInit);
     init();
