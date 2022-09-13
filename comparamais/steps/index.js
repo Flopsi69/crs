@@ -1367,10 +1367,7 @@ function initFilters() {
 
       item.classList.add('active');
 
-      document.querySelector('.hits__filters .lav-sort__value span').innerText =
-        item.innerText;
-
-      document.querySelector('.lav-mob-filter .lav-sort__value').innerText =
+      document.querySelector('.lav-sort__value span').innerText =
         item.innerText;
 
       handleFilter();
@@ -1910,6 +1907,7 @@ function handleSort() {
   });
 
   let sort = document.querySelector('.lav-sort__item.active').dataset.sort;
+  let sortFunc;
 
   if (sort === '1') {
     sortFunc = (a, b) =>
@@ -1985,9 +1983,11 @@ function handleSort() {
       );
   }
 
-  let sorted = [...cards].sort(sortFunc);
+  if (sortFunc) {
+    let sorted = [...cards].sort(sortFunc);
 
-  sorted.forEach((elem, index) => {
-    elem.style.order = index;
-  });
+    sorted.forEach((elem, index) => {
+      elem.style.order = index;
+    });
+  }
 }
