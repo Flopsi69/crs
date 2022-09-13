@@ -7,7 +7,7 @@ const settings = {
   observe: false,
 };
 
-//Hotjar
+// Clarity
 if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
@@ -1208,9 +1208,6 @@ let intrevalInit = setInterval(() => {
 
 function init() {
   console.log('init');
-  if (document.querySelector('.btn__load-more')) {
-    document.querySelector('.btn__load-more').click();
-  }
   initTopInfo();
   initFilters();
   if (document.querySelector('.container--listing')) {
@@ -1222,6 +1219,10 @@ function init() {
   }
 
   setTimeout(() => {
+    if (document.querySelector('.btn__load-more .btn')) {
+      document.querySelector('.btn__load-more').click();
+    }
+
     if (document.querySelector('.container--listing')) {
       document.querySelector('.lav-info').classList.add('lav-info__complete');
       document
@@ -1853,6 +1854,12 @@ function validateForm() {
 }
 
 function handleFilter() {
+  let banksArr = [];
+  for (let bank of banks) {
+    if (bank.isActive) {
+    }
+  }
+
   for (let card of document.querySelectorAll('.card')) {
   }
 }
