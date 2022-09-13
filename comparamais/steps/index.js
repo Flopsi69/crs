@@ -876,6 +876,10 @@ const styles = `
   .filters + div .end-of-listing {
     order: 100;
   }
+
+  .lav-filter-active .card:not(.lav-card-active) {
+    display: none;
+  }
   @media(max-width: 580px) {
     .lav-mob-filter {
       display: block;
@@ -1896,6 +1900,7 @@ function handleBanksFilter() {
   console.log('filter', banksArr);
 
   if (banksArr.length) {
+    document.querySelector('.filters + div').classList.add('lav-filter-active');
     for (let card of document.querySelectorAll('.card')) {
       for (let bankName of banksArr) {
         if (card.querySelector('.card__logo img').alt.includes(bankName)) {
@@ -1903,6 +1908,10 @@ function handleBanksFilter() {
         }
       }
     }
+  } else {
+    document
+      .querySelector('.filters + div')
+      .classList.remove('lav-filter-active');
   }
 }
 
