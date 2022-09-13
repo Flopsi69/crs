@@ -1206,6 +1206,9 @@ let intrevalInit = setInterval(() => {
 
 function init() {
   console.log('init');
+  if (document.querySelector('.btn__load-more')) {
+    document.querySelector('.btn__load-more').click();
+  }
   initTopInfo();
   initFilters();
   if (document.querySelector('.container--listing')) {
@@ -1289,13 +1292,15 @@ function initFilters() {
       document.querySelector('.filters__closer--button').click();
     });
 
-  document
-    .querySelector('.hits__filters__body')
-    .insertAdjacentHTML('afterend', filtersEl);
-
-  document
-    .querySelector('#results')
-    .insertAdjacentHTML('afterbegin', filtersMobEl);
+  if (window.innerWidth > 580) {
+    document
+      .querySelector('.hits__filters__body')
+      .insertAdjacentHTML('afterend', filtersEl);
+  } else {
+    document
+      .querySelector('#results')
+      .insertAdjacentHTML('afterbegin', filtersMobEl);
+  }
 
   document
     .querySelector('.lav-open-filter')
@@ -1355,6 +1360,8 @@ function initFilters() {
 
       document.querySelector('.lav-mob-filter .lav-sort__value').innerText =
         item.innerText;
+
+      handleFilter();
     });
   }
 }
@@ -1837,4 +1844,9 @@ function validateForm() {
   }
 
   return !isError;
+}
+
+function handleFilter() {
+  for (let card of document.querySelectorAll('.card')) {
+  }
 }
