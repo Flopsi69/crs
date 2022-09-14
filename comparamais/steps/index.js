@@ -1388,8 +1388,12 @@ function initFilters() {
 
       item.classList.add('active');
 
-      document.querySelector('.lav-sort__value span').innerText =
-        item.innerText;
+      if (document.querySelector('.lav-sort__value span')) {
+        document.querySelector('.lav-sort__value span').innerText =
+          item.innerText;
+      } else {
+        document.querySelector('.lav-sort__value').innerText = item.innerText;
+      }
 
       handleFilter();
     });
