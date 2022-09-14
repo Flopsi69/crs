@@ -1690,7 +1690,8 @@ function initSteps() {
         '.lav-final__group-wrap .lav-final__group:nth-child(3) input'
       ),
       {
-        mask: '+{351} 000 000 000',
+        // mask: '+{351} 000 000 000',
+        mask: Number,
       }
     );
   }, 300);
