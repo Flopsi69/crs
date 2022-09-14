@@ -1340,12 +1340,40 @@ function initFilters() {
       });
   }
 
-  // document
-  //   .querySelector('.lav-filter__head-reset')
-  //   .addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     document.querySelector('.filter-reset').click();
-  //   });
+  document
+    .querySelector('.lav-filter__head-reset')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.lav-sort__item.active')
+        .classList.remove('active');
+      document
+        .querySelector('.lav-sort__item:first-child')
+        .classList.add('active');
+
+      if (document.querySelector('.lav-sort__value span')) {
+        document.querySelector('.lav-sort__value span').innerText =
+          document.querySelector('.lav-sort__item.active').innerText;
+      } else {
+        document.querySelector('.lav-sort__value').innerText =
+          document.querySelector('.lav-sort__item.active').innerText;
+      }
+
+      for (let bank of banks) {
+        bank.isActive = false;
+      }
+
+      for (let item of document.querySelectorAll('.lav-filter__item.active')) {
+        item.classList.remove('active');
+      }
+
+      document.querySelector('.lav-filter__choosen').innerHTML = '';
+      document
+        .querySelector('.lav-filter__choosen')
+        .classList.add('lav-filter__choosen-hide');
+
+      handleFilter();
+    });
 
   for (let bank of banks) {
     let el = document.createElement('div');
@@ -1425,6 +1453,12 @@ function addChoosen() {
         bank.isActive = false;
         for (let item of document.querySelectorAll('.lav-filter__item')) {
           if (item.innerText == bank.name) item.classList.remove('active');
+        }
+
+        if (!document.querySelector('.lav-filter__choosen')) {
+          document
+            .querySelector('.lav-filter__choosen')
+            .classList.add('lav-filter__choosen-hide');
         }
         handleFilter();
       });
