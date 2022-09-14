@@ -1006,10 +1006,10 @@ let banks = [
   { name: 'CTT', value: '', isActive: false },
   { name: 'Eurobic', value: '', isActive: false },
   { name: 'Millennium BCP', value: '', isActive: false },
-  { name: 'Montepio', value: '', isActive: false },
+  // { name: 'Montepio', value: '', isActive: false },
   { name: 'Novo Banco', value: '', isActive: false },
   { name: 'Santander', value: '', isActive: false },
-  { name: 'UCI - Unión de Créditos Inmobiliários', value: '', isActive: false },
+  // { name: 'UCI - Unión de Créditos Inmobiliários', value: '', isActive: false },
 ];
 
 const stylesEl = document.createElement('style');
