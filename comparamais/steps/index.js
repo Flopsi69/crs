@@ -1917,7 +1917,8 @@ function validateForm() {
       .classList.add('lav-error');
   }
 
-  if (!phone || phone.length != 16) {
+  // if (!phone || phone.length != 16) {
+  if (!phone || phone.length <= 6) {
     isError = true;
     document
       .querySelector(
