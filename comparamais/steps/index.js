@@ -880,6 +880,20 @@ const styles = `
   .lav-filter-active .card:not(.lav-card-active) {
     display: none;
   }
+  @media (max-width: 1169px) and (min-width: 581px) {
+    .container--hero {
+      padding: 40px 20px 20px;
+    }
+    .page__simulator {
+      margin-left: 25px;
+    }
+    .lav-step {
+      padding: 25px;
+    }
+    .container--hero .page__simulator {
+      width: 42%;
+    }
+  }
   @media(max-width: 580px) {
     .lav-mob-filter {
       display: block;
