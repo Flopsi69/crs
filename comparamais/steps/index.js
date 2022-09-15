@@ -1521,12 +1521,23 @@ function initSteps() {
         item.classList.toggle('active');
         if (item.classList.contains('lav-terms')) {
           gaEvent('click checkbox terms', 'step: Form');
-          document.querySelector('#termsAgreement').checked = 'checked';
+          if (document.querySelector('#termsAgreement').checked) {
+            document.querySelector('#termsAgreement').checked = '';
+          } else {
+            document.querySelector('#termsAgreement').checked = 'checked';
+          }
+
           let event = new Event('change');
           document.querySelector('#termsAgreement').dispatchEvent(event);
         } else if (item.classList.contains('lav-personal')) {
           gaEvent('click checkbox agreement', 'step: Form');
-          document.querySelector('#communicationAgreement').checked = 'checked';
+
+          if (document.querySelector('#communicationAgreement').checked) {
+            document.querySelector('#communicationAgreement').checked = '';
+          } else {
+            document.querySelector('#communicationAgreement').checked =
+              'checked';
+          }
           let event = new Event('change');
           document
             .querySelector('#communicationAgreement')
