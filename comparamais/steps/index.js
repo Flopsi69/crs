@@ -1585,11 +1585,10 @@ function initSteps() {
   }
 
   for (let item of document.querySelectorAll('.lav-step__next')) {
+    if (item.classList.contains('lav-step-start')) continue;
+
     item.addEventListener('click', function (e) {
       e.preventDefault();
-      if (item.classList.contains('lav-step-start')) {
-        return false;
-      }
 
       if (item.classList.contains('disabled')) return false;
 
