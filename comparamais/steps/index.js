@@ -1846,8 +1846,7 @@ function startPreloader() {
   console.log('startPreloader');
   let idx = 0;
   var delay = 0.7;
-
-  fillForm();
+  document.querySelector('.lav-step .hls-simulator__button').click();
 
   for (let item of document.querySelectorAll('.lav-preloader__item')) {
     setTimeout(() => {
@@ -1879,6 +1878,7 @@ function startPreloader() {
             .querySelector('.lav-preloader')
             .classList.add('lav-preloader__hidden');
           document.querySelector('.lav-final').classList.add('active');
+          fillForm();
           // gaEventClient('viewCaptureForm');
         }, 500);
       }, idx * delay * 1000 + 3000);
@@ -2093,8 +2093,6 @@ function handleSort() {
 }
 
 function fillForm() {
-  document.querySelector('.lav-step .hls-simulator__button').click();
-
   document.querySelector(
     '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
   ).value = formData.salary;
