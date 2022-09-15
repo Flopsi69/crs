@@ -607,8 +607,12 @@ const styles = `
     margin-bottom: 28px;
   }
 
-  .lav-step a.hls-simulator__button {
+  .lav-step-start {
     margin-top: 40px;
+  }
+
+  .lav-step a.hls-simulator__button {
+    display: none;
   }
 
   .reviews__widget-container {
@@ -1266,7 +1270,7 @@ function init() {
   initSteps();
 
   document
-    .querySelector('.lav-step .hls-simulator__button')
+    .querySelector('.lav-step .lav-step-start')
     .addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent('click button', 'step: Calculator');
@@ -1292,6 +1296,13 @@ function initTopInfo() {
         document.querySelector(
           '.hls-simulator__field-box + .hls-simulator__field-box--sm'
         )
+      );
+
+    document
+      .querySelector('.simulator-container .hls-simulator__button')
+      .insertAdjacentHTML(
+        'beforebegin',
+        `<button class='lav-step__next lav-step-start'>Avançar</button>`
       );
 
     document
@@ -1576,6 +1587,10 @@ function initSteps() {
   for (let item of document.querySelectorAll('.lav-step__next')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      if (item.classList.contains('lav-step-start')) {
+        return false;
+      }
+
       if (item.classList.contains('disabled')) return false;
 
       if (item.closest('.lav-step').dataset.step == '1') {
@@ -1612,13 +1627,11 @@ function initSteps() {
             .insertAdjacentHTML('beforeend', el);
         }
 
-        fillForm();
-
-        // document
-        //   .querySelector(
-        //     '.page__simulator .capture-overlay .capture-form button'
-        //   )
-        //   .click();
+        document
+          .querySelector(
+            '.page__simulator .capture-overlay .capture-form button'
+          )
+          .click();
 
         // gaEventClient('submitCaptureForm', '50');
         gaEvent('click button', 'step: Form');
@@ -1836,6 +1849,8 @@ function startPreloader() {
   let idx = 0;
   var delay = 0.7;
 
+  fillForm();
+
   for (let item of document.querySelectorAll('.lav-preloader__item')) {
     setTimeout(() => {
       let el = document.querySelector('.lav-preloader__item.active');
@@ -1866,7 +1881,7 @@ function startPreloader() {
             .querySelector('.lav-preloader')
             .classList.add('lav-preloader__hidden');
           document.querySelector('.lav-final').classList.add('active');
-          gaEventClient('viewCaptureForm');
+          // gaEventClient('viewCaptureForm');
         }, 500);
       }, idx * delay * 1000 + 3000);
     }
@@ -2080,6 +2095,8 @@ function handleSort() {
 }
 
 function fillForm() {
+  document.querySelector('.lav-step .hls-simulator__button').click();
+
   document.querySelector(
     '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
   ).value = formData.salary;
