@@ -1274,6 +1274,9 @@ function init() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent('click button', 'step: Calculator');
+
+      document.querySelector('.simulator-container').classList.remove('active');
+
       document
         .querySelector('.container--hero + .container')
         .classList.add('lav-result-hide');
