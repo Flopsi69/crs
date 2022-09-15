@@ -1546,15 +1546,11 @@ function initSteps() {
       if (item.closest('.lav-nation')) {
         gaEvent('click radio', 'step: Nationality');
 
-        formData.nationality = document.querySelector(
-          `.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) option:nth-child(${idx})`
-        ).value;
+        formData.nationality = idx;
       } else if (item.closest('.lav-situation')) {
         gaEvent('click radio', 'step: Work Status');
 
-        formData.workStatus = document.querySelector(
-          `.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) option:nth-child(${idx})`
-        ).value;
+        formData.workStatus = idx;
       }
 
       document
@@ -2105,11 +2101,15 @@ function fillForm() {
 
   document.querySelector(
     '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
-  ).value = formData.nationality;
+  ).value = document.querySelector(
+    `.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) option:nth-child(${formData.nationality})`
+  ).value;
 
   document.querySelector(
     '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
-  ).value = formData.workStatus;
+  ).value = document.querySelector(
+    `.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) option:nth-child(${formData.workStatus})`
+  ).value;
 
   let event = new Event('change');
 
