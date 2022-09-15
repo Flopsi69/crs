@@ -1275,6 +1275,13 @@ function init() {
       e.preventDefault();
       gaEvent('click button', 'step: Calculator');
 
+      if (window.innerWidth <= 580) {
+        setTimeout(() => {
+          console.log('scrolling');
+          document.querySelector('.page__simulator').scrollIntoView();
+        }, 100);
+      }
+
       document.querySelector('.simulator-container').classList.remove('active');
 
       document
@@ -1841,7 +1848,9 @@ function startPreloader() {
   console.log('startPreloader');
   let idx = 0;
   var delay = 0.7;
-  document.querySelector('.lav-step .hls-simulator__button').click();
+  if (document.querySelector('.lav-step .hls-simulator__button')) {
+    document.querySelector('.lav-step .hls-simulator__button').click();
+  }
 
   for (let item of document.querySelectorAll('.lav-preloader__item')) {
     setTimeout(() => {
