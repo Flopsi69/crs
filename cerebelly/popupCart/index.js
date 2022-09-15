@@ -18,21 +18,20 @@ if (settings.clarity) {
 }
 
 // Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
+function gaEvent(name = '', desc = '', type = '', loc = '') {
   try {
     var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp: Sticky button',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
     };
-    console.dir(objData.eventAction);
+    console.dir('eventFire', objData.eventAction);
     dataLayer.push(objData);
-  } catch (e) {}
+  } catch (e) {
+    console.log('Event Error:', e);
+  }
 }
 
 // Observe
@@ -51,7 +50,7 @@ if (settings.observe) {
           !isProgress
         ) {
           isProgress = true;
-          gaEvent('Cart pop up shown');
+          gaEvent('exp_buynow_001', 'Cart shown', 'Popup', 'On page');
           setTimeout(() => {
             isProgress = false;
           }, 2500);
@@ -274,7 +273,7 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 function init() {
   console.dir('init');
-  gaEvent('loaded');
+  gaEvent('exp_buynow_loaded');
 
   setInterval(function () {
     countProducts();
@@ -287,7 +286,7 @@ function init() {
     document
       .querySelector('.e-my-account')
       .addEventListener('click', function () {
-        gaEvent('Account icon clicked');
+        gaEvent('exp_buynow_002', 'Account clicked', 'Icon', 'On page');
       });
   }
 
@@ -297,14 +296,14 @@ function init() {
         e.target.closest('.mobile-cart-box')) &&
       e.target.closest('.e-header-inner')
     ) {
-      gaEvent('Cart icon clicked');
+      gaEvent('exp_buynow_003', 'Cart clicked', 'Icon', 'On page');
     }
 
     if (
       e.target.classList.contains('continue') &&
       e.target.closest('.modal .custom')
     ) {
-      gaEvent('Continue shopping in cart link click');
+      gaEvent('exp_buynow_006', 'Continue shopping', 'Link', 'Cart popup');
     }
 
     if (
@@ -312,7 +311,7 @@ function init() {
         e.target.closest('.default-close-container')) &&
       !e.target.closest('.undefined')
     ) {
-      gaEvent('Cart closed by X');
+      gaEvent('exp_buynow_004', 'Cart closed', 'X Icon', 'On page');
     }
   });
 }
@@ -373,13 +372,13 @@ function handleSticky(price) {
       );
     }
 
-    gaEvent('Sticky block appeared onscreen');
+    gaEvent('exp_buynow_008', 'Appearing on screen', 'Block', 'Sticky');
 
     document
       .querySelector('.lav-sticky__btn')
       .addEventListener('click', function (e) {
         e.preventDefault();
-        gaEvent('Checkout Now sticky click');
+        gaEvent('exp_buynow_007', 'Checkout Now', 'Button', 'Sticky');
         location.href = '/cart';
       });
   } else {
@@ -458,7 +457,7 @@ function handleCartModal(price) {
     document
       .querySelector('.lav-checkout')
       .addEventListener('click', function () {
-        gaEvent('Checkout Now CTA cick in cart');
+        gaEvent('exp_buynow_005', 'Checkout Now', 'CTA', 'Cart popup');
         // document.querySelector('.modal:not(.undefined) .checkout').click();
         location.href = '/cart';
       });

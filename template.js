@@ -32,7 +32,26 @@ function gaEvent(action, label) {
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
-  } catch (e) {}
+  } catch (e) {
+    console.log('Event Error:', e);
+  }
+}
+
+// Alalytic
+function gaEvent(name = '', desc = '', type = '', loc = '') {
+  try {
+    var objData = {
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
+    };
+    console.dir('eventFire', objData.eventAction);
+    dataLayer.push(objData);
+  } catch (e) {
+    console.log('Event Error:', e);
+  }
 }
 
 // Observe
