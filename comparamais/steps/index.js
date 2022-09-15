@@ -1627,8 +1627,13 @@ function initSteps() {
           )
           .click();
 
-        gaEventClient('submitCaptureForm', '50');
+        // gaEventClient('submitCaptureForm', '50');
         gaEvent('click button', 'step: Form');
+        if (window.innerWidth <= 580) {
+          setTimeout(() => {
+            document.querySelector('.page__simulator').scrollIntoView();
+          }, 500);
+        }
       }
 
       if (item.classList.contains('lav-view-banks')) {
@@ -1670,7 +1675,7 @@ function initSteps() {
           }, 1000);
         }
         gaEvent('click button', 'step: Report');
-        gaEventClient('viewProductList');
+        // gaEventClient('viewProductList');
         return false;
       }
 
