@@ -1242,6 +1242,7 @@ let intrevalInit = setInterval(() => {
   ) {
     clearInterval(intrevalInit);
     init();
+    gaEvent('loaded');
   }
 }, 300);
 
