@@ -1228,6 +1228,8 @@ let imaskScript = document.createElement('script');
 imaskScript.src = 'https://unpkg.com/imask';
 document.body.append(imaskScript);
 
+let formData = {};
+
 let intrevalInit = setInterval(() => {
   if (
     (document.querySelector('.container--hero') &&
@@ -1524,33 +1526,15 @@ function initSteps() {
       if (item.closest('.lav-nation')) {
         gaEvent('click radio', 'step: Nationality');
 
-        document.querySelector(
-          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
-        ).value = document.querySelector(
+        formData.nationality = document.querySelector(
           `.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) option:nth-child(${idx})`
         ).value;
-
-        let event = new Event('change');
-        document
-          .querySelector(
-            '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
-          )
-          .dispatchEvent(event);
       } else if (item.closest('.lav-situation')) {
         gaEvent('click radio', 'step: Work Status');
 
-        document.querySelector(
-          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
-        ).value = document.querySelector(
+        formData.workStatus = document.querySelector(
           `.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) option:nth-child(${idx})`
         ).value;
-
-        let event = new Event('change');
-        document
-          .querySelector(
-            '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
-          )
-          .dispatchEvent(event);
       }
 
       document
@@ -1558,6 +1542,7 @@ function initSteps() {
         .classList.remove('disabled');
     });
   }
+
   for (let item of document.querySelectorAll('.lav-step__back')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1621,11 +1606,13 @@ function initSteps() {
             .insertAdjacentHTML('beforeend', el);
         }
 
-        document
-          .querySelector(
-            '.page__simulator .capture-overlay .capture-form button'
-          )
-          .click();
+        fillForm();
+
+        // document
+        //   .querySelector(
+        //     '.page__simulator .capture-overlay .capture-form button'
+        //   )
+        //   .click();
 
         // gaEventClient('submitCaptureForm', '50');
         gaEvent('click button', 'step: Form');
@@ -1725,29 +1712,18 @@ function initSteps() {
     .querySelector('.lav-step__salary input')
     .addEventListener('input', function () {
       if (this.value) {
-        document.querySelector(
-          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
-        ).value = this.value.replaceAll(',', '');
+        formData.salary = this.value.replaceAll(',', '');
 
         document
           .querySelector('.lav-step[data-step="3"] .lav-step__next')
           .classList.remove('disabled');
       } else {
-        document.querySelector(
-          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
-        ).value = '';
+        formData.salary = '';
 
         document
           .querySelector('.lav-step[data-step="3"] .lav-step__next')
           .classList.add('disabled');
       }
-
-      let event = new Event('change');
-      document
-        .querySelector(
-          '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
-        )
-        .dispatchEvent(event);
     });
 
   document
@@ -2095,4 +2071,38 @@ function handleSort() {
       elem.style.order = index;
     });
   }
+}
+
+function fillForm() {
+  document.querySelector(
+    '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
+  ).value = formData.salary;
+
+  document.querySelector(
+    '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
+  ).value = formData.nationality;
+
+  document.querySelector(
+    '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
+  ).value = formData.workStatus;
+
+  let event = new Event('change');
+
+  document
+    .querySelector(
+      '.page__simulator .capture-overlay .capture-form .form-group:nth-child(4) select'
+    )
+    .dispatchEvent(event);
+
+  document
+    .querySelector(
+      '.page__simulator .capture-overlay .capture-form .form-group:nth-child(5) input'
+    )
+    .dispatchEvent(event);
+
+  document
+    .querySelector(
+      '.page__simulator .capture-overlay .capture-form .form-group:nth-child(6) select'
+    )
+    .dispatchEvent(event);
 }
