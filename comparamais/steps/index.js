@@ -1360,6 +1360,8 @@ function initFilters() {
     .querySelector('.lav-filter__head-reset')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('click reset filter');
+
       document
         .querySelector('.lav-sort__item.active')
         .classList.remove('active');
@@ -1403,6 +1405,7 @@ function initFilters() {
       e.preventDefault();
       bank.isActive = bank.isActive ? false : true;
       el.classList.toggle('active');
+      gaEvent('click bank filter', bank.name);
       addChoosen();
       handleFilter();
     });
@@ -1415,12 +1418,15 @@ function initFilters() {
   for (let item of document.querySelectorAll('.lav-sort__value')) {
     item.addEventListener('click', function () {
       item.closest('.lav-sort').classList.toggle('active');
+      gaEvent('toggle sort dropdown');
     });
   }
 
   for (let item of document.querySelectorAll('.lav-sort__item')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('click sort item', item.innerText);
+
       if (item.classList.contains('active')) return false;
 
       item
