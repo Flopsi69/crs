@@ -73,6 +73,12 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .light-therapy-section {
+    display: none;
+  }
+  .home-page {
+    background-color: #fff;
+  }
   .lav-wrap {
     color: #517193;
     background: url('${settings.dir}/img/jumb-bg.png') top no-repeat;
@@ -120,6 +126,8 @@ const styles = `
   }
 
   .lav-plate {
+    position: relative;
+    z-index: 1;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
     background-color: #fff;
     max-width: 644px;
@@ -139,9 +147,13 @@ const styles = `
   .lav-whatis__preview {
     position: relative;
     background: #C4C4C4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     overflow: hidden;
+    line-height: 0;
+  }
+  .lav-whatis__placeholder {
+    max-width: 100%;
   }
   .lav-whatis__play-btn {
     position: absolute;
@@ -151,6 +163,10 @@ const styles = `
     width: 156px;
     height: 156px;
     line-height: 0;
+    transition: 0.3s;
+  }
+  .lav-whatis__play-btn + .lav-whatis__play-btn {
+    opacity: 0;
   }
   .lav-whatis__play {
     position: absolute;
@@ -160,12 +176,17 @@ const styles = `
     width: 156px;
     height: 156px;
     line-height: 0;
+    cursor: pointer;
   }
-  .lav-whatis {}
-  .lav-whatis {}
+  .lav-whatis__play:hover .lav-whatis__play-btn {
+    opacity: 0;
+  }
+  .lav-whatis__play:hover .lav-whatis__play-btn + .lav-whatis__play-btn {
+    opacity: 1;
+  }
 
   .lav-benefits__title {
-    margin-bottom; 48px;
+    margin-bottom: 48px;
     text-align: center;
   }
   .lav-benefits__list {
@@ -183,18 +204,27 @@ const styles = `
     overflow: hidden;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
     background-size: cover;
+    min-height: 384px;
+    padding: 48px;
+    display: flex;
+    align-items: flex-end;
   }
   .lav-benefit:before {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    botttom: 0;
+    bottom: 0;
     top: 0;
     background: radial-gradient(145.34% 98.1% at 50.14% 0%, rgba(243, 245, 249, 0) 21.88%, rgba(243, 245, 249, 0.179775) 37.97%, rgba(243, 245, 249, 0.811752) 62.03%, #F3F5F9 78.99%)
   }
+  .lav-benefit__info {
+    position: relative;
+    z-index: 1;
+  }
   .lav-benefit_double {
     grid-area: top;
+    min-height: 512px;
   }
   .lav-benefit__icon {
     margin-bottom: 24px;
