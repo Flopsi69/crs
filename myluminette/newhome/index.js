@@ -77,7 +77,7 @@ const styles = `
     display: none;
   }
   .home-page {
-    background-color: #fff;
+    background-color: #fff;a
   }
   .lav-wrap {
     color: #517193;
@@ -185,6 +185,9 @@ const styles = `
     opacity: 1;
   }
 
+  .lav-benefits {
+    padding-bottom: 96px;
+  }
   .lav-benefits__title {
     margin-bottom: 48px;
     text-align: center;
@@ -315,20 +318,22 @@ const newPage = `
   </div>
 
   <div class='lav-transforms'>
-    <div class='lav-transform'>
-      <div class='lav-transform__info'>
-        <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-        <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
+    <div class='container-fluid container--size--lg lav-whatis__container'>
+      <div class='lav-transform'>
+        <div class='lav-transform__info'>
+          <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+          <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
+        </div>
+        <div class='lav-transform__image'></div>
       </div>
-      <div class='lav-transform__image'></div>
-    </div>
 
-    <div class='lav-transform'>
-      <div class='lav-transform__info'>
-        <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-        <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+      <div class='lav-transform'>
+        <div class='lav-transform__info'>
+          <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+          <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+        </div>
+        <div class='lav-transform__image'></div>
       </div>
-      <div class='lav-transform__image'></div>
     </div>
   </div>
 
