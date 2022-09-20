@@ -227,6 +227,9 @@ const styles = `
     height: 80px;
     margin-bottom: 24px;
   }
+  .lav-benefit__icon {
+    max-width: 100%;d
+  }
   .lav-benefit__title {
     font-weight: 400;
     font-size: 24px;
@@ -321,6 +324,85 @@ const styles = `
     margin-bottom: 8px;
     font-weight: 700;
   }
+
+  .lav-works {
+    
+  }
+
+  .lav-works__title {
+    text-align: center;
+  }
+  .lav-works__row {
+    display: flex;
+    margin-top: 48px;
+  }
+  .lav-works__image {
+    line-height: 0;
+  }
+  .lav-works__info {
+    max-width: 362px;
+  }
+  .lav-works__item {
+    position: relative;
+    padding-left: 32px;
+  }
+  .lav-works__item + .lav-works__item {
+    margin-top: 24px;
+  }
+  .lav-works__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-works__item-title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .lav-works__item-title span {
+    color: #11C6E7
+  }
+  .lav-works__item-descr {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .lav-works__item-trigger {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+  .lav-works__study {
+    margin-top: 24px;
+    border: 1px solid #E7EBEF;
+    border-radius: 50px;
+    padding: 24px;
+  }
+  .lav-works__study-caption {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    padding-left: 52px;
+  }
+  .lav-works__study-caption span {
+    font-weight: 700;
+  }
+  .lav-works__study-caption:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: url(${settings.dir}/img/lamp.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-works {}
 
 `;
 
@@ -488,6 +570,7 @@ const newPage = `
   </div>
 
   <div class='lav-works'>
+    <div class='container-fluid container--size--lg lav-works__container'>
     <div class='lav-works__title lav-title'>How Luminette works</div>
 
     <div class='lav-works__row'>
@@ -510,7 +593,9 @@ const newPage = `
         </div>
       </div>
       
-      <div class='lav-works__image'></div>
+      <div class='lav-works__image'>
+        <img src='${settings.dir}/img/how-works.png' />
+      </div>
     </div>
   </div>
 
