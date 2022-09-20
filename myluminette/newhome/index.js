@@ -227,8 +227,8 @@ const styles = `
     height: 80px;
     margin-bottom: 24px;
   }
-  .lav-benefit__icon {
-    max-width: 100%;d
+  .lav-benefit__icon img {
+    max-width: 100%;
   }
   .lav-benefit__title {
     font-weight: 400;
@@ -331,13 +331,16 @@ const styles = `
 
   .lav-works__title {
     text-align: center;
+    margin-bottom: 8px;
   }
   .lav-works__row {
     display: flex;
+    justify-content: center;
     margin-top: 48px;
   }
   .lav-works__image {
     line-height: 0;
+    margin-left: 115px;
   }
   .lav-works__info {
     max-width: 362px;
@@ -370,19 +373,24 @@ const styles = `
   .lav-works__item-descr {
     font-size: 16px;
     line-height: 24px;
+    display: inline-flex;
+    margin-right: 4px;
   }
   .lav-works__item-trigger {
     font-size: 16px;
     line-height: 24px;
     font-weight: 700;
+    display: inline-flex;
   }
   .lav-works__study {
     margin-top: 24px;
     border: 1px solid #E7EBEF;
     border-radius: 50px;
     padding: 24px;
+    background: rgb(231 235 239 / 20%);
   }
   .lav-works__study-caption {
+    position: relative;
     font-weight: 300;
     font-size: 18px;
     line-height: 24px;
@@ -397,12 +405,51 @@ const styles = `
     position: absolute;
     left: 0;
     top: 0;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     background: url(${settings.dir}/img/lamp.svg) center no-repeat;
     background-size: contain;
   }
+  .lav-works__study-btn {
+    border: 1px solid rgba(81, 113, 147, 12%);
+    border-radius: 123px;
+    background: none;
+    cursor: pointer;
+    padding: 14px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #517193;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.35s;
+  }
+  .lav-works__study-btn:hover {
+    opacity: 0.65;
+  }
+  .lav-works__study-btn img {
+    margin-left: 16px;
+    width: 32px;
+  }
   .lav-works {}
+
+  .lav-users {}
+  .lav-users__title {
+    text-align: center;
+    font-size: 80px;
+    line-height: 80px;
+    letter-spacing: 1px;
+  }
+  .lav-users__title span {
+    font-weight: 800;
+  }
+  .lav-users {}
+  .lav-users {}
+  .lav-users {}
+  .lav-users {}
+
 
 `;
 
@@ -411,6 +458,7 @@ const newPage = `
   <div class='lav-jumb'>
     <div class='container-fluid container--size--lg lav-jumb__container'>
       <div class='lav-jumb__image'>
+        <img src='${settings.dir}/img/jumb-luminette.png' />
       </div>
       <div class='lav-jumb__info'>
         <div class='lav-jumb__title'>Fight your winter blues & sleep disorders</div>
@@ -589,7 +637,9 @@ const newPage = `
 
         <div class='lav-works__study'>
           <div class='lav-works__study-caption'>An <span>independent study</span> has shown that Luminette gives the same results as a 10,000 lux light box</div>
-          <button class='lav-btn lav-works__study-btn'>Read the study</button>
+          <button class='lav-btn lav-works__study-btn'>
+            Read the study <img src='${settings.dir}/img/adobe.svg' />
+          </button>
         </div>
       </div>
       
@@ -600,7 +650,7 @@ const newPage = `
   </div>
 
   <div class='lav-users'>
-    <div class='lav-users__title'>150,000 Luminette users</div>
+    <div class='lav-users__title'><span>150,000</span> Luminette users</div>
   </div>
 
   <div class='lav-reviews'>
