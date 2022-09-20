@@ -194,50 +194,41 @@ const styles = `
   }
   .lav-benefits__list {
     display: grid; 
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
     gap: 24px; 
-    grid-template-areas: 
-      "top top"
-      ". ."; 
   }
   .lav-benefit {
     position: relative;
-    background-color: #C4C4C4;
+    // background-color: #C4C4C4;
     border-radius: 8px;
     overflow: hidden;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
     background-size: cover;
-    min-height: 384px;
-    padding: 48px;
+    min-height: 350px;
+    padding: 32px;
     display: flex;
     align-items: flex-end;
   }
   .lav-benefit:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    background: radial-gradient(145.34% 98.1% at 50.14% 0%, rgba(243, 245, 249, 0) 21.88%, rgba(243, 245, 249, 0.179775) 37.97%, rgba(243, 245, 249, 0.811752) 62.03%, #F3F5F9 78.99%)
+    // content: '';
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // top: 0;
+    // background: radial-gradient(145.34% 98.1% at 50.14% 0%, rgba(243, 245, 249, 0) 21.88%, rgba(243, 245, 249, 0.179775) 34.38%, rgba(243, 245, 249, 0.811752) 47.4%, #F3F5F9 58.33%);
   }
   .lav-benefit__info {
     position: relative;
     z-index: 1;
   }
-  .lav-benefit_double {
-    grid-area: top;
-    min-height: 512px;
-  }
   .lav-benefit__icon {
+    width: 80px;
+    height: 80px;
     margin-bottom: 24px;
   }
-  .lav-benefit__icon {
-    width: 96px;
-    height: 96px;
-  }
   .lav-benefit__title {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 24px;
     line-height: 28px;
   }
@@ -307,7 +298,8 @@ const styles = `
     padding: 48px;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
     border-radius: 16px;
-    background: #fff;
+    background: #517193;
+    color: #fff;
     text-align: center;
   }
   .lav-benefits2__list {
@@ -372,39 +364,6 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-benefits'>
-    <div class='container-fluid container--size--lg lav-benefits__container'>
-      <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
-
-      <div class='lav-benefits__list'>
-        <div class='lav-benefit lav-benefit_double' style='background-image: url("${settings.dir}/img/benefit1-bg.jpg")'>
-          <div class='lav-benefit__info'>
-            <div class='lav-benefit__icon'>
-              <img src='${settings.dir}/img/benefit1.svg' />
-            </div>
-            <div class='lav-benefit__title'>Beat your winter blues</div>
-          </div>
-        </div>
-        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit2-bg.jpg")'>
-          <div class='lav-benefit__info'>
-            <div class='lav-benefit__icon'>
-              <img src='${settings.dir}/img/benefit2.svg' />
-            </div>
-            <div class='lav-benefit__title'>Regulate your sleep schedules</div>
-          </div>
-        </div>
-        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit3-bg.jpg")'>
-          <div class='lav-benefit__info'>
-            <div class='lav-benefit__icon'>
-              <img src='${settings.dir}/img/benefit3.svg' />
-            </div>
-            <div class='lav-benefit__title'>Get your energy levels back up</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class='lav-transforms'>
     <div class='container-fluid container--size--lg lav-transforms__container'>
       <div class='lav-transforms__slider'>
@@ -425,6 +384,39 @@ const newPage = `
           </div>
           <div class='lav-transform__image'>
           <img src='${settings.dir}/img/transform-sad.png' />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='lav-benefits'>
+    <div class='container-fluid container--size--lg lav-benefits__container'>
+      <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
+
+      <div class='lav-benefits__list'>
+        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit1-bg.png")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit1.svg' />
+            </div>
+            <div class='lav-benefit__title'>Beat your winter blues</div>
+          </div>
+        </div>
+        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit2-bg.png")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit2.svg' />
+            </div>
+            <div class='lav-benefit__title'>Regulate your sleep schedules</div>
+          </div>
+        </div>
+        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit3-bg.png")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit3.svg' />
+            </div>
+            <div class='lav-benefit__title'>Get your energy levels back up</div>
           </div>
         </div>
       </div>
@@ -471,21 +463,21 @@ const newPage = `
         <div class='lav-benefits2__list'>
           <div class='lav-benefit2'>
             <div class='lav-benefit2__icon'>
-              <img src='${settings.dir}/img/morning2.svg' />
+              <img src='${settings.dir}/img/benefit2-1.svg' />
             </div>
             <div class='lav-benefit2__title'>Lightweight and comfortable</div>
             <div class='lav-benefit2__caption lav-descr'>Weighing only 51g and built with a comfy ergonomic nose fit</div>
           </div>
           <div class='lav-benefit2'>
             <div class='lav-benefit2__icon'>
-              <img src='${settings.dir}/img/morning2.svg' />
+              <img src='${settings.dir}/img/benefit2-2.svg' />
             </div>
             <div class='lav-benefit2__title'>Doesn't hinder your vision</div>
             <div class='lav-benefit2__caption lav-descr'>The special patented light system lets you experience light therapy without any disruption to your vision</div>
           </div>
           <div class='lav-benefit2'>
             <div class='lav-benefit2__icon'>
-              <img src='${settings.dir}/img/morning2.svg' />
+              <img src='${settings.dir}/img/benefit2-3.svg' />
             </div>
             <div class='lav-benefit2__title'>Compatible with glasses</div>
             <div class='lav-benefit2__caption lav-descr'>Wear Luminette on top of your glasses</div>
