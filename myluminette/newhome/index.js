@@ -17,7 +17,7 @@ if (settings.clarity) {
   }, 1000);
 }
 
-// Alalytic
+// Alalytics
 function gaEvent(action, label) {
   if (!label) {
     label = '';
@@ -37,7 +37,7 @@ function gaEvent(action, label) {
   }
 }
 
-// Alalytic
+// Alalytics
 function gaEvent(name = '', desc = '', type = '', loc = '') {
   try {
     var objData = {
@@ -99,12 +99,17 @@ const styles = `
   }
   .lav-jumb__container {
     display: flex;
+    justify-content: space-between;
   }
   .lav-jumb__image {
-    flex: 1;
+    line-height: 0;
+  }
+  .lav-jumb__image img {
+    position: absolute;
+    left: 0;
   }
   .lav-jumb__info {
-    flex: 1;
+    width: 480px;
   }
   .lav-jumb__title {
     font-weight: 700;
@@ -243,18 +248,44 @@ const styles = `
   .lav-transform {
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  .splide__pagination {
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  .splide__pagination__page {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50px;
+    background: none;
+    border: 1px solid #4E4F51;
+    transition: 0.35s;
+  }
+
+  .splide__pagination__page.is-active {
+    background-color: #4E4F51;
+  }
+
+  .splide__pagination li + li {
+    margin-left: 32px;
+  }
+
+  .splide__pagination li {
+    line-height: 0;
   }
 
   .lav-transform__info {
     max-width: 430px;
+    margin-bottom: 50px;
   }
 
   .lav-transform__title {
     margin-bottom: 24px;
   }
-  .lav-transform {}
-  .lav-transform {}
-  .lav-transform {}
   .lav-transform {}
 
   .lav-morning {
@@ -341,9 +372,11 @@ const styles = `
   .lav-works__image {
     line-height: 0;
     margin-left: 115px;
+    margin-top: -20px;
   }
   .lav-works__info {
     max-width: 362px;
+    margin-left: 40px;
   }
   .lav-works__item {
     position: relative;
@@ -496,26 +529,30 @@ const newPage = `
 
   <div class='lav-transforms'>
     <div class='container-fluid container--size--lg lav-transforms__container'>
-      <div class='lav-transforms__slider'>
-        <div class='lav-transform'>
-          <div class='lav-transform__info'>
-            <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-            <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
-          </div>
-          <div class='lav-transform__image'>
-            <img src='${settings.dir}/img/transform-smile.png' />
-          </div>
-        </div>
+      <div class='lav-transforms__slider splide'>
+        <div class="splide__track">
+          <div class="splide__list">
+            <div class='lav-transform splide__slide'>
+              <div class='lav-transform__info'>
+                <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+                <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
+              </div>
+              <div class='lav-transform__image'>
+                <img src='${settings.dir}/img/transform-smile.png' />
+              </div>
+            </div>
 
-        <div class='lav-transform'>
-          <div class='lav-transform__info'>
-            <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-            <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+            <div class='lav-transform splide__slide'>
+              <div class='lav-transform__info'>
+                <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+                <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+              </div>
+              <div class='lav-transform__image'>
+              <img src='${settings.dir}/img/transform-sad.png' />
+              </div>
+            </div>
           </div>
-          <div class='lav-transform__image'>
-          <img src='${settings.dir}/img/transform-sad.png' />
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -650,6 +687,7 @@ const newPage = `
   </div>
 
   <div class='lav-users'>
+    <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
     <div class='lav-users__title'><span>150,000</span> Luminette users</div>
   </div>
 
@@ -726,6 +764,17 @@ const newPage = `
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 document.body.appendChild(stylesEl);
+
+const sliderStyles = document.createElement('link');
+sliderStyles.rel = 'stylesheet';
+sliderStyles.href =
+  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+document.body.appendChild(sliderStyles);
+
+let sliderScript = document.createElement('script');
+sliderScript.src =
+  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+document.body.append(sliderScript);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
@@ -735,4 +784,14 @@ function init() {
   document
     .querySelector('.home-page')
     .insertAdjacentHTML('afterbegin', newPage);
+
+  let initSplideInterval = setInterval(() => {
+    if (typeof Splide == 'function') {
+      clearInterval(initSplideInterval);
+      new Splide('.splide', {
+        type: 'loop',
+        arrows: false,
+      }).mount();
+    }
+  }, 500);
 }
