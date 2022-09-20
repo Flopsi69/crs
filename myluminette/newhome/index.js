@@ -252,31 +252,33 @@ const newPage = `
   </div>
 
   <div class='lav-benefits'>
-    <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
+    <div class='container-fluid container--size--lg lav-benefits__container'>
+      <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
 
-    <div class='lav-benefits__list'>
-      <div class='lav-benefit lav-benefit_double' style='background-image: url("${settings.dir}/img/benefit1-bg.jpg")'>
-        <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'>
-            <img src='${settings.dir}/img/benefit1.svg' />
+      <div class='lav-benefits__list'>
+        <div class='lav-benefit lav-benefit_double' style='background-image: url("${settings.dir}/img/benefit1-bg.jpg")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit1.svg' />
+            </div>
+            <div class='lav-benefit__title'>Beat your winter blues</div>
           </div>
-          <div class='lav-benefit__title'>Beat your winter blues</div>
         </div>
-      </div>
-      <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit2-bg.jpg")'>
-        <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'>
-            <img src='${settings.dir}/img/benefit2.svg' />
+        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit2-bg.jpg")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit2.svg' />
+            </div>
+            <div class='lav-benefit__title'>Regulate your sleep schedules</div>
           </div>
-          <div class='lav-benefit__title'>Regulate your sleep schedules</div>
         </div>
-      </div>
-      <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit3-bg.jpg")'>
-        <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'>
-            <img src='${settings.dir}/img/benefit3.svg' />
+        <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit3-bg.jpg")'>
+          <div class='lav-benefit__info'>
+            <div class='lav-benefit__icon'>
+              <img src='${settings.dir}/img/benefit3.svg' />
+            </div>
+            <div class='lav-benefit__title'>Get your energy levels back up</div>
           </div>
-          <div class='lav-benefit__title'>Get your energy levels back up</div>
         </div>
       </div>
     </div>
