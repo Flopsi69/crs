@@ -103,6 +103,7 @@ const styles = `
   }
   .lav-jumb__image {
     line-height: 0;
+    margin-top: -70px;
   }
   .lav-jumb__image img {
     position: absolute;
@@ -372,7 +373,7 @@ const styles = `
   .lav-works__image {
     line-height: 0;
     margin-left: 115px;
-    margin-top: -20px;
+    margin-top: -40px;
   }
   .lav-works__info {
     max-width: 362px;
@@ -466,22 +467,128 @@ const styles = `
     margin-left: 16px;
     width: 32px;
   }
-  .lav-works {}
-
-  .lav-users {}
-  .lav-users__title {
+  .lav-users {
     text-align: center;
+    position: relative;
+  }
+  .lav-users__title {
+    position: absolute;
+    bottom: 96px;
+    left: 0;
+    right: 0;
+    margin: auto;
     font-size: 80px;
     line-height: 80px;
     letter-spacing: 1px;
+    padding: 0 15px;
   }
   .lav-users__title span {
     font-weight: 800;
   }
-  .lav-users {}
-  .lav-users {}
-  .lav-users {}
-  .lav-users {}
+
+  .lav-reviews {
+    padding: 64px;
+    background: linear-gradient(180deg, #406184 0%, #406184 61.36%, rgba(84, 114, 145, 0.892186) 72.44%, rgba(133, 154, 177, 0.636514) 84.38%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 8px;
+    color: #fff;
+  }
+  .lav-reviews__title {
+    text-align: center;
+  }
+  .lav-reviews__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 64px;
+  }
+  .lav-review {
+    filter: drop-shadow(0px 11px 22px rgba(59, 83, 108, 0.88));
+    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    border-radius: 16px;
+    padding: 24px;
+    color: #517193;
+    width: 29%;
+  }
+  .lav-review:nth-child(2) {
+    width: 35%;
+    min-height: 460px;
+  }
+  .lav-review__image {
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-review__image img {
+
+  }
+  .lav-review__name {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+  }
+  .lav-review__text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 12px;
+  }
+  .lav-review__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #406184;
+    opacity: 0.5;
+  }
+  .lav-review__link span {
+    font-weight: bold;
+    padding: 0 5px;
+  }
+  .lav-review__trigger {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-top: 4px;
+  }
+  .lav-reviews__total {
+    display: flex;
+    margin-top: 64px;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .lav-reviews__total-col {
+    flex: 1;
+  }
+  .lav-reviews__total-caption {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    opacity: 0.9;
+  }
+  .lav-reviews__total__caption span {
+    font-weight: bold;
+  }
+  .lav-reviews__total__stars {
+    margin: 12px 0 17px;
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-reviews__total-score {
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFAA02;
+    font-weight: bold;
+  }
+  .lav-reviews__total-image {
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-reviews__total {}
+  .lav-reviews__total {}
 
 
 `;
@@ -656,32 +763,33 @@ const newPage = `
 
   <div class='lav-works'>
     <div class='container-fluid container--size--lg lav-works__container'>
-    <div class='lav-works__title lav-title'>How Luminette works</div>
+      <div class='lav-works__title lav-title'>How Luminette works</div>
 
-    <div class='lav-works__row'>
-      <div class='lav-works__info'>
-        <div class='lav-works__item'>
-          <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
-          <div class='lav-works__item-descr'>Luminette® uses a patented in...</div>
-          <div class='lav-works__item-trigger'>Show more</div>
-        </div>
+      <div class='lav-works__row'>
+        <div class='lav-works__info'>
+          <div class='lav-works__item'>
+            <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
+            <div class='lav-works__item-descr'>Luminette® uses a patented in...</div>
+            <div class='lav-works__item-trigger'>Show more</div>
+          </div>
 
-        <div class='lav-works__item'>
-          <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
-          <div class='lav-works__item-descr'>Luminette® emits a safe blue-...</div>
-          <div class='lav-works__item-trigger'>Show more</div>
-        </div>
+          <div class='lav-works__item'>
+            <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
+            <div class='lav-works__item-descr'>Luminette® emits a safe blue-...</div>
+            <div class='lav-works__item-trigger'>Show more</div>
+          </div>
 
-        <div class='lav-works__study'>
-          <div class='lav-works__study-caption'>An <span>independent study</span> has shown that Luminette gives the same results as a 10,000 lux light box</div>
-          <button class='lav-btn lav-works__study-btn'>
-            Read the study <img src='${settings.dir}/img/adobe.svg' />
-          </button>
+          <div class='lav-works__study'>
+            <div class='lav-works__study-caption'>An <span>independent study</span> has shown that Luminette gives the same results as a 10,000 lux light box</div>
+            <button class='lav-btn lav-works__study-btn'>
+              Read the study <img src='${settings.dir}/img/adobe.svg' />
+            </button>
+          </div>
         </div>
-      </div>
-      
-      <div class='lav-works__image'>
-        <img src='${settings.dir}/img/how-works.png' />
+        
+        <div class='lav-works__image'>
+          <img src='${settings.dir}/img/how-works.png' />
+        </div>
       </div>
     </div>
   </div>
@@ -692,68 +800,88 @@ const newPage = `
   </div>
 
   <div class='lav-reviews'>
-    <div class='lav-reviews__title'>Customer reviews</div>
-    <div class='lav-reviews__list'>
-      <div class='lav-review'>
-        <div class='lav-review__image'></div>
-        <div class='lav-review__name'>Aurélie</div>
-        <div class='lav-review__link'>
-          View review on Amazon
-          <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
-        </div>
-        <div class='lav-review__text'>
-          “For years, I have suffered from seasonal depression. Health professionals (general practitioner, psychiatrist, psychologist and pharmacist) advised me to use light therapy to improve my condition in autumn and winter.
+    <div class='container-fluid container--size--lg lav-works__container'>
+      <div class='lav-reviews__title lav-title'>Customer reviews</div>
+
+      <div class='lav-reviews__list'>
+        <div class='lav-review'>
+          <div class='lav-review__image'>
+            <img src='${settings.dir}/img/review1.png' />
+          </div>
+          <div class='lav-review__name'>Aurélie</div>
+          <div class='lav-review__link'>
+            View review on <span>Amazon</span>
+            <img src='${settings.dir}/img/rate.svg' />
+          </div>
+          <div class='lav-review__text'>
+          “For years, I have suffered from seasonal depression. Health professionals (general practitioner, psychiatrist, psychologist and pharmacist) advised me to use light therapy to improve my condition in autumn and winter. <br/>
           I hesitated for a long time and then I di...”
+          </div>
+          <div class='lav-review__trigger'>Show more</div>
         </div>
-        <div class='lav-review__trigger'>Show more</div>
-      </div>
-      
-      <div class='lav-review'>
-        <div class='lav-review__image'></div>
-        <div class='lav-review__name'>Aurélie</div>
-        <div class='lav-review__link'>
-          View review on Amazon
-          <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+        
+        <div class='lav-review'>
+          <div class='lav-review__image'>
+            <img src='${settings.dir}/img/review2.png' />
+          </div>
+          <div class='lav-review__name'>Arnaud T.</div>
+          <div class='lav-review__link'>
+            View review on <span>Google</span>
+            <img src='${settings.dir}/img/rate.svg' />
+          </div>
+          <div class='lav-review__text'>
+          “Every year I feel a lack of light and it affects my morale. <br/>
+          This year I found the solution to overcome this with the Luminette. The advantage is that you don't get stuck in front of a screen and you can get ready in the morning or have breakfast with your glasses on. It's very useful :)”
+          </div>
+          <div class='lav-review__trigger'>Show more</div>
         </div>
-        <div class='lav-review__text'>
-          “For years, I have suffered from seasonal depression. Health professionals (general practitioner, psychiatrist, psychologist and pharmacist) advised me to use light therapy to improve my condition in autumn and winter.
-          I hesitated for a long time and then I di...”
+
+        <div class='lav-review'>
+          <div class='lav-review__image'>
+            <img src='${settings.dir}/img/review3.png' />
+          </div>
+          <div class='lav-review__name'>Laura S.</div>
+          <div class='lav-review__link'>
+            View review on <span>Amazon</span>
+            <img src='${settings.dir}/img/rate.svg' />
+          </div>
+          <div class='lav-review__text'>
+            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
+          </div>
+          <div class='lav-review__trigger'>Show more</div>
         </div>
-        <div class='lav-review__trigger'>Show more</div>
       </div>
 
-      <div class='lav-review'>
-        <div class='lav-review__image'></div>
-        <div class='lav-review__name'>Aurélie</div>
-        <div class='lav-review__link'>
-          View review on Amazon
-          <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+      <div class='lav-reviews__total'>
+        <div class='lav-reviews__total-col'>
+          <div class='lav-reviews__total-image'>
+            <img src='${settings.dir}/img/reviews-trusted.svg' />
+          </div>
+          <div class='lav-reviews__total-score'>4.5</div>
+          <div class='lav-reviews__total-stars'>
+            <img src='${settings.dir}/img/reviews-stars.svg' />
+          </div>
+          <div class='lav-reviews__total-caption'>See reviews on <span>Trusted shops</span></div>
         </div>
-        <div class='lav-review__text'>
-          “For years, I have suffered from seasonal depression. Health professionals (general practitioner, psychiatrist, psychologist and pharmacist) advised me to use light therapy to improve my condition in autumn and winter.
-          I hesitated for a long time and then I di...”
+        <div class='lav-reviews__total-col'>
+          <div class='lav-reviews__total-image'>
+            <img src='${settings.dir}/img/reviews-amazon.svg' />
+          </div>
+          <div class='lav-reviews__total-score'>4.5</div>
+          <div class='lav-reviews__total-stars'>
+            <img src='${settings.dir}/img/reviews-stars.svg' />
+          </div>
+          <div class='lav-reviews__total-caption'>See reviews on <span>Amazon</span></div>
         </div>
-        <div class='lav-review__trigger'>Show more</div>
       </div>
-    </div>
 
-    <div class='lav-reviews__total'>
-      <div class='lav-reviews__total-col'>
-        <div class='lav-reviews__total-image'></div>
-        <div class='lav-reviews__total-score'></div>
-        <div class='lav-reviews__total-stars'></div>
-        <div class='lav-reviews__total-caption'></div>
+      <div class='lav-reviews__all'>
+        <button class='btn-primary btn-lg clip-btn lav-reviews__btn'>
+          <span class="btn-text">See reviews</span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
       </div>
-      <div class='lav-reviews__total-col'>
-        <div class='lav-reviews__total-image'></div>
-        <div class='lav-reviews__total-score'></div>
-        <div class='lav-reviews__total-stars'></div>
-        <div class='lav-reviews__total-caption'></div>
-      </div>
-    </div>
 
-    <div class='lav-reviews__all'>
-      <button class='lav-reviews__btn lav-btn'>See reviews</button>
     </div>
   </div>
 
