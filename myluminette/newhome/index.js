@@ -75,24 +75,24 @@ if (settings.observe) {
 const styles = `
   .lav-wrap {
     color: #517193;
+    background: url('${settings.dir}/img/jumb-bg.png') top no-repeat;
+    background-size: 100% auto;
   }
   .lav-title {
     font-weight: 700;
     font-size: 48px;
     line-height: 48px;
   }
-  .lav-text {
+  .lav-descr {
     font-size: 18px;
     line-height: 24px;
   }
-  .lav-container {
-    
-  }
   .lav-jumb {
-    display: flex;
-    background: url('${settings.dir}/img/jumb-bg.png') top no-repeat;
-    background-size: cover;
+    padding-top: 200px;
     padding-bottom: 96px;
+  }
+  .lav-jumb__container {
+    display: flex;
   }
   .lav-jumb__image {
     flex: 1;
@@ -124,8 +124,9 @@ const styles = `
     background-color: #fff;
     max-width: 644px;
     padding: 24px;
-    margin: auto;
+    margin: 0 auto -48px;
     text-align: center;
+    border-radius: 8px;
   }
   .lav-plate__title {
   }
@@ -135,9 +136,31 @@ const styles = `
   .lav-whatis {
     padding-bottom: 96px;
   }
-  .lav-whatis {}
-  .lav-whatis {}
-  .lav-whatis {}
+  .lav-whatis__preview {
+    position: relative;
+    background: #C4C4C4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .lav-whatis__play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 156px;
+    height: 156px;
+    line-height: 0;
+  }
+  .lav-whatis__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 156px;
+    height: 156px;
+    line-height: 0;
+  }
   .lav-whatis {}
   .lav-whatis {}
 
@@ -198,9 +221,7 @@ const newPage = `
         <div class='lav-jumb__title'>Fight your winter blues & sleep disorders</div>
         <div class='lav-jumb__rate'>
           <div class='lav-jumb__rate-caption'>Luminette 3</div>
-          <div class='lav-jumb__rate-stars'>
-            <img src='${settings.dir}/img/jumb-stars.svg' />
-          </div>
+          <img  class='lav-jumb__rate-stars' src='${settings.dir}/img/jumb-stars.svg' />
         </div>
         <button class='lav-jumb__btn btn-primary btn-lg flipped'>
           <span class="btn-text">
@@ -222,9 +243,9 @@ const newPage = `
       <div class='lav-whatis__preview'>
         <img class='lav-whatis__placeholder' src='${settings.dir}/img/whatis.jpg' />
 
-        <div class="lav-whatis__play" data-toggle="modal" data-target=".lum3-video">
-          <img class='lav-whatis__placeholder' src='${settings.dir}/img/play.svg' />
-          <img class='lav-whatis__placeholder' src='${settings.dir}/img/play-hover.svg' />
+        <div class="lav-whatis__play">
+          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play.svg' />
+          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play-hover.svg' />
         </div>
       </div>
     </div>
