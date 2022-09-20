@@ -74,7 +74,7 @@ if (settings.observe) {
 // Styles
 const styles = `
   .light-therapy-section {
-    display: none;
+    display: none!important;
   }
   .home-page {
     background-color: #fff;a
@@ -242,6 +242,94 @@ const styles = `
     line-height: 28px;
   }
 
+  .lav-transforms {
+    padding-bottom: 96px;
+  }
+
+  .lav-transform {
+    display: flex;
+    align-items: center;
+  }
+
+  .lav-transform__info {
+    max-width: 430px;
+  }
+
+  .lav-transform__title {
+    margin-bottom: 24px;
+  }
+  .lav-transform {}
+  .lav-transform {}
+  .lav-transform {}
+  .lav-transform {}
+
+  .lav-morning {
+    text-align: center;
+    padding-bottom: 96px;
+  }
+  .lav-morning__image {
+    line-height: 0;
+  }
+  .lav-morning__title {
+    margin-bottom: 12px;
+  }
+  .lav-morning__descr {
+    margin-bottom: 48px;
+  }
+  .lav-morning__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1060px;
+    margin: auto;
+  }
+  .lav-morning__item {
+    max-width: 322px;
+  }
+  .lav-morning__item + .lav-morning__item {
+    margin-left: 48px;
+  }
+  .lav-morning__caption {
+    margin-top: 24px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .lav-morning__caption span {
+    letter-spacing: 0.01em;
+    font-weight: bold;
+  }
+  .lav-morning {}
+  .lav-benefits2 {
+    margin-bottom: 144px;
+  }
+  .lav-benefits2__inner {
+    padding: 48px;
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    border-radius: 16px;
+    background: #fff;
+    text-align: center;
+  }
+  .lav-benefits2__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px 86px;
+    margin: 48px auto 0;
+  }
+  .lav-benefit2 {
+
+  }
+  .lav-benefit2__icon {
+    line-height: 0;
+  }
+  .lav-benefit2__title {
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
 `;
 
 const newPage = `
@@ -318,67 +406,91 @@ const newPage = `
   </div>
 
   <div class='lav-transforms'>
-    <div class='container-fluid container--size--lg lav-whatis__container'>
-      <div class='lav-transform'>
-        <div class='lav-transform__info'>
-          <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-          <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
+    <div class='container-fluid container--size--lg lav-transforms__container'>
+      <div class='lav-transforms__slider'>
+        <div class='lav-transform'>
+          <div class='lav-transform__info'>
+            <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+            <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
+          </div>
+          <div class='lav-transform__image'>
+            <img src='${settings.dir}/img/transform-smile.png' />
+          </div>
         </div>
-        <div class='lav-transform__image'></div>
-      </div>
 
-      <div class='lav-transform'>
-        <div class='lav-transform__info'>
-          <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
-          <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+        <div class='lav-transform'>
+          <div class='lav-transform__info'>
+            <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+            <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+          </div>
+          <div class='lav-transform__image'>
+          <img src='${settings.dir}/img/transform-sad.png' />
+          </div>
         </div>
-        <div class='lav-transform__image'></div>
       </div>
     </div>
   </div>
 
   <div class='lav-morning'>
-    <div class='lav-morning__title lav-title'></div>
-    <div class='lav-morning__descr lav-descr'>Wear Luminette while brushing your teeth, eating breakfast or working on your computer - the perfect addition to any morning routine</div>
+    <div class='container-fluid container--size--lg lav-morning__container'>
+      <div class='lav-morning__title lav-title'>Perfect for your morning routine</div>
+      <div class='lav-morning__descr lav-descr'>Wear Luminette while brushing your teeth, eating breakfast or working on your <br /> computer - the perfect addition to any morning routine</div>
 
-    <div class='lav-morning__list'>
-      <div class='lav-morning__item'>
-        <div class='lav-morning__image'></div>
-        <div class='lav-morning__caption'>
-          Therapy sessions last <br /><span>20-45 mins</span>
+      <div class='lav-morning__list'>
+        <div class='lav-morning__item'>
+          <div class='lav-morning__image'>
+            <img src='${settings.dir}/img/morning1.svg' />
+          </div>
+          <div class='lav-morning__caption'>
+            Therapy sessions last <br /><span>20-45 mins</span>
+          </div>
         </div>
-      </div>
-      <div class='lav-morning__item'>
-        <div class='lav-morning__image'></div>
-        <div class='lav-morning__caption'>Use <span>1x per day</span></div>
-      </div>
-      <div class='lav-morning__item'>
-        <div class='lav-morning__image'></div>
-        <div class='lav-morning__caption'>
-          Feel the benefits within <br /><span>4 to 6 days</span>
+        <div class='lav-morning__item'>
+          <div class='lav-morning__image'>
+            <img src='${settings.dir}/img/morning2.svg' />
+          </div>
+          <div class='lav-morning__caption'>Use <span>1x per day</span></div>
+        </div>
+        <div class='lav-morning__item'>
+          <div class='lav-morning__image'>
+            <img src='${settings.dir}/img/morning3.svg' />
+          </div>
+          <div class='lav-morning__caption'>
+            Feel the benefits within <br /><span>4 to 6 days</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class='lav-benefits2'>
-    <div class='lav-benefits2__title lav-title'>What are the benefits?</div>
+    <div class='container-fluid container--size--lg lav-benefits2__container'>
+      <div class='lav-benefits2__inner'>
+        <div class='lav-benefits2__title lav-title'>What are the benefits?</div>
 
-    <div class='lav-benefits2__list'>
-      <div class='lav-benefit2'>
-        <div class='lav-benefit2__icon'></div>
-        <div class='lav-benefit2__title'>Lightweight and comfortable</div>
-        <div class='lav-benefit2__caption'>Weighing only 51g and built with a comfy ergonomic nose fit</div>
-      </div>
-      <div class='lav-benefit2'>
-        <div class='lav-benefit2__icon'></div>
-        <div class='lav-benefit2__title'>Doesn't hinder your vision</div>
-        <div class='lav-benefit2__caption'>The special patented light system lets you experience light therapy without any disruption to your vision</div>
-      </div>
-      <div class='lav-benefit2'>
-        <div class='lav-benefit2__icon'></div>
-        <div class='lav-benefit2__title'>Compatible with glasses</div>
-        <div class='lav-benefit2__caption'>Wear Luminette on top of your glasses</div>
+        <div class='lav-benefits2__list'>
+          <div class='lav-benefit2'>
+            <div class='lav-benefit2__icon'>
+              <img src='${settings.dir}/img/morning2.svg' />
+            </div>
+            <div class='lav-benefit2__title'>Lightweight and comfortable</div>
+            <div class='lav-benefit2__caption lav-descr'>Weighing only 51g and built with a comfy ergonomic nose fit</div>
+          </div>
+          <div class='lav-benefit2'>
+            <div class='lav-benefit2__icon'>
+              <img src='${settings.dir}/img/morning2.svg' />
+            </div>
+            <div class='lav-benefit2__title'>Doesn't hinder your vision</div>
+            <div class='lav-benefit2__caption lav-descr'>The special patented light system lets you experience light therapy without any disruption to your vision</div>
+          </div>
+          <div class='lav-benefit2'>
+            <div class='lav-benefit2__icon'>
+              <img src='${settings.dir}/img/morning2.svg' />
+            </div>
+            <div class='lav-benefit2__title'>Compatible with glasses</div>
+            <div class='lav-benefit2__caption lav-descr'>Wear Luminette on top of your glasses</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
