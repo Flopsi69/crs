@@ -132,8 +132,59 @@ const styles = `
   .lav-plate__descr {
     margin-top: 12px;
   }
-  .lav-plate {}
-  .lav-plate {}
+  .lav-whatis {
+    padding-bottom: 96px;
+  }
+  .lav-whatis {}
+  .lav-whatis {}
+  .lav-whatis {}
+  .lav-whatis {}
+  .lav-whatis {}
+
+  .lav-benefits__title {
+    margin-bottom; 48px;
+    text-align: center;
+  }
+  .lav-benefits__list {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 24px; 
+    grid-template-areas: 
+      "top top"
+      ". ."; 
+  }
+  .lav-benefit {
+    position: relative;
+    background-color: #C4C4C4;
+    border-radius: 8px;
+    overflow: hidden;
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    background-size: cover;
+  }
+  .lav-benefit:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    botttom: 0;
+    top: 0;
+    background: radial-gradient(145.34% 98.1% at 50.14% 0%, rgba(243, 245, 249, 0) 21.88%, rgba(243, 245, 249, 0.179775) 37.97%, rgba(243, 245, 249, 0.811752) 62.03%, #F3F5F9 78.99%)
+  }
+  .lav-benefit_double {
+    grid-area: top;
+  }
+  .lav-benefit__icon {
+    margin-bottom: 24px;
+  }
+  .lav-benefit__icon {
+    width: 96px;
+    height: 96px;
+  }
+  .lav-benefit__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+  }
 
 `;
 
@@ -161,13 +212,21 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-plate'>
-    <div class='lav-plate__title lav-title'>What is Luminette?</div>
-    <div class='lav-plate__descr lav-descr'>Luminette® is a pair of light therapy glasses that helps you restore your sleep cycles and energy levels.</div>
-  </div>
+  <div class='lav-whatis'>
+    <div class='container-fluid container--size--lg lav-whatis__container'>
+      <div class='lav-plate'>
+        <div class='lav-plate__title lav-title'>What is Luminette?</div>
+        <div class='lav-plate__descr lav-descr'>Luminette® is a pair of light therapy glasses that helps you restore your sleep cycles and energy levels.</div>
+      </div>
 
-  <div class='lav-feedback'>
-    <div class='lav-feedback__image'>
+      <div class='lav-whatis__preview'>
+        <img class='lav-whatis__placeholder' src='${settings.dir}/img/whatis.jpg' />
+
+        <div class="lav-whatis__play" data-toggle="modal" data-target=".lum3-video">
+          <img class='lav-whatis__placeholder' src='${settings.dir}/img/play.svg' />
+          <img class='lav-whatis__placeholder' src='${settings.dir}/img/play-hover.svg' />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -175,21 +234,27 @@ const newPage = `
     <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
 
     <div class='lav-benefits__list'>
-      <div class='lav-benefit'>
+      <div class='lav-benefit lav-benefit_double' style='background-image: url("${settings.dir}/img/benefit1-bg.jpg")'>
         <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'></div>
+          <div class='lav-benefit__icon'>
+            <img src='${settings.dir}/img/benefit1.svg' />
+          </div>
           <div class='lav-benefit__title'>Beat your winter blues</div>
         </div>
       </div>
-      <div class='lav-benefit'>
+      <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit2-bg.jpg")'>
         <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'></div>
+          <div class='lav-benefit__icon'>
+            <img src='${settings.dir}/img/benefit2.svg' />
+          </div>
           <div class='lav-benefit__title'>Regulate your sleep schedules</div>
         </div>
       </div>
-      <div class='lav-benefit'>
+      <div class='lav-benefit' style='background-image: url("${settings.dir}/img/benefit3-bg.jpg")'>
         <div class='lav-benefit__info'>
-          <div class='lav-benefit__icon'></div>
+          <div class='lav-benefit__icon'>
+            <img src='${settings.dir}/img/benefit3.svg' />
+          </div>
           <div class='lav-benefit__title'>Get your energy levels back up</div>
         </div>
       </div>
