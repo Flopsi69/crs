@@ -673,14 +673,107 @@ const styles = `
     opacity: 1;
   }
 
-  .lav-trial {}
-  .lav-trial__image {}
-  .lav-trial {}
-  .lav-trial {}
-  .lav-trial {}
-  .lav-trial {}
-  .lav-trial {}
-  .lav-trial {}
+  .lav-trial {
+    padding-top: 60px;
+    padding-bottom: 96px;
+  }
+  .lav-trial__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lav-trial__image {
+    width: 59%;
+  }
+  .lav-trial__info {
+    max-width: 430px;
+    margin-left: 40px;
+  }
+  .lav-trial__descr {
+    margin-top: 12px;
+  }
+  .lav-trial__buttons {
+    margin-top: 12px;
+    display: flex;
+    margin-bottom: 24px;
+  }
+  .lav-trial__btn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: bold;
+    padding: 15px 24px;
+    border: 1px solid rgba(81, 113, 147, 15%);
+    border-radius: 36px;
+  }
+  .lav-trial__btn img {
+    margin-right: 8px;
+  }
+  .lav-trial__btn span {
+    border-bottom: 1px solid #517193;
+  }
+  .lav-trial__btn + .lav-trial__btn {
+    margin-left: 12px;
+  }
+  .lav-trial__inside {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+  .lav-trial__actions {
+    text-align: center;
+  }
+  .lav-trial__learn {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 28px;
+  }
+  
+  .lav-drive {
+    color: #FFFFFF;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: #34475B;
+  }
+  .lav-drive__caption {
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    opacity: 0.9;
+  }
+  .lav-drive__title {
+    font-size: 144px;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 32px;
+  }
+  .lav-drive__bg {
+    background: url(${settings.dir}/img/drive.jpg) top no-repeat;
+    background-size: cover;
+  }
+  .lav-drive__bg-title {
+    max-width: 475px;
+    margin: 450px 0 180px auto;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: bold;
+  }
+  .lav-drive__actions {
+    text-align: center;
+  }
+  .lav-drive__learn {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 28px;
+  }
 `;
 
 const newPage = `
@@ -986,10 +1079,57 @@ const newPage = `
   <div class='lav-trial'>
     <div class='container-fluid container--size--lg lav-trial__container'>
       <div class='lav-trial__row'>
-        <img class='lav-trial__image' src='${settings.dir}/img/trial-bg.png' />
+        <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
+
+        <div class='lav-trial__info'>
+          <div class='lav-trial__title lav-title'>30 Day Light Therapy Trial</div>
+          <div class='lav-trial__descr lav-descr'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+
+          <div class='lav-trial__buttons'>
+            <div class='lav-trial__btn'>
+              <img src='${settings.dir}/img/icon-refresh.svg' />
+              <span>30-day trial</span>
+            </div>
+            <div class='lav-trial__btn'>
+              <img src='${settings.dir}/img/icon-box.svg' />
+              <span>Free delivery</span>
+            </div>
+          </div>
+
+          <div class='lav-trial__inside'>What’s in the box?</div>
+        </div>
       </div>
 
-      <div class='lav-trial__title'><span>150,000</span> Luminette trial</div>
+      <div class='lav-trial__actions'>
+        <button class='lav-jumb__btn btn-primary btn-lg flipped'>
+          <span class="btn-text">
+            Try it $199
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+
+        <div class='lav-trial__learn'>Learn more</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='lav-drive'>
+    <div class='lav-drive__caption'>Discover our new product</div>
+    <div class='lav-drive__title'>Drive</div>
+    <img src='${settings.dir}/img/drive-device.png' />
+    <div class='lav-drive__bg'>
+      <div class='lav-drive__bg-title'>Benefit from light therapy while driving</div>
+
+      <div div class='lav-drive__actions'>
+        <button class='lav-drive__btn btn-primary btn-lg flipped'>
+          <span class="btn-text">
+            Try it $199
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+
+        <div class='lav-drive__learn'>Learn more</div>
+      </div>
     </div>
   </div>
 
