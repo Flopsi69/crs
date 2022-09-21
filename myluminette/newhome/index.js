@@ -148,7 +148,7 @@ const styles = `
     margin-top: 12px;
   }
   .lav-whatis {
-    padding-bottom: 96px;
+    padding-bottom: 64px;
   }
   .lav-whatis__preview {
     position: relative;
@@ -556,12 +556,27 @@ const styles = `
   }
   .lav-reviews__total {
     display: flex;
-    margin-top: 64px;
-    margin-bottom: 48px;
+    margin: 64px auto 48px;
     text-align: center;
+    max-width: 1000px;
   }
   .lav-reviews__total-col {
+    position: relative;
     flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .lav-reviews__total-col:last-child:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    background: radial-gradient(82% 55% at 0 48%,#000 0,rgba(0,0,0,.85) 18%,rgba(0,0,0,.7) 38%,rgba(0,0,0,.45) 65%,transparent 100%);
+    mix-blend-mode: normal;
+    z-index: 0;
   }
   .lav-reviews__total-caption {
     font-weight: 500;
@@ -615,7 +630,57 @@ const styles = `
     color: #517193;
   }
 
+  .lav-reviews__preview {
+    position: relative;
+    background: #C4C4C4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
+    border-radius: 16px;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: 64px;
+  }
+  .lav-reviews__placeholder {
+    max-width: 100%;
+  }
+  .lav-reviews__play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 156px;
+    height: 156px;
+    line-height: 0;
+    transition: 0.3s;
+  }
+  .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 156px;
+    height: 156px;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 1;
+  }
 
+  .lav-trial {}
+  .lav-trial__image {}
+  .lav-trial {}
+  .lav-trial {}
+  .lav-trial {}
+  .lav-trial {}
+  .lav-trial {}
+  .lav-trial {}
 `;
 
 const newPage = `
@@ -907,17 +972,26 @@ const newPage = `
         </button>
       </div>
 
-      <div class='lav-whatis__preview'>
-        <img class='lav-whatis__placeholder' src='${settings.dir}/img/reviews-video.jpg' />
+      <div class='lav-reviews__preview'>
+        <img class='lav-reviews__placeholder' src='${settings.dir}/img/reviews-video.jpg' />
 
-        <div class="lav-whatis__play">
-          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play.svg' />
-          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play-hover.svg' />
+        <div class="lav-reviews__play">
+          <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
+          <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
         </div>
       </div>
     </div>
   </div>
 
+  <div class='lav-trial'>
+    <div class='container-fluid container--size--lg lav-trial__container'>
+      <div class='lav-trial__row'>
+        <img class='lav-trial__image' src='${settings.dir}/img/trial-bg.png' />
+      </div>
+
+      <div class='lav-trial__title'><span>150,000</span> Luminette trial</div>
+    </div>
+  </div>
 
 </div>
 `;
