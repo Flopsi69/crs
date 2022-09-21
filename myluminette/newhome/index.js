@@ -327,7 +327,7 @@ const styles = `
   }
   .lav-morning {}
   .lav-benefits2 {
-    margin-bottom: 144px;
+    margin-bottom: 120px;
   }
   .lav-benefits2__inner {
     padding: 48px;
@@ -461,7 +461,8 @@ const styles = `
     transition: 0.35s;
   }
   .lav-works__study-btn:hover {
-    opacity: 0.65;
+    opacity: 0.85;
+    border-color: #517193;
   }
   .lav-works__study-btn img {
     margin-left: 16px;
@@ -572,7 +573,7 @@ const styles = `
   .lav-reviews__total__caption span {
     font-weight: bold;
   }
-  .lav-reviews__total__stars {
+  .lav-reviews__total-stars {
     margin: 12px 0 17px;
     line-height: 0;
     text-align: center;
@@ -585,10 +586,34 @@ const styles = `
   }
   .lav-reviews__total-image {
     line-height: 0;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .lav-reviews__total-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .lav-reviews__all {
     text-align: center;
   }
-  .lav-reviews__total {}
-  .lav-reviews__total {}
+  .lav-reviews__btn.btn-primary {
+    min-width: 200px;
+    min-height: 62px;
+    padding: 10px 15px;
+  }
+  .lav-reviews__btn .btn-bg-wrapper {
+    background: #fff;
+  }
+  .lav-reviews__btn .btn-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #517193;
+  }
 
 
 `;
@@ -882,6 +907,14 @@ const newPage = `
         </button>
       </div>
 
+      <div class='lav-whatis__preview'>
+        <img class='lav-whatis__placeholder' src='${settings.dir}/img/reviews-video.jpg' />
+
+        <div class="lav-whatis__play">
+          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play.svg' />
+          <img class='lav-whatis__play-btn' src='${settings.dir}/img/play-hover.svg' />
+        </div>
+      </div>
     </div>
   </div>
 
