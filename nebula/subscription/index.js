@@ -109,6 +109,12 @@ function initMainPage() {
       document.querySelector('.plans__wrap').remove();
       document.querySelector('.plans__wrap').style.display = 'block';
 
+      for (let item of document.querySelectorAll(
+        '.plan__subscr-list .plan__subscr-item:last-child'
+      )) {
+        console.log(item.click());
+      }
+
       document
         .querySelector('.plans .plans__caption span')
         .addEventListener('click', function () {
