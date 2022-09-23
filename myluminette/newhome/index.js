@@ -73,8 +73,11 @@ if (settings.observe) {
 
 // Styles
 const styles = `
-  .light-therapy-section {
+  .light-therapy-section, .pin-spacer, [id^=trustbadge-container] {
     display: none!important;
+  }
+  .home-page > *:not(.lav-wrap) {
+    display: none;
   }
   .home-page {
     background-color: #fff;a
@@ -123,6 +126,11 @@ const styles = `
     display: flex;
     align-items: center;
     margin: 24px 0;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-jumb__rate:hover {
+    opacity: 0.8;
   }
   .lav-jumb__rate-caption {
     font-weight: 700;
@@ -148,7 +156,7 @@ const styles = `
     margin-top: 12px;
   }
   .lav-whatis {
-    padding-bottom: 64px;
+    padding-bottom: 24px;
   }
   .lav-whatis__preview {
     position: relative;
@@ -400,6 +408,7 @@ const styles = `
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
+    margin-bottom: 5px;
   }
   .lav-works__item-title span {
     color: #11C6E7
@@ -407,21 +416,31 @@ const styles = `
   .lav-works__item-descr {
     font-size: 16px;
     line-height: 24px;
-    display: inline-flex;
     margin-right: 4px;
+    display: inline-flex;
+  }
+  .lav-works__item-descr:not(.active) {
+    display: none;
   }
   .lav-works__item-trigger {
     font-size: 16px;
     line-height: 24px;
     font-weight: 700;
     display: inline-flex;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-works__item-trigger:hover {
+    opacity: 0.8;
   }
   .lav-works__study {
     margin-top: 24px;
     border: 1px solid #E7EBEF;
     border-radius: 50px;
     padding: 24px;
+    background: radial-gradient(144.18% 147.88% at 53.33% -7.14%, rgba(254, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 22%, rgba(237, 240, 245, 0.2) 100%);
     background: rgb(231 235 239 / 20%);
+    
   }
   .lav-works__study-caption {
     position: relative;
@@ -503,12 +522,25 @@ const styles = `
     margin-top: 64px;
   }
   .lav-review {
+    position: relative;
+    overflow: hidden;
     filter: drop-shadow(0px 11px 22px rgba(59, 83, 108, 0.88));
     background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
     border-radius: 16px;
     padding: 24px;
     color: #517193;
     width: 29%;
+  }
+  .lav-review_expand:after {
+    content: "";
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    pointer-events: none;
+    background: linear-gradient(180deg,hsla(0,0%,100%,0),#fbfbfb 70%);
+    z-index: 1;
   }
   .lav-review:nth-child(2) {
     width: 35%;
@@ -529,10 +561,21 @@ const styles = `
     font-weight: bold;
   }
   .lav-review__text {
+    position: relative;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     margin-top: 12px;
+    max-height: 168px;
+    overflow-y: auto;
+  }
+
+  .lav-review__text + .lav-review__text {
+    padding-bottom: 20px;
+  }
+
+  .lav-review__text:not(.active) {
+    display: none;
   }
   .lav-review__link {
     display: flex;
@@ -541,18 +584,24 @@ const styles = `
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    color: #406184;
-    opacity: 0.5;
+    color: rgb(64 97 132 / 50%);
   }
   .lav-review__link span {
     font-weight: bold;
     padding: 0 5px;
   }
   .lav-review__trigger {
+    position: relative;
+    z-index: 10;
     font-size: 16px;
     line-height: 24px;
     font-weight: bold;
     margin-top: 4px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-review__trigger:hover {
+    opacity: 0.8;
   }
   .lav-reviews__total {
     display: flex;
@@ -706,6 +755,11 @@ const styles = `
     padding: 15px 24px;
     border: 1px solid rgba(81, 113, 147, 15%);
     border-radius: 36px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__btn:hover {
+    border-color: #517193;
   }
   .lav-trial__btn img {
     margin-right: 8px;
@@ -721,6 +775,12 @@ const styles = `
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0.01em;
+    display: inline-block;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__inside:hover {
+   opacity: 0.6;
   }
   .lav-trial__actions {
     text-align: center;
@@ -731,12 +791,16 @@ const styles = `
     line-height: 24px;
     letter-spacing: 0.01em;
     margin-top: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__learn:hover {
+    opacity: 0.7;
   }
   
   .lav-drive {
     color: #FFFFFF;
     padding-top: 80px;
-    padding-bottom: 80px;
     background: #34475B;
   }
   .lav-drive__caption {
@@ -747,6 +811,7 @@ const styles = `
     opacity: 0.9;
   }
   .lav-drive__title {
+    position: relative;
     font-size: 144px;
     line-height: 1;
     text-align: center;
@@ -759,13 +824,15 @@ const styles = `
   }
   .lav-drive__bg-title {
     max-width: 475px;
-    margin: 450px 0 180px auto;
+    padding: 450px 0 180px;
+    margin-left: auto;
     font-size: 64px;
     line-height: 64px;
     font-weight: bold;
   }
   .lav-drive__actions {
     text-align: center;
+    padding-bottom: 80px;
   }
   .lav-drive__learn {
     font-weight: 500;
@@ -773,11 +840,316 @@ const styles = `
     line-height: 24px;
     letter-spacing: 0.01em;
     margin-top: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-drive__learn:hover {
+    opacity: 0.7;
+  }
+  .lav-drive__device {
+    width: 57%;
+    display: block;
+    margin: -50px auto -120px;
+    padding-left: 5%;
+  }
+  .lav-modal {
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(8, 29, 50, 0.4);
+    transition: 0.35s;
+    opacity: 1;
+    padding: 20px;
+  }
+  .lav-modal:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .lav-modal__inner {
+    max-height: 95vh;
+    overflow: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 72px 48px 48px;
+    max-width: 400px;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+  }
+  .lav-modal__inner.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .lav-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  .lav-included__list {
+    margin-top: 12px;
+  }
+  .lav-included__item {
+    padding-left: 28px;
+    position: relative;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .lav-included__item + .lav-included__item {
+    margin-top: 24px;
+  }
+
+  .lav-included__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 17px;
+    height: 17px;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+
+  .lav-included__image {
+    margin: 0 -20px;
+  }
+
+  .lav-included__image img {
+    max-width: 100%;
+  }
+
+  .lav-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    line-height: 0;
+    padding: 3px;
+    transition: 0.3s;
+  }
+
+  .lav-modal__close:hover {
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
+
+  .lav-test {
+
+  }
+  .lav-test__item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 24px;
+    color: #517193;
+    min-height: 48px;
+  }
+  .lav-test__item:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 24px;
+    left: 23px;
+    border-left: 2px dashed #517193;
+    height: 100%;
+  }
+  .lav-test__item:last-child:before {
+    display: none;
+  }
+  .lav-test__item span {
+    font-weight: bold;
+  }
+  .lav-test__item img {
+    background: #fff;
+  }
+  .lav-test__item a {
+    font-weight: bold;
+    border-bottom: 1px solid #517193;
+    color: #517193;
+    transition: 0.35s;
+  }
+  .lav-test__item a:hover {
+    border-color: transparent;
+    opacity: 0.7;
+  }
+  .lav-test__item + .lav-test__item {
+    margin-top: 11px;
+  }
+  .lav-test__item-info {
+    margin-left: 12px;
+    align-self: center;
+  }
+  .lav-test__list {
+    margin-bottom: 20px;
+  }
+  .lav-test__btn.btn-primary {
+    min-height: 62px;
+    min-width: 230px;
+    margin: auto;
+    display: block;
+    padding: 5px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .lav-delivery {
+    text-align: center;
+  }
+  .lav-delivery__plate {
+    background: rgba(218, 225, 232, 0.3);
+    border-radius: 8px;
+    padding: 24px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #517193;
+    margin-bottom: 24px;
+  }
+  .lav-delivery__plate span {
+    font-weight: bold;
+  }
+  .lav-delivery__plate img {
+    margin-bottom: 12px;
+  }
+  .lav-delivery__methods img {
+    margin: 12px 0;
+  }
+  .lav-delivery__methods-title {
+    letter-spacing: 0.01em;
+  }
+  .lav-delivery__descr {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+  .lav-scroll-up {
+    position: fixed;
+    z-index: 10;
+    right: 27px;
+    bottom: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    line-height: 0;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .lav-scroll-up.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .lav-scroll-up.active {
+    display: block;
+  }
+  .lav-scroll-up:hover {
+    opacity: 0.5;
   }
 `;
 
 const newPage = `
 <div class='lav-wrap'>
+  <div class='lav-modal'>
+    <div class='lav-modal__inner lav-included'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-included__title lav-modal__title'>Included in your box</div>
+
+      <div class='lav-included__image'>
+        <img src='${settings.dir}/img/included.png' />
+      </div>
+
+      <div class='lav-included__list'>
+        <div class='lav-included__item'>Your Luminette</div>
+        <div class='lav-included__item'>A protective case</div>
+        <div class='lav-included__item'>A micro USB wall charger</div>
+        <div class='lav-included__item'>A microfiber cleaning cloth</div>
+        <div class='lav-included__item'>Guarantee certificate</div>
+        <div class='lav-included__item'>Your instruction manual </div>
+      </div>
+    </div>
+
+    <div class='lav-modal__inner lav-test'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-test__title lav-modal__title'>You have 30 days to test Luminette </div>
+
+      <div class='lav-test__list'>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num1.svg'>
+          <div class='lav-test__item-info'>
+            <span>Order</span> your Luminette today
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num2.svg'>
+          <div class='lav-test__item-info'>
+            <span>Within just a few days of ordering</span> you'll receive your Luminette
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num3.svg'>
+          <div class='lav-test__item-info'>
+            <span>You have a whole month to trial your Luminette.</span> We recommend that you use Luminette consistently for a minimum of 10 consecutive days
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num4.svg'>
+          <div class='lav-test__item-info'>
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='#'>Refunds&nbsp;page</a>.
+          </div>
+        </div>
+      </div>
+
+      <button class='lav-test__btn btn-primary btn-lg flipped lav-btn-buy'>
+        <span class="btn-text">
+          Try it $189
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
+    </div>
+
+    <div class='lav-modal__inner lav-delivery'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-delivery__title lav-modal__title'>Free delivery</div>
+
+      <div class='lav-delivery__plate'>
+        <img src='${settings.dir}/img/flags.png'>
+        <div class='lav-delivery__plate-caption'>Free for USA and Canada:<br/><span>3 to 5 working days</span></div>
+      </div>
+
+      <div class='lav-delivery__methods'>
+        <div class='lav-delivery__methods-title lav-modal__title'>Method of delivery</div>
+        <img src='${settings.dir}/img/delivery-methods.png'>
+        <div class='lav-delivery__descr'>We usually work with national postal service. Before delivering your order, the carrier will send you an email, informing you of the day it will be delivered. In case you are not there for the delivery, you will have the option to indicate your delivery preferences.</div>
+      </div>
+    </div>
+  </div>
   <div class='lav-jumb'>
     <div class='container-fluid container--size--lg lav-jumb__container'>
       <div class='lav-jumb__image'>
@@ -789,9 +1161,9 @@ const newPage = `
           <div class='lav-jumb__rate-caption'>Luminette 3</div>
           <img  class='lav-jumb__rate-stars' src='${settings.dir}/img/jumb-stars.svg' />
         </div>
-        <button class='lav-jumb__btn btn-primary btn-lg flipped'>
+        <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
-            Buy $199
+            Buy $189
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -952,13 +1324,15 @@ const newPage = `
         <div class='lav-works__info'>
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
-            <div class='lav-works__item-descr'>Luminette® uses a patented in...</div>
+            <div class='lav-works__item-descr active'>Luminette® uses a patented in...</div>
+            <div class='lav-works__item-descr'>Luminette® uses a patented innovative optical technology: placed above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allows users to keep their vision free.</div>
             <div class='lav-works__item-trigger'>Show more</div>
           </div>
 
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
-            <div class='lav-works__item-descr'>Luminette® emits a safe blue-...</div>
+            <div class='lav-works__item-descr active'>Luminette® emits a safe blue-...</div>
+            <div class='lav-works__item-descr'>Luminette® emits a safe blue-enriched white light peaked at 468 nm. This wavelength is proven to be the most effective at triggering the body's positive response to sunlight. Luminette LED’s have been specifically selected to avoid light close to UV.</div>
             <div class='lav-works__item-trigger'>Show more</div>
           </div>
 
@@ -992,14 +1366,18 @@ const newPage = `
             <img src='${settings.dir}/img/review1.png' />
           </div>
           <div class='lav-review__name'>Aurélie</div>
-          <div class='lav-review__link'>
+          <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
             View review on <span>Amazon</span>
             <img src='${settings.dir}/img/rate.svg' />
+          </a>
+          <div class='lav-review__text active'>
+            “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
           </div>
+
           <div class='lav-review__text'>
-          “For years, I have suffered from seasonal depression. Health professionals (general practitioner, psychiatrist, psychologist and pharmacist) advised me to use light therapy to improve my condition in autumn and winter. <br/>
-          I hesitated for a long time and then I di...”
+            “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
           </div>
+          
           <div class='lav-review__trigger'>Show more</div>
         </div>
         
@@ -1008,15 +1386,13 @@ const newPage = `
             <img src='${settings.dir}/img/review2.png' />
           </div>
           <div class='lav-review__name'>Arnaud T.</div>
-          <div class='lav-review__link'>
+          <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
             View review on <span>Google</span>
             <img src='${settings.dir}/img/rate.svg' />
+          </a>
+          <div class='lav-review__text active'>
+            "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
           </div>
-          <div class='lav-review__text'>
-          “Every year I feel a lack of light and it affects my morale. <br/>
-          This year I found the solution to overcome this with the Luminette. The advantage is that you don't get stuck in front of a screen and you can get ready in the morning or have breakfast with your glasses on. It's very useful :)”
-          </div>
-          <div class='lav-review__trigger'>Show more</div>
         </div>
 
         <div class='lav-review'>
@@ -1024,19 +1400,22 @@ const newPage = `
             <img src='${settings.dir}/img/review3.png' />
           </div>
           <div class='lav-review__name'>Laura S.</div>
-          <div class='lav-review__link'>
+          <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
             View review on <span>Amazon</span>
             <img src='${settings.dir}/img/rate.svg' />
+          </a>
+          <div class='lav-review__text active'>
+            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
           </div>
           <div class='lav-review__text'>
-            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
+            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
           </div>
           <div class='lav-review__trigger'>Show more</div>
         </div>
       </div>
 
       <div class='lav-reviews__total'>
-        <div class='lav-reviews__total-col'>
+        <a href='https://www.trustedshops.be/fr/evaluation/info_X5CFE61C0E26F14D751206ABEDADF025D.html' target="_blank" class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-trusted.svg' />
           </div>
@@ -1045,8 +1424,8 @@ const newPage = `
             <img src='${settings.dir}/img/reviews-stars.svg' />
           </div>
           <div class='lav-reviews__total-caption'>See reviews on <span>Trusted shops</span></div>
-        </div>
-        <div class='lav-reviews__total-col'>
+        </a>
+        <a href='https://www.amazon.com/New-Model-Luminette-Therapy-Glasses/dp/B07VMRRB9Y?ref_=ast_bbp_dp' target="_blank" class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-amazon.svg' />
           </div>
@@ -1055,7 +1434,7 @@ const newPage = `
             <img src='${settings.dir}/img/reviews-stars.svg' />
           </div>
           <div class='lav-reviews__total-caption'>See reviews on <span>Amazon</span></div>
-        </div>
+        </a>
       </div>
 
       <div class='lav-reviews__all'>
@@ -1065,6 +1444,7 @@ const newPage = `
         </button>
       </div>
 
+      // TODO this 
       <div class='lav-reviews__preview'>
         <img class='lav-reviews__placeholder' src='${settings.dir}/img/reviews-video.jpg' />
 
@@ -1086,11 +1466,11 @@ const newPage = `
           <div class='lav-trial__descr lav-descr'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
 
           <div class='lav-trial__buttons'>
-            <div class='lav-trial__btn'>
+            <div class='lav-trial__btn lav-trial__btn-refresh'>
               <img src='${settings.dir}/img/icon-refresh.svg' />
               <span>30-day trial</span>
             </div>
-            <div class='lav-trial__btn'>
+            <div class='lav-trial__btn lav-trial__btn-box'>
               <img src='${settings.dir}/img/icon-box.svg' />
               <span>Free delivery</span>
             </div>
@@ -1101,9 +1481,9 @@ const newPage = `
       </div>
 
       <div class='lav-trial__actions'>
-        <button class='lav-jumb__btn btn-primary btn-lg flipped'>
+        <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
-            Try it $199
+            Try it $189
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -1116,14 +1496,14 @@ const newPage = `
   <div class='lav-drive'>
     <div class='lav-drive__caption'>Discover our new product</div>
     <div class='lav-drive__title'>Drive</div>
-    <img src='${settings.dir}/img/drive-device.png' />
+    <img class='lav-drive__device' src='${settings.dir}/img/drive-device.png' />
     <div class='lav-drive__bg'>
       <div class='lav-drive__bg-title'>Benefit from light therapy while driving</div>
 
       <div div class='lav-drive__actions'>
-        <button class='lav-drive__btn btn-primary btn-lg flipped'>
+        <button class='lav-drive__btn btn-primary btn-lg flipped lav-btn-buy-drive'>
           <span class="btn-text">
-            Try it $199
+            Try it $149
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -1131,6 +1511,10 @@ const newPage = `
         <div class='lav-drive__learn'>Learn more</div>
       </div>
     </div>
+  </div>
+
+  <div class='lav-scroll-up'>
+    <img src='${settings.dir}/img/button-up.svg' />
   </div>
 
 </div>
@@ -1169,4 +1553,177 @@ function init() {
       }).mount();
     }
   }, 500);
+
+  for (let btn of document.querySelectorAll('.lav-btn-buy')) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.glasses-item .btn-primary').click();
+    });
+  }
+
+  for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.drive-item .btn-primary').click();
+    });
+  }
+
+  for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (this.innerText == 'Show more') {
+        this.innerText = 'Show less';
+        this.closest('.lav-works__item')
+          .querySelector('.lav-works__item-descr')
+          .classList.remove('active');
+        this.closest('.lav-works__item')
+          .querySelector('.lav-works__item-descr + .lav-works__item-descr')
+          .classList.add('active');
+      } else {
+        this.innerText = 'Show more';
+        this.closest('.lav-works__item')
+          .querySelector('.lav-works__item-descr')
+          .classList.add('active');
+        this.closest('.lav-works__item')
+          .querySelector('.lav-works__item-descr + .lav-works__item-descr')
+          .classList.remove('active');
+      }
+    });
+  }
+
+  for (let item of document.querySelectorAll('.lav-review__trigger')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (this.innerText == 'Show more') {
+        this.innerText = 'Show less';
+        this.closest('.lav-review').classList.add('lav-review_expand');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text')
+          .classList.remove('active');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text + .lav-review__text')
+          .classList.add('active');
+      } else {
+        this.innerText = 'Show more';
+        this.closest('.lav-review').classList.remove('lav-review_expand');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text')
+          .classList.add('active');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text + .lav-review__text')
+          .classList.remove('active');
+      }
+    });
+  }
+
+  document
+    .querySelector('.lav-reviews__all')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href += '/customer-reviews?product=luminette';
+    });
+
+  document
+    .querySelector('.lav-trial__learn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href += '/luminette';
+    });
+
+  document
+    .querySelector('.lav-drive__learn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href += '/drive';
+    });
+
+  document
+    .querySelector('.lav-works__study-btn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      let el = document.createElement('a');
+      el.href =
+        'https://d3sq5glv6xow4l.cloudfront.net/docs/Light_therapy_with_boxes_or_glasses_to_counteract_.pdf';
+      el.click();
+    });
+
+  document
+    .querySelector('.lav-jumb__rate')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.lav-reviews')
+        .scrollIntoView({ behavior: 'smooth' });
+    });
+
+  document
+    .querySelector('.lav-scroll-up')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      document
+        .querySelector('.lav-wrap')
+        .scrollIntoView({ behavior: 'smooth' });
+    });
+
+  window.onscroll = function () {
+    if (window.pageYOffset > document.querySelector('.lav-jumb').offsetHeight) {
+      document.querySelector('.lav-scroll-up').classList.add('active');
+    } else {
+      document.querySelector('.lav-scroll-up').classList.remove('active');
+    }
+  };
+
+  initModals();
 }
+
+function initModals() {
+  document.querySelector('.lav-modal').addEventListener('click', function (e) {
+    if (e.target.classList.contains('lav-modal')) {
+      closeModal();
+    }
+  });
+
+  for (let item of document.querySelectorAll('.lav-modal__close')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+    });
+  }
+
+  document
+    .querySelector('.lav-trial__btn-refresh')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(document.querySelector('.lav-test'));
+    });
+
+  document
+    .querySelector('.lav-trial__btn-box')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(document.querySelector('.lav-delivery'));
+    });
+
+  document
+    .querySelector('.lav-trial__inside')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(document.querySelector('.lav-included'));
+    });
+}
+
+function openModal(selector) {
+  document.querySelector('.lav-modal').classList.add('active');
+  setTimeout(() => {
+    selector.classList.add('active');
+  }, 400);
+}
+
+function closeModal() {
+  document.querySelector('.lav-modal__inner.active').classList.remove('active');
+  setTimeout(() => {
+    document.querySelector('.lav-modal.active').classList.remove('active');
+  }, 400);
+}
+
+function detectCurency() {}
