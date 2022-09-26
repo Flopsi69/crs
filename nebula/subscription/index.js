@@ -207,7 +207,13 @@ function initMainPage() {
       if (window.innerWidth > 992) {
         for (let item of document.querySelectorAll('.plan__option-value_tip')) {
           item.addEventListener('mouseover', function (e) {
-            if (e.target.classList.contains('plan-tip')) {
+            if (
+              e.target.classList.contains('plan-tip') ||
+              (e.target.nextElementSibling &&
+                e.target.nextElementSibling.classList.contains(
+                  'plan-tip__info'
+                ))
+            ) {
               gaEvent('click on link', 'Membership info link clicked');
             }
           });
