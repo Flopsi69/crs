@@ -106,7 +106,7 @@ const styles = `
   }
   .lav-jumb__image {
     line-height: 0;
-    margin-top: -70px;
+    margin-top: -35px;
   }
   .lav-jumb__image img {
     position: absolute;
@@ -197,6 +197,12 @@ const styles = `
   }
   .lav-whatis__play:hover .lav-whatis__play-btn + .lav-whatis__play-btn {
     opacity: 1;
+    filter: drop-shadow(0 0 -140px rgba(59,83,108,.8));
+  }
+
+  .order-menu-wrapper~.modal-backdrop.show {
+    background-color: #081D32;
+    opacity: 0.4;
   }
 
   .lav-benefits {
@@ -681,16 +687,17 @@ const styles = `
 
   .lav-reviews__preview {
     position: relative;
-    background: #C4C4C4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
-    border-radius: 16px;
     overflow: hidden;
     line-height: 0;
     margin-top: 64px;
+    background: linear-gradient(115.15deg, #F8F9FA 34.03%, #FDFDFD 100%);
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.44);
+    border-radius: 16px;
+    text-align: center;
   }
   .lav-reviews__placeholder {
     max-width: 100%;
+    min-height: 100%;
   }
   .lav-reviews__play-btn {
     position: absolute;
@@ -892,6 +899,11 @@ const styles = `
     visibility: visible;
     pointer-events: auto;
   }
+  .lav-whatis-modal {
+    line-height: 0;
+    padding: 0;
+    max-width: 90%;
+  }
   .lav-modal__title {
     font-size: 24px;
     line-height: 28px;
@@ -945,10 +957,6 @@ const styles = `
   .lav-modal__close:hover {
     opacity: 0.7;
     transform: scale(1.3);
-  }
-
-  .lav-test {
-
   }
   .lav-test__item {
     position: relative;
@@ -1149,7 +1157,16 @@ const newPage = `
         <div class='lav-delivery__descr'>We usually work with national postal service. Before delivering your order, the carrier will send you an email, informing you of the day it will be delivered. In case you are not there for the delivery, you will have the option to indicate your delivery preferences.</div>
       </div>
     </div>
+
+    <div class='lav-modal__inner lav-whatis-modal'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ" title="Luminette® Glasses 3 - Light therapy glasses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
   </div>
+
   <div class='lav-jumb'>
     <div class='container-fluid container--size--lg lav-jumb__container'>
       <div class='lav-jumb__image'>
@@ -1444,9 +1461,9 @@ const newPage = `
         </button>
       </div>
 
-      // TODO this 
       <div class='lav-reviews__preview'>
         <img class='lav-reviews__placeholder' src='${settings.dir}/img/reviews-video.jpg' />
+        <!--<img class='lav-reviews__placeholder' src='${settings.dir}/img/reviews-video-fr.jpg' />-->
 
         <div class="lav-reviews__play">
           <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
@@ -1516,28 +1533,478 @@ const newPage = `
   <div class='lav-scroll-up'>
     <img src='${settings.dir}/img/button-up.svg' />
   </div>
-
 </div>
 `;
 
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+const stylesLuminatte = `
+.lav-jumb__container {
+  display: flex;
+  justify-content: space-between;
+  position: static!important;
+  padding-bottom: 96px;
+}
+.lum-page .section-main {
 
-const sliderStyles = document.createElement('link');
-sliderStyles.rel = 'stylesheet';
-sliderStyles.href =
-  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
-document.body.appendChild(sliderStyles);
+}
+.lav-jumb__image {
+  line-height: 0;
+  margin-top: 70px;
+}
+.lav-jumb__image img {
+  position: absolute;
+  left: 0;
+}
+.lav-jumb__info {
+  position: relative;
+  z-index: 1;
+  width: 480px;
+}
+.lav-jumb__title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 64px;
+  align-items: center;
+  letter-spacing: 0.01em;
+  margin-top: 8px;
+}
+.lav-jumb__caption {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 0.01em;
+}
+.lav-jumb__rate {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+}
+.lav-jumb__rate-caption {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 36px;
+  margin-right: 15px;
+}
+.lav-jumb__buttons {
+  display: flex;
+  margin-bottom: 24px;
+}
+.lav-jumb__btn {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 15px 24px;
+  border: 1px solid rgba(81, 113, 147, 15%);
+  border-radius: 36px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.lav-jumb__btn:hover {
+  border-color: #517193;
+}
+.lav-jumb__btn img {
+  margin-right: 8px;
+}
+.lav-jumb__btn span {
+  border-bottom: 1px solid #517193;
+}
+.lav-jumb__btn + .lav-jumb__btn {
+  margin-left: 12px;
+}
+.lav-jumb__inside {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  display: inline-block;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.lav-jumb__inside:hover {
+ opacity: 0.6;
+}
+.lav-jumb__actions {
+  display: flex;
+  align-items: center;
+}
+.lav-jumb__buy {
+  margin-right: 24px;
+}
+.lav-modal {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(8, 29, 50, 0.4);
+  transition: 0.35s;
+  opacity: 1;
+  padding: 20px;
+}
+.lav-modal:not(.active) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.lav-modal__inner {
+  max-height: 95vh;
+  overflow: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 72px 48px 48px;
+  max-width: 400px;
+  transition: 0.4s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+.lav-modal__inner.active {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.lav-whatis-modal {
+  line-height: 0;
+  padding: 0;
+  max-width: 90%;
+}
+.lav-modal__title {
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.lav-included__list {
+  margin-top: 12px;
+}
+.lav-included__item {
+  padding-left: 28px;
+  position: relative;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+.lav-included__item + .lav-included__item {
+  margin-top: 24px;
+}
 
-let sliderScript = document.createElement('script');
-sliderScript.src =
-  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
-document.body.append(sliderScript);
+.lav-included__item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  background: url(${settings.dir}/img/check.svg) center no-repeat;
+  background-size: contain;
+}
+
+.lav-included__image {
+  margin: 0 -20px;
+}
+
+.lav-included__image img {
+  max-width: 100%;
+}
+
+.lav-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+  line-height: 0;
+  padding: 3px;
+  transition: 0.3s;
+}
+
+.lav-modal__close:hover {
+  opacity: 0.7;
+  transform: scale(1.3);
+}
+.lav-test__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 24px;
+  color: #517193;
+  min-height: 48px;
+}
+.lav-test__item:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 24px;
+  left: 23px;
+  border-left: 2px dashed #517193;
+  height: 100%;
+}
+.lav-test__item:last-child:before {
+  display: none;
+}
+.lav-test__item span {
+  font-weight: bold;
+}
+.lav-test__item img {
+  background: #fff;
+}
+.lav-test__item a {
+  font-weight: bold;
+  border-bottom: 1px solid #517193;
+  color: #517193;
+  transition: 0.35s;
+}
+.lav-test__item a:hover {
+  border-color: transparent;
+  opacity: 0.7;
+}
+.lav-test__item + .lav-test__item {
+  margin-top: 11px;
+}
+.lav-test__item-info {
+  margin-left: 12px;
+  align-self: center;
+}
+.lav-test__list {
+  margin-bottom: 20px;
+}
+.lav-test__btn.btn-primary {
+  min-height: 62px;
+  min-width: 230px;
+  margin: auto;
+  display: block;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 28px;
+}
+.lav-delivery {
+  text-align: center;
+}
+.lav-delivery__plate {
+  background: rgba(218, 225, 232, 0.3);
+  border-radius: 8px;
+  padding: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #517193;
+  margin-bottom: 24px;
+}
+.lav-delivery__plate span {
+  font-weight: bold;
+}
+.lav-delivery__plate img {
+  margin-bottom: 12px;
+}
+.lav-delivery__methods img {
+  margin: 12px 0;
+}
+.lav-delivery__methods-title {
+  letter-spacing: 0.01em;
+}
+.lav-delivery__descr {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.section-main {
+  position: relative;
+}
+.section-main:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  background: linear-gradient(1deg, #e7ecf2 40%, rgba(243, 245, 249, 0) 70%);
+  pointer-events: none;
+}
+`;
+
+const luminatteJumb = `
+  <div class='container lav-jumb__container'>
+    <div class='lav-jumb__image'>
+    <img src='${settings.dir}/img/jumb-luminette.png' />
+    </div>
+
+    <div class='lav-jumb__info'>
+      <div class='lav-jumb__caption'>Luminette Light Therapy</div>
+      <div class='lav-jumb__title'>Turn on the sun & smile again</div>
+
+      <div class='lav-jumb__rate'>
+        <div class='lav-jumb__rate-caption'>Luminette 3</div>
+        <img  class='lav-jumb__rate-stars' src='${settings.dir}/img/jumb-stars.svg' />
+      </div>
+
+      <div class='lav-jumb__buttons'>
+        <div class='lav-jumb__btn lav-jumb__btn-refresh'>
+          <img src='${settings.dir}/img/icon-refresh.svg' />
+          <span>30-day trial</span>
+        </div>
+        <div class='lav-jumb__btn lav-jumb__btn-box'>
+          <img src='${settings.dir}/img/icon-box.svg' />
+          <span>Free delivery</span>
+        </div>
+      </div>
+
+      <div class='lav-jumb__actions'>
+        <button class='lav-jumb__buy btn-primary btn-lg flipped lav-btn-buy'>
+          <span class="btn-text">
+            Buy $189
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+
+        <div class='lav-jumb__inside'>What’s in the box?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='lav-modal'>
+    <div class='lav-modal__inner lav-included'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-included__title lav-modal__title'>Included in your box</div>
+
+      <div class='lav-included__image'>
+        <img src='${settings.dir}/img/included.png' />
+      </div>
+
+      <div class='lav-included__list'>
+        <div class='lav-included__item'>Your Luminette</div>
+        <div class='lav-included__item'>A protective case</div>
+        <div class='lav-included__item'>A micro USB wall charger</div>
+        <div class='lav-included__item'>A microfiber cleaning cloth</div>
+        <div class='lav-included__item'>Guarantee certificate</div>
+        <div class='lav-included__item'>Your instruction manual </div>
+      </div>
+    </div>
+
+    <div class='lav-modal__inner lav-test'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-test__title lav-modal__title'>You have 30 days to test Luminette </div>
+
+      <div class='lav-test__list'>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num1.svg'>
+          <div class='lav-test__item-info'>
+            <span>Order</span> your Luminette today
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num2.svg'>
+          <div class='lav-test__item-info'>
+            <span>Within just a few days of ordering</span> you'll receive your Luminette
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num3.svg'>
+          <div class='lav-test__item-info'>
+            <span>You have a whole month to trial your Luminette.</span> We recommend that you use Luminette consistently for a minimum of 10 consecutive days
+          </div>
+        </div>
+        <div class='lav-test__item'>
+          <img src='${settings.dir}/img/test-num4.svg'>
+          <div class='lav-test__item-info'>
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='#'>Refunds&nbsp;page</a>.
+          </div>
+        </div>
+      </div>
+
+      <button class='lav-test__btn btn-primary btn-lg flipped lav-btn-buy'>
+        <span class="btn-text">
+          Try it $189
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
+    </div>
+
+    <div class='lav-modal__inner lav-delivery'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <div class='lav-delivery__title lav-modal__title'>Free delivery</div>
+
+      <div class='lav-delivery__plate'>
+        <img src='${settings.dir}/img/flags.png'>
+        <div class='lav-delivery__plate-caption'>Free for USA and Canada:<br/><span>3 to 5 working days</span></div>
+      </div>
+
+      <div class='lav-delivery__methods'>
+        <div class='lav-delivery__methods-title lav-modal__title'>Method of delivery</div>
+        <img src='${settings.dir}/img/delivery-methods.png'>
+        <div class='lav-delivery__descr'>We usually work with national postal service. Before delivering your order, the carrier will send you an email, informing you of the day it will be delivered. In case you are not there for the delivery, you will have the option to indicate your delivery preferences.</div>
+      </div>
+    </div>
+
+    <div class='lav-modal__inner lav-whatis-modal'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ" title="Luminette® Glasses 3 - Light therapy glasses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+`;
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
+if (location.pathname.includes('/luminette')) {
+  const stylesEl = document.createElement('style');
+  stylesEl.innerHTML = stylesLuminatte;
+  document.body.appendChild(stylesEl);
+
+  initLuminatte();
+} else {
+  const stylesEl = document.createElement('style');
+  stylesEl.innerHTML = styles;
+  document.body.appendChild(stylesEl);
+
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+  document.body.appendChild(sliderStyles);
+
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+  document.body.append(sliderScript);
+
+  init();
+}
+
+function initLuminatte() {
+  console.log('init Luminatte');
+
+  document.querySelector('.section-main .container + div').remove();
+  document.querySelector('.section-main .container').remove();
+
+  document
+    .querySelector('.section-main')
+    .insertAdjacentHTML('afterbegin', luminatteJumb);
+
+  initModals();
+}
+
 function init() {
   console.log('init');
   document
@@ -1690,26 +2157,69 @@ function initModals() {
     });
   }
 
-  document
-    .querySelector('.lav-trial__btn-refresh')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      openModal(document.querySelector('.lav-test'));
-    });
+  if (document.querySelector('.lav-jumb__btn-refresh')) {
+    document
+      .querySelector('.lav-jumb__btn-refresh')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-test'));
+      });
+  } else {
+    document
+      .querySelector('.lav-trial__btn-refresh')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-test'));
+      });
+  }
 
-  document
-    .querySelector('.lav-trial__btn-box')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      openModal(document.querySelector('.lav-delivery'));
-    });
+  if (document.querySelector('.lav-trial__btn-box')) {
+    document
+      .querySelector('.lav-trial__btn-box')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-delivery'));
+      });
+  } else {
+    document
+      .querySelector('.lav-jumb__btn-box')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-delivery'));
+      });
+  }
 
-  document
-    .querySelector('.lav-trial__inside')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      openModal(document.querySelector('.lav-included'));
-    });
+  if (document.querySelector('.lav-trial__inside')) {
+    document
+      .querySelector('.lav-trial__inside')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-included'));
+      });
+  } else {
+    document
+      .querySelector('.lav-jumb__inside')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-included'));
+      });
+  }
+
+  if (document.querySelector('.lav-whatis__play')) {
+    document
+      .querySelector('.lav-whatis__play')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(document.querySelector('.lav-whatis-modal'));
+      });
+  } else {
+    document
+      .querySelector('.lav-btn-buy')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        location.href = location.href.replace('/luminette', '/buy?product=4');
+      });
+  }
 }
 
 function openModal(selector) {
@@ -1725,5 +2235,3 @@ function closeModal() {
     document.querySelector('.lav-modal.active').classList.remove('active');
   }, 400);
 }
-
-function detectCurency() {}
