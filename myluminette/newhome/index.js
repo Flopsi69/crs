@@ -315,6 +315,9 @@ const styles = `
   }
   .lav-morning__descr {
     margin-bottom: 48px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lav-morning__list {
     display: grid;
@@ -634,11 +637,14 @@ const styles = `
     z-index: 0;
   }
   .lav-reviews__total-caption {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 24px;
     color: #FFFFFF;
     opacity: 0.9;
+  }
+  .lav-reviews__total-caption span {
+    font-weight: 500;
   }
   .lav-reviews__total__caption span {
     font-weight: bold;
@@ -929,7 +935,7 @@ const styles = `
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
+    top: 3px;
     width: 17px;
     height: 17px;
     background: url(${settings.dir}/img/check.svg) center no-repeat;
@@ -1010,7 +1016,7 @@ const styles = `
     min-width: 230px;
     margin: auto;
     display: block;
-    padding: 5px;
+    padding: 5px 20px;
     font-size: 18px;
     line-height: 28px;
   }
@@ -1126,14 +1132,14 @@ const newPage = `
         <div class='lav-test__item'>
           <img src='${settings.dir}/img/test-num4.svg'>
           <div class='lav-test__item-info'>
-            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='#'>Refunds&nbsp;page</a>.
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery'>Refunds&nbsp;page</a>.
           </div>
         </div>
       </div>
 
       <button class='lav-test__btn btn-primary btn-lg flipped lav-btn-buy'>
         <span class="btn-text">
-          Try it $189
+          Try it $199
         </span>
         <span class="btn-bg-wrapper"></span>
       </button>
@@ -1180,7 +1186,7 @@ const newPage = `
         </div>
         <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
-            Buy $189
+            Buy $199
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -1211,7 +1217,7 @@ const newPage = `
       <div class='lav-transforms__slider splide'>
         <div class="splide__track">
           <div class="splide__list">
-            <div class='lav-transform splide__slide'>
+            <div class='lav-transform lav-transform_first splide__slide'>
               <div class='lav-transform__info'>
                 <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
                 <div class='lav-transform__descr lav-descr'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to maintain normal melatonin levels, sleep at night, and have more energy in the day.</div>
@@ -1221,7 +1227,7 @@ const newPage = `
               </div>
             </div>
 
-            <div class='lav-transform splide__slide'>
+            <div class='lav-transform lav-transform_second splide__slide'>
               <div class='lav-transform__info'>
                 <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
                 <div class='lav-transform__descr lav-descr'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
@@ -1356,7 +1362,7 @@ const newPage = `
           <div class='lav-works__study'>
             <div class='lav-works__study-caption'>An <span>independent study</span> has shown that Luminette gives the same results as a 10,000 lux light box</div>
             <button class='lav-btn lav-works__study-btn'>
-              Read the study <img src='${settings.dir}/img/adobe.svg' />
+              <span>Read the study</span> <img src='${settings.dir}/img/adobe.svg' />
             </button>
           </div>
         </div>
@@ -1440,7 +1446,7 @@ const newPage = `
           <div class='lav-reviews__total-stars'>
             <img src='${settings.dir}/img/reviews-stars.svg' />
           </div>
-          <div class='lav-reviews__total-caption'>See reviews on <span>Trusted shops</span></div>
+          <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
         </a>
         <a href='https://www.amazon.com/New-Model-Luminette-Therapy-Glasses/dp/B07VMRRB9Y?ref_=ast_bbp_dp' target="_blank" class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
@@ -1450,7 +1456,7 @@ const newPage = `
           <div class='lav-reviews__total-stars'>
             <img src='${settings.dir}/img/reviews-stars.svg' />
           </div>
-          <div class='lav-reviews__total-caption'>See reviews on <span>Amazon</span></div>
+          <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
         </a>
       </div>
 
@@ -1500,7 +1506,7 @@ const newPage = `
       <div class='lav-trial__actions'>
         <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
-            Try it $189
+            Try it $199
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -1545,6 +1551,9 @@ const stylesLuminatte = `
 }
 .lum-page .section-main {
 
+}
+.lav-france .lav-jumb__actions .btn-text{
+  font-size: 16px;
 }
 .lav-jumb__image {
   line-height: 0;
@@ -1701,7 +1710,7 @@ const stylesLuminatte = `
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
+  top: 3px;
   width: 17px;
   height: 17px;
   background: url(${settings.dir}/img/check.svg) center no-repeat;
@@ -1862,7 +1871,7 @@ const luminatteJumb = `
       <div class='lav-jumb__actions'>
         <button class='lav-jumb__buy btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
-            Buy $189
+            Buy $199
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -1923,14 +1932,14 @@ const luminatteJumb = `
         <div class='lav-test__item'>
           <img src='${settings.dir}/img/test-num4.svg'>
           <div class='lav-test__item-info'>
-            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='#'>Refunds&nbsp;page</a>.
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery'>Refunds&nbsp;page</a>.
           </div>
         </div>
       </div>
 
       <button class='lav-test__btn btn-primary btn-lg flipped lav-btn-buy'>
         <span class="btn-text">
-          Try it $189
+          Try it $199
         </span>
         <span class="btn-bg-wrapper"></span>
       </button>
@@ -1993,6 +2002,7 @@ if (location.pathname.includes('/luminette')) {
 }
 
 function initLuminatte() {
+  let lang = detectLang();
   console.log('init Luminatte');
 
   document.querySelector('.section-main .container + div').remove();
@@ -2002,14 +2012,26 @@ function initLuminatte() {
     .querySelector('.section-main')
     .insertAdjacentHTML('afterbegin', luminatteJumb);
 
+  console.log(lang);
+  if (lang != 'eng') {
+    initTranslateLuminatte(lang);
+  }
+
   initModals();
 }
 
 function init() {
+  let lang = detectLang();
   console.log('init');
+
   document
     .querySelector('.home-page')
     .insertAdjacentHTML('afterbegin', newPage);
+
+  console.log(lang);
+  if (lang != 'eng') {
+    initTranslateMain(lang);
+  }
 
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
@@ -2038,8 +2060,12 @@ function init() {
   for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
-      if (this.innerText == 'Show more') {
-        this.innerText = 'Show less';
+      if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
+        if (detectLang() == 'fr') {
+          this.innerText = 'Montrer moins';
+        } else {
+          this.innerText = 'Show less';
+        }
         this.closest('.lav-works__item')
           .querySelector('.lav-works__item-descr')
           .classList.remove('active');
@@ -2047,7 +2073,11 @@ function init() {
           .querySelector('.lav-works__item-descr + .lav-works__item-descr')
           .classList.add('active');
       } else {
-        this.innerText = 'Show more';
+        if (detectLang() == 'fr') {
+          this.innerText = 'Afficher plus';
+        } else {
+          this.innerText = 'Show more';
+        }
         this.closest('.lav-works__item')
           .querySelector('.lav-works__item-descr')
           .classList.add('active');
@@ -2234,4 +2264,275 @@ function closeModal() {
   setTimeout(() => {
     document.querySelector('.lav-modal.active').classList.remove('active');
   }, 400);
+}
+
+function detectLang() {
+  let lang = 'eng';
+  if (location.href.includes('com/fr')) {
+    lang = 'fr';
+  } else if (location.href.includes('com/nl')) {
+    lang = 'nl';
+  }
+
+  return lang;
+}
+
+function initTranslateMain(lang) {
+  console.log('init translate', lang);
+  if (lang == 'fr') {
+    document.querySelector('.lav-jumb__title').innerText =
+      'Combattez votre blues hivernal et vos troubles du sommeil';
+
+    document.querySelector('.lav-jumb__btn .btn-text').innerText =
+      'Achat 229 €';
+
+    document.querySelector('.lav-plate__title').innerText =
+      "C'est quoi la Luminette ?";
+
+    document.querySelector('.lav-plate__descr').innerText =
+      "La Luminette® est une paire de lunettes de luminothérapie qui vous aide à réguler vos cycles de sommeil et retrouver votre niveau d'énergie en hiver.";
+
+    for (let item of document.querySelectorAll('.lav-transform__title')) {
+      item.innerText = 'Comment Luminette transforme vos journées';
+    }
+
+    document.querySelector(
+      '.lav-transform_first .lav-transform__descr'
+    ).innerText =
+      "La lumière émise par la Luminette reproduit les effets bénéfiques du soleil. En stoppant la sécrétion de mélatonine et en agissant directement sur le cerveau, la lumière permet de réguler les cycles de sommeil et d'optimiser son niveau d'énergie en hiver. ";
+    document.querySelector(
+      '.lav-transform_second .lav-transform__descr'
+    ).innerText =
+      'Lorsque nous ne recevons pas assez de lumière le matin, le cerveau continue à produire de la mélatonine après le réveil, ce qui augmente notre fatigue et perturbe notre sommeil.';
+
+    document.querySelector('.lav-benefits__title').innerText =
+      'Les avantages de la Luminette';
+
+    document.querySelector(
+      '.lav-benefits__list .lav-benefit:first-child .lav-benefit__title'
+    ).innerText = 'Finissez-en avec le blues hivernal';
+
+    document.querySelector(
+      '.lav-benefits__list .lav-benefit:nth-child(2) .lav-benefit__title'
+    ).innerText = 'Régulez vos cycles de sommeil';
+
+    document.querySelector(
+      '.lav-benefits__list .lav-benefit:last-child .lav-benefit__title'
+    ).innerText = "Retrouvez votre niveau d'énergie";
+
+    document.querySelector('.lav-morning__title').innerText =
+      'Parfait pour votre routine matinale';
+    document.querySelector('.lav-morning__descr').innerText =
+      'Portez la Luminette tout en vous brossant les dents, en prenant votre petit-déjeuner ou en travaillant sur votre ordinateur - le complément parfait à votre routine matinale.';
+    document.querySelector(
+      '.lav-morning__item:first-child .lav-morning__caption'
+    ).innerHTML = 'Une session dure entre <br/><span>20 à 60 minutes</span>';
+    document.querySelector(
+      '.lav-morning__item:nth-child(2) .lav-morning__caption'
+    ).innerHTML = 'A utiliser <span>une fois par jour</span>';
+    document.querySelector(
+      '.lav-morning__item:last-child .lav-morning__caption'
+    ).innerHTML =
+      'Ressentez les bienfaits dans les<br/><span>4 à 6 jours</span>';
+
+    document.querySelector('.lav-benefits2__title').innerText =
+      'Quels sont les avantages ?';
+    document.querySelector(
+      '.lav-benefit2:first-child .lav-benefit2__title'
+    ).innerText = 'Léger et confortable';
+    document.querySelector(
+      '.lav-benefit2:first-child .lav-benefit2__caption'
+    ).innerText =
+      "La Luminette ne pèse que 51 g et est dotée d'un support pour le nez nasal ergonomique et ajustable.";
+    document.querySelector(
+      '.lav-benefit2:nth-child(2) .lav-benefit2__title'
+    ).innerText = 'Ne gêne pas votre vue';
+    document.querySelector(
+      '.lav-benefit2:nth-child(2) .lav-benefit2__caption'
+    ).innerText =
+      "Le système d'éclairage breveté vous permet de bénéficier de la luminothérapie sans perturber votre vision.";
+    document.querySelector(
+      '.lav-benefit2:last-child .lav-benefit2__title'
+    ).innerText = 'Compatible avec des lunettes de vue';
+    document.querySelector(
+      '.lav-benefit2:last-child .lav-benefit2__caption'
+    ).innerText = 'Portez la Luminette par-dessus vos lunettes';
+
+    document.querySelector('.lav-works__title').innerText =
+      'Comment fonctionne la Luminette';
+    document.querySelector(
+      '.lav-works__item .lav-works__item-title'
+    ).innerText = 'Un système innovant breveté pour un confort optimal.';
+    document.querySelector(
+      '.lav-works__item .lav-works__item-descr'
+    ).innerText = 'Luminette® utilise une...';
+    document.querySelector(
+      '.lav-works__item .lav-works__item-descr + .lav-works__item-descr'
+    ).innerText =
+      'Luminette® utilise une technologie optique innovante brevetée : placé au-dessus de la vue, son faisceau de lumière est orienté du haut vers le bas, comme cela se produit naturellement sous un ciel bleu et permet aux utilisateurs de garder leur vision libre.';
+
+    document.querySelector(
+      '.lav-works__item + .lav-works__item .lav-works__item-title'
+    ).innerHTML =
+      'Une lumière enrichie en <span>bleu pour</span> plus d’efficacité.';
+    document.querySelector(
+      '.lav-works__item + .lav-works__item .lav-works__item-descr'
+    ).innerText = 'La Luminette émet une...';
+    document.querySelector(
+      '.lav-works__item + .lav-works__item .lav-works__item-descr + .lav-works__item-descr'
+    ).innerText =
+      "La Luminette émet une lumière blanche enrichie en bleu, à 468 nm. Il est en effet prouvé que c'est cette longueur d'onde qui active le plus efficacement la réponse énergisante du corps à la lumière.";
+    for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
+      item.innerText = 'Afficher plus';
+    }
+    document.querySelector('.lav-works__study-caption').innerHTML =
+      "Une <span>étude indépendante</span> a montré que la Luminette donne les mêmes résultats qu'une lampe de 10 000 lux.";
+    document.querySelector('.lav-works__study-btn span').innerText =
+      "Lire l'étude";
+
+    document.querySelector('.lav-users__title').innerHTML =
+      'Plus de <span>150 000</span> utilisateurs de la Luminette';
+    document.querySelector('.lav-reviews__title').innerText =
+      'Avis des utilisateurs';
+    for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
+      item.innerText = 'Afficher plus';
+    }
+    document.querySelector(
+      '.lav-reviews__total-col:first-child .lav-reviews__total-caption span'
+    ).innerText = 'Voir les avis sur';
+    document.querySelector(
+      '.lav-reviews__total-col:last-child .lav-reviews__total-caption span'
+    ).innerText = 'Voir les avis sur';
+    document.querySelector('.lav-reviews__btn .btn-text').innerText =
+      'Voir les avis';
+
+    document.querySelector('.lav-trial__title').innerText = 'Essai de 30 jours';
+    document.querySelector('.lav-trial__descr').innerText =
+      "Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !";
+    document.querySelector('.lav-trial__inside').innerText =
+      'Que contient la boîte ?';
+    document.querySelector('.lav-trial__btn-refresh span').innerText =
+      'Essai de 30 jours';
+    document.querySelector('.lav-trial__btn-box span').innerText =
+      'Livraison gratuite';
+    document.querySelector('.lav-trial__actions .btn-text').innerText =
+      'Essayez-les pour 229 €';
+    document.querySelector('.lav-trial__learn').innerText = 'En savoir plus';
+
+    document.querySelector('.lav-included__title').innerText =
+      'Ce que vous trouverez dans la boite';
+    document.querySelector('.lav-included__item:nth-child(1)').innerText =
+      'Votre Luminette';
+    document.querySelector('.lav-included__item:nth-child(2)').innerText =
+      'Un étui de protection';
+    document.querySelector('.lav-included__item:nth-child(3)').innerText =
+      'Un chargeur mural micro-USB';
+    document.querySelector('.lav-included__item:nth-child(4)').innerText =
+      'Un tissu nettoyant en microfibres';
+    document.querySelector('.lav-included__item:nth-child(5)').innerText =
+      'Votre certificat de garantie de 2 ans';
+    document.querySelector('.lav-included__item:nth-child(6)').innerText =
+      "Le manuel d'utilisation";
+
+    document.querySelector('.lav-test__title').innerText =
+      'Vous avez 30 jours pour tester la Luminette';
+    document.querySelector(
+      '.lav-test__item:nth-child(1) .lav-test__item-info'
+    ).innerHTML = "<span>Commandez</span> votre Luminette aujourd'hui.";
+    document.querySelector(
+      '.lav-test__item:nth-child(2) .lav-test__item-info'
+    ).innerHTML =
+      'Vous recevez votre Luminette <span>quelques jours plus tard</span>';
+    document.querySelector(
+      '.lav-test__item:nth-child(3) .lav-test__item-info'
+    ).innerHTML =
+      "<span>Vous avez un mois pour tester votre Luminette.</span> Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.";
+    document.querySelector(
+      '.lav-test__item:nth-child(4) .lav-test__item-info'
+    ).innerHTML =
+      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery'>livraison et retour</a>";
+    document.querySelector('.lav-test__btn .btn-text').innerText =
+      'Essayez-les pour 229 €';
+
+    document.querySelector('.lav-delivery__title').innerText =
+      'Livraison gratuite';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Livraison gratuite en Europe : <br/><span>2 à 5 jours ouvrables</span>';
+    document.querySelector('.lav-delivery__methods-title').innerText =
+      'Mode de livraison';
+    document.querySelector('.lav-delivery__descr').innerText =
+      "Nous travaillons généralement avec le service postal national (Bpost et Collissimo). Avant de livrer votre commande, le transporteur vous enverra un e-mail, vous informant du jour de livraison. Au cas où vous ne seriez pas présent lors de la livraison, vous aurez la possibilité d'indiquer vos préférences de livraison.";
+
+    document.querySelector('.lav-drive__caption').innerText =
+      'Découvrez notre nouveau produit';
+    document.querySelector('.lav-drive__bg-title').innerText =
+      'Bénéficiez de la luminothérapie tout en conduisant';
+    document.querySelector('.lav-drive__btn .btn-text').innerText =
+      'Essayez-la pour 179 €';
+    document.querySelector('.lav-drive__learn').innerText = 'En savoir plus';
+  }
+}
+
+function initTranslateLuminatte(lang) {
+  console.log('init translate', lang);
+  if (lang == 'fr') {
+    document.querySelector('.lav-jumb__container').classList.add('lav-france');
+    document.querySelector('.lav-jumb__caption').innerText =
+      'Lunettes de luminothérapie';
+    document.querySelector('.lav-jumb__title').innerText =
+      'Ressentez les bienfaits de la lumière';
+
+    document.querySelector('.lav-jumb__inside').innerText =
+      'Que contient la boîte ?';
+    document.querySelector('.lav-jumb__btn-refresh span').innerText =
+      'Essai de 30 jours';
+    document.querySelector('.lav-jumb__btn-box span').innerText =
+      'Livraison gratuite';
+    document.querySelector('.lav-jumb__actions .btn-text').innerText =
+      'Essayez-les pour 229 €';
+
+    document.querySelector('.lav-included__title').innerText =
+      'Ce que vous trouverez dans la boite';
+    document.querySelector('.lav-included__item:nth-child(1)').innerText =
+      'Votre Luminette';
+    document.querySelector('.lav-included__item:nth-child(2)').innerText =
+      'Un étui de protection';
+    document.querySelector('.lav-included__item:nth-child(3)').innerText =
+      'Un chargeur mural micro-USB';
+    document.querySelector('.lav-included__item:nth-child(4)').innerText =
+      'Un tissu nettoyant en microfibres';
+    document.querySelector('.lav-included__item:nth-child(5)').innerText =
+      'Votre certificat de garantie de 2 ans';
+    document.querySelector('.lav-included__item:nth-child(6)').innerText =
+      "Le manuel d'utilisation";
+
+    document.querySelector('.lav-test__title').innerText =
+      'Vous avez 30 jours pour tester la Luminette';
+    document.querySelector(
+      '.lav-test__item:nth-child(1) .lav-test__item-info'
+    ).innerHTML = "<span>Commandez</span> votre Luminette aujourd'hui.";
+    document.querySelector(
+      '.lav-test__item:nth-child(2) .lav-test__item-info'
+    ).innerHTML =
+      'Vous recevez votre Luminette <span>quelques jours plus tard</span>';
+    document.querySelector(
+      '.lav-test__item:nth-child(3) .lav-test__item-info'
+    ).innerHTML =
+      "<span>Vous avez un mois pour tester votre Luminette.</span> Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.";
+    document.querySelector(
+      '.lav-test__item:nth-child(4) .lav-test__item-info'
+    ).innerHTML =
+      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='#'>livraison et retour</a>";
+    document.querySelector('.lav-test__btn .btn-text').innerText =
+      'Essayez-les pour 229 €';
+
+    document.querySelector('.lav-delivery__title').innerText =
+      'Livraison gratuite';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Livraison gratuite en Europe : <br/><span>2 à 5 jours ouvrables</span>';
+    document.querySelector('.lav-delivery__methods-title').innerText =
+      'Mode de livraison';
+    document.querySelector('.lav-delivery__descr').innerText =
+      "Nous travaillons généralement avec le service postal national (Bpost et Collissimo). Avant de livrer votre commande, le transporteur vous enverra un e-mail, vous informant du jour de livraison. Au cas où vous ne seriez pas présent lors de la livraison, vous aurez la possibilité d'indiquer vos préférences de livraison.";
+  }
 }
