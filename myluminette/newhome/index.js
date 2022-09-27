@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/myluminette/newhome',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'new_home_page_layout', 'variant_1');
     }
   }, 1000);
 }
@@ -24,30 +24,13 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp — New home page layout',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytics
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -905,10 +888,16 @@ const styles = `
     visibility: visible;
     pointer-events: auto;
   }
-  .lav-whatis-modal {
+  .lav-whatis-modal, .lav-review-modal {
     line-height: 0;
     padding: 0;
     max-width: 90%;
+  }
+  .lav-review-modal {
+    padding: 10px;
+  }
+  .lav-review-modal iframe {
+    // max-width: 400px;
   }
   .lav-modal__title {
     font-size: 24px;
@@ -1132,7 +1121,7 @@ const newPage = `
         <div class='lav-test__item'>
           <img src='${settings.dir}/img/test-num4.svg'>
           <div class='lav-test__item-info'>
-            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery'>Refunds&nbsp;page</a>.
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery#returns-block'>Refunds&nbsp;page</a>.
           </div>
         </div>
       </div>
@@ -1170,6 +1159,15 @@ const newPage = `
       </div>
 
       <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ" title="Luminette® Glasses 3 - Light therapy glasses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+    <div class='lav-modal__inner lav-review-modal'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <iframe src="https://drive.google.com/file/d/1a8GhGugtQ0T6uNtHNq9cz6ccqk8OVtdS/preview" width="680" height="450" allow="autoplay"></iframe>
     </div>
   </div>
 
@@ -1349,14 +1347,14 @@ const newPage = `
             <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
             <div class='lav-works__item-descr active'>Luminette® uses a patented in...</div>
             <div class='lav-works__item-descr'>Luminette® uses a patented innovative optical technology: placed above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allows users to keep their vision free.</div>
-            <div class='lav-works__item-trigger'>Show more</div>
+            <div class='lav-works__item-trigger lav-works__item-trigger-first'>Show more</div>
           </div>
 
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
             <div class='lav-works__item-descr active'>Luminette® emits a safe blue-...</div>
             <div class='lav-works__item-descr'>Luminette® emits a safe blue-enriched white light peaked at 468 nm. This wavelength is proven to be the most effective at triggering the body's positive response to sunlight. Luminette LED’s have been specifically selected to avoid light close to UV.</div>
-            <div class='lav-works__item-trigger'>Show more</div>
+            <div class='lav-works__item-trigger lav-works__item-trigger-second'>Show more</div>
           </div>
 
           <div class='lav-works__study'>
@@ -1504,7 +1502,7 @@ const newPage = `
       </div>
 
       <div class='lav-trial__actions'>
-        <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy'>
+        <button class='lav-trials__btn btn-primary btn-lg flipped lav-btn-buy'>
           <span class="btn-text">
             Try it $199
           </span>
@@ -1597,7 +1595,7 @@ const stylesLuminatte = `
   display: flex;
   margin-bottom: 24px;
 }
-.lav-jumb__btn {
+.lav-jumb__btn, .lav-trials__btn {
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -1932,7 +1930,7 @@ const luminatteJumb = `
         <div class='lav-test__item'>
           <img src='${settings.dir}/img/test-num4.svg'>
           <div class='lav-test__item-info'>
-            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery'>Refunds&nbsp;page</a>.
+            Within 30 days, you can choose to be refunded for your Luminette if you're unsatisfied. See more details on our <a href='/delivery#returns-block'>Refunds&nbsp;page</a>.
           </div>
         </div>
       </div>
@@ -1976,6 +1974,7 @@ const luminatteJumb = `
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
+gaEvent('loaded');
 if (location.pathname.includes('/luminette')) {
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = stylesLuminatte;
@@ -2036,10 +2035,14 @@ function init() {
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
-      new Splide('.splide', {
+      let splide = new Splide('.splide', {
         type: 'loop',
         arrows: false,
       }).mount();
+
+      splide.on('moved', function () {
+        gaEvent('swipe slider', 'How Luminette transforms your days');
+      });
     }
   }, 500);
 
@@ -2047,12 +2050,22 @@ function init() {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector('.glasses-item .btn-primary').click();
+      if (this.classList.contains('lav-test__btn')) {
+        gaEvent('Try it', 'Popup: You have 30 days to test Luminette');
+      }
+      if (this.classList.contains('lav-trials__btn')) {
+        gaEvent('Try it', '30 day Light Therapy Trial');
+      }
+      if (this.classList.contains('lav-jumb__btn')) {
+        gaEvent('Buy', 'First screen');
+      }
     });
   }
 
   for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Try it', 'Benefit from light therapy while driving');
       document.querySelector('.drive-item .btn-primary').click();
     });
   }
@@ -2061,6 +2074,18 @@ function init() {
     item.addEventListener('click', function (e) {
       e.preventDefault();
       if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
+        if (this.classList.contains('lav-works__item-trigger-first')) {
+          gaEvent(
+            'Show more',
+            'A patented, innovative light therapy system, for optimal comfort'
+          );
+        } else {
+          gaEvent(
+            'Show more',
+            'White light enhanced with blue light for greater effectiveness'
+          );
+        }
+
         if (detectLang() == 'fr') {
           this.innerText = 'Montrer moins';
         } else {
@@ -2073,6 +2098,17 @@ function init() {
           .querySelector('.lav-works__item-descr + .lav-works__item-descr')
           .classList.add('active');
       } else {
+        if (this.classList.contains('lav-works__item-trigger-first')) {
+          gaEvent(
+            'Show less',
+            'A patented, innovative light therapy system, for optimal comfort'
+          );
+        } else {
+          gaEvent(
+            'Show less',
+            'White light enhanced with blue light for greater effectiveness'
+          );
+        }
         if (detectLang() == 'fr') {
           this.innerText = 'Afficher plus';
         } else {
@@ -2087,6 +2123,18 @@ function init() {
       }
     });
   }
+
+  document
+    .querySelector('.lav-reviews__total-col:first-child')
+    .addEventListener('click', function () {
+      gaEvent('See reviews on Trusted shops', 'Under customer reviews');
+    });
+
+  document
+    .querySelector('.lav-reviews__total-col:last-child')
+    .addEventListener('click', function () {
+      gaEvent('See reviews on Amazon', 'Under customer reviews');
+    });
 
   for (let item of document.querySelectorAll('.lav-review__trigger')) {
     item.addEventListener('click', function (e) {
@@ -2114,9 +2162,10 @@ function init() {
   }
 
   document
-    .querySelector('.lav-reviews__all')
+    .querySelector('.lav-reviews__btn')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('See reviews', 'Under customer reviews');
       location.href += '/customer-reviews?product=luminette';
     });
 
@@ -2124,6 +2173,7 @@ function init() {
     .querySelector('.lav-trial__learn')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Learn more', '30 day Light Therapy Trial');
       location.href += '/luminette';
     });
 
@@ -2132,12 +2182,14 @@ function init() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       location.href += '/drive';
+      gaEvent('Learn more', 'Benefit from light therapy while driving');
     });
 
   document
     .querySelector('.lav-works__study-btn')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Read the study', 'An independent study');
       let el = document.createElement('a');
       el.href =
         'https://d3sq5glv6xow4l.cloudfront.net/docs/Light_therapy_with_boxes_or_glasses_to_counteract_.pdf';
@@ -2148,6 +2200,7 @@ function init() {
     .querySelector('.lav-jumb__rate')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Stars in reviews', 'First screen');
       document
         .querySelector('.lav-reviews')
         .scrollIntoView({ behavior: 'smooth' });
@@ -2192,6 +2245,7 @@ function initModals() {
       .querySelector('.lav-jumb__btn-refresh')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('30-day trial', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-test'));
       });
   } else {
@@ -2199,6 +2253,7 @@ function initModals() {
       .querySelector('.lav-trial__btn-refresh')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('30-day trial', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-test'));
       });
   }
@@ -2208,6 +2263,7 @@ function initModals() {
       .querySelector('.lav-trial__btn-box')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('Free delivery', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-delivery'));
       });
   } else {
@@ -2215,15 +2271,23 @@ function initModals() {
       .querySelector('.lav-jumb__btn-box')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('Free delivery', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-delivery'));
       });
   }
+
+  document
+    .querySelector('.lav-test__item-info a')
+    .addEventListener('click', function () {
+      gaEvent('Refunds page', 'Popup: You have 30 days to test Luminette');
+    });
 
   if (document.querySelector('.lav-trial__inside')) {
     document
       .querySelector('.lav-trial__inside')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('What`s in the box', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-included'));
       });
   } else {
@@ -2231,6 +2295,7 @@ function initModals() {
       .querySelector('.lav-jumb__inside')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('What`s in the box', '30 day Light Therapy Trial');
         openModal(document.querySelector('.lav-included'));
       });
   }
@@ -2240,13 +2305,23 @@ function initModals() {
       .querySelector('.lav-whatis__play')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('Play video', 'What is Luminette');
         openModal(document.querySelector('.lav-whatis-modal'));
+      });
+
+    document
+      .querySelector('.lav-reviews__play')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        gaEvent('Play video', 'Luminette user');
+        openModal(document.querySelector('.lav-review-modal'));
       });
   } else {
     document
       .querySelector('.lav-btn-buy')
       .addEventListener('click', function (e) {
         e.preventDefault();
+        gaEvent('Buy', 'First screen');
         location.href = location.href.replace('/luminette', '/buy?product=4');
       });
   }
@@ -2450,7 +2525,7 @@ function initTranslateMain(lang) {
     document.querySelector(
       '.lav-test__item:nth-child(4) .lav-test__item-info'
     ).innerHTML =
-      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery'>livraison et retour</a>";
+      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
     document.querySelector('.lav-test__btn .btn-text').innerText =
       'Essayez-les pour 229 €';
 
