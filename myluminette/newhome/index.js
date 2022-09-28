@@ -513,9 +513,6 @@ const styles = `
     text-align: center;
   }
   .lav-reviews__list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-top: 64px;
   }
   .lav-review {
@@ -526,7 +523,23 @@ const styles = `
     border-radius: 16px;
     padding: 24px;
     color: #517193;
-    width: 29%;
+  }
+  @media (min-width: 992px) {
+    .lav-reviews__list .splide__list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lav-reviews__list .splide__track {
+      overflow: visible;
+    }
+    .lav-review {
+      width: 29%;
+    }
+    .lav-review:nth-child(2) {
+      width: 35%;
+      min-height: 460px;
+    }
   }
   .lav-review_expand:after {
     content: "";
@@ -539,16 +552,9 @@ const styles = `
     background: linear-gradient(180deg,hsla(0,0%,100%,0),#fbfbfb 70%);
     z-index: 1;
   }
-  .lav-review:nth-child(2) {
-    width: 35%;
-    min-height: 460px;
-  }
   .lav-review__image {
     line-height: 0;
     text-align: center;
-  }
-  .lav-review__image img {
-
   }
   .lav-review__name {
     margin-top: 8px;
@@ -623,6 +629,7 @@ const styles = `
     background: radial-gradient(82% 55% at 0 48%,#000 0,rgba(0,0,0,.85) 18%,rgba(0,0,0,.7) 38%,rgba(0,0,0,.45) 65%,transparent 100%);
     mix-blend-mode: normal;
     z-index: 0;
+    pointer-events: none;
   }
   .lav-reviews__total-caption {
     font-weight: 700;
@@ -1080,6 +1087,9 @@ const styles = `
   .lav-users__image-mob {
     display: none;
   }
+  .lav-users__title-mob {
+    display: none;
+  }
   @media (max-width: 768px) {
     .lav-whatis__placeholder {
       display: none;
@@ -1133,7 +1143,7 @@ const styles = `
       line-height: 36px;
     }
     .lav-plate__descr {
-      font-size: 28px;
+      line-height: 28px;
     }
     .lav-whatis__preview {
       margin: 0 -12px;
@@ -1166,9 +1176,13 @@ const styles = `
     .lav-transform__image {
       margin-left: -12px;
       margin-right: -12px;
+      margin-top: -60px;
     }
     .lav-whatis__preview {
       box-shadow: none;
+    }
+    .lav-whatis {
+      padding-bottom: 48px;
     }
     .lav-transform__info {
       margin-bottom: 24px;
@@ -1259,6 +1273,7 @@ const styles = `
     }
     .lav-works__image {
       margin-left: 0;
+      margin-bottom: 15px;
     }
     .lav-works__image img {
       max-width: 100%;
@@ -1273,22 +1288,159 @@ const styles = `
     }
     .lav-works__image img + img {
       display: block;
+      margin: auto;
     }
     .lav-users__title {
-      position: static;
+      display: none;
+    }
+    .lav-users__title-mob {
+      display: block;
       transform: translateY(-50%);
       font-weight: 300;
       font-size: 32px;
       line-height: 36px;
     }
-    .lav-users__title span {
+    .lav-users__title-mob span {
       letter-spacing: 1px;
       font-size: 96px;
-      line-height: 96px;         
+      line-height: 96px; 
+      font-weight: 700;        
     }
     .lav-users__image-mob {
       display: block;
       max-width: 100%;
+    }
+    .lav-reviews {
+      padding: 24px 0 12px;
+      background: #517193;
+      box-shadow: 0px 44px 66px rgb(59 83 108 / 44%);
+    }
+    .lav-reviews__list {
+      margin-top: 24px;
+      display: block;
+    }
+    .lav-review {
+      padding-bottom: 56px;
+    }
+    .lav-reviews .splide__pagination {
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+    }
+    .lav-review__text {
+      max-height: 200px;
+    }
+    .lav-review_expand:after {
+      bottom: 70px;
+    }
+    .lav-reviews__total {
+      margin-top: 32px;
+      display: block;
+    }
+    .lav-reviews__total-col {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+    }
+    .lav-reviews__total-col + .lav-reviews__total-col {
+      padding-top: 26px;
+      margin-top: 28px;
+    }
+    .lav-reviews__total-image {
+      height: auto;
+      width: 44%;
+    }
+    .lav-reviews__total-info {
+      width: 44%;
+    }
+    .lav-reviews__total-image img {
+      max-height: 100%;
+    }
+    .lav-reviews__total-caption span {
+      display: block;
+    }
+    .lav-reviews__total-image {
+      margin-bottom: 0;
+    }
+    .lav-reviews__total-col:last-child:after {
+      background: radial-gradient(81.5% 54.14% at 0% 47.87%, #000000 0%, rgba(0, 0, 0, 0.869792) 17.19%, rgba(0, 0, 0, 0.70021) 38.02%, rgba(0, 0, 0, 0.441309) 65.1%, rgba(0, 0, 0, 0) 100%);
+      transform: rotate(90deg);
+      height: 100vw;
+      top: -12px;
+    }
+    .lav-reviews__btn {
+      min-height: 56px;
+    }
+    .lav-reviews__play-btn, .lav-reviews__play {
+      width: 80px;
+      height: 80px;
+    }
+    .lav-trial {
+      padding-top: 72px;
+      padding-bottom: 48px;
+    }
+    .lav-trial__learn {
+      margin-top: 16px;
+    }
+    .lav-trial__info {
+      max-width: 100%;
+      margin-left: 0;
+      display: flex;
+      flex-flow: column;
+      text-align: center;
+    }
+    .lav-trial__image {
+      width: 100%;
+    }
+    .lav-trial__buttons {
+      order: 1;
+      margin-bottom: 16px;
+      margin-top: 24px;
+    }
+    .lav-trial__btn {
+      flex: 1;
+      padding-left: 5px;
+      padding-right: 5px;
+      justify-content: center;
+    }
+    .lav-drive {
+      border-radius: 8px 8px 0 0;
+      padding-top: 34px;
+    }
+    .lav-drive__actions {
+      padding-bottom: 34px;
+    }
+    .lav-drive__caption {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 500;
+    }
+    .lav-drive__title {
+      margin-top: 12px;
+      font-size: 96px;
+      line-height: 96px;
+    }
+    .lav-drive__device {
+      margin: 0;
+      padding: 0;
+      width: 129vw;
+      margin-left: -10vw;
+    }
+    .lav-drive__bg-title {
+      font-size: 32px;
+      line-height: 36px;
+      text-align: center;
+      padding-top: 380px;
+      padding-bottom: 24px;
+
+    }
+    .lav-drive__bg {
+      background-position: 31% 0;
+      margin-top: -25%;
+    }
+    .lav-reviews__placeholder {
+      width: 100%;
     }
   }
 `;
@@ -1449,6 +1601,7 @@ const newPage = `
               <div class='lav-transform__image'>
                 <img src='${settings.dir}/img/transform-smile.png' />
               </div>
+              <div class='lav-transform__title-mob lav-title'>How Luminette transforms your days</div>
             </div>
 
             <div class='lav-transform lav-transform_second splide__slide'>
@@ -1459,6 +1612,7 @@ const newPage = `
               <div class='lav-transform__image'>
               <img src='${settings.dir}/img/transform-sad.png' />
               </div>
+              <div class='lav-transform__title-mob lav-title'>How Luminette transforms your days</div>
             </div>
           </div>
           </div>
@@ -1593,7 +1747,7 @@ const newPage = `
         
         <div class='lav-works__image'>
           <img src='${settings.dir}/img/how-works.png' />
-          <img src='${settings.dir}/img/how-works.png' />
+          <img src='${settings.dir}/img/how-works-mob.png' />
         </div>
       </div>
     </div>
@@ -1602,6 +1756,7 @@ const newPage = `
   <div class='lav-users'>
     <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
     <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
+    <div class='lav-users__title-mob'><span>150k+</span> Luminette users</div>
     <div class='lav-users__title'><span>150,000</span> Luminette users</div>
   </div>
 
@@ -1609,57 +1764,61 @@ const newPage = `
     <div class='container-fluid container--size--lg lav-works__container'>
       <div class='lav-reviews__title lav-title'>Customer reviews</div>
 
-      <div class='lav-reviews__list'>
-        <div class='lav-review'>
-          <div class='lav-review__image'>
-            <img src='${settings.dir}/img/review1.png' />
-          </div>
-          <div class='lav-review__name'>Aurélie</div>
-          <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
-            View review on <span>Amazon</span>
-            <img src='${settings.dir}/img/rate.svg' />
-          </a>
-          <div class='lav-review__text active'>
-            “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
-          </div>
+      <div class='lav-reviews__list splide'>
+        <div class="splide__track">
+          <div class="splide__list">
+            <div class='lav-review splide__slide'>
+              <div class='lav-review__image'>
+                <img src='${settings.dir}/img/review1.png' />
+              </div>
+              <div class='lav-review__name'>Aurélie</div>
+              <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                View review on <span>Amazon</span>
+                <img src='${settings.dir}/img/rate.svg' />
+              </a>
+              <div class='lav-review__text active'>
+                “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
+              </div>
 
-          <div class='lav-review__text'>
-            “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
-          </div>
-          
-          <div class='lav-review__trigger'>Show more</div>
-        </div>
-        
-        <div class='lav-review'>
-          <div class='lav-review__image'>
-            <img src='${settings.dir}/img/review2.png' />
-          </div>
-          <div class='lav-review__name'>Arnaud T.</div>
-          <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
-            View review on <span>Google</span>
-            <img src='${settings.dir}/img/rate.svg' />
-          </a>
-          <div class='lav-review__text active'>
-            "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
-          </div>
-        </div>
+              <div class='lav-review__text'>
+                “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
+              </div>
+              
+              <div class='lav-review__trigger'>Show more</div>
+            </div>
+            
+            <div class='lav-review splide__slide'>
+              <div class='lav-review__image'>
+                <img src='${settings.dir}/img/review2.png' />
+              </div>
+              <div class='lav-review__name'>Arnaud T.</div>
+              <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
+                View review on <span>Google</span>
+                <img src='${settings.dir}/img/rate.svg' />
+              </a>
+              <div class='lav-review__text active'>
+                "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
+              </div>
+            </div>
 
-        <div class='lav-review'>
-          <div class='lav-review__image'>
-            <img src='${settings.dir}/img/review3.png' />
+            <div class='lav-review splide__slide'>
+              <div class='lav-review__image'>
+                <img src='${settings.dir}/img/review3.png' />
+              </div>
+              <div class='lav-review__name'>Laura S.</div>
+              <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                View review on <span>Amazon</span>
+                <img src='${settings.dir}/img/rate.svg' />
+              </a>
+              <div class='lav-review__text active'>
+                “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
+              </div>
+              <div class='lav-review__text'>
+                “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
+              </div>
+              <div class='lav-review__trigger'>Show more</div>
+            </div>
           </div>
-          <div class='lav-review__name'>Laura S.</div>
-          <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
-            View review on <span>Amazon</span>
-            <img src='${settings.dir}/img/rate.svg' />
-          </a>
-          <div class='lav-review__text active'>
-            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
-          </div>
-          <div class='lav-review__text'>
-            “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
-          </div>
-          <div class='lav-review__trigger'>Show more</div>
         </div>
       </div>
 
@@ -1668,21 +1827,25 @@ const newPage = `
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-trusted.svg' />
           </div>
-          <div class='lav-reviews__total-score'>4.5</div>
-          <div class='lav-reviews__total-stars'>
-            <img src='${settings.dir}/img/reviews-stars.svg' />
+          <div class='lav-reviews__total-info'>
+            <div class='lav-reviews__total-score'>4.5</div>
+            <div class='lav-reviews__total-stars'>
+              <img src='${settings.dir}/img/reviews-stars.svg' />
+            </div>
+            <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
           </div>
-          <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
         </a>
         <a href='https://www.amazon.com/New-Model-Luminette-Therapy-Glasses/dp/B07VMRRB9Y?ref_=ast_bbp_dp' target="_blank" class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-amazon.svg' />
           </div>
-          <div class='lav-reviews__total-score'>4.5</div>
-          <div class='lav-reviews__total-stars'>
-            <img src='${settings.dir}/img/reviews-stars.svg' />
+          <div class='lav-reviews__total-info'>
+            <div class='lav-reviews__total-score'>4.5</div>
+            <div class='lav-reviews__total-stars'>
+              <img src='${settings.dir}/img/reviews-stars.svg' />
+            </div>
+            <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
           </div>
-          <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
         </a>
       </div>
 
@@ -2260,12 +2423,36 @@ function init() {
     initTranslateMain(lang);
   }
 
+  if (window.innerWidth < 768) {
+    document
+      .querySelector('.lav-trial__descr')
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector('.lav-trial__image')
+      );
+  }
+
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
       let splide = new Splide('.splide', {
         type: 'loop',
         arrows: false,
+      }).mount();
+
+      let splideReview = new Splide('.lav-reviews__list', {
+        arrows: false,
+        perPage: 3,
+        pagination: false,
+        autoWidth: true,
+        breakpoints: {
+          768: {
+            perPage: 1,
+            pagination: true,
+            autoWidth: false,
+            gap: 15,
+          },
+        },
       }).mount();
 
       splide.on('moved', function () {
@@ -2596,6 +2783,10 @@ function initTranslateMain(lang) {
       "La Luminette® est une paire de lunettes de luminothérapie qui vous aide à réguler vos cycles de sommeil et retrouver votre niveau d'énergie en hiver.";
 
     for (let item of document.querySelectorAll('.lav-transform__title')) {
+      item.innerText = 'Comment Luminette transforme vos journées';
+    }
+
+    for (let item of document.querySelectorAll('.lav-transform__title-mob')) {
       item.innerText = 'Comment Luminette transforme vos journées';
     }
 
