@@ -1090,6 +1090,9 @@ const styles = `
   .lav-users__title-mob {
     display: none;
   }
+  .lav-transform__title-mob {
+    display: none;
+  }
   @media (max-width: 768px) {
     .lav-whatis__placeholder {
       display: none;
