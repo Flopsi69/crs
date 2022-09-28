@@ -1074,9 +1074,16 @@ const styles = `
   .lav-whatis__placeholder-mob {
     display: none;
   }
+  .lav-works__image img + img {
+    display: none;
+  }
+  .lav-users__image-mob {
+    display: none;
+  }
   @media (max-width: 768px) {
     .lav-whatis__placeholder {
       display: none;
+      width: 100%;
     }
     .lav-whatis__placeholder-mob {
       display: block;
@@ -1117,16 +1124,171 @@ const styles = `
       padding: 16px;
       margin: 0 4px -16px;
     }
-    .lav-title {
+    .lav-plate__title {
       font-size: 36px;
       line-height: 44px;
     }
-    .lav-descr {
-      line-height: 28px;
+    .lav-title {
+      font-size: 32px;
+      line-height: 36px;
+    }
+    .lav-plate__descr {
+      font-size: 28px;
     }
     .lav-whatis__preview {
       margin: 0 -12px;
-      border-radius: 0;
+      border-radius: 8px;
+    }
+    .lav-whatis__play, .lav-whatis__play-btn {
+      width: 130px;
+      height: 130px;
+    }
+    .lav-transform {
+      flex-flow: column-reverse;
+      text-align: center;
+    }
+    .lav-transform__descr {
+      line-height: 24px;
+      margin-top: 15px;
+    }
+    .lav-transform__image img {
+      max-width: 100%;
+    }
+    .lav-transform__title {
+      display: none;
+    }
+    .lav-transform__title-mob {
+      display: block;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 36px;
+    }
+    .lav-transform__image {
+      margin-left: -12px;
+      margin-right: -12px;
+    }
+    .lav-whatis__preview {
+      box-shadow: none;
+    }
+    .lav-transform__info {
+      margin-bottom: 24px;
+    }
+    .lav-transforms {
+      padding-bottom: 48px;
+    }
+    .lav-benefits__title {
+      margin-bottom: 24px;
+    }
+    .lav-benefits__list {
+      display: block;
+    }
+    .lav-benefit + .lav-benefit {
+      margin-top: 12px;
+    }
+    .lav-benefit {
+      padding: 24px;
+      text-align: center;
+      justify-content: center;
+      background: #C4C4C4;
+      border-radius: 8px;
+      filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
+    }
+    .lav-benefit:first-child {
+      background-position: right;
+    }
+    .lav-benefit__title {
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .lav-benefit__icon {
+      margin: 0 auto 15px;
+    }
+    .lav-benefits {
+      padding-bottom: 72px;
+    }
+    .lav-morning__descr {
+      margin-bottom: 24px;
+    }
+    .lav-morning__list {
+      display: block;
+    }
+    .lav-morning__item {
+      max-width: 100%;
+    }
+    .lav-morning__item + .lav-morning__item {
+      margin-top: 48px;
+      margin-left: 0;
+    }
+    .lav-morning__caption {
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .lav-morning__caption br {
+      display: none;
+    }
+    .lav-morning__caption {
+      margin-top: 12px;
+    }
+    .lav-morning__image img {
+      width: 80px;
+    }
+    .lav-morning {
+      padding-bottom: 48px;
+    }
+    .lav-benefits2__inner {
+      margin-left: -12px;
+      margin-right: -12px;
+      padding: 24px;
+      filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
+    }
+    .lav-benefits2__list {
+      margin-top: 24px;
+      display: block;
+    }
+    .lav-benefit2 + .lav-benefit2 {
+      margin-top: 48px;
+    }
+    .lav-benefit2__icon img {
+      width: 80px;
+    }
+    .lav-benefits2 {
+      margin-bottom: 72px;
+    }
+    .lav-works__row {
+      flex-flow: column-reverse;
+    }
+    .lav-works__image {
+      margin-left: 0;
+    }
+    .lav-works__image img {
+      max-width: 100%;
+      display: none;
+    }
+    .lav-works__info {
+      max-width: 100%;
+      margin: 0;
+    }
+    .lav-users__image {
+      display: none;
+    }
+    .lav-works__image img + img {
+      display: block;
+    }
+    .lav-users__title {
+      position: static;
+      transform: translateY(-50%);
+      font-weight: 300;
+      font-size: 32px;
+      line-height: 36px;
+    }
+    .lav-users__title span {
+      letter-spacing: 1px;
+      font-size: 96px;
+      line-height: 96px;         
+    }
+    .lav-users__image-mob {
+      display: block;
+      max-width: 100%;
     }
   }
 `;
@@ -1264,7 +1426,7 @@ const newPage = `
 
       <div class='lav-whatis__preview'>
         <img class='lav-whatis__placeholder' src='${settings.dir}/img/whatis.jpg' />
-        <img class='lav-whatis__placeholder lav-whatis__placeholder-mob' src='${settings.dir}/img/whatis-mob.jpg' />
+        <img class='lav-whatis__placeholder lav-whatis__placeholder-mob' src='${settings.dir}/img/whatis-mob.jpeg' />
 
         <div class="lav-whatis__play">
           <img class='lav-whatis__play-btn' src='${settings.dir}/img/play.svg' />
@@ -1431,6 +1593,7 @@ const newPage = `
         
         <div class='lav-works__image'>
           <img src='${settings.dir}/img/how-works.png' />
+          <img src='${settings.dir}/img/how-works.png' />
         </div>
       </div>
     </div>
@@ -1438,6 +1601,7 @@ const newPage = `
 
   <div class='lav-users'>
     <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
+    <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
     <div class='lav-users__title'><span>150,000</span> Luminette users</div>
   </div>
 
