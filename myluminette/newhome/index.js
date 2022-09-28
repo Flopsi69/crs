@@ -95,6 +95,11 @@ const styles = `
     position: absolute;
     left: 0;
   }
+  @media (max-width: 1319px) and (min-width: 1124px) {
+    .lav-jumb__image img {
+      left: -10vw;
+    }
+  }
   .lav-jumb__info {
     width: 480px;
   }
@@ -1066,6 +1071,64 @@ const styles = `
   .lav-scroll-up:hover {
     opacity: 0.5;
   }
+  .lav-whatis__placeholder-mob {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .lav-whatis__placeholder {
+      display: none;
+    }
+    .lav-whatis__placeholder-mob {
+      display: block;
+    }
+    .lav-jumb__image img {
+      position: static;
+      max-width: 100%;
+      margin-left: -12px;
+    }
+    .lav-jumb__container {
+      display: block;
+    }
+    .lav-jumb__title {
+      display: none;
+    }
+    .lav-jumb__rate {
+      flex-flow: column-reverse;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    .lav-jumb__info {
+      width: auto;
+      text-align: center;
+    }
+    .lav-jumb__rate-caption {
+      margin-right: 0;
+      font-size: 24px;
+      margin-top: 7px;
+    }
+    .lav-wrap {
+      color: #517193;
+      background: url('${settings.dir}/img/jumb-bg-mob.png') top no-repeat;
+      background-size: 100% auto;
+    }
+    .lav-plate {
+      padding: 16px;
+      margin: 0 4px -16px;
+    }
+    .lav-title {
+      font-size: 36px;
+      line-height: 44px;
+    }
+    .lav-descr {
+      line-height: 28px;
+    }
+    .lav-whatis__preview {
+      margin: 0 -12px;
+      border-radius: 0;
+    }
+  }
 `;
 
 const newPage = `
@@ -1201,6 +1264,7 @@ const newPage = `
 
       <div class='lav-whatis__preview'>
         <img class='lav-whatis__placeholder' src='${settings.dir}/img/whatis.jpg' />
+        <img class='lav-whatis__placeholder lav-whatis__placeholder-mob' src='${settings.dir}/img/whatis-mob.jpg' />
 
         <div class="lav-whatis__play">
           <img class='lav-whatis__play-btn' src='${settings.dir}/img/play.svg' />
