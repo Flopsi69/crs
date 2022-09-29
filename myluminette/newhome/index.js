@@ -1439,7 +1439,8 @@ const styles = `
       text-align: center;
       padding-top: 380px;
       padding-bottom: 24px;
-
+      padding-left: 16px;
+      padding-right: 16px;
     }
     .lav-drive__bg {
       background-position: 31% 0;
@@ -2417,6 +2418,13 @@ function initLuminatte() {
 }
 
 function init() {
+  if (!document.querySelector('.home-page')) {
+    setTimeout(() => {
+      init();
+    }, 500);
+    return false;
+  }
+
   let lang = detectLang();
   console.log('init');
 
