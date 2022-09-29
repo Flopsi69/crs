@@ -1055,7 +1055,7 @@ const styles = `
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    text-align: center;
+    text-align: left;
     letter-spacing: 0.01em;
   }
   .lav-scroll-up {
@@ -1566,7 +1566,7 @@ const newPage = `
       <div class='lav-delivery__methods'>
         <div class='lav-delivery__methods-title lav-modal__title'>Method of delivery</div>
         <img src='${settings.dir}/img/delivery-methods.png'>
-        <div class='lav-delivery__descr'>We usually work with national postal service. Before delivering your order, the carrier will send you an email, informing you of the day it will be delivered. In case you are not there for the delivery, you will have the option to indicate your delivery preferences.</div>
+        <div class='lav-delivery__descr'>Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</div>
       </div>
     </div>
 
@@ -2254,7 +2254,7 @@ const stylesLuminatte = `
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  text-align: center;
+  text-align: left;
   letter-spacing: 0.01em;
 }
 .section-main {
@@ -2390,7 +2390,7 @@ const luminatteJumb = `
       <div class='lav-delivery__methods'>
         <div class='lav-delivery__methods-title lav-modal__title'>Method of delivery</div>
         <img src='${settings.dir}/img/delivery-methods.png'>
-        <div class='lav-delivery__descr'>We usually work with national postal service. Before delivering your order, the carrier will send you an email, informing you of the day it will be delivered. In case you are not there for the delivery, you will have the option to indicate your delivery preferences.</div>
+        <div class='lav-delivery__descr'>Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</div>
       </div>
     </div>
 
@@ -2469,6 +2469,7 @@ function init() {
   console.log(lang);
   if (lang != 'eng') {
     initTranslateMain(lang);
+    initDelivery(lang);
   }
 
   if (window.innerWidth < 768) {
@@ -2819,13 +2820,83 @@ function closeModal() {
 
 function detectLang() {
   let lang = 'eng';
+  // en-us / en-ca / en-gb
+  // fr / fr-be / fr-ca
+  // en-us / en-ca / en-gb
   if (location.href.includes('com/fr')) {
     lang = 'fr';
-  } else if (location.href.includes('com/nl')) {
-    lang = 'nl';
   }
 
   return lang;
+}
+
+function initDelivery(lang) {
+  if (
+    location.href.includes('com/en-us') ||
+    location.href.includes('com/en-ca')
+  ) {
+    return false;
+  }
+
+  if (location.href.includes('com/en-gb')) {
+    document.querySelector('.lav-delivery__plate > img').src =
+      settings.dir + '/img/flags-gb.png';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Free for United Kingdom:<br/><span>1 to 3 working days</span>';
+    document.querySelector('.lav-delivery__methods-title + img').src =
+      settings.dir + '/img/delivery-methods2.png';
+    document.querySelector('.lav-delivery__descr').innerText =
+      "For any orders from the UK, the parcels are shipped from Amazon's warehouses located in the UK with Amazon's selected carrier. Before delivering your order, the carrier will send you a SMS or Email, informing you of the day it will be delivered. You have the option of delaying delivery for up to 3 days. If you do not reply, the delivery date will be that proposed by the transporter.";
+    return false;
+  }
+
+  if (location.href.includes('com/fr')) {
+    document.querySelector('.lav-delivery__title').innerText =
+      'Livraison gratuite';
+    document.querySelector('.lav-delivery__methods-title').innerText =
+      'Mode de livraison';
+
+    document.querySelector('.lav-reviews__placeholder').src =
+      settings.dir + '/img/reviews-video-fr.jpg';
+
+    document.querySelector('.lav-review-modal iframe').src = '';
+  }
+
+  if (location.href.includes('com/fr') && !location.href.includes('com/fr-')) {
+    document.querySelector('.lav-delivery__plate > img').src =
+      settings.dir + '/img/flags-fr.png';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Livraison gratuite en France:<br/><span>2 à 5 jours ouvrables</span>';
+    document.querySelector('.lav-delivery__methods-title + img').src =
+      settings.dir + '/img/delivery-methods2.png';
+    document.querySelector('.lav-delivery__descr').innerText =
+      'Nous travaillons le plus souvent avec Colissimo. Avant de vous livrer votre colis, le transporteur vous enverra un email avec un lien vous permettant de suivre le colis.';
+    return false;
+  }
+
+  if (location.href.includes('com/fr-be')) {
+    document.querySelector('.lav-delivery__plate > img').src =
+      settings.dir + '/img/flags-be.png';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Livraison gratuite en Belgique:<br/><span>1 à 3 jours ouvrables</span>';
+    document.querySelector('.lav-delivery__methods-title + img').src =
+      settings.dir + '/img/delivery-methods2.png';
+    document.querySelector('.lav-delivery__descr').innerText =
+      'Nous travaillons le plus souvent avec Bpost. Avant de vous livrer votre colis, le transporteur vous enverra un email avec un lien vous permettant de suivre le colis.';
+    return false;
+  }
+
+  if (location.href.includes('com/fr-ca')) {
+    document.querySelector('.lav-delivery__plate > img').src =
+      settings.dir + '/img/flags.png';
+    document.querySelector('.lav-delivery__plate-caption').innerHTML =
+      'Pour les États-Unis et le Canada:<br/><span>3 à 5 jours ouvrables</span>';
+    document.querySelector('.lav-delivery__methods-title + img').src =
+      settings.dir + '/img/delivery-methods.png';
+    document.querySelector('.lav-delivery__descr').innerText =
+      "Nous travaillons le plus souvent avec la logistique Fulfilled-by-Amazon (FBA) qui dispose d'entrepôts au Canada. Nous utilisons généralement le transporteur Purolator pour envoyer les colis. Avant de livrer votre colis, le transporteur vous envoie un email vous avertissant du jour de son passage.";
+    return false;
+  }
 }
 
 function initTranslateMain(lang) {
@@ -3009,15 +3080,6 @@ function initTranslateMain(lang) {
     document.querySelector('.lav-test__btn .btn-text').innerText =
       'Essayez-les pour 229 €';
 
-    document.querySelector('.lav-delivery__title').innerText =
-      'Livraison gratuite';
-    document.querySelector('.lav-delivery__plate-caption').innerHTML =
-      'Livraison gratuite en Europe : <br/><span>2 à 5 jours ouvrables</span>';
-    document.querySelector('.lav-delivery__methods-title').innerText =
-      'Mode de livraison';
-    document.querySelector('.lav-delivery__descr').innerText =
-      "Nous travaillons généralement avec le service postal national (Bpost et Collissimo). Avant de livrer votre commande, le transporteur vous enverra un e-mail, vous informant du jour de livraison. Au cas où vous ne seriez pas présent lors de la livraison, vous aurez la possibilité d'indiquer vos préférences de livraison.";
-
     document.querySelector('.lav-drive__caption').innerText =
       'Découvrez notre nouveau produit';
     document.querySelector('.lav-drive__bg-title').innerText =
@@ -3077,17 +3139,8 @@ function initTranslateLuminatte(lang) {
     document.querySelector(
       '.lav-test__item:nth-child(4) .lav-test__item-info'
     ).innerHTML =
-      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='#'>livraison et retour</a>";
+      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
     document.querySelector('.lav-test__btn .btn-text').innerText =
       'Essayez-les pour 229 €';
-
-    document.querySelector('.lav-delivery__title').innerText =
-      'Livraison gratuite';
-    document.querySelector('.lav-delivery__plate-caption').innerHTML =
-      'Livraison gratuite en Europe : <br/><span>2 à 5 jours ouvrables</span>';
-    document.querySelector('.lav-delivery__methods-title').innerText =
-      'Mode de livraison';
-    document.querySelector('.lav-delivery__descr').innerText =
-      "Nous travaillons généralement avec le service postal national (Bpost et Collissimo). Avant de livrer votre commande, le transporteur vous enverra un e-mail, vous informant du jour de livraison. Au cas où vous ne seriez pas présent lors de la livraison, vous aurez la possibilité d'indiquer vos préférences de livraison.";
   }
 }
