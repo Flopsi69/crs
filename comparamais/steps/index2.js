@@ -1270,20 +1270,22 @@ function init() {
 
   initSteps();
 
-  for (let item of document.querySelectorAll('.card__apply a')) {
-    item.addEventListener('click', function (e) {
-      if (document.querySelector('.simulator-container.active')) {
-        e.preventDefault();
-        document
-          .querySelector('.container--hero + .container')
-          .classList.add('lav-result-hide');
-        document.querySelector('.lav-step.active').scrollIntoView();
-        setTimeout(() => {
-          document.querySelector('.capture-overlay').click();
-        }, 500);
-      }
-    });
-  }
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.classList.contains('btn') &&
+      e.target.closest('.card__apply') &&
+      document.querySelector('.simulator-container.active')
+    ) {
+      e.preventDefault();
+      document
+        .querySelector('.container--hero + .container')
+        .classList.add('lav-result-hide');
+      document.querySelector('.lav-step.active').scrollIntoView();
+      setTimeout(() => {
+        document.querySelector('.capture-overlay').click();
+      }, 500);
+    }
+  });
 
   document
     .querySelector('.lav-step .lav-step-start')
