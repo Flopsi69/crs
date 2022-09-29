@@ -1270,6 +1270,18 @@ function init() {
 
   initSteps();
 
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.classList.contains('btn') &&
+      e.target.closest('.card__apply')
+    ) {
+      gaEvent(
+        'click bank button',
+        e.target.closest('.card').querySelector('.card__logo img').alt
+      );
+    }
+  });
+
   document
     .querySelector('.lav-step .lav-step-start')
     .addEventListener('click', function (e) {
