@@ -219,6 +219,7 @@ const styles = `
     padding: 32px;
     display: flex;
     align-items: flex-end;
+    background-size: cover;
   }
   .lav-benefit:before {
     // content: '';
@@ -1210,7 +1211,7 @@ const styles = `
       padding: 24px;
       text-align: center;
       justify-content: center;
-      background: #C4C4C4;
+      background-color: #C4C4C4;
       border-radius: 8px;
       filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
     }
@@ -1452,15 +1453,7 @@ const styles = `
     }
     .lav-modal__inner {
       width: 100%;
-      // position: relative;
-      top: 0;
-      left: 0;
-      transform: none;
       padding: 48px 24px 24px;
-    }
-    .lav-modal__inner.active {
-      transform: none;
-      position: relative;
     }
     .lav-modal__close {
       top: 12px;
