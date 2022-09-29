@@ -1451,7 +1451,9 @@ const styles = `
     }
     .lav-modal__inner {
       width: 100%;
-      position: static;
+      position: relative;
+      top: 0;
+      left: 0;
       transform: none;
     }
     .lav-modal__inner.active {
@@ -1459,6 +1461,10 @@ const styles = `
     }
     .lav-modal__inner {
       padding: 48px 24px 24px;
+    }
+    .lav-modal__close {
+      top: 12px;
+      right: 12px;
     }
   }
 `;
