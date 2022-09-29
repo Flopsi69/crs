@@ -142,6 +142,9 @@ const styles = `
   }
   .lav-plate__descr {
     margin-top: 12px;
+    max-width: 445px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lav-whatis {
     padding-bottom: 24px;
