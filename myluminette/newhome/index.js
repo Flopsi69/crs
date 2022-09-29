@@ -1452,6 +1452,7 @@ const styles = `
       width: 100%;
     }
     .lav-modal__inner {
+      max-width: 93%;
       width: 100%;
       padding: 48px 24px 24px;
     }
@@ -1466,7 +1467,7 @@ const styles = `
       min-height: 56px;
     }
     .lav-whatis-modal, .lav-review-modal {
-      max-width: 100%;
+      max-width: 93%;
       padding: 0;
     }
     .lav-review-modal iframe, .lav-whatis-modal iframe {
