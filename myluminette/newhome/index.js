@@ -1109,20 +1109,29 @@ const styles = `
     .lav-jumb__image img {
       position: static;
       max-width: 100%;
-      transform: scale(1.17);
+      transform: scale(1.25);
+      margin-left: -12px;
     }
     .lav-jumb__container {
       display: block;
     }
+    .lav-jumb {
+      padding-top: 90px;
+      padding-bottom: 48px;
+    }
     .lav-jumb__title {
-      display: none;
+      font-size: 40px;
+      line-height: 1.1;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 40px;
     }
     .lav-jumb__rate {
       flex-flow: column-reverse;
       align-items: center;
       justify-content: center;
       margin-top: 0;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .lav-jumb__info {
       width: auto;
@@ -1131,7 +1140,7 @@ const styles = `
     .lav-jumb__rate-caption {
       margin-right: 0;
       font-size: 24px;
-      margin-top: 7px;
+      margin-top: 12px;
     }
     .lav-wrap {
       color: #517193;
