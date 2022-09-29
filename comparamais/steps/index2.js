@@ -1273,6 +1273,15 @@ function init() {
   document.addEventListener('click', function (e) {
     if (
       e.target.classList.contains('btn') &&
+      e.target.closest('.card__apply')
+    ) {
+      gaEvent(
+        'click bank button',
+        e.target.closest('.card').querySelector('.card__logo img').alt
+      );
+    }
+    if (
+      e.target.classList.contains('btn') &&
       e.target.closest('.card__apply') &&
       document.querySelector('.simulator-container.active')
     ) {
