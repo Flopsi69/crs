@@ -1451,20 +1451,22 @@ const styles = `
     }
     .lav-modal__inner {
       width: 100%;
-      position: relative;
+      // position: relative;
       top: 0;
       left: 0;
       transform: none;
+      padding: 48px 24px 24px;
     }
     .lav-modal__inner.active {
       transform: none;
-    }
-    .lav-modal__inner {
-      padding: 48px 24px 24px;
+      position: relative;
     }
     .lav-modal__close {
       top: 12px;
       right: 12px;
+    }
+    .lav-modal {
+      padding: 12px;
     }
   }
 `;
@@ -2164,7 +2166,7 @@ const stylesLuminatte = `
 .lav-test__item:before {
   content: '';
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 24px;
   left: 23px;
   border-left: 2px dashed #517193;
@@ -2178,6 +2180,7 @@ const stylesLuminatte = `
 }
 .lav-test__item img {
   background: #fff;
+  position: relative;
 }
 .lav-test__item a {
   font-weight: bold;
