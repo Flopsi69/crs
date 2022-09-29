@@ -980,7 +980,7 @@ const styles = `
   .lav-test__item:before {
     content: '';
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     top: 24px;
     left: 23px;
     border-left: 2px dashed #517193;
@@ -993,6 +993,7 @@ const styles = `
     font-weight: bold;
   }
   .lav-test__item img {
+    position: relative;
     background: #fff;
   }
   .lav-test__item a {
@@ -1467,6 +1468,16 @@ const styles = `
     }
     .lav-modal {
       padding: 12px;
+    }
+    .lav-test__btn.btn-primary {
+      min-height: 56px;
+    }
+    .lav-whatis-modal, .lav-review-modal {
+      max-width: 100%;
+      padding: 0;
+    }
+    .lav-review-modal iframe, .lav-whatis-modal iframe {
+      max-width: 100%;
     }
   }
 `;
@@ -2492,6 +2503,12 @@ function init() {
       splide.on('moved', function () {
         gaEvent('swipe slider', 'How Luminette transforms your days');
       });
+
+      if (window.innerWidth < 992) {
+        splideReview.on('moved', function () {
+          gaEvent('Swipe', 'Customer reviews');
+        });
+      }
     }
   }, 500);
 
