@@ -1109,7 +1109,7 @@ const styles = `
     .lav-jumb__image img {
       position: static;
       max-width: 100%;
-      margin-left: -12px;
+      transform: scale(1.17);
     }
     .lav-jumb__container {
       display: block;
@@ -2468,6 +2468,13 @@ function init() {
       .insertAdjacentElement(
         'afterend',
         document.querySelector('.lav-trial__image')
+      );
+
+    document
+      .querySelector('.lav-jumb__container')
+      .insertAdjacentElement(
+        'afterbegin',
+        document.querySelector('.lav-jumb__title')
       );
   }
 
