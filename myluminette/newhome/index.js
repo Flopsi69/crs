@@ -865,7 +865,7 @@ const styles = `
   }
   .lav-modal {
     position: fixed;
-    z-index: 99;
+    z-index: 9999;
     left: 0;
     top: 0;
     right: 0;
@@ -1448,6 +1448,17 @@ const styles = `
     }
     .lav-reviews__placeholder {
       width: 100%;
+    }
+    .lav-modal__inner {
+      width: 100%;
+      position: static;
+      transform: none;
+    }
+    .lav-modal__inner.active {
+      transform: none;
+    }
+    .lav-modal__inner {
+      padding: 48px 24px 24px;
     }
   }
 `;
