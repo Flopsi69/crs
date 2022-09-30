@@ -1955,7 +1955,7 @@ const newPage = `
       <div div class='lav-drive__actions'>
         <button class='lav-drive__btn btn-primary btn-lg flipped lav-btn-buy-drive'>
           <span class="btn-text">
-            Try it $149
+            Buy $149
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -2447,8 +2447,8 @@ function initLuminatte() {
   if (lang != 'eng') {
     initTranslateLuminatte(lang);
   }
-
   initModals();
+  initDelivery(lang);
 }
 
 function init() {
@@ -2469,8 +2469,8 @@ function init() {
   console.log(lang);
   if (lang != 'eng') {
     initTranslateMain(lang);
-    initDelivery(lang);
   }
+  initDelivery(lang);
 
   if (window.innerWidth < 768) {
     document
@@ -2616,7 +2616,13 @@ function init() {
   for (let item of document.querySelectorAll('.lav-review__trigger')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
-      if (this.innerText == 'Show more') {
+      if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
+        if (detectLang() == 'fr') {
+          this.innerText = 'Montrer moins';
+        } else {
+          this.innerText = 'Show less';
+        }
+
         this.innerText = 'Show less';
         this.closest('.lav-review').classList.add('lav-review_expand');
         this.closest('.lav-review')
@@ -2626,7 +2632,12 @@ function init() {
           .querySelector('.lav-review__text + .lav-review__text')
           .classList.add('active');
       } else {
-        this.innerText = 'Show more';
+        if (detectLang() == 'fr') {
+          this.innerText = 'Afficher plus';
+        } else {
+          this.innerText = 'Show more';
+        }
+
         this.closest('.lav-review').classList.remove('lav-review_expand');
         this.closest('.lav-review')
           .querySelector('.lav-review__text')
@@ -2822,7 +2833,6 @@ function detectLang() {
   let lang = 'eng';
   // en-us / en-ca / en-gb
   // fr / fr-be / fr-ca
-  // en-us / en-ca / en-gb
   if (location.href.includes('com/fr')) {
     lang = 'fr';
   }
@@ -2831,14 +2841,30 @@ function detectLang() {
 }
 
 function initDelivery(lang) {
+  console.log('initDelivery');
   if (
     location.href.includes('com/en-us') ||
     location.href.includes('com/en-ca')
   ) {
+    if (location.href.includes('com/en-ca')) {
+      document.querySelector('.lav-test__btn .btn-text').innerText =
+        'Try it $249';
+      if (location.href.includes('/luminette')) {
+        document.querySelector('.lav-jumb__actions .btn-text').innerText =
+          'Buy $249';
+      } else {
+        document.querySelector('.lav-jumb__btn .btn-text').innerText =
+          'Buy $249';
+        document.querySelector('.lav-trial__actions .btn-text').innerText =
+          'Try it $249';
+        document.querySelector('.lav-drive__btn .btn-text').innerText =
+          'Buy $189';
+      }
+    }
     return false;
   }
 
-  if (location.href.includes('com/en-gb')) {
+  if (location.href.includes('com/uk') && !location.href.includes('com/uk-')) {
     document.querySelector('.lav-delivery__plate > img').src =
       settings.dir + '/img/flags-gb.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -2856,13 +2882,30 @@ function initDelivery(lang) {
     document.querySelector('.lav-delivery__methods-title').innerText =
       'Mode de livraison';
 
-    document.querySelector('.lav-reviews__placeholder').src =
-      settings.dir + '/img/reviews-video-fr.jpg';
+    if (document.querySelector('.lav-reviews')) {
+      document.querySelector('.lav-reviews__placeholder').src =
+        settings.dir + '/img/reviews-video-fr.jpg';
 
-    document.querySelector('.lav-review-modal iframe').src = '';
+      document.querySelector('.lav-review-modal iframe').src =
+        'https://drive.google.com/file/d/1vVFJxbXciqfaz1GT4eNSUAutCw7iHduP/preview';
+    }
   }
 
   if (location.href.includes('com/fr') && !location.href.includes('com/fr-')) {
+    document.querySelector('.lav-test__btn .btn-text').innerText =
+      'Essayez-les pour 229 €';
+    if (location.href.includes('/luminette')) {
+      document.querySelector('.lav-jumb__actions .btn-text').innerText =
+        'Achat 229 €';
+    } else {
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat 229 €';
+      document.querySelector('.lav-trial__actions .btn-text').innerText =
+        'Essayez-les pour 229 €';
+      document.querySelector('.lav-drive__btn .btn-text').innerText =
+        'Achat 179 €';
+    }
+
     document.querySelector('.lav-delivery__plate > img').src =
       settings.dir + '/img/flags-fr.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -2875,6 +2918,19 @@ function initDelivery(lang) {
   }
 
   if (location.href.includes('com/fr-be')) {
+    document.querySelector('.lav-test__btn .btn-text').innerText =
+      'Essayez-les pour 229€';
+    if (location.href.includes('/luminette')) {
+      document.querySelector('.lav-jumb__actions .btn-text').innerText =
+        'Achat 229€';
+    } else {
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat 229€';
+      document.querySelector('.lav-trial__actions .btn-text').innerText =
+        'Essayez-les pour 229€';
+      document.querySelector('.lav-drive__btn .btn-text').innerText =
+        'Achat 179€';
+    }
     document.querySelector('.lav-delivery__plate > img').src =
       settings.dir + '/img/flags-be.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -2887,6 +2943,19 @@ function initDelivery(lang) {
   }
 
   if (location.href.includes('com/fr-ca')) {
+    document.querySelector('.lav-test__btn .btn-text').innerText =
+      'Essayez-les pour $249';
+    if (location.href.includes('/luminette')) {
+      document.querySelector('.lav-jumb__actions .btn-text').innerText =
+        'Achat $249';
+    } else {
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat $249';
+      document.querySelector('.lav-trial__actions .btn-text').innerText =
+        'Essayez-les pour $249';
+      document.querySelector('.lav-drive__btn .btn-text').innerText =
+        'Achat $189';
+    }
     document.querySelector('.lav-delivery__plate > img').src =
       settings.dir + '/img/flags.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -2904,9 +2973,6 @@ function initTranslateMain(lang) {
   if (lang == 'fr') {
     document.querySelector('.lav-jumb__title').innerText =
       'Combattez votre blues hivernal et vos troubles du sommeil';
-
-    document.querySelector('.lav-jumb__btn .btn-text').innerText =
-      'Achat 229 €';
 
     document.querySelector('.lav-plate__title').innerText =
       "C'est quoi la Luminette ?";
@@ -3020,6 +3086,41 @@ function initTranslateMain(lang) {
       'Plus de <span>150 000</span> utilisateurs de la Luminette';
     document.querySelector('.lav-reviews__title').innerText =
       'Avis des utilisateurs';
+    document.querySelector(
+      '.lav-review:nth-child(2) .lav-review__text'
+    ).innerText =
+      "Chaque année, je ressens un manque de lumière et cela affecte mon moral. Cette année, j'ai trouvé la solution pour y remédier avec la Luminette. L'avantage c'est qu'on n'est pas coincé devant une lampe et qu'on peut se préparer le matin ou prendre son petit déjeuner avec ses lunettes. C'est très pratique :)";
+
+    document.querySelector(
+      '.lav-review:nth-child(1) .lav-review__text'
+    ).innerText =
+      "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité long...";
+
+    document.querySelector(
+      '.lav-review:nth-child(1) .lav-review__text + .lav-review__text'
+    ).innerText =
+      "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité longuement et puis j'ai découvert les Luminette. Je les utilise le matin, soit en vaquant à mes occupations (petit déjeuner, brossage de dents...) soit pendant que je lis. Après la séance, j'ai beaucoup plus d'énergie et de motivation pour faire face à la journée. Elles sont très pratiques car elles peuvent se porter en même temps que des lunettes de vue ou d'ordinateur. Elles sont constituées de plastique, assez rigide, mais paraissent solides. Le chargement est assez rapide. Un indicateur de chargement permet de savoir quand ce dernier est terminé. Une fois chargées, elles peuvent être utilisées environ 10 fois. Il y a 3 modes possibles. Plus la lumière est puissante, plus le temps d'exposition est réduit. Ce qui est très pratique c'est qu'il ne faut pas surveiller le temps car elles s'éteignent toutes seules une fois la séance terminée. Le seul mini « bémol » est que le mode le plus puissant peut être éblouissant quand la luminosité environnante est faible. C'est donc un accessoire que je recommanderais sans hésitation, car il me donne un vrai coup de pouce moralement pendant les courtes journées.";
+
+    document.querySelector(
+      '.lav-review:nth-child(3) .lav-review__text'
+    ).innerText =
+      "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une premi...";
+
+    document.querySelector(
+      '.lav-review:nth-child(3) .lav-review__text + .lav-review__text'
+    ).innerText =
+      "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une première. Je suis étonné. Mon niveau d'énergie a augmenté et je me sens libre et joyeux la plupart du temps. Je dors aussi beaucoup mieux. Je dois ajouter que j'ai arrêté la caféine, ce qui aide aussi. Les Luminettes sont bien, bien meilleure que les lampes. Je les porte tous les matins sans être obligé de fixer la lampe. Mon humeur s'est vraiment améliorée. Elles sont très pratiques et faciles à utiliser. Je les mets sur le dessus de mes lunettes. Elles se rechargent facilement et on peut les utiliser sans les brancher tous les jours. Tous ceux qui me voient les porter (quand je participe à des réunions en ligne, quand je vais chez le dentiste, etc.) me demandent si ça marche. Les gens trouvent que c'est joli et ils sont très intéressés parce qu'il y a toujours quelqu'un dans leur famille qui souffre de dépression saisonnière, ou bien ils sont eux-mêmes atteints de ce trouble. Donc, vraiment, je ne me plains pas, je n'ai que des bonnes choses à dire sur mes Luminettes qui sont aussi précieuses maintenant que mon téléphone portable.";
+
+    for (let item of document.querySelectorAll('.lav-review__trigger')) {
+      item.innerText = 'Afficher plus';
+    }
+
+    for (let item of document.querySelectorAll('.lav-review__link')) {
+      item.innerHTML = item.innerHTML.replace(
+        'View review on',
+        "Lire l'avis sur"
+      );
+    }
     for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
       item.innerText = 'Afficher plus';
     }
@@ -3041,8 +3142,7 @@ function initTranslateMain(lang) {
       'Essai de 30 jours';
     document.querySelector('.lav-trial__btn-box span').innerText =
       'Livraison gratuite';
-    document.querySelector('.lav-trial__actions .btn-text').innerText =
-      'Essayez-les pour 229 €';
+
     document.querySelector('.lav-trial__learn').innerText = 'En savoir plus';
 
     document.querySelector('.lav-included__title').innerText =
@@ -3077,15 +3177,12 @@ function initTranslateMain(lang) {
       '.lav-test__item:nth-child(4) .lav-test__item-info'
     ).innerHTML =
       "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
-    document.querySelector('.lav-test__btn .btn-text').innerText =
-      'Essayez-les pour 229 €';
 
     document.querySelector('.lav-drive__caption').innerText =
       'Découvrez notre nouveau produit';
     document.querySelector('.lav-drive__bg-title').innerText =
       'Bénéficiez de la luminothérapie tout en conduisant';
-    document.querySelector('.lav-drive__btn .btn-text').innerText =
-      'Essayez-la pour 179 €';
+
     document.querySelector('.lav-drive__learn').innerText = 'En savoir plus';
   }
 }
@@ -3105,8 +3202,6 @@ function initTranslateLuminatte(lang) {
       'Essai de 30 jours';
     document.querySelector('.lav-jumb__btn-box span').innerText =
       'Livraison gratuite';
-    document.querySelector('.lav-jumb__actions .btn-text').innerText =
-      'Essayez-les pour 229 €';
 
     document.querySelector('.lav-included__title').innerText =
       'Ce que vous trouverez dans la boite';
@@ -3140,7 +3235,5 @@ function initTranslateLuminatte(lang) {
       '.lav-test__item:nth-child(4) .lav-test__item-info'
     ).innerHTML =
       "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
-    document.querySelector('.lav-test__btn .btn-text').innerText =
-      'Essayez-les pour 229 €';
   }
 }
