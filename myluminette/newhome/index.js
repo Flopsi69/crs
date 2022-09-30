@@ -2622,8 +2622,6 @@ function init() {
         } else {
           this.innerText = 'Show less';
         }
-
-        this.innerText = 'Show less';
         this.closest('.lav-review').classList.add('lav-review_expand');
         this.closest('.lav-review')
           .querySelector('.lav-review__text')
