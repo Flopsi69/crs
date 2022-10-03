@@ -2528,29 +2528,39 @@ const luminatteJumb = `
 
 /********* Custom Code **********/
 gaEvent('loaded');
-if (location.pathname.includes('/luminette')) {
-  const stylesEl = document.createElement('style');
-  stylesEl.innerHTML = stylesLuminatte;
-  document.body.appendChild(stylesEl);
+pageHandler();
 
-  initLuminatte();
-} else {
-  const stylesEl = document.createElement('style');
-  stylesEl.innerHTML = styles;
-  document.body.appendChild(stylesEl);
+function pageHandler() {
+  if (!document.body) {
+    setTimeout(() => {
+      pageHandler();
+    }, 500);
+    return false;
+  }
+  if (location.pathname.includes('/luminette')) {
+    const stylesEl = document.createElement('style');
+    stylesEl.innerHTML = stylesLuminatte;
+    document.body.appendChild(stylesEl);
 
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
-  document.body.appendChild(sliderStyles);
+    initLuminatte();
+  } else {
+    const stylesEl = document.createElement('style');
+    stylesEl.innerHTML = styles;
+    document.body.appendChild(stylesEl);
 
-  let sliderScript = document.createElement('script');
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
-  document.body.append(sliderScript);
+    const sliderStyles = document.createElement('link');
+    sliderStyles.rel = 'stylesheet';
+    sliderStyles.href =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+    document.body.appendChild(sliderStyles);
 
-  init();
+    let sliderScript = document.createElement('script');
+    sliderScript.src =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+    document.body.append(sliderScript);
+
+    init();
+  }
 }
 
 function initLuminatte() {
