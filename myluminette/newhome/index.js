@@ -101,7 +101,7 @@ const styles = `
       left: -10vw;
     }
   }
-  @media (max-width: 1170) and (min-width: 1000px) {
+  @media (max-width: 1170px) and (min-width: 1000px) {
     .lav-jumb__image img {
       left: -10vw;
       max-width: 62%;
