@@ -293,6 +293,10 @@ const styles = `
     cursor: pointer;
   }
 
+  .splide__pagination__page {
+    cursor: pointer;
+  }
+
   .lav-transform__info {
     max-width: 430px;
     margin-bottom: 50px;
@@ -2384,10 +2388,7 @@ const stylesLuminatte = `
   }
 }
 `;
-let script = document.createElement('script');
-script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
-script.async = false;
-document.head.appendChild(script);
+
 const luminatteJumb = `
   <div class='container lav-jumb__container'>
     <div class='lav-jumb__image'>
