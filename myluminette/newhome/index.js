@@ -63,7 +63,8 @@ const styles = `
     display: none;
   }
   .home-page {
-    background-color: #fff;a
+    // background-color: #fff;
+    background: linear-gradient(180deg, #F3F5F9 52.08%, #FFFFFF 100%);
   }
   .lav-wrap {
     color: #517193;
@@ -95,9 +96,15 @@ const styles = `
     position: absolute;
     left: 0;
   }
-  @media (max-width: 1319px) and (min-width: 1124px) {
+  @media (max-width: 1319px) and (min-width: 1170px) {
     .lav-jumb__image img {
       left: -10vw;
+    }
+  }
+  @media (max-width: 1170) and (min-width: 1000px) {
+    .lav-jumb__image img {
+      left: -10vw;
+      max-width: 62%;
     }
   }
   .lav-jumb__info {
@@ -283,6 +290,7 @@ const styles = `
 
   .splide__pagination li {
     line-height: 0;
+    cursor: pointer;
   }
 
   .lav-transform__info {
@@ -491,6 +499,9 @@ const styles = `
   .lav-users {
     text-align: center;
     position: relative;
+  }
+  .lav-users__image {
+    max-width: 100%;
   }
   .lav-users__title {
     position: absolute;
@@ -1125,6 +1136,10 @@ const styles = `
       text-align: center;
       color: #fff;
       margin-bottom: 40px;
+      text-shadow: 1px 1px 2px black;
+    }
+    .lav-trial__btn span {
+      font-size: 14px;
     }
     .lav-jumb__rate {
       flex-flow: column-reverse;
@@ -2270,8 +2285,109 @@ const stylesLuminatte = `
   background: linear-gradient(1deg, #e7ecf2 40%, rgba(243, 245, 249, 0) 70%);
   pointer-events: none;
 }
+[id^=trustbadge-container] {
+  display: none;
+}
+.lav-jumb__image-mob {
+  display: none;
+}
+@media (max-width: 1400px) { 
+  .lav-jumb__image img {
+    left: -10vw;
+  }
+}
+@media (max-width: 1200px) { 
+  .lav-jumb__image img {
+    left: -20vw;
+  }
+}
+@media (max-width: 768px) { 
+  .lav-jumb__info {
+    text-align: center;
+    width: 100%;
+  }
+  .lav-jumb__image-mob {
+    margin-top: -10px;
+    margin-bottom: -40px;
+    display: block;
+  }
+  .lav-jumb__image {
+    display: none;
+  }
+  .lav-jumb__caption {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .lav-jumb__title {
+    font-size: 40px;
+    line-height: 1;
+    margin-top: 4px;
+  }
+  .lav-jumb__rate {
+    margin-top: 0;
+    flex-flow: column-reverse;
+  }
+  .lav-jumb__rate-caption {
+    margin-right: 0;
+    margin-top: 14px;
+  }
+  .lav-jumb__buttons {
+    justify-content: center;
+  }
+  .lav-jumb__btn, .lav-trials__btn {
+    padding: 12px 15px;
+    flex-grow: 1;
+    justify-content: center;
+  }
+  .lav-jumb__actions {
+    display: block;
+  }
+  .lav-jumb__buy {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  .lav-jumb__container {
+    padding-bottom: 36px;
+  }
+  .section-main:before {
+    background: linear-gradient(1deg, #e7ecf2 70%, rgba(243, 245, 249, 0) 100%);
+  }
+  .lav-modal__inner {
+    max-width: 93%;
+    width: 100%;
+    padding: 48px 24px 24px;
+  }
+  .lav-modal__close {
+    top: 12px;
+    right: 12px;
+  }
+  .lav-modal {
+    padding: 12px;
+    z-index: 9999;
+  }
+  .lav-test__btn.btn-primary {
+    min-height: 56px;
+  }
+  .lav-whatis-modal, .lav-review-modal {
+    max-width: 93%;
+    padding: 0;
+  }
+  .lav-review-modal iframe, .lav-whatis-modal iframe {
+    max-width: 100%;
+  }
+  .lav-jumb__btn span {
+    font-size: 14px;
+  }
+  .lav-jumb__btn img {
+    margin-right: 6px;
+    width: 20px;
+  }
+}
 `;
-
+let script = document.createElement('script');
+script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
+script.async = false;
+document.head.appendChild(script);
 const luminatteJumb = `
   <div class='container lav-jumb__container'>
     <div class='lav-jumb__image'>
@@ -2281,6 +2397,10 @@ const luminatteJumb = `
     <div class='lav-jumb__info'>
       <div class='lav-jumb__caption'>Luminette Light Therapy</div>
       <div class='lav-jumb__title'>Turn on the sun & smile again</div>
+
+      <div class='lav-jumb__image-mob'>
+        <img src='${settings.dir}/img/jumb-luminette-mob.png' />
+      </div>
 
       <div class='lav-jumb__rate'>
         <div class='lav-jumb__rate-caption'>Luminette 3</div>
@@ -2433,6 +2553,13 @@ if (location.pathname.includes('/luminette')) {
 }
 
 function initLuminatte() {
+  if (!document.querySelector('.section-main .container + div')) {
+    setTimeout(() => {
+      initLuminatte();
+    }, 500);
+    return false;
+  }
+
   let lang = detectLang();
   console.log('init Luminatte');
 
@@ -2821,6 +2948,10 @@ function openModal(selector) {
 }
 
 function closeModal() {
+  if (document.querySelector('.lav-modal__inner.active iframe')) {
+    document.querySelector('.lav-modal__inner.active iframe').src =
+      document.querySelector('.lav-modal__inner.active iframe').src;
+  }
   document.querySelector('.lav-modal__inner.active').classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-modal.active').classList.remove('active');
@@ -3082,6 +3213,8 @@ function initTranslateMain(lang) {
 
     document.querySelector('.lav-users__title').innerHTML =
       'Plus de <span>150 000</span> utilisateurs de la Luminette';
+    document.querySelector('.lav-users__title-mob').innerHTML =
+      '<span>150k+</span> utilisateurs de la Luminette';
     document.querySelector('.lav-reviews__title').innerText =
       'Avis des utilisateurs';
     document.querySelector(
