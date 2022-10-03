@@ -2534,7 +2534,7 @@ function pageHandler() {
   if (!document.body) {
     setTimeout(() => {
       pageHandler();
-    }, 500);
+    }, 200);
     return false;
   }
   if (location.pathname.includes('/luminette')) {
