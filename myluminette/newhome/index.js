@@ -2302,30 +2302,24 @@ const stylesLuminatte = `
   position: relative;
 }
 .section-main:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  background: linear-gradient(1deg, #e7ecf2 50%, rgba(243, 245, 249, 0) 70%);
-  pointer-events: none;
+  // content: '';
+  // position: absolute;
+  // left: 0;
+  // bottom: 0;
+  // top: 0;
+  // right: 0;
+  // background: linear-gradient(1deg, #e7ecf2 50%, rgba(243, 245, 249, 0) 70%);
+  // pointer-events: none;
+}
+.lum-page .section-main:after{
+  height: 763px;
+  background: linear-gradient(0, rgba(255, 255, 255, 0) 77%, #406184 100%);
 }
 [id^=trustbadge-container] {
   display: none;
 }
 .lav-jumb__image-mob {
   display: none;
-}
-@media (max-width: 1400px) { 
-  .lav-jumb__image img {
-    left: -10vw;
-  }
-}
-@media (max-width: 1200px) { 
-  .lav-jumb__image img {
-    left: -20vw;
-  }
 }
 @media (max-width: 768px) { 
   .lav-jumb__info {
