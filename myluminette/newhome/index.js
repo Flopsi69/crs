@@ -89,12 +89,13 @@ const styles = `
     justify-content: space-between;
   }
   .lav-jumb__image {
+    pointer-events: none;
     line-height: 0;
-    margin-top: -35px;
+    margin-top: -60px;
   }
   .lav-jumb__image img {
     position: absolute;
-    left: 0;
+    left: -5vw;
   }
   @media (max-width: 1319px) and (min-width: 1170px) {
     .lav-jumb__image img {
@@ -108,12 +109,12 @@ const styles = `
     }
   }
   .lav-jumb__info {
-    width: 480px;
+    width: 644px;;
   }
   .lav-jumb__title {
     font-weight: 700;
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 56px;
+    line-height: 56px;
     align-items: center;
     letter-spacing: 0.01em;
   }
@@ -509,7 +510,7 @@ const styles = `
   }
   .lav-users__title {
     position: absolute;
-    bottom: 96px;
+    bottom: 70px;
     left: 0;
     right: 0;
     margin: auto;
@@ -1620,7 +1621,7 @@ const newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe src="https://drive.google.com/file/d/1a8GhGugtQ0T6uNtHNq9cz6ccqk8OVtdS/preview" width="680" height="450" allow="autoplay" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?start=0&showinfo=0&autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -1832,8 +1833,8 @@ const newPage = `
   <div class='lav-users'>
     <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
     <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
-    <div class='lav-users__title-mob'><span>150k+</span> Luminette users</div>
-    <div class='lav-users__title'><span>150,000</span> Luminette users</div>
+    <div class='lav-users__title-mob container'><span>150k+</span> Luminette users</div>
+    <div class='lav-users__title container'><span>150,000</span> Luminette users</div>
   </div>
 
   <div class='lav-reviews'>
@@ -1985,7 +1986,7 @@ const newPage = `
     <div class='lav-drive__caption'>Discover our new product</div>
     <div class='lav-drive__title'>Drive</div>
     <img class='lav-drive__device' src='${settings.dir}/img/drive-device.png' />
-    <div class='lav-drive__bg'>
+    <div class='lav-drive__bg container'>
       <div class='lav-drive__bg-title'>Benefit from light therapy while driving</div>
 
       <div div class='lav-drive__actions'>
@@ -2029,8 +2030,8 @@ const stylesLuminatte = `
 }
 .lav-jumb__title {
   font-weight: 700;
-  font-size: 64px;
-  line-height: 64px;
+  font-size: 56px;
+  line-height: 56px;
   align-items: center;
   letter-spacing: 0.01em;
   margin-top: 8px;
@@ -3046,7 +3047,7 @@ function initDelivery(lang) {
         settings.dir + '/img/reviews-video-fr.jpg';
 
       document.querySelector('.lav-review-modal iframe').src =
-        'https://drive.google.com/file/d/1vVFJxbXciqfaz1GT4eNSUAutCw7iHduP/preview';
+        'https://www.youtube.com/embed/JcnfVN5iswE?start=0&showinfo=0&autoplay=0&rel=0';
     }
   }
 
