@@ -1245,7 +1245,7 @@ const styles = `
       background-color: #C4C4C4;
       border-radius: 8px;
       filter: none;
-      box-shadow: 0px 24px 66px rgb(59 83 108 / 24%)
+      box-shadow: 0px 24px 66px rgb(59 83 108 / 24%);
       // filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
     }
     .lav-benefit:first-child {
