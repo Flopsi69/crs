@@ -1602,7 +1602,7 @@ const newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ" title="Luminette® Glasses 3 - Light therapy glasses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?start=0&showinfo=0&autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
 
@@ -2384,9 +2384,6 @@ const stylesLuminatte = `
     max-width: 93%;
     padding: 0;
   }
-  .lav-review-modal iframe, .lav-whatis-modal iframe {
-    max-width: 100%;
-  }
   .lav-jumb__btn span {
     font-size: 14px;
   }
@@ -2521,14 +2518,6 @@ const luminatteJumb = `
         <img src='${settings.dir}/img/delivery-methods.png'>
         <div class='lav-delivery__descr'>Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</div>
       </div>
-    </div>
-
-    <div class='lav-modal__inner lav-whatis-modal'>
-      <div class='lav-modal__close'>
-        <img src='${settings.dir}/img/modal-close.svg'>
-      </div>
-
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?start=0&showinfo=0&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 `;
@@ -2960,7 +2949,7 @@ function initModals() {
 
   if (detectLang() == 'fr') {
     document.querySelector('.lav-whatis-modal iframe').src =
-      'https://www.youtube.com/embed/rnpVhWWRUDI?start=0&showinfo=0&autoplay=1&rel=0';
+      'https://www.youtube.com/embed/rnpVhWWRUDI?start=1&showinfo=0&autoplay=0&rel=0';
   }
 }
 
@@ -2973,14 +2962,15 @@ function openModal(selector) {
   if (selector.querySelector('iframe')) {
     selector.querySelector('iframe').src = selector
       .querySelector('iframe')
-      .src.replace('start=0', 'start=1');
+      .src.replace('autoplay=0', 'autoplay=1');
   }
 }
 
 function closeModal() {
   if (document.querySelector('.lav-modal__inner.active iframe')) {
-    document.querySelector('.lav-modal__inner.active iframe').src =
-      document.querySelector('.lav-modal__inner.active iframe').src;
+    document.querySelector('.lav-modal__inner.active iframe').src = document
+      .querySelector('.lav-modal__inner.active iframe')
+      .src.replace('autoplay=1', 'autoplay=0');
   }
   document.querySelector('.lav-modal__inner.active').classList.remove('active');
   setTimeout(() => {
