@@ -1114,6 +1114,9 @@ const styles = `
     display: none;
   }
   @media (max-width: 768px) {
+    .home-page {
+      background: #fff;
+    }
     .lav-whatis__placeholder {
       display: none;
       width: 100%;
