@@ -89,24 +89,14 @@ const styles = `
     justify-content: space-between;
   }
   .lav-jumb__image {
-    pointer-events: none;
     line-height: 0;
     margin-top: -60px;
+    position: relative;
+    flex-grow: 1;
   }
   .lav-jumb__image img {
     position: absolute;
-    left: -5vw;
-  }
-  @media (max-width: 1319px) and (min-width: 1170px) {
-    .lav-jumb__image img {
-      left: -10vw;
-    }
-  }
-  @media (max-width: 1170px) and (min-width: 1000px) {
-    .lav-jumb__image img {
-      left: -10vw;
-      max-width: 62%;
-    }
+    right: -50px;
   }
   .lav-jumb__info {
     width: 644px;;
@@ -593,6 +583,13 @@ const styles = `
     max-height: 168px;
     overflow-y: auto;
   }
+  @media(max-width: 1400px) {
+    .lav-review__text {
+      max-height: auto;
+      min-height: 195px;
+      max-height: 195px;
+    }
+  }
 
   .lav-review__text + .lav-review__text {
     padding-bottom: 20px;
@@ -852,16 +849,23 @@ const styles = `
     margin-top: 32px;
   }
   .lav-drive__bg {
-    background: url(${settings.dir}/img/drive.jpeg) top no-repeat;
-    background-size: cover;
+    background: url(${settings.dir}/img/drive.jpeg) bottom no-repeat;
+    background-size: contain;
+    max-width: 1324px;
   }
   .lav-drive__bg-title {
     max-width: 475px;
-    padding: 450px 0 180px;
+    padding: 440px 0 160px;
     margin-left: auto;
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 56px;
+    line-height: 56px;
     font-weight: bold;
+    margin-right: 40px;
+  }
+  @media(max-width: 1275px) {
+    .lav-drive__bg-title {
+      padding: 460px 0 100px;
+    }
   }
   .lav-drive__actions {
     text-align: center;
@@ -880,10 +884,10 @@ const styles = `
     opacity: 0.7;
   }
   .lav-drive__device {
-    width: 57%;
+    width: 850px;
     display: block;
-    margin: -50px auto -120px;
-    padding-left: 5%;
+    margin: -40px auto -150px;
+    padding-left: 75px;
   }
   .lav-modal {
     position: fixed;
@@ -2017,11 +2021,17 @@ const stylesLuminatte = `
 }
 .lav-jumb__image {
   line-height: 0;
-  margin-top: 70px;
+  margin-top: 0;
+  position: relative;
+  flex-grow: 1;
+}
+.lum-page .section-main {
+  background: url(${settings.dir}/img/jumb-bg-girl.jpg) top no-repeat;
+  background-size: contain;
 }
 .lav-jumb__image img {
   position: absolute;
-  left: 0;
+  right: -50px;
 }
 .lav-jumb__info {
   position: relative;
@@ -2298,7 +2308,7 @@ const stylesLuminatte = `
   bottom: 0;
   top: 0;
   right: 0;
-  background: linear-gradient(1deg, #e7ecf2 40%, rgba(243, 245, 249, 0) 70%);
+  background: linear-gradient(1deg, #e7ecf2 50%, rgba(243, 245, 249, 0) 70%);
   pointer-events: none;
 }
 [id^=trustbadge-container] {
