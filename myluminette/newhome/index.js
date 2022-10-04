@@ -813,6 +813,10 @@ const styles = `
   .lav-trial__actions {
     text-align: center;
   }
+  .lav-trials__btn.btn-primary {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
   .lav-trial__learn {
     font-weight: 500;
     font-size: 18px;
@@ -924,12 +928,14 @@ const styles = `
     line-height: 0;
     padding: 0;
     max-width: 90%;
+    background: transparent;
   }
   .lav-review-modal {
-    padding: 10px;
+    // padding: 10px;
   }
   .lav-review-modal iframe {
     // max-width: 400px;
+    border: none;
   }
   .lav-modal__title {
     font-size: 24px;
@@ -1038,7 +1044,7 @@ const styles = `
     min-width: 230px;
     margin: auto;
     display: block;
-    padding: 5px 20px;
+    padding: 5px 40px;
     font-size: 18px;
     line-height: 28px;
   }
@@ -1501,6 +1507,9 @@ const styles = `
     }
     .lav-test__btn.btn-primary {
       min-height: 56px;
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
     }
     .lav-whatis-modal, .lav-review-modal {
       max-width: 93%;
@@ -1611,7 +1620,7 @@ const newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe src="https://drive.google.com/file/d/1a8GhGugtQ0T6uNtHNq9cz6ccqk8OVtdS/preview" width="680" height="450" allow="autoplay"></iframe>
+      <iframe src="https://drive.google.com/file/d/1a8GhGugtQ0T6uNtHNq9cz6ccqk8OVtdS/preview" width="680" height="450" allow="autoplay" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -2005,12 +2014,6 @@ const stylesLuminatte = `
   position: static!important;
   padding-bottom: 96px;
 }
-.lum-page .section-main {
-
-}
-.lav-france .lav-jumb__actions .btn-text{
-  font-size: 16px;
-}
 .lav-jumb__image {
   line-height: 0;
   margin-top: 70px;
@@ -2248,7 +2251,7 @@ const stylesLuminatte = `
   min-width: 230px;
   margin: auto;
   display: block;
-  padding: 5px;
+  padding: 5px 40px;
   font-size: 18px;
   line-height: 28px;
 }
@@ -2379,6 +2382,9 @@ const stylesLuminatte = `
   }
   .lav-test__btn.btn-primary {
     min-height: 56px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .lav-whatis-modal, .lav-review-modal {
     max-width: 93%;
@@ -2812,6 +2818,7 @@ function init() {
       e.preventDefault();
       gaEvent('Read the study', 'An independent study');
       let el = document.createElement('a');
+      el.target = '_blank';
       el.href =
         'https://d3sq5glv6xow4l.cloudfront.net/docs/Light_therapy_with_boxes_or_glasses_to_counteract_.pdf';
       el.click();
@@ -2947,7 +2954,10 @@ function initModals() {
       });
   }
 
-  if (detectLang() == 'fr') {
+  if (
+    detectLang() == 'fr' &&
+    document.querySelector('.lav-whatis-modal iframe')
+  ) {
     document.querySelector('.lav-whatis-modal iframe').src =
       'https://www.youtube.com/embed/rnpVhWWRUDI?start=1&showinfo=0&autoplay=0&rel=0';
   }
@@ -3121,7 +3131,7 @@ function initTranslateMain(lang) {
   console.log('init translate', lang);
   if (lang == 'fr') {
     document.querySelector('.lav-jumb__title').innerText =
-      'Combattez votre blues hivernal et vos troubles du sommeil';
+      'Dites au revoir au blues hivernal. Régulez votre sommeil.';
 
     document.querySelector('.lav-plate__title').innerText =
       "C'est quoi la Luminette ?";
