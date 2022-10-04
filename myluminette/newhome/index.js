@@ -537,8 +537,9 @@ const styles = `
   .lav-review {
     position: relative;
     overflow: hidden;
-    filter: drop-shadow(0px 11px 22px rgba(59, 83, 108, 0.88));
-    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    box-shadow: 0px 11px 22px rgba(59, 83, 108, 0.88);
+    // background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    background: #F8F9FA;
     border-radius: 16px;
     padding: 24px;
     color: #517193;
