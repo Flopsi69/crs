@@ -852,7 +852,7 @@ const styles = `
     margin-top: 32px;
   }
   .lav-drive__bg {
-    background: url(${settings.dir}/img/drive.jpg) top no-repeat;
+    background: url(${settings.dir}/img/drive.jpeg) top no-repeat;
     background-size: cover;
   }
   .lav-drive__bg-title {
