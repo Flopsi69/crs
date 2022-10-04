@@ -2528,7 +2528,7 @@ const luminatteJumb = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ" title="Luminette® Glasses 3 - Light therapy glasses" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?start=0&showinfo=0&autoplay=1&rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 `;
@@ -2957,6 +2957,11 @@ function initModals() {
         location.href = location.href.replace('/luminette', '/buy?product=4');
       });
   }
+
+  if (detectLang() == 'fr') {
+    document.querySelector('.lav-whatis-modal iframe').src =
+      'https://www.youtube.com/embed/rnpVhWWRUDI?start=0&showinfo=0&autoplay=1&rel=0';
+  }
 }
 
 function openModal(selector) {
@@ -2964,6 +2969,12 @@ function openModal(selector) {
   setTimeout(() => {
     selector.classList.add('active');
   }, 400);
+
+  if (selector.querySelector('iframe')) {
+    selector.querySelector('iframe').src = selector
+      .querySelector('iframe')
+      .src.replace('start=0', 'start=1');
+  }
 }
 
 function closeModal() {
