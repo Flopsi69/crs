@@ -1244,7 +1244,9 @@ const styles = `
       justify-content: center;
       background-color: #C4C4C4;
       border-radius: 8px;
-      filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
+      filter: none;
+      box-shadow: 0px 24px 66px rgb(59 83 108 / 24%)
+      // filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
     }
     .lav-benefit:first-child {
       background-position: right;
@@ -1292,7 +1294,9 @@ const styles = `
       margin-left: -12px;
       margin-right: -12px;
       padding: 24px;
-      filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
+      filter: none;
+      box-shadow: 0px 24px 66px rgb(59 83 108 / 44%);
+      // filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
     }
     .lav-benefits2__list {
       margin-top: 24px;
@@ -1352,7 +1356,7 @@ const styles = `
     .lav-reviews {
       padding: 24px 0 12px;
       background: #517193;
-      box-shadow: 0px 44px 66px rgb(59 83 108 / 44%);
+      box-shadow: 0px 44px 66px rgb(59 83 108 / 24%);
     }
     .lav-reviews__list {
       margin-top: 24px;
