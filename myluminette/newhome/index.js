@@ -1146,6 +1146,9 @@ const styles = `
     .lav-whatis__placeholder-mob {
       display: block;
     }
+    .lav-jumb__image {
+      margin-top: 0;
+    }
     .lav-jumb__image img {
       position: static;
       max-width: 100%;
@@ -1161,11 +1164,8 @@ const styles = `
     }
     .lav-jumb__title {
       font-size: 40px;
-      line-height: 1.1;
+      line-height: 1;
       text-align: center;
-      color: #fff;
-      margin-bottom: 40px;
-      text-shadow: 1px 1px 2px black;
     }
     .lav-trial__btn span {
       font-size: 14px;
