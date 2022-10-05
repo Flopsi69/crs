@@ -1501,8 +1501,8 @@ const styles = `
     .lav-drive__bg {
       background: url(${settings.dir}/img/drive-mob.png) bottom no-repeat;
       background-size: cover;
-      background-position: 31% 0;
-      margin-top: -25%;
+      // background-position: 31% 0;
+      // margin-top: -25%;
     }
     .lav-reviews__placeholder {
       width: 100%;
