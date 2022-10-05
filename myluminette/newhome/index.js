@@ -2034,7 +2034,7 @@ const stylesLuminatte = `
 }
 .lum-page .section-main {
   background: url(${settings.dir}/img/jumb-bg-girl.jpg) top no-repeat;
-  background-size: 1640px auto;;
+  background-size: 1640px auto;
 }
 .lav-jumb__image img {
   position: absolute;
@@ -2318,9 +2318,15 @@ const stylesLuminatte = `
   // background: linear-gradient(1deg, #e7ecf2 50%, rgba(243, 245, 249, 0) 70%);
   // pointer-events: none;
 }
+.lum-page .section-main {
+  padding-top: 247px;
+  background: url(${settings.dir}/img/jumb-bg-girl-mob.png) top no-repeat;
+  background-size: 100% auto;
+}
 .lum-page .section-main:after{
   height: 763px;
   background: linear-gradient(0, rgba(255, 255, 255, 0) 77%, #406184 100%);
+  pointer-events: none;
 }
 [id^=trustbadge-container] {
   display: none;
