@@ -786,7 +786,9 @@ const styles = `
     font-size: 16px;
     line-height: 1;
     font-weight: bold;
-    padding: 15px 24px;
+    padding: 15px 10px;
+    flex-grow: 1;
+    justify-content: center;
     border: 1px solid rgba(81, 113, 147, 15%);
     border-radius: 36px;
     transition: 0.35s;
@@ -2035,7 +2037,7 @@ const stylesLuminatte = `
 }
 .lum-page .section-main {
   background: url(${settings.dir}/img/jumb-bg-girl.jpg) top no-repeat;
-  background-size: contain;
+  background-size: 1640px auto;;
 }
 .lav-jumb__image img {
   position: absolute;
