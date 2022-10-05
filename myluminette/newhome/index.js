@@ -1190,7 +1190,7 @@ const styles = `
     }
     .lav-plate {
       padding: 16px;
-      margin: 0 4px -16px;
+      margin: 0 0 -16px;
     }
     .lav-plate__title {
       font-size: 36px;
@@ -1201,7 +1201,7 @@ const styles = `
       line-height: 36px;
     }
     .lav-plate__descr {
-      line-height: 28px;
+      line-height: 24px;
     }
     .lav-whatis__preview {
       margin: 0 -12px;
@@ -1623,7 +1623,7 @@ const newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?start=0&showinfo=0&autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
 
@@ -1632,7 +1632,7 @@ const newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?start=0&showinfo=0&autoplay=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -1813,14 +1813,14 @@ const newPage = `
         <div class='lav-works__info'>
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
-            <div class='lav-works__item-descr active'>Luminette® uses a patented in...</div>
+            <div class='lav-works__item-descr active'>Luminette® uses a patented...</div>
             <div class='lav-works__item-descr'>Luminette® uses a patented innovative optical technology: placed above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allows users to keep their vision free.</div>
             <div class='lav-works__item-trigger lav-works__item-trigger-first'>Show more</div>
           </div>
 
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
-            <div class='lav-works__item-descr active'>Luminette® emits a safe blue-...</div>
+            <div class='lav-works__item-descr active'>Luminette® emits a safe...</div>
             <div class='lav-works__item-descr'>Luminette® emits a safe blue-enriched white light peaked at 468 nm. This wavelength is proven to be the most effective at triggering the body's positive response to sunlight. Luminette LED’s have been specifically selected to avoid light close to UV.</div>
             <div class='lav-works__item-trigger lav-works__item-trigger-second'>Show more</div>
           </div>
@@ -3014,7 +3014,7 @@ function initModals() {
     document.querySelector('.lav-whatis-modal iframe')
   ) {
     document.querySelector('.lav-whatis-modal iframe').src =
-      'https://www.youtube.com/embed/rnpVhWWRUDI?start=1&showinfo=0&autoplay=0&rel=0';
+      'https://www.youtube.com/embed/rnpVhWWRUDI?autoplay=0&start=1&showinfo=0&rel=0';
   }
 }
 
@@ -3101,7 +3101,7 @@ function initDelivery(lang) {
         settings.dir + '/img/reviews-video-fr.jpg';
 
       document.querySelector('.lav-review-modal iframe').src =
-        'https://www.youtube.com/embed/JcnfVN5iswE?start=0&showinfo=0&autoplay=0&rel=0';
+        'https://www.youtube.com/embed/JcnfVN5iswE?autoplay=0&start=0&showinfo=0&rel=0';
     }
   }
 
