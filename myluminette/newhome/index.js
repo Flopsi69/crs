@@ -2318,11 +2318,6 @@ const stylesLuminatte = `
   // background: linear-gradient(1deg, #e7ecf2 50%, rgba(243, 245, 249, 0) 70%);
   // pointer-events: none;
 }
-.lum-page .section-main {
-  padding-top: 247px;
-  background: url(${settings.dir}/img/jumb-bg-girl-mob.png) top no-repeat;
-  background-size: 100% auto;
-}
 .lum-page .section-main:after{
   height: 763px;
   background: linear-gradient(0, rgba(255, 255, 255, 0) 77%, #406184 100%);
@@ -2335,6 +2330,16 @@ const stylesLuminatte = `
   display: none;
 }
 @media (max-width: 768px) { 
+  .lum-page .section-main {
+    padding-top: 247px;
+    background: url(${settings.dir}/img/jumb-bg-girl-mob.png) top no-repeat;
+    background-size: 100% auto;
+  }
+  .lum-page .section-main:after {
+    height: 375px;
+    background: linear-gradient(0, rgba(255, 255, 255, 0) 77%, #406184 100%);
+    pointer-events: none;
+  }
   .lav-jumb__info {
     text-align: center;
     width: 100%;
