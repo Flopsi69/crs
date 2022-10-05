@@ -1495,8 +1495,7 @@ const styles = `
       text-align: center;
       padding-top: 380px;
       padding-bottom: 24px;
-      padding-left: 16px;
-      padding-right: 16px;
+      margin-right: 0;
     }
     .lav-drive__bg {
       background: url(${settings.dir}/img/drive-mob.png) bottom no-repeat;
