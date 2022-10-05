@@ -1500,6 +1500,7 @@ const styles = `
       margin-right: 0;
     }
     .lav-drive__bg {
+      
       background: none;
     }
     .lav-reviews__placeholder {
