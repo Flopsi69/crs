@@ -2615,6 +2615,41 @@ function init() {
     return false;
   }
 
+  setTimeout(() => {
+    let isScrolled20,
+      isScrolled40,
+      isScrolled60,
+      isScrolled80,
+      isScrolled100 = false;
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.scrollY;
+      let docHeight = document.body.offsetHeight;
+      let winHeight = window.innerHeight;
+      let scrollPercent = scrollTop / (docHeight - winHeight);
+      let scrollPercentRounded = Math.round(scrollPercent * 100);
+      if (scrollPercentRounded >= 20 && !isScrolled20) {
+        gaEvent('scroll depth', scrollPercentRounded + '%');
+        isScrolled20 = true;
+      }
+      if (scrollPercentRounded >= 40 && !isScrolled40) {
+        gaEvent('scroll depth', scrollPercentRounded + '%');
+        isScrolled40 = true;
+      }
+      if (scrollPercentRounded >= 60 && !isScrolled60) {
+        gaEvent('scroll depth', scrollPercentRounded + '%');
+        isScrolled60 = true;
+      }
+      if (scrollPercentRounded >= 80 && !isScrolled80) {
+        gaEvent('scroll depth', scrollPercentRounded + '%');
+        isScrolled80 = true;
+      }
+      if (scrollPercentRounded >= 99 && !isScrolled100) {
+        gaEvent('scroll depth', '100%');
+        isScrolled100 = true;
+      }
+    });
+  }, 1500);
+
   let lang = detectLang();
   console.log('init');
 
