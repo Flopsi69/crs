@@ -1469,7 +1469,7 @@ const styles = `
     .lav-drive {
       border-radius: 8px 8px 0 0;
       padding-top: 34px;
-      background: #34475B url(${settings.dir}/img/drive-mob.png) top no-repeat;
+      background: #34475B url(${settings.dir}/img/drive-mob.png) bottom no-repeat;
       background-size: 100% auto;
     }
     .lav-drive__actions {
