@@ -1136,9 +1136,6 @@ const styles = `
     display: none;
   }
   @media (max-width: 768px) {
-    .home-page {
-      background: #fff;
-    }
     .lav-whatis__placeholder {
       display: none;
       width: 100%;
@@ -1147,7 +1144,7 @@ const styles = `
       display: block;
     }
     .lav-jumb__image {
-      margin-top: 0;
+      margin-top: 10px;
     }
     .lav-jumb__image img {
       position: static;
@@ -1159,7 +1156,7 @@ const styles = `
       display: block;
     }
     .lav-jumb {
-      padding-top: 90px;
+      padding-top: 105px;
       padding-bottom: 48px;
     }
     .lav-jumb__title {
