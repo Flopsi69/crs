@@ -1166,6 +1166,9 @@ const styles = `
     }
     .lav-trial__btn span {
       font-size: 14px;
+      border: none;
+      text-decoration: underline;
+      text-align: left;
     }
     .lav-jumb__rate {
       flex-flow: column-reverse;
@@ -1486,7 +1489,7 @@ const styles = `
       line-height: 96px;
     }
     .lav-drive__device {
-      margin: 0 0 -40px;
+      margin: 0 0 -20px;
       padding: 0;
       width: 129vw;
       margin-left: -10vw;
