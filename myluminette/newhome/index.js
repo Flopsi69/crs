@@ -2965,6 +2965,14 @@ function initModals() {
         gaEvent('Buy', 'First screen');
         location.href = location.href.replace('/luminette', '/buy?product=4');
       });
+
+    document
+      .querySelector('.lav-test__btn')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+        gaEvent('Try it', 'Popup: You have 30 days to test Luminette');
+        location.href = location.href.replace('/luminette', '/buy?product=4');
+      });
   }
 
   if (
