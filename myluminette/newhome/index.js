@@ -98,6 +98,14 @@ const styles = `
     position: absolute;
     right: -50px;
   }
+  @media(max-width: 1400px) {
+    .lav-jumb__image img {
+      max-width: 140%;
+    }
+    .lav-jumb__image {
+      margin-top: -30px;
+    }
+  }
   .lav-jumb__info {
     width: 644px;;
   }
@@ -289,7 +297,7 @@ const styles = `
   }
 
   .lav-transform__info {
-    max-width: 430px;
+    max-width: 560px;
     margin-bottom: 50px;
   }
 
