@@ -2336,6 +2336,12 @@ const stylesLuminatte = `
     background: url(${settings.dir}/img/jumb-bg-girl-mob.png) top no-repeat;
     background-size: 100% auto;
   }
+  .lav-jumb__btn, .lav-trials__btn {
+    min-height: 56px;
+  }
+  .lav-jumb__inside {
+    display: block;
+  }
   .lum-page .section-main:after {
     height: 375px;
     background: linear-gradient(0, rgba(255, 255, 255, 0) 77%, #406184 100%);
@@ -2416,6 +2422,9 @@ const stylesLuminatte = `
   }
   .lav-jumb__btn span {
     font-size: 14px;
+    text-align: left;
+    border: none;
+    text-decoration: underline;
   }
   .lav-jumb__btn img {
     margin-right: 6px;
