@@ -1469,6 +1469,8 @@ const styles = `
     .lav-drive {
       border-radius: 8px 8px 0 0;
       padding-top: 34px;
+      background: #34475B url(${settings.dir}/img/drive-mob.png) top no-repeat;
+      background-size: 100% auto;
     }
     .lav-drive__actions {
       padding-bottom: 34px;
@@ -1498,10 +1500,7 @@ const styles = `
       margin-right: 0;
     }
     .lav-drive__bg {
-      background: url(${settings.dir}/img/drive-mob.png) bottom no-repeat;
-      background-size: cover;
-      // background-position: 31% 0;
-      // margin-top: -25%;
+      background: none;
     }
     .lav-reviews__placeholder {
       width: 100%;
