@@ -1486,7 +1486,7 @@ const styles = `
       line-height: 96px;
     }
     .lav-drive__device {
-      margin: 0;
+      margin: 0 0 -40px;
       padding: 0;
       width: 129vw;
       margin-left: -10vw;
@@ -1500,7 +1500,7 @@ const styles = `
       margin-right: 0;
     }
     .lav-drive__bg {
-      
+
       background: none;
     }
     .lav-reviews__placeholder {
