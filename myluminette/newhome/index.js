@@ -1848,7 +1848,7 @@ const newPage = `
     <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
     <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
     <div class='lav-users__title-mob container'><span>150k+</span> Luminette users</div>
-    <div class='lav-users__title container'><span>150,000</span> Luminette users</div>
+    <div class='lav-users__title container'><span>150 000</span> Luminette users</div>
   </div>
 
   <div class='lav-reviews'>
