@@ -1097,7 +1097,7 @@ const styles = `
   }
   .lav-scroll-up {
     position: fixed;
-    z-index: 10;
+    z-index: 9999;
     right: 27px;
     bottom: 90px;
     border-radius: 50%;
@@ -1914,7 +1914,7 @@ const newPage = `
       </div>
 
       <div class='lav-reviews__total'>
-        <a href='https://www.trustedshops.be/fr/evaluation/info_X5CFE61C0E26F14D751206ABEDADF025D.html' target="_blank" class='lav-reviews__total-col'>
+        <div class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-trusted.svg' />
           </div>
@@ -1925,8 +1925,8 @@ const newPage = `
             </div>
             <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
           </div>
-        </a>
-        <a href='https://www.amazon.com/New-Model-Luminette-Therapy-Glasses/dp/B07VMRRB9Y?ref_=ast_bbp_dp' target="_blank" class='lav-reviews__total-col'>
+        </div>
+        <div class='lav-reviews__total-col'>
           <div class='lav-reviews__total-image'>
             <img src='${settings.dir}/img/reviews-amazon.svg' />
           </div>
@@ -1937,7 +1937,7 @@ const newPage = `
             </div>
             <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
           </div>
-        </a>
+        </div>
       </div>
 
       <div class='lav-reviews__all'>
@@ -2866,17 +2866,17 @@ function init() {
     });
   }
 
-  document
-    .querySelector('.lav-reviews__total-col:first-child')
-    .addEventListener('click', function () {
-      gaEvent('See reviews on Trusted shops', 'Under customer reviews');
-    });
+  // document
+  //   .querySelector('.lav-reviews__total-col:first-child')
+  //   .addEventListener('click', function () {
+  //     gaEvent('See reviews on Trusted shops', 'Under customer reviews');
+  //   });
 
-  document
-    .querySelector('.lav-reviews__total-col:last-child')
-    .addEventListener('click', function () {
-      gaEvent('See reviews on Amazon', 'Under customer reviews');
-    });
+  // document
+  //   .querySelector('.lav-reviews__total-col:last-child')
+  //   .addEventListener('click', function () {
+  //     gaEvent('See reviews on Amazon', 'Under customer reviews');
+  //   });
 
   for (let item of document.querySelectorAll('.lav-review__trigger')) {
     item.addEventListener('click', function (e) {
