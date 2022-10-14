@@ -1630,7 +1630,6 @@ const newPage = `
       <iframe width="840" height="480" src="https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-
     <div class='lav-modal__inner lav-review-modal'>
       <div class='lav-modal__close'>
         <img src='${settings.dir}/img/modal-close.svg'>
@@ -1640,7 +1639,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-jumb'>
+  <div class='lav-jumb lav-section'>
     <div class='container-fluid container--size--lg lav-jumb__container'>
       <div class='lav-jumb__image'>
         <img src='${settings.dir}/img/jumb-luminette.png' />
@@ -1661,7 +1660,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-whatis'>
+  <div class='lav-whatis lav-section'>
     <div class='container-fluid container--size--lg lav-whatis__container'>
       <div class='lav-plate'>
         <div class='lav-plate__title lav-title'>What is Luminette?</div>
@@ -1680,7 +1679,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-transforms'>
+  <div class='lav-transforms lav-section'>
     <div class='container-fluid container--size--lg lav-transforms__container'>
       <div class='lav-transforms__slider splide'>
         <div class="splide__track">
@@ -1712,7 +1711,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-benefits'>
+  <div class='lav-benefits lav-section'>
     <div class='container-fluid container--size--lg lav-benefits__container'>
       <div class='lav-benefits__title lav-title'>Luminette's light therapy benefits</div>
 
@@ -1745,7 +1744,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-morning'>
+  <div class='lav-morning lav-section'>
     <div class='container-fluid container--size--lg lav-morning__container'>
       <div class='lav-morning__title lav-title'>Perfect for your morning routine</div>
       <div class='lav-morning__descr lav-descr'>Wear Luminette while brushing your teeth, eating breakfast or working on your <br /> computer - the perfect addition to any morning routine</div>
@@ -1777,7 +1776,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-benefits2'>
+  <div class='lav-benefits2 lav-section'>
     <div class='container-fluid container--size--lg lav-benefits2__container'>
       <div class='lav-benefits2__inner'>
         <div class='lav-benefits2__title lav-title'>What are the benefits?</div>
@@ -1809,7 +1808,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-works'>
+  <div class='lav-works lav-section'>
     <div class='container-fluid container--size--lg lav-works__container'>
       <div class='lav-works__title lav-title'>How Luminette works</div>
 
@@ -1845,14 +1844,14 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-users'>
+  <div class='lav-users lav-section'>
     <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
     <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
     <div class='lav-users__title-mob container'><span>150k+</span> Luminette users</div>
     <div class='lav-users__title container'><span>150 000</span> Luminette users</div>
   </div>
 
-  <div class='lav-reviews'>
+  <div class='lav-reviews lav-section'>
     <div class='container-fluid container--size--lg lav-works__container'>
       <div class='lav-reviews__title lav-title'>Customer reviews</div>
 
@@ -1960,7 +1959,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-trial'>
+  <div class='lav-trial lav-section'>
     <div class='container-fluid container--size--lg lav-trial__container'>
       <div class='lav-trial__row'>
         <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
@@ -1997,7 +1996,7 @@ const newPage = `
     </div>
   </div>
 
-  <div class='lav-drive'>
+  <div class='lav-drive lav-section'>
     <div class='lav-drive__caption'>Discover our new product</div>
     <div class='lav-drive__title'>Drive</div>
     <img class='lav-drive__device' src='${settings.dir}/img/drive-device.png' />
@@ -2599,6 +2598,60 @@ function pageHandler() {
     document.body.append(sliderScript);
 
     init();
+
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+      rootMargin: '-40%',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log(entry);
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('lav-jumb')) {
+            gaEvent('section in view', 'first section');
+          }
+          if (entry.target.classList.contains('lav-whatis')) {
+            gaEvent('section in view', 'What is Luminette?');
+          }
+          if (entry.target.classList.contains('lav-transforms')) {
+            gaEvent('section in view', 'How Luminette transforms your days?');
+          }
+          if (entry.target.classList.contains('lav-benefits')) {
+            gaEvent('section in view', "Luminette's light therapy benefits");
+          }
+          if (entry.target.classList.contains('lav-morning')) {
+            gaEvent('section in view', 'Perfect for your morning routine');
+          }
+          if (entry.target.classList.contains('lav-benefits2')) {
+            gaEvent('section in view', 'What are the benefits?');
+          }
+          if (entry.target.classList.contains('lav-works')) {
+            gaEvent('section in view', 'How Luminette works');
+          }
+          if (entry.target.classList.contains('lav-users')) {
+            gaEvent('section in view', 'Luminette users');
+          }
+          if (entry.target.classList.contains('lav-reviews')) {
+            gaEvent('section in view', 'Customer reviews');
+          }
+          if (entry.target.classList.contains('lav-trial')) {
+            gaEvent('section in view', '30 Day Light Therapy Trial');
+          }
+          if (entry.target.classList.contains('lav-drive')) {
+            gaEvent('section in view', 'Drive');
+          }
+
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    for (let section of Array.from(document.querySelectorAll('.lav-section'))) {
+      observer.observe(section);
+    }
   }
 }
 
