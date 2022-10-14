@@ -1136,6 +1136,9 @@ const styles = `
     display: none;
   }
   @media (max-width: 768px) {
+    .lav-scroll-up {
+      bottom: 170px;
+    }
     .lav-whatis__placeholder {
       display: none;
       width: 100%;
