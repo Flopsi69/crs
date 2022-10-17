@@ -2965,6 +2965,7 @@ function init() {
     .querySelector('.lav-scroll-up')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click button', 'Scroll to top');
       document
         .querySelector('.lav-wrap')
         .scrollIntoView({ behavior: 'smooth' });
