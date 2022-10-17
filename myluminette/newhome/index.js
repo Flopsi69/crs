@@ -901,7 +901,7 @@ const styles = `
   }
   .lav-modal {
     position: fixed;
-    z-index: 9999;
+    z-index: 99991;
     left: 0;
     top: 0;
     right: 0;
