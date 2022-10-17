@@ -2413,7 +2413,7 @@ const stylesLuminatte = `
   }
   .lav-modal {
     padding: 12px;
-    z-index: 9999;
+    z-index: 99991;
   }
   .lav-test__btn.btn-primary {
     min-height: 56px;
