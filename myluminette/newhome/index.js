@@ -1136,6 +1136,9 @@ const styles = `
   .lav-transform__title-mob {
     display: none;
   }
+  .lav-transform__descr {
+    min-height: 75px;
+  }
   @media (max-width: 768px) {
     .lav-scroll-up {
       bottom: 170px;
@@ -1225,6 +1228,7 @@ const styles = `
     .lav-transform__descr {
       line-height: 24px;
       margin-top: 15px;
+      min-height: auto;
     }
     .lav-transform__image img {
       max-width: 100%;
