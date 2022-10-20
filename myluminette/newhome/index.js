@@ -1243,8 +1243,8 @@ const styles = `
       line-height: 36px;
     }
     .lav-transform__image {
-      margin-left: -12px;
-      margin-right: -12px;
+      margin-left: 0;
+      margin-right: 0;
       margin-top: -60px;
     }
     .lav-whatis__preview {
