@@ -2760,8 +2760,9 @@ function init() {
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
-      let splide = new Splide('.splide', {
-        type: 'loop',
+      let splide = new Splide('.lav-transforms__slider', {
+        type: 'fade',
+        rewind: true,
         arrows: false,
       }).mount();
 
