@@ -563,7 +563,8 @@ const styles = `
   .lav-review_expand:after {
     content: "";
     position: absolute;
-    bottom: 35px;
+    // bottom: 35px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 50px;
@@ -1400,7 +1401,7 @@ const styles = `
       max-height: 200px;
     }
     .lav-review_expand:after {
-      bottom: 70px;
+      bottom: 45px;
     }
     .lav-reviews__total {
       margin-top: 32px;
@@ -2330,7 +2331,7 @@ const stylesLuminatte = `
   pointer-events: none;
 }
 [id^=trustbadge-container] {
-  display: none;
+  display: none!important;
 }
 .lav-jumb__image-mob {
   display: none;
@@ -2884,6 +2885,17 @@ function init() {
   for (let item of document.querySelectorAll('.lav-review__trigger')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      this.closest('.lav-review').classList.add('lav-review_expand');
+      this.closest('.lav-review')
+        .querySelector('.lav-review__text')
+        .classList.remove('active');
+      this.closest('.lav-review')
+        .querySelector('.lav-review__text + .lav-review__text')
+        .classList.add('active');
+
+      item.remove();
+
+      return false;
       if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
         if (detectLang() == 'fr') {
           this.innerText = 'Montrer moins';
@@ -2913,6 +2925,10 @@ function init() {
           .classList.remove('active');
       }
     });
+
+    if (window.innerWidth > 992) {
+      item.click();
+    }
   }
 
   document
