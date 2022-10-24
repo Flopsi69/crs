@@ -230,6 +230,8 @@ const styles = `
     position: absolute;
     z-index: 99;
     top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     background: #fff;
     border-radius: 8px;
     box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
@@ -250,7 +252,7 @@ const styles = `
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
+    top: 4px;
     width: 24px;
     height: 24px;
     background: url('${settings.dir}/img/paw.svg') center no-repeat;
@@ -289,8 +291,8 @@ function initPaymentPlan() {
             <div class='lav__variant-view lav-tip'>
               view full info
               <div class='lav-tip__body'>
-                <div class='lav-tip__item'>Lifetime access to Total Transformation Masterclass + 3 bonus classes</div>
-                <div class='lav-tip__item'>10-week access to an updated library of past weekly Q&A call recordings</div>
+                <div class='lav-tip__item'>Lifetime access to <span>Total Transformation Masterclass + 3 bonus classes</span></div>
+                <div class='lav-tip__item'>10-week access to an updated library of <span>past weekly Q&A call recordings</span></div>
               </div>
             </div>
           </div>
