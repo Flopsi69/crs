@@ -1,4 +1,4 @@
-let styles = /*html */ `
+let stylesHtml = /*html */ `
   <style>
     /* Hide old blocks */
     header.site-header,
@@ -968,7 +968,7 @@ initPage();
 
 function initPage() {
   // Insert HTML
-  document.head.insertAdjacentHTML('beforeend', styles);
+  document.head.insertAdjacentHTML('beforeend', stylesHtml);
 
   document
     .querySelector('.site-container')
