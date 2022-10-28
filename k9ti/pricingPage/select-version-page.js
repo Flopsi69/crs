@@ -991,12 +991,16 @@ function initPage() {
 
   // ADD libs for tip
   let scriptPopper = document.createElement('script');
-  scriptPopper.src = 'https://unpkg.com/popper.js@1';
+  // scriptPopper.src = 'https://unpkg.com/popper.js@1';
+  scriptPopper.src =
+    'https://unpkg.com/popper.js@1.16.1/dist/umd/popper.min.js';
   scriptPopper.async = false;
   document.body.appendChild(scriptPopper);
 
   let scriptTippy = document.createElement('script');
-  scriptTippy.src = 'https://unpkg.com/tippy.js@5';
+  // scriptTippy.src = 'https://unpkg.com/tippy.js@5';
+  scriptTippy.src =
+    'https://unpkg.com/tippy.js@5.2.1/dist/tippy-bundle.iife.min.js';
   scriptTippy.async = false;
   document.body.appendChild(scriptTippy);
 
