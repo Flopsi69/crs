@@ -281,10 +281,7 @@ const styles = `
     .plan__view .tip__body {
       top: initial;
       transform: translateX(-50%) translateY(10px);
-      width: 92.5%;
-    }
-    .plan:nth-child(2) {
-      position: static;
+      width: 92.5vw;
     }
     .choose__table .plan:first-child .tip__body:before {
       left: 16%;
