@@ -224,6 +224,7 @@ let stylesHtml = /*html */ `
       width: 100%;
       border-collapse: separate;
       border-spacing: 8px 0;
+      position: relative
     }
 
     .plans__table thead {
@@ -595,6 +596,7 @@ let stylesHtml = /*html */ `
       }
       .plans__table {
         border-spacing: 0;
+        position: relative;
       }
       .plans__table th:nth-child(2) {
         border-radius: 10px 0px 0px 10px;
@@ -604,7 +606,7 @@ let stylesHtml = /*html */ `
       }
       .plans__table td:first-child {
         position: absolute;
-        top: 0;
+        // top: 0;
         left: 0;
         right: 0;
         z-index: 1;
