@@ -41,7 +41,7 @@ const styles = `
     border: 1px solid #DFE8F0;
   }
   .plan.active {
-    position: relative;
+    // position: relative;
     z-index: 1;
     background: #F9FCFF;
     border-color: #1D3871;
@@ -252,6 +252,17 @@ const styles = `
   .payment_inform_box li > div table thead tr th:not(:first-child) {
     width: 80px;
   }
+  @media(max-width: 1300px) and (min-width: 768px){
+    .choose__plan:last-child  .tip__body {
+      left: initial;
+      right: 0;
+      transform: none;
+    }
+
+    .choose__plan:last-child .tip__body:before {
+      left: 74%;
+    }
+  }
   @media(max-width: 768px) {
     .plan {
       padding: 12px 8px;
@@ -270,6 +281,10 @@ const styles = `
     .plan__view .tip__body {
       top: initial;
       transform: translateX(-50%) translateY(10px);
+      width: 92.5%;
+    }
+    .plan:nth-child(2) {
+      position: static;
     }
     .choose__table .plan:first-child .tip__body:before {
       left: 16%;
