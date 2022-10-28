@@ -262,7 +262,7 @@ let stylesHtml = /*html */ `
       position: relative;
     }
 
-    .plans__table tbody tr::after {
+    .plans__table tbody tr:not(:last-child)::after {
       position: absolute;
       content: "";
       left: 0;
@@ -506,6 +506,19 @@ let stylesHtml = /*html */ `
       header {
         margin: 5px auto 20px;
       }
+
+      .plans__table tr:nth-child(4) td {
+        border-radius: 0;
+      }
+
+      .plans__table tbody tr:last-child::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 8px;
+        bottom: 0;
+        border-bottom: 1px solid #dfe8f0;
+      }  
 
       /* inform_wrapp */
       .notify {
