@@ -456,6 +456,13 @@ function initPaymentPlans() {
 
   // Add plan name to th (summary table)
   addSummaryTitle();
+
+  document
+    .querySelector('.payment_order')
+    .insertAdjacentElement(
+      'beforebegin',
+      document.querySelector('.paymen_method')
+    );
 }
 
 function initTips() {
