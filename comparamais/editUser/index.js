@@ -70,8 +70,6 @@ if (settings.observe) {
           node.querySelector('.hls-simulator__button').click();
           init();
         }
-
-        // Code Here
       }
     }
   });
