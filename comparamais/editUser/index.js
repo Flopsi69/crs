@@ -562,7 +562,6 @@ function changeCardView() {
                 .insertAdjacentElement('beforebegin', imgEl);
             }
 
-            // setTimeout(() => {
             if (document.querySelector('.capture-form .alert strong')) {
               document.querySelector('.capture-form .alert strong').innerText =
                 'Parabéns!';
@@ -570,8 +569,17 @@ function changeCardView() {
                 'Está um passo mais perto de conseguir o seu crédito. Vamos ligar-lhe brevemente com mais informações sobre como conseguir a melhor oferta do banco ' +
                 bank +
                 '!';
+            } else {
+              setTimeout(() => {
+                document.querySelector(
+                  '.capture-form .alert strong'
+                ).innerText = 'Parabéns!';
+                document.querySelector('.capture-form .alert p').innerText =
+                  'Está um passo mais perto de conseguir o seu crédito. Vamos ligar-lhe brevemente com mais informações sobre como conseguir a melhor oferta do banco ' +
+                  bank +
+                  '!';
+              }, 350);
             }
-            // }, 200);
 
             return false;
           }
