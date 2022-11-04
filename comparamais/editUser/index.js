@@ -449,6 +449,27 @@ function init() {
       document.querySelector('.card')
     ) {
       changeCardView();
+      if (!document.querySelector('.card img').src.includes('flopsi69')) {
+        document
+          .querySelectorAll('#simulation-results .card')
+          .forEach((card) => {
+            for (let bank of banks) {
+              if (
+                bank.img &&
+                card
+                  .querySelector('.card__logo img')
+                  .alt.includes(bank.value ? bank.value : bank.name)
+              ) {
+                const url = settings.dir + '/img/' + bank.img;
+
+                card
+                  .querySelector('.card__logo img')
+                  .setAttribute('data-src', url);
+                card.querySelector('.card__logo img').src = url;
+              }
+            }
+          });
+      }
     }
   }, 150);
   // }
