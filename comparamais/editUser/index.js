@@ -70,6 +70,26 @@ if (settings.observe) {
           node.querySelector('.hls-simulator__button').click();
           init();
         }
+
+        if (node.classList.contains('simulator-container__capture-form')) {
+          for (let input of node.querySelectorAll('input')) {
+            input.addEventListener('input', function () {
+              if (input.placeholder == 'John Doe') {
+                formData.name = input.value;
+              }
+
+              if (input.placeholder == 'forexample@gmail.com') {
+                formData.email = input.value;
+              }
+
+              if (input.placeholder == '+351 102 204 305') {
+                formData.phone = input.value;
+              }
+
+              console.log(formData);
+            });
+          }
+        }
       }
     }
   });
@@ -178,7 +198,7 @@ const styles = `
   }
   .card__logo img {
     max-height: 90%;
-    max-width: 90%;
+    max-width: 80%;
     width: auto;
   }
   .card--3d .card__data-holder--icon strong {
@@ -426,6 +446,7 @@ init();
 
 function init() {
   console.log('init');
+
   // gaEvent('loaded');
 
   const initTopChange = setInterval(() => {
@@ -524,20 +545,25 @@ function changeCardView() {
         .querySelector('.card__apply')
         .addEventListener('click', function (e) {
           e.preventDefault();
+
           const bank = card
             .querySelector('.card__logo img')
             .alt.replace('Crédito Habitação ', '');
 
           if (
-            !document.querySelector('.container--hero.container--listing') &&
-            !document.querySelector('.container--edit')
+            (!document.querySelector('.container--hero.container--listing') &&
+              !document.querySelector('.container--edit')) ||
+            document.querySelector('.lav-form-confirmed')
           ) {
             this.querySelector('a').click();
             return false;
           }
 
+          document.querySelector('#simulation-results').style.display = 'none';
+          document.querySelector('#hlApp').scrollIntoView();
+
           document.querySelector('.lav-list__item-bank').innerText = bank;
-          toggleTopInfo();
+          toggleTopInfo(this);
         });
 
       for (let bank of banks) {
@@ -597,7 +623,7 @@ function changeCardView() {
     });
 }
 
-function toggleTopInfo() {
+function toggleTopInfo(clickedEl) {
   const el = `
     <div class='lav-edit'>
       <div class='lav-edit__top'>
@@ -648,14 +674,20 @@ function toggleTopInfo() {
     document
       .querySelector('.container--listing')
       .classList.remove('container--listing');
-
-    // todo
+    // todo translate
   }
 
   if (!document.querySelector('.lav-edit')) {
     document
       .querySelector('.page__simulator')
       .insertAdjacentHTML('afterbegin', el);
+
+    document.querySelector('.lav-preview__name').innerText = formData.name;
+    document.querySelector('.lav-preview__email').innerText = formData.email;
+    document.querySelector('.lav-preview__phone').innerText = formData.phone;
+    document.querySelector('.lav-form__name').value = formData.name;
+    document.querySelector('.lav-form__email').value = formData.email;
+    document.querySelector('.lav-form__phone').value = formData.phone;
 
     document
       .querySelector('.lav-preview__edit')
@@ -667,14 +699,25 @@ function toggleTopInfo() {
     for (let item of document.querySelectorAll('.lav-btn')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        finishForm();
+        if (item.classList.contains('lav-preview__btn')) {
+          finishForm(clickedEl);
+        } else {
+          finishForm(clickedEl, true);
+        }
       });
     }
   }
 }
 
-function finishForm() {
-  // TODO send update data
+function finishForm(clickedEl, isChanged) {
+  document
+    .querySelector('.container--hero')
+    .classList.add('lav-form-confirmed');
+
+  if (isChanged) {
+    console.log('send request!');
+    // todo send request
+  }
   if (document.querySelector('.container--edit')) {
     document
       .querySelector('.container--edit')
@@ -686,5 +729,16 @@ function finishForm() {
     if (document.querySelector('.lav-edit')) {
       document.querySelector('.lav-edit').remove();
     }
+
+    document.querySelector('#simulation-results').style.display = 'block';
+    document.querySelector('.page__simulator').scrollIntoView();
+    clickedEl.click();
+    let imgEl = clickedEl
+      .closest('.card')
+      .querySelector('.card__logo img')
+      .cloneNode(true);
+    document
+      .querySelector('.capture-container .capture-info__numbers')
+      .insertAdjacentElement('beforebegin', imgEl);
   }
 }
