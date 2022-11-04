@@ -68,7 +68,12 @@ if (settings.observe) {
             'Ver os bancos'
         ) {
           node.querySelector('.hls-simulator__button').click();
-          init();
+          setTimeout(() => {
+            if (document.querySelector('#simulation-results')) {
+              document.querySelector('#simulation-results').scrollIntoView();
+            }
+          }, 600);
+          // init();
         }
 
         if (node.classList.contains('simulator-container__capture-form')) {
@@ -200,6 +205,10 @@ const styles = `
     max-height: 90%;
     max-width: 80%;
     width: auto;
+  }
+  .lav-modal-image {
+    max-width: 60%;
+    margin: auto;
   }
   .card--3d .card__data-holder--icon strong {
     font-weight: 700;
@@ -398,7 +407,18 @@ const styles = `
   .lav-form__btn {
     margin-top: 40px;
   }
-  
+  .capture-form .alert strong {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    color: #1F1F1F;
+  }
+  .capture-form .alert p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #474A48;
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -456,68 +476,40 @@ function init() {
     }
   }, 500);
 
-  // changeCardView();
+  changeCardView();
 
-  // document.addEventListener('click', function (e) {
-  // if (
-  //   e.target.classList.contains('btn__load-more') ||
-  //   e.target.closest('.btn__load-more')
-  // ) {
   let initChangeCard = setInterval(() => {
     if (
       document.querySelector('.card') &&
-      !document.querySelector('.card').classList.contains('lav-card') &&
-      document.querySelector('.card')
+      document.querySelectorAll('.card:not(.lav-card)').length
     ) {
+      // document.querySelector(".card .card__logo img[src*='https://www.comparam']")
       changeCardView();
-      // if (!document.querySelector('.card img').src.includes('flopsi69')) {
-      //   document
-      //     .querySelectorAll('#simulation-results .card')
-      //     .forEach((card) => {
-      //       for (let bank of banks) {
-      //         if (
-      //           bank.img &&
-      //           card
-      //             .querySelector('.card__logo img')
-      //             .alt.includes(bank.value ? bank.value : bank.name)
-      //         ) {
-      //           const url = settings.dir + '/img/' + bank.img;
-
-      //           card
-      //             .querySelector('.card__logo img')
-      //             .setAttribute('data-src', url);
-      //           card.querySelector('.card__logo img').src = url;
-      //         }
-      //       }
-      //     });
-      // }
     }
-  }, 150);
-  // }
-  // });
+  }, 1000);
 }
 
 function initTopInfo() {
   let el = `
     <div class='lav-list__wrap lav-list__wrap-single'>
-      <div class='lav-list__title'>Click <strong>Learn how to apply</strong> and our expert team will guide you through the following:</div>
+      <div class='lav-list__title'>Carregue em <strong>“Saber como fazer o pedido”</strong> e a nossa equipa especializada vai acompanhá-lo no seguinte:</div>
       <ol class='lav-list'>
-        <li class='lav-list__item'>We'll explain how you can maximise your chances of securing a good loan offer.</li>
-        <li class='lav-list__item'>We'll give you the list of documents needed for a successful loan application.</li>
-        <li class='lav-list__item'>We'll let you know about the best loans offers available to you.</li>
+        <li class='lav-list__item'>Vamos explicar como pode aumentar as suas hipóteses de conseguir uma boa oferta.</li>
+        <li class='lav-list__item'>Vamos dizer-lhe a lista de documentos que precisa para o crédito ser aprovado.</li>
+        <li class='lav-list__item'>Vamos apresentar-lhe as melhores propostas de crédito disponíveis para si.</li>
       </ol>
     </div>
 
     <div class='lav-list__wrap lav-list__wrap-change'>
       <div class='lav-approval'>
-        <div class='lav-approval__title'>We have a market-leading</div>
-        <div class='lav-approval__caption'>90% loan approval rate</div>
+        <div class='lav-approval__title'>Temos uma taxa de aprovação líder</div>
+        <div class='lav-approval__caption'>no mercado, de 90%</div>
       </div>
-      <div class='lav-list__title'>You'll be given the following information when our team contacts you:</div>
+      <div class='lav-list__title'>Vai ser-lhe apresentada a seguinte informação quando a nossa equipa entrar em contacto consigo:</div>
       <ol class='lav-list'>
-        <li class='lav-list__item'>How to secure a good loan offer from <strong class='lav-list__item-bank'>[bank name]</strong>.</li>
-        <li class='lav-list__item'>The documents you'll need to secure a good loan offer.</li>
-        <li class='lav-list__item'>Information on the best loan offers available to you.</li>
+        <li class='lav-list__item'>Como conseguir a melhor oferta de crédito do banco <strong class='lav-list__item-bank'>[bank name]</strong>.</li>
+        <li class='lav-list__item'>Os documentos que precisa para conseguir a melhor proposta.</li>
+        <li class='lav-list__item'>Informação com as melhores ofertas disponíveis para si.</li>
       </ol>
     </div>
   `;
@@ -539,7 +531,7 @@ function changeCardView() {
         card.querySelector('.card__badge').innerText = 'Mais recomendado';
       }
 
-      card.querySelector('.card__apply a').innerText = 'Learn how to apply';
+      card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
 
       card
         .querySelector('.card__apply')
@@ -556,6 +548,31 @@ function changeCardView() {
             document.querySelector('.lav-form-confirmed')
           ) {
             this.querySelector('a').click();
+            if (document.querySelector('.lav-modal-image')) {
+              document.querySelector('.lav-modal-image').remove();
+            }
+
+            let imgEl = card.querySelector('.card__logo img').cloneNode(true);
+
+            imgEl.classList.add('lav-modal-image');
+
+            if (document.querySelector('.capture-info__numbers')) {
+              document
+                .querySelector('.capture-container .capture-info__numbers')
+                .insertAdjacentElement('beforebegin', imgEl);
+            }
+
+            // setTimeout(() => {
+            if (document.querySelector('.capture-form .alert strong')) {
+              document.querySelector('.capture-form .alert strong').innerText =
+                'Parabéns!';
+              document.querySelector('.capture-form .alert p').innerText =
+                'Está um passo mais perto de conseguir o seu crédito. Vamos ligar-lhe brevemente com mais informações sobre como conseguir a melhor oferta do banco ' +
+                bank +
+                '!';
+            }
+            // }, 200);
+
             return false;
           }
 
@@ -603,40 +620,38 @@ function changeCardView() {
       ).innerText = 'Valor do Pedido';
     });
 
-  document
-    .querySelectorAll('#simulation-results .card.lav-card')
-    .forEach((card) => {
-      card.querySelector('.card__logo img').src.includes('flopsi');
-      for (let bank of banks) {
-        if (
-          bank.img &&
-          card
-            .querySelector('.card__logo img')
-            .alt.includes(bank.value ? bank.value : bank.name)
-        ) {
-          const url = settings.dir + '/img/' + bank.img;
-
-          card.querySelector('.card__logo img').setAttribute('data-src', url);
-          card.querySelector('.card__logo img').src = url;
-        }
+  document.querySelectorAll('#simulation-results .card').forEach((card) => {
+    for (let bank of banks) {
+      if (
+        !card.querySelector('.card__logo img').src.includes('flopsi') &&
+        bank.img &&
+        card
+          .querySelector('.card__logo img')
+          .alt.includes(bank.value ? bank.value : bank.name)
+      ) {
+        const url = settings.dir + '/img/' + bank.img;
+        card.querySelector('.card__logo img').removeAttribute('data-defer');
+        card.querySelector('.card__logo img').setAttribute('data-src', url);
+        card.querySelector('.card__logo img').src = url;
       }
-    });
+    }
+  });
 }
 
 function toggleTopInfo(clickedEl) {
   const el = `
     <div class='lav-edit'>
       <div class='lav-edit__top'>
-        <div class='lav-edit__top-title'>Almost done! Double-check your details are correct.</div>
-        <div class='lav-edit__top-caption'>Otherwise you'll miss out on the best loan offers.</div>
+        <div class='lav-edit__top-title'>Está quase a terminar! Verifique que os seus dados estão corretos</div>
+        <div class='lav-edit__top-caption'>ou poderá deixar passar uma das melhores ofertas.</div>
       </div>
       <div class='lav-edit__bottom lav-preview'>
         <div class='lav-preview__edit'>
           <img src='${settings.dir}/img/edit-icon.svg' />
-          Edit
+          Editar
         </div>
         <div class='lav-preview__group'>
-          <div class='lav-preview__caption'>Name</div>
+          <div class='lav-preview__caption'>Nome</div>
           <div class='lav-preview__value lav-preview__name'>-</div>
         </div>
         <div class='lav-preview__group'>
@@ -644,25 +659,25 @@ function toggleTopInfo(clickedEl) {
           <div class='lav-preview__value lav-preview__email'>-</div>
         </div>
         <div class='lav-preview__group'>
-          <div class='lav-preview__caption'>Phone</div>
+          <div class='lav-preview__caption'>Telefone</div>
           <div class='lav-preview__value lav-preview__phone'>-</div>
         </div>
-        <button class='lav-btn lav-preview__btn'>Confirm my contact details</button>
+        <button class='lav-btn lav-preview__btn'>Confirmar os meus dados de contacto</button>
       </div>
       <div class='lav-edit__bottom lav-form'>
         <div class='lav-form__group'>
-          <div class='lav-form__caption'>Enter your name</div>
-          <input class='lav-form__value lav-form__name' />
+          <div class='lav-form__caption'>Indique o seu nome</div>
+          <input class='lav-form__value lav-form__name' placeholder='John Doe' />
         </div>
         <div class='lav-form__group'>
-          <div class='lav-form__caption'>Enter your email</div>
-          <input class='lav-form__value lav-form__email' />
+          <div class='lav-form__caption'>Indique o seu email</div>
+          <input class='lav-form__value lav-form__email' placeholder='forexample@gmail.com' />
         </div>
         <div class='lav-form__group'>
-          <div class='lav-form__caption'>Enter your phone</div>
-          <input class='lav-form__value lav-form__phone' />
+          <div class='lav-form__caption'>Indique o seu número de telefone</div>
+          <input class='lav-form__value lav-form__phone' placeholder='+351 102 204 305' />
         </div>
-        <button class='lav-btn lav-form__btn'>Confirm my contact details</button>
+        <button class='lav-btn lav-form__btn'>Confirmar os meus dados de contacto</button>
       </div>
     </div>
   `;
@@ -674,7 +689,6 @@ function toggleTopInfo(clickedEl) {
     document
       .querySelector('.container--listing')
       .classList.remove('container--listing');
-    // todo translate
   }
 
   if (!document.querySelector('.lav-edit')) {
@@ -699,46 +713,65 @@ function toggleTopInfo(clickedEl) {
     for (let item of document.querySelectorAll('.lav-btn')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        if (item.classList.contains('lav-preview__btn')) {
+        if (
+          document.querySelector('.lav-form__name').value == formData.name &&
+          document.querySelector('.lav-form__email').value == formData.email &&
+          document.querySelector('.lav-form__phone').value == formData.phone
+        ) {
           finishForm(clickedEl);
         } else {
-          finishForm(clickedEl, true);
+          // todo Request
+          (async () => {
+            const data = {
+              action: 'update_pd_deal',
+              ref: JSON.parse(sessionStorage.getItem('HL:captured')).ref,
+              name: document.querySelector('.lav-form__name').value,
+              email: document.querySelector('.lav-form__email').value,
+              phoneNumber: document.querySelector('.lav-form__phone').value,
+              token: '',
+            };
+
+            const res = await fetch(
+              'https://www.comparamais.pt/wp-admin/admin-ajax.php',
+              {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              }
+            );
+
+            const content = await res.json();
+
+            console.log(content);
+          })();
         }
       });
     }
   }
 }
 
-function finishForm(clickedEl, isChanged) {
-  document
-    .querySelector('.container--hero')
-    .classList.add('lav-form-confirmed');
-
-  if (isChanged) {
-    console.log('send request!');
-    // todo send request
-  }
-  if (document.querySelector('.container--edit')) {
+function finishForm(clickedEl) {
+  // TODO form validation
+  if (
+    document.querySelector('.lav-form__name').value == formData.name &&
+    document.querySelector('.lav-form__email').value == formData.email &&
+    document.querySelector('.lav-form__phone').value == formData.phone
+  ) {
     document
-      .querySelector('.container--edit')
-      .classList.add('container--listing');
+      .querySelector('.container--hero')
+      .classList.add('lav-form-confirmed', 'container--listing');
+
     document
       .querySelector('.container--edit')
       .classList.toggle('container--edit');
 
-    if (document.querySelector('.lav-edit')) {
-      document.querySelector('.lav-edit').remove();
-    }
-
     document.querySelector('#simulation-results').style.display = 'block';
+    document.querySelector('.lav-edit').remove();
     document.querySelector('.page__simulator').scrollIntoView();
+
     clickedEl.click();
-    let imgEl = clickedEl
-      .closest('.card')
-      .querySelector('.card__logo img')
-      .cloneNode(true);
-    document
-      .querySelector('.capture-container .capture-info__numbers')
-      .insertAdjacentElement('beforebegin', imgEl);
   }
 }
