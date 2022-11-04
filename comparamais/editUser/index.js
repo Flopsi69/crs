@@ -576,6 +576,25 @@ function changeCardView() {
         '.card__items-wrapper>div:nth-child(2) span'
       ).innerText = 'Valor do Pedido';
     });
+
+  document
+    .querySelectorAll('#simulation-results .card.lav-card')
+    .forEach((card) => {
+      card.querySelector('.card__logo img').src.includes('flopsi');
+      for (let bank of banks) {
+        if (
+          bank.img &&
+          card
+            .querySelector('.card__logo img')
+            .alt.includes(bank.value ? bank.value : bank.name)
+        ) {
+          const url = settings.dir + '/img/' + bank.img;
+
+          card.querySelector('.card__logo img').setAttribute('data-src', url);
+          card.querySelector('.card__logo img').src = url;
+        }
+      }
+    });
 }
 
 function toggleTopInfo() {
