@@ -252,6 +252,10 @@ const styles = `
   .payment_inform_box li > div table thead tr th:not(:first-child) {
     width: 80px;
   }
+  .payment_inform_box>li li{
+    width: 100%;
+    margin-top: 30px;
+  }
   @media(max-width: 1300px) and (min-width: 768px){
     .choose__plan:last-child  .tip__body {
       left: initial;
@@ -460,6 +464,11 @@ function initPaymentPlans() {
       'beforebegin',
       document.querySelector('.paymen_method')
     );
+
+  // Change order
+  if (location.href.includes('/enroll/')) {
+    changeItemsOrder();
+  }
 }
 
 function initTips() {
@@ -653,4 +662,29 @@ function changeSummaryTable(plan) {
       </tr>
     `;
   }
+}
+
+function changeItemsOrder() {
+  document
+    .querySelector('.payment_inform_box .choose')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.payment_inform_box .payment_order')
+    );
+
+  if (document.querySelector('.payment_inform_box .payment_plan_wrapp')) {
+    document
+      .querySelector('.payment_inform_box .payment_inform_wrapp')
+      .insertAdjacentElement(
+        'beforeend',
+        document.querySelector('.payment_inform_box .payment_plan_wrapp')
+      );
+  }
+
+  document
+    .querySelector('.payment_inform_box .payment_inform_wrapp')
+    .insertAdjacentElement(
+      'beforeend',
+      document.querySelector('.payment_inform_box .paymen_method')
+    );
 }
