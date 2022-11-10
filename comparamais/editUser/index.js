@@ -144,6 +144,35 @@ const styles = `
   .container--hero.container--edit .page__title {
     padding-top: 50px;
   }
+  .lav-back {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    color: #0071EB;
+    transition: 0.35s;
+  }
+  .lav-list__wrap-change .lav-back {
+    margin-bottom: 14px;
+    position: static;
+  }
+  .container--hero {
+    padding-top: 80px;
+  }
+  .lav-back:hover {
+    opacity: 0.7;
+  }
+  .container--hero .page__title {
+    position: relative;
+  }
+  .lav-back img {
+    margin-right: 12px;
+  }
   .lav-list__wrap-change {
     display: none;
   }
@@ -532,6 +561,9 @@ const styles = `
     border-radius: 8px!important;
   }
   @media(max-width: 768px) {
+    .container--hero {
+      padding-top: 15px;
+    }
     .card__logo {
       background: none;
       height: 50px;
@@ -909,8 +941,13 @@ function initTopInfo() {
 
   document
     .querySelector('.capture-overlay')
-    .addEventListener('click', function () {
-      gaEvent('Close popup (background)', 'Congratulations');
+    .addEventListener('click', function (e) {
+      if (
+        !e.target.classList.contains('capture__closer') &&
+        !e.target.closest('.capture__closer')
+      ) {
+        gaEvent('Close popup (background)', 'Congratulations');
+      }
     });
 }
 
@@ -1104,6 +1141,30 @@ function toggleTopInfo(clickedEl) {
   }
 
   if (!document.querySelector('.lav-edit')) {
+    if (window.innerWidth > 768) {
+      document
+        .querySelector('.container--edit .page__title')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<div class="lav-back"><img src='${settings.dir}/img/back-icon.svg' /> Back to results</div>`
+        );
+    } else {
+      document
+        .querySelector('.lav-list__wrap-change')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<div class="lav-back"><img src='${settings.dir}/img/back-icon.svg' /> Back to results</div>`
+        );
+    }
+
+    document.querySelector('.lav-back').addEventListener('click', function () {
+      gaEvent(
+        'Back to results',
+        'Almost done! Double-check your details are correct'
+      );
+      finishForm();
+    });
+
     document
       .querySelector('.page__simulator')
       .insertAdjacentHTML('afterbegin', el);
@@ -1160,12 +1221,12 @@ function toggleTopInfo(clickedEl) {
     for (let item of document.querySelectorAll('.lav-btn')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
-        if (item.classList.contains('lav-preview__btn')) {
-          gaEvent(
-            'Confirm my contact details',
-            'Almost done! Double-check your details are correct'
-          );
-        }
+        // if (item.classList.contains('lav-preview__btn')) {
+        gaEvent(
+          'Confirm my contact details',
+          'Almost done! Double-check your details are correct'
+        );
+        // }
 
         if (
           document.querySelector('.lav-form__name').value == formData.name &&
@@ -1309,9 +1370,15 @@ function validateForm(isMain) {
 }
 
 function finishForm(clickedEl) {
-  document
-    .querySelector('.container--hero')
-    .classList.add('lav-form-confirmed', 'container--listing');
+  if (clickedEl) {
+    document
+      .querySelector('.container--hero')
+      .classList.add('lav-form-confirmed', 'container--listing');
+  } else {
+    document
+      .querySelector('.container--hero')
+      .classList.add('container--listing');
+  }
 
   document
     .querySelector('.container--edit')
@@ -1319,7 +1386,10 @@ function finishForm(clickedEl) {
 
   document.querySelector('#simulation-results').style.display = 'block';
   document.querySelector('.lav-edit').remove();
+  document.querySelector('.lav-back').remove();
   document.querySelector('.page__simulator').scrollIntoView();
 
-  clickedEl.click();
+  if (clickedEl) {
+    clickedEl.click();
+  }
 }
