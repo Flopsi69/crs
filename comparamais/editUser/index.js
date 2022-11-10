@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/comparamais/editUser',
-  clarity: false,
+  clarity: true,
   observe: true,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', 'new_flow', 'variant_1');
+      clarity('set', 'pers_offer_cta', 'variant_1');
     }
   }, 1000);
 }
@@ -25,7 +25,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'event-to-ga',
-      eventCategory: 'Exp: Simulator - New flow',
+      eventCategory: 'Exp: Personalized offer and CTA on offer',
       eventAction: action,
       eventLabel: label,
     };
@@ -60,7 +60,8 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
+        // console.log(node);
+
         if (
           node.classList.contains('simulator-container') &&
           node.querySelector('.hls-simulator__button') &&
@@ -90,10 +91,41 @@ if (settings.observe) {
               if (input.placeholder == '+351 102 204 305') {
                 formData.phone = input.value;
               }
+            });
 
-              console.log(formData);
+            input.addEventListener('focus', function () {
+              if (input.classList.contains('lav-error__input')) {
+                input.classList.remove('lav-error__input');
+              }
+              if (
+                input.nextElementSibling &&
+                input.nextElementSibling.classList.contains('lav-error')
+              ) {
+                input.nextElementSibling.remove();
+              }
             });
           }
+
+          node
+            .querySelector('input[type="email"]')
+            .classList.add('lav-form__email');
+
+          node
+            .querySelector('input[placeholder="+351 102 204 305"]')
+            .classList.add('lav-form__phone');
+
+          document
+            .querySelector('.hls-simulator__button')
+            .classList.add('lav-validate-form');
+
+          document
+            .querySelector('.hls-simulator__button')
+            .addEventListener('click', function (e) {
+              if (!validateForm(true)) {
+                e.preventDefault();
+                return false;
+              }
+            });
         }
       }
     }
@@ -155,18 +187,42 @@ const styles = `
   }
   .lav-list {
     margin: 16px auto 0;
-    max-width: 496px;
+    // max-width: 496px;
     font-size: 16px;
     line-height: 1.5;
     color: #474A48;
     margin-top: 16px;
-    padding-left: 16px;
+    // padding-left: 16px;
+    list-style: none;
   }
   .lav-list__item {
+    position: relative;
     list-style-type: inherit;
+    padding-left: 37px;
+    line-height: 22px;
+    min-height: 24px;
+  }
+  .lav-list__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 24px;
+    background: url('${settings.dir}/img/list-icon-1.svg') center no-repeat;
+    background-size: contain;
+  }
+  .lav-list__item:nth-child(2):before {
+    background: url('${settings.dir}/img/list-icon-2.svg') center no-repeat;
+    background-size: contain;
+  }
+  .lav-list__item:nth-child(3):before {
+    background: url('${settings.dir}/img/list-icon-3.svg') center no-repeat;
+    background-size: contain;
   }
   .lav-list__item + .lav-list__item {
-    margin-top: 2px;
+    margin-top: 16px;
   }
   .card {
     padding: 20px;
@@ -401,6 +457,9 @@ const styles = `
     line-height: 26px;
     color: #1F1F1F;
   }
+  .lav-form__group {
+    position: relative;
+  }
   .lav-form__group + .lav-form__group {
     margin-top: 28px;
   }
@@ -418,6 +477,251 @@ const styles = `
     font-size: 14px;
     line-height: 20px;
     color: #474A48;
+  }
+  .lav-error {
+    color: #D63031;
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: Helvetica,Arial;
+  }
+  .lav-error:before {
+    content: '!';
+    position: absolute;
+    top: 58px;
+    display: flex;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    right: 18px;
+    background: #D63031;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .lav-error__input {
+    border: 1px solid #D63031;
+  }
+  .btn__load-more .btn {
+    font-weight: 500;
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    color: #0071EB;
+    border: 1px solid #0071EB;
+    border-radius: 8px;
+    padding: 0 40px;
+    margin-top: 0;
+  }
+  .hls-simulator__panel .hls-simulator__form-group .lav-error {
+    position: absolute;
+    bottom: -5px;
+    transform: translateY(100%);
+    width: 100%;
+    font-size: 12px;
+  }
+  .hls-simulator__panel .hls-simulator__form-group .lav-error:before {
+    top: -37px;
+  }
+  .hls-simulator__panel .hls-simulator__form-group .lav-error__input {
+    border: 1px solid #D63031!important;
+    border-radius: 8px!important;
+  }
+  @media(max-width: 768px) {
+    .card__logo {
+      background: none;
+      height: 50px;
+      border-radius: 0;
+      border: none;
+    }
+    .lav-error:before {
+      top: 54px;
+    }
+    .hls-simulator__panel .hls-simulator__form-group .lav-error:before {
+      top: -37px;
+    }
+    .card--featured .card__badge {
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      left: 20px;
+      top: 0;
+      right: auto;
+      transform: translateY(-50%);
+    }
+    .card:not(:last-child) {
+      margin-bottom: 24px;
+    }
+    .card__apply {
+      margin-left: 0;
+      width: 100%;
+    }
+    .card--mobile-style .card__footer .card__apply a {
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      font-size: 16px!important;
+      height: 48px;
+      text-transform: none;
+    }
+    .card--featured .card__footer, .card__footer {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    .card--mobile-style .card__product-highlight {
+      display: none;
+    }
+    .card--3d .card__data-holder--icon span {
+      font-size: 14px;
+      line-height: 1.45;
+      text-transform: none;
+    }
+    .card--3d .card__data-holder--icon strong {
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .card--3d .card__items-wrapper>div {
+      width: 36%;
+      margin-right: 0;
+    }
+    .card--3d .card__items-wrapper>div:nth-child(3) {
+      width: 28%;
+    }
+    .card__items {
+      margin-top: 20px;
+      padding: 0;
+    }
+    .card__logo img {
+      max-height: 100%;
+      max-width: 192px;
+    }
+    .card__data-holder--icon span {
+      padding: 0;
+    }
+    .card .product__features .promotional-content {
+      border-radius: 0 0 12px 12px;
+    }
+    .content-toggler:checked~.product-promotion {
+      margin-bottom: -21px;
+    }
+    .content-toggler~.toggle--on, .content-toggler:checked~.toggle--off {
+      position: relative;
+      transform: none;
+      left: 0;
+    }
+    .lav-expand {
+      display: block;
+      margin-top: 7px;
+    }
+    .lav-list__wrap {
+      margin-top: 25px;
+    }
+    .container--hero.container--listing {
+      padding-bottom: 0;
+      margin-bottom: 8px;
+    }
+    .filters__trigger svg {
+      fill: #0071EB;
+      border-color: #0071EB;
+    }
+    .lav-edit {
+      margin-top: 28px;
+    }
+    .container--hero.container--edit .page__title {
+      padding-top: 20px;
+    }
+    .lav-edit__top {
+      padding: 20px 20px 16px;
+    }
+    .lav-edit__top-title {
+      font-size: 18px;
+      line-height: 26px;
+    }
+    .lav-edit__top-caption {
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 4px;
+    }
+    .lav-preview, .lav-edit__bottom {
+      padding: 16px 20px 20px;
+    }
+    .lav-preview__group + .lav-preview__group {
+      margin-top: 10px;
+    }
+    .lav-btn {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+    .lav-preview__edit {
+      top: 16px;
+      right: 20px;
+    }
+    .lav-form__caption {
+      margin-bottom: 12px;
+    }
+    .capture-form {
+      padding: 0;
+    }
+    .in__grid .reviews__widget-container {
+      margin-top: 0;
+      border: none;
+      padding-top: 10px;
+    }
+    #results .row + .row {
+      margin-top: 12px;
+    }
+    #results .hl-simulator__panel {
+      display: none;
+      margin-bottom: 28px;
+      border: none;
+      margin-bottom: 28px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 8px 3px rgb(0 0 0 / 15%), 0px 1px 3px rgb(0 0 0 / 30%);
+      border-radius: 24px;
+      padding: 20px;
+    }
+    #results .hl-simulator__field-box {
+      height: 52px;
+      background: #F9F9F9;
+      border: 1px solid #E6E7E7;
+      border-radius: 8px;
+    }
+    #results .hl-simulator__field-box .money-symbol {
+      width: 50px;
+      border-color: #E6E7E7;
+    }
+    #results .hl-simulator__field-box [type=text], #results .hl-simulator__field-box [type=number], #results .hl-simulator__field-box select {
+      padding: 0 10px;
+      font-size: 16px;
+    }
+    body {
+      background: linear-gradient(180deg, #EDF1FD 0%, #FFFFFF 10.71%);
+    }
+    .container--hero {
+      background: transparent;
+    }
+    .lav-toggle__calc {
+      background: #FFFFFF;
+      border: 1px solid #0071EB;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+      color: #0071EB;
+    }
+    #results .filters__trigger {
+      margin-bottom: 0;
+    }
+    #results .hl-simulator__panel + .card {
+      margin-top: 16px;
+    }
+    .filters+.col-9 .card:first-child {
+      margin-top: 16px;
+    }
   }
 `;
 
@@ -464,10 +768,12 @@ let formData = {};
 
 init();
 
+let isEventStart = false;
+
 function init() {
   console.log('init');
 
-  // gaEvent('loaded');
+  gaEvent('loaded');
 
   const initTopChange = setInterval(() => {
     if (document.querySelector('.container--listing .reviews-counter')) {
@@ -478,7 +784,9 @@ function init() {
 
   changeCardView();
 
-  let initChangeCard = setInterval(() => {
+  setInterval(() => {
+    changeImages();
+
     if (
       document.querySelector('.card') &&
       document.querySelectorAll('.card:not(.lav-card)').length
@@ -486,7 +794,46 @@ function init() {
       // document.querySelector(".card .card__logo img[src*='https://www.comparam']")
       changeCardView();
     }
-  }, 1000);
+  }, 500);
+}
+
+function changeImages() {
+  document.querySelectorAll('#simulation-results .card').forEach((card) => {
+    for (let bank of banks) {
+      if (
+        !card.querySelector('.card__logo img').src.includes('flopsi') &&
+        bank.img &&
+        card
+          .querySelector('.card__logo img')
+          .alt.includes(bank.value ? bank.value : bank.name)
+      ) {
+        const url = settings.dir + '/img/' + bank.img;
+        card.querySelector('.card__logo img').removeAttribute('data-defer');
+        card.querySelector('.card__logo img').setAttribute('data-src', url);
+        card.querySelector('.card__logo img').src = url;
+      }
+    }
+
+    card.querySelector(
+      '.card__items-wrapper>div:first-child strong'
+    ).innerText = card
+      .querySelector(
+        '.promotional-content__body>div>table:first-child tr:nth-child(3) td:last-child'
+      )
+      .innerText.replace('€', '€ ');
+    card.querySelector('.card__items-wrapper>div:first-child span').innerText =
+      'Prestação Mensal';
+
+    card.querySelector(
+      '.card__items-wrapper>div:nth-child(2) strong'
+    ).innerText = card
+      .querySelector(
+        '.promotional-content__body>div>table:first-child tr:first-child td:last-child'
+      )
+      .innerText.replace('€', '€ ');
+    card.querySelector('.card__items-wrapper>div:nth-child(2) span').innerText =
+      'Valor do Pedido';
+  });
 }
 
 function initTopInfo() {
@@ -518,7 +865,53 @@ function initTopInfo() {
     document
       .querySelector('.container--listing .reviews-counter')
       .insertAdjacentHTML('afterend', el);
+    gaEvent('View element on screen', 'Click Learn how to apply');
   }
+
+  if (window.innerWidth < 768 && document.querySelector('#results')) {
+    document
+      .querySelector('#results .row')
+      .insertAdjacentHTML(
+        'beforeend',
+        '<div class="lav-toggle__calc">Alterar os dados do pedido</div>'
+      );
+
+    document
+      .querySelector('.lav-toggle__calc')
+      .addEventListener('click', function () {
+        gaEvent('Change credit information', 'First CTA');
+        if (!this.classList.contains('active')) {
+          this.classList.add('active');
+          this.innerText = 'Cancelar';
+          document.querySelector(
+            '#results .hl-simulator__panel'
+          ).style.display = 'block';
+          gaEvent(
+            'View element on screen',
+            'Calculator form afte Change credit information button'
+          );
+        } else {
+          this.classList.remove('active');
+          this.innerText = 'Alterar os dados do pedido';
+          document.querySelector(
+            '#results .hl-simulator__panel'
+          ).style.display = 'none';
+          gaEvent('Cancel', 'First CTA');
+        }
+      });
+  }
+
+  document
+    .querySelector('.capture__closer')
+    .addEventListener('click', function () {
+      gaEvent('Close popup (cross)', 'Congratulations');
+    });
+
+  document
+    .querySelector('.capture-overlay')
+    .addEventListener('click', function () {
+      gaEvent('Close popup (background)', 'Congratulations');
+    });
 }
 
 function changeCardView() {
@@ -527,11 +920,53 @@ function changeCardView() {
     .forEach((card) => {
       card.classList.add('lav-card');
 
+      if (window.innerWidth < 768) {
+        card
+          .querySelector('.product__features')
+          .insertAdjacentElement(
+            'beforebegin',
+            card.querySelector('.card__footer')
+          );
+
+        card
+          .querySelector('.toggle--on')
+          .insertAdjacentElement(
+            'beforebegin',
+            card.querySelector('.card__footer')
+          );
+
+        if (!card.querySelector('.lav-expand')) {
+          let cloneToggler = card.querySelector('.toggle--off').cloneNode(true);
+
+          cloneToggler.classList.add('lav-expand');
+
+          card
+            .querySelector('.promotional-content')
+            .insertAdjacentElement('beforeend', cloneToggler);
+        }
+      }
+
       if (card.classList.contains('card--featured')) {
         card.querySelector('.card__badge').innerText = 'Mais recomendado';
       }
 
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
+
+      card.querySelector('.toggle--on').addEventListener('click', function () {
+        const bank = card
+          .querySelector('.card__logo img')
+          .alt.replace('Crédito Habitação ', '');
+
+        gaEvent('More details', `Bank name: ${bank}`);
+      });
+
+      card.querySelector('.toggle--off').addEventListener('click', function () {
+        const bank = card
+          .querySelector('.card__logo img')
+          .alt.replace('Crédito Habitação ', '');
+
+        gaEvent('Less details', `Bank name: ${bank}`);
+      });
 
       card
         .querySelector('.card__apply')
@@ -542,12 +977,25 @@ function changeCardView() {
             .querySelector('.card__logo img')
             .alt.replace('Crédito Habitação ', '');
 
+          if (!isEventStart) {
+            gaEvent('Learn how to apply', `Bank name: ${bank}`);
+          }
+
           if (
             (!document.querySelector('.container--hero.container--listing') &&
               !document.querySelector('.container--edit')) ||
             document.querySelector('.lav-form-confirmed')
           ) {
+            isEventStart = true;
             this.querySelector('a').click();
+            if (!isEventStart) {
+              gaEvent('View element on screen', 'Congratulations');
+            }
+
+            setTimeout(() => {
+              isEventStart = false;
+            }, 500);
+
             if (document.querySelector('.lav-modal-image')) {
               document.querySelector('.lav-modal-image').remove();
             }
@@ -571,13 +1019,15 @@ function changeCardView() {
                 '!';
             } else {
               setTimeout(() => {
-                document.querySelector(
-                  '.capture-form .alert strong'
-                ).innerText = 'Parabéns!';
-                document.querySelector('.capture-form .alert p').innerText =
-                  'Está um passo mais perto de conseguir o seu crédito. Vamos ligar-lhe brevemente com mais informações sobre como conseguir a melhor oferta do banco ' +
-                  bank +
-                  '!';
+                if (document.querySelector('.capture-form .alert strong')) {
+                  document.querySelector(
+                    '.capture-form .alert strong'
+                  ).innerText = 'Parabéns!';
+                  document.querySelector('.capture-form .alert p').innerText =
+                    'Está um passo mais perto de conseguir o seu crédito. Vamos ligar-lhe brevemente com mais informações sobre como conseguir a melhor oferta do banco ' +
+                    bank +
+                    '!';
+                }
               }, 350);
             }
 
@@ -591,59 +1041,8 @@ function changeCardView() {
           toggleTopInfo(this);
         });
 
-      for (let bank of banks) {
-        if (
-          bank.img &&
-          card
-            .querySelector('.card__logo img')
-            .alt.includes(bank.value ? bank.value : bank.name)
-        ) {
-          const url = settings.dir + '/img/' + bank.img;
-
-          card.querySelector('.card__logo img').setAttribute('data-src', url);
-          card.querySelector('.card__logo img').src = url;
-        }
-      }
-
-      card.querySelector(
-        '.card__items-wrapper>div:first-child strong'
-      ).innerText = card
-        .querySelector(
-          '.promotional-content__body>div>table:first-child tr:nth-child(3) td:last-child'
-        )
-        .innerText.replace('€', '€ ');
-      card.querySelector(
-        '.card__items-wrapper>div:first-child span'
-      ).innerText = 'Prestação Mensal';
-
-      card.querySelector(
-        '.card__items-wrapper>div:nth-child(2) strong'
-      ).innerText = card
-        .querySelector(
-          '.promotional-content__body>div>table:first-child tr:first-child td:last-child'
-        )
-        .innerText.replace('€', '€ ');
-      card.querySelector(
-        '.card__items-wrapper>div:nth-child(2) span'
-      ).innerText = 'Valor do Pedido';
+      changeImages();
     });
-
-  document.querySelectorAll('#simulation-results .card').forEach((card) => {
-    for (let bank of banks) {
-      if (
-        !card.querySelector('.card__logo img').src.includes('flopsi') &&
-        bank.img &&
-        card
-          .querySelector('.card__logo img')
-          .alt.includes(bank.value ? bank.value : bank.name)
-      ) {
-        const url = settings.dir + '/img/' + bank.img;
-        card.querySelector('.card__logo img').removeAttribute('data-defer');
-        card.querySelector('.card__logo img').setAttribute('data-src', url);
-        card.querySelector('.card__logo img').src = url;
-      }
-    }
-  });
 }
 
 function toggleTopInfo(clickedEl) {
@@ -697,6 +1096,11 @@ function toggleTopInfo(clickedEl) {
     document
       .querySelector('.container--listing')
       .classList.remove('container--listing');
+
+    gaEvent(
+      'View element on screen',
+      'Almost done! Double-check your details are correct'
+    );
   }
 
   if (!document.querySelector('.lav-edit')) {
@@ -716,11 +1120,53 @@ function toggleTopInfo(clickedEl) {
       .addEventListener('click', function () {
         document.querySelector('.lav-preview').style.display = 'none';
         document.querySelector('.lav-form').style.display = 'block';
+        gaEvent('Edit', 'Almost done! Double-check your details are correct');
+        gaEvent(
+          'View element on screen',
+          'Form with name and email on Almost done section'
+        );
       });
+
+    for (let input of document.querySelectorAll('.lav-form__value')) {
+      input.addEventListener('focus', function () {
+        if (input.classList.contains('lav-form__name')) {
+          gaEvent(
+            'Input. Name',
+            'Form with name and email on Almost done section'
+          );
+        } else if (input.classList.contains('lav-form__email')) {
+          gaEvent(
+            'Input. Email',
+            'Form with name and email on Almost done section'
+          );
+        } else if (input.classList.contains('lav-form__phone')) {
+          gaEvent(
+            'Input. Phone',
+            'Form with name and email on Almost done section'
+          );
+        }
+        if (input.classList.contains('lav-error__input')) {
+          input.classList.remove('lav-error__input');
+        }
+        if (
+          input.nextElementSibling &&
+          input.nextElementSibling.classList.contains('lav-error')
+        ) {
+          input.nextElementSibling.remove();
+        }
+      });
+    }
 
     for (let item of document.querySelectorAll('.lav-btn')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
+        if (item.classList.contains('lav-preview__btn')) {
+          gaEvent(
+            'Confirm my contact details',
+            'Almost done! Double-check your details are correct'
+          );
+        }
+
         if (
           document.querySelector('.lav-form__name').value == formData.name &&
           document.querySelector('.lav-form__email').value == formData.email &&
@@ -728,7 +1174,10 @@ function toggleTopInfo(clickedEl) {
         ) {
           finishForm(clickedEl);
         } else {
-          // todo Request
+          if (!validateForm()) return false;
+
+          item.setAttribute('disabled', 'disabled');
+
           (async () => {
             const data = {
               action: 'update_pd_deal',
@@ -736,24 +1185,32 @@ function toggleTopInfo(clickedEl) {
               name: document.querySelector('.lav-form__name').value,
               email: document.querySelector('.lav-form__email').value,
               phoneNumber: document.querySelector('.lav-form__phone').value,
-              token: '',
+              token: '6ed98285-ac5c-48c9-9f66-72f91fbc296f',
             };
+
+            const formData = new FormData();
+
+            for (let item in data) {
+              formData.append(item, data[item]);
+            }
 
             const res = await fetch(
               'https://www.comparamais.pt/wp-admin/admin-ajax.php',
               {
                 method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+                // headers: {
+                //   Accept: 'application/json',
+                //   'Content-Type': 'multipart/form-data',
+                // },
+                body: formData,
               }
             );
 
-            const content = await res.json();
+            const status = await res.json();
 
-            console.log(content);
+            if (status['success']) {
+              finishForm(clickedEl);
+            }
           })();
         }
       });
@@ -761,25 +1218,108 @@ function toggleTopInfo(clickedEl) {
   }
 }
 
-function finishForm(clickedEl) {
-  // TODO form validation
+function validateForm(isMain) {
+  for (let errorEl of document.querySelectorAll('.lav-error')) {
+    errorEl.remove();
+  }
+
+  for (let errorEl of document.querySelectorAll('.lav-error__input')) {
+    errorEl.classList.remove('lav-error__input');
+  }
+
+  let isValid = true;
+
+  if (isMain) {
+    for (let input of document.querySelectorAll(
+      '.simulator-container__capture-form input'
+    )) {
+      if (!input.value) {
+        input.insertAdjacentHTML(
+          'afterend',
+          "<div class='lav-error'>Por favor, preencha o campo requisitado</div>"
+        );
+
+        input.classList.add('lav-error__input');
+
+        isValid = false;
+      }
+    }
+  } else {
+    for (let input of document.querySelectorAll('.lav-form__value')) {
+      if (!input.value) {
+        input.insertAdjacentHTML(
+          'afterend',
+          "<div class='lav-error'>Por favor, preencha o campo requisitado</div>"
+        );
+
+        input.classList.add('lav-error__input');
+
+        isValid = false;
+      }
+    }
+  }
+
+  if (!isValid) return isValid;
+
   if (
-    document.querySelector('.lav-form__name').value == formData.name &&
-    document.querySelector('.lav-form__email').value == formData.email &&
-    document.querySelector('.lav-form__phone').value == formData.phone
+    /\S+@\S+\.\S+/.test(document.querySelector('.lav-form__email').value) ==
+    false
   ) {
     document
-      .querySelector('.container--hero')
-      .classList.add('lav-form-confirmed', 'container--listing');
+      .querySelector('.lav-form__email')
+      .insertAdjacentHTML(
+        'afterend',
+        "<div class='lav-error'>Garanta que o endereço de email que indicou está correto</div>"
+      );
 
     document
-      .querySelector('.container--edit')
-      .classList.toggle('container--edit');
+      .querySelector('.lav-form__email')
+      .classList.add('lav-error__input');
 
-    document.querySelector('#simulation-results').style.display = 'block';
-    document.querySelector('.lav-edit').remove();
-    document.querySelector('.page__simulator').scrollIntoView();
-
-    clickedEl.click();
+    isValid = false;
   }
+
+  let phoneVal = document
+    .querySelector('.lav-form__phone')
+    .value.replaceAll(' ', '');
+
+  if (
+    phoneVal.length < 6 ||
+    phoneVal.length > 15 ||
+    /^\+?\d+$/.test(phoneVal) == false
+  ) {
+    document
+      .querySelector('.lav-form__phone')
+      .insertAdjacentHTML(
+        'afterend',
+        "<div class='lav-error'>Este número não existe</div>"
+      );
+
+    document
+      .querySelector('.lav-form__phone')
+      .classList.add('lav-error__input');
+
+    isValid = false;
+  }
+
+  return isValid;
+  document.querySelector('.lav-form__name').value == formData.name &&
+    document.querySelector('.lav-form__email').value == formData.email &&
+    document.querySelector('.lav-form__phone').value == formData.phone;
+}
+
+function finishForm(clickedEl) {
+  document
+    .querySelector('.container--hero')
+    .classList.add('lav-form-confirmed', 'container--listing');
+
+  document
+    .querySelector('.container--edit')
+    .classList.remove('container--edit');
+
+  document.querySelector('#simulation-results').style.display = 'block';
+  document.querySelector('.lav-edit').remove();
+  document.querySelector('.page__simulator').scrollIntoView();
+
+  clickedEl.click();
 }
