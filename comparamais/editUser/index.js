@@ -1045,6 +1045,16 @@ function changeCardView() {
         .addEventListener('click', function (e) {
           e.preventDefault();
 
+          if (isEventStart) {
+            return false;
+          }
+
+          isEventStart = true;
+
+          setTimeout(() => {
+            isEventStart = false;
+          }, 1000);
+
           console.log('click card');
 
           const bank = card
@@ -1052,9 +1062,7 @@ function changeCardView() {
             .alt.replace('Crédito Habitação ', '');
 
           console.log('isEventStart', isEventStart);
-          if (!isEventStart) {
-            gaEvent('Learn how to apply', `Bank name: ${bank}`);
-          }
+          gaEvent('Learn how to apply', `Bank name: ${bank}`);
 
           if (
             (!document.querySelector('.container--hero.container--listing') &&
@@ -1062,14 +1070,13 @@ function changeCardView() {
             document.querySelector('.lav-form-confirmed')
           ) {
             this.querySelector('a').click();
-            if (!isEventStart) {
-              gaEvent('View element on screen', 'Congratulations');
-            }
-            isEventStart = true;
+            // if (!isEventStart) {
+            gaEvent('View element on screen', 'Congratulations');
+            // }
 
             setTimeout(() => {
               isEventStart = false;
-            }, 500);
+            }, 1000);
 
             if (document.querySelector('.lav-modal-image')) {
               document.querySelector('.lav-modal-image').remove();
