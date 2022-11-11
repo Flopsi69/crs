@@ -846,23 +846,36 @@ function changeImages() {
       }
     }
 
-    card.querySelector(
-      '.card__items-wrapper>div:first-child strong'
-    ).innerText = card
-      .querySelector(
+    if (
+      card.querySelector(
         '.promotional-content__body>div>table:first-child tr:nth-child(3) td:last-child'
       )
-      .innerText.replace('€', '€ ');
+    ) {
+      card.querySelector(
+        '.card__items-wrapper>div:first-child strong'
+      ).innerText = card
+        .querySelector(
+          '.promotional-content__body>div>table:first-child tr:nth-child(3) td:last-child'
+        )
+        .innerText.replace('€', '€ ');
+    }
+
     card.querySelector('.card__items-wrapper>div:first-child span').innerText =
       'Prestação Mensal';
 
-    card.querySelector(
-      '.card__items-wrapper>div:nth-child(2) strong'
-    ).innerText = card
-      .querySelector(
+    if (
+      card.querySelector(
         '.promotional-content__body>div>table:first-child tr:first-child td:last-child'
       )
-      .innerText.replace('€', '€ ');
+    ) {
+      card.querySelector(
+        '.card__items-wrapper>div:nth-child(2) strong'
+      ).innerText = card
+        .querySelector(
+          '.promotional-content__body>div>table:first-child tr:first-child td:last-child'
+        )
+        .innerText.replace('€', '€ ');
+    }
     card.querySelector('.card__items-wrapper>div:nth-child(2) span').innerText =
       'Valor do Pedido';
   });
