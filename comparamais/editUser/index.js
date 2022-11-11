@@ -73,12 +73,12 @@ if (settings.observe) {
             'Ver os bancos'
         ) {
           node.querySelector('.hls-simulator__button').click();
-          setTimeout(() => {
-            if (document.querySelector('#hlApp')) {
-              document.querySelector('#hlApp').scrollIntoView();
-              // document.querySelector('#simulation-results').scrollIntoView();
-            }
-          }, 600);
+          // setTimeout(() => {
+          // if (document.querySelector('#hlApp')) {
+          // document.querySelector('#hlApp').scrollIntoView();
+          // document.querySelector('#simulation-results').scrollIntoView();
+          // }
+          // }, 600);
           // init();
         }
 
