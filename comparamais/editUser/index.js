@@ -60,7 +60,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // console.log(node);
+        console.log(node);
 
         if (
           node.classList.contains('simulator-container') &&
@@ -70,7 +70,7 @@ if (settings.observe) {
         ) {
           node.querySelector('.hls-simulator__button').click();
           setTimeout(() => {
-            if (document.querySelector('#simulation-results')) {
+            if (document.querySelector('#hlApp')) {
               document.querySelector('#hlApp').scrollIntoView();
               // document.querySelector('#simulation-results').scrollIntoView();
             }
@@ -1004,6 +1004,7 @@ function changeCardView() {
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
 
       setTimeout(() => {
+        console.log('testik');
         card
           .querySelector('.toggle--on')
           .addEventListener('click', function () {
