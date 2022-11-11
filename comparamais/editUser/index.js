@@ -136,9 +136,11 @@ if (settings.observe) {
     }
   });
 
-  let demoElem = document.querySelector('.page__simulator');
+  let observeEl = document.querySelector('.page__simulator');
 
-  observer.observe(demoElem, { childList: true, subtree: true });
+  console.log(observeEl);
+
+  observer.observe(observeEl, { childList: true, subtree: true });
 }
 
 // Styles
