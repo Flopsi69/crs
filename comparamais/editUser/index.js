@@ -850,7 +850,7 @@ function changeImages() {
     console.log('testik');
     if (
       card.querySelector('.toggle--on') &&
-      !card.querySelector('.toggle--off').classList.contains('lav-handled')
+      !card.querySelector('.toggle--on').classList.contains('lav-handled')
     ) {
       card.querySelector('.toggle--on').classList.add('lav-handled');
       card.querySelector('.toggle--on').addEventListener('click', function () {
