@@ -847,7 +847,6 @@ function changeImages() {
       }
     }
 
-    console.log('testik');
     if (
       card.querySelector('.toggle--on') &&
       !card.querySelector('.toggle--on').classList.contains('lav-handled')
