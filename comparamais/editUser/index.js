@@ -866,7 +866,7 @@ function changeImages() {
       card.querySelector('.toggle--off') &&
       !card.querySelector('.toggle--off').classList.contains('lav-handled')
     ) {
-      card.querySelector('.toggle--ff').classList.add('lav-handled');
+      card.querySelector('.toggle--off').classList.add('lav-handled');
 
       card.querySelector('.toggle--off').addEventListener('click', function () {
         const bank = card
