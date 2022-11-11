@@ -1037,6 +1037,8 @@ function changeCardView() {
         .addEventListener('click', function (e) {
           e.preventDefault();
 
+          console.log('click card');
+
           const bank = card
             .querySelector('.card__logo img')
             .alt.replace('Crédito Habitação ', '');
