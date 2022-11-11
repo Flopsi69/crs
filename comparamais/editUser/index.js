@@ -75,7 +75,7 @@ if (settings.observe) {
           node.querySelector('.hls-simulator__button').click();
           setTimeout(() => {
             if (document.querySelector('#hlApp')) {
-              document.querySelector('#hlApp').scrollIntoView();
+              document.querySelector('#hlApp').scrollIntoView(true);
               // document.querySelector('#simulation-results').scrollIntoView();
             }
           }, 600);
