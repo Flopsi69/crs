@@ -847,6 +847,36 @@ function changeImages() {
       }
     }
 
+    console.log('testik');
+    if (
+      card.querySelector('.toggle--on') &&
+      !card.querySelector('.toggle--off').classList.contains('lav-handled')
+    ) {
+      card.querySelector('.toggle--on').classList.add('lav-handled');
+      card.querySelector('.toggle--on').addEventListener('click', function () {
+        const bank = card
+          .querySelector('.card__logo img')
+          .alt.replace('Crédito Habitação ', '');
+
+        gaEvent('More details', `Bank name: ${bank}`);
+      });
+    }
+
+    if (
+      card.querySelector('.toggle--off') &&
+      !card.querySelector('.toggle--off').classList.contains('lav-handled')
+    ) {
+      card.querySelector('.toggle--ff').classList.add('lav-handled');
+
+      card.querySelector('.toggle--off').addEventListener('click', function () {
+        const bank = card
+          .querySelector('.card__logo img')
+          .alt.replace('Crédito Habitação ', '');
+
+        gaEvent('Less details', `Bank name: ${bank}`);
+      });
+    }
+
     if (
       card.querySelector(
         '.promotional-content__body>div>table:first-child tr:nth-child(3) td:last-child'
@@ -1002,29 +1032,6 @@ function changeCardView() {
       }
 
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
-
-      setTimeout(() => {
-        console.log('testik');
-        card
-          .querySelector('.toggle--on')
-          .addEventListener('click', function () {
-            const bank = card
-              .querySelector('.card__logo img')
-              .alt.replace('Crédito Habitação ', '');
-
-            gaEvent('More details', `Bank name: ${bank}`);
-          });
-
-        card
-          .querySelector('.toggle--off')
-          .addEventListener('click', function () {
-            const bank = card
-              .querySelector('.card__logo img')
-              .alt.replace('Crédito Habitação ', '');
-
-            gaEvent('Less details', `Bank name: ${bank}`);
-          });
-      }, 500);
 
       card
         .querySelector('.card__apply')
