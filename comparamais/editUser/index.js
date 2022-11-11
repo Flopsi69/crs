@@ -1002,21 +1002,27 @@ function changeCardView() {
 
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
 
-      card.querySelector('.toggle--on').addEventListener('click', function () {
-        const bank = card
-          .querySelector('.card__logo img')
-          .alt.replace('Crédito Habitação ', '');
+      setTimeout(() => {
+        card
+          .querySelector('.toggle--on')
+          .addEventListener('click', function () {
+            const bank = card
+              .querySelector('.card__logo img')
+              .alt.replace('Crédito Habitação ', '');
 
-        gaEvent('More details', `Bank name: ${bank}`);
-      });
+            gaEvent('More details', `Bank name: ${bank}`);
+          });
 
-      card.querySelector('.toggle--off').addEventListener('click', function () {
-        const bank = card
-          .querySelector('.card__logo img')
-          .alt.replace('Crédito Habitação ', '');
+        card
+          .querySelector('.toggle--off')
+          .addEventListener('click', function () {
+            const bank = card
+              .querySelector('.card__logo img')
+              .alt.replace('Crédito Habitação ', '');
 
-        gaEvent('Less details', `Bank name: ${bank}`);
-      });
+            gaEvent('Less details', `Bank name: ${bank}`);
+          });
+      }, 500);
 
       card
         .querySelector('.card__apply')
