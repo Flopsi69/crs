@@ -64,7 +64,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
+        // console.log(node);
 
         if (
           node.classList.contains('simulator-container') &&
@@ -1051,6 +1051,7 @@ function changeCardView() {
             .querySelector('.card__logo img')
             .alt.replace('Crédito Habitação ', '');
 
+          console.log('isEventStart', isEventStart);
           if (!isEventStart) {
             gaEvent('Learn how to apply', `Bank name: ${bank}`);
           }
