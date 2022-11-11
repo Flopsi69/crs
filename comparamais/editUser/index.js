@@ -1060,11 +1060,11 @@ function changeCardView() {
               !document.querySelector('.container--edit')) ||
             document.querySelector('.lav-form-confirmed')
           ) {
-            isEventStart = true;
             this.querySelector('a').click();
             if (!isEventStart) {
               gaEvent('View element on screen', 'Congratulations');
             }
+            isEventStart = true;
 
             setTimeout(() => {
               isEventStart = false;
