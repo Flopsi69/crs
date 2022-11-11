@@ -12,7 +12,11 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', 'pers_offer_cta', 'variant_1');
+      try {
+        clarity('set', 'pers_offer_cta', 'variant_1');
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, 1000);
 }
