@@ -136,7 +136,7 @@ if (settings.observe) {
     }
   });
 
-  let observeEl = document.querySelector('.container--hero');
+  let observeEl = document.querySelector('body');
 
   console.log(observeEl);
 
