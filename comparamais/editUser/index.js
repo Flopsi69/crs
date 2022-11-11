@@ -803,7 +803,9 @@ let formData = {};
 //   }
 // }, 300);
 
-init();
+setTimeout(() => {
+  init();
+}, 500);
 
 let isEventStart = false;
 
