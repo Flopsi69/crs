@@ -136,7 +136,7 @@ if (settings.observe) {
     }
   });
 
-  let observeEl = document.querySelector('.page__simulator');
+  let observeEl = document.querySelector('.container--hero');
 
   console.log(observeEl);
 
