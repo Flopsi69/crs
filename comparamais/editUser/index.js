@@ -1003,6 +1003,7 @@ function changeCardView() {
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
 
       setTimeout(() => {
+        console.lot('testik');
         card
           .querySelector('.toggle--on')
           .addEventListener('click', function () {
