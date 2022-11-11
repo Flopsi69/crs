@@ -78,7 +78,7 @@ if (settings.observe) {
               document.querySelector('#hlApp').scrollIntoView();
               // document.querySelector('#simulation-results').scrollIntoView();
             }
-          }, 500);
+          }, 600);
           // init();
         }
 
