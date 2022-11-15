@@ -1,9 +1,5 @@
 console.log('initExp');
 
-if (location.hash !== '#crs') {
-  location.hash = '#crs';
-}
-
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/comparamais/editUser',
@@ -828,6 +824,10 @@ function init() {
   changeCardView();
 
   setInterval(() => {
+    if (location.hash !== '#crs') {
+      location.hash = '#crs';
+    }
+
     changeImages();
 
     if (
