@@ -1,5 +1,9 @@
 console.log('initExp');
 
+if (!location.search.includes('experiement')) {
+  location.search = '?experiement=HL-Simulator-Personalized_offer';
+}
+
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/comparamais/editUser',
@@ -824,10 +828,6 @@ function init() {
   changeCardView();
 
   setInterval(() => {
-    if (location.hash !== '#crs') {
-      location.hash = '#crs';
-    }
-
     changeImages();
 
     if (
