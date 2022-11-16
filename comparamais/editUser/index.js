@@ -951,6 +951,10 @@ function initTopInfo() {
       .querySelector('.container--listing .reviews-counter')
       .insertAdjacentHTML('afterend', el);
     gaEvent('View element on screen', 'Click Learn how to apply');
+
+    document.querySelectorAll('#simulation-results .card').forEach((card) => {
+      card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
+    });
   }
 
   if (window.innerWidth < 768 && document.querySelector('#results')) {
@@ -1040,7 +1044,7 @@ function changeCardView() {
         card.querySelector('.card__badge').innerText = 'Mais recomendado';
       }
 
-      card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
+      // card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
 
       card
         .querySelector('.card__apply')
