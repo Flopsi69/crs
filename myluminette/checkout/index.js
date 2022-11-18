@@ -982,7 +982,12 @@ function init() {
     }, 500);
   } else if (/order\/details\/\d+/.test(location.href)) {
     document.body.classList.add('lav-body-confirm');
-    initCheckoutDetails();
+    let checkoutInterval = setInterval(() => {
+      if (document.querySelector('.order-info .column.order-5')) {
+        clearInterval(checkoutInterval);
+        initCheckoutDetails();
+      }
+    }, 500);
   }
 }
 
