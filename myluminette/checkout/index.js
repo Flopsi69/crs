@@ -203,7 +203,6 @@ const styles = `
   #scroll-spy-item-3.active{
     display: block;
   }
-  .order-pages.order-details .details-block .details-section .fields-another-address
   #scroll-spy-item-4 .fields + .fields {
     flex-direction: column-reverse;
     margin-top: 24px;
