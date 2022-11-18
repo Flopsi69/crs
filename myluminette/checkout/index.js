@@ -200,6 +200,10 @@ const styles = `
   #scroll-spy-item-3.active{
     display: block;
   }
+  #scroll-spy-item-3.active{
+    display: block;
+  }
+  .order-pages.order-details .details-block .details-section .fields-another-address
   #scroll-spy-item-4 .fields + .fields {
     flex-direction: column-reverse;
     margin-top: 24px;
@@ -1405,7 +1409,11 @@ function initCheckout() {
         document
           .querySelector('.lav-address__item:first-child')
           .classList.add('active');
-      } else {
+      } else if (
+        document.querySelector(
+          '#scroll-spy-item-3 .radio-btn-column:last-child .label'
+        )
+      ) {
         document
           .querySelector('.lav-address__item:last-child')
           .classList.add('active');
