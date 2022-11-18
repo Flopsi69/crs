@@ -973,13 +973,17 @@ function init() {
     /order\/\d+\/edit/.test(location.href)
   ) {
     document.body.classList.add('lav-body-checkout');
-    initCheckout();
+    let checkoutInterval = setInterval(() => {
+      if (document.querySelector('.products-info')) {
+        clearInterval(checkoutInterval);
+        initCheckout();
+        initTips();
+      }
+    }, 500);
   } else if (/order\/details\/\d+/.test(location.href)) {
     document.body.classList.add('lav-body-confirm');
     initCheckoutDetails();
   }
-
-  initTips();
 }
 
 function initTips() {
