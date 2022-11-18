@@ -659,14 +659,64 @@ const styles = `
   .lav-tip {
     position: relative;
   }
-
+  .lav-tip__value {
+    display: flex;
+    align-items: center;
+  }
+  .lav-tip__value img {
+    margin-left: 4px;
+  }
   .lav-tip__body {
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.35s;
     position: absolute;
-    left: 0;
     right: 0;
-    top: 100%
+    top: 100%;
+    transform: translateY(10px);
+    padding: 24px;
+    width: 350px;
     background: #FFFFFF;
     border-radius: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #517193;
+    z-index: 11;
+    box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
+  }
+  @media(min-width: 768px) {
+    .lav-tip:hover .lav-tip__body {
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .lav-tip.active .lav-tip__body {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+  }
+  .lav-tip__body:before {
+    content: '';
+    position: absolute;
+    left: 80%;
+    transform: translate(-50%, -85%);
+    top: 0;
+    width: 25px;
+    height: 8px;
+    background: url('${settings.dir}/img/icon-tip-arrow.svg') center no-repeat;
+    background-size: contain;
+  }
+  .lav-tip__body strong { 
+    font-weight: 600;
+  }
+  .lav-tip__body p {
+    margin: 0;
+  }
+  .lav-tip__body p + p {
+    margin-top: 12px;
   }
   @media (max-width: 768px) {
     .lav-path {
@@ -894,6 +944,14 @@ const styles = `
     .lav-toggler-info__wrap {
       text-align: center;
     }
+    .lav-tip__body {
+      width: auto;
+      left: -20px;
+      right: -20px;
+    }
+    .lav-tip__body:before {
+      left: 25%;
+    }
   }
 `;
 
@@ -916,6 +974,18 @@ function init() {
   } else if (/order\/details\/\d+/.test(location.href)) {
     document.body.classList.add('lav-body-confirm');
     initCheckoutDetails();
+  }
+
+  initTips();
+}
+
+function initTips() {
+  for (let tip of document.querySelectorAll('.lav-tip')) {
+    tip.addEventListener('click', function () {
+      if (window.innerWidth < 768) {
+        this.classList.toggle('active');
+      }
+    });
   }
 }
 
@@ -1000,7 +1070,7 @@ function initCheckout() {
                 </p>
 
                 <p>
-                  Opt in for maximum manufacturer protection using our extended warranty that covers your Luminette for 4 years from the purchase date.
+                  Opt in <strong>for maximum manufacturer protection using our extended warranty</strong> that covers your Luminette for 4 years from the purchase date.
                 </p>
               </div>
             </div>
