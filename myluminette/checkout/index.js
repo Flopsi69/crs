@@ -1341,22 +1341,13 @@ function initCheckout() {
           .querySelector('#billing_address_exists_another + .content')
           .innerText.trim();
 
-      if (
-        document.querySelector('[for="billing_address_exists_same"].active')
-      ) {
-        document
-          .querySelector('.lav-address__item:first-child')
-          .classList.add('active');
-      } else {
-        document
-          .querySelector('.lav-address__item:last-child')
-          .classList.add('active');
-        document
-          .querySelector(
-            '.details-section + .details-section[data-toggle="buttons"]'
-          )
-          .classList.remove('active');
-      }
+      let initDeliveryTimer = setInterval(() => {
+        if (document.querySelector('.lav-address__item.active')) {
+          clearInterval(initDeliveryTimer);
+        } else {
+          initDelivery('mob');
+        }
+      }, 500);
 
       for (let item of document.querySelectorAll('.lav-address__item')) {
         item.addEventListener('click', function () {
@@ -1404,17 +1395,11 @@ function initCheckout() {
           )
           .innerText.trim();
 
-      console.log(
-        document.querySelector(
-          '#scroll-spy-item-3 .radio-btn-column:last-child .label'
-        )
-      );
-
       let initDeliveryTimer = setInterval(() => {
         if (document.querySelector('.lav-address__item.active')) {
           clearInterval(initDeliveryTimer);
         } else {
-          initDelivery();
+          initDelivery('desk');
         }
       }, 500);
 
@@ -1596,24 +1581,45 @@ function initCheckout() {
     // });
   }
 
-  function initDelivery() {
-    if (
-      document.querySelector(
-        '#scroll-spy-item-3 .radio-btn-column:first-child .label.active'
-      )
-    ) {
-      document
-        .querySelector('.lav-address__item:first-child')
-        .classList.add('active');
-    } else if (
-      document.querySelector(
-        '#scroll-spy-item-3 .radio-btn-column:last-child .label.active'
-      )
-    ) {
-      document
-        .querySelector('.lav-address__item:last-child')
-        .classList.add('active');
-      document.querySelector('#scroll-spy-item-3').classList.add('active');
+  function initDelivery(type) {
+    if (type == 'desk') {
+      if (
+        document.querySelector(
+          '#scroll-spy-item-3 .radio-btn-column:first-child .label.active'
+        )
+      ) {
+        document
+          .querySelector('.lav-address__item:first-child')
+          .classList.add('active');
+      } else if (
+        document.querySelector(
+          '#scroll-spy-item-3 .radio-btn-column:last-child .label.active'
+        )
+      ) {
+        document
+          .querySelector('.lav-address__item:last-child')
+          .classList.add('active');
+        document.querySelector('#scroll-spy-item-3').classList.add('active');
+      }
+    } else {
+      if (
+        document.querySelector('[for="billing_address_exists_same"].active')
+      ) {
+        document
+          .querySelector('.lav-address__item:first-child')
+          .classList.add('active');
+      } else if (
+        document.querySelector('[for="billing_address_exists_another"].active')
+      ) {
+        document
+          .querySelector('.lav-address__item:last-child')
+          .classList.add('active');
+        document
+          .querySelector(
+            '.details-section + .details-section[data-toggle="buttons"]'
+          )
+          .classList.remove('active');
+      }
     }
   }
 }
