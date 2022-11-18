@@ -1406,24 +1406,13 @@ function initCheckout() {
         )
       );
 
-      if (
-        document.querySelector(
-          '#scroll-spy-item-3 .radio-btn-column:first-child .label.active'
-        )
-      ) {
-        document
-          .querySelector('.lav-address__item:first-child')
-          .classList.add('active');
-      } else if (
-        document.querySelector(
-          '#scroll-spy-item-3 .radio-btn-column:last-child .label.active'
-        )
-      ) {
-        document
-          .querySelector('.lav-address__item:last-child')
-          .classList.add('active');
-        document.querySelector('#scroll-spy-item-3').classList.add('active');
-      }
+      let initDeliveryTimer = setInterval(() => {
+        if (document.querySelector('.lav-address__item.active')) {
+          clearInterval(initDeliveryTimer);
+        } else {
+          initDelivery();
+        }
+      }, 500);
 
       for (let item of document.querySelectorAll('.lav-address__item')) {
         item.addEventListener('click', function () {
@@ -1601,6 +1590,27 @@ function initCheckout() {
     //   document.querySelector('#search-input').value = value;
     //   console.log(value);
     // });
+  }
+
+  function initDelivery() {
+    if (
+      document.querySelector(
+        '#scroll-spy-item-3 .radio-btn-column:first-child .label.active'
+      )
+    ) {
+      document
+        .querySelector('.lav-address__item:first-child')
+        .classList.add('active');
+    } else if (
+      document.querySelector(
+        '#scroll-spy-item-3 .radio-btn-column:last-child .label.active'
+      )
+    ) {
+      document
+        .querySelector('.lav-address__item:last-child')
+        .classList.add('active');
+      document.querySelector('#scroll-spy-item-3').classList.add('active');
+    }
   }
 }
 
