@@ -1107,9 +1107,9 @@ function initCheckout() {
     }
 
     document.querySelector('.lav-product__image').innerHTML = `
-        <img src='${imgSrc}'> ${document
-      .querySelector('.product-list-item .product-list-item__text')
-      .innerText.replace(/[\s\d]+/, '')}
+        <img src='/images/pages/order/quantity/lum1.png'> ${document
+          .querySelector('.product-list-item .product-list-item__text')
+          .innerText.replace(/[\s\d]+/, '')}
       `;
 
     for (let item of document.querySelectorAll(
