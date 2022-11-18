@@ -1400,6 +1400,12 @@ function initCheckout() {
           )
           .innerText.trim();
 
+      console.log(
+        document.querySelector(
+          '#scroll-spy-item-3 .radio-btn-column:last-child .label'
+        )
+      );
+
       if (
         document.querySelector(
           '#scroll-spy-item-3 .radio-btn-column:first-child .label.active'
@@ -1410,7 +1416,7 @@ function initCheckout() {
           .classList.add('active');
       } else if (
         document.querySelector(
-          '#scroll-spy-item-3 .radio-btn-column:last-child .label'
+          '#scroll-spy-item-3 .radio-btn-column:last-child .label.active'
         )
       ) {
         document
