@@ -970,7 +970,9 @@ function init() {
 
   if (
     location.href.includes('order?product=4') ||
-    /order\/\d+\/edit/.test(location.href)
+    /order\/\d+\/edit/.test(location.href) ||
+    location.href.includes('order?product=5') ||
+    location.href.includes('order?product=both')
   ) {
     document.body.classList.add('lav-body-checkout');
     let checkoutInterval = setInterval(() => {
@@ -1002,6 +1004,7 @@ function initTips() {
 }
 
 function initCheckout() {
+  console.log('fire1');
   handleTop();
   handleAddress();
   handleSummary();
