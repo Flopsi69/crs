@@ -958,15 +958,1157 @@ const styles = `
   }
 `;
 
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+const stylePDP = `
+  .section-while-wearing, .pin-spacer {
+    display: none!important;
+  }
+  .block-how-to-use, .section-how-it-works .btn-download-doc, .section-safety, .section-main  {
+    display: none;
+  }
+  .lum-page {
+    background-color: #fff;
+  }
+
+  .lav-jumb {
+
+  }
+
+  .lav-jumb {
+    background: #F3F5F9;
+    padding: 124px 0 60px;
+  }
+  .lav-jumb__inner {
+    display: flex;
+  }
+  .lav-jumb__slider-wrap {
+    max-width: 560px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .lav-jumb__info {
+    flex-grow: 1;
+    margin-left: 45px;
+    color: #517193;
+  }
+  .lav-jumb__title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .lav-jumb__feedbacks {
+    display: flex;
+    align-items: center;
+  }
+  .lav-jumb__feedbacks-star {
+    line-height: 0;
+  }
+  .lav-jumb__feedbacks-caption {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: #517193;
+    margin-left: 8px;
+  }
+  .lav-jumb__effects {
+    margin-top: 19px;
+    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .lav-jumb__effects-title {
+    background: linear-gradient(135deg, #74E6FF 0%, #5D9EFF 100%);
+    padding: 7px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .lav-jumb__effects-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 40px 20px;
+  }
+  .lav-jumb__effects-item {
+    max-width: 160px;
+    width: 100%;
+  }
+  .lav-jumb__effects-icon {
+    line-height: 0;
+  }
+  .lav-jumb__effects-icon img {
+    width: 40px;
+  }
+  .lav-jumb__effects-text {
+    margin-top: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .lav-count {
+    margin-top: 24px;
+  }
+  .lav-count__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lav-count__head-title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .lav-count__head-inside {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .lav-count__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 17px;
+    margin-top: 11px;
+  }
+  .lav-count__item {
+    position: relative;
+    padding: 24px;
+    background: #F9FAFC;
+    border-radius: 16px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-count__item:hover {
+    background: #fff;
+  }
+  .lav-count__item.active {
+    background: #fff;
+    box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.25);
+  }
+  .lav-count__item:before {
+    content: '';
+    right: 24px;
+    bottom: 24px;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #517193;
+    border-radius: 123px;
+  }
+  .lav-count__item.active:before {
+    background: linear-gradient(180deg, #74E6FF 0%, #5D9EFF 100%);
+    border: none;
+  }
+  .lav-count__item.active:after {
+    content: '';
+    right: 32px;
+    bottom: 32px;
+    position: absolute;
+    width: 8px;
+    background-color: #fff;
+    height: 8px;
+    border-radius: 123px;
+  }
+  .lav-count__image {
+    line-height: 0;
+    text-align: center;
+    margin-bottom: 7px;
+  }
+  .lav-count__image img {
+    height: 90px;
+  }
+  .lav-count__title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #517193;
+    opacity: 0.8;
+  }
+  .lav-count__discount {
+    background: linear-gradient(135deg, #74E6FF 0%, #5D9EFF 100%);
+    border-radius: 123px;
+    min-width: 46px;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+  }
+  .lav-count__price {
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 28px;
+    color: #517193;
+    margin-top: 5px;
+  }
+  .lav-count__price sup {
+    font-size: 18px;
+    margin-left: 2px;
+  }
+  .lav-count__caption {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #517193;
+    opacity: 0.5;
+  }
+  .lav-count__pay {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .lav-count__pay .lav-jumb__btn {
+    min-height: 62px;
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  .thumbnail {
+    opacity: 0.3;
+  }
+  
+  .thumbnail.is-active {
+    opacity: 1;
+  }
+
+  /* fonts */
+  .fw-bold {
+    font-weight: 700;
+  }
+  .fw-semi {
+    font-weight: 600;
+  }
+  .fw-medium {
+    font-weight: 500;
+  }
+  .fs-22 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .fs-18 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .fs-16 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .op-07 {
+    opacity: 0.7;
+  }
+  .bb-1 {
+    border-bottom: 1px solid #517193;
+  }
+  .b-1 {
+    border: 1px solid #EFF2F5;
+  }
+  .c-blue {
+    color: #517193;
+  }
+
+  .lav-test__wrap {
+    background: #F3F5F9;
+    padding: 60px 0;
+  }
+  .days-test {
+    background: #406184;
+    border-radius: 16px;
+    padding: 32px 0;
+    color: #FFFFFF;
+    position: relative;
+  }
+  .days-test:before, .days-test:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    z-index: 3;
+    pointer-events: none;
+    border-radius: 16px;
+  }
+  .days-test:before {
+    left: 0;
+    background: linear-gradient(90deg, #406184, rgba(64, 97, 132, 0.1));
+  }
+  .days-test:after {
+    right: 0;
+    background: linear-gradient(-90deg, #406184, rgba(64, 97, 132, 0.1));
+  }
+  .line-dashed {
+    position: relative;
+    margin-top: 32px;
+  }
+  .line-dashed:before {
+    content: '';
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: url(https://conversionratestore.github.io/projects/luminette/img/line-desk.svg) center / 100%;
+  }
+  .days-test .row {
+    max-width: 1045px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .circle {
+    background: linear-gradient(90deg, #74E6FF 0%, #5D9EFF 851.75%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 22px 0 8px;
+  }
+  .days-test_list {
+    list-style-type: none;
+  }
+  .tooltip {
+    position: relative;
+  }
+  .tooltip:hover .tooltip-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tooltip-dropdown {
+    color: #517193;
+    position: absolute;
+    padding-top: 32px;
+    top: 0;
+    right: -15px;
+    width: 351px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 4;
+  }
+  .tooltip-item {
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 24px;
+    position: relative;
+  }
+  .tooltip-item:before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12.5px 8px 12.5px;
+    border-color: transparent transparent #fff transparent;
+  }
+  .tooltip_free {
+    background: rgba(218, 225, 232, 0.3);
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .compare-section {
+    padding: 80px 0;
+    background: url(https://conversionratestore.github.io/projects/luminette/img/stripes_features.png) no-repeat center bottom / cover;
+  }
+  .compare {
+    background: #F8F9FA;
+    border: 1px solid #F8F9FA;
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.25);
+    border-radius: 16px;
+    max-width: 718px;
+    overflow: hidden;
+  }
+  .compare .col-6:nth-child(3n+1) {
+    background: linear-gradient(98.6deg, #EEF1F4 43.43%, #EEF1F4 58.16%, #F3F5F7 100%);
+  }
+
+  .technical__wrap {
+    padding: 60px 0;
+  }
+  .technical {
+    color: #517193;
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.25);
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .technical h2 {
+    line-height: 54px;
+  }
+  .safety-block {
+    background: linear-gradient(101.51deg, #F8F9FA 0%, #FDFDFD 100%, #FDFDFD 100%);
+  }
+  .technical-block, .safety-block .row {
+    padding: 60px 16px;
+    max-width: 992px;
+    margin: 0 auto;
+  }
+
+  .lav-recharge {
+    margin-top: 60px;
+  }
+  .lav-recharge__inner {
+    background: url('${settings.dir}/img/women.jpeg') left center no-repeat;
+    background-size: auto 100%;
+    display: flex;
+    align-items: center;
+    background-color: #f9fafc;
+    // background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+  }
+  .lav-recharge__inner>div {
+    flex: 1;
+  }
+  .lav-recharge__preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    cursor: pointer;
+    line-height: 0;
+  }
+  .lav-recharge__preview:before {
+    content: '';
+    background: #517193;
+    opacity: 0.5;
+    filter: blur(25px);
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+  }
+  .lav-recharge__preview img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.35s;
+    width: 125px;
+    height: 125px;
+  }
+  .lav-recharge__preview img + img {
+    opacity: 0;
+  }
+  .lav-recharge__preview:hover img  {
+    opacity: 0;
+  }
+  .lav-recharge__preview:hover img + img {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .lav-recharge__info {
+    padding: 48px;
+    max-width: 584px;
+  }
+
+  .lav-title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 48px;
+    color: #517193;
+    margin-bottom: 24px;
+  }
+  .lav-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #517193;
+  }
+
+  .lav-transforms {
+    padding-bottom: 60px;
+  }
+  .lav-transform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lav-transform__more {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+  }
+  .lav-transform__more-btn {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.01em;
+    color: #517193;
+    padding: 19px 32px;
+    border: 1px solid rgba(81, 113, 147, 0.2);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-transform__more-btn:hover {
+    border-color: #517193;
+    opacity: 0.7;
+  }
+  .lav-transform__more-btn svg {
+    margin-left: 8px;
+    transform: rotate(180deg);
+    transition: 0.35s;
+  }
+  .lav-transform__more-btn.active svg {
+    transform: rotate(0deg);
+  }
+  .block-on-the-go .title {
+    margin-bottom: 37px;
+    font-weight: 700;
+  }
+  .lav-transform__info {
+    max-width: 500px;
+    // margin-bottom: 50px;
+  }
+  .lav-transform__title-mob {
+    display: none;
+  }
+  lav-transform__image {
+    margin-left: -50px;
+  }
+  .block-on-the-go:not(.active) {
+    display: none;
+  }
+  #discover-block {
+    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    box-shadow: 0px 30px 66px rgb(59 83 108 / 22%);
+    border-radius: 16px;
+    margin-top: 24px;
+  }
+  .splide__pagination {
+    padding: 0;
+    margin-top: 20px;
+  }
+  .splide__pagination__page {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50px;
+    background: none;
+    border: 1px solid #4E4F51;
+    transition: 0.35s;
+  }
+  .splide__pagination__page.is-active {
+    background-color: #4E4F51;
+  }
+  .splide__pagination li + li {
+    margin-left: 32px;
+  }
+  .splide__pagination li {
+    line-height: 0;
+    cursor: pointer;
+  }
+  .splide__pagination__page {
+    cursor: pointer;
+  }
+
+  .lav-study__wrap {
+    text-align: center;
+    margin: 60px auto;
+  }
+  .lav-study {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    margin: auto;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid #517193;
+    border-radius: 16px;
+    max-width: 960px;
+    text-align: left;
+  }
+  .lav-study__icon {
+    line-height: 0;
+  }
+  .lav-study__icon svg {
+    width: 40px;
+  }
+  .lav-study__info {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #517193;
+    margin-left: 12px;
+    margin-right: 40px;
+  }
+  .lav-study__info strong {
+    font-weight: 700;
+  }
+  .lav-study__btn {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    border: 1px solid rgba(81, 113, 147, 0.12);
+    border-radius: 123px;
+    padding: 13px 65px;
+    transition: 0.35s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .lav-study__btn:hover {
+    background-color: #fff;
+    border: 1px solid #517193;
+    cursor: pointer;
+  }
+  .lav-study__btn img {
+    margin-left: 16px;
+    width: 30px;
+  }
+  .lav-study {}
+  .lav-can {
+    margin-bottom: 60px;
+  }
+  .lav-can__inner {
+    padding: 65px 120px;
+    background: #F3F5F9;
+    border-radius: 16px;
+    overflow: hidden;
+    // background: #C4C4C4;
+    background: url('${settings.dir}/img/bg-man.jpeg') center no-repeat;
+    box-shadow: 0px 44px 66px rgb(59 83 108 / 22%);
+    background-size: cover;
+  }
+  .lav-can__icon {
+    line-height: 0;
+  }
+  .lav-can__title {
+    margin-bottom: 40px;
+    margin-top: 16px;
+  }
+  .lav-can__item {
+    position: relative;
+    padding-left: 30px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #517193;
+  }
+  .lav-can__item + .lav-can__item {
+    margin-top: 12px;
+  }
+  .lav-can__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+
+  .lav-perfect {
+    text-align: center;
+    padding-top: 60px;
+  }
+  .lav-perfect__title {
+
+  }
+  .lav-perfect__icon {
+    line-height: 0;
+  }
+  .lav-perfect__icon img {
+    width: 108px;
+  }
+  .lav-perfect__list {
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .lav-perfect__subtitle {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #517193;
+    margin-top: 16px;
+  }
+  .lav-perfect__descr {
+    margin-top: 16px;
+  }
+  .lav-perfect__item {
+    max-width: 340px;
+    width: 100%;
+  }
+ 
+  .lav-trial {
+    padding: 60px 0;
+  }
+  .lav-trial__row {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(96.91deg, #F8F9FA 0%, #FDFDFD 100.36%);
+    box-shadow: 0px 30px 66px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+    padding: 32px 40px;
+  }
+  .lav-trial__image {
+    width: 55%;
+  }
+  .lav-trial__info {
+    max-width: 430px;
+    margin-left: 50px;
+  }
+  .lav-trial__descr {
+    margin-top: 16px;
+  }
+  .lav-trial__buttons {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    display: flex;
+  }
+  .lav-trial__buttons .lav-trial__btn span {
+    border-bottom: 1px solid #517193;
+  }
+  .lav-trial__btn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: bold;
+    padding: 15px 10px;
+    flex-grow: 1;
+    justify-content: center;
+    border: 1px solid rgba(81, 113, 147, 15%);
+    border-radius: 36px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__btn:hover {
+    border-color: #517193;
+  }
+  .lav-trial__btn img {
+    margin-right: 8px;
+  }
+  .lav-trial__btn + .lav-trial__btn {
+    margin-left: 12px;
+  }
+  .lav-trial__inside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    transition: 0.35s;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .lav-trial__inside:hover {
+   opacity: 0.6;
+  }
+
+  .lav-trial__actions {
+    text-align: center;
+    width: 260px;
+  }
+  .lav-trials__btn.btn-primary {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .lav-trial__learn {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__learn:hover {
+    opacity: 0.7;
+  }
+
+  .lum-page .section-features {
+    padding: 80px 0 0;
+    margin: 0;
+  }
+  .lum-page .section-features .title br {
+    display: none;
+  }
+  .lav-feat {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+  }
+  .lum-page .section-features .gradient-group .gradient-linear, .lum-page .section-features .gradient-group .gradient-radial-wrapper {
+    width: 110%;
+  }
+  .lum-page .section-features .gradient-group .gradient-radial {
+    width: 100%;
+    height: 300px;
+  }
+  .lum-page .section-features .image-stripes {
+    top: -50px;
+  }
+  .lum-page .section-how-it-works .main-content .column .subtitle {
+    padding-bottom: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #517193;
+  }
+  .lum-page .section-how-it-works .main-content .column .fw-medium {
+    line-height: 24px;
+    font-size: 18px;
+  }
+  .lum-page .section-how-it-works .main-content .column .title {
+    font-weight: 700;
+    max-width: 100%;
+  }
+  .lum-page .section-how-it-works .main-content {
+    padding: 0 0 60px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  .lum-page .section-how-it-works .main-content .column > .image {
+    margin-top: -70px;
+  }
+  .lum-page .section-how-it-works {
+    background: none;
+    padding-top: 60px;
+  }
+  .studies-component .heading-wrapper {
+    background: linear-gradient(107.16deg, #F8F9FA 38.2%, #FDFDFD 100%);
+  }
+  .lum-page .section-studies .studies-component {
+    // box-shadow: 0px 44px 66px rgb(59 83 108 / 25%);
+    margin-top: 0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .studies-component .list-of-studies {
+    display: flex;
+    flex-flow: column;
+  }
+  .lav-research-reorder {
+    order: -1;
+    background: linear-gradient(98.6deg, #EEF1F4 43.43%, #F3F5F7 100%);
+  }
+  .lav-research-reorder  + div {
+    background: none!important;
+  }
+  .lav-research-reorder + div + div {
+    background: linear-gradient(98.6deg, #EEF1F4 43.43%, #F3F5F7 100%);
+  }
+  .studies-component .study-item .title-description-wrapper .title {
+    margin-bottom: 15px;
+  }
+
+  .lav-users {
+    text-align: center;
+    position: relative;
+  }
+  .lav-users__image {
+    max-width: 100%;
+  }
+  .lav-users__title {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 80px;
+    line-height: 80px;
+    letter-spacing: 1px;
+    padding: 0 15px;
+  }
+  .lav-users__title span {
+    font-weight: 800;
+  }
+  .lav-users__image-mob, .lav-users__title-mob {
+    display: none;
+  }
+  .lav-reviews {
+    padding: 64px 0 90px;
+    background: #406184;
+    color: #fff;
+  }
+  .lav-reviews__title {
+    text-align: center;
+    color: #fff;
+  }
+  .lav-reviews__list {
+    margin-top: 64px;
+  }
+  .lav-review {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 11px 22px rgba(59, 83, 108, 0.88);
+    // background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    background: #F8F9FA;
+    border-radius: 16px;
+    padding: 24px;
+    color: #517193;
+  }
+  @media (min-width: 992px) {
+    .lav-reviews__list .splide__list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lav-reviews__list .splide__track {
+      overflow: visible;
+    }
+    .lav-review {
+      width: 29%;
+    }
+    .lav-review:nth-child(2) {
+      width: 35%;
+      min-height: 460px;
+    }
+  }
+  .lav-review_expand:after {
+    content: "";
+    position: absolute;
+    // bottom: 35px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    pointer-events: none;
+    background: linear-gradient(180deg,hsla(0,0%,100%,0),#fbfbfb 70%);
+    z-index: 1;
+  }
+  .lav-review__image {
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-review__name {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+  }
+  .lav-review__text {
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 12px;
+    max-height: 168px;
+    overflow-y: auto;
+  }
+  @media(max-width: 1400px) {
+    .lav-review__text {
+      max-height: auto;
+      min-height: 195px;
+      max-height: 195px;
+    }
+  }
+
+  .lav-review__text + .lav-review__text {
+    padding-bottom: 20px;
+  }
+
+  .lav-review__text:not(.active) {
+    display: none;
+  }
+  .lav-review__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(64 97 132 / 50%);
+  }
+  .lav-review__link span {
+    font-weight: bold;
+    padding: 0 5px;
+  }
+  .lav-review__trigger {
+    position: relative;
+    z-index: 10;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-review__trigger:hover {
+    opacity: 0.8;
+  }
+  .lav-reviews__total {
+    display: flex;
+    margin: 64px auto 0;
+    text-align: center;
+    max-width: 1000px;
+  }
+  .lav-reviews__total-col {
+    position: relative;
+    flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .lav-reviews__total-col:last-child:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    background: radial-gradient(82% 55% at 0 48%,#000 0,rgba(0,0,0,.85) 18%,rgba(0,0,0,.7) 38%,rgba(0,0,0,.45) 65%,transparent 100%);
+    mix-blend-mode: normal;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .lav-reviews__total-caption {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    opacity: 0.9;
+  }
+  .lav-reviews__total-caption span {
+    font-weight: 500;
+  }
+  .lav-reviews__total__caption span {
+    font-weight: bold;
+  }
+  .lav-reviews__total-stars {
+    margin: 12px 0 17px;
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-reviews__total-score {
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFAA02;
+    font-weight: bold;
+  }
+  .lav-reviews__total-image {
+    line-height: 0;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .lav-reviews__total-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .lav-reviews__btn.btn-primary {
+    min-width: 200px;
+    min-height: 62px;
+    padding: 10px 15px;
+  }
+  .lav-reviews__btn .btn-bg-wrapper {
+    background: #fff;
+  }
+  .lav-reviews__btn .btn-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #517193;
+  }
+  .lav-reviews__preview-list {
+    margin-top: 80px;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .lav-reviews__preview {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+    border-radius: 16px;
+    text-align: center;
+    height: 340px;
+  }
+  .lav-reviews__placeholder {
+    max-width: 100%;
+    min-height: 100%;
+  }
+  .lav-reviews__play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 130px;
+    line-height: 0;
+    transition: 0.3s;
+  }
+  .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 156px;
+    height: 156px;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 1;
+  }
+  @media (max-width: 768px) {
+    .lav-users__title, .lav-users__image {
+      display: none;
+    }
+    .lav-users__title-mob {
+      display: block;
+      transform: translateY(-50%);
+      font-weight: 300;
+      font-size: 32px;
+      line-height: 36px;
+    }
+    .lav-users__title-mob span {
+      letter-spacing: 1px;
+      font-size: 96px;
+      line-height: 96px; 
+      font-weight: 700;        
+    }
+    .lav-users__image-mob {
+      display: block;
+      max-width: 100%;
+    }
+  }
+`;
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
 init();
 function init() {
   console.log('init');
+  const stylesEl = document.createElement('style');
+  stylesEl.innerHTML = stylePDP;
+  if (location.href.includes('/luminette')) {
+    initPdp();
+    document.body.appendChild(stylesEl);
+    return false;
+  }
+
+  stylesEl.innerHTML = styles;
+  document.body.appendChild(stylesEl);
 
   if (
     location.href.includes('order?product=4') ||
@@ -990,6 +2132,786 @@ function init() {
         initCheckoutDetails();
       }
     }, 500);
+  }
+}
+
+function initPdp() {
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+  document.body.appendChild(sliderStyles);
+
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+  document.body.append(sliderScript);
+
+  const newLayout = `
+    <section class='lav-jumb'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-jumb__inner'>
+          <div class='lav-jumb__slider-wrap'>
+            <div class="splide lav-jumb__slider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide1.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide2.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide3.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide4.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide5.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide6.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide7.jpeg" alt="">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          
+            <div class="lav-jumb__thumbs">
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide1.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide2.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide3.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide4.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide5.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide6.jpeg" alt="">
+              </div>
+              <div class="lav-jumb__thumb">
+                <img src="${settings.dir}/img/slide7.jpeg" alt="">
+              </div>
+            </div>
+          </div>
+          <div class='lav-jumb__info'>
+            <div class='lav-jumb__title'>Luminette 3 Light Therapy Glasses</div>
+            <div class='lav-jumb__feedbacks'>
+              <div class='lav-jumb__feedbacks-star'>
+                <img src='${settings.dir}/img/stars.svg' />
+              </div>
+              <div class='lav-jumb__feedbacks-caption'>(Over 900+ positive reviews)</div>
+            </div>
+            <div class='lav-jumb__effects'>
+              <div class='lav-jumb__effects-title'>Feel beneficial effects in 4 to 6 days</div>
+              <div class='lav-jumb__effects-list'>
+                <div class='lav-jumb__effects-item'>
+                  <div class='lav-jumb__effects-icon'>
+                    <img src='${settings.dir}/img/benefit1.svg' />
+                  </div>
+                  <div class='lav-jumb__effects-text'>Say goodbye 
+                  to winter blues</div>
+                </div>
+                <div class='lav-jumb__effects-item'>
+                  <div class='lav-jumb__effects-icon'>
+                    <img src='${settings.dir}/img/benefit2.svg' />
+                  </div>
+                  <div class='lav-jumb__effects-text'>Rebalance your sleep schedules</div>
+                </div>
+                <div class='lav-jumb__effects-item'>
+                  <div class='lav-jumb__effects-icon'>
+                    <img src='${settings.dir}/img/benefit3.svg' />
+                  </div>
+                  <div class='lav-jumb__effects-text'>Restore your natural energy levels</div>
+                </div>
+              </div>
+            </div>
+
+            <div class='lav-count'>
+              <div class='lav-count__head'>
+                <div class='lav-count__head-title'>Quantity</div>
+                <div class='lav-count__head-inside'>What’s in the box?</div>
+              </div>
+              <div class='lav-count__list'>
+                <div class='lav-count__item'>
+                  <div class='lav-count__image'>
+                    <img src='${settings.dir}/img/pr-1.png' />
+                  </div>
+                  <div class='lav-count__title'>1 Luminette</div>
+                  <div class='lav-count__price'>$199</div>
+                  <div class='lav-count__caption'>per unit</div>
+                </div>
+                <div class='lav-count__item active'>
+                  <div class='lav-count__image'>
+                    <img src='${settings.dir}/img/pr-2.png' />
+                  </div>
+                  <div class='lav-count__title'>
+                    2 Luminettes
+                    <span class='lav-count__discount'>-10%</span>
+                  </div>
+                  <div class='lav-count__price'>$179<sup>10</sup></div>
+                  <div class='lav-count__caption'>per unit</div>
+                </div>
+                <div class='lav-count__item'>
+                  <div class='lav-count__image'>
+                    <img src='${settings.dir}/img/pr-3.png' />
+                  </div>
+                  <div class='lav-count__title'>
+                    3 Luminettes
+                    <span class='lav-count__discount'>-15%</span>
+                  </div>
+                  <div class='lav-count__price'>$169<sup>15</sup></div>
+                  <div class='lav-count__caption'>per unit</div>
+                </div>
+              </div>
+            </div>
+
+            <div class='lav-count__pay'>
+              <button class="lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy">
+                <span class="btn-text">
+                  Buy $199
+                </span>
+                <span class="btn-bg-wrapper"></span>
+              </button>
+
+              <button class="lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy">
+                <span class="btn-text">
+                  Try it $199
+                </span>
+                <span class="btn-bg-wrapper"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-test__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class="days-test">
+          <h3 class="text-center">You have 30 days to test Luminette</h3>
+          <div class="line-dashed">
+            <ul class="row days-test_list">
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
+                <p class="fs-22 fw-bold days-test_head">Buy Luminette3</p>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">Today</p>
+                  <p class="fs-16 op-07">Sep 26, 2022</p>
+                </div>
+              </li>
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
+                <div class="d-flex align-items-center days-test_head ">
+                  <p class="fs-22 fw-bold mr-2">Free shipping</p>
+                  <div class="tooltip d-flex">
+                    <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown fs-16">
+                      <div class="tooltip-item">
+                        <div class="tooltip_free text-center mb-2">
+                          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                            <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/EN.svg" alt="EN">
+                            <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/CA.svg" alt="CA">
+                          </div>
+                          <p> Free for USA and Canada: <span class="fw-bold d-block">3 to 5 working days</span></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                          <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
+                          <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
+                        </div>
+                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">3-5 days</p>
+                  <p class="fs-16 op-07">Sep 29-Oct 1, 2022</p>
+                </div>
+              </li>
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
+                <div class="d-flex align-items-md-center align-items-end days-test_head">
+                  <div class="fs-22 fw-bold mr-2">100% money<div class="d-md-inline d-block">back guarantee</div> </div>
+                  <div class="tooltip d-flex">
+                    <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown fs-16">
+                      <div class="tooltip-item">
+                        <p class="mb-2">
+                          <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
+                        </p>
+                        <p>However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="#" class="fw-semi bb-1 c-blue">Refunds page</a>.</p>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">After 30 days</p>
+                  <p class="fs-16 op-07">Oct 29-Nov 1, 2022</p>
+                <div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-recharge'>
+      <div class='container-fluid container--size--lg lav-jumb__container'>
+        <div class='lav-recharge__inner'>
+          <div class='lav-recharge__preview'>
+            <img src='${settings.dir}/img/play.svg' />
+            <img src='${settings.dir}/img/play-hover.svg' />
+          </div>
+          <div class='lav-recharge__info'>
+            <div class='lav-recharge__title lav-title'>Recharge with Luminette</div>
+            <div class='lav-recharge__caption lav-text'>Breakthrough technology allows Luminette® glasses to rebalance your biological circadian body clock; restoring 
+            your sleep cycles, mood, and energy levels.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-transforms'>
+      <div class='container-fluid container--size--lg lav-transforms__container'>
+        <div class='lav-transforms__slider splide'>
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class='lav-transform lav-transform_first splide__slide'>
+                <div class='lav-transform__info'>
+                  <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+                  <div class='lav-transform__descr lav-text'>Luminette's rays act like a replacement for natural sunlight. Your body can use it to optimize melatonin levels, allowing you reduce fatigue, sleep better at night, and have more energy during the day.</div>
+                </div>
+                <div class='lav-transform__image'>
+                  <img src='${settings.dir}/img/transform-smile.png' />
+                </div>
+                <div class='lav-transform__title-mob lav-title'>How Luminette transforms your days</div>
+              </div>
+
+              <div class='lav-transform lav-transform_second splide__slide'>
+                <div class='lav-transform__info'>
+                  <div class='lav-transform__title lav-title'>How Luminette transforms your days</div>
+                  <div class='lav-transform__descr lav-text'>When there's not enough sun, the brain starts overproducing melatonin which makes us weak and throws us off our sleep cycles.</div>
+                </div>
+                <div class='lav-transform__image'>
+                <img src='${settings.dir}/img/transform-sad.png' />
+                </div>
+                <div class='lav-transform__title-mob lav-title'>How Luminette transforms your days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-transform__more'>
+          <div class='lav-transform__more-btn'>
+            Learn more about Light Therapy
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2152_65635)">
+              <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#517193" fill-opacity="0.1"/>
+              <path d="M8.175 14.1758L12 10.3591L15.825 14.1758L17 13.0008L12 8.00078L7 13.0008L8.175 14.1758Z" fill="#517193"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_2152_65635">
+              <rect width="24" height="24" fill="white"/>
+              </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='compare-section'>
+      <div class='container-fluid container--size--lg'>
+        <div class="row fs-16 text-center compare mx-auto">
+          <div class="col-6 py-5">
+            <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/glasses.svg" alt="glasses icon"/>
+            <p class="fs-22 fw-bold py-1">Luminette3</p>
+          </div>
+          <div class="col-6 py-5">
+            <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/box.svg" alt="box icon"/>
+            <p class="fs-22 fw-bold py-1">Light Box</p>
+          </div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Portable</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Wear while <span class="text-ellipsis"> on-the-go</span></p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Requires you to stop and sit still for <span class="text-ellipsis">30 mins</span></p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Light colour spectrum</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Blue-enriched <span class="text-ellipsis">white light</span></p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Full spectrum <span class="text-ellipsis">white light</span></p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Therapy effectiveness</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Provides effective therapy using <br>
+              a less intense light source</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Requires at least 10,000 lux to provide effective light therapy</p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Size</div>
+          <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Small/ ultralight <br>
+              only 51g (1.83 ounces)</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">	Large/ bulky</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-study__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-study'>
+          <div class='lav-study__icon'>
+            <svg class="icon icon-xxl">
+              <use xlink:href="#lamp"></use>
+            </svg>
+          </div>
+          <div class='lav-study__info'>
+            An <strong>independent study</strong> has shown that the Luminette gives the same results as a 10,000 lux light box
+          </div>
+          <div class='lav-study__btn'>
+            Read the study
+            <img src='/images/icons/adobe-reader.svg' />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-can'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-can__inner'>
+          <div class='lav-can__icon'>
+            <img src='/images/icons/clock.svg' />
+          </div>
+          <div class='lav-can__title lav-title'>While wearing <br/> Luminette, you can:</div>
+          <div class='lav-can__list'>
+            <div class='lav-can__item'>Get breakfast ready</div>
+            <div class='lav-can__item'>Brush your teeth</div>
+            <div class='lav-can__item'>Read your favorite magazine</div>
+            <div class='lav-can__item'>Watch television</div>
+            <div class='lav-can__item'>Work on your computer</div>
+            <div class='lav-can__item'>Perform light exercise</div>
+            <div class='lav-can__item'>e.g. walking, using an indoor exercise bicycle, yoga</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-perfect'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-perfect__title lav-title'>Perfect for your morning routine</div>
+        <div class='lav-perfect__list'>
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_1.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Wear for 20-45 mins
+            to get a complete therapy session</div>
+            <div class='lav-perfect__descr lav-text'>Varies according to light intensity level: (From 20-minutes at maximum intensity to 45-minutes at minimum intensity.)</div>
+          </div>
+
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_2.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Use 1x per day
+            </div>
+            <div class='lav-perfect__descr lav-text'>We recommend using the Luminette 
+            once a day.</div>
+          </div>
+
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_3.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Begin restoring your energy levels within 4 to 6 days</div>
+            <div class='lav-perfect__descr lav-text'>Luminette®’s sleep rebalancing effect is almost immediate. Within just a few sessions, you’ll feel your sleep schedule improving, energy returning, and your mood getting better.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-trial lav-section'>
+      <div class='container-fluid container--size--lg lav-trial__container'>
+        <div class='lav-trial__row'>
+          <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
+
+          <div class='lav-trial__info'>
+            <div class='lav-trial__title lav-title'>30 Day <br/> Light Therapy Trial</div>
+            <div class='lav-trial__descr lav-text'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+
+            <div class='lav-trial__buttons'>
+              <div class='lav-trial__btn lav-trial__btn-refresh'>
+                <img src='${settings.dir}/img/icon-refresh.svg' />
+                <span>30-day trial</span>
+              </div>
+              <div class='lav-trial__btn lav-trial__btn-box'>
+                <img src='${settings.dir}/img/icon-box-2.svg' />
+                <span>Free shipping</span>
+              </div>
+            </div>
+
+            <div class='lav-trial__actions'>
+              <button class='lav-trial__btn btn-primary btn-lg flipped lav-btn-buy'>
+                <span class="btn-text">
+                  Try it $199
+                </span>
+                <span class="btn-bg-wrapper"></span>
+              </button>
+
+              <div class='lav-trial__inside'>What’s in the box?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='technical__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class="technical">
+          <div class="row technical-block">
+            <div class="col-lg-6 pl-0">
+              <h2>Technical <br>
+              Details</h2>
+            </div>
+            <div class="col-lg-6 fs-18">
+              <div class="row pb-2 bb-1">
+                <div class="col-sm-7 col-6 pl-0">Product Dimensions</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3"D x 9.06"W x6.26"H</div>
+              </div>
+              <div class="row py-2 bb-1">
+                <div class="col-sm-7 col-6 pl-0">Light Source Type</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">LED</div>
+              </div>
+              <div class="row py-2 bb-1">
+                <div class="col-sm-7 col-6 pl-0">Number of Light Sources</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3</div>
+              </div>
+              <div class="row py-2 bb-1">
+                <div class="col-sm-7 col-6 pl-0">Item Weight</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">1.83 ounces (51g)</div>
+              </div>
+            </div>
+          </div>
+          <div class="safety-block">
+            <div class="row">
+              <div class="col-lg-6 pl-0">
+                <h2 class="pb-4">Safety</h2>
+                <div class="d-flex mt-5">
+                  <img class="mr-5 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-1.svg" alt="safety icon" />
+                  <img class="mr-5 ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-2.svg" alt="safety icon" />
+                  <img class="ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-3.svg" alt="safety icon" />
+                </div>
+              </div>
+              <div class="col-lg-6 fs-18 px-0">
+                <p class="fw-bold mb-3">Since 2007 Luminette®  carries the European 
+                CE classification. </p>
+                <p class="mb-3">Luminette® is classified as a device that is safe for the eyes in accordance with the international standard CEI 62471. In addition, the light emitted by Luminette®  is free from UV, infrared rays and does not contain short wavelength below 450 nm</p>
+                <p>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-users lav-section'>
+      <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
+      <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
+      <div class='lav-users__title-mob container'><span>150k+</span> Luminette users</div>
+      <div class='lav-users__title container'><span>150 000</span> Luminette users</div>
+    </section>
+
+    <section class='lav-reviews'>
+      <div class='container-fluid container--size--lg lav-reviews__container'>
+        <div class='lav-reviews__title lav-title'>Customer reviews</div>
+
+        <div class='lav-reviews__list splide'>
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review1.png' />
+                </div>
+                <div class='lav-review__name'>Aurélie</div>
+                <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                  View review on <span>Amazon</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
+                </div>
+
+                <div class='lav-review__text'>
+                  “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
+                </div>
+                
+                <div class='lav-review__trigger'>Show more</div>
+              </div>
+              
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review2.png' />
+                </div>
+                <div class='lav-review__name'>Arnaud T.</div>
+                <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
+                  View review on <span>Google</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
+                </div>
+              </div>
+
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review3.png' />
+                </div>
+                <div class='lav-review__name'>Laura S.</div>
+                <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                  View review on <span>Amazon</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
+                </div>
+                <div class='lav-review__text'>
+                  “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
+                </div>
+                <div class='lav-review__trigger'>Show more</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-reviews__total'>
+          <div class='lav-reviews__total-col'>
+            <div class='lav-reviews__total-image'>
+              <img src='${settings.dir}/img/reviews-trusted.svg' />
+            </div>
+            <div class='lav-reviews__total-info'>
+              <div class='lav-reviews__total-score'>4.5</div>
+              <div class='lav-reviews__total-stars'>
+                <img src='${settings.dir}/img/reviews-stars.svg' />
+              </div>
+              <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
+            </div>
+          </div>
+          <div class='lav-reviews__total-col'>
+            <div class='lav-reviews__total-image'>
+              <img src='${settings.dir}/img/reviews-amazon.svg' />
+            </div>
+            <div class='lav-reviews__total-info'>
+              <div class='lav-reviews__total-score'>4.5</div>
+              <div class='lav-reviews__total-stars'>
+                <img src='${settings.dir}/img/reviews-stars.svg' />
+              </div>
+              <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-reviews__preview-list'>
+          <div class='lav-reviews__preview' style='background: url(${settings.dir}/img/reviews-video.jpg)'>
+            <div class="lav-reviews__play">
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
+            </div>
+          </div>
+
+          <div class='lav-reviews__preview' style='background: url(${settings.dir}/img/reviews-video.jpg)'>
+            <div class="lav-reviews__play">
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+
+  document
+    .querySelector('.section-main')
+    .insertAdjacentHTML('afterend', newLayout);
+
+  for (let item of document.querySelectorAll('.lav-count__item')) {
+    item.addEventListener('click', function () {
+      if (this.classList.contains('active')) return false;
+      document
+        .querySelector('.lav-count__item.active')
+        .classList.remove('active');
+      this.classList.add('active');
+    });
+  }
+
+  document
+    .querySelector('.lav-transform__more-btn')
+    .addEventListener('click', function () {
+      this.classList.toggle('active');
+      document.querySelector('.block-on-the-go').classList.toggle('active');
+    });
+
+  document.querySelector('.block-on-the-go .title').innerHTML =
+    'Light therapy <br /> on the go';
+
+  document
+    .querySelector('.lav-transforms')
+    .insertAdjacentElement(
+      'afterend',
+      document.querySelector('.block-on-the-go')
+    );
+
+  document
+    .querySelector('.section-safety')
+    .insertAdjacentElement('beforebegin', document.querySelector('.lav-users'));
+
+  document
+    .querySelector('.section-safety')
+    .insertAdjacentElement(
+      'beforebegin',
+      document.querySelector('.lav-reviews')
+    );
+
+  let initSplideInterval = setInterval(() => {
+    if (typeof Splide == 'function') {
+      clearInterval(initSplideInterval);
+      initSliders();
+    }
+  }, 500);
+
+  document
+    .querySelector('.lav-study__btn')
+    .addEventListener('click', function () {
+      document.querySelector('.btn-download-doc').click();
+    });
+
+  document
+    .querySelector('.lav-trial')
+    .insertAdjacentElement(
+      'afterend',
+      document.querySelector('.lum-page .section-features')
+    );
+
+  document.querySelector('.lum-page .section-features .title').innerText =
+    document
+      .querySelector('.lum-page .section-features .title')
+      .innerText.replace('Luminette', '');
+
+  document
+    .querySelector(
+      '.lum-page .section-features .device-wrapper .heading-wrapper .title'
+    )
+    .insertAdjacentHTML(
+      'afterend',
+      '<div class="lav-feat">Move your cursor over the buttons to zoom in</div>'
+    );
+
+  initHowItWorks();
+  initReserch();
+
+  function initHowItWorks() {
+    document.querySelector(
+      '.lum-page .section-how-it-works .main-content .column .title'
+    ).innerHTML = 'The Science <br /> Behind Luminette®';
+
+    // document.querySelector(
+    //   '.lum-page .section-how-it-works .main-content .column .group-text:not(:last-of-type) .subtitle'
+    // ).innerText = 'A patented optical system, for optimal comfort';
+
+    //   document.querySelector(
+    //     '.lum-page .section-how-it-works .main-content .column .group-text:not(:last-of-type) .fw-medium'
+    //   ).innerText =
+    //     'Luminette® works thanks to an innovative optical technology: place above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allow their user to keep their vision free';
+
+    //   document.querySelector(
+    //     '.lum-page .section-how-it-works .main-content .column .group-text:last-of-type .fw-medium'
+    //   ).innerText =
+    //     'Luminette 3 emits a blue-enriched white light peaked at 468 nm. This wavelength is provent to be the most effective at triggering the body’s positive response to sunlight';
+  }
+
+  function initReserch() {
+    document.querySelector(
+      '.lum-page .section-studies .studies-component .heading-wrapper .title'
+    ).innerHTML =
+      '4 years of <br/> research <br/> at the <strong>University <br/> of Liege</strong>';
+
+    document
+      .querySelector('.studies-component .study-item:nth-child(3)')
+      .classList.add('lav-research-reorder');
+    document
+      .querySelector('.studies-component .study-item:nth-child(3)')
+      .classList.remove('last-visible-item');
+
+    document
+      .querySelector('.studies-component .study-item:nth-child(2)')
+      .classList.add('last-visible-item');
+
+    document.querySelector(
+      '.studies-component .study-item:nth-child(3) .number'
+    ).innerText = '1';
+    document.querySelector(
+      '.studies-component .study-item:nth-child(1) .number'
+    ).innerText = '2';
+    document.querySelector(
+      '.studies-component .study-item:nth-child(2) .number'
+    ).innerText = '3';
+  }
+
+  function initSliders() {
+    let jumbSlider = new Splide('.lav-jumb__slider', {
+      pagination: false,
+    });
+
+    var thumbnails = document.querySelectorAll('.lav-jumb__thumb');
+    var current;
+
+    for (var i = 0; i < thumbnails.length; i++) {
+      initThumbnail(thumbnails[i], i);
+    }
+
+    function initThumbnail(thumbnail, index) {
+      thumbnail.addEventListener('click', function () {
+        jumbSlider.go(index);
+      });
+    }
+
+    jumbSlider.on('mounted move', function () {
+      var thumbnail = thumbnails[jumbSlider.index];
+
+      if (thumbnail) {
+        if (current) {
+          current.classList.remove('is-active');
+        }
+
+        thumbnail.classList.add('is-active');
+        current = thumbnail;
+      }
+    });
+
+    jumbSlider.mount();
+
+    let splideTransforms = new Splide('.lav-transforms__slider', {
+      type: 'fade',
+      rewind: true,
+      arrows: false,
+    }).mount();
+
+    let splideReview = new Splide('.lav-reviews__list', {
+      arrows: false,
+      perPage: 3,
+      pagination: false,
+      autoWidth: true,
+      breakpoints: {
+        768: {
+          perPage: 1,
+          pagination: true,
+          autoWidth: false,
+          gap: 15,
+        },
+      },
+    }).mount();
   }
 }
 
