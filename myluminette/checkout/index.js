@@ -2404,6 +2404,9 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-jumb {
+      padding-top: 90px;
+    }
     .lav-users__title, .lav-users__image {
       display: none;
     }
@@ -2580,11 +2583,13 @@ function initPdp() {
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
   document.body.append(sliderScript);
 
-  setInterval(() => {
-    if (window.pageYOffset > 50) return false;
-    document.querySelector('.header').classList.remove('dark-theme');
-    document.querySelector('.header').classList.add('light-theme');
-  }, 400);
+  if (window.innerWidth > 768) {
+    setInterval(() => {
+      if (window.pageYOffset > 50) return false;
+      document.querySelector('.header').classList.remove('dark-theme');
+      document.querySelector('.header').classList.add('light-theme');
+    }, 400);
+  }
 
   const newLayout = `
     <section class='lav-jumb'>
