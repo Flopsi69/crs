@@ -2292,6 +2292,9 @@ const stylePDP = `
     .lav-count__price {
       font-size: 24px;
     }
+    .lav-jumb__slider-wrap {
+      margin-top: 24px;
+    }
     .lav-jumb__effects-list {
       display: block;
       padding: 12px;
@@ -2317,8 +2320,23 @@ const stylePDP = `
       margin: auto;
       bottom: 20px;
     }
+    .lav-jumb__thumbs {
+      margin-top: 8px;
+    }
+    .lav-jumb__effects {
+      margin-top: 16px;
+    }
+    .lav-jumb__effects-title {
+      background: linear-gradient(135deg, #74E6FF 0%, #5D9EFF 100%);
+      border-radius: 40px;
+    }
     .lav-jumb__effects-icon img {
       width: 24px;
+    }
+    .lav-jumb__title {
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 14px;
     }
     .lav-jumb__effects-text {
       margin-top: 0;
