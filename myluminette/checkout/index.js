@@ -2317,6 +2317,14 @@ const stylePDP = `
       margin: auto;
       bottom: 20px;
     }
+    .lav-jumb__effects-icon img {
+      width: 24px;
+    }
+    .lav-jumb__effects-text {
+      margin-top: 0;
+      font-size: 18px;
+      line-height: 24px;
+    }
     .lav-count__title {
       display: block;
     }
