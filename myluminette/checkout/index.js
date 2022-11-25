@@ -3840,7 +3840,7 @@ function initCheckout() {
     // document.querySelector('.lav-product__price').innerHTML =
     //   document.querySelector('.total-price').innerHTML;
     document.querySelector('.lav-product__price').innerHTML =
-      document.querySelector('#quantity-more .product-price').innerHTML;
+      document.querySelector('#quantity-more .product-price .price').innerHTML;
 
     document
       .querySelector('.lav-product__count-plus')
