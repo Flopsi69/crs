@@ -2257,7 +2257,78 @@ const stylePDP = `
   .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
     opacity: 1;
   }
+  @media (max-width: 1320px) {
+    .lav-count__discount {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+    }
+    .lav-jumb__effects-list {
+      padding: 20px;
+    }
+  }
   @media (max-width: 1199px) {
+    .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
+      max-width: 700px;
+    }
+    .lav-count__list {
+      gap: 12px;
+      margin-top: 17px;
+    }
+    .lav-count__item {
+      text-align: center;
+      padding: 12px 12px 48px;
+    }
+    .lav-count__item:before {
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .lav-count__title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .lav-count__price {
+      font-size: 24px;
+    }
+    .lav-jumb__effects-list {
+      display: block;
+      padding: 12px;
+    }
+    .lav-jumb__effects-item {
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .lav-jumb__effects-item + .lav-jumb__effects-item {
+      margin-top: 16px;
+    }
+    .lav-jumb__effects-icon {
+      margin-right: 8px;
+    }
+    .lav-jumb__effects-list {
+      border-radius; 8px;
+      margin-top: 24px;
+    }
+    .lav-count__item.active:after {
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: 20px;
+    }
+    .lav-count__title {
+      display: block;
+    }
+    .lav-jumb__inner {
+      display: block;
+    }
+    .lav-jumb__slider img {
+      max-width: 100%;
+    }
+    .lav-jumb__info {
+      margin-left: 0;
+    }
     .days-test:before, .days-test:after {
       width: 36px;
     }
