@@ -2311,8 +2311,7 @@ const stylePDP = `
       margin-right: 8px;
     }
     .lav-jumb__effects-list {
-      border-radius; 8px;
-      margin-top: 24px;
+      border-radius: 8px;
     }
     .lav-count__item.active:after {
       left: 0;
@@ -2324,11 +2323,18 @@ const stylePDP = `
       margin-top: 8px;
     }
     .lav-jumb__effects {
-      margin-top: 16px;
+      margin-top: 24px;
+    }
+    .lav-count__pay {
+      grid-template-columns: 1fr;
+    }
+    .lav-test__wrap {
+      padding: 48px 0 24px;
     }
     .lav-jumb__effects-title {
       background: linear-gradient(135deg, #74E6FF 0%, #5D9EFF 100%);
       border-radius: 40px;
+      margin-top: 20px;
     }
     .lav-jumb__effects-icon img {
       width: 24px;
@@ -2348,6 +2354,9 @@ const stylePDP = `
     }
     .lav-jumb__inner {
       display: block;
+    }
+    .lav-jumb__slider-wrap {
+      max-width: 100%;
     }
     .lav-jumb__slider img {
       max-width: 100%;
