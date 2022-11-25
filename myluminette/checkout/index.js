@@ -3380,6 +3380,22 @@ function initCheckout() {
     item.style = 'pointer-events: none;';
   }
 
+  let count = localStorage.getItem('lavCount');
+
+  if (count) {
+    if (count == '2') {
+      document.querySelector('.lav-product__count-value').innerText = count;
+      document
+        .querySelector('.product-list .product-list-item:nth-child(2)')
+        .click();
+    } else if (count == '3') {
+      document.querySelector('.lav-product__count-value').innerText = count;
+      document
+        .querySelector('.product-list .product-list-item:nth-child(3)')
+        .click();
+    }
+  }
+
   document
     .querySelector('.btn-send-form')
     .addEventListener('click', function (e) {
