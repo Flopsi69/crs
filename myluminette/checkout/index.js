@@ -2285,17 +2285,19 @@ const stylePDP = `
     .lav-recharge__info {
       max-width: 100%;
       padding: 24px;
+      padding-top: 40px;
       border-radius: 0 0 12px 12px;
-      linear-gradient(0deg, rgba(255,255,255,1) 80%, rgba(255,255,255,0.0) 100%)
+      text-align: center;
+      background: linear-gradient(0deg, rgba(255,255,255,1) 66%, rgba(255,255,255,0.0) 100%);
+
     }
     .lav-recharge__preview {
-      height: 260px;
-    }
-    .lav-recharge__info {
-      text-align: center;
+      height: 230px;
     }
     .lav-title {
       margin-bottom: 16px;
+      font-size: 32px;
+      line-height: 36px;
     }
     .lav-count__list {
       gap: 12px;
