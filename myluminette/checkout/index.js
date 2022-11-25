@@ -392,6 +392,9 @@ const styles = `
     left: 2px;
     font-size: 12px;
   }
+  .lav-product__price sup {
+    top: -0.8em;
+  }
   .lav-product__count-minus {
     border-radius: 30px 0 0 30px;
   }
@@ -3820,6 +3823,11 @@ function initCheckout() {
         .innerText.trim()
         .replace('warranty', '');
 
+      itemCloneEl.innerHTML = itemCloneEl.innerHTML.replace(
+        '<span data-warranty-price="">19</span>',
+        '19'
+      );
+
       document
         .querySelector('.lav-protect__body')
         .insertAdjacentElement('beforeend', itemCloneEl);
@@ -3969,6 +3977,11 @@ function initCheckout() {
 
       // document.querySelector('.lav-product__price').innerHTML =
       //   document.querySelector('.total-price').innerHTML;
+
+      // document.querySelector('.lav-product__price').innerHTML =
+      //   document.querySelector(
+      //     '#quantity-more .product-price .price'
+      //   ).innerHTML;
     }
 
     document.querySelector(
