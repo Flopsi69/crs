@@ -2280,7 +2280,7 @@ const stylePDP = `
     .lav-recharge__inner {
       display: block;
       background-size: auto 340px;
-      background-position: top;
+      background-position: left top;
     }
     .lav-recharge__info {
       max-width: 100%;
@@ -2433,6 +2433,17 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-recharge__inner {
+      background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
+      background-size: cover
+    }
+    // .lav-recharge__preview img {
+    //   width: 80px;
+    //   height: 80px;
+    // }
+    // .lav-recharge__preview {
+    //   height: 40vw;
+    // }
     .lav-count__item {
       padding-left: 5px;
       padding-right: 5px;
