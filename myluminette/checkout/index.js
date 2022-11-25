@@ -55,10 +55,7 @@ if (settings.observe) {
 
   observer.observe(demoElem, { childList: true, subtree: true });
 }
-let script = document.createElement('script');
-script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
-script.async = false;
-document.head.appendChild(script);
+
 // Styles
 const styles = `
   .order-pages.order-summary .section:not(:first-child):after {
