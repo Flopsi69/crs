@@ -3403,6 +3403,17 @@ function initPdp() {
       });
     }
 
+    for (let item of document.querySelectorAll(
+      '.order-button, .header .additional-block-wrapper .btn-primary'
+    )) {
+      item.addEventListener('click', function (e) {
+        if (item.tagName === 'A') {
+          e.preventDefault();
+          document.body.classList.add('modal-open');
+        }
+      });
+    }
+
     document
       .querySelector('.modal-footer .btn-order')
       .addEventListener('click', function (e) {
@@ -3826,8 +3837,10 @@ function initCheckout() {
         .classList.remove('lav-disable');
     }
 
+    // document.querySelector('.lav-product__price').innerHTML =
+    //   document.querySelector('.total-price').innerHTML;
     document.querySelector('.lav-product__price').innerHTML =
-      document.querySelector('.total-price').innerHTML;
+      document.querySelector('#quantity-more .product-price').innerHTML;
 
     document
       .querySelector('.lav-product__count-plus')
@@ -3954,8 +3967,8 @@ function initCheckout() {
         '.lav-summary__item:first-child .lav-summary__price'
       ).innerHTML = document.querySelector('.total-price').innerHTML;
 
-      document.querySelector('.lav-product__price').innerHTML =
-        document.querySelector('.total-price').innerHTML;
+      // document.querySelector('.lav-product__price').innerHTML =
+      //   document.querySelector('.total-price').innerHTML;
     }
 
     document.querySelector(
