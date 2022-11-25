@@ -2301,7 +2301,13 @@ function init() {
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = stylePDP;
   if (location.href.includes('/luminette')) {
-    initPdp();
+    let pdpInterval = setInterval(() => {
+      if (document.querySelector('.section-main')) {
+        clearInterval(pdpInterval);
+        initPdp();
+      }
+    }, 500);
+
     document.body.appendChild(stylesEl);
     return false;
   }
