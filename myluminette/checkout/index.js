@@ -3694,11 +3694,17 @@ function initCheckout() {
       document
         .querySelector('.product-list .product-list-item:nth-child(2)')
         .click();
+      document
+        .querySelector('.lav-product__count-minus')
+        .classList.remove('lav-disable');
     } else if (count == '3') {
       document.querySelector('.lav-product__count-value').innerText = count;
       document
         .querySelector('.product-list .product-list-item:nth-child(3)')
         .click();
+      document
+        .querySelector('.lav-product__count-minus')
+        .classList.remove('lav-disable');
     }
   }
 
