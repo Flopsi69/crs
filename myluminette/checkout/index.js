@@ -3412,9 +3412,9 @@ function initCheckout() {
         !document.querySelector('.order-coupon--success') &&
         document.querySelector('.lav-accept.active')
       ) {
-        document.querySelector('.lav-coupon input').style.display = 'none';
+        document.querySelector('.lav-coupon').style.display = 'none';
         setTimeout(() => {
-          document.querySelector('.lav-coupon input').removeAttribute('style');
+          document.querySelector('.lav-coupon').removeAttribute('style');
         }, 1000);
       }
     });
