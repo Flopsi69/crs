@@ -71,7 +71,7 @@ const styles = `
     display: none;
   }
   .lav-body-checkout .container--size--lg, .lav-body-checkout .container-fluid--size--lg, .lav-body-checkout .container-lg--size--lg {
-    max-width: 600px;
+    max-width: 632px;
   }
   .lav-body-confirm .container--size--lg, .lav-body-confirm .container-fluid--size--lg, .lav-body-confirm .container-lg--size--lg {
     max-width: 824px;
@@ -273,7 +273,7 @@ const styles = `
     margin-top: 32px;
     display: flex;
     justify-content: center;
-    max-width: 600px;
+    max-width: 632px;
     margin-left: auto;
     margin-right: auto;
   }
