@@ -3824,8 +3824,9 @@ function initCheckout() {
         .replace('warranty', '');
 
       itemCloneEl.innerHTML = itemCloneEl.innerHTML.replace(
-        '<span data-warranty-price="">19</span>',
-        '19'
+        /<span data-warranty-price="">\d+<\/span>/,
+        parseInt(itemCloneEl.querySelector('[data-warranty-price]').innerText) /
+          parseInt(document.querySelector('.counter__count').innerText)
       );
 
       document
