@@ -1270,6 +1270,9 @@ const stylePDP = `
   .bb-1 {
     border-bottom: 1px solid #517193;
   }
+  .bb-2 {
+    border-bottom: 1px solid rgba(81, 113, 147, 0.12);
+  }
   .b-1 {
     border: 1px solid #EFF2F5;
   }
@@ -1603,7 +1606,7 @@ const stylePDP = `
     padding: 40px;
     margin: auto;
     background: rgba(255,255,255,0.12);
-    border: 1px solid #517193;
+    border: 1px solid rgba(81, 113, 147, 0.12);
     border-radius: 16px;
     max-width: 960px;
     text-align: left;
@@ -3133,19 +3136,19 @@ function initPdp() {
               Details</h2>
             </div>
             <div class="col-lg-6 fs-18">
-              <div class="row pb-2 bb-1">
+              <div class="row pb-2 bb-2">
                 <div class="col-sm-7 col-6 pl-0">Product Dimensions</div>
                 <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3"D x 9.06"W x6.26"H</div>
               </div>
-              <div class="row py-2 bb-1">
+              <div class="row py-2 bb-2">
                 <div class="col-sm-7 col-6 pl-0">Light Source Type</div>
                 <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">LED</div>
               </div>
-              <div class="row py-2 bb-1">
+              <div class="row py-2 bb-2">
                 <div class="col-sm-7 col-6 pl-0">Number of Light Sources</div>
                 <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3</div>
               </div>
-              <div class="row py-2 bb-1">
+              <div class="row py-2 bb-2">
                 <div class="col-sm-7 col-6 pl-0">Item Weight</div>
                 <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">1.83 ounces (51g)</div>
               </div>
@@ -3252,7 +3255,7 @@ function initPdp() {
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
-              <div class='lav-reviews__total-caption'><span>See reviews on</span> Trusted shops</div>
+              <div class='lav-reviews__total-caption'>Trusted shops</div>
             </div>
           </div>
           <div class='lav-reviews__total-col'>
@@ -3264,7 +3267,7 @@ function initPdp() {
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
-              <div class='lav-reviews__total-caption'><span>See reviews on</span> Amazon</div>
+              <div class='lav-reviews__total-caption'>Amazon</div>
             </div>
           </div>
         </div>
