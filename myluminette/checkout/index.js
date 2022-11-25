@@ -722,6 +722,15 @@ const styles = `
     margin-top: 12px;
   }
   @media (max-width: 768px) {
+    .order-pages.order-summary .payment-methods .forms-wrapper .form-block:nth-child(2) {
+      order: 6;
+    }
+    .order-pages.order-summary .payment-methods .forms-wrapper .form-block:nth-child(3) {
+      order: 3;
+    }
+    .order-pages.order-summary .payment-methods .forms-wrapper .form-block:nth-child(5) {
+      order: 4;
+    }
     .lav-path {
       font-size: 14px;
       line-height: 1;
@@ -968,14 +977,10 @@ const stylePDP = `
   .lum-page {
     background-color: #fff;
   }
-
-  .lav-jumb {
-
-  }
-
   .lav-jumb {
     background: #F3F5F9;
-    padding: 124px 0 60px;
+    padding: 222px 0 0;
+    // 244px // 124px
   }
   .lav-jumb__inner {
     display: flex;
@@ -984,6 +989,9 @@ const stylePDP = `
     max-width: 560px;
     width: 100%;
     flex-shrink: 0;
+  }
+  .lav-jumb__video {
+    cursor: pointer;
   }
   .lav-jumb__info {
     flex-grow: 1;
@@ -997,8 +1005,13 @@ const stylePDP = `
     margin-bottom: 12px;
   }
   .lav-jumb__feedbacks {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-jumb__feedbacks:hover {
+    opacity: 0.7;
   }
   .lav-jumb__feedbacks-star {
     line-height: 0;
@@ -1007,6 +1020,7 @@ const stylePDP = `
     font-weight: 600;
     font-size: 14px;
     line-height: 1;
+    margin-top: 2px;
     letter-spacing: 0.01em;
     color: #517193;
     margin-left: 8px;
@@ -1015,7 +1029,6 @@ const stylePDP = `
     margin-top: 19px;
     background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
     border-radius: 16px;
-    overflow: hidden;
     text-align: center;
   }
   .lav-jumb__effects-title {
@@ -1028,6 +1041,7 @@ const stylePDP = `
     align-items: center;
     justify-content: center;
     color: #fff;
+    border-radius: 16px 16px 0 0;
   }
   .lav-jumb__effects-list {
     display: flex;
@@ -1067,6 +1081,8 @@ const stylePDP = `
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
+    display: flex;
+    align-items: center;
   }
   .lav-count__list {
     display: grid;
@@ -1098,6 +1114,7 @@ const stylePDP = `
     height: 24px;
     border: 2px solid #517193;
     border-radius: 123px;
+    box-sizing: border-box; 
   }
   .lav-count__item.active:before {
     background: linear-gradient(180deg, #74E6FF 0%, #5D9EFF 100%);
@@ -1169,13 +1186,44 @@ const stylePDP = `
     font-size: 20px;
     padding: 12px;
   }
-
-  .thumbnail {
-    opacity: 0.3;
+  .lav-jumb__thumbs img {
+    max-width: 100%;
+    width: 44px;
   }
-  
-  .thumbnail.is-active {
-    opacity: 1;
+  .lav-jumb__slider .splide__slide {
+    border-radius: 16px;
+  }
+  .lav-jumb__slider img {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+  .lav-jumb__thumbs {
+    display: flex;
+    margin-top: 12px;
+  }
+  .lav-jumb__thumb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .lav-jumb__thumb + .lav-jumb__thumb {
+    margin-left: 8px;
+  }
+  .lav-jumb__thumb:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #D9D9D9;
+    opacity: 0.5;
+    transition: 0.35s;
+  }
+  .lav-jumb__thumb.is-active:before {
+    opacity: 0;
   }
 
   /* fonts */
@@ -1270,10 +1318,16 @@ const stylePDP = `
   .days-test_list {
     list-style-type: none;
   }
+  .lav-info-invert {
+    filter: invert(43%) sepia(44%) saturate(407%) hue-rotate(170deg) brightness(69%) contrast(87%)
+  }
   .tooltip {
     position: relative;
   }
-  .tooltip:hover .tooltip-dropdown {
+  .tooltip-include {
+    max-width: 100%;
+  }
+  .tooltip:hover .tooltip-dropdown, .lav-tooltip-wrap:hover .tooltip-dropdown {
     opacity: 1;
     pointer-events: auto;
   }
@@ -1287,12 +1341,18 @@ const stylePDP = `
     pointer-events: none;
     opacity: 0;
     z-index: 4;
+    transition: 0.35s;
+    filter: drop-shadow(0px 11px 22px rgba(81, 113, 147, 0.44));
+    // box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
   }
   .tooltip-item {
     border-radius: 8px;
     background: #FFFFFF;
     padding: 24px;
     position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
   }
   .tooltip-item:before {
     content: '';
@@ -1309,6 +1369,12 @@ const stylePDP = `
     background: rgba(218, 225, 232, 0.3);
     border-radius: 8px;
     padding: 24px;
+  }
+  .tooltip-text {
+    color: #517193;
+  }
+  .tooltip-text + .tooltip-text {
+    margin-top: 8px;
   }
 
   .compare-section {
@@ -1601,13 +1667,36 @@ const stylePDP = `
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
+    top: 3px;
     width: 20px;
     height: 20px;
     background: url(${settings.dir}/img/check.svg) center no-repeat;
     background-size: contain;
   }
-
+  .lav-tooltip-list {
+    margin-top: 15px;
+  }
+  .lav-list__item {
+    position: relative;
+    padding-left: 27px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #517193;
+  }
+  .lav-list__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 17px;;
+    height: 17px;;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-list__item + .lav-list__item {
+      margin-top: 12px;
+  }
   .lav-perfect {
     text-align: center;
     padding-top: 60px;
@@ -1646,6 +1735,7 @@ const stylePDP = `
   }
  
   .lav-trial {
+    position: relative;
     padding: 60px 0;
   }
   .lav-trial__row {
@@ -1672,7 +1762,7 @@ const stylePDP = `
     display: flex;
   }
   .lav-trial__buttons .lav-trial__btn span {
-    border-bottom: 1px solid #517193;
+    // border-bottom: 1px solid #517193;
   }
   .lav-trial__btn {
     display: flex;
@@ -1688,10 +1778,14 @@ const stylePDP = `
     transition: 0.35s;
     cursor: pointer;
   }
+  .lav-trial__btn .tooltip-dropdown {
+    top: 35px;
+    padding-top: 10px;
+  }
   .lav-trial__btn:hover {
     border-color: #517193;
   }
-  .lav-trial__btn img {
+  .lav-trial__btn>img {
     margin-right: 8px;
   }
   .lav-trial__btn + .lav-trial__btn {
@@ -1708,9 +1802,6 @@ const stylePDP = `
     transition: 0.35s;
     cursor: pointer;
     margin-top: 20px;
-  }
-  .lav-trial__inside:hover {
-   opacity: 0.6;
   }
 
   .lav-trial__actions {
@@ -1856,6 +1947,79 @@ const stylePDP = `
     border-radius: 16px;
     padding: 24px;
     color: #517193;
+  }
+  .lav-modal {
+    position: fixed;
+    z-index: 99991;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(8, 29, 50, 0.4);
+    transition: 0.35s;
+    opacity: 1;
+    padding: 20px;
+  }
+  .lav-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    line-height: 0;
+    padding: 3px;
+    transition: 0.3s;
+  }
+
+  .lav-modal__close:hover {
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
+  .lav-open-modal {
+    cursor: pointer;
+  }
+  .lav-modal:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .lav-modal__inner {
+    max-height: 95vh;
+    overflow: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 72px 48px 48px;
+    max-width: 400px;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+  }
+  .lav-modal__inner.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .lav-review-modal {
+    line-height: 0;
+    padding: 0;
+    max-width: 90%;
+    background: transparent;
+  }
+  .lav-review-modal iframe {
+    border: none;
+  }
+  .lav-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 12px;
   }
   @media (min-width: 992px) {
     .lav-reviews__list .splide__list {
@@ -2036,6 +2200,10 @@ const stylePDP = `
     border-radius: 16px;
     text-align: center;
     height: 340px;
+    background-color: black;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   .lav-reviews__placeholder {
     max-width: 100%;
@@ -2059,8 +2227,8 @@ const stylePDP = `
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 156px;
-    height: 156px;
+    width: 130px;
+    height: 130px;
     line-height: 0;
     cursor: pointer;
   }
@@ -2090,6 +2258,18 @@ const stylePDP = `
     .lav-users__image-mob {
       display: block;
       max-width: 100%;
+    }
+    .lav-modal__inner {
+      max-width: 93%;
+      width: 100%;
+      padding: 48px 24px 24px;
+    }
+    .lav-modal__close {
+      top: 12px;
+      right: 12px;
+    }
+    .lav-modal {
+      padding: 12px;
     }
   }
 `;
@@ -2147,6 +2327,12 @@ function initPdp() {
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
   document.body.append(sliderScript);
 
+  setInterval(() => {
+    if (window.pageYOffset > 50) return false;
+    document.querySelector('.header').classList.remove('dark-theme');
+    document.querySelector('.header').classList.add('light-theme');
+  }, 400);
+
   const newLayout = `
     <section class='lav-jumb'>
       <div class='container-fluid container--size--lg'>
@@ -2161,7 +2347,9 @@ function initPdp() {
                   <li class="splide__slide">
                     <img src="${settings.dir}/img/slide2.jpeg" alt="">
                   </li>
-                  <li class="splide__slide">
+                  <li class="splide__slide lav-open-modal"      
+                    data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0'
+                  >
                     <img src="${settings.dir}/img/slide3.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
@@ -2210,10 +2398,28 @@ function initPdp() {
               <div class='lav-jumb__feedbacks-star'>
                 <img src='${settings.dir}/img/stars.svg' />
               </div>
-              <div class='lav-jumb__feedbacks-caption'>(Over 900+ positive reviews)</div>
+              <div class='lav-jumb__feedbacks-caption'>(<u>Over 900+ positive reviews</u>)</div>
             </div>
             <div class='lav-jumb__effects'>
-              <div class='lav-jumb__effects-title'>Feel beneficial effects in 4 to 6 days</div>
+              <div class='lav-jumb__effects-title lav-tooltip-wrap'>
+              Feel beneficial effects in 4 to 6 days
+                <div class="tooltip d-flex ml-1">
+                  <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <div class='tooltip-text fw-semi'>
+                        Luminette®’s sleep rebalancing effect is almost immediate.
+                      </div>
+                      <div class='tooltip-text'>
+                        After a few sessions, you’ll feel your sleep schedule improving, energy returning, and your mood getting better.
+                      </div>
+                      <div class='tooltip-text'>
+                        If you are using Luminette to rectify a <span class='fw-semi'>sleep phase disorder</span> the results will become noticeable between <span class='fw-semi'>4 to 5 days.</span>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
               <div class='lav-jumb__effects-list'>
                 <div class='lav-jumb__effects-item'>
                   <div class='lav-jumb__effects-icon'>
@@ -2240,10 +2446,28 @@ function initPdp() {
             <div class='lav-count'>
               <div class='lav-count__head'>
                 <div class='lav-count__head-title'>Quantity</div>
-                <div class='lav-count__head-inside'>What’s in the box?</div>
+                <div class='lav-count__head-inside lav-tooltip-wrap'>
+                  What’s in the box?
+                  <div class="tooltip d-flex ml-1">
+                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown text-left fs-16">
+                      <div class="tooltip-item">
+                        <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
+                        <div class='lav-list lav-tooltip-list'>
+                          <div class='lav-list__item'>Your Luminette</div>
+                          <div class='lav-list__item'>A protective case</div>
+                          <div class='lav-list__item'>A micro USB wall charger</div>
+                          <div class='lav-list__item'>A microfiber cleaning cloth</div>
+                          <div class='lav-list__item'>Guarantee certificate</div>
+                          <div class='lav-list__item'>Your instruction manual </div>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class='lav-count__list'>
-                <div class='lav-count__item'>
+                <div class='lav-count__item active' data-count='1'>
                   <div class='lav-count__image'>
                     <img src='${settings.dir}/img/pr-1.png' />
                   </div>
@@ -2251,7 +2475,7 @@ function initPdp() {
                   <div class='lav-count__price'>$199</div>
                   <div class='lav-count__caption'>per unit</div>
                 </div>
-                <div class='lav-count__item active'>
+                <div class='lav-count__item' data-count='2'>
                   <div class='lav-count__image'>
                     <img src='${settings.dir}/img/pr-2.png' />
                   </div>
@@ -2262,7 +2486,7 @@ function initPdp() {
                   <div class='lav-count__price'>$179<sup>10</sup></div>
                   <div class='lav-count__caption'>per unit</div>
                 </div>
-                <div class='lav-count__item'>
+                <div class='lav-count__item' data-count='3'>
                   <div class='lav-count__image'>
                     <img src='${settings.dir}/img/pr-3.png' />
                   </div>
@@ -2283,13 +2507,6 @@ function initPdp() {
                 </span>
                 <span class="btn-bg-wrapper"></span>
               </button>
-
-              <button class="lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy">
-                <span class="btn-text">
-                  Try it $199
-                </span>
-                <span class="btn-bg-wrapper"></span>
-              </button>
             </div>
           </div>
         </div>
@@ -2302,7 +2519,7 @@ function initPdp() {
           <h3 class="text-center">You have 30 days to test Luminette</h3>
           <div class="line-dashed">
             <ul class="row days-test_list">
-              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__first">
                 <p class="fs-22 fw-bold days-test_head">Buy Luminette3</p>
                 <div class="circle"></div>
                 <div class="days-test_date">
@@ -2310,8 +2527,8 @@ function initPdp() {
                   <p class="fs-16 op-07">Sep 26, 2022</p>
                 </div>
               </li>
-              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
-                <div class="d-flex align-items-center days-test_head ">
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__second">
+                <div class="d-flex align-items-center days-test_head lav-tooltip-wrap">
                   <p class="fs-22 fw-bold mr-2">Free shipping</p>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -2339,8 +2556,8 @@ function initPdp() {
                   <p class="fs-16 op-07">Sep 29-Oct 1, 2022</p>
                 </div>
               </li>
-              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center">
-                <div class="d-flex align-items-md-center align-items-end days-test_head">
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__third">
+                <div class="d-flex align-items-md-center align-items-end days-test_head lav-tooltip-wrap">
                   <div class="fs-22 fw-bold mr-2">100% money<div class="d-md-inline d-block">back guarantee</div> </div>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -2349,7 +2566,7 @@ function initPdp() {
                         <p class="mb-2">
                           <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
                         </p>
-                        <p>However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="#" class="fw-semi bb-1 c-blue">Refunds page</a>.</p>
+                        <p>However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.</p>
                       </div> 
                     </div>
                   </div>
@@ -2358,7 +2575,7 @@ function initPdp() {
                 <div class="days-test_date">
                   <p class="fs-18 fw-bold">After 30 days</p>
                   <p class="fs-16 op-07">Oct 29-Nov 1, 2022</p>
-                <div>
+                </div>
               </li>
             </ul>
           </div>
@@ -2369,7 +2586,7 @@ function initPdp() {
     <section class='lav-recharge'>
       <div class='container-fluid container--size--lg lav-jumb__container'>
         <div class='lav-recharge__inner'>
-          <div class='lav-recharge__preview'>
+          <div class='lav-recharge__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0'>
             <img src='${settings.dir}/img/play.svg' />
             <img src='${settings.dir}/img/play-hover.svg' />
           </div>
@@ -2543,13 +2760,45 @@ function initPdp() {
             <div class='lav-trial__descr lav-text'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
 
             <div class='lav-trial__buttons'>
-              <div class='lav-trial__btn lav-trial__btn-refresh'>
+              <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-refresh.svg' />
                 <span>30-day trial</span>
+                <div class="tooltip d-flex ml-2">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <p class="mb-2">
+                        <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
+                      </p>
+                      <p>
+                        However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
+                      </p>
+                    </div> 
+                  </div>
+                </div>
               </div>
-              <div class='lav-trial__btn lav-trial__btn-box'>
+              <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-box-2.svg' />
                 <span>Free shipping</span>
+                <div class="tooltip d-flex ml-2">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <div class="tooltip_free text-center mb-2">
+                        <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                          <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/EN.svg" alt="EN">
+                          <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/CA.svg" alt="CA">
+                        </div>
+                        <p> Free for USA and Canada: <span class="fw-bold d-block">3 to 5 working days</span></p>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                        <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
+                        <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
+                      </div>
+                      <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</p>
+                    </div> 
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2561,7 +2810,25 @@ function initPdp() {
                 <span class="btn-bg-wrapper"></span>
               </button>
 
-              <div class='lav-trial__inside'>What’s in the box?</div>
+              <div class='lav-trial__inside lav-tooltip-wrap'>
+                What’s in the box?
+                <div class="tooltip d-flex ml-1">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
+                      <div class='lav-list lav-tooltip-list'>
+                        <div class='lav-list__item'>Your Luminette</div>
+                        <div class='lav-list__item'>A protective case</div>
+                        <div class='lav-list__item'>A micro USB wall charger</div>
+                        <div class='lav-list__item'>A microfiber cleaning cloth</div>
+                        <div class='lav-list__item'>Guarantee certificate</div>
+                        <div class='lav-list__item'>Your instruction manual </div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2692,7 +2959,7 @@ function initPdp() {
               <img src='${settings.dir}/img/reviews-trusted.svg' />
             </div>
             <div class='lav-reviews__total-info'>
-              <div class='lav-reviews__total-score'>4.5</div>
+              <div class='lav-reviews__total-score'>4.3</div>
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
@@ -2704,7 +2971,7 @@ function initPdp() {
               <img src='${settings.dir}/img/reviews-amazon.svg' />
             </div>
             <div class='lav-reviews__total-info'>
-              <div class='lav-reviews__total-score'>4.5</div>
+              <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
@@ -2714,15 +2981,15 @@ function initPdp() {
         </div>
 
         <div class='lav-reviews__preview-list'>
-          <div class='lav-reviews__preview' style='background: url(${settings.dir}/img/reviews-video.jpg)'>
-            <div class="lav-reviews__play">
+          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review1.png);'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>
           </div>
 
-          <div class='lav-reviews__preview' style='background: url(${settings.dir}/img/reviews-video.jpg)'>
-            <div class="lav-reviews__play">
+          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review2.png);'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/hZpBFn_YKMY?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>
@@ -2730,21 +2997,21 @@ function initPdp() {
         </div>
       </div>
     </section>
+
+    <div class='lav-modal'>
+      <div class='lav-modal__inner lav-review-modal'>
+        <div class='lav-modal__close'>
+          <img src='${settings.dir}/img/modal-close.svg'>
+        </div>
+
+        <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
   `;
 
   document
     .querySelector('.section-main')
     .insertAdjacentHTML('afterend', newLayout);
-
-  for (let item of document.querySelectorAll('.lav-count__item')) {
-    item.addEventListener('click', function () {
-      if (this.classList.contains('active')) return false;
-      document
-        .querySelector('.lav-count__item.active')
-        .classList.remove('active');
-      this.classList.add('active');
-    });
-  }
 
   document
     .querySelector('.lav-transform__more-btn')
@@ -2759,7 +3026,7 @@ function initPdp() {
   document
     .querySelector('.lav-transforms')
     .insertAdjacentElement(
-      'afterend',
+      'beforeend',
       document.querySelector('.block-on-the-go')
     );
 
@@ -2808,27 +3075,72 @@ function initPdp() {
       '<div class="lav-feat">Move your cursor over the buttons to zoom in</div>'
     );
 
+  handleJumb();
   initHowItWorks();
   initReserch();
+  initDeliveryDates();
+  initModals();
+  initReviews();
+
+  function handleJumb() {
+    for (let item of document.querySelectorAll('.lav-count__item')) {
+      item.addEventListener('click', function () {
+        if (this.classList.contains('active')) return false;
+
+        const price = item.querySelector('.lav-count__price').innerHTML;
+
+        localStorage.setItem('lavCount', item.dataset.count);
+
+        console.log(localStorage.getItem('lavCount'));
+
+        document
+          .querySelector('.lav-count__item.active')
+          .classList.remove('active');
+        this.classList.add('active');
+
+        document.querySelector('.lav-jumb__btn .btn-text').innerHTML =
+          'Buy ' + price;
+
+        document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+          'Try it ' + price;
+      });
+    }
+
+    for (let item of document.querySelectorAll('.lav-btn-buy')) {
+      item.addEventListener('click', function () {
+        location.href =
+          location.href.split('/luminette')[0] + '/order?product=4';
+      });
+    }
+
+    document
+      .querySelector('.modal-footer .btn-order')
+      .addEventListener('click', function (e) {
+        if (
+          document.querySelector('[data-target="lum"].selected') &&
+          !document.querySelector('[data-target="drive"].selected')
+        ) {
+          e.preventDefault();
+          location.href =
+            location.href.split('/luminette')[0] + '/order?product=4';
+        }
+      });
+
+    document
+      .querySelector('.lav-jumb__feedbacks')
+      .addEventListener('click', function () {
+        document
+          .querySelector('.lav-reviews')
+          .scrollIntoView({ block: 'start', behavior: 'smooth' });
+      });
+
+    // document.querySelector('.lav-jumb__video')
+  }
 
   function initHowItWorks() {
     document.querySelector(
       '.lum-page .section-how-it-works .main-content .column .title'
     ).innerHTML = 'The Science <br /> Behind Luminette®';
-
-    // document.querySelector(
-    //   '.lum-page .section-how-it-works .main-content .column .group-text:not(:last-of-type) .subtitle'
-    // ).innerText = 'A patented optical system, for optimal comfort';
-
-    //   document.querySelector(
-    //     '.lum-page .section-how-it-works .main-content .column .group-text:not(:last-of-type) .fw-medium'
-    //   ).innerText =
-    //     'Luminette® works thanks to an innovative optical technology: place above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allow their user to keep their vision free';
-
-    //   document.querySelector(
-    //     '.lum-page .section-how-it-works .main-content .column .group-text:last-of-type .fw-medium'
-    //   ).innerText =
-    //     'Luminette 3 emits a blue-enriched white light peaked at 468 nm. This wavelength is provent to be the most effective at triggering the body’s positive response to sunlight';
   }
 
   function initReserch() {
@@ -2859,9 +3171,62 @@ function initPdp() {
     ).innerText = '3';
   }
 
+  function initDeliveryDates() {
+    document.querySelector(
+      '.lav-test__first .days-test_date p:last-child'
+    ).innerText = setStringFromDate(new Date(), true);
+
+    document.querySelector(
+      '.lav-test__second .days-test_date p:last-child'
+    ).innerText =
+      setStringFromDate(new Date().setDate(new Date().getDate() + 3)) +
+      '-' +
+      setStringFromDate(new Date().setDate(new Date().getDate() + 5), true);
+
+    document.querySelector(
+      '.lav-test__third .days-test_date p:last-child'
+    ).innerText =
+      setStringFromDate(new Date().setDate(new Date().getDate() + 33)) +
+      '-' +
+      setStringFromDate(new Date().setDate(new Date().getDate() + 35), true);
+  }
+
+  function initReviews() {
+    for (let item of document.querySelectorAll('.lav-review__trigger')) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.closest('.lav-review').classList.add('lav-review_expand');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text')
+          .classList.remove('active');
+        this.closest('.lav-review')
+          .querySelector('.lav-review__text + .lav-review__text')
+          .classList.add('active');
+
+        item.remove();
+
+        return false;
+      });
+    }
+  }
+
+  function setStringFromDate(date, isYear) {
+    date = new Date(date);
+    let month = date.toLocaleString('en-us', { month: 'short' });
+    let day = date.getDate();
+    let year = date.getUTCFullYear();
+
+    if (isYear) {
+      return `${month} ${day}, ${year}`;
+    }
+
+    return `${month} ${day}`;
+  }
+
   function initSliders() {
     let jumbSlider = new Splide('.lav-jumb__slider', {
       pagination: false,
+      arrows: false,
     });
 
     var thumbnails = document.querySelectorAll('.lav-jumb__thumb');
@@ -2912,6 +3277,63 @@ function initPdp() {
         },
       },
     }).mount();
+  }
+
+  function initModals() {
+    for (let item of document.querySelectorAll('.lav-open-modal')) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(
+          document.querySelector(item.dataset.target),
+          item.dataset.src
+        );
+      });
+    }
+
+    document
+      .querySelector('.lav-modal')
+      .addEventListener('click', function (e) {
+        if (e.target.classList.contains('lav-modal')) {
+          closeModal();
+        }
+      });
+
+    for (let item of document.querySelectorAll('.lav-modal__close')) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeModal();
+      });
+    }
+
+    function openModal(selector, src) {
+      if (src) {
+        selector.querySelector('iframe').src = src;
+      }
+      document.querySelector('.lav-modal').classList.add('active');
+      setTimeout(() => {
+        selector.classList.add('active');
+      }, 400);
+
+      if (selector.querySelector('iframe')) {
+        selector.querySelector('iframe').src = selector
+          .querySelector('iframe')
+          .src.replace('autoplay=0', 'autoplay=1');
+      }
+    }
+
+    function closeModal() {
+      if (document.querySelector('.lav-modal__inner.active iframe')) {
+        document.querySelector('.lav-modal__inner.active iframe').src = document
+          .querySelector('.lav-modal__inner.active iframe')
+          .src.replace('autoplay=1', 'autoplay=0');
+      }
+      document
+        .querySelector('.lav-modal__inner.active')
+        .classList.remove('active');
+      setTimeout(() => {
+        document.querySelector('.lav-modal.active').classList.remove('active');
+      }, 400);
+    }
   }
 }
 
