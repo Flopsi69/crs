@@ -4337,6 +4337,11 @@ function initCheckoutDetails() {
     toggleButton();
   }
 
+  document.querySelector('.btn-send-form .d-none').remove();
+  document
+    .querySelector('.btn-send-form .d-lg-none')
+    .classList.remove('d-lg-none');
+
   function handleTop() {
     let el = `
       <div class='lav-path'>
