@@ -722,6 +722,9 @@ const styles = `
     margin-top: 12px;
   }
   @media (max-width: 768px) {
+    .order-pages.order-summary .payment-methods .forms-wrapper .form-block .payment-icon .image {
+      box-shadow: 0 0 66px rgb(0 0 0 / 4%);
+    }
     .order-pages.order-summary .payment-methods .forms-wrapper .form-block:nth-child(2) {
       order: 6;
     }
