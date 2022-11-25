@@ -3359,6 +3359,11 @@ function initCheckout() {
     fillProduct();
   }, 500);
 
+  for (let item of document.querySelectorAll('.logo-link')) {
+    item.href = '#';
+    item.style = 'pointer-events: none;';
+  }
+
   document
     .querySelector('.btn-send-form')
     .addEventListener('click', function (e) {
@@ -4067,5 +4072,10 @@ function initCheckoutDetails() {
           this.querySelector('span').innerText = 'More details';
         }
       });
+  }
+
+  for (let item of document.querySelectorAll('.logo-link')) {
+    item.href = '#';
+    item.style = 'pointer-events: none;';
   }
 }
