@@ -2273,7 +2273,7 @@ const stylePDP = `
       width: 1px;
       height: calc(100% - 35px);
       transform: translateX(-50%);
-      background-image: url(${dirImages}line-mob.svg);
+      background-image: url(https://conversionratestore.github.io/projects/luminette/img/line-mob.svg);
     }
     .days-test_list li {
       align-items: flex-start;
