@@ -2563,7 +2563,12 @@ const stylePDP = `
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
+let intervalInit = setInterval(() => {
+  if (document.body) {
+    clearInterval(intervalInit);
+    init();
+  }
+}, 200);
 function init() {
   console.log('init');
   const stylesEl = document.createElement('style');
