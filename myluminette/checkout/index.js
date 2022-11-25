@@ -55,7 +55,10 @@ if (settings.observe) {
 
   observer.observe(demoElem, { childList: true, subtree: true });
 }
-
+let script = document.createElement('script');
+script.src = 'https://flopsi69.github.io/crs/autoria/index.js';
+script.async = false;
+document.head.appendChild(script);
 // Styles
 const styles = `
   .order-pages.order-summary .section:not(:first-child):after {
@@ -629,6 +632,19 @@ const styles = `
     width: 100%;
     margin-bottom: 32px;
     margin-left: 0;
+  }
+  .lav-coupon-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #A9B7C8;
+    padding-left: 24px;
+    margin-bottom: -15px;
+    transition: 0.35s;
+    opacity: 0;
+  }
+  .order-coupon--filled .lav-coupon-text {
+    opacity: 1;
   }
   .lav-coupon .order-coupon__button {
     display: none;
@@ -3889,6 +3905,13 @@ function initCheckout() {
           document.querySelector('.order-coupon')
         );
     }
+
+    document
+      .querySelector('.lav-coupon')
+      .insertAdjacentHTML(
+        'afterbegin',
+        ' <div class="lav-coupon-text">Enter coupon code</div>'
+      );
 
     // let cloneCoupon = document
     //   .querySelector('.order-coupon__wrapper')
