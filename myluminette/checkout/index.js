@@ -3376,6 +3376,27 @@ function initPdp() {
           .scrollIntoView({ block: 'start', behavior: 'smooth' });
       });
 
+    if (window.innerWidth < 1200) {
+      document
+        .querySelector('.lav-jumb__slider-wrap')
+        .insertAdjacentElement(
+          'beforebegin',
+          document.querySelector('.lav-jumb__title')
+        );
+      document
+        .querySelector('.lav-jumb__slider-wrap')
+        .insertAdjacentElement(
+          'beforebegin',
+          document.querySelector('.lav-jumb__feedbacks')
+        );
+      document
+        .querySelector('.lav-jumb__slider-wrap')
+        .insertAdjacentElement(
+          'beforebegin',
+          document.querySelector('.lav-jumb__effects-title')
+        );
+    }
+
     // document.querySelector('.lav-jumb__video')
   }
 
