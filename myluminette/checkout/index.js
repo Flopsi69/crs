@@ -2087,6 +2087,9 @@ const stylePDP = `
     overflow-y: auto;
   }
   @media(max-width: 1400px) {
+    .days-test:before, .days-test:after {
+      width: 36px;
+    }
     .lav-review__text {
       max-height: auto;
       min-height: 195px;
@@ -2254,6 +2257,46 @@ const stylePDP = `
   .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
     opacity: 1;
   }
+  @media (max-width: 1199px) {
+    .days-test:before, .days-test:after {
+      width: 36px;
+    }
+    .days-test_date, .days-test_head  {
+      width: calc(50% - 28px);
+    }
+    .days-test_date {
+      text-align: right;
+    }
+    .line-dashed:before {
+      top: 7px;
+      left: 50%;
+      width: 1px;
+      height: calc(100% - 35px);
+      transform: translateX(-50%);
+      background-image: url(${dirImages}line-mob.svg);
+    }
+    .days-test_list li {
+      align-items: flex-start;
+    }
+    .days-test_list li:not(:last-child) {
+      margin-bottom: 24px;
+    }
+    .days-test_list li:last-child .circle {
+      background: #5D9EFF;
+    }
+    .circle {
+      margin: 0 16px;
+    }
+  }
+  @media (max-width: 991px) {
+    .technical-block h2 {
+      margin-bottom: 25px;
+    }
+    .safety-block h2 {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
   @media (max-width: 768px) {
     .lav-users__title, .lav-users__image {
       display: none;
@@ -2286,6 +2329,88 @@ const stylePDP = `
     }
     .lav-modal {
       padding: 12px;
+    }
+    .days-test:before, .days-test:after {
+      content: none;
+    }
+    .tooltip > img {
+      width: 14px;
+      height: 22px;
+    }
+    .days-test h3 {
+      font-size: 22px;
+      line-height: 28px;
+    }
+    .days-test {
+      padding: 24px 0;
+    }
+    .line-dashed {
+      margin-top: 16px;
+    }
+    .fs-22 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .compare .fs-18, .days-test .fs-18, .technical-block .fs-18 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .days-test_date .fs-16 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .days-test_head .fs-22.mr-2 {
+      margin-right: 4px;
+    }
+    .circle {
+      margin: 7px 16px;
+      width: 12px;
+      height: 12px;
+    }
+    .tooltip {
+      position: initial;
+    }
+    .days-test_date {
+      width: calc(44% - 22px);
+    }
+    .days-test_head {
+      width: calc(56% - 22px);
+    }
+    .line-dashed:before {
+      left: calc(44% + 1px);
+    }
+    .days-test_list li {
+      position: relative;
+    }
+    .tooltip-dropdown {
+      right: 0;
+      width: 100%;
+    }
+    .tooltip-item:before {
+      right: auto;
+      left: calc(50% + 63px);
+    }
+    .days-test_list li:not(:nth-child(2)) .tooltip-dropdown {
+      top: calc(100% - 23px);
+    }
+    /* Section 2*/
+    .compare img {
+      width: 60px;
+      height: 60px;
+    }
+    /* Section 3*/
+    .safety-block img {
+      width: 64px;
+      height: 64px;
+      margin-right: 12px;
+      margin-left: 0;
+    }
+    .technical-block, .safety-block .row {
+      padding: 16px;
+    }
+    .technical h2 {
+      font-size: 32px;
+      line-height: 36px;
     }
   }
 `;
@@ -3113,8 +3238,6 @@ function initPdp() {
 
         localStorage.setItem('lavCount', item.dataset.count);
 
-        console.log(localStorage.getItem('lavCount'));
-
         document
           .querySelector('.lav-count__item.active')
           .classList.remove('active');
@@ -3556,6 +3679,10 @@ function initCheckout() {
   }
 
   function handleCount(type) {
+    if (localStorage.getItem('lavCount')) {
+      localStorage.removeItem('lavCount');
+    }
+
     let currentValue = parseInt(
       document.querySelector('.counter__count').innerText
     );
