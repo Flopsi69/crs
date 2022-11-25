@@ -2271,6 +2271,26 @@ const stylePDP = `
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
     }
+    .lav-recharge__inner {
+      display: block;
+      background-size: auto 340px;
+      background-position: top;
+    }
+    .lav-recharge__info {
+      max-width: 100%;
+      padding: 24px;
+      border-radius: 0 0 12px 12px;
+      linear-gradient(0deg, rgba(255,255,255,1) 80%, rgba(255,255,255,0.0) 100%)
+    }
+    .lav-recharge__preview {
+      height: 260px;
+    }
+    .lav-recharge__info {
+      text-align: center;
+    }
+    .lav-title {
+      margin-bottom: 16px;
+    }
     .lav-count__list {
       gap: 12px;
       margin-top: 17px;
@@ -2298,6 +2318,7 @@ const stylePDP = `
     .lav-jumb__effects-list {
       display: block;
       padding: 12px;
+      background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%); 
     }
     .lav-jumb__effects-item {
       max-width: 100%;
@@ -2404,6 +2425,16 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-count__item {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .lav-jumb__thumbs {
+      justify-content: space-between;
+    }
+    .lav-jumb__thumbs img {
+      width: auto;
+    }
     .lav-jumb {
       padding-top: 90px;
     }
