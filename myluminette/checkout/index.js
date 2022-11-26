@@ -2487,7 +2487,7 @@ const stylePDP = `
       margin: 0 16px;
     }
     .lav-can__inner {
-      padding: 24px;
+      padding: 180px 24px 24px;
     }
   }
   @media (max-width: 991px) {
@@ -2503,6 +2503,17 @@ const stylePDP = `
     .lav-recharge__inner {
       background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
       background-size: 100% auto;
+    }
+    .lav-can__inner {
+      background: url('${settings.dir}/img/bg-man-mob.png') top center no-repeat;
+      background-size: 100% auto;
+    }
+    .lav-can__icon {
+      text-align: center;
+    }
+    .lav-can__title {
+      text-align: center;
+      margin-top: 0;
     }
     .lav-study {
       padding: 24px;
