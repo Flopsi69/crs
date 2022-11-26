@@ -2499,6 +2499,22 @@ const stylePDP = `
     .lav-perfect__item + .lav-perfect__item {
       margin-top: 48px;
     }
+    .lav-trial {
+      text-align: center;
+    }
+    .lav-trial__actions {
+      width: 100%;
+    }
+    .lav-trial__info {
+      max-width: 100%;
+      margin: 0;
+    }
+    .lav-trial__btn {
+      width: 100%;
+    }
+    .lav-trial__image {
+      width: 100%;
+    }
   }
   @media (max-width: 991px) {
     .technical-block h2 {
@@ -2510,6 +2526,19 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-trial__row {
+      width: 24px 24px 28px;
+    }
+    .lav-trial__buttons {
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+    .lav-trial__buttons .lav-trial__btn span {
+      text-align: left;
+    }
+    .lav-trial__descr {
+      margin-top: 12px;
+    }
     .lav-perfect__icon img {
       width: 80px;
     }
@@ -2767,7 +2796,7 @@ function initPdp() {
       document.querySelector('.header').classList.add('light-theme');
     }
     if (
-      window.innerWidth > 768 &&
+      window.innerWidth > 1199 &&
       document.querySelector('.lav-trial__info .lav-trial__image')
     ) {
       document
@@ -2777,7 +2806,7 @@ function initPdp() {
           document.querySelector('.lav-trial__image')
         );
     } else if (
-      window.innerWidth <= 768 &&
+      window.innerWidth <= 1199 &&
       document.querySelector('.lav-trial__row>.lav-trial__image')
     ) {
       document
