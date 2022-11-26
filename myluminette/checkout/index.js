@@ -2277,6 +2277,26 @@ const stylePDP = `
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
     }
+    .lav-transform {
+      flex-flow: column-reverse;
+      text-align: center;
+    }
+    .lav-transform__title-mob {
+      display: block;
+    }
+    .lav-transform__title:not( .lav-transform__title-mob) {
+      display: none;
+    }
+    .lav-transform__descr {
+      margin-top: 20px;
+    }
+    .lav-transform__image {
+      margin-top: -100px;
+      max-width: 380px;
+    }
+    .lav-transform__image img {
+      max-width: 100%;
+    }
     .lav-recharge__inner {
       display: block;
       background-size: auto 340px;
@@ -2435,11 +2455,29 @@ const stylePDP = `
   @media (max-width: 768px) {
     .lav-recharge__inner {
       background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
-      background-size: cover
+      background-size: 100% auto;
+    }
+    .lav-transform__image {
+      margin-top: -85px;
+      max-width: 80%;
+    }
+    .lav-transform__more-btn {
+      padding: 15px 8px;
+      width: 100%;
+      justify-content: center;
+    }
+    .lav-transform__more {
+      margin-top: 48px;
     }
     .lav-recharge__preview img {
       width: 80px;
       height: 80px;
+    }
+    .lav-recharge {
+      margin-top: 24px;
+    }
+    .lav-recharge__info {
+      padding-top: 0;
     }
     // .lav-recharge__preview {
     //   height: 40vw;
