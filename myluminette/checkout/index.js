@@ -2279,6 +2279,23 @@ const stylePDP = `
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
     }
+    .lav-study {
+      flex-wrap: wrap;
+    }
+    .lav-study__icon {
+      flex-basis: 40px;
+      margin-top: -7px;
+    }
+    .lav-study__info {
+      margin-right: 0;
+      flex-basis: 50%;
+      flex-grow: 1;
+    }
+    .lav-study__btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 24px;
+    }
     #discover-block {
       margin-top: 12px;
       padding: 24px;
@@ -2469,6 +2486,9 @@ const stylePDP = `
     .circle {
       margin: 0 16px;
     }
+    .lav-can__inner {
+      padding: 24px;
+    }
   }
   @media (max-width: 991px) {
     .technical-block h2 {
@@ -2483,6 +2503,10 @@ const stylePDP = `
     .lav-recharge__inner {
       background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
       background-size: 100% auto;
+    }
+    .lav-study {
+      padding: 24px;
+      align-items: flex-start;
     }
     .lav-transform__image {
       margin-top: -85px;
