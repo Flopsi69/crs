@@ -2531,7 +2531,11 @@ const stylePDP = `
     }
     .lum-page .section-features {
       padding-top: 40px;
+      padding-bottom: 40px;
       overflow: hidden;
+    }
+    .technical__wrap {
+      padding: 48px 0;
     }
     .lum-page .section-features .image-stripes {
       top: -100px;
