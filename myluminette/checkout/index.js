@@ -2437,10 +2437,10 @@ const stylePDP = `
       background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
       background-size: cover
     }
-    // .lav-recharge__preview img {
-    //   width: 80px;
-    //   height: 80px;
-    // }
+    .lav-recharge__preview img {
+      width: 80px;
+      height: 80px;
+    }
     // .lav-recharge__preview {
     //   height: 40vw;
     // }
@@ -2638,13 +2638,13 @@ function initPdp() {
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
   document.body.append(sliderScript);
 
-  if (window.innerWidth > 768) {
-    setInterval(() => {
+  setInterval(() => {
+    if (window.innerWidth > 768) {
       if (window.pageYOffset > 50) return false;
       document.querySelector('.header').classList.remove('dark-theme');
       document.querySelector('.header').classList.add('light-theme');
-    }, 400);
-  }
+    }
+  }, 400);
 
   const newLayout = `
     <section class='lav-jumb'>
