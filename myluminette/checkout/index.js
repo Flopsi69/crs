@@ -2294,6 +2294,13 @@ const stylePDP = `
       margin-top: 48px;
       padding-bottom: 48px;
     }
+    .compare-section {
+      padding: 40px 0;
+    }
+    .lav-study__wrap {
+      margin-top: 10px;
+      margin-bottom: 48px;
+    }
     .lav-transforms .splide__pagination {
       margin-top: 24px;
     }
