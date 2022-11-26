@@ -2489,6 +2489,16 @@ const stylePDP = `
     .lav-can__inner {
       padding: 180px 24px 24px;
     }
+    .lav-perfect__list {
+      margin-top: 32px;
+      display: block;
+    }
+    .lav-perfect__item {
+      max-width: 100%;
+    }
+    .lav-perfect__item + .lav-perfect__item {
+      margin-top: 48px;
+    }
   }
   @media (max-width: 991px) {
     .technical-block h2 {
@@ -2500,6 +2510,12 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-perfect__icon img {
+      width: 80px;
+    }
+    .lav-trial {
+      padding: 48px 0;
+    }
     .lav-recharge__inner {
       background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
       background-size: 100% auto;
@@ -2507,6 +2523,12 @@ const stylePDP = `
     .lav-can__inner {
       background: url('${settings.dir}/img/bg-man-mob.png') top center no-repeat;
       background-size: 100% auto;
+    }
+    .lav-can {
+      margin-bottom: 24px;
+    }
+    .lav-perfect {
+      padding-top: 24px;
     }
     .lav-can__icon {
       text-align: center;
@@ -2743,6 +2765,27 @@ function initPdp() {
       if (window.pageYOffset > 50) return false;
       document.querySelector('.header').classList.remove('dark-theme');
       document.querySelector('.header').classList.add('light-theme');
+    }
+    if (
+      window.innerWidth > 768 &&
+      document.querySelector('.lav-trial__info .lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__info')
+        .insertAdjacentElement(
+          'beforebegin',
+          document.querySelector('.lav-trial__image')
+        );
+    } else if (
+      window.innerWidth <= 768 &&
+      document.querySelector('.lav-trial__row>.lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__descr')
+        .insertAdjacentElement(
+          'afterend',
+          document.querySelector('.lav-trial__image')
+        );
     }
   }, 400);
 
