@@ -2527,10 +2527,17 @@ const stylePDP = `
   }
   @media (max-width: 768px) {
     .lav-trial__row {
-      width: 24px 24px 28px;
+      padding: 24px 24px 28px;
+    }
+    .lum-page .section-features {
+      padding-top: 40px;
+      overflow: hidden;
+    }
+    .lum-page .section-features .image-stripes {
+      top: -100px;
     }
     .lav-trial__buttons {
-      margin-top: 12px;
+      margin-top: 6px;
       margin-bottom: 16px;
     }
     .lav-trial__buttons .lav-trial__btn span {
