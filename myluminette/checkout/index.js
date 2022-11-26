@@ -1537,9 +1537,11 @@ const stylePDP = `
     cursor: pointer;
     transition: 0.35s;
   }
-  .lav-transform__more-btn:hover {
-    border-color: #517193;
-    opacity: 0.7;
+  @media(min-width: 1199px) {
+    .lav-transform__more-btn:hover {
+      border-color: #517193;
+      opacity: 0.7;
+    }
   }
   .lav-transform__more-btn svg {
     margin-left: 8px;
@@ -2276,6 +2278,24 @@ const stylePDP = `
   @media (max-width: 1199px) {
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
+    }
+    #discover-block {
+      margin-top: 12px;
+      padding: 24px;
+    }
+    .block-on-the-go .title {
+      margin-bottom: 24px;
+    }
+    #discover-block img {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+    .lav-transforms {
+      margin-top: 48px;
+      padding-bottom: 48px;
+    }
+    .lav-transforms .splide__pagination {
+      margin-top: 24px;
     }
     .lav-transform {
       flex-flow: column-reverse;
