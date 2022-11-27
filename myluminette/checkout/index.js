@@ -2515,8 +2515,11 @@ const stylePDP = `
     .lav-trial__image {
       width: 100%;
     }
+    .lum-page .section-features {
+      padding-bottom: 80px;
+    }
   }
-  @media (max-width: 991px) {
+  @media (max-width: 992px) {
     .technical-block h2 {
       margin-bottom: 25px;
     }
@@ -2524,10 +2527,27 @@ const stylePDP = `
       margin-bottom: 0;
       padding-bottom: 0;
     }
+    .lav-feat {
+      display: none;
+    }
   }
   @media (max-width: 768px) {
     .lav-trial__row {
       padding: 24px 24px 28px;
+    }
+    .section-features .heading-wrapper .title {
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 700;
+    }
+    .bb-2:last-child {
+      border-bottom: none;
+    }
+    .lum-page .section-features .gradient-group .gradient-radial {
+      height: 150px;
+    }
+    .technical br {
+      display: none;
     }
     .lum-page .section-features {
       padding-top: 40px;
