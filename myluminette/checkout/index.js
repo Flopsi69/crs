@@ -2526,8 +2526,14 @@ const stylePDP = `
     .lav-trial__image {
       width: 100%;
     }
+    .lum-page .section-how-it-works .main-content .column .zoom-image-wrapper {
+      display: none!important;
+    }
     .lum-page .section-features {
       padding-bottom: 80px;
+    }
+    .lum-page .section-how-it-works .main-content .column.first-column {
+      padding-right: 0;
     }
   }
   @media (max-width: 992px) {
@@ -2548,6 +2554,38 @@ const stylePDP = `
     }
     .lum-page .section-how-it-works {
       padding-top: 0;
+    }
+    .lum-page .section-how-it-works .main-content .column > .image {
+      margin-top: 0;
+      max-width: 65%;
+    }
+    .lum-page .section-how-it-works .main-content .column .group-text {
+      text-align: left;
+      padding-left: 28px;
+      position: relative;
+    }
+    .lum-page .section-how-it-works .main-content .column .group-text:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 20px;
+      height: 20px;
+      background: url(${settings.dir}/img/check.svg) center no-repeat;
+      background-size: contain;
+    }
+    .lum-page .section-how-it-works .main-content .column .subtitle {
+      font-size: 18px;
+      line-height: 24px;
+      padding-bottom: 8px;
+    }
+    .lum-page .section-how-it-works .main-content .column .title {
+      font-size: 32px;
+      line-height: 36px;
+      padding-bottom: 0;
+    }
+    .lum-page .section-how-it-works {
+      color: #406184;
     }
     .section-features .heading-wrapper .title {
       font-size: 48px;
@@ -2833,35 +2871,6 @@ function initPdp() {
   sliderScript.src =
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
   document.body.append(sliderScript);
-
-  setInterval(() => {
-    if (window.innerWidth > 768) {
-      if (window.pageYOffset > 50) return false;
-      document.querySelector('.header').classList.remove('dark-theme');
-      document.querySelector('.header').classList.add('light-theme');
-    }
-    if (
-      window.innerWidth > 1199 &&
-      document.querySelector('.lav-trial__info .lav-trial__image')
-    ) {
-      document
-        .querySelector('.lav-trial__info')
-        .insertAdjacentElement(
-          'beforebegin',
-          document.querySelector('.lav-trial__image')
-        );
-    } else if (
-      window.innerWidth <= 1199 &&
-      document.querySelector('.lav-trial__row>.lav-trial__image')
-    ) {
-      document
-        .querySelector('.lav-trial__descr')
-        .insertAdjacentElement(
-          'afterend',
-          document.querySelector('.lav-trial__image')
-        );
-    }
-  }, 400);
 
   const newLayout = `
     <section class='lav-jumb'>
@@ -3571,6 +3580,35 @@ function initPdp() {
       document.querySelector('.lav-reviews')
     );
 
+  setInterval(() => {
+    if (window.innerWidth > 768) {
+      if (window.pageYOffset > 50) return false;
+      document.querySelector('.header').classList.remove('dark-theme');
+      document.querySelector('.header').classList.add('light-theme');
+    }
+    if (
+      window.innerWidth > 1199 &&
+      document.querySelector('.lav-trial__info .lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__info')
+        .insertAdjacentElement(
+          'beforebegin',
+          document.querySelector('.lav-trial__image')
+        );
+    } else if (
+      window.innerWidth <= 1199 &&
+      document.querySelector('.lav-trial__row>.lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__descr')
+        .insertAdjacentElement(
+          'afterend',
+          document.querySelector('.lav-trial__image')
+        );
+    }
+  }, 400);
+
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
@@ -3604,6 +3642,19 @@ function initPdp() {
       'afterend',
       '<div class="lav-feat">Move your cursor over the buttons to zoom in</div>'
     );
+
+  if (window.innerWidth <= 1199) {
+    document
+      .querySelector(
+        '.lum-page .section-how-it-works .main-content .column .title'
+      )
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector(
+          '.lum-page .section-how-it-works .main-content .column.d-none img'
+        )
+      );
+  }
 
   handleJumb();
   initHowItWorks();
