@@ -2587,7 +2587,7 @@ const stylePDP = `
     }
     .lav-reviews__total-col {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding: 0;
     }
     .lav-reviews__total-col + .lav-reviews__total-col {
@@ -2609,6 +2609,7 @@ const stylePDP = `
     }
     .lav-reviews__total-image img {
       max-height: 100%;
+      max-height: 90px;
     }
     .lav-reviews__total-caption span {
       display: block;
