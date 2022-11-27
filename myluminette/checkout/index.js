@@ -2578,9 +2578,6 @@ const stylePDP = `
       width: 80px;
       height: 80px;
     }
-    .lav-reviews__preview-list {
-      margin-top: 24px;
-    }
     .lav-reviews__total {
       margin-top: 32px;
       display: block;
@@ -3687,8 +3684,7 @@ function initPdp() {
     );
 
   setInterval(() => {
-    if (window.innerWidth > 768) {
-      if (window.pageYOffset > 50) return false;
+    if (window.innerWidth > 768 && window.pageYOffset < 50) {
       document.querySelector('.header').classList.remove('dark-theme');
       document.querySelector('.header').classList.add('light-theme');
     }
