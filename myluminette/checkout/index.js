@@ -2279,6 +2279,9 @@ const stylePDP = `
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
     }
+    .lav-users__title {
+      bottom: 20px;
+    }
     .safety-block img {
       width: 64px;
       height: 64px;
@@ -2740,18 +2743,20 @@ const stylePDP = `
     .lav-users__title-mob {
       display: block;
       transform: translateY(-50%);
-      font-weight: 300;
+      font-weight: 500;
       font-size: 32px;
       line-height: 36px;
     }
     .lav-users__title-mob span {
       letter-spacing: 1px;
-      font-size: 96px;
-      line-height: 96px; 
+      font-size: 72px;
+      line-height: 1; 
       font-weight: 700;        
+      display: block;
     }
     .lav-users__image-mob {
       display: block;
+      margin: auto;
       max-width: 100%;
     }
     .lav-modal__inner {
