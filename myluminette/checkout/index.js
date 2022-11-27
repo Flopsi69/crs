@@ -3129,7 +3129,7 @@ function initPdp() {
                     2 Luminettes
                     <span class='lav-count__discount'>-10%</span>
                   </div>
-                  <div class='lav-count__price'>$179<sup>10</sup></div>
+                  <div class='lav-count__price'>$159<sup>20</sup></div>
                   <div class='lav-count__caption'>per unit</div>
                 </div>
                 <div class='lav-count__item' data-count='3'>
@@ -3140,7 +3140,7 @@ function initPdp() {
                     3 Luminettes
                     <span class='lav-count__discount'>-15%</span>
                   </div>
-                  <div class='lav-count__price'>$169<sup>15</sup></div>
+                  <div class='lav-count__price'>$149<sup>25</sup></div>
                   <div class='lav-count__caption'>per unit</div>
                 </div>
               </div>
