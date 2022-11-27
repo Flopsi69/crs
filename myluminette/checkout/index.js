@@ -2565,6 +2565,9 @@ const stylePDP = `
     .lav-trial__row {
       padding: 24px 24px 28px;
     }
+    .lav-jumb__thumb {
+      flex: 1;
+    }
     .lav-reviews {
       padding: 24px 0 36px;
     }
@@ -2790,7 +2793,7 @@ const stylePDP = `
       width: auto;
     }
     .lav-jumb {
-      padding-top: 90px;
+      padding-top: 80px;
     }
     .lav-users__title, .lav-users__image {
       display: none;
