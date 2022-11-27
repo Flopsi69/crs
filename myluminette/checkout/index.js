@@ -2581,6 +2581,10 @@ const stylePDP = `
     .lav-reviews__preview-list {
       margin-top: 24px;
     }
+    .lav-reviews__total {
+      margin-top: 32px;
+      display: block;
+    }
     .lav-reviews__total-col {
       display: flex;
       justify-content: space-between;
@@ -2595,6 +2599,22 @@ const stylePDP = `
       transform: rotate(90deg);
       height: 100vw;
       top: -12px;
+    }
+    .lav-reviews__total-image {
+      height: auto;
+      width: 44%;
+    }
+    .lav-reviews__total-info {
+      width: 44%;
+    }
+    .lav-reviews__total-image img {
+      max-height: 100%;
+    }
+    .lav-reviews__total-caption span {
+      display: block;
+    }
+    .lav-reviews__total-image {
+      margin-bottom: 0;
     }
     .lum-page .section-how-it-works {
       padding-top: 0;
