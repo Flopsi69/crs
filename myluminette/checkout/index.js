@@ -2279,6 +2279,17 @@ const stylePDP = `
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
     }
+    .safety-block img {
+      width: 64px;
+      height: 64px;
+      margin-right: 12px;
+    }
+    .lum-page .section-how-it-works .main-content .column {
+      max-width: 100%;
+    }
+    .technical__wrap {
+      padding: 48px 0;
+    }
     .lav-study {
       flex-wrap: wrap;
     }
@@ -2534,6 +2545,9 @@ const stylePDP = `
   @media (max-width: 768px) {
     .lav-trial__row {
       padding: 24px 24px 28px;
+    }
+    .lum-page .section-how-it-works {
+      padding-top: 0;
     }
     .section-features .heading-wrapper .title {
       font-size: 48px;
