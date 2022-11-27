@@ -2535,6 +2535,9 @@ const stylePDP = `
     .lum-page .section-how-it-works .main-content .column.first-column {
       padding-right: 0;
     }
+    .lum-page .section-studies .studies-component .heading-wrapper .image {
+      max-width: 100%; 
+    }
   }
   @media (max-width: 992px) {
     .technical-block h2 {
@@ -2555,9 +2558,49 @@ const stylePDP = `
     .lum-page .section-how-it-works {
       padding-top: 0;
     }
+    .studies-component .heading-wrapper {
+      padding: 42px 12px;
+    }
+    .studies-component .study-item {
+      padding: 42px 12px;
+    }
+    .studies-component .study-item .btn-wrapper, .studies-component .study-item .btn-wrapper .btn-download-doc {
+      width: 100%;
+    }
+    .studies-component .study-item .title-description-wrapper .title {
+      margin-bottom: 12px;
+    }
+    .studies-component .study-item .number {
+      display: block;
+      position: static;
+      transform: none;
+      font-size: 72px;
+      line-height: 72px;
+      margin-bottom: 8px;
+      color: rgb(81 113 147 / 30%);
+      font-weight: 200;
+    }
+    
+    .lum-page .section-studies .studies-component .heading-wrapper .title {
+      font-size: 24px;
+      line-height: 28px;
+      padding-bottom: 16px;
+    }
+    .lum-page .section-studies .studies-component .heading-wrapper .title br {
+      display: none;
+    }
     .lum-page .section-how-it-works .main-content .column > .image {
-      margin-top: 0;
+      margin-top: -10px;
       max-width: 65%;
+    }
+    .lum-page .section-how-it-works .main-content {
+      padding-bottom: 48px;
+    }
+    .lum-page .section-how-it-works .main-content .column .fw-medium {
+      font-weight: 400;
+    }
+    .lum-page .section-how-it-works .main-content .mobile-content {
+      dispaly: none!important;
     }
     .lum-page .section-how-it-works .main-content .column .group-text {
       text-align: left;
