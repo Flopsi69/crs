@@ -2577,6 +2577,9 @@ const stylePDP = `
       width: auto;
       top: 70px;
     }
+    .lav-test__second .tooltip-dropdown {
+      top: 10px;
+    }
     .lav-trial__inside .tooltip-dropdown {
       left: -24px;
       right: -24px;
@@ -3155,7 +3158,7 @@ function initPdp() {
                   </div>
                   <div class='lav-count__title'>
                     2 Luminettes
-                    <span class='lav-count__discount'>-10%</span>
+                    <span class='lav-count__discount'>-20%</span>
                   </div>
                   <div class='lav-count__price'>$159<sup>20</sup></div>
                   <div class='lav-count__caption'>per unit</div>
@@ -3166,7 +3169,7 @@ function initPdp() {
                   </div>
                   <div class='lav-count__title'>
                     3 Luminettes
-                    <span class='lav-count__discount'>-15%</span>
+                    <span class='lav-count__discount'>-25%</span>
                   </div>
                   <div class='lav-count__price'>$149<sup>25</sup></div>
                   <div class='lav-count__caption'>per unit</div>
