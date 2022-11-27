@@ -3630,6 +3630,598 @@ function initPdp() {
           </div>
         </div>
 
+        <div class="slider-wrapper position-relative">
+          <div class="slider">
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Arnaud T.</div>
+                  <a href="https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Read the review on <b>Google</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"Every year I notice the lack of light and it affects my mood.
+                      This year I found the solution to remedy this with the Luminette. The advantage is that
+                      you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat
+                      breakfast
+                      with the glasses on. It is very practical :)"
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">4 March 2021</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Laura S.</div>
+                  <a href="https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Read the review on <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective
+                      Disorder
+                      (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun
+                      disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel
+                      free and joyous most of the time. I also sleep much better. I must add that I stopped
+                      caffeine,
+                      which helps as well.
+                      Luminettes are far, far better than the lamps. I wear them every morning without being obliged
+                      to stare at the lamp. My mood has really improved.
+                      They are very convenient and easy to use. I put them onto the top of my glasses. They recharge
+                      easily and they can be used without plugging them every day.
+                      Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist,
+                      etc)
+                      are asking me if it works. People think it is pretty and they are very interested because they
+                      always have someone in their family with SAD, or they are afflicted by that disorder
+                      themselves.
+                      So really, no complaints, only good things to say about my Luminettes which are as precious
+                      now
+                      as my cell phone.
+                      Merci!"
+                      caffeine,
+                      which helps as well.
+                      Luminettes are far, far better than the lamps. I wear them every morning without being obliged
+                      to stare at the lamp. My mood has really improved.
+                      They are very convenient and easy to use. I put them onto the top of my glasses. They recharge
+                      easily and they can be used without plugging them every day.
+                      Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist,
+                      etc)
+                      are asking me if it works. People think it is pretty and they are very interested because they
+                      always have someone in their family with SAD, or they are afflicted by that disorder
+                      themselves.
+                      So really, no complaints, only good things to say about my Luminettes which are as precious
+                      now
+                      as my cell phone.
+                      Merci!
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Rémy Z.</div>
+                  <a href="https://www.google.com/maps/contrib/112247709787810698381/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s112247709787810698381!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Read the review on <b>Google </b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Excellent light therapy glasses.  I use them every morning when I wake up. I
+                      have been
+                      suffering
+                      from
+                      seasonal depression for several years, but thanks to Luminettes I have been feeling
+                      the
+                      effects
+                      of my
+                      mood disorders much less in autumn and winter. I use them from mid-fall until the end of March. I used to
+                      have
+                      a
+                      light therapy 
+                      lamp, but it was quite restrictive to stay in front of it all the time.
+                      With
+                      my
+                      Luminettes I can go about my business without any problem.
+                      I am very satisfied!
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Dominique M.</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/R2TECJ5KRJG2TC/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Read the review on <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Every year, the coming of autumn for me means depression, tiredness, long sleeps and
+                      and exhaustion in the afternoon! I spoke about it to the doctor who advised me to try
+                      the Luminette. I decided to buy it and use it every morning. So , I
+                      eat
+                      my breakfast with the Luminette on, without any discomfort, for 20 minutes. It allows me to
+                      move around and see what I'm doing, unlike the old devices that
+                      stayed
+                      on the table, and which, according to the studies carried out, were useless because the luminosity of the
+                      the leds did not come from higher than head level and thus did not reach the
+                      eye's sensors...
+                      Now, I feel fit and healthy during the day, and if during winter I feel tired after lunch, I do a
+                      I do a session again. This way, my body stops producing melatonin and my energy
+                      comes back, I feel better about myself and I'm in a better mood!
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Maïté T.</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/R1GSLSI9OTO56U/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Review on <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"I have fibromyalgia, major sleep problems, and an obvious lack of energy when the
+                      sun
+                      goes away. My neurologist recommended your glasses. I am delighted, I have
+                      more energy, but unfortunately this does not affect my pain. But since I'm in better shape, I think it's really great!
+                      Autumn and winter no longer scare me thanks to these glasses.
+                      I am ready to face them! I really recommend it and I can't stop talking about it to everyone
+                      around me."
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Muriel V.</div>
+                  <a href="https://www.google.com/maps/contrib/107266988971890423777/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s107266988971890423777!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"I was prescribed it by my neurologist for my sleep disorders and epilepsy, and now I
+                      can't
+                      do without it anymore. The fact that they are glasses is very practical because you can do
+                      things (like brushing your teeth, eating lunch, reading or even starting work).
+                      start working). They are delivered with a very practical cover for storage
+                      and/or for travelling.
+                      I just don't recommend using them in a dark room.
+                      "
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Rita R.</div>
+                  <a href="https://www.google.com/maps/contrib/100137502211655470427/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.6323126,5.3985949,11z/data=!4m6!1m5!8m4!1e1!2s100137502211655470427!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"After 5 days of using my luminette, I already feel better...
+                      Try it and you'll never stop using it.
+                      I've been wearing it for 3 years in autumn for 20 minutes a day ... while having breakfast"
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Audrey B.</div>
+                  <a href="https://www.google.com/maps/contrib/105110317360703574808/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s105110317360703574808!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"I am very happy with the luminette! (I have the luminette 3). I have better sleep cycles
+                      and they help me to wake up in the morning (as well as a coffee). Plus they are
+                      easy to wear. Every morning I tell myself that I did the right thing by buying them! I
+                      recommend them!
+                      "
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Christopher T.</div>
+                  <a href="https://www.google.com/maps/contrib/105475160819624793335/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s105475160819624793335!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"I am delighted with model 2.
+                      The Luminette is easy to use and allows me to be active in the morning and makes it easier
+                      to fall asleep. My neurologist gave me good advice!
+                      I will probably switch to model 3 in the future...
+                      "
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Gregory E.</div>
+                  <a href="https://www.google.com/maps/contrib/117879807108998873428/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.3197246,6.3556338,7.58z/data=!4m4!1m3!8m2!1e1!2s117879807108998873428?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"I have had my luminettes 3 since March 2020 and I can't do without them anymore, they are perfect
+                      for
+                      jet lag or sleep disorders.
+                      "
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Florence M.</div>
+                  <a href="https://www.google.com/maps/contrib/114308199652100072679/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s114308199652100072679!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">I have had them for a year now. They were recommended to me by my therapist, and I feel a real improvement in my mood and fatigue.
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Guillaume M.</div>
+                  <a href="https://www.google.com/maps/contrib/101195112554299989422/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@4.6513087,89.2730014,3z/data=!4m6!1m5!8m4!1e2!2s101195112554299989422!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"I have been suffering from seasonal depression for years, so I decided to try light therapy
+                      to compensate for the lack of winter sunshine, and I chose the ""glasses"" model
+                      for the convenience of being able to do my morning routine and not having to stay glued
+                      to
+                      a light panel.
+                      The results were quick, the usual sluggishness and general tiredness have almost disappeared and
+                      and another benefit that I had not foreseen was that my tendency to have trouble falling asleep
+                      in the evening vanished too, probably due to a readjustment of the
+                      circadian rhythm...
+                      All in all, it's an investment, but I don't regret it at all, and my
+                      wife has also started using it too!
+                      "
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <div class="avatar"></div>
+                  <div class="h4 name fw-bolder">Andi Philip</div>
+                  <a href="#" target="_blank" class="link">
+                    <span>
+                      Review on <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"I had a small Phillips light box previously, and it was a hassle to sit at the right angle,
+                      distance, and time. With these, I don’t have to worry about any of those things. I just put
+                      them
+                      on, push the button, and wear them until they turn off. Easy to use whether I’m wearing my
+                      glasses or contacts. Also, these don’t give me headaches like the Phillips light box did!
+                      We have almost 4 people in my household wearing these every day — I will be buying a second
+                      pair
+                      soon! (Two of us have sleep past disorder and everyone seems to get a mood boost!)"
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Patricia</div>
+                  <a href="#" target="_blank" class="link">
+                    <span>
+                      Review on <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"Used medically for depression. These glasses have brought me a significant
+                      improvement. Not awkward to wear, the light improves my mood, brings me
+                      comfort,
+                      and they are very useful.
+                      "
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Hélène</div>
+                  <a href="https://www.google.com/maps/contrib/116715457571293643665/reviews/@49.9994005,2.560789,8z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"You should do this as soon as you get up, the Luminette is quickly forgotten and you can go about your
+                      your business. From the very first time you use it, you'll quickly feel
+                      more awake and the mid-morning or afternoon slumps disappear quickly.
+                      Really impressed.
+                      "
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <div class="avatar"></div>
+                  <div class="h4 name fw-bolder">Anthony</div>
+                  <a href="https://www.google.com/maps/contrib/103414070215570066252/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s103414070215570066252!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Review on <b>Google maps</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">"I have been a user for more than ten years... the luminette has always helped me to get ""balanced"" during my night or early morning shifts
+                      at work ... you feel better very quickly.
+                      Reliable product and easy to use.
+                      "
+                    </p>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Muriel T.</div>
+                  <a href="https://www.google.com/maps/contrib/105183132711717313101/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2610511,17z/data=!4m6!1m5!8m4!1e2!2s105183132711717313101!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Read the review on <b>Google </b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"I bought the Luminette to help me fight the winter blues. I use it every morning
+                      when
+                      I get up. What I like about the Luminette is that I can choose the length of the session (20, 30 or 60 minutes)
+                      depending on my availability, and that I can go about my business during the session
+                      (no need to stay in front of a lamp placed on the table). After
+                      a few
+                      days of use, I already noticed the result: no more depression on grey and rainy days.
+                      Over time, I have felt less tired and have more energy. I really
+                      recommend
+                      the Luminette.
+                      "
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Aurélie</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Review on <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"For years, I have suffered from seasonal depression. I have been advised by health professionals
+                      (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to
+                      use
+                      light therapy to improve my state in the fall and winter.
+                      I hesitated for a long time and then I discovered the Luminette.
+                      I use it in the morning, either while going about my business (breakfast, brushing my
+                      teeth brushing...) or when I'm reading. After the session, I have much more energy and
+                      motivation to face the day.
+                      It is very practical because it can be worn at the same time as my glasses or
+                      computer glasses.
+                      They are made of a rather rigid plastic, but they seem to be strong.
+                      They charge quite quickly. A charging indicator lets you know when it is finished.
+                      Once charged, they can be used about 10 times.
+                      There are 3 modes. The more powerful the light, the shorter the exposure time.
+                      What is very practical is that you don't have to watch the time because they turn off by themselves once the
+                      the session is over. The only small ""downside"" is that the most powerful mode
+                      can be glaring when the surrounding light is weak.
+                      I would recommend this product without hesitation, since it gives me a real moral boost
+                      during short days.
+                      "
+                    </p>
+                    <button class="fw-bolder expand">Continue reading</button>
+                    <div class="date">21 December 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class='lav-reviews__total'>
           <div class='lav-reviews__total-col'>
             <div class='lav-reviews__total-image'>
