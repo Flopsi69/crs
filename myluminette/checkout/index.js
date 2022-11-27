@@ -2558,6 +2558,9 @@ const stylePDP = `
     .lav-trial__row {
       padding: 24px 24px 28px;
     }
+    .lum-page .section-studies .studies-component .heading-wrapper .image {
+      max-width: 88px;
+    }
     .lum-page .section-how-it-works {
       padding-top: 0;
     }
@@ -2603,7 +2606,7 @@ const stylePDP = `
       font-weight: 400;
     }
     .lum-page .section-how-it-works .main-content .mobile-content {
-      dispaly: none!important;
+      display: none!important;
     }
     .lum-page .section-how-it-works .main-content .column .group-text {
       text-align: left;
@@ -2756,8 +2759,8 @@ const stylePDP = `
     }
     .lav-users__image-mob {
       display: block;
-      margin: auto;
-      max-width: 100%;
+      margin: -25px auto 0;
+      max-width: 90%;
     }
     .lav-modal__inner {
       max-width: 93%;
