@@ -2565,6 +2565,34 @@ const stylePDP = `
     .lav-trial__row {
       padding: 24px 24px 28px;
     }
+    .lav-jumb__effects-title, .lav-count__head, .lav-trial__inside {
+      position: relative;
+    }
+    .lav-trial__buttons {
+      position: relative;
+    }
+    .lav-trial__btn .tooltip-dropdown {
+      left: -24px;
+      right: -24px;
+      width: auto;
+      top: 70px;
+    }
+    .lav-trial__inside .tooltip-dropdown {
+      left: -24px;
+      right: -24px;
+      width: auto;
+    }
+    .lav-trial__inside .tooltip-item:before {
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .lav-trial__buttons .lav-trial__btn:first-child .tooltip-item:before {
+      left: 25%;
+    }
+    .tooltip-dropdown {
+      top: 40%;
+    }
     .lav-jumb__thumb {
       flex: 1;
     }
