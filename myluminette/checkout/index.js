@@ -3444,6 +3444,7 @@ function init() {
         clearInterval(checkoutInterval);
         initCheckout();
         initTips();
+        initObserverCheckout();
       }
     }, 500);
   } else if (/order\/details\/\d+/.test(location.href)) {
@@ -3452,6 +3453,7 @@ function init() {
       if (document.querySelector('.order-info .column.order-5')) {
         clearInterval(checkoutInterval);
         initCheckoutDetails();
+        initObserverCheckout();
       }
     }, 500);
   }
@@ -5509,6 +5511,101 @@ function initObserver() {
     });
 }
 
+function initObserverCheckout() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '-40%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry);
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('lav-labels')) {
+          gaEvent(
+            'View section on screen',
+            'Non-interaction elements in header'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-jumb')) {
+          gaEvent('View section on screen', 'Step 1. Your orde');
+        }
+
+        if (entry.target.classList.contains('details-block')) {
+          gaEvent('View section on screen', 'Step 1. Contact details');
+        }
+
+        if (entry.target.id == 'scroll-spy-item-2') {
+          gaEvent('View section on screen', 'Step 1. Delivery address');
+        }
+
+        if (entry.target.classList.contains('lav-address')) {
+          gaEvent('View section on screen', 'Step 1. Billing address');
+        }
+
+        if (entry.target.classList.contains('btn-send-form')) {
+          gaEvent('View section on screen', 'Step 1. Continue');
+        }
+
+        if (entry.target.classList.contains('order-info')) {
+          gaEvent('View section on screen', 'Step 2. Order summar');
+        }
+
+        if (entry.target.classList.contains('payment-methods')) {
+          gaEvent('View section on screen', 'Step 2. Order payment method');
+        }
+
+        if (entry.target.classList.contains('lav-observe-details')) {
+          gaEvent('View section on screen', 'Step 2. To payment');
+        }
+
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  for (let section of Array.from(document.querySelectorAll('.lav-observe'))) {
+    observer.observe(section);
+  }
+
+  let eventType = 'mouseenter';
+  if (window.innerWidth < 1199) {
+    eventType = 'click';
+  }
+
+  let typeName = eventType == 'mouseenter' ? 'Hover' : 'Click';
+
+  document
+    .querySelector('.lav-protect__tip')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + "Click on tooltip. What's covered",
+        'Step 1. Your order'
+      );
+    });
+
+  document
+    .querySelector('.lav-labels__item:first-child')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on element. Free shipping',
+        'Non-interaction elements in header'
+      );
+    });
+
+  document
+    .querySelector('.lav-labels__item:last-child')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on element. 100% money back guarantee',
+        'Non-interaction elements in header'
+      );
+    });
+}
+
 function initTips() {
   for (let tip of document.querySelectorAll('.lav-tip')) {
     tip.addEventListener('click', function () {
@@ -5582,7 +5679,7 @@ function initCheckout() {
         <span>&nbsp;/ Payment</span>
       </div>
 
-      <div class='lav-labels'>
+      <div class='lav-labels lav-observe'>
         <div class='lav-labels__item'>
           <img src='${settings.dir}/img/icon-box.svg' />
           Free shipping
@@ -5593,7 +5690,7 @@ function initCheckout() {
         </div>
       </div>
 
-      <div class='lav-plate lav-jumb'>
+      <div class='lav-plate lav-jumb lav-observe'>
         <div class='lav-product'>
           <div class='lav-title lav-product__title'>Your order</div>
           <div class='lav-product__info'>
@@ -5638,6 +5735,10 @@ function initCheckout() {
         </div>
       </div>
     `;
+
+    document.querySelector('#scroll-spy-item-1').classList.add('lav-observe');
+
+    document.querySelector('#scroll-spy-item-2').classList.add('lav-observe');
 
     document
       .querySelector('.products-info')
@@ -5723,6 +5824,7 @@ function initCheckout() {
       .addEventListener('click', function (e) {
         e.preventDefault();
         handleCount('plus');
+        gaEvent('Increase quantity', 'Step 1. Your order');
       });
 
     document
@@ -5730,6 +5832,7 @@ function initCheckout() {
       .addEventListener('click', function (e) {
         e.preventDefault();
         handleCount('minus');
+        gaEvent('Decrease quantity', 'Step 1. Your order');
       });
   }
 
@@ -5884,7 +5987,7 @@ function initCheckout() {
 
   function handleAddress() {
     let chooseAdressEl = `
-      <div class='lav-address'>
+      <div class='lav-address lav-observe'>
         <div class='lav-title lav-address__title'></div>
         <div class='lav-address__items'>
           <div class='lav-address__item' data-value='same'></div>
@@ -6018,6 +6121,10 @@ function initCheckout() {
     document.querySelector(
       '.order-pages.order-details .details-block .btn-send-form .btn-text'
     ).innerText = 'Continue';
+
+    document
+      .querySelector('.order-pages.order-details .details-block .btn-send-form')
+      .classList.add('lav-observe');
 
     let summaryEl = `
       <div class='lav-summary'>
@@ -6224,6 +6331,10 @@ function initCheckoutDetails() {
     </div>
   `;
 
+  document.querySelector('.order-info').classList.add('lav-observe');
+
+  document.querySelector('.payment-methods').classList.add('lav-observe');
+
   // ADD DELIVERY
   document
     .querySelector('.order-info .column.order-5')
@@ -6301,12 +6412,14 @@ function initCheckoutDetails() {
             .classList.remove('lav-brief');
           this.classList.add('active');
           this.querySelector('span').innerText = 'Less details';
+          gaEvent('Click on button. More details', 'Step 2. Order summary');
         } else {
           document
             .querySelector('.order-pages.order-summary .order-info .columns')
             .classList.add('lav-brief');
           this.classList.remove('active');
           this.querySelector('span').innerText = 'More details';
+          gaEvent('Click on button. Less details', 'Step 2. Order summary');
         }
       });
   }
@@ -6315,4 +6428,22 @@ function initCheckoutDetails() {
     item.href = '#';
     item.style = 'pointer-events: none;';
   }
+
+  document.querySelector('.btn-send-form').classList.add('lav-observe');
+  document.querySelector('.btn-send-form').classList.add('lav-observe-details');
+
+  document
+    .querySelector('.btn-edit-order')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on button. Back to previous step',
+        'Step 2. Order summary'
+      );
+    });
+
+  document
+    .querySelector('.btn-send-form')
+    .addEventListener('click', function () {
+      gaEvent('Click on button. To Payment', 'Step 2. Choose payment method');
+    });
 }
