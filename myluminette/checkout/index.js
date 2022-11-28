@@ -58,6 +58,24 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-coupon .primary-input-wrapper.has-error .input {
+    border-color: inherit;
+    color: inherit;
+  }
+  .lav-coupon .primary-input-wrapper .error-block {
+    display: none;
+  }
+  .lav-coupon .primary-input-wrapper.has-error .input::-moz-placeholder {
+    color: inherit;
+  }
+
+  .lav-coupon .primary-input-wrapper.has-error .input:-ms-input-placeholder {
+    color: inherit;
+  }
+
+  .lav-coupon .primary-input-wrapper.has-error .input::placeholder {
+    color: inherit;
+  }
   .order-pages.order-summary .section:not(:first-child):after {
     display: none;
   }
@@ -987,24 +1005,6 @@ const styles = `
 `;
 
 const stylePDP = `
-  .lav-coupon .primary-input-wrapper.has-error .input {
-    border-color: inherit;
-    color: inherit;
-  }
-  .lav-coupon .primary-input-wrapper .error-block {
-    display: none;
-  }
-  .lav-coupon .primary-input-wrapper.has-error .input::-moz-placeholder {
-    color: inherit;
-  }
-  
-  .lav-coupon .primary-input-wrapper.has-error .input:-ms-input-placeholder {
-    color: inherit;
-  }
-  
-  .lav-coupon .primary-input-wrapper.has-error .input::placeholder {
-    color: inherit;
-  }
   .section-while-wearing, .pin-spacer {
     display: none!important;
   }
