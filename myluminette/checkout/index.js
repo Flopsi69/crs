@@ -2898,6 +2898,12 @@ const stylePDP = `
     .lum-page .section-studies .studies-component .heading-wrapper .image {
       max-width: 100%; 
     }
+    .lav-reviews .slider .slide:nth-child(1n+4){
+      display: none;
+    }
+    .lav-reviews_all .slider .slide:nth-child(1n+4){
+      display: block;
+    }
   }
   @media (max-width: 992px) {
     .technical-block h2 {
@@ -2911,19 +2917,21 @@ const stylePDP = `
       display: none;
     }
     .lav-reviews .slider .card-body-wrapper {
-      max-width: inherit;
-      min-width: inherit;
+      max-width: none;
+      min-width: none;
     }
   }
   @media (max-width: 768px) {
     .lav-trial__row {
       padding: 24px 24px 28px;
     }
-
+    .lav-reviews .slider .review {
+      overflow: hidden;
+    }
     .lav-show-reviews {
       display: block;
+      margin: auto;
       margin-top: 24px;
-      opacity: 0.2;
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 123px;
       font-weight: 700;
@@ -2934,10 +2942,9 @@ const stylePDP = `
       color: #FFFFFF;
       padding: 16px 12px;
       width: 230px;
-      margin: auto;
     }
 
-     .lav-reviews .slider .review {
+    .lav-reviews .slider .review {
       height: 168px;
       margin: 0 -24px;
       padding: 0 24px;
@@ -4959,6 +4966,13 @@ function initPdp() {
         return false;
       });
     }
+
+    document
+      .querySelector('.lav-show-reviews')
+      .addEventListener('click', function () {
+        this.remove();
+        document.querySelector('.lav-reviews').classList.add('lav-reviews_all');
+      });
   }
 
   function setStringFromDate(date, isYear) {
