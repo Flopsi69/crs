@@ -5312,7 +5312,7 @@ function initObserver() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
+      // console.log(entry);
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-count')) {
           gaEvent('View section on screen', 'Quantity');
@@ -5388,7 +5388,7 @@ function initObserver() {
         }
 
         if (entry.target.classList.contains('lav-reviews__preview-list')) {
-          gaEvent('View section on screen', 'Video before foote');
+          gaEvent('View section on screen', 'Video before footer');
         }
 
         entry.target.classList.add('in-view');
@@ -5401,12 +5401,12 @@ function initObserver() {
     observer.observe(section);
   }
 
-  let eventType = 'mouseover';
+  let eventType = 'mouseenter';
   if (window.innerWidth < 1199) {
     eventType = 'click';
   }
 
-  let typeName = eventType == 'Mouseover' ? 'Hover' : 'Click';
+  let typeName = eventType == 'mouseenter' ? 'Hover' : 'Click';
 
   document
     .querySelector('.lav-jumb__effects-title')
