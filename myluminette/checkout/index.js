@@ -4991,7 +4991,7 @@ function initPdp() {
         };
 
         const resizeHandler = () => {
-          const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
+          const isMobile = window.matchMedia('(max-width: 1199.98px)').matches;
 
           if (isMobile) {
             if (sliderActivated) {
