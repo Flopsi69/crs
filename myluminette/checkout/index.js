@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'new_pdp_and_checkout', 'variant_1');
     }
   }, 1000);
 }
@@ -24,8 +24,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: New PDP + new Checkout',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -2932,6 +2932,11 @@ const stylePDP = `
     .technical-block h2 {
       margin-bottom: 25px;
     }
+    .lav-review-modal iframe {
+      width: 100%;
+      min-height: 75vh;
+      height: auto;
+    }
     .safety-block h2 {
       margin-bottom: 0;
       padding-bottom: 0;
@@ -3302,6 +3307,9 @@ const stylePDP = `
       width: 100%;
       padding: 48px 24px 24px;
     }
+    .lav-modal__inner.lav-review-modal {
+      padding: 0;
+    }
     .lav-modal__close {
       top: 12px;
       right: 12px;
@@ -3400,8 +3408,10 @@ let intervalInit = setInterval(() => {
   if (document.body) {
     clearInterval(intervalInit);
     init();
+    gaEvent('loaded');
   }
 }, 200);
+
 function init() {
   console.log('init');
   const stylesEl = document.createElement('style');
@@ -3411,6 +3421,7 @@ function init() {
       if (document.querySelector('.section-main')) {
         clearInterval(pdpInterval);
         initPdp();
+        initObserver();
       }
     }, 500);
 
@@ -3568,7 +3579,7 @@ function initPdp() {
               </div>
             </div>
 
-            <div class='lav-count'>
+            <div class='lav-count lav-observe'>
               <div class='lav-count__head'>
                 <div class='lav-count__head-title'>Quantity</div>
                 <div class='lav-count__head-inside lav-tooltip-wrap'>
@@ -3640,7 +3651,7 @@ function initPdp() {
 
     <section class='lav-test__wrap'>
       <div class='container-fluid container--size--lg'>
-        <div class="days-test">
+        <div class="days-test lav-observe">
           <h3 class="text-center">You have 30 days to test Luminette</h3>
           <div class="line-dashed">
             <ul class="row days-test_list">
@@ -3670,7 +3681,7 @@ function initPdp() {
                           <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
                           <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
                         </div>
-                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</p>
+                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
                       </div>
                     </div>
                   </div>
@@ -3708,7 +3719,7 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='lav-recharge'>
+    <section class='lav-recharge lav-observe'>
       <div class='container-fluid container--size--lg lav-jumb__container'>
         <div class='lav-recharge__inner'>
           <div class='lav-recharge__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0'>
@@ -3724,7 +3735,7 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='lav-transforms'>
+    <section class='lav-transforms lav-observe'>
       <div class='container-fluid container--size--lg lav-transforms__container'>
         <div class='lav-transforms__slider splide'>
           <div class="splide__track">
@@ -3773,7 +3784,7 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='compare-section'>
+    <section class='compare-section lav-observe'>
       <div class='container-fluid container--size--lg'>
         <div class="row fs-16 text-center compare mx-auto">
           <div class="col-6 py-5">
@@ -3821,7 +3832,7 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='lav-can'>
+    <section class='lav-can lav-observe'>
       <div class='container-fluid container--size--lg'>
         <div class='lav-can__inner'>
           <div class='lav-can__icon'>
@@ -3841,7 +3852,7 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='lav-perfect'>
+    <section class='lav-perfect lav-observe'>
       <div class='container-fluid container--size--lg'>
         <div class='lav-perfect__title lav-title'>Perfect for your morning routine</div>
         <div class='lav-perfect__list'>
@@ -3877,7 +3888,7 @@ function initPdp() {
 
     <section class='lav-trial lav-section'>
       <div class='container-fluid container--size--lg lav-trial__container'>
-        <div class='lav-trial__row'>
+        <div class='lav-trial__row lav-observe'>
           <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
 
           <div class='lav-trial__info'>
@@ -3920,7 +3931,7 @@ function initPdp() {
                         <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
                         <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
                       </div>
-                      <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of Fedex Ground or USPS. Before they deliver your package, the carrier sends you a email warning you of the day of its passage.</p>
+                      <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
                     </div> 
                   </div>
                 </div>
@@ -3962,7 +3973,7 @@ function initPdp() {
 
     <section class='technical__wrap'>
       <div class='container-fluid container--size--lg'>
-        <div class="technical">
+        <div class="technical lav-observe">
           <div class="row technical-block">
             <div class="col-lg-6 pl-0">
               <h2>Technical <br>
@@ -3987,7 +3998,7 @@ function initPdp() {
               </div>
             </div>
           </div>
-          <div class="safety-block">
+          <div class="safety-block lav-observe">
             <div class="row">
               <div class="col-lg-6 pl-0">
                 <h2 class="pb-4">Safety</h2>
@@ -4009,14 +4020,14 @@ function initPdp() {
       </div>
     </section>
 
-    <section class='lav-users lav-section'>
+    <section class='lav-users lav-section lav-observe'>
       <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
       <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
       <div class='lav-users__title-mob container'><span>150k+</span> Luminette users</div>
       <div class='lav-users__title container'><span>150 000</span> Luminette users</div>
     </section>
 
-    <section class='lav-reviews'>
+    <section class='lav-reviews lav-observe'>
       <div class='container-fluid container--size--lg lav-reviews__container'>
         <div class='lav-reviews__title lav-title'>Customer reviews</div>
 
@@ -4669,7 +4680,7 @@ function initPdp() {
             </div>
           </div>
 
-          <div class='lav-show-reviews'>Show more</div>
+          <div class='lav-show-reviews lav-observe'>Show more</div>
         </div>
 
         <div class='lav-reviews__total'>
@@ -4699,7 +4710,7 @@ function initPdp() {
           </div>
         </div>
 
-        <div class='lav-reviews__preview-list'>
+        <div class='lav-reviews__preview-list lav-observe'>
           <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review1.png);'>
             <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
@@ -4736,6 +4747,13 @@ function initPdp() {
     .querySelector('.lav-transform__more-btn')
     .addEventListener('click', function () {
       this.classList.toggle('active');
+      gaEvent(
+        'Click on button. Learn more about Light Therapy',
+        'How Luminette transforms your days'
+      );
+      if (this.classList.contains('active')) {
+        gaEvent('View section on screen', 'Light therapy on the go');
+      }
       document.querySelector('.block-on-the-go').classList.toggle('active');
     });
 
@@ -4804,8 +4822,14 @@ function initPdp() {
   document
     .querySelector('.lav-study__btn')
     .addEventListener('click', function () {
+      gaEvent(
+        'Click on button. Read the study',
+        'Read the study: An independent study has shown'
+      );
       document.querySelector('.btn-download-doc').click();
     });
+
+  document.querySelector('.section-features').classList.add('lav-observe');
 
   document
     .querySelector('.lav-trial')
@@ -4853,6 +4877,11 @@ function initPdp() {
       item.addEventListener('click', function () {
         if (this.classList.contains('active')) return false;
 
+        gaEvent(
+          'Choose pack. ' + item.dataset.count + ' Luminette',
+          'Quantity'
+        );
+
         const price = item.querySelector('.lav-count__price').innerHTML;
 
         localStorage.setItem('lavCount', item.dataset.count);
@@ -4872,6 +4901,12 @@ function initPdp() {
 
     for (let item of document.querySelectorAll('.lav-btn-buy')) {
       item.addEventListener('click', function () {
+        if (item.classList.contains('lav-jumb__btn')) {
+          gaEvent('Click on button. Buy $199', 'Buy $199');
+        }
+        if (item.classList.contains('lav-trial__btn')) {
+          gaEvent('Click on button. Try it $199', 'Try it $199');
+        }
         location.href =
           location.href.split('/luminette')[0] + '/order?product=4';
       });
@@ -4904,6 +4939,7 @@ function initPdp() {
     document
       .querySelector('.lav-jumb__feedbacks')
       .addEventListener('click', function () {
+        gaEvent('Click on link. Reviews', 'Title of page');
         document
           .querySelector('.lav-reviews')
           .scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -4928,18 +4964,24 @@ function initPdp() {
           'beforebegin',
           document.querySelector('.lav-jumb__effects-title')
         );
+    } else {
     }
 
     // document.querySelector('.lav-jumb__video')
   }
 
   function initHowItWorks() {
+    document
+      .querySelector('.section-how-it-works')
+      .classList.add('lav-observe');
+
     document.querySelector(
       '.lum-page .section-how-it-works .main-content .column .title'
     ).innerHTML = 'The Science <br /> Behind Luminette®';
   }
 
   function initReserch() {
+    document.querySelector('.section-studies').classList.add('lav-observe');
     document.querySelector(
       '.lum-page .section-studies .studies-component .heading-wrapper .title'
     ).innerHTML =
@@ -5015,6 +5057,7 @@ function initPdp() {
       .querySelector('.lav-show-reviews')
       .addEventListener('click', function () {
         this.remove();
+        gaEvent('Click on button. Show more', 'Customer reviews. Show more');
         document.querySelector('.lav-reviews').classList.add('lav-reviews_all');
       });
 
@@ -5059,6 +5102,7 @@ function initPdp() {
 
     function initThumbnail(thumbnail, index) {
       thumbnail.addEventListener('click', function () {
+        gaEvent('Click on photo in carousel', 'First screen with image slider');
         jumbSlider.go(index);
       });
     }
@@ -5200,6 +5244,11 @@ function initPdp() {
     for (let item of document.querySelectorAll('.lav-open-modal')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
+
+        if (item.closest('.lav-recharge')) {
+          gaEvent('Click on video', 'Recharge with Luminette');
+        }
+
         openModal(
           document.querySelector(item.dataset.target),
           item.dataset.src
@@ -5252,6 +5301,212 @@ function initPdp() {
       }, 400);
     }
   }
+}
+
+function initObserver() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '-40%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      console.log(entry);
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('lav-count')) {
+          gaEvent('View section on screen', 'Quantity');
+        }
+
+        if (entry.target.classList.contains('days-test')) {
+          gaEvent(
+            'View section on screen',
+            'You have 30 days to test Luminette'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-recharge')) {
+          gaEvent('View section on screen', 'Recharge with Luminette');
+        }
+
+        if (entry.target.classList.contains('lav-transforms')) {
+          gaEvent(
+            'View section on screen',
+            'How Luminette transforms your days'
+          );
+        }
+
+        if (entry.target.classList.contains('compare-section')) {
+          gaEvent('View section on screen', 'Luminette 3 vs Light Box');
+        }
+
+        if (entry.target.classList.contains('lav-can')) {
+          gaEvent('View section on screen', 'While wearing Luminette, you can');
+        }
+
+        if (entry.target.classList.contains('lav-perfect')) {
+          gaEvent('View section on screen', 'Perfect for your morning routine');
+        }
+
+        if (entry.target.classList.contains('lav-trial__row')) {
+          gaEvent('View section on screen', '30 Day Light Therapy Trial');
+        }
+
+        if (entry.target.classList.contains('section-features')) {
+          gaEvent('View section on screen', 'Features');
+        }
+
+        if (entry.target.classList.contains('technical')) {
+          gaEvent('View section on screen', 'Technical details');
+        }
+
+        if (entry.target.classList.contains('safety-block')) {
+          gaEvent('View section on screen', 'Safety');
+        }
+
+        if (entry.target.classList.contains('section-how-it-works')) {
+          gaEvent('View section on screen', 'The Science Behind Luminette');
+        }
+
+        if (entry.target.classList.contains('section-studies')) {
+          gaEvent(
+            'View section on screen',
+            '4 years of research at the University of Liege'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-users')) {
+          gaEvent('View section on screen', '50k+ Luminette users');
+        }
+
+        if (entry.target.classList.contains('lav-reviews')) {
+          gaEvent('View section on screen', 'Customer reviews');
+        }
+
+        if (entry.target.classList.contains('lav-show-reviews')) {
+          gaEvent('View section on screen', 'Customer reviews. Show more');
+        }
+
+        if (entry.target.classList.contains('lav-reviews__preview-list')) {
+          gaEvent('View section on screen', 'Video before foote');
+        }
+
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  for (let section of Array.from(document.querySelectorAll('.lav-observe'))) {
+    observer.observe(section);
+  }
+
+  let eventType = 'mouseover';
+  if (window.innerWidth < 1199) {
+    eventType = 'click';
+  }
+
+  let typeName = eventType == 'Mouseover' ? 'Hover' : 'Click';
+
+  document
+    .querySelector('.lav-jumb__effects-title')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + ' on tooltip. Feel beneficial effects in 4 to 6 days',
+        'Title of page'
+      );
+    });
+
+  document
+    .querySelector('.lav-count__head-inside')
+    .addEventListener(eventType, function () {
+      gaEvent(eventType + " on tooltip. What's in the box", 'Quantity');
+    });
+
+  document
+    .querySelector('.lav-test__second .days-test_head')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + '  on tooltip. Free shipping',
+        'You have 30 days to test Luminette'
+      );
+    });
+
+  document
+    .querySelector('.lav-test__third .days-test_head')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + ' on tooltip. 100% money back guarantee',
+        'You have 30 days to test Luminette'
+      );
+    });
+
+  document
+    .querySelector('.lav-test__third .tooltip-item a')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on link. Refunds page',
+        'Tooltip: 100% money back guarantee. You have 30 days to test Luminette'
+      );
+    });
+
+  document
+    .querySelector('.lav-trial__btn-refresh .tooltip-item a')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on link. Refunds page',
+        'Tooltip: Free shipping. 30 Day Light Therapy Trial'
+      );
+    });
+
+  document
+    .querySelector('.lav-trial__btn-refresh')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + ' on tooltip. 30-day trial',
+        '30 Day Light Therapy Trial'
+      );
+    });
+
+  document
+    .querySelector('.lav-trial__btn-box')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        typeName + ' on tooltip. Free shipping',
+        '30 Day Light Therapy Trial'
+      );
+    });
+
+  document
+    .querySelector('.lav-trial__inside')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        "Click on tooltip. What's in the box",
+        '30 Day Light Therapy Trial'
+      );
+    });
+
+  document
+    .querySelector(
+      '.lav-reviews__preview-list .lav-reviews__preview:first-child .lav-reviews__play'
+    )
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on first video',
+        'Video before footer, first (picture of men)'
+      );
+    });
+
+  document
+    .querySelector(
+      '.lav-reviews__preview-list .lav-reviews__preview:last-child .lav-reviews__play'
+    )
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on second video',
+        'Video before footer, second (girl with oranges)'
+      );
+    });
 }
 
 function initTips() {
