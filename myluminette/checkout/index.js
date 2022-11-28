@@ -1951,12 +1951,12 @@ const stylePDP = `
     display: none;
   }
   @media (min-width: 992px) {
-    .customer-reviews-page .slider-outer {
+    .lav-reviews .slider-outer {
       overflow: hidden;
     }
   }
   
-  .customer-reviews-page .slider-wrapper {
+  .lav-reviews .slider-wrapper {
     width: 375px;
     max-width: 100%;
     margin: 0 auto;
@@ -1964,7 +1964,7 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider-wrapper {
+    .lav-reviews .slider-wrapper {
       max-width: none;
       width: calc(100% + 120px);
       padding: 100px 28px 130px;
@@ -1972,26 +1972,26 @@ const stylePDP = `
     }
   }
   
-  .customer-reviews-page .slider .os-scrollbar {
+  .lav-reviews .slider .os-scrollbar {
     z-index: 2;
   }
   
-  .customer-reviews-page .slider .os-scrollbar .os-scrollbar-handle {
+  .lav-reviews .slider .os-scrollbar .os-scrollbar-handle {
     background: rgba(81, 113, 147, 0.2);
   }
   
-  .customer-reviews-page .slider .slide:not(:last-child) {
+  .lav-reviews .slider .slide:not(:last-child) {
     margin-bottom: 20px;
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .slide {
+    .lav-reviews .slider .slide {
       padding: 0 20px;
       margin-bottom: 0;
     }
   }
   
-  .customer-reviews-page .slider .slick-slide {
+  .lav-reviews .slider .slick-slide {
     outline: none;
     transition: all 0.3s ease-out;
     transform: scale(0.9);
@@ -2002,28 +2002,28 @@ const stylePDP = `
     pointer-events: none;
   }
   
-  .customer-reviews-page .slider .slick-slide.slick-current .avatar {
+  .lav-reviews .slider .slick-slide.slick-current .avatar {
     width: 138px;
     height: 138px;
   }
   
-  .customer-reviews-page .slider .slick-list {
+  .lav-reviews .slider .slick-list {
     overflow: visible;
   }
   
-  .customer-reviews-page .slider .slick-active {
+  .lav-reviews .slider .slick-active {
     position: relative;
     opacity: 1;
     z-index: 1;
     pointer-events: auto;
   }
   
-  .customer-reviews-page .slider .slick-current {
+  .lav-reviews .slider .slick-current {
     z-index: 2;
     transform: scale(1.15);
   }
   
-  .customer-reviews-page .slider .slick-arrow {
+  .lav-reviews .slider .slick-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -2042,20 +2042,20 @@ const stylePDP = `
     z-index: 1;
   }
   
-  .customer-reviews-page .slider .slick-arrow.slick-prev {
+  .lav-reviews .slider .slick-arrow.slick-prev {
     transform: translateY(-50%) rotate(180deg);
     left: -26px;
   }
   
-  .customer-reviews-page .slider .slick-arrow.slick-next {
+  .lav-reviews .slider .slick-arrow.slick-next {
     right: -28px;
   }
   
-  .customer-reviews-page .slider .slick-arrow:hover {
+  .lav-reviews .slider .slick-arrow:hover {
     background-color: rgba(147, 169, 192, 0.8);
   }
   
-  .customer-reviews-page .slider .slick-dots {
+  .lav-reviews .slider .slick-dots {
     width: 200px;
     height: 8px;
     position: absolute;
@@ -2068,61 +2068,61 @@ const stylePDP = `
     font-size: 0;
   }
   
-  .customer-reviews-page .slider .slick-dots li {
+  .lav-reviews .slider .slick-dots li {
     position: absolute;
     transition-property: left, opacity;
     transition-duration: 375ms;
     transition-timing-function: ease-out;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-prev-max {
+  .lav-reviews .slider .slick-dots li.slick-prev-max {
     opacity: 0;
     left: -12px;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-next-max {
+  .lav-reviews .slider .slick-dots li.slick-next-max {
     opacity: 0;
     left: 202px;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-prev-prev {
+  .lav-reviews .slider .slick-dots li.slick-prev-prev {
     left: 12px;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-next-next {
+  .lav-reviews .slider .slick-dots li.slick-next-next {
     left: 180px;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-prev {
+  .lav-reviews .slider .slick-dots li.slick-prev {
     left: 55px;
     display: block;
     opacity: 1;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-prev button {
+  .lav-reviews .slider .slick-dots li.slick-prev button {
     background-color: #ffffff;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-next {
+  .lav-reviews .slider .slick-dots li.slick-next {
     left: 137px;
     display: block;
     opacity: 1;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-next button {
+  .lav-reviews .slider .slick-dots li.slick-next button {
     background-color: #ffffff;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-active {
+  .lav-reviews .slider .slick-dots li.slick-active {
     left: calc(50% - 4px);
     margin: 0 auto;
   }
   
-  .customer-reviews-page .slider .slick-dots li.slick-active button {
+  .lav-reviews .slider .slick-dots li.slick-active button {
     background-color: #ffffff;
   }
   
-  .customer-reviews-page .slider .slick-dots button {
+  .lav-reviews .slider .slick-dots button {
     cursor: pointer;
     padding: 0;
     border: none;
@@ -2133,30 +2133,30 @@ const stylePDP = `
     transition: background-color 0.25s ease-out;
   }
   
-  .customer-reviews-page .slider .card {
+  .lav-reviews .slider .card {
     background: linear-gradient(180deg, #FFFFFF 0%, #F7F8FA 100%);
     box-shadow: 0 66px 88px rgba(27, 57, 95, 0.66);
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .card {
+    .lav-reviews .slider .card {
       box-shadow: 0 33px 44px rgba(27, 57, 95, 0.44);
       transform: translateZ(0);
       -webkit-font-smoothing: subpixel-antialiased;
     }
   }
   
-  .customer-reviews-page .slider .card-header {
+  .lav-reviews .slider .card-header {
     padding: 52px 32px 22px;
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .card-header {
+    .lav-reviews .slider .card-header {
       padding: 41px 31px 30px 48px;
     }
   }
   
-  .customer-reviews-page .slider .avatar {
+  .lav-reviews .slider .avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -2165,22 +2165,22 @@ const stylePDP = `
     transition: all 0.3s ease-out;
   }
   
-  .customer-reviews-page .slider .avatar img {
+  .lav-reviews .slider .avatar img {
     width: 100%;
     height: 100%;
   }
   
-  .customer-reviews-page .slider .name {
+  .lav-reviews .slider .name {
     line-height: 32px;
   }
   
   @media (max-width: 991px) {
-    .customer-reviews-page .slider .name {
+    .lav-reviews .slider .name {
       font-size: 28px;
     }
   }
   
-  .customer-reviews-page .slider .link {
+  .lav-reviews .slider .link {
     display: inline-flex;
     align-items: center;
     font-size: 16px;
@@ -2190,24 +2190,24 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .link {
+    .lav-reviews .slider .link {
       font-size: 12px;
       line-height: 18px;
     }
   }
   
-  .customer-reviews-page .slider .link img {
+  .lav-reviews .slider .link img {
     margin-left: 6px;
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .link img {
+    .lav-reviews .slider .link img {
       width: 35px;
       height: 25px;
     }
   }
   
-  .customer-reviews-page .slider .card-body-wrapper {
+  .lav-reviews .slider .card-body-wrapper {
     position: relative;
     max-height: 262px;
     min-height: 262px;
@@ -2215,13 +2215,13 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .card-body-wrapper {
+    .lav-reviews .slider .card-body-wrapper {
       max-height: 281px;
       min-height: 281px;
     }
   }
   
-  .customer-reviews-page .slider .card-body-wrapper::after {
+  .lav-reviews .slider .card-body-wrapper::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -2233,16 +2233,16 @@ const stylePDP = `
     z-index: 1;
   }
   
-  .customer-reviews-page .slider .card-body-wrapper.is-visible .review {
+  .lav-reviews .slider .card-body-wrapper.is-visible .review {
     height: auto;
     -webkit-line-clamp: initial;
   }
   
-  .customer-reviews-page .slider .card-body-wrapper.is-visible .review::after {
+  .lav-reviews .slider .card-body-wrapper.is-visible .review::after {
     display: none;
   }
   
-  .customer-reviews-page .slider .card-body {
+  .lav-reviews .slider .card-body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -2251,12 +2251,12 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .card-body {
+    .lav-reviews .slider .card-body {
       padding: 0 46px 50px 56px;
     }
   }
   
-  .customer-reviews-page .slider .review {
+  .lav-reviews .slider .review {
     margin-bottom: auto;
     position: relative;
     font-weight: 500;
@@ -2270,13 +2270,13 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .review {
+    .lav-reviews .slider .review {
       height: 168px;
       -webkit-line-clamp: 7;
     }
   }
   
-  .customer-reviews-page .slider .expand {
+  .lav-reviews .slider .expand {
     padding: 0;
     margin: 0;
     border: none;
@@ -2285,7 +2285,7 @@ const stylePDP = `
     cursor: pointer;
   }
   
-  .customer-reviews-page .slider .date {
+  .lav-reviews .slider .date {
     margin-top: 18px;
     color: rgba(64, 97, 132, 0.5);
     font-size: 15px;
@@ -2294,7 +2294,7 @@ const stylePDP = `
   }
   
   @media (min-width: 992px) {
-    .customer-reviews-page .slider .date {
+    .lav-reviews .slider .date {
       margin-top: 24px;
       font-size: 12px;
       line-height: 18px;
@@ -4991,15 +4991,15 @@ function initPdp() {
     };
 
     // const showMoreHandler = () => {
-    //   $('.customer-reviews-page .slide:not(:visible):lt(3)').fadeIn(() => {
-    //     if ($('.customer-reviews-page .slide:not(:visible)').length === 0) {
+    //   $('.lav-reviews .slide:not(:visible):lt(3)').fadeIn(() => {
+    //     if ($('.lav-reviews .slide:not(:visible)').length === 0) {
     //       $showMore.addClass('d-none');
     //     }
     //   });
     // };
 
     const showMoreInit = () => {
-      $('.customer-reviews-page .slide:gt(2)').hide();
+      $('.lav-reviews .slide:gt(2)').hide();
       $showMore.removeClass('d-none');
 
       if (!showMoreActivated) {
