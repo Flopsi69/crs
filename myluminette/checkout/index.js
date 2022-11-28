@@ -1994,7 +1994,7 @@ const stylePDP = `
   .lav-reviews .slider .slick-slide {
     outline: none;
     transition: all 0.3s ease-out;
-    transform: scale(0.9);
+    transform: scale(0.95);
     opacity: 0;
     will-change: transform;
     -webkit-backface-visibility: hidden;
@@ -2020,7 +2020,7 @@ const stylePDP = `
   
   .lav-reviews .slider .slick-current {
     z-index: 2;
-    transform: scale(1.15);
+    transform: scale(1.08);
   }
   
   .lav-reviews .slider .slick-arrow {
@@ -2134,26 +2134,21 @@ const stylePDP = `
   }
   
   .lav-reviews .slider .card {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F7F8FA 100%);
-    box-shadow: 0 66px 88px rgba(27, 57, 95, 0.66);
+    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    border-radius: 16px;
+    color: #517193;
   }
   
   @media (min-width: 992px) {
     .lav-reviews .slider .card {
-      box-shadow: 0 33px 44px rgba(27, 57, 95, 0.44);
-      transform: translateZ(0);
-      -webkit-font-smoothing: subpixel-antialiased;
+      // box-shadow: 0 33px 44px rgba(27, 57, 95, 0.44);
+      // transform: translateZ(0);
+      // -webkit-font-smoothing: subpixel-antialiased;
     }
   }
   
   .lav-reviews .slider .card-header {
-    padding: 52px 32px 22px;
-  }
-  
-  @media (min-width: 992px) {
-    .lav-reviews .slider .card-header {
-      padding: 41px 31px 30px 48px;
-    }
+    padding: 24px 24px 10px;
   }
   
   .lav-reviews .slider .avatar {
@@ -2171,12 +2166,14 @@ const stylePDP = `
   }
   
   .lav-reviews .slider .name {
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 5px;
   }
   
   @media (max-width: 991px) {
     .lav-reviews .slider .name {
-      font-size: 28px;
+      font-size: 22px;
     }
   }
   
@@ -2247,13 +2244,7 @@ const stylePDP = `
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 32px 56px;
-  }
-  
-  @media (min-width: 992px) {
-    .lav-reviews .slider .card-body {
-      padding: 0 46px 50px 56px;
-    }
+    padding: 0 24px 36px;
   }
   
   .lav-reviews .slider .review {
@@ -2267,6 +2258,9 @@ const stylePDP = `
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
   }
   
   @media (min-width: 992px) {
