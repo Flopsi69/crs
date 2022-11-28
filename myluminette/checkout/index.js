@@ -2935,13 +2935,13 @@ const stylePDP = `
     }
     .lav-reviews .slider .card-body-wrapper.active::after {
       opacity: 1;
-      bottom: 76px;
+      bottom: 70px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #f9fbfb 70%);
       z-index: 1;
 
     }
     .lav-reviews .slider .card-body {
-      padding: 24px;
+      padding-bottom: 24px;
     }
     .lav-show-reviews {
       display: block;
