@@ -1386,7 +1386,7 @@ const stylePDP = `
     opacity: 0;
     z-index: 4;
     transition: 0.35s;
-    filter: drop-shadow(0px 11px 22px rgba(81, 113, 147, 0.44));
+    // filter: drop-shadow(0px 11px 22px rgba(81, 113, 147, 0.44));
     // box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
   }
   .tooltip-item {
@@ -1397,6 +1397,7 @@ const stylePDP = `
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    box-shadow: 0px 11px 22px rgb(81 113 147 / 44%);
   }
   .tooltip-item:before {
     content: '';
