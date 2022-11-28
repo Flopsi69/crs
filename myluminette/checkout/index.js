@@ -1965,6 +1965,7 @@ const stylePDP = `
     max-width: 100%;
     margin: 0 auto;
     z-index: 3;
+    padding-top: 10px;
   }
   
   @media (min-width: 992px) {
@@ -2611,6 +2612,9 @@ const stylePDP = `
   .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
     opacity: 1;
   }
+  .lav-show-reviews {
+    display: none;
+  }
   @media (max-width: 1320px) {
     .lav-count__discount {
       position: absolute;
@@ -2906,10 +2910,63 @@ const stylePDP = `
     .lav-feat {
       display: none;
     }
+    .lav-reviews .slider .card-body-wrapper {
+      max-width: inherit;
+      min-width: inherit;
+    }
   }
   @media (max-width: 768px) {
     .lav-trial__row {
       padding: 24px 24px 28px;
+    }
+
+    .lav-show-reviews {
+      display: block;
+      margin-top: 24px;
+      opacity: 0.2;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 123px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #FFFFFF;
+      padding: 16px 12px;
+      width: 230px;
+      margin: auto;
+    }
+
+     .lav-reviews .slider .review {
+      height: 168px;
+      margin: 0 -24px;
+      padding: 0 24px;
+      -webkit-line-clamp: 7;
+    }
+
+    .lav-reviews .slider .expand {
+      display: block;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 5px;
+    }
+
+    .customer-reviews-page .slider .date {
+      margin-top: 16px;
+    }
+  
+    .lav-reviews .slider .avatar {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+    }
+    .lav-reviews .slider .name {
+      font-size: 18px;
+      margin: 0;
+    }
+    .lav-reviews .slider .link {
+      font-size: 14px;
     }
     .lav-jumb__effects-title, .lav-count__head, .lav-trial__inside {
       position: relative;
@@ -4001,7 +4058,7 @@ function initPdp() {
                       breakfast
                       with the glasses on. It is very practical :)"
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">4 March 2021</div>
                   </div>
                 </div>
@@ -4060,7 +4117,7 @@ function initPdp() {
                       as my cell phone.
                       Merci!
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4101,7 +4158,7 @@ function initPdp() {
                       Luminettes I can go about my business without any problem.
                       I am very satisfied!
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4138,7 +4195,7 @@ function initPdp() {
                       I do a session again. This way, my body stops producing melatonin and my energy
                       comes back, I feel better about myself and I'm in a better mood!
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4169,7 +4226,7 @@ function initPdp() {
                       I am ready to face them! I really recommend it and I can't stop talking about it to everyone
                       around me."
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4201,7 +4258,7 @@ function initPdp() {
                       I just don't recommend using them in a dark room.
                       "
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4370,7 +4427,7 @@ function initPdp() {
                       wife has also started using it too!
                       "
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4399,7 +4456,7 @@ function initPdp() {
                       pair
                       soon! (Two of us have sleep past disorder and everyone seems to get a mood boost!)"
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4456,7 +4513,7 @@ function initPdp() {
                       Really impressed.
                       "
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4515,7 +4572,7 @@ function initPdp() {
                       the Luminette.
                       "
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
@@ -4559,13 +4616,15 @@ function initPdp() {
                       during short days.
                       "
                     </p>
-                    <button class="fw-bolder expand">Continue reading</button>
+                    <button class="fw-bolder expand">Show more</button>
                     <div class="date">21 December 2020</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class='lav-show-reviews'>Show more</div>
         </div>
 
         <div class='lav-reviews__total'>
