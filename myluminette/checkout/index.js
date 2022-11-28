@@ -1335,6 +1335,7 @@ const stylePDP = `
   }
   .line-dashed {
     position: relative;
+    z-index: 4;
     margin-top: 32px;
   }
   .line-dashed:before {
