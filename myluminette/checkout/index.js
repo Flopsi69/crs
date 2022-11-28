@@ -2204,8 +2204,8 @@ const stylePDP = `
   
   .lav-reviews .slider .card-body-wrapper {
     position: relative;
-    // max-height: 262px;
-    // min-height: 262px;
+    max-height: 250px;
+    min-height: 250px;
     overflow-y: auto;
   }
   
@@ -3918,7 +3918,7 @@ function initPdp() {
       <div class='container-fluid container--size--lg lav-reviews__container'>
         <div class='lav-reviews__title lav-title'>Customer reviews</div>
 
-        <div class='lav-reviews__list splide'>
+        <div class='lav-reviews__list splide' style='display: none;>
           <div class="splide__track">
             <div class="splide__list">
               <div class='lav-review splide__slide'>
@@ -4955,20 +4955,20 @@ function initPdp() {
       arrows: false,
     }).mount();
 
-    let splideReview = new Splide('.lav-reviews__list', {
-      arrows: false,
-      perPage: 3,
-      pagination: false,
-      autoWidth: true,
-      breakpoints: {
-        768: {
-          perPage: 1,
-          pagination: true,
-          autoWidth: false,
-          gap: 15,
-        },
-      },
-    }).mount();
+    // let splideReview = new Splide('.lav-reviews__list', {
+    //   arrows: false,
+    //   perPage: 3,
+    //   pagination: false,
+    //   autoWidth: true,
+    //   breakpoints: {
+    //     768: {
+    //       perPage: 1,
+    //       pagination: true,
+    //       autoWidth: false,
+    //       gap: 15,
+    //     },
+    //   },
+    // }).mount();
 
     let jqueryInterval = setInterval(() => {
       if (typeof $ === 'function') {
