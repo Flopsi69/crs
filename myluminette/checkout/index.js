@@ -5412,8 +5412,19 @@ function initCheckout() {
     )) {
       let itemCloneEl = item.cloneNode(true);
 
-      itemCloneEl.querySelector('.warranty-description .title').innerText =
-        item.querySelector('.warranty-description .type').innerText;
+      if (
+        item
+          .querySelector('.warranty-description .type')
+          .innerText.toLowerCase()
+          .includes('extended')
+      ) {
+        itemCloneEl.querySelector('.warranty-description .title').innerText =
+          item.querySelector('.warranty-description .type').innerText +
+          ' warranty';
+      } else {
+        itemCloneEl.querySelector('.warranty-description .title').innerText =
+          item.querySelector('.warranty-description .type').innerText;
+      }
 
       itemCloneEl.querySelector('.warranty-description .type').innerText = item
         .querySelector('.warranty-description .title')
@@ -5489,6 +5500,9 @@ function initCheckout() {
         .querySelector('.lav-product__count-minus')
         .classList.remove('lav-disable');
     } else {
+      document
+        .querySelector('.counter__button--decrease')
+        .removeAttribute('disabled');
       document.querySelector('.counter__button--decrease').click();
     }
 
