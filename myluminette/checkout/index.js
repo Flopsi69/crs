@@ -3918,7 +3918,7 @@ function initPdp() {
       <div class='container-fluid container--size--lg lav-reviews__container'>
         <div class='lav-reviews__title lav-title'>Customer reviews</div>
 
-        <div class='lav-reviews__list splide' style='display: none;>
+        <div class='lav-reviews__list splide' style='display: none;'>
           <div class="splide__track">
             <div class="splide__list">
               <div class='lav-review splide__slide'>
