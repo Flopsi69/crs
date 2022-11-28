@@ -2917,8 +2917,8 @@ const stylePDP = `
       display: none;
     }
     .lav-reviews .slider .card-body-wrapper {
-      max-width: none;
-      min-width: none;
+      max-height: none;
+      min-height: auto;
     }
   }
   @media (max-width: 768px) {
@@ -2927,6 +2927,21 @@ const stylePDP = `
     }
     .lav-reviews .slider .review {
       overflow: hidden;
+    }
+    .lav-reviews .slider .review.review_expand {
+      -webkit-line-clamp: unset;
+      overflow: auto;
+      padding-bottom: 20px;
+    }
+    .lav-reviews .slider .card-body-wrapper.active::after {
+      opacity: 1;
+      bottom: 76px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #f9fbfb 70%);
+      z-index: 1;
+
+    }
+    .lav-reviews .slider .card-body {
+      padding: 24px;
     }
     .lav-show-reviews {
       display: block;
@@ -4973,6 +4988,18 @@ function initPdp() {
         this.remove();
         document.querySelector('.lav-reviews').classList.add('lav-reviews_all');
       });
+
+    for (let item of document.querySelectorAll(
+      '.lav-reviews .slider .expand'
+    )) {
+      item.addEventListener('click', function () {
+        // this.remove();
+        this.closest('.card-body-wrapper').classList.add('active');
+        this.closest('.card-body')
+          .querySelector('.review')
+          .classList.add('review_expand');
+      });
+    }
   }
 
   function setStringFromDate(date, isYear) {
