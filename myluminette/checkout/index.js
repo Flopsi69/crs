@@ -4974,113 +4974,119 @@ function initPdp() {
       },
     }).mount();
 
-    // JS Slider
-    const $slider = $('.slider');
-    // $showMore = $section.find('.show-more');
+    let jqueryInterval = setInterval(() => {
+      if (typeof $ === 'function') {
+        clearInterval(jqueryInterval);
 
-    let sliderActivated = false;
-    let showMoreActivated = false;
-    const options = {
-      centerMode: true,
-      centerPadding: 0,
-      infinite: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      speed: 375,
-      dots: true,
-    };
+        // JS Slider
+        const $slider = $('.slider');
+        // $showMore = $section.find('.show-more');
 
-    // const showMoreHandler = () => {
-    //   $('.lav-reviews .slide:not(:visible):lt(3)').fadeIn(() => {
-    //     if ($('.lav-reviews .slide:not(:visible)').length === 0) {
-    //       $showMore.addClass('d-none');
-    //     }
-    //   });
-    // };
+        let sliderActivated = false;
+        let showMoreActivated = false;
+        const options = {
+          centerMode: true,
+          centerPadding: 0,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          speed: 375,
+          dots: true,
+        };
 
-    const showMoreInit = () => {
-      $('.lav-reviews .slide:gt(2)').hide();
-      $showMore.removeClass('d-none');
+        // const showMoreHandler = () => {
+        //   $('.lav-reviews .slide:not(:visible):lt(3)').fadeIn(() => {
+        //     if ($('.lav-reviews .slide:not(:visible)').length === 0) {
+        //       $showMore.addClass('d-none');
+        //     }
+        //   });
+        // };
 
-      if (!showMoreActivated) {
-        $showMore.click(showMoreHandler);
-        showMoreActivated = true;
-      }
-    };
+        const showMoreInit = () => {
+          $('.lav-reviews .slide:gt(2)').hide();
+          $showMore.removeClass('d-none');
 
-    const resizeHandler = () => {
-      const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
-      if (isMobile) {
-        if (sliderActivated) {
-          $slider.slick('unslick');
-          sliderActivated = false;
-        }
-        // showMoreInit();
-      } else if (!sliderActivated) {
-        try {
-          const classificateDots = (prevDotIndex) => {
-            const prevPrevDotIndex = prevDotIndex - 1;
-            const nextDotIndex = prevDotIndex + 2;
-            const nextNextDotIndex = prevDotIndex + 3;
+          if (!showMoreActivated) {
+            $showMore.click(showMoreHandler);
+            showMoreActivated = true;
+          }
+        };
 
-            const $dots = $slider.find('.slick-dots > li').removeClass(`
-                  slick-prev 
-                  slick-next 
-                  slick-prev-prev 
-                  slick-next-next 
-                  slick-prev-max 
-                  slick-next-max
-                `);
-
-            for (let i = 0; i < prevPrevDotIndex; i++) {
-              $slider.find(`li:nth-child(${i})`).addClass('slick-prev-max');
+        const resizeHandler = () => {
+          const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
+          if (isMobile) {
+            if (sliderActivated) {
+              $slider.slick('unslick');
+              sliderActivated = false;
             }
+            // showMoreInit();
+          } else if (!sliderActivated) {
+            try {
+              const classificateDots = (prevDotIndex) => {
+                const prevPrevDotIndex = prevDotIndex - 1;
+                const nextDotIndex = prevDotIndex + 2;
+                const nextNextDotIndex = prevDotIndex + 3;
 
-            for (let i = $dots.length; i > nextNextDotIndex; i--) {
-              $slider.find(`li:nth-child(${i})`).addClass('slick-next-max');
+                const $dots = $slider.find('.slick-dots > li').removeClass(`
+                      slick-prev 
+                      slick-next 
+                      slick-prev-prev 
+                      slick-next-next 
+                      slick-prev-max 
+                      slick-next-max
+                    `);
+
+                for (let i = 0; i < prevPrevDotIndex; i++) {
+                  $slider.find(`li:nth-child(${i})`).addClass('slick-prev-max');
+                }
+
+                for (let i = $dots.length; i > nextNextDotIndex; i--) {
+                  $slider.find(`li:nth-child(${i})`).addClass('slick-next-max');
+                }
+
+                $slider
+                  .find(
+                    `li:nth-child(${
+                      prevDotIndex > 0 ? prevDotIndex : $dots.length
+                    })`
+                  )
+                  .addClass('slick-prev');
+
+                $slider
+                  .find(`li:nth-child(${prevPrevDotIndex ?? 0}`)
+                  .addClass('slick-prev-prev');
+
+                $slider
+                  .find(
+                    `li:nth-child(${
+                      nextDotIndex > $dots.length ? 1 : nextDotIndex
+                    })`
+                  )
+                  .addClass('slick-next');
+
+                $slider
+                  .find(`li:nth-child(${nextNextDotIndex ?? 0})`)
+                  .addClass('slick-next-next');
+              };
+
+              $slider.slick(options);
+              sliderActivated = true;
+
+              classificateDots(0);
+
+              $slider.on('beforeChange', (_e, _slick, _curr, next) =>
+                classificateDots(next)
+              );
+            } catch (error) {
+              console.log(error);
             }
+          }
+        };
 
-            $slider
-              .find(
-                `li:nth-child(${
-                  prevDotIndex > 0 ? prevDotIndex : $dots.length
-                })`
-              )
-              .addClass('slick-prev');
-
-            $slider
-              .find(`li:nth-child(${prevPrevDotIndex ?? 0}`)
-              .addClass('slick-prev-prev');
-
-            $slider
-              .find(
-                `li:nth-child(${
-                  nextDotIndex > $dots.length ? 1 : nextDotIndex
-                })`
-              )
-              .addClass('slick-next');
-
-            $slider
-              .find(`li:nth-child(${nextNextDotIndex ?? 0})`)
-              .addClass('slick-next-next');
-          };
-
-          $slider.slick(options);
-          sliderActivated = true;
-
-          classificateDots(0);
-
-          $slider.on('beforeChange', (_e, _slick, _curr, next) =>
-            classificateDots(next)
-          );
-        } catch (error) {
-          console.log(error);
-        }
+        $(window).resize(resizeHandler);
+        resizeHandler();
       }
-    };
-
-    $(window).resize(resizeHandler);
-    resizeHandler();
+    }, 200);
   }
 
   function initModals() {
