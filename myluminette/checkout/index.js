@@ -1955,9 +1955,13 @@ const stylePDP = `
       overflow: hidden;
     }
   }
+
+  .lav-reviews .slider .expand {
+    display: none;
+  }
   
   .lav-reviews .slider-wrapper {
-    width: 375px;
+    // width: 375px;
     max-width: 100%;
     margin: 0 auto;
     z-index: 3;
@@ -1966,9 +1970,7 @@ const stylePDP = `
   @media (min-width: 992px) {
     .lav-reviews .slider-wrapper {
       max-width: none;
-      width: calc(100% + 120px);
-      padding: 100px 28px 130px;
-      margin-left: -60px;
+      padding: 60px 28px 130px;
     }
   }
   
@@ -2000,11 +2002,6 @@ const stylePDP = `
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
     pointer-events: none;
-  }
-  
-  .lav-reviews .slider .slick-slide.slick-current .avatar {
-    width: 138px;
-    height: 138px;
   }
   
   .lav-reviews .slider .slick-list {
@@ -2044,11 +2041,11 @@ const stylePDP = `
   
   .lav-reviews .slider .slick-arrow.slick-prev {
     transform: translateY(-50%) rotate(180deg);
-    left: -26px;
+    left: -50px;
   }
   
   .lav-reviews .slider .slick-arrow.slick-next {
-    right: -28px;
+    right: -50px;
   }
   
   .lav-reviews .slider .slick-arrow:hover {
@@ -2137,6 +2134,7 @@ const stylePDP = `
     background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
     border-radius: 16px;
     color: #517193;
+    overflow: hidden;
   }
   
   @media (min-width: 992px) {
@@ -2152,8 +2150,8 @@ const stylePDP = `
   }
   
   .lav-reviews .slider .avatar {
-    width: 120px;
-    height: 120px;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
     background-color: #B7B7B7;
     margin: 0 auto 20px;
@@ -2206,15 +2204,15 @@ const stylePDP = `
   
   .lav-reviews .slider .card-body-wrapper {
     position: relative;
-    max-height: 262px;
-    min-height: 262px;
+    // max-height: 262px;
+    // min-height: 262px;
     overflow-y: auto;
   }
   
   @media (min-width: 992px) {
     .lav-reviews .slider .card-body-wrapper {
-      max-height: 281px;
-      min-height: 281px;
+      // max-height: 281px;
+      // min-height: 281px;
     }
   }
   
@@ -2225,6 +2223,7 @@ const stylePDP = `
     left: 0;
     width: 100%;
     height: 70px;
+    opacity: 0;
     pointer-events: none;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, white 70%);
     z-index: 1;
@@ -2252,8 +2251,7 @@ const stylePDP = `
     position: relative;
     font-weight: 500;
     height: 144px;
-    width: 100%;
-    -webkit-line-clamp: 6;
+    // -webkit-line-clamp: 6;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
@@ -2261,12 +2259,16 @@ const stylePDP = `
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
+    overflow: auto;
   }
   
   @media (min-width: 992px) {
     .lav-reviews .slider .review {
       height: 168px;
-      -webkit-line-clamp: 7;
+      margin: 0 -24px;
+      padding: 0 24px;
+      width: auto;
+      // -webkit-line-clamp: 7;
     }
   }
   
@@ -4988,32 +4990,14 @@ function initPdp() {
           dots: true,
         };
 
-        // const showMoreHandler = () => {
-        //   $('.lav-reviews .slide:not(:visible):lt(3)').fadeIn(() => {
-        //     if ($('.lav-reviews .slide:not(:visible)').length === 0) {
-        //       $showMore.addClass('d-none');
-        //     }
-        //   });
-        // };
-
-        const showMoreInit = () => {
-          $('.lav-reviews .slide:gt(2)').hide();
-          $showMore.removeClass('d-none');
-
-          if (!showMoreActivated) {
-            $showMore.click(showMoreHandler);
-            showMoreActivated = true;
-          }
-        };
-
         const resizeHandler = () => {
           const isMobile = window.matchMedia('(max-width: 991.98px)').matches;
+
           if (isMobile) {
             if (sliderActivated) {
               $slider.slick('unslick');
               sliderActivated = false;
             }
-            // showMoreInit();
           } else if (!sliderActivated) {
             try {
               const classificateDots = (prevDotIndex) => {
