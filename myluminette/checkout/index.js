@@ -5530,7 +5530,7 @@ function initObserverCheckout() {
         }
 
         if (entry.target.classList.contains('lav-jumb')) {
-          gaEvent('View section on screen', 'Step 1. Your orde');
+          gaEvent('View section on screen', 'Step 1. Your order');
         }
 
         if (entry.target.classList.contains('details-block')) {
@@ -5545,7 +5545,10 @@ function initObserverCheckout() {
           gaEvent('View section on screen', 'Step 1. Billing address');
         }
 
-        if (entry.target.classList.contains('btn-send-form')) {
+        if (
+          entry.target.classList.contains('btn-send-form') &&
+          entry.target.closest('.details-section')
+        ) {
           gaEvent('View section on screen', 'Step 1. Continue');
         }
 
@@ -5581,10 +5584,7 @@ function initObserverCheckout() {
   document
     .querySelector('.lav-protect__tip')
     .addEventListener(eventType, function () {
-      gaEvent(
-        typeName + "Click on tooltip. What's covered",
-        'Step 1. Your order'
-      );
+      gaEvent(typeName + " on tooltip. What's covered", 'Step 1. Your order');
     });
 
   document
