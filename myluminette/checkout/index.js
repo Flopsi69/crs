@@ -2367,6 +2367,9 @@ const stylePDP = `
     padding: 24px;
     color: #517193;
   }
+  .lav-sticky-mob {
+    display: none;
+  }
   .lav-modal {
     position: fixed;
     z-index: 99991;
@@ -2977,6 +2980,19 @@ const stylePDP = `
   @media (max-width: 768px) {
     .lav-trial__row {
       padding: 24px 24px 28px;
+    }
+    .lav-sticky-mob {
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,.8);
+      padding: 16px 24px;
+    }
+    .lav-sticky__btn {
+      width: 100%;
     }
     .lav-reviews .slider .review {
       overflow: hidden;
@@ -4764,6 +4780,15 @@ function initPdp() {
         <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
+
+    <div class='lav-sticky-mob'>
+      <button class="lav-sticky__btn btn-primary btn-lg flipped lav-btn-buy">
+        <span class="btn-text">
+          Buy $199
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
+    </div>
   `;
 
   document
@@ -4952,6 +4977,9 @@ function initPdp() {
         document.querySelector('.lav-jumb__btn .btn-text').innerHTML =
           'Buy ' + price;
 
+        document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+          'Buy ' + price;
+
         document.querySelector('.lav-trial__btn .btn-text').innerHTML =
           'Try it ' + price;
       });
@@ -4963,9 +4991,16 @@ function initPdp() {
           .querySelector('.lav-count__item.active .lav-count__price')
           .innerHTML.replace('<sup>', '.')
           .replace('</sup>', '');
+
+        if (item.classList.contains('lav-sticky__btn')) {
+          gaEvent(
+            'exp_new_pdp_checkout_42',
+            'Buy ' + price,
+            'Click on button',
+            'Sticky button'
+          );
+        }
         if (item.classList.contains('lav-jumb__btn')) {
-          document.querySelector('.lav-count__item.active .lav-count__price')
-            .innerText;
           gaEvent(
             'exp_new_pdp_checkout_26',
             'Buy ' + price,
