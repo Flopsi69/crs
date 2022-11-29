@@ -895,6 +895,7 @@ const styles = `
     [data-step-form="3"] .main-content .details-section:last-child .fields + .fields {
       flex-direction: column-reverse;
       margin-top: 24px;
+      text-align: center;
     }
     .lav-accept-error + .fields {
       display: none;
