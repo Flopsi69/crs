@@ -18,17 +18,26 @@ if (settings.clarity) {
 }
 
 // Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
+function gaEvent(name, desc, type, loc) {
+  if (!name) {
+    name = '';
+  }
+  if (!desc) {
+    desc = '';
+  }
+  if (!type) {
+    type = '';
+  }
+  if (!loc) {
+    loc = '';
   }
   try {
     var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp: New PDP + new Checkout',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -206,9 +215,6 @@ const styles = `
   }
   [data-step-form="3"] .fields>div:nth-child(3) {
     order: -1;
-  }
-  #scroll-spy-item-3 .title, #scroll-spy-item-3>.fields {
-    display: none;
   }
   #scroll-spy-item-3:not(.active) {
     height: 0;
@@ -3408,7 +3414,7 @@ let intervalInit = setInterval(() => {
   if (document.body) {
     clearInterval(intervalInit);
     init();
-    gaEvent('loaded');
+    gaEvent('exp_new_pdp_checkout_loaded');
   }
 }, 200);
 
@@ -4750,11 +4756,18 @@ function initPdp() {
     .addEventListener('click', function () {
       this.classList.toggle('active');
       gaEvent(
-        'Click on button. Learn more about Light Therapy',
+        'exp_new_pdp_checkout_32',
+        'Learn more about Light Therapy',
+        'Click on button',
         'How Luminette transforms your days'
       );
       if (this.classList.contains('active')) {
-        gaEvent('View section on screen', 'Light therapy on the go');
+        gaEvent(
+          'exp_new_pdp_checkout_05',
+          'Section',
+          'View on screen',
+          'Light therapy on the go'
+        );
       }
       document.querySelector('.block-on-the-go').classList.toggle('active');
     });
@@ -4825,6 +4838,12 @@ function initPdp() {
     .querySelector('.lav-study__btn')
     .addEventListener('click', function () {
       gaEvent(
+        'exp_new_pdp_checkout_33',
+        'Read the study',
+        'Click on button',
+        'Read the study: An independent study has shown'
+      );
+      gaEvent(
         'Click on button. Read the study',
         'Read the study: An independent study has shown'
       );
@@ -4879,10 +4898,28 @@ function initPdp() {
       item.addEventListener('click', function () {
         if (this.classList.contains('active')) return false;
 
-        gaEvent(
-          'Choose pack. ' + item.dataset.count + ' Luminette',
-          'Quantity'
-        );
+        if (item.dataset.count == '1') {
+          gaEvent(
+            'exp_new_pdp_checkout_23',
+            '1 Luminette',
+            'Choose pack',
+            'Quantity'
+          );
+        } else if (item.dataset.count == '2') {
+          gaEvent(
+            'exp_new_pdp_checkout_24',
+            '2 Luminette',
+            'Choose pack',
+            'Quantity'
+          );
+        } else if (item.dataset.count == '3') {
+          gaEvent(
+            'exp_new_pdp_checkout_25',
+            '3 Luminette',
+            'Choose pack',
+            'Quantity'
+          );
+        }
 
         const price = item.querySelector('.lav-count__price').innerHTML;
 
@@ -4904,10 +4941,21 @@ function initPdp() {
     for (let item of document.querySelectorAll('.lav-btn-buy')) {
       item.addEventListener('click', function () {
         if (item.classList.contains('lav-jumb__btn')) {
-          gaEvent('Click on button. Buy $199', 'Buy $199');
+          gaEvent(
+            'exp_new_pdp_checkout_26',
+            'Buy $199',
+            'Click on button',
+            'Buy $199'
+          );
         }
         if (item.classList.contains('lav-trial__btn')) {
-          gaEvent('Click on button. Try it $199', 'Try it $199');
+          gaEvent(
+            'exp_new_pdp_checkout_37',
+            'Try it $199',
+            'Click on button',
+            'Try it $199'
+          );
+          // gaEvent('Click on button. Try it $199', 'Try it $199');
         }
         location.href =
           location.href.split('/luminette')[0] + '/order?product=4';
@@ -4941,7 +4989,12 @@ function initPdp() {
     document
       .querySelector('.lav-jumb__feedbacks')
       .addEventListener('click', function () {
-        gaEvent('Click on link. Reviews', 'Title of page');
+        gaEvent(
+          'exp_new_pdp_checkout_19',
+          'Reviews',
+          'Click on link',
+          'Title of page'
+        );
         document
           .querySelector('.lav-reviews')
           .scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -5059,7 +5112,12 @@ function initPdp() {
       .querySelector('.lav-show-reviews')
       .addEventListener('click', function () {
         this.remove();
-        gaEvent('Click on button. Show more', 'Customer reviews. Show more');
+        gaEvent(
+          'exp_new_pdp_checkout_39',
+          'Show more',
+          'Click on button',
+          'Customer reviews. Show more'
+        );
         document.querySelector('.lav-reviews').classList.add('lav-reviews_all');
       });
 
@@ -5104,7 +5162,12 @@ function initPdp() {
 
     function initThumbnail(thumbnail, index) {
       thumbnail.addEventListener('click', function () {
-        gaEvent('Click on photo in carousel', 'First screen with image slider');
+        gaEvent(
+          'exp_new_pdp_checkout_21',
+          'Carousel',
+          'Click on photo',
+          'First screen with image slider'
+        );
         jumbSlider.go(index);
       });
     }
@@ -5248,7 +5311,12 @@ function initPdp() {
         e.preventDefault();
 
         if (item.closest('.lav-recharge')) {
-          gaEvent('Click on video', 'Recharge with Luminette');
+          gaEvent(
+            'exp_new_pdp_checkout_31',
+            'Video',
+            'Click on video',
+            'Recharge with Luminette'
+          );
         }
 
         openModal(
@@ -5317,80 +5385,156 @@ function initObserver() {
       // console.log(entry);
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-count')) {
-          gaEvent('View section on screen', 'Quantity');
+          gaEvent(
+            'exp_new_pdp_checkout_01',
+            'Section',
+            'View on screen',
+            'Quantity'
+          );
         }
 
         if (entry.target.classList.contains('days-test')) {
           gaEvent(
-            'View section on screen',
+            'exp_new_pdp_checkout_02',
+            'Section',
+            'View on screen',
             'You have 30 days to test Luminette'
           );
         }
 
         if (entry.target.classList.contains('lav-recharge')) {
-          gaEvent('View section on screen', 'Recharge with Luminette');
+          gaEvent(
+            'exp_new_pdp_checkout_03',
+            'Video',
+            'View on screen',
+            'Recharge with Luminette'
+          );
         }
 
         if (entry.target.classList.contains('lav-transforms')) {
           gaEvent(
-            'View section on screen',
+            'exp_new_pdp_checkout_04',
+            'Section',
+            'View on screen',
             'How Luminette transforms your days'
           );
         }
 
         if (entry.target.classList.contains('compare-section')) {
-          gaEvent('View section on screen', 'Luminette 3 vs Light Box');
+          gaEvent(
+            'exp_new_pdp_checkout_06',
+            'Section',
+            'View on screen',
+            'Luminette 3 vs Light Box'
+          );
         }
 
         if (entry.target.classList.contains('lav-can')) {
-          gaEvent('View section on screen', 'While wearing Luminette, you can');
+          gaEvent(
+            'exp_new_pdp_checkout_07',
+            'Section',
+            'View on screen',
+            'While wearing Luminette, you can'
+          );
         }
 
         if (entry.target.classList.contains('lav-perfect')) {
-          gaEvent('View section on screen', 'Perfect for your morning routine');
+          gaEvent(
+            'exp_new_pdp_checkout_08',
+            'Section',
+            'View on screen',
+            'Perfect for your morning routine'
+          );
         }
 
         if (entry.target.classList.contains('lav-trial__row')) {
-          gaEvent('View section on screen', '30 Day Light Therapy Trial');
+          gaEvent(
+            'exp_new_pdp_checkout_09',
+            'Section',
+            'View on screen',
+            '30 Day Light Therapy Trial'
+          );
         }
 
         if (entry.target.classList.contains('section-features')) {
-          gaEvent('View section on screen', 'Features');
+          gaEvent(
+            'exp_new_pdp_checkout_10',
+            'Section',
+            'View on screen',
+            'Features'
+          );
         }
 
         if (entry.target.classList.contains('technical')) {
-          gaEvent('View section on screen', 'Technical details');
+          gaEvent(
+            'exp_new_pdp_checkout_11',
+            'Section',
+            'View on screen',
+            'Technical details'
+          );
         }
 
         if (entry.target.classList.contains('safety-block')) {
-          gaEvent('View section on screen', 'Safety');
+          gaEvent(
+            'exp_new_pdp_checkout_12',
+            'Section',
+            'View on screen',
+            'Safety'
+          );
         }
 
         if (entry.target.classList.contains('section-how-it-works')) {
-          gaEvent('View section on screen', 'The Science Behind Luminette');
+          gaEvent(
+            'exp_new_pdp_checkout_13',
+            'Section',
+            'View on screen',
+            'The Science Behind Luminette'
+          );
         }
 
         if (entry.target.classList.contains('section-studies')) {
           gaEvent(
-            'View section on screen',
+            'exp_new_pdp_checkout_14',
+            'Section',
+            'View on screen',
             '4 years of research at the University of Liege'
           );
         }
 
         if (entry.target.classList.contains('lav-users')) {
-          gaEvent('View section on screen', '50k+ Luminette users');
+          gaEvent(
+            'exp_new_pdp_checkout_15',
+            'Section',
+            'View on screen',
+            '50k+ Luminette users'
+          );
         }
 
         if (entry.target.classList.contains('lav-reviews')) {
-          gaEvent('View section on screen', 'Customer reviews');
+          gaEvent(
+            'exp_new_pdp_checkout_16',
+            'Section',
+            'View on screen',
+            'Customer reviews'
+          );
         }
 
         if (entry.target.classList.contains('lav-show-reviews')) {
-          gaEvent('View section on screen', 'Customer reviews. Show more');
+          gaEvent(
+            'exp_new_pdp_checkout_17',
+            'Section',
+            'View on screen',
+            'Customer reviews. Show more'
+          );
         }
 
         if (entry.target.classList.contains('lav-reviews__preview-list')) {
-          gaEvent('View section on screen', 'Video before footer');
+          gaEvent(
+            'exp_new_pdp_checkout_18',
+            'Video',
+            'View on screen',
+            'Video before footer'
+          );
         }
 
         entry.target.classList.add('in-view');
@@ -5414,7 +5558,9 @@ function initObserver() {
     .querySelector('.lav-jumb__effects-title')
     .addEventListener(eventType, function () {
       gaEvent(
-        typeName + ' on tooltip. Feel beneficial effects in 4 to 6 days',
+        'exp_new_pdp_checkout_20',
+        'Feel beneficial effects in 4 to 6 days',
+        typeName + ' on tooltip',
         'Title of page'
       );
     });
@@ -5422,14 +5568,21 @@ function initObserver() {
   document
     .querySelector('.lav-count__head-inside')
     .addEventListener(eventType, function () {
-      gaEvent(eventType + " on tooltip. What's in the box", 'Quantity');
+      gaEvent(
+        'exp_new_pdp_checkout_22',
+        'What`s in the box',
+        typeName + ' on tooltip',
+        'Quantity'
+      );
     });
 
   document
     .querySelector('.lav-test__second .days-test_head')
     .addEventListener(eventType, function () {
       gaEvent(
-        typeName + '  on tooltip. Free shipping',
+        'exp_new_pdp_checkout_28',
+        'Free shipping',
+        typeName + ' on tooltip',
         'You have 30 days to test Luminette'
       );
     });
@@ -5438,7 +5591,9 @@ function initObserver() {
     .querySelector('.lav-test__third .days-test_head')
     .addEventListener(eventType, function () {
       gaEvent(
-        typeName + ' on tooltip. 100% money back guarantee',
+        'exp_new_pdp_checkout_29',
+        '100% money back guarantee',
+        typeName + ' on tooltip',
         'You have 30 days to test Luminette'
       );
     });
@@ -5447,7 +5602,9 @@ function initObserver() {
     .querySelector('.lav-test__third .tooltip-item a')
     .addEventListener('click', function () {
       gaEvent(
-        'Click on link. Refunds page',
+        'exp_new_pdp_checkout_30',
+        'Refunds page',
+        'Click on link',
         'Tooltip: 100% money back guarantee. You have 30 days to test Luminette'
       );
     });
@@ -5456,7 +5613,9 @@ function initObserver() {
     .querySelector('.lav-trial__btn-refresh .tooltip-item a')
     .addEventListener('click', function () {
       gaEvent(
-        'Click on link. Refunds page',
+        'exp_new_pdp_checkout_36',
+        'Refunds page',
+        'Click on link',
         'Tooltip: Free shipping. 30 Day Light Therapy Trial'
       );
     });
@@ -5465,7 +5624,9 @@ function initObserver() {
     .querySelector('.lav-trial__btn-refresh')
     .addEventListener(eventType, function () {
       gaEvent(
-        typeName + ' on tooltip. 30-day trial',
+        'exp_new_pdp_checkout_34',
+        '30-day trial',
+        typeName + ' on tooltip',
         '30 Day Light Therapy Trial'
       );
     });
@@ -5474,7 +5635,9 @@ function initObserver() {
     .querySelector('.lav-trial__btn-box')
     .addEventListener(eventType, function () {
       gaEvent(
-        typeName + ' on tooltip. Free shipping',
+        'exp_new_pdp_checkout_35',
+        'Free shipping',
+        typeName + ' on tooltip',
         '30 Day Light Therapy Trial'
       );
     });
@@ -5483,7 +5646,9 @@ function initObserver() {
     .querySelector('.lav-trial__inside')
     .addEventListener(eventType, function () {
       gaEvent(
-        "Click on tooltip. What's in the box",
+        'exp_new_pdp_checkout_38',
+        "What's in the box",
+        typeName + ' on tooltip',
         '30 Day Light Therapy Trial'
       );
     });
@@ -5494,7 +5659,9 @@ function initObserver() {
     )
     .addEventListener('click', function () {
       gaEvent(
-        'Click on first video',
+        'exp_new_pdp_checkout_40',
+        'First video',
+        'Click on video',
         'Video before footer, first (picture of men)'
       );
     });
@@ -5505,7 +5672,9 @@ function initObserver() {
     )
     .addEventListener('click', function () {
       gaEvent(
-        'Click on second video',
+        'exp_new_pdp_checkout_41',
+        'Second video',
+        'Click on video',
         'Video before footer, second (girl with oranges)'
       );
     });
@@ -5524,44 +5693,86 @@ function initObserverCheckout() {
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-labels')) {
           gaEvent(
-            'View section on screen',
+            'exp_new_pdp_checkout_44',
+            'Section',
+            'View on screen',
             'Non-interaction elements in header'
           );
         }
 
         if (entry.target.classList.contains('lav-jumb')) {
-          gaEvent('View section on screen', 'Step 1. Your order');
+          gaEvent(
+            'exp_new_pdp_checkout_45',
+            'Section',
+            'View on screen',
+            'Step 1. Your order'
+          );
         }
 
         if (entry.target.classList.contains('details-block')) {
-          gaEvent('View section on screen', 'Step 1. Contact details');
+          gaEvent(
+            'exp_new_pdp_checkout_46',
+            'Section',
+            'View on screen',
+            'Step 1. Contact details'
+          );
         }
 
         if (entry.target.id == 'scroll-spy-item-2') {
-          gaEvent('View section on screen', 'Step 1. Delivery address');
+          gaEvent(
+            'exp_new_pdp_checkout_47',
+            'Section',
+            'View on screen',
+            'Step 1. Delivery address'
+          );
         }
 
         if (entry.target.classList.contains('lav-address')) {
-          gaEvent('View section on screen', 'Step 1. Billing address');
+          gaEvent(
+            'exp_new_pdp_checkout_48',
+            'Section',
+            'View on screen',
+            'Step 1. Billing address'
+          );
         }
 
         if (
           entry.target.classList.contains('btn-send-form') &&
           entry.target.closest('.details-section')
         ) {
-          gaEvent('View section on screen', 'Step 1. Continue');
+          gaEvent(
+            'exp_new_pdp_checkout_49',
+            'Button',
+            'View on screen',
+            'Step 1. Continue'
+          );
         }
 
         if (entry.target.classList.contains('order-info')) {
-          gaEvent('View section on screen', 'Step 2. Order summar');
+          gaEvent(
+            'exp_new_pdp_checkout_55',
+            'Section',
+            'View on screen',
+            'Step 2. Order summary'
+          );
         }
 
         if (entry.target.classList.contains('payment-methods')) {
-          gaEvent('View section on screen', 'Step 2. Order payment method');
+          gaEvent(
+            'exp_new_pdp_checkout_56',
+            'Section',
+            'View on screen',
+            'Step 2. Order payment method'
+          );
         }
 
         if (entry.target.classList.contains('lav-observe-details')) {
-          gaEvent('View section on screen', 'Step 2. To payment');
+          gaEvent(
+            'exp_new_pdp_checkout_57',
+            'Button',
+            'View on screen',
+            'Step 2. To payment'
+          );
         }
 
         entry.target.classList.add('in-view');
@@ -5584,14 +5795,21 @@ function initObserverCheckout() {
   document
     .querySelector('.lav-protect__tip')
     .addEventListener(eventType, function () {
-      gaEvent(typeName + " on tooltip. What's covered", 'Step 1. Your order');
+      gaEvent(
+        'exp_new_pdp_checkout_54',
+        "What's covered",
+        typeName + ' on tooltip.',
+        'Step 1. Your order'
+      );
     });
 
   document
     .querySelector('.lav-labels__item:first-child')
     .addEventListener('click', function () {
       gaEvent(
-        'Click on element. Free shipping',
+        'exp_new_pdp_checkout_50',
+        'Free shipping',
+        'Click on button',
         'Non-interaction elements in header'
       );
     });
@@ -5600,7 +5818,9 @@ function initObserverCheckout() {
     .querySelector('.lav-labels__item:last-child')
     .addEventListener('click', function () {
       gaEvent(
-        'Click on element. 100% money back guarantee',
+        'exp_new_pdp_checkout_51',
+        '100% money back guarantee',
+        'Click on button',
         'Non-interaction elements in header'
       );
     });
@@ -5824,7 +6044,12 @@ function initCheckout() {
       .addEventListener('click', function (e) {
         e.preventDefault();
         handleCount('plus');
-        gaEvent('Increase quantity', 'Step 1. Your order');
+        gaEvent(
+          'exp_new_pdp_checkout_52',
+          'Increase quantity',
+          'Click on button',
+          'Step 1. Your order'
+        );
       });
 
     document
@@ -5832,7 +6057,13 @@ function initCheckout() {
       .addEventListener('click', function (e) {
         e.preventDefault();
         handleCount('minus');
-        gaEvent('Decrease quantity', 'Step 1. Your order');
+        gaEvent(
+          'exp_new_pdp_checkout_53',
+          'Decrease quantity',
+          'Click on button',
+          'Try it $199',
+          'Step 1. Your order'
+        );
       });
   }
 
@@ -6412,6 +6643,12 @@ function initCheckoutDetails() {
             .classList.remove('lav-brief');
           this.classList.add('active');
           this.querySelector('span').innerText = 'Less details';
+          gaEvent(
+            'exp_new_pdp_checkout_59',
+            'More details',
+            'Click on button',
+            'Step 2. Order summary'
+          );
           gaEvent('Click on button. More details', 'Step 2. Order summary');
         } else {
           document
@@ -6419,7 +6656,12 @@ function initCheckoutDetails() {
             .classList.add('lav-brief');
           this.classList.remove('active');
           this.querySelector('span').innerText = 'More details';
-          gaEvent('Click on button. Less details', 'Step 2. Order summary');
+          gaEvent(
+            'exp_new_pdp_checkout_60',
+            'Less details',
+            'Click on button',
+            'Step 2. Order summary'
+          );
         }
       });
   }
@@ -6436,7 +6678,9 @@ function initCheckoutDetails() {
     .querySelector('.btn-edit-order')
     .addEventListener('click', function () {
       gaEvent(
-        'Click on button. Back to previous step',
+        'exp_new_pdp_checkout_58',
+        'Back to previous step',
+        'Click on button',
         'Step 2. Order summary'
       );
     });
@@ -6444,6 +6688,11 @@ function initCheckoutDetails() {
   document
     .querySelector('.btn-send-form')
     .addEventListener('click', function () {
-      gaEvent('Click on button. To Payment', 'Step 2. Choose payment method');
+      gaEvent(
+        'exp_new_pdp_checkout_61',
+        'To Payment',
+        'Click on button',
+        'Step 2. Choose payment method'
+      );
     });
 }
