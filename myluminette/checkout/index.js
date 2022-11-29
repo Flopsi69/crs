@@ -5988,7 +5988,7 @@ function initCheckout() {
         .querySelector('[data-step-form="2"]')
         .classList.add('lav-observe');
       document
-        .querySelector('[data-step-form="3"')
+        .querySelector('[data-step-form="3"]')
         .classList.add('lav-observe');
     }
 
