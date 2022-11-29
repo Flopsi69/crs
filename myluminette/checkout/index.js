@@ -5402,7 +5402,7 @@ function initObserver() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-90%',
+    rootMargin: '-60%',
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -5709,7 +5709,7 @@ function initObserverCheckout() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-90%',
+    rootMargin: '-60%',
   };
 
   const observer = new IntersectionObserver((entries) => {
