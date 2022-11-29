@@ -216,6 +216,24 @@ const styles = `
   [data-step-form="3"] .fields>div:nth-child(3) {
     order: -1;
   }
+
+  #scroll-spy-item-3 .fields-another-address .fields {
+    flex-direction: column;
+  }
+  #scroll-spy-item-3 .fields-another-address .fields>div:last-child {
+    order: -2;
+    max-width: 60%;
+  }
+  #scroll-spy-item-3 .fields-another-address .fields>div:first-child {
+    display: none;
+  }
+  #scroll-spy-item-3 .fields-another-address .fields>div:nth-child(4) {
+    max-width: 60%;
+  }
+  #scroll-spy-item-3 .fields-another-address .fields>div:nth-child(3) {
+    order: -1;
+  }
+
   #scroll-spy-item-3:not(.active) {
     height: 0;
     padding: 0;
@@ -5709,7 +5727,10 @@ function initObserverCheckout() {
           );
         }
 
-        if (entry.target.classList.contains('details-block')) {
+        if (
+          entry.target.id == 'scroll-spy-item-1' ||
+          entry.target.dataset.stepForm == '2'
+        ) {
           gaEvent(
             'exp_new_pdp_checkout_46',
             'Section',
@@ -5718,7 +5739,10 @@ function initObserverCheckout() {
           );
         }
 
-        if (entry.target.id == 'scroll-spy-item-2') {
+        if (
+          entry.target.id == 'scroll-spy-item-2' ||
+          entry.target.dataset.stepForm == '3'
+        ) {
           gaEvent(
             'exp_new_pdp_checkout_47',
             'Section',
@@ -5956,9 +5980,17 @@ function initCheckout() {
       </div>
     `;
 
-    document.querySelector('#scroll-spy-item-1').classList.add('lav-observe');
-
-    document.querySelector('#scroll-spy-item-2').classList.add('lav-observe');
+    if (document.querySelector('#scroll-spy-item-1')) {
+      document.querySelector('#scroll-spy-item-1').classList.add('lav-observe');
+      document.querySelector('#scroll-spy-item-2').classList.add('lav-observe');
+    } else {
+      document
+        .querySelector('[data-step-form="2"]')
+        .classList.add('lav-observe');
+      document
+        .querySelector('[data-step-form="3"')
+        .classList.add('lav-observe');
+    }
 
     document
       .querySelector('.products-info')
