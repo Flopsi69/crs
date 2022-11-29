@@ -4959,20 +4959,26 @@ function initPdp() {
 
     for (let item of document.querySelectorAll('.lav-btn-buy')) {
       item.addEventListener('click', function () {
+        let price = document
+          .querySelector('.lav-count__item.active .lav-count__price')
+          .innerHTML.replace('<sup>', '.')
+          .replace('</sup>', '');
         if (item.classList.contains('lav-jumb__btn')) {
+          document.querySelector('.lav-count__item.active .lav-count__price')
+            .innerText;
           gaEvent(
             'exp_new_pdp_checkout_26',
-            'Buy $199',
+            'Buy ' + price,
             'Click on button',
-            'Buy $199'
+            'Buy ' + price
           );
         }
         if (item.classList.contains('lav-trial__btn')) {
           gaEvent(
             'exp_new_pdp_checkout_37',
-            'Try it $199',
+            'Try it ' + price,
             'Click on button',
-            'Try it $199'
+            'Try it ' + price
           );
           // gaEvent('Click on button. Try it $199', 'Try it $199');
         }
@@ -5396,7 +5402,7 @@ function initObserver() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-40%',
+    rootMargin: '-90%',
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -5703,7 +5709,7 @@ function initObserverCheckout() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-40%',
+    rootMargin: '-90%',
   };
 
   const observer = new IntersectionObserver((entries) => {
