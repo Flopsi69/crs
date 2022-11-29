@@ -5402,7 +5402,7 @@ function initObserver() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-60%',
+    rootMargin: '0px 0px -70% 0px',
   };
 
   const observer = new IntersectionObserver((entries) => {
