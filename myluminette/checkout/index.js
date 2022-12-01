@@ -378,6 +378,11 @@ const styles = `
   .lav-france .lav-protect__tip {
     margin-top: 5px;
   }
+  @media (min-width: 768px) {
+    .lav-france .lav-protect__tip .lav-tip__body:before {
+      left: 15%;
+    }
+  }
   .lav-protect__tip {
     font-weight: 500;
     font-size: 16px;
@@ -1054,6 +1059,10 @@ const stylePDP = `
   .block-how-to-use, .section-how-it-works .btn-download-doc, .section-safety, .section-main  {
     display: none;
   }
+  .lav-alma {
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
   .lum-page {
     background-color: #fff;
   }
@@ -1078,7 +1087,7 @@ const stylePDP = `
   }
   .lav-fabric {
     position: absolute;
-    z-index: 10;
+    z-index: 2;
     background: #517193;
     border-radius: 8px 0px;
     font-weight: 700;
@@ -3025,6 +3034,10 @@ const stylePDP = `
       padding-right: 15px;
       line-height: 1.15;
     }
+    .lav-alma {
+      justify-content: center;
+      text-align: center;
+    }
     .lav-jumb__effects-list {
       box-shadow: 0px 11px 22px rgba(59, 83, 108, 0.22);
     }
@@ -4890,7 +4903,7 @@ function initPdp() {
               <img src='${settings.dir}/img/reviews-trusted.svg' />
             </div>
             <div class='lav-reviews__total-info'>
-              <div class='lav-reviews__total-score'>4.3</div>
+              <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
@@ -6159,7 +6172,7 @@ function initPdp() {
               <img src='${settings.dir}/img/reviews-trusted.svg' />
             </div>
             <div class='lav-reviews__total-info'>
-              <div class='lav-reviews__total-score'>4.3</div>
+              <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
                 <img src='${settings.dir}/img/reviews-stars.svg' />
               </div>
@@ -6222,6 +6235,25 @@ function initPdp() {
   document
     .querySelector('.section-main')
     .insertAdjacentHTML('afterend', newLayout);
+
+  if (detectLang() == 'fr' && document.querySelector('.timer-tooltip')) {
+    let cloneAlma = document.querySelector('.timer-tooltip').cloneNode(true);
+    cloneAlma.classList.add('lav-alma');
+    document
+      .querySelector('.lav-count__pay')
+      .insertAdjacentElement('afterend', cloneAlma);
+
+    cloneAlma.addEventListener('click', function (e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+      gaEvent(
+        'exp_new_pdp_checkout_43',
+        'Alma',
+        'Click on tooltip',
+        'Quantity (french version)'
+      );
+    });
+  }
 
   document
     .querySelector('.lav-transform__more-btn')
@@ -6641,6 +6673,18 @@ function initPdp() {
             'Choose pack',
             'Quantity'
           );
+
+          if (detectLang() == 'fr' && document.querySelector('.lav-alma')) {
+            if (
+              (location.href.includes('com/fr') &&
+                !location.href.includes('com/fr-')) ||
+              location.href.includes('com/fr-be')
+            ) {
+              document.querySelector(
+                '.lav-alma .timer-tooltip__base b'
+              ).innerText = ' 76.33 €';
+            }
+          }
         } else if (item.dataset.count == '2') {
           gaEvent(
             'exp_new_pdp_checkout_24',
@@ -6648,6 +6692,18 @@ function initPdp() {
             'Choose pack',
             'Quantity'
           );
+
+          if (detectLang() == 'fr' && document.querySelector('.lav-alma')) {
+            if (
+              (location.href.includes('com/fr') &&
+                !location.href.includes('com/fr-')) ||
+              location.href.includes('com/fr-be')
+            ) {
+              document.querySelector(
+                '.lav-alma .timer-tooltip__base b'
+              ).innerText = ' 61 €';
+            }
+          }
         } else if (item.dataset.count == '3') {
           gaEvent(
             'exp_new_pdp_checkout_25',
@@ -6655,6 +6711,18 @@ function initPdp() {
             'Choose pack',
             'Quantity'
           );
+
+          if (detectLang() == 'fr' && document.querySelector('.lav-alma')) {
+            if (
+              (location.href.includes('com/fr') &&
+                !location.href.includes('com/fr-')) ||
+              location.href.includes('com/fr-be')
+            ) {
+              document.querySelector(
+                '.lav-alma .timer-tooltip__base b'
+              ).innerText = ' 57,25 €';
+            }
+          }
         }
 
         const price = item.querySelector('.lav-count__price').innerHTML;
