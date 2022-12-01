@@ -372,6 +372,12 @@ const styles = `
     align-items: center;
     justify-content: space-between;
   }
+  .lav-france .lav-protect__head {
+    display: block;
+  }
+  .lav-france .lav-protect__tip {
+    margin-top: 5px;
+  }
   .lav-protect__tip {
     font-weight: 500;
     font-size: 16px;
@@ -641,7 +647,7 @@ const styles = `
       opacity: 0.7;
     }
   }
-  .lav-accept span {
+  .lav-accept__check {
     position: relative;
     display: inline-block;
     margin-right: 12px;
@@ -651,11 +657,11 @@ const styles = `
     height: 24px;
     transition: 0.3s;
   }
-  .lav-accept.active span {
+  .lav-accept.active .lav-accept__check {
     border: none;
     background: linear-gradient(135deg, #74E6FF 0%, #5D9EFF 100%);
   }
-  .lav-accept.active span:before {
+  .lav-accept.active .lav-accept__check:before {
     content: '';
     position: absolute;
     left: 50%;
@@ -782,6 +788,15 @@ const styles = `
   @media (max-width: 768px) {
     .order-pages.order-summary .payment-methods .forms-wrapper .form-block .payment-icon .image {
       box-shadow: 0 0 66px rgb(0 0 0 / 0.2%);
+    }
+    .order-pages.order-details .details-block .payments-block {
+      // justify-content: center;
+    }
+    .lav-coupon-text {
+      margin-bottom: 2px;
+    }
+    .lav-france .lav-accept {
+      font-size: 12px;
     }
     .order-pages.order-summary .payment-methods .forms-wrapper .form-block:nth-child(2) {
       order: 6;
@@ -923,6 +938,9 @@ const styles = `
     .lav-body-confirm .details-block .wrapper h2.title {
       margin-bottom: 24px;
     }
+    .lav-france .order-pages.order-summary .order-info > .title .btn-edit-order {
+      position: relative;
+    }
     .order-pages.order-summary .order-info .columns .column .title {
       padding-bottom: 5px;
     }
@@ -1044,6 +1062,9 @@ const stylePDP = `
     padding: 222px 0 0;
     // 244px // 124px
   }
+  .lav-jumb__mob {
+    display: none;
+  }
   .lav-jumb_clear {
     padding-top: 124px;
   }
@@ -1054,6 +1075,22 @@ const stylePDP = `
     max-width: 560px;
     width: 100%;
     flex-shrink: 0;
+  }
+  .lav-fabric {
+    position: absolute;
+    z-index: 10;
+    background: #517193;
+    border-radius: 8px 0px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.1;
+    padding: 10px 12px;
+    color: #fff;
+    align-items: center;
+    display: flex;
+  }
+  .lav-fabric img {
+    margin-right: 8px;
   }
   .lav-jumb__video {
     cursor: pointer;
@@ -1452,6 +1489,7 @@ const stylePDP = `
     background: url(https://conversionratestore.github.io/projects/luminette/img/stripes_features.png) no-repeat center bottom / cover;
   }
   .compare {
+    position: relative;
     background: #F8F9FA;
     border: 1px solid #F8F9FA;
     box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.25);
@@ -1880,6 +1918,9 @@ const stylePDP = `
     text-align: center;
     width: 260px;
   }
+  .lav-france .lav-trial__actions .btn-text {
+    font-size: 17px;
+  }
   .lav-trials__btn.btn-primary {
     padding-left: 40px;
     padding-right: 40px;
@@ -1991,6 +2032,9 @@ const stylePDP = `
     line-height: 80px;
     letter-spacing: 1px;
     padding: 0 15px;
+  }
+  .lav-france .lav-users__title {
+    bottom: 50px;
   }
   .lav-users__title span {
     font-weight: 800;
@@ -2813,6 +2857,7 @@ const stylePDP = `
       display: block;
       padding: 12px;
       background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%); 
+      border-radius: 8px;
     }
     .lav-jumb__effects-item {
       max-width: 100%;
@@ -2824,9 +2869,6 @@ const stylePDP = `
     }
     .lav-jumb__effects-icon {
       margin-right: 8px;
-    }
-    .lav-jumb__effects-list {
-      border-radius: 8px;
     }
     .lav-count__item.active:after {
       left: 0;
@@ -2978,13 +3020,49 @@ const stylePDP = `
     }
   }
   @media (max-width: 768px) {
+    .lav-france .lav-jumb__effects-title {
+      padding-left: 15px;
+      padding-right: 15px;
+      line-height: 1.15;
+    }
+    .lav-jumb__effects-list {
+      box-shadow: 0px 11px 22px rgba(59, 83, 108, 0.22);
+    }
+    .lav-cookie button.needsclick {
+
+    }
+    .compare:before {
+      content: 'vs';
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 36px;
+      color: #517193;
+      position: absolute;
+      left: 0;
+      top: 37px;
+      right: 0;
+      margin: auto;
+      z-index: 19;
+    }
+    .lav-jumb__mob {
+      display: block;
+    }
+    .lav-jumb__desc {
+      display: none;
+    }
+    .header, .header.header-scrolled-up {
+      background-color: rgba(64, 97, 132, 0.92);
+    }
     .lav-trial__row {
       padding: 24px 24px 28px;
+    }
+    .lav-france .lav-jumb__title {
+      font-size: 26px;
     }
     .lav-sticky-mob {
       display: block;
       position: fixed;
-      z-index: 9999;
+      z-index: 999;
       bottom: 0;
       left: 0;
       right: 0;
@@ -3107,7 +3185,7 @@ const stylePDP = `
       height: 80px;
     }
     .lav-reviews__total {
-      margin-top: 32px;
+      margin-top: 48px;
       display: block;
     }
     .lav-reviews__total-col {
@@ -3319,7 +3397,7 @@ const stylePDP = `
       width: auto;
     }
     .lav-jumb {
-      padding-top: 80px;
+      padding-top: 90px;
     }
     .lav-users__title, .lav-users__image {
       display: none;
@@ -3330,6 +3408,9 @@ const stylePDP = `
       font-weight: 500;
       font-size: 32px;
       line-height: 36px;
+    }
+    .lav-france .lav-users__title-mob {
+      transform: translateY(-30%);
     }
     .lav-users__title-mob span {
       letter-spacing: 1px;
@@ -3364,6 +3445,13 @@ const stylePDP = `
     .tooltip > img {
       width: 14px;
       height: 22px;
+    }
+    .lav-trial__btn .tooltip > img {
+      height: 14px;
+      margin-bottom: -2px;
+    }
+    lav-trial__btn .tooltip {
+      display: inline-block;
     }
     .days-test h3 {
       font-size: 22px;
@@ -3454,6 +3542,9 @@ let intervalInit = setInterval(() => {
 }, 200);
 
 function init() {
+  if (detectLang() === 'fr') {
+    document.body.classList.add('lav-france');
+  }
   console.log('init');
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = stylePDP;
@@ -3462,6 +3553,9 @@ function init() {
       if (document.querySelector('.section-main')) {
         clearInterval(pdpInterval);
         initPdp();
+        if (detectLang() === 'fr') {
+          initTranslate('pdp');
+        }
         initObserver();
       }
     }, 500);
@@ -3485,6 +3579,7 @@ function init() {
         clearInterval(checkoutInterval);
         initCheckout();
         initTips();
+        initTranslate('checkout');
         initObserverCheckout();
       }
     }, 500);
@@ -3494,9 +3589,41 @@ function init() {
       if (document.querySelector('.order-info .column.order-5')) {
         clearInterval(checkoutInterval);
         initCheckoutDetails();
+        initTranslate('details');
         initObserverCheckout();
       }
     }, 500);
+  }
+}
+
+function detectLang() {
+  let lang = 'eng';
+  // en-us / en-ca / en-gb
+  // fr / fr-be / fr-ca
+  if (location.href.includes('com/fr')) {
+    lang = 'fr';
+  }
+
+  return lang;
+}
+
+function initTranslate(page) {
+  return false;
+  if (page == 'pdp') {
+    document.querySelector('.lav-jumb__title').innerText =
+      'Lunettes de luminothérapie Luminette 3';
+    document.querySelector('.lav-jumb__effects-title>span').innerText =
+      'Ressentez les effets bénéfiques en 4 à 7 jours';
+    document.querySelector(
+      '.lav-jumb__effects-title .tooltip-item'
+    ).innerHTML = `Les effets bénéfiques de la Luminette® sont presque immédiats.
+    Après quelques séances, vous sentirez votre énergie revenir, vos cycles de sommeil s'améliorer et votre humeur s'améliorer.
+    Si vous utilisez Luminette pour corriger un trouble des rythmes du sommeil, les résultats seront perceptibles après 7 jours.`;
+    document.querySelector('.lav-jumb__title').innerText =
+      'Lunettes de luminothérapie Luminette 3';
+    document.querySelector('.lav-jumb__title').innerText =
+      'Lunettes de luminothérapie Luminette 3';
+    ('Ressentez les effets bénéfiques en 4 à 7 jours');
   }
 }
 
@@ -3512,7 +3639,7 @@ function initPdp() {
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
   document.body.append(sliderScript);
 
-  const newLayout = `
+  let newLayout = `
     <section class='lav-jumb'>
       <div class='container-fluid container--size--lg'>
         <div class='lav-jumb__inner'>
@@ -3521,7 +3648,8 @@ function initPdp() {
               <div class="splide__track">
                 <ul class="splide__list">
                   <li class="splide__slide">
-                    <img src="${settings.dir}/img/slide1.jpeg" alt="">
+                    <img class='lav-jumb__desc' src="${settings.dir}/img/slide1.jpeg" alt="">
+                    <img class='lav-jumb__mob' src="${settings.dir}/img/slide1-mob.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
                     <img src="${settings.dir}/img/slide2.jpeg" alt="">
@@ -3532,13 +3660,15 @@ function initPdp() {
                     <img src="${settings.dir}/img/slide3.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
-                    <img src="${settings.dir}/img/slide4.jpeg" alt="">
+                    <img class='lav-jumb__desc' src="${settings.dir}/img/slide4.jpeg" alt="">
+                    <img class='lav-jumb__mob' src="${settings.dir}/img/slide4-mob.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
                     <img src="${settings.dir}/img/slide5.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
-                    <img src="${settings.dir}/img/slide6.jpeg" alt="">
+                    <img class='lav-jumb__desc' src="${settings.dir}/img/slide6.jpeg" alt="">
+                    <img class='lav-jumb__mob' src="${settings.dir}/img/slide6-mob.jpeg" alt="">
                   </li>
                   <li class="splide__slide">
                     <img src="${settings.dir}/img/slide7.jpeg" alt="">
@@ -3572,7 +3702,7 @@ function initPdp() {
             </div>
           </div>
           <div class='lav-jumb__info'>
-            <div class='lav-jumb__title'>Luminette 3 Light Therapy Glasses</div>
+            <div class='lav-jumb__title'>Luminette 3 Light&nbsp;Therapy&nbsp;Glasses</div>
             <div class='lav-jumb__feedbacks'>
               <div class='lav-jumb__feedbacks-star'>
                 <img src='${settings.dir}/img/stars.svg' />
@@ -3581,7 +3711,7 @@ function initPdp() {
             </div>
             <div class='lav-jumb__effects'>
               <div class='lav-jumb__effects-title lav-tooltip-wrap'>
-              Feel beneficial effects in 4 to 6 days
+                <span>Feel beneficial effects in 4 to 6 days</span>
                 <div class="tooltip d-flex ml-1">
                   <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
@@ -3715,14 +3845,12 @@ function initPdp() {
                       <div class="tooltip-item">
                         <div class="tooltip_free text-center mb-2">
                           <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                            <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/EN.svg" alt="EN">
-                            <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/CA.svg" alt="CA">
+                            <img height='24' src="${settings.dir}/img/flags.png" alt="">
                           </div>
-                          <p> Free for USA and Canada: <span class="fw-bold d-block">3 to 5 working days</span></p>
+                          <p> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-2 py-1">
-                          <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
-                          <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
+                          <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
                         </div>
                         <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
                       </div>
@@ -3941,8 +4069,22 @@ function initPdp() {
             <div class='lav-trial__buttons'>
               <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-refresh.svg' />
-                <span>30-day trial</span>
-                <div class="tooltip d-flex ml-2">
+                <span>
+                  30-day trial&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown text-left fs-16">
+                      <div class="tooltip-item">
+                        <p class="mb-2">
+                          <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
+                        </p>
+                        <p>
+                          However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
+                        </p>
+                      </div> 
+                    </div>
+                  </span>
+                </span>
+                <div class="tooltip d-sm-flex d-none ml-2">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item">
@@ -3958,21 +4100,37 @@ function initPdp() {
               </div>
               <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-box-2.svg' />
-                <span>Free shipping</span>
-                <div class="tooltip d-flex ml-2">
+                <span>
+                  Free shipping&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown text-left fs-16">
+                      <div class="tooltip-item">
+                        <div class="tooltip_free text-center mb-2">
+                          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                            <img height='24' src="${settings.dir}/img/flags.png" alt="">
+                          </div>
+                          <p> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                          <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
+                        </div>
+                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
+                      </div> 
+                    </div>
+                  </span>
+                </span>
+                <div class="tooltip d-sm-flex d-none ml-2">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item">
                       <div class="tooltip_free text-center mb-2">
                         <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                          <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/EN.svg" alt="EN">
-                          <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/CA.svg" alt="CA">
+                          <img height='24' src="${settings.dir}/img/flags.png" alt="">
                         </div>
-                        <p> Free for USA and Canada: <span class="fw-bold d-block">3 to 5 working days</span></p>
+                        <p> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></p>
                       </div>
                       <div class="d-flex align-items-center justify-content-center mb-2 py-1">
-                        <img class="mr-2" src="https://conversionratestore.github.io/projects/luminette/img/bpost.png" alt="bpost">
-                        <img class="ml-1" src="https://conversionratestore.github.io/projects/luminette/img/colissimo.png" alt="colissimo">
+                        <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
                       </div>
                       <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
                     </div> 
@@ -4791,6 +4949,1276 @@ function initPdp() {
     </div>
   `;
 
+  if (detectLang() == 'fr') {
+    newLayout = `
+    <section class='lav-jumb'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-jumb__inner'>
+          <div class='lav-jumb__slider-wrap'>
+            <div class="splide lav-jumb__slider">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img class='lav-jumb__desc' src="${settings.dir}/img/slide1-fr.jpeg" alt="">
+                    <img class='lav-jumb__mob' src="${settings.dir}/img/slide1-fr-mob.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="${settings.dir}/img/slide2.jpeg" alt="">
+                  </li>
+                  <li class="splide__slide lav-open-modal"      
+                  data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/rnpVhWWRUDI?autoplay=0&start=0&showinfo=0&rel=0'
+                  >
+                  <img src="${settings.dir}/img/slide3.jpeg" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img class='lav-jumb__desc' src="${settings.dir}/img/slide4-fr.jpeg" alt="">
+                  <img class='lav-jumb__mob' src="${settings.dir}/img/slide4-fr-mob.jpeg" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="${settings.dir}/img/slide5.jpeg" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img class='lav-jumb__desc' src="${settings.dir}/img/slide6-fr.jpeg" alt="">
+                  <img class='lav-jumb__mob' src="${settings.dir}/img/slide6-fr-mob.jpeg" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="${settings.dir}/img/slide7.jpeg" alt="">
+                </li>
+              </ul>
+            </div>
+          </div>
+    
+          <div class="lav-jumb__thumbs">
+            <div class="lav-jumb__thumb">
+              <img class='lav-jumb__desc' src="${settings.dir}/img/slide1-fr.jpeg" alt="">
+              <img class='lav-jumb__mob' src="${settings.dir}/img/slide1-fr-mob.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img src="${settings.dir}/img/slide2.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img src="${settings.dir}/img/slide3.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img class='lav-jumb__desc' src="${settings.dir}/img/slide4-fr.jpeg" alt="">
+              <img class='lav-jumb__mob' src="${settings.dir}/img/slide4-fr-mob.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img src="${settings.dir}/img/slide5.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img class='lav-jumb__desc' src="${settings.dir}/img/slide6-fr.jpeg" alt="">
+              <img class='lav-jumb__mob' src="${settings.dir}/img/slide6-fr-mob.jpeg" alt="">
+            </div>
+            <div class="lav-jumb__thumb">
+              <img src="${settings.dir}/img/slide7.jpeg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class='lav-jumb__info'>
+          <div class='lav-jumb__title'>Lunettes de luminothérapie Luminette&nbsp;3</div>
+          <div class='lav-jumb__feedbacks'>
+            <div class='lav-jumb__feedbacks-star'>
+              <img src='${settings.dir}/img/stars.svg' />
+            </div>
+            <div class='lav-jumb__feedbacks-caption'>(<u>Plus de 900+ avis positifs</u>)</div>
+          </div>
+          <div class='lav-jumb__effects'>
+            <div class='lav-jumb__effects-title lav-tooltip-wrap'>
+              <span>Ressentez les effets bénéfiques en 4 à 7 jours</span>
+              <div class="tooltip d-flex ml-1">
+                <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                <div class="tooltip-dropdown text-left fs-16">
+                  <div class="tooltip-item">
+                    <div class='tooltip-text fw-semi'>
+                      Les effets bénéfiques de la Luminette® sont presque immédiats.
+                    </div>
+                    <div class='tooltip-text'>
+                      Après quelques séances, vous sentirez votre énergie revenir, vos cycles de sommeil s'améliorer et votre humeur s'améliorer.
+                    </div>
+                    <div class='tooltip-text'>
+                      Si vous utilisez Luminette pour corriger un trouble des rythmes du sommeil, les résultats seront perceptibles après 7 jours.
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <div class='lav-jumb__effects-list'>
+              <div class='lav-jumb__effects-item'>
+                <div class='lav-jumb__effects-icon'>
+                  <img src='${settings.dir}/img/benefit1.svg' />
+                </div>
+                <div class='lav-jumb__effects-text'>Dites adieu au blues de l'hiver</div>
+              </div>
+              <div class='lav-jumb__effects-item'>
+                <div class='lav-jumb__effects-icon'>
+                  <img src='${settings.dir}/img/benefit2.svg' />
+                </div>
+                <div class='lav-jumb__effects-text'>Rééquilibrez vos cycles de sommeil</div>
+              </div>
+              <div class='lav-jumb__effects-item'>
+                <div class='lav-jumb__effects-icon'>
+                  <img src='${settings.dir}/img/benefit3.svg' />
+                </div>
+                <div class='lav-jumb__effects-text'>Restaurez votre niveau d'énergie</div>
+              </div>
+            </div>
+          </div>
+    
+          <div class='lav-count lav-observe'>
+            <div class='lav-count__head'>
+              <div class='lav-count__head-title'>Quantité</div>
+              <div class='lav-count__head-inside lav-tooltip-wrap'>
+                Que contient la boîte?
+                <div class="tooltip d-flex ml-1">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
+                      <div class='lav-list lav-tooltip-list'>
+                        <div class='lav-list__item'>Votre Luminette</div>
+                        <div class='lav-list__item'>Un étui de protection</div>
+                        <div class='lav-list__item'>Un chargeur mural micro-USB</div>
+                        <div class='lav-list__item'>Un tissu nettoyant en microfibres</div>
+                        <div class='lav-list__item'>Votre certificat de garantie de 2 ans</div>
+                        <div class='lav-list__item'>Le manuel d'utilisation</div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='lav-count__list'>
+              <div class='lav-count__item active' data-count='1'>
+                <div class='lav-count__image'>
+                  <img src='${settings.dir}/img/pr-1.png' />
+                </div>
+                <div class='lav-count__title'>1 Luminette</div>
+                <div class='lav-count__price'>$199</div>
+                <div class='lav-count__caption'>par unité</div>
+              </div>
+              <div class='lav-count__item' data-count='2'>
+                <div class='lav-count__image'>
+                  <img src='${settings.dir}/img/pr-2.png' />
+                </div>
+                <div class='lav-count__title'>
+                  2 Luminette
+                  <span class='lav-count__discount'>-20%</span>
+                </div>
+                <div class='lav-count__price'>$159<sup>20</sup></div>
+                <div class='lav-count__caption'>par unité</div>
+              </div>
+              <div class='lav-count__item' data-count='3'>
+                <div class='lav-count__image'>
+                  <img src='${settings.dir}/img/pr-3.png' />
+                </div>
+                <div class='lav-count__title'>
+                  3 Luminette
+                  <span class='lav-count__discount'>-25%</span>
+                </div>
+                <div class='lav-count__price'>$149<sup>25</sup></div>
+                <div class='lav-count__caption'>par unité</div>
+              </div>
+            </div>
+          </div>
+    
+          <div class='lav-count__pay'>
+            <button class="lav-jumb__btn btn-primary btn-lg flipped lav-btn-buy">
+              <span class="btn-text">
+                Achat 229 €
+              </span>
+              <span class="btn-bg-wrapper"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    
+    <section class='lav-test__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class="days-test lav-observe">
+          <h3 class="text-center">Vous avez 30 jours pour tester la Luminette</h3>
+          <div class="line-dashed">
+            <ul class="row days-test_list">
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__first">
+                <p class="fs-18 pt-1 fw-bold days-test_head">Acheter la Luminette3</p>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">Aujourd'hui</p>
+                  <p class="fs-16 op-07">Sep 26, 2022</p>
+                </div>
+              </li>
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__second">
+                <div class="d-flex align-items-center days-test_head lav-tooltip-wrap">
+                  <p class="fs-18 pt-1 fw-bold mr-2">Livraison gratuite</p>
+                  <div class="tooltip d-flex">
+                    <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown fs-16">
+                      <div class="tooltip-item">
+                        <div class="tooltip_free text-center mb-2">
+                          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                            <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+                          </div>
+                          <p> Livraison gratuite en Europe:  <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                          <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
+                        </div>
+                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">3-5 jours</p>
+                  <p class="fs-16 op-07">Sep 29-Oct 1, 2022</p>
+                </div>
+              </li>
+              <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__third">
+                <div class="d-flex align-items-md-center align-items-end days-test_head lav-tooltip-wrap">
+                  <div class="fs-16 pt-1 fw-bold mr-2">Garantie de remboursement à 100%</div>
+                  <div class="tooltip d-flex">
+                    <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown fs-16">
+                      <div class="tooltip-item">
+                        <p class="mb-2">
+                          Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
+                        </p>
+                        <p>Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.</p>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="circle"></div>
+                <div class="days-test_date">
+                  <p class="fs-18 fw-bold">Après 30 jours</p>
+                  <p class="fs-16 op-07">Oct 29-Nov 1, 2022</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-recharge lav-observe'>
+      <div class='container-fluid container--size--lg lav-jumb__container'>
+        <div class='lav-recharge__inner'>
+          <div class='lav-recharge__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/rnpVhWWRUDI?autoplay=0&start=0&showinfo=0&rel=0'>
+            <img src='${settings.dir}/img/play.svg' />
+            <img src='${settings.dir}/img/play-hover.svg' />
+          </div>
+          <div class='lav-recharge__info'>
+            <div class='lav-recharge__title lav-title'>Retrouver votre énergie avec la Luminette</div>
+            <div class='lav-recharge__caption lav-text'>Une technologie brevetée permet aux Luminette® de rééquilibrer votre horloge biologique circadienne, rétablissant ainsi vos cycles de sommeil, votre humeur et vos niveaux d'énergie.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-transforms lav-observe'>
+      <div class='container-fluid container--size--lg lav-transforms__container'>
+        <div class='lav-transforms__slider splide'>
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class='lav-transform lav-transform_first splide__slide'>
+                <div class='lav-transform__info'>
+                  <div class='lav-transform__title lav-title'>Comment Luminette transforme vos journées</div>
+                  <div class='lav-transform__descr lav-text'>La lumière émise par la Luminette reproduit les effets bénéfiques du soleil. En stoppant la sécrétion de mélatonine et en agissant directement sur le cerveau, la lumière permet de réguler les cycles de sommeil et d'optimiser son niveau d'énergie en hiver.</div>
+                </div>
+                <div class='lav-transform__image'>
+                  <img src='${settings.dir}/img/transform-smile.png' />
+                </div>
+                <div class='lav-transform__title-mob lav-title'>Comment Luminette transforme vos journées</div>
+              </div>
+    
+              <div class='lav-transform lav-transform_second splide__slide'>
+                <div class='lav-transform__info'>
+                  <div class='lav-transform__title lav-title'>Comment Luminette transforme vos journées</div>
+                  <div class='lav-transform__descr lav-text'>Lorsque nous ne recevons pas assez de lumière le matin, le cerveau continue à produire de la mélatonine après le réveil, ce qui augmente notre fatigue et perturbe notre sommeil.</div>
+                </div>
+                <div class='lav-transform__image'>
+                  <img src='${settings.dir}/img/transform-sad.png' />
+                </div>
+                <div class='lav-transform__title-mob lav-title'>Comment Luminette transforme vos journées</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class='lav-transform__more'>
+          <div class='lav-transform__more-btn'>
+            En savoir plus sur la luminothérapie
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2152_65635)">
+                <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#517193" fill-opacity="0.1"/>
+                <path d="M8.175 14.1758L12 10.3591L15.825 14.1758L17 13.0008L12 8.00078L7 13.0008L8.175 14.1758Z" fill="#517193"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_2152_65635">
+                  <rect width="24" height="24" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='compare-section lav-observe'>
+      <div class='container-fluid container--size--lg'>
+        <div class="row fs-16 text-center compare mx-auto">
+          <div class="col-6 py-5">
+            <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/glasses.svg" alt="glasses icon"/>
+            <p class="fs-22 fw-bold py-1">Luminette3</p>
+          </div>
+          <div class="col-6 py-5">
+            <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/box.svg" alt="box icon"/>
+            <p class="fs-22 fw-bold py-1">Lampe de luminothérapie</p>
+          </div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Portable</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Vaquez à vos occupations tout en portant les lunettes</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Vous oblige à vous arrêter et à rester assis pendant <span class="text-ellipsis">30 minutes</span></p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Spectre de la lumière</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Lumière blanche enrichie en bleu</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Lumière blanche à spectre complet</p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Efficacité thérapeutique</div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Efficacité garantie tout en utilisant une source de lumière moins intense</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="py-1">Nécessite au moins 10 000 lux pour être efficace</p></div>
+          <div class="col-12 py-2 fs-18 fw-bold b-1">Taille</div>
+          <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Petit/ ultraléger, seulement 51g sur le nez (1,83 onces)</p></div>
+          <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Grand/ encombrant</p></div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-study__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-study'>
+          <div class='lav-study__icon'>
+            <svg class="icon icon-xxl">
+              <use xlink:href="#lamp"></use>
+            </svg>
+          </div>
+          <div class='lav-study__info'>
+            Une étude indépendante a montré que la Luminette donne les mêmes résultats qu'une lampe de 10 000 lux.
+          </div>
+          <div class='lav-study__btn'>
+            Lire l'étude
+            <img src='/images/icons/adobe-reader.svg' />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-can lav-observe'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-can__inner'>
+          <div class='lav-can__icon'>
+            <img src='/images/icons/clock.svg' />
+          </div>
+          <div class='lav-can__title lav-title'>En portant vos Luminettes,<br/> vous pourrez:</div>
+          <div class='lav-can__list'>
+            <div class='lav-can__item'>Préparer le petit-déjeuner</div>
+            <div class='lav-can__item'>Vous brosser les dents</div>
+            <div class='lav-can__item'>Lire un livre</div>
+            <div class='lav-can__item'>Regarder la télévision</div>
+            <div class='lav-can__item'>Travailler sur l’ordinateur</div>
+            <div class='lav-can__item'>Avoir une activité physique calme</div>
+            <div class='lav-can__item'>(marche, vélo d’appartement)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-perfect lav-observe'>
+      <div class='container-fluid container--size--lg'>
+        <div class='lav-perfect__title lav-title'>Parfait pour votre routine matinale</div>
+        <div class='lav-perfect__list'>
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_1.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Porter la pendant 20-45 min</div>
+            <div class='lav-perfect__descr lav-text'>Varie en fonction du niveau d'intensité lumineuse : (de 20 minutes à l'intensité maximale à 60 minutes à l'intensité minimale).</div>
+          </div>
+    
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_2.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Utiliser une fois par jour</div>
+            <div class='lav-perfect__descr lav-text'>Nous recommandons d'utiliser la Luminette une fois par jour.</div>
+          </div>
+    
+          <div class='lav-perfect__item'>
+            <div class='lav-perfect__icon'>
+              <img src='/images/pages/device-landings/luminette/how_to_use_icon_3.svg' />
+            </div>
+            <div class='lav-perfect__subtitle'>Retablissez vos niveaux d'énergie en 4 à 6 jours</div>
+            <div class='lav-perfect__descr lav-text'>Les effets bénéfiques de la Luminette® sont presque immédiats. En quelques séances seulement, vous sentirez votre niveau d'énergie augmenter, votre sommeil s'allonger et votre humeur s'améliorer.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-trial lav-section'>
+      <div class='container-fluid container--size--lg lav-trial__container'>
+        <div class='lav-trial__row lav-observe'>
+          <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
+    
+          <div class='lav-trial__info'>
+            <div class='lav-trial__title lav-title'>Essai de 30 jours</div>
+            <div class='lav-trial__descr lav-text'>Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !</div>
+    
+            <div class='lav-trial__buttons'>
+              <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
+                <img src='${settings.dir}/img/icon-refresh.svg' />
+                <span>
+                  Essai de 30 jours&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown text-left fs-16">
+                      <div class="tooltip-item">
+                        <p class="mb-2">
+                          Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
+                        </p>
+                        <p>
+                          Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                        </p>
+                      </div>
+                    </div>
+                  </span>
+                </span>
+                <div class="tooltip d-sm-flex d-none ml-2">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <p class="mb-2">
+                        Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
+                      </p>
+                      <p>
+                        Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                      </p>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+    
+              <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
+                <img src='${settings.dir}/img/icon-box-2.svg' />
+                <span>
+                  Livraison gratuite&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                    <div class="tooltip-dropdown text-left fs-16">
+                      <div class="tooltip-item">
+                        <div class="tooltip_free text-center mb-2">
+                          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                            <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+                          </div>
+                          <p> Livraison gratuite en Europe: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                          <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
+                        </div>
+                        <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
+                      </div> 
+                    </div>
+                  </span>
+                </span>
+                <div class="tooltip d-sm-flex d-none ml-2">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <div class="tooltip_free text-center mb-2">
+                        <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+                          <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+                        </div>
+                        <p> Livraison gratuite en Europe: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+                        <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
+                      </div>
+                      <p class="">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class='lav-trial__actions'>
+              <button class='lav-trial__btn btn-primary btn-lg flipped lav-btn-buy'>
+                <span class="btn-text">
+                  Essayez-les pour 229 €
+                </span>
+                <span class="btn-bg-wrapper"></span>
+              </button>
+    
+              <div class='lav-trial__inside lav-tooltip-wrap'>
+                Que contient la boîte?
+                <div class="tooltip d-flex ml-1">
+                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+                  <div class="tooltip-dropdown text-left fs-16">
+                    <div class="tooltip-item">
+                      <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
+                      <div class='lav-list lav-tooltip-list'>
+                        <div class='lav-list__item'>Votre Luminette</div>
+                        <div class='lav-list__item'>Un étui de protection</div>
+                        <div class='lav-list__item'>Un chargeur mural micro-USB</div>
+                        <div class='lav-list__item'>Un tissu nettoyant en microfibres</div>
+                        <div class='lav-list__item'>Votre certificat de garantie de 2 ans</div>
+                        <div class='lav-list__item'>Le manuel d'utilisation</div>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='technical__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class="technical lav-observe">
+          <div class="row technical-block">
+            <div class="col-lg-6 pl-0">
+              <h2>Détails techniques</h2>
+            </div>
+            <div class="col-lg-6 fs-18">
+              <div class="row pb-2 bb-2">
+                <div class="col-sm-7 col-6 pl-0">Dimensions du produit</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">17 x 16 x 3 cm</div>
+              </div>
+              <div class="row py-2 bb-2">
+                <div class="col-sm-7 col-6 pl-0">Type de source lumineuse</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">LED</div>
+              </div>
+              <div class="row py-2 bb-2">
+                <div class="col-sm-7 col-6 pl-0">Nombre de sources lumineuses</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3</div>
+              </div>
+              <div class="row py-2 bb-2">
+                <div class="col-sm-7 col-6 pl-0">Poids de l'article</div>
+                <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">51g</div>
+              </div>
+            </div>
+          </div>
+          <div class="safety-block lav-observe">
+            <div class="row">
+              <div class="col-lg-6 pl-0">
+                <h2 class="pb-4">Sécurité</h2>
+                <div class="d-flex mt-5">
+                  <img class="mr-5 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-1.svg" alt="safety icon" />
+                  <img class="mr-5 ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-2.svg" alt="safety icon" />
+                  <img class="ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-3.svg" alt="safety icon" />
+                </div>
+              </div>
+              <div class="col-lg-6 fs-18 px-0">
+                <p class="fw-bold mb-3">Depuis 2007, Luminette® porte la classification européenne CE.</p>
+                <p class="mb-3">Luminette® est classée comme un dispositif sans danger pour les yeux, conformément à la norme internationale CEI 62471. En outre, la lumière émise par la Luminette® est exempte d'UV, de rayons infrarouges et ne contient pas de courte longueur d'onde inférieure à 450 nm.</p>
+                <p>Aux États-Unis, aucune lampe de luminothérapie n'a reçu l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne sont pas réglementées par la FDA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class='lav-users lav-section lav-observe'>
+      <img class='lav-users__image' src='${settings.dir}/img/users-bg.png' />
+      <img class='lav-users__image-mob' src='${settings.dir}/img/users-bg-mob.png' />
+      <div class='lav-users__title-mob container'><span>150k+</span> utilisateurs de la Luminette</div>
+      <div class='lav-users__title container'>Plus de <span>150 000</span> utilisateurs de la Luminette</div>
+    </section>
+    
+    <section class='lav-reviews lav-observe'>
+      <div class='container-fluid container--size--lg lav-reviews__container'>
+        <div class='lav-reviews__title lav-title'>Avis des utilisateurs</div>
+    
+        <div class='lav-reviews__list splide' style='display: none;'>
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review1.png' />
+                </div>
+                <div class='lav-review__name'>Aurélie</div>
+                <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                  View review on <span>Amazon</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
+                </div>
+    
+                <div class='lav-review__text'>
+                  “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
+                </div>
+    
+                <div class='lav-review__trigger'>Afficher plus</div>
+              </div>
+    
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review2.png' />
+                </div>
+                <div class='lav-review__name'>Arnaud T.</div>
+                <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
+                  View review on <span>Google</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
+                </div>
+              </div>
+    
+              <div class='lav-review splide__slide'>
+                <div class='lav-review__image'>
+                  <img src='${settings.dir}/img/review3.png' />
+                </div>
+                <div class='lav-review__name'>Laura S.</div>
+                <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
+                  View review on <span>Amazon</span>
+                  <img src='${settings.dir}/img/rate.svg' />
+                </a>
+                <div class='lav-review__text active'>
+                  “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
+                </div>
+                <div class='lav-review__text'>
+                  “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
+                </div>
+                <div class='lav-review__trigger'>Afficher plus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="slider-wrapper position-relative">
+          <div class="slider">
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/16.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Arnaud T.</div>
+                  <a href="https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Google</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Chaque année je ressens un manque de lumière et cela se ressent sur le moral.
+                      Cette année j'ai trouvé la solution pour palier à cela avec la Luminette. L'avantage c'est que
+                      tu ne restes pas bloqué devant un écran et que tu peux te préparer le matin ou prendre le
+                      petit
+                      déjeuner avec les lunettes sur le nez. C'est très pratique :)
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">4 mars 2021</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/4.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Laura S.</div>
+                  <a href="https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une première. Je suis étonné. Mon niveau d'énergie a augmenté et je me sens libre et joyeux la plupart du temps. Je dors aussi beaucoup mieux. Je dois ajouter que j'ai arrêté la caféine, ce qui aide aussi.
+                      Les Luminettes sont bien, bien meilleure que les lampes. Je les porte tous les matins sans être obligé de fixer la lampe. Mon humeur s'est vraiment améliorée.
+                      Elles sont très pratiques et faciles à utiliser. Je les mets sur le dessus de mes lunettes. Elles se rechargent facilement et on peut les utiliser sans les brancher tous les jours.
+                      Tous ceux qui me voient les porter (quand je participe à des réunions en ligne, quand je vais chez le dentiste, etc.) me demandent si ça marche. Les gens trouvent que c'est joli et ils sont très intéressés parce qu'il y a toujours quelqu'un dans leur famille qui souffre de dépression saisonnière, ou bien ils sont eux-mêmes atteints de ce trouble.
+                      Donc, vraiment, je ne me plains pas, je n'ai que des bonnes choses à dire sur mes Luminettes qui sont aussi précieuses maintenant que mon téléphone portable.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/1.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Rémy Z.</div>
+                  <a href="https://www.google.com/maps/contrib/112247709787810698381/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s112247709787810698381!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Google</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Excellentes lunettes de luminothérapie. Je les utilise tous les matins dès mon réveil. Je
+                      souffre
+                      en
+                      effet
+                      de dépression saisonnière depuis plusieurs années et grâce à mes Luminettes je ressens moins
+                      mes
+                      troubles
+                      de
+                      l'humeur en automne-hiver. Je les utilise dès la mi-automne jusqu'à fin mars. Je disposais
+                      avant
+                      d'une
+                      lampe
+                      de luminothérapie mais c'était assez contraignant de devoir rester devant de manière continue.
+                      Avec
+                      mes
+                      Luminettes je peux vaquer à mes occupations sans problème.
+                      J'en suis très satisfait !
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/2.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Dominique M.</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/R2TECJ5KRJG2TC/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Chaque année, l'arrivée de l'automne est pour moi synonyme de déprime, fatigue, endormissement
+                      très long et coups de pompe durant l'après-midi ! J'en ai parlé au docteur qui m'a conseillé
+                      d'essayer la Luminette. J'ai décidé de l'acheter pour l'utiliser tous les matins. Je prends
+                      donc
+                      mon déjeuner avec la Luminette sur le nez, sans aucun désagrément, pendant 20 minutes. Elle me
+                      permet de me déplacer et de voir ce que je fais, contrairement aux anciens appareils qui
+                      étaient
+                      à poser sur la table, et qui, d'après les études réalisées, ne servaient à rien puisque la
+                      luminosité des leds ne venaient pas de plus haut que la tête et n'atteignaient donc pas les
+                      capteurs de l'oeil...
+                      Je me sens en forme pour la journée, et si pendant l'hiver je ressens de la fatigue après le
+                      repas de midi, je refais une séance. Ainsi j'arrête de produire de la mélatonine et l'énergie
+                      revient, je suis mieux dans ma peau et de meilleure humeur!
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/3.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Maïté T.</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/R1GSLSI9OTO56U/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Amazon</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">J’ai la fibromyalgie et des gros problème de sommeil. Un manque de pêche évident quand le
+                      soleil
+                      n’est plus là. Mon neurologue m’a conseillé vos lunettes. Je suis ravie j’ai
+                      plus de pêche, ça ne joue malheureusement rien sur mes douleurs. Mais vu que je suis plus en
+                      forme je trouve ça vraiment positif! L’automne et l’hiver ne me font plus peur grâce à ses
+                      lunettes je suis prête à les affronter! Je recommande vraiment et je n’arrête pas d’en parler
+                      autour de moi.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/5.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Muriel V.</div>
+                  <a href="https://www.google.com/maps/contrib/107266988971890423777/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s107266988971890423777!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Prescrite par mon neurologue dans le cadre de mes troubles du sommeil et de mon épilepsie, je
+                      ne
+                      peux maintenant plus m'en passer. Le fait qu'il s'agisse de lunettes est très pratique car on
+                      sait faire ses activités sans soucis (comme se brosser les dents, déjeuner, lire ou même
+                      commencer à travailler). Elles sont livrées avec une housse très pratique pour le rangement
+                      et/ou les déplacements.
+                      Je vous déconseille juste de les utiliser dans une pièce sombre.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/6.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Rita R.</div>
+                  <a href="https://www.google.com/maps/contrib/100137502211655470427/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.6323126,5.3985949,11z/data=!4m6!1m5!8m4!1e1!2s100137502211655470427!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">5 jours que j’emploie ma luminette ,je me sens déjà mieux ...
+                      L’essayer c’est l’adopter.
+                      Il y a 3 ans que je la porte en saison automnale 20 minutes par jour ... en déjeunant
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/7.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Audrey B.</div>
+                  <a href="https://www.google.com/maps/contrib/105110317360703574808/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s105110317360703574808!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">Je suis très satisfaite de la luminette! (j'ai la luminette 3). J'ai de meilleurs cycles de
+                      sommeil et elles m'aident à bien me réveiller le matin (aussi bien qu'un café). En plus elles
+                      sont faciles à porter. Tous les matins je me dis que j'ai bien fait de les acheter! Je
+                      recommande!
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/8.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Christopher T.</div>
+                  <a href="https://www.google.com/maps/contrib/105475160819624793335/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s105475160819624793335!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">Je suis ravi du modèle 2.
+                      Faciles d'usage, les Luminette me permettent d'être dynamique dès le matin et facilite
+                      l'endormissement. Ma neurologue a été de bon conseil !
+                      Je passerai probablement au modèle 3 dans le futur…
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/9.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Gregory E.</div>
+                  <a href="https://www.google.com/maps/contrib/117879807108998873428/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.3197246,6.3556338,7.58z/data=!4m4!1m3!8m2!1e1!2s117879807108998873428?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">J'ai mes luminettes 3 depuis mars 2020 et je ne sais plus m'en passer, elles sont parfaites
+                      pour
+                      combattre le décalage horaire ou les troubles du sommeil.
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/10.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Florence M.</div>
+                  <a href="https://www.google.com/maps/contrib/114308199652100072679/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s114308199652100072679!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">Je les ai depuis un an, elles m’ont été conseillées par ma thérapeute, je ressens une vraie
+                      amélioration de mon humeur et de ma fatigue.
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/11.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Guillaume M.</div>
+                  <a href="https://www.google.com/maps/contrib/101195112554299989422/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@4.6513087,89.2730014,3z/data=!4m6!1m5!8m4!1e2!2s101195112554299989422!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Sujet depuis des années à la "dépression saisonnière", j'ai décidé d'essayer la luminothérapie
+                      pour palier à ce manque de soleil hivernale, et j'ai opté pour ce modèle en format "lunettes"
+                      pour le côté pratique de pouvoir faire sa préparation du matin et ne pas avoir à rester collé
+                      à
+                      un panneau lumineux.
+                      Les résultats ne se sont pas fait attendre, les coups de mou et la fatigue générale habituels
+                      ont quasiment disparu et autre point positif que je n'avais pas prévu, ma tendance à avoir du
+                      mal à trouver le sommeil le soir a aussi disparu, sans doute dû à un réajustement du rythme
+                      circadien...
+                      En bref, c'est un investissement au départ, mais je ne le regrette absolument pas, et ma
+                      conjointe s'y est aussi mise !
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <div class="avatar"></div>
+                  <div class="h4 name fw-bolder">Andi Philip</div>
+                  <a href="#" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">"J'avais une petite lampe Phillips auparavant, et c'était une galère de s'asseoir au bon angle,
+                      la distance, et le temps. Avec cet appareil je n'ai pas à me soucier de ces choses. Je mets simplement
+                      les
+                      mets, j'appuie sur le bouton et je les porte jusqu'à ce qu'elles s'éteignent. Facile à utiliser même lorsque je porte mes
+                      lunettes ou mes lentilles. De plus, elles ne me donnent pas de maux de tête comme le faisait la lampe Phillips !
+                      Il y a presque 4 personnes dans mon foyer qui les portent tous les jours. Je vais bientôt acheter une seconde paire! 
+                      (Deux d'entre nous ont des troubles du sommeil et tout le monde semble avoir une meilleure humeur)."
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/13.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Patricia</div>
+                  <a href="#" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">Utilisée médicalement pour problème dépressif. Ces lunettes m'ont apportés une nette
+                      amélioration. Pas gênantes à porter, la luminosité agit sur mon humeur, m'apporte un
+                      réconfort,
+                      elle me sont très utiles.
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/14.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Hélène</div>
+                  <a href="https://www.google.com/maps/contrib/116715457571293643665/reviews/@49.9994005,2.560789,8z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">C'est un réflexe à prendre dès le lever, la Luminette se fait vite oublier et on peut vaquer à
+                      ses occupations. Avec ou sans, il n'y a pas photo : dès la première utilisation, on se sent
+                      vite
+                      mieux réveillé et les coups de mou de milieu de matinée ou d'après-midi disparaissent vite.
+                      Vraiment conquise.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <div class="avatar"></div>
+                  <div class="h4 name fw-bolder">Anthony</div>
+                  <a href="https://www.google.com/maps/contrib/103414070215570066252/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2632398,17z/data=!4m6!1m5!8m4!1e2!2s103414070215570066252!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper is-visible">
+                  <div class="card-body">
+                    <p class="review">Utilisateur depuis plus de dix ans ... la luminette m’a toujours aidé à me « régler » lors de
+                      mes travails en horaires de nuit ou tres tot le matin...on se sent rapidement plus en forme.
+                      Produit sérieux et facile a utiliser.
+                    </p>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/15.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Muriel T.</div>
+                  <a href="https://www.google.com/maps/contrib/105183132711717313101/place/ChIJ91jIr0sHwUcR8GAsRTiKCXQ/@50.5779487,5.2610511,17z/data=!4m6!1m5!8m4!1e2!2s105183132711717313101!3m1!1e1?hl=fr-BE" target="_blank" class="link">
+                    <span>
+                      Lire l'avis sur <b>Google</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">J'ai acheté la Luminette pour m'aider contre la déprime hivernale. Je l'utilise chaque matin
+                      au
+                      réveil. Ce que j'apprécie avec la Luminette, c'est que je peux choisir la durée de la séance
+                      (20, 30 ou 60 min) en fonction de ma disponibilité, et que je peux vaquer à mes occupations
+                      pendant la séance (pas besoin de rester en face d'une lampe posée sur la table). Après
+                      quelques
+                      jours d'utilisation seulement, je notais déjà un résultat positif: fini la déprime les jours
+                      gris et pluvieux. Avec le temps, je me sens moins fatiguée et j'ai plus d'énergie. Je
+                      recommande
+                      vivement la Luminette.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <div class="card-header text-center">
+                  <picture class="avatar d-block">
+                    <source srcset="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12@2x.png 2x, https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12.png 1x"/>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/avatars/12.png" alt="Customer avatar">
+                  </picture>
+                  <div class="h4 name fw-bolder">Aurélie</div>
+                  <a href="https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y" target="_blank" class="link">
+                    <span>
+                      Avis de <b>Facebook</b>
+                    </span>
+                    <img src="https://d3sq5glv6xow4l.cloudfront.net/images/pages/customer-reviews/star.png" alt="Customer reviews 5 stars">
+                  </a>
+                </div>
+                <div class="card-body-wrapper">
+                  <div class="card-body">
+                    <p class="review">Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé
+                      (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours
+                      à
+                      la luminothérapie pour améliorer mon état en automne et en hiver.
+                      J'ai hésité longuement et puis j'ai découvert les Luminette.
+                      Je les utilise le matin, soit en vaquant à mes occupations (petit déjeuner, brossage de
+                      dents...) soit pendant que je lis. Après la séance, j'ai beaucoup plus d'énergie et de
+                      motivation pour faire face à la journée.
+                      Elles sont très pratiques car elles peuvent se porter en même temps que des lunettes de vue ou
+                      d'ordinateur.
+                      Elles sont constituées de plastique, assez rigide, mais paraissent solides.
+                      Le chargement est assez rapide. Un indicateur de chargement permet de savoir quand ce dernier
+                      est terminé. Une fois chargées, elles peuvent être utilisées environ 10 fois.
+                      Il y a 3 modes possibles. Plus la lumière est puissante, plus le temps d'exposition est
+                      réduit.
+                      Ce qui est très pratique c'est qu'il ne faut pas surveiller le temps car elles s'éteignent
+                      toutes seules une fois la séance terminée. Le seul mini « bémol » est que le mode le plus
+                      puissant peut être éblouissant quand la luminosité environnante est faible.
+                      C'est donc un accessoire que je recommanderais sans hésitation, car il me donne un vrai coup
+                      de
+                      pouce moralement pendant les courtes journées.
+                    </p>
+                    <button class="fw-bolder expand">Afficher plus</button>
+                    <div class="date">21 décembre 2020</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class='lav-show-reviews lav-observe'>Afficher plus</div>
+        </div>
+    
+        <div class='lav-reviews__total'>
+          <div class='lav-reviews__total-col'>
+            <div class='lav-reviews__total-image'>
+              <img src='${settings.dir}/img/reviews-trusted.svg' />
+            </div>
+            <div class='lav-reviews__total-info'>
+              <div class='lav-reviews__total-score'>4.3</div>
+              <div class='lav-reviews__total-stars'>
+                <img src='${settings.dir}/img/reviews-stars.svg' />
+              </div>
+              <div class='lav-reviews__total-caption'>Trusted shops</div>
+            </div>
+          </div>
+          <div class='lav-reviews__total-col'>
+            <div class='lav-reviews__total-image'>
+              <img src='${settings.dir}/img/reviews-amazon.svg' />
+            </div>
+            <div class='lav-reviews__total-info'>
+              <div class='lav-reviews__total-score'>4.4</div>
+              <div class='lav-reviews__total-stars'>
+                <img src='${settings.dir}/img/reviews-stars.svg' />
+              </div>
+              <div class='lav-reviews__total-caption'>Amazon</div>
+            </div>
+          </div>
+        </div>
+    
+        <div class='lav-reviews__preview-list lav-observe'>
+          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/fr-preview-review1.png);'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/vekX4k9dssY?autoplay=0&start=0&showinfo=0&rel=0'>
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
+            </div>
+          </div>
+    
+          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/fr-preview-review2.png);'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/z_QK3VZCS6U?autoplay=0&start=0&showinfo=0&rel=0'>
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
+              <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class='lav-modal'>
+      <div class='lav-modal__inner lav-review-modal'>
+        <div class='lav-modal__close'>
+          <img src='${settings.dir}/img/modal-close.svg'>
+        </div>
+    
+        <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    
+    <div class='lav-sticky-mob'>
+      <button class="lav-sticky__btn btn-primary btn-lg flipped lav-btn-buy">
+        <span class="btn-text">
+          Achat 229 €
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
+    </div>
+    `;
+  }
+
   document
     .querySelector('.section-main')
     .insertAdjacentHTML('afterend', newLayout);
@@ -4816,8 +6244,14 @@ function initPdp() {
       document.querySelector('.block-on-the-go').classList.toggle('active');
     });
 
-  document.querySelector('.block-on-the-go .title').innerHTML =
-    'Light therapy <br /> on the go';
+  if (detectLang() === 'fr') {
+    document.querySelector(
+      '.block-on-the-go .title'
+    ).innerHTML = `La luminothérapie <br /> en toute liberté`;
+  } else {
+    document.querySelector('.block-on-the-go .title').innerHTML =
+      'Light therapy <br /> on the go';
+  }
 
   document
     .querySelector('.lav-transforms')
@@ -4838,6 +6272,47 @@ function initPdp() {
     );
 
   setInterval(() => {
+    if (window.innerWidth < 768) {
+      if (
+        document.querySelector('.cookies-bar:not(.accepted)') &&
+        document.querySelector('.cookies-bar').style.display == 'block'
+        // !document.body.classList.contains('lav-cookie')
+      ) {
+        document.body.classList.add('lav-cookie');
+        document.querySelector(
+          '.lav-cookie .widget-visible iframe'
+        ).style.bottom = '170px';
+        document.querySelector(
+          '.lav-cookie .widget-visible iframe'
+        ).style.right = '10px';
+        document.querySelector('.lav-cookie button.needsclick').style.bottom =
+          '150px';
+        document.querySelector(
+          '.lav-cookie button.needsclick'
+        ).style.marginLeft = '10px';
+      }
+
+      if (
+        document.querySelector('.cookies-bar.accepted') ||
+        document.querySelector('.cookies-bar').style.display !== 'block'
+        // !document.body.classList.contains('lav-cookie-accepted')
+      ) {
+        document.body.classList.remove('lav-cookie');
+        document.body.classList.add('lav-cookie-accepted');
+        document.querySelector(
+          '.lav-cookie-accepted .widget-visible iframe'
+        ).style.bottom = '100px';
+        document.querySelector(
+          '.lav-cookie-accepted .widget-visible iframe'
+        ).style.right = '10px';
+        document.querySelector(
+          '.lav-cookie-accepted button.needsclick'
+        ).style.bottom = '80px';
+        document.querySelector(
+          '.lav-cookie-accepted button.needsclick'
+        ).style.marginLeft = '10px';
+      }
+    }
     if (window.innerWidth > 768 && window.pageYOffset < 50) {
       document.querySelector('.header').classList.remove('dark-theme');
       document.querySelector('.header').classList.add('light-theme');
@@ -4908,14 +6383,25 @@ function initPdp() {
       .querySelector('.lum-page .section-features .title')
       .innerText.replace('Luminette', '');
 
-  document
-    .querySelector(
-      '.lum-page .section-features .device-wrapper .heading-wrapper .title'
-    )
-    .insertAdjacentHTML(
-      'afterend',
-      '<div class="lav-feat">Move your cursor over the buttons to zoom in</div>'
-    );
+  if (detectLang() === 'fr') {
+    document
+      .querySelector(
+        '.lum-page .section-features .device-wrapper .heading-wrapper .title'
+      )
+      .insertAdjacentHTML(
+        'afterend',
+        '<div class="lav-feat">Survolez les boutons pour zoomer</div>'
+      );
+  } else {
+    document
+      .querySelector(
+        '.lum-page .section-features .device-wrapper .heading-wrapper .title'
+      )
+      .insertAdjacentHTML(
+        'afterend',
+        '<div class="lav-feat">Move your cursor over the buttons to zoom in</div>'
+      );
+  }
 
   if (window.innerWidth <= 1199) {
     document
@@ -4936,6 +6422,212 @@ function initPdp() {
   initDeliveryDates();
   initModals();
   initReviews();
+  initDeliveryAndPrice();
+
+  function initDeliveryAndPrice() {
+    console.log('initDelivery');
+    if (
+      location.href.includes('com/en-us') ||
+      location.href.includes('com/en-ca')
+    ) {
+      if (location.href.includes('com/en-ca')) {
+        document.querySelector(
+          '.lav-count__item:first-child .lav-count__price'
+        ).innerHTML = '$249';
+        document.querySelector(
+          '.lav-count__item:nth-child(2) .lav-count__price'
+        ).innerHTML = '$199<sup>20</sup>';
+        document.querySelector(
+          '.lav-count__item:nth-child(3) .lav-count__price'
+        ).innerHTML = '$186<sup>75</sup>';
+        document.querySelector('.lav-jumb__btn .btn-text').innerText =
+          'Buy $249';
+        document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+          'Try it $249';
+        document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+          'Buy $249';
+      }
+      return false;
+    }
+
+    if (
+      location.href.includes('com/uk') &&
+      !location.href.includes('com/uk-')
+    ) {
+      let htmlDelivery = `
+        <div class="tooltip_free text-center mb-2">
+          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+            <img height='24' src="${settings.dir}/img/flags-gb.png" alt="">
+          </div>
+          <p> Free for United Kingdom: <div class="fw-bold d-block">1 to 3 working days</div></p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+          <img class="mr-2" src="${settings.dir}/img/delivery-methods2.png" />
+        </div>
+        <p class="">For any orders from the UK, the parcels are shipped from Amazon's warehouses located in the UK with Amazon's selected carrier. Before delivering your order, the carrier will send you a SMS or Email, informing you of the day it will be delivered. You have the option of delaying delivery for up to 3 days. If you do not reply, the delivery date will be that proposed by the transporter.</p>
+      `;
+      document.querySelector('.lav-test__second .tooltip-item').innerHTML =
+        htmlDelivery;
+      for (let item of document.querySelectorAll(
+        '.lav-trial__btn-box .tooltip-item'
+      )) {
+        item.innerHTML = htmlDelivery;
+      }
+
+      document.querySelector(
+        '.lav-count__item:first-child .lav-count__price'
+      ).innerHTML = '£169';
+      document.querySelector(
+        '.lav-count__item:nth-child(2) .lav-count__price'
+      ).innerHTML = '£135<sup>20</sup>';
+      document.querySelector(
+        '.lav-count__item:nth-child(3) .lav-count__price'
+      ).innerHTML = '£126<sup>75</sup>';
+      document.querySelector('.lav-jumb__btn .btn-text').innerText = 'Buy £169';
+      document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+        'Try it £169';
+      document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+        'Buy £169';
+      return false;
+    }
+
+    if (
+      location.href.includes('com/fr') &&
+      !location.href.includes('com/fr-')
+    ) {
+      let htmlDelivery = `
+        <div class="tooltip_free text-center mb-2">
+          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+            <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+          </div>
+          <p> Livraison gratuite en France: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+          <img class="mr-2" src="${settings.dir}/img/delivery-methods2.png" />
+        </div>
+        <p class="">Nous travaillons le plus souvent avec Colissimo. Avant de vous livrer votre colis, le transporteur vous enverra un email avec un lien vous permettant de suivre le colis.</p>
+      `;
+
+      document.querySelector('.lav-test__second .tooltip-item').innerHTML =
+        htmlDelivery;
+      for (let item of document.querySelectorAll(
+        '.lav-trial__btn-box .tooltip-item'
+      )) {
+        item.innerHTML = htmlDelivery;
+      }
+
+      document.querySelector(
+        '.lav-count__item:first-child .lav-count__price'
+      ).innerHTML = '229€';
+      document.querySelector(
+        '.lav-count__item:nth-child(2) .lav-count__price'
+      ).innerHTML = '183<sup>20</sup>€';
+      document.querySelector(
+        '.lav-count__item:nth-child(3) .lav-count__price'
+      ).innerHTML = '171<sup>75</sup>€';
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat 229€';
+      document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+        'Essayez-la pour it 229€';
+      document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+        'Achat 229€';
+
+      document
+        .querySelector('.lav-jumb__slider-wrap')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<div class='lav-fabric'><img height='15' src="${settings.dir}/img/flags-be.png" alt=""> Fabriqué en Belgique</div>`
+        );
+      return false;
+    }
+
+    if (location.href.includes('com/fr-be')) {
+      let htmlDelivery = `
+        <div class="tooltip_free text-center mb-2">
+          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+            <img height='24' src="${settings.dir}/img/flags-be.png" alt="">
+          </div>
+          <p> Livraison gratuite en Belgique: <div class="fw-bold d-block">1 à 3 jours ouvrables</d></p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+          <img class="mr-2" src="${settings.dir}/img/delivery-methods2.png" />
+        </div>
+        <p class="">Nous travaillons le plus souvent avec Bpost. Avant de vous livrer votre colis, le transporteur vous enverra un email avec un lien vous permettant de suivre le colis.</p>
+      `;
+
+      document.querySelector('.lav-test__second .tooltip-item').innerHTML =
+        htmlDelivery;
+      for (let item of document.querySelectorAll(
+        '.lav-trial__btn-box .tooltip-item'
+      )) {
+        item.innerHTML = htmlDelivery;
+      }
+
+      document.querySelector(
+        '.lav-count__item:first-child .lav-count__price'
+      ).innerHTML = '229€';
+      document.querySelector(
+        '.lav-count__item:nth-child(2) .lav-count__price'
+      ).innerHTML = '183<sup>20</sup>€';
+      document.querySelector(
+        '.lav-count__item:nth-child(3) .lav-count__price'
+      ).innerHTML = '171<sup>75</sup>€';
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat 229€';
+      document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+        'Essayez-la pour it 229€';
+      document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+        'Achat 229€';
+
+      document
+        .querySelector('.lav-jumb__slider-wrap')
+        .insertAdjacentHTML(
+          'afterbegin',
+          `<div class='lav-fabric'><img height='15' src="${settings.dir}/img/flags-be.png" alt=""> Fabriqué en Belgique</div>`
+        );
+      return false;
+    }
+
+    if (location.href.includes('com/fr-ca')) {
+      let htmlDelivery = `
+        <div class="tooltip_free text-center mb-2">
+          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
+            <img height='24' src="${settings.dir}/img/flags.png" alt="">
+          </div>
+          <p> Pour les États-Unis et le Canada: <div class="fw-bold d-block">3 à 5 jours ouvrables</div></p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
+          <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
+        </div>
+        <p class="">Nous travaillons le plus souvent avec la logistique Fulfilled-by-Amazon (FBA) qui dispose d'entrepôts au Canada. Nous utilisons généralement le transporteur Purolator pour envoyer les colis. Avant de livrer votre colis, le transporteur vous envoie un email vous avertissant du jour de son passage.</p>
+      `;
+
+      document.querySelector('.lav-test__second .tooltip-item').innerHTML =
+        htmlDelivery;
+      for (let item of document.querySelectorAll(
+        '.lav-trial__btn-box .tooltip-item'
+      )) {
+        item.innerHTML = htmlDelivery;
+      }
+
+      document.querySelector(
+        '.lav-count__item:first-child .lav-count__price'
+      ).innerHTML = '$249';
+      document.querySelector(
+        '.lav-count__item:nth-child(2) .lav-count__price'
+      ).innerHTML = '$199<sup>20</sup>';
+      document.querySelector(
+        '.lav-count__item:nth-child(3) .lav-count__price'
+      ).innerHTML = '$186<sup>75</sup>';
+      document.querySelector('.lav-jumb__btn .btn-text').innerText =
+        'Achat $249';
+      document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+        'Essayez-la pour it $249';
+      document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+        'Achat $249';
+      return false;
+    }
+  }
 
   function handleJumb() {
     for (let item of document.querySelectorAll('.lav-count__item')) {
@@ -4974,14 +6666,25 @@ function initPdp() {
           .classList.remove('active');
         this.classList.add('active');
 
-        document.querySelector('.lav-jumb__btn .btn-text').innerHTML =
-          'Buy ' + price;
+        if (detectLang() == 'fr') {
+          document.querySelector('.lav-jumb__btn .btn-text').innerHTML =
+            'Achat ' + price;
 
-        document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
-          'Buy ' + price;
+          document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+            'Achat ' + price;
 
-        document.querySelector('.lav-trial__btn .btn-text').innerHTML =
-          'Try it ' + price;
+          document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+            'Essayez-la pour ' + price;
+        } else {
+          document.querySelector('.lav-jumb__btn .btn-text').innerHTML =
+            'Buy ' + price;
+
+          document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
+            'Buy ' + price;
+
+          document.querySelector('.lav-trial__btn .btn-text').innerHTML =
+            'Try it ' + price;
+        }
       });
     }
 
@@ -5015,7 +6718,6 @@ function initPdp() {
             'Click on button',
             'Try it ' + price
           );
-          // gaEvent('Click on button. Try it $199', 'Try it $199');
         }
         location.href =
           location.href.split('/luminette')[0] + '/order?product=4';
@@ -5090,17 +6792,34 @@ function initPdp() {
       .querySelector('.section-how-it-works')
       .classList.add('lav-observe');
 
-    document.querySelector(
-      '.lum-page .section-how-it-works .main-content .column .title'
-    ).innerHTML = 'The Science <br /> Behind Luminette®';
+    if (detectLang() == 'fr') {
+      document.querySelector(
+        '.lum-page .section-how-it-works .main-content .column .title'
+      ).innerHTML = 'La science derrière la Luminette';
+    } else {
+      document.querySelector(
+        '.lum-page .section-how-it-works .main-content .column .title'
+      ).innerHTML = 'The Science <br /> Behind Luminette®';
+    }
   }
 
   function initReserch() {
     document.querySelector('.section-studies').classList.add('lav-observe');
-    document.querySelector(
-      '.lum-page .section-studies .studies-component .heading-wrapper .title'
-    ).innerHTML =
-      '4 years of <br/> research <br/> at the <strong>University <br/> of Liege</strong>';
+
+    if (detectLang() == 'fr') {
+      document.querySelector(
+        '.lum-page .section-studies .studies-component .heading-wrapper .title'
+      ).innerHTML = `4 ans de recherche à <strong>l'Université de Liège</strong>`;
+
+      document.querySelector(
+        '.studies-component .wrapper-show-more .btn-show-more .btn-text'
+      ).innerText = 'Afficher plus';
+    } else {
+      document.querySelector(
+        '.lum-page .section-studies .studies-component .heading-wrapper .title'
+      ).innerHTML =
+        '4 years of <br/> research <br/> at the <strong>University <br/> of Liege</strong>';
+    }
 
     document
       .querySelector('.studies-component .study-item:nth-child(3)')
@@ -5893,10 +7612,20 @@ function initObserverCheckout() {
 }
 
 function initTips() {
+  document.addEventListener('click', function (e) {
+    if (
+      window.innerWidth < 768 &&
+      document.querySelector('.lav-tip.active') &&
+      !e.target.closest('.lav-protect__tip') &&
+      !e.target.classList.contains('lav-protect__tip')
+    ) {
+      document.querySelector('.lav-tip.active').classList.remove('active');
+    }
+  });
   for (let tip of document.querySelectorAll('.lav-tip')) {
     tip.addEventListener('click', function () {
       if (window.innerWidth < 768) {
-        this.classList.toggle('active');
+        this.classList.add('active');
       }
     });
   }
@@ -6022,6 +7751,71 @@ function initCheckout() {
       </div>
     `;
 
+    if (detectLang() == 'fr') {
+      el = `
+      <div class='lav-path'>
+        <span class='lav-path__active'>Coordonnées et adresse de livraison</span>
+        <span>&nbsp;/ Paiement</span>
+      </div>
+
+      <div class='lav-labels lav-observe'>
+        <div class='lav-labels__item'>
+          <img src='${settings.dir}/img/icon-box.svg' />
+          Livraison gratuite
+        </div>
+        <div class='lav-labels__item'>
+          <img src='${settings.dir}/img/icon-guranteed.svg' />
+          Garantie de remboursement à 100%
+        </div>
+      </div>
+
+      <div class='lav-plate lav-jumb lav-observe'>
+        <div class='lav-product'>
+          <div class='lav-title lav-product__title'>Votre commande</div>
+          <div class='lav-product__info'>
+            <div class='lav-product__image'>
+            
+            </div>
+            <div class='lav-product__count'>
+              <div class='lav-product__count-btn lav-product__count-minus lav-disable'>
+                <svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0.71875" y="0.0625" width="13.5625" height="1.875" rx="0.9375" fill="white"/>
+                </svg>
+              </div>
+              <div class='lav-product__count-value'>1</div>
+              <div class='lav-product__count-btn lav-product__count-plus'>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect y="6" width="14" height="2" rx="1" fill="white"/>
+                  <rect x="6" y="14" width="14" height="2" rx="1" transform="rotate(-90 6 14)" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class='lav-product__price'></div>
+          </div>
+        </div>
+        <div class='lav-protect'>
+          <div class='lav-protect__head'>
+            <div class='lav-title lav-protect__title'>Protégez votre Luminette</div>
+            <div class='lav-protect__tip lav-tip'>
+              <div class='lav-tip__value'>Qu'est-ce qui est compris&nbsp;? <img src='${settings.dir}/img/icon-info.svg' /></div>
+              <div class='lav-tip__body'>
+                <p>
+                  Votre achat de Luminette est garanti pendant 2 ans contre les défauts de fabrication.
+                </p>
+
+                <p>
+                  Optez pour une protection maximale en commandant l'extension de garantie qui couvre votre Luminette pendant 4 ans.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class='lav-protect__body'>
+          </div>
+        </div>
+      </div>
+      `;
+    }
+
     if (document.querySelector('#scroll-spy-item-1')) {
       document.querySelector('#scroll-spy-item-1').classList.add('lav-observe');
       document.querySelector('#scroll-spy-item-2').classList.add('lav-observe');
@@ -6069,9 +7863,14 @@ function initCheckout() {
           .innerText.toLowerCase()
           .includes('extended')
       ) {
-        itemCloneEl.querySelector('.warranty-description .title').innerText =
-          item.querySelector('.warranty-description .type').innerText +
-          ' warranty';
+        if (detectLang() == 'fr') {
+          itemCloneEl.querySelector('.warranty-description .title').innerText =
+            item.querySelector('.warranty-description .type').innerText;
+        } else {
+          itemCloneEl.querySelector('.warranty-description .title').innerText =
+            item.querySelector('.warranty-description .type').innerText +
+            ' warranty';
+        }
       } else {
         itemCloneEl.querySelector('.warranty-description .title').innerText =
           item.querySelector('.warranty-description .type').innerText;
@@ -6222,17 +8021,6 @@ function initCheckout() {
             .innerText.replace('$', '')
         );
 
-      console.log(currentPrice, clearPrice);
-
-      // console.log(
-      //   document
-      //     .querySelector('.total-price')
-      //     .innerText.trim()
-      //     .split('\n')[1]
-      //     .trim(),
-      //   clearPrice
-      // );
-
       document.querySelector(
         '.lav-summary__item:first-child .lav-summary__price'
       ).innerHTML = document
@@ -6263,6 +8051,8 @@ function initCheckout() {
       //   ).innerHTML;
     }
 
+    let warrantyText = detectLang() == 'fr' ? ', ' : ' warranty, ';
+
     document.querySelector(
       '.lav-summary__item:nth-child(2) .lav-summary__info'
     ).innerHTML =
@@ -6274,7 +8064,7 @@ function initCheckout() {
         .querySelector('.product-warranty .warranty--option.active .type')
         .innerText.trim()
         .substr(1) +
-      ' warranty, ' +
+      warrantyText +
       '<span>' +
       document.querySelector('.lav-protect__body .active .type').innerText +
       '</span>';
@@ -6423,9 +8213,15 @@ function initCheckout() {
   }
 
   function handleSummary() {
-    document.querySelector(
-      '.order-pages.order-details .details-block .btn-send-form .btn-text'
-    ).innerText = 'Continue';
+    if (detectLang() == 'fr') {
+      document.querySelector(
+        '.order-pages.order-details .details-block .btn-send-form .btn-text'
+      ).innerText = 'Continuer';
+    } else {
+      document.querySelector(
+        '.order-pages.order-details .details-block .btn-send-form .btn-text'
+      ).innerText = 'Continue';
+    }
 
     document
       .querySelector('.order-pages.order-details .details-block .btn-send-form')
@@ -6451,11 +8247,39 @@ function initCheckout() {
       </div>
 
       <div class='lav-accept'>
-        <span></span> I accept the <a href='#'>General Sales Conditions.</a>
+        <span class='lav-accept__check'></span> <span>I accept the <a href='#'>General Sales Conditions.</a></span>
       </div>
 
       <div class="error-block lav-accept-error">Please accept the General sales conditions</div>
     `;
+
+    if (detectLang() === 'fr') {
+      summaryEl = `
+        <div class='lav-summary'>
+          <div class='lav-summary__list'>
+            <div class='lav-summary__item'>
+              <div class='lav-summary__info'>1 Luminette</div>
+              <div class='lav-summary__price'>$199</div>
+            </div>
+            <div class='lav-summary__item'>
+              <div class='lav-summary__info'>Extended warranty, <span>4 years</span></div>
+              <div class='lav-summary__price'>$19</div>
+            </div>
+            <div class='lav-summary__item lav-summary__final'>
+              <div class='lav-summary__info'>Total</div>
+              <div class='lav-summary__price'>$218</div>
+              <div class='lav-summary__exlude'></div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-accept'>
+          <span class='lav-accept__check'></span> <span>J'accepte les <a href='#'>conditions générales de vente.</a></span>
+        </div>
+
+        <div class="error-block lav-accept-error">Veuillez accepter les conditions générales de vente</div>
+      `;
+    }
 
     if (window.innerWidth < 768) {
       document
@@ -6527,12 +8351,22 @@ function initCheckout() {
         );
     }
 
-    document
-      .querySelector('.lav-coupon')
-      .insertAdjacentHTML(
-        'afterbegin',
-        ' <div class="lav-coupon-text">Enter coupon code</div>'
-      );
+    // TODO
+    if (detectLang() == 'fr') {
+      document
+        .querySelector('.lav-coupon')
+        .insertAdjacentHTML(
+          'afterbegin',
+          ' <div class="lav-coupon-text">Enter coupon code</div>'
+        );
+    } else {
+      document
+        .querySelector('.lav-coupon')
+        .insertAdjacentHTML(
+          'afterbegin',
+          ' <div class="lav-coupon-text">Enter coupon code</div>'
+        );
+    }
 
     // let cloneCoupon = document
     //   .querySelector('.order-coupon__wrapper')
@@ -6636,6 +8470,15 @@ function initCheckoutDetails() {
     </div>
   `;
 
+  if (detectLang() == 'fr') {
+    shippingEl = `
+    <div class='lav-delivery-summary'>
+      <img src='${settings.dir}/img/icon-box.svg' />
+      Livraison gratuite
+    </div>
+    `;
+  }
+
   document.querySelector('.order-info').classList.add('lav-observe');
 
   document.querySelector('.payment-methods').classList.add('lav-observe');
@@ -6658,8 +8501,8 @@ function initCheckoutDetails() {
   function handleTop() {
     let el = `
       <div class='lav-path'>
-        <span class='lav-path__active'>Contact details and delivery address</span>
-        <span>&nbsp;/ Payment</span>
+        <span>Contact details and delivery address</span>
+        <span class='lav-path__active'>&nbsp;/ Payment</span>
       </div>
 
       <div class='lav-labels'>
@@ -6674,6 +8517,26 @@ function initCheckoutDetails() {
       </div>
     `;
 
+    if (detectLang() == 'fr') {
+      el = `
+        <div class='lav-path'>
+          <span>Contact details and delivery address</span>
+          <span class='lav-path__active'>&nbsp;/ Payment</span>
+        </div>
+
+        <div class='lav-labels lav-observe'>
+          <div class='lav-labels__item'>
+            <img src='${settings.dir}/img/icon-box.svg' />
+            Livraison gratuite
+          </div>
+          <div class='lav-labels__item'>
+            <img src='${settings.dir}/img/icon-guranteed.svg' />
+            Garantie de remboursement à 100%
+          </div>
+        </div>
+      `;
+    }
+
     document
       .querySelector('.component-order-steps')
       .insertAdjacentHTML('afterend', el);
@@ -6687,14 +8550,15 @@ function initCheckoutDetails() {
       .querySelector('.order-pages.order-summary .order-info .columns')
       .classList.add('lav-brief');
 
+    // todo
     let el = `
-    <div class='lav-toggler-info__wrap'>
-      <div class='lav-toggler-info'>
-        <span>More details</span>
-        <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.26287 6C5.07423 6 4.88561 5.92797 4.74178 5.78422L0.215928 1.25832C-0.0719759 0.970413 -0.0719759 0.503627 0.215928 0.21584C0.503715 -0.0719468 0.970408 -0.0719468 1.25833 0.21584L5.26287 4.22061L9.26743 0.21598C9.55533 -0.0718069 10.022 -0.0718069 10.3097 0.21598C10.5978 0.503767 10.5978 0.970553 10.3097 1.25846L5.78396 5.78436C5.64006 5.92814 5.45144 6 5.26287 6Z" fill="#517193"/>
-        </svg>
-      </div>
+      <div class='lav-toggler-info__wrap'>
+        <div class='lav-toggler-info'>
+          <span>More details</span>
+          <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.26287 6C5.07423 6 4.88561 5.92797 4.74178 5.78422L0.215928 1.25832C-0.0719759 0.970413 -0.0719759 0.503627 0.215928 0.21584C0.503715 -0.0719468 0.970408 -0.0719468 1.25833 0.21584L5.26287 4.22061L9.26743 0.21598C9.55533 -0.0718069 10.022 -0.0718069 10.3097 0.21598C10.5978 0.503767 10.5978 0.970553 10.3097 1.25846L5.78396 5.78436C5.64006 5.92814 5.45144 6 5.26287 6Z" fill="#517193"/>
+          </svg>
+        </div>
       </div>
     `;
 
