@@ -1782,6 +1782,9 @@ const stylePDP = `
     line-height: 1.5;
     color: #517193;
   }
+  .lav-can__item:last-child:before {
+    display: none;
+  }
   .lav-can__item + .lav-can__item {
     margin-top: 12px;
   }
@@ -4054,7 +4057,7 @@ function initPdp() {
             <div class='lav-can__item'>Watch television</div>
             <div class='lav-can__item'>Work on your computer</div>
             <div class='lav-can__item'>Perform light exercise</div>
-            <div class='lav-can__item'>e.g. walking, using an indoor exercise bicycle, yoga</div>
+            <div class='lav-can__item'>(e.g. walking, using an indoor exercise bicycle, yoga)</div>
           </div>
         </div>
       </div>
