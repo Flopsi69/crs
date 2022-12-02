@@ -1900,6 +1900,9 @@ const stylePDP = `
     transition: 0.35s;
     cursor: default;
   }
+  .lav-trial__btn.btn-primary {
+    cursor: pointer;
+  }
   .lav-trial__btn .tooltip-dropdown {
     top: 35px;
     padding-top: 10px;
@@ -5049,7 +5052,7 @@ function initPdp() {
           </div>
         </div>
         <div class='lav-jumb__info'>
-          <div class='lav-jumb__title'>Lunettes de luminothérapie Luminette&nbsp;3</div>
+          <div class='lav-jumb__title'>Lunettes de luminothérapie&nbsp;Luminette&nbsp;3</div>
           <div class='lav-jumb__feedbacks'>
             <div class='lav-jumb__feedbacks-star'>
               <img src='${settings.dir}/img/stars.svg' />
@@ -8107,6 +8110,8 @@ function initCheckout() {
           document
             .querySelector('.product-warranty .warranty--option.active .price')
             .innerText.replace('$', '')
+            .replace('£', '')
+            .replace('€', '')
         );
 
       document.querySelector(
