@@ -1056,6 +1056,9 @@ const stylePDP = `
   .section-while-wearing, .pin-spacer {
     display: none!important;
   }
+  .lav-trial__btn-mob {
+    display: none;
+  }
   .block-how-to-use, .section-how-it-works .btn-download-doc, .section-safety, .section-main  {
     display: none;
   }
@@ -3028,11 +3031,19 @@ const stylePDP = `
       min-height: auto;
     }
   }
+  @media (max-width: 450px) {
+    .lav-trial__btn-mob {
+      display: block;
+    }
+  }
   @media (max-width: 768px) {
     .lav-france .lav-jumb__effects-title {
       padding-left: 15px;
       padding-right: 15px;
       line-height: 1.15;
+    }
+    .footer {
+      padding-bottom: 120px;
     }
     .lav-alma {
       justify-content: center;
@@ -4083,7 +4094,8 @@ function initPdp() {
               <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-refresh.svg' />
                 <span>
-                  30-day trial&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                  30-day <br class='lav-trial__btn-mob'/>trial
+                  <span class="tooltip d-inline-block d-sm-none">
                     <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                     <div class="tooltip-dropdown text-left fs-16">
                       <div class="tooltip-item">
@@ -4114,7 +4126,8 @@ function initPdp() {
               <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-box-2.svg' />
                 <span>
-                  Free shipping&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                  Free <br class='lav-trial__btn-mob'/>shippin
+                  <span class="tooltip d-inline-block d-sm-none">
                     <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                     <div class="tooltip-dropdown text-left fs-16">
                       <div class="tooltip-item">
