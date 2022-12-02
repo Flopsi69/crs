@@ -3045,6 +3045,9 @@ const stylePDP = `
       padding-right: 15px;
       line-height: 1.15;
     }
+    .lav-france .lav-test__third .days-test_head {
+      align-items: center!important;
+    }
     .lav-reviews__play {
       width: 100%;
       height: 100%;
