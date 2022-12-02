@@ -8444,13 +8444,12 @@ function initCheckout() {
         );
     }
 
-    // TODO
     if (detectLang() == 'fr') {
       document
         .querySelector('.lav-coupon')
         .insertAdjacentHTML(
           'afterbegin',
-          ' <div class="lav-coupon-text">Enter coupon code</div>'
+          ' <div class="lav-coupon-text">Entrez le code du coupon</div>'
         );
     } else {
       document
@@ -8643,7 +8642,6 @@ function initCheckoutDetails() {
       .querySelector('.order-pages.order-summary .order-info .columns')
       .classList.add('lav-brief');
 
-    // todo
     let el = `
       <div class='lav-toggler-info__wrap'>
         <div class='lav-toggler-info'>
@@ -8654,6 +8652,19 @@ function initCheckoutDetails() {
         </div>
       </div>
     `;
+
+    if (detectLang() == 'fr') {
+      el = `
+        <div class='lav-toggler-info__wrap'>
+          <div class='lav-toggler-info'>
+            <span>Plus de détails</span>
+            <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.26287 6C5.07423 6 4.88561 5.92797 4.74178 5.78422L0.215928 1.25832C-0.0719759 0.970413 -0.0719759 0.503627 0.215928 0.21584C0.503715 -0.0719468 0.970408 -0.0719468 1.25833 0.21584L5.26287 4.22061L9.26743 0.21598C9.55533 -0.0718069 10.022 -0.0718069 10.3097 0.21598C10.5978 0.503767 10.5978 0.970553 10.3097 1.25846L5.78396 5.78436C5.64006 5.92814 5.45144 6 5.26287 6Z" fill="#517193"/>
+            </svg>
+          </div>
+        </div>
+      `;
+    }
 
     document
       .querySelector('.order-pages.order-summary .order-info .columns')
@@ -8673,7 +8684,11 @@ function initCheckoutDetails() {
             )
             .classList.remove('lav-brief');
           this.classList.add('active');
-          this.querySelector('span').innerText = 'Less details';
+          if (detectLang() == 'fr') {
+            this.querySelector('span').innerText = 'Moins de détails';
+          } else {
+            this.querySelector('span').innerText = 'Less details';
+          }
           gaEvent(
             'exp_new_pdp_checkout_59',
             'More details',
@@ -8686,7 +8701,11 @@ function initCheckoutDetails() {
             .querySelector('.order-pages.order-summary .order-info .columns')
             .classList.add('lav-brief');
           this.classList.remove('active');
-          this.querySelector('span').innerText = 'More details';
+          if (detectLang() == 'fr') {
+            this.querySelector('span').innerText = 'Plus de détails';
+          } else {
+            this.querySelector('span').innerText = 'More details';
+          }
           gaEvent(
             'exp_new_pdp_checkout_60',
             'Less details',
