@@ -3042,6 +3042,13 @@ const stylePDP = `
       padding-right: 15px;
       line-height: 1.15;
     }
+    .lav-reviews__play {
+      width: 100%;
+      height: 100%;
+    }
+    .lav-reviews__play-btn {
+      pointer-events: none;
+    }
     .footer {
       padding-bottom: 120px;
     }
