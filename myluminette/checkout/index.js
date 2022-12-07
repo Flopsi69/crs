@@ -4142,7 +4142,7 @@ function initPdp() {
               <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
                 <img src='${settings.dir}/img/icon-box-2.svg' />
                 <span>
-                  Free <br class='lav-trial__btn-mob'/>shippin
+                  Free <br class='lav-trial__btn-mob'/>shipping
                   <span class="tooltip d-inline-block d-sm-none">
                     <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                     <div class="tooltip-dropdown text-left fs-16">
