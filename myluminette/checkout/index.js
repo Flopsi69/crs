@@ -3082,7 +3082,7 @@ const stylePDP = `
       top: 37px;
       right: 0;
       margin: auto;
-      z-index: 19;
+      z-index: 1;
     }
     .lav-jumb__mob {
       display: block;
