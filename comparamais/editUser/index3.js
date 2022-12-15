@@ -1,13 +1,5 @@
 console.log('initExp');
 
-if (location.search !== '?experiement=HL-Simulator-Sell_the_call-Original') {
-  window.history.replaceState(
-    null,
-    null,
-    '?experiement=HL-Simulator-Sell_the_call-Original'
-  );
-}
-
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/comparamais/editUser',
