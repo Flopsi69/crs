@@ -951,6 +951,12 @@ function initTopInfo() {
     document.querySelectorAll('#simulation-results .card').forEach((card) => {
       card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
     });
+
+    setTimeout(() => {
+      document.querySelectorAll('#simulation-results .card').forEach((card) => {
+        card.querySelector('.card__apply a').innerText = 'Como fazer o pedido';
+      });
+    }, 1000);
   }
 
   if (window.innerWidth < 768 && document.querySelector('#results')) {
