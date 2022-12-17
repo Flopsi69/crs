@@ -343,6 +343,9 @@ const styles = `
     display: flex;
     border-bottom: 2px solid #E3E3E3;
   }
+  .lav-compare__row + .lav-compare__row img {
+    width: 20px;
+  }
   .lav-compare__col {
     flex: 1;
     padding: 10px 45px;
