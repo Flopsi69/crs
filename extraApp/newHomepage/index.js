@@ -373,13 +373,13 @@ const styles = `
   .lav-compare__btn-wrap {
     text-align: center;
   }
-  .lav-compare__debit {
+  .lav-compare__extra {
     padding: 65px 45px 55px;
   }
-  .lav-compare__debit-img {
+  .lav-compare__extra-img {
     max-width: 130px;
   }
-  .lav-compare__debit-title {
+  .lav-compare__extra-title {
     font-weight: 500;
     font-size: 32px;
     line-height: 1.2;
@@ -388,6 +388,39 @@ const styles = `
     margin-top: 25px;
   }
 
+  .lav-compare__choose {
+    padding: 65px 45px 55px;
+  }
+  .lav-compare__choose-img {
+    max-width: 120px;
+  }
+  .lav-compare__select {
+    width: 212px;
+  }
+  .lav-compare__select-value {
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    border: 2px solid #ADADAD;
+    border-radius: 4px;
+    background: color;
+    padding: 7px 15px;
+  }
+  .lav-compare__select-value:before {
+    content: '';
+    positioin: absolute;
+    right: 15px;
+    width: 7px;
+    height: 4px;
+    background: url(${settings.dir}/img/iconChevron.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-compare__choose {}
+  .lav-compare__choose {}
+  .lav-compare__choose {}
+  .lav-compare__choose {}
   @media(max-width: 768px) {
 
   }
@@ -620,11 +653,21 @@ function init() {
         <div class='lav-compare__table'>
           <div class='lav-compare__row'>
             <div class='lav-compare__col'></div>
-            <div class='lav-compare__col lav-compare__debit'>
-              <img class='lav-compare__debit-img' src='${settings.dir}/img/compare-debit.png' />
-              <div class='lav-compare__debit-title'>Extra Debit Card</div>
+            <div class='lav-compare__col lav-compare__extra'>
+              <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
+              <div class='lav-compare__extra-title'>Extra Debit Card</div>
             </div>
-            <div class='lav-compare__col'>Debit Card</div>
+            <div class='lav-compare__col lav-compare__choose'>
+              <img class='lav-compare__choose-img' src='${settings.dir}/img/compare-debit.png' />
+              <div class='lav-compare__select'>
+                <div class='lav-compare__select-value'>Debit Card</div>
+                <div class='lav-compare__select-list'>
+                  <div class='lav-compare__select-item'>Value 1</div>
+                  <div class='lav-compare__select-item'>Value 2</div>
+                  <div class='lav-compare__select-item'>Value 3</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class='lav-compare__row'>
