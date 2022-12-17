@@ -84,27 +84,35 @@ const styles = `
     margin: auto;
   }
 
+  .lav-green {
+    color: #36F8A3;
+  }
+
   .lav-btn {
     outline: 0;
     transition: 0.3s;
+    background: none;
     border: none;
     padding: 14px 24px;
     font-weight: 500;
+    min-height: 50px;
     font-size: 14px;
     line-height: 15px;
     text-align: center;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #000;
+    border-radius: 8px;
+    max-width: 300px;
+    width: 100%;
   }
   .lav-btn_green {
     background: #36F8A3;
-    border-radius: 8px;
   }
   .lav-btn_green:hover {
   }
   .lav-btn_trans {
-
+    border: 2px solid #000000;
   }
 
   .lav-dark {
@@ -148,7 +156,6 @@ const styles = `
     letter-spacing: -0.0375em;
     text-transform: uppercase;
   }
-  .lav-jumb {}
   .lav-jumb__info {
     width: 302px;
   }
@@ -268,10 +275,115 @@ const styles = `
     gap: 14px;
     margin-top: 60px;
   }
-  .lav-works {}
-  .lav-works {}
-  .lav-works {}
-  .lav-works {}
+  .lav-works__image {
+    line-height: 0;
+    border-radius: 8px;
+  }
+  .lav-works__info {
+    margin-top: 40px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .lav-works__info-num {
+    margin-right: 20px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 26px;
+    letter-spacing: -0.025em;
+  }
+  .lav-works__info-inner {
+    flex-grow: 1;
+  }
+  .lav-works__info-title {
+    font-size: 24px;
+    padding-right: 20px;
+    line-height: 30px;
+    letter-spacing: -0.025em;
+  }
+  .lav-works__info-descr {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #989898;
+  }
+  .lav-works__bottom {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .lav-works__btn {
+    max-width: 300px;
+    width: 100%;
+  }
+  .lav-works__caption {
+    margin-top: 40px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    color: #989898;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lav-compare {
+    padding: 150px 0;
+  }
+  .lav-compare__title {
+    text-align: center;
+  }
+  .lav-compare__title img {
+    width: 86px;
+  }
+  .lav-compare__table {
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  .lav-compare__row {
+    display: flex;
+    border-bottom: 2px solid #E3E3E3;
+  }
+  .lav-compare__col {
+    flex: 1;
+    padding: 10px 45px;
+    min-height: 64px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .lav-compare__col:nth-child(2), .lav-compare__col:nth-child(3) {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .lav-compare__row:first-child .lav-compare__col:nth-child(2) {
+    border-radius: 20px 20px 0px 0px;
+    border-top: 2px solid #36F8A3;
+  }
+  .lav-compare__row:last-child .lav-compare__col:nth-child(2) {
+    border-bottom: 2px solid #36F8A3;
+  }
+  .lav-compare__col:nth-child(2) {
+    border-left: 2px solid #36F8A3;
+    border-right: 2px solid #36F8A3;
+  }
+  .lav-compare__btn-wrap {
+    text-align: center;
+  }
+  .lav-compare__debit {
+    padding: 65px 45px 55px;
+  }
+  .lav-compare__debit-img {
+    max-width: 130px;
+  }
+  .lav-compare__debit-title {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: #000000;
+    margin-top: 25px;
+  }
 
   @media(max-width: 768px) {
 
@@ -439,30 +551,32 @@ function init() {
 
           <div class='lav-works__slide'>
             <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works1.png' />
+              <img src='${settings.dir}/img/works2.png' />
             </div>
 
             <div class='lav-works__info'>
               <div class='lav-works__info-num'>2.</div>
               <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Sign up and connect your bank account</div>
+                <div class='lav-works__info-title'>Download the app to get your Extra Debit Card</div>
                 <div class='lav-works__info-descr'>
-                Extra connects directly to your existing bank account. We connect with more than <span class='lav-green'>10,000 banks.</span></div>
+                  After approval, you will receive your Extra  Debit Card with a spend power based on your bank balance and other factors—no credit checks required.
+                </div>
               </div>
             </div>
           </div>
 
           <div class='lav-works__slide'>
             <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works2.png' />
+              <img src='${settings.dir}/img/works3.png' />
             </div>
 
             <div class='lav-works__info'>
               <div class='lav-works__info-num'>3.</div>
               <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Sign up and connect your bank account</div>
+                <div class='lav-works__info-title'>Use your Extra Debit Card for daily purchases</div>
                 <div class='lav-works__info-descr'>
-                Extra connects directly to your existing bank account. We connect with more than <span class='lav-green'>10,000 banks.</span></div>
+                  When you swipe your Extra Debit Card, we spot you for that purchase and pay ourselves back the next business day.  
+                </div>
               </div>
             </div>
           </div>
@@ -475,106 +589,116 @@ function init() {
             <div class='lav-works__info'>
               <div class='lav-works__info-num'>4.</div>
               <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Sign up and connect your bank account</div>
+                <div class='lav-works__info-title'>Build your credit each month</div>
                 <div class='lav-works__info-descr'>
-                Extra connects directly to your existing bank account. We connect with more than <span class='lav-green'>10,000 banks.</span></div>
+                  At the end of the month, we add up all of your transactions and report them to the bureaus as credit-worthy payments. Unlike regular debit cards, spending with the Extra Card helps build your credit.
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <button class='lav-btn lav-btn_green lav-works__btn'>GET STARTED</button>
+        <div class='lav-works__bottom'>
+          <button class='lav-btn lav-btn_green lav-works__btn'>GET STARTED</button>
 
-        <div class='lav-works__caption'>Impact on your credit score may vary depending on your use.<br/>Extra is required to report both on time and late payments.</div>
+          <div class='lav-works__caption'>Impact on your credit score may vary depending on your use.<br/>Extra is required to report both on time and late payments.</div>
+        </div>
       </div>
     </section>
 
     <section class='lav-compare lav-section'>
-      <div class='lav-compare__title lav-title'>Your debit card should be 
-      <img src='${settings.dir}/img/starsIcon.svg' />
-      Extra
-      <img src='${settings.dir}/img/starsIcon.svg' />
+      <div class='lav-container'>
+        <div class='lav-compare__title lav-title'>Your debit card <br/> should be 
+        <img src='${settings.dir}/img/starsIcon.svg' />
+        Extra
+        <img src='${settings.dir}/img/starsIcon.svg' />
+        </div>
+
+        <div class='lav-compare__table'>
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'></div>
+            <div class='lav-compare__col lav-compare__debit'>
+              <img class='lav-compare__debit-img' src='${settings.dir}/img/compare-debit.png' />
+              <div class='lav-compare__debit-title'>Extra Debit Card</div>
+            </div>
+            <div class='lav-compare__col'>Debit Card</div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>Builds credit history</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>Earns reward points</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>Connects with any bank</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>24/7 premium support</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>No security deposit</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>No credit checks</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row'>
+            <div class='lav-compare__col'>Daily payments</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-compare__btn-wrap'>
+          <button class='lav-btn lav-btn_trans lav-compare__btn'>JOIN NOW</button>
+        </div>
       </div>
-
-      <div class='lav-compare__table'>
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'></div>
-          <div class='lav-compare__col'>Extra Debit Card</div>
-          <div class='lav-compare__col'>Debit Card</div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>Builds credit history</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/noCheckIcon.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>Earns reward points</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/noCheckIcon.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>Connects with any bank</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/noCheckIcon.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>24/7 premium support</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/noCheckIcon.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>No security deposit</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>No credit checks</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/noCheckIcon.svg' />
-          </div>
-        </div>
-
-        <div class='lav-compare__row'>
-          <div class='lav-compare__col'>Daily payments</div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-          <div class='lav-compare__col'>
-            <img src='${settings.dir}/img/checkIconWhite.svg' />
-          </div>
-        </div>
-      </div>
-
-      <button class='lav-btn lav-btn_trans lav-compare__btn'>JOIN NOW</button>
     </section>
 
     <section class='lav-better lav-section lav-dark'>
