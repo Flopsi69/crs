@@ -73,6 +73,17 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  @font-face {
+    font-family: 'NBI PRO';
+    src: url("${settings.dir}/Gilroy/Gilroy-Regular.otf") format("opentype");
+  }
+  @font-face {
+    font-family: "Gilroy";
+    src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
+      url("${settings.dir}/Gilroy/Gilroy-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
   .lav-section {
     padding: 100px 0;
   }
@@ -121,7 +132,6 @@ const styles = `
   }
   .lav-gray {
     background: #FAFAFA;
-    color: #fff;
   }
 
   @media(min-width: 769px) {
@@ -144,6 +154,39 @@ const styles = `
     font-size: 85px;
     line-height: 90px;
     letter-spacing: -0.0175em;
+  }
+
+  .lav-select {
+    width: 212px;
+    margin-top: 40px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lav-select__value {
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    border: 2px solid #ADADAD;
+    border-radius: 4px;
+    padding: 7px 15px;
+    text-align: left;
+  }
+  .lav-select__value:before {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 6px;
+    background: url(${settings.dir}/img/chevronIcon.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-select__list {
+    display: none;
   }
 
   .lav-jumb {
@@ -189,9 +232,6 @@ const styles = `
     margin-top: 20px;
     width: 100%;
   }
-  .lav-jumb {}
-  .lav-jumb {}
-  .lav-jumb {}
   .lav-jumb {}
 
   .lav-partners {
@@ -389,38 +429,67 @@ const styles = `
   }
 
   .lav-compare__choose {
-    padding: 65px 45px 55px;
+    padding: 65px 45px 20px;
   }
   .lav-compare__choose-img {
     max-width: 120px;
   }
-  .lav-compare__select {
-    width: 212px;
+  .lav-better {
+    padding: 150px 0;
   }
-  .lav-compare__select-value {
-    position: relative;
-    font-weight: 400;
+  .lav-better__icon {
+    line-height: 0;
+    margin: 40px auto;
+  }
+  .lav-better__average {
+    margin: 40px auto;
+  }
+  .lav-better__average-title {
+    font-weight: 600;
     font-size: 16px;
-    line-height: 22px;
-    color: #000000;
-    border: 2px solid #ADADAD;
-    border-radius: 4px;
-    background: color;
-    padding: 7px 15px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #989898;
   }
-  .lav-compare__select-value:before {
-    content: '';
-    positioin: absolute;
-    right: 15px;
-    width: 7px;
-    height: 4px;
-    background: url(${settings.dir}/img/iconChevron.svg) center no-repeat;
-    background-size: contain;
+  .lav-better__average-price {
+    margin-top: 10px;
+    color: #888;
+    font-style: normal;
+    font-size: 32px;
+    line-height: 34px;
+    font-weight: 400;
   }
-  .lav-compare__choose {}
-  .lav-compare__choose {}
-  .lav-compare__choose {}
-  .lav-compare__choose {}
+  .lav-better__average-price span {
+    color: #000;
+    font-weight: 600;
+  }
+
+  .lav-scores {
+    display: flex;
+  }
+  .lav-scores__item {
+    max-width: 238px;
+    width: 100%;
+    border-radius: 14px;
+    padding: 22px;
+    background: #F4F4F4;
+    border: 2px solid #D9D9D9;
+  }
+  .lav-scores__item + .lav-scores__item {
+    margin-left: 40px;
+  }
+  .lav-scores__num {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1.04;
+    color: #9A0000;
+  }
+  .lav-scores__score {
+    color: #888;
+  }
+  .lav-scores {}
+
   @media(max-width: 768px) {
 
   }
@@ -658,13 +727,13 @@ function init() {
               <div class='lav-compare__extra-title'>Extra Debit Card</div>
             </div>
             <div class='lav-compare__col lav-compare__choose'>
-              <img class='lav-compare__choose-img' src='${settings.dir}/img/compare-debit.png' />
-              <div class='lav-compare__select'>
-                <div class='lav-compare__select-value'>Debit Card</div>
-                <div class='lav-compare__select-list'>
-                  <div class='lav-compare__select-item'>Value 1</div>
-                  <div class='lav-compare__select-item'>Value 2</div>
-                  <div class='lav-compare__select-item'>Value 3</div>
+              <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
+              <div class='lav-compare__select lav-select'>
+                <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
+                <div class='lav-compare__select-list lav-select__list'>
+                  <div class='lav-compare__select-item lav-select__item'>Value 1</div>
+                  <div class='lav-compare__select-item lav-select__item'>Value 2</div>
+                  <div class='lav-compare__select-item lav-select__item'>Value 3</div>
                 </div>
               </div>
             </div>
@@ -747,9 +816,55 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-better lav-section lav-dark'>
-      <div class='lav-better__title lav-title'>Better credit takes you places</div>
+    <section class='lav-better lav-section lav-gray lav-center'>
+      <div class='lav-container'>
+        <div class='lav-better__title lav-title'>Better credit <br/> takes you places</div>
 
+        <div class='lav-better__icon'>
+          <img src='${settings.dir}/img/carIcon.svg' />
+        </div>
+
+        <div class='lav-better__select lav-select'>
+          <div class='lav-better__select-value lav-select__value'>Debit Card</div>
+          <div class='lav-better__select-list lav-select__list'>
+            <div class='lav-better__select-item lav-select__item'>Value 1</div>
+            <div class='lav-better__select-item lav-select__item'>Value 2</div>
+            <div class='lav-better__select-item lav-select__item'>Value 3</div>
+          </div>
+        </div>
+
+        <div class='lav-better__average'>
+          <div class='lav-better__average-title'>AVERAGE COST OF A VEHICLE*:</div>
+          <div class='lav-better__average-price'><span>$25,000</span> / 72 month loan</div>
+        </div>
+
+
+        <div class='lav-scores'>
+          <div class='lav-scores__item'>
+            <div class='lav-scores__graph'></div>
+            <div class='lav-scores__num'>725</div>
+            <div class='lav-scores__score'>CREDIT SCORE</div>
+            <div class='lav-scores__subtitle'>Total payments: </div>
+            <div class='lav-scores__price'>$28,333</div>
+            <div class='lav-scores__caption'>
+              Interest rate: 4.21% <br/>
+              Total interest paid: $3333
+            </div>
+          </div>
+          
+          <div class='lav-scores__item'>
+            <div class='lav-scores__graph'></div>
+            <div class='lav-scores__num'>600</div>
+            <div class='lav-scores__score'>CREDIT SCORE</div>
+            <div class='lav-scores__subtitle'>Total payments: </div>
+            <div class='lav-scores__price'>$34,566</div>
+            <div class='lav-scores__caption'>
+              Interest rate: 11.33% <br/>
+              Total interest paid: $9566
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   `;
 
@@ -760,5 +875,5 @@ function init() {
 
 function initRatings() {
   document.querySelector('.lav-ratings__stars-caption').innerText =
-    document.querySelector('..hero-notice-stars + div').innerText;
+    document.querySelector('.hero-notice-stars + div').innerText;
 }
