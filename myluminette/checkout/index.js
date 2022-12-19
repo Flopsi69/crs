@@ -71,6 +71,9 @@ const styles = `
     border-color: inherit;
     color: inherit;
   }
+  .header .links-wrapper, .header .additional-block-wrapper, .header+.burger-menu-btn {
+    display: none!important;
+  }
   .lav-coupon .primary-input-wrapper .error-block {
     display: none;
   }
