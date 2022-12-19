@@ -27,7 +27,8 @@ function gaEvent(name = '', desc = '', type = '', loc = '') {
       event_type: type,
       event_loc: loc,
     };
-    console.dir('eventFire', objData.eventAction);
+    console.log('eventFire', objData);
+
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -503,13 +504,15 @@ function init() {
         'Timeline'
       );
     });
+
+  initObserver();
 }
 
 function initObserver() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '0px 0px -70% 0px',
+    rootMargin: '0px 0px -25% 0px',
   };
 
   let isNormal,
@@ -520,6 +523,7 @@ function initObserver() {
     entries.forEach((entry) => {
       // console.log(entry);
       if (entry.isIntersecting) {
+        console.log(entry.target);
         if (
           entry.target.classList.contains('timeline__item-note') &&
           entry.target.classList.contains('active') &&
@@ -557,8 +561,8 @@ function initObserver() {
           );
         }
 
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
+        // entry.target.classList.add('in-view');
+        // observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -566,24 +570,6 @@ function initObserver() {
   for (let section of Array.from(document.querySelectorAll('.lav-observe'))) {
     observer.observe(section);
   }
-
-  let eventType = 'mouseenter';
-  if (window.innerWidth < 1199) {
-    eventType = 'click';
-  }
-
-  let typeName = eventType == 'mouseenter' ? 'Hover' : 'Click';
-
-  document
-    .querySelector('.lav-jumb__effects-title')
-    .addEventListener(eventType, function () {
-      gaEvent(
-        'exp_new_pdp_checkout_20',
-        'Feel beneficial effects in 4 to 6 days',
-        typeName + ' on tooltip',
-        'Title of page'
-      );
-    });
 }
 
 function handleTimeline() {
