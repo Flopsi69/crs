@@ -74,18 +74,43 @@ if (settings.observe) {
 // Styles
 const styles = `
   @font-face {
-    font-family: 'NBI PRO';
-    src: url("${settings.dir}/Gilroy/Gilroy-Regular.otf") format("opentype");
-  }
-  @font-face {
-    font-family: "Gilroy";
-    src: url("${settings.dir}/Gilroy/Gilroy-Regular.woff") format("woff"),
-      url("${settings.dir}/Gilroy/Gilroy-Regular.ttf") format("truetype");
+    font-family: "nba";
+    src: url("${settings.dir}/fonts/nba.woff") format("woff");
     font-weight: normal;
     font-style: normal;
   }
+  @font-face {
+    font-family: "nba";
+    src: url("${settings.dir}/fonts/nba-med.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "nba";
+    src: url("${settings.dir}/fonts/nba-sb.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "nbi Pro";
+    src: url("${settings.dir}/fonts/nbiPro-med.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "nbi Pro";
+    src: url("${settings.dir}/fonts/nbiPro.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .section--footer-cta {
+    display: none;
+  }
   .lav-section {
     padding: 100px 0;
+    font-weight: 400;
+    font-family: 'nba';
   }
 
   .lav-container {
@@ -100,6 +125,7 @@ const styles = `
   }
 
   .lav-btn {
+    font-family: 'nba';
     outline: 0;
     transition: 0.3s;
     background: none;
@@ -150,6 +176,7 @@ const styles = `
   }
 
   .lav-title {
+    font-family: "nbi Pro";
     font-weight: 500;
     font-size: 85px;
     line-height: 90px;
@@ -164,6 +191,7 @@ const styles = `
     margin-right: auto;
   }
   .lav-select__value {
+    font-family: 'nbi Pro';
     position: relative;
     font-weight: 400;
     font-size: 16px;
@@ -171,7 +199,7 @@ const styles = `
     color: #000000;
     border: 2px solid #ADADAD;
     border-radius: 4px;
-    padding: 7px 15px;
+    padding: 5px 15px;
     text-align: left;
   }
   .lav-select__value:before {
@@ -274,9 +302,60 @@ const styles = `
     margin-top: 18px;
   }
 
-  .lav-told {
-
+  .container {
+    max-width: 1310px;
+    padding: 0 15px;
   }
+  .section.section--intro {
+    padding: 100px 0;
+  }
+  .section--intro .section-heading {
+    font-family: 'nbi Pro';
+    font-size: 40px;
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+    color: #fff;
+    font-weight: 400;
+  }
+  [data-theme="light"] .testimonial-slider-overlay, [data-theme="light"] .testimonial-slider-overlay--right {
+    background: black;
+    display: none;
+  }
+  [data-theme= "light"] .testimonial-card {
+    background: #FFFFFF;
+    border: 2px solid #36F8A3;
+    box-shadow: 0px 6.0844px 18.4376px rgba(0, 0, 0, 0.11);
+    border-radius: 13.3146px;
+    padding: 40px 31px;
+    color: #000;
+  }
+  .testimonial-quote {
+    font-family: 'NBA';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+  }
+  .testimonial-title {
+    margin-bottom: 20px;
+    font-family: 'nba';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: 0.105em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  .testimonial-sourcce {
+    font-family: 'nba';
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 13px;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.32;
+  }
+
 
   .lav-why {
     padding: 150px 0 ;
@@ -288,10 +367,11 @@ const styles = `
     margin-top: 60px;
   }
   .lav-why__item {
-    dipslay: flex;
+    display: flex;
     flex-flow: column;
   }
   .lav-why__item-title {
+    font-family: "nbi Pro";
     font-weight: 400;
     font-size: 40px;
     line-height: 45px;
@@ -335,6 +415,8 @@ const styles = `
     flex-grow: 1;
   }
   .lav-works__info-title {
+    font-family: "nbi Pro";
+    font-weight: 400;
     font-size: 24px;
     padding-right: 20px;
     line-height: 30px;
@@ -373,7 +455,9 @@ const styles = `
     text-align: center;
   }
   .lav-compare__title img {
-    width: 86px;
+    width: 85px;
+    position: relative;
+    top: -4px;
   }
   .lav-compare__table {
     margin-top: 60px;
@@ -420,6 +504,7 @@ const styles = `
     max-width: 130px;
   }
   .lav-compare__extra-title {
+    font-family: 'nbi Pro';
     font-weight: 500;
     font-size: 32px;
     line-height: 1.2;
@@ -466,6 +551,7 @@ const styles = `
 
   .lav-scores {
     display: flex;
+    justify-content: center;
   }
   .lav-scores__item {
     max-width: 238px;
@@ -475,8 +561,16 @@ const styles = `
     background: #F4F4F4;
     border: 2px solid #D9D9D9;
   }
+  .lav-scores__item_green {
+    background: #ECFFF6;
+    border-color: #36FA9C;
+  }
   .lav-scores__item + .lav-scores__item {
     margin-left: 40px;
+  }
+  .lav-scores__graph {
+    line-height: 0;
+    margin-bottom: -15px;
   }
   .lav-scores__num {
     font-style: normal;
@@ -485,10 +579,236 @@ const styles = `
     line-height: 1.04;
     color: #9A0000;
   }
-  .lav-scores__score {
-    color: #888;
+  .lav-scores__item_green .lav-scores__num {
+    color: #00A07A;
   }
-  .lav-scores {}
+  .lav-scores__score {
+    color: #989898;
+    font-size: 10px;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+  .lav-scores__subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #000;
+    margin-top: 25px;
+  }
+  .lav-scores__price {
+    font-family: 'nbi Pro';
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 34px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #9A0000;
+    margin-top: 10px;
+  }
+  .lav-scores__item_green .lav-scores__price {
+    color: #028B6A;
+  }
+  .lav-scores__caption {
+    margin-top: 18px;
+    font-weight: 400;
+    font-size: 10px;
+    color: #000000;
+    opacity: 0.5;
+    line-height: 1.5;
+  }
+
+  .lav-plans {
+    padding: 150px 0;
+  }
+  .lav-plans__table {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .lav-plans__row {
+    display: flex;
+    border-bottom: 2px solid #E3E3E3;
+  }
+  .lav-plans__row + .lav-plans__row img {
+    width: 20px;
+  }
+  .lav-plans__col {
+    flex: 1;
+    padding: 10px 45px;
+    min-height: 64px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  .lav-plans__row:first-child .lav-plans__col {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.2;
+    text-align: center;
+    letter-spacing: -0.025em;
+    padding-top: 0;
+    padding-bottom: 35px;
+  }
+  .lav-plans__row:last-child  {
+    border-bottom: 0;
+  }
+  .lav-plans__row:last-child .lav-plans__col {
+    padding-top: 19px;
+    padding-bottom: 0;
+    display: block;
+  }
+  .lav-plans__row:last-child .lav-plans__col:first-child {
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 1;
+    color: #000000;
+  }
+  .lav-plans__price {
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 29px;
+    color: #000000;
+    padding-right: 5px;
+  }
+  .lav-plans__price-old {
+    text-decoration: line-through;
+    font-size: 27px;
+    line-height: 29px;
+    color: #000000;
+  }
+  .lav-plans__caption {
+    font-size: 14px;
+    line-height: 15px;
+  }
+
+  .lav-plans__col:nth-child(2), .lav-plans__col:nth-child(3) {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .lav-plans__btn-wrap {
+    text-align: center;
+  }
+
+  .lav-connect {
+    padding: 150px 0;
+  }
+  .lav-connect__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lav-connect__title {
+    font-family: 'nbi Pro';
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.16;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin-right: auto;
+  }
+  .lav-connect__input {
+    flex-grow: 1;
+    margin: 0 40px;
+    background: #FFFFFF;
+    border-radius: 9px;
+    border: none;
+    outline: none;
+    padding: 18px 24px;
+    font-weight: 400;
+    font-family: 'nba';
+    font-size: 16px;
+    max-width: 430px;
+    line-height: 18px;
+    color: #000;
+  } 
+  .lav-connect__plaid {
+    flex-shrink: 0;
+    height: 29px;
+  }
+  .lav-connect {}
+  .lav-connect {}
+  .lav-connect {}
+  .lav-connect {}
+  .lav-connect {}
+  .lav-connect {}
+
+  .section.section--faq {
+    padding: 150px 0;
+  }
+  #FAQ .section-heading {
+    font-family: 'nbi Pro';
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.16;
+    text-align: center;
+    letter-spacing: -0.0175em;
+    color: #000000;
+  }
+  .faq-wrap {
+    max-width: 100%;
+  }
+  [data-theme= "light"] .faq-item {
+    background: none;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+  }
+  [data-theme= "light"] .faq-item + .faq-item {
+    border-top: 2px solid #F4F4F4;
+  }
+  .faq-headline {
+    font-family: 'nba';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000000;
+  }
+  .faq-header {
+    padding: 15px 30px;
+    padding-right: 60px;
+  }
+  .faq-icon {
+    background: #36F8A3;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .faq-icon svg {
+    width: 12px;
+    height: 7px;
+    margin-top: 1px;
+  }
+  .faq-content {
+    width: auto!important;
+  }
+  .faq-answer {
+    border: none;
+    font-size: 15px;
+    line-height: 1.5;
+    font-family: 'nba';
+    font-weight: 400;
+  }
+
+
+  .lav-join {
+    background: #000 url(${settings.dir}/img/join-bg.jpeg) center right no-repeat;
+    background-size: contain;
+  }
+  .lav-join__title {
+    font-family: 'nbi Pro';
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.16;
+    letter-spacing: -0.0175em;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+    max-width: 590px;
+
+  }
 
   @media(max-width: 768px) {
 
@@ -542,14 +862,6 @@ function init() {
       </div>
       
       <div class='lav-ratings__caption'>Trusted by 200,000+ customers</div>
-    </section>
-
-    <section class='lav-told lav-section lav-dark'>
-      <div class='lav-container'>
-        <div class='lav-told__title lav-title'>As told by Extra members</div>
-
-        <div class='lav-told__slider'></div>
-      </div>
     </section>
 
     <section class='lav-why lav-section'>
@@ -840,8 +1152,10 @@ function init() {
 
 
         <div class='lav-scores'>
-          <div class='lav-scores__item'>
-            <div class='lav-scores__graph'></div>
+          <div class='lav-scores__item lav-scores__item_green'>
+            <div class='lav-scores__graph'>
+              <img src='${settings.dir}/img/better-green.png' />
+            </div>
             <div class='lav-scores__num'>725</div>
             <div class='lav-scores__score'>CREDIT SCORE</div>
             <div class='lav-scores__subtitle'>Total payments: </div>
@@ -853,7 +1167,9 @@ function init() {
           </div>
           
           <div class='lav-scores__item'>
-            <div class='lav-scores__graph'></div>
+            <div class='lav-scores__graph'>
+              <img src='${settings.dir}/img/better-yellow.png' />
+            </div>
             <div class='lav-scores__num'>600</div>
             <div class='lav-scores__score'>CREDIT SCORE</div>
             <div class='lav-scores__subtitle'>Total payments: </div>
@@ -866,14 +1182,156 @@ function init() {
         </div>
       </div>
     </section>
+
+    <section class='lav-plans lav-section'>
+      <div class='lav-container'>
+        <div class='lav-plans__title lav-title lav-center'>Our plans</div>
+
+        <div class='lav-plans__table'>
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'></div>
+            <div class='lav-plans__col'>Credit Building</div>
+            <div class='lav-plans__col'>
+              Credit Building +&nbsp;Rewards
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Debit that builds credit</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>White-glove Concierge support 24/7</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Extra spend tracking app</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Best-looking debit card ever</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Earn reward points for every purchase</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Exclusive access to the Extra Rewards Store</div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+            <div class='lav-plans__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+          </div>
+
+          <div class='lav-plans__row'>
+            <div class='lav-plans__col'>Total cost</div>
+            <div class='lav-plans__col'>
+              <span class='lav-plans__price'>$149</span>
+              <span class='lav-plans__price-old'>$200</span>
+              <div class='lav-plans__caption'>a year</div>
+            </div>
+            <div class='lav-plans__col'>
+              <span class='lav-plans__price'>$199</span>
+              <span class='lav-plans__price-old'>$265</span>
+              <div class='lav-plans__caption'>a year</div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-plans__btn-wrap'>
+          <button class='lav-btn lav-btn_trans lav-plans__btn'>SAVE 25% NOW</button>
+        </div>
+      </div>
+    </section>
+
+    <section class='lav-connect lav-section lav-dark'>
+      <div class='lav-container'>
+        <div class='lav-connect__inner'>
+          <div class='lav-connect__title'>Does Extra connect with my bank?</div>
+
+          <input placeholder='Search for your bank here...' class='lav-connect__input' />
+        
+          <img class='lav-connect__plaid' src='${settings.dir}/img/plaid.png' />
+        </div> 
+      </div>
+    </section>
+
+    <section class='lav-join lav-section lav-dark'>
+      <div class='lav-container'>
+        <div class='lav-join__info'>
+          <div class='lav-join__title'>Your credit isn’t going to build itself, let’s get started.</div>
+        
+          <button class='lav-btn lav-btn_green lav-join__btn'>Apply now</button>
+        </div> 
+      </div>
+    </section>
   `;
 
   document
     .querySelector('.main')
     .insertAdjacentHTML('afterbegin', newHomepageEl);
+
+  initFeedbacks();
+  initFaq();
+}
+
+function initFeedbacks() {
+  document.querySelector('.section--intro').classList.add('lav-dark');
+
+  document
+    .querySelector('.lav-ratings')
+    .insertAdjacentElement(
+      'afterend',
+      document.querySelector('.section--intro')
+    );
+
+  document.querySelector('.section--intro .section-heading').innerText =
+    'As told by Extra members';
 }
 
 function initRatings() {
   document.querySelector('.lav-ratings__stars-caption').innerText =
     document.querySelector('.hero-notice-stars + div').innerText;
+}
+
+function initFaq() {
+  document
+    .querySelector('.lav-join')
+    .insertAdjacentElement('beforebegin', document.querySelector('#FAQ'));
+
+  document.querySelector('#FAQ .section-heading').innerText =
+    'Frequently asked questions';
 }
