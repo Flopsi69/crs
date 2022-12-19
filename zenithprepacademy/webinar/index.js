@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/zenithprepacademy/webinar',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -12,29 +12,9 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', '9_steps_timeline', 'variant_1');
     }
   }, 1000);
-}
-
-// Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
-  try {
-    var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
 }
 
 // Alalytic
@@ -376,6 +356,7 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
+  gaEvent('exp_9_steps_loaded');
   console.log('init');
 
   let timelineEl = `
@@ -398,7 +379,7 @@ function init() {
           <div class='timeline__item-time'>(9:15)</div>
         </div>
 
-        <div class='timeline__item timeline__item-note'>
+        <div class='timeline__item timeline__item-note lav-observe'>
           <div class='timeline__note'>
             <div class='timeline__item-title'>3 factors that prevent 6th - 12th graders from getting into the colleges they deserve</div>
             <div class='timeline__item-time'>(13:45) — Critical information.</div>
@@ -444,6 +425,10 @@ function init() {
   document.querySelector('.elButton').innerText =
     'Schedule A Free College Planning Session Now';
 
+  document.querySelector('.elButton').addEventListener('click', function () {
+    gaEvent('exp_9_steps_but', 'Schedule button', 'Click', 'Under timeline');
+  });
+
   // let cloneVideo = `
   //   <video>
   //     <source src="https://player.vimeo.com/video/767570952?muted=1&autoplay=1&&title=0&byline=0&wmode=transparent&autopause=0">
@@ -466,6 +451,30 @@ function init() {
           return false;
         }
       });
+
+    document
+      .querySelector('.timeline__item-note')
+      .addEventListener('mouseenter', function () {
+        gaEvent(
+          'exp_9_steps_timeline_hov',
+          '3 factors block Initial state',
+          'Hover',
+          'Timeline'
+        );
+      });
+
+    let isScrolled = false;
+
+    document.querySelector('.timeline').onscroll = function () {
+      if (isScrolled) return false;
+      isScrolled = true;
+      gaEvent(
+        'exp_9_steps_timeline_scroll',
+        '3 factors block Initial state',
+        'Scroll',
+        'Timeline'
+      );
+    };
   } else {
     document
       .querySelector('.iframeblocked')
@@ -483,6 +492,98 @@ function init() {
         }
       });
   }
+
+  document
+    .querySelector('.timeline__item-note')
+    .addEventListener('click', function () {
+      gaEvent(
+        'exp_9_steps_timeline_click',
+        '3 factors block Initial state',
+        'Click',
+        'Timeline'
+      );
+    });
+}
+
+function initObserver() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '0px 0px -70% 0px',
+  };
+
+  let isNormal,
+    isActive,
+    isDone = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry);
+      if (entry.isIntersecting) {
+        if (
+          entry.target.classList.contains('timeline__item-note') &&
+          entry.target.classList.contains('active') &&
+          !isActive
+        ) {
+          isActive = true;
+          gaEvent(
+            'exp_9_steps_timeline_is',
+            '3 factors block Active state',
+            'Visibility',
+            'Timeline'
+          );
+        } else if (
+          entry.target.classList.contains('timeline__item-note') &&
+          entry.target.classList.contains('done') &&
+          !isDone
+        ) {
+          isDone = true;
+          gaEvent(
+            'exp_9_steps_timeline_is',
+            '3 factors block Done state',
+            'Visibility',
+            'Timeline'
+          );
+        } else if (
+          entry.target.classList.contains('timeline__item-note') &&
+          !isNormal
+        ) {
+          isNormal = true;
+          gaEvent(
+            'exp_9_steps_timeline_is',
+            '3 factors block Initial state',
+            'Visibility',
+            'Timeline'
+          );
+        }
+
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  for (let section of Array.from(document.querySelectorAll('.lav-observe'))) {
+    observer.observe(section);
+  }
+
+  let eventType = 'mouseenter';
+  if (window.innerWidth < 1199) {
+    eventType = 'click';
+  }
+
+  let typeName = eventType == 'mouseenter' ? 'Hover' : 'Click';
+
+  document
+    .querySelector('.lav-jumb__effects-title')
+    .addEventListener(eventType, function () {
+      gaEvent(
+        'exp_new_pdp_checkout_20',
+        'Feel beneficial effects in 4 to 6 days',
+        typeName + ' on tooltip',
+        'Title of page'
+      );
+    });
 }
 
 function handleTimeline() {
