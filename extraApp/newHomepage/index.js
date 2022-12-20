@@ -899,10 +899,10 @@ const styles = `
   .lav-fail .lav-connect__fail {
     display: flex;
   }
-  .lav-fail .lav-connect__success {
+  .lav-success .lav-connect__success {
     display: flex;
   }
-  .lav-fail .lav-connect__input-wrap {
+  .lav-fail .lav-connect__input-wrap, .lav-success .lav-connect__input-wrap {
     display: none;
   }
   .lav-fail .lav-connect__plaid, .lav-success .lav-connect__plaid {
@@ -918,13 +918,19 @@ const styles = `
     margin-left: 20px;
     line-height: 0;
   }
-  .lav-connect__couple img {
-    width: 35px;
-    height: 35px;
-  }
   .lav-connect__success img {
     width: 12px;
     margin-left: 17px;
+  }
+  .lav-connect__couple img {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    border-radius: 50%;
+    margin-left: 0;
+  }
+  .lav-connect__couple img + img {
+    margin-left: -10px;
   }
   .lav-connect .lav-container {
     width: 100%;
@@ -1132,6 +1138,45 @@ const styles = `
       position: absolute;
       top: 20px;
       right: 18px;
+    }
+    .lav-connect__success, .lav-connect__fail {
+      flex-flow: column;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 240px;
+    }
+    .lav-connect__success, .lav-connect__fail {
+      font-size: 18px;
+      line-height: 20px;
+      letter-spacing: -0.025em;
+    }
+    .lav-connect__search {
+      padding: 12px;
+    }
+    .lav-connect__success img {
+      width: 12px;
+    }
+    .lav-connect__couple {
+      order: -1;
+      margin-bottom: 10px;
+      margin-left: 0;
+    }
+    .lav-connect__couple img {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+    }
+    .lav-connect__couple img + img {
+      margin-left: -3px;
+    }
+    .lav-connect__success img, .lav-connect__fail img {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+    .lav-fail .lav-connect__plaid, .lav-success .lav-connect__plaid {
+      bottom: 17px;
+      right: 25px;
     }
     .cta-button.cta-button--nav {
       font-family: 'nbi Pro';
@@ -1550,13 +1595,18 @@ const styles = `
       letter-spacing: -0.025em;
     }
     .lav-connect__input {
-      margin: 38px 0 20px;
       width: 100%;
       max-width: 100%;
       padding: 12px 24px;
     }
+    .lav-connect__input-wrap {
+      margin: 38px 0 20px;
+    }
     .lav-connect__plaid {
       height: 25px;
+      position: absolute;
+      bottom: 17px;
+      right: 25px;
     }
  
     .lav-join {
@@ -2200,7 +2250,7 @@ function init() {
           </div>
 
           <div class='lav-connect__success'>
-            Good news—your bank and Extra are connected.
+            Good news—your bank and Extra&nbsp;are&nbsp;connected.
             <div class='lav-connect__couple'>
               <img src='${settings.dir}/img/status-success.svg' />
               <img src='${settings.dir}/img/status-success.svg' />
@@ -2357,6 +2407,14 @@ function initConnect() {
             $('.lav-connect').addClass('lav-fail');
           } else {
             $('.lav-connect').addClass('lav-success');
+            if (data.bank.logo) {
+              $('.lav-connect__couple img:first-child')[0].src =
+                'data:image/png;base64, ' + data.bank.logo;
+              $('.lav-connect__couple img:first-child').show();
+            } else {
+              $('.lav-connect__couple img:first-child').hide();
+            }
+            $('.lav-connect').addClass('lav-success');
           }
           console.log(data);
         },
@@ -2369,6 +2427,7 @@ function initConnect() {
 
   $('.lav-connect__refresh').on('click', function () {
     $('.lav-connect').removeClass('lav-fail');
+    $('.lav-connect').removeClass('lav-success');
   });
 }
 
