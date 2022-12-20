@@ -1134,6 +1134,15 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .section.section--intro {
+      padding: 60px 0;
+    }
+    .section--intro .section-heading {
+      font-size: 25px;
+      line-height: 26px;
+      letter-spacing: -0.025em;
+      margin-bottom: 40px;
+    }
     .lav-burger__close {
       position: absolute;
       top: 20px;
