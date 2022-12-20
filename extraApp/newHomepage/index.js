@@ -506,6 +506,15 @@ const styles = `
     text-transform: uppercase;
     color: #000000;
   }
+  .faq-content {
+    display: none;
+  }
+  .faq-header .faq-icon {
+    transition: 0.35s;
+  }
+  .faq-header.active .faq-icon {
+    transform: rotate(180deg);
+  }
   .lav-feedbacks__caption {
     font-weight: 600;
     font-size: 12px;
@@ -2840,6 +2849,17 @@ function initHeader() {
       document.querySelector('.cta-button--nav').click();
     });
   }
+
+  $('.faq-content').attr('style', '');
+
+  $('.faq-header').on('click', function (e) {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    e.preventDefault();
+    console.log(1);
+    $(this).toggleClass('active');
+    $(this).next().slideToggle();
+  });
 }
 
 function initConnect() {
