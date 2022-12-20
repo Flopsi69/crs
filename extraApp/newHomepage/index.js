@@ -589,12 +589,6 @@ const styles = `
     display: flex;
     border-bottom: 2px solid #E3E3E3;
   }
-  .lav-compare-secured {
-    display: none;
-  }
-  .lav-compare-secured[style*="display: block"]{
-    display:flex!important;
-  }
   .lav-compare__row + .lav-compare__row img {
     width: 20px;
   }
@@ -2310,6 +2304,8 @@ function initHeader() {
           .slideToggle();
       });
   }
+
+  $('.lav-compare-secured').slideUp();
 
   for (let selectItem of document.querySelectorAll('.lav-select__item')) {
     selectItem.addEventListener('click', function () {
