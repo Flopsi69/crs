@@ -356,6 +356,7 @@ const styles = `
     font-size: 200px;
     line-height: 175px;
     // letter-spacing: -0.0375em;
+    margin-left: -10px;
     text-transform: uppercase;
     font-family: 'nbi Pro';
   }
@@ -807,6 +808,15 @@ const styles = `
     padding-left: 10px;
     padding-right: 10px;
   }
+  .lav-better__car {
+    font-family: 'nbi Pro'
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 26px;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: -0.025em;
+  }
   .lav-plans__row:last-child  {
     border-bottom: 0;
   }
@@ -1166,6 +1176,10 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .lav-better__car {
+      font-size: 18px;
+      line-height: 20px;
+    }
     .section.section--intro {
       padding: 60px 0;
     }
@@ -1294,6 +1308,7 @@ const styles = `
       font-size: 100px;
       line-height: 94.5%;
       letter-spacing: -0.01em;
+      margin-left: -3px;
     }
     .lav-jumb__two, .lav-jumb__four {
       display: block;
@@ -2145,6 +2160,9 @@ function init() {
           <img src='${settings.dir}/img/carIcon.svg' />
         </div>
 
+        <div class='lav-better__car'>
+          Car
+        </div>
         <div class='lav-better__select lav-select'>
           <div class='lav-better__select-value lav-select__value'>Debit Card</div>
           <div class='lav-better__select-list lav-select__list'>
