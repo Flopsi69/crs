@@ -899,8 +899,9 @@ const styles = `
   .lav-fail .lav-connect__fail {
     display: flex;
   }
-  .lav-success .lav-connect__success {
+  .lav-success .lav-connect__success, .lav-fail .lav-connect__fail {
     display: flex;
+    min-height: 54px;
   }
   .lav-fail .lav-connect__input-wrap, .lav-success .lav-connect__input-wrap {
     display: none;
