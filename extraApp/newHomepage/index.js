@@ -1191,6 +1191,7 @@ const styles = `
     }
     .lav-burger__close {
       position: absolute;
+      z-index: 1;
       top: 20px;
       right: 18px;
     }
@@ -1570,6 +1571,7 @@ const styles = `
       flex: 1.8;
     }
     .lav-plans__row:first-child .lav-plans__col {
+      justify-content: flex-end;
       font-size: 14px;
       line-height: 16px;
       letter-spacing: 0;
@@ -2421,6 +2423,10 @@ function initHeader() {
       $(this).parent().toggleClass('active').slideToggle();
     });
   }
+
+  document.querySelector('[href="#FAQ"]').innerText = document
+    .querySelector('[href="#FAQ"]')
+    .innerText.replace('s', '');
 
   document
     .querySelector('.cta-button--nav')
