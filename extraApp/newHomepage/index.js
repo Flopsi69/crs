@@ -1374,8 +1374,10 @@ const styles = `
     .lav-works {
       padding: 60px 0;
     }
+
     .lav-works__slider {
-      margin-top 40px;
+      margin-top: 40px;
+      display: block;
     }
     .lav-works__caption {
       font-size: 11px;
