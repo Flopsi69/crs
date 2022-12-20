@@ -1042,6 +1042,49 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .nav-menu.active {
+      position: fixed;
+      z-index: 99;
+      min-width: 250px;
+      display: flex;
+      flex-flow: column;
+      text-align: left;
+      justify-content: flex-start;
+      align-items: flex-start;
+      right: 0;
+      top: 50px;
+      bottom: 0;
+      background: #fff;
+      padding: 60px 40px;
+    }
+    .container--nav.active {
+      position: relative;
+    }
+    .container--nav.active:before {
+      content: '';
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.54);
+      z-index: 90;
+    }
+    .nav-menu .nav-link + .nav-link {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    .nav-menu.active .nav-link {
+      color: #000;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 26px;
+      letter-spacing: -0.025em;
+      color: #000000;
+    }
+    .cta-nav-mobile {
+      display: none;
+    }
     .lav-hat {
       font-weight: 500;
       font-size: 16px;
@@ -2026,6 +2069,18 @@ function initHeader() {
       'beforebegin',
       '<a href="#FAQ" class="nav-link">Members</a>'
     );
+
+  document
+    .querySelector('.cta-nav-mobile')
+    .insertAdjacentHTML(
+      'beforebegin',
+      `<img class='lav-burger' src='${settings.dir}/img/burger.svg' />`
+    );
+
+  document.querySelector('.lav-burger').addEventListener('click', function () {
+    document.querySelector('.nav-menu').classList.toggle('active');
+    document.querySelector('.container--nav').classList.toggle('active');
+  });
 }
 
 function initFeedbacks() {
