@@ -592,6 +592,9 @@ const styles = `
   .lav-compare-secured {
     display: none;
   }
+  .lav-compare-secured[style*="display: block"]{
+    display:flex!important;
+  }
   .lav-compare__row + .lav-compare__row img {
     width: 20px;
   }
