@@ -874,6 +874,7 @@ const styles = `
   .lav-connect__fail {
     display: none;
     align-items: center;
+    margin-left: 40px;
     font-family: 'nbi Pro';
     font-weight: 400;
     font-size: 24px;
@@ -881,21 +882,49 @@ const styles = `
     letter-spacing: -0.025em;
     color: #989898;
   }
+  .lav-connect__success {
+    display: none;
+    align-items: center;
+    margin-left: 40px;
+    font-family: 'nbi Pro';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: #36F8A3;
+  }
   .lav-connect__refresh {
     cursor: pointer;
   }
   .lav-fail .lav-connect__fail {
     display: flex;
   }
+  .lav-fail .lav-connect__success {
+    display: flex;
+  }
   .lav-fail .lav-connect__input-wrap {
     display: none;
   }
-  .lav-fail .lav-connect__plaid {
+  .lav-fail .lav-connect__plaid, .lav-success .lav-connect__plaid {
     position: absolute;
+    right: 10vw;
     bottom: 40px;
   }
   .lav-connect__fail img {
     margin-left: 18px;
+  }
+  .lav-connect__couple {
+    display: flex;
+    margin-left: 20px;
+    line-height: 0;
+  }
+  .lav-connect__couple img {
+    width: 35px;
+    height: 35px;
+  }
+  .lav-connect__success img {
+    width: 12px;
+    margin-left: 17px;
   }
   .lav-connect .lav-container {
     width: 100%;
@@ -2169,6 +2198,15 @@ function init() {
             Your bank does not connect with Extra at the moment
             <img class='lav-connect__refresh' src='${settings.dir}/img/refresh.svg' />
           </div>
+
+          <div class='lav-connect__success'>
+            Good news—your bank and Extra are connected.
+            <div class='lav-connect__couple'>
+              <img src='${settings.dir}/img/status-success.svg' />
+              <img src='${settings.dir}/img/status-success.svg' />
+            </div>
+            <img class='lav-connect__refresh' src='${settings.dir}/img/refresh.svg' />
+          </div>
         </div> 
       </div>
     </section>
@@ -2317,6 +2355,8 @@ function initConnect() {
         success: function (data) {
           if (data.bank == null) {
             $('.lav-connect').addClass('lav-fail');
+          } else {
+            $('.lav-connect').addClass('lav-success');
           }
           console.log(data);
         },
