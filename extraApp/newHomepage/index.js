@@ -1066,11 +1066,11 @@ const styles = `
   }
 
   [data-theme= "light"] .footer {
-    background: #FAFAFA;
+    background: #fff;
   }
   .footer {
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
   }
   .footer-heading {
     font-size: 16px;
@@ -1704,7 +1704,7 @@ const styles = `
     }
 
     .footer {
-      padding: 60px  0 50px;
+      padding: 60px 0 35px;
     }
     .footer-legal-notice {
       font-weight: 400;
@@ -2428,6 +2428,13 @@ function initHeader() {
     .querySelector('[href="#FAQ"]')
     .innerText.replace('s', '');
 
+  document.querySelector(
+    '.footer-link[href="https://intercom.help/extracard/en"]'
+  ).innerText = 'FAQ';
+  document.querySelector(
+    '.footer-link[href="https://intercom.help/extracard/en"]'
+  ).href = '#FAQ';
+
   document
     .querySelector('.cta-button--nav')
     .insertAdjacentHTML(
@@ -2454,7 +2461,9 @@ function initHeader() {
     document.querySelector('.container--nav').classList.add('active');
   });
 
-  for (let item of document.querySelectorAll('.nav-menu .nav-link')) {
+  for (let item of document.querySelectorAll(
+    '.nav-menu .nav-link, .footer-link'
+  )) {
     item.addEventListener('click', function (e) {
       let href = $(this).attr('href');
       if (href[0] == '#') {
