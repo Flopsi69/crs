@@ -476,57 +476,66 @@ const styles = `
     max-width: 1310px;
     padding: 0 16px;
   }
-  .section.section--intro {
+  .lav-feedbacks {
     padding: 100px 0;
   }
-  .section--intro .section-heading {
-    font-family: 'nbi Pro';
-    font-size: 40px;
-    line-height: 1.16;
-    letter-spacing: -0.025em;
-    color: #fff;
-    font-weight: 400;
+  .lav-feedbacks__slider {
+    margin-top: 60px;
   }
-  [data-theme="light"] .testimonial-slider-overlay, [data-theme="light"] .testimonial-slider-overlay--right {
-    background: black;
-    display: none;
-  }
-  [data-theme= "light"] .testimonial-card {
+  .lav-feedbacks__slide {
+    border-radius: 14px;
     background: #FFFFFF;
     border: 2px solid #36F8A3;
     box-shadow: 0px 6.0844px 18.4376px rgba(0, 0, 0, 0.11);
-    border-radius: 13.3146px;
-    padding: 40px 31px;
-    color: #000;
+    padding: 40px 25px;
   }
-  .testimonial-quote {
-    font-family: 'NBA';
+  .lav-feedbacks__title {
+    font-family: 'nbi Pro';
     font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    color: #000000;
+    font-size: 40px;
+    line-height: 116.5%;
+    letter-spacing: -0.025em;
+    color: #FFFFFF;
   }
-  .testimonial-title {
-    margin-bottom: 20px;
-    font-family: 'nba';
+  .lav-feedbacks__subtitle {
+    margin: 20px 0;
     font-weight: 500;
     font-size: 18px;
-    line-height: 1.2;
+    line-height: 1.5;
     letter-spacing: 0.105em;
     text-transform: uppercase;
     color: #000000;
   }
-  .testimonial-sourcce {
-    font-family: 'nba';
+  .lav-feedbacks__caption {
     font-weight: 600;
     font-size: 12px;
     line-height: 13px;
     text-transform: uppercase;
     color: #000000;
     opacity: 0.32;
+    margin: 20px 0;
+    display: inline-block;
+    transition: 0.35s;
+    text-decoration: none;
   }
-
-
+  .lav-feedbacks__caption:hover {
+    opacity: 0.8;
+  }
+  .lav-feedbacks__descr {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+  }
+  .lav-feedbacks__author {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 141.1%;
+    color: #000000;
+  }
+  .lav-feedbacks__author span {
+    color: #646464;
+  }
   .lav-why {
     padding: 150px 0 ;
   }
@@ -1162,6 +1171,9 @@ const styles = `
       max-width: 50%;
       font-size: 48px;
     }
+    .lav-feedbacks__slide {
+      max-width: 80%;
+    }
     .lav-compare__col {
       padding-left: 20px;
       padding-right: 20px;
@@ -1195,6 +1207,54 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .lav-feedbacks__title {
+      font-size: 25px;
+      line-height: 26px;
+      letter-spacing: -0.025em;
+    }
+    .lav-feedbacks__slide {
+      max-width: 65%;
+      padding: 20px;
+      border-width: 1px;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      flex-flow: column;
+    }
+    .lav-feedbacks__subtitle {
+      margin: 10px 0;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 15px;
+      letter-spacing: 0;
+      text-transform: normal;
+    }
+    .lav-feedbacks {
+      padding: 60px 0;
+    }
+    .lav-feedbacks__descr {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 120%;
+    }
+    .lav-feedbacks__author {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 141.1%;
+      margin: 10px 0;
+    }
+    .lav-feedbacks__caption {
+      margin: 0;
+      font-weight: 600;
+      font-size: 7.5px;
+      line-height: 8px;
+      order: 8;
+    }
+    .lav-feedbacks__slider {
+      margin-top: 40px;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
     .lav-better__car {
       font-size: 18px;
       line-height: 20px;
@@ -1839,6 +1899,60 @@ function init() {
         </div>
         
         <div class='lav-ratings__caption'>Trusted by 200,000+ customers</div>
+      </div>
+    </section>
+
+    <section class='lav-feedbacks lav-section lav-dark' id='lav-feedbacks'>
+      <div class='lav-container'>
+        <div class='lav-feedbacks__title lav-center'>As told by Extra members</div>
+        
+        <div class="splide lav-feedbacks__slider" >
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class="splide__slide lav-feedbacks__slide">
+                <img src='${settings.dir}/img/feedbacks-stars.svg' />
+                
+                <div class='lav-feedbacks__subtitle'>GREAT</div>
+
+                <div class='lav-feedbacks__body'>
+                  <div class='lav-feedbacks__descr'>“This is amazing. Definitely worth it. Credit went up 70 points this past month. I referred a friend today who is ready to build her credit. I highly recommend...”</div>
+                </div>
+
+                <a href="https://apps.apple.com/us/app/extra/id1489550124?mt=8#see-all/reviews" target="_blank" class='lav-feedbacks__caption'>SOURCE: APPLE APP STORE</a>
+
+                <div class='lav-feedbacks__author'>Amethyst King <span>– June 16,2021</span></div>
+              </div>
+
+              <div class="splide__slide lav-feedbacks__slide">
+                <img src='${settings.dir}/img/feedbacks-stars.svg' />
+                
+                <div class='lav-feedbacks__subtitle'>Definitely helped my credit</div>
+
+                <div class='lav-feedbacks__body'>
+                  <div class='lav-feedbacks__descr'>“I was skeptical at first and I did a lot of research and read a lot of reviews. Obviously you can’t make everyone happy. But I have had it for about 5 weeks. My spend power went up...”</div>
+                </div>
+
+                <a href="https://apps.apple.com/us/app/extra/id1489550124?mt=8#see-all/reviews" target="_blank" class='lav-feedbacks__caption'>SOURCE: APPLE APP STORE</a>
+
+                <div class='lav-feedbacks__author'>Panther Predator <span>– July 16, 2021</span></div>
+              </div>
+
+              <div class="splide__slide lav-feedbacks__slide">
+                <img src='${settings.dir}/img/feedbacks-stars.svg' />
+                
+                <div class='lav-feedbacks__subtitle'>Credit Increase!</div>
+
+                <div class='lav-feedbacks__body'>
+                  <div class='lav-feedbacks__descr'>“I’m a young student, and I was researching ways to increase my credit, when I found Extra. I signed up, used it as a debit card, and BAM! A 24 point increase from 620 to 644!”</div>
+                </div>
+
+                <a href="https://apps.apple.com/us/app/extra/id1489550124?mt=8#see-all/reviews" target="_blank" class='lav-feedbacks__caption'>SOURCE: APPLE APP STORE</a>
+                 
+                <div class='lav-feedbacks__author'>doggieguy64 <span>– June 28,2021</span></div>
+              </div>
+            </d>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2556,12 +2670,12 @@ function initWorks() {
       let steps = new Splide('.lav-works__slider', {
         arrows: false,
         perPage: 4,
-        type: 'loop',
         gap: '14px',
         // autoWidth: true,
         breakpoints: {
           992: {
             perPage: 2,
+            type: 'loop',
           },
           572: {
             perPage: 1,
@@ -2577,6 +2691,27 @@ function initWorks() {
         perPage: 1,
         gap: '14px',
         breakpoints: {},
+      }).mount();
+
+      let feedbacks = new Splide('.lav-feedbacks__slider', {
+        arrows: false,
+        pagination: false,
+        perPage: 3,
+        gap: '65px',
+        breakpoints: {
+          1400: {
+            gap: '15px',
+          },
+          992: {
+            type: 'loop',
+            perPage: 1,
+            autoWidth: true,
+            focus: 'center',
+          },
+          768: {
+            gap: '20px',
+          },
+        },
       }).mount();
 
       // splide.on('moved', function () {
@@ -2636,7 +2771,7 @@ function initHeader() {
     .querySelector('.cta-button--nav')
     .insertAdjacentHTML(
       'beforebegin',
-      '<a href="#lav-intro" class="nav-link">Members</a>'
+      '<a href="#lav-feedbacks" class="nav-link">Members</a>'
     );
 
   document
@@ -2750,18 +2885,14 @@ function initConnect() {
 }
 
 function initFeedbacks() {
-  document.querySelector('.section--intro').classList.add('lav-dark');
-  document.querySelector('.section--intro').id = 'lav-intro';
-
-  document
-    .querySelector('.lav-ratings')
-    .insertAdjacentElement(
-      'afterend',
-      document.querySelector('.section--intro')
-    );
-
-  document.querySelector('.section--intro .section-heading').innerText =
-    'As told by Extra members';
+  // document
+  //   .querySelector('.lav-ratings')
+  //   .insertAdjacentElement(
+  //     'afterend',
+  //     document.querySelector('.section--intro')
+  //   );
+  // document.querySelector('.section--intro .section-heading').innerText =
+  //   'As told by Extra members';
 }
 
 function iniWhy() {
