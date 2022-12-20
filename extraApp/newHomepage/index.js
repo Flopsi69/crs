@@ -71,6 +71,17 @@ if (settings.observe) {
   observer.observe(demoElem, { childList: true, subtree: true });
 }
 
+const sliderStyles = document.createElement('link');
+sliderStyles.rel = 'stylesheet';
+sliderStyles.href =
+  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
+document.body.appendChild(sliderStyles);
+
+let sliderScript = document.createElement('script');
+sliderScript.src =
+  'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
+document.body.append(sliderScript);
+
 // Styles
 const styles = `
   @font-face {
@@ -130,6 +141,29 @@ const styles = `
   }
   .nav-logo-img {
     fill: #fff;
+  }
+
+  .splide__pagination {
+    padding: 0;
+  }
+
+  .lav-works .splide__pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 300px;
+  }
+  .splide__pagination li button {
+    width: 38px;;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 35px;
+  }
+  .splide__pagination li button.is-active {
+    background-color: #fff;
+  }
+  .splide__pagination li + li {
+    margin-left: 4px;
   }
 
   .section--footer-cta, .hero, .hero + .section, .section + .section {
@@ -512,9 +546,6 @@ const styles = `
     padding: 150px 0;
   }
   .lav-works__slider {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
     margin-top: 60px;
   }
   .lav-works__image {
@@ -964,6 +995,9 @@ const styles = `
     line-height: 18px;
     color: #000000;
   }
+  .lav-works__image img {
+    width: 100%;
+  }
   .faq-header {
     padding: 15px 30px;
     padding-right: 60px;
@@ -1375,7 +1409,6 @@ const styles = `
 
     .lav-works__slider {
       margin-top: 40px;
-      display: block;
     }
     .lav-works__caption {
       font-size: 11px;
@@ -1384,6 +1417,12 @@ const styles = `
     }
     .lav-works__bottom {
       margin-top: 20px;
+    }
+    .lav-works__info {
+      margin-top: 20px;
+      max-width: 265px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .lav-works__info-title {
       font-size: 18px;
@@ -1861,65 +1900,73 @@ function init() {
       <div class='lav-container'>
         <div class='lav-works__title lav-title'>How the Extra <br/> Debit Card works</div>
 
-        <div class='lav-works__slider'>
-          <div class='lav-works__slide'>
-            <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works1.png' />
-            </div>
+        <div class="splide lav-works__slider">
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class='splide__slide lav-works__slide'>
+                <div class='lav-works__image'>
+                  <img class='lav-desk' src='${settings.dir}/img/works1.png' />
+                  <img class='lav-mob' src='${settings.dir}/img/works1-mob.png' />
+                </div>
 
-            <div class='lav-works__info'>
-              <div class='lav-works__info-num'>1.</div>
-              <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Sign up and connect your bank account</div>
-                <div class='lav-works__info-descr'>
-                Extra connects directly to your existing bank account. We connect with more than <span class='lav-green'>10,000 banks.</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class='lav-works__slide'>
-            <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works2.png' />
-            </div>
-
-            <div class='lav-works__info'>
-              <div class='lav-works__info-num'>2.</div>
-              <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Download the app to get your Extra Debit Card</div>
-                <div class='lav-works__info-descr'>
-                  After approval, you will receive your Extra  Debit Card with a spend power based on your bank balance and other factors—no credit checks required.
+                <div class='lav-works__info'>
+                  <div class='lav-works__info-num'>1.</div>
+                  <div class='lav-works__info-inner'>
+                    <div class='lav-works__info-title'>Sign up and connect your bank account</div>
+                    <div class='lav-works__info-descr'>
+                    Extra connects directly to your existing bank account. We connect with more than <span class='lav-green'>10,000 banks.</span></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class='lav-works__slide'>
-            <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works3.png' />
-            </div>
+              <div class='splide__slide lav-works__slide'>
+                <div class='lav-works__image'>
+                  <img class='lav-desk' src='${settings.dir}/img/works2.png' />
+                  <img class='lav-mob' src='${settings.dir}/img/works2-mob.png' />
+                </div>
 
-            <div class='lav-works__info'>
-              <div class='lav-works__info-num'>3.</div>
-              <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Use your Extra Debit Card for daily purchases</div>
-                <div class='lav-works__info-descr'>
-                  When you swipe your Extra Debit Card, we spot you for that purchase and pay ourselves back the next business day.  
+                <div class='lav-works__info'>
+                  <div class='lav-works__info-num'>2.</div>
+                  <div class='lav-works__info-inner'>
+                    <div class='lav-works__info-title'>Download the app to get your Extra Debit Card</div>
+                    <div class='lav-works__info-descr'>
+                      After approval, you will receive your Extra  Debit Card with a spend power based on your bank balance and other factors—no credit checks required.
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class='lav-works__slide'>
-            <div class='lav-works__image'>
-              <img src='${settings.dir}/img/works4.png' />
-            </div>
+              <div class='splide__slide lav-works__slide'>
+                <div class='lav-works__image'>
+                  <img class='lav-desk' src='${settings.dir}/img/works3.png' />
+                  <img class='lav-mob' src='${settings.dir}/img/works3-mob.png' />
+                </div>
 
-            <div class='lav-works__info'>
-              <div class='lav-works__info-num'>4.</div>
-              <div class='lav-works__info-inner'>
-                <div class='lav-works__info-title'>Build your credit each month</div>
-                <div class='lav-works__info-descr'>
-                  At the end of the month, we add up all of your transactions and report them to the bureaus as credit-worthy payments. Unlike regular debit cards, spending with the Extra Card helps build your credit.
+                <div class='lav-works__info'>
+                  <div class='lav-works__info-num'>3.</div>
+                  <div class='lav-works__info-inner'>
+                    <div class='lav-works__info-title'>Use your Extra Debit Card for daily purchases</div>
+                    <div class='lav-works__info-descr'>
+                      When you swipe your Extra Debit Card, we spot you for that purchase and pay ourselves back the next business day.  
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='splide__slide lav-works__slide'>
+                <div class='lav-works__image'>
+                  <img class='lav-desk' src='${settings.dir}/img/works4.png' />
+                  <img class='lav-mob' src='${settings.dir}/img/works4-mob.png' />
+                </div>
+
+                <div class='lav-works__info'>
+                  <div class='lav-works__info-num'>4.</div>
+                  <div class='lav-works__info-inner'>
+                    <div class='lav-works__info-title'>Build your credit each month</div>
+                    <div class='lav-works__info-descr'>
+                      At the end of the month, we add up all of your transactions and report them to the bureaus as credit-worthy payments. Unlike regular debit cards, spending with the Extra Card helps build your credit.
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2290,6 +2337,36 @@ function init() {
   initFaq();
   initHeader();
   initConnect();
+  initWorks();
+}
+
+function initWorks() {
+  let initSplideInterval = setInterval(() => {
+    if (typeof Splide == 'function') {
+      clearInterval(initSplideInterval);
+
+      let steps = new Splide('.lav-works__slider', {
+        arrows: false,
+        perPage: 4,
+        gap: '14px',
+        // autoWidth: true,
+        breakpoints: {
+          992: {
+            perPage: 2,
+          },
+          572: {
+            perPage: 1,
+            pagination: true,
+            gap: 15,
+          },
+        },
+      }).mount();
+
+      // splide.on('moved', function () {
+      //   gaEvent('swipe slider', 'How Luminette transforms your days');
+      // });
+    }
+  }, 500);
 }
 
 function initHeader() {
