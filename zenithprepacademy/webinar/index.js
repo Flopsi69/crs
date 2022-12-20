@@ -482,21 +482,28 @@ function init() {
       );
     };
   } else {
-    document
-      .querySelector('.iframeblocked')
-      .addEventListener('click', function (e) {
-        console.log(this);
-        if (!this.classList.contains('active')) {
-          e.preventDefault();
-          e.stopPropagation();
+    let waitVideo = setInterval(() => {
+      if (document.querySelector('.iframeblocked')) {
+        clearInterval(waitVideo);
+        document
+          .querySelector('.elVideoWrapper')
+          .scrollIntoView({ block: 'start', behavior: 'smooth' });
+        document
+          .querySelector('.iframeblocked')
+          .addEventListener('click', function (e) {
+            if (!this.classList.contains('active')) {
+              e.preventDefault();
+              e.stopPropagation();
 
-          this.classList.add('active');
-          window.playerEll = new Vimeo.Player(this.querySelector('iframe'));
-          window.playerEll.setMuted(false);
-          handleTimeline();
-          return false;
-        }
-      });
+              this.classList.add('active');
+              window.playerEll = new Vimeo.Player(this.querySelector('iframe'));
+              window.playerEll.setMuted(false);
+              handleTimeline();
+              return false;
+            }
+          });
+      }
+    }, 200);
   }
 
   document
