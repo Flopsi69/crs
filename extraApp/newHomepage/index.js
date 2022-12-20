@@ -2856,7 +2856,9 @@ function initHeader() {
     e.stopPropagation();
     e.stopImmediatePropagation();
     e.preventDefault();
-    console.log(1);
+    if (document.querySelector('.faq-header.active')) {
+      document.querySelector('.faq-header.active').click();
+    }
     $(this).toggleClass('active');
     $(this).next().slideToggle();
   });
@@ -2918,6 +2920,9 @@ function initFeedbacks() {
 function iniWhy() {
   for (let item of document.querySelectorAll('.lav-why__item-head')) {
     item.addEventListener('click', function () {
+      if (document.querySelector('.lav-why__item-head.active')) {
+        document.querySelector('.lav-why__item-head.active').click();
+      }
       item.classList.toggle('active');
       $(item).next().slideToggle();
     });
