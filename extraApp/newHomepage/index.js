@@ -103,6 +103,34 @@ const styles = `
     font-weight: 400;
     font-style: normal;
   }
+  [data-theme="light"] .nav-bg {
+    display: none;
+  }
+  .container.container--nav {
+    color: #fff;
+  }
+  .nav {
+    padding: 25px 0;
+    background: black;
+  }
+  .nav-menu .nav-link {
+    font-family: 'nbi Pro';
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin-right: 0;
+    font-weight: 400;
+  }
+  .cta-button--nav {
+    display: none;
+  }
+  .nav-menu .nav-link + .nav-link {
+    margin-left: 40px;
+  }
+  .nav-logo-img {
+    fill: #fff;
+  }
 
   .section--footer-cta, .hero, .hero + .section, .section + .section {
     display: none;
@@ -224,6 +252,11 @@ const styles = `
   }
 
   .lav-hat {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    top: 0;
     min-height: 50px;
     display: flex;
     justify-content: center;
@@ -588,6 +621,9 @@ const styles = `
     line-height: 0;
     margin: 40px auto;
   }
+  .lav-better__select {
+    display: none;
+  }
   .lav-better__average {
     margin: 40px auto;
   }
@@ -772,9 +808,14 @@ const styles = `
     margin-right: auto;
     max-width: 50%;
   }
-  .lav-connect__input {
-    flex-grow: 1;
+  .lav-connect__input-wrap {
+    position: relative;
+    display: flex;
     margin: 0 40px;
+    flex-grow: 1;
+    max-width: 430px;
+  }
+  .lav-connect__input {
     background: #FFFFFF;
     border-radius: 9px;
     border: none;
@@ -783,10 +824,18 @@ const styles = `
     font-weight: 400;
     font-family: 'nba';
     font-size: 16px;
-    max-width: 430px;
     line-height: 18px;
     color: #000;
+    flex-grow: 1;
   } 
+  .lav-connect__search {
+    position: absolute;
+    right: 0;
+    padding: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
   .lav-connect__plaid {
     flex-shrink: 0;
     height: 29px;
@@ -846,13 +895,24 @@ const styles = `
   }
   .faq-content {
     width: auto!important;
+    padding-left: 30px;
+    padding-right: 60px;
   }
   .faq-answer {
     border: none;
-    font-size: 15px;
-    line-height: 1.5;
     font-family: 'nba';
     font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #888888;
+    padding-top: 8px;
+    padding-bottom: 24px;
+  }
+  .faq-answer p {
+    margin: 0;
+  }
+  .faq-answer p + p {
+    margin-top: 16px;
   }
 
 
@@ -922,10 +982,26 @@ const styles = `
     font-size: 14px;
     line-height: 20px;
   }
-
+  @media(max-width: 1400px) {
+    .lav-jumb__title:before {
+      width: 300px;
+    }
+    .lav-jumb__title {
+      font-size: 180px;
+    }
+  }
   @media(max-width: 1200px) {
-    .lav-compare__extra {
-
+    .lav-jumb__title {
+      font-size: 120px;
+      line-height: 1.05;
+    }
+    .lav-jumb__info {
+      margin-top: -100px;
+    }
+    .lav-jumb__title:before {
+      width: 250px;
+      height: 300px;
+      top: 35%;
     }
   }
   @media(max-width: 992px) {
@@ -952,8 +1028,100 @@ const styles = `
     .lav-why__list {
       gap: 20px;
     }
+    .lav-jumb__three {
+      margin-left: 80px;
+    }
+    .lav-jumb__two {
+      margin-left: 40px;
+    }
+    .lav-jumb__four {
+      margin-left: 325px;
+    }
+    .lav-jumb__title {
+      font-size: 110px;
+    }
   }
   @media(max-width: 768px) {
+    .lav-hat {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 17px;
+      white-space: nowrap;
+    }
+    .nav {
+      padding: 17px 0;
+    }
+    .lav-hat .lav-container {
+      padding: 0;
+    }
+    .lav-jumb__title {
+      font-size: 100px;
+      line-height: 94.5%;
+      letter-spacing: -0.01em;
+    }
+    .lav-jumb__two, .lav-jumb__four {
+      display: block;
+      text-align: right;
+      margin-left: 0;
+    }
+    .lav-jumb__three {
+      margin-left: 0;
+    }
+    .lav-jumb__title:before {
+      width: 193px;
+      height: 218px;
+      top: 44%;
+      right: initial;
+      left: -10px;
+    }
+    .lav-jumb__info {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+    .lav-jumb {
+      // min-height: auto;
+      padding-bottom: 32px;
+      padding-top: 120px;
+    }
+    .lav-jumb__btn {
+      max-width: 100%;
+    }
+    .lav-jumb__item {
+      padding-left: 34px;
+      font-size: 14px;
+      line-height: 14px;
+    }
+    .lav-partners {
+      padding: 30px 0;
+    }
+    .lav-ratings__top > img {
+      width: 20px;
+      margin-right: 10px;
+    }
+    .lav-ratings__stars > img {
+      width: 110px;
+      margin-right: 10px;
+    }
+    .lav-ratings__stars-caption {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 1;
+      margin-top: 0;
+    }
+    .lav-ratings__caption {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 18px;
+      margin-top: 5px;
+    }
+    .lav-ratings {
+      padding: 15px 0;
+    }
+
+
     .lav-why {
       padding: 60px 0;
     }
@@ -986,9 +1154,15 @@ const styles = `
     }
     .lav-why__item-body {
       display: none;
-      font-size: 12px;
-      line-height: 1.5;
       margin-top: 16px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #646464;
+      padding-left: 40px;
+    }
+    .lav-why__item-icon img {
+      width: 20px;
     }
     .lav-why__item-head.active .lav-why__item-expand {
       transform: rotate(-180deg);
@@ -1200,7 +1374,7 @@ const styles = `
     }
     .faq-content {
       padding-left: 23px;
-      padding-right: 0;
+      padding-right: 23px;
     }
     .faq-answer {
       padding-top: 15px;
@@ -1335,7 +1509,10 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup>
+        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup></marquee>
+        <span class='lav-desk'>
+          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup>
+        </span>
       </div>
     </section>
     <section class='lav-jumb lav-section lav-dark'>
@@ -1367,15 +1544,17 @@ function init() {
     </section>
 
     <section class='lav-ratings lav-section lav-center'>
-      <div class='lav-ratings__top'>
-        <img src='${settings.dir}/img/appStore.svg' />
-        <div class='lav-ratings__stars'>
-          <img src='${settings.dir}/img/stars.svg' />
-          <div class='lav-ratings__stars-caption'>4.6K Ratings</div>
+      <div class='lav-container'>
+        <div class='lav-ratings__top'>
+          <img src='${settings.dir}/img/appStore.svg' />
+          <div class='lav-ratings__stars'>
+            <img src='${settings.dir}/img/stars.svg' />
+            <div class='lav-ratings__stars-caption'>4.6K Ratings</div>
+          </div>
         </div>
+        
+        <div class='lav-ratings__caption'>Trusted by 200,000+ customers</div>
       </div>
-      
-      <div class='lav-ratings__caption'>Trusted by 200,000+ customers</div>
     </section>
 
     <section class='lav-why lav-section'>
@@ -1385,7 +1564,7 @@ function init() {
         <div class='lav-why__list lav-desk'>
           <div class='lav-why__item'>
             <div class='lav-why__item-title'>
-              Start building credit with every swipe
+              Start building credit with every&nbsp;swipe
             </div>
           </div>
 
@@ -1806,7 +1985,13 @@ function init() {
         <div class='lav-connect__inner'>
           <div class='lav-connect__title'>Does Extra connect with&nbsp;my&nbsp;bank?</div>
 
-          <input placeholder='Search for your bank here...' class='lav-connect__input' />
+          <div class='lav-connect__input-wrap'>
+            <input placeholder='Search for your bank here...' class='lav-connect__input' />
+            <div class='lav-connect__search'>
+              <img src='${settings.dir}/img/search.svg' />
+            </div>
+          </div>
+         
         
           <img class='lav-connect__plaid' src='${settings.dir}/img/plaid.png' />
         </div> 
@@ -1831,6 +2016,16 @@ function init() {
   initFeedbacks();
   iniWhy();
   initFaq();
+  initHeader();
+}
+
+function initHeader() {
+  document
+    .querySelector('.cta-button--nav')
+    .insertAdjacentHTML(
+      'beforebegin',
+      '<a href="#FAQ" class="nav-link">Members</a>'
+    );
 }
 
 function initFeedbacks() {
