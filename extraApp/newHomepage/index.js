@@ -217,12 +217,34 @@ const styles = `
   }
 
   .lav-select {
+    position: relative;
     max-width: 212px;
     width: 100%;
     margin-top: 40px;
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
+  }
+  .lav-select__list {
+    position: absolute;
+    background: #fff;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: -2px;
+    border: 2px solid #ADADAD;
+    text-align: left;
+  }
+  .lav-select__item {
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: 0.35s;
+  }
+  .lav-select__item:hover {
+    background: #eaeaea;
+  }
+  .lav-select__item + .lav-select__item {
+    border-top: 1px solid #ADADAD;
   }
   .lav-select__value {
     font-family: 'nbi Pro';
@@ -242,10 +264,15 @@ const styles = `
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    width: 10px;
+    width: 9px;
     height: 6px;
     background: url(${settings.dir}/img/chevronIcon.svg) center no-repeat;
     background-size: contain;
+    transition: 0.35s;
+  }
+  .lav-select__value.active:before {
+    transform: rotate(-180deg);
+    top: 45%;
   }
   .lav-select__list {
     display: none;
@@ -285,6 +312,7 @@ const styles = `
     padding-bottom: 60px;
     display: flex;
     align-items: center;
+    padding-top: 130px;
   }
   .lav-jumb .lav-container {
   }
@@ -319,6 +347,7 @@ const styles = `
     margin-left: 360px;
   }
   .lav-jumb__info {
+    position: relative;
     width: 302px;
     margin-top: -180px;
   }
@@ -352,11 +381,9 @@ const styles = `
     margin-top: 20px;
     width: 100%;
   }
-  .lav-jumb {}
 
   .lav-partners {
     padding: 55px 0;
-    // padding: 17px 42px;
   }
 
   .lav-ratings {
@@ -545,6 +572,9 @@ const styles = `
 
   .lav-compare {
     padding: 150px 0;
+  }
+  .lav-compare-secured {
+    display: none;
   }
   .lav-compare__title {
     text-align: center;
@@ -791,6 +821,7 @@ const styles = `
   }
 
   .lav-connect {
+    position: relative;
     padding: 150px 0;
   }
   .lav-connect__inner {
@@ -839,6 +870,32 @@ const styles = `
   .lav-connect__plaid {
     flex-shrink: 0;
     height: 29px;
+  }
+  .lav-connect__fail {
+    display: none;
+    align-items: center;
+    font-family: 'nbi Pro';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: #989898;
+  }
+  .lav-connect__refresh {
+    cursor: pointer;
+  }
+  .lav-fail .lav-connect__fail {
+    display: flex;
+  }
+  .lav-fail .lav-connect__input-wrap {
+    display: none;
+  }
+  .lav-fail .lav-connect__plaid {
+    position: absolute;
+    bottom: 40px;
+  }
+  .lav-connect__fail img {
+    margin-left: 18px;
   }
   .lav-connect .lav-container {
     width: 100%;
@@ -1042,6 +1099,27 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .lav-burger__close {
+      position: absolute;
+      top: 20px;
+      right: 18px;
+    }
+    .cta-button.cta-button--nav {
+      font-family: 'nbi Pro';
+      display: block;
+      margin-top: 20px;
+      padding: 0;
+      padding-top: 20px;
+      border: none;
+      border-top: 1px solid #F4F4F4;
+      background: none;
+      font-size: 25px;
+      line-height: 26px;
+      letter-spacing: -0.025em;
+      color: #000000;
+      font-weight: 400;
+      width: 100%;
+    }
     .nav-menu.active {
       position: fixed;
       z-index: 99;
@@ -1574,7 +1652,7 @@ function init() {
             <div class='lav-jumb__item'>Earn rewards with every swipe</div>
           </div>
 
-          <button class='lav-btn lav-btn_green lav-jumb__btn'>Start building Credit</button>
+          <button class='lav-btn lav-btn_green lav-jumb__btn lav-apply'>Start building Credit</button>
         </div>
       </div>
     </section>
@@ -1761,7 +1839,7 @@ function init() {
         </div>
 
         <div class='lav-works__bottom'>
-          <button class='lav-btn lav-btn_green lav-works__btn'>GET STARTED</button>
+          <button class='lav-btn lav-btn_green lav-works__btn lav-apply'>GET STARTED</button>
 
           <div class='lav-works__caption'>Impact on your credit score may vary depending on your use.<br/>Extra is required to report both on time and late payments.</div>
         </div>
@@ -1788,16 +1866,15 @@ function init() {
               <div class='lav-compare__select lav-select lav-desk'>
                 <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
                 <div class='lav-compare__select-list lav-select__list'>
-                  <div class='lav-compare__select-item lav-select__item'>Value 1</div>
-                  <div class='lav-compare__select-item lav-select__item'>Value 2</div>
-                  <div class='lav-compare__select-item lav-select__item'>Value 3</div>
+                  <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
+                  <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
                 </div>
               </div>
               <div class='lav-mob lav-compare__debit'>Debit Card</div>
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>Builds credit history</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1807,7 +1884,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>Earns reward points</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1817,7 +1894,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>Connects with any bank</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1827,7 +1904,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>24/7 premium support</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1837,7 +1914,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>No security deposit</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1847,7 +1924,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>No credit checks</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1857,7 +1934,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-compare__row'>
+          <div class='lav-compare__row lav-compare-debit'>
             <div class='lav-compare__col'>Daily payments</div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
@@ -1866,10 +1943,61 @@ function init() {
               <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
           </div>
+
+          <div class='lav-compare__row lav-compare-secured'>
+            <div class='lav-compare__col'>Builds your credit<sup>1</sup></div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row lav-compare-secured'>
+            <div class='lav-compare__col'>No Security Deposit</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row lav-compare-secured'>
+            <div class='lav-compare__col'>No Credit Checks</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row lav-compare-secured'>
+            <div class='lav-compare__col'>24/7 White Glove Concierge Support</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
+
+          <div class='lav-compare__row lav-compare-secured'>
+            <div class='lav-compare__col'>Earns Reward Points</div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
+            </div>
+            <div class='lav-compare__col'>
+              <img src='${settings.dir}/img/noCheckIcon.svg' />
+            </div>
+          </div>
         </div>
 
+
         <div class='lav-compare__btn-wrap'>
-          <button class='lav-btn lav-btn_trans lav-compare__btn'>JOIN NOW</button>
+          <button class='lav-btn lav-btn_trans lav-compare__btn lav-apply'>JOIN NOW</button>
         </div>
       </div>
     </section>
@@ -1885,9 +2013,8 @@ function init() {
         <div class='lav-better__select lav-select'>
           <div class='lav-better__select-value lav-select__value'>Debit Card</div>
           <div class='lav-better__select-list lav-select__list'>
-            <div class='lav-better__select-item lav-select__item'>Value 1</div>
-            <div class='lav-better__select-item lav-select__item'>Value 2</div>
-            <div class='lav-better__select-item lav-select__item'>Value 3</div>
+            <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
+            <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
           </div>
         </div>
 
@@ -2018,7 +2145,7 @@ function init() {
         </div>
 
         <div class='lav-plans__btn-wrap'>
-          <button class='lav-btn lav-btn_trans lav-plans__btn'>SAVE 25% NOW</button>
+          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>SAVE 25% NOW</button>
         </div>
       </div>
     </section>
@@ -2037,6 +2164,11 @@ function init() {
          
         
           <img class='lav-connect__plaid' src='${settings.dir}/img/plaid.png' />
+
+          <div class='lav-connect__fail'>
+            Your bank does not connect with Extra at the moment
+            <img class='lav-connect__refresh' src='${settings.dir}/img/refresh.svg' />
+          </div>
         </div> 
       </div>
     </section>
@@ -2046,7 +2178,7 @@ function init() {
         <div class='lav-join__info'>
           <div class='lav-join__title'>Your credit isn’t going to build itself, let’s get started.</div>
         
-          <button class='lav-btn lav-btn_green lav-join__btn'>Apply now</button>
+          <button class='lav-btn lav-btn_green lav-join__btn lav-apply'>Apply now</button>
         </div> 
       </div>
     </section>
@@ -2060,31 +2192,149 @@ function init() {
   iniWhy();
   initFaq();
   initHeader();
+  initConnect();
 }
 
 function initHeader() {
+  for (let select of document.querySelectorAll('.lav-select')) {
+    select
+      .querySelector('.lav-select__value')
+      .addEventListener('click', function () {
+        console.log(1);
+        $(this).toggleClass('active');
+        $(select.querySelector('.lav-select__list'))
+          .toggleClass('active')
+          .slideToggle();
+      });
+  }
+
+  for (let selectItem of document.querySelectorAll('.lav-select__item')) {
+    selectItem.addEventListener('click', function () {
+      let value = $(this).text();
+
+      if (value == 'Secured Card') {
+        $('.lav-compare-debit').slideUp();
+        $('.lav-compare-secured').slideDown();
+      } else {
+        $('.lav-compare-debit').slideDown();
+        $('.lav-compare-secured').slideUp();
+      }
+      $(this).closest('.lav-select').find('.lav-select__value').text(value);
+      $(this)
+        .closest('.lav-select')
+        .find('.lav-select__value')
+        .toggleClass('active');
+      $(this).parent().toggleClass('active').slideToggle();
+    });
+  }
+
   document
     .querySelector('.cta-button--nav')
     .insertAdjacentHTML(
       'beforebegin',
-      '<a href="#FAQ" class="nav-link">Members</a>'
+      '<a href="#lav-intro" class="nav-link">Members</a>'
     );
 
   document
     .querySelector('.cta-nav-mobile')
     .insertAdjacentHTML(
       'beforebegin',
-      `<img class='lav-burger' src='${settings.dir}/img/burger.svg' />`
+      `<img class='lav-burger lav-mob' src='${settings.dir}/img/burger.svg' />`
+    );
+
+  document
+    .querySelector('.nav-menu')
+    .insertAdjacentHTML(
+      'afterbegin',
+      `<img class='lav-burger__close lav-mob' src='${settings.dir}/img/close.svg' />`
     );
 
   document.querySelector('.lav-burger').addEventListener('click', function () {
-    document.querySelector('.nav-menu').classList.toggle('active');
-    document.querySelector('.container--nav').classList.toggle('active');
+    document.querySelector('.nav-menu').classList.add('active');
+    document.querySelector('.container--nav').classList.add('active');
+  });
+
+  for (let item of document.querySelectorAll('.nav-menu .nav-link')) {
+    item.addEventListener('click', function (e) {
+      let href = $(this).attr('href');
+      if (href[0] == '#') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        $('html,body').animate(
+          {
+            scrollTop:
+              $(href).offset().top +
+              20 -
+              ($('.nav').innerHeight() + $('.lav-hat').innerHeight()),
+          },
+          1000
+        );
+        document.querySelector('.nav-menu').classList.remove('active');
+        document.querySelector('.container--nav').classList.remove('active');
+      }
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (
+      e.target.classList.contains('active') &&
+      e.target.classList.contains('container--nav')
+    ) {
+      document.querySelector('.nav-menu').classList.remove('active');
+      document.querySelector('.container--nav').classList.remove('active');
+    }
+  });
+
+  document
+    .querySelector('.lav-burger__close')
+    .addEventListener('click', function () {
+      document.querySelector('.nav-menu').classList.remove('active');
+      document.querySelector('.container--nav').classList.remove('active');
+    });
+
+  for (let item of document.querySelectorAll('.lav-apply')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.cta-button--nav').click();
+    });
+  }
+}
+
+function initConnect() {
+  document
+    .querySelector('.lav-connect__search')
+    .addEventListener('click', function () {
+      let value = document.querySelector('.lav-connect__input').value;
+      console.log(value);
+      if (!value) return false;
+      $.ajax({
+        type: 'POST',
+        url: 'https://extra.app/api/bank-lookup',
+        data: JSON.stringify({ query: value }),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (data) {
+          if (data.bank == null) {
+            $('.lav-connect').addClass('lav-fail');
+          }
+          console.log(data);
+        },
+        failure: function (errMsg) {
+          console.log(errMsg);
+        },
+      });
+      // $.post('https://extra.app/api/bank-lookup', );
+    });
+
+  $('.lav-connect__refresh').on('click', function () {
+    $('.lav-connect').removeClass('lav-fail');
   });
 }
 
 function initFeedbacks() {
   document.querySelector('.section--intro').classList.add('lav-dark');
+  document.querySelector('.section--intro').id = 'lav-intro';
 
   document
     .querySelector('.lav-ratings')
