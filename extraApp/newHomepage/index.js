@@ -151,7 +151,7 @@ const styles = `
     position: absolute;
     left: 0;
     right: 0;
-    top: 300px;
+    top: 70vw;
   }
   .splide__pagination li button {
     width: 38px;;
