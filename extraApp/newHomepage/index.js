@@ -1626,7 +1626,7 @@ function init() {
               </div>
             </div>
             <div class='lav-why__item-body'>
-              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits. 
+              Because Extra is a debit card, you don't have to worry about interest, hidden fees or falling into the compounding debt trap like you would with a credit card. We charge a simple flat-rate membership fee upfront so you can build your credit with no surprises later. 
             </div>
           </div>
 
