@@ -573,9 +573,6 @@ const styles = `
   .lav-compare {
     padding: 150px 0;
   }
-  .lav-compare-secured {
-    display: none;
-  }
   .lav-compare__title {
     text-align: center;
   }
@@ -591,6 +588,9 @@ const styles = `
   .lav-compare__row {
     display: flex;
     border-bottom: 2px solid #E3E3E3;
+  }
+  .lav-compare-secured {
+    display: none;
   }
   .lav-compare__row + .lav-compare__row img {
     width: 20px;
