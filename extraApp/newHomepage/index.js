@@ -104,7 +104,7 @@ const styles = `
     font-style: normal;
   }
 
-  .section--footer-cta {
+  .section--footer-cta, .hero, .hero + .section, .section + .section {
     display: none;
   }
   .lav-section {
@@ -115,8 +115,8 @@ const styles = `
 
   .lav-container {
     max-width: 1310px;
-    padding: 0 15px;
-    width: 100%;
+    padding: 0 16px;
+    width: 90%;
     margin: auto;
   }
 
@@ -147,9 +147,14 @@ const styles = `
     background: #36F8A3;
   }
   .lav-btn_green:hover {
+    background: #08c874;
   }
   .lav-btn_trans {
     border: 2px solid #000000;
+  }
+  .lav-btn_trans:hover {
+    background-color: #000;
+    color: #fff;
   }
 
   .lav-dark {
@@ -184,7 +189,8 @@ const styles = `
   }
 
   .lav-select {
-    width: 212px;
+    max-width: 212px;
+    width: 100%;
     margin-top: 40px;
     cursor: pointer;
     margin-left: auto;
@@ -217,18 +223,71 @@ const styles = `
     display: none;
   }
 
+  .lav-hat {
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: #36F8A3;
+    font-family: 'nba';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17px;
+    text-align: center;
+    color: #000000;
+  }
+  .lav-hat sup {
+    font-weight: 400;
+  }
+  .nav {
+    top: 50px;
+  }
+
+  .lav-section {
+    overflow: hidden;
+  }
+
   .lav-jumb {
     min-height: 100vh;
+    padding-bottom: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .lav-jumb .lav-container {
   }
   .lav-jumb__title {
+    position: relative;
     font-weight: 700;
     font-size: 200px;
-    line-height: 170px;
-    letter-spacing: -0.0375em;
+    line-height: 175px;
+    // letter-spacing: -0.0375em;
     text-transform: uppercase;
+    font-family: 'nbi Pro';
+  }
+  .lav-jumb__title:before {
+    content: '';
+    width: 403px;
+    height: 453px;
+    position: absolute;
+    right: -27px;
+    top: 52%;
+    transform: translateY(-50%);
+    background: url(${settings.dir}/img/jumb-card.png) center no-repeat;
+    background-size: contain;
+    z-index: 10;
+  }
+  .lav-jumb__two {
+    margin-left: 70px;
+  }
+  .lav-jumb__three {
+    margin-left: 160px;
+  }
+  .lav-jumb__four{
+    margin-left: 360px;
   }
   .lav-jumb__info {
     width: 302px;
+    margin-top: -180px;
   }
   .lav-jumb__list {}
   .lav-jumb__item span {
@@ -263,7 +322,7 @@ const styles = `
   .lav-jumb {}
 
   .lav-partners {
-    padding: 55px 144px;
+    padding: 55px 0;
     // padding: 17px 42px;
   }
 
@@ -304,7 +363,7 @@ const styles = `
 
   .container {
     max-width: 1310px;
-    padding: 0 15px;
+    padding: 0 16px;
   }
   .section.section--intro {
     padding: 100px 0;
@@ -384,6 +443,9 @@ const styles = `
     font-size: 16px;
     line-height: 26px;
     color: #646464;
+  }
+  .lav-why__item-expand {
+    transition: 0.35s;
   }
 
   .lav-works {
@@ -648,6 +710,8 @@ const styles = `
     letter-spacing: -0.025em;
     padding-top: 0;
     padding-bottom: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .lav-plans__row:last-child  {
     border-bottom: 0;
@@ -706,6 +770,7 @@ const styles = `
     letter-spacing: -0.025em;
     color: #fff;
     margin-right: auto;
+    max-width: 50%;
   }
   .lav-connect__input {
     flex-grow: 1;
@@ -726,13 +791,9 @@ const styles = `
     flex-shrink: 0;
     height: 29px;
   }
-  .lav-connect {}
-  .lav-connect {}
-  .lav-connect {}
-  .lav-connect {}
-  .lav-connect {}
-  .lav-connect {}
-
+  .lav-connect .lav-container {
+    width: 100%;
+  }
   .section.section--faq {
     padding: 150px 0;
   }
@@ -773,6 +834,7 @@ const styles = `
     border-radius: 50%;
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -795,7 +857,7 @@ const styles = `
 
 
   .lav-join {
-    background: #000 url(${settings.dir}/img/join-bg.jpeg) center right no-repeat;
+    background: #000 url(${settings.dir}/img/join-bg.jpeg) bottom right no-repeat;
     background-size: contain;
   }
   .lav-join__title {
@@ -807,11 +869,456 @@ const styles = `
     color: #FFFFFF;
     margin-bottom: 40px;
     max-width: 590px;
-
   }
 
-  @media(max-width: 768px) {
+  [data-theme= "light"] .footer {
+    background: #FAFAFA;
+  }
+  .footer {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .footer-heading {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    font-family: 'nba';
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .footer-link {
+    margin-top: 10px;
+    color: #888;
+    font-size: 16px;
+    line-height: 22px;
+    font-family: 'nba';
+    font-weight: 400;
+  }
+  .footer-divider {
+    display: none;
+    background-color: transparent;
+  }
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr
+  }
+  .footer-notice {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    font-family: 'nba';
+  }
+  .footer-notice + div {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    font-family: 'nba';
+    margin-top: 2px;
+  }
+  .footer-legal-notice {
+    font-family: 'nba';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
 
+  @media(max-width: 1200px) {
+    .lav-compare__extra {
+
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-join__title {
+      max-width: 50%;
+      font-size: 48px;
+    }
+    .lav-compare__col {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .lav-compare__extra, .lav-compare__choose {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .lav-why__item-title {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+    .lav-why__item-descr {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .lav-why__list {
+      gap: 20px;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-why {
+      padding: 60px 0;
+    }
+    .lav-why__list {
+      display: block;
+    }
+    .lav-why__item + .lav-why__item {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #F4F4F4;
+    }
+    .lav-why__item-head {
+      display: flex;
+      align-items: center;
+    }
+    .lav-why__item-title {
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin: 0 18px;
+    }
+    .lav-why__item-expand, .lav-why__item-icon {
+      flex-shrink: 0;
+    }
+    .lav-why__item-expand {
+      margin-left: auto;
+    }
+    .lav-why__list {
+      margin-top: 20px;
+    }
+    .lav-why__item-body {
+      display: none;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 16px;
+    }
+    .lav-why__item-head.active .lav-why__item-expand {
+      transform: rotate(-180deg);
+    }
+    .lav-works {
+      padding: 60px 0;
+    }
+    .lav-works__slider {
+      margin-top 40px;
+    }
+    .lav-works__caption {
+      font-size: 11px;
+      line-height: 15px;
+      margin-top: 20px;
+    }
+    .lav-works__bottom {
+      margin-top: 20px;
+    }
+    .lav-works__info-title {
+      font-size: 18px;
+      line-height: 20px;
+      padding-right: 0;
+    }
+    .lav-works__info-descr {
+      font-size: 14px;
+      line-height: 18px;
+      margin-top: 12px;
+    }
+    .lav-works__info-num {
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    .lav-compare {
+      padding: 60px 0;
+    }
+    .lav-compare__select {
+      margin-top: 0;
+    }
+    .lav-compare__title img {
+      width: 25px;
+      top: -2px;
+    }
+    .lav-compare__table {
+      margin-top: 40px;
+    }
+    .lav-compare__extra-img, .lav-compare__choose-img {
+      display: none;
+    }
+    .lav-compare__col:nth-child(2), .lav-compare__row, .lav-compare__row:first-child .lav-compare__col:nth-child(2), .lav-compare__row:last-child .lav-compare__col:nth-child(2) {
+      border-width: 1px;
+    }
+    .lav-compare__col:first-child {
+      font-size: 12px;
+      line-height: 13px;
+      flex: 1.6;
+    }
+    .lav-compare__btn {
+      max-width: 100%;
+    }
+    .lav-compare__debit {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      color: #989898;
+    }
+    .lav-compare__extra-title {
+      margin-top: 0;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .lav-compare__extra, .lav-compare__col {
+      padding: 10px 12px;
+    }
+    .lav-compare__col {
+      min-height: 40px;
+    }
+
+    .lav-better {
+      padding: 60px 0;
+    }
+    .lav-better__icon {
+      margin-bottom: 20px;
+    }
+    .lav-better__select {
+      margin-top: 20px;
+    }
+    .lav-better__average-title {
+      font-size: 9px;
+      line-height: 1;
+    }
+    .lav-better__average-price {
+      margin-top: 3px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .lav-better__average {
+      margin: 20px 0;
+    }
+    .lav-scores__item + .lav-scores__item {
+      margin-left: 20px;
+    }
+    .lav-scores__item {
+      padding: 25px 16px;
+    }
+    .lav-scores__caption {
+      font-size: 9px;
+      margin-top: 11px;
+      line-height: 10px;
+    }
+    .lav-scores__price {
+      font-size: 19px;
+      line-height: 20px;
+      letter-spacing: -0.01em;
+      margin-top: 5px;
+    }
+    .lav-scores__subtitle {
+      font-size: 11px;
+      line-height: 12px;
+      margin-top: 12px;
+    }
+    .lav-scores__score {
+      font-size: 9px;
+      line-height: 10px;
+    }
+    .lav-scores__num {
+      font-size: 30px;
+    }
+    .lav-scores__graph img {
+      width: 39px;
+    }
+    .lav-scores__graph {
+      margin-bottom: -5px;
+    }
+
+
+    .lav-plans {
+      padding: 60px 0;
+    }
+    .lav-plans__btn {
+      width: 100%;
+      max-width: 100%;
+    }
+    .lav-plans__col:first-child {
+      flex: 1.8;
+    }
+    .lav-plans__row:first-child .lav-plans__col {
+      font-size: 14px;
+      line-height: 16px;
+      letter-spacing: 0;
+      padding-bottom: 9px;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+    .lav-plans__row:last-child .lav-plans__col:first-child {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .lav-plans__price, .lav-plans__price-old {
+      padding-right: 0;
+      font-size: 12px;
+      line-height: 13px;
+    }
+    .lav-plans__caption {
+      font-size: 12px;
+      line-height: 13px;
+    }
+    .lav-plans__row:last-child .lav-plans__col {
+      padding-top: 14px;
+    }
+    .lav-title {
+      font-size: 25px;
+      line-height: 1.2;
+      text-align: center;
+      letter-spacing: -0.025em;
+    }
+    .lav-plans__row {
+      border-width: 1px;
+    }
+    .lav-plans__col {
+      padding: 5px 12px;
+      min-height: 42px;
+    }
+    .lav-plans__col:first-child {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .section.section--faq {
+      padding: 60px 0;
+    }
+    #FAQ .section-heading {
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+    .faq-header {
+      padding: 14px 23px;
+    }
+    [data-theme= "light"] .faq-item + .faq-item {
+      border-width: 1px;
+    }
+    .faq-headline {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .faq-content {
+      padding-left: 23px;
+      padding-right: 0;
+    }
+    .faq-answer {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-size: 13px;
+    }
+
+    .lav-connect {
+      padding: 60px 0;
+    }  
+    .lav-connect .lav-container {
+      max-width: 450px;
+    }
+    .lav-connect__inner {
+      display: block;
+      text-align: center;
+    }
+    .lav-connect__title {
+      max-width: 100%;
+      font-size: 25px;
+      line-height: 26px;
+      text-align: center;
+      letter-spacing: -0.025em;
+    }
+    .lav-connect__input {
+      margin: 38px 0 20px;
+      width: 100%;
+      max-width: 100%;
+      padding: 12px 24px;
+    }
+    .lav-connect__plaid {
+      height: 25px;
+    }
+ 
+    .lav-join {
+      padding-top: 60px;
+      padding-bottom: 330px;
+    }
+    .lav-join__title {
+      max-width: 100%;
+      text-align: center;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 1.3;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
+    .lav-join__btn {
+      width: 100%;
+      max-width: 100%;
+    }
+    .lav-btn {
+      min-height: 44px;
+      font-size: 11px;
+      line-height: 12px;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+    .lav-join {
+      background: #000 url(${settings.dir}/img/join-bg-mob.jpeg) bottom center no-repeat;
+      background-size: contain;
+    }
+
+    .footer {
+      padding: 60px  0 50px;
+    }
+    .footer-legal-notice {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 15px;
+      color: #989898;
+      opacity: 1;
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 2px solid #F4F4F4;
+    }
+    .footer-cell {
+      padding: 0;
+    }
+    .footer-grid {
+      grid-row-gap: 0px;
+    }
+    .footer-cell.footer-cell--divider-mobile {
+      border: none;
+    }
+    .footer-heading, .footer-link {
+      font-size: 14px;
+      line-height: 25px;
+      text-align: left;
+    }
+    .footer-link {
+      margin-top: 10px;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .footer-grid .footer-cell:first-child {
+      width: 100%;
+      border-bottom: 2px solid #F4F4F4;
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-logo-link {
+      margin-bottom: 40px;
+    }
+    .footer-notice, .footer-notice + div {
+      font-size: 14px;
+      line-height: 18px;
+      color: #000000;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .container, .lav-container {
+      width: 100%;
+    },
+    .container, .lav-container {
+      padding: 0 16px;
+    }
   }
 `;
 
@@ -826,6 +1333,11 @@ function init() {
   console.log('init');
 
   let newHomepageEl = `
+    <section class='lav-hat'>
+      <div class='lav-container'>
+        Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup>
+      </div>
+    </section>
     <section class='lav-jumb lav-section lav-dark'>
       <div class='lav-container'>
         <div class='lav-jumb__title'>
@@ -848,8 +1360,10 @@ function init() {
     </section>
 
     <section class='lav-partners lav-section lav-gray lav-center'>
-      <img class='lav-mob' src='${settings.dir}/img/partners.svg' />
-      <img class='lav-desk' src='${settings.dir}/img/partners-desk.svg' />
+      <div class='lav-container'>
+        <img class='lav-mob' src='${settings.dir}/img/partners.svg' />
+        <img class='lav-desk' src='${settings.dir}/img/partners-desk.svg' />
+      </div>
     </section>
 
     <section class='lav-ratings lav-section lav-center'>
@@ -917,6 +1431,9 @@ function init() {
                 <img src='${settings.dir}/img/expandIcon.svg' />
               </div>
             </div>
+            <div class='lav-why__item-body'>
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits. 
+            </div>
           </div>
 
           <div class='lav-why__item'>
@@ -929,6 +1446,9 @@ function init() {
                 <img src='${settings.dir}/img/expandIcon.svg' />
               </div>
             </div>
+            <div class='lav-why__item-body'>
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits. 
+            </div>
           </div>
 
           <div class='lav-why__item'>
@@ -940,6 +1460,9 @@ function init() {
               <div class='lav-why__item-expand'>
                 <img src='${settings.dir}/img/expandIcon.svg' />
               </div>
+            </div>
+            <div class='lav-why__item-body'>
+              Stop doing debit the old way and start earning up to 1% back on your everyday purchases with Extra. Every swipe gets you one step closer to gift cards, tech, home goods, and more, all redeemable with your points in the Extra Rewards Store.
             </div>
           </div>
         </div>
@@ -1036,11 +1559,11 @@ function init() {
             <div class='lav-compare__col'></div>
             <div class='lav-compare__col lav-compare__extra'>
               <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
-              <div class='lav-compare__extra-title'>Extra Debit Card</div>
+              <div class='lav-compare__extra-title'>Extra Debit&nbsp;Card</div>
             </div>
             <div class='lav-compare__col lav-compare__choose'>
               <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
-              <div class='lav-compare__select lav-select'>
+              <div class='lav-compare__select lav-select lav-desk'>
                 <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
                 <div class='lav-compare__select-list lav-select__list'>
                   <div class='lav-compare__select-item lav-select__item'>Value 1</div>
@@ -1048,6 +1571,7 @@ function init() {
                   <div class='lav-compare__select-item lav-select__item'>Value 3</div>
                 </div>
               </div>
+              <div class='lav-mob lav-compare__debit'>Debit Card</div>
             </div>
           </div>
 
@@ -1280,7 +1804,7 @@ function init() {
     <section class='lav-connect lav-section lav-dark'>
       <div class='lav-container'>
         <div class='lav-connect__inner'>
-          <div class='lav-connect__title'>Does Extra connect with my bank?</div>
+          <div class='lav-connect__title'>Does Extra connect with&nbsp;my&nbsp;bank?</div>
 
           <input placeholder='Search for your bank here...' class='lav-connect__input' />
         
@@ -1305,6 +1829,7 @@ function init() {
     .insertAdjacentHTML('afterbegin', newHomepageEl);
 
   initFeedbacks();
+  iniWhy();
   initFaq();
 }
 
@@ -1322,6 +1847,15 @@ function initFeedbacks() {
     'As told by Extra members';
 }
 
+function iniWhy() {
+  for (let item of document.querySelectorAll('.lav-why__item-head')) {
+    item.addEventListener('click', function () {
+      item.classList.toggle('active');
+      $(item).next().slideToggle();
+    });
+  }
+}
+
 function initRatings() {
   document.querySelector('.lav-ratings__stars-caption').innerText =
     document.querySelector('.hero-notice-stars + div').innerText;
@@ -1332,6 +1866,6 @@ function initFaq() {
     .querySelector('.lav-join')
     .insertAdjacentElement('beforebegin', document.querySelector('#FAQ'));
 
-  document.querySelector('#FAQ .section-heading').innerText =
-    'Frequently asked questions';
+  document.querySelector('#FAQ .section-heading').innerHTML =
+    'Frequently asked&nbsp;questions';
 }
