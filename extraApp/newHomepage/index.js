@@ -153,17 +153,33 @@ const styles = `
     right: 0;
     top: 60vw;
   }
-  .splide__pagination li button {
+  .lav-works .splide__pagination li button {
     width: 38px;;
     height: 3px;
     background: rgba(255, 255, 255, 0.25);
     border-radius: 35px;
   }
-  .splide__pagination li button.is-active {
+  .lav-works .splide__pagination li button.is-active {
     background-color: #fff;
   }
   .splide__pagination li + li {
-    margin-left: 4px;
+    margin-left: 5px;
+  }
+  .lav-compare .splide__pagination li {
+    display: flex;
+  }
+  .lav-compare .splide__pagination li button {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #E3E3E3;
+    padding: 0;
+  }
+  .lav-compare .splide__pagination li button.is-active {
+    background-color: #36F8A3;
+  }
+  .lav-compare .splide__pagination {
+    margin-top: 20px;
   }
 
   .section--footer-cta, .hero, .hero + .section, .section + .section {
@@ -613,9 +629,12 @@ const styles = `
     position: relative;
     top: -4px;
   }
-  .lav-compare__table {
+  .lav-compare__slider, .lav-compare__table.lav-desk {
     margin-top: 60px;
     margin-bottom: 40px;
+  }
+  .lav-compare__table {
+
   }
   .lav-compare__row {
     display: flex;
@@ -1465,8 +1484,9 @@ const styles = `
       width: 25px;
       top: -2px;
     }
-    .lav-compare__table {
+    .lav-compare__slider {
       margin-top: 40px;
+      margin-bottom: 20px;
     }
     .lav-compare__extra-img, .lav-compare__choose-img {
       display: none;
@@ -2006,7 +2026,175 @@ function init() {
         <img src='${settings.dir}/img/starsIcon.svg' />
         </div>
 
-        <div class='lav-compare__table'>
+        <div class="splide lav-compare__slider lav-mob">
+          <div class="splide__track">
+            <div class="splide__list">
+              <div class="splide__slide lav-compare__table">
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'></div>
+                  <div class='lav-compare__col lav-compare__extra'>
+                    <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
+                    <div class='lav-compare__extra-title'>Extra Debit&nbsp;Card</div>
+                  </div>
+                  <div class='lav-compare__col lav-compare__choose'>
+                    <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
+                    <div class='lav-compare__select lav-select lav-desk'>
+                      <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
+                      <div class='lav-compare__select-list lav-select__list'>
+                        <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
+                        <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
+                      </div>
+                    </div>
+                    <div class='lav-mob lav-compare__debit'>Debit Card</div>
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Builds credit history</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Earns reward points</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Connects with any bank</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>24/7 premium support</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No security deposit</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No credit checks</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Daily payments</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                </div>
+              </div>
+
+              <div class="splide__slide lav-compare__table">
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'></div>
+                  <div class='lav-compare__col lav-compare__extra'>
+                    <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
+                    <div class='lav-compare__extra-title'>Extra Debit&nbsp;Card</div>
+                  </div>
+                  <div class='lav-compare__col lav-compare__choose'>
+                    <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
+                    <div class='lav-compare__select lav-select lav-desk'>
+                      <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
+                      <div class='lav-compare__select-list lav-select__list'>
+                        <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
+                        <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
+                      </div>
+                    </div>
+                    <div class='lav-mob lav-compare__debit'>Secured Card</div>
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Builds your credit<sup>1</sup></div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No Security Deposit</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No Credit Checks</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>24/7 White Glove Concierge Support</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Earns Reward Points</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class='lav-compare__table lav-desk'>
           <div class='lav-compare__row'>
             <div class='lav-compare__col'></div>
             <div class='lav-compare__col lav-compare__extra'>
@@ -2368,6 +2556,7 @@ function initWorks() {
       let steps = new Splide('.lav-works__slider', {
         arrows: false,
         perPage: 4,
+        type: 'loop',
         gap: '14px',
         // autoWidth: true,
         breakpoints: {
@@ -2380,6 +2569,14 @@ function initWorks() {
             gap: 15,
           },
         },
+      }).mount();
+
+      let tables = new Splide('.lav-compare__slider', {
+        arrows: false,
+        type: 'loop',
+        perPage: 1,
+        gap: '14px',
+        breakpoints: {},
       }).mount();
 
       // splide.on('moved', function () {
