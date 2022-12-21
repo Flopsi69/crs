@@ -489,40 +489,14 @@ function init() {
         handleTimeline();
       }
     }, 200);
-    // let waitVideo = setInterval(() => {
-    //   if (document.querySelector('.iframeblocked')) {
-    //     clearInterval(waitVideo);
-    //     document
-    //       .querySelector('.elVideoWrapper')
-    //       .scrollIntoView({ block: 'start', behavior: 'smooth' });
-    //     document
-    //       .querySelector('.iframeblocked')
-    //       .addEventListener('click', function (e) {
-    //         if (!this.classList.contains('active')) {
-    //           e.preventDefault();
-    //           e.stopPropagation();
-    //           if (typeof Vimeo == 'object') {
-    //             try {
-    //               this.classList.add('active');
-    //               window.playerEll = new Vimeo.Player(
-    //                 this.querySelector('iframe')
-    //               );
-    //               if (window.playerEll.setVolume) {
-    //                 window.playerEll.setVolume(1);
-    //               }
-    //               if (window.playerEll.setMuted) {
-    //                 window.playerEll.setMuted(false);
-    //               }
-    //             } catch (error) {
-    //               console.log(error);
-    //             }
-    //           }
-
-    //           return false;
-    //         }
-    //       });
-    //   }
-    // }, 200);
+    let waitVideo = setInterval(() => {
+      if (document.querySelector('.iframeblocked')) {
+        clearInterval(waitVideo);
+        document
+          .querySelector('.elVideoWrapper')
+          .scrollIntoView({ block: 'start', behavior: 'smooth' });
+      }
+    }, 200);
   }
 
   document
@@ -611,14 +585,38 @@ function handleTimeline() {
   const iframe = document.querySelector('.fluid-width-video-wrapper iframe');
   const playerEl = new Vimeo.Player(iframe);
   if (window.innerWidth < 768) {
-    playerEl.ready().then(function () {
-      // if (playerEl.setVolume) {
-      //   playerEl.setVolume(1);
-      // }
-      // if (playerEl.setMuted) {
-      //   playerEl.setMuted(false);
-      // }
-    });
+    document
+      .querySelector('.iframeblocked')
+      .addEventListener('click', function (e) {
+        if (!this.classList.contains('active')) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (typeof Vimeo == 'object') {
+            try {
+              this.classList.add('active');
+              playerEl = new Vimeo.Player(this.querySelector('iframe'));
+              if (playerEl.setVolume) {
+                playerEl.setVolume(1);
+              }
+              if (playerEl.setMuted) {
+                playerEl.setMuted(false);
+              }
+            } catch (error) {
+              console.log(error);
+            }
+          }
+
+          return false;
+        }
+      });
+    //   playerEl.ready().then(function () {
+    //     if (playerEl.setVolume) {
+    //       playerEl.setVolume(1);
+    //     }
+    //     if (playerEl.setMuted) {
+    //       playerEl.setMuted(false);
+    //     }
+    //   });
   }
 
   let isActive,
