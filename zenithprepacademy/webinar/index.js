@@ -557,8 +557,8 @@ function initObserver() {
         ) {
           isActive = true;
           gaEvent(
-            'exp_9_steps_timeline_is',
-            '3 factors block Active state',
+            'exp_9_steps_timeline_act',
+            '3 factors block Initial state',
             'Visibility',
             'Timeline'
           );
@@ -569,8 +569,8 @@ function initObserver() {
         ) {
           isDone = true;
           gaEvent(
-            'exp_9_steps_timeline_is',
-            '3 factors block Done state',
+            'exp_9_steps_timeline_not_act',
+            '3 factors block Initial state',
             'Visibility',
             'Timeline'
           );
