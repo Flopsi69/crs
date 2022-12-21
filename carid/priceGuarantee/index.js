@@ -139,6 +139,9 @@ const styles = `
     margin-left: 6px;
     margin-right: 4px;
   }
+  .lav-price__caption_black {
+    color: #111;
+  }
   .prod-info .lav-price {
     // margin-bottom: 10px;
   }
@@ -250,6 +253,9 @@ const styles = `
   }
   .affirm-sidebar-price {
     margin-top: 0;
+  }
+  #prod-slct-opts-btn-holder + .lav-price .lav-price__caption, #main-opts .lav-price__caption {
+    color: #111;
   }
   @media(max-width: 1450px) {
     .cart-order .lav-tip {

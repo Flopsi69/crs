@@ -2817,9 +2817,24 @@ function initWorks() {
           gaEvent('Swipe on review slide');
         });
 
-        // steps.on('moved', function () {
-        //   gaEvent('Swipe on review slide');
-        // });
+        steps.on('moved', function () {
+          let num = document
+            .querySelector('.lav-works__slide.is-active .lav-works__info-num')
+            .innerText.replace('.', '');
+
+          setTimeout(() => {
+            if (
+              num ==
+              document
+                .querySelector(
+                  '.lav-works__slide.is-active .lav-works__info-num'
+                )
+                .innerText.replace('.', '')
+            ) {
+              gaEvent('How the Extra debit card works Visibility', num);
+            }
+          }, 2000);
+        });
       }
 
       // splide.on('moved', function () {

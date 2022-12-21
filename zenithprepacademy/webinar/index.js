@@ -196,6 +196,7 @@ const styles = `
   .timeline__note .timeline__item-time {
     font-weight: 700;
     color: #9E0031;
+    font-family: "Open Sans", Helvetica, sans-serif !important;
   }
   .timeline__note .timeline__item-caption {
     font-weight: 600;
