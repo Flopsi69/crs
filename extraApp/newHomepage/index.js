@@ -359,6 +359,7 @@ const styles = `
     color: #000000;
   }
   .lav-hat .lav-apply {
+    cursor: pointer;
     display: inline-block;
     border-bottom: 1px solid #000;
   }
@@ -1911,8 +1912,8 @@ function init() {
         <div class='lav-jumb__info'>
           <div class='lav-jumb__list'>
             <div class='lav-jumb__item'>No interest or hidden fees<span>—ever</span></div>
-            <div class='lav-jumb__item'>Use your own bank account<sup>2</sup></div>
-            <div class='lav-jumb__item'>Earn rewards with every swipe<sup>1</sup></div>
+            <div class='lav-jumb__item'>Use your own bank account <sup>2</sup></div>
+            <div class='lav-jumb__item'>Earn rewards with every swipe <sup>1</sup></div>
           </div>
 
           <button class='lav-btn lav-btn_green lav-jumb__btn lav-apply'>Start building Credit</button>
