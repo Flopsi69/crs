@@ -3,16 +3,21 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/extraApp/newHomepage',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
+let device = 'desktop';
+
+if (window.innerWidth < 768) {
+  device = 'mobile';
+}
 //Hotjar
 if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'new_hp_design_' + device, 'variant_1');
     }
   }, 1000);
 }
@@ -24,30 +29,13 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp — New HP design ' + device,
       eventAction: action,
       eventLabel: label,
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytic
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -1859,6 +1847,7 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
+  gaEvent;
 
   let newHomepageEl = `
     <section class='lav-hat'>
@@ -1911,7 +1900,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-feedbacks lav-section lav-dark' id='lav-feedbacks'>
+    <section class='lav-feedbacks lav-section lav-dark lav-observe' id='lav-feedbacks'>
       <div class='lav-container'>
         <div class='lav-feedbacks__title lav-center'>As told by Extra members</div>
         
@@ -1965,7 +1954,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-why lav-section'>
+    <section class='lav-why lav-section lav-observe'>
       <div class='lav-container'>
         <div class='lav-why__title lav-title'>Why Extra?</div>
 
@@ -2056,7 +2045,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-works lav-section lav-dark'>
+    <section class='lav-works lav-section lav-dark lav-observe'>
       <div class='lav-container'>
         <div class='lav-works__title lav-title'>How the Extra <br/> Debit Card works</div>
 
@@ -2465,7 +2454,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-better lav-section lav-gray lav-center'>
+    <section class='lav-better lav-section lav-gray lav-center lav-observe'>
       <div class='lav-container'>
         <div class='lav-better__title lav-title'>Better credit <br/> takes you places</div>
 
@@ -2522,7 +2511,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-plans lav-section'>
+    <section class='lav-plans lav-section lav-observe'>
       <div class='lav-container'>
         <div class='lav-plans__title lav-title lav-center'>Our plans</div>
 
@@ -2616,7 +2605,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-connect lav-section lav-dark'>
+    <section class='lav-connect lav-section lav-dark lav-observe'>
       <div class='lav-container'>
         <div class='lav-connect__inner'>
           <div class='lav-connect__title'>Does Extra connect with&nbsp;my&nbsp;bank?</div>
@@ -2648,7 +2637,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-join lav-section lav-dark'>
+    <section class='lav-join lav-section lav-dark lav-observe'>
       <div class='lav-container'>
         <div class='lav-join__info'>
           <div class='lav-join__title'>Your credit isn’t going to build itself, let’s get started.</div>
@@ -2669,6 +2658,77 @@ function init() {
   initHeader();
   initConnect();
   initWorks();
+  initObserver();
+}
+
+function initObserver() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '0px 0px -35% 0px',
+  };
+
+  let isNormal,
+    isActive,
+    isDone = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry);
+      if (entry.isIntersecting) {
+        console.log(entry.target);
+        if (entry.target.classList.contains('lav-feedbacks')) {
+          gaEvent('Extra members review Visibility');
+        }
+
+        if (entry.target.classList.contains('lav-why')) {
+          gaEvent('Why Extra Visibility');
+        }
+
+        if (entry.target.classList.contains('lav-works')) {
+          if (window.innerWidth > 768) {
+            gaEvent('How the Extra debit card works Visibility');
+          } else {
+            gaEvent(
+              'How the Extra debit card works Visibility',
+              document
+                .querySelector(
+                  '.lav-works__slide.is-active .lav-works__info-num'
+                )
+                .innerText.replace('.', '')
+            );
+          }
+        }
+
+        if (entry.target.classList.contains('lav-better')) {
+          gaEvent('Better credit takes you places Visibility');
+        }
+
+        if (entry.target.classList.contains('lav-plans')) {
+          gaEvent('Our plans Visibility');
+        }
+
+        if (entry.target.classList.contains('lav-connect')) {
+          gaEvent('Does Extra connect with my bank Visibility');
+        }
+
+        if (entry.target.classList.contains('section--faq')) {
+          gaEvent('FAQ Visibility');
+        }
+
+        if (entry.target.classList.contains('lav-join')) {
+          gaEvent('Let`s get started Visibility');
+        }
+
+        // entry.target.classList.add('in-view');
+        // observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  for (let section of Array.from(document.querySelectorAll('.lav-observe'))) {
+    observer.observe(section);
+  }
 }
 
 function initWorks() {
@@ -2723,6 +2783,16 @@ function initWorks() {
         },
       }).mount();
 
+      if (window.innerWidth < 768) {
+        feedbacks.on('moved', function () {
+          gaEvent('Swipe on review slide');
+        });
+
+        steps.on('moved', function () {
+          gaEvent('Swipe on review slide');
+        });
+      }
+
       // splide.on('moved', function () {
       //   gaEvent('swipe slider', 'How Luminette transforms your days');
       // });
@@ -2748,6 +2818,8 @@ function initHeader() {
   for (let selectItem of document.querySelectorAll('.lav-select__item')) {
     selectItem.addEventListener('click', function () {
       let value = $(this).text();
+
+      gaEvent('Click on dropdown in comparison table', value);
 
       if (value == 'Secured Card') {
         $('.lav-compare-debit').slideUp();
@@ -2798,6 +2870,7 @@ function initHeader() {
     );
 
   document.querySelector('.lav-burger').addEventListener('click', function () {
+    gaEvent('Click on hamburger menu');
     document.querySelector('.nav-menu').classList.add('active');
     document.querySelector('.container--nav').classList.add('active');
   });
@@ -2846,6 +2919,31 @@ function initHeader() {
   for (let item of document.querySelectorAll('.lav-apply')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      if (item.classList.contains('lav-jumb__btn')) {
+        gaEvent('Click on start building credit button');
+      }
+      if (item.classList.contains('lav-compare__btn')) {
+        gaEvent('Click on Join now button');
+      }
+      if (item.classList.contains('lav-works__btn')) {
+        if (window.innerWidth > 768) {
+          gaEvent('Click on Get started button');
+        } else {
+          gaEvent(
+            'Click on Get started button',
+            document
+              .querySelector('.lav-works__slide.is-active .lav-works__info-num')
+              .innerText.replace('.', '')
+          );
+        }
+      }
+      if (item.classList.contains('lav-plans__btn')) {
+        gaEvent('Click on Save 25% now button');
+      }
+      if (item.classList.contains('lav-join__btn')) {
+        gaEvent('Click on APPLY NOW button');
+      }
+
       document.querySelector('.cta-button--nav').click();
     });
   }
@@ -2856,6 +2954,7 @@ function initHeader() {
     e.stopPropagation();
     e.stopImmediatePropagation();
     e.preventDefault();
+    gaEvent('Click on FAQ accordion', $(this).text().trim());
     if (document.querySelector('.faq-header.active')) {
       document.querySelector('.faq-header.active').click();
     }
@@ -2866,8 +2965,15 @@ function initHeader() {
 
 function initConnect() {
   document
+    .querySelector('.lav-connect__input')
+    .addEventListener('click', function () {
+      gaEvent('Click on Does Extra connect with my bank input');
+    });
+
+  document
     .querySelector('.lav-connect__search')
     .addEventListener('click', function () {
+      gaEvent('Click on Does Extra connect with my bank button');
       let value = document.querySelector('.lav-connect__input').value;
       console.log(value);
       if (!value) return false;
@@ -2880,7 +2986,9 @@ function initConnect() {
         success: function (data) {
           if (data.bank == null) {
             $('.lav-connect').addClass('lav-fail');
+            gaEvent('Does Extra connect with my bank Error');
           } else {
+            gaEvent('Does Extra connect with my bank Submit');
             $('.lav-connect').addClass('lav-success');
             if (data.bank.logo) {
               $('.lav-connect__couple img:first-child')[0].src =
@@ -2920,6 +3028,7 @@ function initFeedbacks() {
 function iniWhy() {
   for (let item of document.querySelectorAll('.lav-why__item-head')) {
     item.addEventListener('click', function () {
+      gaEvent('Click on Why Extra accordion', item.innerText);
       if (document.querySelector('.lav-why__item-head.active')) {
         document.querySelector('.lav-why__item-head.active').click();
       }
@@ -2935,6 +3044,7 @@ function initRatings() {
 }
 
 function initFaq() {
+  document.querySelector('#FAQ').classList.add('lav-observe');
   document
     .querySelector('.lav-join')
     .insertAdjacentElement('beforebegin', document.querySelector('#FAQ'));
