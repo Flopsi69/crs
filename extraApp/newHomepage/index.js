@@ -1863,9 +1863,9 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup></marquee>
+        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits</marquee>
         <span class='lav-desk'>
-          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits<sup>4</sup>
+          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits
         </span>
       </div>
     </section>
