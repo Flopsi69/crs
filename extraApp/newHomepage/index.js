@@ -1835,6 +1835,8 @@ const styles = `
     }
     .footer-logo-link {
       margin-bottom: 40px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .footer-notice, .footer-notice + div {
       font-size: 14px;
