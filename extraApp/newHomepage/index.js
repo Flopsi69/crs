@@ -922,6 +922,9 @@ const styles = `
     color: #000;
     flex-grow: 1;
   } 
+  .lav-connect__input::placeholder {
+    color: #000;
+  }
   .lav-connect__search {
     position: absolute;
     right: 0;
@@ -1208,6 +1211,9 @@ const styles = `
       font-size: 25px;
       line-height: 26px;
       letter-spacing: -0.025em;
+    }
+    .lav-compare__row:first-child .lav-compare__col:nth-child(2) {
+      border-radius: 8px 8px 0 0;
     }
     .lav-feedbacks__slide {
       max-width: 65%;
@@ -2955,8 +2961,11 @@ function initHeader() {
     e.stopImmediatePropagation();
     e.preventDefault();
     gaEvent('Click on FAQ accordion', $(this).text().trim());
-    if (document.querySelector('.faq-header.active')) {
-      document.querySelector('.faq-header.active').click();
+    if (
+      document.querySelector('.faq-header.active') &&
+      !this.classList.contains('active')
+    ) {
+      $('.faq-header.active').removeClass('active').next().slideUp();
     }
     $(this).toggleClass('active');
     $(this).next().slideToggle();
@@ -3029,8 +3038,11 @@ function iniWhy() {
   for (let item of document.querySelectorAll('.lav-why__item-head')) {
     item.addEventListener('click', function () {
       gaEvent('Click on Why Extra accordion', item.innerText);
-      if (document.querySelector('.lav-why__item-head.active')) {
-        document.querySelector('.lav-why__item-head.active').click();
+      if (
+        document.querySelector('.lav-why__item-head.active') &&
+        !item.classList.contains('active')
+      ) {
+        $('.lav-why__item-head.active').removeClass('active').next().slideUp();
       }
       item.classList.toggle('active');
       $(item).next().slideToggle();
