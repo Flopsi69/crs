@@ -615,12 +615,12 @@ function handleTimeline() {
     }
   }
 
+  let isActive,
+    isDone = false;
+
   setInterval(() => {
     playerEl.getCurrentTime().then(function (time) {
       if (!document.querySelector('.timeline__item.active')) return false;
-
-      let isActive,
-        isDone = false;
 
       if (time >= 50 && time < 2 * 60 + 30) {
       } else if (time >= 2 * 60 + 30 && time < 9 * 60 + 15) {
