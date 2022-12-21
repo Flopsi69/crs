@@ -483,6 +483,7 @@ function init() {
       );
     };
   } else {
+    handleTimeline();
     let waitVideo = setInterval(() => {
       if (document.querySelector('.iframeblocked')) {
         clearInterval(waitVideo);
@@ -512,7 +513,6 @@ function init() {
                 }
               }
 
-              handleTimeline();
               return false;
             }
           });

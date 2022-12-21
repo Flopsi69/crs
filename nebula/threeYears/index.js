@@ -83,11 +83,11 @@ const styles = `
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    width: 375px;
+    width: 355px;
     z-index: 50;
     transform: translate(-50%,-100%);
     top: -10px;
-    left: 50%;
+    left: -70px;
     right: 0;
     margin: auto;
     background: #fff;
@@ -109,7 +109,7 @@ const styles = `
     bottom: 0;
     margin: auto;
     right: 0;
-    transform: translateY(50%) rotate(45deg);
+    transform: translateY(50%) translateX(75px) rotate(45deg);
     background: #fff;
   }
   .lav-plan-tip__descr {
@@ -117,9 +117,10 @@ const styles = `
     line-height: 140%;
     color: #505985;
   }
-  .lav-plan-tip__descr span {
+  .lav-plan-tip__descr a {
     text-decoration: underline;
     cursor: pointer;
+    color: #505985;
   }
   .lav-plan-tip__info-inner {
     position: absolute;
@@ -190,7 +191,7 @@ function initTips() {
             Lifetime access to your personalized reports and exploration tools .
           </p>
          <p>
-          Receive continuous updates to your genomics report for 3 years, and $19.99/year thereafter. Cancel auto-renewal anytime. <span>Refund policy</span>
+          Receive continuous updates to your genomics report for 3 years, and $19.99/year thereafter. Cancel auto-renewal anytime. <a href='https://nebulagenomics.zendesk.com/hc/en-us/articles/360028257612-Refund-Policy-' target="_blank">Refund policy</a>
          </p>
          </div>
       </div>
@@ -206,10 +207,6 @@ function initTips() {
       item
         .querySelector('.plan__option-value')
         .insertAdjacentHTML('beforeend', elTip);
-
-      item
-        .querySelector('.lav-plan-tip__descr span')
-        .addEventListener('click', function () {});
     } else if (item.querySelector('.lav-plan-tip')) {
       item.querySelector('.lav-plan-tip').remove();
     }
