@@ -653,7 +653,7 @@ const styles = `
   }
 
   .lav-compare {
-    padding: 150px 0;
+    padding: 75px 0;
   }
   .lav-compare__title {
     text-align: center;
@@ -727,7 +727,7 @@ const styles = `
     max-width: 120px;
   }
   .lav-better {
-    padding: 150px 0;
+    padding: 75px 0;
   }
   .lav-better__icon {
     line-height: 0;
@@ -829,7 +829,7 @@ const styles = `
   }
 
   .lav-plans {
-    padding: 150px 0;
+    padding: 75px 0;
   }
   .lav-plans__table {
     margin-top: 40px;
@@ -1031,7 +1031,7 @@ const styles = `
     width: 100%;
   }
   .section.section--faq {
-    padding: 150px 0;
+    padding: 75px 0;
   }
   #FAQ .section-heading {
     font-family: 'nbi Pro';
@@ -1936,8 +1936,6 @@ function init() {
             <div class='lav-ratings__stars-caption'>4.6K Ratings</div>
           </div>
         </div>
-        
-        <div class='lav-ratings__caption'>Trusted by 200,000+ customers</div>
       </div>
     </section>
 
