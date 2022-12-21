@@ -612,12 +612,12 @@ function handleTimeline() {
   const playerEl = new Vimeo.Player(iframe);
   if (window.innerWidth < 768) {
     playerEl.ready().then(function () {
-      if (playerEl.setVolume) {
-        playerEl.setVolume(1);
-      }
-      if (playerEl.setMuted) {
-        playerEl.setMuted(false);
-      }
+      // if (playerEl.setVolume) {
+      //   playerEl.setVolume(1);
+      // }
+      // if (playerEl.setMuted) {
+      //   playerEl.setMuted(false);
+      // }
     });
   }
 
