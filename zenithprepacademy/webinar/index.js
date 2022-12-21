@@ -594,7 +594,6 @@ function handleTimeline() {
           if (typeof Vimeo == 'object') {
             try {
               this.classList.add('active');
-              playerEl = new Vimeo.Player(this.querySelector('iframe'));
               if (playerEl.setVolume) {
                 playerEl.setVolume(1);
               }
