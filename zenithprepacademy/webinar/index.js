@@ -501,7 +501,12 @@ function init() {
                   window.playerEll = new Vimeo.Player(
                     this.querySelector('iframe')
                   );
-                  window.playerEll.setMuted(false);
+                  if (window.playerEll.setVolume) {
+                    window.playerEll.setVolume(1);
+                  }
+                  if (window.playerEll.setMuted) {
+                    window.playerEll.setMuted(false);
+                  }
                 } catch (error) {
                   console.log(error);
                 }
