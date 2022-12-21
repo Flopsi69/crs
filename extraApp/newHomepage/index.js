@@ -135,6 +135,10 @@ const styles = `
     padding: 0;
   }
 
+  .footer-logo svg {
+    width: 100px;
+  }
+
   .lav-works .splide__pagination {
     position: absolute;
     left: 0;

@@ -495,10 +495,18 @@ function init() {
             if (!this.classList.contains('active')) {
               e.preventDefault();
               e.stopPropagation();
+              if (typeof Vimeo == 'object') {
+                try {
+                  this.classList.add('active');
+                  window.playerEll = new Vimeo.Player(
+                    this.querySelector('iframe')
+                  );
+                  window.playerEll.setMuted(false);
+                } catch (error) {
+                  console.log(error);
+                }
+              }
 
-              this.classList.add('active');
-              window.playerEll = new Vimeo.Player(this.querySelector('iframe'));
-              window.playerEll.setMuted(false);
               handleTimeline();
               return false;
             }
