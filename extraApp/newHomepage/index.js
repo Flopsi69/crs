@@ -358,6 +358,10 @@ const styles = `
     text-align: center;
     color: #000000;
   }
+  .lav-hat .lav-apply {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+  }
   .lav-hat sup {
     font-weight: 400;
   }
@@ -412,7 +416,7 @@ const styles = `
   .lav-jumb__info {
     position: relative;
     width: 302px;
-    margin-top: -180px;
+    margin-top: -165px;
   }
   .lav-jumb__list {}
   .lav-jumb__item span {
@@ -1446,7 +1450,7 @@ const styles = `
     .lav-jumb {
       // min-height: auto;
       padding-bottom: 32px;
-      padding-top: 120px;
+      padding-top: 110px;
     }
     .lav-jumb__btn {
       max-width: 100%;
@@ -1889,9 +1893,9 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits</marquee>
+        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.* </marquee>
         <span class='lav-desk'>
-          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits
+          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.* <span class='lav-apply'>Apply now.</span>
         </span>
       </div>
     </section>
@@ -1907,8 +1911,8 @@ function init() {
         <div class='lav-jumb__info'>
           <div class='lav-jumb__list'>
             <div class='lav-jumb__item'>No interest or hidden fees<span>—ever</span></div>
-            <div class='lav-jumb__item'>Use your own bank account</div>
-            <div class='lav-jumb__item'>Earn rewards with every swipe</div>
+            <div class='lav-jumb__item'>Use your own bank account<sup>2</sup></div>
+            <div class='lav-jumb__item'>Earn rewards with every swipe<sup>1</sup></div>
           </div>
 
           <button class='lav-btn lav-btn_green lav-jumb__btn lav-apply'>Start building Credit</button>
@@ -2016,13 +2020,13 @@ function init() {
 
           <div class='lav-why__item'>
             <div class='lav-why__item-descr'>
-              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits. 
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.*
             </div>
           </div>
 
           <div class='lav-why__item'>
             <div class='lav-why__item-descr'>
-              Because Extra is a debit card, you don't have toworry about interest, hidden fees or falling into the compounding debt trap like you would with a credit card. We charge a simple flat-rate membership fee upfront so you can build your credit with no surprises later. 
+              Because Extra is a debit card, you don't have to worry about interest, hidden fees or falling into the compounding debt trap like you would with a credit card. We charge a simple flat-rate membership fee upfront so you can build your credit with no surprises later. 
             </div>
           </div>
 
@@ -2045,7 +2049,7 @@ function init() {
               </div>
             </div>
             <div class='lav-why__item-body'>
-              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits. 
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.<sup>*</sup>
             </div>
           </div>
 
@@ -2194,12 +2198,83 @@ function init() {
                         <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
                       </div>
                     </div>
+                    <div class='lav-mob lav-compare__debit'>Secured Card</div>
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'><span>Builds your credit<sup>1</sup></span></div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No Security Deposit</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>No Credit Checks</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>24/7 White Glove Concierge Support</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'>Earns Reward Points</div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
+                  </div>
+                  <div class='lav-compare__col'>
+                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                  </div>
+                </div>
+              </div>
+
+              <div class="splide__slide lav-compare__table">
+                <div class='lav-compare__row'>
+                  <div class='lav-compare__col'></div>
+                  <div class='lav-compare__col lav-compare__extra'>
+                    <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
+                    <div class='lav-compare__extra-title'>Extra Debit&nbsp;Card</div>
+                  </div>
+                  <div class='lav-compare__col lav-compare__choose'>
+                    <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
+                    <div class='lav-compare__select lav-select lav-desk'>
+                      <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
+                      <div class='lav-compare__select-list lav-select__list'>
+                        <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
+                        <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
+                      </div>
+                    </div>
                     <div class='lav-mob lav-compare__debit'>Debit Card</div>
                   </div>
                 </div>
 
                 <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>Builds credit history</div>
+                  <div class='lav-compare__col'><span>Builds credit history<sup>1</sup></span></div>
                   <div class='lav-compare__col'>
                     <img src='${settings.dir}/img/checkIconBlack.svg' />
                   </div>
@@ -2268,77 +2343,6 @@ function init() {
                   </div>
                 </div>
               </div>
-
-              <div class="splide__slide lav-compare__table">
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'></div>
-                  <div class='lav-compare__col lav-compare__extra'>
-                    <img class='lav-compare__extra-img' src='${settings.dir}/img/compare-debit.png' />
-                    <div class='lav-compare__extra-title'>Extra Debit&nbsp;Card</div>
-                  </div>
-                  <div class='lav-compare__col lav-compare__choose'>
-                    <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
-                    <div class='lav-compare__select lav-select lav-desk'>
-                      <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
-                      <div class='lav-compare__select-list lav-select__list'>
-                        <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
-                        <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
-                      </div>
-                    </div>
-                    <div class='lav-mob lav-compare__debit'>Secured Card</div>
-                  </div>
-                </div>
-
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>Builds your credit<sup>1</sup></div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/checkIconBlack.svg' />
-                  </div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
-                  </div>
-                </div>
-
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>No Security Deposit</div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/checkIconBlack.svg' />
-                  </div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
-                  </div>
-                </div>
-
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>No Credit Checks</div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/checkIconBlack.svg' />
-                  </div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
-                  </div>
-                </div>
-
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>24/7 White Glove Concierge Support</div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/checkIconBlack.svg' />
-                  </div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
-                  </div>
-                </div>
-
-                <div class='lav-compare__row'>
-                  <div class='lav-compare__col'>Earns Reward Points</div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/checkIconBlack.svg' />
-                  </div>
-                  <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -2353,10 +2357,10 @@ function init() {
             <div class='lav-compare__col lav-compare__choose'>
               <img class='lav-compare__choose-img' src='${settings.dir}/img/card-placeholder.png' />
               <div class='lav-compare__select lav-select lav-desk'>
-                <div class='lav-compare__select-value lav-select__value'>Debit Card</div>
+                <div class='lav-compare__select-value lav-select__value'>Secured Card</div>
                 <div class='lav-compare__select-list lav-select__list'>
-                  <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
                   <div class='lav-better__select-item lav-select__item' data-value='secured'>Secured Card</div>
+                  <div class='lav-better__select-item lav-select__item' data-value='debit'>Debit Card</div>
                 </div>
               </div>
               <div class='lav-mob lav-compare__debit'>Debit Card</div>
@@ -2364,7 +2368,7 @@ function init() {
           </div>
 
           <div class='lav-compare__row lav-compare-debit'>
-            <div class='lav-compare__col'>Builds credit history</div>
+            <div class='lav-compare__col'><span>Builds credit history<sup>1</sup></span></div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
@@ -2434,7 +2438,7 @@ function init() {
           </div>
 
           <div class='lav-compare__row lav-compare-secured'>
-            <div class='lav-compare__col'>Builds your credit<sup>1</sup></div>
+            <div class='lav-compare__col'><span>Builds your credit<sup>1</sup></span></div>
             <div class='lav-compare__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
@@ -2562,7 +2566,7 @@ function init() {
           </div>
 
           <div class='lav-plans__row'>
-            <div class='lav-plans__col'>Debit that builds credit</div>
+            <div class='lav-plans__col'><span>Debit that builds credit<sup>1</sup></span></div>
             <div class='lav-plans__col'>
               <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
@@ -2637,7 +2641,7 @@ function init() {
         </div>
 
         <div class='lav-plans__btn-wrap'>
-          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>SAVE 25% NOW</button>
+          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>Apply now</button>
         </div>
       </div>
     </section>
@@ -2883,7 +2887,7 @@ function initHeader() {
       });
   }
 
-  $('.lav-compare-secured').slideUp();
+  $('.lav-compare-debit').slideUp();
 
   for (let selectItem of document.querySelectorAll('.lav-select__item')) {
     selectItem.addEventListener('click', function () {
@@ -2910,13 +2914,6 @@ function initHeader() {
   document.querySelector('[href="#FAQ"]').innerText = document
     .querySelector('[href="#FAQ"]')
     .innerText.replace('s', '');
-
-  document.querySelector(
-    '.footer-link[href="https://intercom.help/extracard/en"]'
-  ).innerText = 'FAQ';
-  document.querySelector(
-    '.footer-link[href="https://intercom.help/extracard/en"]'
-  ).href = '#FAQ';
 
   document
     .querySelector('.cta-button--nav')
