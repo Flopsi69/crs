@@ -1,3 +1,8 @@
+document.body.classList.add('lav-preloader');
+
+setTimeout(() => {
+  document.body.classList.remove('lav-preloader');
+}, 1200);
 console.log('initExp');
 
 /********* Settings **********/
@@ -104,6 +109,21 @@ const styles = `
   }
   [data-theme="light"] .nav-bg {
     display: none;
+  }
+  .lav-preloader {
+    position: relative;
+    overflow: hidden;
+  }
+  .lav-preloader:before {
+    content: '';
+    position: fixed;
+    left: -10px;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: #fff;
+    z-index: 9999999999;
+    pointer-events: none;
   }
   .container.container--nav {
     color: #fff;
