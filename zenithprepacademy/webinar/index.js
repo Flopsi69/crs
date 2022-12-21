@@ -483,7 +483,12 @@ function init() {
       );
     };
   } else {
-    handleTimeline();
+    let intervalVimeo = setInterval(() => {
+      if (typeof Vimeo == 'object') {
+        clearInterval(intervalVimeo);
+        handleTimeline();
+      }
+    }, 200);
     // let waitVideo = setInterval(() => {
     //   if (document.querySelector('.iframeblocked')) {
     //     clearInterval(waitVideo);
