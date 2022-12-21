@@ -85,8 +85,9 @@ if (settings.observe) {
         console.log(node);
         if (
           !node.classList.contains('po_submodel') &&
-          node.classList.contains('gbox_portal') &&
-          node.querySelector('#child_products_tbl')
+          ((node.classList.contains('gbox_portal') &&
+            node.querySelector('#child_products_tbl')) ||
+            node.id == 'child_products_tbl')
         ) {
           if (node.querySelector('.lav-price__wrap')) return false;
           document
