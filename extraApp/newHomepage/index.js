@@ -1854,7 +1854,7 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
-  gaEvent;
+  gaEvent('loaded');
 
   let newHomepageEl = `
     <section class='lav-hat'>
@@ -2137,7 +2137,7 @@ function init() {
       </div>
     </section>
 
-    <section class='lav-compare lav-section'>
+    <section class='lav-compare lav-section lav-observe'>
       <div class='lav-container'>
         <div class='lav-compare__title lav-title'>Your debit card <br/> should be 
         <img src='${settings.dir}/img/starsIcon.svg' />
@@ -2672,12 +2672,8 @@ function initObserver() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '0px 0px -35% 0px',
+    rootMargin: '0px 0px -45% 0px',
   };
-
-  let isNormal,
-    isActive,
-    isDone = false;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -2685,7 +2681,9 @@ function initObserver() {
       if (entry.isIntersecting) {
         console.log(entry.target);
         if (entry.target.classList.contains('lav-feedbacks')) {
-          gaEvent('Extra members review Visibility');
+          setTimeout(() => {
+            gaEvent('Extra members review Visibility');
+          }, 2000);
         }
 
         if (entry.target.classList.contains('lav-why')) {
@@ -2694,41 +2692,61 @@ function initObserver() {
 
         if (entry.target.classList.contains('lav-works')) {
           if (window.innerWidth > 768) {
-            gaEvent('How the Extra debit card works Visibility');
+            setTimeout(() => {
+              gaEvent('How the Extra debit card works Visibility');
+            }, 2000);
           } else {
-            gaEvent(
-              'How the Extra debit card works Visibility',
-              document
-                .querySelector(
-                  '.lav-works__slide.is-active .lav-works__info-num'
-                )
-                .innerText.replace('.', '')
-            );
+            setTimeout(() => {
+              gaEvent(
+                'How the Extra debit card works Visibility',
+                document
+                  .querySelector(
+                    '.lav-works__slide.is-active .lav-works__info-num'
+                  )
+                  .innerText.replace('.', '')
+              );
+            }, 2000);
           }
         }
 
+        if (entry.target.classList.contains('lav-compare')) {
+          setTimeout(() => {
+            gaEvent('Comparison table Visibility');
+          }, 2000);
+        }
+
         if (entry.target.classList.contains('lav-better')) {
-          gaEvent('Better credit takes you places Visibility');
+          setTimeout(() => {
+            gaEvent('Better credit takes you places Visibility');
+          }, 2000);
         }
 
         if (entry.target.classList.contains('lav-plans')) {
-          gaEvent('Our plans Visibility');
+          setTimeout(() => {
+            gaEvent('Our plans Visibility');
+          }, 2000);
         }
 
         if (entry.target.classList.contains('lav-connect')) {
-          gaEvent('Does Extra connect with my bank Visibility');
+          setTimeout(() => {
+            gaEvent('Does Extra connect with my bank Visibility');
+          }, 2000);
         }
 
         if (entry.target.classList.contains('section--faq')) {
-          gaEvent('FAQ Visibility');
+          setTimeout(() => {
+            gaEvent('FAQ Visibility');
+          }, 2000);
         }
 
         if (entry.target.classList.contains('lav-join')) {
-          gaEvent('Let`s get started Visibility');
+          setTimeout(() => {
+            gaEvent('Let`s get started Visibility');
+          }, 2000);
         }
 
         // entry.target.classList.add('in-view');
-        // observer.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
