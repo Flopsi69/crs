@@ -484,40 +484,40 @@ function init() {
     };
   } else {
     handleTimeline();
-    let waitVideo = setInterval(() => {
-      if (document.querySelector('.iframeblocked')) {
-        clearInterval(waitVideo);
-        document
-          .querySelector('.elVideoWrapper')
-          .scrollIntoView({ block: 'start', behavior: 'smooth' });
-        document
-          .querySelector('.iframeblocked')
-          .addEventListener('click', function (e) {
-            if (!this.classList.contains('active')) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (typeof Vimeo == 'object') {
-                try {
-                  this.classList.add('active');
-                  window.playerEll = new Vimeo.Player(
-                    this.querySelector('iframe')
-                  );
-                  if (window.playerEll.setVolume) {
-                    window.playerEll.setVolume(1);
-                  }
-                  if (window.playerEll.setMuted) {
-                    window.playerEll.setMuted(false);
-                  }
-                } catch (error) {
-                  console.log(error);
-                }
-              }
+    // let waitVideo = setInterval(() => {
+    //   if (document.querySelector('.iframeblocked')) {
+    //     clearInterval(waitVideo);
+    //     document
+    //       .querySelector('.elVideoWrapper')
+    //       .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    //     document
+    //       .querySelector('.iframeblocked')
+    //       .addEventListener('click', function (e) {
+    //         if (!this.classList.contains('active')) {
+    //           e.preventDefault();
+    //           e.stopPropagation();
+    //           if (typeof Vimeo == 'object') {
+    //             try {
+    //               this.classList.add('active');
+    //               window.playerEll = new Vimeo.Player(
+    //                 this.querySelector('iframe')
+    //               );
+    //               if (window.playerEll.setVolume) {
+    //                 window.playerEll.setVolume(1);
+    //               }
+    //               if (window.playerEll.setMuted) {
+    //                 window.playerEll.setMuted(false);
+    //               }
+    //             } catch (error) {
+    //               console.log(error);
+    //             }
+    //           }
 
-              return false;
-            }
-          });
-      }
-    }, 200);
+    //           return false;
+    //         }
+    //       });
+    //   }
+    // }, 200);
   }
 
   document
