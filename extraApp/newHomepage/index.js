@@ -1746,6 +1746,7 @@ const styles = `
       width: 100%;
       max-width: 100%;
       padding: 12px 24px;
+      fotn-size: 12px;
     }
     .lav-connect__input-wrap {
       margin: 38px 0 20px;
