@@ -1121,7 +1121,7 @@ const styles = `
     background-color: transparent;
   }
   .footer-grid {
-    margin-lef: 0;
+    margin-left: 0;
     grid-template-columns: auto 1fr 1fr 1fr;
   }
   .footer-legal-notice {
