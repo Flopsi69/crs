@@ -1892,8 +1892,8 @@ function init() {
 
     <section class='lav-partners lav-section lav-gray lav-center'>
       <div class='lav-container'>
-        <img class='lav-mob' src='${settings.dir}/img/partners.svg' />
-        <img class='lav-desk' src='${settings.dir}/img/partners-desk.svg' />
+        <img class='lav-mob' src='${settings.dir}/img/partners.png' />
+        <img class='lav-desk' src='${settings.dir}/img/partners-desk.png' />
       </div>
     </section>
 
