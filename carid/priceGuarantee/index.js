@@ -89,7 +89,7 @@ if (settings.observe) {
             (node.querySelector('.po_submodel') ||
               node.querySelector('#child_products_tbl')))
         ) {
-          if (document.querySelector('.lav-price__wrap')) return false;
+          if (node.querySelector('.lav-price__wrap')) return false;
           document
             .querySelector('#main-opts>.clear')
             .insertAdjacentHTML(
