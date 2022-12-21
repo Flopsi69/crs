@@ -619,6 +619,9 @@ function handleTimeline() {
     playerEl.getCurrentTime().then(function (time) {
       if (!document.querySelector('.timeline__item.active')) return false;
 
+      let isActive,
+        isDone = false;
+
       if (time >= 50 && time < 2 * 60 + 30) {
       } else if (time >= 2 * 60 + 30 && time < 9 * 60 + 15) {
         document
@@ -641,7 +644,25 @@ function handleTimeline() {
         document
           .querySelector('.timeline__item:nth-child(4)')
           .classList.add('active');
+        if (window.innerWidth > 768 && !isActive) {
+          isActive = true;
+          gaEvent(
+            'exp_9_steps_timeline_act',
+            '3 factors block Initial state',
+            'Visibility',
+            'Timeline'
+          );
+        }
       } else if (time >= 18 * 60 && time < 30 * 60) {
+        if (window.innerWidth > 768 && !isDone) {
+          isDone = true;
+          gaEvent(
+            'exp_9_steps_timeline_not_act',
+            '3 factors block Initial state',
+            'Visibility',
+            'Timeline'
+          );
+        }
         document
           .querySelector('.timeline__item.active')
           .classList.remove('active');
