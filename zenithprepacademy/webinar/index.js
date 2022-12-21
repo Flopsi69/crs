@@ -605,14 +605,15 @@ function handleTimeline() {
 
   const iframe = document.querySelector('.fluid-width-video-wrapper iframe');
   const playerEl = new Vimeo.Player(iframe);
-
   if (window.innerWidth < 768) {
-    if (playerEl.setVolume) {
-      playerEl.setVolume(1);
-    }
-    if (playerEl.setMuted) {
-      playerEl.setMuted(false);
-    }
+    playerEl.ready().then(function () {
+      if (playerEl.setVolume) {
+        playerEl.setVolume(1);
+      }
+      if (playerEl.setMuted) {
+        playerEl.setMuted(false);
+      }
+    });
   }
 
   let isActive,
