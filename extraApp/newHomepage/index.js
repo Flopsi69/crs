@@ -1121,7 +1121,11 @@ const styles = `
     background-color: transparent;
   }
   .footer-grid {
-    grid-template-columns: 2fr 1fr 1fr 1fr
+    margin-lef: 0;
+    grid-template-columns: auto 1fr 1fr 1fr;
+  }
+  .footer-legal-notice {
+    max-width: 100%;
   }
   .footer-notice {
     font-weight: 400;
@@ -2813,9 +2817,9 @@ function initWorks() {
           gaEvent('Swipe on review slide');
         });
 
-        steps.on('moved', function () {
-          gaEvent('Swipe on review slide');
-        });
+        // steps.on('moved', function () {
+        //   gaEvent('Swipe on review slide');
+        // });
       }
 
       // splide.on('moved', function () {
