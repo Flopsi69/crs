@@ -375,7 +375,7 @@ const styles = `
   }
 
   .lav-jumb {
-    min-height: 100vh;
+    // min-height: 100vh;
     padding-bottom: 60px;
     display: flex;
     align-items: center;
@@ -2913,6 +2913,10 @@ function initHeader() {
   document.querySelector('[href="#FAQ"]').innerText = document
     .querySelector('[href="#FAQ"]')
     .innerText.replace('s', '');
+
+    document.querySelector(
+      '.footer-link[href="https://intercom.help/extracard/en"]'
+    ).insertAdjacentHTML('beforebegin', '<a href="#FAQ" class="footer-link">FAQ</a>') = 'FAQ';
 
   document
     .querySelector('.cta-button--nav')
