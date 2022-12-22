@@ -142,7 +142,7 @@ if (settings.observe) {
             });
 
           document
-            .querySelector('#main-opts .lav-price a')
+            .querySelector('.add-to-cart-buttons .lav-price a')
             .addEventListener('click', function () {
               gaEvent('Click on Price Match link on Pop Up', 'Added to cart');
             });
