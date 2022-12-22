@@ -354,21 +354,25 @@ function init() {
           'Add to cart'
         );
       });
-  } else if (document.querySelector('#prod-mpn-holder')) {
-    document
-      .querySelector('#prod-mpn-holder')
-      .insertAdjacentHTML('beforeend', guaranteeEl);
-
-    document
-      .querySelector('#prod-mpn-holder .lav-price')
-      .addEventListener('mouseenter', function () {
-        addEventHover(
-          this,
-          'Hover on Price match guarantee on PDP',
-          'Add to cart'
-        );
-      });
   }
+
+  setTimeout(() => {
+    if (document.querySelector('#prod-mpn-holder')) {
+      document
+        .querySelector('#prod-mpn-holder')
+        .insertAdjacentHTML('beforeend', guaranteeEl);
+
+      document
+        .querySelector('#prod-mpn-holder .lav-price')
+        .addEventListener('mouseenter', function () {
+          addEventHover(
+            this,
+            'Hover on Price match guarantee on PDP',
+            'Add to cart'
+          );
+        });
+    }
+  }, 1500);
 
   if (document.querySelector('.affirm-sidebar-price')) {
     document
