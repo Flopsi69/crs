@@ -1912,8 +1912,8 @@ function init() {
         <div class='lav-jumb__info'>
           <div class='lav-jumb__list'>
             <div class='lav-jumb__item'>No interest or hidden fees<span>—ever</span></div>
-            <div class='lav-jumb__item'>Use your own bank account <sup>2</sup></div>
-            <div class='lav-jumb__item'>Earn rewards with every swipe <sup>1</sup></div>
+            <div class='lav-jumb__item'>Earn rewards with every swipe ¹</div>
+            <div class='lav-jumb__item'>Use your own bank account ²</div>
           </div>
 
           <button class='lav-btn lav-btn_green lav-jumb__btn lav-apply'>Start building Credit</button>
@@ -3018,7 +3018,7 @@ function initHeader() {
     .querySelector('.footer-legal-notice')
     .insertAdjacentHTML(
       'beforeend',
-      '<br/><br/>*Based on a survey performed by Extra, using data from Experian, studying changes in credit scores for Extra members between March 2021 to April 2022. We compared credit score changes in active Extra members who had a credit score of 650 or lower when they began using Extra, who had no delinquent payments with Extra, and who had no other trade lines at or above 100 percent balance ratio in the past 3 months and compared these members to a control group. Over the 12 month period of the survey, these members increased their credit score by 47.8 points on average; the maximum credit score increase was 203 points. Impact on your credit may vary, as credit scores are independently determined by credit bureaus based on a number of factors, including your history with other financial services organizations.'
+      '<br/><br/>³Based on a survey performed by Extra, using data from Experian, studying changes in credit scores for Extra members between March 2021 to April 2022. We compared credit score changes in active Extra members who had a credit score of 650 or lower when they began using Extra, who had no delinquent payments with Extra, and who had no other trade lines at or above 100 percent balance ratio in the past 3 months and compared these members to a control group. Over the 12 month period of the survey, these members increased their credit score by 47.8 points on average; the maximum credit score increase was 203 points. Impact on your credit may vary, as credit scores are independently determined by credit bureaus based on a number of factors, including your history with other financial services organizations.'
     );
 
   $('.faq-content').attr('style', '');
