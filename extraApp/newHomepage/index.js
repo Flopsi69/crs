@@ -833,6 +833,12 @@ const styles = `
     opacity: 0.5;
     line-height: 1.5;
   }
+  .lav-scores__subcaption {
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 40px;
+    color: #888888;
+  }
 
   .lav-plans {
     padding: 75px 0;
@@ -1654,6 +1660,11 @@ const styles = `
       font-size: 9px;
       margin-top: 11px;
       line-height: 10px;
+    }
+    .lav-scores__subcaption {
+      font-size: 12px;
+      line-height: 14px;
+      margin-top: 20px;
     }
     .lav-scores__price {
       font-size: 19px;
@@ -2553,6 +2564,8 @@ function init() {
             </div>
           </div>
         </div>
+
+        <div class='lav-scores__subcaption'>According to Experian's State of the Automotive Finance Market 2020.</div>
       </div>
     </section>
 
