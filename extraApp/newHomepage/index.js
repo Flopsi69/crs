@@ -113,6 +113,7 @@ const styles = `
   .lav-hat .lav-container {
     padding: 0;
     max-width: 100%!important;
+    width: 100%;
   }
   .lav-preloader {
     position: relative;
