@@ -3,51 +3,28 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/carid/priceGuarantee',
-  clarity: false,
   observe: true,
 };
 
-//Hotjar
-if (settings.clarity) {
-  const clarityInterval = setInterval(function () {
-    if (typeof clarity == 'function') {
-      clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
-    }
-  }, 1000);
-}
-
 // Alalytic
 function gaEvent(action, label) {
+  let type = 'Desktop';
+  if (window.innerWidth < 768) {
+    type = 'Mobile';
+  }
+
   if (!label) {
     label = '';
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: PDP Price match information. ' + type,
       eventAction: action,
       eventLabel: label,
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytic
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -82,7 +59,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // console.log(node);
+        console.log(node);
         if (
           !node.classList.contains('po_submodel') &&
           ((node.classList.contains('gbox_portal') &&
@@ -99,16 +76,27 @@ if (settings.observe) {
           document
             .querySelector('.lav-price__wrap')
             .insertAdjacentHTML('afterbegin', guaranteeEl);
+
+          document
+            .querySelector('#main-opts .lav-price')
+            .addEventListener('mouseenter', function () {
+              gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
+            });
         }
 
         if (node.classList.contains('prod_add_to_cart')) {
           document
             .querySelector('.add-to-cart-buttons')
             .insertAdjacentHTML('afterbegin', guaranteeEl);
-          add - to - cart - buttons;
+
           document
-            .querySelector('.lav-price__wrap')
-            .insertAdjacentHTML('afterbegin', guaranteeEl);
+            .querySelector('.add-to-cart-buttons .lav-price')
+            .addEventListener('mouseenter', function () {
+              gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
+            });
+          // document
+          //   .querySelector('.lav-price__wrap')
+          //   .insertAdjacentHTML('afterbegin', guaranteeEl);
         }
         // Code Here
       }
@@ -322,5 +310,32 @@ function init() {
     document
       .querySelector('.affirm-sidebar-price')
       .insertAdjacentHTML('beforebegin', guaranteeEl);
+  }
+
+  for (let item of document.querySelectorAll('.lav-price')) {
+    item.addEventListener('mouseenter', function () {
+      if (
+        item.closest('.main-content') &&
+        item.closest('.main-content').querySelector('h1')
+      ) {
+        gaEvent(
+          'Hover on Price match guarantee on PDP',
+          item.closest('.main-content').querySelector('h1').innerText
+        );
+      } else {
+        gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
+      }
+    });
+  }
+}
+
+function checkTimeActive(type) {
+  if (type == 'h1') {
+    gaEvent(
+      'We Price match on PDP visibility',
+      item.closest('.main-content').querySelector('h1').innerText
+    );
+  } else {
+    gaEvent('We Price match on PDP visibility', 'Add to cart');
   }
 }
