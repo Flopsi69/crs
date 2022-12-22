@@ -326,8 +326,8 @@ function init() {
   console.log('init');
   gaEvent('loaded');
 
-  console.log(document.querySelector('.prod-price-h')),
-    document.querySelector('#prod-slct-opts-btn-holder');
+  // console.log(document.querySelector('.prod-price-h')),
+  //   document.querySelector('#prod-slct-opts-btn-holder');
   if (document.querySelector('.prod-price-h')) {
     document
       .querySelector('.prod-price-h')
