@@ -497,16 +497,18 @@ function init() {
           .querySelector('.elVideoWrapper')
           .scrollIntoView({ block: 'start' });
 
-        window.onscroll = function () {
-          if (isScrolled) return false;
-          isScrolled = true;
-          gaEvent(
-            'exp_9_steps_timeline_scroll',
-            '3 factors block Initial state',
-            'Scroll',
-            'Timeline'
-          );
-        };
+        setTimeout(() => {
+          window.onscroll = function () {
+            if (isScrolled) return false;
+            isScrolled = true;
+            gaEvent(
+              'exp_9_steps_timeline_scroll',
+              '3 factors block Initial state',
+              'Scroll',
+              'Timeline'
+            );
+          };
+        }, 1500);
       }
     }, 200);
   }
