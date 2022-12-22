@@ -351,11 +351,14 @@ function addEventHover(item, a, l = '') {
     gaEvent(a);
   }
 
-  item.addEventListener('mouseleave', function () {
+  let func = function () {
     if (l) {
-      gaEvent(a.replace('Hover on', 'Duration visibility'), l + '-' + timer);
+      gaEvent(a.replace('Hover on', 'Duration visibility'), l + ' - ' + timer);
     } else {
       gaEvent(a.replace('Hover on', 'Duration visibility'), timer);
     }
-  });
+    item.removeEventListener('mouseleave', func);
+  };
+
+  item.addEventListener('mouseleave', func);
 }
