@@ -325,7 +325,7 @@ function init() {
         addEventHover(
           this,
           'Hover on Price match guarantee on PDP',
-          'Add to cartd'
+          'Add to cart'
         );
       });
   }
@@ -344,7 +344,7 @@ function init() {
 }
 
 function addEventHover(item, a, l = '') {
-  let timer = 0;
+  let timer = 1;
   setInterval(() => {
     timer += 1;
   }, 1000);
