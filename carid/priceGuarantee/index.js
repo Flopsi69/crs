@@ -275,7 +275,7 @@ const styles = `
   .affirm-sidebar-price {
     margin-top: 0;
   }
-  #prod-slct-opts-btn-holder + .lav-price .lav-price__caption, #main-opts .lav-price__caption, .add-to-cart-buttons .lav-price__caption {
+  #prod-slct-opts-btn-holder + .lav-price .lav-price__caption, #main-opts .lav-price__caption, .add-to-cart-buttons .lav-price__caption, #prod-mpn-holder .lav-price__caption {
     color: #111;
   }
   @media(max-width: 1450px) {
