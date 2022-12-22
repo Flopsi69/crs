@@ -489,12 +489,24 @@ function init() {
         handleTimeline();
       }
     }, 200);
+    let isScrolled = false;
     let waitVideo = setInterval(() => {
       if (document.querySelector('.iframeblocked')) {
         clearInterval(waitVideo);
         document
           .querySelector('.elVideoWrapper')
-          .scrollIntoView({ block: 'start', behavior: 'smooth' });
+          .scrollIntoView({ block: 'start' });
+
+        window.onscroll = function () {
+          if (isScrolled) return false;
+          isScrolled = true;
+          gaEvent(
+            'exp_9_steps_timeline_scroll',
+            '3 factors block Initial state',
+            'Scroll',
+            'Timeline'
+          );
+        };
       }
     }, 200);
   }
