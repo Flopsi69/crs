@@ -1662,8 +1662,8 @@ const styles = `
       line-height: 10px;
     }
     .lav-scores__subcaption {
-      font-size: 12px;
-      line-height: 14px;
+      font-size: 10px;
+      line-height: 12px;
       margin-top: 20px;
     }
     .lav-scores__price {
