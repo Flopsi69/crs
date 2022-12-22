@@ -66,7 +66,7 @@ if (settings.observe) {
             node.querySelector('#child_products_tbl')) ||
             node.id == 'child_products_tbl')
         ) {
-          if (node.querySelector('.lav-price__wrap')) return false;
+          if (document.querySelector('#main-opts .lav-price')) return false;
           document
             .querySelector('#main-opts>.clear')
             .insertAdjacentHTML(
@@ -98,7 +98,7 @@ if (settings.observe) {
             node.querySelector('.po_mpn_notes')) ||
             node.id == 'child_products_tbl')
         ) {
-          if (node.querySelector('.lav-price__wrap')) return false;
+          if (document.querySelector('#main-opts .lav-price')) return false;
           document
             .querySelector('#main-opts .po_mpn_notes')
             .insertAdjacentHTML(
