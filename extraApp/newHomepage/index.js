@@ -110,6 +110,10 @@ const styles = `
   [data-theme="light"] .nav-bg {
     display: none;
   }
+  .lav-hat .lav-container {
+    padding: 0;
+    max-width: 100%!important;
+  }
   .lav-preloader {
     position: relative;
     overflow: hidden;
@@ -1893,7 +1897,7 @@ function init() {
 
   let newHomepageEl = `
     <section class='lav-hat'>
-      <div class='lav-containerr'>
+      <div class='lav-container'>
         <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </marquee>
         <marquee class='lav-desk'>
           Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ <span class='lav-apply'>Apply now.</span>
