@@ -96,7 +96,7 @@ if (settings.observe) {
           document
             .querySelector('#main-opts .po_mpn_notes')
             .insertAdjacentHTML(
-              'beforestart',
+              'beforeBegin',
               '<div class="lav-price__wrap"></div>'
             );
           document
