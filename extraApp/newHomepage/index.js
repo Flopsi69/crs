@@ -1893,7 +1893,7 @@ function init() {
 
   let newHomepageEl = `
     <section class='lav-hat'>
-      <div class='lav-container'>
+      <div class='lav-containerr'>
         <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </marquee>
         <marquee class='lav-desk'>
           Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ <span class='lav-apply'>Apply now.</span>
