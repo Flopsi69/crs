@@ -310,7 +310,7 @@ function init() {
     document
       .querySelector('.prod-info .lav-price')
       .addEventListener('mouseenter', function () {
-        addEventHover(this, 'Hover on Price match guarantee on PDP', 'h1');
+        addEventHover(this, 'Hover on Price match guarantee on PDP', 'H1');
       });
   }
 
@@ -320,9 +320,13 @@ function init() {
       .insertAdjacentHTML('afterend', guaranteeEl);
 
     document
-      .querySelector('#prod-slct-opts-btn-holder .lav-price')
+      .querySelector('#prod-slct-opts-btn-holder+.lav-price')
       .addEventListener('mouseenter', function () {
-        addEventHover(this, 'Hover on Price match guarantee on PDP', 'h1');
+        addEventHover(
+          this,
+          'Hover on Price match guarantee on PDP',
+          'Add to cartd'
+        );
       });
   }
 
