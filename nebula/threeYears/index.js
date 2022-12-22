@@ -4,7 +4,7 @@ console.log('initExp');
 const settings = {
   dir: 'https://flopsi69.github.io/crs/depositPhotos/mayAlsoLike',
   clarity: false,
-  observe: false,
+  observe: true,
 };
 
 //Hotjar
@@ -61,6 +61,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        console.log(node);
         // Code Here
       }
     }
@@ -73,6 +74,33 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-brief {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .lav-brief-toggle {
+    font-family: SpaceGrotesk-Bold;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 140%;
+    color: #3F4CEC;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: #fff;
+  }
+  .lav-brief-toggle:hover {
+    text-decoration: underline;
+  }
+  .subscr__descr, .order__info-list {
+    max-width: 350px;
+  }
   .lav-plan-tip {
     position: relative;
     text-align: left;
@@ -146,6 +174,18 @@ const styles = `
     opacity: 1;
     pointer-events: auto;
   }
+ .lav-append-text a {
+    white-space: nowrap;
+    color: inherit;
+    border-bottom: 1px solid #505985;
+    cursor: pointer;
+    transition: .3s;
+    cursor: pointer;
+ }
+ .lav-append-text a:hover {
+   border-color: transparent;
+   text-decoration: none;
+ }
   @media(max-width: 768px) {
     .lav-plan-tip-info {
       width: 320px;
@@ -167,7 +207,7 @@ init();
 function init() {
   console.log('init');
 
-  setInterval(initTips, 500);
+  setInterval(initTips, 100);
 
   if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
     initHomepage();
@@ -214,7 +254,8 @@ function initTips() {
     }
   } else if (location.href.includes('/cart')) {
     let checkoutText =
-      '<div class="lav-append-text"></br></br>Receive continuous updates to your genomics report for 3 years, and $19.99/year thereafter. Cancel auto-renewal anytime. <a href="https://nebulagenomics.zendesk.com/hc/en-us/articles/360028257612-Refund-Policy-" target="_blank">Refund policy</a></div>';
+      '<div class="lav-append-text"></br>Receive continuous updates to your genomics report for 3 years, and $19.99/year thereafter. Cancel auto-renewal anytime. <a href="https://nebulagenomics.zendesk.com/hc/en-us/articles/360028257612-Refund-Policy-" target="_blank">Refund policy</a></div>';
+
     for (let item of document.querySelectorAll('.order__wrap')) {
       let descrEl = item.querySelector('.subscr__descr');
       if (
@@ -223,13 +264,44 @@ function initTips() {
       ) {
         descrEl.insertAdjacentHTML('beforeend', checkoutText);
       } else if (
-        !descrEl.innerText.includes('Lifetime membership included') &&
-        item.querySelector('lav-append-text')
+        !descrEl.innerText.includes('Lifetime access to your') &&
+        item.querySelector('.lav-append-text')
       ) {
-        item.querySelector('lav-append-text').remove();
+        item.querySelector('.lav-append-text').remove();
       }
     }
   }
 }
 
-function initCheckout() {}
+function initCheckout() {
+  for (let item of document.querySelectorAll('.subscr__descr')) {
+    item.classList.add('lav-brief');
+    // if (item.querySelector('p')) {
+    item.insertAdjacentHTML(
+      'beforeend',
+      '<div class="lav-brief-toggle">See more</div>'
+    );
+
+    item
+      .querySelector('.lav-brief-toggle')
+      .addEventListener('click', function () {
+        item.classList.remove('lav-brief');
+        item.querySelector('.lav-brief-toggle').remove();
+      });
+    // }
+  }
+
+  for (let item of document.querySelectorAll('.order__info-list')) {
+    item.classList.add('lav-brief');
+    item.insertAdjacentHTML(
+      'beforeend',
+      '<div class="lav-brief-toggle">See more</div>'
+    );
+    item
+      .querySelector('.lav-brief-toggle')
+      .addEventListener('click', function () {
+        item.classList.remove('lav-brief');
+        item.querySelector('.lav-brief-toggle').remove();
+      });
+  }
+}

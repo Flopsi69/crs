@@ -80,7 +80,11 @@ if (settings.observe) {
           document
             .querySelector('#main-opts .lav-price')
             .addEventListener('mouseenter', function () {
-              gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
+              addEventHover(
+                this,
+                'Hover on Price match guarantee on PDP',
+                'Product Options'
+              );
             });
         }
 
@@ -92,13 +96,16 @@ if (settings.observe) {
           document
             .querySelector('.add-to-cart-buttons .lav-price')
             .addEventListener('mouseenter', function () {
-              gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
+              addEventHover(
+                this,
+                'Hover on Price match guarantee on PDP',
+                'Added to cart'
+              );
             });
           // document
           //   .querySelector('.lav-price__wrap')
           //   .insertAdjacentHTML('afterbegin', guaranteeEl);
         }
-        // Code Here
       }
     }
   });
@@ -291,6 +298,7 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
+  gaEvent('loaded');
 
   console.log(document.querySelector('.prod-price-h')),
     document.querySelector('#prod-slct-opts-btn-holder');
@@ -298,44 +306,56 @@ function init() {
     document
       .querySelector('.prod-price-h')
       .insertAdjacentHTML('beforebegin', guaranteeEl);
+
+    document
+      .querySelector('.prod-info .lav-price')
+      .addEventListener('mouseenter', function () {
+        addEventHover(this, 'Hover on Price match guarantee on PDP', 'h1');
+      });
   }
 
   if (document.querySelector('#prod-slct-opts-btn-holder')) {
     document
       .querySelector('#prod-slct-opts-btn-holder')
       .insertAdjacentHTML('afterend', guaranteeEl);
+
+    document
+      .querySelector('#prod-slct-opts-btn-holder .lav-price')
+      .addEventListener('mouseenter', function () {
+        addEventHover(this, 'Hover on Price match guarantee on PDP', 'h1');
+      });
   }
 
   if (document.querySelector('.affirm-sidebar-price')) {
     document
       .querySelector('.affirm-sidebar-price')
       .insertAdjacentHTML('beforebegin', guaranteeEl);
-  }
 
-  for (let item of document.querySelectorAll('.lav-price')) {
-    item.addEventListener('mouseenter', function () {
-      if (
-        item.closest('.main-content') &&
-        item.closest('.main-content').querySelector('h1')
-      ) {
-        gaEvent(
-          'Hover on Price match guarantee on PDP',
-          item.closest('.main-content').querySelector('h1').innerText
-        );
-      } else {
-        gaEvent('Hover on Price match guarantee on PDP', 'Add to cart');
-      }
-    });
+    document
+      .querySelector('.cart-order .lav-price')
+      .addEventListener('mouseenter', function () {
+        addEventHover(this, 'Hover on Price match guarantee on Checkout');
+      });
   }
 }
 
-function checkTimeActive(type) {
-  if (type == 'h1') {
-    gaEvent(
-      'We Price match on PDP visibility',
-      item.closest('.main-content').querySelector('h1').innerText
-    );
+function addEventHover(item, a, l = '') {
+  let timer = 0;
+  setInterval(() => {
+    timer += 1;
+  }, 1000);
+
+  if (l) {
+    gaEvent(a, l);
   } else {
-    gaEvent('We Price match on PDP visibility', 'Add to cart');
+    gaEvent(a);
   }
+
+  item.addEventListener('mouseleave', function () {
+    if (l) {
+      gaEvent(a.replace('Hover on', 'Duration visibility'), l + '-' + timer);
+    } else {
+      gaEvent(a.replace('Hover on', 'Duration visibility'), timer);
+    }
+  });
 }
