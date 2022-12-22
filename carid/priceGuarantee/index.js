@@ -338,6 +338,12 @@ function init() {
       .addEventListener('mouseenter', function () {
         addEventHover(this, 'Hover on Price match guarantee on PDP', 'H1');
       });
+
+    document
+      .querySelector('.prod-info .lav-price a')
+      .addEventListener('click', function () {
+        gaEvent('Click on Price Match link on Pop Up', 'H1');
+      });
   }
 
   if (document.querySelector('#prod-slct-opts-btn-holder')) {
@@ -353,6 +359,12 @@ function init() {
           'Hover on Price match guarantee on PDP',
           'Add to cart'
         );
+      });
+
+    document
+      .querySelector('#prod-slct-opts-btn-holder+.lav-price a')
+      .addEventListener('click', function () {
+        gaEvent('Click on Price Match link on Pop Up', 'Add to cart');
       });
   }
 
@@ -370,6 +382,12 @@ function init() {
             'Hover on Price match guarantee on PDP',
             'Add to cart'
           );
+        });
+
+      document
+        .querySelector('#prod-mpn-holder .lav-price a')
+        .addEventListener('click', function () {
+          gaEvent('Click on Price Match link on Pop Up', 'Add to cart');
         });
     }
   }, 1500);
