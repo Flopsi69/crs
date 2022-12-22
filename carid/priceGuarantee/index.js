@@ -275,7 +275,7 @@ const styles = `
   .affirm-sidebar-price {
     margin-top: 0;
   }
-  #prod-slct-opts-btn-holder + .lav-price .lav-price__caption, #main-opts .lav-price__caption, .add-to-cart-buttons .lav-price__caption, #prod-mpn-holder .lav-price__caption {
+  #prod-slct-opts-btn-holder + .lav-price .lav-price__caption, #main-opts .lav-price__caption, .add-to-cart-buttons .lav-price__caption, #prod-mpn-holder .lav-price__caption, .cart-order .lav-price__caption {
     color: #111;
   }
   @media(max-width: 1450px) {
@@ -292,10 +292,10 @@ const styles = `
     }
   }
   @media(max-width: 1199px) {
-    #prod-slct-opts-btn-holder + .lav-price .lav-tip, .lav-price__wrap .lav-tip, .add-to-cart-buttons .lav-tip, .cart-order .lav-tip {
+    #prod-slct-opts-btn-holder + .lav-price .lav-tip, .lav-price__wrap .lav-tip, .add-to-cart-buttons .lav-tip, .cart-order .lav-tip, #prod-mpn-holder .lav-tip {
       transform: translate(-75%, 100%);
     }
-    #prod-slct-opts-btn-holder + .lav-price .lav-tip:before, .lav-price__wrap .lav-tip:before, .add-to-cart-buttons .lav-tip:before, .cart-order .lav-tip:before{
+    #prod-slct-opts-btn-holder + .lav-price .lav-tip:before, .lav-price__wrap .lav-tip:before, .add-to-cart-buttons .lav-tip:before, .cart-order .lav-tip:before, #prod-mpn-holder .lav-tip:before {
       left: 50%;
     }
   }
@@ -396,6 +396,22 @@ function init() {
     document
       .querySelector('.affirm-sidebar-price')
       .insertAdjacentHTML('beforebegin', guaranteeEl);
+
+    document
+      .querySelector('.cart-order .lav-price')
+      .addEventListener('mouseenter', function () {
+        addEventHover(this, 'Hover on Price match guarantee on Checkout');
+      });
+  } else if (
+    location.href.includes('/cart.php') &&
+    document.querySelector('.cart-sidebar-coupon')
+  ) {
+    document
+      .querySelector('.cart-sidebar-coupon')
+      .insertAdjacentHTML('beforebegin', guaranteeEl);
+
+    document.querySelector('.cart-order .lav-price__caption').innerText =
+      'We Price Match Your Purchase';
 
     document
       .querySelector('.cart-order .lav-price')

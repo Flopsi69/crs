@@ -1894,10 +1894,10 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.* </marquee>
-        <span class='lav-desk'>
-          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.* <span class='lav-apply'>Apply now.</span>
-        </span>
+        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </marquee>
+        <marquee class='lav-desk'>
+          Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ <span class='lav-apply'>Apply now.</span>
+        </marquee>
       </div>
     </section>
     <section class='lav-jumb lav-section lav-dark'>
@@ -2019,7 +2019,7 @@ function init() {
 
           <div class='lav-why__item'>
             <div class='lav-why__item-descr'>
-              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.*
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.³
             </div>
           </div>
 
@@ -2048,7 +2048,7 @@ function init() {
               </div>
             </div>
             <div class='lav-why__item-body'>
-              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.<sup>*</sup>
+              The Extra Debit Card works like a debit card—but smarter. At the end of the month, all of your purchases made with Extra are totaled up and reported to the bureaus to help build your credit. On average, Extra members increased their credit score by 48 points just by swiping and practicing good credit habits.³
             </div>
           </div>
 
@@ -2914,9 +2914,12 @@ function initHeader() {
     .querySelector('[href="#FAQ"]')
     .innerText.replace('s', '');
 
-  document.querySelector(
-    '.footer-link[href="https://intercom.help/extracard/en"]'
-  ).insertAdjacentHTML('beforebegin', '<a href="#FAQ" class="footer-link">FAQ</a>');
+  document
+    .querySelector('.footer-link[href="https://intercom.help/extracard/en"]')
+    .insertAdjacentHTML(
+      'beforebegin',
+      '<a href="#FAQ" class="footer-link">FAQ</a>'
+    );
 
   document
     .querySelector('.cta-button--nav')
