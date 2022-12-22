@@ -19,13 +19,18 @@ if (settings.clarity) {
 
 // Alalytic
 function gaEvent(action, label) {
+  let type = 'Desktop';
+  if (window.innerWidth < 768) {
+    type = 'Mobile';
+  }
+
   if (!label) {
     label = '';
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Lifetime 3 years copy. ' + type,
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -83,7 +88,7 @@ const styles = `
   }
   .lav-brief-toggle {
     font-family: SpaceGrotesk-Bold;
-    position: absolute;
+    // position: absolute;
     right: 0;
     bottom: 0;
     background-color: #fff;
@@ -94,6 +99,7 @@ const styles = `
     cursor: pointer;
     white-space: nowrap;
     background-color: #fff;
+    display: inline-block;
   }
   .lav-brief-toggle:hover {
     text-decoration: underline;
@@ -191,6 +197,9 @@ const styles = `
       width: 320px;
       left: -50px
     }
+    .subscr__info, .order__info {
+      text-align: left!important;
+    }
     .lav-plan-tip-info:before {
       transform: translateY(50%) translateX(55px) rotate(45deg);
     }
@@ -206,6 +215,7 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
+  gaEvent('loaded');
 
   setInterval(initTips, 100);
 
@@ -214,6 +224,15 @@ function init() {
   } else if (location.href.includes('/cart')) {
     initCheckout();
   }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.lav-append-text')) {
+      gaEvent('Click on Refund Policy. Checkout');
+    }
+    if (e.target.closest('.lav-plan-tip__descr')) {
+      gaEvent('Click on Refund Policy. Homepage');
+    }
+  });
 }
 
 function initHomepage() {
@@ -248,6 +267,12 @@ function initTips() {
         item
           .querySelector('.plan__option-value')
           .insertAdjacentHTML('beforeend', elTip);
+
+        item
+          .querySelector('.lav-plan-tip')
+          .addEventListener('mouseenter', function () {
+            gaEvent('Hover on tooltip Lifetime plan');
+          });
       } else if (item.querySelector('.lav-plan-tip')) {
         item.querySelector('.lav-plan-tip').remove();
       }
@@ -276,32 +301,27 @@ function initTips() {
 function initCheckout() {
   for (let item of document.querySelectorAll('.subscr__descr')) {
     item.classList.add('lav-brief');
-    // if (item.querySelector('p')) {
     item.insertAdjacentHTML(
-      'beforeend',
+      'afterend',
       '<div class="lav-brief-toggle">See more</div>'
     );
 
-    item
-      .querySelector('.lav-brief-toggle')
-      .addEventListener('click', function () {
-        item.classList.remove('lav-brief');
-        item.querySelector('.lav-brief-toggle').remove();
-      });
-    // }
+    item.nextElementSibling.addEventListener('click', function () {
+      item.classList.remove('lav-brief');
+      item.nextElementSibling.remove();
+    });
   }
 
   for (let item of document.querySelectorAll('.order__info-list')) {
     item.classList.add('lav-brief');
     item.insertAdjacentHTML(
-      'beforeend',
+      'afterend',
       '<div class="lav-brief-toggle">See more</div>'
     );
-    item
-      .querySelector('.lav-brief-toggle')
-      .addEventListener('click', function () {
-        item.classList.remove('lav-brief');
-        item.querySelector('.lav-brief-toggle').remove();
-      });
+    item.nextElementSibling.addEventListener('click', function () {
+      item.classList.remove('lav-brief');
+      gaEvent('Click on "See more"');
+      item.nextElementSibling.remove();
+    });
   }
 }
