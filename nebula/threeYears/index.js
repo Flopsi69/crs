@@ -166,6 +166,9 @@ document.body.appendChild(stylesEl);
 init();
 function init() {
   console.log('init');
+
+  setInterval(initTips, 500);
+
   if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
     initHomepage();
   } else if (location.href.includes('/cart')) {
@@ -175,8 +178,6 @@ function init() {
 
 function initHomepage() {
   // plan__option-value_tip
-
-  setInterval(initTips, 500);
 }
 
 function initTips() {
@@ -198,17 +199,35 @@ function initTips() {
     </span>
   `;
 
-  for (let item of document.querySelectorAll(
-    '.plan__options .plan__option:nth-child(14)'
-  )) {
-    if (item.innerText.includes('Lifetime membership included')) {
-      if (item.querySelector('.lav-plan-tip')) return false;
-      // item.classList.add('plan__option-value_tip');
-      item
-        .querySelector('.plan__option-value')
-        .insertAdjacentHTML('beforeend', elTip);
-    } else if (item.querySelector('.lav-plan-tip')) {
-      item.querySelector('.lav-plan-tip').remove();
+  if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
+    for (let item of document.querySelectorAll(
+      '.plan__options .plan__option:nth-child(14)'
+    )) {
+      if (item.innerText.includes('Lifetime membership included')) {
+        if (item.querySelector('.lav-plan-tip')) return false;
+        item
+          .querySelector('.plan__option-value')
+          .insertAdjacentHTML('beforeend', elTip);
+      } else if (item.querySelector('.lav-plan-tip')) {
+        item.querySelector('.lav-plan-tip').remove();
+      }
+    }
+  } else if (location.href.includes('/cart')) {
+    let checkoutText =
+      '<div class="lav-append-text"></br></br>Receive continuous updates to your genomics report for 3 years, and $19.99/year thereafter. Cancel auto-renewal anytime. <a href="https://nebulagenomics.zendesk.com/hc/en-us/articles/360028257612-Refund-Policy-" target="_blank">Refund policy</a></div>';
+    for (let item of document.querySelectorAll('.order__wrap')) {
+      let descrEl = item.querySelector('.subscr__descr');
+      if (
+        descrEl.innerText.includes('Lifetime access to your') &&
+        !descrEl.innerText.includes('Receive continuous')
+      ) {
+        descrEl.insertAdjacentHTML('beforeend', checkoutText);
+      } else if (
+        !descrEl.innerText.includes('Lifetime membership included') &&
+        item.querySelector('lav-append-text')
+      ) {
+        item.querySelector('lav-append-text').remove();
+      }
     }
   }
 }
