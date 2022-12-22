@@ -241,12 +241,14 @@ function initTips() {
     </span>
   `;
 
-  if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
+  if (location.href.includes('whole-genome-sequencing-dna-test')) {
     for (let item of document.querySelectorAll(
       '.plan__options .plan__option:nth-child(14)'
     )) {
-      if (item.innerText.includes('Lifetime membership included')) {
-        if (item.querySelector('.lav-plan-tip')) return false;
+      if (
+        item.innerText.includes('Lifetime membership included') &&
+        !item.querySelector('.lav-plan-tip')
+      ) {
         item
           .querySelector('.plan__option-value')
           .insertAdjacentHTML('beforeend', elTip);
@@ -256,7 +258,10 @@ function initTips() {
           .addEventListener('mouseenter', function () {
             gaEvent('Hover on tooltip Lifetime plan');
           });
-      } else if (item.querySelector('.lav-plan-tip')) {
+      } else if (
+        !item.innerText.includes('Lifetime membership included') &&
+        item.querySelector('.lav-plan-tip')
+      ) {
         item.querySelector('.lav-plan-tip').remove();
       }
     }
@@ -291,6 +296,7 @@ function initCheckout() {
 
     item.nextElementSibling.addEventListener('click', function () {
       item.classList.remove('lav-brief');
+      gaEvent('Click on "See more". Subscription Description');
       item.nextElementSibling.remove();
     });
   }
@@ -303,7 +309,7 @@ function initCheckout() {
     );
     item.nextElementSibling.addEventListener('click', function () {
       item.classList.remove('lav-brief');
-      gaEvent('Click on "See more"');
+      gaEvent('Click on "See more". Product Description');
       item.nextElementSibling.remove();
     });
   }
