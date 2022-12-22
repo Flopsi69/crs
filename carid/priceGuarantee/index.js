@@ -82,9 +82,15 @@ if (settings.observe) {
             .addEventListener('mouseenter', function () {
               addEventHover(
                 this,
-                'Hover on Price match guarantee on PDP',
+                'Hover on Price match guarantee on Pop Up',
                 'Product Options'
               );
+            });
+
+          document
+            .querySelector('#main-opts .lav-price a')
+            .addEventListener('click', function () {
+              gaEvent('Click on Price Match link on Pop Up', 'Product Options');
             });
         } else if (
           !node.classList.contains('po_submodel') &&
@@ -108,9 +114,15 @@ if (settings.observe) {
             .addEventListener('mouseenter', function () {
               addEventHover(
                 this,
-                'Hover on Price match guarantee on PDP',
+                'Hover on Price match guarantee on Pop Up',
                 'Product Options'
               );
+            });
+
+          document
+            .querySelector('#main-opts .lav-price a')
+            .addEventListener('click', function () {
+              gaEvent('Click on Price Match link on Pop Up', 'Product Options');
             });
         }
 
@@ -124,9 +136,15 @@ if (settings.observe) {
             .addEventListener('mouseenter', function () {
               addEventHover(
                 this,
-                'Hover on Price match guarantee on PDP',
+                'Hover on Price match guarantee on Pop Up',
                 'Added to cart'
               );
+            });
+
+          document
+            .querySelector('#main-opts .lav-price a')
+            .addEventListener('click', function () {
+              gaEvent('Click on Price Match link on Pop Up', 'Added to cart');
             });
           // document
           //   .querySelector('.lav-price__wrap')
@@ -348,7 +366,7 @@ function init() {
     document
       .querySelector('.prod-info .lav-price a')
       .addEventListener('click', function () {
-        gaEvent('Click on Price Match link on Pop Up', 'H1');
+        gaEvent('Click on Price Match link on PDP', 'H1');
       });
   }
 
@@ -370,7 +388,7 @@ function init() {
     document
       .querySelector('#prod-slct-opts-btn-holder+.lav-price a')
       .addEventListener('click', function () {
-        gaEvent('Click on Price Match link on Pop Up', 'Add to cart');
+        gaEvent('Click on Price Match link on PDP', 'Add to cart');
       });
   }
 
@@ -393,7 +411,7 @@ function init() {
       document
         .querySelector('#prod-mpn-holder .lav-price a')
         .addEventListener('click', function () {
-          gaEvent('Click on Price Match link on Pop Up', 'Add to cart');
+          gaEvent('Click on Price Match link on PDP', 'Add to cart');
         });
     }
   }, 1500);
@@ -403,10 +421,19 @@ function init() {
       .querySelector('.affirm-sidebar-price')
       .insertAdjacentHTML('beforebegin', guaranteeEl);
 
+    document.querySelector('.cart-order .lav-price__caption').innerText =
+      'We Price Match Your Purchase!';
+
     document
       .querySelector('.cart-order .lav-price')
       .addEventListener('mouseenter', function () {
         addEventHover(this, 'Hover on Price match guarantee on Checkout');
+      });
+
+    document
+      .querySelector('.cart-order .lav-price a')
+      .addEventListener('click', function () {
+        gaEvent('Click on Price Match link on Checkout');
       });
   } else if (
     location.href.includes('/cart.php') &&
@@ -417,12 +444,18 @@ function init() {
       .insertAdjacentHTML('beforebegin', guaranteeEl);
 
     document.querySelector('.cart-order .lav-price__caption').innerText =
-      'We Price Match Your Purchase';
+      'We Price Match Your Purchase!';
 
     document
       .querySelector('.cart-order .lav-price')
       .addEventListener('mouseenter', function () {
         addEventHover(this, 'Hover on Price match guarantee on Checkout');
+      });
+
+    document
+      .querySelector('.cart-order .lav-price a')
+      .addEventListener('click', function () {
+        gaEvent('Click on Price Match link on Checkout');
       });
   }
 }
