@@ -2,7 +2,7 @@ console.log('initExp');
 
 /********* Settings **********/
 const settings = {
-  dir: 'https://flopsi69.github.io/crs/depositPhotos/mayAlsoLike',
+  dir: 'https://flopsi69.github.io/crs/nebula/threeYears',
   clarity: false,
   observe: true,
 };
@@ -42,23 +42,6 @@ function gaEvent(action, label) {
   }
 }
 
-// Alalytic
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
 // Observe
 if (settings.observe) {
   let observer = new MutationObserver((mutations) => {
@@ -66,7 +49,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
+        // console.log(node);
         // Code Here
       }
     }

@@ -59,7 +59,7 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
+        // console.log(node);
         if (
           !node.classList.contains('po_submodel') &&
           ((node.classList.contains('gbox_portal') &&
