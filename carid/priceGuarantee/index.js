@@ -298,6 +298,12 @@ const styles = `
     #prod-slct-opts-btn-holder + .lav-price .lav-tip:before, .lav-price__wrap .lav-tip:before, .add-to-cart-buttons .lav-tip:before, .cart-order .lav-tip:before, #prod-mpn-holder .lav-tip:before {
       left: 50%;
     }
+    .cart-order .lav-tip {
+      transform: translate(-85%, 100%);
+    }
+    .cart-order .lav-tip:before {
+      left: 70%;
+    }
   }
   @media(max-width: 740px) {
     .lav-price__wrap {
