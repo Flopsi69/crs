@@ -208,6 +208,12 @@ const styles = `
     .lav-plan-tip-info:before {
       transform: translateY(50%) translateX(55px) rotate(45deg);
     }
+    .lav-plan-tip__info-inner {
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
   }
 `;
 
