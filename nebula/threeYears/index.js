@@ -77,6 +77,12 @@ const styles = `
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .subscr__descr.lav-brief p,  .subscr__descr.lav-brief div {
+    display: inline;
+  }
+  .subscr__descr.lav-brief br {
+    display: none;
+  }
   .lav-brief-toggle {
     font-family: SpaceGrotesk-Bold;
     // position: absolute;
@@ -189,12 +195,6 @@ const styles = `
    text-decoration: none;
  }
   @media(max-width: 768px) {
-    .subscr__descr.lav-brief p,  .subscr__descr.lav-brief div {
-      display: inline;
-    }
-    .subscr__descr.lav-brief br {
-      display: none;
-    }
     .lav-plan-tip-info {
       width: 320px;
       left: -50px
