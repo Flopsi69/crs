@@ -205,7 +205,9 @@ function init() {
   if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
     initHomepage();
   } else if (location.href.includes('/cart')) {
-    initCheckout();
+    setTimeout(() => {
+      initCheckout();
+    }, 1000);
   }
 
   document.addEventListener('click', function (e) {
