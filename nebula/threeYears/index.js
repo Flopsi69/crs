@@ -55,9 +55,9 @@ if (settings.observe) {
           location.href.includes('/cart') &&
           node.classList.contains('cart-page')
         ) {
-          setTimeout(() => {
-            initCheckout();
-          }, 1000);
+          // setTimeout(() => {
+          initCheckout();
+          // }, 1000);
         }
         // Code Here
       }
