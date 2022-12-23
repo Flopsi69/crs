@@ -99,6 +99,11 @@ const styles = `
   .subscr__descr, .order__info-list {
     max-width: 85%;
   }
+  @media (max-width: 1700px) {
+    .subscr__descr, .order__info-list {
+      max-width: 95%;
+    }
+  }
   .lav-plan-tip {
     position: relative;
     text-align: left;
