@@ -50,6 +50,15 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue;
 
         console.log(node);
+
+        if (
+          location.href.includes('/cart') &&
+          node.classList.contains('cart-page')
+        ) {
+          setTimeout(() => {
+            initCheckout();
+          }, 1000);
+        }
         // Code Here
       }
     }
@@ -204,10 +213,6 @@ function init() {
 
   if (location.href.includes('/whole-genome-sequencing-dna-test/')) {
     initHomepage();
-  } else if (location.href.includes('/cart')) {
-    setTimeout(() => {
-      initCheckout();
-    }, 1000);
   }
 
   document.addEventListener('click', function (e) {
@@ -258,7 +263,11 @@ function initTips() {
         item
           .querySelector('.lav-plan-tip')
           .addEventListener('mouseenter', function () {
-            gaEvent('Hover on tooltip Lifetime plan');
+            let planName = item
+              .closest('.plan')
+              .querySelector('.plan__title')
+              .innerText.trim();
+            gaEvent('Hover on tooltip Lifetime plan', planName);
           });
       } else if (
         !item.innerText.includes('Lifetime membership included') &&
