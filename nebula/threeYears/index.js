@@ -102,7 +102,7 @@ const styles = `
     text-decoration: underline;
   }
   .subscr__descr, .order__info-list {
-    max-width: 85%;
+    max-width: 75%;
   }
   @media (max-width: 1700px) {
     .subscr__descr, .order__info-list {
