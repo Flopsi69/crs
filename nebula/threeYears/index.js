@@ -109,11 +109,9 @@ const styles = `
       max-width: 95%;
     }
   }
-  @media (min-width: 2000px) {
-    .cart-page {
-      max-width: 1900px;
-      margin: auto;
-    }
+  .cart-page {
+    max-width: 1850px;
+    margin: auto;
   }
   .lav-plan-tip {
     position: relative;
