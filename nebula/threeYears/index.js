@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/nebula/threeYears',
-  clarity: false,
+  clarity: true,
   observe: true,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'lifetime_3_years_copy', 'variant_1');
     }
   }, 1000);
 }
@@ -72,7 +72,6 @@ if (settings.observe) {
 // Styles
 const styles = `
   .lav-brief {
-    position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
