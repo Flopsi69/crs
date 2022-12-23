@@ -97,7 +97,7 @@ const styles = `
     text-decoration: underline;
   }
   .subscr__descr, .order__info-list {
-    max-width: 350px;
+    max-width: 85%;
   }
   .lav-plan-tip {
     position: relative;
@@ -188,6 +188,9 @@ const styles = `
     .lav-plan-tip-info {
       width: 320px;
       left: -50px
+    }
+    .subscr__descr, .order__info-list {
+      max-width: 100%;
     }
     .subscr__info, .order__info {
       text-align: left!important;
