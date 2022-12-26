@@ -21,10 +21,10 @@ if (settings.clarity) {
 function pushDataLayer(action = '', label = '') {
   try {
     var objData = {
-      'event': 'event-to-ga',
-      'eventCategory': 'Exp: 9 steps timeline',
-      'eventAction': action,
-      'eventLabel': label
+      event: 'event-to-ga',
+      eventCategory: 'Exp: 9 steps timeline',
+      eventAction: action,
+      eventLabel: label,
     };
     console.log('eventFire', objData);
 
@@ -412,17 +412,31 @@ function init() {
     </div>
   `;
 
-  document
-    .querySelector('.elVideoWrapper')
-    .insertAdjacentHTML('beforeend', timelineEl);
+  if (window.innerWidth > 768) {
+    document
+      .querySelector('.elVideoWrapper')
+      .insertAdjacentHTML('beforeend', timelineEl);
+
+    document
+      .querySelector('.elVideoWrapper')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('#headline-61284')
+      );
+  } else {
+    document
+      .querySelector('.elVideoWrapper')
+      .insertAdjacentHTML('beforebegin', timelineEl);
+
+    document
+      .querySelector('.elCustomJs')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('#headline-61284')
+      );
+  }
 
   document.querySelector('#headline-61284').classList.add('full-mode');
-  document
-    .querySelector('.elVideoWrapper')
-    .insertAdjacentElement(
-      'beforebegin',
-      document.querySelector('#headline-61284')
-    );
 
   document.querySelector('.elButton').innerText =
     'Schedule A Free College Planning Session Now';
@@ -462,10 +476,27 @@ function init() {
     document
       .querySelector('.timeline__item-note')
       .addEventListener('mouseenter', function () {
-        pushDataLayer(
-          'Hover on 3 factors block Initial state',
-          'Timeline'
-        );
+        if (
+          document
+            .querySelector('.timeline__item-note')
+            .classList.contains('active')
+        ) {
+          pushDataLayer(
+            'Hover on 3 factors block Initial state. Active',
+            'Timeline'
+          );
+        } else if (
+          document
+            .querySelector('.timeline__item-note')
+            .classList.contains('done')
+        ) {
+          pushDataLayer(
+            'Hover on 3 factors block Initial state. Not Active.',
+            'Timeline'
+          );
+        } else {
+          pushDataLayer('Hover on 3 factors block Initial state', 'Timeline');
+        }
       });
 
     let isScrolled = false;
@@ -473,10 +504,7 @@ function init() {
     document.querySelector('.timeline').onscroll = function () {
       if (isScrolled) return false;
       isScrolled = true;
-      pushDataLayer(
-        'Scroll 3 factors block Initial state',
-        'Timeline'
-      );
+      pushDataLayer('Scroll 3 factors block Initial state', 'Timeline');
     };
   } else {
     let intervalVimeo = setInterval(() => {
@@ -510,10 +538,7 @@ function init() {
   document
     .querySelector('.timeline__item-note')
     .addEventListener('click', function () {
-      pushDataLayer(
-        'Click on 3 factors block Initial state',
-        'Timeline'
-      );
+      pushDataLayer('Click on 3 factors block Initial state', 'Timeline');
     });
 
   initObserver();
@@ -541,29 +566,20 @@ function initObserver() {
           !isActive
         ) {
           isActive = true;
-          pushDataLayer(
-            'Visibility 3 factors block Initial state',
-            'Timeline'
-          );
+          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
         } else if (
           entry.target.classList.contains('timeline__item-note') &&
           entry.target.classList.contains('done') &&
           !isDone
         ) {
           isDone = true;
-          pushDataLayer(
-            'Visibility 3 factors block Initial state',
-            'Timeline'
-          );
+          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
         } else if (
           entry.target.classList.contains('timeline__item-note') &&
           !isNormal
         ) {
           isNormal = true;
-          pushDataLayer(
-            'Visibility 3 factors block Initial state',
-            'Timeline'
-          );
+          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
         }
 
         // entry.target.classList.add('in-view');
@@ -583,29 +599,34 @@ function handleTimeline() {
   }
 
   const iframe = document.querySelector('.fluid-width-video-wrapper iframe');
-  const playerEl = new Vimeo.Player(iframe);
+  let playerEl = new Vimeo.Player(iframe);
   if (window.innerWidth < 768) {
+    playerEl = new Vimeo.Player(document.querySelector('.elCustomJs iframe'));
+
+    if (playerEl.setVolume) {
+      playerEl.setVolume(1);
+    }
+
     document
-      .querySelector('.iframeblocked')
+      .querySelector('.elCustomJs')
       .addEventListener('click', function (e) {
         if (!this.classList.contains('active')) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (typeof Vimeo == 'object') {
-            try {
-              this.classList.add('active');
-              if (playerEl.setVolume) {
-                playerEl.setVolume(1);
-              }
-              if (playerEl.setMuted) {
-                playerEl.setMuted(false);
-              }
-            } catch (error) {
-              console.log(error);
-            }
-          }
-
-          return false;
+          // e.preventDefault();
+          // e.stopPropagation();
+          // if (typeof Vimeo == 'object') {
+          //   try {
+          //     this.classList.add('active');
+          // if (playerEl.setVolume) {
+          //   playerEl.setVolume(1);
+          // }
+          //     if (playerEl.setMuted) {
+          //       playerEl.setMuted(false);
+          //     }
+          //   } catch (error) {
+          //     console.log(error);
+          //   }
+          // }
+          // return false;
         }
       });
     //   playerEl.ready().then(function () {
@@ -649,18 +670,12 @@ function handleTimeline() {
           .classList.add('active');
         if (window.innerWidth > 768 && !isActive) {
           isActive = true;
-          pushDataLayer(
-            'Visibility 3 factors block Initial state',
-            'Timeline'
-          );
+          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
         }
       } else if (time >= 18 * 60 && time < 30 * 60) {
         if (window.innerWidth > 768 && !isDone) {
           isDone = true;
-          pushDataLayer(
-            'Visibility 3 factors block Initial state',
-            'Timeline'
-          );
+          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
         }
         document
           .querySelector('.timeline__item.active')
