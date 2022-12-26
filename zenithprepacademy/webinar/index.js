@@ -493,6 +493,9 @@ function init() {
         const iframe = document.querySelector('.elCustomJs iframe');
         const player = new Vimeo.Player(iframe);
 
+        if (player.setVolume) {
+          player.setVolume(1);
+        }
         player.on('play', function () {
           console.log('played the video!');
           handleTimeline();
@@ -596,37 +599,6 @@ function handleTimeline() {
   }
 
   let playerEl = new Vimeo.Player(iframe);
-
-  if (window.innerWidth < 768) {
-    if (playerEl.setVolume) {
-      playerEl.setVolume(1);
-    }
-
-    document
-      .querySelector('.elCustomJs')
-      .addEventListener('click', function (e) {
-        console.log('click');
-        if (!this.classList.contains('active')) {
-          console.log('click2');
-          // e.preventDefault();
-          // e.stopPropagation();
-          // if (typeof Vimeo == 'object') {
-          //   try {
-          //     this.classList.add('active');
-          // if (playerEl.setVolume) {
-          //   playerEl.setVolume(1);
-          // }
-          //     if (playerEl.setMuted) {
-          //       playerEl.setMuted(false);
-          //     }
-          //   } catch (error) {
-          //     console.log(error);
-          //   }
-          // }
-          // return false;
-        }
-      });
-  }
 
   let isActive,
     isDone = false;
