@@ -476,27 +476,7 @@ function init() {
     document
       .querySelector('.timeline__item-note')
       .addEventListener('mouseenter', function () {
-        if (
-          document
-            .querySelector('.timeline__item-note')
-            .classList.contains('active')
-        ) {
-          pushDataLayer(
-            'Hover on 3 factors block Initial state. Active',
-            'Timeline'
-          );
-        } else if (
-          document
-            .querySelector('.timeline__item-note')
-            .classList.contains('done')
-        ) {
-          pushDataLayer(
-            'Hover on 3 factors block Initial state. Not Active.',
-            'Timeline'
-          );
-        } else {
-          pushDataLayer('Hover on 3 factors block Initial state', 'Timeline');
-        }
+        pushDataLayer('Hover on 3 factors block Initial state', 'Timeline');
       });
 
     let isScrolled = false;
@@ -510,16 +490,22 @@ function init() {
     let intervalVimeo = setInterval(() => {
       if (typeof Vimeo == 'object') {
         clearInterval(intervalVimeo);
-        handleTimeline();
+        const iframe = document.querySelector('.elCustomJs iframe');
+        const player = new Vimeo.Player(iframe);
+
+        player.on('play', function () {
+          console.log('played the video!');
+          handleTimeline();
+        });
       }
     }, 200);
     let isScrolled = false;
     let waitVideo = setInterval(() => {
-      if (document.querySelector('.iframeblocked')) {
+      if (document.querySelector('.elCustomJs iframe')) {
         clearInterval(waitVideo);
         document
-          .querySelector('.elVideoWrapper')
-          .scrollIntoView({ block: 'start' });
+          .querySelector('.elCustomJs iframe')
+          .scrollIntoView({ block: 'start', behavior: 'smooth' });
 
         setTimeout(() => {
           window.onscroll = function () {
@@ -566,14 +552,20 @@ function initObserver() {
           !isActive
         ) {
           isActive = true;
-          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
+          pushDataLayer(
+            'Visibility 3 factors block Initial state. Active',
+            'Timeline'
+          );
         } else if (
           entry.target.classList.contains('timeline__item-note') &&
           entry.target.classList.contains('done') &&
           !isDone
         ) {
           isDone = true;
-          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
+          pushDataLayer(
+            'Visibility 3 factors block Initial state. Not Active',
+            'Timeline'
+          );
         } else if (
           entry.target.classList.contains('timeline__item-note') &&
           !isNormal
@@ -598,11 +590,14 @@ function handleTimeline() {
     document.querySelector('.timeline__item').classList.add('active');
   }
 
-  const iframe = document.querySelector('.fluid-width-video-wrapper iframe');
-  let playerEl = new Vimeo.Player(iframe);
+  let iframe = document.querySelector('.fluid-width-video-wrapper iframe');
   if (window.innerWidth < 768) {
-    playerEl = new Vimeo.Player(document.querySelector('.elCustomJs iframe'));
+    iframe = document.querySelector('.elCustomJs iframe');
+  }
 
+  let playerEl = new Vimeo.Player(iframe);
+
+  if (window.innerWidth < 768) {
     if (playerEl.setVolume) {
       playerEl.setVolume(1);
     }
@@ -610,7 +605,9 @@ function handleTimeline() {
     document
       .querySelector('.elCustomJs')
       .addEventListener('click', function (e) {
+        console.log('click');
         if (!this.classList.contains('active')) {
+          console.log('click2');
           // e.preventDefault();
           // e.stopPropagation();
           // if (typeof Vimeo == 'object') {
@@ -629,14 +626,6 @@ function handleTimeline() {
           // return false;
         }
       });
-    //   playerEl.ready().then(function () {
-    //     if (playerEl.setVolume) {
-    //       playerEl.setVolume(1);
-    //     }
-    //     if (playerEl.setMuted) {
-    //       playerEl.setMuted(false);
-    //     }
-    //   });
   }
 
   let isActive,
@@ -670,12 +659,18 @@ function handleTimeline() {
           .classList.add('active');
         if (window.innerWidth > 768 && !isActive) {
           isActive = true;
-          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
+          pushDataLayer(
+            'Visibility 3 factors block Initial state. Active',
+            'Timeline'
+          );
         }
       } else if (time >= 18 * 60 && time < 30 * 60) {
         if (window.innerWidth > 768 && !isDone) {
           isDone = true;
-          pushDataLayer('Visibility 3 factors block Initial state', 'Timeline');
+          pushDataLayer(
+            'Visibility 3 factors block Initial state. Not Active',
+            'Timeline'
+          );
         }
         document
           .querySelector('.timeline__item.active')
