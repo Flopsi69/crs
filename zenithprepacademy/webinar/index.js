@@ -18,17 +18,17 @@ if (settings.clarity) {
 }
 
 // Alalytic
-function gaEvent(name = '', desc = '', type = '', loc = '') {
+function pushDataLayer(action = '', label = '') {
   try {
     var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp: 9 steps timeline',
+      'eventAction': action,
+      'eventLabel': label
     };
     console.log('eventFire', objData);
 
+    window.dataLayer = window.dataLayer || [];
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -358,7 +358,7 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
-  gaEvent('exp_9_steps_loaded');
+  pushDataLayer('loaded');
   console.log('init');
 
   let timelineEl = `
@@ -428,7 +428,7 @@ function init() {
     'Schedule A Free College Planning Session Now';
 
   document.querySelector('.elButton').addEventListener('click', function () {
-    gaEvent('exp_9_steps_but', 'Schedule button', 'Click', 'Under timeline');
+    pushDataLayer('Click on Schedule button', 'Under timeline');
   });
 
   // let cloneVideo = `
@@ -462,10 +462,8 @@ function init() {
     document
       .querySelector('.timeline__item-note')
       .addEventListener('mouseenter', function () {
-        gaEvent(
-          'exp_9_steps_timeline_hov',
-          '3 factors block Initial state',
-          'Hover',
+        pushDataLayer(
+          'Hover on 3 factors block Initial state',
           'Timeline'
         );
       });
@@ -475,10 +473,8 @@ function init() {
     document.querySelector('.timeline').onscroll = function () {
       if (isScrolled) return false;
       isScrolled = true;
-      gaEvent(
-        'exp_9_steps_timeline_scroll',
-        '3 factors block Initial state',
-        'Scroll',
+      pushDataLayer(
+        'Scroll 3 factors block Initial state',
         'Timeline'
       );
     };
@@ -501,10 +497,8 @@ function init() {
           window.onscroll = function () {
             if (isScrolled) return false;
             isScrolled = true;
-            gaEvent(
-              'exp_9_steps_timeline_scroll',
-              '3 factors block Initial state',
-              'Scroll',
+            pushDataLayer(
+              'Scroll on 3 factors block Initial state',
               'Timeline'
             );
           };
@@ -516,10 +510,8 @@ function init() {
   document
     .querySelector('.timeline__item-note')
     .addEventListener('click', function () {
-      gaEvent(
-        'exp_9_steps_timeline_click',
-        '3 factors block Initial state',
-        'Click',
+      pushDataLayer(
+        'Click on 3 factors block Initial state',
         'Timeline'
       );
     });
@@ -549,10 +541,8 @@ function initObserver() {
           !isActive
         ) {
           isActive = true;
-          gaEvent(
-            'exp_9_steps_timeline_act',
-            '3 factors block Initial state',
-            'Visibility',
+          pushDataLayer(
+            'Visibility 3 factors block Initial state',
             'Timeline'
           );
         } else if (
@@ -561,10 +551,8 @@ function initObserver() {
           !isDone
         ) {
           isDone = true;
-          gaEvent(
-            'exp_9_steps_timeline_not_act',
-            '3 factors block Initial state',
-            'Visibility',
+          pushDataLayer(
+            'Visibility 3 factors block Initial state',
             'Timeline'
           );
         } else if (
@@ -572,10 +560,8 @@ function initObserver() {
           !isNormal
         ) {
           isNormal = true;
-          gaEvent(
-            'exp_9_steps_timeline_is',
-            '3 factors block Initial state',
-            'Visibility',
+          pushDataLayer(
+            'Visibility 3 factors block Initial state',
             'Timeline'
           );
         }
@@ -663,20 +649,16 @@ function handleTimeline() {
           .classList.add('active');
         if (window.innerWidth > 768 && !isActive) {
           isActive = true;
-          gaEvent(
-            'exp_9_steps_timeline_act',
-            '3 factors block Initial state',
-            'Visibility',
+          pushDataLayer(
+            'Visibility 3 factors block Initial state',
             'Timeline'
           );
         }
       } else if (time >= 18 * 60 && time < 30 * 60) {
         if (window.innerWidth > 768 && !isDone) {
           isDone = true;
-          gaEvent(
-            'exp_9_steps_timeline_not_act',
-            '3 factors block Initial state',
-            'Visibility',
+          pushDataLayer(
+            'Visibility 3 factors block Initial state',
             'Timeline'
           );
         }
