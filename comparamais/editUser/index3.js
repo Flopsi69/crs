@@ -1481,12 +1481,20 @@ let startFunk = setInterval(() => {
       }
     }
 
-    if (location.search !== '?experiement=HL-Simulator-Sell_the_call') {
-      window.history.replaceState(
-        null,
-        null,
-        '?experiement=HL-Simulator-Sell_the_call'
-      );
+    if (!location.search.includes('experiement=HL-Simulator-Sell_the_call')) {
+      if (location.search) {
+        window.history.replaceState(
+          null,
+          null,
+          location.search + '&experiement=HL-Simulator-Sell_the_call'
+        );
+      } else {
+        window.history.replaceState(
+          null,
+          null,
+          '?experiement=HL-Simulator-Sell_the_call'
+        );
+      }
     }
 
     let newStyle = /*html */ `

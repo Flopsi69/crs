@@ -1,11 +1,21 @@
 console.log('initExp');
 
-if (location.search !== '?experiement=HL-Simulator-Sell_the_call-Original') {
-  window.history.replaceState(
-    null,
-    null,
-    '?experiement=HL-Simulator-Sell_the_call-Original'
-  );
+if (
+  !location.search.includes('experiement=HL-Simulator-Sell_the_call-Original')
+) {
+  if (location.search) {
+    window.history.replaceState(
+      null,
+      null,
+      location.search + '&experiement=HL-Simulator-Sell_the_call-Original'
+    );
+  } else {
+    window.history.replaceState(
+      null,
+      null,
+      '?experiement=HL-Simulator-Sell_the_call-Original'
+    );
+  }
 }
 
 /********* Settings **********/
