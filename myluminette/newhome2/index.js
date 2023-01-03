@@ -58,7 +58,7 @@ if (settings.observe) {
 // Styles
 const styles = `
   .lav-section {
-    padding: 50px 0;
+    padding: 45px 0;
   }
 
   .pin-spacer, [id^=trustbadge-container] {
@@ -174,7 +174,7 @@ const styles = `
     flex-flow: column;
     background-color: #F4F6FA;
     background-position: top center;
-    background-size: cover;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
     padding-top: 152px;
@@ -225,6 +225,8 @@ const styles = `
 
   .lav-drinks {
     position: relative;
+    padding-top: 60px;
+    padding-bottom: 90px;
   }
   .lav-drinks:before {
     content: '';
@@ -260,8 +262,8 @@ const styles = `
 
   .lav-wears {
     padding-top: 90px;
-    padding-bottom: 120px;
-    background: linear-gradient(180deg, #406184 13.02%, rgba(64, 97, 132, 0.86) 41.15%, rgba(18, 141, 255, 0) 100%);
+    padding-bottom: 112px;
+    background: linear-gradient(180deg, #406184 13.02%, rgba(64, 97, 132, 0.86) 51.15%, rgba(18, 141, 255, 0) 100%);
   }
   .lav-wears__title {
     text-align: center;
@@ -277,8 +279,12 @@ const styles = `
   .lav-wear {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
-    background: radial-gradient(104.98% 70.86% at 50.15% 8.85%, rgba(243, 245, 249, 0) 21.87%, rgba(243, 245, 249, 0.179775) 34.38%, rgba(243, 245, 249, 0.811752) 47.4%, #F3F5F9 58.33%);
+    background-color: #F3F6FA;
     padding-top: 187px;
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.44));
   }
   .lav-wear__info {
     padding: 32px;
@@ -294,10 +300,61 @@ const styles = `
   }
   .lav-wear__list {
     margin-top: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 270px;
   }
-  .lav-wears {}
-  .lav-wears {}
-  .lav-wears {}
+  .lav-wear__item {
+    position: relative;
+    padding-left: 32px;
+  }
+  .lav-wear__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-wear__item + .lav-wear__item {
+    margin-top: 12px;
+  }
+  .lav-wears__btn-wrap {
+    text-align: center;
+  }
+
+  .lav-lucimed {
+    padding-top: 8px;
+  }
+  .lav-lucimed {}
+  .lav-lucimed__inner {
+    display: flex;
+  }
+  .lav-lucimed__info {
+    width: 50%;
+  }
+  .lav-lucimed__image {
+    width: 50%;
+    line-height: 0;
+  }
+  .lav-lucimed__descr {
+    margin-top: 40px;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+  .lav-lucimed__link {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1B7FE7;
+  }
+  .lav-lucimed {}
+  .lav-lucimed {}
+  .lav-lucimed {}
 
 
 `;
@@ -483,21 +540,23 @@ const newPage = `
         </div>
       </div>
 
-      <button class='lav-wears__btn btn-primary btn-lg flipped lav-btn-buy'>
-        <span class="btn-text">
-          Get Luminette3 Now
-        </span>
-        <span class="btn-bg-wrapper"></span>
-      </button>
+      <div class='lav-wears__btn-wrap'>
+        <button class='lav-wears__btn lav-btn btn-primary btn-lg flipped lav-btn-buy'>
+          <span class="btn-text">
+            Get Luminette3 Now
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+      </div>
     </div>
   </section>
 
   <section class='lav-lucimed lav-section'>
-    <div class='container-fluid container--size--lg lav-lucimed__container'>
+    <div class='container-fluid container--size--sm lav-lucimed__container'>
       <div class='lav-lucimed__inner'>
         <div class='lav-lucimed__info'>
-          <div class='lav-lucimed__title'></div>
-          <div class='lav-lucimed__descr'>
+          <div class='lav-lucimed__title lav-title'>Lucimed - Pioneers in Light Therapy</div>
+          <div class='lav-lucimed__descr lav-descr'>
             Belgian health tech company Lucimed has pioneered a way for you to bring wearable light therapy into your home. <br />Years of research by optical engineers, sleep disorder specialists, professors & inventors have created the Luminette3 - a device that helps you optimize your sleep health & mental wellbeing through the power of light therapy. 
           </div>
           <div class='lav-lucimed__link'>
@@ -505,7 +564,9 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-lucimed__image'></div>
+        <div class='lav-lucimed__image'>
+          <img src='${settings.dir}/img/lucimed.png' />
+        </div>
       </div>
     </div>
   </section>
