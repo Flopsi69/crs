@@ -148,7 +148,80 @@ const styles = `
     margin-top: 8px;
   }
 
-  .lav-boost {}
+  .lav-problems {}
+  .lav-problems__title {
+    text-align: center;
+  }
+  .lav-problems__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 90px;
+  }
+  .lav-problems {}
+  .lav-problems {}
+  .lav-problem {
+
+  }
+  .lav-problem {
+    display: flex;
+    flex-flow: column;
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+  }
+  .lav-problem__info {
+    width: 100%;
+    margin-top: auto;
+    padding: 32px;
+  }
+  .lav-problem__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+  }
+  .lav-problem__list lav-descr {
+    margin-top: 20px;
+    font-weight: 500;
+  }
+  .lav-problem__item {
+    position: relative;
+    padding-left: 20px;
+  }
+  .lav-problem__item:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 7px;
+    width: 4px;
+    height: 4px;
+    background-color: #517193;
+    border-radius; 50%;
+  }
+  .lav-problem__item + .lav-problem__item {
+    margin-top 2px;
+  }
+
+  .lav-drinks {}
+  .lav-drinks__inner {
+    display: flex;
+    align-items: center;
+    padding: 40px 85px;
+  }
+  .lav-drinks__image {
+    flex-shrink: 0;
+    line-height: 0;
+    margin-right: 100px;
+
+  }
+  .lav-drinks__info {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.01em;
+  }
+  .lav-drinks {}
+  .lav-drinks {}
+  .lav-drinks {}
 
 
 `;
@@ -184,7 +257,7 @@ const newPage = `
         <div class='lav-boost__image'>
           <img class='lav-boost__stars' src='${settings.dir}/img/boost-person.svg' />
         </div>
-        
+
         <div class='lav-boost__info'>
           <div class='lav-boost__title'>150,000+ people boost their energy with Luminette</div>
           <img class='lav-boost__stars' src='${settings.dir}/img/stars.svg' />
@@ -196,13 +269,13 @@ const newPage = `
 
   <section class='lav-problems lav-section'>
     <div class='container-fluid container--size--lg lav-problems__container'>
-      <div class='lav-problems__title lav-title'>Light therapy can help you if you have these problems</div>
+      <div class='lav-problems__title lav-title'>Light therapy can help you <br /> if you have these problems</div>
 
       <div class='lav-problems__grid'>
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Sleeping problems</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Night awakenings</div>
               <div class='lav-problem__item'>Shallow sleep</div>
               <div class='lav-problem__item'>Circadian rhythm imbalances</div>
@@ -210,10 +283,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Seasonal depression</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Feeling listless, sad or down</div>
               <div class='lav-problem__item'>Sleeping problems</div>
               <div class='lav-problem__item'>Appetite and weight changes</div>
@@ -224,10 +297,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Low energy</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Tired & groggy mornings</div>
               <div class='lav-problem__item'>Slugging throughout the day</div>
               <div class='lav-problem__item'>Low motivation & irritability</div>
@@ -235,10 +308,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Jet lag</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Daytime tiredness</div>
               <div class='lav-problem__item'>Headaches & nausea</div>
               <div class='lav-problem__item'>Circadian rhythm imbalances</div>
@@ -247,10 +320,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Stress</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Concentration & focus issues</div>
               <div class='lav-problem__item'>Appetite & weight issues</div>
               <div class='lav-problem__item'>Inability to relax at night</div>
@@ -258,10 +331,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1-bg.png")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Shift work</div>
-            <div class='lav-problem__list'>
+            <div class='lav-problem__list lav-descr'>
               <div class='lav-problem__item'>Brain fog</div>
               <div class='lav-problem__item'>Shortened or shallow sleep</div>
               <div class='lav-problem__item'>Circadian rhythm imbalances</div>
@@ -276,7 +349,9 @@ const newPage = `
   <section class='lav-drinks lav-section'>
     <div class='container-fluid container--size--lg lav-drinks__container'>
       <div class='lav-drinks__inner lav-plate'>
-        <div class='lav-drinks__image'></div>
+        <div class='lav-drinks__image'>
+          <img src='${settings.dir}/img/cup.svg' />
+        </div>
         <div class='lav-drinks__info'>
           You can also use light therapy as a natural substitute for caffeine & energy drinks during the day to support healthy energy levels. 
         </div>
