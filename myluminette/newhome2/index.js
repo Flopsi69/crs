@@ -352,7 +352,9 @@ const styles = `
     line-height: 24px;
     color: #1B7FE7;
   }
-  .lav-lucimed {}
+  .lav-lucimed {
+    
+  }
   .lav-lucimed {}
   .lav-lucimed {}
 
