@@ -96,7 +96,7 @@ const styles = `
     display: flex;
     align-items: center;
     min-height: 100vh;
-    background: url('${settings.dir}/img/jumb-bg.jpeg') right no-repeat;
+    background: url('${settings.dir}/img/jumb-bg.jpeg') top right no-repeat;
     background-size: cover;
   }
   .lav-jumb__info {
@@ -123,8 +123,8 @@ const styles = `
   }
 
   .lav-boost {
-    padding-top: 0;
-    padding-bottom: 45px;
+    padding: 0;
+    transform: translateY(-50%);
   }
   .lav-boost__inner {
     display: flex;
@@ -153,7 +153,7 @@ const styles = `
   }
 
   .lav-problems {
-    padding: 45px 0 60px;
+    padding: 0 0 60px;
   }
   .lav-problems__title {
     text-align: center;
@@ -225,9 +225,13 @@ const styles = `
 
   .lav-drinks {
     position: relative;
-    bottom: 0;
+  }
+  .lav-drinks:before {
+    content: '';
+    position: absolute;
+    bottom: -75px;
     left: 0;
-    rigth: 0;
+    right: 0;
     height: 737px;
     background: url('${settings.dir}/img/drinks-bg.png') left bottom no-repeat;
     background-size: contain;
@@ -241,14 +245,18 @@ const styles = `
     flex-shrink: 0;
     line-height: 0;
     margin-right: 100px;
-
+    margin-left: 32px;
   }
   .lav-drinks__info {
     font-size: 24px;
     line-height: 32px;
     letter-spacing: 0.01em;
+    font-weight: 700;
+    max-width: 595px;
   }
-  .lav-drinks {}
+  .lav-drinks__container {
+    position: relative;
+  }
   .lav-drinks {}
   .lav-drinks {}
 
@@ -326,7 +334,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem3.jpeg"")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem3.jpeg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Low energy</div>
             <div class='lav-problem__list'>
@@ -337,7 +345,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem4.jpeg"")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem4.jpeg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Jet lag</div>
             <div class='lav-problem__list'>
@@ -349,7 +357,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem5.jpeg"")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem5.jpeg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Stress</div>
             <div class='lav-problem__list'>
@@ -360,7 +368,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem6.jpeg"")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem6.jpeg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Shift work</div>
             <div class='lav-problem__list'>
@@ -376,7 +384,7 @@ const newPage = `
   </section>
 
   <section class='lav-drinks lav-section'>
-    <div class='container-fluid container--size--lg lav-drinks__container'>
+    <div class='container-fluid container--size--sm lav-drinks__container'>
       <div class='lav-drinks__inner lav-plate'>
         <div class='lav-drinks__image'>
           <img src='${settings.dir}/img/cup.svg' />
