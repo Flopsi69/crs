@@ -312,7 +312,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem2.jpeg")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Seasonal depression</div>
             <div class='lav-problem__list'>
@@ -326,7 +326,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem3.jpeg"")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Low energy</div>
             <div class='lav-problem__list'>
@@ -337,7 +337,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem4.jpeg"")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Jet lag</div>
             <div class='lav-problem__list'>
@@ -349,7 +349,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem5.jpeg"")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Stress</div>
             <div class='lav-problem__list'>
@@ -360,7 +360,7 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
+        <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem6.jpeg"")'>
           <div class='lav-problem__info'>
             <div class='lav-problem__title'>Shift work</div>
             <div class='lav-problem__list'>
