@@ -333,13 +333,20 @@ const styles = `
   .lav-lucimed {}
   .lav-lucimed__inner {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
   .lav-lucimed__info {
     width: 50%;
   }
   .lav-lucimed__image {
-    width: 50%;
+    // width: 50%;
     line-height: 0;
+    width: 100%;
+    max-width: 435px;
+  }
+  .lav-lucimed__image img {
+    max-width: 100%;
   }
   .lav-lucimed__descr {
     margin-top: 40px;
@@ -353,10 +360,102 @@ const styles = `
     color: #1B7FE7;
   }
   .lav-lucimed {
-    
+
   }
-  .lav-lucimed {}
-  .lav-lucimed {}
+
+
+  .lav-morning {}
+  .lav-morning__plate {
+    display: flex;
+    background: #FDFDFD  url('${settings.dir}/img/morning.jpeg') left no-repeat;
+    background-size: auto 101%;
+    padding: 80px;
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+  }
+  .lav-morning__info {
+    max-width: 536px;
+    margin-left: auto;
+  }
+  .lav-morning__descr {
+    margin: 24px 0;
+  }
+  .lav-morning__list {}
+  .lav-morning__item {
+    display: flex;
+    align-items: center;
+  }
+  .lav-morning__item + .lav-morning__item {
+    margin-top: 32px;
+  }
+  .lav-morning__caption {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+  }
+  .lav-morning__caption span {
+    font-weight: 700;
+  }
+  .lav-morning__image {
+    line-height: 0;
+    margin-right: 24px;
+  }
+  .lav-morning__image img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .lav-results {}
+  .lav-results__title {
+    text-align: center;
+  }
+  .lav-results__row {
+    position: relative;
+    display: flex;
+    margin-top: 74px;
+    justify-content: center;
+  }
+  .lav-results__row:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    bottom: 47px;
+    background: url(${settings.dir}/img/results-line.png) center no-repeat;
+  }
+  .lav-results__item {
+    position: relative;
+  }
+  .lav-results__item + .lav-results__item {
+    margin-left: 123px;
+  }
+  .lav-results__item-title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .lav-results__item-caption {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px; 
+  }
+  .lav-results__circle {
+    margin-top: 20px;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 12px;
+    background: linear-gradient(6.75deg, #3797F1 5.31%, #1B7FE7 94.73%);
+    border-radius: 50%;
+  }
+  .lav-results__item {}
+  .lav-results {}
+  .lav-results {}
+  .lav-results {}
+  .lav-results {}
+  .lav-results {}
+  .lav-results {}
 
 
 `;
@@ -613,21 +712,24 @@ const newPage = `
 
   <section class='lav-results lav-section'>
     <div class='container-fluid container--size--lg lav-results__container'>
-      <div class='lav-results__title'>Get results in just 7 days</div>
+      <div class='lav-results__title lav-title'>Get results in just 7 days</div>
 
       <div class='lav-results__row'>
         <div class="lav-results__item">
           <div class="lav-results__item-title">Order Luminette3</div>
+          <div class="lav-results__circle"></div>
           <div class="lav-results__item-caption">Today</div>
         </div>
 
         <div class="lav-results__item">
           <div class="lav-results__item-title">Wear Luminette3</div>
+          <div class="lav-results__circle"></div>
           <div class="lav-results__item-caption">20 minutes x 7 days</div>
         </div>
 
         <div class="lav-results__item">
           <div class="lav-results__item-title">Feel energized and fix your sleep</div>
+          <div class="lav-results__circle"></div>
           <div class="lav-results__item-caption">After 4-7 days</div>
         </div>
       </div>
