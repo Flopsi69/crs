@@ -229,12 +229,12 @@ const styles = `
   .lav-drinks:before {
     content: '';
     position: absolute;
-    bottom: -75px;
+    bottom: -7vw;;
     left: 0;
     right: 0;
     height: 737px;
     background: url('${settings.dir}/img/drinks-bg.png') left bottom no-repeat;
-    background-size: contain;
+    background-size: cover;
   }
   .lav-drinks__inner {
     display: flex;
@@ -257,8 +257,47 @@ const styles = `
   .lav-drinks__container {
     position: relative;
   }
-  .lav-drinks {}
-  .lav-drinks {}
+
+  .lav-wears {
+    padding-top: 90px;
+    padding-bottom: 120px;
+    background: linear-gradient(180deg, #406184 13.02%, rgba(64, 97, 132, 0.86) 41.15%, rgba(18, 141, 255, 0) 100%);
+  }
+  .lav-wears__title {
+    text-align: center;
+    color: #fff;
+  }
+  .lav-wears__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 72px;
+    margin-bottom: 50px;
+  }
+  .lav-wear {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    background: radial-gradient(104.98% 70.86% at 50.15% 8.85%, rgba(243, 245, 249, 0) 21.87%, rgba(243, 245, 249, 0.179775) 34.38%, rgba(243, 245, 249, 0.811752) 47.4%, #F3F5F9 58.33%);
+    padding-top: 187px;
+  }
+  .lav-wear__info {
+    padding: 32px;
+  }
+  .lav-wear__icon {
+    line-height: 0;
+  }
+  .lav-wear__title {
+    margin-top: 24px;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .lav-wear__list {
+    margin-top: 16px;
+  }
+  .lav-wears {}
+  .lav-wears {}
+  .lav-wears {}
 
 
 `;
@@ -401,7 +440,7 @@ const newPage = `
       <div class='lav-wears__title lav-title'>Wear for 30 mins a day to...</div>
 
       <div class='lav-wears__grid'>
-        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit1-bg.png")'>
+        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit1-bg.jpeg")'>
           <div class='lav-wear__info'>
             <div class='lav-wear__icon'>
               <img src='${settings.dir}/img/benefit1.svg' />
@@ -415,10 +454,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit2-bg.png")'>
+        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit2-bg.jpeg")'>
           <div class='lav-wear__info'>
             <div class='lav-wear__icon'>
-              <img src='${settings.dir}/img/benefit2.svg' />
+              <img src='${settings.dir}/img/benefit3.svg' />
             </div>
             <div class='lav-wear__title'>Boost energy</div>
              <div class='lav-wear__list'>
@@ -429,10 +468,10 @@ const newPage = `
           </div>
         </div>
 
-        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit3-bg.png")'>
+        <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit3-bg.jpeg")'>
           <div class='lav-wear__info'>
             <div class='lav-wear__icon'>
-              <img src='${settings.dir}/img/benefit3.svg' />
+              <img src='${settings.dir}/img/benefit2.svg' />
             </div>
             <div class='lav-wear__title'>Sleep better</div>
              <div class='lav-wear__list'>
