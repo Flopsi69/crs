@@ -79,7 +79,16 @@ const styles = `
     border-radius: 8px;
     padding: 40px 125px;
   }
-
+  @media(max-width: 768px) {
+    .lav-desk {
+      display: none!important;
+    }
+  }
+  @media(min-width: 769px) {
+    .lav-mob {
+      display: none!important;
+    }
+  }
   .lav-title {
     font-weight: 700;
     font-size: 48px;
@@ -89,9 +98,24 @@ const styles = `
     font-size: 18px;
     line-height: 24px;
   }
+  @media(max-width: 768px) {
+    .lav-title {
+      font-size: 32px;
+      line-height: 36px;
+    }
+    .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
   .lav-btn {
     max-width: 356px;
     width: 100%;
+  }
+  @media(max-width: 768px) {
+    .btn-primary.btn-lg .btn-text {
+      font-size: 21px;
+    }
   }
 
   .lav-jumb {
@@ -123,6 +147,11 @@ const styles = `
     font-weight: 500;
     font-size: 24px;
     line-height: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-jumb__learn:hover {
+    opacity: 0.8;
   }
 
   .lav-boost {
@@ -138,9 +167,6 @@ const styles = `
     margin-right: 75px;
     line-height: 0;
   }
-  .lav-boost__info {
-
-  }
   .lav-boost__title {
     font-weight: 700;
     font-size: 32px;
@@ -153,6 +179,39 @@ const styles = `
     font-size: 18px;
     line-height: 24px;
     margin-top: 8px;
+  }
+  @media(max-width: 992px) {
+    .lav-boost__inner {
+      padding: 24px;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-boost__container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .lav-boost__inner {
+      text-align: center;
+      justify-content: center;
+    }
+    .lav-boost__image {
+      display: none;
+    }
+    .lav-boost__title {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 16px;
+    }
+    .lav-boost__caption {
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 2px;
+    }
+    .lav-boost {
+      padding-bottom: 30px;
+      padding-top: 30px;
+      transform: none;
+    }
   }
 
   .lav-problems {
@@ -220,6 +279,45 @@ const styles = `
   .lav-problem__item + .lav-problem__item {
     margin-top: 3px;
   }
+  @media(max-width: 1199px) {
+    .lav-problems__grid {
+      gap: 30px;
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-problems__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .lav-problem:nth-child(2) {
+      margin: 0;
+    }
+    .lav-problem:nth-child(5) {
+      margin: 0;
+    }
+    .lav-problems__grid {
+      margin-top: 60px;
+    }
+    .lav-problems__title br {
+      display: none;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-problems {
+      padding: 30px 0;
+    }
+    .lav-problems__grid {
+      grid-template-columns: 1fr;
+    }
+    .lav-problems__grid {
+      margin-top: 30px;
+    }
+    .lav-problem__info {
+      padding: 32px 24px;
+    }
+    .lav-problems__title {
+      text-align: left;
+    }
+  }
 
   .lav-drinks {
     position: relative;
@@ -240,6 +338,7 @@ const styles = `
     display: flex;
     align-items: center;
     padding: 40px 85px;
+    background: linear-gradient(95.3deg, #F8F9FA 27.98%, #FDFDFD 95.76%);
   }
   .lav-drinks__image {
     flex-shrink: 0;
@@ -257,6 +356,42 @@ const styles = `
   .lav-drinks__container {
     position: relative;
   }
+  @media(max-width: 992px) {
+    .lav-drinks {
+      padding-top: 30px;
+      padding-bottom: 60px;
+    }
+    .lav-drinks:before {
+      display: none;
+    }
+    .lav-drinks__inner {
+      padding: 24px 24px 32px;
+    }
+    .lav-drinks__image {
+      margin-left: 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-drinks__inner {
+      display: block;
+    }
+    .lav-drinks__image {
+      text-align: center;
+      margin-right: 0;
+    }
+    .lav-drinks__image img {
+      width: 150px;
+    }
+    .lav-drinks__info {
+      margin-right: 0;
+      margin-top: 28px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+
 
   .lav-wears {
     padding-top: 90px;
@@ -324,11 +459,42 @@ const styles = `
   .lav-wears__btn-wrap {
     text-align: center;
   }
+  @media(max-width: 1199px) {
+    .lav-wears__grid {
+      gap: 16px;
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-wears__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-wears {
+      padding: 30px 0;
+    }
+    .lav-wears__title {
+      text-align: left;
+    }
+    .lav-wears__grid {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .lav-wear__icon {
+      text-align: center;
+    }
+    .lav-wear__title {
+      text-align: center;
+    }
+    .lav-wear__icon img {
+      width: 120px;
+    }
+  }
 
   .lav-lucimed {
     padding-top: 8px;
   }
-  .lav-lucimed {}
   .lav-lucimed__inner {
     display: flex;
     justify-content: space-between;
@@ -357,12 +523,35 @@ const styles = `
     line-height: 24px;
     color: #1B7FE7;
   }
-  .lav-lucimed {
-
+  .lav-lucimed__link svg {
+    width: 14px;
+    position: relative; 
+    top: 3px;
+  }
+  @media(max-width: 992px) {
+    .lav-lucimed__image {
+      max-width: 40%;
+      margin-left: 20px;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-lucimed {
+      padding: 30px 0;
+    }
+    .lav-lucimed__info {
+      width: 100%;
+    }
+    .lav-lucimed__image {
+      max-width: 380px;
+      margin: 20px auto 30px;
+    }
+    .lav-lucimed__descr {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
   }
 
 
-  .lav-morning {}
   .lav-morning__plate {
     display: flex;
     background: #FDFDFD  url('${settings.dir}/img/morning.jpeg') left no-repeat;
@@ -402,8 +591,53 @@ const styles = `
     width: 80px;
     height: 80px;
   }
+  @media(max-width: 1320px) {
+    .lav-morning__plate {
+      background-position-x: -40%;
+    }
+  }
+  @media(max-width: 1100px) {
+    .lav-morning__plate {
+      background-position-x: -30vw;
+    }
+    .lav-morning__info {
+      max-width: 400px;
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-morning__plate {
+      background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    }
+    .lav-morning__info {
+      max-width: 100%;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-morning {
+      padding: 0;
+    }
+    .lav-morning__container {
+      width: auto;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+    .lav-morning__plate {
+      padding: 30px 20px;
+      box-shadow: none;
+    }
+    .lav-morning__image img {
+      width: 69px;
+      height: 69px;
+    }
+    .lav-morning__caption {
+      font-size: 18px;
+    }
+    .lav-morning__image {
+      margin-right: 16px;
+    }
+  }
 
-  .lav-results {}
+
   .lav-results__title {
     text-align: center;
   }
@@ -446,6 +680,44 @@ const styles = `
     margin-bottom: 12px;
     background: linear-gradient(6.75deg, #3797F1 5.31%, #1B7FE7 94.73%);
     border-radius: 50%;
+  }
+  @media(max-width: 992px) {
+    .lav-results__row {
+      display: block;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lav-results__item {
+      display: flex;
+      flex-flow: row-reverse;
+    }
+    .lav-results__item-caption {
+      width: 50%;
+      text-align: right;
+    }
+    .lav-results__item-title {
+      width: 50%;
+    }
+    .lav-results__item + .lav-results__item {
+      margin-left: 0;
+      margin-top: 24px;
+    }
+    .lav-results__circle {
+      margin: 0 12px;
+      flex-shrink: 0;
+    }
+    .lav-results__row:before {
+      background: url(${settings.dir}/img/results-line-mob.png) center no-repeat;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 2px;
+    }
+  }
+  @media(max-width: 768px) {
   }
 
   .lav-benefits {
@@ -2158,7 +2430,7 @@ const newPage = `
             <div class='lav-wear__icon'>
               <img src='${settings.dir}/img/benefit1.svg' />
             </div>
-            <div class='lav-wear__title'>Beat your winter blues</div>
+            <div class='lav-wear__title'>Beat winter blues</div>
             <div class='lav-wear__list'>
               <div class='lav-wear__item'>Cope with winter blues and seasonal changes</div>
               <div class='lav-wear__item'>Manage a healthier lifestyle with circadian rhythms</div>
@@ -2212,15 +2484,18 @@ const newPage = `
       <div class='lav-lucimed__inner'>
         <div class='lav-lucimed__info'>
           <div class='lav-lucimed__title lav-title'>Lucimed - Pioneers in Light Therapy</div>
+          <div class='lav-lucimed__image lav-mob'>
+            <img src='${settings.dir}/img/lucimed.png' />
+          </div>
           <div class='lav-lucimed__descr lav-descr'>
-            Belgian health tech company Lucimed has pioneered a way for you to bring wearable light therapy into your home. <br />Years of research by optical engineers, sleep disorder specialists, professors & inventors have created the Luminette3 - a device that helps you optimize your sleep health & mental wellbeing through the power of light therapy. 
+            Belgian health tech company Lucimed has pioneered a way for you to bring wearable light therapy into your home. <br class='lav-mob' /><br />Years of research by optical engineers, sleep disorder specialists, professors & inventors have created the Luminette3 - a device that helps you optimize your sleep health & mental wellbeing through the power of light therapy. 
           </div>
           <div class='lav-lucimed__link'>
-            Learn more about Luminette scientific research >
+            Learn more about Luminette scientific research<svg class="icon icon-xs"><use xlink:href="#arrow-right"></use></svg>
           </div>
         </div>
 
-        <div class='lav-lucimed__image'>
+        <div class='lav-lucimed__image lav-desk'>
           <img src='${settings.dir}/img/lucimed.png' />
         </div>
       </div>
@@ -3483,6 +3758,13 @@ function init() {
     return false;
   }
 
+  setInterval(() => {
+    if (window.innerWidth > 768 && window.pageYOffset < 50) {
+      document.querySelector('.header').classList.remove('dark-theme');
+      document.querySelector('.header').classList.add('light-theme');
+    }
+  }, 200);
+
   console.log('init');
 
   // TODO
@@ -3503,6 +3785,14 @@ function init() {
         document.querySelector('.lav-trial__image')
       );
   }
+
+  document
+    .querySelector('.lav-jumb__learn')
+    .addEventListener('click', function () {
+      document
+        .querySelector('.lav-problems')
+        .scrollIntoView({ behavior: 'smooth' });
+    });
 
   // for (let btn of document.querySelectorAll('.lav-btn-buy')) {
   //   btn.addEventListener('click', function (e) {
