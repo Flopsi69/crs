@@ -708,23 +708,67 @@ const styles = `
       flex-shrink: 0;
     }
     .lav-results__row:before {
-      background: url(${settings.dir}/img/results-line-mob.png) center no-repeat;
-      top: 0;
-      bottom: 0;
+      background: url(${settings.dir}/img/results-line-mob.svg) center no-repeat;
+      top: 7px;
       left: 0;
       right: 0;
       margin: auto;
       width: 2px;
+      height: 75%;
+      pointer-events: none;
+    }
+    .lav-results__circle {
+      background: #74E6FF;
+    }
+    .lav-results__item:last-child .lav-results__circle {
+      background: #66B8FF;
     }
   }
   @media(max-width: 768px) {
+    .lav-results {
+      padding-top: 30px;
+      padding-bottom: 60px;
+    }
+    .lav-results__row:before {
+      top: 23px;
+    }
+    .lav-results__row {
+      margin-top: 30px;
+    }
+    .lav-results__title {
+      text-align: left;
+    }
+    .lav-results__item-caption {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+      width: 45%;
+    }
+    .lav-results__row:before {
+      right: 5%;
+      height: 77%;
+    }
+    .lav-results__item-title {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .lav-results__btn {
+      max-width: 100%;
+      margin-top: 30px;
+    }
+    .lav-results__circle {
+      width: 12px;
+      height: 12px;
+      margin-top: 7px;
+    }
   }
 
   .lav-benefits {
     text-align: center;
   }
   .lav-benefits__inner {
-    padding: 80px 48px 85px;
+    padding: 80px 48px 0;
     filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
     border-radius: 16px;
     background: #517193;
@@ -747,7 +791,36 @@ const styles = `
     font-weight: 700;
   }
   .lav-benefit__btn {
-    transform: translateY(-50%);
+    transform: translateY(50%);
+    margin-top: 20px;
+  }
+  @media(max-width: 992px) {
+    .lav-benefits__list {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-benefits__inner {
+      margin: 0 -20px;
+      border-radius: 0;
+      box-shadow: none;
+      filter: none;
+      padding: 30px 20px;
+    }
+    .lav-benefits {
+      padding: 0;
+    }
+    .lav-benefit__btn {
+      transform: none;
+      margin-top: 30px;
+    }
+    .lav-benefit__icon img {
+      width: 92px;
+      height: 92px;
+    }
+    .lav-benefits__list {
+      margin-top: 24px;
+    }
   }
 
 
@@ -791,6 +864,58 @@ const styles = `
     background: #fff url(${settings.dir}/img/check.svg) center no-repeat;
     background-size: contain;
     border-radius: 50%;
+  }
+  @media(max-width: 768px) {
+    .lav-cases {
+      padding: 30px 0;
+    }
+    .lav-cases__title {
+      text-align: left;
+      margin-right: -20px;
+    }
+    .lav-cases__list {
+      margin-top: 24px;
+      display: block;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+    }
+    .lav-cases .slick-slide {
+      width: 246px;
+      margin: 0 10px;
+    }
+    .lav-cases .slick-list {
+      overflow: visible;
+    }
+    .lav-case__caption {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .lav-cases .slick-dots {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      margin: 0;
+      margin-top: 30px;
+      padding: 0;
+    }
+    .lav-cases .slick-dots button {
+      background: #FFFFFF;
+      border: 1px solid #4E4F51;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      font-size: 0;
+      padding: 0;
+      transition: 0.2s;
+    }
+    .lav-cases .slick-dots li + li {
+      margin-left: 26px;
+      
+    }
+    .lav-cases .slick-dots .slick-active button {
+      background-color: #4E4F51;
+    }
   }
 
   .lav-recharge__inner {
@@ -850,7 +975,44 @@ const styles = `
   .lav-recharge__caption {
     margin-top: 24px;
   }
-  .lav-case {}
+  @media(max-width: 1199px) {
+    .lav-recharge__inner {
+      display: block;
+      background-size: auto 340px;
+      background-position: left top;
+    }
+    .lav-recharge__info {
+      max-width: 100%;
+      padding: 24px;
+      padding-top: 40px;
+      border-radius: 0 0 12px 12px;
+      text-align: center;
+      background: linear-gradient(0deg, rgba(255,255,255,1) 66%, rgba(255,255,255,0.0) 100%);
+    }
+    .lav-recharge__preview {
+      height: 230px;
+    }
+  }
+  @media(max-width: 768px) {
+     .lav-recharge__inner {
+      background: url('${settings.dir}/img/women-mob.png') left top no-repeat;
+      background-size: 100% auto;
+    }
+    .lav-recharge__preview img {
+      width: 80px;
+      height: 80px;
+    }
+    .lav-recharge {
+      margin-top: 24px;
+    }
+    .lav-recharge__info {
+      padding-top: 0;
+    }
+  }
+  @media(max-width: 992px) {}
+  @media(max-width: 992px) {}
+  @media(max-width: 992px) {}
+  @media(max-width: 992px) {}
 
   .lav-works {
     padding-bottom: 20px;
@@ -2542,7 +2704,7 @@ const newPage = `
 
   <section class='lav-results lav-section'>
     <div class='container-fluid container--size--lg lav-results__container'>
-      <div class='lav-results__title lav-title'>Get results in just 7 days</div>
+      <div class='lav-results__title lav-title'>Get results in just 7&nbsp;days</div>
 
       <div class='lav-results__row'>
         <div class="lav-results__item">
@@ -2563,6 +2725,13 @@ const newPage = `
           <div class="lav-results__item-caption">After 4-7 days</div>
         </div>
       </div>
+
+      <button class='lav-results__btn btn-primary lav-mob btn-lg flipped lav-btn lav-btn-buy'>
+        <span class="btn-text">
+          Get Luminette3 Now
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
     </div>
   </section>
 
@@ -2594,14 +2763,14 @@ const newPage = `
             <div class='lav-benefit__caption lav-descr'>Wear Luminette on top of your glasses</div>
           </div>
         </div>
-      </div>
 
-      <button class='lav-benefit__btn lav-btn btn-primary btn-lg flipped lav-btn-buy'>
-        <span class="btn-text">
-          Get Luminette3 Now
-        </span>
-        <span class="btn-bg-wrapper"></span>
-      </button>
+        <button class='lav-benefit__btn lav-btn btn-primary btn-lg flipped lav-btn-buy'>
+          <span class="btn-text">
+            Get Luminette3 Now
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -3871,6 +4040,30 @@ function initSliders() {
   let jqueryInterval = setInterval(() => {
     if (typeof $ === 'function') {
       clearInterval(jqueryInterval);
+
+      const $sliderMob = $('.lav-cases__list');
+      let isActiveMobSlider = false;
+
+      $(window).resize(handleMobSlider);
+      handleMobSlider();
+
+      function handleMobSlider() {
+        if ($(window).width() > 768 && isActiveMobSlider) {
+          isActiveMobSlider = false;
+          $sliderMob.slick('unslick');
+        } else if (!isActiveMobSlider && $(window).width() <= 768) {
+          isActiveMobSlider = true;
+          $sliderMob.slick({
+            dots: true,
+            arrows: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            // centerMode: true,
+            variableWidth: true,
+          });
+        }
+      }
 
       // JS Slider
       const $slider = $('.slider');
