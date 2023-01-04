@@ -783,21 +783,24 @@ const styles = `
     font-weight: bold;
   }
 
+
+  .lav-faq {
+    
+  }
+
+
   .lav-reviews .slider .expand {
     display: none;
   }
-  
   .lav-reviews .slider-wrapper {
     max-width: 100%;
     margin: 0 auto;
     z-index: 3;
     padding-top: 10px;
   }
-  
   .lav-reviews .slider .os-scrollbar {
     z-index: 2;
   }
-  
   .lav-reviews .slider .os-scrollbar .os-scrollbar-handle {
     background: rgba(81, 113, 147, 0.2);
   }
@@ -1480,12 +1483,40 @@ const styles = `
     }
   }
 
+  .lav-tooltip-list {
+    margin-top: 15px;
+  }
+  .lav-list__item {
+    position: relative;
+    padding-left: 27px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #517193;
+  }
+  .lav-list__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 17px;;
+    height: 17px;;
+    background: url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+  }
+  .lav-list__item + .lav-list__item {
+      margin-top: 12px;
+  }
+
   .lav-trial__btn-mob {
     display: none;
   }
   .lav-trial {
     position: relative;
-    padding: 60px 0;
+    padding: 90px 0;
+  }
+  .lav-trial__title span {
+    font-weight: 400;
   }
   .lav-trial__row {
     display: flex;
@@ -1496,7 +1527,11 @@ const styles = `
     padding: 32px 40px;
   }
   .lav-trial__image {
-    width: 55%;
+    position: relative;
+    width: 52%;
+  }
+  .lav-trial__image > img {
+    max-width: 100%;
   }
   .lav-trial__info {
     max-width: 430px;
@@ -1506,42 +1541,44 @@ const styles = `
     margin-top: 16px;
   }
   .lav-trial__buttons {
-    margin-top: 24px;
-    margin-bottom: 32px;
+    margin: 24px auto;
     display: flex;
-  }
-  .lav-trial__buttons .lav-trial__btn span {
-    // border-bottom: 1px solid #517193;
+    justify-content: center;
+    // max-width: 355px;
   }
   .lav-trial__btn {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
     font-weight: bold;
-    padding: 15px 10px;
-    flex-grow: 1;
+    padding: 12px 24px;
     justify-content: center;
-    border: 1px solid rgba(81, 113, 147, 15%);
-    border-radius: 36px;
     transition: 0.35s;
+    background: #F4F6FA;
     cursor: default;
+  }
+  .lav-trial__btn:first-child {
+    border-bottom-left-radius: 16px;
+    border-top-left-radius: 16px;
+  }
+  .lav-trial__btn:last-child {
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px;
   }
   .lav-trial__btn.btn-primary {
     cursor: pointer;
   }
   .lav-trial__btn .tooltip-dropdown {
-    top: 35px;
+    top: 20px;
     padding-top: 10px;
   }
-  .lav-trial__btn:hover {
-    border-color: #517193;
-  }
   .lav-trial__btn>img {
-    margin-right: 8px;
+    margin-right: 6px;
+    width: 20px;
   }
   .lav-trial__btn + .lav-trial__btn {
-    margin-left: 12px;
+    margin-left: 1px;
   }
   .lav-trial__inside {
     display: flex;
@@ -1553,15 +1590,35 @@ const styles = `
     letter-spacing: 0.01em;
     transition: 0.35s;
     cursor: default;
-    margin-top: 20px;
+    margin-top: -35px;
   }
 
-  .lav-trial__actions {
+  .lav-trial__action {
     text-align: center;
-    width: 260px;
+    background-color: #F4F6FA;
+    border-radius: 45px 45px 16px 16px;
+    padding-bottom: 12px;
   }
-  .lav-france .lav-trial__actions .btn-text {
-    font-size: 17px;
+  .lav-trial__guarantee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    padding: 0 12px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .lav-trial__guarantee img {
+    margin-right: 6px;
+  }
+  .lav-trial__refund {
+    margin-top: 8px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+  .lav-trial__get {
+    max-width: 100%;
   }
   .lav-trials__btn.btn-primary {
     padding-left: 40px;
@@ -1579,9 +1636,20 @@ const styles = `
   .lav-trial__learn:hover {
     opacity: 0.7;
   }
-
+  .lav-info-invert {
+    filter: invert(43%) sepia(44%) saturate(407%) hue-rotate(170deg) brightness(69%) contrast(87%)
+  }
   .tooltip {
     position: relative;
+  }
+  .tooltip__link {
+    border-bottom: 1px solid #517193;
+    color: #517193;
+    font-weight: 600;
+    transition: 0.35s;
+  }
+  .tooltip__link:hover {
+    opacity: 0.8;
   }
   .tooltip-include {
     max-width: 100%;
@@ -1636,16 +1704,12 @@ const styles = `
   .tooltip-text + .tooltip-text {
     margin-top: 8px;
   }
-  .lav-trial__btn .tooltip-dropdown {
-    top: 35px;
-    padding-top: 10px;
-  }
 
   @media(max-width: 1199px) {
     .lav-trial {
       text-align: center;
     }
-    .lav-trial__actions {
+    .lav-trial__action {
       width: 100%;
     }
     .lav-trial__info {
@@ -1736,6 +1800,71 @@ const styles = `
     .lav-trial__btn-mob {
       display: block;
     }
+  }
+
+
+  .lav-drive {
+    color: #FFFFFF;
+    padding-top: 80px;
+    padding-bottom: 0;
+    background: #34475B;
+  }
+  .lav-drive__caption {
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+    color: #fff;
+    opacity: 0.9;
+    font-weight: 700;
+  }
+  .lav-drive__title {
+    position: relative;
+    font-size: 144px;
+    line-height: 1;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 32px;
+  }
+  .lav-drive__bg {
+    background: url(${settings.dir}/img/drive.jpeg) bottom no-repeat;
+    background-size: contain;
+    max-width: 1324px;
+  }
+  .lav-drive__bg-title {
+    max-width: 475px;
+    padding: 440px 0 160px;
+    margin-left: auto;
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: bold;
+    margin-right: 40px;
+  }
+  @media(max-width: 1275px) {
+    .lav-drive__bg-title {
+      padding: 460px 0 100px;
+    }
+  }
+  .lav-drive__actions {
+    text-align: center;
+    padding-bottom: 80px;
+  }
+  .lav-drive__learn {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-drive__learn:hover {
+    opacity: 0.7;
+  }
+  .lav-drive__device {
+    width: 850px;
+    display: block;
+    margin: -40px auto -150px;
+    padding-left: 75px;
   }
   
 
@@ -2212,10 +2341,533 @@ const newPage = `
     <div class='container-fluid container--size--lg'>
       <div class='lav-faq__plate'>
         <div class='lav-faq__info'>
-          <div class='lav-faq__title'></div>
-          <div class='lav-faq__list'></div>
+          <div class='lav-faq__title lav-title'>FAQs</div>
+          <div class='lav-faq__list accordion-primary'>
+            <div class="question-row">
+              <div class="accordion-toggle collapsed" data-target="#question-1" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Is Luminette suitable for children?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-1" class="collapse" style="">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Beacause their crystallines are still growing, Luminette is not advised for children under 12 years of age</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle collapsed" data-target="#question-2" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Can I use the Luminette if I suffer from cataracts?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-2" class="collapse" style="">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Your crystalline has become opaque and lets in less light, so the Luminette might prove to be less effective and might need to be worn a little longer.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-3" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Can I use the Luminette if I have had a cataract operation?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-3" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>You must seek advice from your ophthalmologist before starting light therapy.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-4" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Can I use the Luminette if I suffer from lesions of the retina or an eye disease?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-4" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>We do not advise it.  In all these cases, you should first seek the opinion of your ophthalmologist.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-5" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    When should the Luminette be recharged?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-5" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>When you turn the device off, between 1 and 3 battery indicators light up to give you an indication of the remaining battery life (3 indicators = the battery is fully charged; 2 indicators = the battery is 2/3 charged; 1 indicator = the battery is 1/3 charged; 1 flashing indicator = the battery is insufficiently charged to be able to complete a session).
+                    We recommend recharging your Luminette® when there is only one indicator remaining when you turn the device off.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-6" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How long does it take to recharge the Luminette?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-6" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>The charging time is 2 hours. When your Luminette® is being charged, the 3 indicator lights flash continuously in a cyclic manner. When your Luminette® is fully charged, all 3 lights will stop flashing and remain on.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-7" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How can I tell if the Luminette is correctly positioned?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-7" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Luminette is correctly positioned if the blue light reaches the lower half of your eyes when you look in a mirror.  If this is not the case, adjust the Luminette by placing the nose rest into the slot.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-8" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How long should I wear the Luminette?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-8" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Your Luminette allows you to choose from three different light intensities. Intensity 1 = 60 minutes per day. Intensity 2 = 30 minutes per day. Intensity 3 = 20 minutes per day. Luminette will let you know when the session is finished by flashing and will turn off automatically.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-9" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Can I wear the Luminette in an airplane?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-9" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Apart from disturbing the person next to you (or if you are afraid he/she will be curious!), you can use your Luminette in an airplane.  Set your watch to the time of your destination, drink plenty of water, and limit alcohol, coffee, and tea.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-11" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    What is the delivery time?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-11" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>3 to 5 working days in USA and Canada</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-12" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Is wearing the Luminette dangerous for the eyes?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-12" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>No.  1) The light emitted by Luminette is white light enhanced with blue light.  It is low intensity (1,500 lux).  By way of comparison, most light therapy boxes emit light at 10,000 lux. 2) The spectrum has been specially chosen to exclude potentially dangerous wavelengths (UV and similar). 3) Luminette has been assessed in terms of the standard IEC 62471.  It is considered to be a product without danger for the eyes. 4) We have sold over 60,000 of our flagship products to date and have received no complaints.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-14" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Where is the Luminette manufactured?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-14" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Apart from the case and charger, Luminette is manufactured and assembled in Belgium.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-15" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    If I have a problem with the Luminette, what should I do?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-15" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>If you bought the Luminette in a shop or at a chemist's:  You have two options.  Either you go back to where you bought it and use their after-sales service, or else you send the device back to us in secure packaging, including your receipt, and a few words to explain the problem and your contact details.  The first solution saves you the shipping costs but takes longer.  If you bought the Luminette on the internet, you send us back the device, either by post (at your expense) or else free of charge via the Kiala network.  In this case, we send you a label that you print out and stick on to the transportation packaging of the parcel and then deposit this parcel at a Kiala point (go to the Kiala website to find the Kiala point that is closest to you). We deal with all requests within 5 working days (from reception of the device) and we will keep you informed by email or by telephone.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-16" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    What is the duration of the Luminette guarantee?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-16" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Your Luminette is guaranteed for 2 years.  This guarantee covers manufacturing faults and any other fault that may occur in the context of normal use of the device.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-17" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How do I introduce a claim under guarantee?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-17" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>The purchase invoice acts as a guarantee.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-18" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Are there any side effects?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-18" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Undesirable side-effects linked to the Luminette are always relatively slight and transitory. They may include: Headaches / Eye fatigue / Nausea. In order to avoid, reduce or attenuate these undesirable effects: Use Luminette in a well lit room / Reduce Luminette's intensity setting (there are 3 levels of light intensities) / Do not use the device for a few days until the side-effects disappear, then try again.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-19" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How long will it be before I begin to feel better?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-19" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>The “boosting” effect of Luminette® is almost immediate. From the very first days, you will feel your energy returning and your mood will start to improve. The improvements of your biological clock takes between 4 to 7 days.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-20" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How often should I wear the Luminette?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-20" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Once a day.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-25" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Is the Luminette made for me?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-25" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Luminette is for you if:
+                      - you lack energy at this time, you feel temporary morale drops.
+                      - you are concerned by the winter depression (over-sensitivity to the fall in brightness in the autumn-winter period).
+                      - you know sleep problems, insomnia, etc.
+                      - you know episodes of chronic fatigue.
+                      - you suffer from mild or moderate depression. In the case of a major depression, you can improve the effects of your current treatment using the Luminette.
+                      - you are concerned about postpartum depression or baby blues
+                      - you travel a lot and are regularly subjected to jet lag
+                    - you work at night and wish to have a longer sleep</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-26" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How to turn on and off Luminette?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-26" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Briefly press the On/Off button to turn on your Luminette®. To turn it off, hold the button down (for 2 seconds).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-27" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    Can I use Luminette with contact lenses or glasses?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-27" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Yes, the Luminette allows use with contact lenses and a pair of glasses. Just place the Luminette over your normal pair of glasses.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-28" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    How to look after your Luminette®
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-28" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>This device is meant exclusively for personal use. Between each use, store the device in its protective case in a dry place.
+                      To clean your Luminette®, use a soft cloth moistened with a little clean water.
+                    Be careful to protect the fragile holographic zone; avoid touching it with your fingers. If, despite everything, it does dirty, clean with cotton wool.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-32" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    I've lost the nose piece, how can I buy a new one ?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-32" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>No problem ! You can order the nosepiece separately at any time. The unit price of a pose-nez is $10.
+                    To order, simply click on "3 dots circle" in the menu and select "Order a nose rest", then you can select the desired quantity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="question-row">
+              <div class="accordion-toggle " data-target="#question-33" aria-expanded="false" data-toggle="collapse">
+                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
+                  <div class="question">
+                    The Luminette is equipped with a bluetooth transmitter. Is it dangerous for health?
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center">
+                    <svg class="icon icon-xs">
+                      <use xlink:href="#arrow-right"></use>
+                    </svg>
+                  </div>
+                </div>
+
+                <div id="question-33" class="collapse">
+                  <div class="accordion-content answer fw-medium ">
+                    <p>Bluetooth is switched off when the Luminette is switched off.
+
+                      During treatment, Bluetooth emits an Advertisement message every 100ms. This message is used to announce the presence of the Luminette to a nearby Smartphone.
+
+                    Regarding the sensitivity, you should know that this very short message lasts less than 400µs, so that the emission does not take place in fact only 0.4% of the time. In addition, we are talking here about Bluetooth Low Energy and our transmitter has an output power of 1mW, to compare with traditional Bluetooth equipment (such as a wireless headset) which often emit 10X louder (10mW) or WiFi which transmits at 100mW.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class='lav-faq__image'></div>
+        <div class='lav-faq__image'>
+          <img src='${settings.dir}/img/faq.svg' />
+        </div>
       </div>
 
       <button class='lav-faq__btn btn-primary btn-lg flipped lav-btn-buy'>
@@ -2873,11 +3525,32 @@ const newPage = `
   <section class='lav-trial lav-section'>
     <div class='container-fluid container--size--lg lav-trial__container'>
       <div class='lav-trial__row lav-observe'>
-        <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
+        <div class='lav-trial__image'>
+          <img src='${settings.dir}/img/trial.png' />
+          <div class='lav-trial__inside lav-tooltip-wrap'>
+            What’s in the box?
+            <div class="tooltip d-flex ml-1">
+              <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
+              <div class="tooltip-dropdown text-left fs-16">
+                <div class="tooltip-item">
+                  <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
+                  <div class='lav-list lav-tooltip-list'>
+                    <div class='lav-list__item'>Your Luminette</div>
+                    <div class='lav-list__item'>A protective case</div>
+                    <div class='lav-list__item'>A micro USB wall charger</div>
+                    <div class='lav-list__item'>A microfiber cleaning cloth</div>
+                    <div class='lav-list__item'>Guarantee certificate</div>
+                    <div class='lav-list__item'>Your instruction manual </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class='lav-trial__info'>
-          <div class='lav-trial__title lav-title'>30 Day <br/> Light Therapy Trial</div>
-          <div class='lav-trial__descr lav-text'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+          <div class='lav-trial__title lav-title'>30 Day <br/> <span>Light Therapy Trial</span></div>
+          <div class='lav-trial__descr lav-descr'>Test out Luminette's patented light therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
 
           <div class='lav-trial__buttons'>
             <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
@@ -2892,7 +3565,7 @@ const newPage = `
                         <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
                       </p>
                       <p>
-                        However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
+                        However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="tooltip__link">Refunds page</a>.
                       </p>
                     </div> 
                   </div>
@@ -2906,7 +3579,7 @@ const newPage = `
                       <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
                     </p>
                     <p>
-                      However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
+                      However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="tooltip__link">Refunds page</a>.
                     </p>
                   </div> 
                 </div>
@@ -2954,33 +3627,19 @@ const newPage = `
             </div>
           </div>
 
-          <div class='lav-trial__actions'>
-            <button class='lav-trial__btn btn-primary btn-lg flipped lav-btn-buy'>
+          <div class='lav-trial__action'>
+            <button class='lav-trial__get lav-btn btn-primary btn-lg flipped lav-btn-buy'>
               <span class="btn-text">
-                Try it $199
+              Get it for $199
               </span>
               <span class="btn-bg-wrapper"></span>
             </button>
 
-            <div class='lav-trial__inside lav-tooltip-wrap'>
-              What’s in the box?
-              <div class="tooltip d-flex ml-1">
-                <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
-                <div class="tooltip-dropdown text-left fs-16">
-                  <div class="tooltip-item">
-                    <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
-                    <div class='lav-list lav-tooltip-list'>
-                      <div class='lav-list__item'>Your Luminette</div>
-                      <div class='lav-list__item'>A protective case</div>
-                      <div class='lav-list__item'>A micro USB wall charger</div>
-                      <div class='lav-list__item'>A microfiber cleaning cloth</div>
-                      <div class='lav-list__item'>Guarantee certificate</div>
-                      <div class='lav-list__item'>Your instruction manual </div>
-                    </div>
-                  </div> 
-                </div>
-              </div>
+            <div class='lav-trial__guarantee'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30 days money-back guarantee
             </div>
+            <div class='lav-trial__refund'>If you don’t get any results, we will refund you 100%</div>
           </div>
         </div>
       </div>
@@ -3835,7 +4494,7 @@ function initDelivery(lang) {
       } else {
         document.querySelector('.lav-jumb__btn .btn-text').innerText =
           'Buy $249';
-        document.querySelector('.lav-trial__actions .btn-text').innerText =
+        document.querySelector('.lav-trial__action .btn-text').innerText =
           'Try it $249';
         document.querySelector('.lav-drive__btn .btn-text').innerText =
           'Buy $189';
@@ -3880,7 +4539,7 @@ function initDelivery(lang) {
     } else {
       document.querySelector('.lav-jumb__btn .btn-text').innerText =
         'Achat 229 €';
-      document.querySelector('.lav-trial__actions .btn-text').innerText =
+      document.querySelector('.lav-trial__action .btn-text').innerText =
         'Essayez-les pour 229 €';
       document.querySelector('.lav-drive__btn .btn-text').innerText =
         'Achat 179 €';
@@ -3906,7 +4565,7 @@ function initDelivery(lang) {
     } else {
       document.querySelector('.lav-jumb__btn .btn-text').innerText =
         'Achat 229€';
-      document.querySelector('.lav-trial__actions .btn-text').innerText =
+      document.querySelector('.lav-trial__action .btn-text').innerText =
         'Essayez-les pour 229€';
       document.querySelector('.lav-drive__btn .btn-text').innerText =
         'Achat 179€';
@@ -3931,7 +4590,7 @@ function initDelivery(lang) {
     } else {
       document.querySelector('.lav-jumb__btn .btn-text').innerText =
         'Achat $249';
-      document.querySelector('.lav-trial__actions .btn-text').innerText =
+      document.querySelector('.lav-trial__action .btn-text').innerText =
         'Essayez-les pour $249';
       document.querySelector('.lav-drive__btn .btn-text').innerText =
         'Achat $189';
