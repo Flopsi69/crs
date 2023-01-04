@@ -735,6 +735,7 @@ const styles = `
     font-weight: 700;
     font-size: 32px;
     line-height: 36px;
+    pointer-events: none;
     color: #517193;
     position: absolute;
     left: 0;
@@ -743,11 +744,24 @@ const styles = `
     margin: auto;
     z-index: 1;
   }
+  .lav-compare__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 94px;
+    width: 157px;
+    margin: 0 auto 8px;
+  }
+  .lav-compare__image img {
+    max-height: 94px;
+    max-width: 100%;
+  }
   .lav-compare__box {
-    width: 67px;
+    // width: 67px;
   }
   .lav-compare__lum {
-    width: 157px;
+    margin-left: -20px;
+    // width: 157px;
   }
   .lav-compare__inner .col-6:nth-child(3n+1) {
     background: linear-gradient(98.6deg, #EEF1F4 43.43%, #EEF1F4 58.16%, #F3F5F7 100%);
@@ -1133,7 +1147,7 @@ const styles = `
   }
   .lav-reviews__total {
     display: flex;
-    margin: 64px auto 0;
+    margin: 25px auto 0;
     text-align: center;
     max-width: 1000px;
   }
@@ -1157,14 +1171,14 @@ const styles = `
     pointer-events: none;
   }
   .lav-reviews__total-caption {
-    font-weight: 700;
+    font-weight: 400;
     font-size: 18px;
     line-height: 24px;
     color: #FFFFFF;
     opacity: 0.9;
   }
   .lav-reviews__total-caption span {
-    font-weight: 500;
+    font-weight: 700;
   }
   .lav-reviews__total__caption span {
     font-weight: bold;
@@ -1277,6 +1291,12 @@ const styles = `
     }
     .lav-reviews__preview-list {
       margin-top: 48px;
+    }
+    .lav-reviews .slider .slide:nth-child(1n+4){
+      display: none;
+    }
+    .lav-reviews_all .slider .slide:nth-child(1n+4){
+      display: block;
     }
   }
 
@@ -1459,6 +1479,183 @@ const styles = `
       margin-bottom: 0;
     }
   }
+
+  .lav-trial__btn-mob {
+    display: none;
+  }
+  .lav-trial {
+    position: relative;
+    padding: 60px 0;
+  }
+  .lav-trial__row {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(96.91deg, #F8F9FA 0%, #FDFDFD 100.36%);
+    box-shadow: 0px 30px 66px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+    padding: 32px 40px;
+  }
+  .lav-trial__image {
+    width: 55%;
+  }
+  .lav-trial__info {
+    max-width: 430px;
+    margin-left: 50px;
+  }
+  .lav-trial__descr {
+    margin-top: 16px;
+  }
+  .lav-trial__buttons {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    display: flex;
+  }
+  .lav-trial__buttons .lav-trial__btn span {
+    // border-bottom: 1px solid #517193;
+  }
+  .lav-trial__btn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: bold;
+    padding: 15px 10px;
+    flex-grow: 1;
+    justify-content: center;
+    border: 1px solid rgba(81, 113, 147, 15%);
+    border-radius: 36px;
+    transition: 0.35s;
+    cursor: default;
+  }
+  .lav-trial__btn.btn-primary {
+    cursor: pointer;
+  }
+  .lav-trial__btn .tooltip-dropdown {
+    top: 35px;
+    padding-top: 10px;
+  }
+  .lav-trial__btn:hover {
+    border-color: #517193;
+  }
+  .lav-trial__btn>img {
+    margin-right: 8px;
+  }
+  .lav-trial__btn + .lav-trial__btn {
+    margin-left: 12px;
+  }
+  .lav-trial__inside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    transition: 0.35s;
+    cursor: default;
+    margin-top: 20px;
+  }
+
+  .lav-trial__actions {
+    text-align: center;
+    width: 260px;
+  }
+  .lav-france .lav-trial__actions .btn-text {
+    font-size: 17px;
+  }
+  .lav-trials__btn.btn-primary {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .lav-trial__learn {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 28px;
+    transition: 0.35s;
+    cursor: pointer;
+  }
+  .lav-trial__learn:hover {
+    opacity: 0.7;
+  }
+
+  @media(max-width: 1199px) {
+    .lav-trial {
+      text-align: center;
+    }
+    .lav-trial__actions {
+      width: 100%;
+    }
+    .lav-trial__info {
+      max-width: 100%;
+      margin: 0;
+    }
+    .lav-trial__btn {
+      width: 100%;
+    }
+    .lav-trial__image {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .lav-trial__row {
+      padding: 24px 24px 28px;
+    }
+    .lav-trial__inside {
+      position: relative;
+    }
+    .lav-trial__buttons {
+      position: relative;
+    }
+    .lav-trial__btn .tooltip-dropdown {
+      left: -24px;
+      right: -24px;
+      width: auto;
+      top: 70px;
+    }
+    .lav-trial__inside .tooltip-dropdown {
+      left: -24px;
+      right: -24px;
+      width: auto;
+    }
+    .lav-trial__inside .tooltip-item:before {
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .lav-trial__buttons .lav-trial__btn:first-child .tooltip-item:before {
+      left: 25%;
+    }
+    .lav-trial {
+      padding: 48px 0;
+    }
+    .lav-trial__buttons {
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+    .lav-trial__buttons .lav-trial__btn span {
+      text-align: left;
+    }
+    .lav-trial__descr {
+      margin-top: 12px;
+    }
+    .lav-trial__btn .tooltip > img {
+      height: 14px;
+      margin-bottom: -2px;
+    }
+    lav-trial__btn .tooltip {
+      display: inline-block;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .lav-trial__btn-mob {
+      display: block;
+    }
+  }
+  
 
 `;
 
@@ -1900,11 +2097,16 @@ const newPage = `
     <div class='container-fluid container--size--xs'>
       <div class="row fs-16 text-center lav-compare__inner mx-auto">
         <div class="col-6 py-5">
-          <img class="mb-1 lav-compare__lum" src="${settings.dir}/img/compare-lum.png"/>
+          <div class='lav-compare__image'>
+            <img class="lav-compare__lum" src="${settings.dir}/img/compare-lum.png"/>
+          </div>
+     
           <p class="fs-22 fw-bold py-1 lav-compare__title">Luminette3</p>
         </div>
         <div class="col-6 py-5">
-          <img class="mb-1 lav-compare__box" src="${settings.dir}/img/lightbox.png"/>
+          <div class='lav-compare__image'>
+            <img class="lav-compare__box" src="${settings.dir}/img/lightbox.png"/>
+          </div>
           <p class="fs-22 fw-bold py-1 lav-compare__title">Light Box</p>
         </div>
         <div class="col-12 py-2 fs-18 fw-bold b-1">Portable</div>
@@ -1942,8 +2144,6 @@ const newPage = `
       </button>
     </div>
   </section>
-
-
 
   <section class='lav-reviews lav-observe'>
     <div class='container-fluid container--size--lg lav-reviews__container'>
@@ -2549,11 +2749,11 @@ const newPage = `
             <img src='${settings.dir}/img/reviews-trusted.svg' />
           </div>
           <div class='lav-reviews__total-info'>
-            <div class='lav-reviews__total-score'>4.4</div>
+            <div class='lav-reviews__total-score'>4.5</div>
             <div class='lav-reviews__total-stars'>
               <img src='${settings.dir}/img/reviews-stars.svg' />
             </div>
-            <div class='lav-reviews__total-caption'>Trusted shops</div>
+            <a href='#' class='lav-reviews__total-caption'>See reviews on <span>Trusted shops</span></a>
           </div>
         </div>
         <div class='lav-reviews__total-col'>
@@ -2565,7 +2765,7 @@ const newPage = `
             <div class='lav-reviews__total-stars'>
               <img src='${settings.dir}/img/reviews-stars.svg' />
             </div>
-            <div class='lav-reviews__total-caption'>Amazon</div>
+            <a href='#' class='lav-reviews__total-caption'>See reviews on <span>Amazon</span></a>
           </div>
         </div>
       </div>
@@ -2592,26 +2792,27 @@ const newPage = `
     <div class='container-fluid container--size--lg lav-trial__container'>
       <div class='lav-trial__row lav-observe'>
         <img class='lav-trial__image' src='${settings.dir}/img/trial.png' />
-  
+
         <div class='lav-trial__info'>
-          <div class='lav-trial__title lav-title'>Essai de 30 jours</div>
-          <div class='lav-trial__descr lav-descr'>Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !</div>
-  
+          <div class='lav-trial__title lav-title'>30 Day <br/> Light Therapy Trial</div>
+          <div class='lav-trial__descr lav-text'>Test out Luminette's patented Light Therapy for an entire 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+
           <div class='lav-trial__buttons'>
             <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
               <img src='${settings.dir}/img/icon-refresh.svg' />
               <span>
-                Essai de 30 jours&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                30-day <br class='lav-trial__btn-mob'/>trial
+                <span class="tooltip d-inline-block d-sm-none">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item">
                       <p class="mb-2">
-                        Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
+                        <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
                       </p>
                       <p>
-                        Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                        However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
                       </p>
-                    </div>
+                    </div> 
                   </div>
                 </span>
               </span>
@@ -2620,28 +2821,28 @@ const newPage = `
                 <div class="tooltip-dropdown text-left fs-16">
                   <div class="tooltip-item">
                     <p class="mb-2">
-                      Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
+                      <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
                     </p>
                     <p>
-                      Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                      However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Refunds page</a>.
                     </p>
                   </div> 
                 </div>
               </div>
             </div>
-  
             <div class='lav-trial__btn lav-trial__btn-box lav-tooltip-wrap'>
               <img src='${settings.dir}/img/icon-box-2.svg' />
               <span>
-                Livraison gratuite&nbsp;<span class="tooltip d-inline-block d-sm-none">
+                Free <br class='lav-trial__btn-mob'/>shipping
+                <span class="tooltip d-inline-block d-sm-none">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item">
                       <div class="tooltip_free text-center mb-2">
                         <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                          <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+                          <img height='24' src="${settings.dir}/img/flags.png" alt="">
                         </div>
-                        <p> Livraison gratuite en Europe: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+                        <p> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></p>
                       </div>
                       <div class="d-flex align-items-center justify-content-center mb-2 py-1">
                         <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
@@ -2657,9 +2858,9 @@ const newPage = `
                   <div class="tooltip-item">
                     <div class="tooltip_free text-center mb-2">
                       <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                        <img height='24' src="${settings.dir}/img/flags-fr.png" alt="">
+                        <img height='24' src="${settings.dir}/img/flags.png" alt="">
                       </div>
-                      <p> Livraison gratuite en Europe: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></p>
+                      <p> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></p>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-2 py-1">
                       <img class="mr-2" src="${settings.dir}/img/delivery-methods.png" />
@@ -2670,29 +2871,29 @@ const newPage = `
               </div>
             </div>
           </div>
-  
+
           <div class='lav-trial__actions'>
             <button class='lav-trial__btn btn-primary btn-lg flipped lav-btn-buy'>
               <span class="btn-text">
-                Essayez-les pour 229 €
+                Try it $199
               </span>
               <span class="btn-bg-wrapper"></span>
             </button>
-  
+
             <div class='lav-trial__inside lav-tooltip-wrap'>
-              Que contient la boîte?
+              What’s in the box?
               <div class="tooltip d-flex ml-1">
                 <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                 <div class="tooltip-dropdown text-left fs-16">
                   <div class="tooltip-item">
                     <img class='tooltip-include' src="${settings.dir}/img/tooltip-include.png" />
                     <div class='lav-list lav-tooltip-list'>
-                      <div class='lav-list__item'>Votre Luminette</div>
-                      <div class='lav-list__item'>Un étui de protection</div>
-                      <div class='lav-list__item'>Un chargeur mural micro-USB</div>
-                      <div class='lav-list__item'>Un tissu nettoyant en microfibres</div>
-                      <div class='lav-list__item'>Votre certificat de garantie de 2 ans</div>
-                      <div class='lav-list__item'>Le manuel d'utilisation</div>
+                      <div class='lav-list__item'>Your Luminette</div>
+                      <div class='lav-list__item'>A protective case</div>
+                      <div class='lav-list__item'>A micro USB wall charger</div>
+                      <div class='lav-list__item'>A microfiber cleaning cloth</div>
+                      <div class='lav-list__item'>Guarantee certificate</div>
+                      <div class='lav-list__item'>Your instruction manual </div>
                     </div>
                   </div> 
                 </div>
