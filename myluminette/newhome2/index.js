@@ -18,7 +18,7 @@ if (settings.clarity) {
 }
 
 // Alalytics
-function gaEvent(action, label) {
+function gaEvent2(action, label) {
   return false;
   if (!label) {
     label = '';
@@ -787,6 +787,61 @@ const styles = `
   .lav-faq {
     
   }
+
+  .lav-faq {
+    padding-top: 0;
+    padding-bottom: 90px;
+  }
+  .lav-faq__plate {
+    padding: 90px;
+    display: flex;
+    justify-content: center;
+    background: #F4F6FA;
+    box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+  }
+  .lav-faq__info {
+    max-width: 600px;
+    width: 100%;
+  }
+  .lav-faq__image {
+    line-height: 0;
+    margin-left: 60px;
+    max-width: 335px;
+    width: 100%;
+  }
+  .lav-faq__image img {
+    max-width: 100%;
+  }
+  .lav-faq__list {
+    margin-top: 48px;
+  }
+  .lav-faq__btn-wrap {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .question-row + .question-row {
+    margin-top: 16px;
+  }
+  .accordion-primary .accordion-title .question {
+    font-weight: 700;
+  }
+  .accordion-primary .accordion-toggle[data-toggle] {
+    background: #FFFFFF;
+    border: 1px solid #D5DAE2;
+    box-shadow: 0px 15px 44px rgba(59, 83, 108, 0.1);
+    border-radius: 8px;
+    padding: 14px 24px;
+  }
+  .accordion-primary .accordion-toggle[data-toggle] .icon {
+    transform: rotate(90deg);
+  }
+  .accordion-primary .accordion-toggle[data-toggle][aria-expanded=true] .icon {
+    transform: rotate(-90deg);
+  }
+  .lav-faq {}
+  .lav-faq {}
 
 
   .lav-reviews .slider .expand {
@@ -1867,6 +1922,96 @@ const styles = `
     padding-left: 75px;
   }
   
+  .lav-modal {
+    position: fixed;
+    z-index: 99991;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(8, 29, 50, 0.4);
+    transition: 0.35s;
+    opacity: 1;
+    padding: 20px;
+  }
+  .lav-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+    line-height: 0;
+    padding: 3px;
+    transition: 0.3s;
+  }
+
+  .lav-modal__close:hover {
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
+  .lav-open-modal {
+    cursor: pointer;
+  }
+  .lav-modal:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .lav-modal__inner {
+    max-height: 95vh;
+    overflow: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 72px 48px 48px;
+    max-width: 400px;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+  }
+  .lav-modal__inner.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .lav-review-modal {
+    line-height: 0;
+    padding: 0;
+    max-width: 90%;
+    background: transparent;
+  }
+  .lav-review-modal iframe {
+    border: none;
+  }
+  .lav-modal__title {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+  @media(max-width: 768px) {
+    .lav-modal__inner {
+      max-width: 93%;
+      width: 100%;
+      padding: 48px 24px 24px;
+    }
+    .lav-modal__inner.lav-review-modal {
+      padding: 0;
+    }
+    .lav-modal__close {
+      top: 12px;
+      right: 12px;
+    }
+    .lav-modal {
+      padding: 12px;
+    }
+  }
 
 `;
 
@@ -2347,7 +2492,7 @@ const newPage = `
               <div class="accordion-toggle collapsed" data-target="#question-1" aria-expanded="false" data-toggle="collapse">
                 <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
                   <div class="question">
-                    Is Luminette suitable for children?
+                    What problems can Luminette help to solve?
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center">
@@ -2364,11 +2509,12 @@ const newPage = `
                 </div>
               </div>
             </div>
+
             <div class="question-row">
               <div class="accordion-toggle collapsed" data-target="#question-2" aria-expanded="false" data-toggle="collapse">
                 <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
                   <div class="question">
-                    Can I use the Luminette if I suffer from cataracts?
+                    What problems can Luminette help to solve?
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center">
@@ -2380,489 +2526,13 @@ const newPage = `
 
                 <div id="question-2" class="collapse" style="">
                   <div class="accordion-content answer fw-medium ">
-                    <p>Your crystalline has become opaque and lets in less light, so the Luminette might prove to be less effective and might need to be worn a little longer.</p>
+                    <p>Beacause their crystallines are still growing, Luminette is not advised for children under 12 years of age</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-3" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Can I use the Luminette if I have had a cataract operation?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-3" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>You must seek advice from your ophthalmologist before starting light therapy.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-4" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Can I use the Luminette if I suffer from lesions of the retina or an eye disease?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-4" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>We do not advise it.  In all these cases, you should first seek the opinion of your ophthalmologist.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-5" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    When should the Luminette be recharged?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-5" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>When you turn the device off, between 1 and 3 battery indicators light up to give you an indication of the remaining battery life (3 indicators = the battery is fully charged; 2 indicators = the battery is 2/3 charged; 1 indicator = the battery is 1/3 charged; 1 flashing indicator = the battery is insufficiently charged to be able to complete a session).
-                    We recommend recharging your Luminette® when there is only one indicator remaining when you turn the device off.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-6" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How long does it take to recharge the Luminette?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-6" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>The charging time is 2 hours. When your Luminette® is being charged, the 3 indicator lights flash continuously in a cyclic manner. When your Luminette® is fully charged, all 3 lights will stop flashing and remain on.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-7" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How can I tell if the Luminette is correctly positioned?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-7" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Luminette is correctly positioned if the blue light reaches the lower half of your eyes when you look in a mirror.  If this is not the case, adjust the Luminette by placing the nose rest into the slot.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-8" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How long should I wear the Luminette?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-8" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Your Luminette allows you to choose from three different light intensities. Intensity 1 = 60 minutes per day. Intensity 2 = 30 minutes per day. Intensity 3 = 20 minutes per day. Luminette will let you know when the session is finished by flashing and will turn off automatically.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-9" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Can I wear the Luminette in an airplane?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-9" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Apart from disturbing the person next to you (or if you are afraid he/she will be curious!), you can use your Luminette in an airplane.  Set your watch to the time of your destination, drink plenty of water, and limit alcohol, coffee, and tea.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-11" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    What is the delivery time?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-11" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>3 to 5 working days in USA and Canada</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-12" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Is wearing the Luminette dangerous for the eyes?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-12" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>No.  1) The light emitted by Luminette is white light enhanced with blue light.  It is low intensity (1,500 lux).  By way of comparison, most light therapy boxes emit light at 10,000 lux. 2) The spectrum has been specially chosen to exclude potentially dangerous wavelengths (UV and similar). 3) Luminette has been assessed in terms of the standard IEC 62471.  It is considered to be a product without danger for the eyes. 4) We have sold over 60,000 of our flagship products to date and have received no complaints.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-14" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Where is the Luminette manufactured?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-14" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Apart from the case and charger, Luminette is manufactured and assembled in Belgium.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-15" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    If I have a problem with the Luminette, what should I do?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-15" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>If you bought the Luminette in a shop or at a chemist's:  You have two options.  Either you go back to where you bought it and use their after-sales service, or else you send the device back to us in secure packaging, including your receipt, and a few words to explain the problem and your contact details.  The first solution saves you the shipping costs but takes longer.  If you bought the Luminette on the internet, you send us back the device, either by post (at your expense) or else free of charge via the Kiala network.  In this case, we send you a label that you print out and stick on to the transportation packaging of the parcel and then deposit this parcel at a Kiala point (go to the Kiala website to find the Kiala point that is closest to you). We deal with all requests within 5 working days (from reception of the device) and we will keep you informed by email or by telephone.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-16" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    What is the duration of the Luminette guarantee?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-16" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Your Luminette is guaranteed for 2 years.  This guarantee covers manufacturing faults and any other fault that may occur in the context of normal use of the device.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-17" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How do I introduce a claim under guarantee?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-17" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>The purchase invoice acts as a guarantee.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-18" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Are there any side effects?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-18" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Undesirable side-effects linked to the Luminette are always relatively slight and transitory. They may include: Headaches / Eye fatigue / Nausea. In order to avoid, reduce or attenuate these undesirable effects: Use Luminette in a well lit room / Reduce Luminette's intensity setting (there are 3 levels of light intensities) / Do not use the device for a few days until the side-effects disappear, then try again.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-19" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How long will it be before I begin to feel better?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-19" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>The “boosting” effect of Luminette® is almost immediate. From the very first days, you will feel your energy returning and your mood will start to improve. The improvements of your biological clock takes between 4 to 7 days.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-20" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How often should I wear the Luminette?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-20" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Once a day.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-25" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Is the Luminette made for me?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-25" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Luminette is for you if:
-                      - you lack energy at this time, you feel temporary morale drops.
-                      - you are concerned by the winter depression (over-sensitivity to the fall in brightness in the autumn-winter period).
-                      - you know sleep problems, insomnia, etc.
-                      - you know episodes of chronic fatigue.
-                      - you suffer from mild or moderate depression. In the case of a major depression, you can improve the effects of your current treatment using the Luminette.
-                      - you are concerned about postpartum depression or baby blues
-                      - you travel a lot and are regularly subjected to jet lag
-                    - you work at night and wish to have a longer sleep</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-26" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How to turn on and off Luminette?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-26" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Briefly press the On/Off button to turn on your Luminette®. To turn it off, hold the button down (for 2 seconds).</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-27" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    Can I use Luminette with contact lenses or glasses?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-27" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Yes, the Luminette allows use with contact lenses and a pair of glasses. Just place the Luminette over your normal pair of glasses.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-28" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    How to look after your Luminette®
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-28" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>This device is meant exclusively for personal use. Between each use, store the device in its protective case in a dry place.
-                      To clean your Luminette®, use a soft cloth moistened with a little clean water.
-                    Be careful to protect the fragile holographic zone; avoid touching it with your fingers. If, despite everything, it does dirty, clean with cotton wool.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-32" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    I've lost the nose piece, how can I buy a new one ?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-32" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>No problem ! You can order the nosepiece separately at any time. The unit price of a pose-nez is $10.
-                    To order, simply click on "3 dots circle" in the menu and select "Order a nose rest", then you can select the desired quantity.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="question-row">
-              <div class="accordion-toggle " data-target="#question-33" aria-expanded="false" data-toggle="collapse">
-                <div class="accordion-title d-flex align-items-start align-items-lg-center justify-content-between">
-                  <div class="question">
-                    The Luminette is equipped with a bluetooth transmitter. Is it dangerous for health?
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center">
-                    <svg class="icon icon-xs">
-                      <use xlink:href="#arrow-right"></use>
-                    </svg>
-                  </div>
-                </div>
-
-                <div id="question-33" class="collapse">
-                  <div class="accordion-content answer fw-medium ">
-                    <p>Bluetooth is switched off when the Luminette is switched off.
-
-                      During treatment, Bluetooth emits an Advertisement message every 100ms. This message is used to announce the presence of the Luminette to a nearby Smartphone.
-
-                    Regarding the sensitivity, you should know that this very short message lasts less than 400µs, so that the emission does not take place in fact only 0.4% of the time. In addition, we are talking here about Bluetooth Low Energy and our transmitter has an output power of 1mW, to compare with traditional Bluetooth equipment (such as a wireless headset) which often emit 10X louder (10mW) or WiFi which transmits at 100mW.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            
           </div>
         </div>
         <div class='lav-faq__image'>
@@ -2870,12 +2540,15 @@ const newPage = `
         </div>
       </div>
 
-      <button class='lav-faq__btn btn-primary btn-lg flipped lav-btn-buy'>
-        <span class="btn-text">
-          Get Luminette3 Now
-        </span>
-        <span class="btn-bg-wrapper"></span>
-      </button>
+      <div class='lav-faq__btn-wrap'>
+        <button class='lav-faq__btn btn-primary btn-lg flipped lav-btn lav-btn-buy'>
+          <span class="btn-text">
+            Get Luminette3 Now
+          </span>
+          <span class="btn-bg-wrapper"></span>
+        </button>
+      </div>
+  
     </div>
   </section>
 
@@ -3665,12 +3338,22 @@ const newPage = `
       </div>
     </div>
   </section>
+
+  <div class='lav-modal'>
+    <div class='lav-modal__inner lav-review-modal'>
+      <div class='lav-modal__close'>
+        <img src='${settings.dir}/img/modal-close.svg'>
+      </div>
+
+      <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
 </main>
 `;
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-gaEvent('loaded');
+gaEvent2('loaded');
 preInit();
 
 function preInit() {
@@ -3715,34 +3398,34 @@ function observerView() {
       console.log(entry);
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-jumb')) {
-          gaEvent('section in view', 'first section');
+          gaEvent2('section in view', 'first section');
         }
         if (entry.target.classList.contains('lav-transforms')) {
-          gaEvent('section in view', 'How Luminette transforms your days?');
+          gaEvent2('section in view', 'How Luminette transforms your days?');
         }
         if (entry.target.classList.contains('lav-wear')) {
-          gaEvent('section in view', "Luminette's light therapy benefits");
+          gaEvent2('section in view', "Luminette's light therapy benefits");
         }
         if (entry.target.classList.contains('lav-morning')) {
-          gaEvent('section in view', 'Perfect for your morning routine');
+          gaEvent2('section in view', 'Perfect for your morning routine');
         }
         if (entry.target.classList.contains('lav-benefits')) {
-          gaEvent('section in view', 'What are the benefits?');
+          gaEvent2('section in view', 'What are the benefits?');
         }
         if (entry.target.classList.contains('lav-works')) {
-          gaEvent('section in view', 'How Luminette works');
+          gaEvent2('section in view', 'How Luminette works');
         }
         if (entry.target.classList.contains('lav-users')) {
-          gaEvent('section in view', 'Luminette users');
+          gaEvent2('section in view', 'Luminette users');
         }
         if (entry.target.classList.contains('lav-reviews')) {
-          gaEvent('section in view', 'Customer reviews');
+          gaEvent2('section in view', 'Customer reviews');
         }
         if (entry.target.classList.contains('lav-trial')) {
-          gaEvent('section in view', '30 Day Light Therapy Trial');
+          gaEvent2('section in view', '30 Day Light Therapy Trial');
         }
         if (entry.target.classList.contains('lav-drive')) {
-          gaEvent('section in view', 'Drive');
+          gaEvent2('section in view', 'Drive');
         }
 
         entry.target.classList.add('in-view');
@@ -3770,23 +3453,23 @@ function addScrollEvents() {
     let scrollPercent = scrollTop / (docHeight - winHeight);
     let scrollPercentRounded = Math.round(scrollPercent * 100);
     if (scrollPercentRounded >= 20 && !isScrolled20) {
-      gaEvent('scroll depth', scrollPercentRounded + '%');
+      gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled20 = true;
     }
     if (scrollPercentRounded >= 40 && !isScrolled40) {
-      gaEvent('scroll depth', scrollPercentRounded + '%');
+      gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled40 = true;
     }
     if (scrollPercentRounded >= 60 && !isScrolled60) {
-      gaEvent('scroll depth', scrollPercentRounded + '%');
+      gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled60 = true;
     }
     if (scrollPercentRounded >= 80 && !isScrolled80) {
-      gaEvent('scroll depth', scrollPercentRounded + '%');
+      gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled80 = true;
     }
     if (scrollPercentRounded >= 99 && !isScrolled100) {
-      gaEvent('scroll depth', '100%');
+      gaEvent2('scroll depth', '100%');
       isScrolled100 = true;
     }
   });
@@ -3810,24 +3493,57 @@ function init() {
     .insertAdjacentHTML('afterbegin', newPage);
 
   initSliders();
+  initModals();
 
-  return false;
+  if (window.innerWidth < 768) {
+    document
+      .querySelector('.lav-trial__descr')
+      .insertAdjacentElement(
+        'afterend',
+        document.querySelector('.lav-trial__image')
+      );
+  }
+
+  // for (let btn of document.querySelectorAll('.lav-btn-buy')) {
+  //   btn.addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     document.querySelector('.glasses-item .btn-primary').click();
+  //     if (this.classList.contains('lav-test__btn')) {
+  //       gaEvent2('Try it', 'Popup: You have 30 days to test Luminette');
+  //     }
+  //     if (this.classList.contains('lav-trials__btn')) {
+  //       gaEvent2('Try it', '30 day Light Therapy Trial');
+  //     }
+  //     if (this.classList.contains('lav-jumb__btn')) {
+  //       gaEvent2('Buy', 'First screen');
+  //     }
+  //   });
+  // }
+
+  // for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
+  //   btn.addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     gaEvent2('Try it', 'Benefit from light therapy while driving');
+  //     document.querySelector('.drive-item .btn-primary').click();
+  //   });
+  // }
+
   // let lang = detectLang();
-  // if (lang != 'eng') {
+  // if (lang == 'fr') {
   //   initTranslateMain(lang);
   // }
   // initDelivery(lang);
 
-  // MoveTrial
-  // if (window.innerWidth < 768) {
-  //   document
-  //     .querySelector('.lav-trial__descr')
-  //     .insertAdjacentElement(
-  //       'afterend',
-  //       document.querySelector('.lav-trial__image')
-  //     );
-  // }
+  document
+    .querySelector('.lav-drive__learn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href += '/drive';
+      gaEvent2('Learn more', 'Benefit from light therapy while driving');
+    });
+}
 
+function initSliders() {
   // let initSplideInterval = setInterval(() => {
   //   if (typeof Splide == 'function') {
   //     clearInterval(initSplideInterval);
@@ -3837,200 +3553,12 @@ function init() {
   //       arrows: false,
   //     }).mount();
 
-  //     let splideReview = new Splide('.lav-reviews__list', {
-  //       arrows: false,
-  //       perPage: 3,
-  //       pagination: false,
-  //       autoWidth: true,
-  //       breakpoints: {
-  //         768: {
-  //           perPage: 1,
-  //           pagination: true,
-  //           autoWidth: false,
-  //           gap: 15,
-  //         },
-  //       },
-  //     }).mount();
-
   //     splide.on('moved', function () {
-  //       gaEvent('swipe slider', 'How Luminette transforms your days');
+  //       gaEvent2('swipe slider', 'How Luminette transforms your days');
   //     });
-
-  //     if (window.innerWidth < 992) {
-  //       splideReview.on('moved', function () {
-  //         gaEvent('Swipe', 'Customer reviews');
-  //       });
-  //     }
   //   }
   // }, 500);
 
-  // for (let btn of document.querySelectorAll('.lav-btn-buy')) {
-  //   btn.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     document.querySelector('.glasses-item .btn-primary').click();
-  //     if (this.classList.contains('lav-test__btn')) {
-  //       gaEvent('Try it', 'Popup: You have 30 days to test Luminette');
-  //     }
-  //     if (this.classList.contains('lav-trials__btn')) {
-  //       gaEvent('Try it', '30 day Light Therapy Trial');
-  //     }
-  //     if (this.classList.contains('lav-jumb__btn')) {
-  //       gaEvent('Buy', 'First screen');
-  //     }
-  //   });
-  // }
-
-  // for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
-  //   btn.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     gaEvent('Try it', 'Benefit from light therapy while driving');
-  //     document.querySelector('.drive-item .btn-primary').click();
-  //   });
-  // }
-
-  for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
-        if (this.classList.contains('lav-works__item-trigger-first')) {
-          gaEvent(
-            'Show more',
-            'A patented, innovative light therapy system, for optimal comfort'
-          );
-        } else {
-          gaEvent(
-            'Show more',
-            'White light enhanced with blue light for greater effectiveness'
-          );
-        }
-
-        if (detectLang() == 'fr') {
-          this.innerText = 'Montrer moins';
-        } else {
-          this.innerText = 'Show less';
-        }
-        this.closest('.lav-works__item')
-          .querySelector('.lav-works__item-descr')
-          .classList.remove('active');
-        this.closest('.lav-works__item')
-          .querySelector('.lav-works__item-descr + .lav-works__item-descr')
-          .classList.add('active');
-      } else {
-        if (this.classList.contains('lav-works__item-trigger-first')) {
-          gaEvent(
-            'Show less',
-            'A patented, innovative light therapy system, for optimal comfort'
-          );
-        } else {
-          gaEvent(
-            'Show less',
-            'White light enhanced with blue light for greater effectiveness'
-          );
-        }
-        if (detectLang() == 'fr') {
-          this.innerText = 'Afficher plus';
-        } else {
-          this.innerText = 'Show more';
-        }
-        this.closest('.lav-works__item')
-          .querySelector('.lav-works__item-descr')
-          .classList.add('active');
-        this.closest('.lav-works__item')
-          .querySelector('.lav-works__item-descr + .lav-works__item-descr')
-          .classList.remove('active');
-      }
-    });
-  }
-
-  for (let item of document.querySelectorAll('.lav-review__trigger')) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.closest('.lav-review').classList.add('lav-review_expand');
-      this.closest('.lav-review')
-        .querySelector('.lav-review__text')
-        .classList.remove('active');
-      this.closest('.lav-review')
-        .querySelector('.lav-review__text + .lav-review__text')
-        .classList.add('active');
-
-      item.remove();
-
-      return false;
-      if (this.innerText == 'Show more' || this.innerText == 'Afficher plus') {
-        if (detectLang() == 'fr') {
-          this.innerText = 'Montrer moins';
-        } else {
-          this.innerText = 'Show less';
-        }
-        this.closest('.lav-review').classList.add('lav-review_expand');
-        this.closest('.lav-review')
-          .querySelector('.lav-review__text')
-          .classList.remove('active');
-        this.closest('.lav-review')
-          .querySelector('.lav-review__text + .lav-review__text')
-          .classList.add('active');
-      } else {
-        if (detectLang() == 'fr') {
-          this.innerText = 'Afficher plus';
-        } else {
-          this.innerText = 'Show more';
-        }
-
-        this.closest('.lav-review').classList.remove('lav-review_expand');
-        this.closest('.lav-review')
-          .querySelector('.lav-review__text')
-          .classList.add('active');
-        this.closest('.lav-review')
-          .querySelector('.lav-review__text + .lav-review__text')
-          .classList.remove('active');
-      }
-    });
-
-    if (window.innerWidth > 992) {
-      item.click();
-    }
-  }
-
-  document
-    .querySelector('.lav-reviews__btn')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      gaEvent('See reviews', 'Under customer reviews');
-      location.href += '/customer-reviews?product=luminette';
-    });
-
-  document
-    .querySelector('.lav-trial__learn')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      gaEvent('Learn more', '30 day Light Therapy Trial');
-      location.href += '/luminette';
-    });
-
-  document
-    .querySelector('.lav-drive__learn')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      location.href += '/drive';
-      gaEvent('Learn more', 'Benefit from light therapy while driving');
-    });
-
-  document
-    .querySelector('.lav-works__study-btn')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      gaEvent('Read the study', 'An independent study');
-      let el = document.createElement('a');
-      el.target = '_blank';
-      el.href =
-        'https://d3sq5glv6xow4l.cloudfront.net/docs/Light_therapy_with_boxes_or_glasses_to_counteract_.pdf';
-      el.click();
-    });
-
-  initModals();
-}
-
-function initSliders() {
   var thumbnails = document.querySelectorAll('.lav-jumb__thumb');
   var current;
 
@@ -4040,7 +3568,7 @@ function initSliders() {
 
   function initThumbnail(thumbnail, index) {
     thumbnail.addEventListener('click', function () {
-      gaEvent(
+      gaEvent2(
         'exp_new_pdp_checkout_21',
         'Carousel',
         'Click on photo',
@@ -4148,6 +3676,14 @@ function initSliders() {
 }
 
 function initModals() {
+  for (let item of document.querySelectorAll('.lav-open-modal')) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      openModal(document.querySelector(item.dataset.target), item.dataset.src);
+    });
+  }
+
   document.querySelector('.lav-modal').addEventListener('click', function (e) {
     if (e.target.classList.contains('lav-modal')) {
       closeModal();
@@ -4160,70 +3696,15 @@ function initModals() {
       closeModal();
     });
   }
-
-  if (document.querySelector('.lav-jumb__btn-refresh')) {
-    document
-      .querySelector('.lav-jumb__btn-refresh')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('30-day trial', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-test'));
-      });
-  } else {
-    document
-      .querySelector('.lav-trial__btn-refresh')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('30-day trial', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-test'));
-      });
-  }
-
-  if (document.querySelector('.lav-trial__btn-box')) {
-    document
-      .querySelector('.lav-trial__btn-box')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('Free delivery', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-delivery'));
-      });
-  } else {
-    document
-      .querySelector('.lav-jumb__btn-box')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('Free delivery', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-delivery'));
-      });
-  }
-
-  document
-    .querySelector('.lav-test__item-info a')
-    .addEventListener('click', function () {
-      gaEvent('Refunds page', 'Popup: You have 30 days to test Luminette');
-    });
-
-  if (document.querySelector('.lav-trial__inside')) {
-    document
-      .querySelector('.lav-trial__inside')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('What`s in the box', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-included'));
-      });
-  } else {
-    document
-      .querySelector('.lav-jumb__inside')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        gaEvent('What`s in the box', '30 day Light Therapy Trial');
-        openModal(document.querySelector('.lav-included'));
-      });
-  }
 }
 
-function openModal(selector) {
+function openModal(selector, src) {
+  if (src) {
+    selector.querySelector('iframe').src = src;
+  }
+
   document.querySelector('.lav-modal').classList.add('active');
+
   setTimeout(() => {
     selector.classList.add('active');
   }, 400);
@@ -4241,7 +3722,9 @@ function closeModal() {
       .querySelector('.lav-modal__inner.active iframe')
       .src.replace('autoplay=1', 'autoplay=0');
   }
+
   document.querySelector('.lav-modal__inner.active').classList.remove('active');
+
   setTimeout(() => {
     document.querySelector('.lav-modal.active').classList.remove('active');
   }, 400);
@@ -4260,223 +3743,218 @@ function detectLang() {
 
 function initTranslateMain(lang) {
   console.log('init translate', lang);
-  if (lang == 'fr') {
-    document.querySelector('.lav-jumb__title').innerText =
-      'Dites au revoir au blues hivernal. Régulez votre sommeil.';
+  document.querySelector('.lav-jumb__title').innerText =
+    'Dites au revoir au blues hivernal. Régulez votre sommeil.';
 
-    document.querySelector('.lav-plate__title').innerText =
-      "C'est quoi la Luminette ?";
+  document.querySelector('.lav-plate__title').innerText =
+    "C'est quoi la Luminette ?";
 
-    document.querySelector('.lav-plate__descr').innerText =
-      "La Luminette® est une paire de lunettes de luminothérapie qui vous aide à réguler vos cycles de sommeil et retrouver votre niveau d'énergie en hiver.";
+  document.querySelector('.lav-plate__descr').innerText =
+    "La Luminette® est une paire de lunettes de luminothérapie qui vous aide à réguler vos cycles de sommeil et retrouver votre niveau d'énergie en hiver.";
 
-    for (let item of document.querySelectorAll('.lav-transform__title')) {
-      item.innerText = 'Comment Luminette transforme vos journées';
-    }
-
-    for (let item of document.querySelectorAll('.lav-transform__title-mob')) {
-      item.innerText = 'Comment Luminette transforme vos journées';
-    }
-
-    document.querySelector(
-      '.lav-transform_first .lav-transform__descr'
-    ).innerText =
-      "La lumière émise par la Luminette reproduit les effets bénéfiques du soleil. En stoppant la sécrétion de mélatonine et en agissant directement sur le cerveau, la lumière permet de réguler les cycles de sommeil et d'optimiser son niveau d'énergie en hiver. ";
-    document.querySelector(
-      '.lav-transform_second .lav-transform__descr'
-    ).innerText =
-      'Lorsque nous ne recevons pas assez de lumière le matin, le cerveau continue à produire de la mélatonine après le réveil, ce qui augmente notre fatigue et perturbe notre sommeil.';
-
-    document.querySelector('.lav-benefits__title').innerText =
-      'Les avantages de la Luminette';
-
-    document.querySelector(
-      '.lav-benefits__list .lav-benefit:first-child .lav-benefit__title'
-    ).innerText = 'Finissez-en avec le blues hivernal';
-
-    document.querySelector(
-      '.lav-benefits__list .lav-benefit:nth-child(2) .lav-benefit__title'
-    ).innerText = 'Régulez vos cycles de sommeil';
-
-    document.querySelector(
-      '.lav-benefits__list .lav-benefit:last-child .lav-benefit__title'
-    ).innerText = "Retrouvez votre niveau d'énergie";
-
-    document.querySelector('.lav-morning__title').innerText =
-      'Parfait pour votre routine matinale';
-    document.querySelector('.lav-morning__descr').innerText =
-      'Portez la Luminette tout en vous brossant les dents, en prenant votre petit-déjeuner ou en travaillant sur votre ordinateur - le complément parfait à votre routine matinale.';
-    document.querySelector(
-      '.lav-morning__item:first-child .lav-morning__caption'
-    ).innerHTML = 'Une session dure entre <br/><span>20 à 60 minutes</span>';
-    document.querySelector(
-      '.lav-morning__item:nth-child(2) .lav-morning__caption'
-    ).innerHTML = 'A utiliser <span>une fois par jour</span>';
-    document.querySelector(
-      '.lav-morning__item:last-child .lav-morning__caption'
-    ).innerHTML =
-      'Ressentez les bienfaits dans les<br/><span>4 à 6 jours</span>';
-
-    document.querySelector('.lav-benefits2__title').innerText =
-      'Quels sont les avantages ?';
-    document.querySelector(
-      '.lav-benefit2:first-child .lav-benefit2__title'
-    ).innerText = 'Léger et confortable';
-    document.querySelector(
-      '.lav-benefit2:first-child .lav-benefit2__caption'
-    ).innerText =
-      "La Luminette ne pèse que 51 g et est dotée d'un support pour le nez nasal ergonomique et ajustable.";
-    document.querySelector(
-      '.lav-benefit2:nth-child(2) .lav-benefit2__title'
-    ).innerText = 'Ne gêne pas votre vue';
-    document.querySelector(
-      '.lav-benefit2:nth-child(2) .lav-benefit2__caption'
-    ).innerText =
-      "Le système d'éclairage breveté vous permet de bénéficier de la luminothérapie sans perturber votre vision.";
-    document.querySelector(
-      '.lav-benefit2:last-child .lav-benefit2__title'
-    ).innerText = 'Compatible avec des lunettes de vue';
-    document.querySelector(
-      '.lav-benefit2:last-child .lav-benefit2__caption'
-    ).innerText = 'Portez la Luminette par-dessus vos lunettes';
-
-    document.querySelector('.lav-works__title').innerText =
-      'Comment fonctionne la Luminette';
-    document.querySelector(
-      '.lav-works__item .lav-works__item-title'
-    ).innerText = 'Un système innovant breveté pour un confort optimal.';
-    document.querySelector(
-      '.lav-works__item .lav-works__item-descr'
-    ).innerText = 'Luminette® utilise une...';
-    document.querySelector(
-      '.lav-works__item .lav-works__item-descr + .lav-works__item-descr'
-    ).innerText =
-      'Luminette® utilise une technologie optique innovante brevetée : placé au-dessus de la vue, son faisceau de lumière est orienté du haut vers le bas, comme cela se produit naturellement sous un ciel bleu et permet aux utilisateurs de garder leur vision libre.';
-
-    document.querySelector(
-      '.lav-works__item + .lav-works__item .lav-works__item-title'
-    ).innerHTML =
-      'Une lumière enrichie en <span>bleu pour</span> plus d’efficacité.';
-    document.querySelector(
-      '.lav-works__item + .lav-works__item .lav-works__item-descr'
-    ).innerText = 'La Luminette émet une...';
-    document.querySelector(
-      '.lav-works__item + .lav-works__item .lav-works__item-descr + .lav-works__item-descr'
-    ).innerText =
-      "La Luminette émet une lumière blanche enrichie en bleu, à 468 nm. Il est en effet prouvé que c'est cette longueur d'onde qui active le plus efficacement la réponse énergisante du corps à la lumière.";
-    for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
-      item.innerText = 'Afficher plus';
-    }
-    document.querySelector('.lav-works__study-caption').innerHTML =
-      "Une <span>étude indépendante</span> a montré que la Luminette donne les mêmes résultats qu'une lampe de 10 000 lux.";
-    document.querySelector('.lav-works__study-btn span').innerText =
-      "Lire l'étude";
-
-    document.querySelector('.lav-users__title').innerHTML =
-      'Plus de <span>150 000</span> utilisateurs de la Luminette';
-    document.querySelector('.lav-users__title-mob').innerHTML =
-      '<span>150k+</span> utilisateurs de la Luminette';
-    document.querySelector('.lav-reviews__title').innerText =
-      'Avis des utilisateurs';
-    document.querySelector(
-      '.lav-review:nth-child(2) .lav-review__text'
-    ).innerText =
-      "Chaque année, je ressens un manque de lumière et cela affecte mon moral. Cette année, j'ai trouvé la solution pour y remédier avec la Luminette. L'avantage c'est qu'on n'est pas coincé devant une lampe et qu'on peut se préparer le matin ou prendre son petit déjeuner avec ses lunettes. C'est très pratique :)";
-
-    document.querySelector(
-      '.lav-review:nth-child(1) .lav-review__text'
-    ).innerText =
-      "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité long...";
-
-    document.querySelector(
-      '.lav-review:nth-child(1) .lav-review__text + .lav-review__text'
-    ).innerText =
-      "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité longuement et puis j'ai découvert les Luminette. Je les utilise le matin, soit en vaquant à mes occupations (petit déjeuner, brossage de dents...) soit pendant que je lis. Après la séance, j'ai beaucoup plus d'énergie et de motivation pour faire face à la journée. Elles sont très pratiques car elles peuvent se porter en même temps que des lunettes de vue ou d'ordinateur. Elles sont constituées de plastique, assez rigide, mais paraissent solides. Le chargement est assez rapide. Un indicateur de chargement permet de savoir quand ce dernier est terminé. Une fois chargées, elles peuvent être utilisées environ 10 fois. Il y a 3 modes possibles. Plus la lumière est puissante, plus le temps d'exposition est réduit. Ce qui est très pratique c'est qu'il ne faut pas surveiller le temps car elles s'éteignent toutes seules une fois la séance terminée. Le seul mini « bémol » est que le mode le plus puissant peut être éblouissant quand la luminosité environnante est faible. C'est donc un accessoire que je recommanderais sans hésitation, car il me donne un vrai coup de pouce moralement pendant les courtes journées.";
-
-    document.querySelector(
-      '.lav-review:nth-child(3) .lav-review__text'
-    ).innerText =
-      "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une premi...";
-
-    document.querySelector(
-      '.lav-review:nth-child(3) .lav-review__text + .lav-review__text'
-    ).innerText =
-      "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une première. Je suis étonné. Mon niveau d'énergie a augmenté et je me sens libre et joyeux la plupart du temps. Je dors aussi beaucoup mieux. Je dois ajouter que j'ai arrêté la caféine, ce qui aide aussi. Les Luminettes sont bien, bien meilleure que les lampes. Je les porte tous les matins sans être obligé de fixer la lampe. Mon humeur s'est vraiment améliorée. Elles sont très pratiques et faciles à utiliser. Je les mets sur le dessus de mes lunettes. Elles se rechargent facilement et on peut les utiliser sans les brancher tous les jours. Tous ceux qui me voient les porter (quand je participe à des réunions en ligne, quand je vais chez le dentiste, etc.) me demandent si ça marche. Les gens trouvent que c'est joli et ils sont très intéressés parce qu'il y a toujours quelqu'un dans leur famille qui souffre de dépression saisonnière, ou bien ils sont eux-mêmes atteints de ce trouble. Donc, vraiment, je ne me plains pas, je n'ai que des bonnes choses à dire sur mes Luminettes qui sont aussi précieuses maintenant que mon téléphone portable.";
-
-    for (let item of document.querySelectorAll('.lav-review__trigger')) {
-      item.innerText = 'Afficher plus';
-    }
-
-    for (let item of document.querySelectorAll('.lav-review__link')) {
-      item.innerHTML = item.innerHTML.replace(
-        'View review on',
-        "Lire l'avis sur"
-      );
-    }
-    for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
-      item.innerText = 'Afficher plus';
-    }
-    document.querySelector(
-      '.lav-reviews__total-col:first-child .lav-reviews__total-caption span'
-    ).innerText = 'Voir les avis sur';
-    document.querySelector(
-      '.lav-reviews__total-col:last-child .lav-reviews__total-caption span'
-    ).innerText = 'Voir les avis sur';
-    document.querySelector('.lav-reviews__btn .btn-text').innerText =
-      'Voir les avis';
-
-    document.querySelector('.lav-trial__title').innerText = 'Essai de 30 jours';
-    document.querySelector('.lav-trial__descr').innerText =
-      "Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !";
-    document.querySelector('.lav-trial__inside').innerText =
-      'Que contient la boîte ?';
-    document.querySelector('.lav-trial__btn-refresh span').innerText =
-      'Essai de 30 jours';
-    document.querySelector('.lav-trial__btn-box span').innerText =
-      'Livraison gratuite';
-
-    document.querySelector('.lav-trial__learn').innerText = 'En savoir plus';
-
-    document.querySelector('.lav-included__title').innerText =
-      'Ce que vous trouverez dans la boite';
-    document.querySelector('.lav-included__item:nth-child(1)').innerText =
-      'Votre Luminette';
-    document.querySelector('.lav-included__item:nth-child(2)').innerText =
-      'Un étui de protection';
-    document.querySelector('.lav-included__item:nth-child(3)').innerText =
-      'Un chargeur mural micro-USB';
-    document.querySelector('.lav-included__item:nth-child(4)').innerText =
-      'Un tissu nettoyant en microfibres';
-    document.querySelector('.lav-included__item:nth-child(5)').innerText =
-      'Votre certificat de garantie de 2 ans';
-    document.querySelector('.lav-included__item:nth-child(6)').innerText =
-      "Le manuel d'utilisation";
-
-    document.querySelector('.lav-test__title').innerText =
-      'Vous avez 30 jours pour tester la Luminette';
-    document.querySelector(
-      '.lav-test__item:nth-child(1) .lav-test__item-info'
-    ).innerHTML = "<span>Commandez</span> votre Luminette aujourd'hui.";
-    document.querySelector(
-      '.lav-test__item:nth-child(2) .lav-test__item-info'
-    ).innerHTML =
-      'Vous recevez votre Luminette <span>quelques jours plus tard</span>';
-    document.querySelector(
-      '.lav-test__item:nth-child(3) .lav-test__item-info'
-    ).innerHTML =
-      "<span>Vous avez un mois pour tester votre Luminette.</span> Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.";
-    document.querySelector(
-      '.lav-test__item:nth-child(4) .lav-test__item-info'
-    ).innerHTML =
-      "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
-
-    document.querySelector('.lav-drive__caption').innerText =
-      'Découvrez notre nouveau produit';
-    document.querySelector('.lav-drive__bg-title').innerText =
-      'Bénéficiez de la luminothérapie tout en conduisant';
-
-    document.querySelector('.lav-drive__learn').innerText = 'En savoir plus';
+  for (let item of document.querySelectorAll('.lav-transform__title')) {
+    item.innerText = 'Comment Luminette transforme vos journées';
   }
+
+  for (let item of document.querySelectorAll('.lav-transform__title-mob')) {
+    item.innerText = 'Comment Luminette transforme vos journées';
+  }
+
+  document.querySelector(
+    '.lav-transform_first .lav-transform__descr'
+  ).innerText =
+    "La lumière émise par la Luminette reproduit les effets bénéfiques du soleil. En stoppant la sécrétion de mélatonine et en agissant directement sur le cerveau, la lumière permet de réguler les cycles de sommeil et d'optimiser son niveau d'énergie en hiver. ";
+  document.querySelector(
+    '.lav-transform_second .lav-transform__descr'
+  ).innerText =
+    'Lorsque nous ne recevons pas assez de lumière le matin, le cerveau continue à produire de la mélatonine après le réveil, ce qui augmente notre fatigue et perturbe notre sommeil.';
+
+  document.querySelector('.lav-benefits__title').innerText =
+    'Les avantages de la Luminette';
+
+  document.querySelector(
+    '.lav-benefits__list .lav-benefit:first-child .lav-benefit__title'
+  ).innerText = 'Finissez-en avec le blues hivernal';
+
+  document.querySelector(
+    '.lav-benefits__list .lav-benefit:nth-child(2) .lav-benefit__title'
+  ).innerText = 'Régulez vos cycles de sommeil';
+
+  document.querySelector(
+    '.lav-benefits__list .lav-benefit:last-child .lav-benefit__title'
+  ).innerText = "Retrouvez votre niveau d'énergie";
+
+  document.querySelector('.lav-morning__title').innerText =
+    'Parfait pour votre routine matinale';
+  document.querySelector('.lav-morning__descr').innerText =
+    'Portez la Luminette tout en vous brossant les dents, en prenant votre petit-déjeuner ou en travaillant sur votre ordinateur - le complément parfait à votre routine matinale.';
+  document.querySelector(
+    '.lav-morning__item:first-child .lav-morning__caption'
+  ).innerHTML = 'Une session dure entre <br/><span>20 à 60 minutes</span>';
+  document.querySelector(
+    '.lav-morning__item:nth-child(2) .lav-morning__caption'
+  ).innerHTML = 'A utiliser <span>une fois par jour</span>';
+  document.querySelector(
+    '.lav-morning__item:last-child .lav-morning__caption'
+  ).innerHTML = 'Ressentez les bienfaits dans les<br/><span>4 à 6 jours</span>';
+
+  document.querySelector('.lav-benefits2__title').innerText =
+    'Quels sont les avantages ?';
+  document.querySelector(
+    '.lav-benefit2:first-child .lav-benefit2__title'
+  ).innerText = 'Léger et confortable';
+  document.querySelector(
+    '.lav-benefit2:first-child .lav-benefit2__caption'
+  ).innerText =
+    "La Luminette ne pèse que 51 g et est dotée d'un support pour le nez nasal ergonomique et ajustable.";
+  document.querySelector(
+    '.lav-benefit2:nth-child(2) .lav-benefit2__title'
+  ).innerText = 'Ne gêne pas votre vue';
+  document.querySelector(
+    '.lav-benefit2:nth-child(2) .lav-benefit2__caption'
+  ).innerText =
+    "Le système d'éclairage breveté vous permet de bénéficier de la luminothérapie sans perturber votre vision.";
+  document.querySelector(
+    '.lav-benefit2:last-child .lav-benefit2__title'
+  ).innerText = 'Compatible avec des lunettes de vue';
+  document.querySelector(
+    '.lav-benefit2:last-child .lav-benefit2__caption'
+  ).innerText = 'Portez la Luminette par-dessus vos lunettes';
+
+  document.querySelector('.lav-works__title').innerText =
+    'Comment fonctionne la Luminette';
+  document.querySelector('.lav-works__item .lav-works__item-title').innerText =
+    'Un système innovant breveté pour un confort optimal.';
+  document.querySelector('.lav-works__item .lav-works__item-descr').innerText =
+    'Luminette® utilise une...';
+  document.querySelector(
+    '.lav-works__item .lav-works__item-descr + .lav-works__item-descr'
+  ).innerText =
+    'Luminette® utilise une technologie optique innovante brevetée : placé au-dessus de la vue, son faisceau de lumière est orienté du haut vers le bas, comme cela se produit naturellement sous un ciel bleu et permet aux utilisateurs de garder leur vision libre.';
+
+  document.querySelector(
+    '.lav-works__item + .lav-works__item .lav-works__item-title'
+  ).innerHTML =
+    'Une lumière enrichie en <span>bleu pour</span> plus d’efficacité.';
+  document.querySelector(
+    '.lav-works__item + .lav-works__item .lav-works__item-descr'
+  ).innerText = 'La Luminette émet une...';
+  document.querySelector(
+    '.lav-works__item + .lav-works__item .lav-works__item-descr + .lav-works__item-descr'
+  ).innerText =
+    "La Luminette émet une lumière blanche enrichie en bleu, à 468 nm. Il est en effet prouvé que c'est cette longueur d'onde qui active le plus efficacement la réponse énergisante du corps à la lumière.";
+  for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
+    item.innerText = 'Afficher plus';
+  }
+  document.querySelector('.lav-works__study-caption').innerHTML =
+    "Une <span>étude indépendante</span> a montré que la Luminette donne les mêmes résultats qu'une lampe de 10 000 lux.";
+  document.querySelector('.lav-works__study-btn span').innerText =
+    "Lire l'étude";
+
+  document.querySelector('.lav-users__title').innerHTML =
+    'Plus de <span>150 000</span> utilisateurs de la Luminette';
+  document.querySelector('.lav-users__title-mob').innerHTML =
+    '<span>150k+</span> utilisateurs de la Luminette';
+  document.querySelector('.lav-reviews__title').innerText =
+    'Avis des utilisateurs';
+  document.querySelector(
+    '.lav-review:nth-child(2) .lav-review__text'
+  ).innerText =
+    "Chaque année, je ressens un manque de lumière et cela affecte mon moral. Cette année, j'ai trouvé la solution pour y remédier avec la Luminette. L'avantage c'est qu'on n'est pas coincé devant une lampe et qu'on peut se préparer le matin ou prendre son petit déjeuner avec ses lunettes. C'est très pratique :)";
+
+  document.querySelector(
+    '.lav-review:nth-child(1) .lav-review__text'
+  ).innerText =
+    "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité long...";
+
+  document.querySelector(
+    '.lav-review:nth-child(1) .lav-review__text + .lav-review__text'
+  ).innerText =
+    "Depuis des années, je souffre de dépression saisonnière. Des professionnels de la santé (médecin généraliste, psychiatre, psychologue et pharmacienne) m'ont conseillé d'avoir recours à la luminothérapie pour améliorer mon état en automne et en hiver. J'ai hésité longuement et puis j'ai découvert les Luminette. Je les utilise le matin, soit en vaquant à mes occupations (petit déjeuner, brossage de dents...) soit pendant que je lis. Après la séance, j'ai beaucoup plus d'énergie et de motivation pour faire face à la journée. Elles sont très pratiques car elles peuvent se porter en même temps que des lunettes de vue ou d'ordinateur. Elles sont constituées de plastique, assez rigide, mais paraissent solides. Le chargement est assez rapide. Un indicateur de chargement permet de savoir quand ce dernier est terminé. Une fois chargées, elles peuvent être utilisées environ 10 fois. Il y a 3 modes possibles. Plus la lumière est puissante, plus le temps d'exposition est réduit. Ce qui est très pratique c'est qu'il ne faut pas surveiller le temps car elles s'éteignent toutes seules une fois la séance terminée. Le seul mini « bémol » est que le mode le plus puissant peut être éblouissant quand la luminosité environnante est faible. C'est donc un accessoire que je recommanderais sans hésitation, car il me donne un vrai coup de pouce moralement pendant les courtes journées.";
+
+  document.querySelector(
+    '.lav-review:nth-child(3) .lav-review__text'
+  ).innerText =
+    "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une premi...";
+
+  document.querySelector(
+    '.lav-review:nth-child(3) .lav-review__text + .lav-review__text'
+  ).innerText =
+    "J'utilise les Luminettes depuis début octobre 2020 pour faire face à ma dépression saisonnière (SAD). Jusqu'à présent, je n'ai aucun symptôme de dépression saisonnière, malgré le changement d'heure (heure d'hiver) et la disparition du soleil à 16h30. C'est une première. Je suis étonné. Mon niveau d'énergie a augmenté et je me sens libre et joyeux la plupart du temps. Je dors aussi beaucoup mieux. Je dois ajouter que j'ai arrêté la caféine, ce qui aide aussi. Les Luminettes sont bien, bien meilleure que les lampes. Je les porte tous les matins sans être obligé de fixer la lampe. Mon humeur s'est vraiment améliorée. Elles sont très pratiques et faciles à utiliser. Je les mets sur le dessus de mes lunettes. Elles se rechargent facilement et on peut les utiliser sans les brancher tous les jours. Tous ceux qui me voient les porter (quand je participe à des réunions en ligne, quand je vais chez le dentiste, etc.) me demandent si ça marche. Les gens trouvent que c'est joli et ils sont très intéressés parce qu'il y a toujours quelqu'un dans leur famille qui souffre de dépression saisonnière, ou bien ils sont eux-mêmes atteints de ce trouble. Donc, vraiment, je ne me plains pas, je n'ai que des bonnes choses à dire sur mes Luminettes qui sont aussi précieuses maintenant que mon téléphone portable.";
+
+  for (let item of document.querySelectorAll('.lav-review__trigger')) {
+    item.innerText = 'Afficher plus';
+  }
+
+  for (let item of document.querySelectorAll('.lav-review__link')) {
+    item.innerHTML = item.innerHTML.replace(
+      'View review on',
+      "Lire l'avis sur"
+    );
+  }
+  for (let item of document.querySelectorAll('.lav-works__item-trigger')) {
+    item.innerText = 'Afficher plus';
+  }
+  document.querySelector(
+    '.lav-reviews__total-col:first-child .lav-reviews__total-caption span'
+  ).innerText = 'Voir les avis sur';
+  document.querySelector(
+    '.lav-reviews__total-col:last-child .lav-reviews__total-caption span'
+  ).innerText = 'Voir les avis sur';
+  document.querySelector('.lav-reviews__btn .btn-text').innerText =
+    'Voir les avis';
+
+  document.querySelector('.lav-trial__title').innerText = 'Essai de 30 jours';
+  document.querySelector('.lav-trial__descr').innerText =
+    "Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !";
+  document.querySelector('.lav-trial__inside').innerText =
+    'Que contient la boîte ?';
+  document.querySelector('.lav-trial__btn-refresh span').innerText =
+    'Essai de 30 jours';
+  document.querySelector('.lav-trial__btn-box span').innerText =
+    'Livraison gratuite';
+
+  document.querySelector('.lav-trial__learn').innerText = 'En savoir plus';
+
+  document.querySelector('.lav-included__title').innerText =
+    'Ce que vous trouverez dans la boite';
+  document.querySelector('.lav-included__item:nth-child(1)').innerText =
+    'Votre Luminette';
+  document.querySelector('.lav-included__item:nth-child(2)').innerText =
+    'Un étui de protection';
+  document.querySelector('.lav-included__item:nth-child(3)').innerText =
+    'Un chargeur mural micro-USB';
+  document.querySelector('.lav-included__item:nth-child(4)').innerText =
+    'Un tissu nettoyant en microfibres';
+  document.querySelector('.lav-included__item:nth-child(5)').innerText =
+    'Votre certificat de garantie de 2 ans';
+  document.querySelector('.lav-included__item:nth-child(6)').innerText =
+    "Le manuel d'utilisation";
+
+  document.querySelector('.lav-test__title').innerText =
+    'Vous avez 30 jours pour tester la Luminette';
+  document.querySelector(
+    '.lav-test__item:nth-child(1) .lav-test__item-info'
+  ).innerHTML = "<span>Commandez</span> votre Luminette aujourd'hui.";
+  document.querySelector(
+    '.lav-test__item:nth-child(2) .lav-test__item-info'
+  ).innerHTML =
+    'Vous recevez votre Luminette <span>quelques jours plus tard</span>';
+  document.querySelector(
+    '.lav-test__item:nth-child(3) .lav-test__item-info'
+  ).innerHTML =
+    "<span>Vous avez un mois pour tester votre Luminette.</span> Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.";
+  document.querySelector(
+    '.lav-test__item:nth-child(4) .lav-test__item-info'
+  ).innerHTML =
+    "Après un mois, vous pouvez choisir d'être remboursé si vous n'êtes pas satisfait, peu importe la raison. Plus d'info sur la page <a href='/delivery#returns-block'>livraison et retour</a>";
+
+  document.querySelector('.lav-drive__caption').innerText =
+    'Découvrez notre nouveau produit';
+  document.querySelector('.lav-drive__bg-title').innerText =
+    'Bénéficiez de la luminothérapie tout en conduisant';
+
+  document.querySelector('.lav-drive__learn').innerText = 'En savoir plus';
 }
 
 function initDelivery(lang) {

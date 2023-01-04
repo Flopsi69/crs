@@ -92,6 +92,8 @@ if (settings.observe) {
             .addEventListener('click', function () {
               gaEvent('Click on Price Match link on Pop Up', 'Product Options');
             });
+
+          initObserver('options');
         } else if (
           !node.classList.contains('po_submodel') &&
           ((node.classList.contains('gbox_portal') &&
@@ -124,6 +126,7 @@ if (settings.observe) {
             .addEventListener('click', function () {
               gaEvent('Click on Price Match link on Pop Up', 'Product Options');
             });
+          initObserver('options');
         }
 
         if (node.classList.contains('prod_add_to_cart')) {
@@ -146,6 +149,9 @@ if (settings.observe) {
             .addEventListener('click', function () {
               gaEvent('Click on Price Match link on Pop Up', 'Added to cart');
             });
+
+          initObserver('added');
+
           // document
           //   .querySelector('.lav-price__wrap')
           //   .insertAdjacentHTML('afterbegin', guaranteeEl);
@@ -458,6 +464,63 @@ function init() {
         gaEvent('Click on Price Match link on Checkout');
       });
   }
+
+  initObserver();
+}
+
+function initObserver(type) {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '0px 0px 2% 0px',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry);
+      if (entry.isIntersecting) {
+        if (type != 'options' && type != 'added') {
+          if (entry.target.closest('.prod-info')) {
+            gaEvent('Price Match on PDP visibility', 'H1');
+          }
+
+          if (entry.target.nextElementSibling.classList.contains('prod_add')) {
+            gaEvent('Price Match on PDP visibility', 'Add to cart');
+          }
+
+          if (entry.target.closest('.cart-order')) {
+            gaEvent('Price Match on Checkout visibility');
+          }
+        }
+
+        if (type == 'options' && entry.target.closest('#main-opts')) {
+          gaEvent('Price Match on Pop Up visibility', 'Product Options');
+        }
+
+        if (type == 'added' && entry.target.closest('.prod_add_to_cart_h')) {
+          gaEvent('Price Match on Pop Up visibility', 'Added to cart');
+        }
+
+        // gaEvent('Price Match on Pop Up visibility', 'Product Options');
+        // gaEvent('Price Match on Checkout visibility');
+
+        // gaEvent('Click on Price Match link on PDP', 'Add to cart');
+
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // if (type == 'options') {
+
+  // } else if (type == 'added') {
+
+  // } else {
+  for (let section of Array.from(document.querySelectorAll('.lav-price'))) {
+    observer.observe(section);
+  }
+  // }
 }
 
 function addEventHover(item, a, l = '') {
