@@ -743,6 +743,12 @@ const styles = `
     margin: auto;
     z-index: 1;
   }
+  .lav-compare__box {
+    width: 67px;
+  }
+  .lav-compare__lum {
+    width: 157px;
+  }
   .lav-compare__inner .col-6:nth-child(3n+1) {
     background: linear-gradient(98.6deg, #EEF1F4 43.43%, #EEF1F4 58.16%, #F3F5F7 100%);
   }
@@ -753,10 +759,705 @@ const styles = `
     font-size: 16px;
     font-weight: 500;
   }
+  .lav-compare__inner .py-1 {
+    max-width: 272px;
+    margin: auto;
+  }
   .lav-compare__title {
     font-size: 22px;
     line-height: 28px;
     font-weight: bold;
+  }
+
+  .lav-reviews .slider .expand {
+    display: none;
+  }
+  
+  .lav-reviews .slider-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    z-index: 3;
+    padding-top: 10px;
+  }
+  
+  .lav-reviews .slider .os-scrollbar {
+    z-index: 2;
+  }
+  
+  .lav-reviews .slider .os-scrollbar .os-scrollbar-handle {
+    background: rgba(81, 113, 147, 0.2);
+  }
+  
+  .lav-reviews .slider .slide:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  
+  .lav-reviews .slider .slick-slide {
+    outline: none;
+    transition: all 0.3s ease-out;
+    transform: scale(0.95);
+    opacity: 0;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    pointer-events: none;
+  }
+  
+  .lav-reviews .slider .slick-list {
+    overflow: visible;
+  }
+  
+  .lav-reviews .slider .slick-active {
+    position: relative;
+    opacity: 1;
+    z-index: 1;
+    pointer-events: auto;
+  }
+  
+  .lav-reviews .slider .slick-current {
+    z-index: 2;
+    transform: scale(1.08);
+  }
+  
+  .lav-reviews .slider .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    background-color: rgba(147, 169, 192, 0.5);
+    background-image: url("/images/icons/arrow-right.svg");
+    background-repeat: no-repeat;
+    background-position: 44% 49%;
+    transition: background 0.25s ease-out;
+    cursor: pointer;
+    font-size: 0;
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    z-index: 1;
+  }
+  
+  .lav-reviews .slider .slick-arrow.slick-prev {
+    transform: translateY(-50%) rotate(180deg);
+    left: -50px;
+  }
+  
+  .lav-reviews .slider .slick-arrow.slick-next {
+    right: -50px;
+  }
+  
+  .lav-reviews .slider .slick-arrow:hover {
+    background-color: rgba(147, 169, 192, 0.8);
+  }
+  
+  .lav-reviews .slider .slick-dots {
+    width: 200px;
+    height: 8px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 55px 0 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 0;
+  }
+  
+  .lav-reviews .slider .slick-dots li {
+    position: absolute;
+    transition-property: left, opacity;
+    transition-duration: 375ms;
+    transition-timing-function: ease-out;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-prev-max {
+    opacity: 0;
+    left: -12px;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-next-max {
+    opacity: 0;
+    left: 202px;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-prev-prev {
+    left: 12px;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-next-next {
+    left: 180px;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-prev {
+    left: 55px;
+    display: block;
+    opacity: 1;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-prev button {
+    background-color: #ffffff;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-next {
+    left: 137px;
+    display: block;
+    opacity: 1;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-next button {
+    background-color: #ffffff;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-active {
+    left: calc(50% - 4px);
+    margin: 0 auto;
+  }
+  
+  .lav-reviews .slider .slick-dots li.slick-active button {
+    background-color: #ffffff;
+  }
+  
+  .lav-reviews .slider .slick-dots button {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: background-color 0.25s ease-out;
+  }
+  
+  .lav-reviews .slider .card {
+    background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    border-radius: 16px;
+    color: #517193;
+    overflow: hidden;
+  }
+
+  .lav-reviews .slider .card-header {
+    padding: 24px 24px 10px;
+  }
+  
+  .lav-reviews .slider .avatar {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    background-color: #B7B7B7;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .lav-reviews .slider .avatar img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .lav-reviews .slider .name {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .lav-reviews .slider .link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(64, 97, 132, 0.5);
+    font-weight: 500;
+  }
+  
+  .lav-reviews .slider .link img {
+    margin-left: 6px;
+  }
+  
+  .lav-reviews .slider .card-body-wrapper {
+    position: relative;
+    max-height: 250px;
+    min-height: 250px;
+    overflow-y: auto;
+  }
+  
+  .lav-reviews .slider .card-body-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, white 70%);
+    z-index: 1;
+  }
+  
+  .lav-reviews .slider .card-body-wrapper.is-visible .review {
+    height: auto;
+    -webkit-line-clamp: initial;
+  }
+  
+  .lav-reviews .slider .card-body-wrapper.is-visible .review::after {
+    display: none;
+  }
+  
+  .lav-reviews .slider .card-body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 24px 36px;
+  }
+  
+  .lav-reviews .slider .review {
+    margin-bottom: auto;
+    position: relative;
+    font-weight: 500;
+    height: 144px;
+    // -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    overflow: auto;
+  }
+  
+  .lav-reviews .slider .expand {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    color: #517193;
+    cursor: pointer;
+  }
+  
+  .lav-reviews .slider .date {
+    margin-top: 18px;
+    color: rgba(64, 97, 132, 0.5);
+    font-size: 15px;
+    line-height: 24px;
+    font-style: normal;
+  }
+  
+  .lav-reviews {
+    padding: 90px 0;
+    background: #406184;
+    color: #fff;
+  }
+  .lav-reviews__title {
+    text-align: center;
+    color: #fff;
+  }
+  .lav-reviews__list {
+    margin-top: 64px;
+  }
+  .lav-review {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 11px 22px rgba(59, 83, 108, 0.88);
+    // background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
+    background: #F8F9FA;
+    border-radius: 16px;
+    padding: 24px;
+    color: #517193;
+  }
+  .lav-review_expand:after {
+    content: "";
+    position: absolute;
+    // bottom: 35px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    pointer-events: none;
+    background: linear-gradient(180deg,hsla(0,0%,100%,0),#fbfbfb 70%);
+    z-index: 1;
+  }
+  .lav-review__image {
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-review__name {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+  }
+  .lav-review__text {
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 12px;
+    max-height: 168px;
+    overflow-y: auto;
+  }
+
+  .lav-review__text + .lav-review__text {
+    padding-bottom: 20px;
+  }
+
+  .lav-review__text:not(.active) {
+    display: none;
+  }
+  .lav-review__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(64 97 132 / 50%);
+  }
+  .lav-review__link span {
+    font-weight: bold;
+    padding: 0 5px;
+  }
+  .lav-review__trigger {
+    position: relative;
+    z-index: 10;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-top: 4px;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-review__trigger:hover {
+    opacity: 0.8;
+  }
+  .lav-reviews__total {
+    display: flex;
+    margin: 64px auto 0;
+    text-align: center;
+    max-width: 1000px;
+  }
+  .lav-reviews__total-col {
+    position: relative;
+    flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .lav-reviews__total-col:last-child:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    background: radial-gradient(82% 55% at 0 48%,#000 0,rgba(0,0,0,.85) 18%,rgba(0,0,0,.7) 38%,rgba(0,0,0,.45) 65%,transparent 100%);
+    mix-blend-mode: normal;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .lav-reviews__total-caption {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    opacity: 0.9;
+  }
+  .lav-reviews__total-caption span {
+    font-weight: 500;
+  }
+  .lav-reviews__total__caption span {
+    font-weight: bold;
+  }
+  .lav-reviews__total-stars {
+    margin: 12px 0 17px;
+    line-height: 0;
+    text-align: center;
+  }
+  .lav-reviews__total-score {
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFAA02;
+    font-weight: bold;
+  }
+  .lav-reviews__total-image {
+    line-height: 0;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .lav-reviews__total-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .lav-reviews__btn.btn-primary {
+    min-width: 200px;
+    min-height: 62px;
+    padding: 10px 15px;
+  }
+  .lav-reviews__btn .btn-bg-wrapper {
+    background: #fff;
+  }
+  .lav-reviews__btn .btn-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    color: #517193;
+  }
+  .lav-reviews__preview-list {
+    margin-top: 80px;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .lav-reviews__preview {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+    border-radius: 16px;
+    text-align: center;
+    height: 340px;
+    background-color: black;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .lav-reviews__placeholder {
+    max-width: 100%;
+    min-height: 100%;
+  }
+  .lav-reviews__play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 130px;
+    line-height: 0;
+    transition: 0.3s;
+  }
+  .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px;
+    height: 130px;
+    line-height: 0;
+    cursor: pointer;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn {
+    opacity: 0;
+  }
+  .lav-reviews__play:hover .lav-reviews__play-btn + .lav-reviews__play-btn {
+    opacity: 1;
+  }
+  .lav-show-reviews {
+    display: none;
+  }
+
+  @media(max-width: 1400px) {
+    .lav-review__text {
+      max-height: auto;
+      min-height: 195px;
+      max-height: 195px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .lav-reviews__preview-list {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .lav-reviews__preview-list {
+      margin-top: 48px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .lav-reviews .slider-outer {
+      overflow: hidden;
+    }
+    .lav-reviews .slider-wrapper {
+      max-width: none;
+      padding: 84px 0 100px;
+    }
+    .lav-reviews .slider .slide {
+      padding: 0 20px;
+      margin-bottom: 0;
+    }
+    .lav-reviews .slider .link {
+      font-size: 12px;
+      line-height: 18px;
+    }
+    .lav-reviews .slider .link img {
+      width: 35px;
+      height: 25px;
+    }
+    .lav-reviews .slider .review {
+      height: 168px;
+      margin: 0 -24px;
+      padding: 0 24px;
+      width: auto;
+      // -webkit-line-clamp: 7;
+    }
+    .lav-reviews .slider .date {
+      margin-top: 24px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+    .lav-reviews__list .splide__list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lav-reviews__list .splide__track {
+      overflow: visible;
+    }
+    .lav-review {
+      width: 29%;
+    }
+    .lav-review:nth-child(2) {
+      width: 35%;
+      min-height: 460px;
+    }
+
+  }
+
+  @media (max-width: 992px) {
+    .lav-reviews .slider .name {
+      font-size: 22px;
+    }
+    .lav-reviews .slider .card-body-wrapper {
+      max-height: none;
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    lav-reviews__play {
+      width: 100%;
+      height: 100%;
+    }
+    .lav-reviews__play-btn {
+      pointer-events: none;
+    }
+    .lav-reviews .slider .review {
+      overflow: hidden;
+    }
+    .lav-reviews .slider .review.review_expand {
+      -webkit-line-clamp: unset;
+      overflow: auto;
+      padding-bottom: 20px;
+    }
+    .lav-reviews .slider .card-body-wrapper.active::after {
+      opacity: 1;
+      bottom: 70px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #f9fbfb 70%);
+      z-index: 1;
+
+    }
+    .lav-reviews .slider .card-body {
+      padding-bottom: 24px;
+    }
+    .lav-show-reviews {
+      display: block;
+      margin: auto;
+      margin-top: 24px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 123px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #FFFFFF;
+      padding: 16px 12px;
+      width: 230px;
+    }
+
+    .lav-reviews .slider .review {
+      height: 168px;
+      margin: 0 -24px;
+      padding: 0 24px;
+      -webkit-line-clamp: 7;
+    }
+
+    .lav-reviews .slider .expand {
+      display: block;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 5px;
+    }
+    .customer-reviews-page .slider .date {
+      margin-top: 16px;
+    }
+  
+    .lav-reviews .slider .avatar {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+    }
+    .lav-reviews .slider .name {
+      font-size: 18px;
+      margin: 0;
+    }
+    .lav-reviews .slider .link {
+      font-size: 14px;
+    }
+    .lav-reviews {
+      padding: 24px 0 36px;
+    }
+    .lav-reviews__preview {
+      height: 190px;
+    }
+    .lav-reviews__play-btn {
+      width: 80px;
+      height: 80px;
+    }
+    .lav-reviews__total {
+      margin-top: 48px;
+      display: block;
+    }
+    .lav-reviews__total-col {
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+    }
+    .lav-reviews__total-col + .lav-reviews__total-col {
+      padding-top: 26px;
+      margin-top: 28px;
+    }
+    .lav-reviews__total-col:last-child:after {
+      background: radial-gradient(81.5% 54.14% at 0% 47.87%, #000000 0%, rgba(0, 0, 0, 0.869792) 17.19%, rgba(0, 0, 0, 0.70021) 38.02%, rgba(0, 0, 0, 0.441309) 65.1%, rgba(0, 0, 0, 0) 100%);
+      transform: rotate(90deg);
+      height: 100vw;
+      top: -12px;
+    }
+    .lav-reviews__total-image {
+      height: auto;
+      width: 44%;
+    }
+    .lav-reviews__total-info {
+      width: 44%;
+    }
+    .lav-reviews__total-image img {
+      max-height: 100%;
+      max-height: 90px;
+    }
+    .lav-reviews__total-caption span {
+      display: block;
+    }
+    .lav-reviews__total-image {
+      margin-bottom: 0;
+    }
   }
 
 `;
@@ -1199,11 +1900,11 @@ const newPage = `
     <div class='container-fluid container--size--xs'>
       <div class="row fs-16 text-center lav-compare__inner mx-auto">
         <div class="col-6 py-5">
-          <img class="my-1" src="${settings.dir}/img/lightbox.png" alt="glasses icon"/>
+          <img class="mb-1 lav-compare__lum" src="${settings.dir}/img/compare-lum.png"/>
           <p class="fs-22 fw-bold py-1 lav-compare__title">Luminette3</p>
         </div>
         <div class="col-6 py-5">
-          <img class="my-1" src="${settings.dir}/img/lightbox.png" alt="box icon"/>
+          <img class="mb-1 lav-compare__box" src="${settings.dir}/img/lightbox.png"/>
           <p class="fs-22 fw-bold py-1 lav-compare__title">Light Box</p>
         </div>
         <div class="col-12 py-2 fs-18 fw-bold b-1">Portable</div>
@@ -1246,65 +1947,7 @@ const newPage = `
 
   <section class='lav-reviews lav-observe'>
     <div class='container-fluid container--size--lg lav-reviews__container'>
-      <div class='lav-reviews__title lav-title'>Customer reviews</div>
-
-      <div class='lav-reviews__list splide' style='display: none;'>
-        <div class="splide__track">
-          <div class="splide__list">
-            <div class='lav-review splide__slide'>
-              <div class='lav-review__image'>
-                <img src='${settings.dir}/img/review1.png' />
-              </div>
-              <div class='lav-review__name'>Aurélie</div>
-              <a href='https://www.amazon.fr/gp/customer-reviews/RWZSN5SZJF573/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&amp;ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
-                View review on <span>Amazon</span>
-                <img src='${settings.dir}/img/rate.svg' />
-              </a>
-              <div class='lav-review__text active'>
-                “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesit...”
-              </div>
-
-              <div class='lav-review__text'>
-                “For years, I have suffered from seasonal depression. I have been advised by health professionals (general practitioner, psychiatrist, psychologist and pharmacist) have advised me to use light therapy to improve my state in the fall and winter. I hesitated for a long time and then I discovered the Luminette. I use it in the morning, either while going about my business (breakfast, brushing my teeth brushing...) or when I'm reading. After the session, I have much more energy and motivation to face the day. It is very practical because it can be worn at the same time as my glasses or computer glasses. They are made of a rather rigid plastic, but they seem to be strong. They charge quite quickly. A charging indicator lets you know when it is finished. Once charged, they can be used about 10 times. There are 3 modes. The more powerful the light, the shorter the exposure time. What is very practical is that you don't have to watch the time because they turn off by themselves once the the session is over. The only small ""downside"" is that the most powerful mode can be glaring when the surrounding light is weak. I would recommend this product without hesitation, since it gives me a real moral boost during short days.”
-              </div>
-              
-              <div class='lav-review__trigger'>Show more</div>
-            </div>
-            
-            <div class='lav-review splide__slide'>
-              <div class='lav-review__image'>
-                <img src='${settings.dir}/img/review2.png' />
-              </div>
-              <div class='lav-review__name'>Arnaud T.</div>
-              <a href='https://www.google.com/maps/contrib/111655687148446401076/reviews/@50.5779487,5.2610511,16z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=fr-BE' target='_blank' class='lav-review__link'>
-                View review on <span>Google</span>
-                <img src='${settings.dir}/img/rate.svg' />
-              </a>
-              <div class='lav-review__text active'>
-                "Every year I notice the lack of light and it affects my mood. This year I found the solution to remedy this with the Luminette. The advantage is that you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat breakfast with the glasses on. It is very practical :)"
-              </div>
-            </div>
-
-            <div class='lav-review splide__slide'>
-              <div class='lav-review__image'>
-                <img src='${settings.dir}/img/review3.png' />
-              </div>
-              <div class='lav-review__name'>Laura S.</div>
-              <a href='https://www.amazon.com/gp/customer-reviews/R37M192JK2SORZ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07VMRRB9Y' target='_blank' class='lav-review__link'>
-                View review on <span>Amazon</span>
-                <img src='${settings.dir}/img/rate.svg' />
-              </a>
-              <div class='lav-review__text active'>
-                “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased...”
-              </div>
-              <div class='lav-review__text'>
-                “I use Luminettes since the beginning of October 2020 to deal with my Seasonal Affective Disorder (SAD). So far, I have no symptoms of SAD, despite the time changing (winter time) and the sun disappearing at 4:30 PM. It is a first. I am amazed.my energy level has increased and I feel free and joyous most of the time. I also sleep much better. I must add that I stopped caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!" caffeine, which helps as well. Luminettes are far, far better than the lamps. I wear them every morning without being obliged to stare at the lamp. My mood has really improved. They are very convenient and easy to use. I put them onto the top of my glasses. They recharge easily and they can be used without plugging them every day. Everyone who sees me wearing them (when I attend online meetings, when I go to the dentist, etc) are asking me if it works. People think it is pretty and they are very interested because they always have someone in their family with SAD, or they are afflicted by that disorder themselves. So really, no complaints, only good things to say about my Luminettes which are as precious now as my cell phone. Merci!”
-              </div>
-              <div class='lav-review__trigger'>Show more</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class='lav-reviews__title lav-title'>150,000 Luminette users</div>
 
       <div class="slider-wrapper position-relative">
         <div class="slider">
@@ -2224,6 +2867,8 @@ function init() {
     .querySelector('.home-page')
     .insertAdjacentHTML('afterbegin', newPage);
 
+  initSliders();
+
   return false;
   // let lang = detectLang();
   // if (lang != 'eng') {
@@ -2441,6 +3086,123 @@ function init() {
     });
 
   initModals();
+}
+
+function initSliders() {
+  var thumbnails = document.querySelectorAll('.lav-jumb__thumb');
+  var current;
+
+  for (var i = 0; i < thumbnails.length; i++) {
+    initThumbnail(thumbnails[i], i);
+  }
+
+  function initThumbnail(thumbnail, index) {
+    thumbnail.addEventListener('click', function () {
+      gaEvent(
+        'exp_new_pdp_checkout_21',
+        'Carousel',
+        'Click on photo',
+        'First screen with image slider'
+      );
+      jumbSlider.go(index);
+    });
+  }
+
+  let jqueryInterval = setInterval(() => {
+    if (typeof $ === 'function') {
+      clearInterval(jqueryInterval);
+
+      // JS Slider
+      const $slider = $('.slider');
+      // $showMore = $section.find('.show-more');
+
+      let sliderActivated = false;
+      let showMoreActivated = false;
+      const options = {
+        centerMode: true,
+        centerPadding: 0,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        speed: 375,
+        dots: true,
+      };
+
+      const resizeHandler = () => {
+        const isMobile = window.matchMedia('(max-width: 1199.98px)').matches;
+
+        if (isMobile) {
+          if (sliderActivated) {
+            $slider.slick('unslick');
+            sliderActivated = false;
+          }
+        } else if (!sliderActivated) {
+          try {
+            const classificateDots = (prevDotIndex) => {
+              const prevPrevDotIndex = prevDotIndex - 1;
+              const nextDotIndex = prevDotIndex + 2;
+              const nextNextDotIndex = prevDotIndex + 3;
+
+              const $dots = $slider.find('.slick-dots > li').removeClass(`
+                    slick-prev 
+                    slick-next 
+                    slick-prev-prev 
+                    slick-next-next 
+                    slick-prev-max 
+                    slick-next-max
+                  `);
+
+              for (let i = 0; i < prevPrevDotIndex; i++) {
+                $slider.find(`li:nth-child(${i})`).addClass('slick-prev-max');
+              }
+
+              for (let i = $dots.length; i > nextNextDotIndex; i--) {
+                $slider.find(`li:nth-child(${i})`).addClass('slick-next-max');
+              }
+
+              $slider
+                .find(
+                  `li:nth-child(${
+                    prevDotIndex > 0 ? prevDotIndex : $dots.length
+                  })`
+                )
+                .addClass('slick-prev');
+
+              $slider
+                .find(`li:nth-child(${prevPrevDotIndex ?? 0}`)
+                .addClass('slick-prev-prev');
+
+              $slider
+                .find(
+                  `li:nth-child(${
+                    nextDotIndex > $dots.length ? 1 : nextDotIndex
+                  })`
+                )
+                .addClass('slick-next');
+
+              $slider
+                .find(`li:nth-child(${nextNextDotIndex ?? 0})`)
+                .addClass('slick-next-next');
+            };
+
+            $slider.slick(options);
+            sliderActivated = true;
+
+            classificateDots(0);
+
+            $slider.on('beforeChange', (_e, _slick, _curr, next) =>
+              classificateDots(next)
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      };
+
+      $(window).resize(resizeHandler);
+      resizeHandler();
+    }
+  }, 200);
 }
 
 function initModals() {
