@@ -60,6 +60,9 @@ const styles = `
   .lav-section {
     padding: 45px 0;
   }
+  .home-page {
+    background-color: #fff;
+  }
 
   .pin-spacer, [id^=trustbadge-container] {
     display: none!important;
@@ -163,11 +166,6 @@ const styles = `
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-top: 90px;
-  }
-  .lav-problems {}
-  .lav-problems {}
-  .lav-problem {
-
   }
   .lav-problem {
     display: flex;
@@ -449,14 +447,317 @@ const styles = `
     background: linear-gradient(6.75deg, #3797F1 5.31%, #1B7FE7 94.73%);
     border-radius: 50%;
   }
-  .lav-results__item {}
-  .lav-results {}
-  .lav-results {}
-  .lav-results {}
-  .lav-results {}
-  .lav-results {}
-  .lav-results {}
 
+  .lav-benefits {
+    text-align: center;
+  }
+  .lav-benefits__inner {
+    padding: 80px 48px 85px;
+    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    border-radius: 16px;
+    background: #517193;
+    color: #fff;
+  }
+  .lav-benefits__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .lav-benefit__icon {
+    line-height: 0;
+  }
+  .lav-benefit__title {
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .lav-benefit__btn {
+    transform: translateY(-50%);
+  }
+
+
+  .lav-cases__title {
+    text-align: center;
+  }
+  .lav-cases__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 42px;
+  }
+  .lav-case {
+    background: linear-gradient(95.3deg, #F8F9FA 27.98%, #FDFDFD 95.76%);
+    box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.22);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .lav-case__image {
+    line-height: 0;
+  }
+  .lav-case__image img {
+    max-width: 100%;
+  }
+  .lav-case__caption {
+    position: relative;
+    font-weight: 700;
+    padding: 25px 15px;
+    text-align: center;
+  }
+  .lav-case__caption:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background: #fff url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+  }
+
+  .lav-recharge__inner {
+    background: url('${settings.dir}/img/women.jpeg') left center no-repeat;
+    background-size: auto 100%;
+    display: flex;
+    align-items: center;
+    background-color: #f9fafc;
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
+    border-radius: 16px;
+  }
+  .lav-recharge__inner>div {
+    flex: 1;
+  }
+  .lav-recharge__preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    cursor: pointer;
+    line-height: 0;
+  }
+  .lav-recharge__preview:before {
+    content: '';
+    background: #517193;
+    opacity: 0.5;
+    filter: blur(25px);
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+  }
+  .lav-recharge__preview img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.35s;
+    width: 125px;
+    height: 125px;
+  }
+  .lav-recharge__preview img + img {
+    opacity: 0;
+  }
+  .lav-recharge__preview:hover img  {
+    opacity: 0;
+  }
+  .lav-recharge__preview:hover img + img {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .lav-recharge__info {
+    margin: 48px 80px;
+    max-width: 536px;
+    width: 100%;
+  }
+  .lav-recharge__caption {
+    margin-top: 24px;
+  }
+  .lav-case {}
+
+  .lav-works {
+    padding-bottom: 20px;
+  }
+  .lav-works__row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .lav-works__title {
+    line-height: 56px;
+  }
+  .lav-works__info {
+    max-width: 504px;
+    width: 100%;
+  }
+  .lav-works__item {
+    position: relative;
+    margin-top: 24px;
+    max-width: 416px;
+    padding-left: 32px;
+  }
+  .lav-works__item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff url(${settings.dir}/img/check.svg) center no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+  }
+  .lav-works__item-title {
+    position: relative;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  .lav-works__item-title span {
+    color: #6AC6FF;
+  }
+  .lav-works__image {
+    line-height: 0;
+    max-width: 525px;
+    width: 100%;
+    margin-top: -25px;
+  }
+  .lav-works__image img {
+    max-width: 100%;
+  }
+
+  .lav-study__wrap {
+    padding-top: 20px;
+  }
+  .lav-study {
+    display: flex;
+    align-items: center;
+    padding: 42px;
+    background: linear-gradient(101.51deg, #F8F9FA 0%, #FDFDFD 100%, #FDFDFD 100%);
+    box-shadow: 0px 22px 33px rgba(59, 83, 108, 0.25);
+    border-radius: 8px;
+  }
+  .lav-study__icon {
+    line-height: 0;
+  }
+  .lav-study__icon svg {
+    width: 42px;
+  }
+  .lav-study__info {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    color: #517193;
+    margin-left: 12px;
+    margin-right: 40px;
+    max-width: 560px;
+  }
+  .lav-study__info strong {
+    font-weight: 700;
+  }
+  .lav-study__btn {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    border: 1px solid rgba(81, 113, 147, 0.12);
+    border-radius: 123px;
+    padding: 13px 65px;
+    transition: 0.35s;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .lav-study__btn:hover {
+    background-color: #fff;
+    border: 1px solid #517193;
+    cursor: pointer;
+  }
+  .lav-study__btn img {
+    margin-left: 16px;
+    width: 30px;
+  }
+
+  .lav-safety__row {
+    background: linear-gradient(101.51deg, #F8F9FA 0%, #FDFDFD 100%, #FDFDFD 100%);
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.25);
+    padding: 60px 164px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .lav-safety__title {
+    margin-bottom: 40px;
+  }
+  .lav-safety__icons {
+
+  }
+  .lav-safety__icons img {
+    max-width: 100%;
+    width: 94px;
+  }
+  .lav-safety__icons img + img {
+    margin-left: 38px;
+  }
+  .lav-safety__right {
+    max-width: 480px;
+    margin-left: 20px;
+    width: 100%;
+  }
+  .lav-safety__descr:first-child {
+    font-weight: 700;
+  }
+  .lav-safety__descr + .lav-safety__descr {
+    margin-top: 20px;
+  }
+
+
+  .lav-compare {
+    padding: 80px 0 100px;
+    background: url(https://conversionratestore.github.io/projects/luminette/img/stripes_features.png) no-repeat center bottom / cover;
+  }
+  .lav-compare__inner {
+    position: relative;
+    background: #F8F9FA;
+    border: 1px solid #F8F9FA;
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.25);
+    border-radius: 16px;
+    max-width: 718px;
+    overflow: hidden;
+  }
+  .lav-compare__inner:before {
+    content: 'vs';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+    color: #517193;
+    position: absolute;
+    left: 0;
+    top: 37px;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+  }
+  .lav-compare__inner .col-6:nth-child(3n+1) {
+    background: linear-gradient(98.6deg, #EEF1F4 43.43%, #EEF1F4 58.16%, #F3F5F7 100%);
+  }
+  .lav-compare__inner .col-12 {
+    border: 1px solid #EFF2F5;
+  }
+  .lav-compare__inner .fw-medium {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .lav-compare__title {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: bold;
+  }
 
 `;
 
@@ -765,6 +1066,13 @@ const newPage = `
           </div>
         </div>
       </div>
+
+      <button class='lav-benefit__btn lav-btn btn-primary btn-lg flipped lav-btn-buy'>
+        <span class="btn-text">
+          Get Luminette3 Now
+        </span>
+        <span class="btn-bg-wrapper"></span>
+      </button>
     </div>
   </section>
 
@@ -775,28 +1083,28 @@ const newPage = `
       <div class='lav-cases__list'>
         <div class='lav-case'>
           <div class='lav-case__image'>
-            <img src='${settings.dir}/img/benefit2-1.svg' />
+            <img src='${settings.dir}/img/case1.jpeg' />
           </div>
           <div class='lav-case__caption lav-descr'>Preparing breakfast</div>
         </div>
 
         <div class='lav-case'>
           <div class='lav-case__image'>
-            <img src='${settings.dir}/img/benefit2-2.svg' />
+            <img src='${settings.dir}/img/case2.jpeg' />
           </div>
           <div class='lav-case__caption lav-descr'>Brushing your teeth</div>
         </div>
 
         <div class='lav-case'>
           <div class='lav-case__image'>
-            <img src='${settings.dir}/img/benefit2-3.svg' />
+            <img src='${settings.dir}/img/case3.jpeg' />
           </div>
           <div class='lav-case__caption lav-descr'>Working on your computer</div>
         </div>
 
         <div class='lav-case'>
           <div class='lav-case__image'>
-            <img src='${settings.dir}/img/benefit2-3.svg' />
+            <img src='${settings.dir}/img/case4.jpeg' />
           </div>
           <div class='lav-case__caption lav-descr'>Performing light exercise</div>
         </div>
@@ -804,59 +1112,48 @@ const newPage = `
     </div>
   </section>
 
-  <section class='lav-recharge lav-observe'>
+  <section class='lav-recharge lav-section'>
     <div class='container-fluid container--size--lg lav-jumb__container'>
       <div class='lav-recharge__inner'>
-        <div class='lav-recharge__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/rnpVhWWRUDI?autoplay=0&start=0&showinfo=0&rel=0'>
+        <div class='lav-recharge__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/O83h2CcQAHQ?autoplay=0&start=0&showinfo=0&rel=0'>
           <img src='${settings.dir}/img/play.svg' />
           <img src='${settings.dir}/img/play-hover.svg' />
         </div>
         <div class='lav-recharge__info'>
-          <div class='lav-recharge__title lav-title'>Retrouver votre énergie avec la Luminette</div>
-          <div class='lav-recharge__caption lav-text'>Une technologie brevetée permet aux Luminette® de rééquilibrer votre horloge biologique circadienne, rétablissant ainsi vos cycles de sommeil, votre humeur et vos niveaux d'énergie.</div>
+          <div class='lav-recharge__title lav-title'>Recharge with Luminette</div>
+          <div class='lav-recharge__caption lav-descr'>Breakthrough technology allows Luminette® glasses to rebalance your biological circadian body clock, restoring your sleep cycles, mood, and energy levels.</div>
         </div>
       </div>
     </div>
   </section>
 
   <section class='lav-works lav-section'>
-    <div class='container-fluid container--size--lg lav-works__container'>
-      <div class='lav-works__title lav-title'>How Luminette works</div>
-
+    <div class='container-fluid container--size--sm lav-works__container'>
       <div class='lav-works__row'>
         <div class='lav-works__info'>
+          <div class='lav-works__title lav-title'>The Science Behind Luminette®</div>
+
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
-            <div class='lav-works__item-descr active'>Luminette® uses a patented...</div>
-            <div class='lav-works__item-descr'>Luminette® uses a patented innovative optical technology: placed above eyesight, its beam of light is angled top-down, just as happens naturally under blue skies and allows users to keep their vision free.</div>
-            <div class='lav-works__item-trigger lav-works__item-trigger-first'>Show more</div>
+            <div class='lav-works__item-descr lav-descr'>Innovative Luminette® technology emits a gentle beam of light towards the eyes from just above eye level. This mimics the natural light from blue skies, without interrupting vision.</div>
           </div>
 
           <div class='lav-works__item'>
-            <div class='lav-works__item-title'>White light enhanced with <span>blue light</span> for greater effectiveness.</div>
-            <div class='lav-works__item-descr active'>Luminette® emits a safe...</div>
-            <div class='lav-works__item-descr'>Luminette® emits a safe blue-enriched white light peaked at 468 nm. This wavelength is proven to be the most effective at triggering the body's positive response to sunlight. Luminette LED’s have been specifically selected to avoid light close to UV.</div>
-            <div class='lav-works__item-trigger lav-works__item-trigger-second'>Show more</div>
-          </div>
-
-          <div class='lav-works__study'>
-            <div class='lav-works__study-caption'>An <span>independent study</span> has shown that Luminette gives the same results as a 10,000 lux light box</div>
-            <button class='lav-btn lav-works__study-btn'>
-              <span>Read the study</span> <img src='${settings.dir}/img/adobe.svg' />
-            </button>
+            <div class='lav-works__item-title'>White light enhanced with <span>blue light</span>
+            for greater effectiveness.</div>
+            <div class='lav-works__item-descr lav-descr'>Luminette 3 emits a blue-enriched white light, peaked at 468 nm. This wavelength is proven to be the most effective at triggering the body’s positive response to sunlight.</div>
           </div>
         </div>
         
         <div class='lav-works__image'>
-          <img src='${settings.dir}/img/how-works.png' />
-          <img src='${settings.dir}/img/how-works-mob.png' />
+          <img src='${settings.dir}/img/works.png' />
         </div>
       </div>
     </div>
   </section>
 
-  <section class='lav-study__wrap'>
-    <div class='container-fluid container--size--lg'>
+  <section class='lav-study__wrap lav-section'>
+    <div class='container-fluid container--size--sm'>
       <div class='lav-study'>
         <div class='lav-study__icon'>
           <svg class="icon icon-xxl">
@@ -864,73 +1161,50 @@ const newPage = `
           </svg>
         </div>
         <div class='lav-study__info'>
-          Une étude indépendante a montré que la Luminette donne les mêmes résultats qu'une lampe de 10 000 lux.
+          An <strong>independent study</strong> has shown that the Luminette gives the same results as a 10,000 lux light box
         </div>
         <div class='lav-study__btn'>
-          Lire l'étude
+          Read the study
           <img src='/images/icons/adobe-reader.svg' />
         </div>
       </div>
     </div>
   </section>
 
-  <section class='technical__wrap'>
+  <section class='lav-safety lav-section'>
     <div class='container-fluid container--size--lg'>
-      <div class="technical lav-observe">
-        <div class="row technical-block">
-          <div class="col-lg-6 pl-0">
-            <h2>Détails techniques</h2>
-          </div>
-          <div class="col-lg-6 fs-18">
-            <div class="row pb-2 bb-2">
-              <div class="col-sm-7 col-6 pl-0">Dimensions du produit</div>
-              <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">17 x 16 x 3 cm</div>
-            </div>
-            <div class="row py-2 bb-2">
-              <div class="col-sm-7 col-6 pl-0">Type de source lumineuse</div>
-              <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">LED</div>
-            </div>
-            <div class="row py-2 bb-2">
-              <div class="col-sm-7 col-6 pl-0">Nombre de sources lumineuses</div>
-              <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">3</div>
-            </div>
-            <div class="row py-2 bb-2">
-              <div class="col-sm-7 col-6 pl-0">Poids de l'article</div>
-              <div class="col-sm-5 col-6 fw-semi pr-0 pl-1">51g</div>
-            </div>
+      <div class='lav-safety__row'>
+        <div class='lav-safety__left'>
+          <div class='lav-safety__title lav-title'>Safety</div>
+
+          <div class='lav-safety__icons'>
+            <img src="https://conversionratestore.github.io/projects/luminette/img/safety-1.svg" alt="safety icon" />
+            <img src="https://conversionratestore.github.io/projects/luminette/img/safety-2.svg" alt="safety icon" />
+            <img src="https://conversionratestore.github.io/projects/luminette/img/safety-3.svg" alt="safety icon" />
           </div>
         </div>
-        <div class="safety-block lav-observe">
-          <div class="row">
-            <div class="col-lg-6 pl-0">
-              <h2 class="pb-4">Sécurité</h2>
-              <div class="d-flex mt-5">
-                <img class="mr-5 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-1.svg" alt="safety icon" />
-                <img class="mr-5 ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-2.svg" alt="safety icon" />
-                <img class="ml-2 mb-3" src="https://conversionratestore.github.io/projects/luminette/img/safety-3.svg" alt="safety icon" />
-              </div>
-            </div>
-            <div class="col-lg-6 fs-18 px-0">
-              <p class="fw-bold mb-3">Depuis 2007, Luminette® porte la classification européenne CE.</p>
-              <p class="mb-3">Luminette® est classée comme un dispositif sans danger pour les yeux, conformément à la norme internationale CEI 62471. En outre, la lumière émise par la Luminette® est exempte d'UV, de rayons infrarouges et ne contient pas de courte longueur d'onde inférieure à 450 nm.</p>
-              <p>Aux États-Unis, aucune lampe de luminothérapie n'a reçu l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne sont pas réglementées par la FDA.</p>
-            </div>
-          </div>
+        <div class='lav-safety__right'>
+          <div class='lav-safety__descr lav-descr'>Since 2007 Luminette®  carries the European 
+          CE classification.</div>
+
+          <div class='lav-safety__descr lav-descr'>Luminette® is classified as a device that is safe for the eyes in accordance with the international standard CEI 62471. </div>
+
+          <div class='lav-safety__descr lav-descr'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA. </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class='compare-section lav-observe'>
-    <div class='container-fluid container--size--lg'>
-      <div class="row fs-16 text-center compare mx-auto">
+  <section class='lav-compare lav-section lav-observe'>
+    <div class='container-fluid container--size--xs'>
+      <div class="row fs-16 text-center lav-compare__inner mx-auto">
         <div class="col-6 py-5">
-          <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/glasses.svg" alt="glasses icon"/>
-          <p class="fs-22 fw-bold py-1">Luminette3</p>
+          <img class="my-1" src="${settings.dir}/img/lightbox.png" alt="glasses icon"/>
+          <p class="fs-22 fw-bold py-1 lav-compare__title">Luminette3</p>
         </div>
         <div class="col-6 py-5">
-          <img class="my-1" src="https://conversionratestore.github.io/projects/luminette/img/box.svg" alt="box icon"/>
-          <p class="fs-22 fw-bold py-1">Light Box</p>
+          <img class="my-1" src="${settings.dir}/img/lightbox.png" alt="box icon"/>
+          <p class="fs-22 fw-bold py-1 lav-compare__title">Light Box</p>
         </div>
         <div class="col-12 py-2 fs-18 fw-bold b-1">Portable</div>
         <div class="col-6 py-5 fw-medium"><p class="py-1">Wear while <span class="text-ellipsis"> on-the-go</span></p></div>
@@ -939,13 +1213,12 @@ const newPage = `
         <div class="col-6 py-5 fw-medium"><p class="py-1">Blue-enriched <span class="text-ellipsis">white light</span></p></div>
         <div class="col-6 py-5 fw-medium"><p class="py-1">Full spectrum <span class="text-ellipsis">white light</span></p></div>
         <div class="col-12 py-2 fs-18 fw-bold b-1">Therapy effectiveness</div>
-        <div class="col-6 py-5 fw-medium"><p class="py-1">Provides effective therapy using <br>
-            a less intense light source</p></div>
+        <div class="col-6 py-5 fw-medium"><p class="py-1">Provides effective therapy using a less intense light source</p></div>
         <div class="col-6 py-5 fw-medium"><p class="py-1">Requires at least 10,000 lux to provide effective light therapy</p></div>
         <div class="col-12 py-2 fs-18 fw-bold b-1">Size</div>
-        <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Small/ ultralight <br>
-            only 51g (1.83 ounces)</p></div>
-        <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">	Large/ bulky</p></div>
+        <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Small/ ultralight <br />
+        only 51g (1.83 oz)</p></div>
+        <div class="col-6 py-5 fw-medium"><p class="pt-1 pb-5">Large, bulky</p></div>
       </div>
     </div>
   </section>
@@ -1679,7 +1952,7 @@ const newPage = `
   
         <div class='lav-trial__info'>
           <div class='lav-trial__title lav-title'>Essai de 30 jours</div>
-          <div class='lav-trial__descr lav-text'>Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !</div>
+          <div class='lav-trial__descr lav-descr'>Testez les lunettes de luminothérapie Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la nous et nous vous rembourserons !</div>
   
           <div class='lav-trial__buttons'>
             <div class='lav-trial__btn lav-trial__btn-refresh lav-tooltip-wrap'>
@@ -1868,7 +2141,7 @@ function observerView() {
         if (entry.target.classList.contains('lav-morning')) {
           gaEvent('section in view', 'Perfect for your morning routine');
         }
-        if (entry.target.classList.contains('lav-benefits2')) {
+        if (entry.target.classList.contains('lav-benefits')) {
           gaEvent('section in view', 'What are the benefits?');
         }
         if (entry.target.classList.contains('lav-works')) {
