@@ -1580,6 +1580,67 @@ const styles = `
     opacity: 0.7;
   }
 
+  .tooltip {
+    position: relative;
+  }
+  .tooltip-include {
+    max-width: 100%;
+  }
+  .tooltip:hover .tooltip-dropdown, .lav-tooltip-wrap:hover .tooltip-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tooltip-dropdown {
+    color: #517193;
+    position: absolute;
+    padding-top: 32px;
+    top: 0;
+    right: -15px;
+    width: 351px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 4;
+    transition: 0.35s;
+    // filter: drop-shadow(0px 11px 22px rgba(81, 113, 147, 0.44));
+    // box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
+  }
+  .tooltip-item {
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 24px;
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    box-shadow: 0px 11px 22px rgb(81 113 147 / 44%);
+  }
+  .tooltip-item:before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 12.5px 8px 12.5px;
+    border-color: transparent transparent #fff transparent;
+  }
+  .tooltip_free {
+    background: rgba(218, 225, 232, 0.3);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .tooltip-text {
+    color: #517193;
+  }
+  .tooltip-text + .tooltip-text {
+    margin-top: 8px;
+  }
+  .lav-trial__btn .tooltip-dropdown {
+    top: 35px;
+    padding-top: 10px;
+  }
+
   @media(max-width: 1199px) {
     .lav-trial {
       text-align: center;
@@ -1628,6 +1689,9 @@ const styles = `
     .lav-trial__buttons .lav-trial__btn:first-child .tooltip-item:before {
       left: 25%;
     }
+    .tooltip-dropdown {
+      top: 40%;
+    }
     .lav-trial {
       padding: 48px 0;
     }
@@ -1641,12 +1705,30 @@ const styles = `
     .lav-trial__descr {
       margin-top: 12px;
     }
+    .tooltip > img {
+      width: 14px;
+      height: 22px;
+    }
     .lav-trial__btn .tooltip > img {
       height: 14px;
       margin-bottom: -2px;
     }
-    lav-trial__btn .tooltip {
+    .lav-trial__btn .tooltip {
       display: inline-block;
+    }
+    .tooltip {
+      position: initial;
+    }
+    .tooltip-dropdown {
+      right: 0;
+      width: 100%;
+    }
+    .tooltip-item:before {
+      right: auto;
+      left: calc(50% + 63px);
+    }
+    .days-test_list li:not(:nth-child(2)) .tooltip-dropdown {
+      top: calc(100% - 23px);
     }
   }
 
