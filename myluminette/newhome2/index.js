@@ -2066,7 +2066,7 @@ const styles = `
     border-radius: 16px;
     text-align: center;
     height: 340px;
-    background-color: black;
+    // background-color: black;
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -2519,15 +2519,6 @@ const styles = `
     font-size: 16px;
     line-height: 24px;
     box-shadow: 0px 11px 22px rgb(81 113 147 / 44%);
-  }
-  .tooltip-item a {
-    font-weight: 600;
-    color: inherit;
-    text-decoration: underline;
-    transition: 0.35s;
-  }
-  .tooltip-item a:hover {
-    opacity: 0.75;
   }
   .tooltip-item:before {
     content: '';
@@ -4751,7 +4742,7 @@ if (detectLang() == 'fr') {
 
             <div class='lav-safety__descr lav-descr todo-translate'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA. </div>
 
-            <div class='lav-safety__toggler lav-mob todo-translate'>
+            <div class='lav-safety__toggler lav-mob'>
               Afficher plus
               <svg class="icon icon-xs"><use xlink:href="#arrow-right"></use></svg>
             </div>
@@ -5032,7 +5023,7 @@ if (detectLang() == 'fr') {
       </div>
     </section>
 
-    <section class='lav-reviews lav-observe todo-translate'>
+    <section class='lav-reviews lav-observe'>
       <div class='container-fluid container--size--lg lav-reviews__container'>
         <div class='lav-reviews__title lav-title'>Plus de 150&nbsp;000 utilisateurs de la Luminette</div>
 
@@ -5681,7 +5672,7 @@ if (detectLang() == 'fr') {
                           Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
                         </p>
                         <p>
-                          Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                          Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="tooltip__link">Remboursements</a>.
                         </p>
                       </div> 
                     </div>
@@ -5695,7 +5686,7 @@ if (detectLang() == 'fr') {
                         Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
                       </p>
                       <p>
-                        Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="fw-semi bb-1 c-blue">Remboursements</a>.
+                        Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="tooltip__link">Remboursements</a>.
                       </p>
                     </div> 
                   </div>
@@ -6295,24 +6286,18 @@ function initCountryTranslate(lang) {
     location.href.includes('com/en-ca')
   ) {
     if (location.href.includes('com/en-ca')) {
-      document.querySelector('.lav-test__btn .btn-text').innerText =
-        'Try it $249';
-      if (location.href.includes('/luminette')) {
-        document.querySelector('.lav-jumb__actions .btn-text').innerText =
-          'Buy $249';
-      } else {
-        document.querySelector('.lav-jumb__btn .btn-text').innerText =
-          'Buy $249';
-        document.querySelector('.lav-trial__action .btn-text').innerText =
-          'Try it $249';
-        document.querySelector('.lav-drive__btn .btn-text').innerText =
-          'Buy $189';
-      }
+      document.querySelector('.lav-trial__get .btn-text').innerText =
+        'Buy $249';
+      document.querySelector('.lav-drive__btn .btn-text').innerText =
+        'Buy $189';
     }
     return false;
   }
 
   if (location.href.includes('com/uk') && !location.href.includes('com/uk-')) {
+    document.querySelector('.lav-trial__get .btn-text').innerText = 'Buy £169';
+    document.querySelector('.lav-drive__btn .btn-text').innerText = 'Buy £129';
+
     document.querySelector('.lav-delivery__plate-flags').src =
       settings.dir + '/img/flags-gb.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -6325,19 +6310,10 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/fr') && !location.href.includes('com/fr-')) {
-    // document.querySelector('.lav-test__btn .btn-text').innerText =
-    //   'Essayez-les pour 229 €';
-    // if (location.href.includes('/luminette')) {
-    //   document.querySelector('.lav-jumb__actions .btn-text').innerText =
-    //     'Achat 229 €';
-    // } else {
-    //   document.querySelector('.lav-jumb__btn .btn-text').innerText =
-    //     'Achat 229 €';
-    //   document.querySelector('.lav-trial__action .btn-text').innerText =
-    //     'Essayez-les pour 229 €';
-    //   document.querySelector('.lav-drive__btn .btn-text').innerText =
-    //     'Achat 179 €';
-    // }
+    document.querySelector('.lav-trial__get .btn-text').innerText =
+      'Achat 229€';
+    document.querySelector('.lav-drive__btn .btn-text').innerText =
+      'Achat 179€';
 
     document.querySelector('.lav-delivery__plate-flags').src =
       settings.dir + '/img/flags-fr.png';
@@ -6351,19 +6327,11 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/fr-be')) {
-    // document.querySelector('.lav-test__btn .btn-text').innerText =
-    // 'Essayez-les pour 229€';
-    // if (location.href.includes('/luminette')) {
-    //   document.querySelector('.lav-jumb__actions .btn-text').innerText =
-    //     'Achat 229€';
-    // } else {
-    //   document.querySelector('.lav-jumb__btn .btn-text').innerText =
-    //     'Achat 229€';
-    //   document.querySelector('.lav-trial__action .btn-text').innerText =
-    //     'Essayez-les pour 229€';
-    //   document.querySelector('.lav-drive__btn .btn-text').innerText =
-    //     'Achat 179€';
-    // }
+    document.querySelector('.lav-trial__get .btn-text').innerText =
+      'Achat 229€';
+    document.querySelector('.lav-drive__btn .btn-text').innerText =
+      'Achat 179€';
+
     document.querySelector('.lav-delivery__plate-flags').src =
       settings.dir + '/img/flags-be.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
@@ -6376,19 +6344,11 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/fr-ca')) {
-    // document.querySelector('.lav-test__btn .btn-text').innerText =
-    //   'Essayez-les pour $249';
-    // if (location.href.includes('/luminette')) {
-    //   document.querySelector('.lav-jumb__actions .btn-text').innerText =
-    //     'Achat $249';
-    // } else {
-    //   document.querySelector('.lav-jumb__btn .btn-text').innerText =
-    //     'Achat $249';
-    //   document.querySelector('.lav-trial__action .btn-text').innerText =
-    //     'Essayez-les pour $249';
-    //   document.querySelector('.lav-drive__btn .btn-text').innerText =
-    //     'Achat $189';
-    // }
+    document.querySelector('.lav-trial__get .btn-text').innerText =
+      'Achat $249';
+    document.querySelector('.lav-drive__btn .btn-text').innerText =
+      'Achat $189';
+
     document.querySelector('.lav-delivery__plate-flags').src =
       settings.dir + '/img/flags.png';
     document.querySelector('.lav-delivery__plate-caption').innerHTML =
