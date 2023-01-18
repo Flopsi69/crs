@@ -2566,6 +2566,9 @@ const styles = `
   }
 
   @media (max-width: 768px) {
+    .tooltip_free {
+      padding: 24px 12px;
+    }
     .lav-trial__row {
       padding: 30px 0;
       box-shadow: none;
@@ -5664,21 +5667,8 @@ if (detectLang() == 'fr') {
                 <img src='${settings.dir}/img/icon-refresh.svg' />
                 <span>
                   Essai de 30 jours
-                  <span class="tooltip d-inline-block d-sm-none">
-                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
-                    <div class="tooltip-dropdown text-left fs-16">
-                      <div class="tooltip-item">
-                        <p class="mb-2">
-                          Vous avez un mois pour tester votre Luminette. Nous recommandons d'utiliser la Luminette pendant au moins 10 jours consécutifs.
-                        </p>
-                        <p>
-                          Toutefois, si vous n'êtes pas satisfait, vous pouvez choisir d'être remboursé dans les 30 jours suivant l'achat. Vous trouverez plus de détails sur notre page <a href="/delivery#returns-block" class="tooltip__link">Remboursements</a>.
-                        </p>
-                      </div> 
-                    </div>
-                  </span>
                 </span>
-                <div class="tooltip d-sm-flex d-none ml-2">
+                <div class="tooltip d-sm-flex ml-2">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item">
@@ -5696,25 +5686,8 @@ if (detectLang() == 'fr') {
                 <img src='${settings.dir}/img/icon-box-2.svg' />
                 <span>
                   Livraison gratuite
-                  <span class="tooltip d-inline-block d-sm-none">
-                    <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
-                    <div class="tooltip-dropdown text-left fs-16">
-                      <div class="tooltip-item lav-delivery__plate">
-                        <div class="tooltip_free text-center mb-2">
-                          <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                            <img class='lav-delivery__plate-flags' height='24' src="${settings.dir}/img/flags-fr.png" alt="">
-                          </div>
-                          <div class='lav-delivery__plate-caption'> Livraison gratuite en Europe: <div class="fw-bold d-block">2 à 5 jours ouvrables</div></div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-2 py-1">
-                          <img class="mr-2 lav-delivery__plate-service" src="${settings.dir}/img/delivery-methods.png" />
-                        </div>
-                        <p class="lav-delivery__descr">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
-                      </div> 
-                    </div>
-                  </span>
                 </span>
-                <div class="tooltip d-sm-flex d-none ml-2">
+                <div class="tooltip d-sm-flex ml-2">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                   <div class="tooltip-dropdown text-left fs-16">
                     <div class="tooltip-item lav-delivery__plate">
