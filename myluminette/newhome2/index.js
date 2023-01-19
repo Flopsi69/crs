@@ -5930,7 +5930,7 @@ function observerView() {
           isElementInViewport(entry.target, event);
         }
 
-        // observer.unobserve(entry.target);
+        // observer.unobserve(entry.target); //
       }
     });
   }, observerOptions);
