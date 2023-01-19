@@ -5930,7 +5930,6 @@ function observerView() {
           isElementInViewport(entry.target, event);
         }
 
-        // entry.target.classList.add('in-view');
         // observer.unobserve(entry.target);
       }
     });
