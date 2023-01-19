@@ -3,7 +3,7 @@ console.log('JS GO Started!');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/myluminette/newhome2',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -12,12 +12,31 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', 'new_home_page_layout', 'variant_1');
+      clarity('set', '“ew_hp_hypothesis', 'variant_1');
     }
   }, 1000);
 }
 
 // Alalytics
+function gaEvent(name, desc, type, loc) {
+  if (!loc) {
+    loc = '';
+  }
+  try {
+    var objData = {
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
+    };
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
+  } catch (e) {
+    console.log('Event Error:', e);
+  }
+}
+
 function gaEvent2(action, label) {
   return false;
   if (!label) {
@@ -115,6 +134,10 @@ const styles = `
   @media(max-width: 768px) {
     .btn-primary.btn-lg .btn-text {
       font-size: 21px;
+    }
+    .lav-france .btn-primary.btn-lg .btn-text {
+      font-size: 19px;
+      line-height: 1.3;
     }
   }
 
@@ -814,6 +837,10 @@ const styles = `
     font-size: 22px;
     line-height: 28px;
   }
+  .lav-france .lav-results__item-title {
+    max-width: 300px;
+    min-height: 56px;
+  }
   .lav-results__item-caption {
     font-weight: 500;
     font-size: 16px;
@@ -827,6 +854,15 @@ const styles = `
     background: linear-gradient(6.75deg, #3797F1 5.31%, #1B7FE7 94.73%);
     border-radius: 50%;
   }
+  @media(max-width: 1100px) {
+    .lav-france .lav-results__item {
+      display: flex;
+      flex-flow: column;
+    }
+    .lav-france .lav-results__item-title {
+      margin-bottom: auto;
+    }
+  }
   @media(max-width: 992px) {
     .lav-results__row {
       display: block;
@@ -838,9 +874,17 @@ const styles = `
       display: flex;
       flex-flow: row-reverse;
     }
+    .lav-france .lav-results__item {
+      flex-flow: row-reverse;
+    }
     .lav-results__item-caption {
       width: 50%;
       text-align: right;
+    }
+    .lav-france .lav-results__row:before {
+      background-size: cover;
+      margin: 0 auto;
+      height: 66%;
     }
     .lav-results__item-title {
       width: 50%;
@@ -874,6 +918,9 @@ const styles = `
     .lav-results {
       padding-top: 30px;
       padding-bottom: 60px;
+    }
+    .lav-france .lav-results__row:before {
+      height: 63%;
     }
     .lav-results__row:before {
       top: 23px;
@@ -1036,6 +1083,9 @@ const styles = `
     .lav-case__caption {
       padding-left: 10px;
       padding-right: 10px;
+    }
+    .lav-france .lav-case__caption {
+      font-size: 16px;
     }
     .lav-cases .slick-dots {
       display: flex;
@@ -2005,9 +2055,12 @@ const styles = `
   .lav-reviews__total-caption {
     font-weight: 400;
     font-size: 18px;
-    line-height: 24px;
+    line-height: 1.35;
     color: #FFFFFF;
     opacity: 0.9;
+  }
+  .lav-france .lav-reviews__total-caption {
+    font-size: 16px;
   }
   .lav-reviews__total-caption span {
     font-weight: 700;
@@ -3121,13 +3174,13 @@ let newPage = `
         <div class="lav-results__item">
           <div class="lav-results__item-title">Wear Luminette3</div>
           <div class="lav-results__circle"></div>
-          <div class="lav-results__item-caption">20 minutes x 7 days</div>
+          <div class="lav-results__item-caption">20 minutes x 7&nbsp;days</div>
         </div>
 
         <div class="lav-results__item">
           <div class="lav-results__item-title">Feel energized and fix your sleep</div>
           <div class="lav-results__circle"></div>
-          <div class="lav-results__item-caption">After 4-7 days</div>
+          <div class="lav-results__item-caption">After 4-7&nbsp;days</div>
         </div>
       </div>
 
@@ -4363,7 +4416,7 @@ if (detectLang() == 'fr') {
           <div class='lav-jumb__actions'>
             <button class='lav-jumb__btn btn-primary btn-lg flipped lav-btn lav-btn-buy'>
               <span class="btn-text">
-                Commandez la Luminette3 maintenant
+                Commandez la Luminette3&nbsp;maintenant
               </span>
               <span class="btn-bg-wrapper"></span>
             </button>
@@ -4497,7 +4550,7 @@ if (detectLang() == 'fr') {
         <div class='lav-drinks__btn-wrap'>
           <button class='lav-drinks__btn btn-primary btn-lg flipped lav-btn lav-btn-buy'>
             <span class="btn-text">
-              Commandez la Luminette3 maintenant
+              Commandez la Luminette3&nbsp;maintenant
             </span>
             <span class="btn-bg-wrapper"></span>
           </button>
@@ -4610,7 +4663,7 @@ if (detectLang() == 'fr') {
 
         <button class='lav-results__btn btn-primary lav-mob btn-lg flipped lav-btn lav-btn-buy'>
           <span class="btn-text">
-            Commandez la Luminette3 maintenant
+            Commandez la Luminette3&nbsp;maintenant
           </span>
           <span class="btn-bg-wrapper"></span>
         </button>
@@ -4648,7 +4701,7 @@ if (detectLang() == 'fr') {
 
           <button class='lav-benefit__btn lav-btn btn-primary btn-lg flipped lav-btn-buy'>
             <span class="btn-text">
-              Commandez la Luminette3 maintenant
+              Commandez la Luminette3&nbsp;maintenant
             </span>
             <span class="btn-bg-wrapper"></span>
           </button>
@@ -5017,7 +5070,7 @@ if (detectLang() == 'fr') {
         <div class='lav-faq__btn-wrap'>
           <button class='lav-faq__btn btn-primary btn-lg flipped lav-btn lav-btn-buy'>
             <span class="btn-text">
-              Commandez la Luminette3 maintenant
+              Commandez la Luminette3&nbsp;maintenant
             </span>
             <span class="btn-bg-wrapper"></span>
           </button>
@@ -5759,7 +5812,7 @@ if (detectLang() == 'fr') {
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-gaEvent2('loaded');
+// gaEvent2('loaded');
 preInit();
 
 function preInit() {
@@ -5791,9 +5844,7 @@ function preInit() {
   // document.body.append(sliderScript);
 
   init();
-
-  // TODO
-  // observerView();
+  observerView();
 }
 
 function observerView() {
@@ -5924,6 +5975,54 @@ function init() {
   initSliders();
   initModals();
 
+  for (let item of document.querySelectorAll('.accordion-toggle')) {
+    item.addEventListener('click', function () {
+      gaEvent(
+        'exp_new_hp_7_faq',
+        'Click on FAQ',
+        'Item',
+        item.querySelector('.question').innerText.trim()
+      );
+    });
+  }
+
+  setTimeout(() => {
+    for (let slide of document.querySelectorAll('.lav-reviews .slider .card')) {
+      slide.addEventListener('click', function () {
+        gaEvent(
+          'exp_new_hp_8_text_rev',
+          'Click on text reviews',
+          'Section',
+          slide.querySelector('.name').innerText.trim()
+        );
+      });
+    }
+  }, 2000);
+
+  for (let tip of document.querySelectorAll('.lav-tooltip-wrap')) {
+    tip.addEventListener('mouseenter', function () {
+      if (window.innerWidth < 992) return false;
+
+      gaEvent(
+        'exp_new_hp_11_tips',
+        'Tips 30 day',
+        'Tips',
+        tip.innerText.split('\n')[0]
+      );
+    });
+
+    tip.addEventListener('click', function () {
+      if (window.innerWidth > 992) return false;
+
+      gaEvent(
+        'exp_new_hp_11_tips',
+        'Tips 30 day',
+        'Tips',
+        tip.innerText.split('\n')[0]
+      );
+    });
+  }
+
   document
     .querySelector('.lav-study__btn')
     .addEventListener('click', function () {
@@ -5990,16 +6089,63 @@ function init() {
   for (let btn of document.querySelectorAll('.lav-btn-buy')) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+      if (this.classList.contains('lav-jumb__btn')) {
+        gaEvent(
+          'exp_new_hp_1_CTA',
+          'Click on Get Luminette3 Now',
+          'Button',
+          'First screen'
+        );
+      }
+
+      if (this.classList.contains('lav-drinks__btn')) {
+        gaEvent(
+          'exp_new_hp_2_CTA',
+          'Click on Get Luminette3 Now',
+          'Button',
+          'Natural substitute'
+        );
+      }
+
+      if (this.classList.contains('lav-benefit__btn')) {
+        gaEvent(
+          'exp_new_hp_3_CTA',
+          'Click on Get Luminette3 Now',
+          'Button',
+          'What are the benefits'
+        );
+      }
+
+      if (this.classList.contains('lav-results__btn')) {
+        gaEvent(
+          'exp_new_hp_4_CTA',
+          'Click on Get Luminette3 Now',
+          'Button',
+          'Get results in just 7 days'
+        );
+      }
+
+      if (this.classList.contains('lav-faq__btn')) {
+        gaEvent(
+          'exp_new_hp_5_CTA',
+          'Click on Get Luminette3 Now',
+          'Button',
+          'under FAQ'
+        );
+      }
+
+      if (this.classList.contains('lav-trial__get')) {
+        gaEvent(
+          'exp_new_hp_10_trial',
+          'Click on buy ' +
+            this.querySelector('.btn-text').innerText +
+            ' button',
+          'Button',
+          '30 day'
+        );
+      }
+
       document.querySelector('.glasses-item .btn-primary').click();
-      // if (this.classList.contains('lav-test__btn')) {
-      //   gaEvent2('Try it', 'Popup: You have 30 days to test Luminette');
-      // }
-      // if (this.classList.contains('lav-trials__btn')) {
-      //   gaEvent2('Try it', '30 day Light Therapy Trial');
-      // }
-      // if (this.classList.contains('lav-jumb__btn')) {
-      //   gaEvent2('Buy', 'First screen');
-      // }
     });
   }
 
@@ -6088,6 +6234,15 @@ function initSliders() {
           });
         }
       }
+
+      $sliderMob.on('swipe', function () {
+        gaEvent(
+          'exp_new_hp_19_swipe',
+          'Swipe',
+          'Section',
+          'Wear Luminette while'
+        );
+      });
 
       // JS Slider
       const $slider = $('.slider');
@@ -6186,6 +6341,19 @@ function initModals() {
   for (let item of document.querySelectorAll('.lav-open-modal')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+
+      if (item.classList.contains('lav-morning__preview')) {
+        gaEvent(
+          'exp_new_hp_6_glasses_video',
+          'Click on lum glasses video',
+          'Button',
+          'video'
+        );
+      }
+
+      if (item.classList.contains('lav-reviews__play')) {
+        gaEvent('exp_new_hp_9_video_rev', 'Click on video reviews', 'Section');
+      }
 
       openModal(document.querySelector(item.dataset.target), item.dataset.src);
     });
