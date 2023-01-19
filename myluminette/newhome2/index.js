@@ -3366,7 +3366,7 @@ let newPage = `
     </div>
   </section>
 
-  <section class='lav-faq'>
+  <section class='lav-faq lav-section'>
     <div class='container-fluid container--size--lg'>
       <div class='lav-faq__plate'>
         <div class='lav-faq__info'>
@@ -5856,47 +5856,106 @@ function observerView() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
+      // console.log(entry);
       if (entry.isIntersecting) {
-        if (entry.target.classList.contains('lav-jumb')) {
-          gaEvent2('section in view', 'first section');
-        }
-        if (entry.target.classList.contains('lav-transforms')) {
-          gaEvent2('section in view', 'How Luminette transforms your days?');
-        }
-        if (entry.target.classList.contains('lav-wear')) {
-          gaEvent2('section in view', "Luminette's light therapy benefits");
-        }
-        if (entry.target.classList.contains('lav-morning')) {
-          gaEvent2('section in view', 'Perfect for your morning routine');
-        }
-        if (entry.target.classList.contains('lav-benefits')) {
-          gaEvent2('section in view', 'What are the benefits?');
-        }
-        if (entry.target.classList.contains('lav-works')) {
-          gaEvent2('section in view', 'How Luminette works');
-        }
-        if (entry.target.classList.contains('lav-users')) {
-          gaEvent2('section in view', 'Luminette users');
-        }
-        if (entry.target.classList.contains('lav-reviews')) {
-          gaEvent2('section in view', 'Customer reviews');
-        }
-        if (entry.target.classList.contains('lav-trial')) {
-          gaEvent2('section in view', '30 Day Light Therapy Trial');
-        }
-        if (entry.target.classList.contains('lav-drive')) {
-          gaEvent2('section in view', 'Drive');
+        if (entry.target.classList.contains('lav-problems')) {
+          const event = [
+            'exp_new_hp_12_vis',
+            'Visibility',
+            'Section',
+            'Light therapy can help',
+          ];
+
+          isElementInViewport(entry.target, event);
         }
 
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
+        if (entry.target.classList.contains('lav-wears')) {
+          const event = [
+            'exp_new_hp_13_vis',
+            'Visibility',
+            'Section',
+            'Wear for 30 min',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        if (entry.target.classList.contains('lav-morning')) {
+          const event = [
+            'exp_new_hp_14_vis',
+            'Visibility',
+            'Section',
+            'lum glasses video',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        if (entry.target.classList.contains('lav-benefits')) {
+          const event = [
+            'exp_new_hp_15_vis',
+            'Visibility',
+            'Section',
+            'What are the benefits',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        if (entry.target.classList.contains('lav-compare')) {
+          const event = [
+            'exp_new_hp_16_vis',
+            'Visibility',
+            'Section',
+            'Why to choose',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        if (entry.target.classList.contains('lav-faq')) {
+          const event = ['exp_new_hp_17_vis', 'Visibility', 'Section', 'FAQ'];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        if (entry.target.classList.contains('lav-trial')) {
+          const event = [
+            'exp_new_hp_18_vis',
+            'Visibility',
+            'Section',
+            '30 day',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+
+        // entry.target.classList.add('in-view');
+        // observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   for (let section of Array.from(document.querySelectorAll('.lav-section'))) {
     observer.observe(section);
+  }
+
+  function isElementInViewport(el, event) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        el.classList.add('in-view');
+        observer.unobserve(el);
+
+        gaEvent(...event);
+      }
+    }, 3000);
   }
 }
 
