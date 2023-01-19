@@ -5952,6 +5952,7 @@ function observerView() {
       ) {
         el.classList.add('in-view');
         observer.unobserve(el);
+
         gaEvent(...event);
       }
     }, 3000);
