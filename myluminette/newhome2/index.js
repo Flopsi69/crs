@@ -656,7 +656,7 @@ const styles = `
 
   .lav-morning__plate {
     display: flex;
-    background: #f9fafc  url('${settings.dir}/img/morning.jpeg') left no-repeat;
+    background: #f9fafc  url('${settings.dir}/img/morning.png') left no-repeat;
     background-size: auto 101%;
     padding: 80px;
     // background: linear-gradient(106.63deg, #F8F9FA 38.5%, #FDFDFD 100.78%);
@@ -6207,13 +6207,13 @@ function init() {
     });
   }
 
-  // for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
-  //   btn.addEventListener('click', function (e) {
-  //     e.preventDefault();
-  //     gaEvent2('Try it', 'Benefit from light therapy while driving');
-  //     document.querySelector('.drive-item .btn-primary').click();
-  //   });
-  // }
+  for (let btn of document.querySelectorAll('.lav-btn-buy-drive')) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      // gaEvent2('Try it', 'Benefit from light therapy while driving');
+      document.querySelector('.drive-item .btn-primary').click();
+    });
+  }
 
   let lang = detectLang();
   if (lang == 'fr') {
