@@ -4796,7 +4796,7 @@ if (detectLang() == 'fr') {
 
             <div class='lav-safety__descr lav-descr'>La Luminette® est classée comme un dispositif sûr pour les yeux, conformément à la norme internationale CEI 62471.</div>
 
-            <div class='lav-safety__descr lav-descr todo-translate'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA. </div>
+            <div class='lav-safety__descr lav-descr'>Il n'y a pas de lampes de luminothérapie aux États-Unis qui portent l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne seront pas réglementées par la FDA.</div>
 
             <div class='lav-safety__toggler lav-mob'>
               Afficher plus
@@ -4807,9 +4807,9 @@ if (detectLang() == 'fr') {
       </div>
     </section>
 
-    <section class='lav-compare lav-section lav-observe todo-translate'>
+    <section class='lav-compare lav-section lav-observe'>
       <div class='container-fluid container--size--xs'>
-        <div class="lav-compare__title-head lav-title">Why to choose wearable light therapy</div>
+        <div class="lav-compare__title-head lav-title">Pourquoi choisir la luminothérapie portable</div>
 
         <div class="row fs-16 text-center lav-compare__inner mx-auto">
           <div class="col-6 py-5">
