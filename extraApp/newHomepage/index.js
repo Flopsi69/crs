@@ -18,7 +18,7 @@ if (window.innerWidth < 768) {
   device = 'mobile';
 }
 //Hotjar
-if (settings.clarity && false) {
+if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
