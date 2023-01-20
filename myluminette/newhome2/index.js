@@ -3319,7 +3319,7 @@ let newPage = `
 
           <div class='lav-safety__descr lav-descr'>Luminette® is classified as a device that is safe for the eyes in accordance with the international standard CEI 62471.</div>
 
-          <div class='lav-safety__descr lav-descr'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA.</div>
+          <div class='lav-safety__descr lav-safety__descr-country lav-descr'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA.</div>
 
           <div class='lav-safety__toggler lav-mob'>
             See more
@@ -4796,7 +4796,7 @@ if (detectLang() == 'fr') {
 
             <div class='lav-safety__descr lav-descr'>La Luminette® est classée comme un dispositif sûr pour les yeux, conformément à la norme internationale CEI 62471.</div>
 
-            <div class='lav-safety__descr lav-descr'>Il n'y a pas de lampes de luminothérapie aux États-Unis qui portent l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne seront pas réglementées par la FDA.</div>
+            <div class='lav-safety__descr lav-safety__descr-country lav-descr'>Il n'y a pas de lampes de luminothérapie aux États-Unis qui portent l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne seront pas réglementées par la FDA.</div>
 
             <div class='lav-safety__toggler lav-mob'>
               Afficher plus
@@ -6509,6 +6509,7 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/fr') && !location.href.includes('com/fr-')) {
+    document.querySelector('.lav-safety__descr-country').remove();
     document.querySelector('.lav-trial__get .btn-text').innerText =
       'Achat 229€';
     document.querySelector('.lav-drive__btn .btn-text').innerText =
@@ -6526,6 +6527,7 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/fr-be')) {
+    document.querySelector('.lav-safety__descr-country').remove();
     document.querySelector('.lav-trial__get .btn-text').innerText =
       'Achat 229€';
     document.querySelector('.lav-drive__btn .btn-text').innerText =
