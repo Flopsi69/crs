@@ -843,8 +843,79 @@ const styles = `
   .lav-plans {
     padding: 75px 0;
   }
+  .lav-plans__toggler {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  }
+  .lav-plans__toggle {
+    position: relative;
+    background: #fff;
+    border: 2px solid #000000;
+    max-width: 180px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000000;
+    transition: 0.35s;
+    padding: 15px;
+  }
+  .lav-plans__toggle:not(.active) {
+    cursor: pointer;
+  }
+  .lav-plans__toggle span {
+    position: absolute;
+    top: -10px;
+    transform: translateY(-100%);
+    left: 50%;
+    width: 153px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: linear-gradient(93.4deg, #6251BB 3.76%, #4581C8 100%);
+    border-radius: 8px;
+  }
+  .lav-plans__toggle span:before {
+    content: '';
+    position: absolute;
+    background: url(${settings.dir}/img/tip-arrow.svg) center no-repeat;
+    background-size: contain;
+    width: 12px;
+    height: 4px;
+    bottom: 0;
+    left: 18px;
+    transform: translateY(99%);
+  }
+  .lav-plans__toggle:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+  .lav-plans__toggle:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+  .lav-plans__toggle.active {
+    background: #000;
+    color: #fff;
+  }
+  @media(min-width: 992px) {
+    .lav-plans__toggle:not(.active):hover {
+      background: #e9e9e9;
+    }
+  }
+  .lav-plans__toggle {
+  }
   .lav-plans__table {
-    margin-top: 40px;
+    margin-top: 65px;
     margin-bottom: 40px;
   }
   .lav-plans__row {
@@ -882,15 +953,15 @@ const styles = `
     text-align: center;
     letter-spacing: -0.025em;
   }
-  .lav-plans__row:last-child  {
+  .lav-plans__row-last  {
     border-bottom: 0;
   }
-  .lav-plans__row:last-child .lav-plans__col {
+  .lav-plans__row-last .lav-plans__col {
     padding-top: 19px;
     padding-bottom: 0;
     display: block;
   }
-  .lav-plans__row:last-child .lav-plans__col:first-child {
+  .lav-plans__row-last .lav-plans__col:first-child {
     font-weight: 700;
     font-size: 27px;
     line-height: 1;
@@ -1695,6 +1766,27 @@ const styles = `
     .lav-plans {
       padding: 60px 0;
     }
+    .lav-plans__toggler {
+      margin-top: 50px;
+    }
+    .lav-plans__toggle {
+      padding: 10px;
+      width: 140px;
+      border-width: 1px;
+      font-size: 12px;
+      padding: 12px;
+    }
+    .lav-plans__table {
+      margin-top: 30px;
+    }
+    .lav-plans__toggle span {
+      font-size: 10px;
+      height: 22px;
+      top: -8px;
+      transform: translateY(-100%) translateX(-35%);
+      width: 130px;
+      letter-spacing: 0.05em;
+    }
     .lav-plans__btn {
       width: 100%;
       max-width: 100%;
@@ -1711,7 +1803,7 @@ const styles = `
       padding-left: 7px;
       padding-right: 7px;
     }
-    .lav-plans__row:last-child .lav-plans__col:first-child {
+    .lav-plans__row-last .lav-plans__col:first-child {
       font-size: 12px;
       line-height: 16px;
     }
@@ -1724,7 +1816,7 @@ const styles = `
       font-size: 12px;
       line-height: 13px;
     }
-    .lav-plans__row:last-child .lav-plans__col {
+    .lav-plans__row-last .lav-plans__col {
       padding-top: 14px;
     }
     .lav-title {
@@ -2573,6 +2665,11 @@ function init() {
       <div class='lav-container'>
         <div class='lav-plans__title lav-title lav-center'>Our plans</div>
 
+        <div class='lav-plans__toggler'>
+          <div class='lav-plans__toggle active' data-value='monthly'>Monthly</div>
+          <div class='lav-plans__toggle' data-value='yearly'>Annually <span>up to $101 savings</span></div>
+        </div>
+
         <div class='lav-plans__table'>
           <div class='lav-plans__row'>
             <div class='lav-plans__col'></div>
@@ -2642,7 +2739,20 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-plans__row'>
+          <div class='lav-plans__row lav-plans__row-last lav-plans__row-monthly'>
+            <div class='lav-plans__col'>Total cost</div>
+            <div class='lav-plans__col'>
+              <span class='lav-plans__price'>$20</span>
+              <div class='lav-plans__caption'>a month</div>
+            </div>
+            <div class='lav-plans__col'>
+              <span class='lav-plans__price'>$25</span>
+              <div class='lav-plans__caption'>a month</div>
+            </div>
+          </div>
+
+
+          <div class='lav-plans__row lav-plans__row-last lav-plans__row-yearly' style='display: none;'>
             <div class='lav-plans__col'>Total cost</div>
             <div class='lav-plans__col'>
               <span class='lav-plans__price'>$149</span>
@@ -2657,8 +2767,12 @@ function init() {
           </div>
         </div>
 
-        <div class='lav-plans__btn-wrap'>
-          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>Apply now</button>
+        <div class='lav-plans__btn-wrap lav-plans__btn-monthly'>
+          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>Start Building Credit</button>
+        </div>
+
+        <div class='lav-plans__btn-wrap lav-plans__btn-yearly' style='display: none'>
+          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>SAVE 25% NOW</button>
         </div>
       </div>
     </section>
@@ -2717,6 +2831,36 @@ function init() {
   initConnect();
   initWorks();
   initObserver();
+
+  for (let toggleEl of document.querySelectorAll('.lav-plans__toggle')) {
+    toggleEl.addEventListener('click', function () {
+      if (this.classList.contains('active')) return false;
+
+      const plan = this.dataset.value;
+
+      document
+        .querySelector('.lav-plans__toggle.active')
+        .classList.remove('active');
+      this.classList.add('active');
+
+      if (plan === 'monthly') {
+        document.querySelector('.lav-plans__row-monthly').style.display =
+          'flex';
+        document.querySelector('.lav-plans__row-yearly').style.display = 'none';
+        document.querySelector('.lav-plans__btn-monthly').style.display =
+          'block';
+        document.querySelector('.lav-plans__btn-yearly').style.display = 'none';
+      } else {
+        document.querySelector('.lav-plans__row-monthly').style.display =
+          'none';
+        document.querySelector('.lav-plans__row-yearly').style.display = 'flex';
+        document.querySelector('.lav-plans__btn-monthly').style.display =
+          'none';
+        document.querySelector('.lav-plans__btn-yearly').style.display =
+          'block';
+      }
+    });
+  }
 }
 
 function initObserver() {
@@ -3010,6 +3154,7 @@ function initHeader() {
   for (let item of document.querySelectorAll('.lav-apply')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
+      document.querySelector('a[data-w-tab="Annually"]').click();
       if (item.classList.contains('lav-jumb__btn')) {
         gaEvent('Click on start building credit button');
       }
@@ -3028,7 +3173,17 @@ function initHeader() {
           );
         }
       }
-      if (item.classList.contains('lav-plans__btn')) {
+      if (
+        item.classList.contains('lav-plans__btn') &&
+        item.closest('.lav-plans__btn-monthly')
+      ) {
+        document.querySelector('a[data-w-tab="Monthly"]').click();
+        gaEvent('Click on Start Building Credit button');
+      }
+      if (
+        item.classList.contains('lav-plans__btn') &&
+        item.closest('.lav-plans__btn-yearly')
+      ) {
         gaEvent('Click on Save 25% now button');
       }
       if (item.classList.contains('lav-join__btn')) {
