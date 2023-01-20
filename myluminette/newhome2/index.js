@@ -1,4 +1,10 @@
 console.log('JS GO Started!');
+const removeSlider = setInterval(() => {
+  if (document.querySelector('.pin-spacer')) {
+    document.querySelector('.pin-spacer').remove();
+    clearInterval(removeSlider);
+  }
+}, 300);
 
 /********* Settings **********/
 const settings = {
@@ -19,6 +25,7 @@ if (settings.clarity) {
 
 // Alalytics
 function gaEvent(name, desc, type, loc) {
+  // return false;
   if (!loc) {
     loc = '';
   }
@@ -29,26 +36,6 @@ function gaEvent(name, desc, type, loc) {
       event_desc: desc,
       event_type: type,
       event_loc: loc,
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-function gaEvent2(action, label) {
-  return false;
-  if (!label) {
-    label = '';
-  }
-  try {
-    var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp — New home page layout',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
     };
     console.log('EventFire:', objData);
     dataLayer.push(objData);
@@ -4395,7 +4382,7 @@ let newPage = `
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
 
-      <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="840" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </main>
@@ -5803,7 +5790,7 @@ if (detectLang() == 'fr') {
           <img src='${settings.dir}/img/modal-close.svg'>
         </div>
 
-        <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="840" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
   </main>
@@ -5829,7 +5816,8 @@ function preInit() {
 
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
-  document.body.appendChild(stylesEl);
+  // document.body.appendChild(stylesEl);
+  document.body.prepend(stylesEl);
 
   // ** Splide Carousel ** //
   // const sliderStyles = document.createElement('link');
@@ -5972,23 +5960,23 @@ function addScrollEvents() {
     let scrollPercent = scrollTop / (docHeight - winHeight);
     let scrollPercentRounded = Math.round(scrollPercent * 100);
     if (scrollPercentRounded >= 20 && !isScrolled20) {
-      gaEvent2('scroll depth', scrollPercentRounded + '%');
+      // gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled20 = true;
     }
     if (scrollPercentRounded >= 40 && !isScrolled40) {
-      gaEvent2('scroll depth', scrollPercentRounded + '%');
+      // gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled40 = true;
     }
     if (scrollPercentRounded >= 60 && !isScrolled60) {
-      gaEvent2('scroll depth', scrollPercentRounded + '%');
+      // gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled60 = true;
     }
     if (scrollPercentRounded >= 80 && !isScrolled80) {
-      gaEvent2('scroll depth', scrollPercentRounded + '%');
+      // gaEvent2('scroll depth', scrollPercentRounded + '%');
       isScrolled80 = true;
     }
     if (scrollPercentRounded >= 99 && !isScrolled100) {
-      gaEvent2('scroll depth', '100%');
+      // gaEvent2('scroll depth', '100%');
       isScrolled100 = true;
     }
   });
@@ -5998,7 +5986,7 @@ function init() {
   if (!document.querySelector('.home-page')) {
     setTimeout(() => {
       init();
-    }, 500);
+    }, 200);
     return false;
   }
   console.log('init');
@@ -6226,7 +6214,7 @@ function init() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       location.href += '/drive';
-      gaEvent2('Learn more', 'Benefit from light therapy while driving');
+      // gaEvent2('Learn more', 'Benefit from light therapy while driving');
     });
 }
 
@@ -6255,12 +6243,12 @@ function initSliders() {
 
   function initThumbnail(thumbnail, index) {
     thumbnail.addEventListener('click', function () {
-      gaEvent2(
-        'exp_new_pdp_checkout_21',
-        'Carousel',
-        'Click on photo',
-        'First screen with image slider'
-      );
+      // gaEvent2(
+      //   'exp_new_pdp_checkout_21',
+      //   'Carousel',
+      //   'Click on photo',
+      //   'First screen with image slider'
+      // );
       jumbSlider.go(index);
     });
   }
