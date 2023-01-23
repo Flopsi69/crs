@@ -2917,7 +2917,7 @@ let newPage = `
         <div class='lav-jumb__title'>Beat the winter blues and optimize your sleep</div>
 
         <div class='lav-jumb__descr lav-descr'>
-          Luminette® glasses are scientifically proven to beat the winter blues, restoring your mood and energy levels in just 30 minutes a day
+          Luminette glasses are scientifically proven to beat the winter blues, restoring your mood and energy levels in just 30 minutes a day
         </div>
 
         <div class='lav-jumb__actions'>
@@ -3243,7 +3243,7 @@ let newPage = `
     <div class='container-fluid container--size--sm lav-works__container'>
       <div class='lav-works__row'>
         <div class='lav-works__info'>
-          <div class='lav-works__title lav-title'>The Science Behind Luminette®</div>
+          <div class='lav-works__title lav-title'>The Science Behind Luminette</div>
 
           <div class='lav-works__image lav-mob'>
             <img src='${settings.dir}/img/works.png' />
@@ -3251,7 +3251,7 @@ let newPage = `
 
           <div class='lav-works__item'>
             <div class='lav-works__item-title'>A patented, innovative light therapy system, for optimal comfort.</div>
-            <div class='lav-works__item-descr lav-descr'>Innovative Luminette® technology emits a gentle beam of light towards the eyes from just above eye level. This mimics the natural light from blue skies, without interrupting vision.</div>
+            <div class='lav-works__item-descr lav-descr'>Innovative Luminette technology emits a gentle beam of light towards the eyes from just above eye level. This mimics the natural light from blue skies, without interrupting vision.</div>
           </div>
 
           <div class='lav-works__item'>
@@ -3299,9 +3299,9 @@ let newPage = `
           </div>
         </div>
         <div class='lav-safety__right'>
-          <div class='lav-safety__descr lav-descr'>Since 2007 Luminette® carries the European CE classification.</div>
+          <div class='lav-safety__descr lav-descr'>Since 2007 Luminette carries the European CE classification.</div>
 
-          <div class='lav-safety__descr lav-descr'>Luminette® is classified as a device that is safe for the eyes in accordance with the international standard CEI 62471.</div>
+          <div class='lav-safety__descr lav-descr'>Luminette is classified as a device that is safe for the eyes in accordance with the international standard CEI 62471.</div>
 
           <div class='lav-safety__descr lav-safety__descr-country lav-descr'>There are no Light Therapy lamps in the USA that carry FDA approval. Therefore the efficacy and safety of this electronic device - and all other light therapy devices on the US market - will be unregulated by the FDA.</div>
 
@@ -3443,7 +3443,7 @@ let newPage = `
 
                 <div id="question-4" class="collapse" style="">
                   <div class="accordion-content answer fw-medium ">
-                    <p>The “boosting” effect of Luminette® is almost immediate. From the very first days, you will feel your energy returning and your mood will start to improve. The improvements of your biological clock takes between 4 to 7 days.</p>
+                    <p>The “boosting” effect of Luminette is almost immediate. From the very first days, you will feel your energy returning and your mood will start to improve. The improvements of your biological clock takes between 4 to 7 days.</p>
                   </div>
                 </div>
               </div>
@@ -4394,7 +4394,7 @@ if (detectLang() == 'fr') {
           <div class='lav-jumb__title'>Combattez le blues hivernal et optimisez votre sommeil</div>
 
           <div class='lav-jumb__descr lav-descr'>
-            Il est scientifiquement prouvé que la Luminette® permet de vaincre le blues de l'hiver en rétablissant votre humeur et votre énergie en seulement 30 minutes par jour.
+            Il est scientifiquement prouvé que la Luminette permet de vaincre le blues de l'hiver en rétablissant votre humeur et votre énergie en seulement 30 minutes par jour.
           </div>
 
           <div class='lav-jumb__actions'>
@@ -4419,7 +4419,7 @@ if (detectLang() == 'fr') {
           </div>
 
           <div class='lav-boost__info'>
-            <div class='lav-boost__title'>Plus de 150 000 personnes ont retrouvé leur énergie avec la Luminette®</div>
+            <div class='lav-boost__title'>Plus de 150 000 personnes ont retrouvé leur énergie avec la Luminette</div>
             <img class='lav-boost__stars' src='${settings.dir}/img/stars.svg' />
             <div class='lav-boost__caption'>1049 avis sur Amazon et Trustedshop</div>
           </div>
@@ -4471,7 +4471,7 @@ if (detectLang() == 'fr') {
 
     <section class='lav-wears lav-section'>
       <div class='container-fluid container--size--lg lav-wears__container'>
-        <div class='lav-wears__title lav-title'>Portez la Luminette® 30 minutes par jour pour...</div>
+        <div class='lav-wears__title lav-title'>Portez la Luminette 30 minutes par jour pour...</div>
 
         <div class='lav-wears__grid'>
           <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit1-bg.jpeg")'>
@@ -4728,7 +4728,7 @@ if (detectLang() == 'fr') {
 
             <div class='lav-works__item'>
               <div class='lav-works__item-title'>Un système de luminothérapie innovant et breveté, pour un confort optimal.</div>
-              <div class='lav-works__item-descr lav-descr'>La technologie innovante de la Luminette® émet un doux faisceau de lumière vers les yeux, juste au-dessus du niveau des yeux. Cela imite la lumière naturelle du soleil, sans gêner la vue.</div>
+              <div class='lav-works__item-descr lav-descr'>La technologie innovante de la Luminette émet un doux faisceau de lumière vers les yeux, juste au-dessus du niveau des yeux. Cela imite la lumière naturelle du soleil, sans gêner la vue.</div>
             </div>
 
             <div class='lav-works__item'>
@@ -4776,9 +4776,9 @@ if (detectLang() == 'fr') {
             </div>
           </div>
           <div class='lav-safety__right'>
-            <div class='lav-safety__descr lav-descr'>Depuis 2007, Luminette® porte la classification européenne CE.</div>
+            <div class='lav-safety__descr lav-descr'>Depuis 2007, Luminette porte la classification européenne CE.</div>
 
-            <div class='lav-safety__descr lav-descr'>La Luminette® est classée comme un dispositif sûr pour les yeux, conformément à la norme internationale CEI 62471.</div>
+            <div class='lav-safety__descr lav-descr'>La Luminette est classée comme un dispositif sûr pour les yeux, conformément à la norme internationale CEI 62471.</div>
 
             <div class='lav-safety__descr lav-safety__descr-country lav-descr'>Il n'y a pas de lampes de luminothérapie aux États-Unis qui portent l'approbation de la FDA. Par conséquent, l'efficacité et la sécurité de cet appareil électronique - et de tous les autres appareils de luminothérapie sur le marché américain - ne seront pas réglementées par la FDA.</div>
 
@@ -4918,7 +4918,7 @@ if (detectLang() == 'fr') {
 
                   <div id="question-4" class="collapse" style="">
                     <div class="accordion-content answer fw-medium ">
-                      <p>L'effet "boostant" de la Luminette® est presque immédiat. Dès les premiers jours, vous sentirez votre énergie revenir et votre humeur commencera à s'améliorer. La régulation de votre horloge biologique prendra entre 4 et 7 jours.</p>
+                      <p>L'effet "boostant" de la Luminette est presque immédiat. Dès les premiers jours, vous sentirez votre énergie revenir et votre humeur commencera à s'améliorer. La régulation de votre horloge biologique prendra entre 4 et 7 jours.</p>
                     </div>
                   </div>
                 </div>
@@ -5696,7 +5696,7 @@ if (detectLang() == 'fr') {
           </div>
 
           <div class='lav-trial__info'>
-            <div class='lav-trial__title lav-title'>Essayez-la <br/> <span>pendant 30 jours</span></div>
+            <div class='lav-trial__title lav-title'><span>Essayez-la</span> <br/> pendant 30 jours</div>
             <div class='lav-trial__descr lav-descr'>Testez la luminothérapie brevetée de Luminette pendant 30 jours et si vous n'êtes pas satisfait, renvoyez-la et nous vous rembourserons !</div>
 
             <div class='lav-trial__buttons'>
