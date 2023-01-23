@@ -1708,7 +1708,7 @@ const styles = `
     width: 56px;
     height: 56px;
     background-color: rgba(147, 169, 192, 0.5);
-    border: 1px solid rgba(147, 169, 192, 0.5);
+    border: 1px solid rgb(106, 133, 162);
     background-image: url("/images/icons/arrow-right.svg");
     background-repeat: no-repeat;
     background-position: 44% 49%;
