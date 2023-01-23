@@ -6373,12 +6373,20 @@ function initSliders() {
               classificateDots(next)
             );
 
-            $slider.on('swipe', function (event, slick, direction) {
+            $('.lav-reviews .slick-prev').on('click', function () {
               gaEvent(
                 'exp_new_hp_8_text_rev',
                 'Click on arrow reviews',
                 'Section',
-                direction
+                'Left'
+              );
+            });
+            $('.lav-reviews .slick-next').on('click', function () {
+              gaEvent(
+                'exp_new_hp_8_text_rev',
+                'Click on arrow reviews',
+                'Section',
+                'Right'
               );
             });
           } catch (error) {
