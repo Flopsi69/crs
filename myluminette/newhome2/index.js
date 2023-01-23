@@ -4708,7 +4708,7 @@ if (detectLang() == 'fr') {
             La société belge Lucimed, spécialisée dans les technologies de la santé, a été la première à mettre au point une lampe de luminothérapie portable. <br class='lav-mob' /><br />Des années de recherche menées par des chercheurs en optique et un professeur des troubles du sommeil ont donné naissance à la Luminette 3 - un dispositif qui vous aide à optimiser votre sommeil et votre bien-être mental grâce au pouvoir de la luminothérapie.
             </div>
             <a href="/clinical-study" class='lav-lucimed__link'>
-            En savoir plus sur la recherche scientifique sur les Luminette<svg class="icon icon-xs"><use xlink:href="#arrow-right"></use></svg>
+              En savoir plus sur la recherche scientifique sur les Luminette<svg class="icon icon-xs"><use xlink:href="#arrow-right"></use></svg>
             </a>
           </div>
 
@@ -6468,6 +6468,11 @@ function initTranslateMain(lang) {
 
 function initCountryTranslate(lang) {
   console.log('initCountryTranslate');
+
+  if (location.href.includes('com/fr')) {
+    document.querySelector('.lav-lucimed__link').href = '/etudes-cliniques';
+  }
+
   if (
     location.href.includes('com/en-us') ||
     location.href.includes('com/en-ca')
