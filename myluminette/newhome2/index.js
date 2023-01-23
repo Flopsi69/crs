@@ -4215,14 +4215,14 @@ let newPage = `
 
       <div class='lav-reviews__preview-list lav-observe'>
         <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review1.png);'>
-          <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
+          <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Andy' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
             <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
             <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
           </div>
         </div>
 
         <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review2.png);'>
-          <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/ZSr3HU5Njgg?autoplay=0&start=0&showinfo=0&rel=0'>
+          <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/ZSr3HU5Njgg?autoplay=0&start=0&showinfo=0&rel=0'>
             <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
             <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
           </div>
@@ -5653,14 +5653,14 @@ if (detectLang() == 'fr') {
 
         <div class='lav-reviews__preview-list lav-observe'>
           <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/fr-preview-review1.png);'>
-            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/vekX4k9dssY?autoplay=0&start=0&showinfo=0&rel=0'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Myriam' data-src='https://www.youtube.com/embed/vekX4k9dssY?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>
           </div>
 
           <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/fr-preview-review2.png);'>
-            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/JcnfVN5iswE?autoplay=0&start=0&showinfo=0&rel=0'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Sonia' data-src='https://www.youtube.com/embed/JcnfVN5iswE?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>
@@ -6396,7 +6396,12 @@ function initModals() {
       }
 
       if (item.classList.contains('lav-reviews__play')) {
-        gaEvent('exp_new_hp_9_video_rev', 'Click on video reviews', 'Section');
+        gaEvent(
+          'exp_new_hp_9_video_rev',
+          'Click on video reviews',
+          'Section',
+          item.dataset.name
+        );
       }
 
       openModal(document.querySelector(item.dataset.target), item.dataset.src);
