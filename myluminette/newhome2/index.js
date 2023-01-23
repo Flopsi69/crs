@@ -1708,13 +1708,13 @@ const styles = `
     width: 56px;
     height: 56px;
     background-color: rgba(147, 169, 192, 0.5);
+    border: 1px solid rgba(147, 169, 192, 0.5);
     background-image: url("/images/icons/arrow-right.svg");
     background-repeat: no-repeat;
     background-position: 44% 49%;
     transition: background 0.25s ease-out;
     cursor: pointer;
     font-size: 0;
-    border: none;
     border-radius: 50%;
     color: #ffffff;
     z-index: 1;
