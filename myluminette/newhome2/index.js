@@ -504,7 +504,7 @@ const styles = `
     background-position: top center;
     background-size: 100% auto;
     background-repeat: no-repeat;
-    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
   }
   .lav-wear__info {
     padding: 32px;
@@ -949,7 +949,7 @@ const styles = `
   }
   .lav-benefits__inner {
     padding: 80px 48px 0;
-    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
     border-radius: 16px;
     background: #517193;
     color: #fff;
@@ -984,7 +984,6 @@ const styles = `
       margin: 0 -20px;
       border-radius: 0;
       box-shadow: none;
-      filter: none;
       padding: 30px 20px;
     }
     .lav-benefits {
@@ -2547,8 +2546,6 @@ const styles = `
     opacity: 0;
     z-index: 4;
     transition: 0.35s;
-    // filter: drop-shadow(0px 11px 22px rgba(81, 113, 147, 0.44));
-    // box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
   }
   .tooltip-item {
     border-radius: 8px;
