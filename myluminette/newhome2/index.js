@@ -1583,6 +1583,9 @@ const styles = `
   .question-row + .question-row {
     margin-top: 16px;
   }
+  .accordion-primary {
+    cursor: auto;
+  }
   .accordion-primary .accordion-title .question {
     font-weight: 700;
   }
