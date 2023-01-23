@@ -301,7 +301,7 @@ const styles = `
     background-position: top center;
     background-size: 100% auto;
     background-repeat: no-repeat;
-    filter: drop-shadow(0px 44px 66px rgba(59, 83, 108, 0.22));
+    box-shadow: 0px 44px 66px rgba(59, 83, 108, 0.22);
     padding-top: 152px;
     border-radius: 8px;
   }
@@ -5816,8 +5816,9 @@ function preInit() {
 
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
-  // document.body.appendChild(stylesEl);
-  document.body.prepend(stylesEl);
+  document.body.appendChild(stylesEl);
+
+  // document.body.prepend(stylesEl);
 
   // ** Splide Carousel ** //
   // const sliderStyles = document.createElement('link');
