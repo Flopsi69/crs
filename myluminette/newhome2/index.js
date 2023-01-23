@@ -4272,21 +4272,8 @@ let newPage = `
               <img src='${settings.dir}/img/icon-refresh.svg' />
               <span>
                 30-day trial
-                <span class="tooltip d-inline-block d-sm-none">
-                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
-                  <div class="tooltip-dropdown text-left fs-16">
-                    <div class="tooltip-item">
-                      <p class="mb-2">
-                        <b class="fw-semi">You have a whole month to trial your Luminette.</b> We recommend that you use Luminette consistently for a minimum of 10 consecutive days.
-                      </p>
-                      <p>
-                        However, if you’re dissatisfied, you can choose to be refunded for your Luminette within 30 days of purchase. See more details on our <a href="/delivery#returns-block" class="tooltip__link">Refunds page</a>.
-                      </p>
-                    </div> 
-                  </div>
-                </span>
               </span>
-              <div class="tooltip d-sm-flex d-none ml-2">
+              <div class="tooltip d-sm-flex ml-2">
                 <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                 <div class="tooltip-dropdown text-left fs-16">
                   <div class="tooltip-item">
@@ -4304,25 +4291,8 @@ let newPage = `
               <img src='${settings.dir}/img/icon-box-2.svg' />
               <span>
                 Free shipping
-                <span class="tooltip d-inline-block d-sm-none">
-                  <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
-                  <div class="tooltip-dropdown text-left fs-16">
-                    <div class="tooltip-item lav-delivery__plate">
-                      <div class="tooltip_free text-center mb-2">
-                        <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
-                          <img class='lav-delivery__plate-flags' height='24' src="${settings.dir}/img/flags.png" alt="">
-                        </div>
-                        <div class='lav-delivery__plate-caption'> Free for USA and Canada: <div class="fw-bold d-block">3 to 5 working days</div></div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center mb-2 py-1">
-                        <img class="mr-2 lav-delivery__plate-service" src="${settings.dir}/img/delivery-methods.png" />
-                      </div>
-                      <p class="lav-delivery__descr">Orders are shipped from our logistics center located in Boise, Idaho. We use the services of FedEx Ground or USPS. Before they deliver your package, the carrier sends you an email warning you of the day of its passage.</p>
-                    </div> 
-                  </div>
-                </span>
               </span>
-              <div class="tooltip d-sm-flex d-none ml-2">
+              <div class="tooltip d-sm-flex ml-2">
                 <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
                 <div class="tooltip-dropdown text-left fs-16">
                   <div class="tooltip-item lav-delivery__plate">
