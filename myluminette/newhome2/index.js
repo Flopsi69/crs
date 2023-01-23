@@ -1589,6 +1589,9 @@ const styles = `
   .accordion-primary .accordion-title .question {
     font-weight: 700;
   }
+  .accordion-toggle {
+    cursor: pointer;
+  }
 
   .accordion-primary .accordion-toggle[data-toggle] {
     background: #FFFFFF;
@@ -4837,7 +4840,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-1" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Quels problèmes la Luminette peut-elle aider à résoudre ?</div>
+                    <div class="question">Quels problèmes la Luminette peut-elle aider à résoudre&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4865,7 +4868,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-2" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Le port de Luminette est-il dangereux pour les yeux ?</div>
+                    <div class="question">Le port de Luminette est-il dangereux pour les yeux&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4890,7 +4893,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-3" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Comment utiliser les lunettes Luminette ?</div>
+                    <div class="question">Comment utiliser les lunettes Luminette&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4910,7 +4913,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-4" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Combien de temps avant que je ne commence à sentir les effets ?</div>
+                    <div class="question">Combien de temps avant que je ne commence à sentir les effets&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4930,7 +4933,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-5" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Puis-je utiliser la Luminette avec des lentilles de contact ou des lunettes ?</div>
+                    <div class="question">Puis-je utiliser la Luminette avec des lentilles de contact ou des lunettes&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4950,7 +4953,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-6" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Puis-je utiliser la Luminette si j'ai la cataracte ?</div>
+                    <div class="question">Puis-je utiliser la Luminette si j'ai la cataracte&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4970,7 +4973,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-7" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Luminette convient-elle aux enfants ?</div>
+                    <div class="question">Luminette convient-elle aux enfants&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -4990,7 +4993,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-8" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Où est fabriquée la Luminette ?</div>
+                    <div class="question">Où est fabriquée la Luminette&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -5010,7 +5013,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-9" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Quelle est la durée de la garantie de la Luminette ?</div>
+                    <div class="question">Quelle est la durée de la garantie de la Luminette&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
@@ -5030,7 +5033,7 @@ if (detectLang() == 'fr') {
               <div class="question-row">
                 <div class="accordion-toggle collapsed" data-target="#question-10" aria-expanded="false" data-toggle="collapse">
                   <div class="accordion-title d-flex align-items-center align-items-lg-center justify-content-between">
-                    <div class="question">Existe-t-il des effets secondaires ?</div>
+                    <div class="question">Existe-t-il des effets secondaires&nbsp;?</div>
 
                     <div class="d-flex align-items-center justify-content-center">
                       <svg class="icon icon-xs">
