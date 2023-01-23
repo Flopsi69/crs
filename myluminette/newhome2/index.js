@@ -4394,10 +4394,10 @@ if (detectLang() == 'fr') {
     <section class='lav-jumb lav-section'>
       <div class='container-fluid container--size--md lav-jumb__container'>
         <div class='lav-jumb__info'>
-          <div class='lav-jumb__title'>Finissez-en avec le blues hivernal et optimisez votre sommeil</div>
+          <div class='lav-jumb__title'>Combattez le blues hivernal et optimisez votre sommeil</div>
 
           <div class='lav-jumb__descr lav-descr'>
-            Les lunettes Luminette® sont scientifiquement prouvées pour vaincre le blues hivernal, vous faire retrouver votre humeur et votre niveau d'énergie en seulement 30 minutes par jour
+            Il est scientifiquement prouvé que la Luminette® permet de vaincre le blues de l'hiver en rétablissant votre humeur et votre énergie en seulement 30 minutes par jour.
           </div>
 
           <div class='lav-jumb__actions'>
@@ -4462,9 +4462,9 @@ if (detectLang() == 'fr') {
             <div class='lav-problem__info'>
               <div class='lav-problem__title'>Manque d'énergie</div>
               <div class='lav-problem__list'>
-                <div class='lav-problem__item'>Matins fatigués et groggy</div>
-                <div class='lav-problem__item'>Manque d'énergie</div>
-                <div class='lav-problem__item'>Faible motivation et irritabilité</div>
+                <div class='lav-problem__item'>Réveil difficile</div>
+                <div class='lav-problem__item'>Baisse d'énergie pendant la journée</div>
+                <div class='lav-problem__item'>Manque de motivation et irritabilité</div>
               </div>
             </div>
           </div>
@@ -4474,7 +4474,7 @@ if (detectLang() == 'fr') {
 
     <section class='lav-wears lav-section'>
       <div class='container-fluid container--size--lg lav-wears__container'>
-        <div class='lav-wears__title lav-title'>Portez les 30 minutes par jour pour...</div>
+        <div class='lav-wears__title lav-title'>Portez la Luminette® 30 minutes par jour pour...</div>
 
         <div class='lav-wears__grid'>
           <div class='lav-wear' style='background-image: url("${settings.dir}/img/benefit1-bg.jpeg")'>
@@ -4482,11 +4482,11 @@ if (detectLang() == 'fr') {
               <div class='lav-wear__icon'>
                 <img src='${settings.dir}/img/benefit1.svg' />
               </div>
-              <div class='lav-wear__title'>Combattre le blues de l'hiver</div>
+              <div class='lav-wear__title'>Combattre le blues hivernal</div>
               <div class='lav-wear__list'>
-                <div class='lav-wear__item'>Faire face au blues de l'hiver et aux changements de saison</div>
+                <div class='lav-wear__item'>Faire face au blues hivernal et aux changements de saison</div>
                 <div class='lav-wear__item'>Réguler vos rythmes circadiens</div>
-                <div class='lav-wear__item'>Améliorer santé générale</div>
+                <div class='lav-wear__item'>Améliorer sa santé</div>
               </div>
             </div>
           </div>
@@ -4510,7 +4510,7 @@ if (detectLang() == 'fr') {
               <div class='lav-wear__icon'>
                 <img src='${settings.dir}/img/benefit2.svg' />
               </div>
-              <div class='lav-wear__title'>Sleep better</div>
+              <div class='lav-wear__title'>Améliorer votre sommeil</div>
               <div class='lav-wear__list'>
                 <div class='lav-wear__item'>Se réveiller moins souvent la nuit</div>
                 <div class='lav-wear__item'>S'endormir plus facilement</div>
@@ -4529,8 +4529,8 @@ if (detectLang() == 'fr') {
             <img src='${settings.dir}/img/cup.svg' />
           </div>
           <div class='lav-drinks__info'>
-              <div class='lav-drinks__title'>Substitut naturel de la caféine et des boissons énergisantes</div>
-              <div class='lav-drinks__caption'>Vous pouvez également utiliser la luminothérapie pour maintenir votre forme pendant la journée.</div>
+            <div class='lav-drinks__title'>Substitut naturel de la caféine et des boissons énergisantes</div>
+            <div class='lav-drinks__caption'>Vous pouvez également utiliser la luminothérapie pour rester en forme pendant la journée.</div>
           </div>
         </div>
 
@@ -4563,7 +4563,7 @@ if (detectLang() == 'fr') {
                   <img src='${settings.dir}/img/morning1.svg' />
                 </div>
                 <div class='lav-morning__caption'>
-                  Les séances durent <br /><span>20-45 minutes</span>
+                  Les séances durent entre <br /><span> 20 et 45 minutes</span>
                 </div>
               </div>
               <div class='lav-morning__item'>
@@ -4590,7 +4590,7 @@ if (detectLang() == 'fr') {
 
     <section class='lav-cases lav-section'>
       <div class='container-fluid container--size--lg lav-cases__container'>
-        <div class='lav-cases__title lav-title'>Portez Luminette tout en...</div>
+        <div class='lav-cases__title lav-title'>Portez la Luminette tout en...</div>
 
         <div class='lav-cases__list'>
           <div class='lav-case'>
@@ -4618,7 +4618,7 @@ if (detectLang() == 'fr') {
             <div class='lav-case__image'>
               <img src='${settings.dir}/img/case4.jpeg' />
             </div>
-            <div class='lav-case__caption lav-descr'>En faisant des exercices légers</div>
+            <div class='lav-case__caption lav-descr'>Faisant des exercices légers</div>
           </div>
         </div>
       </div>
@@ -4660,7 +4660,7 @@ if (detectLang() == 'fr') {
     <section class='lav-benefits lav-section'>
       <div class='container-fluid container--size--lg lav-benefits__container'>
         <div class='lav-benefits__inner'>
-          <div class='lav-benefits__title lav-title'>Quels sont les avantages ?</div>
+          <div class='lav-benefits__title lav-title'>Quels sont les avantages&nbsp;?</div>
 
           <div class='lav-benefits__list'>
             <div class='lav-benefit'>
