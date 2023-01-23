@@ -6516,8 +6516,9 @@ function initCountryTranslate(lang) {
     document.querySelector('.lav-lucimed__link').href =
       'https://www.myluminette.com/uk/clinical-study';
 
-    document.querySelector('.tooltip__link').href =
-      'https://www.myluminette.com/uk//delivery#returns-block';
+    for (let item of document.querySelectorAll('.tooltip__link')) {
+      item.href = 'https://www.myluminette.com/uk/delivery#returns-block';
+    }
 
     document.querySelector('.lav-trial__get .btn-text').innerText = 'Buy £169';
     document.querySelector('.lav-drive__btn .btn-text').innerText = 'Buy £129';
