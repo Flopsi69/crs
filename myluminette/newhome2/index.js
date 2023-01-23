@@ -96,7 +96,7 @@ const styles = `
     }
   }
   .lav-title {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 48px;
     line-height: 48px;
   }
@@ -140,7 +140,7 @@ const styles = `
     max-width: 644px;
   }
   .lav-jumb__title {
-    font-weight: 800;
+    font-weight: 500;
     font-size: 54px;
     line-height: 58px;
   }
@@ -6513,6 +6513,12 @@ function initCountryTranslate(lang) {
   }
 
   if (location.href.includes('com/uk') && !location.href.includes('com/uk-')) {
+    document.querySelector('.lav-lucimed__link').href =
+      'https://www.myluminette.com/uk/clinical-study';
+
+    document.querySelector('.tooltip__link').href =
+      'https://www.myluminette.com/uk//delivery#returns-block';
+
     document.querySelector('.lav-trial__get .btn-text').innerText = 'Buy £169';
     document.querySelector('.lav-drive__btn .btn-text').innerText = 'Buy £129';
 
