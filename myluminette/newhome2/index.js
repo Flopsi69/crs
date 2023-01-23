@@ -6320,13 +6320,13 @@ function initSliders() {
               const nextNextDotIndex = prevDotIndex + 3;
 
               const $dots = $slider.find('.slick-dots > li').removeClass(`
-                    slick-prev 
-                    slick-next 
-                    slick-prev-prev 
-                    slick-next-next 
-                    slick-prev-max 
-                    slick-next-max
-                  `);
+                slick-prev 
+                slick-next 
+                slick-prev-prev 
+                slick-next-next 
+                slick-prev-max 
+                slick-next-max
+              `);
 
               for (let i = 0; i < prevPrevDotIndex; i++) {
                 $slider.find(`li:nth-child(${i})`).addClass('slick-prev-max');
@@ -6369,6 +6369,15 @@ function initSliders() {
             $slider.on('beforeChange', (_e, _slick, _curr, next) =>
               classificateDots(next)
             );
+
+            $slider.on('swipe', function (event, slick, direction) {
+              gaEvent(
+                'exp_new_hp_8_text_rev',
+                'Click on arrow reviews',
+                'Section',
+                direction
+              );
+            });
           } catch (error) {
             console.log(error);
           }
