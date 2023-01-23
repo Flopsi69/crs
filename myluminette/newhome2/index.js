@@ -3621,7 +3621,7 @@ let newPage = `
                     This year I found the solution to remedy this with the Luminette. The advantage is that
                     you are not stuck in front of a screen while you use it, so and you can get ready in the morning or eat
                     breakfast
-                    with the glasses on. It is very practical :)"
+                    with the glasses on. It is very practical&nbsp;:)"
                   </p>
                   <button class="fw-bolder expand">Show more</button>
                   <div class="date">4 March 2021</div>
@@ -4556,7 +4556,7 @@ if (detectLang() == 'fr') {
             <img src='${settings.dir}/img/play-hover.svg' />
           </div>
           <div class='lav-morning__info'>
-            <div class='lav-morning__title lav-title'>Le complément parfait à votre routine matinale :</div>
+            <div class='lav-morning__title lav-title'>Le complément parfait à votre routine matinale&nbsp;:</div>
             
             <div class='lav-morning__descr lav-descr'>Portez la Luminette pendant que vous vous brossez les dents, prenez votre petit-déjeuner ou travaillez sur votre ordinateur - le complément parfait à toute routine matinale</div>
 
@@ -4851,7 +4851,7 @@ if (detectLang() == 'fr') {
 
                   <div id="question-1" class="collapse" style="">
                     <div class="accordion-content answer fw-medium ">
-                      <p>Luminette est pour vous si : </p>
+                      <p>Luminette est pour vous si&nbsp;: </p>
 
                       <ul>
                         <li>- Vous manquez d'énergie en cette période, vous ressentez des baisses de moral passagères.</li>
@@ -4904,7 +4904,7 @@ if (detectLang() == 'fr') {
 
                   <div id="question-3" class="collapse" style="">
                     <div class="accordion-content answer fw-medium ">
-                      <p>Portez la Luminette une fois par jour, généralement le matin. Choisissez parmi trois intensités lumineuses différentes : 20/30/60 minutes par jour. Lorsque la séance est terminée, la Luminette s'éteint automatiquement.</p>
+                      <p>Portez la Luminette une fois par jour, généralement le matin. Choisissez parmi trois intensités lumineuses différentes&nbsp;: 20/30/60 minutes par jour. Lorsque la séance est terminée, la Luminette s'éteint automatiquement.</p>
                     </div>
                   </div>
                 </div>
@@ -5044,7 +5044,7 @@ if (detectLang() == 'fr') {
 
                   <div id="question-10" class="collapse" style="">
                     <div class="accordion-content answer fw-medium ">
-                      <p>Les effets secondaires indésirables liés à la Luminette sont relativement légers et transitoires. Ils peuvent inclure : Maux de tête / Fatigue oculaire / Nausées. Afin d'éviter, de réduire ou d'atténuer ces effets indésirables : Utilisez la Luminette dans une pièce bien éclairée / Réduisez le réglage de l'intensité de la Luminette (il existe 3 niveaux d'intensités lumineuses) / N'utilisez pas le dispositif pendant quelques jours jusqu'à ce que les effets secondaires disparaissent, puis réessayez.</p>
+                      <p>Les effets secondaires indésirables liés à la Luminette sont relativement légers et transitoires. Ils peuvent inclure&nbsp;: Maux de tête / Fatigue oculaire / Nausées. Afin d'éviter, de réduire ou d'atténuer ces effets indésirables&nbsp;: Utilisez la Luminette dans une pièce bien éclairée / Réduisez le réglage de l'intensité de la Luminette (il existe 3 niveaux d'intensités lumineuses) / N'utilisez pas le dispositif pendant quelques jours jusqu'à ce que les effets secondaires disparaissent, puis réessayez.</p>
                     </div>
                   </div>
                 </div>
@@ -5096,7 +5096,7 @@ if (detectLang() == 'fr') {
                       Cette année j'ai trouvé la solution pour palier à cela avec la Luminette. L'avantage c'est que
                       tu ne restes pas bloqué devant un écran et que tu peux te préparer le matin ou prendre le
                       petit
-                      déjeuner avec les lunettes sur le nez. C'est très pratique :)
+                      déjeuner avec les lunettes sur le nez. C'est très pratique&nbsp;:)
                     </p>
                     <button class="fw-bolder expand">Afficher plus</button>
                     <div class="date">4 mars 2021</div>
@@ -5512,7 +5512,7 @@ if (detectLang() == 'fr') {
                 <div class="card-body-wrapper">
                   <div class="card-body">
                     <p class="review">C'est un réflexe à prendre dès le lever, la Luminette se fait vite oublier et on peut vaquer à
-                      ses occupations. Avec ou sans, il n'y a pas photo : dès la première utilisation, on se sent
+                      ses occupations. Avec ou sans, il n'y a pas photo&nbsp;: dès la première utilisation, on se sent
                       vite
                       mieux réveillé et les coups de mou de milieu de matinée ou d'après-midi disparaissent vite.
                       Vraiment conquise.
