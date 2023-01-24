@@ -1,8 +1,8 @@
-document.body.classList.add('lav-preloader');
+// document.body.classList.add('lav-preloader');
 
-setTimeout(() => {
-  document.body.classList.remove('lav-preloader');
-}, 1200);
+// setTimeout(() => {
+//   document.body.classList.remove('lav-preloader');
+// }, 1200);
 console.log('initExp');
 
 /********* Settings **********/
@@ -362,6 +362,31 @@ const styles = `
     line-height: 17px;
     text-align: center;
     color: #000000;
+  }
+
+  .lav-marquee {
+    -moz-animation: marquee 25s linear infinite;
+    -webkit-animation: marquee 25s linear infinite;
+    animation: marquee 25s linear infinite;
+  }
+
+  @-moz-keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+    }
+    @-webkit-keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes marquee {
+    0% { 
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%) }
+    100% { 
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); }
   }
   .lav-hat .lav-apply {
     cursor: pointer;
@@ -1322,6 +1347,11 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .lav-marquee {
+      -moz-animation: marquee 12s linear infinite;
+      -webkit-animation: marquee 12s linear infinite;
+      animation: marquee 12s linear infinite;
+    }
     .lav-feedbacks__title {
       font-size: 25px;
       line-height: 26px;
@@ -2002,10 +2032,10 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        <marquee class='lav-mob'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </marquee>
-        <marquee class='lav-desk'>
+        <div class='lav-mob lav-marquee'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </div>
+        <div class='lav-desk lav-marquee'>
           Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ <span class='lav-apply'>Apply now.</span>
-        </marquee>
+        </div>
       </div>
     </section>
     <section class='lav-jumb lav-section lav-dark'>
@@ -2139,7 +2169,7 @@ function init() {
 
           <div class='lav-why__item'>
             <div class='lav-why__item-descr'>
-              Stop doing debit the old way and start earning up to 1% back on your everyday purchases with Extra. Every swipe gets you one step closer to gift cards, tech, home goods, and more, all redeemable with your points in the Extra Rewards Store.
+              Stop doing debit the old way and start earning up to 1% back on your everyday purchases with Extra. Every swipe gets you one step closer to tech, home goods, and more, all redeemable with your points in the Extra Rewards Store.
             </div>
           </div>
         </div>
@@ -2666,8 +2696,8 @@ function init() {
         <div class='lav-plans__title lav-title lav-center'>Our plans</div>
 
         <div class='lav-plans__toggler'>
-          <div class='lav-plans__toggle active' data-value='monthly'>Monthly</div>
-          <div class='lav-plans__toggle' data-value='yearly'>Annually <span>up to $101 savings</span></div>
+          <div class='lav-plans__toggle' data-value='monthly'>Monthly</div>
+          <div class='lav-plans__toggle active' data-value='yearly'>Annually <span>up to $101 savings</span></div>
         </div>
 
         <div class='lav-plans__table'>
@@ -2739,7 +2769,7 @@ function init() {
             </div>
           </div>
 
-          <div class='lav-plans__row lav-plans__row-last lav-plans__row-monthly'>
+          <div class='lav-plans__row lav-plans__row-last lav-plans__row-monthly' style='display: none;'>
             <div class='lav-plans__col'>Total cost</div>
             <div class='lav-plans__col'>
               <span class='lav-plans__price'>$20</span>
@@ -2752,27 +2782,27 @@ function init() {
           </div>
 
 
-          <div class='lav-plans__row lav-plans__row-last lav-plans__row-yearly' style='display: none;'>
+          <div class='lav-plans__row lav-plans__row-last lav-plans__row-yearly'>
             <div class='lav-plans__col'>Total cost</div>
             <div class='lav-plans__col'>
               <span class='lav-plans__price'>$149</span>
-              <span class='lav-plans__price-old'>$200</span>
+              <span class='lav-plans__price-old'>$240</span>
               <div class='lav-plans__caption'>a year</div>
             </div>
             <div class='lav-plans__col'>
               <span class='lav-plans__price'>$199</span>
-              <span class='lav-plans__price-old'>$265</span>
+              <span class='lav-plans__price-old'>$300</span>
               <div class='lav-plans__caption'>a year</div>
             </div>
           </div>
         </div>
 
-        <div class='lav-plans__btn-wrap lav-plans__btn-monthly'>
+        <div class='lav-plans__btn-wrap lav-plans__btn-monthly' style='display: none'>
           <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>Start Building Credit</button>
         </div>
 
-        <div class='lav-plans__btn-wrap lav-plans__btn-yearly' style='display: none'>
-          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>SAVE 25% NOW</button>
+        <div class='lav-plans__btn-wrap lav-plans__btn-yearly'>
+          <button class='lav-btn lav-btn_trans lav-plans__btn lav-apply'>Start Building Credit</button>
         </div>
       </div>
     </section>
@@ -3154,7 +3184,6 @@ function initHeader() {
   for (let item of document.querySelectorAll('.lav-apply')) {
     item.addEventListener('click', function (e) {
       e.preventDefault();
-      document.querySelector('a[data-w-tab="Annually"]').click();
       if (item.classList.contains('lav-jumb__btn')) {
         gaEvent('Click on start building credit button');
       }
@@ -3184,7 +3213,8 @@ function initHeader() {
         item.classList.contains('lav-plans__btn') &&
         item.closest('.lav-plans__btn-yearly')
       ) {
-        gaEvent('Click on Save 25% now button');
+        document.querySelector('a[data-w-tab="Annually"]').click();
+        gaEvent('Click on Start Building Credit button');
       }
       if (item.classList.contains('lav-join__btn')) {
         gaEvent('Click on APPLY NOW button');
