@@ -2873,6 +2873,8 @@ function init() {
         .classList.remove('active');
       this.classList.add('active');
 
+      gaEvent('Click on toggle plan', plan);
+
       if (plan === 'monthly') {
         document.querySelector('.lav-plans__row-monthly').style.display =
           'flex';
