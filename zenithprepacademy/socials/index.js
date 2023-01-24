@@ -38,12 +38,41 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-divider {
+    position: relative;
+    text-align: center;
+    max-width: 722px;
+    margin: 16px auto;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    color: #fff;
+  }
+  .lav-divider:before, .lav-divider:after {
+    content: '';
+    position: absolute;
+    top: 49%;
+    height: 1px;
+    width: 46.5%;
+    background: rgba(255,255,255, 0.3);
+  }
+
+  .lav-divider:before {
+    left: 0;
+  }
+
+  .lav-divider:after {
+    right: 0;
+  }
+
+
   .lav-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
     max-width: 722px;
     width: 100%;
+    margin: 16px auto 70px;
   }
 
   .lav-btn {
@@ -62,6 +91,10 @@ const styles = `
     color: #2D2D2D;
   }
 
+  .lav-btn:hover {
+    background-color: #e7e7e7;
+  }
+
   .lav-btn img {
     margin-right: 16px;
   }
@@ -70,6 +103,17 @@ const styles = `
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 document.body.appendChild(stylesEl);
+
+const gapiScript = document.createElement('script');
+gapiScript.src = 'https://apis.google.com/js/platform.js?onload=initGoogle';
+document.body.appendChild(gapiScript);
+
+// https://apis.google.com/js/platform.js?onload=initGoogle
+
+// document.body.insertAdjacentHTML(
+//   'beforeend',
+//   '<script src="https://apis.google.com/js/api.js"></script>'
+// );
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
@@ -78,44 +122,29 @@ function init() {
   console.log('init');
 
   let el = `
-    <div class='lav-buttons'>
-      <button class='lav-btn'>
-        <img src='${settings}/img/google-icon.svg' />
-        JOIN with Google
-      </button>
-      <button class='lav-btn'>
-        <img src='${settings}/img/facebook-icon.svg' />
-        JOIN with facebook
-      </button>
-    </div>
-    // <button onclick='fbLogout'>Logout</button>
-    // <fb:login-button
-    //   scope="public_profile,email"
-    //   onlogin="checkLoginState();">
-    // </fb:login-button>
-  `;
+      <div class='lav-divider'>or</div>
+      <div class='lav-buttons'>
+        <button class='lav-btn lav-google'>
+          <img src='${settings.dir}/img/google-icon.svg' />
+          JOIN with Google
+        </button>
+        <button class='lav-btn lav-facebook'>
+          <img src='${settings.dir}/img/facebook-icon.svg' />
+          JOIN with facebook
+        </button>
+      </div>
+    `;
 
   document.querySelector('#button-33723').insertAdjacentHTML('afterend', el);
 
   initFB();
+  // initGoogle();
 }
 
 function initFB() {
-  let el = `
-  <button class='logout-test'>Logout</button>
-  <button class='logout-test2'>Login</button>
-  <fb:login-button 
-    scope="email"
-    onlogin="checkLoginState();">
-  </fb:login-button>
-`;
-
-  document.body.insertAdjacentHTML('afterbegin', el);
-
-  document.querySelector('.logout-test').addEventListener('click', fbLogout);
-  document.querySelector('.logout-test2').addEventListener('click', fbLogin);
-
   window.fbAsyncInit = function () {
+    console.log('initFb Script!');
+
     FB.init({
       appId: '3433080760304295',
       cookie: true,
@@ -123,34 +152,36 @@ function initFB() {
       version: 'v3.2',
     });
 
-    // Check whether the user already logged in
-    // FB.getLoginStatus(function (response) {
-    //   console.log(response);
-    //   if (response.status === 'connected') getFbUserData();
-    // });
-
-    console.log(333);
-    // fbLogin();
+    for (let fbBtn of document.querySelectorAll('.lav-facebook')) {
+      fbBtn.addEventListener('click', function () {
+        loginFB();
+      });
+    }
   };
 
-  function fbLogin() {
-    FB.login(
-      function (response) {
-        if (response.authResponse) {
-          getFbUserData();
-        } else {
-          console.log('User cancelled login or did not fully authorize.');
-        }
-      },
-      { scope: 'email' }
-      // public_profile
-    );
-  }
-
   // Logout from facebook
-  function fbLogout() {
-    FB.logout(function () {
-      console.log('<p>You have successfully logout from Facebook.</p>');
+  // function fbLogout() {
+  //   FB.logout(function () {
+  //     console.log('<p>You have successfully logout from Facebook.</p>');
+  //   });
+  // }
+
+  function loginFB() {
+    FB.getLoginStatus(function (response) {
+      if (response.status === 'connected') {
+        getFbUserData();
+      } else {
+        FB.login(
+          function (response) {
+            if (response.authResponse) {
+              getFbUserData();
+            } else {
+              console.log('User cancelled login or did not fully authorize.');
+            }
+          },
+          { scope: 'email' }
+        );
+      }
     });
   }
 
@@ -172,4 +203,27 @@ function initFB() {
     js.src = 'https://connect.facebook.net/en_US/sdk.js';
     fjs.parentNode.insertBefore(js, fjs);
   })(document, 'script', 'facebook-jssdk');
+}
+
+function initGoogle() {
+  gapi.load('auth2', async function () {
+    await gapi.auth2.init();
+    const auth2 = await gapi.auth2.getAuthInstance();
+    console.log(auth2);
+
+    if (await auth2.isSignedIn.get()) {
+      console.log(22222);
+      var profile = auth2.currentUser.get().getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+    console.log(33);
+    /* Ready. Make a call to gapi.auth2.init or some other API */
+  });
+
+  console.log(15);
 }
