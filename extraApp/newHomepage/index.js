@@ -2697,7 +2697,7 @@ function init() {
 
         <div class='lav-plans__toggler'>
           <div class='lav-plans__toggle' data-value='monthly'>Monthly</div>
-          <div class='lav-plans__toggle active' data-value='yearly'>Annually <span>up to $101 savings</span></div>
+          <div class='lav-plans__toggle active' data-value='annually'>Annually <span>up to $101 savings</span></div>
         </div>
 
         <div class='lav-plans__table'>
