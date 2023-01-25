@@ -3088,7 +3088,9 @@ function initHeader() {
       });
   }
 
-  $('.lav-compare-debit').slideUp();
+  setTimeout(() => {
+    $('.lav-compare-debit').slideUp();
+  }, 500);
 
   for (let selectItem of document.querySelectorAll('.lav-select__item')) {
     selectItem.addEventListener('click', function () {
