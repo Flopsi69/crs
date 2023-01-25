@@ -6364,7 +6364,7 @@ function initPdp() {
         document.body.classList.remove('lav-cookie');
         document.body.classList.add('lav-cookie-accepted');
         if (
-          document.querySelector('..lav-cookie-accepted .widget-visible iframe')
+          document.querySelector('.lav-cookie-accepted .widget-visible iframe')
         ) {
           document.querySelector(
             '.lav-cookie-accepted .widget-visible iframe'
