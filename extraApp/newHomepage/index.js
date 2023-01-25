@@ -3382,5 +3382,7 @@ const MarqueeJs = (queryselector, speed, loop) => {
 };
 
 for (let itemMarkquee of document.querySelectorAll('.lav-marquee')) {
-  MarqueeJs(itemMarkquee, 0.45, 0);
+  setTimeout(() => {
+    MarqueeJs(itemMarkquee, 0.45, 0);
+  }, 700);
 }

@@ -105,7 +105,7 @@ stylesEl.innerHTML = styles;
 document.body.appendChild(stylesEl);
 
 const gapiScript = document.createElement('script');
-gapiScript.src = 'https://apis.google.com/js/platform.js?onload=initGoogle';
+gapiScript.src = 'https://apis.google.com/js/api.js?onload=initGoogle';
 document.body.appendChild(gapiScript);
 
 // https://apis.google.com/js/platform.js?onload=initGoogle
@@ -206,24 +206,60 @@ function initFB() {
 }
 
 function initGoogle() {
-  gapi.load('auth2', async function () {
-    await gapi.auth2.init();
-    const auth2 = await gapi.auth2.getAuthInstance();
-    console.log(auth2);
+  // 574712994644-fetsc3j9e0qk9rg8fol6622j32j0merr.apps.googleusercontent.com
 
-    if (await auth2.isSignedIn.get()) {
-      console.log(22222);
-      var profile = auth2.currentUser.get().getBasicProfile();
-      console.log('ID: ' + profile.getId());
-      console.log('Full Name: ' + profile.getName());
-      console.log('Given Name: ' + profile.getGivenName());
-      console.log('Family Name: ' + profile.getFamilyName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-    }
-    console.log(33);
-    /* Ready. Make a call to gapi.auth2.init or some other API */
-  });
+  // 1. Load the JavaScript client library.
+  gapi.load('client', start);
+
+  // gapi.load('auth2', async function () {
+  //   await gapi.auth2.init();
+  //   const auth2 = await gapi.auth2.getAuthInstance();
+  //   console.log(auth2);
+
+  //   if (await auth2.isSignedIn.get()) {
+  //     console.log(22222);
+  //     var profile = auth2.currentUser.get().getBasicProfile();
+  //     console.log('ID: ' + profile.getId());
+  //     console.log('Full Name: ' + profile.getName());
+  //     console.log('Given Name: ' + profile.getGivenName());
+  //     console.log('Family Name: ' + profile.getFamilyName());
+  //     console.log('Image URL: ' + profile.getImageUrl());
+  //     console.log('Email: ' + profile.getEmail());
+  //   }
+  //   console.log(33);
+  //   /* Ready. Make a call to gapi.auth2.init or some other API */
+  // });
 
   console.log(15);
+}
+
+function start() {
+  console.log('start');
+
+  gapi.client
+    .init({
+      // apiKey: 'testzenith',
+      // Your API key will be automatically added to the Discovery Document URLs.
+      discoveryDocs: ['https://people.googleapis.com/$discovery/rest'],
+      // clientId and scope are optional if auth is not required.
+      clientId:
+        '574712994644-fetsc3j9e0qk9rg8fol6622j32j0merr.apps.googleusercontent.com',
+      scope: 'profile',
+    })
+    .then(function () {
+      // 3. Initialize and make the API request.
+      return gapi.client.people.people.get({
+        resourceName: 'people/me',
+        'requestMask.includeField': 'person.names',
+      });
+    })
+    .then(
+      function (response) {
+        console.log(response.result);
+      },
+      function (reason) {
+        console.log(reason);
+        // console.log('Error: ' + reason.result.error.message);
+      }
+    );
 }
