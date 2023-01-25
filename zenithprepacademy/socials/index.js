@@ -104,26 +104,43 @@ const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 document.body.appendChild(stylesEl);
 
-// const gapiScript = document.createElement('script');
-// gapiScript.src = 'https://apis.google.com/js/api.js?onload=initGoogle';
-
-// document.body.appendChild(gapiScript);
-
-document.head.insertAdjacentHTML(
-  'afterbegin',
-  '<meta name="google-signin-client_id" content="574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com"></meta>'
-);
+// document.head.insertAdjacentHTML(
+//   'afterbegin',
+//   '<meta name="google-signin-client_id" content="574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com"></meta>'
+// );
 
 document.body.insertAdjacentHTML(
   'afterbegin',
-  '<div class="g-signin2" data-onsuccess="onSignIn"></div>'
+  `
+    <div id="g_id_onload"
+      data-client_id="574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com"
+      data-context="use"
+      data-ux_mode="popup"
+      data-callback="initGoogle2"
+      data-itp_support="true"
+    ></div>
+
+  <div class="g_id_signin"
+      data-type="standard"
+      data-shape="pill"
+      data-theme="outline"
+      data-text="continue_with"
+      data-size="large"
+      data-locale="en"
+      data-logo_alignment="left"
+    ></div>
+  `
 );
 
 const gapiScript = document.createElement('script');
-gapiScript.src = 'https://apis.google.com/js/platform.js';
-gapiScript.setAttribute('defer', 'defer');
-gapiScript.setAttribute('async', 'async');
+gapiScript.src = 'https://apis.google.com/js/api.js?onload=initGoogle';
 document.body.appendChild(gapiScript);
+
+// const gapiScript = document.createElement('script');
+// gapiScript.src = 'https://apis.google.com/js/platform.js';
+// gapiScript.setAttribute('defer', 'defer');
+// gapiScript.setAttribute('async', 'async');
+// document.body.appendChild(gapiScript);
 // https://apis.google.com/js/platform.js?onload=initGoogle
 // document.body.insertAdjacentHTML(
 //   'beforeend',
@@ -132,15 +149,6 @@ document.body.appendChild(gapiScript);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-
 init();
 function init() {
   return false;
@@ -268,15 +276,16 @@ function start() {
       // discoveryDocs: ['https://people.googleapis.com/$discovery/rest'],
       // clientId and scope are optional if auth is not required.
       clientId:
-        '574712994644-fetsc3j9e0qk9rg8fol6622j32j0merr.apps.googleusercontent.com',
-      // scope: 'profile',
-      scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
-      discoveryDocs: [
-        'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
-      ],
+        '574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com',
+      scope: 'profile',
+      // scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
+      // discoveryDocs: [
+      //   'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+      // ],
     })
     .then(function () {
       // 3. Initialize and make the API request.
+      console.log(333333);
       return gapi.client.people.people.get({
         resourceName: 'people/me',
         'requestMask.includeField': 'person.names',
@@ -291,4 +300,8 @@ function start() {
         // console.log('Error: ' + reason.result.error.message);
       }
     );
+}
+
+function initGoogle2() {
+  consolelog(2222);
 }
