@@ -56,6 +56,9 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-section {
+    overflow: hidden;
+  }
   .light-therapy-section, .pin-spacer, [id^=trustbadge-container] {
     display: none!important;
   }
@@ -2746,12 +2749,12 @@ function init() {
   initDelivery(lang);
 
   if (window.innerWidth < 768) {
-    document
-      .querySelector('.lav-trial__descr')
-      .insertAdjacentElement(
-        'afterend',
-        document.querySelector('.lav-trial__image')
-      );
+    // document
+    //   .querySelector('.lav-trial__descr')
+    //   .insertAdjacentElement(
+    //     'afterend',
+    //     document.querySelector('.lav-trial__image')
+    //   );
 
     document
       .querySelector('.lav-jumb__container')
@@ -2760,6 +2763,34 @@ function init() {
         document.querySelector('.lav-jumb__title')
       );
   }
+
+  renderTrialImage();
+  setTimeout(renderTrialImage, 700);
+  function renderTrialImage() {
+    if (
+      window.innerWidth <= 768 &&
+      !document.querySelector('.lav-trial__info .lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__descr')
+        .insertAdjacentElement(
+          'afterend',
+          document.querySelector('.lav-trial__image')
+        );
+    } else if (
+      window.innerWidth > 768 &&
+      !document.querySelector('.lav-trial__row>.lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__row')
+        .insertAdjacentElement(
+          'afterbegin',
+          document.querySelector('.lav-trial__image')
+        );
+    }
+  }
+
+  window.onresize = renderTrialImage;
 
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {

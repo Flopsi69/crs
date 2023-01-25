@@ -6095,14 +6095,33 @@ function init() {
       this.remove();
     });
 
-  if (window.innerWidth < 992) {
-    document
-      .querySelector('.lav-trial__descr')
-      .insertAdjacentElement(
-        'afterend',
-        document.querySelector('.lav-trial__image')
-      );
+  renderTrialImage();
+  setTimeout(renderTrialImage, 700);
+  function renderTrialImage() {
+    if (
+      window.innerWidth <= 992 &&
+      !document.querySelector('.lav-trial__info .lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__descr')
+        .insertAdjacentElement(
+          'afterend',
+          document.querySelector('.lav-trial__image')
+        );
+    } else if (
+      window.innerWidth > 992 &&
+      !document.querySelector('.lav-trial__row>.lav-trial__image')
+    ) {
+      document
+        .querySelector('.lav-trial__row')
+        .insertAdjacentElement(
+          'afterbegin',
+          document.querySelector('.lav-trial__image')
+        );
+    }
   }
+
+  window.onresize = renderTrialImage;
 
   document
     .querySelector('.lav-jumb__learn')
