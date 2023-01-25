@@ -139,6 +139,7 @@ const styles = `
   @media(min-height: 1200px) {
     .lav-jumb {
       min-height: auto;
+      padding: 250px 0 400px;
     }
   }
   .lav-jumb__info {
