@@ -136,6 +136,11 @@ const styles = `
     background: #fff url('${settings.dir}/img/jumb-bg.jpeg') top right no-repeat;
     background-size: cover;
   }
+  @media(min-height: 1200px) {
+    .lav-jumb {
+      min-height: auto;
+    }
+  }
   .lav-jumb__info {
     max-width: 644px;
   }
