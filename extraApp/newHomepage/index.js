@@ -369,7 +369,7 @@ const styles = `
     	position:absolute;
       white-space:nowrap;
       top:50%;
-      left:0;
+      left:100%;
       // bottom:0;
       transform: translateY(-50%);
     // position: absolute;
@@ -3354,15 +3354,17 @@ function initFaq() {
 
 const MarqueeJs = (queryselector, speed, loop) => {
   const Selector = queryselector;
-  let SceenWidth = screen.width;
+  let SceenWidth = window.innerWidth;
   let SelectorWidth = Selector.offsetWidth;
   let Sw = SceenWidth,
     step = 1;
 
   Selector.style.left = SceenWidth + 'px';
 
+  console.log(SceenWidth);
+
   window.onresize = () => {
-    SceenWidth = screen.width;
+    SceenWidth = window.innerWidth;
     SelectorWidth = Selector.offsetWidth;
     (Sw = SceenWidth), (step = 1);
     Selector.style.left = SceenWidth + 'px';
@@ -3382,7 +3384,5 @@ const MarqueeJs = (queryselector, speed, loop) => {
 };
 
 for (let itemMarkquee of document.querySelectorAll('.lav-marquee')) {
-  setTimeout(() => {
-    MarqueeJs(itemMarkquee, 0.45, 0);
-  }, 700);
+  MarqueeJs(itemMarkquee, 0.45, 0);
 }
