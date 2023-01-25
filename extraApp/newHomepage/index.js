@@ -362,12 +362,22 @@ const styles = `
     line-height: 17px;
     text-align: center;
     color: #000000;
+    overflow: hidden;
   }
 
   .lav-marquee {
-    -moz-animation: marquee 25s linear infinite;
-    -webkit-animation: marquee 25s linear infinite;
-    animation: marquee 25s linear infinite;
+    	position:absolute;
+      white-space:nowrap;
+      top:50%;
+      left:0;
+      // bottom:0;
+      transform: translateY(-50%);
+    // position: absolute;
+    // transform: translateY(-50%);
+    // white-space: nowrap;
+    // -moz-animation: marquee 40s linear infinite;
+    // -webkit-animation: marquee 40s linear infinite;
+    // animation: marquee 10s linear infinite;
   }
 
   @-moz-keyframes marquee {
@@ -380,13 +390,11 @@ const styles = `
   }
   @keyframes marquee {
     0% { 
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%) }
+      left: 100%
+    }
     100% { 
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%); }
+      left: -50%
+    }
   }
   .lav-hat .lav-apply {
     cursor: pointer;
@@ -1347,10 +1355,11 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
-    .lav-marquee {
-      -moz-animation: marquee 12s linear infinite;
-      -webkit-animation: marquee 12s linear infinite;
-      animation: marquee 12s linear infinite;
+    .lav-marquee .lav-apply {
+      display: none;
+      // -moz-animation: marquee 12s linear infinite;
+      // -webkit-animation: marquee 12s linear infinite;
+      // animation: marquee 12s linear infinite;
     }
     .lav-feedbacks__title {
       font-size: 25px;
@@ -2032,8 +2041,7 @@ function init() {
   let newHomepageEl = `
     <section class='lav-hat'>
       <div class='lav-container'>
-        <div class='lav-mob lav-marquee'>Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ </div>
-        <div class='lav-desk lav-marquee'>
+        <div class='lav-marquee'>
           Extra cardholders increased their credit score by 48 points on average by regularly swiping with Extra and practicing good credit habits.³ <span class='lav-apply'>Apply now.</span>
         </div>
       </div>
@@ -2580,7 +2588,7 @@ function init() {
               <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
             <div class='lav-compare__col'>
-              <img src='${settings.dir}/img/noCheckIcon.svg' />
+              <img src='${settings.dir}/img/checkIconBlack.svg' />
             </div>
           </div>
 
@@ -3342,4 +3350,37 @@ function initFaq() {
 
   document.querySelector('#FAQ .section-heading').innerHTML =
     'Frequently asked&nbsp;questions';
+}
+
+const MarqueeJs = (queryselector, speed, loop) => {
+  const Selector = queryselector;
+  let SceenWidth = screen.width;
+  let SelectorWidth = Selector.offsetWidth;
+  let Sw = SceenWidth,
+    step = 1;
+
+  Selector.style.left = SceenWidth + 'px';
+
+  window.onresize = () => {
+    SceenWidth = screen.width;
+    SelectorWidth = Selector.offsetWidth;
+    (Sw = SceenWidth), (step = 1);
+    Selector.style.left = SceenWidth + 'px';
+  };
+
+  const sIntv = setInterval(() => {
+    Sw = Sw - speed;
+    Selector.style.left = `${Sw}px`;
+
+    if (Sw <= -SelectorWidth) {
+      Sw = SceenWidth;
+      Selector.style.left = SceenWidth + 'px';
+      loop == 0 ? null : step >= loop ? clearInterval(sIntv) : (step = 1);
+      step++;
+    }
+  }, 0);
+};
+
+for (let itemMarkquee of document.querySelectorAll('.lav-marquee')) {
+  MarqueeJs(itemMarkquee, 0.45, 0);
 }
