@@ -6363,18 +6363,26 @@ function initPdp() {
       ) {
         document.body.classList.remove('lav-cookie');
         document.body.classList.add('lav-cookie-accepted');
-        document.querySelector(
-          '.lav-cookie-accepted .widget-visible iframe'
-        ).style.bottom = '100px';
-        document.querySelector(
-          '.lav-cookie-accepted .widget-visible iframe'
-        ).style.right = '10px';
-        document.querySelector(
-          '.lav-cookie-accepted button.needsclick'
-        ).style.bottom = '80px';
-        document.querySelector(
-          '.lav-cookie-accepted button.needsclick'
-        ).style.marginLeft = '10px';
+        if (
+          document.querySelector('..lav-cookie-accepted .widget-visible iframe')
+        ) {
+          document.querySelector(
+            '.lav-cookie-accepted .widget-visible iframe'
+          ).style.bottom = '100px';
+          document.querySelector(
+            '.lav-cookie-accepted .widget-visible iframe'
+          ).style.right = '10px';
+        }
+        if (document.querySelector('.lav-cookie-accepted button.needsclick')) {
+          document.querySelector(
+            '.lav-cookie-accepted button.needsclick'
+          ).style.bottom = '80px';
+        }
+        if (document.querySelector('.lav-cookie-accepted button.needsclick')) {
+          document.querySelector(
+            '.lav-cookie-accepted button.needsclick'
+          ).style.marginLeft = '10px';
+        }
       }
     }
     if (window.innerWidth > 768 && window.pageYOffset < 50) {
