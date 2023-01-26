@@ -348,7 +348,7 @@ const styles = `
     width: 4px;
     height: 4px;
     background-color: #517193;
-    border-radius; 50%;
+    border-radius: 50%;
   }
   .lav-problem__item + .lav-problem__item {
     margin-top: 3px;
