@@ -74,7 +74,7 @@ const styles = `
     margin: 16px auto 70px;
   }
 
-  .lav-buttons_preloader {
+  .lav-disable {
     filter: grayscale(100%);
     pointer-events: none;
     opacity: .8;
@@ -293,13 +293,13 @@ function init() {
       <div class='lav-google__wrap lav-btn__wrap'>
         <div class='lav-google__btn'></div>
         <div class='lav-google__btn'></div>
-        <button class='lav-btn lav-google'>
+        <button class='lav-btn lav-google lav-disable'>
           <img src='${settings.dir}/img/google-icon.svg' />
           <span>JOIN with Google</span>
         </button>
       </div>
       <div class='lav-facebook__wrap lav-btn__wrap'>
-        <button class='lav-btn lav-facebook'>
+        <button class='lav-btn lav-facebook lav-disable'>
           <img src='${settings.dir}/img/facebook-icon.svg' />
           <span>JOIN with facebook</span>
         </button>
@@ -375,6 +375,7 @@ function initFacebook() {
     });
 
     for (let fbBtn of document.querySelectorAll('.lav-facebook')) {
+      fbBtn.classList.remove('lav-disable');
       fbBtn.addEventListener('click', function () {
         loginFB();
       });
@@ -447,6 +448,10 @@ function initGoogle() {
       callback: handleCredentialResponse,
     });
 
+    for (let btn of document.querySelector('.lav-google')) {
+      btn.classList.remove('lav-disable');
+    }
+
     for (let btn of document.querySelectorAll('.lav-google__btn')) {
       google.accounts.id.renderButton(btn, options);
     }
@@ -488,7 +493,7 @@ function parseJwt(token) {
 
 function sendForm(name, email) {
   for (let btnGroup of document.querySelectorAll('.lav-buttons')) {
-    btnGroup.classList.add('lav-buttons_preloader');
+    btnGroup.classList.add('lav-disable');
   }
   console.log('Name', name);
   console.log('Email', email);
