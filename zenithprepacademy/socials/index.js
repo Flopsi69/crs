@@ -65,7 +65,6 @@ const styles = `
     right: 0;
   }
 
-
   .lav-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -73,6 +72,16 @@ const styles = `
     max-width: 722px;
     width: 100%;
     margin: 16px auto 70px;
+  }
+
+  .lav-buttons_preloader {
+    filter: grayscale(100%);
+    pointer-events: none;
+    opacity: .8;
+  }
+
+  .lav-buttons_footer {
+    margin-bottom: 40px;
   }
 
   .lav-btn {
@@ -89,6 +98,31 @@ const styles = `
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #2D2D2D;
+    flex-grow: 1;
+    transition: 0.35s;
+  }
+
+  .lav-btn__wrap {
+    position: relative;
+    display: flex;
+  }
+
+  .lav-google__wrap:hover .lav-btn {
+    background-color: #e7e7e7;
+  }
+
+  .lav-google {
+    pointer-events: none;
+  }
+
+  .lav-google__btn {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+  }
+
+  .lav-google__btn + .lav-google__btn {
+    bottom: 0;
   }
 
   .lav-btn:hover {
@@ -97,6 +131,133 @@ const styles = `
 
   .lav-btn img {
     margin-right: 16px;
+  }
+
+  .lav-companies {
+    width: 550px;
+  }
+
+  .lav-head h2 {
+    font-weight: 700;
+  }
+
+  .lav-title {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .lav-title h1 {
+    line-height: 58px;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  .lav-watch {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    text-align: center;
+    color: #51AF97;
+    margin-top: -12px;
+  }
+
+  .lav-hide {
+    display: none;
+  }
+
+  .lav-caption b {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1;
+    text-align: center;
+    color: #fff!important;
+  }
+
+  .lav-jumb-form {
+    max-width: 400px;
+    width: 100%;
+    height: 70px;
+    font-size: inherit!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lav-jumb-form .elButtonMain {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+
+  .lav-footer-container {
+    padding-bottom: 70px!important;
+  }
+
+  .lav-jumb-form__wrap {
+    margin-top: 30px!important;
+  }
+
+  @media (max-width: 700px) {
+    .lav-watch {
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .lav-title {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .lav-title {
+      margin-top: 0!important;
+    }
+    .lav-title h1 {
+      font-size: 30px;
+      line-height: 38px;
+      margin-top: 16px;
+    }
+    .lav-caption b {
+      font-size: 20px;
+      line-height: 28px;
+      display: block;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lav-jumb-form {
+      padding-left: 15px!important;
+      padding-right: 15px!important;
+    }
+    .lav-jumb-form__wrap {
+      margin-top: 20px!important;
+    }
+    .lav-jumb-1 .lav-divider {
+      display: none;
+    }
+    .lav-buttons {
+      margin-top: 40px;
+      margin-bottom: 24px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .lav-parents .elHeadline {
+      font-size: 20px!important;
+      line-height: 28px;
+      margin-bottom: -20px;
+    }
+    .lav-jumb-1 {
+      padding-top: 0!important;
+    }
+    .lav-footer-container {
+      padding-bottom: 30px!important;
+      margin-bottom: -10px;
+    }
+    .lav-buttons_footer {
+      margin-top: 24px;
+    }
+    .lav-divider:before, .lav-divider:after {
+      width: 42%;
+    }
   }
 `;
 
@@ -108,33 +269,6 @@ document.body.appendChild(stylesEl);
 //   'afterbegin',
 //   '<meta name="google-signin-client_id" content="574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com"></meta>'
 // );
-
-document.body.insertAdjacentHTML(
-  'afterbegin',
-  `
-    <div id="g_id_onload"
-      data-client_id="574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com"
-      data-context="use"
-      data-ux_mode="popup"
-      data-callback="initGoogle2"
-      data-itp_support="true"
-    ></div>
-
-  <div class="g_id_signin"
-      data-type="standard"
-      data-shape="pill"
-      data-theme="outline"
-      data-text="continue_with"
-      data-size="large"
-      data-locale="en"
-      data-logo_alignment="left"
-    ></div>
-  `
-);
-
-const gapiScript = document.createElement('script');
-gapiScript.src = 'https://apis.google.com/js/api.js?onload=initGoogle';
-document.body.appendChild(gapiScript);
 
 // const gapiScript = document.createElement('script');
 // gapiScript.src = 'https://apis.google.com/js/platform.js';
@@ -151,30 +285,85 @@ document.body.appendChild(gapiScript);
 /********* Custom Code **********/
 init();
 function init() {
-  return false;
   console.log('init');
 
-  let el = `
-      <div class='lav-divider'>or</div>
-      <div class='lav-buttons'>
+  const el = `
+    <div class='lav-divider'>or</div>
+    <div class='lav-buttons'>
+      <div class='lav-google__wrap lav-btn__wrap'>
+        <div class='lav-google__btn'></div>
+        <div class='lav-google__btn'></div>
         <button class='lav-btn lav-google'>
           <img src='${settings.dir}/img/google-icon.svg' />
-          JOIN with Google
-        </button>
-        <button class='lav-btn lav-facebook'>
-          <img src='${settings.dir}/img/facebook-icon.svg' />
-          JOIN with facebook
+          <span>JOIN with Google</span>
         </button>
       </div>
-    `;
+      <div class='lav-facebook__wrap lav-btn__wrap'>
+        <button class='lav-btn lav-facebook'>
+          <img src='${settings.dir}/img/facebook-icon.svg' />
+          <span>JOIN with facebook</span>
+        </button>
+      </div>
+    </div>
+  `;
 
-  document.querySelector('#button-33723').insertAdjacentHTML('afterend', el);
+  const btns = document.querySelectorAll(
+    '.containerWrapper > .container.fullContainer [href="#open-popup"]'
+  );
+  const footerContainer = btns[btns.length - 1].closest('.container');
+  footerContainer.classList.add('lav-footer-container');
 
-  initFB();
-  // initGoogle();
+  btns[btns.length - 1].insertAdjacentHTML('afterend', el);
+  footerContainer
+    .querySelector('.lav-buttons')
+    .classList.add('lav-buttons_footer');
+
+  let jumbIdx = 0;
+  for (let jumbEl of Array.from(
+    document.querySelectorAll('.containerWrapper > .container.fullContainer')
+  ).splice(0, 2)) {
+    jumbEl
+      .querySelector('[href="#open-popup"]')
+      .insertAdjacentHTML('afterend', el);
+
+    initJumb(jumbEl, jumbIdx);
+    jumbIdx++;
+  }
+
+  initFacebook();
+  initGoogle();
 }
 
-function initFB() {
+function initJumb(parentEl, idx) {
+  parentEl.classList.add('lav-jumb-' + idx);
+  const jumbTexts = parentEl.querySelectorAll('.elHeadlineWrapper');
+
+  parentEl.querySelector('.elIMG').classList.add('lav-companies');
+  if (idx) {
+    parentEl.querySelector('.lav-companies').removeAttribute('data-src');
+    parentEl.querySelector('.lav-companies').src = document.querySelector(
+      '.lav-jumb-0 .lav-companies'
+    ).src;
+  }
+
+  jumbTexts[0].classList.add('lav-head');
+  jumbTexts[1].closest('.row').classList.add('lav-hide');
+  jumbTexts[2].classList.add('lav-title');
+  jumbTexts[2].querySelector('h1').innerText =
+    'To discover the 3 factors that prevent 6th - 12th grades from getting into the colleges they deserve';
+  jumbTexts[2].insertAdjacentHTML(
+    'afterbegin',
+    '<div class="lav-watch">Watch a FREE webinar now </div>'
+  );
+  jumbTexts[3].classList.add('lav-caption');
+  jumbTexts[4].classList.add('lav-parents');
+
+  parentEl.querySelector('.elBTN').classList.add('lav-jumb-form__wrap');
+
+  parentEl.querySelector('[href="#open-popup"]').classList.add('lav-jumb-form');
+}
+
+function initFacebook() {
   window.fbAsyncInit = function () {
     console.log('initFb Script!');
 
@@ -220,6 +409,8 @@ function initFB() {
 
   function getFbUserData() {
     FB.api('/me', { fields: 'email,name' }, function (response) {
+      sendForm(response.name, response.email);
+
       console.log(response);
       console.log('Good to see you, ' + response.name + '.');
     });
@@ -239,69 +430,71 @@ function initFB() {
 }
 
 function initGoogle() {
-  // 574712994644-fetsc3j9e0qk9rg8fol6622j32j0merr.apps.googleusercontent.com
+  const gapiScript = document.createElement('script');
+  gapiScript.src = 'https://accounts.google.com/gsi/client';
+  document.body.appendChild(gapiScript);
+  const options = {
+    shape: 'pill',
+    size: 'large',
+    theme: 'outline',
+    width: 350,
+  };
 
-  // 1. Load the JavaScript client library.
-  gapi.load('client', start);
-
-  // gapi.load('auth2', async function () {
-  //   await gapi.auth2.init();
-  //   const auth2 = await gapi.auth2.getAuthInstance();
-  //   console.log(auth2);
-
-  //   if (await auth2.isSignedIn.get()) {
-  //     console.log(22222);
-  //     var profile = auth2.currentUser.get().getBasicProfile();
-  //     console.log('ID: ' + profile.getId());
-  //     console.log('Full Name: ' + profile.getName());
-  //     console.log('Given Name: ' + profile.getGivenName());
-  //     console.log('Family Name: ' + profile.getFamilyName());
-  //     console.log('Image URL: ' + profile.getImageUrl());
-  //     console.log('Email: ' + profile.getEmail());
-  //   }
-  //   console.log(33);
-  //   /* Ready. Make a call to gapi.auth2.init or some other API */
-  // });
-
-  console.log(15);
-}
-
-function start() {
-  console.log('start');
-
-  gapi.client
-    .init({
-      // apiKey: 'testzenith',
-      // Your API key will be automatically added to the Discovery Document URLs.
-      // discoveryDocs: ['https://people.googleapis.com/$discovery/rest'],
-      // clientId and scope are optional if auth is not required.
-      clientId:
+  window.onGoogleLibraryLoad = () => {
+    google.accounts.id.initialize({
+      client_id:
         '574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com',
-      scope: 'profile',
-      // scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
-      // discoveryDocs: [
-      //   'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
-      // ],
-    })
-    .then(function () {
-      // 3. Initialize and make the API request.
-      console.log(333333);
-      return gapi.client.people.people.get({
-        resourceName: 'people/me',
-        'requestMask.includeField': 'person.names',
-      });
-    })
-    .then(
-      function (response) {
-        console.log(response.result);
-      },
-      function (reason) {
-        console.log(reason);
-        // console.log('Error: ' + reason.result.error.message);
-      }
-    );
+      callback: handleCredentialResponse,
+    });
+
+    for (let btn of document.querySelectorAll('.lav-google__btn')) {
+      google.accounts.id.renderButton(btn, options);
+    }
+
+    // google.accounts.id.prompt();
+  };
+
+  // return false;
 }
 
-function initGoogle2() {
-  consolelog(2222);
+function handleCredentialResponse(response) {
+  console.log(response);
+  const responsePayload = parseJwt(response.credential);
+  sendForm(responsePayload.name, responsePayload.email);
+
+  // console.log('ID: ' + responsePayload.sub);
+  // console.log('Full Name: ' + responsePayload.name);
+  // console.log('Given Name: ' + responsePayload.given_name);
+  // console.log('Family Name: ' + responsePayload.family_name);
+  // console.log('Image URL: ' + responsePayload.picture);
+  // console.log('Email: ' + responsePayload.email);
+}
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join('')
+  );
+
+  return JSON.parse(jsonPayload);
+}
+
+function sendForm(name, email) {
+  for (let btnGroup of document.querySelectorAll('.lav-buttons')) {
+    btnGroup.classList.add('lav-buttons_preloader');
+  }
+  console.log('Name', name);
+  console.log('Email', email);
+
+  document.querySelector('.containerModal input[name="name"]').value = name;
+  document.querySelector('.containerModal input[name="email"]').value = email;
+
+  document.querySelector('.containerModal [href="#submit-form"]').click();
 }
