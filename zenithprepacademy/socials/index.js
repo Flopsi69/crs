@@ -448,7 +448,7 @@ function initGoogle() {
       callback: handleCredentialResponse,
     });
 
-    for (let btn of document.querySelector('.lav-google')) {
+    for (let btn of document.querySelectorAll('.lav-google')) {
       btn.classList.remove('lav-disable');
     }
 
