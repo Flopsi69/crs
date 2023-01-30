@@ -1,4 +1,7 @@
 console.log('initExp');
+if (location.href.includes('/buy?product=4')) {
+  location.href = '/luminette';
+}
 
 /********* Settings **********/
 const settings = {
@@ -1448,9 +1451,17 @@ const stylePDP = `
   .tooltip-include {
     max-width: 100%;
   }
-  .tooltip:hover .tooltip-dropdown, .lav-tooltip-wrap:hover .tooltip-dropdown {
-    opacity: 1;
-    pointer-events: auto;
+  @media(min-width: 1200px) {
+    .tooltip:hover .tooltip-dropdown, .lav-tooltip-wrap:hover .tooltip-dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  @media(max-width: 1199px) {
+    .tooltip.active .tooltip-dropdown, .lav-tooltip-wrap.active .tooltip-dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
   .tooltip-dropdown {
     color: #517193;
@@ -2433,7 +2444,7 @@ const stylePDP = `
     color: #517193;
   }
   .lav-sticky-mob {
-    display: none;
+    display: none!important;
   }
   .lav-modal {
     position: fixed;
@@ -3103,14 +3114,14 @@ const stylePDP = `
       font-size: 26px;
     }
     .lav-sticky-mob {
-      display: block;
-      position: fixed;
-      z-index: 999;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,.8);
-      padding: 16px 24px;
+      // display: block;
+      // position: fixed;
+      // z-index: 999;
+      // bottom: 0;
+      // left: 0;
+      // right: 0;
+      // background: rgba(255,255,255,.8);
+      // padding: 16px 24px;
     }
     .lav-sticky__btn {
       width: 100%;
@@ -3753,7 +3764,7 @@ function initPdp() {
               <div class='lav-jumb__feedbacks-caption'>(<u>Over 900+ positive reviews</u>)</div>
             </div>
             <div class='lav-jumb__effects'>
-              <div class='lav-jumb__effects-title lav-tooltip-wrap'>
+              <div class='lav-jumb__effects-title'>
                 <span>Feel beneficial effects in 4 to 6 days</span>
                 <div class="tooltip d-flex ml-1">
                   <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -3798,7 +3809,7 @@ function initPdp() {
             <div class='lav-count lav-observe'>
               <div class='lav-count__head'>
                 <div class='lav-count__head-title'>Quantity</div>
-                <div class='lav-count__head-inside lav-tooltip-wrap'>
+                <div class='lav-count__head-inside'>
                   What’s in the box?
                   <div class="tooltip d-flex ml-1">
                     <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -3880,7 +3891,7 @@ function initPdp() {
                 </div>
               </li>
               <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__second">
-                <div class="d-flex align-items-center days-test_head lav-tooltip-wrap">
+                <div class="d-flex align-items-center days-test_head">
                   <p class="fs-22 fw-bold mr-2">Free shipping</p>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -3907,7 +3918,7 @@ function initPdp() {
                 </div>
               </li>
               <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__third">
-                <div class="d-flex align-items-md-center align-items-end days-test_head lav-tooltip-wrap">
+                <div class="d-flex align-items-md-center align-items-end days-test_head">
                   <div class="fs-22 fw-bold mr-2">100% money<div class="d-md-inline d-block">back guarantee</div> </div>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -4192,7 +4203,7 @@ function initPdp() {
                 <span class="btn-bg-wrapper"></span>
               </button>
 
-              <div class='lav-trial__inside lav-tooltip-wrap'>
+              <div class='lav-trial__inside'>
                 What’s in the box?
                 <div class="tooltip d-flex ml-1">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -4931,9 +4942,9 @@ function initPdp() {
 
         <div class='lav-reviews__total'>
           <div class='lav-reviews__total-col'>
-            <div class='lav-reviews__total-image'>
+            <a href='#' class='lav-reviews__total-image'>
               <img src='${settings.dir}/img/reviews-trusted.svg' />
-            </div>
+            </a>
             <div class='lav-reviews__total-info'>
               <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
@@ -4943,9 +4954,9 @@ function initPdp() {
             </div>
           </div>
           <div class='lav-reviews__total-col'>
-            <div class='lav-reviews__total-image'>
+            <a href='#' class='lav-reviews__total-image'>
               <img src='${settings.dir}/img/reviews-amazon.svg' />
-            </div>
+            </a>
             <div class='lav-reviews__total-info'>
               <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
@@ -5069,7 +5080,7 @@ function initPdp() {
             <div class='lav-jumb__feedbacks-caption'>(<u>Plus de 900+ avis positifs</u>)</div>
           </div>
           <div class='lav-jumb__effects'>
-            <div class='lav-jumb__effects-title lav-tooltip-wrap'>
+            <div class='lav-jumb__effects-title'>
               <span>Ressentez les effets bénéfiques en 4 à 7 jours</span>
               <div class="tooltip d-flex ml-1">
                 <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -5113,7 +5124,7 @@ function initPdp() {
           <div class='lav-count lav-observe'>
             <div class='lav-count__head'>
               <div class='lav-count__head-title'>Quantité</div>
-              <div class='lav-count__head-inside lav-tooltip-wrap'>
+              <div class='lav-count__head-inside'>
                 Que contient la boîte?
                 <div class="tooltip d-flex ml-1">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -5195,7 +5206,7 @@ function initPdp() {
                 </div>
               </li>
               <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__second">
-                <div class="d-flex align-items-center days-test_head lav-tooltip-wrap">
+                <div class="d-flex align-items-center days-test_head">
                   <p class="fs-18 pt-1 fw-bold mr-2">Livraison gratuite</p>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -5222,7 +5233,7 @@ function initPdp() {
                 </div>
               </li>
               <li class="col-xl-4 d-xl-block d-flex flex-row-reverse justify-content-center lav-test__third">
-                <div class="d-flex align-items-md-center align-items-end days-test_head lav-tooltip-wrap">
+                <div class="d-flex align-items-md-center align-items-end days-test_head">
                   <div class="fs-16 pt-1 fw-bold mr-2">Garantie de remboursement à 100%</div>
                   <div class="tooltip d-flex">
                     <img src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -5500,7 +5511,7 @@ function initPdp() {
                 <span class="btn-bg-wrapper"></span>
               </button>
     
-              <div class='lav-trial__inside lav-tooltip-wrap'>
+              <div class='lav-trial__inside'>
                 Que contient la boîte?
                 <div class="tooltip d-flex ml-1">
                   <img class='lav-info-invert' src="https://conversionratestore.github.io/projects/luminette/img/info.svg" alt="info"/>
@@ -6200,9 +6211,9 @@ function initPdp() {
     
         <div class='lav-reviews__total'>
           <div class='lav-reviews__total-col'>
-            <div class='lav-reviews__total-image'>
+            <a href='#' class='lav-reviews__total-image'>
               <img src='${settings.dir}/img/reviews-trusted.svg' />
-            </div>
+            </a>
             <div class='lav-reviews__total-info'>
               <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
@@ -6212,9 +6223,9 @@ function initPdp() {
             </div>
           </div>
           <div class='lav-reviews__total-col'>
-            <div class='lav-reviews__total-image'>
+            <a href='#' class='lav-reviews__total-image'>
               <img src='${settings.dir}/img/reviews-amazon.svg' />
-            </div>
+            </a>
             <div class='lav-reviews__total-info'>
               <div class='lav-reviews__total-score'>4.4</div>
               <div class='lav-reviews__total-stars'>
@@ -6496,6 +6507,29 @@ function initPdp() {
   initReviews();
   initDeliveryAndPrice();
 
+  if (
+    document
+      .querySelector(
+        '.lav-reviews__total-col:first-child .lav-reviews__total-image'
+      )
+      .getAttribute('href') == '#'
+  ) {
+    document
+      .querySelector(
+        '.lav-reviews__total-col:first-child .lav-reviews__total-image'
+      )
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    document
+      .querySelector(
+        '.lav-reviews__total-col:last-child .lav-reviews__total-image'
+      )
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+  }
+
   function initDeliveryAndPrice() {
     console.log('initDelivery');
     if (
@@ -6518,6 +6552,15 @@ function initPdp() {
           'Try it $249';
         document.querySelector('.lav-sticky__btn .btn-text').innerHTML =
           'Buy $249';
+      } else {
+        document.querySelector(
+          '.lav-reviews__total-col:first-child .lav-reviews__total-image'
+        ).href =
+          'https://www.trustedshops.eu/buyerrating/info_X8DEF39E8C2F5D2AF445D6C0C1C734A1E.html';
+        document.querySelector(
+          '.lav-reviews__total-col:last-child .lav-reviews__total-image'
+        ).href =
+          'https://www.amazon.com/New-Model-Luminette-Therapy-Glasses/dp/B07VMRRB9Y/?_encoding=UTF8&pd_rd_w=Ren8u&content-id=amzn1.sym.b4f172f0-a2ab-4ffa-ac9d-22e96231ca8e&pf_rd_p=b4f172f0-a2ab-4ffa-ac9d-22e96231ca8e&pf_rd_r=22W8ZBHD84CXN9HM2SWK&pd_rd_wg=fh6wd&pd_rd_r=700a2f85-482f-42bb-b488-232d8ad3dce3&ref_=pd_gw_ci_mcx_mr_hp_atf_m#customerReviews';
       }
       return false;
     }
@@ -6567,6 +6610,15 @@ function initPdp() {
       location.href.includes('com/fr') &&
       !location.href.includes('com/fr-')
     ) {
+      document.querySelector(
+        '.lav-reviews__total-col:first-child .lav-reviews__total-image'
+      ).href =
+        'https://www.trustedshops.be/fr/evaluation/info_X5CFE61C0E26F14D751206ABEDADF025D.html';
+      document.querySelector(
+        '.lav-reviews__total-col:last-child .lav-reviews__total-image'
+      ).href =
+        'https://www.amazon.fr/Nouveau-mod%C3%A8le-Luminette-luminoth%C3%A9rapie-Augmentez/dp/B07VMRRB9Y/ref=sr_1_5?crid=2J2JZSNQ8WEQJ&keywords=luminette&qid=1674741692&sprefix=luminett%2Caps%2C114&sr=8-5';
+
       let htmlDelivery = `
         <div class="tooltip_free text-center mb-2">
           <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
@@ -6614,6 +6666,15 @@ function initPdp() {
     }
 
     if (location.href.includes('com/fr-be')) {
+      document.querySelector(
+        '.lav-reviews__total-col:first-child .lav-reviews__total-image'
+      ).href =
+        'https://www.trustedshops.be/fr/evaluation/info_X5CFE61C0E26F14D751206ABEDADF025D.html';
+      document.querySelector(
+        '.lav-reviews__total-col:last-child .lav-reviews__total-image'
+      ).href =
+        'https://www.amazon.fr/Nouveau-mod%C3%A8le-Luminette-luminoth%C3%A9rapie-Augmentez/dp/B07VMRRB9Y/ref=sr_1_5?crid=2J2JZSNQ8WEQJ&keywords=luminette&qid=1674741692&sprefix=luminett%2Caps%2C114&sr=8-5';
+
       let htmlDelivery = `
         <div class="tooltip_free text-center mb-2">
           <div class="d-flex align-items-center justify-content-center mb-2 pb-1">
@@ -7439,11 +7500,26 @@ function initObserver() {
     eventType = 'click';
   }
 
+  document.addEventListener('click', function (e) {
+    for (let item of document.querySelectorAll(
+      '.tooltip.active, .lav-tooltip-wrap.active'
+    )) {
+      if (
+        window.innerWidth < 1199 &&
+        e.target.closest('.tooltip') !== item &&
+        e.target.closest('.lav-tooltip-wrap') !== item
+      ) {
+        item.classList.remove('active');
+      }
+    }
+  });
+
   let typeName = eventType == 'mouseenter' ? 'Hover' : 'Click';
 
   document
-    .querySelector('.lav-jumb__effects-title')
+    .querySelector('.lav-jumb__effects-title .tooltip')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_20',
         'Feel beneficial effects in 4 to 6 days',
@@ -7453,8 +7529,9 @@ function initObserver() {
     });
 
   document
-    .querySelector('.lav-count__head-inside')
+    .querySelector('.lav-count__head-inside .tooltip')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_22',
         'What`s in the box',
@@ -7464,8 +7541,9 @@ function initObserver() {
     });
 
   document
-    .querySelector('.lav-test__second .days-test_head')
+    .querySelector('.lav-test__second .days-test_head .tooltip')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_28',
         'Free shipping',
@@ -7475,8 +7553,9 @@ function initObserver() {
     });
 
   document
-    .querySelector('.lav-test__third .days-test_head')
+    .querySelector('.lav-test__third .days-test_head .tooltip')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_29',
         '100% money back guarantee',
@@ -7510,6 +7589,7 @@ function initObserver() {
   document
     .querySelector('.lav-trial__btn-refresh')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_34',
         '30-day trial',
@@ -7521,6 +7601,7 @@ function initObserver() {
   document
     .querySelector('.lav-trial__btn-box')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_35',
         'Free shipping',
@@ -7530,8 +7611,9 @@ function initObserver() {
     });
 
   document
-    .querySelector('.lav-trial__inside')
+    .querySelector('.lav-trial__inside .tooltip')
     .addEventListener(eventType, function () {
+      this.classList.toggle('active');
       gaEvent(
         'exp_new_pdp_checkout_38',
         "What's in the box",
