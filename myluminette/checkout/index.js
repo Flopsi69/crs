@@ -6354,12 +6354,15 @@ function initPdp() {
         // !document.body.classList.contains('lav-cookie')
       ) {
         document.body.classList.add('lav-cookie');
-        document.querySelector(
-          '.lav-cookie .widget-visible iframe'
-        ).style.bottom = '170px';
-        document.querySelector(
-          '.lav-cookie .widget-visible iframe'
-        ).style.right = '10px';
+        if (document.querySelector('.lav-cookie .widget-visible iframe')) {
+          document.querySelector(
+            '.lav-cookie .widget-visible iframe'
+          ).style.bottom = '170px';
+          document.querySelector(
+            '.lav-cookie .widget-visible iframe'
+          ).style.right = '10px';
+        }
+
         if (document.querySelector('.lav-cookie button.needsclick')) {
           document.querySelector('.lav-cookie button.needsclick').style.bottom =
             '150px';
