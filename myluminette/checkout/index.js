@@ -6360,11 +6360,13 @@ function initPdp() {
         document.querySelector(
           '.lav-cookie .widget-visible iframe'
         ).style.right = '10px';
-        document.querySelector('.lav-cookie button.needsclick').style.bottom =
-          '150px';
-        document.querySelector(
-          '.lav-cookie button.needsclick'
-        ).style.marginLeft = '10px';
+        if (document.querySelector('.lav-cookie button.needsclick')) {
+          document.querySelector('.lav-cookie button.needsclick').style.bottom =
+            '150px';
+          document.querySelector(
+            '.lav-cookie button.needsclick'
+          ).style.marginLeft = '10px';
+        }
       }
 
       if (
@@ -6388,8 +6390,6 @@ function initPdp() {
           document.querySelector(
             '.lav-cookie-accepted button.needsclick'
           ).style.bottom = '80px';
-        }
-        if (document.querySelector('.lav-cookie-accepted button.needsclick')) {
           document.querySelector(
             '.lav-cookie-accepted button.needsclick'
           ).style.marginLeft = '10px';
