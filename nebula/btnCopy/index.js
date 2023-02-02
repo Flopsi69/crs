@@ -83,7 +83,7 @@ function init() {
     if (e.target.classList.contains('jumb__btn')) {
       gaEvent('Click button "Shop DNA Tests"');
     }
-    if (e.target.cloest.contains('plan__btn')) {
+    if (e.target.closest('.plan__btn')) {
       gaEvent(
         'Add to cart',
         btn.closest('.plan').querySelector('.plan__title').innerText
