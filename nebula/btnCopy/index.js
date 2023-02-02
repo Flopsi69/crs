@@ -86,7 +86,7 @@ function init() {
     if (e.target.closest('.plan__btn')) {
       gaEvent(
         'Add to cart',
-        btn.closest('.plan').querySelector('.plan__title').innerText
+        e.target.closest('.plan').querySelector('.plan__title').innerText
       );
     }
   });
