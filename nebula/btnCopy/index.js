@@ -65,12 +65,19 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
+const jumbInterval = setInterval(() => {
+  if (document.querySelector('.jumb__btn')) {
+    clearInterval(jumbInterval);
+    init();
+  }
+}, 120);
+
 function init() {
   console.log('init');
   document.querySelector('.jumb__btn').innerText = 'Shop DNA Tests';
 
   document.querySelector('.jumb__btn').addEventListener('click', function () {
+    console.log('clickkkk');
     gaEvent('Click button');
   });
 }
