@@ -24,8 +24,8 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — HP button text',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: HomePage button text',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -76,6 +76,7 @@ const jumbInterval = setInterval(() => {
 }, 120);
 
 function init() {
+  gaEvent('loaded');
   console.log('init');
   document.querySelector('.jumb__btn').innerText = 'Shop DNA Tests';
 
