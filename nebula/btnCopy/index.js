@@ -80,7 +80,7 @@ function init() {
   document.querySelector('.jumb__btn').innerText = 'Shop DNA Tests';
 
   document.querySelector('.jumb__btn').addEventListener('click', function () {
-    gaEvent('Click button');
+    gaEvent('Click button "Shop DNA Tests"');
   });
 
   for (let btn of document.querySelectorAll('.plan__btn')) {
