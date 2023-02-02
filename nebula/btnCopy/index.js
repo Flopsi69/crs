@@ -66,7 +66,10 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 const jumbInterval = setInterval(() => {
-  if (document.querySelector('.jumb__btn')) {
+  if (
+    document.querySelector('.jumb__btn') &&
+    document.querySelector('.plan__btn')
+  ) {
     clearInterval(jumbInterval);
     init();
   }
@@ -77,7 +80,15 @@ function init() {
   document.querySelector('.jumb__btn').innerText = 'Shop DNA Tests';
 
   document.querySelector('.jumb__btn').addEventListener('click', function () {
-    console.log('clickkkk');
     gaEvent('Click button');
   });
+
+  for (let btn of document.querySelectorAll('.plan__btn')) {
+    btn.addEventListener('click', function () {
+      gaEvent(
+        'Add to cart',
+        btn.closest('.plan').querySelector('.plan__title').innerText
+      );
+    });
+  }
 }
