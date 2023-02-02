@@ -79,16 +79,15 @@ function init() {
   console.log('init');
   document.querySelector('.jumb__btn').innerText = 'Shop DNA Tests';
 
-  document.querySelector('.jumb__btn').addEventListener('click', function () {
-    gaEvent('Click button "Shop DNA Tests"');
-  });
-
-  for (let btn of document.querySelectorAll('.plan__btn')) {
-    btn.addEventListener('click', function () {
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('jumb__btn')) {
+      gaEvent('Click button "Shop DNA Tests"');
+    }
+    if (e.target.cloest.contains('plan__btn')) {
       gaEvent(
         'Add to cart',
         btn.closest('.plan').querySelector('.plan__title').innerText
       );
-    });
-  }
+    }
+  });
 }
