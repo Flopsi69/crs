@@ -366,13 +366,15 @@ function initJumb(parentEl, idx) {
 function initFacebook() {
   window.fbAsyncInit = function () {
     console.log('initFb Script!');
-
+    // 3433080760304295 my
     FB.init({
-      appId: '3433080760304295',
+      appId: '737253604364130',
       cookie: true,
       xfbml: true,
       version: 'v3.2',
     });
+
+    FB.AppEvents.logPageView();
 
     for (let fbBtn of document.querySelectorAll('.lav-facebook')) {
       fbBtn.classList.remove('lav-disable');
@@ -440,11 +442,12 @@ function initGoogle() {
     theme: 'outline',
     width: 350,
   };
-
+  // 33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com
+  // 574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com   my
   window.onGoogleLibraryLoad = () => {
     google.accounts.id.initialize({
       client_id:
-        '574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com',
+        '33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com',
       callback: handleCredentialResponse,
     });
 
