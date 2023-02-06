@@ -62,7 +62,7 @@ const styles = `
     color: #2D2D2D;
   }
   .lav-m-caption {
-    font-family:'Open Sans'
+    font-family:'Open Sans';
     margin-top: 16px;
     font-size: 14px;
     line-height: 22px;
@@ -76,13 +76,14 @@ const styles = `
     padding: 0!important;
   }
   .lav-modal input {
-    font-family:'Open Sans'
+    font-family:'Open Sans';
     border: 1px solid #D9D9D9!important;
     border-radius: 8px!important;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     color: #999999;
+    padding-left: 38px!important;
   }
   .lav-modal .elBTN {
     margin-top: 19px!important;
@@ -108,7 +109,7 @@ const styles = `
     width: 100%;
   }
   .lav-m-note {
-    font-family:'Open Sans'
+    font-family:'Open Sans';
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -126,12 +127,20 @@ const styles = `
   .lav-modal__wrap .containerInner > div {
     width: 100%!important;
     padding: 20px!important;
+    padding-bottom: 30px!important;
     background: #FFFFFF!important;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25)!important;
     border-radius: 0!important;
   }
   .lav-modal .elInputWrapper {
+    position: relative;
     margin-top: 19px!important;
+  }
+
+  .lav-modal .elInputWrapper svg {
+    position: absolute;
+    top: 17px;
+    left: 16px;
   }
 
   .closeLPModal {
