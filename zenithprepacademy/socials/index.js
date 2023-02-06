@@ -523,7 +523,7 @@ function sendForm(name, email) {
 function openSocialOverlay() {
   document.body.classList.add('soc-overlay');
 }
-soc - overlay;
+
 function closeSocialOverlay() {
   document.body.classList.remove('soc-overlay');
 }
