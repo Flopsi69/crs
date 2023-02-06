@@ -65,6 +65,9 @@ const styles = `
     line-height: 22px;
     color: #5B5B5B;
   }
+  .lav-modal {
+    padding: 0!important;
+  }
   .lav-modal__wrap {
     max-width: 350px!important;
     margin-left: 0!important;
@@ -72,7 +75,16 @@ const styles = `
   }
 
   .lav-modal__wrap .containerInner > div {
-    width: 100%;
+    width: 100%!important;
+    padding: 20px!important;
+    background: #FFFFFF!important;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25)!important;
+    border-radius: 0!important;
+  }
+
+  .closeLPModal {
+    top: 20px;
+    right: 20px;
   }
 
   .lav-divider {
@@ -378,6 +390,13 @@ function initModalChange() {
   modalParentEl.closest('.containerModal').classList.add('lav-modal__wrap');
   modalParentEl.children[0].children[0].remove();
   modalParentEl.children[0].children[0].remove();
+
+  document.querySelector(
+    '.closeLPModal img'
+  ).src = `${settings.dir}/img/close-icon.svg`;
+  document.querySelector(
+    '.closeLPModal img'
+  ).dataset.src = `${settings.dir}/img/close-icon.svg`;
 
   const newBlock = `
     <div class='lav-m-title'>Free Webinar<br/>registration</div>
