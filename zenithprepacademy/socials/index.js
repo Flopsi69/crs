@@ -38,6 +38,10 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  #modalPopup {
+    background: none!important;
+    padding: 0!important;
+  }
   body.soc-overlay:before {
     content: '';
     position: fixed;
@@ -47,6 +51,28 @@ const styles = `
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 999;
+  }
+
+  .lav-m-title {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 31px;
+    color: #2D2D2D;
+  }
+  .lav-m-caption {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #5B5B5B;
+  }
+  .lav-modal__wrap {
+    max-width: 350px!important;
+    margin-left: 0!important;
+    transform: translateX(-50%)!important;
+  }
+
+  .lav-modal__wrap .containerInner > div {
+    width: 100%;
   }
 
   .lav-divider {
@@ -149,7 +175,6 @@ const styles = `
   }
 
   .lav-head h2 {
-    font-weight: 700;
   }
 
   .lav-title {
@@ -341,8 +366,25 @@ function init() {
     jumbIdx++;
   }
 
+  initModalChange();
   initFacebook();
   initGoogle();
+}
+
+function initModalChange() {
+  const modalParentEl = document.querySelector('#modalPopup .innerContent');
+
+  modalParentEl.classList.add('lav-modal');
+  modalParentEl.closest('.containerModal').classList.add('lav-modal__wrap');
+  modalParentEl.children[0].children[0].remove();
+  modalParentEl.children[0].children[0].remove();
+
+  const newBlock = `
+    <div class='lav-m-title'>Free Webinar<br/>registration</div>
+    <div class='lav-m-caption'><strong>In only 1 hour time, discover the 3 factors</strong> that prevent 6th - 12th graders from getting into the colleges.</div>
+  `;
+
+  modalParentEl.insertAdjacentHTML('afterbegin', newBlock);
 }
 
 function initJumb(parentEl, idx) {
@@ -466,6 +508,10 @@ function initGoogle() {
 
     for (let btn of document.querySelectorAll('.lav-google')) {
       btn.classList.remove('lav-disable');
+    }
+
+    for (let btn of document.querySelectorAll('.lav-google__wrap')) {
+      btn.addEventListener('click', openSocialOverlay);
     }
 
     for (let btn of document.querySelectorAll('.lav-google__btn')) {
