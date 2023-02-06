@@ -523,9 +523,6 @@ function initRatings() {
 
 function initFaq() {
   document.querySelector('#FAQ').classList.add('lav-observe');
-  document
-    .querySelector('.lav-join')
-    .insertAdjacentElement('beforebegin', document.querySelector('#FAQ'));
 
   document.querySelector('#FAQ .section-heading').innerHTML =
     'Frequently asked&nbsp;questions';
