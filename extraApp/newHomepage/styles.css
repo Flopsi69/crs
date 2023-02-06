@@ -1065,7 +1065,7 @@
   max-width: 100%;
 }
 [data-theme= "light"] .faq-item {
-  background: none;
+  background: none!important;
   border: none;
   border-radius: 0;
   margin: 0;
