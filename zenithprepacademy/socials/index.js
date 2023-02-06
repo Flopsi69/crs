@@ -530,12 +530,6 @@ function initJumb(parentEl, idx) {
 }
 
 function initFacebook() {
-  setTimeout(() => {
-    if (!isFireFB) {
-      fbAsyncInit();
-    }
-  }, 5000);
-
   window.fbAsyncInit = function () {
     console.log('initFb Script!');
     isFireFB = true;
@@ -556,6 +550,12 @@ function initFacebook() {
       });
     }
   };
+
+  setTimeout(() => {
+    if (!isFireFB) {
+      fbAsyncInit();
+    }
+  }, 5000);
 
   // Logout from facebook
   // function fbLogout() {
@@ -616,7 +616,11 @@ function initGoogle() {
     size: 'large',
     theme: 'outline',
     width: 350,
+    click_listener() {
+      console.log(33333);
+    },
   };
+
   // 33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com
   // 574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com   my
   window.onGoogleLibraryLoad = () => {
