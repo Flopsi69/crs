@@ -64,22 +64,66 @@ const styles = `
     font-size: 14px;
     line-height: 22px;
     color: #5B5B5B;
+    margin-bottom: 27px;
+  }
+  .lav-m-caption + .col-inner {
+    padding: 0!important;
   }
   .lav-modal {
     padding: 0!important;
+  }
+  .lav-modal input {
+    border: 1px solid #D9D9D9!important;
+    border-radius: 8px!important;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #999999;
+  }
+  .lav-modal .elBTN {
+    margin-top: 19px;
+  }
+  .lav-modal .elBTN .elButtonMain {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+  .lav-modal .elBTN .elButton {
+    font-size: inherit;
+    background: #F29B38!important;
+    border: 2px solid #C27C2D!important;
+    box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3)!important;
+    border-radius: 35px!important;
+    padding: 0 15px!important;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+  }
+  .lav-m-note {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #5B5B5B;
+    margin-top: 18px;
   }
   .lav-modal__wrap {
     max-width: 350px!important;
     margin-left: 0!important;
     transform: translateX(-50%)!important;
   }
-
   .lav-modal__wrap .containerInner > div {
     width: 100%!important;
     padding: 20px!important;
     background: #FFFFFF!important;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25)!important;
     border-radius: 0!important;
+  }
+  .lav-modal .elInputWrapper {
+    margin-top: 19px!important;
   }
 
   .closeLPModal {
@@ -397,6 +441,20 @@ function initModalChange() {
   document.querySelector(
     '.closeLPModal img'
   ).dataset.src = `${settings.dir}/img/close-icon.svg`;
+
+  modalParentEl.querySelector('.elButtonMain').innerText = 'WATCH WEBINAR NOW';
+  modalParentEl.querySelector('.elBTN').nextElementSibling.remove();
+  modalParentEl.querySelector('.elBTN').nextElementSibling.remove();
+
+  modalParentEl
+    .querySelector('.elBTN')
+    .insertAdjacentHTML(
+      'afterend',
+      "<div class='lav-m-note'>we will not spam, rent, or sell your information. <br/><br/> *this is a free webinar, no payment or prior commitment is required*</div>"
+    );
+
+  modalParentEl.querySelector('[type="name"]').placeholder = 'Name';
+  modalParentEl.querySelector('[type="email"]').placeholder = 'Email';
 
   const newBlock = `
     <div class='lav-m-title'>Free Webinar<br/>registration</div>
