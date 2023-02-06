@@ -60,6 +60,7 @@ const styles = `
     color: #2D2D2D;
   }
   .lav-m-caption {
+    font-family:'Open Sans'
     margin-top: 16px;
     font-size: 14px;
     line-height: 22px;
@@ -73,6 +74,7 @@ const styles = `
     padding: 0!important;
   }
   .lav-modal input {
+    font-family:'Open Sans'
     border: 1px solid #D9D9D9!important;
     border-radius: 8px!important;
     font-weight: 400;
@@ -81,7 +83,7 @@ const styles = `
     color: #999999;
   }
   .lav-modal .elBTN {
-    margin-top: 19px;
+    margin-top: 19px!important;
   }
   .lav-modal .elBTN .elButtonMain {
     font-weight: 700;
@@ -93,7 +95,7 @@ const styles = `
     color: #FFFFFF;
   }
   .lav-modal .elBTN .elButton {
-    font-size: inherit;
+    font-size: inherit!important;
     background: #F29B38!important;
     border: 2px solid #C27C2D!important;
     box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.3)!important;
@@ -104,6 +106,7 @@ const styles = `
     width: 100%;
   }
   .lav-m-note {
+    font-family:'Open Sans'
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -114,6 +117,9 @@ const styles = `
     max-width: 350px!important;
     margin-left: 0!important;
     transform: translateX(-50%)!important;
+  }
+  .lav-modal__wrap .containerInner {
+    padding: 0!important;
   }
   .lav-modal__wrap .containerInner > div {
     width: 100%!important;
@@ -258,6 +264,7 @@ const styles = `
   }
 
   .lav-caption b {
+    font-family:'Open Sans';
     font-weight: 400;
     font-size: 30px;
     line-height: 1;
@@ -289,6 +296,9 @@ const styles = `
 
   .lav-jumb-form__wrap {
     margin-top: 30px!important;
+  }
+  .lav-parents .elHeadline, #headline-77250>div {
+    font-family:'Open Sans';
   }
 
   @media (max-width: 700px) {
@@ -410,6 +420,8 @@ function init() {
     .querySelector('.lav-buttons')
     .classList.add('lav-buttons_footer');
 
+  footerContainer.querySelector('.elHeadlineWrapper');
+
   let jumbIdx = 0;
   for (let jumbEl of Array.from(
     document.querySelectorAll('.containerWrapper > .container.fullContainer')
@@ -453,8 +465,20 @@ function initModalChange() {
       "<div class='lav-m-note'>we will not spam, rent, or sell your information. <br/><br/> *this is a free webinar, no payment or prior commitment is required*</div>"
     );
 
-  modalParentEl.querySelector('[type="name"]').placeholder = 'Name';
-  modalParentEl.querySelector('[type="email"]').placeholder = 'Email';
+  modalParentEl.querySelector('input[type="name"]').placeholder = 'Name';
+  modalParentEl.querySelector('input[type="email"]').placeholder = 'Email';
+
+  modalParentEl.querySelector('input[type="name"]').insertAdjacentHTML(
+    'beforebegin',
+    `<svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 7C7.875 7 9.42857 5.44141 9.42857 3.5C9.42857 1.58594 7.875 0 6 0C4.09821 0 2.57143 1.58594 2.57143 3.5C2.57143 5.44141 4.09821 7 6 7ZM8.38393 7.875H7.92857C7.33929 8.17578 6.69643 8.3125 6 8.3125C5.30357 8.3125 4.63393 8.17578 4.04464 7.875H3.58929C1.60714 7.875 0 9.54297 0 11.5664V12.6875C0 13.4258 0.5625 14 1.28571 14H10.7143C11.4107 14 12 13.4258 12 12.6875V11.5664C12 9.54297 10.3661 7.875 8.38393 7.875Z" fill="#999999"/></svg>`
+  );
+
+  modalParentEl.querySelector('input[type="email"]').insertAdjacentHTML(
+    'beforebegin',
+    `<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6875 3.96875C14.9688 4.53125 14.0625 5.21875 10.875 7.53125C10.25 8 9.09375 9.03125 8 9.03125C6.875 9.03125 5.75 8 5.09375 7.53125C1.90625 5.21875 1 4.53125 0.28125 3.96875C0.15625 3.875 0 3.96875 0 4.125V10.5C0 11.3438 0.65625 12 1.5 12H14.5C15.3125 12 16 11.3438 16 10.5V4.125C16 3.96875 15.8125 3.875 15.6875 3.96875ZM8 8C8.71875 8.03125 9.75 7.09375 10.2812 6.71875C14.4375 3.71875 14.75 3.4375 15.6875 2.6875C15.875 2.5625 16 2.34375 16 2.09375V1.5C16 0.6875 15.3125 0 14.5 0H1.5C0.65625 0 0 0.6875 0 1.5V2.09375C0 2.34375 0.09375 2.5625 0.28125 2.6875C1.21875 3.4375 1.53125 3.71875 5.6875 6.71875C6.21875 7.09375 7.25 8.03125 8 8Z" fill="#999999"/></svg>
+  `
+  );
 
   const newBlock = `
     <div class='lav-m-title'>Free Webinar<br/>registration</div>
