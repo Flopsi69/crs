@@ -617,7 +617,7 @@ function initGoogle() {
     theme: 'outline',
     width: 350,
     click_listener() {
-      console.log(33333);
+      openSocialOverlay();
     },
   };
 
@@ -632,10 +632,6 @@ function initGoogle() {
 
     for (let btn of document.querySelectorAll('.lav-google')) {
       btn.classList.remove('lav-disable');
-    }
-
-    for (let btn of document.querySelectorAll('.lav-google__wrap')) {
-      btn.addEventListener('click', openSocialOverlay);
     }
 
     for (let btn of document.querySelectorAll('.lav-google__btn')) {
