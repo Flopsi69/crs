@@ -1,5 +1,7 @@
 console.log('initExp');
 
+isFireFB = false;
+
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/zenithprepacademy/socials',
@@ -518,8 +520,15 @@ function initJumb(parentEl, idx) {
 }
 
 function initFacebook() {
+  setTimeout(() => {
+    if (!isFireFB) {
+      fbAsyncInit();
+    }
+  }, 5000);
+
   window.fbAsyncInit = function () {
     console.log('initFb Script!');
+    isFireFB = true;
     // 3433080760304295 my
     FB.init({
       appId: '737253604364130',
