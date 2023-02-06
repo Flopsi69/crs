@@ -77,7 +77,7 @@ const styles = `
   }
   .lav-modal input {
     font-family:'Open Sans';
-    border: 1px solid #D9D9D9!important;
+    // border: 1px solid #D9D9D9!important;
     border-radius: 8px!important;
     font-weight: 400;
     font-size: 14px;
@@ -139,8 +139,9 @@ const styles = `
 
   .lav-modal .elInputWrapper svg {
     position: absolute;
-    top: 17px;
-    left: 16px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 23px;
   }
 
   .closeLPModal {
