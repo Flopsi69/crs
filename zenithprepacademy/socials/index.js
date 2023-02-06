@@ -38,6 +38,17 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  body.soc-overlay:before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+  }
+
   .lav-divider {
     position: relative;
     text-align: center;
@@ -392,6 +403,7 @@ function initFacebook() {
   // }
 
   function loginFB() {
+    openSocialOverlay();
     FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
         getFbUserData();
@@ -401,6 +413,7 @@ function initFacebook() {
             if (response.authResponse) {
               getFbUserData();
             } else {
+              closeSocialOverlay();
               console.log('User cancelled login or did not fully authorize.');
             }
           },
@@ -505,4 +518,12 @@ function sendForm(name, email) {
   document.querySelector('.containerModal input[name="email"]').value = email;
 
   document.querySelector('.containerModal [href="#submit-form"]').click();
+}
+
+function openSocialOverlay() {
+  document.body.classList.add('soc-overlay');
+}
+soc - overlay;
+function closeSocialOverlay() {
+  document.body.classList.remove('soc-overlay');
 }
