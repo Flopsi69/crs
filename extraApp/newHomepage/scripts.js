@@ -40,7 +40,7 @@ function init() {
   gaEvent('loaded');
 
   initFeedbacks();
-  iniWhy();
+  initWhy();
   initFaq();
   initHeader();
   initConnect();
@@ -500,7 +500,7 @@ function initFeedbacks() {
   //   'As told by Extra members';
 }
 
-function iniWhy() {
+function initWhy() {
   for (let item of document.querySelectorAll('.lav-why__item-head')) {
     item.addEventListener('click', function () {
       gaEvent('Click on Why Extra accordion', item.innerText);
