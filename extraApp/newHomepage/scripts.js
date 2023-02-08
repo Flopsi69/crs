@@ -39,6 +39,16 @@ init();
 function init() {
   gaEvent('loaded');
 
+  $('.nav-logo').on('click', function (e) {
+    e.preventDefault();
+    $('html,body').animate(
+      {
+        scrollTop: 0,
+      },
+      1000
+    );
+  });
+
   initFeedbacks();
   initWhy();
   initFaq();
@@ -540,6 +550,7 @@ const MarqueeJs = (queryselector, speed, loop) => {
   console.log(SceenWidth);
 
   window.onresize = () => {
+    if (SceenWidth === window.innerWidth) return false;
     SceenWidth = window.innerWidth;
     SelectorWidth = Selector.offsetWidth;
     (Sw = SceenWidth), (step = 1);
