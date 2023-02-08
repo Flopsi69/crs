@@ -405,14 +405,14 @@ function initHeader() {
         item.classList.contains('lav-plans__btn') &&
         item.closest('.lav-plans__btn-monthly')
       ) {
-        document.querySelector('a[data-w-tab="Monthly"]').click();
+        // document.querySelector('a[data-w-tab="Monthly"]').click();
         gaEvent('Click on Start Building Credit button');
       }
       if (
         item.classList.contains('lav-plans__btn') &&
         item.closest('.lav-plans__btn-yearly')
       ) {
-        document.querySelector('a[data-w-tab="Annually"]').click();
+        // document.querySelector('a[data-w-tab="Annually"]').click();
         gaEvent('Click on Start Building Credit button');
       }
       if (item.classList.contains('lav-join__btn')) {
