@@ -2353,7 +2353,7 @@ function init() {
                     <img src='${settings.dir}/img/checkIconBlack.svg' />
                   </div>
                   <div class='lav-compare__col'>
-                    <img src='${settings.dir}/img/noCheckIcon.svg' />
+                    <img src='${settings.dir}/img/checkIconBlack.svg' />
                   </div>
                 </div>
 
