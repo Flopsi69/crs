@@ -194,7 +194,6 @@ function observerView() {
     entries.forEach((entry) => {
       // console.log(entry);
       if (entry.isIntersecting) {
-        console.log(entry.target);
         if (entry.target.closest('.plan__summary') && window.innerWidth > 768) {
           gaEvent(
             'Buy ' +
@@ -217,8 +216,6 @@ function observerView() {
       }
     });
   }, observerOptions);
-
-  console.log(document.querySelectorAll('.plan__btn'));
 
   for (let section of Array.from(document.querySelectorAll('.plan__btn'))) {
     observer.observe(section);
