@@ -187,7 +187,7 @@ function observerView() {
   const observerOptions = {
     root: null,
     threshold: 0,
-    rootMargin: '-40%',
+    rootMargin: '-20%',
   };
 
   const observer = new IntersectionObserver((entries) => {
