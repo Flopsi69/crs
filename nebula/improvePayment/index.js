@@ -202,6 +202,8 @@ function observerView() {
                 .innerText +
               ' DNA Test Bottom CTA visibility'
           );
+
+          observer.unobserve(entry.target);
         } else {
           gaEvent(
             'Buy ' +
@@ -209,9 +211,9 @@ function observerView() {
                 .innerText +
               ' DNA Test CTA visibility'
           );
-        }
 
-        observer.unobserve(entry.target);
+          observer.unobserve(entry.target);
+        }
       }
     });
   }, observerOptions);
