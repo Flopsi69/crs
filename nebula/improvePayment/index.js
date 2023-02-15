@@ -180,7 +180,7 @@ function initHP() {
     }
   });
 
-  observerView();
+  setTimeout(observerView, 1000);
 }
 
 function observerView() {
@@ -214,6 +214,8 @@ function observerView() {
       }
     });
   }, observerOptions);
+
+  console.log(document.querySelectorAll('.plan__btn'));
 
   for (let section of Array.from(document.querySelectorAll('.plan__btn'))) {
     observer.observe(section);
