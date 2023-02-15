@@ -192,7 +192,7 @@ function observerView() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
+      // console.log(entry);
       if (entry.isIntersecting) {
         console.log(entry.target);
         if (entry.target.closest('.plan__summary') && window.innerWidth > 768) {
@@ -211,7 +211,7 @@ function observerView() {
           );
         }
 
-        // observer.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
