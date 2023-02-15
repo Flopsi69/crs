@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/nebula/improvePayment',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'Imp payment flow', 'variant_1');
     }
   }, 1000);
 }
@@ -25,7 +25,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'event-to-ga',
-      eventCategory: 'Exp: Improve payment flow',
+      eventCategory: 'Exp: Imp payment flow',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -81,6 +81,12 @@ const styles = `
     max-height: 40px!important;
   }
 
+  .plan.plan_ultra:before {
+    content: 'Best seller'!important;
+    color: #fff!important;
+    background: #FE7062!important;
+  }
+
   @media(min-width: 768px) {
     #google-pay-container .gpay-button-fill, #apple-pay-container .gpay-button-fill {
       height: 100%!important;
@@ -90,6 +96,10 @@ const styles = `
     }
   }
   @media(max-width: 767px) {
+    .plan.plan_ultra:before {
+      top: 15px!important;
+      right: 15px!important;
+    }
     .payment__buttons>* {
       margin-bottom: 0!important;
     }
@@ -126,7 +136,6 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-/********* Custom Code **********/
 const expInterval = setInterval(() => {
   if (
     location.href.includes('portal.nebula.org/cart') &&
@@ -153,14 +162,80 @@ function initHP() {
 
   document.addEventListener('click', function (e) {
     if (e.target.closest('.plan__btn')) {
-      gaEvent(
-        'Add to cart btn',
-        e.target.closest('.plan').querySelector('.plan__title').innerText
-      );
+      if (e.target.closest('.plan__summary') && window.innerWidth > 768) {
+        gaEvent(
+          'Buy ' +
+            e.target.closest('.plan').querySelector('.plan__title').innerText +
+            ' DNA Test Bottom CTA click'
+        );
+      } else {
+        gaEvent(
+          'Buy ' +
+            e.target.closest('.plan').querySelector('.plan__title').innerText +
+            ' DNA Test CTA click'
+        );
+      }
 
       document.querySelector('.shoppingCart').click();
     }
   });
+
+  observerView();
+}
+
+function observerView() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '-40%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry);
+      if (entry.isIntersecting) {
+        if (entry.target.closest('.plan__summary') && window.innerWidth > 768) {
+          gaEvent(
+            'Buy ' +
+              entry.target.closest('.plan').querySelector('.plan__title')
+                .innerText +
+              ' DNA Test Bottom CTA visibility'
+          );
+        } else {
+          gaEvent(
+            'Buy ' +
+              entry.target.closest('.plan').querySelector('.plan__title')
+                .innerText +
+              ' DNA Test CTA visibility'
+          );
+        }
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  for (let section of Array.from(document.querySelectorAll('.plan__btn'))) {
+    observer.observe(section);
+  }
+
+  function isElementInViewport(el, event) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        el.classList.add('in-view');
+        observer.unobserve(el);
+
+        gaEvent(...event);
+      }
+    }, 3000);
+  }
 }
 
 function initCart() {
