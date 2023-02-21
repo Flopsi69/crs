@@ -66,7 +66,7 @@ const styles = `
     right: 0;
     bottom: 0;
     top: 0;
-    z-index: 999999999999;
+    z-index: 99999999;
     background-color: rgba(0,0,0,.5);
   }
   .lds-roller {
@@ -397,7 +397,8 @@ function addPreloader() {
   document.body.classList.add('lav-preloader');
   document
     .querySelector('#__nuxt')
-    .classList.append(
+    .insertAdjacentHTML(
+      'beforebegin',
       '<div class="lds-roller lav-prel"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>'
     );
 }
