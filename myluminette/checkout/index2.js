@@ -170,6 +170,10 @@ const styles = `
     line-height: 24px;
     margin-bottom: 35px;
   }
+  .lav-fedex svg {
+    margin-bottom: 0!important;
+    margin-right: 8px;
+  }
   .lav-fedex br {
     display: none;
   }
@@ -4312,7 +4316,7 @@ function initPdp() {
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
                   <div class='lav-shorts__preview'>
-                    <iframe src="https://rr5---sn-c0q7lnse.c.drive.google.com/videoplayback?expire=1678215271&ei=J1AHZO_nG4rJgwPApKCYDQ&ip=91.221.84.42&cp=QVRMWkNfVFJVQlhPOm80TkhHN0Uxakk2ai11cXFhbVdnbjR0YUZpdUdSdFlNS3dsRnR6TDVMeWQ&id=fc87e5cbd0de08ec&itag=22&source=webdrive&requiressl=yes&mh=jT&mm=32&mn=sn-c0q7lnse&ms=su&mv=m&mvi=5&pl=24&ttl=transient&susc=dr&driveid=1hqbVVxmTmjeqlBJpnSW57UlZmS3a-LSH&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=26.795&lmt=1674047897293016&mt=1678200576&subapp=DRIVE_WEB_FILE_VIEWER&txp=0011224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRAIgLFcG8K5SOtlHN9pos4XO7sHTeAr68qQSb_Gz0IVoItACIC9OgmJkMuaUTMzKhIxff7f2xbe3h8XdymceTu0IoN6k&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhANfCdhZncbhqQ684Vkpbz7QPUpSqurrhZYmJ6vZdYYgIAiEAujDMOxpNTGvFsOa_7aRton4N72owWZbHHwLP2gFuahI=&cpn=XfDjIJW4v825NBQT&c=WEB_EMBEDDED_PLAYER&cver=1.20230228.01.00" width="100%" height="412" allow="autoplay"></iframe>
+                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.mp4" width="100%" height="412"></iframe>
                     <iframe style='display: none' src="https://drive.google.com/file/d/1hqbVVxmTmjeqlBJpnSW57UlZmS3a-LSH/preview" width="100%" height="412" allow="autoplay"></iframe>
                   </div>
                   <div class='lav-shorts__info'>
@@ -4332,7 +4336,7 @@ function initPdp() {
                 
                 <div class='lav-shorts__item splide__slide'>
                   <div class='lav-shorts__preview'>
-                    <iframe src="https://rr2---sn-c0q7lns7.c.drive.google.com/videoplayback?expire=1678215429&ei=xVAHZMaAI4WE_9EP3duC4AE&ip=91.221.84.42&cp=QVRMWkNfVFRQSlhPOm80TkhJMk0xakk2ai11c2xpbVdnbjR0YUhkY0dSdFlNS3duQWJ6TDVMeWQ&id=39203c50a6086b44&itag=22&source=webdrive&requiressl=yes&mh=_m&mm=32&mn=sn-c0q7lns7&ms=su&mv=m&mvi=2&pl=24&ttl=transient&susc=dr&driveid=1jcWpboHhKTEFEz3D8yLZIqrrDKAQaMU-&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=24.682&lmt=1674044412345492&mt=1678200576&subapp=DRIVE_WEB_FILE_VIEWER&txp=0011224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRgIhAPWeLKLLcZaAuxNlJ0SRl6TaR5I_AVrGbZw94mHEPjp2AiEAz8wWdn-TmRM3hHAI-d3c0RdCEg47ChfU0QLvPALAx30=&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIhAMtEhisjjkTtgIGcs_BEL9KHzwUEi6Ynoz6DdEDwrz2sAiAyNCZ-PIUV5pZm8E1O2VamzJ-bHXHX-43LwwgGJts3Ig==&cpn=n9eySkjCk34c7Yr6&c=WEB_EMBEDDED_PLAYER&cver=1.20230228.01.00" width="100%" height="412" allow="autoplay"></iframe>
+                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty1.mp4" width="100%" height="412"></iframe>
                     <iframe style='display: none' src="https://drive.google.com/file/d/1jcWpboHhKTEFEz3D8yLZIqrrDKAQaMU-/preview" width="100%" height="412" allow="autoplay"></iframe>
                   </div>
                   <div class='lav-shorts__info'>
@@ -4352,7 +4356,7 @@ function initPdp() {
 
                 <div class='lav-shorts__item splide__slide'>
                   <div class='lav-shorts__preview'>
-                    <iframe src="https://rr1---sn-c0q7lnly.c.drive.google.com/videoplayback?expire=1678215430&ei=xlAHZLzxBoOMgwO4gaX4AQ&ip=91.221.84.42&cp=QVRMWkNfVFRRQVhPOm80TkhJM0Qxakk2ai11c216bVdnbjR0YUhldEdSdFlNS3duQnN6TDVMeWQ&id=60c404ecc19b4ffc&itag=22&source=webdrive&requiressl=yes&mh=kA&mm=32&mn=sn-c0q7lnly&ms=su&mv=m&mvi=1&pl=24&ttl=transient&susc=dr&driveid=1tma1GBMJREbhf2sQ776tW0COCvF6XERB&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=35.921&lmt=1674044178263415&mt=1678200576&subapp=DRIVE_WEB_FILE_VIEWER&txp=0016224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRgIhAOnK1fdOC5MwAxEUDCoJ1U55Zdbq4fOaSjNxY1UVmg5dAiEA50tG1qq4OhXKg7DeX-45TOwUhKBwlEAZ6hOBbj1c36k=&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRAIgOCJ9WolAguteHBb2EBtyJI4uwTL4k1eblGr8J7yVjgUCIFH4mUop4eCGcQGM-Eq7ECcuABohVNolJfDcaUZV5y2o&cpn=W5xhm_JlUnm89YsU&c=WEB_EMBEDDED_PLAYER&cver=1.20230228.01.00" width="100%" height="412" allow="autoplay"></iframe>
+                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty2.mp4" width="100%" height="412"></iframe>
                     <iframe style='display: none' src="https://drive.google.com/file/d/1tma1GBMJREbhf2sQ776tW0COCvF6XERB/preview" width="100%" height="412" allow="autoplay"></iframe>
                   </div>
                   <div class='lav-shorts__info'>
@@ -4372,7 +4376,7 @@ function initPdp() {
 
                 <div class='lav-shorts__item splide__slide'>
                   <div class='lav-shorts__preview'>
-                    <iframe src="https://rr3---sn-c0q7lns7.c.drive.google.com/videoplayback?expire=1678215430&ei=xlAHZI2RMJmGhgbE6IPIDQ&ip=91.221.84.42&cp=QVRMWkNfVFRRQVhPOm80TkhJM0Qxakk2ai11c216bVdnbjR0YUhldEdSdFlNS3duQnN6TDVMeWQ&id=7f2eee38e12b15dd&itag=22&source=webdrive&requiressl=yes&mh=WD&mm=32&mn=sn-c0q7lns7&ms=su&mv=m&mvi=3&pl=24&ttl=transient&susc=dr&driveid=1btSnAFA3LqMJlTDE5eXhB0sdbZsQ2yMF&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=37.802&lmt=1674047650828958&mt=1678200576&subapp=DRIVE_WEB_FILE_VIEWER&txp=0016224&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRAIgAWKXWuJlYnrHBFx2wspIL_n4eH9_ixwsBhYtrndxMdMCIHCXG92N52K9ezyRNpmXCrn0vcKDMStfFGHRDyCIY3OM&lsparams=mh,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhAJF3w02AS4yYAAXPC5Xc-_71mRiAmcKba6p1YIEhjgJQAiEApVgGFqBRIL8U_BHYwbZ75wmPhVX7iLVhhRvTRDOFoNI=&cpn=xLETuK7NzIrB7OGY&c=WEB_EMBEDDED_PLAYER&cver=1.20230228.01.00" width="100%" height="412" allow="autoplay"></iframe>
+                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty3.mp4" width="100%" height="412"></iframe>
                     <iframe style='display: none' src="https://drive.google.com/file/d/1btSnAFA3LqMJlTDE5eXhB0sdbZsQ2yMF/preview" width="100%" height="412" allow="autoplay"></iframe>
                   </div>
                   <div class='lav-shorts__info'>

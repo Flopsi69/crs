@@ -152,7 +152,7 @@ const styles = `
   .lav-divider {
     position: relative;
     text-align: center;
-    max-width: 722px;
+    max-width: 600px;
     margin: 16px auto;
     font-weight: 600;
     font-size: 20px;
@@ -177,10 +177,10 @@ const styles = `
   }
 
   .lav-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-    max-width: 722px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 22px;
+    max-width: 400px;
     width: 100%;
     margin: 16px auto 70px;
   }
@@ -412,18 +412,13 @@ function init() {
           <span>JOIN with Google</span>
         </button>
       </div>
-      <div class='lav-facebook__wrap lav-btn__wrap'>
-        <button class='lav-btn lav-facebook lav-disable'>
-          <img src='${settings.dir}/img/facebook-icon.svg' />
-          <span>JOIN with facebook</span>
-        </button>
-      </div>
     </div>
   `;
 
   const btns = document.querySelectorAll(
     '.containerWrapper > .container.fullContainer [href="#open-popup"]'
   );
+
   const footerContainer = btns[btns.length - 1].closest('.container');
   footerContainer.classList.add('lav-footer-container');
 
@@ -447,7 +442,7 @@ function init() {
   }
 
   initModalChange();
-  initFacebook();
+  // initFacebook();
   initGoogle();
 }
 
