@@ -5,7 +5,7 @@ isFireFB = false;
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/zenithprepacademy/socials',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -14,12 +14,30 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '9_steps_timeline', 'variant_1');
+      clarity('set', 'socials_registration', 'variant_1');
     }
   }, 1000);
 }
 
 // Alalytic
+function gaEvent(action, label) {
+  if (!label) {
+    label = '';
+  }
+  try {
+    var objData = {
+      event: 'gaEv',
+      eventCategory: 'Experiment — social registration',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: '',
+    };
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
+  } catch (e) {
+    console.log('Event Error:', e);
+  }
+}
 
 // Observe
 if (settings.observe) {
@@ -400,6 +418,7 @@ document.body.appendChild(stylesEl);
 /********* Custom Code **********/
 init();
 function init() {
+  gaEvent('loaded');
   console.log('init');
 
   const el = `
@@ -613,6 +632,7 @@ function initGoogle() {
     theme: 'outline',
     width: 400,
     click_listener() {
+      gaEvent('Click google auth');
       openSocialOverlay();
     },
   };
@@ -645,6 +665,8 @@ function handleCredentialResponse(response) {
   console.log(response);
   const responsePayload = parseJwt(response.credential);
   sendForm(responsePayload.name, responsePayload.email);
+
+  gaEvent('Google auth successed');
 
   // console.log('ID: ' + responsePayload.sub);
   // console.log('Full Name: ' + responsePayload.name);
