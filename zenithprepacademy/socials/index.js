@@ -643,7 +643,7 @@ function initGoogle() {
     google.accounts.id.initialize({
       client_id:
         '33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com',
-      ux_mode: 'redirect',
+      ux_mode: 'popup',
       callback: handleCredentialResponse,
     });
 
