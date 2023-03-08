@@ -622,13 +622,8 @@ function initGoogle() {
     google.accounts.id.initialize({
       client_id:
         '33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com',
+      ux_mode: 'redirect',
       callback: handleCredentialResponse,
-      intermediate_iframe_close_callback: function (test) {
-        console.log(1, test);
-      },
-      error_callback: function (test) {
-        console.log(2, test);
-      },
     });
 
     for (let btn of document.querySelectorAll('.lav-google')) {
