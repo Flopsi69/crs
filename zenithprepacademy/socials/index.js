@@ -138,6 +138,7 @@ const styles = `
   .lav-modal__wrap {
     max-width: 350px!important;
     margin-left: 0!important;
+    left: 50%!important;
     transform: translateX(-50%)!important;
   }
   .lav-modal__wrap .containerInner {
