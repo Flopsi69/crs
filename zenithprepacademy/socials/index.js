@@ -368,10 +368,14 @@ const styles = `
       display: none;
     }
     .lav-buttons {
-      margin-top: 40px;
+      margin-top: 25px;
       margin-bottom: 24px;
       grid-template-columns: 1fr;
       gap: 16px;
+    }
+    .elButtonShadowFlatHighlight {
+      max-width: 400px;
+      width: 100%;
     }
     .lav-parents .elHeadline {
       font-size: 20px!important;
@@ -636,6 +640,11 @@ function initGoogle() {
       openSocialOverlay();
     },
   };
+
+  if (window.innerWidth < 768) {
+    options.width =
+      document.querySelectorAll('.lav-google__wrap')[1].clientWidth;
+  }
 
   // 33131972604-goqu07rd6de8136r912urn5nig7kt3cu.apps.googleusercontent.com
   // 574712994644-emepme9vsf6fc6pb1ni9ln79d9tgn0bn.apps.googleusercontent.com   my
