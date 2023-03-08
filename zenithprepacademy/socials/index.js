@@ -26,7 +26,7 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
+      event: 'event-to-ga',
       eventCategory: 'Experiment — social registration',
       eventAction: action,
       eventLabel: label,
