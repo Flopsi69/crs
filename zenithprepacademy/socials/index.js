@@ -45,6 +45,7 @@ const styles = `
     padding: 0!important;
   }
   body.soc-overlay:before {
+    display: none;
     content: '';
     position: fixed;
     left: 0;
