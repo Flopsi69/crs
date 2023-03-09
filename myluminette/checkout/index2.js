@@ -4315,9 +4315,8 @@ function initPdp() {
             <div class="splide__track">
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview'>
-                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.mp4" width="100%" height="412"></iframe>
-                    <iframe style='display: none' src="https://drive.google.com/file/d/1hqbVVxmTmjeqlBJpnSW57UlZmS3a-LSH/preview" width="100%" height="412" allow="autoplay"></iframe>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/brook.mp4'>
+                    <img  src="${settings.dir}/video/brook.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
@@ -4335,29 +4334,8 @@ function initPdp() {
                 </div>
                 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview'>
-                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty1.mp4" width="100%" height="412"></iframe>
-                    <iframe style='display: none' src="https://drive.google.com/file/d/1jcWpboHhKTEFEz3D8yLZIqrrDKAQaMU-/preview" width="100%" height="412" allow="autoplay"></iframe>
-                  </div>
-                  <div class='lav-shorts__info'>
-                    <div class='lav-shorts__stars'>
-                      <img  src="${settings.dir}/img/stars-shorts.svg" />
-                      <span>5</span>
-                    </div>
-                    <div class='lav-shorts__quote'>
-                      “Finally I can be happy all winter long”
-                    </div>
-                    <div class='lav-shorts__inst'>
-                      <img  src="${settings.dir}/img/icon-inst.svg" />
-                      </span>The guilty mom</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview'>
-                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty2.mp4" width="100%" height="412"></iframe>
-                    <iframe style='display: none' src="https://drive.google.com/file/d/1tma1GBMJREbhf2sQ776tW0COCvF6XERB/preview" width="100%" height="412" allow="autoplay"></iframe>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.mp4'>
+                    <img  src="${settings.dir}/video/guilty.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
@@ -4375,9 +4353,8 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview'>
-                    <iframe src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty3.mp4" width="100%" height="412"></iframe>
-                    <iframe style='display: none' src="https://drive.google.com/file/d/1btSnAFA3LqMJlTDE5eXhB0sdbZsQ2yMF/preview" width="100%" height="412" allow="autoplay"></iframe>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.mp4'>
+                    <img  src="${settings.dir}/video/elsa.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
@@ -4385,11 +4362,30 @@ function initPdp() {
                       <span>5</span>
                     </div>
                     <div class='lav-shorts__quote'>
-                      “I have better quality sleep. more energy and I’m totally okay without the sun”
+                      “After first week my mood has definitely improved”
                     </div>
                     <div class='lav-shorts__inst'>
                       <img  src="${settings.dir}/img/icon-inst.svg" />
-                      </span>The guilty mom</span>
+                      </span>Elsa</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/cass.mov'>
+                    <img  src="${settings.dir}/video/cass.png" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="${settings.dir}/img/stars-shorts.svg" />
+                      <span>5</span>
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “Super simple and easy way to fight seasonal blues”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="${settings.dir}/img/icon-inst.svg" />
+                      </span>Cass</span>
                     </div>
                   </div>
                 </div>
@@ -7785,11 +7781,18 @@ function initPdp() {
     }
 
     function closeModal() {
-      if (document.querySelector('.lav-modal__inner.active iframe')) {
-        document.querySelector('.lav-modal__inner.active iframe').src = document
-          .querySelector('.lav-modal__inner.active iframe')
-          .src.replace('autoplay=1', 'autoplay=0');
-      }
+      setTimeout(() => {
+        // if (document.querySelector('.lav-modal__inner.active iframe')) {
+        document.querySelector('.lav-modal__inner iframe').src = '';
+        // }
+      }, 500);
+      // if (document.querySelector('.lav-modal__inner.active iframe')) {
+      //   document.querySelector('.lav-modal__inner.active iframe').src = '';
+
+      // document
+      //   .querySelector('.lav-modal__inner.active iframe')
+      //   .src.replace('autoplay=1', 'autoplay=0');
+      // }
       document
         .querySelector('.lav-modal__inner.active')
         .classList.remove('active');
