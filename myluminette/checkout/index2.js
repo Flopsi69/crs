@@ -2878,6 +2878,7 @@ const stylePDP = `
   .lav-review-modal iframe {
     border: none;
     min-height: 480px;
+    background: black;
   }
   .lav-modal__title {
     font-size: 24px;
@@ -6929,6 +6930,7 @@ const stylesMain = `
   }
   .lav-review-modal iframe {
     border: none;
+    background: black;
   }
   .lav-modal__title {
     font-size: 24px;
