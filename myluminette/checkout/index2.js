@@ -6863,7 +6863,6 @@ const stylesMain = `
       background: none;
     }
   }
-
   
   .lav-modal {
     position: fixed;
@@ -7172,7 +7171,7 @@ function initHP() {
           <div class="lav-shorts lav-observe">
             <div class="lav-shorts__title text-center">150,000+ people boost their energy with Luminette</div>
             <div class="lav-shorts__caption text-center">Here’s what our users are saying after using Luminette</div>
-            
+
             <div class="splide lav-shorts__splide">
               <div class="splide__track">
                 <div class="lav-shorts__list splide__list">
