@@ -1820,7 +1820,9 @@ const stylePDP = `
   }
 
   .lav-shorts__preview img {
-    display: none;
+    min-height: 418px;
+    object-fit: cover;
+    max-width: 100%;
   }
 
   .lav-shorts__info {
@@ -2818,6 +2820,16 @@ const stylePDP = `
     opacity: 1;
     padding: 20px;
   }
+  @media (min-width: 769px) {
+    .lav-modal__video .lav-modal__inner {
+      max-width: 840px;
+      width: 100%;
+      max-height: 480px;
+      height: 100%;
+      background: #000;
+    }
+  }
+  
   .lav-modal__close {
     position: absolute;
     top: 14px;
@@ -2871,6 +2883,7 @@ const stylePDP = `
   }
   .lav-review-modal iframe {
     border: none;
+    min-height: 480px;
   }
   .lav-modal__title {
     font-size: 24px;
@@ -4372,7 +4385,7 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/cass.mov'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/cass.mp4'>
                     <img  src="${settings.dir}/video/cass.png" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -5444,7 +5457,7 @@ function initPdp() {
           <img src='${settings.dir}/img/modal-close.svg'>
         </div>
 
-        <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="840" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -6713,7 +6726,7 @@ function initPdp() {
           <img src='${settings.dir}/img/modal-close.svg'>
         </div>
     
-        <iframe width="840" height="480" src="https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="840" height="480" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
     
@@ -7768,12 +7781,22 @@ function initPdp() {
       if (src) {
         selector.querySelector('iframe').src = src;
       }
+      if (src.includes('/video/')) {
+        document.querySelector('.lav-modal').classList.add('lav-modal__video');
+      } else {
+        document
+          .querySelector('.lav-modal')
+          .classList.remove('lav-modal__video');
+      }
       document.querySelector('.lav-modal').classList.add('active');
       setTimeout(() => {
         selector.classList.add('active');
       }, 400);
 
-      if (selector.querySelector('iframe')) {
+      if (
+        selector.querySelector('iframe') &&
+        selector.querySelector('iframe').src.includes('youtube')
+      ) {
         selector.querySelector('iframe').src = selector
           .querySelector('iframe')
           .src.replace('autoplay=0', 'autoplay=1');
