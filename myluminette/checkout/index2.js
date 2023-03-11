@@ -1800,12 +1800,38 @@ const stylePDP = `
   }
 
   .lav-shorts__preview {
+    position: relative;
     line-height: 0;
     overflow: hidden;
     border-radius: 8px;
     background: #ccc;
     // min-height: 425px;
     border: 3px solid #fff;
+  }
+
+  .lav-shorts__preview:before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url(${settings.dir}/img/play.svg) center no-repeat;
+    background-size: contain;
+    transition: 0.35s;
+  }
+
+  @media(max-width: 768px) {
+    .lav-shorts__preview:before {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  .lav-shorts__preview:hover:before {
+    background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
+    background-size: contain;
   }
 
   .lav-shorts__preview img {
@@ -4000,12 +4026,39 @@ const stylesMain = `
   }
 
   .lav-shorts__preview {
+    position: relative;
     line-height: 0;
     overflow: hidden;
     border-radius: 8px;
     background: #ccc;
     // min-height: 425px;
     border: 3px solid #fff;
+  }
+
+  .lav-shorts__preview:before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url(${settings.dir}/img/play.svg) center no-repeat;
+    background-size: contain;
+    transition: 0.35s;
+  }
+
+
+  @media(max-width: 768px) {
+    .lav-shorts__preview:before {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  .lav-shorts__preview:hover:before {
+    background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
+    background-size: contain;
   }
 
   .lav-shorts__preview img {
@@ -4533,12 +4586,13 @@ const stylesMain = `
   }
 
   .lav-wears {
-    padding-top: 75px;
+    padding-top: 0px;
     position: relative;
     z-index: 1;
   }
   .lav-wears__title {
     text-align: center;
+    font-weight: 700;
   }
   .lav-wears__grid {
     display: grid;
@@ -7049,50 +7103,6 @@ function initHP() {
         </div>
       </section>
 
-      <section class='lav-problems lav-section'>
-        <div class='container-fluid container--size--lg lav-problems__container'>
-          <div class='lav-problems__title lav-title'>
-            Light therapy can help you <br /> if you have these problems
-          </div>
-
-          <div class='lav-problems__grid'>
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Sleeping problems</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Night awakenings</div>
-                  <div class='lav-problem__item'>Shallow sleep</div>
-                  <div class='lav-problem__item'>Circadian rhythms imbalances</div>
-                </div>
-              </div>
-            </div>
-
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem2.jpeg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Seasonal depression</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Low energy and irritability</div>
-                  <div class='lav-problem__item'>Sleeping problems</div>
-                  <div class='lav-problem__item'>Low mood</div>
-                  <div class='lav-problem__item'>Appetite and weight changes</div>
-                </div>
-              </div>
-            </div>
-
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem3.jpeg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Low energy</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Tired & groggy mornings</div>
-                  <div class='lav-problem__item'>Slugging throughout the day</div>
-                  <div class='lav-problem__item'>Low motivation & irritability</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section class='lav-wears lav-section'>
         <div class='container-fluid container--size--lg lav-wears__container'>
           <div class='lav-wears__title lav-title'>Wear for 30 mins a day to...</div>
@@ -7182,7 +7192,6 @@ function initHP() {
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                        <span>5</span>
                       </div>
                       <div class='lav-shorts__quote'>
                         “20 minutes a day has been an absolute game changer for me”
@@ -7201,7 +7210,6 @@ function initHP() {
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                        <span>5</span>
                       </div>
                       <div class='lav-shorts__quote'>
                         “Luminette glasses gave me my energy back”
@@ -7220,7 +7228,6 @@ function initHP() {
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                        <span>5</span>
                       </div>
                       <div class='lav-shorts__quote'>
                         “After first week my mood has definitely improved”
@@ -7239,7 +7246,6 @@ function initHP() {
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                        <span>5</span>
                       </div>
                       <div class='lav-shorts__quote'>
                         “Super simple and easy way to fight seasonal blues”
@@ -8583,48 +8589,6 @@ function initHP() {
               <div class='lav-boost__title'>Plus de 150 000 personnes ont retrouvé leur énergie avec la Luminette</div>
               <img class='lav-boost__stars' src='${settings.dir}/img/stars.svg' />
               <div class='lav-boost__caption'>1049 avis sur Amazon et Trustedshop</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class='lav-problems lav-section'>
-        <div class='container-fluid container--size--lg lav-problems__container'>
-          <div class='lav-problems__title lav-title'>La luminothérapie peut vous aider si vous avez ces problèmes</div>
-
-          <div class='lav-problems__grid'>
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem1.jpg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Problèmes de sommeil</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Réveils nocturnes</div>
-                  <div class='lav-problem__item'>Insomnies</div>
-                  <div class='lav-problem__item'>Dérèglement des rythmes circadiens</div>
-                </div>
-              </div>
-            </div>
-
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem2.jpeg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Dépression saisonnière</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Manque d'énergie et irritabilité</div>
-                  <div class='lav-problem__item'>Problèmes de sommeil</div>
-                  <div class='lav-problem__item'>Mauvaise humeur</div>
-                  <div class='lav-problem__item'>Changements d'appétit et de poids</div>
-                </div>
-              </div>
-            </div>
-
-            <div class='lav-problem' style='background-image: url("${settings.dir}/img/problem3.jpeg")'>
-              <div class='lav-problem__info'>
-                <div class='lav-problem__title'>Manque d'énergie</div>
-                <div class='lav-problem__list'>
-                  <div class='lav-problem__item'>Réveil difficile</div>
-                  <div class='lav-problem__item'>Baisse d'énergie pendant la journée</div>
-                  <div class='lav-problem__item'>Manque de motivation et irritabilité</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -11098,7 +11062,6 @@ function initPdp() {
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="${settings.dir}/img/stars-shorts.svg" />
-                      <span>5</span>
                     </div>
                     <div class='lav-shorts__quote'>
                       “20 minutes a day has been an absolute game changer for me”
@@ -11117,7 +11080,6 @@ function initPdp() {
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="${settings.dir}/img/stars-shorts.svg" />
-                      <span>5</span>
                     </div>
                     <div class='lav-shorts__quote'>
                       “Luminette glasses gave me my energy back”
@@ -11136,7 +11098,6 @@ function initPdp() {
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="${settings.dir}/img/stars-shorts.svg" />
-                      <span>5</span>
                     </div>
                     <div class='lav-shorts__quote'>
                       “After first week my mood has definitely improved”
@@ -11155,7 +11116,6 @@ function initPdp() {
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="${settings.dir}/img/stars-shorts.svg" />
-                      <span>5</span>
                     </div>
                     <div class='lav-shorts__quote'>
                       “Super simple and easy way to fight seasonal blues”
