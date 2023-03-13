@@ -11,7 +11,7 @@ const settings = {
 };
 
 if (
-  ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', 'fr-ca'].includes(
+  ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', '/fr-ca'].includes(
     location.pathname
   )
 ) {

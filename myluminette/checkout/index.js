@@ -1,4 +1,13 @@
 console.log('initExp');
+let isHome = false;
+if (
+  ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', '/fr-ca'].includes(
+    location.pathname
+  )
+) {
+  isHome = true;
+}
+
 if (location.href.includes('/buy?product=4')) {
   location.href = '/luminette';
 }
@@ -11,7 +20,7 @@ const settings = {
 };
 
 //Hotjar
-if (settings.clarity) {
+if (settings.clarity && !isHome) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
@@ -3587,13 +3596,15 @@ const stylePDP = `
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-let intervalInit = setInterval(() => {
-  if (document.body) {
-    clearInterval(intervalInit);
-    init();
-    gaEvent('exp_new_pdp_checkout_loaded');
-  }
-}, 200);
+if (!isHome) {
+  let intervalInit = setInterval(() => {
+    if (document.body) {
+      clearInterval(intervalInit);
+      init();
+      gaEvent('exp_new_pdp_checkout_loaded');
+    }
+  }, 200);
+}
 
 function init() {
   if (detectLang() === 'fr') {
