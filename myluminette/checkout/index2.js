@@ -168,7 +168,7 @@ const styles = `
   }
   .lav-fedex > img {
     height: 50px;
-    margin-right: -10px;
+    margin-right: 3px;
   }
   .order-pages.order-summary .payment-methods .title {
     padding-bottom: 35px;
@@ -1913,7 +1913,10 @@ const stylePDP = `
   @media(max-width: 768px) {
     .lav-shorts {
       padding: 30px 20px;
-      padding-right: 0;
+      // padding-right: 0;
+    }
+    .lav-shorts__splide {
+      margin-right: -20px;
     }
     .lav-shorts__wrap {
       padding-top: 30px;
@@ -4141,7 +4144,10 @@ const stylesMain = `
   @media(max-width: 768px) {
     .lav-shorts {
       padding: 30px 20px;
-      padding-right: 0;
+      // padding-right: 0;
+    }
+    .lav-shorts__splide {
+      margin-right: -20px;
     }
     .lav-shorts__wrap {
       padding-top: 30px;
@@ -7026,7 +7032,7 @@ let intervalInit = setInterval(() => {
     gaEvent('exp_new_pdp_checkout_loaded');
 
     if (
-      ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', 'fr-ca'].includes(
+      ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', '/fr-ca'].includes(
         location.pathname
       )
     ) {
@@ -8663,6 +8669,94 @@ function initHP() {
               </span>
               <span class="btn-bg-wrapper"></span>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <section class='lav-shorts__wrap'>
+        <div class='container-fluid container--size--lg'>
+          <div class="lav-shorts lav-observe">
+            <div class="lav-shorts__title text-center">Plus de 150 000 personnes ont augmenté leur énergie grâce à Luminette</div>
+            <div class="lav-shorts__caption text-center">Voici ce que nos utilisateurs disent après avoir utilisé Luminette</div>
+
+            <div class="splide lav-shorts__splide">
+              <div class="splide__track">
+                <div class="lav-shorts__list splide__list">
+                  <div class='lav-shorts__item splide__slide'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
+                    </div>
+                    <div class='lav-shorts__info'>
+                      <div class='lav-shorts__stars'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                      </div>
+                      <div class='lav-shorts__quote'>
+                        “20 minutes a day has been an absolute game changer for me”
+                      </div>
+                      <div class='lav-shorts__inst'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                        </span>Brooke G.</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class='lav-shorts__item splide__slide'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
+                    </div>
+                    <div class='lav-shorts__info'>
+                      <div class='lav-shorts__stars'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                      </div>
+                      <div class='lav-shorts__quote'>
+                        “Luminette glasses gave me my energy back”
+                      </div>
+                      <div class='lav-shorts__inst'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                        </span>The guilty mom</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='lav-shorts__item splide__slide'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
+                    </div>
+                    <div class='lav-shorts__info'>
+                      <div class='lav-shorts__stars'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                      </div>
+                      <div class='lav-shorts__quote'>
+                        “After first week my mood has definitely improved”
+                      </div>
+                      <div class='lav-shorts__inst'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                        </span>Elsa</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='lav-shorts__item splide__slide'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
+                    </div>
+                    <div class='lav-shorts__info'>
+                      <div class='lav-shorts__stars'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                      </div>
+                      <div class='lav-shorts__quote'>
+                        “Super simple and easy way to fight seasonal blues”
+                      </div>
+                      <div class='lav-shorts__inst'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                        </span>Cass</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -12447,6 +12541,94 @@ function initPdp() {
         </div>
       </div>
     </section>
+
+    <section class='lav-shorts__wrap'>
+      <div class='container-fluid container--size--lg'>
+        <div class="lav-shorts lav-observe">
+          <div class="lav-shorts__title text-center">Plus de 150 000 personnes ont augmenté leur énergie grâce à Luminette</div>
+          <div class="lav-shorts__caption text-center">Voici ce que nos utilisateurs disent après avoir utilisé Luminette</div>
+
+          <div class="splide lav-shorts__splide">
+            <div class="splide__track">
+              <div class="lav-shorts__list splide__list">
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “20 minutes a day has been an absolute game changer for me”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                      </span>Brooke G.</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “Luminette glasses gave me my energy back”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                      </span>The guilty mom</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “After first week my mood has definitely improved”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                      </span>Elsa</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “Super simple and easy way to fight seasonal blues”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                      </span>Cass</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
     
     <section class='lav-recharge lav-observe'>
       <div class='container-fluid container--size--lg lav-jumb__container'>
@@ -15279,8 +15461,8 @@ function initCheckout() {
             <img class='lav-trial__image' src='${settings.dir}/img/trial-icon.svg' />
 
             <div class='lav-trial__info'>
-              <div class='lav-trial__title'><span>30 Day</span> Light Therapy Trial</div>
-              <div class='lav-trial__descr'>Test out Luminette for 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+              <div class='lav-trial__title'>Essai <span>de 30 jours</span> satisfait ou remboursé</div>
+              <div class='lav-trial__descr'>Testez la Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la et nous vous rembourserons&nbsp;!</div>
             </div>
           </div>
         </div>
@@ -16150,8 +16332,8 @@ function initCheckoutDetails() {
           <img class='lav-trial__image' src='${settings.dir}/img/trial-icon.svg' />
 
           <div class='lav-trial__info'>
-            <div class='lav-trial__title'><span>30 Day</span> Light Therapy Trial</div>
-            <div class='lav-trial__descr'>Test out Luminette for 30 days, and if you aren't satisfied, send it back and we'll refund you!</div>
+            <div class='lav-trial__title'>Essai <span>de 30 jours</span> satisfait ou remboursé</div>
+            <div class='lav-trial__descr'>Testez la Luminette pendant 30 jours, et si vous n'êtes pas satisfait, renvoyez-la et nous vous rembourserons&nbsp;!</div>
           </div>
         </div>
       </div>
