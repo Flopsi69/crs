@@ -7186,7 +7186,7 @@ function initHP() {
               <div class="splide__track">
                 <div class="lav-shorts__list splide__list">
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/brook.mp4'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7204,7 +7204,7 @@ function initHP() {
                   </div>
                   
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.mp4'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7222,7 +7222,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.mp4'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7240,7 +7240,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/cass.mp4'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -8411,15 +8411,15 @@ function initHP() {
           </div>
 
           <div class='lav-reviews__preview-list lav-observe'>
-            <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review1.png);'>
-              <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Andy' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
+            <div class='lav-reviews__preview' style='background-image: url(https://flopsi69.github.io/crs/myluminette/checkout/img/en-preview-review1.png);'>
+              <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Video before footer, first' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
                 <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
                 <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
               </div>
             </div>
 
-            <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review2.png);'>
-              <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/ZSr3HU5Njgg?autoplay=0&start=0&showinfo=0&rel=0'>
+            <div class='lav-reviews__preview' style='background-image: url(https://flopsi69.github.io/crs/myluminette/checkout/img/en-preview-review2.png);'>
+              <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Video before footer, second' data-src='https://www.youtube.com/embed/hZpBFn_YKMY?autoplay=0&start=0&showinfo=0&rel=0'>
                 <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
                 <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
               </div>
@@ -11050,78 +11050,77 @@ function initPdp() {
         <div class="lav-shorts lav-observe">
           <div class="lav-shorts__title text-center">150,000+ people boost their energy with Luminette</div>
           <div class="lav-shorts__caption text-center">Here’s what our users are saying after using Luminette</div>
-          
 
           <div class="splide lav-shorts__splide">
             <div class="splide__track">
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/brook.mp4'>
-                    <img  src="${settings.dir}/video/brook.png" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
-                      <img  src="${settings.dir}/img/stars-shorts.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
                       “20 minutes a day has been an absolute game changer for me”
                     </div>
                     <div class='lav-shorts__inst'>
-                      <img  src="${settings.dir}/img/icon-inst.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
                       </span>Brooke G.</span>
                     </div>
                   </div>
                 </div>
                 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.mp4'>
-                    <img  src="${settings.dir}/video/guilty.png" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
-                      <img  src="${settings.dir}/img/stars-shorts.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
                       “Luminette glasses gave me my energy back”
                     </div>
                     <div class='lav-shorts__inst'>
-                      <img  src="${settings.dir}/img/icon-inst.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
                       </span>The guilty mom</span>
                     </div>
                   </div>
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.mp4'>
-                    <img  src="${settings.dir}/video/elsa.png" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
-                      <img  src="${settings.dir}/img/stars-shorts.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
                       “After first week my mood has definitely improved”
                     </div>
                     <div class='lav-shorts__inst'>
-                      <img  src="${settings.dir}/img/icon-inst.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
                       </span>Elsa</span>
                     </div>
                   </div>
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://flopsi69.github.io/crs/myluminette/checkout/video/cass.mp4'>
-                    <img  src="${settings.dir}/video/cass.png" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
-                      <img  src="${settings.dir}/img/stars-shorts.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
                       “Super simple and easy way to fight seasonal blues”
                     </div>
                     <div class='lav-shorts__inst'>
-                      <img  src="${settings.dir}/img/icon-inst.svg" />
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
                       </span>Cass</span>
                     </div>
                   </div>
@@ -11129,6 +11128,7 @@ function initPdp() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
