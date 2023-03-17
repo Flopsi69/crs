@@ -15707,9 +15707,7 @@ function initCheckout() {
       if (itemCloneEl.querySelector('[data-warranty-price]')) {
         itemCloneEl.innerHTML = itemCloneEl.innerHTML.replace(
           /<span data-warranty-price="">\d+<\/span>/,
-          parseInt(
-            itemCloneEl.querySelector('[data-warranty-price]').innerText
-          ) / parseInt(document.querySelector('.counter__count').innerText)
+          parseInt(itemCloneEl.querySelector('[data-warranty-price]').innerText)
         );
       }
 
