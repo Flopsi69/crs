@@ -6,7 +6,7 @@ if (location.href.includes('/buy?product=4')) {
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/myluminette/checkout',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -23,7 +23,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      // clarity('set', 'new_pdp_and_checkout', 'variant_1');
+      clarity('set', 'new_pdp_video_reviews', 'variant_1');
     }
   }, 1000);
 }
@@ -7029,7 +7029,7 @@ const stylesMain = `
 let intervalInit = setInterval(() => {
   if (document.body) {
     clearInterval(intervalInit);
-    gaEvent('exp_new_pdp_checkout_loaded');
+    // gaEvent('exp_new_pdp_checkout_loaded');
 
     if (
       ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', '/fr-ca'].includes(
@@ -10034,6 +10034,7 @@ function initHP() {
       entries.forEach((entry) => {
         // console.log(entry);
         if (entry.isIntersecting) {
+          console.log(entry.target);
           if (entry.target.classList.contains('lav-problems')) {
             const event = [
               'exp_new_hp_12_vis',
@@ -10101,6 +10102,17 @@ function initHP() {
               'Visibility',
               'Section',
               '30 day',
+            ];
+
+            isElementInViewport(entry.target, event);
+          }
+
+          if (entry.target.classList.contains('lav-shorts')) {
+            const event = [
+              'exp_new_pdp_video_reviews_vrs',
+              'Video review',
+              'Review section',
+              'Review section',
             ];
 
             isElementInViewport(entry.target, event);
