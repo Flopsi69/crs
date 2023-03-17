@@ -11,6 +11,14 @@ const settings = {
   observe: false,
 };
 
+if (
+  ['/en-us', '/en-ca', '/uk', '/fr', '/fr-be', '/fr-ca'].includes(
+    location.pathname
+  )
+) {
+  settings.dir = 'https://flopsi69.github.io/crs/myluminette/newhome2';
+}
+
 //Hotjar
 if (settings.clarity) {
   const clarityInterval = setInterval(function () {
