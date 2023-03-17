@@ -10311,7 +10311,7 @@ function initHP() {
     .querySelector('.lav-jumb__learn')
     .addEventListener('click', function () {
       document
-        .querySelector('.lav-problems')
+        .querySelector('.lav-wears')
         .scrollIntoView({ behavior: 'smooth' });
     });
 
