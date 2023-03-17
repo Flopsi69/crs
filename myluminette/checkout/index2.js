@@ -1,3 +1,48 @@
+let preloaderEl = `
+  <style id='preloader-styles'>
+    .lav-preloader {
+      position: fixed;
+      z-index: 99999999999;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* width: 80px; */
+      /* height: 80px; */
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      transition: 0.35s;
+    }
+    .lav-preloader.hide {
+      opacity: 0;
+    }
+    .lav-preloader:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      border-color: #2292EF transparent #2292EF transparent;
+      animation: lav-preloader 1.2s linear infinite;
+    }
+    @keyframes lav-preloader {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <div class="lav-preloader"></div>
+  `;
+document.body.insertAdjacentHTML('afterbegin', preloaderEl);
+
 console.log('initExp');
 if (location.href.includes('/buy?product=4')) {
   location.href = '/luminette';
@@ -16660,3 +16705,18 @@ function initCheckoutDetails() {
       );
     });
 }
+
+setTimeout(() => {
+  if (document.querySelector('.lav-preloader')) {
+    document.querySelector('.lav-preloader').classList.add('hide');
+    setTimeout(() => {
+      if (
+        document.querySelector('.lav-preloader') &&
+        document.querySelector('#preloader-styles')
+      ) {
+        document.querySelector('#preloader-styles').remove();
+        document.querySelector('.lav-preloader').remove();
+      }
+    }, 450);
+  }
+}, 300);
