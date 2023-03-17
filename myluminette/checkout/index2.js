@@ -51,7 +51,7 @@ function gaEvent(name, desc, type, loc) {
       event_loc: loc,
     };
     console.log('DEBUG:: EventFire:', objData);
-    // dataLayer.push(objData);
+    dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
   }
@@ -10083,7 +10083,6 @@ function initHP() {
   }, 100);
 
   function observerView() {
-    console.log('ovserve init');
     const observerOptions = {
       root: null,
       threshold: 0,
@@ -10092,9 +10091,7 @@ function initHP() {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        // console.log(entry);
         if (entry.isIntersecting) {
-          console.log(entry.target);
           if (entry.target.classList.contains('lav-problems')) {
             const event = [
               'exp_new_hp_12_vis',
