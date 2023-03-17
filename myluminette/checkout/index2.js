@@ -295,6 +295,13 @@ const styles = `
     }
   }
 
+  @media(max-width: 768px) {
+    .lav-body-confirm .details-block {
+      margin-top: 0;
+    }
+
+  }
+
   .order-pages.order-summary .payment-methods .forms-wrapper .form-block .payment-icon .image {
     width: 87px;
     height: 50px;
