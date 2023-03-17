@@ -10422,6 +10422,15 @@ function initHP() {
             },
           },
         }).mount();
+
+        shortsSlider.on('moved', function () {
+          gaEvent(
+            'exp_new_pdp_video_reviews_hs',
+            'Horizontal scrolling video reviews section',
+            'Review section',
+            'Review section'
+          );
+        });
       }
     }, 500);
 
