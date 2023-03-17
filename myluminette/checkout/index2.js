@@ -492,7 +492,7 @@ const styles = `
   }
 
   @media(max-width: 768px) {
-    .lav-trial__title { 
+    .lav-trial__descr { 
       font-size: 15px;
       line-height: 1.5;
     }
@@ -521,7 +521,6 @@ const styles = `
 
   .lav-path__complete {
     font-weight: 700;
-    font-size: 18px;
     line-height: 24px;
     color: #9FAFC3;
   }
@@ -1323,7 +1322,8 @@ const styles = `
       margin-bottom: 16px;
     }
     .order-pages.order-summary .order-info .columns.lav-brief {
-
+      background: transparent;
+      margin: 0;
     }
     .order-pages.order-summary .order-info .columns.lav-brief .order-4, .order-pages.order-summary .order-info .columns.lav-brief .order-1, .order-pages.order-summary .order-info .columns.lav-brief .order-2 {
       display: none;
