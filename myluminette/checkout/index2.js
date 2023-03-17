@@ -10409,6 +10409,7 @@ function initHP() {
         clearInterval(initSplideInterval);
         let shortsSlider = new Splide('.lav-shorts__splide', {
           pagination: false,
+          flickPower: 100,
           arrows: false,
           perPage: 4,
           gap: '60px',
@@ -14573,6 +14574,7 @@ function initPdp() {
     let shortsSlider = new Splide('.lav-shorts__splide', {
       pagination: false,
       arrows: false,
+      flickPower: 100,
       perPage: 4,
       gap: '60px',
       breakpoints: {
