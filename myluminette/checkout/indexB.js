@@ -7799,15 +7799,15 @@ function initHP() {
         </div>
 
         <div class='lav-reviews__preview-list lav-observe'>
-          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review1.png);'>
+          <div class='lav-reviews__preview' style='background-image: url(https://flopsi69.github.io/crs/myluminette/checkout/img/en-preview-review1.png);'>
             <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Andy' data-src='https://www.youtube.com/embed/ye4x3DkSbvA?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>
           </div>
 
-          <div class='lav-reviews__preview' style='background-image: url(${settings.dir}/img/en-preview-review2.png);'>
-            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/ZSr3HU5Njgg?autoplay=0&start=0&showinfo=0&rel=0'>
+          <div class='lav-reviews__preview' style='background-image: url(https://flopsi69.github.io/crs/myluminette/checkout/img/en-preview-review2.png);'>
+            <div class="lav-reviews__play lav-open-modal" data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/hZpBFn_YKMY?autoplay=0&start=0&showinfo=0&rel=0'>
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play.svg' />
               <img class='lav-reviews__play-btn' src='${settings.dir}/img/play-hover.svg' />
             </div>

@@ -147,6 +147,9 @@ const styles = `
     padding: 16px 48px 24px;
     margin: 0 -48px;
   }
+  .order-pages.order-summary .order-info .flex-column p {
+    word-break: break-word;
+  }
   .order-pages.order-summary .order-info .columns .column.order-4,  .order-pages.order-summary .order-info .columns .column.order-5,  .order-pages.order-summary .order-info .columns .column.order-3 {
     display: none;
   }
