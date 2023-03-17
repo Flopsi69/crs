@@ -7192,7 +7192,7 @@ function initHP() {
               <div class="splide__track">
                 <div class="lav-shorts__list splide__list">
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Brooke' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7210,7 +7210,7 @@ function initHP() {
                   </div>
                   
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7228,7 +7228,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Theodora' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -7246,7 +7246,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Cassandra' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -8683,7 +8683,7 @@ function initHP() {
               <div class="splide__track">
                 <div class="lav-shorts__list splide__list">
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-name='Nathalie' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -8701,7 +8701,7 @@ function initHP() {
                   </div>
                   
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/r7GLkPblufc?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Audrey' data-src='https://www.youtube.com/embed/r7GLkPblufc?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/2.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -8719,7 +8719,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -8737,7 +8737,7 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
+                    <div class='lav-shorts__preview lav-open-modal' data-name='Alexia' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
@@ -10021,9 +10021,12 @@ function initHP() {
   stylesEl.innerHTML = stylesMain;
   document.body.appendChild(stylesEl);
 
-  observerView();
+  setTimeout(() => {
+    observerView();
+  }, 100);
 
   function observerView() {
+    console.log('ovserve init');
     const observerOptions = {
       root: null,
       threshold: 0,
@@ -10593,6 +10596,15 @@ function initHP() {
       item.addEventListener('click', function (e) {
         e.preventDefault();
 
+        if (item.classList.contains('lav-shorts__preview')) {
+          gaEvent(
+            'exp_new_pdp_video_reviews_cvr',
+            item.dataset.name,
+            'Review section',
+            'Review section'
+          );
+        }
+
         if (item.classList.contains('lav-morning__preview')) {
           gaEvent(
             'exp_new_hp_6_glasses_video',
@@ -11161,7 +11173,7 @@ function initPdp() {
             <div class="splide__track">
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Brooke' data-src='https://www.youtube.com/embed/7GVQUjaxrwU?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/brook.png" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -11179,7 +11191,7 @@ function initPdp() {
                 </div>
                 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Lily' data-src='https://www.youtube.com/embed/GWxMqWoE4CU?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/guilty.png" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -11197,7 +11209,7 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Theodora' data-src='https://www.youtube.com/embed/GE-FPNrR1rY?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/elsa.png" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -11215,7 +11227,7 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Cassandra' data-src='https://www.youtube.com/embed/zsgDuSXgNYc?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/cass.png" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -12564,7 +12576,7 @@ function initPdp() {
             <div class="splide__track">
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Nathalie' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -12582,7 +12594,7 @@ function initPdp() {
                 </div>
                 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/r7GLkPblufc?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Audrey' data-src='https://www.youtube.com/embed/r7GLkPblufc?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/2.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -12600,7 +12612,7 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -12618,7 +12630,7 @@ function initPdp() {
                 </div>
 
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Alexia' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
                     <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
@@ -14662,6 +14674,15 @@ function initPdp() {
     for (let item of document.querySelectorAll('.lav-open-modal')) {
       item.addEventListener('click', function (e) {
         e.preventDefault();
+
+        if (item.classList.contains('lav-shorts__preview')) {
+          gaEvent(
+            'exp_new_pdp_video_reviews_cvr',
+            item.dataset.name,
+            'Review section',
+            'Review section'
+          );
+        }
 
         if (item.closest('.lav-recharge')) {
           gaEvent(
