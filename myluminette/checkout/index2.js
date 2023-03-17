@@ -7166,8 +7166,8 @@ function initHP() {
               <img src='${settings.dir}/img/cup.svg' />
             </div>
             <div class='lav-drinks__info'>
-                <div class='lav-drinks__title'>Natural substitute for caffeine & energy drinks</div>
-                <div class='lav-drinks__caption'>You can also use light therapy to support healthy energy levels during the day.</div>
+              <div class='lav-drinks__title'>Natural substitute for caffeine & energy drinks</div>
+              <div class='lav-drinks__caption'>You can also use light therapy to support healthy energy levels during the day.</div>
             </div>
           </div>
 
@@ -7182,7 +7182,7 @@ function initHP() {
         </div>
       </section>
 
-      <section class='lav-shorts__wrap'>
+      <section class='lav-shorts__wrap lav-section'>
         <div class='container-fluid container--size--lg'>
           <div class="lav-shorts lav-observe">
             <div class="lav-shorts__title text-center">150,000+ people boost their energy with Luminette</div>
@@ -8673,7 +8673,7 @@ function initHP() {
         </div>
       </section>
 
-      <section class='lav-shorts__wrap'>
+      <section class='lav-shorts__wrap lav-section'>
         <div class='container-fluid container--size--lg'>
           <div class="lav-shorts lav-observe">
             <div class="lav-shorts__title text-center">Plus de 150 000 personnes ont augmenté leur énergie grâce à Luminette</div>
