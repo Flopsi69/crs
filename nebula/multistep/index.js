@@ -73,7 +73,7 @@ if (settings.observe) {
 
 // Styles
 const styles = `
-  .advantages, #backPage, .lav-hide, .payment-label-options, .payment__buttons {
+  .advantages, #backPage, .lav-hide, .payment-label-options, .payment__buttons, .paylater-wrap {
     display: none!important;
   }
   .payment-label-options {
@@ -130,7 +130,7 @@ const styles = `
     background: url(${settings.dir}/img/icon-arrow.svg) center no-repeat;
     background-size: contain;
     left: 10px;
-    top: 50%;
+    top: 52%;
     transform: translateY(-50%);
     width: 12px;
     height: 12px;
@@ -324,9 +324,27 @@ const styles = `
     margin-bottom: 24px;
   }
 
+  .lav-label_caption {
+    margin-bottom: 4px;
+  }
+
+  .lav-label__caption {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #505985;
+  }
+
   .lav-choose {
     border: 1px solid #ECECEC;
     border-radius: 4px;
+  }
+
+  .lav-choose__add {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 150%;
+    color: #505985;
   }
 
   .lav-choose__head {
@@ -334,7 +352,12 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 17px 11px 17px 45px;
+    padding: 15px 12px 15px 45px;
+  }
+
+  .lav-choose__body {
+    padding: 20px;
+    border-top: 1px solid #ECECEC;
   }
 
   .lav-choose__head:before {
@@ -378,7 +401,193 @@ const styles = `
     margin-top: 28px;
   }
 
-  .lav-shipping {}
+  .lav-payment {
+    margin-top: 28px;
+  }
+
+  .lav-payment__choose {
+    margin-top: 16px;
+  }
+
+  .lav-payment__choose .lav-choose__body {
+    background: #F9F9F9;
+    display: none;
+  }
+
+  .lav-payment__choose.active .lav-choose__body {
+    display: block;
+  }
+
+  .stripe-card-div .stripe-card .card-expiration-cvc .input-div {
+    margin-bottom: 0!important;
+  }
+  
+  .StripeElement {
+    max-height: 47px;
+    padding-top: 0.9rem!important;
+    padding-bottom: 0.9rem!important;
+  }
+
+  .stripe-card-div .stripe-card .input-div {
+    margin-bottom: 12px!important;
+  }
+
+  .stripe-card-div {
+    margin-bottom: 0!important;
+  }
+
+  .stripe-card-div .stripe-card .card-expiration-cvc .input-div {
+    width: 49.2%!important;
+  }
+
+  .card-number {
+    position: relative;
+  }
+
+  .card-number:after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: url('${settings.dir}/img/icon-lock.svg') center no-repeat;
+    background-size: contain;
+  }
+
+  .card-cvc {
+    position: relative;
+  }
+
+  .lav-quest {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 13px;
+    cursor: pointer;
+    transition: 0.35s;
+    z-index: 9999;
+  }
+
+  .lav-quest:hover {
+    opacity: 0.7
+  }
+
+  .lav-later .lav-choose__body  {
+    padding: 23px;
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #737373;
+  }
+
+  .lav-later .lav-choose__body img {
+    margin-right: 20px;
+  }
+
+  .lav-later {
+    margin-top: 20px;
+  }
+  .lav-later__label {
+    font-family: Spacegrotesk-Bold;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #0B0F41;
+  }
+  .lav-later__choose, .lav-payment__choose {
+    overflow: hidden;
+  }
+  .lav-later__choose {
+    margin-top: 12px;
+  }
+  .lav-later__choose .lav-choose__head, .lav-payment__choose .lav-choose__head {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .lav-later__choose .lav-choose__head:hover, .lav-payment__choose .lav-choose__head:hover {
+    opacity: 0.7;
+  }
+  .lav-tip__klarna, .lav-afterpay {
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-tip__klarna:hover, .lav-afterpay:hover {
+    opacity: 0.7;
+  }
+  .lav-later__choose.active .lav-choose__head, .lav-payment__choose.active .lav-choose__head {
+    cursor: auto;
+  }
+  .lav-later__choose.active .lav-choose__head:hover, .lav-payment__choose.active .lav-choose__head:hover {
+   opacity: 1;
+  }
+  .lav-later__choose .lav-choose__body {
+    display: none;
+  }
+  .lav-later__choose.active .lav-choose__body {
+    display: flex;
+    border-top: 1px solid #0B0F41;
+  }
+  .lav-later__choose.active {
+    border: 1px solid #0B0F41;
+  }
+  .lav-payment__choose.active .lav-choose__body {
+    border-top: 1px solid #0B0F41;
+  }
+  .lav-payment__choose.active {
+    border: 1px solid #0B0F41;
+  }
+  .lav-later__choose .lav-choose__body span {
+    max-width: 450px;
+  }
+  .lav-modal {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.1);
+    backdrop-filter: blur(1px);
+  }
+  .lav-modal__inner {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lav-modal__pay {
+    max-width: 380px;
+    width: 100%;
+  }
+  .lav-modal__body {
+    padding: 20px 30px 24px;
+  }
+  .lav-modal__title {
+    font-family: Spacegrotesk-Bold;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #0B0F41;
+  }
+  .lav-modal__caption {
+    font-size: 24px;
+    line-height: 1.2;
+    color: #0B0F41;
+  }
+  .lav-modal__footer {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #505985;
+    padding: 12px 0;
+    margin: 0 34px;
+    border-top: 1px solid #ECF7FD;
+  }
+  .lav-modal {}
+  .lav-modal {}
+  .lav-modal {}
 
 `;
 
@@ -397,7 +606,9 @@ function init() {
   initFirstStep();
   initSummary();
   initShipping();
+  initPayment();
   initControl();
+  initModals();
 }
 
 function initHead() {
@@ -504,6 +715,26 @@ function initControl() {
         if (step + 1 === 2 && !validateStepOne()) return false;
         step++;
         moveToStep();
+      } else {
+        if (document.querySelector('.lav-payment__choose.active')) {
+          document.querySelector('.pay-btn').click();
+        } else if (document.querySelector('.lav-choose__klarna.active')) {
+          document.querySelector('.payLaterBtn.klarna').click();
+        } else if (document.querySelector('.lav-choose__afterpay.active')) {
+          document.querySelector('.payLaterBtn.afterpay').click();
+        }
+
+        setTimeout(() => {
+          if (
+            document.querySelector(
+              '.shipping-address-component .error-message'
+            ) ||
+            document.querySelector('.email-address-component .error-message')
+          ) {
+            step = 1;
+            moveToStep();
+          }
+        }, 100);
       }
     });
 }
@@ -562,6 +793,117 @@ function initShipping() {
     .insertAdjacentHTML('beforeend', shippingEl);
 }
 
+function initPayment() {
+  const paymentEl = `
+    <div class='lav-payment lav-hide'>
+      <div class='lav-payment__label lav-label lav-label_caption'>Payment</div>
+      <div class='lav-payment__label lav-label__caption'>All transactions are secure and encrypted.</div>
+      <div class='lav-payment__choose lav-choose active'>
+        <div class='lav-choose__head'>
+          <span class='lav-choose__caption'>Credit card</span>
+          <span class='lav-choose__add'>
+            <img src='${settings.dir}/img/payments.svg' />
+          </span>
+        </div>
+        <div class='lav-choose__body'></div>
+      </div>
+    </div>
+
+    <div class='lav-later lav-hide'>
+      <div class='lav-later__label'>Buy now pay later with:</div>
+
+      <div class='lav-later__list'>
+        <div class='lav-later__choose lav-choose lav-choose__klarna'>
+          <div class='lav-choose__head'>
+            <span class='lav-choose__caption'>Klarna</span>
+            <img class='lav-tip__klarna' src='${settings.dir}/img/klarna.svg' />
+          </div>
+          <div class='lav-choose__body'>
+            <img src='${settings.dir}/img/icon-redirect.svg' />
+
+            <span>
+              After clicking “Complete order”, you will be redirected to Klarna  to complete your purchase securely
+            </span>
+          </div>
+        </div>
+
+        <div class='lav-later__choose lav-choose lav-choose__afterpay'>
+          <div class='lav-choose__head'>
+            <span class='lav-choose__caption'>Afterpay</span>
+            <img class='lav-tip__afterpay'  class='lav-afterpay' src='${settings.dir}/img/afterpay.svg' />
+          </div>
+          <div class='lav-choose__body'>
+            <img src='${settings.dir}/img/icon-redirect.svg' />
+
+            <span>
+              After clicking “Complete order”, you will be redirected to Afterpay  to complete your purchase securely
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  document
+    .querySelector('.right-component')
+    .insertAdjacentHTML('beforeend', paymentEl);
+
+  document
+    .querySelector('.lav-payment__choose .lav-choose__body')
+    .insertAdjacentElement(
+      'afterbegin',
+      document.querySelector('.payment-component')
+    );
+
+  document
+    .querySelector('.card-cvc')
+    .insertAdjacentHTML(
+      'afterbegin',
+      `<img class='lav-quest' src="${settings.dir}/img/icon-quest.svg" />`
+    );
+
+  let items = ['.lav-later__choose', '.lav-payment__choose'];
+
+  for (let item of items) {
+    document.querySelectorAll(item).forEach((el) => {
+      el.addEventListener('click', function (e) {
+        console.log(e.target);
+        if (e.target.classList.contains('lav-tip__klarna')) {
+          openModal('klarna');
+          return false;
+        }
+        if (e.target.classList.contains('lav-tip__afterpay')) {
+          openModal('afterpay');
+          return false;
+        }
+        if (this.classList.contains('active')) return false;
+
+        if (document.querySelector('.lav-payment__choose.active')) {
+          document
+            .querySelector('.lav-payment__choose.active')
+            .classList.remove('active');
+        }
+
+        if (document.querySelector('.lav-later__choose.active')) {
+          document
+            .querySelector('.lav-later__choose.active')
+            .classList.remove('active');
+        }
+
+        this.classList.add('active');
+      });
+    });
+  }
+
+  // for (let el of document.querySelectorAll('.lav-choose__caption')) {
+  //   el.addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     console.log('test');
+  //   });
+  // }
+}
+
 function moveToStep() {
   const hideArr = [
     '.lav-express',
@@ -569,6 +911,10 @@ function moveToStep() {
     '.lav-summary',
     '.lav-shipping',
     '.right-component>.error-message+div',
+    '.lav-later',
+    '.lav-payment',
+    '.lav-choose__klarna',
+    '.lav-choose__afterpay',
   ];
 
   for (let el of hideArr) {
@@ -620,6 +966,29 @@ function moveToStep() {
     document.querySelector('.lav-control__back span').innerText =
       'Back to shipping';
     document.querySelector('.lav-control__next').innerText = 'Complete order';
+
+    document.querySelector('.lav-payment').classList.remove('lav-hide');
+
+    if (!document.querySelector('.payLaterBtn.klarna').disabled) {
+      document.querySelector('.lav-later').classList.remove('lav-hide');
+      document
+        .querySelector('.lav-choose__klarna')
+        .classList.remove('lav-hide');
+    }
+
+    if (!document.querySelector('.payLaterBtn.afterpay').disabled) {
+      document.querySelector('.lav-later').classList.remove('lav-hide');
+      document
+        .querySelector('.lav-choose__afterpay')
+        .classList.remove('lav-hide');
+    }
+
+    if (
+      document.querySelector('.payLaterBtn.afterpay').disabled &&
+      document.querySelector('.payLaterBtn.klarna').disabled
+    ) {
+      document.querySelector('.lav-payment__choose').click();
+    }
   }
 
   document
@@ -628,6 +997,7 @@ function moveToStep() {
 }
 
 function validateStepOne() {
+  return true;
   let checkArr = [
     'email',
     'fname',
@@ -649,4 +1019,48 @@ function validateStepOne() {
   }
 
   return true;
+}
+
+function initModals() {
+  const modalEl = `
+    <div class='lav-modal'>
+      <div class='lav-modal__inner lav-modal__pay  lav-modal__klarna'>
+        <div class='lav-modal__head'>
+          <img src='${settings.dir}/img/klarna-text.svg' />
+          <img class='lav-modal__close' src='${settings.dir}/img/icon-close.svg' />
+        </div>
+        <div class='lav-modal__body'>
+          <div class='lav-modal__title'>Pay in 3</div>
+          <div class='lav-modal__caption'>Interest free</div>
+          <div class='lav-modal__list'>
+            <div class='lav-modal__item'>
+              <img src='${settings.dir}/img/icon-basket.svg' />
+              <span>Add DNA test bundle to your basket</span>
+            </div>
+            <div class='lav-modal__item'>
+              <img src='${settings.dir}/img/icon-select.svg' />
+              <span>Select Klarna at checkout</span>
+            </div>
+            <div class='lav-modal__item'>
+              <img src='${settings.dir}/img/icon-login.svg' />
+              <span>Log into or create your account</span>
+            </div>
+            <div class='lav-modal__item'>
+              <img src='${settings.dir}/img/icon-pie.svg' />
+              <span>Your purchase will be split into 3 equal card payments. The first payment is collected when the order is shipped. The remaining two will be automatically collected in 30 and 60 days.</span>
+            </div>
+          </div>
+          <div class='lav-modal__footer'>
+            Available on purchases up to 1,000.00
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalEl);
+}
+
+function openModal(type) {
+  console.log(type);
 }
