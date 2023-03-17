@@ -13679,6 +13679,65 @@ function initPdp() {
     `;
   }
 
+  setTimeout(() => {
+    observerView();
+  }, 100);
+
+  function observerView() {
+    console.log('ovserve init');
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+      rootMargin: '-40%',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // console.log(entry);
+        if (entry.isIntersecting) {
+          console.log(entry.target);
+
+          if (entry.target.classList.contains('lav-shorts__wrap')) {
+            const event = [
+              'exp_new_pdp_video_reviews_vrs',
+              'Video review',
+              'Review section',
+              'Review section',
+            ];
+
+            isElementInViewport(entry.target, event);
+          }
+
+          // observer.unobserve(entry.target); //
+        }
+      });
+    }, observerOptions);
+
+    for (let section of Array.from(
+      document.querySelectorAll('.lav-shorts__wrap')
+    )) {
+      observer.observe(section);
+    }
+
+    function isElementInViewport(el, event) {
+      setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+
+        if (
+          rect.top + rect.height * 0.3 < windowHeight &&
+          rect.bottom > rect.height * 0.3
+        ) {
+          el.classList.add('in-view');
+          observer.unobserve(el);
+
+          gaEvent(...event);
+        }
+      }, 3000);
+    }
+  }
+
   document
     .querySelector('.section-main')
     .insertAdjacentHTML('afterend', newLayout);
