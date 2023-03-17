@@ -10455,6 +10455,7 @@ function initHP() {
         let shortsSlider = new Splide('.lav-shorts__splide', {
           pagination: false,
           flickPower: 100,
+          speed: 1000,
           arrows: false,
           perPage: 4,
           gap: '60px',
@@ -14620,6 +14621,7 @@ function initPdp() {
       pagination: false,
       arrows: false,
       flickPower: 100,
+      speed: 1000,
       perPage: 4,
       gap: '60px',
       breakpoints: {
