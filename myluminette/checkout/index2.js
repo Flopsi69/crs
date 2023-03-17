@@ -10110,7 +10110,7 @@ function initHP() {
             isElementInViewport(entry.target, event);
           }
 
-          if (entry.target.classList.contains('lav-shorts')) {
+          if (entry.target.classList.contains('lav-shorts__wrap')) {
             const event = [
               'exp_new_pdp_video_reviews_vrs',
               'Video review',
