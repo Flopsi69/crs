@@ -14948,6 +14948,9 @@ function initPdp() {
       }, 400);
     }
   }
+
+  document.querySelector('.section-how-it-works .subtitle span').style.color =
+    '#1B7FE7';
 }
 
 function initObserver() {
