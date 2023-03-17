@@ -73,8 +73,11 @@ if (settings.observe) {
 
 // Styles
 const styles = `
-  .advantages, #backPage, .lav-hide {
+  .advantages, #backPage, .lav-hide, .payment-label-options, .payment__buttons {
     display: none!important;
+  }
+  .payment-label-options {
+    display: none;
   }
   .lav-top {
     padding: 24px 15px;
@@ -498,6 +501,7 @@ function initControl() {
         step = 1;
         moveToStep();
       } else if (step !== 3) {
+        if (step + 1 === 2 && !validateStepOne()) return false;
         step++;
         moveToStep();
       }
@@ -623,4 +627,26 @@ function moveToStep() {
     .scrollIntoView({ behavior: 'smooth' });
 }
 
-// function init
+function validateStepOne() {
+  let checkArr = [
+    'email',
+    'fname',
+    'lname',
+    'shipping-city',
+    'country',
+    'shipping-address',
+  ];
+
+  for (let inp of checkArr) {
+    if (!document.querySelector('[name="' + inp + '"]').value) {
+      document.querySelector('.pay-btn').click();
+      document
+        .querySelector('.email-address-component')
+        .scrollIntoView({ behavior: 'smooth' });
+
+      return false;
+    }
+  }
+
+  return true;
+}
