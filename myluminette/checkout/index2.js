@@ -8780,19 +8780,37 @@ function initHP() {
               <div class="splide__track">
                 <div class="lav-shorts__list splide__list">
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-name='Nathalie' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
-                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
+                    <div class='lav-shorts__preview lav-open-modal' data-name='Alexia' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                       </div>
                       <div class='lav-shorts__quote'>
-                        “Après 6 jours, je n’avais déjà plus de réveils nocturnes”
+                        “Au bout de 10 jours, je me sentais beaucoup plus en forme pendant la journée.”
                       </div>
                       <div class='lav-shorts__inst'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                        </span>Nathalie</span>
+                        </span>Alexia</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='lav-shorts__item splide__slide'>
+                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
+                    </div>
+                    <div class='lav-shorts__info'>
+                      <div class='lav-shorts__stars'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                      </div>
+                      <div class='lav-shorts__quote'>
+                        “La Luminette est légère, design et facile d’utilisation”
+                      </div>
+                      <div class='lav-shorts__inst'>
+                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                        </span>Louis</span>
                       </div>
                     </div>
                   </div>
@@ -8816,37 +8834,19 @@ function initHP() {
                   </div>
 
                   <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
-                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
+                    <div class='lav-shorts__preview lav-open-modal' data-name='Nathalie' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
                     </div>
                     <div class='lav-shorts__info'>
                       <div class='lav-shorts__stars'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                       </div>
                       <div class='lav-shorts__quote'>
-                        “La Luminette est légère, design et facile d’utilisation”
+                        “Après 6 jours, je n’avais déjà plus de réveils nocturnes”
                       </div>
                       <div class='lav-shorts__inst'>
                         <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                        </span>Louis</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class='lav-shorts__item splide__slide'>
-                    <div class='lav-shorts__preview lav-open-modal' data-name='Alexia' data-target='.lav-review-modal' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
-                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
-                    </div>
-                    <div class='lav-shorts__info'>
-                      <div class='lav-shorts__stars'>
-                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                      </div>
-                      <div class='lav-shorts__quote'>
-                        “Au bout de 10 jours, je me sentais beaucoup plus en forme pendant la journée.”
-                      </div>
-                      <div class='lav-shorts__inst'>
-                        <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                        </span>Alexia</span>
+                        </span>Nathalie</span>
                       </div>
                     </div>
                   </div>
@@ -12681,19 +12681,36 @@ function initPdp() {
             <div class="splide__track">
               <div class="lav-shorts__list splide__list">
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Nathalie' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
-                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Alexia' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
-                      “Après 6 jours, je n’avais déjà plus de réveils nocturnes”
+                      “Au bout de 10 jours, je me sentais beaucoup plus en forme pendant la journée.”
                     </div>
                     <div class='lav-shorts__inst'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                      </span>Nathalie</span>
+                      </span>Alexia</span>
+                    </div>
+                  </div>
+                </div>
+                <div class='lav-shorts__item splide__slide'>
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
+                  </div>
+                  <div class='lav-shorts__info'>
+                    <div class='lav-shorts__stars'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
+                    </div>
+                    <div class='lav-shorts__quote'>
+                      “La Luminette est légère, design et facile d’utilisation”
+                    </div>
+                    <div class='lav-shorts__inst'>
+                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
+                      </span>Louis</span>
                     </div>
                   </div>
                 </div>
@@ -12715,39 +12732,20 @@ function initPdp() {
                     </div>
                   </div>
                 </div>
-
                 <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Louis' data-src='https://www.youtube.com/embed/T3hD1MZlmuU?autoplay=1'>
-                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/3.jpg" />
+                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Nathalie' data-src='https://www.youtube.com/embed/RxwTebJqdYY?autoplay=1'>
+                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/1.jpg" />
                   </div>
                   <div class='lav-shorts__info'>
                     <div class='lav-shorts__stars'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
                     </div>
                     <div class='lav-shorts__quote'>
-                      “La Luminette est légère, design et facile d’utilisation”
+                      “Après 6 jours, je n’avais déjà plus de réveils nocturnes”
                     </div>
                     <div class='lav-shorts__inst'>
                       <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                      </span>Louis</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class='lav-shorts__item splide__slide'>
-                  <div class='lav-shorts__preview lav-open-modal' data-target='.lav-review-modal' data-name='Alexia' data-src='https://www.youtube.com/embed/0NZRHK722-E?autoplay=1'>
-                    <img  src="https://flopsi69.github.io/crs/myluminette/checkout/video/4.jpg" />
-                  </div>
-                  <div class='lav-shorts__info'>
-                    <div class='lav-shorts__stars'>
-                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/stars-shorts.svg" />
-                    </div>
-                    <div class='lav-shorts__quote'>
-                      “Au bout de 10 jours, je me sentais beaucoup plus en forme pendant la journée.”
-                    </div>
-                    <div class='lav-shorts__inst'>
-                      <img  src="https://flopsi69.github.io/crs/myluminette/checkout/img/icon-inst.svg" />
-                      </span>Alexia</span>
+                      </span>Nathalie</span>
                     </div>
                   </div>
                 </div>
