@@ -3528,7 +3528,10 @@ const stylePDP = `
       line-height: 1.15;
     }
     .lav-france .lav-test__third .days-test_head {
-      align-items: center!important;
+      display: inline!important;
+    }
+    .lav-france .lav-test__third .days-test_head > div {
+      display: inline!important;
     }
     .lav-reviews__play {
       width: 100%;
