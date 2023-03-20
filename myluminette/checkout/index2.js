@@ -1875,6 +1875,7 @@ const stylePDP = `
     right: 0;
     top: 0;
     bottom: 0;
+    margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: contain;
     transition: 0.35s;
@@ -4110,6 +4111,7 @@ const stylesMain = `
     right: 0;
     top: 0;
     bottom: 0;
+    margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: contain;
     transition: 0.35s;
