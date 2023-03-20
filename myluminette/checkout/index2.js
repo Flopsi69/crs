@@ -1176,6 +1176,9 @@ const styles = `
     .order-pages .details-block .title {
       text-align: left;
     }
+    .order-pages .details-block .warranty-description .title {
+      padding: 0;
+    }
     .order-pages .details-section, .order-pages.order-details .details-block .details-section:not(:first-child) {
       padding: 24px;
     }
