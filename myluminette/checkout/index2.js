@@ -2615,6 +2615,7 @@ const stylePDP = `
     border-radius: 50%;
     color: #ffffff;
     z-index: 1;
+    overflow: hidden;
   }
   
   .lav-reviews .slider .slick-arrow.slick-prev {
@@ -5927,6 +5928,7 @@ const stylesMain = `
     border-radius: 50%;
     color: #ffffff;
     z-index: 1;
+    overflow: hidden;
   }
   
   .lav-reviews .slider .slick-arrow.slick-prev {
