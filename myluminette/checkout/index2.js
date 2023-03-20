@@ -1046,13 +1046,11 @@ const styles = `
     z-index: 11;
     box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
   }
-  @media(min-width: 768px) {
     .lav-tip:hover .lav-tip__body {
       pointer-events: auto;
       visibility: visible;
       opacity: 1;
     }
-  }
   .lav-tip.active .lav-tip__body {
     pointer-events: auto;
     visibility: visible;
