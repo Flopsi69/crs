@@ -1889,9 +1889,11 @@ const stylePDP = `
     }
   }
 
-  .lav-shorts__preview:hover:before {
-    background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
-    background-size: contain;
+  @media(min-width: 769px) {
+    .lav-shorts__preview:hover:before {
+      background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
+      background-size: contain;
+    }
   }
 
   .lav-shorts__preview img {
@@ -2043,9 +2045,11 @@ const stylePDP = `
   .lav-recharge__preview:hover img  {
     opacity: 0;
   }
-  .lav-recharge__preview:hover img + img {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
+  @media(min-width: 769px) {
+    .lav-recharge__preview:hover img + img {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
   }
   .lav-recharge__info {
     padding: 48px;
