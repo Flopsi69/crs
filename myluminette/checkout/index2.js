@@ -1878,7 +1878,7 @@ const stylePDP = `
     margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: 90px;
-    transition: 0.35s;
+    // transition: 0.35s;
   }
 
   @media(max-width: 768px) {
@@ -4118,7 +4118,7 @@ const stylesMain = `
     margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: 90px;
-    transition: 0.35s;
+    // transition: 0.35s;
   }
 
   @media(max-width: 768px) {
