@@ -1877,7 +1877,7 @@ const stylePDP = `
     bottom: 0;
     margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
-    background-size: contain;
+    background-size: 90px;
     transition: 0.35s;
   }
 
@@ -1885,14 +1885,18 @@ const stylePDP = `
     .lav-shorts__preview:before {
       width: 72px;
       height: 72px;
+      background-size: 72px;
       transition: none;
+    }
+    .lav-shorts__preview:hover:before {
+      background-size: 72px;
     }
   }
 
   @media(min-width: 769px) {
     .lav-shorts__preview:hover:before {
       background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
-      background-size: contain;
+      background-size: 90px;
     }
   }
 
@@ -4113,23 +4117,25 @@ const stylesMain = `
     bottom: 0;
     margin: auto;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
-    background-size: contain;
+    background-size: 90px;
     transition: 0.35s;
   }
-
 
   @media(max-width: 768px) {
     .lav-shorts__preview:before {
       width: 72px;
       height: 72px;
-      transition: none;
+      background-size: 72px;
+    }
+    .lav-shorts__preview:hover:before {
+      background-size: 72px;
     }
   }
 
   @media(min-width: 769px) {
     .lav-shorts__preview:hover:before {
       background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
-      background-size: contain;
+      background-size: 90px;
     }
   }
 
