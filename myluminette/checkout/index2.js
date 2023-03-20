@@ -3217,6 +3217,18 @@ const stylePDP = `
       padding: 20px;
     }
   }
+  @media(max-width: 1279px) {
+    .studies-component .study-item .number {
+      display: block;
+      position: static;
+      transform: none;
+      font-size: 72px;
+      line-height: 72px;
+      margin-bottom: 8px;
+      color: rgb(81 113 147 / 30%);
+      font-weight: 200;
+    }
+  }
   @media (max-width: 1199px) {
     .container, .container-lg, .container-fluid, .container-sm, .container-md, .container-xl {
       max-width: 700px;
@@ -3955,8 +3967,8 @@ const stylePDP = `
       padding: 0;
     }
     .lav-modal__close {
-      top: 12px;
-      right: 12px;
+      top: -2px;
+      right: -2px;
     }
     .lav-modal {
       padding: 12px;
@@ -7097,8 +7109,8 @@ const stylesMain = `
       padding: 0;
     }
     .lav-modal__close {
-      top: 5px;
-      right: 5px;
+      top: -2px;
+      right: -2px;
     }
     .lav-modal {
       padding: 12px;
