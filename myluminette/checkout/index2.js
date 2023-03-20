@@ -1871,9 +1871,11 @@ const stylePDP = `
     position: absolute;
     width: 90px;
     height: 90px;
-    left: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     top: 50%;
-    transform: translate(-50%, -50%);
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: contain;
     transition: 0.35s;
@@ -1883,6 +1885,7 @@ const stylePDP = `
     .lav-shorts__preview:before {
       width: 72px;
       height: 72px;
+      transition: none;
     }
   }
 
