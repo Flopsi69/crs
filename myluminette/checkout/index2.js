@@ -1875,7 +1875,6 @@ const stylePDP = `
     right: 0;
     top: 0;
     bottom: 0;
-    top: 50%;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: contain;
     transition: 0.35s;
@@ -4107,9 +4106,10 @@ const stylesMain = `
     position: absolute;
     width: 90px;
     height: 90px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     background: url(${settings.dir}/img/play.svg) center no-repeat;
     background-size: contain;
     transition: 0.35s;
@@ -4120,12 +4120,15 @@ const stylesMain = `
     .lav-shorts__preview:before {
       width: 72px;
       height: 72px;
+      transition: none;
     }
   }
 
-  .lav-shorts__preview:hover:before {
-    background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
-    background-size: contain;
+  @media(min-width: 769px) {
+    .lav-shorts__preview:hover:before {
+      background: url(${settings.dir}/img/play-hover.svg) center no-repeat;
+      background-size: contain;
+    }
   }
 
   .lav-shorts__preview img {
@@ -5308,7 +5311,6 @@ const stylesMain = `
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: 0.35s;
     width: 125px;
     height: 125px;
   }
@@ -5318,9 +5320,14 @@ const stylesMain = `
   .lav-recharge__preview:hover img  {
     opacity: 0;
   }
-  .lav-recharge__preview:hover img + img {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
+  @media(min-width: 769px) {
+    .lav-recharge__preview img {
+      transition: 0.35s;
+    }
+    .lav-recharge__preview:hover img + img {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
   }
   .lav-recharge__info {
     margin: 48px 80px;
