@@ -1506,7 +1506,7 @@ function moveToStep(isScroll = true) {
 }
 
 function validateStepOne() {
-  return true;
+  // return true;
   let checkArr = [
     'email',
     'fname',
