@@ -4,8 +4,10 @@ console.log('initExp');
 const settings = {
   dir: 'https://flopsi69.github.io/crs/nebula/multistep',
   clarity: false,
-  observe: false,
+  observe: true,
 };
+
+let step = 1;
 
 //Hotjar
 if (settings.clarity) {
@@ -18,26 +20,6 @@ if (settings.clarity) {
 }
 
 // Alalytic
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
-  try {
-    var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
-    };
-    console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytic
 function gaEvent(name = '', desc = '', type = '', loc = '') {
   try {
     var objData = {
@@ -47,8 +29,8 @@ function gaEvent(name = '', desc = '', type = '', loc = '') {
       event_type: type,
       event_loc: loc,
     };
-    console.dir('eventFire', objData.eventAction);
-    dataLayer.push(objData);
+    console.log('**DEBUG** eventFire:', objData);
+    // dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
   }
@@ -61,7 +43,18 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // Code Here
+        if (
+          node.classList.contains('modal-mask') &&
+          node.querySelector('.card-header') &&
+          node.querySelector('.edit-btn')
+        ) {
+          node
+            .querySelector('.edit-btn')
+            .addEventListener('click', function () {
+              step = 1;
+              moveToStep();
+            });
+        }
       }
     }
   });
@@ -90,6 +83,7 @@ const styles = `
   }
   .cart-page {
     padding-top: 0!important;
+    margin-bottom: 30px!important;
   }
   .right-component > .error-message {
     display: none!important;
@@ -116,6 +110,10 @@ const styles = `
   }
   .lav-breadcrumbs__item {
     position: relative;
+    cursor: pointer;
+  }
+  .lav-breadcrumbs__item.active ~ .lav-breadcrumbs__item {
+    cursor: auto;
   }
   .lav-breadcrumbs__item.active {
     color: #0B0F41;
@@ -143,12 +141,21 @@ const styles = `
     border-radius: 8px;
   }
   .lav-express {
-    display: grid;
+    display: grid!important;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     position: relative;
     padding: 16px;
     line-height: 0;
+  }
+  .lav-express.lav-hide {
+    display: none!important;
+  }
+  @media(max-width: 1100px) {
+    .lav-express {
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
   }
   .lav-express .error-message {
     line-height: 1.2;
@@ -260,6 +267,12 @@ const styles = `
     max-width: 380px;
     width: 100%;
     margin-left: 20px;
+  }
+
+  @media(max-width: 1100px) {
+    .lav-control__next {
+      max-width: 250px;
+    }
   }
 
   .lav-summary {
@@ -422,7 +435,7 @@ const styles = `
     margin-bottom: 0!important;
   }
   
-  .StripeElement {
+  .lav-payment .StripeElement {
     max-height: 47px;
     padding-top: 0.9rem!important;
     padding-bottom: 0.9rem!important;
@@ -550,17 +563,57 @@ const styles = `
     top: 0;
     bottom: 0;
     background: rgba(0,0,0,.1);
-    backdrop-filter: blur(1px);
-  }
-  .lav-modal__inner {
-    background: #fff;
+    backdrop-filter: blur(3px);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.35s;
   }
-  .lav-modal__pay {
+  .lav-modal:not(.active ){
+    opacity: 0;
+    pointer-events: none;
+  }
+  .lav-modal.active {
+    opacity: 1;
+  }
+  .lav-modal__inner:not(.active) {
+    display: none;
+  }
+  .lav-modal__inner {
+    background: #fff;
+    position: relative;
     max-width: 380px;
     width: 100%;
+    max-height: 90%;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+  .lav-modal__cvc-descr {
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.4;
+    color: #0B0F41;
+  }
+  .lav-modal__close {
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-modal__close:hover {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  .lav-modal__head {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 30px;
+  }
+  .lav-modal__klarna .lav-modal__head {
+    background-color: #FEB4C7;
+  }
+  .lav-modal__afterpay .lav-modal__head {
+    background-color: #C2FAE5;
   }
   .lav-modal__body {
     padding: 20px 30px 24px;
@@ -579,16 +632,245 @@ const styles = `
   }
   .lav-modal__footer {
     font-size: 10px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: #505985;
     padding: 12px 0;
     margin: 0 34px;
     border-top: 1px solid #ECF7FD;
   }
-  .lav-modal {}
-  .lav-modal {}
-  .lav-modal {}
+  .lav-modal__list {
+    margin-top: 24px;
+  }
+  .lav-modal__item {
+    font-family: SpaceGrotesk-Medium;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #0B0F41;
+  }
+  .lav-modal__item:last-child {
+    align-items: flex-start;
+  }
+  .lav-modal__item-icon {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+  .lav-modal__item + .lav-modal__item {
+    margin-top: 24px;
+  }
+  .lav-modal__cvc .lav-modal__close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+  }
+  .lav-modal__cvc .lav-modal__body {
+    padding-top: 30px;
+  }
+  .lav-collapse {
+    border-bottom: 1px solid #F9F9F9;
+    display: none;
+    align-items: center;
+    padding: 18px 20px;
+    background: #fff;
+  }
+  .lav-collapse img {
+    transition: 0.35s;
+  }
+  .lav-collapse.active img {
+    transform: rotate(180deg);
+  }
+  .lav-collapse__caption {
+    font-size: 16px;
+    line-height: 140%;
+    color: #3F4CEC;
+    margin-right: auto;
+    font-family: Spacegrotesk-Bold;
+  }
+  .lav-collapse__price {
+    margin: 0 22px;
+    font-family: Spacegrotesk-Bold;
+    font-size: 18px;
+    line-height: 1.3;
+    color: #0B0F41;
+  }
+  .left-component.lav-hide {
+    display: block!important;
+  }
+  .lav-brief {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .subscr__descr.lav-brief p,  .subscr__descr.lav-brief div {
+    display: inline;
+  }
+  .subscr__descr.lav-brief br {
+    display: none;
+  }
+  .lav-brief-toggle {
+    font-family: SpaceGrotesk-Bold;
+    // position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 140%;
+    color: #3F4CEC;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: #fff;
+    display: inline-block;
+  }
+  .lav-brief-toggle:hover {
+    text-decoration: underline;
+  }
+  .subscr__descr, .order__info-list {
+    max-width: 75%;
+  }
+  @media (max-width: 1700px) {
+    .subscr__descr, .order__info-list {
+      max-width: 90%;
+    }
+  }
+  @media(max-width: 768px) {
+    .subscr__descr, .order__info-list {
+      max-width: 100%;
+    }
+    .subscr__info, .order__info {
+      text-align: left!important;
+    }
+  }
+  .cart-page {
+    max-width: 1850px;
+    margin: auto;
+  }
+  @media(max-width: 1024px) {
+    .lav-collapse {
+      display: flex;
+    }
+    .subscr__info {
+      order: 3;
+    }
+    .order__wrap {
+      padding-top: 25px!important;
+    }
+    footer {
+      padding-bottom: 0!important;
+    }
+    .lav-express .seperator-container-checkout span {
+      background: #F9F9F9;
+    }
+    .lav-top {
+      font-size: 16px;
+      padding: 16px 24px;
+    }
+    .lav-top br {
+      display: none;
+    }
+    .right-component {
+      background: #F9F9F9;
+      margin: 0 -20px;
+      padding: 20px 20px 35px!important;
+    }
+    .lav-breadcrumbs {
+      margin-top: 0;
+    }
+    .order-summary-page {
+      margin-bottom: 48px!important;
+    }
+    .left-component {
+      padding-top: 30px!important;
+    }
+    .left-component.lav-hide {
+      display: none!important;;
+    }
+    .cart-page .cart-page-component {
+      padding-top: 0!important;
+      padding-bottom: 0!important;
+    }
+    .cart-page {
+      padding-bottom: 0!important;
+    }
+    .lav-breadcrumbs__item + .lav-breadcrumbs__item:before {
+      filter: invert(90%) sepia(30%) saturate(612%) hue-rotate(192deg) brightness(98%) contrast(92%);
+    }
+    .lav-express {
+      margin-top: 35px;
+    }
+    .express-separator {
+      margin-bottom: 15px;
+    }
+    .lav-apartament, .lav-address {
+      float: none;
+      width: 100%;
+    }
+    .lav-control {
+      margin-top: 32px;
+      flex-flow: column-reverse;
+    }
+    .lav-control__next {
+      margin-left: 0;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+    .lav-summary__item:not(.lav-free):nth-child(3) {
+      font-family: SpaceGrotesk-Regular;
+    }
 
+    .lav-summary__line {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .lav-summary__item:nth-child(2) {
+      order: 3;
+      width: 100%;
+      margin: 4px 0 0;
+    }
+    .lav-summary {
+      background-color: #fff;
+    }
+    .lav-label {
+      margin-bottom: 12px;
+    }
+    .lav-label_caption {
+      margin-bottom: 4px;
+    }
+    .lav-choose {
+      background-color: #fff;
+    }
+    .lav-choose__add img {
+      max-width: 100%;
+    }
+    .lav-choose__add {
+      max-width: 70%;
+    }
+    .lav-payment__choose.active {
+      border: 2px solid #fff;
+    }
+    .lav-payment__choose.active .lav-choose__body {
+      border-color: #fff;
+    }
+  }
+  @media(max-width: 420px) {
+    .lav-modal__inner {
+      max-width: 92%;
+    }
+    .lav-modal__cvc-descr {
+      font-size: 16px;
+    }
+    .lav-later .lav-choose__body {
+      line-height: 20px;
+      padding: 15px;
+      font-size: 13px;
+    }
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -597,11 +879,13 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-let step = 1;
 
 init();
 function init() {
   console.log('initFn');
+  gaEvent('exp_multistep_loaded', 'Page loaded', 'Start', 'Content');
+
+  initCollapse();
   initHead();
   initFirstStep();
   initSummary();
@@ -609,20 +893,79 @@ function init() {
   initPayment();
   initControl();
   initModals();
+  initProductListener();
+  observerView();
+  initEvents();
+}
+
+function initCollapse() {
+  const el = `
+    <div class='lav-collapse'>
+      <div class='lav-collapse__caption'>
+        <span>Hide</span> order summary
+      </div>
+      <div class='lav-collapse__price'></div>
+      <img class='lav-modal__close' src='${settings.dir}/img/icon-arrow-blue.svg' />
+    </div>
+  `;
+
+  document.querySelector('#app').insertAdjacentHTML('afterbegin', el);
+
+  document.querySelector('.lav-collapse__price').innerText =
+    document.querySelector('.total__value').textContent;
+
+  setInterval(() => {
+    if (document.querySelector('.total__value')) {
+      document.querySelector('.lav-collapse__price').innerText =
+        document.querySelector('.total__value').textContent;
+      document.querySelector('.lav-control').classList.remove('lav-hide');
+    } else if (!document.querySelector('.lav-control.lav-hide')) {
+      document.querySelector('.lav-control').classList.add('lav-hide');
+    }
+  }, 800);
+
+  document
+    .querySelector('.lav-collapse')
+    .addEventListener('click', function () {
+      this.classList.toggle('active');
+      if (this.classList.contains('active')) {
+        document.querySelector('.lav-collapse__caption span').innerText =
+          'Show';
+        document.querySelector('.left-component').classList.add('lav-hide');
+
+        gaEvent(
+          'exp_multistep_hidesum',
+          'Hide order summary',
+          'Button',
+          'Step: ' + getStepCaption() + '. Header'
+        );
+      } else {
+        document.querySelector('.lav-collapse__caption span').innerText =
+          'Hide';
+        document.querySelector('.left-component').classList.remove('lav-hide');
+
+        gaEvent(
+          'exp_multistep_showsum',
+          'Show order summary',
+          'Button',
+          'Step: ' + getStepCaption() + '. Header'
+        );
+      }
+    });
 }
 
 function initHead() {
   let topEl = `
-    <div class="lav-top">You are one step away from getting the most sophisticated <br/> test that decodes 100% of your DNA</div>
+    <div class="lav-top lav-watch">You are one step away from getting the most sophisticated <br/> test that decodes 100%&nbsp;of your&nbsp;DNA</div>
   `;
 
   document.querySelector('#app').insertAdjacentHTML('afterbegin', topEl);
 
   let breadcrumbsEl = `
     <div class='lav-breadcrumbs'>
-      <div class='lav-breadcrumbs__item active'>Information</div>
-      <div class='lav-breadcrumbs__item'>Shipping</div>
-      <div class='lav-breadcrumbs__item'>Payment</div>
+      <div class='lav-breadcrumbs__item active' data-step='1'>Information</div>
+      <div class='lav-breadcrumbs__item' data-step='2'>Shipping</div>
+      <div class='lav-breadcrumbs__item' data-step='3'>Payment</div>
     </div>
   `;
 
@@ -649,6 +992,46 @@ function initHead() {
       'beforebegin',
       document.querySelector('.payment__buttons > div')
     );
+
+  for (let el of document.querySelectorAll('.lav-breadcrumbs__item')) {
+    el.addEventListener('click', function () {
+      const parseStep = parseInt(el.dataset.step);
+
+      gaEvent(
+        'exp_multistep_navigation',
+        el.innerText,
+        'Button',
+        `Step: ${getStepCaption()}. Navigation`
+      );
+
+      if (parseStep < step) {
+        step = parseStep;
+        moveToStep();
+      }
+    });
+  }
+
+  document.querySelector('.lav-top').addEventListener('click', function () {
+    gaEvent(
+      'exp_multistep_onestep_click',
+      'You are one step away from getting...',
+      'Click',
+      'Step: ' + getStepCaption() + '. Header'
+    );
+  });
+
+  document
+    .querySelector('.lav-top')
+    .addEventListener('mouseenter', function () {
+      if (window.innerWidth > 768) {
+        gaEvent(
+          'exp_multistep_onestep_hover',
+          'You are one step away from getting...',
+          'Hover',
+          'Step: ' + getStepCaption() + '. Header'
+        );
+      }
+    });
 }
 
 function initFirstStep() {
@@ -694,6 +1077,29 @@ function initControl() {
     .querySelector('.lav-control__back')
     .addEventListener('click', function () {
       if (step === 1) {
+        gaEvent(
+          'exp_multistep_1_back',
+          'Back to product options',
+          'Button',
+          'Step: Information'
+        );
+      } else if (step === 2) {
+        gaEvent(
+          'exp_multistep_2_back',
+          'Back to information',
+          'Button',
+          'Step: Shipping'
+        );
+      } else {
+        gaEvent(
+          'exp_multistep_3_back',
+          'Back to shipping',
+          'Button',
+          'Step: Payment'
+        );
+      }
+
+      if (step === 1) {
         location.href =
           'https://nebula.org/whole-genome-sequencing-dna-test#choose';
       } else {
@@ -705,6 +1111,28 @@ function initControl() {
   document
     .querySelector('.lav-control__next')
     .addEventListener('click', function () {
+      if (step === 1) {
+        gaEvent(
+          'exp_multistep_1_continue',
+          'Continue to shipping',
+          'Button',
+          'Step: Information'
+        );
+      } else if (step === 2) {
+        gaEvent(
+          'exp_multistep_2_continue',
+          'Continue to Payment',
+          'Button',
+          'Step: Shipping'
+        );
+      } else {
+        gaEvent(
+          'exp_multistep_3_continue',
+          'Complete Order',
+          'Button',
+          'Step: Payment'
+        );
+      }
       if (
         document.querySelector('.shipping-address-component .error-message') ||
         document.querySelector('.email-address-component .error-message')
@@ -754,7 +1182,7 @@ function initSummary() {
       </div>
       <div class='lav-summary__line lav-hide'>
         <div class='lav-summary__item'>Method</div>
-        <div class='lav-summary__item'>International Express Shipping (3-6 business days)</div>
+        <div class='lav-summary__item'>International Express Shipping (3-6 business&nbsp;days)</div>
         <div class='lav-summary__item lav-free'>Free</div>
       </div>
     </div>
@@ -768,7 +1196,27 @@ function initSummary() {
     '.lav-summary__item:not(.lav-free)'
   )) {
     item.addEventListener('click', function () {
-      console.log('back to step 1');
+      if (
+        item
+          .closest('.lav-summary__line')
+          .querySelector('.lav-summary__item')
+          .innerText.trim() === 'Contact'
+      ) {
+        gaEvent(
+          'exp_multistep_change_contact',
+          'Change',
+          'Button',
+          `Step: ${getStepCaption()}. Contact`
+        );
+      } else {
+        gaEvent(
+          'exp_multistep_change_shipto',
+          'Change',
+          'Button',
+          `Step: ${getStepCaption()}. Ship to`
+        );
+      }
+
       step = 1;
       moveToStep();
     });
@@ -868,7 +1316,6 @@ function initPayment() {
   for (let item of items) {
     document.querySelectorAll(item).forEach((el) => {
       el.addEventListener('click', function (e) {
-        console.log(e.target);
         if (e.target.classList.contains('lav-tip__klarna')) {
           openModal('klarna');
           return false;
@@ -892,6 +1339,29 @@ function initPayment() {
         }
 
         this.classList.add('active');
+
+        if (el.classList.contains('lav-payment__choose')) {
+          gaEvent(
+            'exp_multistep_3_cc',
+            'Credit card',
+            'Payment method',
+            'Step: Payment'
+          );
+        } else if (el.classList.contains('lav-choose__klarna')) {
+          gaEvent(
+            'exp_multistep_3_klarna',
+            'Klarna',
+            'Payment method',
+            'Step: Payment'
+          );
+        } else if (el.classList.contains('lav-choose__afterpay')) {
+          gaEvent(
+            'exp_multistep_3_afterpay',
+            'Afterpay',
+            'Payment method',
+            'Step: Payment'
+          );
+        }
       });
     });
   }
@@ -904,7 +1374,11 @@ function initPayment() {
   // }
 }
 
-function moveToStep() {
+function moveToStep(isScroll = true) {
+  if (!document.querySelector('.lav-collapse.active') && isScroll) {
+    document.querySelector('.lav-collapse').click();
+  }
+
   const hideArr = [
     '.lav-express',
     '.lav-summary__line:nth-child(3)',
@@ -939,6 +1413,35 @@ function moveToStep() {
       'Back to product options';
     document.querySelector('.lav-control__next').innerText =
       'Continue to shipping';
+  } else {
+    const email = document.querySelector('[name="email"]').value;
+    let address =
+      document.querySelector('[name="country"]').value +
+      ', ' +
+      document.querySelector('[name="shipping-city"]').value +
+      ', ' +
+      document.querySelector(
+        '[name="shipping-address"][autocomplete="address-line1"]'
+      ).value +
+      ' ' +
+      document.querySelector(
+        '[name="shipping-address"][autocomplete="address-line2"]'
+      ).value;
+
+    if (document.querySelector('[name="state"]')) {
+      address += ' ' + document.querySelector('[name="state"]').value;
+    }
+
+    if (document.querySelector('[name="shipping-zip"]')) {
+      address += ' ' + document.querySelector('[name="shipping-zip"]').value;
+    }
+
+    document.querySelector(
+      '.lav-summary__line:nth-child(1) .lav-summary__item:nth-child(2)'
+    ).innerText = email;
+    document.querySelector(
+      '.lav-summary__line:nth-child(2) .lav-summary__item:nth-child(2)'
+    ).innerText = address;
   }
 
   if (step === 2) {
@@ -974,6 +1477,8 @@ function moveToStep() {
       document
         .querySelector('.lav-choose__klarna')
         .classList.remove('lav-hide');
+    } else if (document.querySelector('.lav-choose__klarna.active')) {
+      document.querySelector('.lav-payment__choose').click();
     }
 
     if (!document.querySelector('.payLaterBtn.afterpay').disabled) {
@@ -981,6 +1486,8 @@ function moveToStep() {
       document
         .querySelector('.lav-choose__afterpay')
         .classList.remove('lav-hide');
+    } else if (document.querySelector('.lav-choose__afterpay.active')) {
+      document.querySelector('.lav-payment__choose').click();
     }
 
     if (
@@ -991,9 +1498,11 @@ function moveToStep() {
     }
   }
 
-  document
-    .querySelector('.cart-page-component')
-    .scrollIntoView({ behavior: 'smooth' });
+  if (isScroll) {
+    document
+      .querySelector('.right-component')
+      .scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 function validateStepOne() {
@@ -1023,8 +1532,8 @@ function validateStepOne() {
 
 function initModals() {
   const modalEl = `
-    <div class='lav-modal'>
-      <div class='lav-modal__inner lav-modal__pay  lav-modal__klarna'>
+    <div class='lav-modal' style='display: none;'>
+      <div class='lav-modal__inner lav-modal__pay lav-modal__klarna'>
         <div class='lav-modal__head'>
           <img src='${settings.dir}/img/klarna-text.svg' />
           <img class='lav-modal__close' src='${settings.dir}/img/icon-close.svg' />
@@ -1034,33 +1543,339 @@ function initModals() {
           <div class='lav-modal__caption'>Interest free</div>
           <div class='lav-modal__list'>
             <div class='lav-modal__item'>
-              <img src='${settings.dir}/img/icon-basket.svg' />
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-basket.svg' />
+              </div>
               <span>Add DNA test bundle to your basket</span>
             </div>
             <div class='lav-modal__item'>
-              <img src='${settings.dir}/img/icon-select.svg' />
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-select.svg' />
+              </div>
               <span>Select Klarna at checkout</span>
             </div>
             <div class='lav-modal__item'>
-              <img src='${settings.dir}/img/icon-login.svg' />
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-login.svg' />
+              </div>
               <span>Log into or create your account</span>
             </div>
             <div class='lav-modal__item'>
-              <img src='${settings.dir}/img/icon-pie.svg' />
-              <span>Your purchase will be split into 3 equal card payments. The first payment is collected when the order is shipped. The remaining two will be automatically collected in 30 and 60 days.</span>
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-pie.svg' />
+              </div>
+              <span>Your purchase will be split into 3 equal card payments. The first payment is collected when the order is shipped. The remaining two will be automatically collected in 30 and 60 days</span>
             </div>
           </div>
-          <div class='lav-modal__footer'>
-            Available on purchases up to 1,000.00
+        </div>
+        <div class='lav-modal__footer' style='text-align: center'>
+          Available on purchases up to 1,000.00
+        </div>
+      </div>
+
+      <div class='lav-modal__inner lav-modal__pay  lav-modal__afterpay'>
+        <div class='lav-modal__head'>
+          <img src='${settings.dir}/img/afterpay-text.svg' />
+          <img class='lav-modal__close' src='${settings.dir}/img/icon-close.svg' />
+        </div>
+        <div class='lav-modal__body'>
+          <div class='lav-modal__title'>Pay in 4</div>
+          <div class='lav-modal__caption'>Always interest-free</div>
+          <div class='lav-modal__list'>
+            <div class='lav-modal__item'>
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-basket.svg' />
+              </div>
+              <span>Add DNA test bundle to your basket</span>
+            </div>
+            <div class='lav-modal__item'>
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-select.svg' />
+              </div>
+              <span>Select Afterpay at checkout</span>
+            </div>
+            <div class='lav-modal__item'>
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-login.svg' />
+              </div>
+              <span>Log into or create your account</span>
+            </div>
+            <div class='lav-modal__item'>
+              <div class='lav-modal__item-icon'>
+                <img src='${settings.dir}/img/icon-pie.svg' />
+              </div>
+              <span>Your purchase will be split into 4 payments, payable every 2 weeks</span>
+            </div>
           </div>
+        </div>
+        <div class='lav-modal__footer'>
+          You must be over 18, a resident of the U.S. and meet additional eligibility criteria to qualify. Late fees may apply. Estimated payment amounts show on product pages exclude taxes and shipping charges, which are added at checkout. Click here for complete terms. Loans to California residents made or arranged pursuant to a California Finance Lenders Law license ©2020 Afterpay
+        </div>
+      </div>
+
+      <div class='lav-modal__inner lav-modal__cvc'>
+        <div class='lav-modal__body'>
+          <img class='lav-modal__close' src='${settings.dir}/img/icon-close.svg' />
+          
+          <div class='lav-modal__cvc-descr'>3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.</div>
         </div>
       </div>
     </div>
   `;
 
   document.body.insertAdjacentHTML('beforeend', modalEl);
+
+  document.querySelector('.lav-modal').addEventListener('click', function (e) {
+    if (e.target.classList.contains('lav-modal')) {
+      closeModal();
+    }
+  });
+
+  for (let el of document.querySelectorAll('.lav-modal__close')) {
+    el.addEventListener('click', function () {
+      closeModal();
+
+      if (el.closest('.lav-modal__klarna')) {
+        gaEvent(
+          'exp_multistep_3_close_klarna',
+          'Close popup',
+          'Cross icon',
+          'Step: Payment. Billing address. Popup: Klarna'
+        );
+      } else if (el.closest('.lav-modal__afterpay')) {
+        gaEvent(
+          'exp_multistep_3_close_afterpay',
+          'Close popup',
+          'Cross icon',
+          'Step: Payment. Billing address. Popup: Afterpay'
+        );
+      }
+    });
+  }
+
+  document.querySelector('.lav-quest').addEventListener('click', function (e) {
+    e.preventDefault();
+    openModal('cvc');
+  });
 }
 
 function openModal(type) {
-  console.log(type);
+  document.querySelector('.lav-modal__' + type).classList.add('active');
+  document.querySelector('.lav-modal').style.display = 'flex';
+  setTimeout(() => {
+    document.querySelector('.lav-modal').classList.add('active');
+  }, 100);
+}
+
+function closeModal() {
+  document.querySelector('.lav-modal').classList.remove('active');
+  setTimeout(() => {
+    document.querySelector('.lav-modal').style.display = 'none';
+    document
+      .querySelector('.lav-modal__inner.active')
+      .classList.remove('active');
+  }, 400);
+}
+
+function initProductListener() {
+  let items = ['.order__quantity-btn, .order__remove, .plans'];
+
+  for (let els of items) {
+    document.querySelectorAll(els).forEach((el) => {
+      el.addEventListener('click', function () {
+        if (el.classList.contains('order__remove')) {
+          gaEvent(
+            'exp_multistep_1_delete',
+            'Delete product',
+            'Cross icon',
+            `Step: ${getStepCaption()}. ${
+              el.closest('.order').querySelector('.order__title').innerText
+            }`
+          );
+        }
+        if (el.classList.contains('order__quantity-btn')) {
+          if (el.querySelector('.fa-plus')) {
+            gaEvent(
+              'exp_multistep_1_inc',
+              'Increase quantity',
+              'Plus icon',
+              `Step: ${getStepCaption()}. ${
+                el.closest('.order').querySelector('.order__title').innerText
+              }`
+            );
+          } else {
+            gaEvent(
+              'exp_multistep_1_dec',
+              'Decrease quantity',
+              'Minus icon',
+              `Step: ${getStepCaption()}. ${
+                el.closest('.order').querySelector('.order__title').innerText
+              }`
+            );
+          }
+        }
+        if (step === 3) {
+          moveToStep(false);
+        }
+      });
+    });
+  }
+
+  for (let item of document.querySelectorAll('.subscr__descr')) {
+    item.classList.add('lav-brief');
+    item.insertAdjacentHTML(
+      'afterend',
+      '<div class="lav-brief-toggle">See more</div>'
+    );
+
+    item.nextElementSibling.addEventListener('click', function () {
+      item.classList.remove('lav-brief');
+      item.nextElementSibling.remove();
+    });
+  }
+
+  for (let item of document.querySelectorAll('.order__info-list')) {
+    item.classList.add('lav-brief');
+    item.insertAdjacentHTML(
+      'afterend',
+      '<div class="lav-brief-toggle">See more</div>'
+    );
+    item.nextElementSibling.addEventListener('click', function () {
+      item.classList.remove('lav-brief');
+      item.nextElementSibling.remove();
+    });
+  }
+}
+
+function getStepCaption() {
+  if (step === 1) {
+    return 'Information';
+  }
+
+  if (step === 2) {
+    return 'Shipping';
+  }
+
+  return 'Payment';
+}
+
+function observerView() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    // rootMargin: '-40%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('lav-top')) {
+          console.log(entry.target);
+          const event = [
+            'exp_multistep_onestep_view',
+            'You are one step away from getting...',
+            'View element (5 seconds on screen)',
+            'Step: ' + getStepCaption() + '. Header',
+          ];
+
+          isElementInViewport(entry.target, event);
+        }
+      }
+    });
+  }, observerOptions);
+
+  for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+    observer.observe(el);
+  }
+
+  function isElementInViewport(el, event, timeout = 5) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        observer.unobserve(el);
+        if (!el.classList.contains('in-view')) {
+          gaEvent(...event);
+          el.classList.add('in-view');
+        }
+      }
+    }, timeout * 1000);
+  }
+}
+
+function initEvents() {
+  console.log(document.querySelector('.paypal-buttons'));
+  document
+    .querySelector('.paypal-buttons')
+    .closest('div')
+    .addEventListener('click', function () {
+      gaEvent(
+        'exp_multistep_1_paypal',
+        'PayPal',
+        'Button',
+        'Step: Information. Express checkout'
+      );
+    });
+
+  document
+    .querySelector('#google-pay-container')
+    .addEventListener('click', function () {
+      gaEvent(
+        'exp_multistep_1_googlePay',
+        'GooglePay',
+        'Button',
+        'Step: Information. Express checkout'
+      );
+    });
+
+  document
+    .querySelector('#apple-pay-container')
+    .addEventListener('click', function () {
+      gaEvent(
+        'exp_multistep_1_applePay',
+        'ApplePay',
+        'Button',
+        'Step: Information. Express checkout'
+      );
+    });
+
+  for (let item of document.querySelectorAll(
+    '.shipping-address-component input, .email-address-component input'
+  )) {
+    item.addEventListener('focus', function () {
+      gaEvent(
+        'exp_multistep_1_input',
+        item.placeholder,
+        'Focus',
+        'Step: Information. Shipping information'
+      );
+    });
+  }
+
+  for (let item of document.querySelectorAll(
+    '.shipping-address-component select'
+  )) {
+    item.addEventListener('click', function () {
+      gaEvent(
+        'exp_multistep_1_select',
+        item.querySelector('option').innerText,
+        'Select',
+        'Step: Information. Shipping information'
+      );
+    });
+
+    item.addEventListener('change', function () {
+      gaEvent(
+        'exp_multistep_1_selopt',
+        item.querySelector('option').innerText + '. ' + item.value,
+        'Selected option',
+        'Step: Information. Shipping information'
+      );
+    });
+  }
 }
