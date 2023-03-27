@@ -1820,17 +1820,17 @@ function observerView() {
 
 function initEvents() {
   console.log(document.querySelector('.paypal-buttons'));
-  document
-    .querySelector('.paypal-buttons')
-    .closest('div')
-    .addEventListener('click', function () {
-      gaEvent(
-        'exp_multistep_1_paypal',
-        'PayPal',
-        'Button',
-        'Step: Information. Express checkout'
-      );
-    });
+  // document
+  //   .querySelector('.paypal-buttons')
+  //   .closest('div')
+  //   .addEventListener('click', function () {
+  //     gaEvent(
+  //       'exp_multistep_1_paypal',
+  //       'PayPal',
+  //       'Button',
+  //       'Step: Information. Express checkout'
+  //     );
+  //   });
 
   document
     .querySelector('#google-pay-container')
