@@ -422,12 +422,31 @@ const styles = `
     margin-top: 16px;
   }
 
+  .lav-paypal__choose {
+    margin-top: 12px;
+  }
+
+  .lav-paypal__choose .lav-choose__body {
+    display: none;
+  }
+
+  .lav-paypal__choose.active  {
+    border: 1px solid #0B0F41;
+  }
+  .lav-paypal__choose.active .lav-choose__body {
+    display: flex;
+    border-top: 1px solid #0B0F41;
+  }
+  .lav-paypal__choose .lav-choose__body span {
+    max-width: 450px;
+  }
+
   .lav-payment__choose .lav-choose__body {
     background: #F9F9F9;
     display: none;
   }
 
-  .lav-payment__choose.active .lav-choose__body {
+  .lav-payment__choose.active .lav-choose__body{
     display: block;
   }
 
@@ -865,7 +884,7 @@ const styles = `
     .lav-modal__cvc-descr {
       font-size: 16px;
     }
-    .lav-later .lav-choose__body {
+    .lav-later .lav-choose__body, .lav-paypal__choose .lav-choose__body {
       line-height: 20px;
       padding: 15px;
       font-size: 13px;
