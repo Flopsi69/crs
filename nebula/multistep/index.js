@@ -885,7 +885,13 @@ function init() {
   console.log('initFn');
   gaEvent('exp_multistep_loaded', 'Page loaded', 'Start', 'Content');
 
-  initCollapse();
+  const collapseIntervl = setInterval(function () {
+    if (document.querySelector) {
+      clearInterval(collapseIntervl);
+
+      initCollapse();
+    }
+  }, 200);
   initHead();
   initFirstStep();
   initSummary();
