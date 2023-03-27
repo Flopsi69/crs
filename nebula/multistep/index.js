@@ -141,9 +141,9 @@ const styles = `
     border-radius: 8px;
   }
   .lav-express {
-    display: grid!important;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    // display: grid!important;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 12px;
     position: relative;
     padding: 16px;
     line-height: 0;
@@ -224,10 +224,10 @@ const styles = `
     width: 49.2%;
   }
   .lav-apartament {
-    float: left;
+    float: right;
   }
   .lav-address {
-    float: right;
+    float: left;
   }
   .location-div {
     clear: both;
@@ -996,12 +996,12 @@ function initHead() {
       document.querySelector('.express-separator')
     );
 
-  document
-    .querySelector('.lav-express #google-pay-container')
-    .insertAdjacentElement(
-      'beforebegin',
-      document.querySelector('.payment__buttons > div')
-    );
+  // document
+  //   .querySelector('.lav-express #google-pay-container')
+  //   .insertAdjacentElement(
+  //     'beforebegin',
+  //     document.querySelector('.payment__buttons > div')
+  //   );
 
   for (let el of document.querySelectorAll('.lav-breadcrumbs__item')) {
     el.addEventListener('click', function () {
@@ -1819,7 +1819,7 @@ function observerView() {
 }
 
 function initEvents() {
-  console.log(document.querySelector('.paypal-buttons'));
+  // console.log(document.querySelector('.paypal-buttons'));
   // document
   //   .querySelector('.paypal-buttons')
   //   .closest('div')
