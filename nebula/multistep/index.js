@@ -879,14 +879,18 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-
-init();
+const initInterval = setInterval(() => {
+  if (document.querySelector('.right-component')) {
+    clearInterval(initInterval);
+    init();
+  }
+}, 200);
 function init() {
   console.log('initFn');
   gaEvent('exp_multistep_loaded', 'Page loaded', 'Start', 'Content');
 
   const collapseIntervl = setInterval(function () {
-    if (document.querySelector) {
+    if (document.querySelector('.total__value')) {
       clearInterval(collapseIntervl);
 
       initCollapse();
