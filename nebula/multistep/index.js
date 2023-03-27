@@ -268,6 +268,9 @@ const styles = `
     width: 100%;
     margin-left: 20px;
   }
+  .lav-paypal-btn {
+    margin-left: 20px;
+  }
 
   @media(max-width: 1100px) {
     .lav-control__next {
@@ -506,16 +509,15 @@ const styles = `
     opacity: 0.7
   }
 
-  .lav-later .lav-choose__body  {
+  .lav-later .lav-choose__body, .lav-paypal__choose .lav-choose__body  {
     padding: 23px;
-    display: flex;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
     color: #737373;
   }
 
-  .lav-later .lav-choose__body img {
+  .lav-later .lav-choose__body img, .lav-paypal__choose .lav-choose__body img {
     margin-right: 20px;
   }
 
@@ -528,6 +530,8 @@ const styles = `
     font-size: 14px;
     line-height: 1.3;
     color: #0B0F41;
+    display: flex;
+    justify-content: space-between;
   }
   .lav-later__choose, .lav-payment__choose {
     overflow: hidden;
@@ -535,24 +539,24 @@ const styles = `
   .lav-later__choose {
     margin-top: 12px;
   }
-  .lav-later__choose .lav-choose__head, .lav-payment__choose .lav-choose__head {
+  .lav-later__choose .lav-choose__head, .lav-payment__choose .lav-choose__head, .lav-paypal__choose .lav-choose__head {
     cursor: pointer;
     transition: 0.3s;
   }
-  .lav-later__choose .lav-choose__head:hover, .lav-payment__choose .lav-choose__head:hover {
+  .lav-later__choose .lav-choose__head:hover, .lav-payment__choose .lav-choose__head:hover, .lav-paypal__choose .lav-choose__head:hover {
     opacity: 0.7;
   }
-  .lav-tip__klarna, .lav-afterpay {
+  .lav-tip__klarna, .lav-tip__afterpay {
     cursor: pointer;
     transition: 0.35s;
   }
-  .lav-tip__klarna:hover, .lav-afterpay:hover {
+  .lav-tip__klarna:hover, .lav-tip__afterpay:hover {
     opacity: 0.7;
   }
-  .lav-later__choose.active .lav-choose__head, .lav-payment__choose.active .lav-choose__head {
+  .lav-later__choose.active .lav-choose__head, .lav-payment__choose.active .lav-choose__head, .lav-paypal__choose.active .lav-choose__head, .lav-lock .lav-choose__head {
     cursor: auto;
   }
-  .lav-later__choose.active .lav-choose__head:hover, .lav-payment__choose.active .lav-choose__head:hover {
+  .lav-later__choose.active .lav-choose__head:hover, .lav-payment__choose.active .lav-choose__head:hover, .lav-paypal__choose.active .lav-choose__head:hover, .lav-lock .lav-choose__head:hover {
    opacity: 1;
   }
   .lav-later__choose .lav-choose__body {
@@ -566,10 +570,10 @@ const styles = `
     border: 1px solid #0B0F41;
   }
   .lav-payment__choose.active .lav-choose__body {
-    border-top: 1px solid #0B0F41;
+    // border-top: 1px solid #0B0F41;
   }
   .lav-payment__choose.active {
-    border: 1px solid #0B0F41;
+    // border: 1px solid #0B0F41;
   }
   .lav-later__choose .lav-choose__body span {
     max-width: 450px;
@@ -753,6 +757,47 @@ const styles = `
   .subscr__descr, .order__info-list {
     max-width: 75%;
   }
+  .lav-lock .lav-choose__caption {
+    color: #CED4D9;
+  }
+  .lav-lock .lav-choose__head:before {
+    background: url(${settings.dir}/img/icon-lock-gray.svg) center no-repeat;
+    border: none;
+    width: 18px;
+    height: 18px;
+  }
+  .lav-pay__error {
+    display: flex;
+    justify-content: flex-end;
+    font-family: SpaceGrotesk-Regular;
+    align-items: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #EC1C1D;
+  }
+  .lav-payment .lav-pay__error {
+    margin-top: 8px;
+    margin-bottom: -4px;
+  }
+  .lav-pay__error img {
+    margin-right: 6px;
+  }
+  .lav-paypal-btn {
+    max-width: 380px;
+    width: 100%;
+  }
+  @media(max-width: 1130px) {
+    .lav-pay__error {
+      justify-content: flex-start;
+    }
+    .lav-later__label {
+      flex-flow: column;
+    }
+    .lav-later__label .lav-pay__error {
+      margin-top: 8px;
+    }
+  }
   @media (max-width: 1700px) {
     .subscr__descr, .order__info-list {
       max-width: 90%;
@@ -834,7 +879,7 @@ const styles = `
       margin-top: 32px;
       flex-flow: column-reverse;
     }
-    .lav-control__next {
+    .lav-control__next, .lav-paypal-btn {
       margin-left: 0;
       max-width: 100%;
       margin-bottom: 20px;
@@ -938,7 +983,7 @@ function initCollapse() {
     </div>
   `;
 
-  document.querySelector('#app').insertAdjacentHTML('afterbegin', el);
+  document.querySelector('.cart-page').insertAdjacentHTML('beforebegin', el);
 
   document.querySelector('.lav-collapse__price').innerText =
     document.querySelector('.total__value').textContent;
@@ -1179,7 +1224,10 @@ function initControl() {
           document.querySelector('.payLaterBtn.klarna').click();
         } else if (document.querySelector('.lav-choose__afterpay.active')) {
           document.querySelector('.payLaterBtn.afterpay').click();
+        } else if (document.querySelector('.lav-paypal__choose.active')) {
+          document.querySelector('.payLaterBtn.afterpay').click();
         }
+        // todo
 
         setTimeout(() => {
           if (
@@ -1211,7 +1259,7 @@ function initSummary() {
       </div>
       <div class='lav-summary__line lav-hide'>
         <div class='lav-summary__item'>Method</div>
-        <div class='lav-summary__item'>International Express Shipping (3-6 business&nbsp;days)</div>
+        <div class='lav-summary__item'>International Express Shipping (3–6&nbsp;business&nbsp;days)</div>
         <div class='lav-summary__item lav-free'>Free</div>
       </div>
     </div>
@@ -1354,7 +1402,11 @@ function initPayment() {
       `<img class='lav-quest' src="${settings.dir}/img/icon-quest.svg" />`
     );
 
-  let items = ['.lav-later__choose', '.lav-payment__choose'];
+  let items = [
+    '.lav-later__choose',
+    '.lav-payment__choose',
+    '.lav-paypal__choose',
+  ];
 
   for (let item of items) {
     document.querySelectorAll(item).forEach((el) => {
@@ -1367,11 +1419,22 @@ function initPayment() {
           openModal('afterpay');
           return false;
         }
-        if (this.classList.contains('active')) return false;
+
+        if (
+          this.classList.contains('active') ||
+          this.classList.contains('lav-lock')
+        )
+          return false;
 
         if (document.querySelector('.lav-payment__choose.active')) {
           document
             .querySelector('.lav-payment__choose.active')
+            .classList.remove('active');
+        }
+
+        if (document.querySelector('.lav-paypal__choose.active')) {
+          document
+            .querySelector('.lav-paypal__choose.active')
             .classList.remove('active');
         }
 
@@ -1382,6 +1445,28 @@ function initPayment() {
         }
 
         this.classList.add('active');
+
+        if (el.classList.contains('lav-paypal__choose')) {
+          if (!document.querySelector('.lav-control .lav-paypal-btn')) {
+            document
+              .querySelector('.payment__buttons>div')
+              .classList.add('lav-paypal-btn');
+
+            document
+              .querySelector('.lav-control')
+              .insertAdjacentElement(
+                'beforeend',
+                document.querySelector('.lav-paypal-btn')
+              );
+          }
+          document.querySelector('.lav-control .lav-paypal-btn').style.display =
+            'block';
+          document.querySelector('.lav-control__next').style.display = 'none';
+        } else if (document.querySelector('.lav-control .lav-paypal-btn')) {
+          document.querySelector('.lav-control .lav-paypal-btn').style.display =
+            'none';
+          document.querySelector('.lav-control__next').style.display = 'block';
+        }
 
         if (el.classList.contains('lav-payment__choose')) {
           gaEvent(
@@ -1394,6 +1479,13 @@ function initPayment() {
           gaEvent(
             'exp_multistep_3_klarna',
             'Klarna',
+            'Payment method',
+            'Step: Payment'
+          );
+        } else if (el.classList.contains('lav-paypal__choose')) {
+          gaEvent(
+            'exp_multistep_3_paypal',
+            'PayPal',
             'Payment method',
             'Step: Payment'
           );
@@ -1422,6 +1514,20 @@ function moveToStep(isScroll = true) {
     document.querySelector('.lav-collapse').click();
   }
 
+  if (
+    document.querySelector('.lav-paypal-btn') ||
+    document.querySelector('.lav-control>div:not(.lav-control__back)')
+  ) {
+    if (document.querySelector('.lav-control>div:not(.lav-control__back)')) {
+      document
+        .querySelector('.lav-control>div:not(.lav-control__back)')
+        .classList.add('lav-paypal-btn');
+    }
+    document.querySelector('.lav-control .lav-paypal-btn').style.display =
+      'none';
+    document.querySelector('.lav-control__next').style.display = 'block';
+  }
+
   const hideArr = [
     '.lav-express',
     '.lav-summary__line:nth-child(3)',
@@ -1430,8 +1536,6 @@ function moveToStep(isScroll = true) {
     '.right-component>.error-message+div',
     '.lav-later',
     '.lav-payment',
-    '.lav-choose__klarna',
-    '.lav-choose__afterpay',
   ];
 
   for (let el of hideArr) {
@@ -1501,6 +1605,14 @@ function moveToStep(isScroll = true) {
   }
 
   if (step === 3) {
+    if (
+      document.querySelector('.lav-paypal__choose.active') &&
+      document.querySelector('.lav-paypal-btn')
+    ) {
+      document.querySelector('.lav-control .lav-paypal-btn').style.display =
+        'block';
+      document.querySelector('.lav-control__next').style.display = 'none';
+    }
     document
       .querySelector('.lav-breadcrumbs__item:nth-child(3)')
       .classList.add('active');
@@ -1514,23 +1626,76 @@ function moveToStep(isScroll = true) {
     document.querySelector('.lav-control__next').innerText = 'Complete order';
 
     document.querySelector('.lav-payment').classList.remove('lav-hide');
+    document.querySelector('.lav-later').classList.remove('lav-hide');
 
     if (!document.querySelector('.payLaterBtn.klarna').disabled) {
-      document.querySelector('.lav-later').classList.remove('lav-hide');
       document
         .querySelector('.lav-choose__klarna')
-        .classList.remove('lav-hide');
-    } else if (document.querySelector('.lav-choose__klarna.active')) {
-      document.querySelector('.lav-payment__choose').click();
+        .classList.remove('lav-lock');
+    } else {
+      document.querySelector('.lav-choose__klarna').classList.add('lav-lock');
+      if (document.querySelector('.lav-choose__klarna.active')) {
+        document.querySelector('.lav-payment__choose').click();
+      }
+    }
+
+    if (
+      document.querySelector('.paylater-wrap .paylater-error') &&
+      document.querySelector('.paylater-wrap .paylater-error').style.display !==
+        'none' &&
+      document
+        .querySelector('.paylater-wrap .paylater-error')
+        .innerText.trim() === 'Lifetime purchases only'
+    ) {
+      let textEl = `<span class='lav-pay__error'><img src='${settings.dir}/img/icon-note.svg' /> Only available for Lifetime Subscription purchases.</span>`;
+
+      if (!document.querySelector('.lav-pay__error')) {
+        document
+          .querySelector('.lav-paypal__choose')
+          .insertAdjacentHTML('beforebegin', textEl);
+
+        document
+          .querySelector('.lav-later__label')
+          .insertAdjacentHTML('beforeend', textEl);
+      }
+    } else if (document.querySelector('.lav-pay__error')) {
+      for (let item of document.querySelectorAll('.lav-pay__error')) {
+        item.remove();
+      }
+    }
+
+    if (
+      !document.querySelector('.payment__buttons .disable-element') &&
+      !document.querySelector('.lav-control .disable-element')
+    ) {
+      document
+        .querySelector('.lav-paypal__choose')
+        .classList.remove('lav-lock');
+    } else {
+      document.querySelector('.lav-paypal__choose').classList.add('lav-lock');
+      if (document.querySelector('.lav-paypal__choose.active')) {
+        document.querySelector('.lav-payment__choose').click();
+      }
+    }
+
+    if (
+      !document.querySelector('.lav-paypal-btn') &&
+      document.querySelector('.lav-control>div:not(.lav-control__back')
+    ) {
+      document
+        .querySelector('.lav-control>div:not(.lav-control__back')
+        .classList.add('lav-paypal-btn');
     }
 
     if (!document.querySelector('.payLaterBtn.afterpay').disabled) {
-      document.querySelector('.lav-later').classList.remove('lav-hide');
       document
         .querySelector('.lav-choose__afterpay')
-        .classList.remove('lav-hide');
-    } else if (document.querySelector('.lav-choose__afterpay.active')) {
-      document.querySelector('.lav-payment__choose').click();
+        .classList.remove('lav-lock');
+    } else {
+      document.querySelector('.lav-choose__afterpay').classList.add('lav-lock');
+      if (document.querySelector('.lav-choose__afterpay.active')) {
+        document.querySelector('.lav-payment__choose').click();
+      }
     }
 
     if (
