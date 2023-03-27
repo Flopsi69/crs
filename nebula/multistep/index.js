@@ -1265,6 +1265,20 @@ function initPayment() {
         </div>
         <div class='lav-choose__body'></div>
       </div>
+
+      <div class='lav-paypal__choose lav-choose'>
+        <div class='lav-choose__head'>
+          <span class='lav-choose__caption'>PayPal</span>
+          <img src='${settings.dir}/img/paypal.svg' />
+        </div>
+        <div class='lav-choose__body'>
+          <img src='${settings.dir}/img/icon-redirect.svg' />
+
+          <span>
+            After clicking “Complete order”, you will be redirected to PayPal to complete your purchase securely
+          </span>
+        </div>
+      </div>
     </div>
 
     <div class='lav-later lav-hide'>
@@ -1516,7 +1530,7 @@ function moveToStep(isScroll = true) {
 }
 
 function validateStepOne() {
-  // return true;
+  return true;
   let checkArr = [
     'email',
     'fname',
