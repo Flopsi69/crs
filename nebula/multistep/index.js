@@ -949,6 +949,9 @@ const initInterval = setInterval(() => {
     init();
   }
 }, 200);
+
+let intrevalPaypal;
+
 function init() {
   console.log('initFn');
   gaEvent('exp_multistep_loaded', 'Page loaded', 'Start', 'Content');
@@ -1510,6 +1513,9 @@ function initPayment() {
 }
 
 function moveToStep(isScroll = true) {
+  if (intrevalPaypal) {
+    clearInterval(intrevalPaypal);
+  }
   if (!document.querySelector('.lav-collapse.active') && isScroll) {
     document.querySelector('.lav-collapse').click();
   }
@@ -1605,6 +1611,18 @@ function moveToStep(isScroll = true) {
   }
 
   if (step === 3) {
+    intrevalPaypal = setInterval(() => {
+      if (
+        document.querySelector('.shipping-address-component .error-message') ||
+        document.querySelector('.email-address-component .error-message')
+      ) {
+        if (intrevalPaypal) {
+          clearInterval(intrevalPaypal);
+        }
+        step = 1;
+        moveToStep();
+      }
+    }, 400);
     if (
       document.querySelector('.lav-paypal__choose.active') &&
       document.querySelector('.lav-paypal-btn')
