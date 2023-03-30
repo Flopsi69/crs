@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/nebula/multistep',
-  clarity: false,
+  clarity: true,
   observe: true,
 };
 
@@ -14,26 +14,27 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'multistep_checkout', 'variant_1');
     }
   }, 1000);
 }
 
 // Alalytic
-function gaEvent(name = '', desc = '', type = '', loc = '') {
+function gaEvent(action, label) {
+  if (!label) {
+    label = '';
+  }
   try {
     var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
+      event: 'event-to-ga',
+      eventCategory: 'Experiment. Multistep checkout',
+      eventAction: action,
+      eventLabel: label,
+      eventValue: '',
     };
-    console.log('**DEBUG** eventFire:', objData);
-    // dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
+    console.log('EventFire:', objData);
+    dataLayer.push(objData);
+  } catch (e) {}
 }
 
 // Observe
@@ -116,7 +117,7 @@ const styles = `
     cursor: pointer;
   }
   .lav-breadcrumbs__item.active ~ .lav-breadcrumbs__item {
-    cursor: auto;
+    // cursor: auto;
   }
   .lav-breadcrumbs__item.active {
     color: #0B0F41;
@@ -964,7 +965,7 @@ let intrevalPaypal;
 
 function init() {
   console.log('initFn');
-  gaEvent('exp_multistep_loaded', 'Page loaded', 'Start', 'Content');
+  gaEvent('loaded');
 
   const collapseIntervl = setInterval(function () {
     if (document.querySelector('.total__value')) {
@@ -1021,9 +1022,7 @@ function initCollapse() {
         document.querySelector('.left-component').classList.add('lav-hide');
 
         gaEvent(
-          'exp_multistep_hidesum',
-          'Hide order summary',
-          'Button',
+          'Button. Hide order summary',
           'Step: ' + getStepCaption() + '. Header'
         );
       } else {
@@ -1032,9 +1031,7 @@ function initCollapse() {
         document.querySelector('.left-component').classList.remove('lav-hide');
 
         gaEvent(
-          'exp_multistep_showsum',
-          'Show order summary',
-          'Button',
+          'Button. Show order summary',
           'Step: ' + getStepCaption() + '. Header'
         );
       }
@@ -1085,9 +1082,7 @@ function initHead() {
       const parseStep = parseInt(el.dataset.step);
 
       gaEvent(
-        'exp_multistep_navigation',
-        el.innerText,
-        'Button',
+        `Button ${el.innerText}`,
         `Step: ${getStepCaption()}. Navigation`
       );
 
@@ -1103,9 +1098,7 @@ function initHead() {
 
   document.querySelector('.lav-top').addEventListener('click', function () {
     gaEvent(
-      'exp_multistep_onestep_click',
-      'You are one step away from getting...',
-      'Click',
+      'Click. You are one step away from getting...',
       'Step: ' + getStepCaption() + '. Header'
     );
   });
@@ -1115,9 +1108,7 @@ function initHead() {
     .addEventListener('mouseenter', function () {
       if (window.innerWidth > 768) {
         gaEvent(
-          'exp_multistep_onestep_hover',
-          'You are one step away from getting...',
-          'Hover',
+          'Hover. You are one step away from getting...',
           'Step: ' + getStepCaption() + '. Header'
         );
       }
@@ -1167,26 +1158,11 @@ function initControl() {
     .querySelector('.lav-control__back')
     .addEventListener('click', function () {
       if (step === 1) {
-        gaEvent(
-          'exp_multistep_1_back',
-          'Back to product options',
-          'Button',
-          'Step: Information'
-        );
+        gaEvent('Button. Back to product options', 'Step: Information');
       } else if (step === 2) {
-        gaEvent(
-          'exp_multistep_2_back',
-          'Back to information',
-          'Button',
-          'Step: Shipping'
-        );
+        gaEvent('Button. Back to information', 'Step: Shipping');
       } else {
-        gaEvent(
-          'exp_multistep_3_back',
-          'Back to shipping',
-          'Button',
-          'Step: Payment'
-        );
+        gaEvent('Button. Back to shipping', 'Step: Payment');
       }
 
       if (step === 1) {
@@ -1202,26 +1178,12 @@ function initControl() {
     .querySelector('.lav-control__next')
     .addEventListener('click', function () {
       if (step === 1) {
-        gaEvent(
-          'exp_multistep_1_continue',
-          'Continue to shipping',
-          'Button',
-          'Step: Information'
-        );
+        gaEvent('Button. Continue to shipping', 'Step: Information');
       } else if (step === 2) {
-        gaEvent(
-          'exp_multistep_2_continue',
-          'Continue to Payment',
-          'Button',
-          'Step: Shipping'
-        );
+        gaEvent('Button. Continue to payment', 'Step: Shipping');
       } else {
-        gaEvent(
-          'exp_multistep_3_continue',
-          'Complete Order',
-          'Button',
-          'Step: Payment'
-        );
+        // todo
+        gaEvent('Button. Complete Order', 'Step: Payment');
       }
       if (
         document.querySelector('.shipping-address-component .error-message') ||
@@ -1295,19 +1257,9 @@ function initSummary() {
           .querySelector('.lav-summary__item')
           .innerText.trim() === 'Contact'
       ) {
-        gaEvent(
-          'exp_multistep_change_contact',
-          'Change',
-          'Button',
-          `Step: ${getStepCaption()}. Contact`
-        );
+        gaEvent('Button. Change', `Step: ${getStepCaption()}. Contact`);
       } else {
-        gaEvent(
-          'exp_multistep_change_shipto',
-          'Change',
-          'Button',
-          `Step: ${getStepCaption()}. Ship to`
-        );
+        gaEvent('Button. Change', `Step: ${getStepCaption()}. Ship to`);
       }
 
       step = 1;
@@ -1485,33 +1437,13 @@ function initPayment() {
         }
 
         if (el.classList.contains('lav-payment__choose')) {
-          gaEvent(
-            'exp_multistep_3_cc',
-            'Credit card',
-            'Payment method',
-            'Step: Payment'
-          );
+          gaEvent('Payment method. Credit card', 'Step: Payment');
         } else if (el.classList.contains('lav-choose__klarna')) {
-          gaEvent(
-            'exp_multistep_3_klarna',
-            'Klarna',
-            'Payment method',
-            'Step: Payment'
-          );
+          gaEvent('Payment method. Klarna', 'Step: Payment');
         } else if (el.classList.contains('lav-paypal__choose')) {
-          gaEvent(
-            'exp_multistep_3_paypal',
-            'PayPal',
-            'Payment method',
-            'Step: Payment'
-          );
+          gaEvent('Payment method. Paypal', 'Step: Payment');
         } else if (el.classList.contains('lav-choose__afterpay')) {
-          gaEvent(
-            'exp_multistep_3_afterpay',
-            'Afterpay',
-            'Payment method',
-            'Step: Payment'
-          );
+          gaEvent('Payment method. Afterpay', 'Step: Payment');
         }
       });
     });
@@ -1875,17 +1807,18 @@ function initModals() {
 
       if (el.closest('.lav-modal__klarna')) {
         gaEvent(
-          'exp_multistep_3_close_klarna',
-          'Close popup',
-          'Cross icon',
+          'Cross icon. Close popup',
           'Step: Payment. Billing address. Popup: Klarna'
         );
       } else if (el.closest('.lav-modal__afterpay')) {
         gaEvent(
-          'exp_multistep_3_close_afterpay',
-          'Close popup',
-          'Cross icon',
+          'Cross icon. Close popup',
           'Step: Payment. Billing address. Popup: Afterpay'
+        );
+      } else if (el.closest('.lav-modal__cvc')) {
+        gaEvent(
+          'Cross icon. Close popup',
+          'Step: Payment. Billing address. Popup: Step: CVC'
         );
       }
     });
@@ -1925,9 +1858,7 @@ function initProductListener() {
       el.addEventListener('click', function () {
         if (el.classList.contains('order__remove')) {
           gaEvent(
-            'exp_multistep_1_delete',
-            'Delete product',
-            'Cross icon',
+            'Cross icon. Delete product',
             `Step: ${getStepCaption()}. ${
               el.closest('.order').querySelector('.order__title').innerText
             }`
@@ -1936,18 +1867,14 @@ function initProductListener() {
         if (el.classList.contains('order__quantity-btn')) {
           if (el.querySelector('.fa-plus')) {
             gaEvent(
-              'exp_multistep_1_inc',
-              'Increase quantity',
-              'Plus icon',
+              'Plus icon. Increase quantity',
               `Step: ${getStepCaption()}. ${
                 el.closest('.order').querySelector('.order__title').innerText
               }`
             );
           } else {
             gaEvent(
-              'exp_multistep_1_dec',
-              'Decrease quantity',
-              'Minus icon',
+              'Minus icon. Decrease quantity',
               `Step: ${getStepCaption()}. ${
                 el.closest('.order').querySelector('.order__title').innerText
               }`
@@ -2012,9 +1939,7 @@ function observerView() {
         if (entry.target.classList.contains('lav-top')) {
           console.log(entry.target);
           const event = [
-            'exp_multistep_onestep_view',
-            'You are one step away from getting...',
-            'View element (5 seconds on screen)',
+            'View element (5 seconds on screen). You are one step away from getting...',
             'Step: ' + getStepCaption() + '. Header',
           ];
 
@@ -2049,39 +1974,16 @@ function observerView() {
 }
 
 function initEvents() {
-  // console.log(document.querySelector('.paypal-buttons'));
-  // document
-  //   .querySelector('.paypal-buttons')
-  //   .closest('div')
-  //   .addEventListener('click', function () {
-  //     gaEvent(
-  //       'exp_multistep_1_paypal',
-  //       'PayPal',
-  //       'Button',
-  //       'Step: Information. Express checkout'
-  //     );
-  //   });
-
   document
     .querySelector('#google-pay-container')
     .addEventListener('click', function () {
-      gaEvent(
-        'exp_multistep_1_googlePay',
-        'GooglePay',
-        'Button',
-        'Step: Information. Express checkout'
-      );
+      gaEvent('Button. GooglePay', 'Step: Information. Express checkout');
     });
 
   document
     .querySelector('#apple-pay-container')
     .addEventListener('click', function () {
-      gaEvent(
-        'exp_multistep_1_applePay',
-        'ApplePay',
-        'Button',
-        'Step: Information. Express checkout'
-      );
+      gaEvent('Button. ApplePay', 'Step: Information. Express checkout');
     });
 
   for (let item of document.querySelectorAll(
@@ -2089,9 +1991,7 @@ function initEvents() {
   )) {
     item.addEventListener('focus', function () {
       gaEvent(
-        'exp_multistep_1_input',
-        item.placeholder,
-        'Focus',
+        `Input. ${item.placeholder}`,
         'Step: Information. Shipping information'
       );
     });
@@ -2102,18 +2002,16 @@ function initEvents() {
   )) {
     item.addEventListener('click', function () {
       gaEvent(
-        'exp_multistep_1_select',
-        item.querySelector('option').innerText,
-        'Select',
+        `Select. ${item.querySelector('option').innerText}`,
         'Step: Information. Shipping information'
       );
     });
 
     item.addEventListener('change', function () {
       gaEvent(
-        'exp_multistep_1_selopt',
-        item.querySelector('option').innerText + '. ' + item.value,
-        'Selected option',
+        `Selected option. ${item.querySelector('option').innerText} . ${
+          item.value
+        }`,
         'Step: Information. Shipping information'
       );
     });
