@@ -811,7 +811,7 @@ const styles = `
     .shipping-address-component .name-div, .shipping-address-component .location-div {
       flex-flow: column;
     }
-    .shipping-address-component .name-div .input-div, .shipping-address-component .location-div .input-div {
+    .shipping-address-component .name-div .input-div, .shipping-address-component .location-div .input-div, .shipping-address-component .location-div .input-div:not(.zipcode-div) {
       width: 100%!important;
     }
     .subscr__descr, .order__info-list {
