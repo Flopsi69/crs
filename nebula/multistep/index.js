@@ -1091,7 +1091,10 @@ function initHead() {
         `Step: ${getStepCaption()}. Navigation`
       );
 
-      if (parseStep < step) {
+      if (parseStep < step || step == 2) {
+        step = parseStep;
+        moveToStep();
+      } else if (step === 1 && validateStepOne()) {
         step = parseStep;
         moveToStep();
       }
