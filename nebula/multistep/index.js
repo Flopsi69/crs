@@ -808,6 +808,12 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .shipping-address-component .name-div, .shipping-address-component .location-div {
+      flex-flow: column;
+    }
+    .shipping-address-component .name-div .input-div, .shipping-address-component .location-div .input-div {
+      width: 100%!important;
+    }
     .subscr__descr, .order__info-list {
       max-width: 100%;
     }
