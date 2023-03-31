@@ -2071,6 +2071,11 @@ function initEvents() {
     });
   }
 
+  document
+    .querySelector('input[placeholder="Company (optional)"]')
+    .closest('.input-div')
+    .classList.add('lav-hide');
+
   document.querySelector(
     '.email-address-component input[name="email"]'
   ).placeholder = 'Email';
