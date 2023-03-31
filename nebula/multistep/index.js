@@ -1872,6 +1872,8 @@ function initModals() {
 
   document.querySelector('.lav-quest').addEventListener('click', function (e) {
     e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
     openModal('cvc');
   });
 }
