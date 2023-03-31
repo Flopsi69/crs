@@ -1902,18 +1902,29 @@ function initProductListener() {
             }`
           );
 
-          if (
-            document.querySelector('#text') &&
-            document.querySelector('#text').innerText === 'Your cart is empty!'
-          ) {
-            document
-              .querySelector('.lav-breadcrumbs')
-              .classList.add('lav-hide');
+          setTimeout(() => {
+            if (
+              document.querySelector('#text') &&
+              document.querySelector('#text').innerText ===
+                'Your cart is empty!'
+            ) {
+              document
+                .querySelector('.lav-breadcrumbs')
+                .classList.add('lav-hide');
 
-            document.querySelector('.lav-top').classList.add('lav-hide');
+              document.querySelector('.lav-top').classList.add('lav-hide');
 
-            document.querySelector('.lav-control').classList.add('lav-hide');
-          }
+              document.querySelector('.lav-summary').classList.add('lav-hide');
+
+              document.querySelector('.lav-shipping').classList.add('lav-hide');
+
+              document.querySelector('.lav-payment').classList.add('lav-hide');
+
+              document.querySelector('.lav-later').classList.add('lav-hide');
+
+              document.querySelector('.lav-control').classList.add('lav-hide');
+            }
+          }, 70);
         }
         if (el.classList.contains('order__quantity-btn')) {
           if (el.querySelector('.fa-plus')) {
