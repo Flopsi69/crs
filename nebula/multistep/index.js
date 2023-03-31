@@ -45,6 +45,25 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue;
 
         console.log(node);
+        if (node.name === 'state' && node.tagName === 'SELECT') {
+          let el = document.querySelector(node);
+
+          el.addEventListener('click', function () {
+            gaEvent(
+              `Select. ${el.querySelector('option').innerText}`,
+              'Step: Information. Shipping information'
+            );
+          });
+
+          el.addEventListener('change', function () {
+            gaEvent(
+              `Selected option. ${el.querySelector('option').innerText} . ${
+                el.value
+              }`,
+              'Step: Information. Shipping information'
+            );
+          });
+        }
 
         if (
           node.classList.contains('modal-mask') &&
@@ -1878,6 +1897,8 @@ function initProductListener() {
               .classList.add('lav-hide');
 
             document.querySelector('.lav-top').classList.add('lav-hide');
+
+            document.querySelector('.lav-control').classList.add('lav-hide');
           }
         }
         if (el.classList.contains('order__quantity-btn')) {
