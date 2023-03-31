@@ -1534,7 +1534,7 @@ function moveToStep(isScroll = true) {
       'Back to product options';
     document.querySelector('.lav-control__next').innerText =
       'Continue to shipping';
-  } else {
+  } else if (document.querySelector('[name="email"]')) {
     const email = document.querySelector('[name="email"]').value;
     let address =
       document.querySelector('[name="country"]').value +
