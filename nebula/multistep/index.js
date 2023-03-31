@@ -44,6 +44,8 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        console.log(node);
+
         if (
           node.classList.contains('modal-mask') &&
           node.querySelector('.card-header') &&
@@ -1462,7 +1464,10 @@ function moveToStep(isScroll = true) {
     clearInterval(intrevalPaypal);
   }
   if (!document.querySelector('.lav-collapse.active') && isScroll) {
-    document.querySelector('.lav-collapse').click();
+    document.querySelector('.lav-collapse').classList.add('active');
+
+    document.querySelector('.lav-collapse__caption span').innerText = 'Show';
+    document.querySelector('.left-component').classList.add('lav-hide');
   }
 
   if (
@@ -1863,6 +1868,17 @@ function initProductListener() {
               el.closest('.order').querySelector('.order__title').innerText
             }`
           );
+
+          if (
+            document.querySelector('#text') &&
+            document.querySelector('#text').innerText === 'Your cart is empty!'
+          ) {
+            document
+              .querySelector('.lav-breadcrumbs')
+              .classList.add('lav-hide');
+
+            document.querySelector('.lav-top').classList.add('lav-hide');
+          }
         }
         if (el.classList.contains('order__quantity-btn')) {
           if (el.querySelector('.fa-plus')) {
