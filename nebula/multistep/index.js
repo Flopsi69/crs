@@ -1267,7 +1267,7 @@ function initSummary() {
     .insertAdjacentHTML('beforeend', summaryEl);
 
   for (let item of document.querySelectorAll(
-    '.lav-summary__item:not(.lav-free)'
+    '.lav-summary__item:not(.lav-free):last-child'
   )) {
     item.addEventListener('click', function () {
       if (
