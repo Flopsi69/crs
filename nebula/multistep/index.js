@@ -1893,7 +1893,7 @@ function openModal(type) {
 
 function closeModal() {
   document.body.classList.remove('lav-modal-open');
-  document.querySelector('html').classList.add('lav-modal-open');
+  document.querySelector('html').classList.remove('lav-modal-open');
   document.querySelector('.lav-modal').classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-modal').style.display = 'none';
