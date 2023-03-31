@@ -1511,7 +1511,9 @@ function moveToStep(isScroll = true) {
   ];
 
   for (let el of hideArr) {
-    document.querySelector(el).classList.add('lav-hide');
+    if (document.querySelector(el)) {
+      document.querySelector(el).classList.add('lav-hide');
+    }
   }
 
   document
