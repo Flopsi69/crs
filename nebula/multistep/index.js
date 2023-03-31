@@ -2069,6 +2069,14 @@ function initEvents() {
     });
   }
 
+  document.querySelector(
+    '.email-address-component input[name="email"]'
+  ).placeholder = 'Email';
+
+  document.querySelector(
+    '.shipping-address-component select option'
+  ).innerText = 'Country';
+
   for (let item of document.querySelectorAll(
     '.shipping-address-component select'
   )) {
