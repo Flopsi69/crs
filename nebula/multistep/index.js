@@ -46,19 +46,17 @@ if (settings.observe) {
 
         console.log(node);
         if (node.name === 'state' && node.tagName === 'SELECT') {
-          let el = document.querySelector(node);
-
-          el.addEventListener('click', function () {
+          node.addEventListener('click', function () {
             gaEvent(
-              `Select. ${el.querySelector('option').innerText}`,
+              `Select. ${node.querySelector('option').innerText}`,
               'Step: Information. Shipping information'
             );
           });
 
-          el.addEventListener('change', function () {
+          node.addEventListener('change', function () {
             gaEvent(
-              `Selected option. ${el.querySelector('option').innerText} . ${
-                el.value
+              `Selected option. ${node.querySelector('option').innerText} . ${
+                node.value
               }`,
               'Step: Information. Shipping information'
             );
