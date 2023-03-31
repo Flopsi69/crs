@@ -1821,6 +1821,23 @@ function initModals() {
 
   document.querySelector('.lav-modal').addEventListener('click', function (e) {
     if (e.target.classList.contains('lav-modal')) {
+      if (document.querySelector('.lav-modal__klarna.active')) {
+        gaEvent(
+          'Out of popup. Close popup',
+          'Step: Payment. Billing address. Popup: Klarna'
+        );
+      } else if (document.querySelector('.lav-modal__afterpay.active')) {
+        gaEvent(
+          'Out of popup. Close popup',
+          'Step: Payment. Billing address. Popup: Afterpay'
+        );
+      } else if (document.querySelector('.lav-modal__cvc.active')) {
+        gaEvent(
+          'Out of popup. Close popup',
+          'Step: Payment. Billing address. Popup: Step: CVC'
+        );
+      }
+
       closeModal();
     }
   });
@@ -1934,6 +1951,10 @@ function initProductListener() {
 
     item.nextElementSibling.addEventListener('click', function () {
       item.classList.remove('lav-brief');
+      gaEvent(
+        `Click. See more - membership`,
+        `Step: ${getStepCaption()}. Header`
+      );
       item.nextElementSibling.remove();
     });
   }
@@ -1946,6 +1967,12 @@ function initProductListener() {
     );
     item.nextElementSibling.addEventListener('click', function () {
       item.classList.remove('lav-brief');
+      gaEvent(
+        `Click. See more ${
+          item.closest('.order__info').querySelector('.order__title').innerText
+        }`,
+        `Step: ${getStepCaption()}. Header`
+      );
       item.nextElementSibling.remove();
     });
   }
