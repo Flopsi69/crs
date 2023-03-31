@@ -44,7 +44,6 @@ if (settings.observe) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
         if (node.name === 'state' && node.tagName === 'SELECT') {
           node.addEventListener('click', function () {
             gaEvent(
@@ -55,7 +54,7 @@ if (settings.observe) {
 
           node.addEventListener('change', function () {
             gaEvent(
-              `Selected option. ${node.querySelector('option').innerText} . ${
+              `Selected option. ${node.querySelector('option').innerText}. ${
                 node.value
               }`,
               'Step: Information. Shipping information'
@@ -2071,7 +2070,7 @@ function initEvents() {
 
     item.addEventListener('change', function () {
       gaEvent(
-        `Selected option. ${item.querySelector('option').innerText} . ${
+        `Selected option. ${item.querySelector('option').innerText}. ${
           item.value
         }`,
         'Step: Information. Shipping information'
