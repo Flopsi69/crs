@@ -1479,6 +1479,12 @@ function moveToStep(isScroll = true) {
   if (intrevalPaypal) {
     clearInterval(intrevalPaypal);
   }
+  if (
+    document.querySelector('#text') &&
+    document.querySelector('#text').innerText === 'Your cart is empty!'
+  ) {
+    return false;
+  }
   if (!document.querySelector('.lav-collapse.active') && isScroll) {
     document.querySelector('.lav-collapse').classList.add('active');
 
