@@ -88,6 +88,9 @@ const styles = `
   .lav-modal-open {
     overflow: hidden;
   }
+  body.lav-modal-open {
+    position: relative;
+  }
   .advantages, #backPage, .lav-hide, .payment-label-options, .payment__buttons, .paylater-wrap {
     display: none!important;
   }
@@ -1880,6 +1883,7 @@ function initModals() {
 
 function openModal(type) {
   document.body.classList.add('lav-modal-open');
+  document.querySelector('html').classList.add('lav-modal-open');
   document.querySelector('.lav-modal__' + type).classList.add('active');
   document.querySelector('.lav-modal').style.display = 'flex';
   setTimeout(() => {
@@ -1889,6 +1893,7 @@ function openModal(type) {
 
 function closeModal() {
   document.body.classList.remove('lav-modal-open');
+  document.querySelector('html').classList.add('lav-modal-open');
   document.querySelector('.lav-modal').classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-modal').style.display = 'none';
