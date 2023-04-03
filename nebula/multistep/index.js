@@ -1273,7 +1273,7 @@ function initSummary() {
       </div>
       <div class='lav-summary__line lav-hide'>
         <div class='lav-summary__item'>Method</div>
-        <div class='lav-summary__item'>International Express Shipping (3–6&nbsp;business&nbsp;days)</div>
+        <div class='lav-summary__item'>Standard Shipping</div>
         <div class='lav-summary__item lav-free'>Free</div>
       </div>
     </div>
@@ -1310,7 +1310,7 @@ function initShipping() {
       <div class='lav-shipping__label lav-label'>Shipping method</div>
       <div class='lav-shipping__choose lav-choose active'>
         <div class='lav-choose__head'>
-          <span class='lav-choose__caption'>Free shipping</span>
+          <span class='lav-choose__caption'>Standard Shipping</span>
           <span class='lav-choose__mark'>Free</span>
         </div>
       </div>
@@ -1544,6 +1544,8 @@ function moveToStep(isScroll = true) {
     .querySelector('.lav-breadcrumbs__item.active')
     .classList.remove('active');
 
+  location.hash = 'step' + step;
+
   if (step === 1) {
     document.querySelector('.lav-express').classList.remove('lav-hide');
     document
@@ -1633,7 +1635,12 @@ function moveToStep(isScroll = true) {
 
     document.querySelector('.lav-control__back span').innerText =
       'Back to shipping';
-    document.querySelector('.lav-control__next').innerText = 'Complete order';
+
+    if (document.querySelector('.lav-payment__choose.active')) {
+      document.querySelector('.lav-control__next').innerText = 'Pay now';
+    } else {
+      document.querySelector('.lav-control__next').innerText = 'Complete order';
+    }
 
     document.querySelector('.lav-payment').classList.remove('lav-hide');
     document.querySelector('.lav-later').classList.remove('lav-hide');
