@@ -982,17 +982,14 @@ const initInterval = setInterval(() => {
   if (location.pathname === '/whole-genome-sequencing-dna-test/') {
     clearInterval(initInterval);
     if (location.hash === '#toProducts') {
-      if (document.querySelector('#choose')) {
-        document
-          .querySelector('#choose')
-          .scrollIntoView({ behavior: 'smooth' });
-      } else {
-        setTimeout(() => {
+      let scrollInterval = setInterval(() => {
+        if (document.querySelector('#choose')) {
+          clearInterval(scrollInterval);
           document
             .querySelector('#choose')
             .scrollIntoView({ behavior: 'smooth' });
-        }, 500);
-      }
+        }
+      }, 50);
     }
   } else if (document.querySelector('.right-component')) {
     clearInterval(initInterval);
