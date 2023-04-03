@@ -979,13 +979,22 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 const initInterval = setInterval(() => {
-  // if (location.pathname === '/whole-genome-sequencing-dna-test/') {
-  //   clearInterval(initInterval);
-  //   if (location.hash === 'toProducts' && document.querySelector('#choose')) {
-  //     document.querySelector('#choose').scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // } else
-  if (document.querySelector('.right-component')) {
+  if (location.pathname === '/whole-genome-sequencing-dna-test/') {
+    clearInterval(initInterval);
+    if (location.hash === '#toProducts') {
+      if (document.querySelector('#choose')) {
+        document
+          .querySelector('#choose')
+          .scrollIntoView({ behavior: 'smooth' });
+      } else {
+        setTimeout(() => {
+          document
+            .querySelector('#choose')
+            .scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      }
+    }
+  } else if (document.querySelector('.right-component')) {
     clearInterval(initInterval);
     init();
   }
@@ -1197,7 +1206,7 @@ function initControl() {
 
       if (step === 1) {
         location.href =
-          'https://nebula.org/whole-genome-sequencing-dna-test/#choose';
+          'https://nebula.org/whole-genome-sequencing-dna-test/#toProducts';
       } else {
         step--;
         moveToStep();
