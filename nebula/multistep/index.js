@@ -38,7 +38,10 @@ function gaEvent(action, label) {
 }
 
 // Observe
-if (settings.observe) {
+if (
+  settings.observe &&
+  location.pathname !== '/whole-genome-sequencing-dna-test/'
+) {
   let observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
@@ -976,6 +979,12 @@ document.body.appendChild(stylesEl);
 
 /********* Custom Code **********/
 const initInterval = setInterval(() => {
+  // if (location.pathname === '/whole-genome-sequencing-dna-test/') {
+  //   clearInterval(initInterval);
+  //   if (location.hash === 'toProducts' && document.querySelector('#choose')) {
+  //     document.querySelector('#choose').scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // } else
   if (document.querySelector('.right-component')) {
     clearInterval(initInterval);
     init();
@@ -1188,7 +1197,7 @@ function initControl() {
 
       if (step === 1) {
         location.href =
-          'https://nebula.org/whole-genome-sequencing-dna-test#choose';
+          'https://nebula.org/whole-genome-sequencing-dna-test/#choose';
       } else {
         step--;
         moveToStep();
