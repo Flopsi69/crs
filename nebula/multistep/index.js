@@ -180,6 +180,10 @@ const styles = `
   .lav-express.lav-hide {
     display: none!important;
   }
+  #subscription-label {
+    margin-top: 12px!important;
+    margin-bottom: 0!important;
+  }
   @media(max-width: 1100px) {
     .lav-express {
       gap: 16px;
@@ -2179,8 +2183,8 @@ function initEvents() {
 
 function handlePaypalErrors() {
   if (
-    document.querySelector('.paypal-buttons + .error-message') &&
-    document.querySelector('.paypal-buttons + .error-message').style.display !==
+    document.querySelector('.lav-paypal-btn .error-message') &&
+    document.querySelector('.lav-paypal-btn .error-message').style.display !==
       'none'
   ) {
     let errorEl = document.createElement('span');
@@ -2189,12 +2193,12 @@ function handlePaypalErrors() {
 
     let textEl = errorEl.querySelector('span');
     textEl.innerText = document.querySelector(
-      '.paypal-buttons + .error-message'
+      '.lav-paypal-btn .error-message'
     ).innerText;
 
     if (
       document
-        .querySelector('.paypal-buttons + .error-message')
+        .querySelector('.lav-paypal-btn .error-message')
         .innerText.trim() ===
       'PayPal is only available for Lifetime Subscription purchases.'
     ) {
