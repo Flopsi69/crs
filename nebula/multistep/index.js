@@ -1596,35 +1596,45 @@ function moveToStep(isScroll = true) {
       'Back to product options';
     document.querySelector('.lav-control__next').innerText =
       'Continue to shipping';
-  } else if (document.querySelector('[name="email"]')) {
-    const email = document.querySelector('[name="email"]').value;
-    let address =
-      document.querySelector('[name="country"]').value +
-      ', ' +
-      document.querySelector('[name="shipping-city"]').value +
-      ', ' +
-      document.querySelector(
-        '[name="shipping-address"][autocomplete="address-line1"]'
-      ).value +
-      ' ' +
-      document.querySelector(
-        '[name="shipping-address"][autocomplete="address-line2"]'
-      ).value;
+  } else {
+    if (document.querySelector('[name="email"]')) {
+      const email = document.querySelector('[name="email"]').value;
 
-    if (document.querySelector('[name="state"]')) {
-      address += ' ' + document.querySelector('[name="state"]').value;
+      document.querySelector(
+        '.lav-summary__line:nth-child(1) .lav-summary__item:nth-child(2)'
+      ).innerText = email;
+    } else {
+      document
+        .querySelector('.lav-summary__line:nth-child(1)')
+        .classList.add('lav-hide');
     }
 
-    if (document.querySelector('[name="shipping-zip"]')) {
-      address += ' ' + document.querySelector('[name="shipping-zip"]').value;
-    }
+    if (document.querySelector('[name="country"]')) {
+      let address =
+        document.querySelector('[name="country"]').value +
+        ', ' +
+        document.querySelector('[name="shipping-city"]').value +
+        ', ' +
+        document.querySelector(
+          '[name="shipping-address"][autocomplete="address-line1"]'
+        ).value +
+        ' ' +
+        document.querySelector(
+          '[name="shipping-address"][autocomplete="address-line2"]'
+        ).value;
 
-    document.querySelector(
-      '.lav-summary__line:nth-child(1) .lav-summary__item:nth-child(2)'
-    ).innerText = email;
-    document.querySelector(
-      '.lav-summary__line:nth-child(2) .lav-summary__item:nth-child(2)'
-    ).innerText = address;
+      if (document.querySelector('[name="state"]')) {
+        address += ' ' + document.querySelector('[name="state"]').value;
+      }
+
+      if (document.querySelector('[name="shipping-zip"]')) {
+        address += ' ' + document.querySelector('[name="shipping-zip"]').value;
+      }
+
+      document.querySelector(
+        '.lav-summary__line:nth-child(2) .lav-summary__item:nth-child(2)'
+      ).innerText = address;
+    }
   }
 
   if (step === 2) {
@@ -2182,24 +2192,24 @@ function initEvents() {
 }
 
 function handlePaypalErrors() {
+  let selector = '.lav-paypal-btn .error-message';
+  if (!document.querySelector('.lav-paypal-btn')) {
+    selector = '.payment__buttons .error-message';
+  }
+
   if (
-    document.querySelector('.lav-paypal-btn .error-message') &&
-    document.querySelector('.lav-paypal-btn .error-message').style.display !==
-      'none'
+    document.querySelector(selector) &&
+    document.querySelector(selector).style.display !== 'none'
   ) {
     let errorEl = document.createElement('span');
     errorEl.classList.add('lav-pay__error', 'paypal-err');
     errorEl.innerHTML = `<img src='${settings.dir}/img/icon-note.svg' /> <span></span>`;
 
     let textEl = errorEl.querySelector('span');
-    textEl.innerText = document.querySelector(
-      '.lav-paypal-btn .error-message'
-    ).innerText;
+    textEl.innerText = document.querySelector(selector).innerText;
 
     if (
-      document
-        .querySelector('.lav-paypal-btn .error-message')
-        .innerText.trim() ===
+      document.querySelector(selector).innerText.trim() ===
       'PayPal is only available for Lifetime Subscription purchases.'
     ) {
       textEl.innerText = `Only available for Lifetime Subscription purchases.`;
