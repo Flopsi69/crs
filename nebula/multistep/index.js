@@ -8,6 +8,7 @@ const settings = {
 };
 
 let step = 1;
+let isMove = false;
 
 //Hotjar
 if (settings.clarity) {
@@ -1551,7 +1552,13 @@ function moveToStep(isScroll = true) {
     .querySelector('.lav-breadcrumbs__item.active')
     .classList.remove('active');
 
+  isMove = true;
+
   location.hash = 'step' + step;
+
+  setTimeout(() => {
+    isMove = false;
+  }, 500);
 
   if (step === 1) {
     document.querySelector('.lav-express').classList.remove('lav-hide');
@@ -2146,3 +2153,12 @@ function initEvents() {
     });
   }
 }
+
+addEventListener('hashchange', (event) => {
+  if (!isMove) {
+    console.log('fireChange');
+    step = parseInt(location.hash[location.hash.length - 1]);
+    moveToStep();
+  }
+  console.log(event);
+});
