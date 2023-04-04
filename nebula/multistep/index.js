@@ -2169,15 +2169,10 @@ function handlePaypalErrors() {
 
     document
       .querySelector('.lav-paypal__choose')
-      .insertAdjacentElement('beforebegin', textEl);
+      .insertAdjacentElement('beforebegin', errorEl);
   } else if (document.querySelector('.paypal-err')) {
     document.querySelector('.paypal-err').remove();
   }
-  // if (!document.querySelector('.lav-pay__error + .lav-paypal__choose')) {
-  //   document
-  //     .querySelector('.lav-paypal__choose')
-  //     .insertAdjacentElement('beforebegin', textEl);
-  // }
 }
 
 function handlePaylaterErrors() {
@@ -2208,7 +2203,7 @@ function handlePaylaterErrors() {
 
     document
       .querySelector('.lav-choose__afterpay')
-      .insertAdjacentElement('beforebegin', textEl);
+      .insertAdjacentElement('beforebegin', errorEl);
   } else if (document.querySelector('.afterpay-err')) {
     document.querySelector('.afterpay-err').remove();
   }
