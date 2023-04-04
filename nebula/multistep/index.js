@@ -1766,7 +1766,10 @@ function validateStepOne() {
   ];
 
   for (let inp of checkArr) {
-    if (!document.querySelector('[name="' + inp + '"]').value) {
+    if (
+      document.querySelector('[name="' + inp + '"]') &&
+      !document.querySelector('[name="' + inp + '"]').value
+    ) {
       document.querySelector('.pay-btn').click();
 
       if (document.querySelector('.email-address-component')) {
