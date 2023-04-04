@@ -2291,12 +2291,15 @@ function handlePaylaterErrors() {
 }
 
 addEventListener('hashchange', (event) => {
-  if (location.hash.includes('step') && !isMove) {
-    console.log('fireChange', event);
-    step = parseInt(location.hash[location.hash.length - 1]);
-    console.log('step', step);
-    moveToStep();
-  }
+  console.log('isMove', isMove);
+  setTimeout(() => {
+    if (location.hash.includes('step') && !isMove) {
+      console.log('fireChange', event);
+      step = parseInt(location.hash[location.hash.length - 1]);
+      console.log('step', step);
+      moveToStep();
+    }
 
-  isMove = false;
+    isMove = false;
+  }, 100);
 });
