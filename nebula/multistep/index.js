@@ -1762,9 +1762,7 @@ function moveToStep(isScroll = true) {
 
   if (!location.hash) {
     location.hash = 'step' + step;
-  } else if (
-    step !== parseInt(parseInt(location.hash[location.hash.length - 1]))
-  ) {
+  } else if (step !== parseInt(location.hash[location.hash.length - 1])) {
     location.hash = 'step' + step;
   }
 }
