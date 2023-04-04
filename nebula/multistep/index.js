@@ -1004,6 +1004,11 @@ function init() {
   console.log('initFn');
   gaEvent('loaded');
 
+  if (!location.hash.includes('step')) {
+    isMove = true;
+    location.hash = 'step' + step;
+  }
+
   const collapseIntervl = setInterval(function () {
     if (document.querySelector('.total__value')) {
       clearInterval(collapseIntervl);
@@ -1738,10 +1743,6 @@ function moveToStep(isScroll = true) {
   }
 
   location.hash = 'step' + step;
-
-  setTimeout(() => {
-    isMove = false;
-  }, 800);
 }
 
 function validateStepOne() {
@@ -2160,5 +2161,7 @@ addEventListener('hashchange', (event) => {
     step = parseInt(location.hash[location.hash.length - 1]);
     console.log('step', step);
     moveToStep();
+  } else {
+    isMove = false;
   }
 });
