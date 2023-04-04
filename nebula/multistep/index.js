@@ -824,6 +824,7 @@ const styles = `
     .lav-pay__error {
       justify-content: flex-start;
       margin-top: 8px;
+      line-height: 1.25;
     }
     .lav-pay__error {
     }
@@ -1734,7 +1735,13 @@ function moveToStep(isScroll = true) {
     }, 100);
   }
 
-  location.hash = 'step' + step;
+  if (!location.hash) {
+    location.hash = 'step' + step;
+  } else if (
+    step !== parseInt(parseInt(location.hash[location.hash.length - 1]))
+  ) {
+    location.hash = 'step' + step;
+  }
 }
 
 function validateStepOne() {
@@ -2149,8 +2156,8 @@ function initEvents() {
 
 function handlePaypalErrors() {
   if (
-    document.querySelector('.payment__buttons .error-message') &&
-    document.querySelector('.payment__buttons .error-message').style.display !==
+    document.querySelector('paypal-buttons + .error-message') &&
+    document.querySelector('paypal-buttons + .error-message').style.display !==
       'none'
   ) {
     let errorEl = document.createElement('span');
@@ -2159,12 +2166,12 @@ function handlePaypalErrors() {
 
     let textEl = errorEl.querySelector('span');
     textEl.innerText = document.querySelector(
-      '.payment__buttons .error-message'
+      'paypal-buttons + .error-message'
     ).innerText;
 
     if (
       document
-        .querySelector('.payment__buttons .error-message')
+        .querySelector('paypal-buttons + .error-message')
         .innerText.trim() ===
       'PayPal is only available for Lifetime Subscription purchases.'
     ) {
