@@ -2156,8 +2156,8 @@ function initEvents() {
 
 function handlePaypalErrors() {
   if (
-    document.querySelector('paypal-buttons + .error-message') &&
-    document.querySelector('paypal-buttons + .error-message').style.display !==
+    document.querySelector('.paypal-buttons + .error-message') &&
+    document.querySelector('.paypal-buttons + .error-message').style.display !==
       'none'
   ) {
     let errorEl = document.createElement('span');
@@ -2166,12 +2166,12 @@ function handlePaypalErrors() {
 
     let textEl = errorEl.querySelector('span');
     textEl.innerText = document.querySelector(
-      'paypal-buttons + .error-message'
+      '.paypal-buttons + .error-message'
     ).innerText;
 
     if (
       document
-        .querySelector('paypal-buttons + .error-message')
+        .querySelector('.paypal-buttons + .error-message')
         .innerText.trim() ===
       'PayPal is only available for Lifetime Subscription purchases.'
     ) {
