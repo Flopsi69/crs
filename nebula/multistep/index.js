@@ -1547,6 +1547,7 @@ function moveToStep(isScroll = true) {
     '.right-component>.error-message+div',
     '.lav-later',
     '.lav-payment',
+    '.alert.alert-danger',
   ];
 
   for (let el of hideArr) {
@@ -1618,6 +1619,11 @@ function moveToStep(isScroll = true) {
   }
 
   if (step === 3) {
+    if (document.querySelector('.alert.alert-danger')) {
+      document
+        .querySelector('.alert.alert-danger')
+        .classList.remove('lav-hide');
+    }
     intrevalPaypal = setInterval(() => {
       if (
         document.querySelector('.shipping-address-component .error-message') ||
@@ -2162,15 +2168,15 @@ function handlePaypalErrors() {
     }
 
     document
-      .querySelector('.lav-choose__paypal')
-      .insertAdjacentHTML('beforebegin', textEl);
+      .querySelector('.lav-paypal__choose')
+      .insertAdjacentElement('beforebegin', textEl);
   } else if (document.querySelector('.paypal-err')) {
     document.querySelector('.paypal-err').remove();
   }
   // if (!document.querySelector('.lav-pay__error + .lav-paypal__choose')) {
   //   document
   //     .querySelector('.lav-paypal__choose')
-  //     .insertAdjacentHTML('beforebegin', textEl);
+  //     .insertAdjacentElement('beforebegin', textEl);
   // }
 }
 
@@ -2202,7 +2208,7 @@ function handlePaylaterErrors() {
 
     document
       .querySelector('.lav-choose__afterpay')
-      .insertAdjacentHTML('beforebegin', textEl);
+      .insertAdjacentElement('beforebegin', textEl);
   } else if (document.querySelector('.afterpay-err')) {
     document.querySelector('.afterpay-err').remove();
   }
@@ -2233,7 +2239,7 @@ function handlePaylaterErrors() {
 
     document
       .querySelector('.lav-choose__klarna')
-      .insertAdjacentHTML('beforebegin', errorEl);
+      .insertAdjacentElement('beforebegin', errorEl);
   } else if (document.querySelector('.klarna-err')) {
     document.querySelector('.klarna-err').remove();
   }
