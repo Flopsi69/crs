@@ -2157,12 +2157,11 @@ function initEvents() {
 
 addEventListener('hashchange', (event) => {
   if (location.hash.includes('step') && !isMove) {
-    isMove = false;
     console.log('fireChange', event);
     step = parseInt(location.hash[location.hash.length - 1]);
     console.log('step', step);
     moveToStep();
-  } else {
-    isMove = false;
   }
+
+  isMove = false;
 });
