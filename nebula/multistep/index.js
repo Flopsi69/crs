@@ -1764,6 +1764,8 @@ function moveToStep(isScroll = true) {
     location.hash = 'step' + step;
   } else if (step !== parseInt(location.hash[location.hash.length - 1])) {
     location.hash = 'step' + step;
+  } else {
+    isMove = false;
   }
 }
 
