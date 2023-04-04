@@ -1502,6 +1502,8 @@ function initPayment() {
 }
 
 function moveToStep(isScroll = true) {
+  isMove = true;
+
   if (intrevalPaypal) {
     clearInterval(intrevalPaypal);
   }
@@ -1551,14 +1553,6 @@ function moveToStep(isScroll = true) {
   document
     .querySelector('.lav-breadcrumbs__item.active')
     .classList.remove('active');
-
-  isMove = true;
-
-  location.hash = 'step' + step;
-
-  setTimeout(() => {
-    isMove = false;
-  }, 500);
 
   if (step === 1) {
     document.querySelector('.lav-express').classList.remove('lav-hide');
@@ -1742,6 +1736,12 @@ function moveToStep(isScroll = true) {
       .querySelector('.right-component')
       .scrollIntoView({ behavior: 'smooth' });
   }
+
+  location.hash = 'step' + step;
+
+  setTimeout(() => {
+    isMove = false;
+  }, 800);
 }
 
 function validateStepOne() {
@@ -2155,10 +2155,10 @@ function initEvents() {
 }
 
 addEventListener('hashchange', (event) => {
-  if (!isMove) {
-    console.log('fireChange');
+  if (location.hash && !isMove) {
+    console.log('fireChange', event);
     step = parseInt(location.hash[location.hash.length - 1]);
+    console.log('step', step);
     moveToStep();
   }
-  console.log(event);
 });
