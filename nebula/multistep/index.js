@@ -1472,6 +1472,13 @@ function initPayment() {
           document.querySelector('.lav-control__next').style.display = 'block';
         }
 
+        if (document.querySelector('.lav-payment__choose.active')) {
+          document.querySelector('.lav-control__next').innerText = 'Pay now';
+        } else {
+          document.querySelector('.lav-control__next').innerText =
+            'Complete order';
+        }
+
         if (el.classList.contains('lav-payment__choose')) {
           gaEvent('Payment method. Credit card', 'Step: Payment');
         } else if (el.classList.contains('lav-choose__klarna')) {
