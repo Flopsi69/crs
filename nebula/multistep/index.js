@@ -1359,7 +1359,7 @@ function initPayment() {
           <img src='${settings.dir}/img/icon-redirect.svg' />
 
           <span>
-            After clicking “Pay with PayPal”, you will be redirected to PayPal to complete your purchase securely
+            After clicking “PayPal” or “Venmo”, you will be redirected to PayPal to complete your purchase securely
           </span>
         </div>
       </div>
