@@ -1669,30 +1669,8 @@ function moveToStep(isScroll = true) {
       }
     }
 
-    if (
-      document.querySelector('.paylater-wrap .paylater-error') &&
-      document.querySelector('.paylater-wrap .paylater-error').style.display !==
-        'none' &&
-      document
-        .querySelector('.paylater-wrap .paylater-error')
-        .innerText.trim() === 'Lifetime purchases only'
-    ) {
-      let textEl = `<span class='lav-pay__error'><img src='${settings.dir}/img/icon-note.svg' /> Only available for Lifetime Subscription purchases.</span>`;
-
-      if (!document.querySelector('.lav-pay__error')) {
-        document
-          .querySelector('.lav-paypal__choose')
-          .insertAdjacentHTML('beforebegin', textEl);
-
-        document
-          .querySelector('.lav-later__label')
-          .insertAdjacentHTML('beforeend', textEl);
-      }
-    } else if (document.querySelector('.lav-pay__error')) {
-      for (let item of document.querySelectorAll('.lav-pay__error')) {
-        item.remove();
-      }
-    }
+    handlePaypalErrors();
+    handlePaylaterErrors();
 
     if (
       !document.querySelector('.payment__buttons .disable-element') &&
@@ -2152,6 +2130,112 @@ function initEvents() {
         'Step: Information. Shipping information'
       );
     });
+  }
+}
+
+function handlePaypalErrors() {
+  if (
+    document.querySelector('.payment__buttons + .error-message') &&
+    document.querySelector('.payment__buttons + .error-message').style
+      .display !== 'none'
+  ) {
+    let errorEl = document.createElement('span');
+    errorEl.classList.add('lav-pay__error', 'paypal-err');
+    errorEl.innerHTML = `<img src='${settings.dir}/img/icon-note.svg' /> <span></span>`;
+
+    let textEl = errorEl.querySelector('span');
+    textEl.innerText = document.querySelector(
+      '.payment__buttons + .error-message'
+    ).innerText;
+
+    if (
+      document
+        .querySelector('.payment__buttons + .error-message')
+        .innerText.trim() ===
+      'PayPal is only available for Lifetime Subscription purchases.'
+    ) {
+      textEl.innerText = `Only available for Lifetime Subscription purchases.`;
+    }
+
+    if (document.querySelector('.paypal-err')) {
+      document.querySelector('.paypal-err').remove();
+    }
+
+    document
+      .querySelector('.lav-choose__paypal')
+      .insertAdjacentHTML('beforebegin', textEl);
+  } else if (document.querySelector('.paypal-err')) {
+    document.querySelector('.paypal-err').remove();
+  }
+  // if (!document.querySelector('.lav-pay__error + .lav-paypal__choose')) {
+  //   document
+  //     .querySelector('.lav-paypal__choose')
+  //     .insertAdjacentHTML('beforebegin', textEl);
+  // }
+}
+
+function handlePaylaterErrors() {
+  if (
+    document.querySelector('.afterpay + .paylater-error') &&
+    document.querySelector('.afterpay + .paylater-error').style.display !==
+      'none'
+  ) {
+    let errorEl = document.createElement('span');
+    errorEl.classList.add('lav-pay__error', 'afterpay-err');
+    errorEl.innerHTML = `<img src='${settings.dir}/img/icon-note.svg' /> <span></span>`;
+
+    let textEl = errorEl.querySelector('span');
+    textEl.innerText = document.querySelector(
+      '.afterpay + .paylater-error'
+    ).innerText;
+
+    if (
+      document.querySelector('.afterpay + .paylater-error').innerText.trim() ===
+      'Lifetime purchases only'
+    ) {
+      textEl.innerText = `Only available for Lifetime Subscription purchases.`;
+    }
+
+    if (document.querySelector('.afterpay-err')) {
+      document.querySelector('.afterpay-err').remove();
+    }
+
+    document
+      .querySelector('.lav-choose__afterpay')
+      .insertAdjacentHTML('beforebegin', textEl);
+  } else if (document.querySelector('.afterpay-err')) {
+    document.querySelector('.afterpay-err').remove();
+  }
+
+  if (
+    document.querySelector('.klarna + .paylater-error') &&
+    document.querySelector('.klarna + .paylater-error').style.display !== 'none'
+  ) {
+    let errorEl = document.createElement('span');
+    errorEl.classList.add('lav-pay__error', 'klarna-err');
+    errorEl.innerHTML = `<img src='${settings.dir}/img/icon-note.svg' /> <span></span>`;
+
+    let textEl = errorEl.querySelector('span');
+    textEl.innerText = document.querySelector(
+      '.afterpay + .paylater-error'
+    ).innerText;
+
+    if (
+      document.querySelector('.klarna + .paylater-error').innerText.trim() ===
+      'Lifetime purchases only'
+    ) {
+      textEl.innerText = `Only available for Lifetime Subscription purchases.`;
+    }
+
+    if (document.querySelector('.klarna-err')) {
+      document.querySelector('.klarna-err').remove();
+    }
+
+    document
+      .querySelector('.lav-choose__klarna')
+      .insertAdjacentHTML('beforebegin', errorEl);
+  } else if (document.querySelector('.klarna-err')) {
+    document.querySelector('.klarna-err').remove();
   }
 }
 
