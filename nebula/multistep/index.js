@@ -1112,12 +1112,21 @@ function initHead() {
     .querySelector('.lav-express > .seperator-container')
     .classList.add('express-separator');
 
-  document
-    .querySelector('.email-address-component')
-    .insertAdjacentElement(
-      'beforebegin',
-      document.querySelector('.express-separator')
-    );
+  if (document.querySelector('.email-address-component')) {
+    document
+      .querySelector('.email-address-component')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('.express-separator')
+      );
+  } else if (document.querySelector('.shipping-address-component')) {
+    document
+      .querySelector('.shipping-address-component')
+      .insertAdjacentElement(
+        'beforebegin',
+        document.querySelector('.express-separator')
+      );
+  }
 
   // document
   //   .querySelector('.lav-express #google-pay-container')
@@ -1165,8 +1174,10 @@ function initHead() {
 }
 
 function initFirstStep() {
-  document.querySelector('.email-address-component .label').innerText =
-    'Contact information';
+  if (document.querySelector('.email-address-component .label')) {
+    document.querySelector('.email-address-component .label').innerText =
+      'Contact information';
+  }
 
   document.querySelector('.shipping-address-component .label').innerText =
     'Shipping information';
@@ -1757,9 +1768,16 @@ function validateStepOne() {
   for (let inp of checkArr) {
     if (!document.querySelector('[name="' + inp + '"]').value) {
       document.querySelector('.pay-btn').click();
-      document
-        .querySelector('.email-address-component')
-        .scrollIntoView({ behavior: 'smooth' });
+
+      if (document.querySelector('.email-address-component')) {
+        document
+          .querySelector('.email-address-component')
+          .scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document
+          .querySelector('.shipping-address-component')
+          .scrollIntoView({ behavior: 'smooth' });
+      }
 
       return false;
     }
@@ -2125,9 +2143,11 @@ function initEvents() {
     .closest('.input-div')
     .classList.add('lav-hide');
 
-  document.querySelector(
-    '.email-address-component input[name="email"]'
-  ).placeholder = 'Email';
+  if (document.querySelector('.email-address-component')) {
+    document.querySelector(
+      '.email-address-component input[name="email"]'
+    ).placeholder = 'Email';
+  }
 
   document.querySelector(
     '.shipping-address-component select option'
