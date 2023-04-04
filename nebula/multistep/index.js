@@ -806,6 +806,9 @@ const styles = `
     line-height: 1.5;
     color: #EC1C1D;
   }
+  .afterpay-err {
+    margin-top: 12px;
+  }
   .lav-payment .lav-pay__error {
     margin-top: 8px;
     margin-bottom: -4px;
@@ -820,6 +823,9 @@ const styles = `
   @media(max-width: 1130px) {
     .lav-pay__error {
       justify-content: flex-start;
+      margin-top: 8px;
+    }
+    .lav-pay__error {
     }
     .lav-later__label {
       flex-flow: column;
@@ -1721,9 +1727,11 @@ function moveToStep(isScroll = true) {
   }
 
   if (isScroll) {
-    document
-      .querySelector('.right-component')
-      .scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      document
+        .querySelector('.right-component')
+        .scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   }
 
   location.hash = 'step' + step;
@@ -2218,7 +2226,7 @@ function handlePaylaterErrors() {
 
     let textEl = errorEl.querySelector('span');
     textEl.innerText = document.querySelector(
-      '.afterpay + .paylater-error'
+      '.klarna + .paylater-error'
     ).innerText;
 
     if (
