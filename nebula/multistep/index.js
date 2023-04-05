@@ -47,6 +47,7 @@ if (
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
+        console.log(node);
 
         if (node.name === 'shipping-city' && node.tagName === 'INPUT') {
           node.addEventListener('focus', function () {
