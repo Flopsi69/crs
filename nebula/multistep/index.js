@@ -48,6 +48,15 @@ if (
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        if (node.name === 'shipping-city' && node.tagName === 'INPUT') {
+          node.addEventListener('focus', function () {
+            gaEvent(
+              `Input. ${node.placeholder}`,
+              'Step: Information. Shipping information'
+            );
+          });
+        }
+
         if (node.name === 'state' && node.tagName === 'SELECT') {
           node.addEventListener('click', function () {
             gaEvent(
@@ -1999,6 +2008,8 @@ function initProductListener() {
                 .classList.add('lav-hide');
 
               document.querySelector('.lav-top').classList.add('lav-hide');
+
+              document.querySelector('.lav-collapse').classList.add('lav-hide');
 
               document.querySelector('.lav-summary').classList.add('lav-hide');
 
