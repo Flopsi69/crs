@@ -1046,11 +1046,13 @@ const styles = `
     z-index: 11;
     box-shadow: 0px 11px 22px rgba(81, 113, 147, 0.44);
   }
+  @media (min-width: 769px) {
     .lav-tip:hover .lav-tip__body {
       pointer-events: auto;
       visibility: visible;
       opacity: 1;
     }
+  }
   .lav-tip.active .lav-tip__body {
     pointer-events: auto;
     visibility: visible;
@@ -15435,14 +15437,11 @@ function initObserverCheckout() {
 
 function initTips() {
   document.addEventListener('click', function (e) {
-    if (
-      window.innerWidth < 768 &&
-      document.querySelector('.lav-tip.active') &&
-      !e.target.closest('.lav-protect__tip') &&
-      !e.target.classList.contains('lav-protect__tip')
-    ) {
+    if (window.innerWidth < 768 && document.querySelector('.lav-tip.active')) {
       document.querySelector('.lav-tip.active').classList.remove('active');
     }
+    // !e.target.closest('.lav-protect__tip') &&
+    // !e.target.classList.contains('lav-protect__tip')
   });
   for (let tip of document.querySelectorAll('.lav-tip')) {
     tip.addEventListener('click', function () {
