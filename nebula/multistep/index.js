@@ -2222,7 +2222,12 @@ function handlePaypalErrors() {
 
     if (
       document.querySelector(selector).innerText.trim() ===
-      'PayPal is only available for Lifetime Subscription purchases.'
+        'PayPal is only available for Lifetime Subscription purchases.' ||
+      ((document.querySelector('.payment__buttons .disable-element') ||
+        document.querySelector('.lav-control .disable-element')) &&
+        document
+          .querySelector('.afterpay + .paylater-error')
+          .innerText.trim() === 'Lifetime purchases only')
     ) {
       textEl.innerText = `Only available for Lifetime Subscription purchases.`;
     }
