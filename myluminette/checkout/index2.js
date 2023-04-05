@@ -10973,6 +10973,7 @@ function init() {
       if (document.querySelector('.order-info .column.order-5')) {
         clearInterval(checkoutInterval);
         initCheckoutDetails();
+        initTips();
         initTranslate('details');
         initObserverCheckout();
       }
@@ -15446,6 +15447,7 @@ function initTips() {
       document.querySelector('.lav-tip.active').classList.remove('active');
     }
   });
+
   for (let tip of document.querySelectorAll('.lav-tip')) {
     tip.addEventListener('click', function () {
       if (window.innerWidth < 768) {
