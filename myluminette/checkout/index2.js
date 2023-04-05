@@ -1149,6 +1149,10 @@ const styles = `
     }
     .lav-protect__tip {
       margin-top: 10px;
+      position: relative;
+    }
+    .lav-protect__tip .lav-tip {
+      position: static;
     }
     .lav-protect__body {
       margin-top: 18px;
@@ -15551,16 +15555,21 @@ function initCheckout() {
           <div class='lav-protect'>
             <div class='lav-protect__head'>
               <div class='lav-title lav-protect__title'>Protect your Luminette</div>
-              <div class='lav-protect__tip lav-tip'>
-                <div class='lav-tip__value'>What’s covered? <img src='${settings.dir}/img/icon-info.svg' /></div>
-                <div class='lav-tip__body'>
-                  <p>
-                    Your Luminette purchase automatically comes with a 2 year warranty against manufacturer defects.
-                  </p>
-
-                  <p>
-                    Opt in <strong>for maximum manufacturer protection using our extended warranty</strong> that covers your Luminette for 4 years from the purchase date.
-                  </p>
+              <div class='lav-protect__tip'>
+                <div class='lav-tip__value'>
+                  What’s covered?
+                  <div class='lav-tip'>
+                    <img src='${settings.dir}/img/icon-info.svg' />
+                    <div class='lav-tip__body'>
+                      <p>
+                        Your Luminette purchase automatically comes with a 2 year warranty against manufacturer defects.
+                      </p>
+    
+                      <p>
+                        Opt in <strong>for maximum manufacturer protection using our extended warranty</strong> that covers your Luminette for 4 years from the purchase date.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -16373,16 +16382,21 @@ function initCheckoutDetails() {
         <div class='lav-protect'>
           <div class='lav-protect__head'>
             <div class='lav-title lav-protect__title'>Protect your Luminette</div>
-            <div class='lav-protect__tip lav-tip'>
-              <div class='lav-tip__value'>What’s covered? <img src='${settings.dir}/img/icon-info.svg' /></div>
-              <div class='lav-tip__body'>
-                <p>
-                  Your Luminette purchase automatically comes with a 2 year warranty against manufacturer defects.
-                </p>
-
-                <p>
-                  Opt in <strong>for maximum manufacturer protection using our extended warranty</strong> that covers your Luminette for 4 years from the purchase date.
-                </p>
+            <div class='lav-protect__tip'>
+              <div class='lav-tip__value'>
+                What’s covered?
+                <div class='lav-tip'>
+                  <img src='${settings.dir}/img/icon-info.svg' />
+                  <div class='lav-tip__body'>
+                    <p>
+                      Your Luminette purchase automatically comes with a 2 year warranty against manufacturer defects.
+                    </p>
+  
+                    <p>
+                      Opt in <strong>for maximum manufacturer protection using our extended warranty</strong> that covers your Luminette for 4 years from the purchase date.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
