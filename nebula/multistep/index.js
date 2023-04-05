@@ -48,6 +48,8 @@ if (
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
+        console.log(node);
+
         if (
           node.classList.contains('alert-danger') &&
           node.classList.contains('alert') &&
@@ -58,9 +60,14 @@ if (
           if (document.querySelector('.lav-payment .alert.alert-danger')) {
             document.querySelector('.lav-payment .alert.alert-danger').remove();
           }
+
+          let cloneEl = node.cloneNode(true);
+
+          cloneEl.classList.remove('lav-hide');
+
           document
             .querySelector('.lav-label__caption')
-            .insertAdjacentElement('afterend', node.cloneNode(true));
+            .insertAdjacentElement('afterend', cloneEl);
         }
 
         if (node.classList.contains('.error-message') && step === 3) {
