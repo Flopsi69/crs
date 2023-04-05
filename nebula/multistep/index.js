@@ -47,22 +47,26 @@ if (
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
-        console.log(node);
 
         if (
           node.classList.contains('alert-danger') &&
           node.classList.contains('alert') &&
           !node.closest('.lav-payment')
         ) {
+          node.classList.add('lav-hide');
+
           if (document.querySelector('.lav-payment .alert.alert-danger')) {
             document.querySelector('.lav-payment .alert.alert-danger').remove();
           }
           document
             .querySelector('.lav-label__caption')
             .insertAdjacentElement('afterend', node.cloneNode(true));
+        }
+
+        if (node.classList.contains('.error-message') && step === 3) {
           setTimeout(() => {
             document
-              .querySelector('.lav-payment')
+              .querySelector('.right-component')
               .scrollIntoView({ behavior: 'smooth' });
           }, 200);
         }
