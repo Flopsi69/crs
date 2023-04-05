@@ -15437,11 +15437,14 @@ function initObserverCheckout() {
 
 function initTips() {
   document.addEventListener('click', function (e) {
-    if (window.innerWidth < 768 && document.querySelector('.lav-tip.active')) {
+    if (
+      window.innerWidth < 768 &&
+      document.querySelector('.lav-tip.active') &&
+      !e.target.closest('.lav-protect__tip') &&
+      !e.target.classList.contains('lav-protect__tip')
+    ) {
       document.querySelector('.lav-tip.active').classList.remove('active');
     }
-    // !e.target.closest('.lav-protect__tip') &&
-    // !e.target.classList.contains('lav-protect__tip')
   });
   for (let tip of document.querySelectorAll('.lav-tip')) {
     tip.addEventListener('click', function () {
