@@ -48,8 +48,6 @@ if (
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        console.log(node);
-
         if (
           node.classList.contains('alert-danger') &&
           node.classList.contains('alert') &&
@@ -70,7 +68,7 @@ if (
             .insertAdjacentElement('afterend', cloneEl);
         }
 
-        if (node.classList.contains('.error-message') && step === 3) {
+        if (node.classList.contains('error-message') && step === 3) {
           setTimeout(() => {
             document
               .querySelector('.right-component')
