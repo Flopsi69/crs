@@ -15438,23 +15438,30 @@ function initObserverCheckout() {
 
 function initTips() {
   document.addEventListener('click', function (e) {
-    if (
-      window.innerWidth < 768 &&
-      document.querySelector('.lav-tip.active') &&
-      !e.target.closest('.lav-protect__tip') &&
-      !e.target.classList.contains('lav-protect__tip')
-    ) {
-      document.querySelector('.lav-tip.active').classList.remove('active');
+    if (window.innerWidth < 768) {
+      if (
+        e.target.closest('.lav-tip') &&
+        !e.target.closest('.lav-tip.active')
+      ) {
+        e.target.closest('.lav-tip').classList.add('active');
+      } else if (document.querySelector('.lav-tip.active')) {
+        document.querySelector('.lav-tip.active').classList.remove('active');
+      }
     }
   });
 
-  for (let tip of document.querySelectorAll('.lav-tip')) {
-    tip.addEventListener('click', function () {
-      if (window.innerWidth < 768) {
-        this.classList.add('active');
-      }
-    });
-  }
+  // !e.target.closest('.lav-protect__tip') &&
+  // !e.target.classList.contains('lav-protect__tip')
+
+  // for (let tip of document.querySelectorAll('.lav-tip')) {
+  //   tip.addEventListener('click', function (e) {
+  //     if (window.innerWidth < 768) {
+  //       setTimeout(() => {
+  //         this.classList.add('active');
+  //       }, 100);
+  //     }
+  //   });
+  // }
 }
 
 function initCheckout() {
