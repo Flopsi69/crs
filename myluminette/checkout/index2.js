@@ -1026,6 +1026,9 @@ const styles = `
   .lav-tip__value img {
     margin-left: 4px;
   }
+  .lav-protect__tip .lav-tip__value img {
+    margin-top: 5px;
+  }
   .lav-tip__body {
     pointer-events: none;
     visibility: hidden;
