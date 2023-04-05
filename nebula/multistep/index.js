@@ -49,6 +49,21 @@ if (
         if (!(node instanceof HTMLElement)) continue;
         console.log(node);
 
+        if (
+          node.classList.contains('alert-danger') &&
+          node.classList.contains('alert') &&
+          !document.querySelector('.lav-payment .alert.alert-danger')
+        ) {
+          document
+            .querySelector('.lav-label__caption')
+            .insertAdjacentElement('afterend', node);
+          setTimeout(() => {
+            document
+              .querySelector('.lav-payment')
+              .scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }
+
         if (node.name === 'shipping-city' && node.tagName === 'INPUT') {
           node.addEventListener('focus', function () {
             gaEvent(
@@ -391,6 +406,10 @@ const styles = `
     font-size: 12px;
     line-height: 1.5;
     color: #505985;
+  }
+
+  .lav-label__caption + .alert {
+    margin-top: 10px;
   }
 
   .lav-choose {
