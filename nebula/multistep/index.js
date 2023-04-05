@@ -52,11 +52,14 @@ if (
         if (
           node.classList.contains('alert-danger') &&
           node.classList.contains('alert') &&
-          !document.querySelector('.lav-payment .alert.alert-danger')
+          !node.closest('.lav-payment')
         ) {
+          if (document.querySelector('.lav-payment .alert.alert-danger')) {
+            document.querySelector('.lav-payment .alert.alert-danger').remove();
+          }
           document
             .querySelector('.lav-label__caption')
-            .insertAdjacentElement('afterend', node);
+            .insertAdjacentElement('afterend', node.cloneNode(true));
           setTimeout(() => {
             document
               .querySelector('.lav-payment')
@@ -2246,7 +2249,9 @@ function handlePaypalErrors() {
         document.querySelector('.lav-control .disable-element')) &&
         document
           .querySelector('.afterpay + .paylater-error')
-          .innerText.trim() === 'Lifetime purchases only')
+          .innerText.trim() === 'Lifetime purchases only') ||
+      document.querySelector('.afterpay + .paylater-error').innerText.trim() ===
+        'Country not supported'
     ) {
       textEl.innerText = `Only available for Lifetime Subscription purchases.`;
     }
