@@ -15646,16 +15646,21 @@ function initCheckout() {
             <div class='lav-protect'>
               <div class='lav-protect__head'>
                 <div class='lav-title lav-protect__title'>Protégez votre Luminette</div>
-                <div class='lav-protect__tip lav-tip'>
-                  <div class='lav-tip__value'>Qu'est-ce qui est compris&nbsp;? <img src='${settings.dir}/img/icon-info.svg' /></div>
-                  <div class='lav-tip__body'>
-                    <p>
-                      Votre achat de Luminette est garanti pendant 2 ans contre les défauts de fabrication.
-                    </p>
-
-                    <p>
-                      Optez pour une protection maximale en commandant l'extension de garantie qui couvre votre Luminette pendant 4 ans.
-                    </p>
+                <div class='lav-protect__tip'>
+                  <div class='lav-tip__value'>
+                    Qu'est-ce qui est compris&nbsp;?
+                    <div class='lav-tip'>
+                      <img src='${settings.dir}/img/icon-info.svg' />
+                      <div class="lav-tip__body">
+                        <p>
+                          Votre achat de Luminette est garanti pendant 2 ans contre les défauts de fabrication.
+                        </p>
+      
+                        <p>
+                          Optez pour une protection maximale en commandant l'extension de garantie qui couvre votre Luminette pendant 4 ans.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -16482,16 +16487,21 @@ function initCheckoutDetails() {
           <div class='lav-protect'>
             <div class='lav-protect__head'>
               <div class='lav-title lav-protect__title'>Protégez votre Luminette</div>
-              <div class='lav-protect__tip lav-tip'>
-                <div class='lav-tip__value'>Qu'est-ce qui est compris&nbsp;?  <img src='${settings.dir}/img/icon-info.svg' /></div>
-                <div class="lav-tip__body">
-                  <p>
-                    Votre achat de Luminette est garanti pendant 2 ans contre les défauts de fabrication.
-                  </p>
-
-                  <p>
-                    Optez pour une protection maximale en commandant l'extension de garantie qui couvre votre Luminette pendant 4 ans.
-                  </p>
+              <div class='lav-protect__tip'>
+                <div class='lav-tip__value'>
+                  Qu'est-ce qui est compris&nbsp;?
+                  <div class='lav-tip'>
+                    <img src='${settings.dir}/img/icon-info.svg' />
+                    <div class="lav-tip__body">
+                      <p>
+                        Votre achat de Luminette est garanti pendant 2 ans contre les défauts de fabrication.
+                      </p>
+    
+                      <p>
+                        Optez pour une protection maximale en commandant l'extension de garantie qui couvre votre Luminette pendant 4 ans.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
