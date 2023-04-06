@@ -7,7 +7,7 @@ const settings = {
   observe: false,
 };
 
-//Hotjar
+//Clarity
 if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
@@ -17,7 +17,7 @@ if (settings.clarity) {
   }, 1000);
 }
 
-// Alalytic
+// Alalytic 3
 function gaEvent(action, label) {
   if (!label) {
     label = '';
@@ -37,7 +37,7 @@ function gaEvent(action, label) {
   }
 }
 
-// Alalytic
+// Alalytic 4
 function gaEvent(name = '', desc = '', type = '', loc = '') {
   try {
     var objData = {
