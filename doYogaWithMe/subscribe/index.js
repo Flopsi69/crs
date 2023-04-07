@@ -80,6 +80,14 @@ const styles = `
     position: relative;
     width: 100%;
   }
+  .lav-btn {
+    background-color: #017922;
+    border-color: #017922;
+  }
+  .lav-btn:hover {
+    background-color: #06571c;
+    border-color: #06571c;
+  }
   .lav-container {
     z-index: 2;
     margin: 0 auto;
@@ -100,20 +108,9 @@ const styles = `
     background: radial-gradient(50% 224.22% at 50% 50%, #87B6DD 0%, #6597C0 52.08%, #40759F 100%);
     min-height: calc(100vh - 46.5px);
     padding-top: 50px;
-    padding-bottom: 100px;
+    padding-bottom: 135px;
     text-align: center;
     color: #fff;
-  }
-  .lav-jumb:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: url(${settings.dir}/img/girl-yoga.png) left bottom no-repeat;
-    background-size: contain;
-
   }
   .lav-jumb__title {
     font-weight: 800;
@@ -122,7 +119,7 @@ const styles = `
   }
   .lav-jumb__caption {
     margin-top: 24px;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 24px;
     line-height: 21px;
   }
@@ -130,22 +127,23 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 55px;
+    margin-top: 45px;
   }
   .lav-plan {
     position: relative;
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3px);
     border-radius: 12px;
     color: #272727;
     padding: 40px;
     min-width: 320px;
   }
-  .lav-plan + .lav-plan {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-  }
   .lav-plan:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .lav-plan:last-child {
     border: 2px solid #007DB8;
   }
   .lav-plan:first-child:before {
@@ -163,7 +161,7 @@ const styles = `
     color: #fff;
   }
   .lav-plan__title {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 24px;
     line-height: 20px;
   }
@@ -210,17 +208,17 @@ const styles = `
     width: 100%;
     justify-content: center;
     min-height: 52px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 18px;
     line-height: 32px;
     text-transform: capitalize;
   }
   .lav-plan__btn.lav-btn_trans {
     background-color: transparent;
-    color: #007DB8;
+    color: #017922;
   }
   .lav-plan__btn.lav-btn_trans:hover {
-    background-color: #006c9f;
+    background-color: #017922;
     color: #fff;
   }
   .lav-jumb__try {
@@ -230,17 +228,31 @@ const styles = `
     line-height: 21px;
     text-align: center;
     text-transform: capitalize;
+    color: #027DB8;
+    transition: 0.35s;
   }
   .lav-jumb__try-inner {
     display: inline-block;
-    padding: 15px 25px;
+    padding: 18px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(3px);
+    border-radius: 30px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .lav-jumb__try-inner:hover {
+    color: #017922;
   }
   .lav-jumb__try-inner span {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #027DB8;
+  }
+  .lav-jumb__try-inner:hover span {
+    border-color: #017922;
   }
 
   .lav-features {
-    margin-top: -60px;
+    margin-top: -100px;
   }
   .lav-features__plate {
     position: relative;
@@ -608,6 +620,15 @@ const newLayout = `
     <div class='lav-jumb__plans'>
       <div class='lav-jumb__plan lav-plan'>
         <div class='lav-plan__title'>Unlimited access</div>
+        <div class='lav-plan__caption'>1 month</div>
+        <div class='lav-plan__price'>
+          <span>$13.99</span> / month
+        </div>
+        <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
+      </div>
+
+      <div class='lav-jumb__plan lav-plan'>
+        <div class='lav-plan__title'>Unlimited access</div>
         <div class='lav-plan__caption'>12 months</div>
         <div class='lav-plan__price'>
           <span>$9.08</span> / month
@@ -618,15 +639,6 @@ const newLayout = `
           <span class='lav-plan__year-caption'>/&nbsp;year</span>
         </div>
         <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
-      </div>
-      
-      <div class='lav-jumb__plan lav-plan'>
-        <div class='lav-plan__title'>Unlimited access</div>
-        <div class='lav-plan__caption'>1 month</div>
-        <div class='lav-plan__price'>
-          <span>$13.99</span> / month
-        </div>
-        <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
       </div>
     </div>
     <div class='lav-jumb__try'>
