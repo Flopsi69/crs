@@ -96,7 +96,6 @@ const styles = `
     padding: 0 1em;
     // box-sizing: border-box;
   }
-
   .lav-container * {
     box-sizing: border-box;
   }
@@ -105,7 +104,8 @@ const styles = `
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    background: radial-gradient(50% 224.22% at 50% 50%, #87B6DD 0%, #6597C0 52.08%, #40759F 100%);
+    background: url('${settings.dir}/img/jumb-bg.jpeg') center right no-repeat;
+    background-size: cover;
     min-height: calc(100vh - 46.5px);
     padding-top: 50px;
     padding-bottom: 135px;
@@ -113,7 +113,7 @@ const styles = `
     color: #fff;
   }
   .lav-jumb__title {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 46px;
     line-height: 63px;
   }
@@ -121,7 +121,7 @@ const styles = `
     margin-top: 24px;
     font-weight: 400;
     font-size: 24px;
-    line-height: 21px;
+    line-height: 1;
   }
   .lav-jumb__plans {
     display: flex;
@@ -143,22 +143,27 @@ const styles = `
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
-  .lav-plan:last-child {
-    border: 2px solid #007DB8;
+  @media(min-width: 769px) {
+    .lav-plan:last-child {
+      border: 2px solid #027DB8;
+      overflow: hidden;
+    }
   }
-  .lav-plan:first-child:before {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 8px 30px;
+
+  .lav-plan:last-child:before {
     content: 'Save 35%';
-    background: #FAA423;
-    border-radius: 100px;
+    position: absolute;
+    z-index: 99;
+    top: 54px;
+    right: -3px;
+    transform: rotate(45deg);
+    transform-origin: bottom right;
+    padding: 5px 30px;
+    background: #F3A83C;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
-    color: #fff;
+    color: #272727;
   }
   .lav-plan__title {
     font-weight: 700;
@@ -177,7 +182,7 @@ const styles = `
     line-height: 20px;
   }
   .lav-plan__price span {
-    color: #007DB8;
+    color: #027DB8;
     font-weight: 800;
     font-size: 24px;
     line-height: 44px;
@@ -213,11 +218,11 @@ const styles = `
     line-height: 32px;
     text-transform: capitalize;
   }
-  .lav-plan__btn.lav-btn_trans {
+  .lav-btn_trans {
     background-color: transparent;
     color: #017922;
   }
-  .lav-plan__btn.lav-btn_trans:hover {
+  .lav-btn_trans:hover {
     background-color: #017922;
     color: #fff;
   }
@@ -225,7 +230,6 @@ const styles = `
     margin-top: 24px;
     font-weight: 700;
     font-size: 16px;
-    line-height: 21px;
     text-align: center;
     text-transform: capitalize;
     color: #027DB8;
@@ -242,13 +246,14 @@ const styles = `
     transition: 0.35s;
   }
   .lav-jumb__try-inner:hover {
-    color: #017922;
+    color: #fff;
+    background-color: #027DB8;
   }
   .lav-jumb__try-inner span {
     border-bottom: 1px solid #027DB8;
   }
   .lav-jumb__try-inner:hover span {
-    border-color: #017922;
+    border-color: transparent;
   }
 
   .lav-features {
@@ -287,7 +292,7 @@ const styles = `
     margin-top: 24px;
   }
   .lav-feature__title {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 18px;
     line-height: 24px;
   }
@@ -448,13 +453,13 @@ const styles = `
     font-size: 18px;
     line-height: 1;
     padding: 15px 32px;
-    color: #007DB8;
+    color: #027DB8;
     transition: 0.35s;
     cursor: pointer;
   }
 
   .lav-classes__list li:hover {
-    background-color: #007DB8;
+    background-color: #027DB8;
     color: #fff;
   }
 
@@ -496,7 +501,7 @@ const styles = `
     font-weight: 500;
     padding: 18px;
     border-radius: 100px;
-    border: solid 1px #007DB8;
+    border: solid 1px #027DB8;
     min-height: 1.5em;
     min-width: 1.5em;
   }
@@ -598,12 +603,318 @@ const styles = `
     overflow: hidden;
   }
   .splide__progressBar {
-    background: #007DB8;
+    background: #027DB8;
     height: 0.25em;
     transition: width 400ms ease;
     width: 0;
   }
+  .lav-mob {
+    display: none;
+  }
+  @media(max-width: 70em) {
+    .lav-container {
+      box-sizing: border-box;
+    }
+  }
+  @media(max-width: 992px) {
+    .lav-pers__item-caption {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
+  @media(max-width: 768px) {
+    .lav-plan__btn {
+      display: none;
+    }
+    .lav-plan:last-child:before {
+      transform: translateY(-50%);
+      background: #F3A83C;
+      border-radius: 12px;
+      top: 0;
+      left: 18px;
+      font-weight: 700;
+      right: initial;
+      font-size: 12px;
+      line-height: 20px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+    }
+    .lav-plan:first-child {
+      border-bottom-right-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .lav-plan {
+      position: relative;
+      min-width: auto;
+      border: 2px solid #A5A5A5;
+      padding: 16px 18px 16px 44px;
+      text-align: left;
+      transition: 0.35s;
+      box-shadow: none;
+      background: rgba(249, 249, 249, 0.9);
+    }
+    
+    .lav-plan.active {
+      border-color: #027DB8;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    }
+    .lav-plan:after {
+      content: '';
+      background: #fff;
+      border: 2px solid #A5A5A5;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      transition: 0.35s;
+    }
+    .lav-plan .lav-mob:before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #027DB8;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      transition: 0.35s;
+      z-index: 1;
+      opacity: 0;
+    }
+    .lav-plan.active .lav-mob:before {
+      opacity: 1;
+    }
+    .lav-plan.active:after {
+      border-color: #027DB8;
+    }
+    .lav-plan__price span {
+      line-height: 1;
+    }
+    .lav-plan__price {
+      margin-top: 0;
+    }
+    .lav-plan__year {
+      margin-top: 0;
+    }
+    .lav-plan__year-old, .lav-plan__year-new, .lav-plan__year-caption   {
+      font-size: 12px;
+      line-height: 1;
+    }
+    .lav-jumb__try-inner {
+      display: block;
+    }
+    .lav-jumb {
+      padding-bottom: 100px;
+      background: url(${settings.dir}/img/jumb-bg-mob.jpeg) bottom right no-repeat;
+      background-size: cover;
+    }
+    .lav-features {
+      margin-top: -60px;
+    }
+    .lav-jumb__try-inner span {
+      text-decoration: underline;
+      border-width: 0;
+    }
+    .lav-plan .lav-mob {
+      position: static;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .lav-plan__month {
+      color: #017922;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .lav-plan__name {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 8px;
+    }
+    .lav-desk {
+      display: none;
+    }
+    .lav-mob {
+      display: block;
+    }
+    .lav-plan + .lav-plan {
+      margin-top: 26px;
+    }
+    .lav-jumb {
+      padding-top: 25px;
+    }
+    .lav-jumb__title {
+      font-size: 34px;
+      line-height: 34px;
+    }
+    .lav-jumb__caption {
+      margin-top: 12px;
+      font-size: 18px;
+      line-height: 31px;
+    }
+    .lav-jumb__plans {
+      margin-top: 16px;
+    }
+    .lav-jumb__plans {
+      display: block;
+    }
 
+    .lav-features__plate {
+      padding: 20px;
+    }
+    .lav-features__title {
+      font-size: 22px;
+    }
+    .lav-features__row {
+      margin-top: 20px;
+      display: block;
+    }
+    .lav-feature__title {
+      font-size: 16px;
+    }
+    .lav-features__col + .lav-features__col, .lav-feature + .lav-feature {
+      margin-top: 16px;
+    }
+    .lav-features__sub {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    .lav-features__sub-item {
+      line-height: 18px;
+    }
+    .lav-features__sub {
+      max-width: 90%;
+      justify-content: space-around;
+    }
+    .lav-features__sub-item:first-child {
+      max-width: 110px;
+    }
+    .lav-features__sub-item:last-child {
+      max-width: 160px;
+    }
+
+    .lav-try {
+      margin-top: 42px;
+    }
+    .lav-try__plate {
+      display: block;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .lav-try__image {
+      height: 180px;
+      max-width: 100%;
+      background-position: bottom center;
+    }
+    .lav-try__info {
+      padding: 20px;
+    }
+    .lav-jumb__try {
+      font-weight: 600;
+      margin-top: 16px;
+    }
+    .lav-plan__started {
+      margin-top: 24px;
+      width: 100%;
+      min-height: 52px;
+      font-size: 18px;
+      line-height: 32px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .lav-try__caption {
+      text-align: center;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .lav-try__title {
+      margin-top: 8px;
+      font-size: 22px;
+      text-align: center;
+    }
+    .lav-try__list {
+      margin-top: 16px;
+      line-height: 20px;
+    }
+    .lav-try__btn {
+      margin-top: 16px;
+      font-size: 18px;
+      max-width: 100%;
+      font-weight: 600;
+    }
+
+    .lav-classes {
+      padding-top: 42px;
+      padding-bottom: 42px;
+    }
+    .lav-classes__title {
+      font-size: 22px;
+    }
+    .lav-classes__list {
+      margin: 24px -4px 0;
+    }
+    .lav-classes__list li {
+      margin: 4px;
+      font-size: 16px;
+      padding: 12px 20px;
+    }
+    .lav-classes__toggle {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 32px;
+      margin: 16px auto 0;
+      min-height: 52px;
+    }
+    .lav-classes__list li:nth-child(1n + 7) {
+      display: none;
+    }
+    .lav-classes__list.active li:nth-child(1n + 7) {
+      display: block;
+    }
+
+    .lav-pers {
+      padding: 54px 0;
+    }
+    .lav-pers__title {
+      font-size: 22px;
+    }
+
+    .lav-pers__list {
+      display: block;
+      margin-top: 28px;
+    }
+    .lav-pers__item + .lav-pers__item {
+      margin-top: 36px;
+    }
+    .lav-pers__item-caption {
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    .lav-instructors {
+      padding-top: 42px;
+      padding-bottom: 60px;
+    }
+    .lav-instructors__title {
+      font-size: 22px;
+    }
+    .lav-instructors__head {
+      margin-bottom: 22px;
+    }
+  }
+  @media(max-width: 385px) {
+    .lav-plan__name {
+      font-size: 14px;
+    }
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -615,32 +926,69 @@ document.body.appendChild(stylesEl);
 const newLayout = `
 <section class='lav-jumb'>
   <div class='lav-container'>
-    <div class='lav-jumb__title'>Your ultimate Yoga journey starts here</div>
+    <div class='lav-jumb__title'>Your ultimate Yoga journey&nbsp;starts&nbsp;here</div>
     <div class='lav-jumb__caption'>Choose your plan</div>
     <div class='lav-jumb__plans'>
       <div class='lav-jumb__plan lav-plan'>
-        <div class='lav-plan__title'>Unlimited access</div>
-        <div class='lav-plan__caption'>1 month</div>
-        <div class='lav-plan__price'>
-          <span>$13.99</span> / month
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Unlimited access</div>
+          <div class='lav-plan__caption'>1 month</div>
+          <div class='lav-plan__price'>
+            <span>$13.99</span> / month
+          </div>
+          <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
         </div>
-        <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
+        <div class='lav-mob'>
+          <div class='lav-plan__left'>
+            <div class='lav-plan__month'>1 month</div>
+            <div class='lav-plan__name'>Unlimited access</div>
+          </div>
+          <div class='lav-plan__right'>
+            <div class='lav-plan__price'>
+              <span>$13.99</span> / month
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class='lav-jumb__plan lav-plan'>
-        <div class='lav-plan__title'>Unlimited access</div>
-        <div class='lav-plan__caption'>12 months</div>
-        <div class='lav-plan__price'>
-          <span>$9.08</span> / month
+      <div class='lav-jumb__plan lav-plan active'>
+        <div class='lav-desk'>
+          <div class='lav-plan__title'>Unlimited access</div>
+          <div class='lav-plan__caption'>12 months</div>
+          <div class='lav-plan__price'>
+            <span>$9.08</span> / month
+          </div>
+          <div class='lav-plan__year'>
+            <span class='lav-plan__year-old'>$167.88</span>
+            <span class='lav-plan__year-new'>$108.99</span>
+            <span class='lav-plan__year-caption'>/&nbsp;year</span>
+          </div>
+          <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
         </div>
-        <div class='lav-plan__year'>
-          <span class='lav-plan__year-old'>$167.88</span>
-          <span class='lav-plan__year-new'>$108.99</span>
-          <span class='lav-plan__year-caption'>/&nbsp;year</span>
+        <div class='lav-mob'>
+          <div class='lav-plan__left'>
+            <div class='lav-plan__month'>12 months</div>
+            <div class='lav-plan__name'>Unlimited access</div>
+          </div>
+          <div class='lav-plan__right'>
+            <div class='lav-plan__price'>
+              <span>$9.08</span> / month
+            </div>
+
+            <div class='lav-plan__year'>
+              <span class='lav-plan__year-old'>$167.88</span>
+              <span class='lav-plan__year-new'>$108.99</span>
+              <span class='lav-plan__year-caption'>/&nbsp;year</span>
+            </div>
+          </div>
         </div>
-        <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
       </div>
     </div>
+
+    <button class='lav-plan__started lav-btn sfc-button lav-mob'>
+      Get started now
+    </button>
+
     <div class='lav-jumb__try'>
       <span class='lav-jumb__try-inner'>
         <span>Not sure yet? Try Basic plan for free</span>
@@ -753,6 +1101,10 @@ const newLayout = `
       <li data-id='54'>Yoga for Back Care</li>
       <li data-id='55'>Yoga for Kids</li>
     </ul>
+
+    <button class='lav-classes__toggle lav-btn lav-btn_trans sfc-button lav-mob'>
+      Show More
+    </button>
   </div>
 </section>
 
@@ -1066,6 +1418,32 @@ function initJumb() {
       e.preventDefault();
       document.querySelector('[href="/yogi/register"]').click();
     });
+
+  document
+    .querySelector('.lav-plan__started')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      if (document.querySelector('.lav-plan.active .lav-plan__btn-year')) {
+        document.querySelector('[href="/express-checkout/55"]').click();
+      } else {
+        document.querySelector('[href="/express-checkout/54"]').click();
+      }
+    });
+
+  for (let el of document.querySelectorAll('.lav-jumb__plan')) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.innerWidth > 768) return false;
+
+      if (document.querySelector('.lav-jumb__plan.active')) {
+        document
+          .querySelector('.lav-jumb__plan.active')
+          .classList.remove('active');
+      }
+
+      this.classList.add('active');
+    });
+  }
 }
 
 function initClasses() {
@@ -1076,6 +1454,14 @@ function initClasses() {
       location.href = `https://www.doyogawithme.com/yoga-classes?field_instructor_target_id=&style[${id}]=${id}&field_subscribers_only_value=All&sort_by=created`;
     });
   }
+
+  document
+    .querySelector('.lav-classes__toggle')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      this.remove();
+      document.querySelector('.lav-classes__list').classList.add('active');
+    });
 }
 
 function initInstructions() {
