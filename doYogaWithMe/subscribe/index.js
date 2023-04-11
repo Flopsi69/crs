@@ -24,30 +24,13 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Change Plans page',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytic 4
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -104,7 +87,7 @@ const styles = `
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    background: url('${settings.dir}/img/jumb-bg.jpeg') center right no-repeat;
+    background: url('${settings.dir}/img/jumb-bg.jpeg') center no-repeat;
     background-size: cover;
     min-height: calc(100vh - 46.5px);
     padding-top: 50px;
@@ -218,6 +201,25 @@ const styles = `
     line-height: 32px;
     text-transform: capitalize;
   }
+  .lav-plan__options {
+    margin-top: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #555555;
+  }
+  .lav-plan__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lav-plan__option + .lav-plan__option {
+    margin-top: 12px;
+  }
+  .lav-plan__option img {
+    margin-right: 8px;
+    width: 24px;
+  }
   .lav-btn_trans {
     background-color: transparent;
     color: #017922;
@@ -229,33 +231,27 @@ const styles = `
   .lav-jumb__try {
     margin-top: 24px;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 21px;
     text-align: center;
     text-transform: capitalize;
-    color: #027DB8;
+    color: #fff;
     transition: 0.35s;
   }
   .lav-jumb__try-inner {
     display: inline-block;
-    padding: 18px 25px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(3px);
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.24);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(4px);
     border-radius: 30px;
-    line-height: 1;
     cursor: pointer;
     transition: 0.35s;
   }
   .lav-jumb__try-inner:hover {
-    color: #fff;
-    background-color: #027DB8;
+    color: #272727;
+    background-color: #fff;
   }
-  .lav-jumb__try-inner span {
-    border-bottom: 1px solid #027DB8;
-  }
-  .lav-jumb__try-inner:hover span {
-    border-color: transparent;
-  }
-
   .lav-features {
     margin-top: -100px;
   }
@@ -318,32 +314,6 @@ const styles = `
   .lav-feature__list li + li {
     margin-top: 5px;
   }
-
-  .lav-features__sub {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 667px;
-    width: 100%;
-    background: #F9F9F9;
-    border: 1px dashed #D6D6D6;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    margin: -3px auto 0;
-    padding: 22px 85px 20px;
-  }
-  .lav-features__sub-item {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    color: #003A67;
-  }
-  .lav-features__sub img {
-    margin-right: 12px;
-  }
-
   .lav-try {
     margin-top: 90px;
     color: #272727;
@@ -436,7 +406,7 @@ const styles = `
     text-align: center;
   }
   .lav-classes__list {
-    margin: 45px -8px 0;
+    margin: 50px -4px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -445,15 +415,15 @@ const styles = `
     padding: 0;
   }
   .lav-classes__list li {
-    margin: 8px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
-    border-radius: 37px;
+    margin: 4px 8px;
+    background: #F9F9F9;
+    border: 1px dashed #D6D6D6;
+    border-radius: 12px;
+    padding: 7.5px 32px;
     font-weight: 500;
     font-size: 18px;
-    line-height: 1;
-    padding: 15px 32px;
-    color: #027DB8;
+    line-height: 31px;
+    color: #555555;
     transition: 0.35s;
     cursor: pointer;
   }
@@ -461,6 +431,7 @@ const styles = `
   .lav-classes__list li:hover {
     background-color: #027DB8;
     color: #fff;
+    border-style: solid;
   }
 
   .lav-pers {
@@ -653,11 +624,27 @@ const styles = `
       box-shadow: none;
       background: rgba(249, 249, 249, 0.9);
     }
-    
+    .lav-plan__options.lav-mob {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      color: #FFFFFF;
+    }
+    .lav-plan__option + .lav-plan__option {
+      margin-top: 0;
+      margin-left: 8px;
+    }
+    .lav-plan__option img {
+      width: 20px;
+      margin-right: 4px;
+    }
     .lav-plan.active {
-      border-color: #027DB8;
-      background: #FFFFFF;
+      border-color: #017922;
       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(3px);
     }
     .lav-plan:after {
       content: '';
@@ -707,15 +694,18 @@ const styles = `
       line-height: 1;
     }
     .lav-jumb__try-inner {
-      display: block;
+      padding-left: 24px;
+      padding-right: 24px;
+      color: #027DB8;
+      background: rgba(255, 255, 255, 0.5);
     }
     .lav-jumb {
-      padding-bottom: 100px;
-      background: url(${settings.dir}/img/jumb-bg-mob.jpeg) bottom right no-repeat;
+      padding-bottom: 32px;
+      background: url(${settings.dir}/img/jumb-bg-mob.jpeg) center no-repeat;
       background-size: cover;
     }
     .lav-features {
-      margin-top: -60px;
+      margin-top: 42px;
     }
     .lav-jumb__try-inner span {
       text-decoration: underline;
@@ -768,7 +758,17 @@ const styles = `
     }
 
     .lav-features__plate {
-      padding: 20px;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      background: transparent;
+    }
+    .lav-feature {
+      background-color: #FFFFFF;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 20px 20px 20px 60px;
+      background-position: 20px 20px;
     }
     .lav-features__title {
       font-size: 22px;
@@ -781,24 +781,7 @@ const styles = `
       font-size: 16px;
     }
     .lav-features__col + .lav-features__col, .lav-feature + .lav-feature {
-      margin-top: 16px;
-    }
-    .lav-features__sub {
-      padding-left: 4px;
-      padding-right: 4px;
-    }
-    .lav-features__sub-item {
-      line-height: 18px;
-    }
-    .lav-features__sub {
-      max-width: 90%;
-      justify-content: space-around;
-    }
-    .lav-features__sub-item:first-child {
-      max-width: 110px;
-    }
-    .lav-features__sub-item:last-child {
-      max-width: 160px;
+      margin-top: 12px;
     }
 
     .lav-try {
@@ -818,7 +801,7 @@ const styles = `
     }
     .lav-jumb__try {
       font-weight: 600;
-      margin-top: 16px;
+      margin-top: 32px;
     }
     .lav-plan__started {
       margin-top: 24px;
@@ -864,7 +847,7 @@ const styles = `
     .lav-classes__list li {
       margin: 4px;
       font-size: 16px;
-      padding: 12px 20px;
+      padding: 4px 24px;
     }
     .lav-classes__toggle {
       font-weight: 700;
@@ -873,10 +856,10 @@ const styles = `
       margin: 16px auto 0;
       min-height: 52px;
     }
-    .lav-classes__list li:nth-child(1n + 7) {
+    .lav-classes__list li:nth-child(1n + 10) {
       display: none;
     }
-    .lav-classes__list.active li:nth-child(1n + 7) {
+    .lav-classes__list.active li:nth-child(1n + 10) {
       display: block;
     }
 
@@ -937,6 +920,16 @@ const newLayout = `
             <span>$13.99</span> / month
           </div>
           <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
         </div>
         <div class='lav-mob'>
           <div class='lav-plan__left'>
@@ -964,6 +957,16 @@ const newLayout = `
             <span class='lav-plan__year-caption'>/&nbsp;year</span>
           </div>
           <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
+          <div class='lav-plan__options'>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/calendar.svg' />
+              Cancel anytime
+            </div>
+            <div class='lav-plan__option'>
+              <img src='${settings.dir}/img/guarantee.svg' />
+              30-Day Money-Back Guarantee
+            </div>
+          </div>
         </div>
         <div class='lav-mob'>
           <div class='lav-plan__left'>
@@ -989,15 +992,24 @@ const newLayout = `
       Get started now
     </button>
 
+    <div class='lav-plan__options lav-mob'>
+      <div class='lav-plan__option'>
+        <img src='${settings.dir}/img/calendar-mob.svg' />
+        Cancel anytime
+      </div>
+      <div class='lav-plan__option'>
+        <img src='${settings.dir}/img/guarantee-mob.svg' />
+        30-Day Money-Back Guarantee
+      </div>
+    </div>
+    
     <div class='lav-jumb__try'>
-      <span class='lav-jumb__try-inner'>
-        <span>Not sure yet? Try Basic plan for free</span>
-      </span>
+      <span class='lav-jumb__try-inner'>Not sure yet? Try Basic plan for free</span>
     </div>
   </div>
 </section>
 
-<section class='lav-features'>
+<section class='lav-features lav-watch'>
   <div class='lav-container'>
     <div class='lav-features__plate'>
       <div class='lav-features__title'>Subscription features</div>
@@ -1034,21 +1046,10 @@ const newLayout = `
         </div>
       </div>
     </div>
-
-    <div class='lav-features__sub'>
-      <div class='lav-features__sub-item'>
-        <img src='${settings.dir}/img/calendar.svg' />
-        Cancel anytime
-      </div>
-      <div class='lav-features__sub-item'>
-        <img src='${settings.dir}/img/guarantee.svg' />
-        30-Day Money-Back Guarantee
-      </div>
-    </div>
   </div>
 </section>
 
-<section class='lav-try'>
+<section class='lav-try lav-watch'>
   <div class='lav-container'>
     <div class='lav-try__plate'>
       <div class='lav-try__image'></div>
@@ -1064,13 +1065,13 @@ const newLayout = `
           <li>Full access to the library of 1000+ Ad-Free yoga, meditation and movement classes</li>
           <li>Exclusive access to all new releases and premium content</li>
         </ul>
-        <a href="/yogi/register" class='lav-try__btn lav-btn sfc-button'>Start Basic Plan</a>
+        <a href="#" class='lav-try__btn lav-btn sfc-button'>Start Basic Plan</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class='lav-classes'>
+<section class='lav-classes lav-watch'>
   <div class='lav-container'>
     <div class='lav-classes__title'>Explore 1000+ Yoga classes</div>
 
@@ -1108,7 +1109,7 @@ const newLayout = `
   </div>
 </section>
 
-<section class='lav-pers'>
+<section class='lav-pers lav-watch'>
   <div class='lav-container'>
     <div class='lav-pers__title'>Count the ways you can <br/> personalize your practice</div>
 
@@ -1146,7 +1147,7 @@ const newLayout = `
   </div>
 </section>
 
-<section class='lav-instructors splide'>
+<section class='lav-instructors lav-watch splide'>
   <div class='lav-container'>
     <div class='lav-instructors__head'>
       <div class='lav-instructors__title'>Our Instructors</div>
@@ -1382,6 +1383,7 @@ const instructorsArr = [
 
 init();
 function init() {
+  gaEvent('loaded');
   console.log('init');
 
   document
@@ -1392,9 +1394,120 @@ function init() {
     ${document.querySelector('.sfc-becomeASubscriber__bannerImg').src}
   )`;
 
+  document
+    .querySelector(
+      '.sfc-becomeASubscriber__section + section + section + section'
+    )
+    .classList.add('lav-watch', 'lav-journey');
+
+  document
+    .querySelector('[data-sfc-ids="apps_promo"]')
+    .classList.add('lav-watch', 'lav-app');
+
+  document
+    .querySelector('.lav-try__btn')
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      gaEvent('Click on Start Basic plan button');
+      document.querySelector('[href="/yogi/register"]').click();
+    });
+
   initJumb();
   initClasses();
   initInstructions();
+  observerView();
+
+  document
+    .querySelector('.lav-instructors .splide__arrow--next')
+    .addEventListener('click', function () {
+      gaEvent('Click navigation button in our instructors', 'Right');
+    });
+
+  document
+    .querySelector('.lav-instructors .splide__arrow--prev')
+    .addEventListener('click', function () {
+      gaEvent('Click navigation button in our instructors', 'Left');
+    });
+
+  document
+    .querySelector('.sfc-section__content .splide__arrow--next')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click navigation button in Your journey to health and wellness start here',
+        'Right'
+      );
+    });
+
+  document
+    .querySelector('.sfc-section__content .splide__arrow--prev')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click navigation button in Your journey to health and wellness start here',
+        'Left'
+      );
+    });
+
+  document
+    .querySelector('.sfc-appsPromo__appIcons a:first-child')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on Apps in  For every space, at any pace section',
+        'App Store'
+      );
+    });
+
+  document
+    .querySelector('.sfc-appsPromo__appIcons a:nth-child(2)')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on Apps in  For every space, at any pace section',
+        'Google Play'
+      );
+    });
+
+  document
+    .querySelector('.sfc-appsPromo__appIcons a:nth-child(3)')
+    .addEventListener('click', function () {
+      gaEvent(
+        'Click on Apps in  For every space, at any pace section',
+        'Amazon Fire'
+      );
+    });
+
+  document
+    .querySelector('.sfc-appsPromo__appIcons a:nth-child(4)')
+    .addEventListener('click', function () {
+      gaEvent('Click on Apps in  For every space, at any pace section', 'Roku');
+    });
+
+  for (let item of document.querySelectorAll('.lav-plan .lav-plan__option')) {
+    item.addEventListener('click', function () {
+      let caption = 'Click on Cancel anytime element';
+
+      if (!item.innerText.toLowerCase().includes('cancel')) {
+        caption = 'Click on 30-Day Money-Back Guarantee element';
+      }
+      gaEvent(
+        caption,
+        item.closest('.lav-plan').querySelector('.lav-plan__btn-month')
+          ? '1 month'
+          : '12 months'
+      );
+    });
+  }
+
+  for (let item of document.querySelectorAll(
+    '.lav-plan__options.lav-mob .lav-plan__option'
+  )) {
+    item.addEventListener('click', function () {
+      let caption = 'Click on Cancel anytime element';
+
+      if (!item.innerText.toLowerCase().includes('cancel')) {
+        caption = 'Click on 30-Day Money-Back Guarantee element';
+      }
+      gaEvent(caption);
+    });
+  }
 }
 
 function initJumb() {
@@ -1403,6 +1516,7 @@ function initJumb() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector('[href="/express-checkout/55"]').click();
+      gaEvent('Click on Get started now button in Unlimited access 12 month');
     });
 
   document
@@ -1410,12 +1524,14 @@ function initJumb() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       document.querySelector('[href="/express-checkout/54"]').click();
+      gaEvent('Click on Get started now button in Unlimited access 1 month');
     });
 
   document
     .querySelector('.lav-jumb__try-inner')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click Not sure yet? Try Basic plan for free button');
       document.querySelector('[href="/yogi/register"]').click();
     });
 
@@ -1424,8 +1540,10 @@ function initJumb() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       if (document.querySelector('.lav-plan.active .lav-plan__btn-year')) {
+        gaEvent('Click on Get Started now button', '12 months');
         document.querySelector('[href="/express-checkout/55"]').click();
       } else {
+        gaEvent('Click on Get Started now button', '1 month');
         document.querySelector('[href="/express-checkout/54"]').click();
       }
     });
@@ -1441,7 +1559,12 @@ function initJumb() {
           .classList.remove('active');
       }
 
-      this.classList.add('active');
+      gaEvent(
+        'Click on Choose your plan radiobutton',
+        el.querySelector('.lav-plan__btn-year') ? '12 months' : '1 month'
+      );
+
+      el.classList.add('active');
     });
   }
 }
@@ -1451,6 +1574,8 @@ function initClasses() {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       const id = el.dataset.id;
+      gaEvent('Click on yoga class button', el.innerText.trim());
+
       location.href = `https://www.doyogawithme.com/yoga-classes?field_instructor_target_id=&style[${id}]=${id}&field_subscribers_only_value=All&sort_by=created`;
     });
   }
@@ -1459,6 +1584,7 @@ function initClasses() {
     .querySelector('.lav-classes__toggle')
     .addEventListener('click', function (e) {
       e.preventDefault();
+      gaEvent('Click on Show now button');
       this.remove();
       document.querySelector('.lav-classes__list').classList.add('active');
     });
@@ -1507,4 +1633,90 @@ function initInstructions() {
   });
 
   splide.mount();
+}
+
+function observerView() {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '-40%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('lav-features')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Subscription features section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-try')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Try Basic plan for free section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-classes')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Explore 1000+ Yoga classes section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-pers')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Count the ways you can personalize your practice section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-instructors')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Our instructors section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-journey')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility Your journey to health and wellness start here section'
+          );
+        }
+
+        if (entry.target.classList.contains('lav-app')) {
+          isElementInViewport(
+            entry.target,
+            'Visibility For every space, at any pace section'
+          );
+        }
+      }
+    });
+  }, observerOptions);
+
+  for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+    observer.observe(el);
+  }
+
+  function isElementInViewport(el, event, timeout = 2) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        observer.unobserve(el);
+        if (!el.classList.contains('in-view')) {
+          gaEvent(event);
+          el.classList.add('in-view');
+        }
+      }
+    }, timeout * 1000);
+  }
 }
