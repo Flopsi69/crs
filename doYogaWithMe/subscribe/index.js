@@ -1417,35 +1417,40 @@ function init() {
   initInstructions();
   observerView();
 
-  document
-    .querySelector('.lav-instructors .splide__arrow--next')
-    .addEventListener('click', function () {
-      gaEvent('Click navigation button in our instructors', 'Right');
-    });
+  const waitingSplide = setInterval(() => {
+    if (typeof Splide === 'function') {
+      clearInterval(waitingSplide);
+      document
+        .querySelector('.lav-instructors .splide__arrow--next')
+        .addEventListener('click', function () {
+          gaEvent('Click navigation button in our instructors', 'Right');
+        });
 
-  document
-    .querySelector('.lav-instructors .splide__arrow--prev')
-    .addEventListener('click', function () {
-      gaEvent('Click navigation button in our instructors', 'Left');
-    });
+      document
+        .querySelector('.lav-instructors .splide__arrow--prev')
+        .addEventListener('click', function () {
+          gaEvent('Click navigation button in our instructors', 'Left');
+        });
 
-  document
-    .querySelector('.sfc-section__content .splide__arrow--next')
-    .addEventListener('click', function () {
-      gaEvent(
-        'Click navigation button in Your journey to health and wellness start here',
-        'Right'
-      );
-    });
+      document
+        .querySelector('.sfc-section__content .splide__arrow--next')
+        .addEventListener('click', function () {
+          gaEvent(
+            'Click navigation button in Your journey to health and wellness start here',
+            'Right'
+          );
+        });
 
-  document
-    .querySelector('.sfc-section__content .splide__arrow--prev')
-    .addEventListener('click', function () {
-      gaEvent(
-        'Click navigation button in Your journey to health and wellness start here',
-        'Left'
-      );
-    });
+      document
+        .querySelector('.sfc-section__content .splide__arrow--prev')
+        .addEventListener('click', function () {
+          gaEvent(
+            'Click navigation button in Your journey to health and wellness start here',
+            'Left'
+          );
+        });
+    }
+  }, 50);
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:first-child')
