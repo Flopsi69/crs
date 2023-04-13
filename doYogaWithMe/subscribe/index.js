@@ -56,6 +56,9 @@ if (settings.observe) {
 // [class*='lav']
 // Styles
 const styles = `
+  .lav-hide {
+    display: !none!important;
+  }
   .sfc-becomeASubscriber__section, .sfc-becomeASubscriber__section + section {
     display: none!important;
   }
@@ -597,6 +600,16 @@ const styles = `
     .lav-plan__btn {
       display: none;
     }
+    .splide__arrow {
+      border: none!important;
+      outline: none!important;
+    }
+    .sfc-slider--stacked .splide__arrow::before {
+      margin-top: 0;
+    }
+    .lav-journey .splide__slide {
+      max-width: 90%;
+    }
     .lav-plan:last-child:before {
       transform: translateY(-50%);
       background: #F3A83C;
@@ -897,6 +910,12 @@ const styles = `
     .lav-plan__name {
       font-size: 14px;
     }
+    .lav-instructors {
+      padding-bottom: 90px;
+    }
+    .lav-journey .splide__arrows {
+      margin-top: -5.2em!important;
+    }
   }
 `;
 
@@ -1025,6 +1044,7 @@ const newLayout = `
               <li>250+ Gentle yoga classes</li>
               <li>170+ Yoga after workout classes</li>
               <li>100+ Yoga for back classes</li>
+              <li>And much more!</li>
             </ul>
           </div>
         </div>
@@ -1135,7 +1155,7 @@ const newLayout = `
       <li class='lav-pers__item'>
         <div class='lav-pers__item-num'>90+</div>
         <div class='lav-pers__item-title'>Guided Meditations</div>
-        <div class='lav-pers__item-caption'>Keep your mind and body guessing or deepen your practice.</div>
+        <div class='lav-pers__item-caption'>Sleep better, build mindfulness, enhance performance or let go of anxiety.</div>
       </li>
 
       <li class='lav-pers__item'>
@@ -1417,6 +1437,17 @@ function init() {
   initInstructions();
   observerView();
 
+  if (document.querySelector('#block-samsara-useraccountmenu--2')) {
+    for (let item of ['.lav-jumb__try, .lav-try']) {
+      if (document.querySelector(item)) {
+        document.querySelector(item).classList.add('lav-hide');
+      }
+      if (document.querySelector(item)) {
+        document.querySelector(item).classList.add('lav-hide');
+      }
+    }
+  }
+
   const waitingSplide = setInterval(() => {
     if (typeof Splide === 'function') {
       clearInterval(waitingSplide);
@@ -1433,7 +1464,7 @@ function init() {
         });
 
       document
-        .querySelector('.sfc-section__content .splide__arrow--next')
+        .querySelector('.lav-journey .splide__arrow--next')
         .addEventListener('click', function () {
           gaEvent(
             'Click navigation button in Your journey to health and wellness start here',
@@ -1442,7 +1473,7 @@ function init() {
         });
 
       document
-        .querySelector('.sfc-section__content .splide__arrow--prev')
+        .querySelector('.lav-journey .splide__arrow--prev')
         .addEventListener('click', function () {
           gaEvent(
             'Click navigation button in Your journey to health and wellness start here',
