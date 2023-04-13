@@ -639,7 +639,7 @@ const styles = `
     .lav-plan__options.lav-mob {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       font-weight: 600;
       font-size: 12px;
       line-height: 16px;
@@ -1011,7 +1011,7 @@ const newLayout = `
     </div>
 
     <button class='lav-plan__started lav-btn sfc-button lav-mob'>
-      Get started now
+      Get Started Now
     </button>
 
     <div class='lav-plan__options lav-mob'>
