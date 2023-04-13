@@ -1494,23 +1494,25 @@ function init() {
           gaEvent('Click navigation button in our instructors', 'Left');
         });
 
-      document
-        .querySelector('.lav-journey .splide__arrow--next')
-        .addEventListener('click', function () {
-          gaEvent(
-            'Click navigation button in Your journey to health and wellness start here',
-            'Right'
-          );
-        });
+      setTimeout(() => {
+        document
+          .querySelector('.lav-journey .splide__arrow--next')
+          .addEventListener('click', function () {
+            gaEvent(
+              'Click navigation button in Your journey to health and wellness start here',
+              'Right'
+            );
+          });
 
-      document
-        .querySelector('.lav-journey .splide__arrow--prev')
-        .addEventListener('click', function () {
-          gaEvent(
-            'Click navigation button in Your journey to health and wellness start here',
-            'Left'
-          );
-        });
+        document
+          .querySelector('.lav-journey .splide__arrow--prev')
+          .addEventListener('click', function () {
+            gaEvent(
+              'Click navigation button in Your journey to health and wellness start here',
+              'Left'
+            );
+          });
+      }, 1000);
     }
   }, 50);
 
