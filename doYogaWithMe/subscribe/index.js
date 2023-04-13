@@ -1472,7 +1472,7 @@ function init() {
   observerView();
 
   if (!document.querySelector('#block-samsara-useraccountmenu--2')) {
-    for (let item of ['.lav-jumb__try, .lav-try']) {
+    for (let item of ['.lav-jumb__try', '.lav-try']) {
       if (document.querySelector(item)) {
         document.querySelector(item).classList.add('lav-hide');
       }
