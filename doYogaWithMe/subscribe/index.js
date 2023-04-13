@@ -874,10 +874,10 @@ const styles = `
       margin: 16px auto 0;
       min-height: 52px;
     }
-    .lav-classes__list li:nth-child(1n + 10) {
+    .lav-classes__list li:nth-child(1n + 11) {
       display: none;
     }
-    .lav-classes__list.active li:nth-child(1n + 10) {
+    .lav-classes__list.active li:nth-child(1n + 11) {
       display: block;
     }
 
