@@ -859,6 +859,9 @@ const styles = `
     .lav-classes__list {
       margin: 24px -4px 0;
     }
+    .lav-classes__list.lav-mob {
+      display: flex;
+    }
     .lav-classes__list li {
       margin: 4px;
       font-size: 16px;
@@ -907,6 +910,7 @@ const styles = `
     .lav-instructors__head {
       margin-bottom: 22px;
     }
+
   }
   @media(max-width: 385px) {
     .lav-plan__name {
@@ -1097,7 +1101,7 @@ const newLayout = `
   <div class='lav-container'>
     <div class='lav-classes__title'>Explore 1000+ Yoga classes</div>
 
-    <ul class='lav-classes__list'>
+    <ul class='lav-classes__list lav-desk'>
       <li data-id='30'>Ashtanga Yoga</li>
       <li data-id='213'>Chair Yoga</li>
       <li data-id='31'>Gentle Yoga</li>
@@ -1121,6 +1125,34 @@ const newLayout = `
       <li data-id='50'>Yoga for Runners</li>
       <li data-id='51'>Yoga for Seniors</li>
       <li data-id='53'>Yoga Therapy</li>
+      <li data-id='54'>Yoga for Back Care</li>
+      <li data-id='55'>Yoga for Kids</li>
+    </ul>
+
+    <ul class='lav-classes__list lav-mob'>
+      <li data-id='30'>Ashtanga Yoga</li>
+      <li data-id='213'>Chair Yoga</li>
+      <li data-id='31'>Gentle Yoga</li>
+      <li data-id='32'>Guided Meditation</li>
+      <li data-id='36'>Mom and Baby Yoga</li>
+      <li data-id='34'>Jivamukti</li>
+      <li data-id='33'>Hatha Yoga</li>
+      <li data-id='35'>Kundalini Yoga</li>
+      <li data-id='37'>Pilates</li>
+      <li data-id='38'>Plus Size Yoga</li>
+      <li data-id='126'>Prenatal/Postnatal Yoga</li>
+      <li data-id='39'>PNF</li>
+      <li data-id='42'>Pranayama Yoga</li>
+      <li data-id='44'>Restorative Yoga</li>
+      <li data-id='125'>Slow Flow</li>
+      <li data-id='127'>Values-based Education</li>
+      <li data-id='46'>Yin and Yin/Yang Yoga</li>
+      <li data-id='47'>Yoga at Work</li>
+      <li data-id='45'>Vinyasa/Power Yoga</li>
+      <li data-id='53'>Yoga Therapy</li>
+      <li data-id='49'>Yoga for Athletes</li>
+      <li data-id='50'>Yoga for Runners</li>
+      <li data-id='51'>Yoga for Seniors</li>
       <li data-id='54'>Yoga for Back Care</li>
       <li data-id='55'>Yoga for Kids</li>
     </ul>
