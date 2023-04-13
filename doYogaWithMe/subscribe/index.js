@@ -1468,7 +1468,11 @@ function init() {
   initInstructions();
   observerView();
 
-  if (!document.querySelector('#block-samsara-useraccountmenu--2')) {
+  if (
+    !document.querySelector(
+      '.menu--account [href="/yogi/login?destination=/become-a-subscriber"]'
+    )
+  ) {
     for (let item of ['.lav-jumb__try', '.lav-try']) {
       if (document.querySelector(item)) {
         document.querySelector(item).classList.add('lav-hide');
