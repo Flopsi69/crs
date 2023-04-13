@@ -603,9 +603,6 @@ const styles = `
     button {
       -webkit-tap-highlight-color: transparent;
     }
-    button:focus,button:visited,button:active{
-      outline: none;
-    }
     .sfc-slider--stacked .splide__arrow::before {
       margin-top: 0;
     }
