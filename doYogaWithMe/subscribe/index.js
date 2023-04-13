@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/doYogaWithMe/subscribe',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'change_plans_page', 'variant_1');
     }
   }, 1000);
 }
@@ -1437,11 +1437,8 @@ function init() {
   initInstructions();
   observerView();
 
-  if (document.querySelector('#block-samsara-useraccountmenu--2')) {
+  if (!document.querySelector('#block-samsara-useraccountmenu--2')) {
     for (let item of ['.lav-jumb__try, .lav-try']) {
-      if (document.querySelector(item)) {
-        document.querySelector(item).classList.add('lav-hide');
-      }
       if (document.querySelector(item)) {
         document.querySelector(item).classList.add('lav-hide');
       }
