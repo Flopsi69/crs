@@ -57,7 +57,7 @@ if (settings.observe) {
 // Styles
 const styles = `
   .lav-hide {
-    display: !none!important;
+    display: none!important;
   }
   .sfc-becomeASubscriber__section, .sfc-becomeASubscriber__section + section {
     display: none!important;
