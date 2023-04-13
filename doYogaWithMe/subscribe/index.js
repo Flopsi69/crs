@@ -1655,7 +1655,9 @@ function initClasses() {
       e.preventDefault();
       gaEvent('Click on Show now button');
       this.remove();
-      document.querySelector('.lav-classes__list').classList.add('active');
+      document
+        .querySelector('.lav-classes__list.lav-mob')
+        .classList.add('active');
     });
 }
 
