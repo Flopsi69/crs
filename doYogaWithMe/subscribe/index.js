@@ -195,7 +195,7 @@ const styles = `
     line-height: 28px;
   }
   .lav-plan__btn {
-    margin-top: 20px;
+    margin-top: 15px;
     width: 100%;
     justify-content: center;
     min-height: 52px;
@@ -222,6 +222,13 @@ const styles = `
   .lav-plan__option img {
     margin-right: 8px;
     width: 24px;
+  }
+  .lav-plan__currency {
+    color: #A5A5A5;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 4px;
   }
   .lav-btn_trans {
     background-color: transparent;
@@ -603,6 +610,11 @@ const styles = `
     button {
       -webkit-tap-highlight-color: transparent;
     }
+    .lav-plan__currency {
+      color: #FFFFFF;
+      text-align: center;
+      margin-top: 10px;
+    }
     .sfc-slider--stacked .splide__arrow::before {
       margin-top: 0;
     }
@@ -816,7 +828,7 @@ const styles = `
       margin-top: 32px;
     }
     .lav-plan__started {
-      margin-top: 24px;
+      margin-top: 10px;
       width: 100%;
       min-height: 52px;
       font-size: 18px;
@@ -941,6 +953,7 @@ const newLayout = `
           <div class='lav-plan__price'>
             <span>$13.99</span> / month
           </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
           <button class='lav-plan__btn lav-plan__btn-month lav-btn lav-btn_trans sfc-button'>Get started now</button>
           <div class='lav-plan__options'>
             <div class='lav-plan__option'>
@@ -978,6 +991,7 @@ const newLayout = `
             <span class='lav-plan__year-new'>$108.99</span>
             <span class='lav-plan__year-caption'>/&nbsp;year</span>
           </div>
+          <div class='lav-plan__currency'>*All prices in USD</div>
           <button class='lav-plan__btn lav-plan__btn-year lav-btn sfc-button'>Get started now</button>
           <div class='lav-plan__options'>
             <div class='lav-plan__option'>
@@ -1009,6 +1023,8 @@ const newLayout = `
         </div>
       </div>
     </div>
+
+    <div class='lav-plan__currency lav-mob'>*All prices in USD</div>
 
     <button class='lav-plan__started lav-btn sfc-button lav-mob'>
       Get Started Now
