@@ -4443,7 +4443,7 @@ state.then((state) => {
                 <div>
                     <ul class="is_menu_tours"></ul>
                     <ul class="is_menu_items">
-                        <li><a href="/glog">Blog</a></li>
+                        <li><a href="/blog">Blog</a></li>
                         <li><a href="/read-about-us">About Us</a></li>
                         <li><a href="/covid">Health & Safety</a></li>
                         <li><a href="https://www.secrettours.com/">Historical Tours</a></li>
