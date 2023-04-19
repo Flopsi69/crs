@@ -2845,7 +2845,7 @@ let init = setInterval(() => {
     document.querySelector('#plugin iframe') != null ||
     (window.matchMedia('(max-width: 767px)').matches &&
       document.querySelector('header .main_menu') != null &&
-      document.querySelector('.tour-intro'))
+      document.querySelector('.destination_descr'))
   ) {
     console.log('fire');
     clearInterval(init);
