@@ -4607,7 +4607,7 @@ state.then((state) => {
 
       if (
         !document.querySelector('#plugin iframe') &&
-        !document.querySelector('.tour-intro') &&
+        !document.querySelector('.destination_descr') &&
         window.innerWidth < 768
       ) {
         for (let btn of document.querySelectorAll('.is_menu .btn-customer')) {
