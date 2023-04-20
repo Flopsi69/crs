@@ -1907,7 +1907,7 @@ header .main_menu {
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s ease;
-    z-index: 9999;
+    z-index: 9999999;
 }
 .popup_gallery.active {
     opacity: 1;
