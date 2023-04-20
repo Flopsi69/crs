@@ -3442,35 +3442,36 @@ let init = setInterval(() => {
             }
           }
 
-          // const time = window.innerWidth < 768 ? 2200 : 300;
-          // setTimeout(() => {
           document.addEventListener('DOMContentLoaded', function () {
             console.log('fireeeee Slider 2');
-            new Swiper('.slider-review', {
-              loop: true,
-              slidesPerView: 3,
-              spaceBetween: 20,
-              pagination: {
-                el: '.slider-review .swiper-pagination',
-                type: 'fraction',
-              },
-              navigation: {
-                nextEl: '.slider-review .swiper-button-next',
-                prevEl: '.slider-review .swiper-button-prev',
-              },
-              breakpoints: {
-                768: {
-                  slidesPerView: 1.1,
-                  spaceBetween: 16,
-                  pagination: {
-                    el: '.slider-review .swiper-pagination',
-                    type: 'bullets',
+            const time = window.innerWidth < 768 ? 1500 : 300;
+
+            setTimeout(() => {
+              new Swiper('.slider-review', {
+                loop: true,
+                slidesPerView: 3,
+                spaceBetween: 20,
+                pagination: {
+                  el: '.slider-review .swiper-pagination',
+                  type: 'fraction',
+                },
+                navigation: {
+                  nextEl: '.slider-review .swiper-button-next',
+                  prevEl: '.slider-review .swiper-button-prev',
+                },
+                breakpoints: {
+                  768: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 16,
+                    pagination: {
+                      el: '.slider-review .swiper-pagination',
+                      type: 'bullets',
+                    },
                   },
                 },
-              },
-            });
+              });
+            }, time);
           });
-          // }, time);
         }
 
         let isVisibleReview = false;
