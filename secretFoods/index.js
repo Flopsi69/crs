@@ -3525,12 +3525,12 @@ let init = setInterval(() => {
       return [reviewsEl, scriptEl, rateEl];
     }
 
-    let cookieAlert = document.querySelector('.cookiealert');
-    let bookbutton = document.querySelector('#tour_f_btn');
-    let acceptCookies = document.querySelector('.acceptcookies');
-    let readmorebutton = document.querySelector('.readmore-cookies-button');
-
     setTimeout(() => {
+      let cookieAlert = document.querySelector('.cookiealert');
+      let bookbutton = document.querySelector('#tour_f_btn');
+      let acceptCookies = document.querySelector('.acceptcookies');
+      let readmorebutton = document.querySelector('.readmore-cookies-button');
+
       if (acceptCookies) {
         acceptCookies.addEventListener('click', function () {
           bookbutton.style.bottom = '0px';
@@ -3546,7 +3546,7 @@ let init = setInterval(() => {
       if (cookieAlert && cookieAlert.classList.contains('show')) {
         bookbutton.style.bottom = '70px';
       }
-    }, 500);
+    }, 1200);
   }
 });
 
