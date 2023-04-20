@@ -4309,7 +4309,7 @@ state.then((state) => {
                 left: 0;
                 z-index: 9999;
                 background-color: #fff;
-                height: calc(100vh - 51.87px - 60px);
+                height: calc(100% - 51.87px - 60px);
                 overflow-y: auto;
                 display: none;
             }
