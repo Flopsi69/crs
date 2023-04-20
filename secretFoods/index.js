@@ -3546,7 +3546,7 @@ let init = setInterval(() => {
       if (cookieAlert && cookieAlert.classList.contains('show')) {
         bookbutton.style.bottom = '70px';
       }
-    }, 1200);
+    }, 2000);
   }
 });
 
