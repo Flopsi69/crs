@@ -3442,36 +3442,35 @@ let init = setInterval(() => {
             }
           }
 
-          document.addEventListener('DOMContentLoaded', function () {
-            console.log('fireeeee Slider 2');
-            const time = window.innerWidth < 768 ? 1500 : 300;
+          const time = window.innerWidth < 768 ? 2200 : 300;
 
-            setTimeout(() => {
-              new Swiper('.slider-review', {
-                loop: true,
-                slidesPerView: 3,
-                spaceBetween: 20,
-                pagination: {
-                  el: '.slider-review .swiper-pagination',
-                  type: 'fraction',
-                },
-                navigation: {
-                  nextEl: '.slider-review .swiper-button-next',
-                  prevEl: '.slider-review .swiper-button-prev',
-                },
-                breakpoints: {
-                  768: {
-                    slidesPerView: 1.1,
-                    spaceBetween: 16,
-                    pagination: {
-                      el: '.slider-review .swiper-pagination',
-                      type: 'bullets',
-                    },
+          setTimeout(() => {
+            console.log('fireeeee Slider 2');
+
+            new Swiper('.slider-review', {
+              loop: true,
+              slidesPerView: 3,
+              spaceBetween: 20,
+              pagination: {
+                el: '.slider-review .swiper-pagination',
+                type: 'fraction',
+              },
+              navigation: {
+                nextEl: '.slider-review .swiper-button-next',
+                prevEl: '.slider-review .swiper-button-prev',
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 1.1,
+                  spaceBetween: 16,
+                  pagination: {
+                    el: '.slider-review .swiper-pagination',
+                    type: 'bullets',
                   },
                 },
-              });
-            }, time);
-          });
+              },
+            });
+          }, time);
         }
 
         let isVisibleReview = false;
@@ -4009,10 +4008,9 @@ let photos = setInterval(() => {
     });
     swiperPopup.controller.control = swiper;
     swiper.controller.control = swiperPopup;
-    document.addEventListener('DOMContentLoaded', function () {
+    const time = window.innerWidth < 768 ? 2200 : 300;
+    setTimeout(() => {
       console.log('fireeeee Slider 1');
-      // const time = window.innerWidth < 768 ? 2200 : 300;
-      // setTimeout(() => {
       new Swiper('.slider-gallery', {
         slidesPerView: 2.5,
         spaceBetween: 20,
@@ -4036,8 +4034,7 @@ let photos = setInterval(() => {
           },
         },
       });
-    });
-    // }, time);
+    }, time);
 
     document
       .querySelectorAll('.slider-gallery .swiper-slide')
@@ -4090,7 +4087,8 @@ let whyTour = setInterval(() => {
         <div class="right">
             <img src="${
               document.querySelector('.about-tour .left_info .text img').dataset
-                .cfsrc
+                .cfsrc ||
+              document.querySelector('.about-tour .left_info .text img').src
             }" alt="image tour">
         </div>`;
 
