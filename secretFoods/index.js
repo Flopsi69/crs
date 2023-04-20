@@ -3442,12 +3442,22 @@ let init = setInterval(() => {
             }
           }
 
-          const time = window.innerWidth < 768 ? 2200 : 300;
-
-          setTimeout(() => {
-            console.log('fireeeee Slider 2');
-
-            new Swiper('.slider-review', {
+          if (window.innerWidth < 768) {
+            new Swiper('.slider-gallery', {
+              loop: true,
+              slidesPerView: 1.1,
+              spaceBetween: 16,
+              pagination: {
+                el: '.slider-review .swiper-pagination',
+                type: 'bullets',
+              },
+              navigation: {
+                nextEl: '.slider-review .swiper-button-next',
+                prevEl: '.slider-review .swiper-button-prev',
+              },
+            });
+          } else {
+            new Swiper('.slider-gallery', {
               loop: true,
               slidesPerView: 3,
               spaceBetween: 20,
@@ -3459,18 +3469,10 @@ let init = setInterval(() => {
                 nextEl: '.slider-review .swiper-button-next',
                 prevEl: '.slider-review .swiper-button-prev',
               },
-              breakpoints: {
-                768: {
-                  slidesPerView: 1.1,
-                  spaceBetween: 16,
-                  pagination: {
-                    el: '.slider-review .swiper-pagination',
-                    type: 'bullets',
-                  },
-                },
-              },
             });
-          }, time);
+          }
+
+          // const time = window.innerWidth < 768 ? 2200 : 300;
         }
 
         let isVisibleReview = false;
