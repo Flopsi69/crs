@@ -3459,16 +3459,6 @@ let init = setInterval(() => {
                 nextEl: '.slider-review .swiper-button-next',
                 prevEl: '.slider-review .swiper-button-prev',
               },
-              breakpoints: {
-                768: {
-                  slidesPerView: 1.1,
-                  spaceBetween: 16,
-                  pagination: {
-                    el: '.slider-review .swiper-pagination',
-                    type: 'bullets',
-                  },
-                },
-              },
             });
           }, time);
         }
@@ -4008,6 +3998,7 @@ let photos = setInterval(() => {
     });
     swiperPopup.controller.control = swiper;
     swiper.controller.control = swiperPopup;
+    console.log('window.innerWidth', window.innerWidth);
     if (window.innerWidth < 768) {
       new Swiper('.slider-gallery', {
         slidesPerView: 1.1,
