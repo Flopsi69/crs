@@ -3443,7 +3443,7 @@ let init = setInterval(() => {
           }
 
           if (window.innerWidth < 768) {
-            new Swiper('.slider-gallery', {
+            new Swiper('.slider-review', {
               loop: true,
               slidesPerView: 1.1,
               spaceBetween: 16,
@@ -3457,7 +3457,7 @@ let init = setInterval(() => {
               },
             });
           } else {
-            new Swiper('.slider-gallery', {
+            new Swiper('.slider-review', {
               loop: true,
               slidesPerView: 3,
               spaceBetween: 20,
