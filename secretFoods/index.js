@@ -4595,6 +4595,7 @@ state.then((state) => {
             citys[i].classList.contains('country-16-title-nmt')
           ) {
             let title = citys[i].querySelector('a').innerHTML;
+            console.log('title', title);
             if (i == citys.length - 1) {
               listCountry += `</ul></li>`;
             } else {
@@ -4612,6 +4613,28 @@ state.then((state) => {
         document
           .querySelector(`.is_menu_tours [data-continent="${key}"] > ul`)
           .insertAdjacentHTML('beforeend', listCountry);
+      }
+
+      let isUSA = false;
+      for (let el of document.querySelectorAll(
+        '.is_menu_tours [data-continent="north-america"] > ul > li'
+      )) {
+        if (
+          !isUSA &&
+          el.querySelector('p').innerText.includes('United States of America')
+        ) {
+          isUSA = true;
+          el.classList.add('lav-usa-unity');
+        } else if (
+          isUSA &&
+          el.querySelector('p').innerText.includes('United States of America')
+        ) {
+          document
+            .querySelector('.lav-usa-unity ul')
+            .insertAdjacentHTML('beforeend', el.querySelector('ul').innerHTML);
+
+          el.remove();
+        }
       }
 
       document.querySelectorAll('.is_menu_tours li p').forEach((item) => {
