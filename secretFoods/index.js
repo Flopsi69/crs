@@ -2811,14 +2811,31 @@ let price = setInterval(() => {
           .querySelector('#plugin .price.no-mobile')
           .innerHTML.split('/ ')[0]
       } per adult`;
-      document
-        .querySelector('#tour_f_btn')
-        .insertAdjacentHTML(
-          'afterbegin',
-          `<div class='lav-sticky__price'><span class='lav-currency'>€</span><span class='lav-price'>${document
-            .querySelector('#plugin .price.no-mobile span')
-            .innerText.replace('€', '')}</span> / per adult</div>`
-        );
+      if (document.querySelector('#tour_f_btn')) {
+        document
+          .querySelector('#tour_f_btn')
+          .insertAdjacentHTML(
+            'afterbegin',
+            `<div class='lav-sticky__price'><span class='lav-currency'></span><span class='lav-price'>${
+              document.querySelector('#plugin .price.no-mobile span').innerText
+            }</span> / per adult</div>`
+          );
+      } else {
+        setTimeout(() => {
+          if (document.querySelector('#tour_f_btn')) {
+            document
+              .querySelector('#tour_f_btn')
+              .insertAdjacentHTML(
+                'afterbegin',
+                `<div class='lav-sticky__price'><span class='lav-currency'></span><span class='lav-price'>${
+                  document.querySelector('#plugin .price.no-mobile span')
+                    .innerText
+                }</span> / per adult</div>`
+              );
+          }
+        }, 1500);
+      }
+
       document.querySelector('.header_sticky .is_price').innerHTML =
         document.querySelector('#plugin .price.no-mobile').innerHTML;
     } else if (
@@ -3425,8 +3442,10 @@ let init = setInterval(() => {
             }
           }
 
-          const time = window.innerWidth < 768 ? 1500 : 300;
-          setTimeout(() => {
+          // const time = window.innerWidth < 768 ? 2200 : 300;
+          // setTimeout(() => {
+          document.addEventListener('DOMContentLoaded', function () {
+            console.log('fireeeee Slider 2');
             new Swiper('.slider-review', {
               loop: true,
               slidesPerView: 3,
@@ -3450,7 +3469,8 @@ let init = setInterval(() => {
                 },
               },
             });
-          }, time);
+          });
+          // }, time);
         }
 
         let isVisibleReview = false;
@@ -3988,9 +4008,10 @@ let photos = setInterval(() => {
     });
     swiperPopup.controller.control = swiper;
     swiper.controller.control = swiperPopup;
-
-    const time = window.innerWidth < 768 ? 1500 : 300;
-    setTimeout(() => {
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('fireeeee Slider 1');
+      // const time = window.innerWidth < 768 ? 2200 : 300;
+      // setTimeout(() => {
       new Swiper('.slider-gallery', {
         slidesPerView: 2.5,
         spaceBetween: 20,
@@ -4014,7 +4035,8 @@ let photos = setInterval(() => {
           },
         },
       });
-    }, time);
+    });
+    // }, time);
 
     document
       .querySelectorAll('.slider-gallery .swiper-slide')
@@ -4066,9 +4088,11 @@ let whyTour = setInterval(() => {
         </div>
         <div class="right">
             <img src="${
-              document.querySelector('.about-tour .left_info .text img').src
+              document.querySelector('.about-tour .left_info .text img').dataset
+                .cfsrc
             }" alt="image tour">
         </div>`;
+
     //set height bg gray
     setTimeout(() => {
       document.querySelector('.why-tour').style = `--height:${
