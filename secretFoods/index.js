@@ -4106,7 +4106,7 @@ let whyTour = setInterval(() => {
               document.querySelector('.about-tour .left_info .text p').innerHTML
             }</p>
             <div class="d-md-flex justify-content-md-between btns">
-                <a href="#plugin" class="btn-customer" onclick="pushDataLayer('Click on button on Why section','Book tour')">Book tour</a>
+                <a href="#plugin" class="btn-customer lav-book-mob" onclick="pushDataLayer('Click on button on Why section','Book tour')">Book tour</a>
                 <a href="/buy-gift/" class="btn-customer gold d-flex align-items-center justify-content-center" onclick="pushDataLayer('Click on button on Why section',' Buy this tour as a gift')">
                     <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.375 11.1429C1.375 11.625 1.75781 12 2.25 12H6.625V7.71429H1.375V11.1429ZM8.375 12H12.75C13.2148 12 13.625 11.625 13.625 11.1429V7.71429H8.375V12ZM13.625 3.42857H12.4492C12.6406 3.10714 12.75 2.75893 12.75 2.35714C12.75 1.07143 11.6562 0 10.3438 0C9.19531 0 8.45703 0.589286 7.52734 1.84821C6.57031 0.589286 5.83203 0 4.71094 0C3.37109 0 2.30469 1.07143 2.30469 2.35714C2.30469 2.75893 2.38672 3.10714 2.57812 3.42857H1.375C0.882812 3.42857 0.5 3.83036 0.5 4.28571V6.42857C0.5 6.66964 0.691406 6.85714 0.9375 6.85714H14.0625C14.2812 6.85714 14.5 6.66964 14.5 6.42857V4.28571C14.5 3.83036 14.0898 3.42857 13.625 3.42857ZM4.68359 3.42857C4.08203 3.42857 3.58984 2.97321 3.58984 2.35714C3.58984 1.76786 4.08203 1.28571 4.68359 1.28571C5.23047 1.28571 5.64062 1.39286 7.0625 3.42857H4.68359ZM10.3438 3.42857H7.96484C9.38672 1.39286 9.76953 1.28571 10.3438 1.28571C10.9453 1.28571 11.4375 1.76786 11.4375 2.35714C11.4375 2.97321 10.9453 3.42857 10.3438 3.42857Z" fill="#C39958"/>
@@ -4123,6 +4123,17 @@ let whyTour = setInterval(() => {
             }" alt="image tour">
         </div>`;
 
+    if (innerWidth < 768) {
+      if (document.querySelector('.tour_fixed_btn')) {
+        document.querySelector('.lav-book-mob').href =
+          document.querySelector('.tour_fixed_btn').href;
+      } else {
+        setTimeout(() => {
+          document.querySelector('.lav-book-mob').href =
+            document.querySelector('.tour_fixed_btn').href;
+        }, 1200);
+      }
+    }
     //set height bg gray
     setTimeout(() => {
       document.querySelector('.why-tour').style = `--height:${
