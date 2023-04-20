@@ -4142,7 +4142,7 @@ let whyTour = setInterval(() => {
 let otherTours = setInterval(() => {
   if (
     document.querySelector('.other-tours') != null &&
-    (document.querySelector('.country_tours') != null ||
+    (document.querySelector('.country_tours .container .row') != null ||
       (document.querySelector('.similar_tours') != null &&
         document.querySelectorAll('.breadcrumbs-customer li a')[1] != null))
   ) {
