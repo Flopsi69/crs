@@ -3530,17 +3530,23 @@ let init = setInterval(() => {
     let acceptCookies = document.querySelector('.acceptcookies');
     let readmorebutton = document.querySelector('.readmore-cookies-button');
 
-    acceptCookies.addEventListener('click', function () {
-      bookbutton.style.bottom = '0px';
-    });
+    setTimeout(() => {
+      if (acceptCookies) {
+        acceptCookies.addEventListener('click', function () {
+          bookbutton.style.bottom = '0px';
+        });
+      }
 
-    readmorebutton.addEventListener('click', function () {
-      bookbutton.style.bottom = '160px';
-    });
+      if (readmorebutton) {
+        readmorebutton.addEventListener('click', function () {
+          bookbutton.style.bottom = '160px';
+        });
+      }
 
-    if (cookieAlert.classList.contains('show')) {
-      bookbutton.style.bottom = '70px';
-    }
+      if (cookieAlert && cookieAlert.classList.contains('show')) {
+        bookbutton.style.bottom = '70px';
+      }
+    }, 500);
   }
 });
 
