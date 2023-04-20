@@ -4475,6 +4475,7 @@ state.then((state) => {
             @media(max-width: 767px) {
                 .menu_burger.active {
                     height: 25px;
+                    padding: 0;
                 }
             }
             .menu_burger svg {
