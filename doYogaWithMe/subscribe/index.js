@@ -1695,32 +1695,38 @@ function initInstructions() {
     parentEl.insertAdjacentHTML('beforeend', slide);
   }
 
-  const splide = new Splide('.splide', {
-    autoWidth: true,
-    pagination: false,
-    gap: '1em',
-  });
+  const waitingSplide = setInterval(() => {
+    if (typeof Splide === 'function') {
+      clearInterval(waitingSplide);
 
-  splide.on('mounted', function () {
-    splide.root.querySelector('.splide__progress').style.display = 'block';
-    var progressBar = splide.root.querySelector('.splide__progressBar');
+      const splide = new Splide('.splide', {
+        autoWidth: true,
+        pagination: false,
+        gap: '1em',
+      });
 
-    console.log(progressBar);
+      splide.on('mounted', function () {
+        splide.root.querySelector('.splide__progress').style.display = 'block';
+        var progressBar = splide.root.querySelector('.splide__progressBar');
 
-    if (progressBar) {
-      var fillProgressBar = function fillProgressBar() {
-        var end = splide.Components.Controller.getEnd() + 1;
-        var rate = Math.min((splide.index + 1) / end, 1);
-        progressBar.style.width = String(100 * rate) + '%';
-      };
+        console.log(progressBar);
 
-      fillProgressBar();
-      splide.on('mounted move', fillProgressBar);
+        if (progressBar) {
+          var fillProgressBar = function fillProgressBar() {
+            var end = splide.Components.Controller.getEnd() + 1;
+            var rate = Math.min((splide.index + 1) / end, 1);
+            progressBar.style.width = String(100 * rate) + '%';
+          };
+
+          fillProgressBar();
+          splide.on('mounted move', fillProgressBar);
+        }
+        // $sfc.find('.sfc-slider__progress').show();
+      });
+
+      splide.mount();
     }
-    // $sfc.find('.sfc-slider__progress').show();
   });
-
-  splide.mount();
 }
 
 function observerView() {
