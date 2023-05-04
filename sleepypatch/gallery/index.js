@@ -7,7 +7,8 @@ const settings = {
   observe: false,
 };
 
-let isDisbleVideo = false;
+let isDisbleVideo,
+  isTrustedScroll = false;
 
 //Clarity
 if (settings.clarity) {
@@ -349,7 +350,11 @@ function init() {
     .addEventListener('click', function () {
       gaEvent('Click on element', 'Trasted score');
 
+      isTrustedScroll = true;
       document.querySelector('#reviews').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        isTrustedScroll = false;
+      }, 1500);
     });
 
   document.querySelector('.trust-rating').classList.add('lav-watch');
@@ -667,20 +672,22 @@ function observerView() {
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('trust-rating')) {
           gaEvent('Element visibility', 'Trasted score');
+          observer.unobserve(entry.target);
         }
-        if (entry.target.classList.contains('lav-video')) {
+        if (entry.target.classList.contains('lav-video') && !isTrustedScroll) {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           document.querySelector('.lav-video video').play();
           setTimeout(() => {
             isDisbleVideo = false;
           }, 300);
+          observer.unobserve(entry.target);
+
           // isElementInViewport(
           //   entry.target,
           //   'Visibility Subscription features section'
           // );
         }
-        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
