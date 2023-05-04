@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/sleepypatch/gallery',
-  clarity: false,
+  clarity: true,
   observe: false,
 };
 
@@ -37,7 +37,7 @@ function gaEvent(action, label) {
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    // dataLayer.push(objData);
+    dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
   }
