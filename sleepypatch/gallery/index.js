@@ -305,7 +305,13 @@ document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
-init();
+let initInterval = setInterval(() => {
+  if (document.querySelector('.navbar')) {
+    clearInterval(initInterval);
+    init();
+  }
+}, 100);
+
 function init() {
   console.log('init');
   document
@@ -389,12 +395,12 @@ function addModal() {
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
       <div class='lav-modal__inner'>
-        <video data-video='1' class='lav-modal__video active' width="100%" controls>
+        <video data-video='1' class='lav-modal__video active' width="100%" controls preload="none">
           <source src="${settings.dir}/img/video1.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
 
-        <video data-video='2' class='lav-modal__video' width="100%" controls>
+        <video data-video='2' class='lav-modal__video' width="100%" controls preload="none">
         <source src="${settings.dir}/img/video2.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video tag.
       </video>
