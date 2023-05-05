@@ -497,6 +497,13 @@ function addVideo() {
     .querySelector('.sleeping-problems')
     .insertAdjacentHTML('afterend', el);
 
+  document
+    .querySelector('.lav-video-watch')
+    .addEventListener('click', function () {
+      console.log('fire');
+      document.querySelector('.lav-video video').play();
+    });
+
   const videoEl = document.querySelector('.lav-video video');
 
   setTimeout(() => {
@@ -510,7 +517,7 @@ function addVideo() {
       let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
       gaEvent('Click on element', `Video. Pause - ${time ? time : 0}%`);
     });
-  }, 1500);
+  }, 1000);
 }
 
 function addGallery() {
@@ -693,12 +700,6 @@ function observerView() {
           entry.target.classList.contains('lav-video-watch') &&
           !isTrustedScroll
         ) {
-          document
-            .querySelector('.lav-video-watch')
-            .addEventListener('click', function () {
-              console.log('fire');
-              document.querySelector('.lav-video video').play();
-            });
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
 
