@@ -692,6 +692,7 @@ function observerView() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        console.log('intersaction', entry.target);
         if (entry.target.classList.contains('trust-rating')) {
           gaEvent('Element visibility', 'Trasted score');
           observer.unobserve(entry.target);
