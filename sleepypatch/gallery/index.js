@@ -501,7 +501,7 @@ function addVideo() {
     .insertAdjacentHTML('afterend', el);
 
   document
-    .querySelector('.lav-video-watch')
+    .querySelector('.lav-video-trigger')
     .addEventListener('click', function () {
       console.log('fire');
       document.querySelector('.lav-video video').play();
