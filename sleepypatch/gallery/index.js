@@ -483,7 +483,7 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" class='lav-hide' controls preload="auto" playsinline autoplay poster='${settings.dir}/img/poster.png'>
+        <video width="100%" class='lav-hide' controls poster='${settings.dir}/img/poster.png'>
           <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
@@ -700,30 +700,29 @@ function observerView() {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           // document.querySelector('.lav-video video').muted = true;
-          document.querySelector('.lav-video video').load();
-          document
-            .querySelector('.lav-video video')
-            .classList.remove('lav-hide');
-          try {
-            document.querySelector('.lav-video video').play();
-          } catch (er) {
-            console.log('catch', er);
-          }
+          // document.querySelector('.lav-video video').load();
+          document.body.classList.add('lav-fired-video');
 
-          console.log('1', document.querySelector('.lav-video video').paused);
           setTimeout(() => {
-            console.log('2', document.querySelector('.lav-video video').paused);
-            if (document.querySelector('.lav-video video').paused) {
-              document.querySelector('.lav-video video').play();
+            document
+              .querySelector('.lav-video video')
+              .classList.remove('lav-hide');
+            document.querySelector('.lav-video video').play();
 
-              console.log(
-                '3',
-                document.querySelector('.lav-video video').paused
-              );
-            }
+            console.log('1', document.querySelector('.lav-video video').paused);
+          }, 100);
 
-            // document.querySelector('.lav-video video').muted = false;
-          }, 1000);
+          // setTimeout(() => {
+          //   console.log('2', document.querySelector('.lav-video video').paused);
+          //   if (document.querySelector('.lav-video video').paused) {
+          //     document.querySelector('.lav-video video').play();
+
+          //     console.log(
+          //       '3',
+          //       document.querySelector('.lav-video video').paused
+          //     );
+          //   }
+          // }, 1000);
 
           setTimeout(() => {
             isDisbleVideo = false;
