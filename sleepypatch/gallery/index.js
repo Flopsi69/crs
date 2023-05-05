@@ -72,6 +72,10 @@ const styles = `
   header .js-mobile.wave-bg {
     display: none!important;
   }
+  .lav-video-watch {
+    display: block;
+    height: 1px;
+  }
   .js-iphone .transparent {
     margin-top: 0;
   }
@@ -693,12 +697,8 @@ function observerView() {
           isDisbleVideo = true;
           document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
-          document
-            .querySelector('.lav-video video')
-            .play()
-            .then(() => {
-              document.querySelector('.lav-video video').muted = false;
-            });
+          document.querySelector('.lav-video video').play();
+
           console.log('1', document.querySelector('.lav-video video').paused);
           if (document.querySelector('.lav-video video').paused) {
             setTimeout(() => {
