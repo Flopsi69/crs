@@ -475,7 +475,6 @@ function addModal() {
 
 function addVideo() {
   const el = `
-    <section class='lav-video lav-watch'>
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
@@ -484,6 +483,7 @@ function addVideo() {
           Your browser doesn't support HTML5 video tag.
         </video>
 
+        <span class='lav-watch lav-video-watch'></span>
       </div>
     </section>
   `;
@@ -680,20 +680,26 @@ function observerView() {
           gaEvent('Element visibility', 'Trasted score');
           observer.unobserve(entry.target);
         }
-        if (entry.target.classList.contains('lav-video') && !isTrustedScroll) {
+        if (
+          entry.target.classList.contains('lav-video-watch') &&
+          !isTrustedScroll
+        ) {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
-          document
-            .querySelector('.lav-video video')
-            .play()
-            .then(() => {
-              document.querySelector('.lav-video video').muted = false;
-            });
+          setTimeout(() => {
+            document
+              .querySelector('.lav-video video')
+              .play()
+              .then(() => {
+                document.querySelector('.lav-video video').muted = false;
+              });
+          }, 100);
+
           setTimeout(() => {
             isDisbleVideo = false;
-          }, 300);
+          }, 1000);
           observer.unobserve(entry.target);
 
           // isElementInViewport(
