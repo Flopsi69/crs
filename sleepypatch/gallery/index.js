@@ -706,7 +706,11 @@ function observerView() {
 
           document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
+          document.querySelector('.lav-video video').currentTime = 0;
           document.querySelector('.lav-video video').play();
+          setTimeout(() => {
+            document.querySelector('.lav-video video').play();
+          }, 500);
 
           // console.log('prefire');
           // document
