@@ -706,7 +706,7 @@ function observerView() {
 
           console.log('prefire');
           document
-            .querySelector('.lav-video-watch')
+            .querySelector('.lav-video-trigger')
             .dispatchEvent(new Event('click'));
 
           setTimeout(() => {
