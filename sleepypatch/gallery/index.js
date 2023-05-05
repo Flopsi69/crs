@@ -660,6 +660,9 @@ function initSlider() {
   });
 
   slider.mount();
+
+  body.dispatchEvent(new Event('click'));
+  body.click();
 }
 
 function connectSplide() {
@@ -697,7 +700,6 @@ function observerView() {
           isDisbleVideo = true;
           // document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
-          document.querySelector('.lav-video video').click();
           try {
             document.querySelector('.lav-video video').play();
           } catch (er) {
