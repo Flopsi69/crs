@@ -475,6 +475,7 @@ function addModal() {
 
 function addVideo() {
   const el = `
+    <section class='lav-video'>
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
