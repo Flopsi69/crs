@@ -511,12 +511,14 @@ function addVideo() {
 
   setTimeout(() => {
     videoEl.addEventListener('play', () => {
-      if (!isDisbleVideo) {
-        let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
-        gaEvent('Click on element', `Video. Play - ${time ? time : 0}%`);
-      }
+      if (isDisbleVideo) return true;
+
+      let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
+      gaEvent('Click on element', `Video. Play - ${time ? time : 0}%`);
     });
     videoEl.addEventListener('pause', () => {
+      if (isDisbleVideo) return true;
+
       let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
       gaEvent('Click on element', `Video. Pause - ${time ? time : 0}%`);
     });
