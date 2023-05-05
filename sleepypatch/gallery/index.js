@@ -72,9 +72,12 @@ const styles = `
   header .js-mobile.wave-bg {
     display: none!important;
   }
-  .lav-video-watch {
+  .lav-video-trigger {
     display: block;
     height: 1px;
+    display: block;
+    width: 100%;
+    opacity: 0;
   }
   .js-iphone .transparent {
     margin-top: 0;
@@ -479,7 +482,7 @@ function addModal() {
 
 function addVideo() {
   const el = `
-    <section class='lav-video'>
+    <section class='lav-video lav-watch'>
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
@@ -488,7 +491,7 @@ function addVideo() {
           Your browser doesn't support HTML5 video tag.
         </video>
 
-        <button class='lav-watch lav-video-watch'></button>
+        <button class='lav-video-trigger'>-</button>
       </div>
     </section>
   `;
@@ -697,10 +700,7 @@ function observerView() {
           gaEvent('Element visibility', 'Trasted score');
           observer.unobserve(entry.target);
         }
-        if (
-          entry.target.classList.contains('lav-video-watch') &&
-          !isTrustedScroll
-        ) {
+        if (entry.target.classList.contains('lav-video') && !isTrustedScroll) {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
 
@@ -724,26 +724,8 @@ function observerView() {
   }, observerOptions);
 
   for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+    console.log('observe', el);
     observer.observe(el);
-  }
-
-  function isElementInViewportold(el, event, timeout = 2) {
-    setTimeout(() => {
-      const rect = el.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-
-      if (
-        rect.top + rect.height * 0.3 < windowHeight &&
-        rect.bottom > rect.height * 0.3
-      ) {
-        observer.unobserve(el);
-        if (!el.classList.contains('in-view')) {
-          gaEvent(event);
-          el.classList.add('in-view');
-        }
-      }
-    }, timeout * 1000);
   }
 }
 
