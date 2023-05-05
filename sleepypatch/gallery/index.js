@@ -494,16 +494,18 @@ function addVideo() {
 
   const videoEl = document.querySelector('.lav-video video');
 
-  videoEl.addEventListener('play', () => {
-    if (!isDisbleVideo) {
+  setTimeout(() => {
+    videoEl.addEventListener('play', () => {
+      if (!isDisbleVideo) {
+        let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
+        gaEvent('Click on element', `Video. Play - ${time ? time : 0}%`);
+      }
+    });
+    videoEl.addEventListener('pause', () => {
       let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
-      gaEvent('Click on element', `Video. Play - ${time ? time : 0}%`);
-    }
-  });
-  videoEl.addEventListener('pause', () => {
-    let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
-    gaEvent('Click on element', `Video. Pause - ${time ? time : 0}%`);
-  });
+      gaEvent('Click on element', `Video. Pause - ${time ? time : 0}%`);
+    });
+  }, 1500);
 }
 
 function addGallery() {
@@ -688,18 +690,21 @@ function observerView() {
           isDisbleVideo = true;
           document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
-          setTimeout(() => {
-            document
-              .querySelector('.lav-video video')
-              .play()
-              .then(() => {
-                document.querySelector('.lav-video video').muted = false;
-              });
-          }, 100);
+          document
+            .querySelector('.lav-video video')
+            .play()
+            .then(() => {
+              document.querySelector('.lav-video video').muted = false;
+            });
+          if (document.querySelector('.lav-video video').paused) {
+            setTimeout(() => {
+              document.querySelector('.lav-video video').play();
+            }, 500);
+          }
 
           setTimeout(() => {
             isDisbleVideo = false;
-          }, 1000);
+          }, 1200);
           observer.unobserve(entry.target);
 
           // isElementInViewport(
