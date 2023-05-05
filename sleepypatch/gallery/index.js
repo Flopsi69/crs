@@ -684,12 +684,13 @@ function observerView() {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           document.querySelector('.lav-video video').muted = true;
-          setTimeout(() => {
-            document.querySelector('.lav-video video').play();
-          }, 400);
-          setTimeout(() => {
-            document.querySelector('.lav-video video').muted = false;
-          }, 500);
+          document.querySelector('.lav-video video').load();
+          document
+            .querySelector('.lav-video video')
+            .play()
+            .then(() => {
+              document.querySelector('.lav-video video').muted = false;
+            });
           setTimeout(() => {
             isDisbleVideo = false;
           }, 300);
