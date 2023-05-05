@@ -72,13 +72,6 @@ const styles = `
   header .js-mobile.wave-bg {
     display: none!important;
   }
-  .lav-video-trigger {
-    display: block;
-    height: 1px;
-    display: block;
-    width: 100%;
-    opacity: 0;
-  }
   .js-iphone .transparent {
     margin-top: 0;
   }
@@ -486,12 +479,10 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" controls muted poster='${settings.dir}/img/poster.png'>
+        <video width="100%" controls poster='${settings.dir}/img/poster.png'>
           <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
-
-        <button class='lav-video-trigger'>-</button>
       </div>
     </section>
   `;
@@ -499,13 +490,6 @@ function addVideo() {
   document
     .querySelector('.sleeping-problems')
     .insertAdjacentHTML('afterend', el);
-
-  document
-    .querySelector('.lav-video-trigger')
-    .addEventListener('click', function () {
-      console.log('fire');
-      document.querySelector('.lav-video video').play();
-    });
 
   const videoEl = document.querySelector('.lav-video video');
 
@@ -705,26 +689,13 @@ function observerView() {
         if (entry.target.classList.contains('lav-video') && !isTrustedScroll) {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
+          document.querySelector('.lav-video video').click();
           document.querySelector('.lav-video video').play();
-          document.querySelector('.lav-video video').load();
-          setTimeout(() => {
-            document.querySelector('.lav-video video').play();
-          }, 1000);
-
-          // console.log('prefire');
-          // document
-          //   .querySelector('.lav-video-trigger')
-          //   .dispatchEvent(new Event('click'));
 
           setTimeout(() => {
             isDisbleVideo = false;
           }, 1500);
           observer.unobserve(entry.target);
-
-          // isElementInViewport(
-          //   entry.target,
-          //   'Visibility Subscription features section'
-          // );
         }
       }
     });
