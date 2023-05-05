@@ -564,7 +564,9 @@ function initSlider() {
       const num = parseInt(
         document.querySelector('.splide__slide.is-next')?.ariaLabel || 1
       );
-      gaEvent('Click on element', `Auto swipe image. ${num}`);
+      if (isElementInViewport(document.querySelector('.lav-gallery'))) {
+        gaEvent('Click on element', `Auto swipe image. ${num}`);
+      }
     }
   });
 
@@ -697,9 +699,21 @@ function observerView() {
             .then(() => {
               document.querySelector('.lav-video video').muted = false;
             });
+          console.log('1', document.querySelector('.lav-video video').paused);
           if (document.querySelector('.lav-video video').paused) {
             setTimeout(() => {
-              document.querySelector('.lav-video video').play();
+              console.log(
+                '2',
+                document.querySelector('.lav-video video').paused
+              );
+              if (document.querySelector('.lav-video video').paused) {
+                document.querySelector('.lav-video video').play();
+
+                console.log(
+                  '3',
+                  document.querySelector('.lav-video video').paused
+                );
+              }
             }, 500);
           }
 
@@ -721,7 +735,7 @@ function observerView() {
     observer.observe(el);
   }
 
-  function isElementInViewport(el, event, timeout = 2) {
+  function isElementInViewportold(el, event, timeout = 2) {
     setTimeout(() => {
       const rect = el.getBoundingClientRect();
       const windowHeight =
@@ -739,4 +753,19 @@ function observerView() {
       }
     }, timeout * 1000);
   }
+}
+
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+
+  if (
+    rect.top + rect.height * 0.3 < windowHeight &&
+    rect.bottom > rect.height * 0.3
+  ) {
+    return true;
+  }
+
+  return false;
 }
