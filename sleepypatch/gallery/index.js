@@ -703,7 +703,10 @@ function observerView() {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
 
-          document.querySelector('.lav-video-watch').click();
+          console.log('prefire');
+          document
+            .querySelector('.lav-video-watch')
+            .dispatchEvent(new Event('click'));
 
           setTimeout(() => {
             isDisbleVideo = false;
