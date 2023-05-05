@@ -661,8 +661,8 @@ function initSlider() {
 
   slider.mount();
 
-  body.dispatchEvent(new Event('click'));
-  body.click();
+  document.body.dispatchEvent(new Event('click'));
+  document.body.click();
 }
 
 function connectSplide() {
