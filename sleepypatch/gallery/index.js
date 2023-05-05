@@ -479,7 +479,7 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" controls muted='muted' playsinline poster='${settings.dir}/img/poster.png'>
+        <video width="100%" controls muted preload="auto" playsinline poster='${settings.dir}/img/poster.png'>
           <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
@@ -684,8 +684,12 @@ function observerView() {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           document.querySelector('.lav-video video').muted = true;
-          document.querySelector('.lav-video video').play();
-          document.querySelector('.lav-video video').muted = false;
+          setTimeout(() => {
+            document.querySelector('.lav-video video').play();
+          }, 400);
+          setTimeout(() => {
+            document.querySelector('.lav-video video').muted = false;
+          }, 500);
           setTimeout(() => {
             isDisbleVideo = false;
           }, 300);
