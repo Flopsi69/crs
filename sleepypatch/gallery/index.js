@@ -704,10 +704,13 @@ function observerView() {
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
 
-          console.log('prefire');
-          document
-            .querySelector('.lav-video-trigger')
-            .dispatchEvent(new Event('click'));
+          document.querySelector('.lav-video video').muted = true;
+          document.querySelector('.lav-video video').play();
+
+          // console.log('prefire');
+          // document
+          //   .querySelector('.lav-video-trigger')
+          //   .dispatchEvent(new Event('click'));
 
           setTimeout(() => {
             isDisbleVideo = false;
