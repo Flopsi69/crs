@@ -483,7 +483,7 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" controls preload="auto" playsinline poster='${settings.dir}/img/poster.png'>
+        <video width="100%" class='lav-hide' controls preload="auto" playsinline autoplay poster='${settings.dir}/img/poster.png'>
           <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
@@ -660,9 +660,6 @@ function initSlider() {
   });
 
   slider.mount();
-
-  document.body.dispatchEvent(new Event('click'));
-  document.body.click();
 }
 
 function connectSplide() {
@@ -696,10 +693,17 @@ function observerView() {
           entry.target.classList.contains('lav-video-watch') &&
           !isTrustedScroll
         ) {
+          document
+            .querySelector('.lav-video')
+            .dispatchEvent(new Event('click'));
+          document.querySelector('.lav-video').click();
           gaEvent('Element visibility', 'Video');
           isDisbleVideo = true;
           // document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
+          document
+            .querySelector('.lav-video video')
+            .classList.remove('lav-hide');
           try {
             document.querySelector('.lav-video video').play();
           } catch (er) {
