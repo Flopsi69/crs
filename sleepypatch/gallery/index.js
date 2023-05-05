@@ -697,7 +697,11 @@ function observerView() {
           isDisbleVideo = true;
           // document.querySelector('.lav-video video').muted = true;
           document.querySelector('.lav-video video').load();
-          document.querySelector('.lav-video video').play();
+          try {
+            document.querySelector('.lav-video video').play();
+          } catch (er) {
+            console.log('catch', er);
+          }
 
           console.log('1', document.querySelector('.lav-video video').paused);
           if (document.querySelector('.lav-video video').paused) {
