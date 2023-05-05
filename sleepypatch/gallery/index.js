@@ -704,32 +704,23 @@ function observerView() {
           }
 
           console.log('1', document.querySelector('.lav-video video').paused);
-          if (document.querySelector('.lav-video video').paused) {
-            setTimeout(() => {
+          setTimeout(() => {
+            console.log('2', document.querySelector('.lav-video video').paused);
+            if (document.querySelector('.lav-video video').paused) {
+              document.querySelector('.lav-video video').play();
+
               console.log(
-                '2',
+                '3',
                 document.querySelector('.lav-video video').paused
               );
-              if (document.querySelector('.lav-video video').paused) {
-                document.querySelector('.lav-video video').play();
+            }
 
-                document.querySelector('.lav-video video').muted = false;
-
-                console.log(
-                  '3',
-                  document.querySelector('.lav-video video').paused
-                );
-              } else {
-                document.querySelector('.lav-video video').muted = false;
-              }
-            }, 500);
-          } else {
             document.querySelector('.lav-video video').muted = false;
-          }
+          }, 1000);
 
           setTimeout(() => {
             isDisbleVideo = false;
-          }, 1200);
+          }, 1500);
           observer.unobserve(entry.target);
 
           // isElementInViewport(
