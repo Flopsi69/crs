@@ -394,12 +394,12 @@ function addModal() {
         <img src='${settings.dir}/img/modal-close.svg'>
       </div>
       <div class='lav-modal__inner'>
-        <video data-video='1' class='lav-modal__video active' width="100%" controls >
+        <video data-video='1' playsinline class='lav-modal__video active' width="100%" controls >
           <source src="${settings.dir}/img/video1.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
 
-        <video data-video='2' class='lav-modal__video' width="100%" controls >
+        <video data-video='2' playsinline class='lav-modal__video' width="100%" controls >
         <source src="${settings.dir}/img/video2.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video tag.
       </video>
@@ -478,7 +478,7 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" controls poster='${settings.dir}/img/poster.png'>
+        <video width="100%" playsinline controls poster='${settings.dir}/img/poster.png'>
           <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
