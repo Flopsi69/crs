@@ -7,8 +7,7 @@ const settings = {
   observe: false,
 };
 
-let isDisbleVideo,
-  isTrustedScroll = false;
+let isTrustedScroll = false;
 
 //Clarity
 if (settings.clarity) {
@@ -354,7 +353,7 @@ function init() {
   document
     .querySelector('.trust-rating')
     .addEventListener('click', function () {
-      gaEvent('Click on element', 'Trasted score');
+      gaEvent('Click on element', 'Trusted score');
 
       isTrustedScroll = true;
       document.querySelector('#reviews').scrollIntoView({ behavior: 'smooth' });
@@ -495,14 +494,10 @@ function addVideo() {
 
   setTimeout(() => {
     videoEl.addEventListener('play', () => {
-      if (isDisbleVideo) return true;
-
       let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
       gaEvent('Click on element', `Video. Play - ${time ? time : 0}%`);
     });
     videoEl.addEventListener('pause', () => {
-      if (isDisbleVideo) return true;
-
       let time = parseInt((videoEl.currentTime * 100) / videoEl.duration);
       gaEvent('Click on element', `Video. Pause - ${time ? time : 0}%`);
     });
@@ -683,18 +678,11 @@ function observerView() {
       if (entry.isIntersecting) {
         console.log('intersaction', entry.target);
         if (entry.target.classList.contains('trust-rating')) {
-          gaEvent('Element visibility', 'Trasted score');
+          gaEvent('Element visibility', 'Trusted score');
           observer.unobserve(entry.target);
         }
         if (entry.target.classList.contains('lav-video') && !isTrustedScroll) {
           gaEvent('Element visibility', 'Video');
-          isDisbleVideo = true;
-          document.querySelector('.lav-video video').click();
-          document.querySelector('.lav-video video').play();
-
-          setTimeout(() => {
-            isDisbleVideo = false;
-          }, 1500);
           observer.unobserve(entry.target);
         }
       }
