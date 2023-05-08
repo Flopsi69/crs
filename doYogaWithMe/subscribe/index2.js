@@ -108,7 +108,7 @@ const styles = `
   .o-page__main {
     position: relative;
   }
-  .o-page__main:before {
+  body:not(.user-logged-in) .o-page__main:before {
     content: '';
     position: absolute;
     top: 0;
