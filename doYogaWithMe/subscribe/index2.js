@@ -1885,17 +1885,26 @@ const instructorsArr = [
   },
 ];
 
-let initInterval = setInterval(() => {
-  if (
-    document.querySelector(
-      '.menu--account [href="/yogi/login?destination=/become-a-subscriber"]'
-    ) ||
-    document.querySelector('.menu--account img.c-avatar')
-  ) {
-    clearInterval(initInterval);
-    init();
-  }
-}, 100);
+if (
+  document.querySelector(
+    '.menu--account [href="/yogi/login?destination=/become-a-subscriber"]'
+  ) ||
+  document.querySelector('.menu--account img.c-avatar')
+) {
+  init();
+} else {
+  let initInterval = setInterval(() => {
+    if (
+      document.querySelector(
+        '.menu--account [href="/yogi/login?destination=/become-a-subscriber"]'
+      ) ||
+      document.querySelector('.menu--account img.c-avatar')
+    ) {
+      clearInterval(initInterval);
+      init();
+    }
+  }, 100);
+}
 
 function init() {
   gaEvent('loaded');
