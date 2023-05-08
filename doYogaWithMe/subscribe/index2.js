@@ -1680,212 +1680,223 @@ const newLayout = `
 
 const instructorsArr = [
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06112.jpg?itok=sgK-PlK4',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06112.jpg',
     name: 'Fiji McAlpine',
     link: '/yoga-classes?field_instructor_target_id=8',
     caption: 'Vinyasa, Power, Meditation, YTT',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/satiya-channer.jpg?itok=InsGNPpx',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/satiya-channer.jpg',
     name: 'Satiya Channer',
     link: '/yoga-classes?field_instructor_target_id=123147',
     caption: 'Yin, Restorative, Hatha, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/David%20headshot%20cropped%20Jan-23.jpg?itok=RWF1FDy0',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/David%20headshot%20cropped%20Jan-23.jpg',
     name: 'David Procyshyn',
     link: '/yoga-classes?field_instructor_target_id=4',
     caption: 'Hatha, Pain Care, Meditation, YTT',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/tracy.jpg?itok=MRkk0whF',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/tracy.jpg',
     name: 'Tracey Noseworthy',
     link: '/yoga-classes?field_instructor_target_id=7041',
     caption: 'Vinyasa, Power, Meditation, YTT',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/10/DSC04949%20copy.jpg?itok=4RBggQaf',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/10/DSC04949%20copy.jpg',
     name: 'Josh Chen',
     link: '/yoga-classes?field_instructor_target_id=313027',
     caption: 'Hatha, Yin, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/02/PROFILE_MELISSA%20web%20size.jpg?itok=j005999f',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/02/PROFILE_MELISSA%20web%20size.jpg',
     name: 'Melissa Krieger',
     link: '/yoga-classes?field_instructor_target_id=467',
     caption: 'Hatha, Slow Flow, Restorative',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC01881.jpg?itok=YYhCIJ1u',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC01881.jpg',
     name: 'Helen Camisa',
     link: '/yoga-classes?field_instructor_target_id=244583',
     caption: 'Hatha, Yin, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06138%20%282%29.jpg?itok=Ap07VZfy',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/DSC06138%20%282%29.jpg',
     name: 'Andrea Ting-Luz',
     link: '/yoga-classes?field_instructor_target_id=196672',
     caption: 'Vinyasa, Hatha, Yin',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2020/04/Screenshot%202020-04-07%2013.11.01.jpg?itok=7xmZCP6U',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2020/04/Screenshot%202020-04-07%2013.11.01.jpg',
     name: 'Rachel Scott',
     link: '/yoga-classes?field_instructor_target_id=16854',
     caption: 'Vinyasa, Power, Hatha, YTT',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2016/05/yoga%20profile%20picture.jpg?itok=zeYlcZ5b',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2016/05/yoga%20profile%20picture.jpg',
     name: 'Crista Shillington',
     link: '/yoga-classes?field_instructor_target_id=133906',
     caption: 'Vinyasa, Power',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/04/Doyoga.jpeg?itok=EaLenL_w',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/04/Doyoga.jpeg',
     name: 'Sarada Jagannath',
     link: '/yoga-classes?field_instructor_target_id=326548',
     caption: 'Hatha, Pranayama',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/DSC01661-2_0.jpg?itok=yBXbn0tU',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/DSC01661-2_0.jpg',
     name: 'Araba Adjaye',
     link: '/yoga-classes?field_instructor_target_id=357388',
     caption: 'Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/Tara%20Heal%20HEADSHOT%202021%20Photo-68.jpg?itok=tidb-Vul',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/08/Tara%20Heal%20HEADSHOT%202021%20Photo-68.jpg',
     name: 'Tara Heal',
     link: '/yoga-classes?field_instructor_target_id=350658',
     caption: 'Vinyasa, Power, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/Photo%204.jpg?itok=NdCWXf4I',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/Photo%204.jpg',
     name: 'Guy Friswell',
     link: '/yoga-classes?field_instructor_target_id=266604',
     caption: 'Slow Flow, Hatha, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/unnamed%20%282%29.jpg?itok=Pe4raKYD',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2023/02/unnamed%20%282%29.jpg',
     name: 'Jonni-Lyn Friel',
     link: '/yoga-classes?field_instructor_target_id=269801',
     caption: 'Jivamukti, Vinyasa, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/11/julia-web.jpg?itok=lceNVTYr',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2022/11/julia-web.jpg',
     name: 'Julia Crouch',
     link: '/yoga-classes?field_instructor_target_id=317249',
     caption: 'Pilates, Pre/Post Natal, Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/sarah-jane-profile.jpg?itok=k5pxnCxV',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/sarah-jane-profile.jpg',
     name: 'Sarah Jane Steele',
     link: '/yoga-classes?field_instructor_target_id=90321',
     caption: 'Prenatal/Postnatal, Hatha, Yin, Restorative',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kathi.png?itok=L-EHhiwi',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kathi.png',
     name: 'Kathi Ells',
     link: '/yoga-classes?field_instructor_target_id=218644',
     caption: 'Pilates',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/08/nicky_jones.jpg?itok=3x6XOeWs',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/08/nicky_jones.jpg',
     name: 'Nicky Jones',
     link: '/yoga-classes?field_instructor_target_id=4134',
     caption: 'Restorative, Therapy, Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/04/sarah-holmes.jpg?itok=KFvyMOg-',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/04/sarah-holmes.jpg',
     name: 'Sarah Holmes de Castro',
     link: '/yoga-classes?field_instructor_target_id=189907',
     caption: 'Hatha, Restorative, Gentle',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/ron_stewart_yoga_0_0.jpg?itok=P3VkOuAh',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/ron_stewart_yoga_0_0.jpg',
     name: 'Ron Stewart',
     link: '/yoga-classes?field_instructor_target_id=15517',
     caption: 'Vinyasa, Power, Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kim_wilson.jpg?itok=LBu8xgOl',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/kim_wilson.jpg',
     name: 'Kim Wilson',
     link: '/yoga-classes?field_instructor_target_id=877',
     caption: 'Pilates',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/anastasia-thumb2.jpg?itok=coZH9g-7',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/06/anastasia-thumb2.jpg',
     name: 'Anastasia Hangemanole',
     link: '/yoga-classes?field_instructor_target_id=134',
     caption: 'Yin, Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/11/IMG_5004.jpg?itok=-ap0DV7s',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/11/IMG_5004.jpg',
     name: 'Dawn Rabey',
     link: '/yoga-classes?field_instructor_target_id=15521',
     caption: 'Kundalini, Pranayama, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2015/04/Screen%20shot%202015-04-15%20at%2011.00.26%20AM.png?itok=Percwxoz',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2015/04/Screen%20shot%202015-04-15%20at%2011.00.26%20AM.png',
     name: 'Tianne Allan',
     link: '/yoga-classes?field_instructor_target_id=834',
     caption: 'Restorative, Pain Care',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/10/alyssa_jean.jpg?itok=yGDBEezl',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/10/alyssa_jean.jpg',
     name: 'Alyssa Jean Klazek',
     link: '/yoga-classes?field_instructor_target_id=215411',
     caption: 'Yoga for Kids',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/IMG_2223_RETOUCH_V2.jpg?itok=guiKProJ',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/03/IMG_2223_RETOUCH_V2.jpg',
     name: 'Nyk Danu',
     link: '/yoga-classes?field_instructor_target_id=266789',
     caption: 'Yin, Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/12/Jeff%20with%20son.jpg?itok=OsM1Z3m1',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2017/12/Jeff%20with%20son.jpg',
     name: 'Jeff Lichty',
     link: '/yoga-classes?field_instructor_target_id=224862',
     caption: 'Ashtanga',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/michelle_rubin.jpg?itok=8JcavmVS',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/michelle_rubin.jpg',
     name: 'Michelle Rubin',
     link: '/yoga-classes?field_instructor_target_id=50832',
     caption: 'Hatha, Gentle, Seniors',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/04/jennylisa%20%282%29.jpg?itok=MsZBkXMF',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2019/04/jennylisa%20%282%29.jpg',
     name: 'Jennifer Piercy',
     link: '/yoga-meditation?field_instructor_target_id=253426',
     caption: 'Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/09/Screen%20Shot%202018-09-12%20at%203.32.21%20PM.png?itok=Ek8OQ-Ql',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2018/09/Screen%20Shot%202018-09-12%20at%203.32.21%20PM.png',
     name: 'Peter Renner',
     link: '/yoga-meditation?field_instructor_target_id=189052',
     caption: 'Meditation',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/erica_fitch.jpg?itok=F9sZn89d',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2021/09/erica_fitch.jpg',
     name: 'Erica Fritch',
     link: '/yoga-classes?field_instructor_target_id=8733',
     caption: 'Hatha, Therapy, Gentle',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/Shivani_1.jpg?itok=4BmzdEZi',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/Shivani_1.jpg',
     name: 'Shivani Wells',
     link: '/yoga-classes?field_instructor_target_id=1047',
     caption: 'Vinyasa/Power, Hatha',
   },
   {
-    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/jenni-ashtanga-yoga_1.jpg?itok=VQV81d2J',
+    img: 'https://www.doyogawithme.com/sites/default/files/styles/square_400px/public/profile/user/field_user_avatar/2014/03/jenni-ashtanga-yoga_1.jpg',
     name: 'Jenni Pritchard',
     link: '/yoga-classes?field_instructor_target_id=28537',
     caption: 'Ashtanga',
   },
 ];
 
-init();
+let initInterval = setInterval(() => {
+  if (
+    document.querySelector(
+      '.menu--account [href="/yogi/login?destination=/become-a-subscriber"]'
+    ) ||
+    document.querySelector('.menu--account img.c-avatar')
+  ) {
+    clearInterval(initInterval);
+    init();
+  }
+}, 100);
+
 function init() {
   gaEvent('loaded');
   console.log('init');
