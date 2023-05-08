@@ -426,6 +426,11 @@ function addModal() {
     item.addEventListener('click', function (e) {
       e.preventDefault();
 
+      if (item.dataset.target === '1') {
+        gaEvent('Click on element', `Open gallery video 1`);
+      } else if (item.dataset.target === '2') {
+        gaEvent('Click on element', `Open gallery video 2`);
+      }
       openModal(item.dataset.target);
     });
   }
