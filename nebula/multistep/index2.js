@@ -28,7 +28,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'event-to-ga',
-      eventCategory: 'Experiment. Multistep checkout',
+      eventCategory: 'Exp: Multistep_checkout_v2',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -1287,7 +1287,6 @@ function initControl() {
       } else if (step === 2) {
         gaEvent('Button. Continue to payment', 'Step: Shipping');
       } else {
-        // todo
         gaEvent('Button. Complete Order', 'Step: Payment');
       }
       if (
@@ -1303,14 +1302,16 @@ function initControl() {
       } else {
         if (document.querySelector('.lav-payment__choose.active')) {
           document.querySelector('.pay-btn').click();
+          gaEvent('Button. Pay now. Credit card', 'Step: Payment');
         } else if (document.querySelector('.lav-choose__klarna.active')) {
           document.querySelector('.payLaterBtn.klarna').click();
+          gaEvent('Button. Pay now. Klarna', 'Step: Payment');
         } else if (document.querySelector('.lav-choose__afterpay.active')) {
           document.querySelector('.payLaterBtn.afterpay').click();
+          gaEvent('Button. Pay now. Afterpay', 'Step: Payment');
         } else if (document.querySelector('.lav-paypal__choose.active')) {
           document.querySelector('.payLaterBtn.afterpay').click();
         }
-        // todo
 
         setTimeout(() => {
           if (
@@ -1811,6 +1812,7 @@ function moveToStep(isScroll = true) {
 }
 
 function validateStepOne() {
+  return true;
   let checkArr = [
     'email',
     'fname',
@@ -2175,11 +2177,13 @@ function observerView() {
 }
 
 function initEvents() {
-  document
-    .querySelector('#google-pay-container')
-    .addEventListener('click', function () {
-      gaEvent('Button. GooglePay', 'Step: Information. Express checkout');
-    });
+  if (document.querySelector('#google-pay-container button')) {
+    document
+      .querySelector('#google-pay-container button')
+      .addEventListener('click', function () {
+        gaEvent('Button. GooglePay', 'Step: Information. Express checkout');
+      });
+  }
 
   document
     .querySelector('#apple-pay-container')
