@@ -2183,6 +2183,16 @@ function initEvents() {
       .addEventListener('click', function () {
         gaEvent('Button. GooglePay', 'Step: Information. Express checkout');
       });
+  } else {
+    setTimeout(() => {
+      if (document.querySelector('#google-pay-container button')) {
+        document
+          .querySelector('#google-pay-container button')
+          .addEventListener('click', function () {
+            gaEvent('Button. GooglePay', 'Step: Information. Express checkout');
+          });
+      }
+    }, 2000);
   }
 
   document
