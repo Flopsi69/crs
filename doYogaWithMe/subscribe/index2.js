@@ -919,6 +919,7 @@ const styles = `
     .lav-jumb_auth {
       background: url(${settings.dir}/img/jumb-bg-mob.jpeg) center bottom no-repeat;
       background-size: cover;
+      min-height: auto;
     }
     .lav-jumb_no-auth {
       background: url(${settings.dir}/img/jumb-bg2-mob.jpeg) center bottom no-repeat;
