@@ -1149,7 +1149,12 @@ const styles = `
 
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+const styleInterval = setInterval(() => {
+  if (document.body) {
+    clearInterval(styleInterval);
+    document.body.appendChild(stylesEl);
+  }
+}, 100);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
