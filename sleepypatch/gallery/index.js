@@ -312,6 +312,7 @@ let initInterval = setInterval(() => {
 }, 100);
 
 function init() {
+  gaEvent('loaded');
   console.log('init');
   document
     .querySelector('.navbar')
