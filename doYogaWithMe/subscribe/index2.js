@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', 'change_plans_page', 'variant_1');
+      clarity('set', 'change_plans_page_signup_сheckout', 'variant_1');
     }
   }, 1000);
 }
@@ -25,7 +25,7 @@ function gaEvent(action, label) {
   try {
     var objData = {
       event: 'event-to-ga',
-      eventCategory: 'Exp: Change Plans page',
+      eventCategory: 'Exp: Change Plans page, Signup, Checkout',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
@@ -1430,23 +1430,6 @@ const newLayout = `
         </div>
       </div>
     </div>
-
-    <div class='lav-plan__currency lav-mob'>*All prices in USD</div>
-
-    <button class='lav-plan__started lav-btn sfc-button lav-mob'>
-      Get Started Now
-    </button>
-
-    <div class='lav-plan__options lav-mob'>
-      <div class='lav-plan__option'>
-        <img src='${settings.dir}/img/calendar-mob.svg' />
-        Cancel anytime
-      </div>
-      <div class='lav-plan__option'>
-        <img src='${settings.dir}/img/guarantee-mob.svg' />
-        30-Day Money-Back Guarantee
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1957,7 +1940,7 @@ function init() {
     .querySelector('.lav-try__btn')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Start Basic plan button');
+      // gaEvent('Click on Start Basic plan button');
       document.querySelector('[href="/yogi/register"]').click();
     });
 
@@ -1972,13 +1955,13 @@ function init() {
       document
         .querySelector('.lav-instructors .splide__arrow--next')
         .addEventListener('click', function () {
-          gaEvent('Click navigation button in our instructors', 'Right');
+          gaEvent(`Navigation button - Right`, 'Our instructors');
         });
 
       document
         .querySelector('.lav-instructors .splide__arrow--prev')
         .addEventListener('click', function () {
-          gaEvent('Click navigation button in our instructors', 'Left');
+          gaEvent(`Navigation button - Left`, 'Our instructors');
         });
 
       setTimeout(() => {
@@ -1986,8 +1969,8 @@ function init() {
           .querySelector('.lav-journey .splide__arrow--next')
           .addEventListener('click', function () {
             gaEvent(
-              'Click navigation button in Your journey to health and wellness start here',
-              'Right'
+              `Navigation button - Right`,
+              'Your journey to health and wellness start here'
             );
           });
 
@@ -1995,8 +1978,8 @@ function init() {
           .querySelector('.lav-journey .splide__arrow--prev')
           .addEventListener('click', function () {
             gaEvent(
-              'Click navigation button in Your journey to health and wellness start here',
-              'Left'
+              `Navigation button - Left`,
+              'Your journey to health and wellness start here'
             );
           });
       }, 1000);
@@ -2006,42 +1989,33 @@ function init() {
   document
     .querySelector('.sfc-appsPromo__appIcons a:first-child')
     .addEventListener('click', function () {
-      gaEvent(
-        'Click on Apps in  For every space, at any pace section',
-        'App Store'
-      );
+      gaEvent('Click on Apps - App Store', 'For every space, at any pace');
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(2)')
     .addEventListener('click', function () {
-      gaEvent(
-        'Click on Apps in  For every space, at any pace section',
-        'Google Play'
-      );
+      gaEvent('Click on Apps - Google Play', 'For every space, at any pace');
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(3)')
     .addEventListener('click', function () {
-      gaEvent(
-        'Click on Apps in  For every space, at any pace section',
-        'Amazon Fire'
-      );
+      gaEvent('Click on Apps - Amazon Fire', 'For every space, at any pace');
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(4)')
     .addEventListener('click', function () {
-      gaEvent('Click on Apps in  For every space, at any pace section', 'Roku');
+      gaEvent('Click on Apps - Roku', 'For every space, at any pace');
     });
 
   for (let item of document.querySelectorAll('.lav-plan .lav-plan__option')) {
     item.addEventListener('click', function () {
-      let caption = 'Click on Cancel anytime element';
+      let caption = 'Cancel anytime element';
 
       if (!item.innerText.toLowerCase().includes('cancel')) {
-        caption = 'Click on 30-Day Money-Back Guarantee element';
+        caption = '30-Day Money-Back Guarantee element';
       }
       gaEvent(
         caption,
@@ -2063,7 +2037,7 @@ function init() {
       if (!item.innerText.toLowerCase().includes('cancel')) {
         caption = 'Click on 30-Day Money-Back Guarantee element';
       }
-      gaEvent(caption);
+      // gaEvent(caption);
     });
   }
 }
@@ -2072,7 +2046,10 @@ function initJumb() {
   for (let el of document.querySelectorAll('.lav-plan__btn-try')) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Get started now button in Basic access');
+      gaEvent(
+        'Get started now button in Basic access Free',
+        'Choose your plan'
+      );
       document.querySelector('[href="/yogi/register"]').click();
     });
   }
@@ -2080,7 +2057,10 @@ function initJumb() {
   for (let el of document.querySelectorAll('.lav-plan__btn-year')) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Get started now button in Unlimited access 12 month');
+      gaEvent(
+        'Get started now button in Annual access 12 months',
+        'Choose your plan'
+      );
       document.querySelector('[href="/express-checkout/55"]').click();
     });
   }
@@ -2088,7 +2068,10 @@ function initJumb() {
   for (let el of document.querySelectorAll('.lav-plan__btn-month')) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Get started now button in Unlimited access 1 month');
+      gaEvent(
+        'Get started now button in Monthly access 1 months',
+        'Choose your plan'
+      );
       document.querySelector('[href="/express-checkout/54"]').click();
     });
   }
@@ -2097,7 +2080,7 @@ function initJumb() {
     .querySelector('.lav-jumb__try-inner')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click Not sure yet? Try Basic plan for free button');
+      gaEvent('Not sure yet?', 'Choose your plan');
       document.querySelector('[href="/yogi/register"]').click();
     });
 
@@ -2106,10 +2089,16 @@ function initJumb() {
     .addEventListener('click', function (e) {
       e.preventDefault();
       if (document.querySelector('.lav-plan.active .lav-plan__btn-year')) {
-        gaEvent('Click on Get Started now button', '12 months');
+        gaEvent(
+          'Get Started now button - 12 months',
+          'Your ultimate Yoga journey starts here'
+        );
         document.querySelector('[href="/express-checkout/55"]').click();
       } else {
-        gaEvent('Click on Get Started now button', '1 month');
+        gaEvent(
+          'Get Started now button - 1 month',
+          'Your ultimate Yoga journey starts here'
+        );
         document.querySelector('[href="/express-checkout/54"]').click();
       }
     });
@@ -2128,8 +2117,10 @@ function initJumb() {
       }
 
       gaEvent(
-        'Click on Choose your plan radiobutton',
-        el.querySelector('.lav-plan__btn-year') ? '12 months' : '1 month'
+        `Choose your plan - ${
+          el.querySelector('.lav-plan__btn-year') ? '12 months' : '1 month'
+        }`,
+        'Your ultimate Yoga journey starts here'
       );
 
       el.classList.add('active');
@@ -2142,7 +2133,10 @@ function initClasses() {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       const id = el.dataset.id;
-      gaEvent('Click on yoga class button', el.innerText.trim());
+      gaEvent(
+        `yoga class button - ${el.innerText.trim()}`,
+        'Explore 1000+ Yoga classes section'
+      );
 
       location.href = `https://www.doyogawithme.com/yoga-classes?field_instructor_target_id=&style[${id}]=${id}&field_subscribers_only_value=All&sort_by=created`;
     });
@@ -2152,7 +2146,7 @@ function initClasses() {
     .querySelector('.lav-classes__toggle')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Click on Show now button');
+      gaEvent('Show now button', 'Explore 1000+ Yoga classes section');
       this.remove();
       document
         .querySelector('.lav-classes__list.lav-mob')
@@ -2222,52 +2216,49 @@ function observerView() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-features')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Subscription features section'
-          );
+          isElementInViewport(entry.target, [
+            'Visibility',
+            'Subscription features',
+          ]);
         }
 
         if (entry.target.classList.contains('lav-try')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Try Basic plan for free section'
-          );
+          // isElementInViewport(
+          //   entry.target,
+          //   'Visibility Try Basic plan for free section'
+          // );
         }
 
         if (entry.target.classList.contains('lav-classes')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Explore 1000+ Yoga classes section'
-          );
+          isElementInViewport(entry.target, [
+            'Visibility',
+            'Explore 1000+ Yoga classes section',
+          ]);
         }
 
         if (entry.target.classList.contains('lav-pers')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Count the ways you can personalize your practice section'
-          );
+          isElementInViewport(entry.target, [
+            'Visibility',
+            'Count the ways you can personalize your practice',
+          ]);
         }
 
         if (entry.target.classList.contains('lav-instructors')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Our instructors section'
-          );
+          isElementInViewport(entry.target, ['Visibility', 'Our instructors']);
         }
 
         if (entry.target.classList.contains('lav-journey')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility Your journey to health and wellness start here section'
-          );
+          isElementInViewport(entry.target, [
+            'Visibility',
+            'Your journey to health and wellness start here',
+          ]);
         }
 
         if (entry.target.classList.contains('lav-app')) {
-          isElementInViewport(
-            entry.target,
-            'Visibility For every space, at any pace section'
-          );
+          isElementInViewport(entry.target, [
+            'Visibility',
+            'For every space, at any pace',
+          ]);
         }
       }
     });
@@ -2277,7 +2268,7 @@ function observerView() {
     observer.observe(el);
   }
 
-  function isElementInViewport(el, event, timeout = 2) {
+  function isElementInViewport(el, events, timeout = 2) {
     setTimeout(() => {
       const rect = el.getBoundingClientRect();
       const windowHeight =
@@ -2289,7 +2280,7 @@ function observerView() {
       ) {
         observer.unobserve(el);
         if (!el.classList.contains('in-view')) {
-          gaEvent(event);
+          gaEvent(...events);
           el.classList.add('in-view');
         }
       }
