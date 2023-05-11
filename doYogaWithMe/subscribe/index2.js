@@ -2032,12 +2032,12 @@ function init() {
     '.lav-plan__options.lav-mob .lav-plan__option'
   )) {
     item.addEventListener('click', function () {
-      let caption = 'Click on Cancel anytime element';
+      let caption = 'Cancel anytime element';
 
       if (!item.innerText.toLowerCase().includes('cancel')) {
-        caption = 'Click on 30-Day Money-Back Guarantee element';
+        caption = '30-Day Money-Back Guarantee element';
       }
-      // gaEvent(caption);
+      gaEvent(caption);
     });
   }
 }
