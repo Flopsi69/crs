@@ -176,9 +176,9 @@ const styles = `
     }
     .lav-jumb__plans-all .lav-plan:nth-child(1) .lav-plan__price {
       min-height: 95px;
-      // display: flex;
-      // align-items: center;
-      // justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .lav-jumb__plans-all .lav-plan:nth-child(3) {
       border-top-right-radius: 12px;
@@ -751,7 +751,7 @@ const styles = `
       font-weight: 600;
     }
     .lav-jumb__plans-all .lav-plan:nth-child(2) {
-      order: 2;
+      // order: 2;
     }
     .lav-jumb__plans-all .lav-plan__options {
       display: flex;
@@ -1306,7 +1306,7 @@ const newLayout = `
 
       <div class='lav-jumb__plan lav-plan'>
         <div class='lav-desk'>
-          <div class='lav-plan__title'>Annual access</div>
+          <div class='lav-plan__title'>Unlimited access</div>
           <div class='lav-plan__caption'>12 months</div>
           <div class='lav-plan__price'>
             <span>$9.08</span> / month
@@ -1377,7 +1377,7 @@ const newLayout = `
 
       <div class='lav-jumb__plan lav-plan'>
         <div class='lav-desk'>
-          <div class='lav-plan__title'>Monthly access</div>
+          <div class='lav-plan__title'>Unlimited access</div>
           <div class='lav-plan__caption'>1 month</div>
           <div class='lav-plan__price'>
             <span>$13.99</span> / month
