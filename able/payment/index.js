@@ -102,7 +102,7 @@ if (settings.observe) {
         }
       }
 
-      for (let node of mutation.addedNodes) {
+      for (let node of mutation.removedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
         console.log('Removed', node);
