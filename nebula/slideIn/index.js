@@ -1320,10 +1320,14 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-product')) {
     el.querySelector('.lav-tip').addEventListener('mouseenter', function () {
-      gaEvent(
-        `Tooltip - ${el.querySelector('.lav-product__title').innerText.trim()}`,
-        'Slide-in cart'
-      );
+      if (window.innerWidth > 992) {
+        gaEvent(
+          `Tooltip - ${el
+            .querySelector('.lav-product__title')
+            .innerText.trim()}`,
+          'Slide-in cart'
+        );
+      }
     });
 
     el.addEventListener('click', function () {
