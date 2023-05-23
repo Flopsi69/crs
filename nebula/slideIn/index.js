@@ -1092,7 +1092,7 @@ function initSlideIn() {
         btn.click();
       }
 
-      closeSlideIn();
+      // closeSlideIn();
     });
 
   document
