@@ -955,7 +955,7 @@ function handleHeader() {
     item.addEventListener('click', function () {
       openSlideIn();
       if (item.classList.contains('lav-btn__header')) {
-        gaEvent(`Buy now button - ${window.pageYOffset}`, 'Header');
+        gaEvent(`Buy now button - ${parseInt(window.pageYOffset)}`, 'Header');
       }
     });
   }
