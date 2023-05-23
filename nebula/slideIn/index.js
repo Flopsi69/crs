@@ -98,6 +98,9 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-hide {
+    display: none!important;
+  }
   .lav-preloader #__nuxt:before{
     position: fixed;
     left: 0;
@@ -944,7 +947,7 @@ function handleHeader() {
     `
   );
 
-  document.querySelector('.shoppingCart svg').remove();
+  document.querySelector('.shoppingCart svg').classList.add('lav-hide');
   document
     .querySelector('.shoppingCart')
     .insertAdjacentHTML(
