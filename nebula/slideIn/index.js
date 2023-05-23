@@ -98,6 +98,9 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .shoppingCart svg, .shoppingCart svg path {
+    fill: #0b0f41;
+  }
   .lav-hide {
     display: none!important;
   }
@@ -947,13 +950,13 @@ function handleHeader() {
     `
   );
 
-  document.querySelector('.shoppingCart svg').classList.add('lav-hide');
-  document
-    .querySelector('.shoppingCart')
-    .insertAdjacentHTML(
-      'afterbegin',
-      `<div class='lav-login__icon'><img src='${settings.dir}/img/cart.svg' /></div>`
-    );
+  // document.querySelector('.shoppingCart svg').classList.add('lav-hide');
+  // document
+  //   .querySelector('.shoppingCart')
+  //   .insertAdjacentHTML(
+  //     'afterbegin',
+  //     `<div class='lav-login__icon'><img src='${settings.dir}/img/cart.svg' /></div>`
+  //   );
 
   document.querySelector('.lav-login').addEventListener('click', function () {
     document.querySelector('.navbar-login-button .link').click();
