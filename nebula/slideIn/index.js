@@ -934,13 +934,14 @@ function handleHeader() {
       );
   }
 
-  document
-    .querySelector('.shoppingCart')
-    .insertAdjacentHTML('beforeend', `<div class='lav-caption'>Cart</div>`);
+  setTimeout(() => {
+    document
+      .querySelector('.shoppingCart')
+      .insertAdjacentHTML('beforeend', `<div class='lav-caption'>Cart</div>`);
 
-  document.querySelector('.shoppingCart').insertAdjacentHTML(
-    'beforebegin',
-    `
+    document.querySelector('.shoppingCart').insertAdjacentHTML(
+      'beforebegin',
+      `
     <div class='lav-login'>
       <div class='lav-login__icon'>
         <img src='${settings.dir}/img/login.svg' />
@@ -948,7 +949,8 @@ function handleHeader() {
       <div class='lav-login__caption lav-caption'>Login</div>
     </div>
     `
-  );
+    );
+  }, 1000);
 
   // document.querySelector('.shoppingCart svg').classList.add('lav-hide');
   // document
