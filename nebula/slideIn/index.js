@@ -1041,7 +1041,10 @@ function initSlideIn() {
     .addEventListener('click', function () {
       document.querySelector('#choose')?.scrollIntoView({ behavior: 'smooth' });
       gaEvent('Compare tests', 'Slide-in cart');
-      closeSlideIn();
+      document.querySelector('.lav-slide').classList.remove('active');
+      setTimeout(() => {
+        document.querySelector('.lav-slide').style.display = 'none';
+      }, 350);
     });
 
   document
@@ -1428,6 +1431,7 @@ function closeSlideIn(isOverlay) {
   } else {
     gaEvent('Close', 'Slide-in cart');
   }
+
   document.querySelector('.lav-slide').classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-slide').style.display = 'none';
