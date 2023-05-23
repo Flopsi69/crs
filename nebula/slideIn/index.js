@@ -3,7 +3,7 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/nebula/slideIn/',
-  clarity: false,
+  clarity: true,
   observe: true,
 };
 
@@ -12,7 +12,7 @@ if (settings.clarity) {
   const clarityInterval = setInterval(function () {
     if (typeof clarity == 'function') {
       clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+      clarity('set', 'slide_in_pricing_block', 'variant_1');
     }
   }, 1000);
 }
@@ -24,31 +24,14 @@ function gaEvent(action, label) {
   }
   try {
     var objData = {
-      event: 'gaEv',
-      eventCategory: 'Experiment — also like',
+      event: 'event-to-ga',
+      eventCategory: 'Exp: Slide-in pricing block',
       eventAction: action,
       eventLabel: label,
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
-  } catch (e) {
-    console.log('Event Error:', e);
-  }
-}
-
-// Alalytic 4
-function gaEvent(name = '', desc = '', type = '', loc = '') {
-  try {
-    var objData = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
-    };
-    console.dir('eventFire', objData.eventAction);
-    dataLayer.push(objData);
+    // dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
   }
@@ -79,6 +62,7 @@ if (settings.observe) {
             .addEventListener('click', function () {
               document.querySelector('.mobile-menu-button').click();
               openSlideIn();
+              gaEvent(`Shop DNA Test button`, 'Burger menu');
             });
 
           document
@@ -922,6 +906,8 @@ function handleHeader() {
   newBtn.addEventListener('click', function (e) {
     e.preventDefault();
     openSlideIn();
+    gaEvent('Shop DNA Test button', 'First screen');
+
     return false;
   });
 
@@ -934,14 +920,14 @@ function handleHeader() {
       );
   }
 
-  setTimeout(() => {
-    document
-      .querySelector('.shoppingCart')
-      .insertAdjacentHTML('beforeend', `<div class='lav-caption'>Cart</div>`);
+  // setTimeout(() => {
+  document
+    .querySelector('.shoppingCart')
+    .insertAdjacentHTML('beforeend', `<div class='lav-caption'>Cart</div>`);
 
-    document.querySelector('.shoppingCart').insertAdjacentHTML(
-      'beforebegin',
-      `
+  document.querySelector('.shoppingCart').insertAdjacentHTML(
+    'beforebegin',
+    `
     <div class='lav-login'>
       <div class='lav-login__icon'>
         <img src='${settings.dir}/img/login.svg' />
@@ -949,24 +935,28 @@ function handleHeader() {
       <div class='lav-login__caption lav-caption'>Login</div>
     </div>
     `
+  );
+
+  document.querySelector('.shoppingCart svg').classList.add('lav-hide');
+  document
+    .querySelector('.shoppingCart')
+    .insertAdjacentHTML(
+      'afterbegin',
+      `<div class='lav-login__icon'><img src='${settings.dir}/img/cart.svg' /></div>`
     );
 
-    document.querySelector('.shoppingCart svg').classList.add('lav-hide');
-    document
-      .querySelector('.shoppingCart')
-      .insertAdjacentHTML(
-        'afterbegin',
-        `<div class='lav-login__icon'><img src='${settings.dir}/img/cart.svg' /></div>`
-      );
-
-    document.querySelector('.lav-login').addEventListener('click', function () {
-      document.querySelector('.navbar-login-button .link').click();
-    });
-  }, 500);
+  document.querySelector('.lav-login').addEventListener('click', function () {
+    gaEvent('Login icon', 'Header');
+    document.querySelector('.navbar-login-button .link').click();
+  });
+  // }, 500);
 
   for (let item of document.querySelectorAll('.lav-slidein-trigger')) {
     item.addEventListener('click', function () {
       openSlideIn();
+      if (item.classList.contains('lav-btn__header')) {
+        gaEvent(`Buy now button - ${window.pageYOffset}`, 'Header');
+      }
     });
   }
 }
@@ -1042,7 +1032,7 @@ function initSlideIn() {
       e.target.classList.contains('lav-slide') &&
       e.target.classList.contains('active')
     ) {
-      closeSlideIn();
+      closeSlideIn(true);
     }
   });
 
@@ -1050,12 +1040,16 @@ function initSlideIn() {
     .querySelector('.lav-slide__compare')
     .addEventListener('click', function () {
       document.querySelector('#choose')?.scrollIntoView({ behavior: 'smooth' });
+      gaEvent('Compare tests', 'Slide-in cart');
       closeSlideIn();
     });
 
   document
     .querySelector('.lav-slide__btn')
-    .addEventListener('click', function () {
+    .addEventListener('click', function (e) {
+      e.preventDefault();
+      gaEvent('Checkout CTA button', 'Slide-in cart');
+
       let btn = document.querySelector('.plan.plan_best .plan__btn');
 
       if (
@@ -1262,6 +1256,12 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-product__toggler')) {
     el.addEventListener('click', function () {
+      if (el.closest('.lav-product__get')) {
+        gaEvent(`View full list of what you’ll get`, 'Slide-in cart');
+      } else if (el.closest('.lav-product__member')) {
+        gaEvent('Requires Nebula Membership', 'Slide-in cart');
+      }
+
       let activeEl = el
         .closest('.lav-product')
         .querySelector('.lav-product__toggler.active');
@@ -1278,6 +1278,7 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-product__dropdown')) {
     el.addEventListener('click', function () {
+      gaEvent('Lifetime', 'Slide-in cart');
       el.classList.toggle('active');
     });
   }
@@ -1315,8 +1316,22 @@ function fillProducts() {
   }
 
   for (let el of document.querySelectorAll('.lav-product')) {
+    el.querySelector('.lav-tip').addEventListener('mouseenter', function () {
+      gaEvent(
+        `Tooltip - ${el.querySelector('.lav-product__title').innerText.trim()}`,
+        'Slide-in cart'
+      );
+    });
+
     el.addEventListener('click', function () {
       if (el.classList.contains('active')) return false;
+
+      gaEvent(
+        `Click on Pack - ${el
+          .querySelector('.lav-product__title')
+          .innerText.trim()}`,
+        'Slide-in cart'
+      );
 
       if (document.querySelector('.lav-product.active')) {
         document
@@ -1348,6 +1363,16 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-tip')) {
     el.addEventListener('click', function () {
+      if (window.innerWidth > 992) return false;
+
+      gaEvent(
+        `Tooltip - ${el
+          .closest('.lav-product')
+          .querySelector('.lav-product__title')
+          .innerText.trim()}`,
+        'Slide-in cart'
+      );
+
       if (
         !el.classList.contains('active') &&
         document.querySelector('.lav-tip.active')
@@ -1397,7 +1422,12 @@ function countTotal() {
   document.querySelector('.lav-price span').innerText = `$${total}`;
 }
 
-function closeSlideIn() {
+function closeSlideIn(isOverlay) {
+  if (isOverlay) {
+    gaEvent('Click outside the pop-up', 'Slide-in cart');
+  } else {
+    gaEvent('Close', 'Slide-in cart');
+  }
   document.querySelector('.lav-slide').classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-slide').style.display = 'none';
@@ -1405,6 +1435,7 @@ function closeSlideIn() {
 }
 
 function openSlideIn() {
+  gaEvent('Visibility', 'Slide-in cart');
   document.querySelector('.lav-slide').style.display = 'block';
   setTimeout(() => {
     document.querySelector('.lav-slide').classList.add('active');
