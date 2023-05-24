@@ -912,7 +912,7 @@ function addPreloader() {
     if (document.querySelector('.lav-prel')) {
       document.querySelector('.lav-prel').remove();
     }
-  }, 1500);
+  }, 1000);
 }
 
 function handleHeader() {
