@@ -75,9 +75,12 @@ if (settings.observe) {
     }
   });
 
-  let demoElem = document.body;
-
-  observer.observe(demoElem, { childList: true, subtree: true });
+  const awaitBody = setInterval(() => {
+    if (document.body) {
+      clearInterval(awaitBody);
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }, 100);
 }
 
 // Styles
@@ -849,13 +852,20 @@ const styles = `
 
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
+
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
 let count = 1;
 
-init();
+const awaitBody = setInterval(() => {
+  if (document.body) {
+    document.body.appendChild(stylesEl);
+    clearInterval(awaitBody);
+    init();
+  }
+}, 100);
+
 function init() {
   gaEvent('loaded');
   console.log('init');
