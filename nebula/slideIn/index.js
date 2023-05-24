@@ -906,13 +906,13 @@ function addPreloader() {
 
   setTimeout(() => {
     if (document.body) {
-      document.body.classList.add('lav-remove');
+      document.body.classList.remove('lav-preloader');
     }
 
     if (document.querySelector('.lav-prel')) {
       document.querySelector('.lav-prel').remove();
     }
-  }, 2000);
+  }, 1500);
 }
 
 function handleHeader() {
