@@ -1106,6 +1106,14 @@ function fillProducts() {
   for (let product of document.querySelectorAll(
     '.plan__main:not(.plan__placeholder)'
   )) {
+    const parentEl = product.closest('.plan');
+
+    if (!parentEl) {
+      setTimeout(fillProducts, 1000);
+      console.log('Refill');
+      return false;
+    }
+
     let el = document.createElement('div');
     el.classList.add('lav-product');
 
@@ -1137,8 +1145,6 @@ function fillProducts() {
         <div class='lav-product__dropdown-item active' data-price='200'>Lifetime Membership ($200)</div>
       `;
     }
-
-    const parentEl = product.closest('.plan');
 
     el.innerHTML = `
       <div class='lav-product__labels'>
@@ -1341,6 +1347,11 @@ function fillProducts() {
       );
 
       if (document.querySelector('.lav-product.active')) {
+        for (let activeEl of document.querySelectorAll(
+          '.lav-product.active .active:not(.lav-product__dropdown-item)'
+        )) {
+          activeEl.classList.remove('active');
+        }
         document
           .querySelector('.lav-product.active')
           .classList.remove('active');
