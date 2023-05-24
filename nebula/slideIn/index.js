@@ -903,6 +903,16 @@ function addPreloader() {
       'beforebegin',
       '<div class="lds-roller lav-prel"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>'
     );
+
+  setTimeout(() => {
+    if (document.body) {
+      document.body.classList.add('lav-remove');
+    }
+
+    if (document.querySelector('.lav-prel')) {
+      document.querySelector('.lav-prel').remove();
+    }
+  }, 2000);
 }
 
 function handleHeader() {
