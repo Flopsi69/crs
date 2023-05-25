@@ -986,7 +986,17 @@ function handleHeader() {
     item.addEventListener('click', function () {
       openSlideIn();
       if (item.classList.contains('lav-btn__header')) {
-        gaEvent(`Buy now button - ${parseInt(window.pageYOffset)}`, 'Header');
+        const height = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.clientHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        gaEvent(
+          `Buy now button - ${parseInt((window.pageYOffset * 100) / height)}%`,
+          'Header'
+        );
       }
     });
   }
@@ -1357,8 +1367,11 @@ function fillProducts() {
   }
 
   for (let el of document.querySelectorAll('.lav-product__dropdown')) {
-    el.addEventListener('click', function () {
-      gaEvent('Lifetime', 'Slide-in cart');
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('lav-product__dropdown-value')) {
+        gaEvent('Dropdown', 'Slide-in cart');
+      }
+
       el.classList.toggle('active');
     });
   }
@@ -1368,6 +1381,10 @@ function fillProducts() {
       if (el.classList.contains('active')) return false;
 
       const value = el.innerText.trim().replace('Membership', '');
+
+      if (e.target.closest('lav-product__dropdown-item')) {
+        gaEvent(value, 'Slide-in cart');
+      }
 
       el
         .closest('.lav-product__dropdown')
