@@ -1368,7 +1368,7 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-product__dropdown')) {
     el.addEventListener('click', function (e) {
-      if (e.target.closest('lav-product__dropdown-value')) {
+      if (e.target.closest('.lav-product__dropdown-value')) {
         gaEvent('Dropdown', 'Slide-in cart');
       }
 
@@ -1378,13 +1378,11 @@ function fillProducts() {
 
   for (let el of document.querySelectorAll('.lav-product__dropdown-item')) {
     el.addEventListener('click', function () {
-      if (el.classList.contains('active')) return false;
-
       const value = el.innerText.trim().replace('Membership', '');
 
-      if (e.target.closest('lav-product__dropdown-item')) {
-        gaEvent(value, 'Slide-in cart');
-      }
+      gaEvent(value, 'Slide-in cart');
+
+      if (el.classList.contains('active')) return false;
 
       el
         .closest('.lav-product__dropdown')
