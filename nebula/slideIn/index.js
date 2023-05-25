@@ -31,7 +31,7 @@ function gaEvent(action, label) {
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    // dataLayer.push(objData);
+    dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
   }
@@ -93,6 +93,9 @@ if (settings.observe) {
 
 // Styles
 const styles = `
+  .lav-overflow {
+    overflow: hidden;
+  }
   .shoppingCart svg, .shoppingCart svg path {
     fill: #0b0f41;
   }
@@ -1495,9 +1498,9 @@ function countTotal() {
       .innerText.includes('Lifetime')
   ) {
     total += parseInt(
-      document.querySelector(
-        '.lav-product.active .lav-product__dropdown-item.active'
-      ).dataset.price
+      document
+        .querySelector('.lav-product.active .lav-product__dropdown-item.active')
+        .innerText.match(/\d+/)[0]
     );
   }
 
@@ -1509,6 +1512,7 @@ function countTotal() {
 }
 
 function closeSlideIn(isOverlay) {
+  document.body.classList.remove('lav-overflow');
   if (isOverlay) {
     gaEvent('Click outside the pop-up', 'Slide-in cart');
   } else {
@@ -1522,6 +1526,7 @@ function closeSlideIn(isOverlay) {
 }
 
 function openSlideIn() {
+  document.body.classList.add('lav-overflow');
   gaEvent('Visibility', 'Slide-in cart');
   document.querySelector('.lav-slide').style.display = 'block';
   setTimeout(() => {
