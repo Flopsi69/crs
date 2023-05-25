@@ -1110,10 +1110,39 @@ function initSlideIn() {
           .querySelector('.plan__subscr-list .plan__subscr-item:last-child')
           .click();
       } else {
-        btn
-          .closest('.plan')
-          .querySelector('.plan__subscr-list .plan__subscr-item:first-child')
-          .click();
+        if (
+          document
+            .querySelector('.lav-product.active .lav-product__title')
+            .innerText.includes('Standard')
+        ) {
+          if (
+            document
+              .querySelector(
+                '.lav-product.active .lav-product__dropdown-value span'
+              )
+              .innerText.trim()
+              .includes('Yearly')
+          ) {
+            btn
+              .closest('.plan')
+              .querySelector(
+                '.plan__subscr-list .plan__subscr-item:first-child'
+              )
+              .click();
+          } else {
+            btn
+              .closest('.plan')
+              .querySelector(
+                '.plan__subscr-list .plan__subscr-item:nth-child(2)'
+              )
+              .click();
+          }
+        } else {
+          btn
+            .closest('.plan')
+            .querySelector('.plan__subscr-list .plan__subscr-item:first-child')
+            .click();
+        }
       }
 
       for (let i = 0; i < count; i++) {
@@ -1152,7 +1181,9 @@ function fillProducts() {
 
     let dropdownList = '';
 
-    for (let plan of parentEl.querySelectorAll('.plan__subscr-list')) {
+    for (let plan of parentEl.querySelectorAll(
+      '.plan__subscr-list .lav-product__dropdown-item'
+    )) {
       if (plan.innerText.includes('Lifetime')) {
         dropdownList += `<div class='lav-product__dropdown-item active'>${plan.innerText.trim()}</div>`;
       } else {
