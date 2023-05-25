@@ -1182,7 +1182,7 @@ function fillProducts() {
     let dropdownList = '';
 
     for (let plan of parentEl.querySelectorAll(
-      '.plan__subscr-list .lav-product__dropdown-item'
+      '.plan__subscr-list .plan__subscr-item'
     )) {
       if (plan.innerText.includes('Lifetime')) {
         dropdownList += `<div class='lav-product__dropdown-item active'>${plan.innerText.trim()}</div>`;
