@@ -45,6 +45,14 @@ if (settings.observe) {
         if (!(node instanceof HTMLElement)) continue;
 
         if (
+          !location.href.includes(
+            'nebula.org/whole-genome-sequencing-dna-test/'
+          )
+        ) {
+          location.reload();
+        }
+
+        if (
           node.classList.contains('mobile-nav') &&
           node.querySelector('.mobile-navbar-links')
         ) {
@@ -1142,10 +1150,19 @@ function fillProducts() {
       'We decode a large portion of your genome at 0.4x coverage using next-generation DNA sequencing technology.';
     let valueX = '0.4x';
 
-    let dropdownList = `
-      <div class='lav-product__dropdown-item'>Yearly Membership ($12.49/mo)</div>
-      <div class='lav-product__dropdown-item active' data-price='275'>Lifetime Membership ($275)</div>
-    `;
+    let dropdownList = '';
+
+    for (let plan of parentEl.querySelectorAll('.plan__subscr-list')) {
+      if (plan.innerText.includes('Lifetime')) {
+        dropdownList += `<div class='lav-product__dropdown-item active'>${plan.innerText.trim()}</div>`;
+      } else {
+        dropdownList += `<div class='lav-product__dropdown-item'>${plan.innerText.trim()}</div>`;
+      }
+    }
+    // let dropdownList = `
+    //   <div class='lav-product__dropdown-item'>Yearly Membership ($12.49/mo)</div>
+    //   <div class='lav-product__dropdown-item active' data-price='275'>Lifetime Membership ($275)</div>
+    // `;
 
     if (product.querySelector('.plan__title').innerText.trim() === 'Deep') {
       type = 'deep';
@@ -1160,10 +1177,10 @@ function fillProducts() {
       tip =
         'Every letter of your DNA is read, on average, 100 times thus providing even higher accuracy.';
     } else {
-      dropdownList = `
-        <div class='lav-product__dropdown-item'>Yearly Membership ($10.83/mo)</div>
-        <div class='lav-product__dropdown-item active' data-price='200'>Lifetime Membership ($200)</div>
-      `;
+      // dropdownList = `
+      //   <div class='lav-product__dropdown-item'>Yearly Membership ($10.83/mo)</div>
+      //   <div class='lav-product__dropdown-item active' data-price='200'>Lifetime Membership ($200)</div>
+      // `;
     }
 
     el.innerHTML = `
