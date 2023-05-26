@@ -1114,6 +1114,7 @@ function initSlideIn() {
       document.querySelector('#choose')?.scrollIntoView({ behavior: 'smooth' });
       gaEvent('Compare tests', 'Slide-in cart');
       document.querySelector('.lav-slide').classList.remove('active');
+      document.body.classList.remove('lav-overflow');
       setTimeout(() => {
         document.querySelector('.lav-slide').style.display = 'none';
       }, 350);
