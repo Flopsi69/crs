@@ -823,7 +823,7 @@ const styles = `
       line-height: 1.4;
     }
     .lav-slide__list {
-      padding: 10px 16px 16px;
+      padding: 14px 16px 16px;
     }
     .lav-tip__body {
       font-size: 14px;
