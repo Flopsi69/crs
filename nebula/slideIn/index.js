@@ -37,6 +37,8 @@ function gaEvent(action, label) {
   }
 }
 
+let isStarted = false;
+
 // Observe
 if (settings.observe) {
   let observer = new MutationObserver((mutations) => {
@@ -56,8 +58,10 @@ if (settings.observe) {
           location.href.includes(
             'nebula.org/whole-genome-sequencing-dna-test/'
           ) &&
-          !localStorage.getItem('isInitExp')
+          !localStorage.getItem('isInitExp') &&
+          !isStarted
         ) {
+          isStarted = true;
           const awaitEl = setInterval(() => {
             if (document.querySelector('.jumb__btn')) {
               clearInterval(awaitEl);
@@ -899,6 +903,8 @@ const awaitBody = setInterval(() => {
 }, 100);
 
 function init() {
+  isStarted = false;
+
   if (!document.querySelector('#lav-styles')) {
     document.body.appendChild(stylesEl);
   }
