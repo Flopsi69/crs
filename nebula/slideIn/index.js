@@ -61,13 +61,9 @@ if (settings.observe) {
           const awaitEl = setInterval(() => {
             if (document.querySelector('.jumb__btn')) {
               clearInterval(awaitEl);
-              observer.observe(document.body, {
-                childList: true,
-                subtree: true,
-              });
+              init();
             }
           }, 100);
-          init();
         }
 
         if (
