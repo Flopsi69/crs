@@ -47,9 +47,18 @@ if (settings.observe) {
         if (
           !location.href.includes(
             'nebula.org/whole-genome-sequencing-dna-test/'
-          )
+          ) &&
+          localStorage.getItem('isInitExp')
         ) {
+          localStorage.removeItem('isInitExp');
           location.reload();
+        } else if (
+          location.href.includes(
+            'nebula.org/whole-genome-sequencing-dna-test/'
+          ) &&
+          !localStorage.getItem('isInitExp')
+        ) {
+          init();
         }
 
         if (
@@ -871,13 +880,19 @@ let count = 1;
 
 const awaitBody = setInterval(() => {
   if (document.body) {
-    document.body.appendChild(stylesEl);
     clearInterval(awaitBody);
-    init();
+    if (
+      !localStorage.getItem('isInitExp') &&
+      location.href.includes('nebula.org/whole-genome-sequencing-dna-test/')
+    ) {
+      init();
+    }
   }
 }, 100);
 
 function init() {
+  document.body.appendChild(stylesEl);
+  localStorage.setItem('isInitExp', 'yes');
   gaEvent('loaded');
   console.log('init');
 
