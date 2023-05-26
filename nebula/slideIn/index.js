@@ -62,6 +62,9 @@ if (settings.observe) {
         }
 
         if (
+          location.href.includes(
+            'nebula.org/whole-genome-sequencing-dna-test/'
+          ) &&
           node.classList.contains('mobile-nav') &&
           node.querySelector('.mobile-navbar-links')
         ) {
