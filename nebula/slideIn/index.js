@@ -58,6 +58,15 @@ if (settings.observe) {
           ) &&
           !localStorage.getItem('isInitExp')
         ) {
+          const awaitEl = setInterval(() => {
+            if (document.querySelector('.jumb__btn')) {
+              clearInterval(awaitEl);
+              observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+              });
+            }
+          }, 100);
           init();
         }
 
@@ -874,6 +883,7 @@ const styles = `
 `;
 
 const stylesEl = document.createElement('style');
+stylesEl.id = 'lav-styles';
 stylesEl.innerHTML = styles;
 
 /*** STYLES / end ***/
@@ -885,7 +895,6 @@ const awaitBody = setInterval(() => {
   if (document.body) {
     clearInterval(awaitBody);
     if (
-      !localStorage.getItem('isInitExp') &&
       location.href.includes('nebula.org/whole-genome-sequencing-dna-test/')
     ) {
       init();
@@ -894,7 +903,9 @@ const awaitBody = setInterval(() => {
 }, 100);
 
 function init() {
-  document.body.appendChild(stylesEl);
+  if (!document.querySelector('#lav-styles')) {
+    document.body.appendChild(stylesEl);
+  }
   localStorage.setItem('isInitExp', 'yes');
   gaEvent('loaded');
   console.log('init');
