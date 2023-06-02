@@ -73,6 +73,10 @@ if (!settings.debug && settings.clarity.enable) {
 /*** STYLES / Start ***/
 const styles = `
 <style>
+  .fixed.bottom-0 {
+    display: none;
+  }
+
   body {
     padding-bottom: 0 !important;
   }
@@ -105,17 +109,18 @@ const styles = `
     /* HEADER */
 
     .my_header {
-        background-image: url(${settings.dir}/golf_bg.svg);
+        position: relative;
+        background-image: url(https://flopsi69.github.io/crs/swingu/popup/img/head-bg.jpeg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0px -25px;
         text-align: center;
         padding: 20px 20px 75px 20px;
     }
-
-    .main-column section.choose_plan {
+    section.choose_plan {
         background: #fff;
         display: block !important;
+        padding-bottom: 140px;
     }
 
     .choose_plan .close_x {
@@ -525,7 +530,7 @@ const styles = `
     #plans_comparison_table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 35px;
+        margin-bottom: 10px;
     }
 
     #plans_comparison_table th,
