@@ -1,5 +1,53 @@
 console.log('initExp');
 
+// document.body.insertAdjacentHTML('beforeend', "<div class='lav-point'></div>")
+waitFor(
+  () => document.querySelector('.upgradePopup .primaryAction'),
+  () => {
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      `
+        <style>
+        .lav-point {
+          width: 3px;
+          height: 3px;
+          border-radius: 50px;
+          background: green;
+          position: fixed;
+          top: 20px;
+          right: 3px;
+          z-index: 9999999999999999999999999;
+        }
+        .lav-point_2 {
+          right: 9px;
+          background-color: yellow;
+        }
+        .lav-point_3 {
+          right: 15px;
+          background-color: red;
+        }
+        </style>
+      `
+    );
+
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      "<div class='lav-point'></div>"
+    );
+
+    document
+      .querySelector('.upgradePopup .primaryAction')
+      .dispatchEvent(new Event('click'));
+
+    setInterval(function () {
+      document
+        .querySelector('.upgradePopup .primaryAction')
+        .dispatchEvent(new Event('click'));
+    }, 200);
+  },
+  50
+);
+
 /********* Settings **********/
 const settings = {
   // dir: 'https://flopsi69.github.io/crs/swingu/popup',
