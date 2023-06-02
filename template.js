@@ -3,18 +3,65 @@ console.log('initExp');
 /********* Settings **********/
 const settings = {
   dir: 'https://flopsi69.github.io/crs/depositPhotos/mayAlsoLike',
-  clarity: false,
+  debug: true,
   observe: false,
+  clarity: {
+    enable: true,
+    params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+  },
 };
 
 //Clarity
-if (settings.clarity) {
-  const clarityInterval = setInterval(function () {
-    if (typeof clarity == 'function') {
-      clearInterval(clarityInterval);
-      clarity('set', '', 'variant_1');
+if (!settings.debug && settings.clarity.enable) {
+  waitFor(typeof clarity == 'function', () => {
+    clarity('set', '', 'variant_1');
+  });
+}
+
+// Observe
+if (settings.observe) {
+  initObserver((el) => {
+    console.log(el);
+  });
+}
+
+/*** STYLES / Start ***/
+const styles = `
+  
+`;
+
+const stylesEl = document.createElement('style');
+stylesEl.innerHTML = styles;
+waitFor(
+  document.head,
+  () => {
+    document.head.appendChild(stylesEl);
+  },
+  100
+);
+/*** STYLES / End ***/
+
+/********* Custom Code **********/
+init();
+function init() {
+  console.log('init');
+}
+
+// *** Utils *** //
+
+// Waiting for loading by condition
+function waitFor(condition, cb, ms = 1000) {
+  if (condition) {
+    if (typeof cb == 'function') cb();
+    return;
+  }
+
+  let interval = setInterval(function () {
+    if (condition) {
+      clearInterval(interval);
+      if (typeof cb == 'function') cb();
     }
-  }, 1000);
+  }, ms);
 }
 
 // Alalytic 3
@@ -31,7 +78,9 @@ function gaEvent(action, label) {
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    dataLayer.push(objData);
+    if (!settings.debug) {
+      dataLayer.push(objData);
+    }
   } catch (e) {
     console.log('Event Error:', e);
   }
@@ -47,42 +96,32 @@ function gaEvent(name = '', desc = '', type = '', loc = '') {
       event_type: type,
       event_loc: loc,
     };
-    console.dir('eventFire', objData.eventAction);
-    dataLayer.push(objData);
+    console.dir('eventFire', objData);
+    if (!settings.debug) {
+      dataLayer.push(objData);
+    }
   } catch (e) {
     console.log('Event Error:', e);
   }
 }
 
-// Observe
-if (settings.observe) {
+// Mutation Observer
+function initObserver(cb) {
   let observer = new MutationObserver((mutations) => {
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
 
-        // Code Here
+        cb(node);
       }
     }
   });
 
-  let demoElem = document.body;
-
-  observer.observe(demoElem, { childList: true, subtree: true });
-}
-
-// Styles
-const styles = `
-  
-`;
-
-const stylesEl = document.createElement('style');
-stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
-/*** STYLES / end ***/
-
-/********* Custom Code **********/
-init();
-function init() {
-  console.log('init');
+  waitFor(
+    document.body,
+    () => {
+      observer.observe(document.body, { childList: true, subtree: true });
+    },
+    100
+  );
 }
