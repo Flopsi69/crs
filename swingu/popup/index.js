@@ -74,7 +74,11 @@ if (!settings.debug && settings.clarity.enable) {
 const styles = `
 <style>
   .fixed.bottom-0 {
-    display: none;
+    display: none!important;
+  }
+
+  [dusk="gps-upgrade-container"]  {
+    display: none!important;
   }
 
   body {
