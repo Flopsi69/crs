@@ -9,6 +9,8 @@ console.log = function () {
 // console.log('fire');
 console.log(location.href);
 
+console.log(document.body.innerHTML);
+
 waitFor(
   () => document.body,
   () => {
