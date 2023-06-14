@@ -39,10 +39,10 @@ waitFor(
     );
 
     console.log('s1:' + JSON.stringify(sessionStorage));
-    sessionStorage.setItem('test4', 'test');
+    sessionStorage.setItem('test5', 'test');
     console.log('s2:' + JSON.stringify(sessionStorage));
     console.log('l1:' + JSON.stringify(localStorage));
-    localStorage.setItem('test3', 'test');
+    localStorage.setItem('test6', 'test');
     console.log('l2:' + JSON.stringify(localStorage));
 
     document.body.insertAdjacentHTML(
