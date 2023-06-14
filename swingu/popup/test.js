@@ -37,6 +37,7 @@ waitFor(
       `
     );
 
+    console.log(JSON.stringify(sessionStorage));
     sessionStorage.setItem('test1', 'test');
     console.log(JSON.stringify(sessionStorage));
 
