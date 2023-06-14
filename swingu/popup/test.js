@@ -38,7 +38,7 @@ waitFor(
     );
 
     sessionStorage.setItem('test1', 'test');
-    console.log(sessionStorage);
+    console.log(JSON.stringify(sessionStorage));
 
     document.body.insertAdjacentHTML(
       'beforeend',
