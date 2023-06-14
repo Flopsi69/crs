@@ -7,6 +7,7 @@ console.log = function () {
 };
 
 console.log('fire');
+console.log(location.href);
 
 waitFor(
   () => document.body,
@@ -37,9 +38,13 @@ waitFor(
       `
     );
 
-    console.log(JSON.stringify(sessionStorage));
+    console.log('s1', JSON.stringify(sessionStorage));
     sessionStorage.setItem('test1', 'test');
-    console.log(JSON.stringify(sessionStorage));
+    console.log('s2', JSON.stringify(sessionStorage));
+    console.log('--------');
+    console.log('l1', JSON.stringify(localStorage));
+    localStorage.setItem('test2', 'test');
+    console.log('l2', JSON.stringify(localStorage));
 
     document.body.insertAdjacentHTML(
       'beforeend',
