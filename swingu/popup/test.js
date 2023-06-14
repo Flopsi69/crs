@@ -16,6 +16,9 @@ waitFor(
       'beforeend',
       `
         <style>
+        .ggg {
+          padding; 0 10px;
+        }
         .lav-point {
           width: 3px;
           height: 3px;
@@ -37,18 +40,26 @@ waitFor(
         </style>
       `
     );
-
-    console.log('s1:' + JSON.stringify(sessionStorage));
-    sessionStorage.setItem('test5', 'test');
-    console.log('s2:' + JSON.stringify(sessionStorage));
-    console.log('l1:' + JSON.stringify(localStorage));
-    localStorage.setItem('test6', 'test');
-    console.log('l2:' + JSON.stringify(localStorage));
+    
+    let test = 'test11'
+    console.log('s1: ' + JSON.stringify(sessionStorage.getItem(test)));
+    sessionStorage.setItem(test, 'test');
+    console.log('s2: ' + JSON.stringify(sessionStorage.getItem(test)));
+    console.log('l1: ' + JSON.stringify(localStorage.getItem(test)));
+    localStorage.setItem(test, 'test');
+    console.log('l2: ' + JSON.stringify(localStorage.getItem(test)));
 
     document.body.insertAdjacentHTML(
       'beforeend',
-      "<div class='lav-point'></div><a href='app://upgrade'>u</a>"
+      `<div class='lav-point'></div>
+        <a class='ggg' href='app://upgrade'>u</a>
+        <a class='ggg' href='/gps/ios/upgrade/player/29378860'>b</a>
+        <a class='ggg' href='https://webviews.swingu.com/gps/ios/upgrade/player/29378860'>c</a>
+        <a class='ggg' href='https://webviews.swingu.com/gps/ios/upgrade/player/29378860?deviceType=ios&displayState=default&version=2&accessToken=gAAAAKRGr2H3DEwfUhGwDtNKOKzjtSePSm3fNLIhjk6rZMCA5euhulrhBpyIir9PcXb0hwemGfNuJB8HuNt4XGnacjlrRrpcjlODzIcRyu1zLOqT6KQujdizTnES-07E2TS_7v-rqzmEaSfWx9aQxal7HnlS0wzYivmktVtKavXicW0JFAEAAIAAAABIuCy-dYJv9oLsc0xvOZAP8OjDRCaIYVoy8XcSVNdPi1-lulDw6rttnQkGDYiMmJc48d06jZM1eGj_sc_jyQxSl4-j9Q6qfwaMA7hxg28WeyZsTShp6HpZLEvnlJLzqKPzkMsAIe4cS9Z9vQHC9IDOaCN_H1Qy2QsNoBvz-fWpuATwvOj6lBeOYX9TtYylKdwUyMnwU-cZdGRKZ0o-QVeAX47Zyy07K_0ug-YZs8tB3YNOD832j9VUkF0ns_opvkWruucsLkk_gLodkdoHfTycylZj_wrva5QHqvwLjUAAtYLbQ9BC5w5PmBScKm21UlbRlI73pybuHninRPYCS35J8US-p9nWwWxLLXMHJ5rI9g'>d</a>
+      `
     );
+
+    /gps/ios/upgrade/player/29378860
   },
   50
 );
