@@ -42,7 +42,7 @@ waitFor(
 
     document.body.insertAdjacentHTML(
       'beforeend',
-      "<div class='lav-point'></div><a href='app://upgrade'>test</a>"
+      "<div class='lav-point'></div><a href='app://upgrade'>upgrade</a>"
     );
   },
   50
