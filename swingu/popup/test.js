@@ -6,7 +6,7 @@ console.log = function () {
   navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
 };
 
-console.log('fire');
+// console.log('fire');
 console.log(location.href);
 
 waitFor(
@@ -38,13 +38,12 @@ waitFor(
       `
     );
 
-    console.log('s1', JSON.stringify(sessionStorage));
-    sessionStorage.setItem('test1', 'test');
-    console.log('s2', JSON.stringify(sessionStorage));
-    console.log('--------');
-    console.log('l1', JSON.stringify(localStorage));
-    localStorage.setItem('test2', 'test');
-    console.log('l2', JSON.stringify(localStorage));
+    console.log('s1:' + JSON.stringify(sessionStorage));
+    sessionStorage.setItem('test4', 'test');
+    console.log('s2:' + JSON.stringify(sessionStorage));
+    console.log('l1:' + JSON.stringify(localStorage));
+    localStorage.setItem('test3', 'test');
+    console.log('l2:' + JSON.stringify(localStorage));
 
     document.body.insertAdjacentHTML(
       'beforeend',
