@@ -299,13 +299,18 @@ const styles = `
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 /*** STYLES / end ***/
+let initBodyInterval = setInterval(() => {
+  if (document.body) {
+    clearInterval(initBodyInterval);
+    connectSplide();
+    document.body.appendChild(stylesEl);
+  }
+}, 20);
 
 /********* Custom Code **********/
 let initInterval = setInterval(() => {
   if (document.querySelector('.navbar')) {
     clearInterval(initInterval);
-    connectSplide();
-    document.body.appendChild(stylesEl);
     init();
   }
 }, 100);
