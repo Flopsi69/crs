@@ -296,17 +296,16 @@ const styles = `
   }
 `;
 
-connectSplide();
-
 const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
-document.body.appendChild(stylesEl);
 /*** STYLES / end ***/
 
 /********* Custom Code **********/
 let initInterval = setInterval(() => {
   if (document.querySelector('.navbar')) {
     clearInterval(initInterval);
+    connectSplide();
+    document.body.appendChild(stylesEl);
     init();
   }
 }, 100);
