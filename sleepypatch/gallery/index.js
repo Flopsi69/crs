@@ -39,9 +39,6 @@ const styles = `
   header .js-mobile.wave-bg {
     display: none!important;
   }
-  .js-iphone .transparent {
-    margin-top: 0;
-  }
   .js-iphone header {
     padding-bottom: 34px;
   }
@@ -53,6 +50,7 @@ const styles = `
   }
   .js-iphone .transparent {
     padding-top: 50px;
+    margin-top: 0!important;
   }
   .js-iphone .js-heading h1 {
     margin-top: 16px;
@@ -273,8 +271,8 @@ const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 /*** STYLES / end ***/
 let initBodyInterval = setInterval(() => {
-  if (document.head) {
-    document.head.appendChild(stylesEl);
+  if (document.body) {
+    document.body.prepend(stylesEl);
     clearInterval(initBodyInterval);
     connectSplide();
   }
