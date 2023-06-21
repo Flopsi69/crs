@@ -30,6 +30,63 @@ function gaEvent(action, label) {
 
 // Styles
 const styles = `
+.lav-loader,
+.lav-loader:before,
+.lav-loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.lav-loader {
+  color: #ffffff;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.lav-loader:before,
+.lav-loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.lav-loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.lav-loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
   .lav-overflow {
     overflow: hidden;
   }
@@ -488,6 +545,7 @@ function addVideo() {
 
 function addGallery() {
   let el = `
+    <div class='lav-loader'></div>
     <div class="splide lav-gallery">
       <div class="splide__track">
         <ul class="splide__list">
@@ -539,6 +597,7 @@ function initSlider() {
   slider.on('ready', function () {
     console.log('ready');
     document.querySelector('.lav-gallery').classList.add('ready');
+    document.querySelector('.lav-loader').style.display = 'none';
     // This will be executed.
   });
 
