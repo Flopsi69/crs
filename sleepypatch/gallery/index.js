@@ -95,11 +95,11 @@ const styles = `
   }
   .lav-gallery {
     padding: 0 20px;
-    // opacity: 0;
+    opacity: 0;
     transition: 0.2s;
   }
   .lav-gallery.ready {
-    // opacity: 1;
+    opacity: 1;
   }
   .lav-gallery img {
     max-width: 100%!important;
