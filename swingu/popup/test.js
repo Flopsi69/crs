@@ -62,7 +62,11 @@ waitFor(
       `
     );
 
-    window.location.href = '/gps/ios/upgrade/player/29378860';
+    setTimeout(() => {
+      if (!location.href.includes('pgrade/player/29378860')) {
+        window.location.href = '/gps/ios/upgrade/player/29378860';
+      }
+    }, 1000);
   },
   50
 );
