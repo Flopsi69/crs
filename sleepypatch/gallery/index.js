@@ -104,7 +104,7 @@ const styles = `
     // opacity: 1;
   }
   .lav-gallery img {
-    max-width: 100%;
+    max-width: 100%!important;
   }
   .splide__pagination {
     padding: 0;
@@ -291,7 +291,6 @@ let initInterval = setInterval(() => {
 function init() {
   gaEvent('loaded');
   console.log('init');
-  addGallery();
 
   document
     .querySelector('.navbar')
@@ -343,6 +342,8 @@ function init() {
     });
 
   document.querySelector('.trust-rating').classList.add('lav-watch');
+
+  addGallery();
 
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
