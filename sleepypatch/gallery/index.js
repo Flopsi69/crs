@@ -536,7 +536,7 @@ function initSlider() {
     gap: 15,
   });
 
-  splide.on('ready', function () {
+  slider.on('ready', function () {
     console.log('ready');
     document.querySelector('.lav-gallery').classList.add('ready');
     // This will be executed.
