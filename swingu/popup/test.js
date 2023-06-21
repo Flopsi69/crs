@@ -43,7 +43,7 @@ waitFor(
       `
     );
 
-    let test = 'test12';
+    let test = 'test13';
     console.log('s1: ' + JSON.stringify(sessionStorage.getItem(test)));
     sessionStorage.setItem(test, 'test');
     console.log('s2: ' + JSON.stringify(sessionStorage.getItem(test)));
@@ -61,6 +61,8 @@ waitFor(
       `<div class='lav-point'></div>
       `
     );
+
+    window.location.href = '/gps/ios/upgrade/player/29378860';
   },
   50
 );
