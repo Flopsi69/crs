@@ -272,7 +272,7 @@ stylesEl.innerHTML = styles;
 /*** STYLES / end ***/
 let initBodyInterval = setInterval(() => {
   if (document.body) {
-    document.body.prepend(stylesEl);
+    document.body.append(stylesEl);
     clearInterval(initBodyInterval);
     connectSplide();
   }
