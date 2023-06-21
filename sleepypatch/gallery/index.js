@@ -97,11 +97,11 @@ const styles = `
   }
   .lav-gallery {
     padding: 0 20px;
-    opacity: 0;
+    // opacity: 0;
     transition: 0.2s;
   }
   .lav-gallery.ready {
-    opacity: 1;
+    // opacity: 1;
   }
   .lav-gallery img {
     max-width: 100%;
@@ -341,11 +341,11 @@ function init() {
     });
 
   document.querySelector('.trust-rating').classList.add('lav-watch');
+  addGallery();
 
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
-      addGallery();
       initSlider();
     }
   }, 50);
