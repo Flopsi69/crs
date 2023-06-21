@@ -45,7 +45,9 @@ const styles = `
   color: #ffffff;
   font-size: 10px;
   margin: 80px auto;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   text-indent: -9999em;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -545,7 +547,7 @@ function addVideo() {
 
 function addGallery() {
   let el = `
-    <div class='lav-loader'></div>
+    <div class='lav-loader'>Loading</div>
     <div class="splide lav-gallery">
       <div class="splide__track">
         <ul class="splide__list">
