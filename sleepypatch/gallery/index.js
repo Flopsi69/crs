@@ -291,6 +291,8 @@ let initInterval = setInterval(() => {
 function init() {
   gaEvent('loaded');
   console.log('init');
+  addGallery();
+
   document
     .querySelector('.navbar')
     .insertAdjacentElement(
@@ -341,7 +343,6 @@ function init() {
     });
 
   document.querySelector('.trust-rating').classList.add('lav-watch');
-  addGallery();
 
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
