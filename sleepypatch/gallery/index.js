@@ -4,24 +4,9 @@ console.log('initExp');
 const settings = {
   dir: 'https://flopsi69.github.io/crs/sleepypatch/gallery',
   clarity: true,
-  observe: false,
 };
 
 let isTrustedScroll = false;
-
-//Clarity
-if (settings.clarity) {
-  const clarityInterval = setInterval(function () {
-    if (typeof clarity == 'function') {
-      clearInterval(clarityInterval);
-      clarity(
-        'set',
-        'Exp; Adding more product photos on the page',
-        'variant_1'
-      );
-    }
-  }, 1000);
-}
 
 // Alalytic 3
 function gaEvent(action, label) {
@@ -41,23 +26,6 @@ function gaEvent(action, label) {
   } catch (e) {
     console.log('Event Error:', e);
   }
-}
-
-// Observe
-if (settings.observe) {
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      for (let node of mutation.addedNodes) {
-        if (!(node instanceof HTMLElement)) continue;
-
-        // Code Here
-      }
-    }
-  });
-
-  let demoElem = document.body;
-
-  observer.observe(demoElem, { childList: true, subtree: true });
 }
 
 // Styles
@@ -129,6 +97,11 @@ const styles = `
   }
   .lav-gallery {
     padding: 0 20px;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  .lav-gallery.ready {
+    opacity: 1;
   }
   .lav-gallery img {
     max-width: 100%;
@@ -300,10 +273,10 @@ const stylesEl = document.createElement('style');
 stylesEl.innerHTML = styles;
 /*** STYLES / end ***/
 let initBodyInterval = setInterval(() => {
-  if (document.body) {
+  if (document.head) {
+    document.head.appendChild(stylesEl);
     clearInterval(initBodyInterval);
     connectSplide();
-    document.body.appendChild(stylesEl);
   }
 }, 20);
 
@@ -369,14 +342,13 @@ function init() {
 
   document.querySelector('.trust-rating').classList.add('lav-watch');
 
-  addGallery();
-
   let initSplideInterval = setInterval(() => {
     if (typeof Splide == 'function') {
       clearInterval(initSplideInterval);
+      addGallery();
       initSlider();
     }
-  }, 200);
+  }, 50);
 
   addVideo();
   addModal();
@@ -564,6 +536,12 @@ function initSlider() {
     gap: 15,
   });
 
+  splide.on('ready', function () {
+    console.log('ready');
+    document.querySelector('.lav-gallery').classList.add('ready');
+    // This will be executed.
+  });
+
   slider.on('autoplay:playing', function (rate) {
     if (rate === 1) {
       const num = parseInt(
@@ -668,12 +646,12 @@ function connectSplide() {
   sliderStyles.rel = 'stylesheet';
   sliderStyles.href =
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
-  document.body.appendChild(sliderStyles);
+  document.head.appendChild(sliderStyles);
 
   let sliderScript = document.createElement('script');
   sliderScript.src =
     'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
-  document.body.append(sliderScript);
+  document.head.appendChild(sliderScript);
 }
 
 function observerView() {
@@ -718,4 +696,18 @@ function isElementInViewport(el) {
   }
 
   return false;
+}
+
+//Clarity
+if (settings.clarity) {
+  const clarityInterval = setInterval(function () {
+    if (typeof clarity == 'function') {
+      clearInterval(clarityInterval);
+      clarity(
+        'set',
+        'Exp; Adding more product photos on the page',
+        'variant_1'
+      );
+    }
+  }, 1000);
 }
