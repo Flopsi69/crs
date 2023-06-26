@@ -22,6 +22,7 @@ function gaEvent(action, label) {
       eventValue: '',
     };
     console.log('EventFire:', objData);
+    return;
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -208,30 +209,7 @@ const styles = `
   .splide__pagination__page.is-active {
     background-color: #3292DA;
   }
-  .splide__arrow {
-    // position: absolute;
-    // z-index: 1;
-    // top: 50%;
-    // transform: translateY(-50%);
-    // padding: 0;
-    // outline: none;
-    // border: 0;
-    // width: 34px;
-    // height: 34px;
-    // border-radius: 50%;
-    // background: rgba(234, 239, 253, 0.8) url('${settings.dir}/img/arrow.svg') center no-repeat;
-  }
-  .splide__arrow svg {
-    // display: none;
-  }
-  .splide__arrow--prev {
-    // left: 12px;
-    // transform: rotate(180deg) translateY(50%);
-  }
-  .splide__arrow--next {
-    // right: 12px;
-  }
-  
+
   .hand-banner {
     padding: 0 20px;
   }
@@ -333,7 +311,6 @@ let initBodyInterval = setInterval(() => {
   if (document.body) {
     document.body.append(stylesEl);
     clearInterval(initBodyInterval);
-    connectSplide();
   }
 }, 20);
 
@@ -343,7 +320,7 @@ let initInterval = setInterval(() => {
     clearInterval(initInterval);
     init();
   }
-}, 100);
+}, 20);
 
 function init() {
   gaEvent('loaded');
@@ -407,7 +384,7 @@ function init() {
       clearInterval(initSplideInterval);
       initSlider();
     }
-  }, 50);
+  }, 20);
 
   addVideo();
   addModal();
@@ -427,16 +404,16 @@ function addModal() {
   const el = `
     <div class='lav-modal'>
       <div class='lav-modal__close'>
-        <img src='${settings.dir}/img/modal-close.svg'>
+        <img src='${settings.dir}/img2/modal-close.svg'>
       </div>
       <div class='lav-modal__inner'>
         <video data-video='1' playsinline class='lav-modal__video active' width="100%" controls >
-          <source src="${settings.dir}/img/video1.mp4" type="video/mp4">
+          <source src="${settings.dir}/img2/video1.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
 
         <video data-video='2' playsinline class='lav-modal__video' width="100%" controls >
-        <source src="${settings.dir}/img/video2.mp4" type="video/mp4">
+        <source src="${settings.dir}/img2/video2.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video tag.
       </video>
       </div>
@@ -519,8 +496,8 @@ function addVideo() {
       <div class='container'>
         <div class='lav-video__title'>Kids keeping you awake?</div>
 
-        <video width="100%" playsinline controls poster='${settings.dir}/img/poster.png'>
-          <source src="${settings.dir}/img/wake-ups.mp4" type="video/mp4">
+        <video width="100%" playsinline controls poster='${settings.dir}/img2/poster.png'>
+          <source src="${settings.dir}/img2/wake-ups.mp4" type="video/mp4">
           Your browser doesn't support HTML5 video tag.
         </video>
       </div>
@@ -552,31 +529,31 @@ function addGallery() {
       <div class="splide__track">
         <ul class="splide__list">
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide1.png" alt="">
+            <img src="${settings.dir}/img2/slide1.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide2.png" alt="">
+            <img src="${settings.dir}/img2/slide2.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide3.png" alt="">
+            <img src="${settings.dir}/img2/slide3.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide4.png" alt="">
+            <img src="${settings.dir}/img2/slide4.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide5.png" alt="">
+            <img src="${settings.dir}/img2/slide5.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide6.png" alt="">
+            <img src="${settings.dir}/img2/slide6.png" alt="">
           </li>
           <li class="splide__slide">
-            <img src="${settings.dir}/img/slide7.png" alt="">
+            <img src="${settings.dir}/img2/slide7.png" alt="">
           </li>
           <li class="splide__slide lav-open-modal" data-target='1'>
-            <img src="${settings.dir}/img/slide8.png" alt="">
+            <img src="${settings.dir}/img2/slide8.png" alt="">
           </li>
           <li class="splide__slide lav-open-modal" data-target='2'>
-            <img src="${settings.dir}/img/slide9.png" alt="">
+            <img src="${settings.dir}/img2/slide9.png" alt="">
           </li>
         </ul>
       </div>
@@ -700,19 +677,6 @@ function initSlider() {
   });
 
   slider.mount();
-}
-
-function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
-
-  let sliderScript = document.createElement('script');
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.1/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
 }
 
 function observerView() {
