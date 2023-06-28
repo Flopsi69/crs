@@ -1,4 +1,5 @@
 console.log('initExp');
+localStorage.setItem('subtotal', '-999999');
 
 (function () {
   /********* exp **********/
@@ -28,7 +29,7 @@ console.log('initExp');
       margin-bottom: 0;
     }
     .product-block--price {
-      margin-bottom: 0;
+      margin-bottom: 10px;
     }
 
     .lav-btn {
@@ -91,6 +92,7 @@ console.log('initExp');
     .lav-sticky__title {
       color: #1C1D1D;
       font-size: 14px;
+      max-width: 300px;
       font-weight: 600;
       line-height: 1;
     }
@@ -158,20 +160,21 @@ console.log('initExp');
       width: 16px;
     }
     .lav-reviews > div span {
-      color: #000;
+      color: #565656;
       font-size: 14px;
-      border-bottom: 1px solid #000;
+      // border-bottom: 1px solid #000;
       line-height: 1;
-      transiton: 0.35s;
-      cursor: pointer;
+      // transiton: 0.35s;
+      // cursor: pointer;
       padding-top: 1px;
       transition: 0.35s;
     }
     .lav-reviews:hover > div span {
-      opacity: 0.5;
+      // opacity: 0.5;
     }
     [data-product-price] {
       display: flex;
+      flex-wrap: wrap;
     }
     .lav-discount {
       display: flex;
@@ -196,7 +199,7 @@ console.log('initExp');
       position: relative;
       margin-bottom: -2px;
       padding: 16px;
-      margin-top: 20px;
+      margin-top: 10px;
       background-color: #F6F5F5;
       color: #565656;
       font-size: 14px;
@@ -253,10 +256,29 @@ console.log('initExp');
       color: #565656;
       font-size: 12px;
       line-height: 18px;
+      max-width: 400px;
     }
     .lav-earn__caption span {
       font-weight: 600;
       color: #1C1D1D;
+    }
+    .lav-earn__caption a {
+      color: #000;
+      font-size: inherit;
+      line-height: inherit;
+      transition: 0.35s;
+      white-space: nowrap;
+    }
+    .lav-earn__caption a:hover {
+      opacity: 0.6;
+    }
+    .lav-earn__caption a img {
+      position: relative;
+      top: 2px;
+    }
+
+    .needsclick[aria-label="Open Form"] {
+      opacity: 0.4;
     }
 
     .product-single__form .add-to-cart {
@@ -324,6 +346,7 @@ console.log('initExp');
       font-size: 12px!important;
       line-height: 18px!important;
       font-weight: 400!important;
+      letter-spacing: 0!important;
     }
     [for="CartTermsDrawer"] a {
       text-decoration: underline!important;
@@ -406,8 +429,28 @@ console.log('initExp');
       line-height: 21px;
       letter-spacing: -0.308px;
     }
+    .tangiblee-cta-wrapper {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      z-index: 1;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 6px;
+    }
+    .tangiblee-cta-wrapper .tangiblee-cta__icon {
+      margin-top: 0;
+      line-height: 0;
+      width: auto;
+      height: auto;
+    }
     .tangiblee-cta {
-      margin-top: 12px;
+      margin-top: 0;
+      height: auto;
+      color: #CC9286!important;
+      text-align: center;
+      font-size: 12px!important;
+      letter-spacing: -0.308px;
     }
     .lav-shipping .collapsible-content__inner {
       padding-left: 12px!important;
@@ -538,20 +581,33 @@ console.log('initExp');
     }
     .cart__item {
       padding: 16px 0;
+      margin-bottom: 0;
     }
-    .cart__item .cart__price .money {
+    .cart__item .cart__price:not(.cart__price--strikethrough) .money {
       color: #1C1D1D;
       font-size: 14px!important;
       font-weight: 600!important;
       line-height: 21px;
       letter-spacing: -0.308px;
     }
+    .cart__item .cart__price.cart__price--strikethrough {
+      margin-right: 4px;
+    }
+    .cart__item .cart__price.cart__price--strikethrough .money {
+      color: #565656;
+      font-size: 12px!important;
+      line-height: 18px;
+      letter-spacing: -0.308px;
+    }
+    .cart__item .cart__price {
+      display: inline-block;
+    }
     .cart__item .js-qty__wrapper {
       position: relative;
       margin-top: 12px;
     }
     .cart__item-sub br {
-      display: none;
+      // display: none;
     }
     .cart__image {
       margin-right: 16px;
@@ -583,11 +639,12 @@ console.log('initExp');
     }
 
     .lav-gift {
+      order: 1;
       border-top: 1px solid #E8E8E1;
       border-bottom: 1px solid #E8E8E1!important;
       background: #F6F5F5;
       padding: 17px 30px;
-      margin: 0 -30px 16px!important;
+      margin: 16px -30px!important;
       align-items: center;
     }
     .lav-gift .cart__item-name {
@@ -728,10 +785,29 @@ console.log('initExp');
       height: 4px;
       transition: 0.2s;
     }
-    .lav-btn-caption {
-
+    .cart__item-sub {
+      display: block;
+    }
+    .drawer__footer .cart__item-row.text-center, .drawer__footer .cart__item-sub {
+      display: none;
+    }
+    .drawer__inner .cart__items {
+      display: flex;
+      flex-flow: column;
     }
     @media(max-width: 768px) {
+      .drawer--right {
+        width: 320px;
+      }
+      .tangiblee-cta-wrapper {
+        top: initial;
+        right: initial;
+        bottom: 9px;
+        left: 15vw;
+      }
+      .lav-discount__icon img {
+        height: 19px;
+      }
       .lav-discount__caption {
         font-size: 14px;
       }
@@ -796,6 +872,29 @@ console.log('initExp');
       .lav-mob {
         display: block;
       }
+      .lav-benefits__slide {
+        margin-top: 0;
+        border-top: 1px solid #FFF;
+      }
+      .drawer__footer {
+        padding-top: 12px;
+        border-top: 1px solid #E8E8E1;
+        background: #F6F5F5;
+      }
+      .cart__checkout.lav-btn {
+        min-height: 40px;
+        padding: 8px;
+      }
+      .cart__checkout.lav-btn img {
+        height: 23px;
+      }
+      .cart__item-name {
+        font-size: 13px;
+      }
+      .lav-btn-price {
+        padding-right: 20px;
+        margin-right: 16px;
+      }
     }
   `;
 
@@ -811,6 +910,39 @@ console.log('initExp');
   /*** STYLES / End ***/
 
   /********* Custom Code **********/
+  const earnStart = `
+    <div class='lav-earn lav-earn-start'>
+      <div class='lav-earn__img'>
+        <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+      </div>
+      <div class='lav-earn__caption lav-earn_moon'>
+        Spend <span>$1500 or more</span> and <span>get free</span> complimentary Moon Shaped Capucinne earrings
+    </div>
+    </div>
+  `;
+
+  const earnGift1 = `
+  <div class='lav-earn lav-earn-1500'>
+    <div class='lav-earn__img'>
+      <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+    </div>
+    <div class='lav-earn__caption lav-earn_moon' >
+      <span>You’ll receive a free</span> pair of Moon Shaped Capucinne <span>earrings</span> with your order of $1500 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+    </div>
+  </div>
+  `;
+
+  const earnGift2 = `
+  <div class='lav-earn lav-earn-5000'>
+    <div class='lav-earn__img'>
+      <img class='lav-earn_chain' src='${exp.dir}/img/chain.png'  />
+    </div>
+    <div class='lav-earn__caption lav-earn_chain'>
+      <span>You’ll receive a free</span> Chain Capucinne <span>earrings</span> with your order of $5000 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+    </div>
+  </div>
+  `;
+
   init();
   function init() {
     console.log('init');
@@ -822,34 +954,20 @@ console.log('initExp');
     $el('.lav-reviews > div span').innerText =
       'Over ' + $el('.lav-reviews > div span').innerText.match(/\d+\s\w+/)[0];
 
-    $el('.lav-reviews > div span').addEventListener('click', () => {
-      $el('.lav-reviews > div a').click();
-    });
+    // $el('.lav-reviews > div span').addEventListener('click', () => {
+    //   $el('.lav-reviews > div a').click();
+    // });
 
     $el('[data-product-blocks]').insertAdjacentElement(
       'afterbegin',
       $el('[href="#reviews"]').closest('.product-block')
     );
 
-    const getDiscount = `
-      <div class='lav-discount'>
-        <div class='lav-discount__icon'>
-          <img src='${exp.dir}/img/discount-icon.svg' />
-        </div>
-        <div class='lav-discount__caption'>Get Your 10% Off</div>
-        <div class='lav-discount__arrow'>
-          <img src='${exp.dir}/img/discount-arrow.svg' />
-        </div>
-      </div>
-    `;
-
-    $el('[data-product-price]').insertAdjacentHTML('beforeend', getDiscount);
-
     const points = `
       <div class='lav-point__wrap'>
         <div class='lav-point'>
           <img class='lav-point__icon' src='${exp.dir}/img/point1.svg' />
-          <div class='lav-points__caption'><span>14 days Free</span> Returns & Exchange </div>
+          <div class='lav-points__caption'><span>14 days Free</span> Returns &&nbsp;Exchange </div>
         </div>
 
         <div class='lav-point'>
@@ -873,18 +991,7 @@ console.log('initExp');
       $el('.product-block--sales-point span[onclick]').click();
     });
 
-    const earn = `
-      <div class='lav-earn'>
-        <div class='lav-earn__img'>
-          <img src='${exp.dir}/img/earn.png' />
-        </div>
-        <div class='lav-earn__caption'><span>A free pair</span> of Moon Shaped Capucinne earrings is included in your order of <span>$1500 or more</span>, they can be find in your cart</div>
-      </div>
-    `;
-
     $el('.one-whole')?.closest('.product-block')?.classList.add('lav-options');
-
-    $el('[class*=wishlist-action]')?.insertAdjacentHTML('beforebegin', earn);
 
     $el('.product-single__form .add-to-cart').insertAdjacentHTML(
       'afterbegin',
@@ -900,7 +1007,7 @@ console.log('initExp');
 
         <div class='lav-benefits__item'>
           <img src='${exp.dir}/img/shield.svg' />
-          14 days Free Returns & Exchange 
+          14 days Free Returns &&nbsp;Exchange 
         </div>
       </div>
     `;
@@ -956,13 +1063,156 @@ console.log('initExp');
     handleShipping(benefits);
     handleSlideIn(benefits);
     addSticky();
+    // updateTotal();
+    // findGift();
+    // handleHand();
 
     setInterval(() => {
-      const cart = $el('#CartDrawer');
+      updateData();
+    }, 500);
+  }
 
-      handleItems(cart);
-      findGift(cart);
-    }, 1000);
+  function updateData() {
+    if (!$el('[data-cart-subtotal]')) return false;
+
+    const subtotal =
+      parseInt(
+        $el('[data-cart-subtotal]')?.getAttribute('data-cart-subtotal')
+      ) / 100;
+
+    const cart = $el('#CartDrawer');
+
+    handleDiscount();
+    handleItems(cart);
+    handleHand();
+    findGift();
+
+    if (parseInt(localStorage.getItem('subtotal')) === subtotal) return false;
+
+    updateTotal();
+    handleEarn(subtotal);
+
+    localStorage.setItem('subtotal', subtotal);
+  }
+
+  function handleHand() {
+    if (!$el('.product-single__meta .tangiblee-cta-wrapper')) return false;
+
+    $el('.product-single__meta .tangiblee-cta-wrapper').classList.add(
+      'lav-hand'
+    );
+
+    $el('.product__main-photos').insertAdjacentElement(
+      'afterbegin',
+      $el('.product-single__meta .tangiblee-cta-wrapper')
+    );
+
+    $el('.tangiblee-cta-wrapper .tangiblee-cta__icon').innerHTML = `
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_420_3986)">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4238 3.57381C20.4238 2.47158 19.5302 1.57804 18.428 1.57804H14.7148V0L18.428 1.62302e-07C20.4018 2.48578e-07 22.0018 1.60005 22.0018 3.57381V7.28686H20.4238V3.57381Z" fill="#CC9286"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.57806 3.57381C1.57806 2.47158 2.4716 1.57804 3.57384 1.57804L7.28691 1.57805V1.62304e-07L3.57384 0C1.60006 -8.62765e-08 2.48578e-07 1.60005 1.62302e-07 3.57381L0 7.28686H1.57806V3.57381Z" fill="#CC9286"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.428 20.422C19.5302 20.422 20.4238 19.5284 20.4238 18.4262V14.7131H22.0018V18.4262C22.0018 20.4 20.4018 22 18.428 22H14.7148V20.422H18.428Z" fill="#CC9286"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M1.57806 18.4262C1.57806 19.5284 2.4716 20.422 3.57384 20.422H7.28691V22H3.57384C1.60006 22 -2.58829e-07 20.4 0 18.4262L4.86909e-07 14.7131H1.57806V18.4262Z" fill="#CC9286"/>
+      <g clip-path="url(#clip1_420_3986)">
+      <path d="M6.42969 12.9181V7.80573C6.42969 7.78528 6.42969 7.76669 6.42969 7.74624C6.44224 7.60337 6.51071 7.47124 6.62022 7.37862C6.72972 7.28601 6.87139 7.24039 7.01436 7.25173C7.08812 7.24833 7.16177 7.2605 7.23052 7.28744C7.29927 7.31438 7.36158 7.35549 7.41339 7.40809C7.46521 7.4607 7.50538 7.52362 7.53128 7.59277C7.55717 7.66192 7.56822 7.73575 7.56371 7.80945V11.2598C7.76077 11.1398 7.9679 11.0372 8.18277 10.9531V6.10284C8.19106 5.95808 8.25442 5.82197 8.35984 5.72241C8.46525 5.62285 8.60477 5.56738 8.74978 5.56738C8.89479 5.56738 9.03431 5.62285 9.13972 5.72241C9.24512 5.82197 9.30852 5.95808 9.31679 6.10284V10.6454C9.52138 10.6116 9.72783 10.5899 9.93492 10.5804V5.68549C9.9432 5.54072 10.0066 5.4046 10.112 5.30505C10.2174 5.20549 10.3569 5.15002 10.5019 5.15002C10.6469 5.15002 10.7865 5.20549 10.8919 5.30505C10.9973 5.4046 11.0607 5.54072 11.0689 5.68549V10.612C11.2778 10.638 11.4847 10.6783 11.688 10.7328V6.39285C11.6963 6.24809 11.7597 6.11197 11.8651 6.01242C11.9705 5.91286 12.11 5.85739 12.255 5.85739C12.4 5.85739 12.5395 5.91286 12.645 6.01242C12.7504 6.11197 12.8138 6.24809 12.822 6.39285V11.6911C12.822 12.2712 12.8759 12.577 13.06 12.577C13.3677 12.577 13.7534 11.3528 14.0704 10.7096C14.3492 10.1165 14.5407 9.90181 15.0287 9.90181C15.2444 9.90181 15.5678 10.111 15.5678 10.347C15.4626 10.9005 15.2968 11.4407 15.0733 11.9579C14.7953 13.2831 14.2038 14.5224 13.3481 15.5719C12.9331 15.9979 12.4328 16.3315 11.8801 16.5512C11.3274 16.7707 10.7346 16.8713 10.1403 16.8463C7.98013 16.8463 6.42969 15.6267 6.42969 12.9181Z" fill="#CC9286"/>
+      </g>
+      </g>
+      <defs>
+      <clipPath id="clip0_420_3986">
+      <rect width="22" height="22" fill="white"/>
+      </clipPath>
+      <clipPath id="clip1_420_3986">
+      <rect width="11.7" height="11.7" fill="white" transform="translate(5.14844 5.15002)"/>
+      </clipPath>
+      </defs>
+      </svg>
+
+    `;
+
+    // $el('.lav-hand').addEventListener('click', () => {
+    //   $el('.tangiblee-cta-wrapper a').click();
+    // });
+  }
+
+  function updateTotal() {
+    let value = $el('.drawer__footer [data-subtotal]')?.innerText.trim();
+    if (!value) return false;
+
+    for (let item of $$el('.lav-cart-price')) {
+      item.innerText = value;
+    }
+  }
+
+  function handleDiscount() {
+    if (!$el('.needsclick[aria-label="Open Form"]')) return false;
+
+    const getDiscount = `
+      <div class='lav-discount'>
+        <div class='lav-discount__icon'>
+          <img src='${exp.dir}/img/discount-icon.svg' />
+        </div>
+        <div class='lav-discount__caption'>Get Your 50$ Off</div>
+        <div class='lav-discount__arrow'>
+          <img src='${exp.dir}/img/discount-arrow.svg' />
+        </div>
+      </div>
+    `;
+
+    if (!$el('.product-block--price .lav-discount')) {
+      $el('[data-product-price]').insertAdjacentHTML('beforeend', getDiscount);
+
+      $el('.product-block--price .lav-discount').addEventListener(
+        'click',
+        () => {
+          $el('.needsclick[aria-label="Open Form"]').click();
+        }
+      );
+    }
+
+    if (!$el('.lav-sticky .lav-discount')) {
+      $el('.lav-sticky__price').insertAdjacentHTML('beforeend', getDiscount);
+
+      $el('.lav-sticky .lav-discount').addEventListener('click', () => {
+        $el('.needsclick[aria-label="Open Form"]').click();
+      });
+    }
+  }
+
+  function handleEarn(subtotal) {
+    if (!$el('[data-product-blocks] .lav-earn')) {
+      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+        'beforebegin',
+        earnStart
+      );
+    }
+
+    if (subtotal >= 5000 && !$el('[data-product-blocks] .lav-earn-5000')) {
+      $el('[data-product-blocks] .lav-earn')?.remove();
+      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+        'beforebegin',
+        earnGift2
+      );
+    } else if (
+      subtotal < 5000 &&
+      subtotal >= 1500 &&
+      !$el('[data-product-blocks] .lav-earn-1500')
+    ) {
+      $el('[data-product-blocks] .lav-earn')?.remove();
+      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+        'beforebegin',
+        earnGift1
+      );
+    } else if (
+      subtotal < 1500 &&
+      !$el('[data-product-blocks] .lav-earn-start')
+    ) {
+      $el('[data-product-blocks] .lav-earn')?.remove();
+      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+        'beforebegin',
+        earnStart
+      );
+    }
   }
 
   function handleShipping(benefits) {
@@ -1038,23 +1288,31 @@ console.log('initExp');
           </div>
           <div class='lav-sticky__price'>
             <div class='lav-sticky__price-old'>$2,110.00</div>
-            <div class='lav-sticky__price-new'>$1,899.00</div>
-            <div class='lav-sticky__price-discount'>
+            <div class='lav-sticky__price-new lav-product-price'></div>
+            <div class='lav-sticky__price-discount' style='display: none'>
               <img src='${exp.dir}/img/discount-apply.svg' />
-              You save 10%
+              You save 50$
             </div>
           </div>
         </div>
 
         <button class='lav-sticky__btn lav-btn'>
           <img src='${exp.dir}/img/bag.svg' />
-          <span class='lav-cart-price lav-btn-price'>$1,899.00</span>
+          <span class='lav-cart-price lav-btn-price lav-mob'></span>
           <span class='lav-btn-caption'>Add to cart</span>
         </button>
       </div>
     `;
 
     $el('body').insertAdjacentHTML('beforeend', el);
+
+    $el('.lav-sticky__btn').addEventListener('click', () => {
+      $el('button.add-to-cart').click();
+    });
+
+    $el('.lav-product-price').innerText = $el(
+      '.product__price .money'
+    ).innerText.trim();
   }
 
   function handleSlideIn(benefits) {
@@ -1069,17 +1327,17 @@ console.log('initExp');
       <div class='lav-summary'>
         <div class='lav-summary__item'>
           <div class='lav-summary__caption'>Maria Kite Moss Agate...</div>
-          <div class='lav-summary__value'>$1,899.00</div>
+          <div class='lav-summary__value'></div>
         </div>
 
         <div class='lav-summary__item'>
           <div class='lav-summary__caption'>Maria Kite Moss Agate...</div>
-          <div class='lav-summary__value'>$1,899.00</div>
+          <div class='lav-summary__value'></div>
         </div>
 
         <div class='lav-summary__item'>
           <div class='lav-summary__caption'>Subtotal</div>
-          <div class='lav-summary__value'>$1,899.00</div>
+          <div class='lav-summary__value lav-cart-price'></div>
         </div>
       </div>
     `;
@@ -1103,7 +1361,7 @@ console.log('initExp');
 
     $el('.cart__checkout-wrapper button', el).innerHTML = `
       <img src='${exp.dir}/img/bag.svg' />
-      <span class='lav-btn-price lav-cart-price'>$1,899.00</span>
+      <span class='lav-btn-price lav-cart-price'></span>
       <span class='lav-btn-caption'>CHECK OUT</span>
     `;
     $el('.cart__checkout-wrapper button', el).classList.add('lav-btn');
@@ -1126,18 +1384,15 @@ console.log('initExp');
       pr.querySelector('.lav-product__remove').addEventListener(
         'click',
         function (e) {
-          // const interval = setInterval(() => {
-          //   if (pr.querySelector('.js-qty__adjust--minus')) {
-          pr.querySelector('.js-qty__adjust--minus').click();
-          //     clearInterval(interval);
-          //   }
-          // }, 500);
+          fetch(pr.querySelector('.cart__remove a.href'));
         }
       );
     });
   }
 
-  function findGift(el) {
+  function findGift() {
+    const el = $el('#CartDrawer');
+
     let gift = Array.from($$el('.cart__item', el)).find((pr) => {
       return pr.querySelector('.cart__item-name').innerText.trim() == 'Gift';
     });
@@ -1149,6 +1404,13 @@ console.log('initExp');
       // `;
       gift.querySelector('.cart__item-name').innerText = 'Free Gift';
       gift.querySelector('.cart__price').innerText = '$0.00';
+      if ($el('.drawer__scrollable .lav-earn')) {
+        $el('.drawer__scrollable .lav-earn').remove();
+      }
+    } else if (!$el('.drawer__scrollable .lav-earn') && !$el('.lav-gift')) {
+      $el('.drawer__scrollable [for="CartNoteDrawer"]')
+        .closest('div')
+        .insertAdjacentHTML('afterbegin', earnStart);
     }
   }
 
