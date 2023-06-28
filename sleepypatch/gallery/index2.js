@@ -22,7 +22,6 @@ function gaEvent(action, label) {
       eventValue: '',
     };
     console.log('EventFire:', objData);
-    return;
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);

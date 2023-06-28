@@ -66,7 +66,7 @@ console.log('initExp');
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 99999;
+      z-index: 20;
       background-color: #fff;
       border-top: 1px solid #E8E8E1;
       padding: 0 40px;
@@ -328,6 +328,10 @@ console.log('initExp');
     [for="CartTermsDrawer"] a {
       text-decoration: underline!important;
       color: #1C1D1D!important;
+      transition: 0.3s;
+    }
+    [for="CartTermsDrawer"] a:hover {
+      opacity: 0.6;
     }
     #CartTermsDrawer {
       margin-right: 5px;
@@ -382,7 +386,11 @@ console.log('initExp');
       cursor: pointer;
       transition: 0.35s;
     }
-    .lav-extend__item:hover {
+    .lav-extend__item.active {
+      background-color: #D4A298;
+    }
+    .lav-extend__item:not(.active):hover {
+      opacity: 0.7;
     }
     .lav-extend__item-caption {
       color: #1C1D1D;
@@ -398,7 +406,13 @@ console.log('initExp');
       line-height: 21px;
       letter-spacing: -0.308px;
     }
-
+    .tangiblee-cta {
+      margin-top: 12px;
+    }
+    .lav-shipping .collapsible-content__inner {
+      padding-left: 12px!important;
+      padding-right: 12px!important;
+    }
     .lav-shipping__caption {
       color: #565656;
       font-size: 12px;
@@ -500,6 +514,12 @@ console.log('initExp');
       justify-content: space-between;
       padding: 15px 0;
     }
+    .drawer__scrollable {
+      padding-top: 0;
+    }
+    .drawer__title {
+      font-size: 18px;
+    }
     .drawer__close, .drawer__title {
       display: block;
       margin: 0;
@@ -512,6 +532,54 @@ console.log('initExp');
     }
     .drawer__close {
       width: auto;
+    }
+    .cart__item:first-child {
+      padding-top: 16px;
+    }
+    .cart__item {
+      padding: 16px 0;
+    }
+    .cart__item .cart__price .money {
+      color: #1C1D1D;
+      font-size: 14px!important;
+      font-weight: 600!important;
+      line-height: 21px;
+      letter-spacing: -0.308px;
+    }
+    .cart__item .js-qty__wrapper {
+      position: relative;
+      margin-top: 12px;
+    }
+    .cart__item-sub br {
+      display: none;
+    }
+    .cart__image {
+      margin-right: 16px;
+    }
+    .cart__item--variants * {
+      color: #565656;
+      font-size: 12px;
+      line-height: 18px;
+      text-transform: capitalize;
+      font-weight: 400!important;
+    }
+    .cart__item--variants > div + div {
+      margin-top: 2px;
+    }
+    .lav-product__remove {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 20px);
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: opacity 0.2s ease-in-out;
+      color: #565656;
+      font-size: 12px;
+      line-height: 22px;
+      text-decoration-line: underline;
+    }
+    .lav-product__remove:hover {
+      opacity: 0.6;
     }
 
     .lav-gift {
@@ -566,57 +634,12 @@ console.log('initExp');
       animation: none!important;
       transition-delay: 0s!important;
     }
-    .cart__checkout-wrapper .lav-btn__price:after {
-      display: none;
-    }
-    .cart__checkout-wrapper .lav-btn__price {
-      display: flex;
-      align-items: center;
-      line-height: 0;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 12px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-    .cart__checkout-wrapper .lav-btn__price img {
-      margin-right: 8px;
-    }
-    .cart__checkout-wrapper .lav-btn__checkout {
-      position: relative;
-      padding-left: 28px;
-      margin-left: 24px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-    }
-    .cart__checkout-wrapper .lav-btn__checkout:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      border-radius: 100px;
-      background-color: #fff;
-      width: 4px;
-      height: 4px;
-      transition: 0.2s;
-    }
     .cart__terms {
       margin-bottom: 12px!important;
     }
     .cart__checkout-wrapper {
       margin-top: 0!important;
     }
-
-    .cart__checkout-wrapper .lav-btn:hover .lav-btn__checkout:before {
-      background-color: #1C1D1D;
-    }
-
     .lav-notes {
       display: flex;
       align-items: center;
@@ -676,7 +699,104 @@ console.log('initExp');
     .lav-summary__value {
       margin-left: 12px;
     }
-    .lav-summary {}
+    .lav-mob {
+      display: none;
+    }
+    .lav-btn-price {
+      position: relative;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding-right: 28px;
+      margin-right: 24px;
+    }
+    .lav-btn:hover .lav-btn-price:after {
+      background-color: #1C1D1D;
+    }
+    .lav-btn-price:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 100px;
+      background-color: #fff;
+      width: 4px;
+      height: 4px;
+      transition: 0.2s;
+    }
+    .lav-btn-caption {
+
+    }
+    @media(max-width: 768px) {
+      .lav-discount__caption {
+        font-size: 14px;
+      }
+      .lav-point__wrap {
+        font-size: 12px;
+      }
+      .lav-point__icon img {
+        height: 23px;
+      }
+      .product__main-photos {
+        margin-bottom: 40px;
+      }
+      .lav-benefits {
+        margin-top: 8px;
+        padding: 12px;
+        font-size: 12px;
+        line-height: 18px;
+        color: #565656;
+      }
+      .lav-extend {
+        margin-top: 8px;
+        padding: 12px;
+      }
+      .lav-extend__caption {
+        font-size: 12px;
+        line-height: 18px;
+        color: #565656;
+        max-width: 170px;
+      }
+      .lav-extend__covered {
+        font-size: 12px;
+        margin-left: 10px;
+      }
+      .lav-shipping__caption {
+        font-size: 11px;
+      }
+      .lav-shipping__date {
+        margin-top: 4px;
+      }
+      .lav-timeline__item-caption {
+        font-size: 11px;
+        margin-top: 0;
+      }
+      .lav-shipping .lav-benefits {
+        margin-top: 16px;
+      }
+      .lav-shipping .collapsible-content__inner {
+        padding-bottom: 16px!important;
+      }
+      .lav-sticky__info {
+        display: none;
+      }
+      .lav-sticky {
+        padding: 12px 17px;
+      }
+      .lav-sticky__btn {
+        max-width: 100%;
+      }
+      .lav-desk {
+        dispalay: none;
+      }
+      .lav-mob {
+        display: block;
+      }
+    }
   `;
 
   const stylesEl = document.createElement('style');
@@ -762,9 +882,9 @@ console.log('initExp');
       </div>
     `;
 
-    $el('.one-whole').closest('.product-block').classList.add('lav-options');
+    $el('.one-whole')?.closest('.product-block')?.classList.add('lav-options');
 
-    $el('.lav-options').insertAdjacentHTML('afterend', earn);
+    $el('[class*=wishlist-action]')?.insertAdjacentHTML('beforebegin', earn);
 
     $el('.product-single__form .add-to-cart').insertAdjacentHTML(
       'afterbegin',
@@ -825,13 +945,34 @@ console.log('initExp');
       '.product-single__form .add-to-cart + .lav-benefits'
     ).insertAdjacentHTML('afterend', extend);
 
+    $$el('.lav-extend__item').forEach((item) => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('active')) return false;
+        $el('.lav-extend__item.active')?.classList.remove('active');
+        item.classList.add('active');
+      });
+    });
+
     handleShipping(benefits);
     handleSlideIn(benefits);
-    // addSticky();
+    addSticky();
+
+    setInterval(() => {
+      const cart = $el('#CartDrawer');
+
+      handleItems(cart);
+      findGift(cart);
+    }, 1000);
   }
 
   function handleShipping(benefits) {
-    const el = $el('.product-block.product-block--tab + div + div');
+    const el = Array.from($$el('.product-block--tab')).find((item) => {
+      return item
+        .querySelector('.label')
+        .innerText.includes('Shipping and Production');
+    });
+
+    el.classList.add('lav-shipping');
 
     el.querySelector('.label').innerHTML = el
       .querySelector('.label')
@@ -907,7 +1048,8 @@ console.log('initExp');
 
         <button class='lav-sticky__btn lav-btn'>
           <img src='${exp.dir}/img/bag.svg' />
-          <span>Add to cart</span>
+          <span class='lav-cart-price lav-btn-price'>$1,899.00</span>
+          <span class='lav-btn-caption'>Add to cart</span>
         </button>
       </div>
     `;
@@ -960,15 +1102,39 @@ console.log('initExp');
     $el('[for="CartTermsDrawer"] a', el).innerText = 'Terms and Conditions';
 
     $el('.cart__checkout-wrapper button', el).innerHTML = `
-      <span class='lav-btn__price'>
-        <img src='${exp.dir}/img/bag.svg' />
-        <span>$1,899.00</span>
-      </span>
-      <span class='lav-btn__checkout'>CHECK OUT</span>
+      <img src='${exp.dir}/img/bag.svg' />
+      <span class='lav-btn-price lav-cart-price'>$1,899.00</span>
+      <span class='lav-btn-caption'>CHECK OUT</span>
     `;
     $el('.cart__checkout-wrapper button', el).classList.add('lav-btn');
+  }
 
-    findGift(el);
+  function handleItems(el) {
+    Array.from($$el('.cart__item', el)).forEach((pr) => {
+      if (
+        !pr.querySelector('.js-qty__wrapper') ||
+        pr.querySelector('.lav-product__remove')
+      ) {
+        return false;
+      }
+
+      pr.querySelector('.js-qty__wrapper').insertAdjacentHTML(
+        'beforeend',
+        `<div class='lav-product__remove'>Remove</div>`
+      );
+
+      pr.querySelector('.lav-product__remove').addEventListener(
+        'click',
+        function (e) {
+          // const interval = setInterval(() => {
+          //   if (pr.querySelector('.js-qty__adjust--minus')) {
+          pr.querySelector('.js-qty__adjust--minus').click();
+          //     clearInterval(interval);
+          //   }
+          // }, 500);
+        }
+      );
+    });
   }
 
   function findGift(el) {
@@ -978,9 +1144,9 @@ console.log('initExp');
 
     if (gift) {
       gift.classList.add('lav-gift');
-      gift.querySelector('.cart__image').innerHTML = `
-        <img src='${exp.dir}/img/gift.png' />
-      `;
+      // gift.querySelector('.cart__image').innerHTML = `
+      //   <img src='${exp.dir}/img/gift.png' />
+      // `;
       gift.querySelector('.cart__item-name').innerText = 'Free Gift';
       gift.querySelector('.cart__price').innerText = '$0.00';
     }
