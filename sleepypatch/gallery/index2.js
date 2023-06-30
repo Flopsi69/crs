@@ -301,6 +301,10 @@ const styles = `
     margin-top: 30px;
     border-radius: 10px;
   }
+  #provesrc-notification-container.bottom-left {
+    top: 95px;
+    bottom: initial!important;
+  }
 `;
 
 const stylesEl = document.createElement('style');
