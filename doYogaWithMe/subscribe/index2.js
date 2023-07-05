@@ -17,20 +17,17 @@ if (settings.clarity) {
   }, 1000);
 }
 
-// Alalytic 3
-function gaEvent(action, label) {
-  if (!label) {
-    label = '';
-  }
+// Alalytic 4
+function gaEvent(name = '', desc = '', type = '', loc = '') {
   try {
     var objData = {
-      event: 'event-to-ga',
-      eventCategory: 'Exp: Change Plans page, Signup, Checkout',
-      eventAction: action,
-      eventLabel: label,
-      eventValue: '',
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
     };
-    console.log('EventFire:', objData);
+    console.log('eventFire', objData);
     dataLayer.push(objData);
   } catch (e) {
     console.log('Event Error:', e);
@@ -1896,7 +1893,7 @@ if (
 }
 
 function init() {
-  gaEvent('loaded');
+  // gaEvent('loaded');
   console.log('init');
 
   document
@@ -1941,13 +1938,13 @@ function init() {
     .querySelector('[data-sfc-ids="apps_promo"]')
     .classList.add('lav-watch', 'lav-app');
 
-  document
-    .querySelector('.lav-try__btn')
-    .addEventListener('click', function (e) {
-      e.preventDefault();
-      // gaEvent('Click on Start Basic plan button');
-      document.querySelector('[href="/yogi/register"]').click();
-    });
+  // document
+  //   .querySelector('.lav-try__btn')
+  //   .addEventListener('click', function (e) {
+  //     e.preventDefault();
+  //     gaEvent('Click on Start Basic plan button');
+  //     document.querySelector('[href="/yogi/register"]').click();
+  //   });
 
   initJumb();
   initClasses();
@@ -1960,13 +1957,23 @@ function init() {
       document
         .querySelector('.lav-instructors .splide__arrow--next')
         .addEventListener('click', function () {
-          gaEvent(`Navigation button - Right`, 'Our instructors');
+          gaEvent(
+            'exp_ch_pl_page_navb_inst',
+            'navigation button - Right',
+            'Button',
+            'Our instructors'
+          );
         });
 
       document
         .querySelector('.lav-instructors .splide__arrow--prev')
         .addEventListener('click', function () {
-          gaEvent(`Navigation button - Left`, 'Our instructors');
+          gaEvent(
+            'exp_ch_pl_page_navb_inst',
+            'navigation button - Left',
+            'Button',
+            'Our instructors'
+          );
         });
 
       setTimeout(() => {
@@ -1974,7 +1981,9 @@ function init() {
           .querySelector('.lav-journey .splide__arrow--next')
           .addEventListener('click', function () {
             gaEvent(
-              `Navigation button - Right`,
+              'exp_ch_pl_page_navb_health',
+              'navigation button - Right',
+              'Button',
               'Your journey to health and wellness start here'
             );
           });
@@ -1983,7 +1992,9 @@ function init() {
           .querySelector('.lav-journey .splide__arrow--prev')
           .addEventListener('click', function () {
             gaEvent(
-              `Navigation button - Left`,
+              'exp_ch_pl_page_navb_health',
+              'navigation button - Left',
+              'Button',
               'Your journey to health and wellness start here'
             );
           });
@@ -1994,42 +2005,72 @@ function init() {
   document
     .querySelector('.sfc-appsPromo__appIcons a:first-child')
     .addEventListener('click', function () {
-      gaEvent('Click on Apps - App Store', 'For every space, at any pace');
+      gaEvent(
+        'exp_ch_pl_page_apps',
+        'Click on Apps - App Store',
+        'Icon',
+        'For every space, at any pace'
+      );
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(2)')
     .addEventListener('click', function () {
-      gaEvent('Click on Apps - Google Play', 'For every space, at any pace');
+      gaEvent(
+        'exp_ch_pl_page_apps',
+        'Click on Apps - Google Play',
+        'Icon',
+        'For every space, at any pace'
+      );
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(3)')
     .addEventListener('click', function () {
-      gaEvent('Click on Apps - Amazon Fire', 'For every space, at any pace');
+      gaEvent(
+        'exp_ch_pl_page_apps',
+        'Click on Apps - Amazon Fire',
+        'Icon',
+        'For every space, at any pace'
+      );
     });
 
   document
     .querySelector('.sfc-appsPromo__appIcons a:nth-child(4)')
     .addEventListener('click', function () {
-      gaEvent('Click on Apps - Roku', 'For every space, at any pace');
+      gaEvent(
+        'exp_ch_pl_page_apps',
+        'Click on Apps - Roku',
+        'Icon',
+        'For every space, at any pace'
+      );
     });
 
   for (let item of document.querySelectorAll('.lav-plan .lav-plan__option')) {
     item.addEventListener('click', function () {
-      let caption = 'Cancel anytime element';
+      const plan = item
+        .closest('.lav-plan')
+        .querySelector('.lav-plan__btn-month')
+        ? '1 month'
+        : item.closest('.lav-plan').querySelector('.lav-plan__btn-try')
+        ? 'Free'
+        : '12 months';
 
       if (!item.innerText.toLowerCase().includes('cancel')) {
-        caption = '30-Day Money-Back Guarantee element';
+        gaEvent(
+          'exp_ch_pl_page_30day',
+          '30-Day Money-Back Guarantee element',
+          plan + ' plan',
+          'Your ultimate Yoga journey starts here'
+        );
+      } else {
+        gaEvent(
+          'exp_ch_pl_page_can_v',
+          'Cancel anytime element',
+          plan + ' plan',
+          'Your ultimate Yoga journey starts here'
+        );
       }
-      gaEvent(
-        caption,
-        item.closest('.lav-plan').querySelector('.lav-plan__btn-month')
-          ? '1 month'
-          : item.closest('.lav-plan').querySelector('.lav-plan__btn-try')
-          ? 'Free'
-          : '12 months'
-      );
     });
   }
 
@@ -2037,12 +2078,21 @@ function init() {
     '.lav-plan__options.lav-mob .lav-plan__option'
   )) {
     item.addEventListener('click', function () {
-      let caption = 'Cancel anytime element';
-
       if (!item.innerText.toLowerCase().includes('cancel')) {
-        caption = '30-Day Money-Back Guarantee element';
+        gaEvent(
+          'exp_ch_pl_page_30day',
+          '30-Day Money-Back Guarantee element',
+          'Button',
+          'Your ultimate Yoga journey starts here'
+        );
+      } else {
+        gaEvent(
+          'exp_ch_pl_page_can_v',
+          'Cancel anytime element',
+          'Button',
+          'Your ultimate Yoga journey starts here'
+        );
       }
-      gaEvent(caption);
     });
   }
 }
@@ -2052,7 +2102,9 @@ function initJumb() {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent(
+        'exp_ch_pl_page_get_b',
         'Get started now button in Basic access Free',
+        'Button',
         'Choose your plan'
       );
       document.querySelector('[href="/yogi/register"]').click();
@@ -2063,7 +2115,9 @@ function initJumb() {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent(
+        'exp_ch_pl_page_get_12',
         'Get started now button in Annual access 12 months',
+        'Button',
         'Choose your plan'
       );
       document.querySelector('[href="/express-checkout/55"]').click();
@@ -2074,7 +2128,9 @@ function initJumb() {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       gaEvent(
-        'Get started now button in Monthly access 1 months',
+        'exp_ch_pl_page_get_1',
+        'Get started now button in Montly access 1 months',
+        'Button',
         'Choose your plan'
       );
       document.querySelector('[href="/express-checkout/54"]').click();
@@ -2085,7 +2141,12 @@ function initJumb() {
     .querySelector('.lav-jumb__try-inner')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Not sure yet?', 'Choose your plan');
+      gaEvent(
+        'exp_ch_pl_page_not',
+        'Not sure yet?',
+        'Button',
+        'Choose your plan'
+      );
       document.querySelector('[href="/yogi/register"]').click();
     });
 
@@ -2095,13 +2156,17 @@ function initJumb() {
       e.preventDefault();
       if (document.querySelector('.lav-plan.active .lav-plan__btn-year')) {
         gaEvent(
+          'exp_ch_pl_page_get_yoga',
           'Get Started now button - 12 months',
+          'Button',
           'Your ultimate Yoga journey starts here'
         );
         document.querySelector('[href="/express-checkout/55"]').click();
       } else {
         gaEvent(
+          'exp_ch_pl_page_get_yoga',
           'Get Started now button - 1 month',
+          'Button',
           'Your ultimate Yoga journey starts here'
         );
         document.querySelector('[href="/express-checkout/54"]').click();
@@ -2122,9 +2187,11 @@ function initJumb() {
       }
 
       gaEvent(
+        'exp_ch_pl_page_ch_plan',
         `Choose your plan - ${
           el.querySelector('.lav-plan__btn-year') ? '12 months' : '1 month'
         }`,
+        'Section',
         'Your ultimate Yoga journey starts here'
       );
 
@@ -2139,7 +2206,9 @@ function initClasses() {
       e.preventDefault();
       const id = el.dataset.id;
       gaEvent(
+        'exp_ch_pl_page_yoga',
         `yoga class button - ${el.innerText.trim()}`,
+        'Button',
         'Explore 1000+ Yoga classes section'
       );
 
@@ -2151,7 +2220,12 @@ function initClasses() {
     .querySelector('.lav-classes__toggle')
     .addEventListener('click', function (e) {
       e.preventDefault();
-      gaEvent('Show now button', 'Explore 1000+ Yoga classes section');
+      gaEvent(
+        'exp_ch_pl_page_show',
+        'Show now button',
+        'Button',
+        'Explore 1000+ Yoga classes section'
+      );
       this.remove();
       document
         .querySelector('.lav-classes__list.lav-mob')
@@ -2222,20 +2296,24 @@ function observerView() {
       if (entry.isIntersecting) {
         if (entry.target.classList.contains('lav-features')) {
           isElementInViewport(entry.target, [
+            'exp_ch_pl_page_sub_v',
+            'Subscription features',
             'Visibility',
             'Subscription features',
           ]);
         }
 
-        if (entry.target.classList.contains('lav-try')) {
-          // isElementInViewport(
-          //   entry.target,
-          //   'Visibility Try Basic plan for free section'
-          // );
-        }
+        // if (entry.target.classList.contains('lav-try')) {
+        // isElementInViewport(
+        //   entry.target,
+        //   'Visibility Try Basic plan for free section'
+        // );
+        // }
 
         if (entry.target.classList.contains('lav-classes')) {
           isElementInViewport(entry.target, [
+            'exp_ch_pl_page_explore_V',
+            'Explore 1000+ Yoga classes section',
             'Visibility',
             'Explore 1000+ Yoga classes section',
           ]);
@@ -2243,17 +2321,26 @@ function observerView() {
 
         if (entry.target.classList.contains('lav-pers')) {
           isElementInViewport(entry.target, [
+            'exp_ch_pl_page_count_v',
+            'Count the ways you can personalize your practice',
             'Visibility',
             'Count the ways you can personalize your practice',
           ]);
         }
 
         if (entry.target.classList.contains('lav-instructors')) {
-          isElementInViewport(entry.target, ['Visibility', 'Our instructors']);
+          isElementInViewport(entry.target, [
+            'exp_ch_pl_page_ourin_v',
+            'Our instructors',
+            'Visibility',
+            'Our instructors',
+          ]);
         }
 
         if (entry.target.classList.contains('lav-journey')) {
           isElementInViewport(entry.target, [
+            'exp_ch_pl_page_health_v',
+            'Your journey to health and wellness start here',
             'Visibility',
             'Your journey to health and wellness start here',
           ]);
@@ -2261,6 +2348,8 @@ function observerView() {
 
         if (entry.target.classList.contains('lav-app')) {
           isElementInViewport(entry.target, [
+            'exp_ch_pl_page_space_v',
+            'For every space, at any pace',
             'Visibility',
             'For every space, at any pace',
           ]);
