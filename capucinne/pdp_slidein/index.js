@@ -1,23 +1,58 @@
 console.log('initExp');
 localStorage.setItem('subtotal', '-999999');
 
+let isAddCart,
+  isKlarnaClick = false;
+
 (function () {
   /********* exp **********/
   const exp = {
     dir: 'https://flopsi69.github.io/crs/capucinne/pdp_slidein',
-    observer: false,
+    observer: true,
     clarity: {
       enable: true,
-      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+      params: ['set', 'new_payments', 'variant_1'],
     },
     debug: true,
   };
 
   // Observer
   if (exp.observer) {
-    initObserver((el) => {
-      console.log(el);
-    });
+    initObserver(
+      (el) => {
+        console.log(el);
+        if (el.innerText.trim() === 'WF865DTT') {
+          sessionStorage.setItem('lav-discount', 'WF865DTT');
+        }
+
+        if (el.name == 'phone-number' && el.closest('.needsclick')) {
+          el.closest('form.needsclick')
+            .querySelectorAll('button[class*="go"')[1]
+            .click();
+          console.log('fire');
+        }
+
+        if (el.closest('.needsclick')?.querySelector('[title="Recaptcha"]')) {
+          pushDataLayer(
+            'new_payments_pp_get_10_of_captcha_vis',
+            'CAPTCHA',
+            'Element visibility',
+            'Popup 10 % off'
+          );
+        }
+      },
+      (el) => {
+        // console.log('Remove', el);
+        if (el.id === 'extend-learn-more-modal-iframe') {
+          pushDataLayer(
+            'new_payments_ext_pop_close',
+            'Close',
+            'Button',
+            'Extend popup'
+          );
+        }
+      }
+    );
   }
 
   /*** STYLES / Start ***/
@@ -114,6 +149,7 @@ localStorage.setItem('subtotal', '-999999');
       event-pointer: none;
     }
     .lav-sticky__price-old {
+      display: none;
       color: #565656;
       font-size: 22px;
       letter-spacing: -0.308px;
@@ -183,11 +219,21 @@ localStorage.setItem('subtotal', '-999999');
       font-size: 16px;
       line-height: 1;
       margin-left: 10px;
-      cursor: pointer;
       transition: 0.35s;
     }
-    .lav-discount:hover {
+    .cart__item .lav-discount {
+      font-size: 12px;
+      margin-left: 0;
+      display: inline-flex;
+      position: relative;
+      bottom: -2px;
+    }
+    .cart__item .lav-discount__icon img {
+      width: 16px;
+    }
+    .lav-discount:not(.lav-discount_applied):hover {
       opacity: 0.6;
+      cursor: pointer;
     }
     .lav-discount__caption {
       font-weight: 600;
@@ -278,7 +324,9 @@ localStorage.setItem('subtotal', '-999999');
     }
 
     .needsclick[aria-label="Open Form"] {
-      opacity: 0.4;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1!important;
     }
 
     .product-single__form .add-to-cart {
@@ -470,9 +518,13 @@ localStorage.setItem('subtotal', '-999999');
       line-height: 19px;
     }
     .lav-shipping__rush {
-      margin: 16px 0;
+      display: none;
+      margin-top: 16px;
       padding: 12px;
       background-color: #F6F5F5;
+    }
+    .lav-shipping__rush.active {
+      display: block;
     }
     .lav-shipping__rush-head {
       display: flex;
@@ -496,6 +548,7 @@ localStorage.setItem('subtotal', '-999999');
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      margin-top: 16px;
     }
     .lav-timeline:before {
       content: '';
@@ -559,6 +612,7 @@ localStorage.setItem('subtotal', '-999999');
     }
     .drawer__scrollable {
       padding-top: 0;
+      padding-bottom: 12px;
     }
     .drawer__title {
       font-size: 18px;
@@ -601,6 +655,7 @@ localStorage.setItem('subtotal', '-999999');
     }
     .cart__item .cart__price {
       display: inline-block;
+      margin-right: 10px;
     }
     .cart__item .js-qty__wrapper {
       position: relative;
@@ -732,16 +787,21 @@ localStorage.setItem('subtotal', '-999999');
     .lav-summary {
       margin-top: 16px;
       padding-top: 8px;
-      padding-bottom: 16px;
+      padding-bottom: 12px;
       border-top: 1px solid #E8E8E1;
       color: #565656;
       font-size: 12px;
       line-height: 18px;
+      display: flex;
+      flex-flow: column;
     }
     .lav-summary__item {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    .lav-summary__item-gift {
+      order: 1;
     }
     .lav-summary__item:last-child {
       color: #1C1D1D;
@@ -749,12 +809,17 @@ localStorage.setItem('subtotal', '-999999');
       font-weight: 600;
       line-height: 21px;
       letter-spacing: -0.308px;
+      order: 2;
     }
     .lav-summary__item + .lav-summary__item {
       margin-top: 8px;
     }
+    .lav-summary__caption {
+      max-width: 65%;
+    }
     .lav-summary__value {
       margin-left: 12px;
+      white-space: nowrap;
     }
     .lav-mob {
       display: none;
@@ -795,9 +860,61 @@ localStorage.setItem('subtotal', '-999999');
       display: flex;
       flex-flow: column;
     }
+    .extend-offer {
+      display: none;
+    }
+    .the4-toolkit-wishlist-action  {
+      margin-bottom: 5px;
+    }
+    .lav-hide {
+      display: none;
+    }
+    .lav-p-extend {
+      display: flex;
+      align-items: center;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      margin-top: 16px;
+      border-top: 1px solid #E8E8E1;
+      border-bottom: 1px solid #E8E8E1;
+      margin-left: -116px;
+      width: calc(100% + 116px);
+      transition: 0.35s;
+      cursor: pointer;
+    }
+    .lav-p-extend:hover {
+      opacity: 0.6;
+    }
+    .lav-p-extend__icon {
+      line-height: 0;
+      margin-right: 12px;
+    }
+    .lav-p-extend__icon img {
+      width: 60px;
+    }
+    .lav-p-extend__info {
+    }
+    .lav-p-extend__title {
+      color: #1C1D1D;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 120%;
+    }
+    .lav-p-extend__caption {
+      color: #565656;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+    }
+    .extend-side-cart-offer {
+      display: none;
+    }
     @media(max-width: 768px) {
       .drawer--right {
         width: 320px;
+      }
+      [title="chat widget"] {
+        bottom: 90px!important;
       }
       .tangiblee-cta-wrapper {
         top: initial;
@@ -898,6 +1015,121 @@ localStorage.setItem('subtotal', '-999999');
     }
   `;
 
+  function observerView() {
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+      rootMargin: '-40%',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('lav-point__wrap')) {
+            isElementInViewport(entry.target, [
+              'new_payments_14_day_visibility',
+              '14 day free block visibility',
+              'Element visibility',
+              'Product Information',
+            ]);
+          }
+
+          // if (entry.target.classList.contains('lav-earn')) {
+          //   isElementInViewport(entry.target, [
+          //     'new_payments_free_earrings_vis',
+          //     'Free earrings banner',
+          //     'Element visibility',
+          //     'Product Information',
+          //   ]);
+          // }
+
+          if (
+            entry.target.classList.contains('lav-benefits') &&
+            entry.target.closest('.product-single__form')
+          ) {
+            isElementInViewport(entry.target, [
+              'new_payments_rush_free_shipping1',
+              'Free shipping (add to cart)',
+              'Element visibility',
+              'Product Information',
+            ]);
+          }
+
+          if (entry.target.classList.contains('lav-extend')) {
+            isElementInViewport(entry.target, [
+              'new_payments_extend_vis',
+              'Extend block',
+              'Element visibility',
+              'Product Information',
+            ]);
+          }
+
+          if (entry.target.classList.contains('lav-shipping__rush')) {
+            isElementInViewport(entry.target, [
+              'new_payments_rush_order_vis',
+              'Rush order is activated',
+              'Element visibility',
+              'Product Information',
+            ]);
+          }
+
+          if (entry.target.classList.contains('lav-summary')) {
+            isElementInViewport(entry.target, [
+              'new_payments_cart_subtotal_vis',
+              'Subtotal block',
+              'Element visibility',
+              'Cart sidebar',
+            ]);
+          }
+
+          if (entry.target.classList.contains('lav-benefits__slide')) {
+            isElementInViewport(entry.target, [
+              'new_payments_cart_free_shipping',
+              'Free shipping',
+              'Element visibility',
+              'Cart sidebar',
+            ]);
+          }
+
+          if (
+            entry.target.classList.contains('lav-benefits') &&
+            entry.target.closest('.lav-shipping')
+          ) {
+            isElementInViewport(entry.target, [
+              'new_payments_rush_free_shipping2',
+              'Free shipping (faq)',
+              'Element visibility',
+              'Product Information',
+            ]);
+          }
+        }
+      });
+    }, observerOptions);
+
+    for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+      observer.observe(el);
+    }
+
+    function isElementInViewport(el, events, timeout = 3) {
+      setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+
+        if (
+          rect.top + rect.height * 0.3 < windowHeight &&
+          rect.bottom > rect.height * 0.3
+        ) {
+          observer.unobserve(el);
+          if (!el.classList.contains('in-view')) {
+            gaEvent(...events);
+            el.classList.add('in-view');
+          }
+        }
+      }, timeout * 1000);
+    }
+  }
+
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
   waitFor(
@@ -910,37 +1142,73 @@ localStorage.setItem('subtotal', '-999999');
   /*** STYLES / End ***/
 
   /********* Custom Code **********/
-  const earnStart = `
-    <div class='lav-earn lav-earn-start'>
-      <div class='lav-earn__img'>
-        <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+  const getDiscount = `
+    <div class='lav-discount'>
+      <div class='lav-discount__icon'>
+        <img src='${exp.dir}/img/discount-icon.svg' />
       </div>
-      <div class='lav-earn__caption lav-earn_moon'>
-        Spend <span>$1500 or more</span> and <span>get free</span> complimentary Moon Shaped Capucinne earrings
-    </div>
+      <div class='lav-discount__caption'>Get Your 50$ Off</div>
+      <div class='lav-discount__arrow'>
+        <img src='${exp.dir}/img/discount-arrow.svg' />
+      </div>
     </div>
   `;
 
+  const appliedDiscount = `
+    <div class='lav-discount lav-discount_applied'>
+      <div class='lav-discount__icon'>
+        <img src='${exp.dir}/img/discount-apply.svg' />
+      </div>
+      <div class='lav-discount__caption'>You save 50$</div>
+    </div>
+  `;
+
+  const earnStart = `
+  <div class='lav-earn lav-earn-start lav-watch'>
+    <div class='lav-earn__img'>
+      <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
+    </div>
+    <div class='lav-earn__caption lav-earn_moon'>
+      Spend <span>$1500 or more</span> and <span>get free</span> complimentary Half Moon Capucinne earrings
+    </div>
+  </div>
+  `;
+
   const earnGift1 = `
-  <div class='lav-earn lav-earn-1500'>
+  <div class='lav-earn lav-earn-1500 lav-watch'>
     <div class='lav-earn__img'>
       <img class='lav-earn_moon' src='${exp.dir}/img/earn.png' />
     </div>
     <div class='lav-earn__caption lav-earn_moon' >
-      <span>You’ll receive a free</span> pair of Moon Shaped Capucinne <span>earrings</span> with your order of $1500 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> pair of Half Moon Capucinne  <span>earrings</span> with your order of $1500 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
   `;
 
   const earnGift2 = `
-  <div class='lav-earn lav-earn-5000'>
+  <div class='lav-earn lav-earn-5000 lav-watch'>
     <div class='lav-earn__img'>
       <img class='lav-earn_chain' src='${exp.dir}/img/chain.png'  />
     </div>
     <div class='lav-earn__caption lav-earn_chain'>
-      <span>You’ll receive a free</span> Chain Capucinne <span>earrings</span> with your order of $5000 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
+      <span>You’ll receive a free</span> Half Moon Capucinne bracelet <span>bracelet</span> with your order of $5000 or more&nbsp; <a href='/products/gift?variant=46796290392405'><u>Learn more</u> <img src="${exp.dir}/img/black-arrow.svg"></a>
     </div>
   </div>
+  `;
+
+  const productExtend = `
+    <div class='lav-p-extend'>
+      <div class='lav-p-extend__icon'>
+        <img src='${exp.dir}/img/protect.png' />
+      </div>
+      <div class='lav-extend__info'>
+        <div class='lav-p-extend__title'>
+          Protect your jewellery 
+          <img src='${exp.dir}/img/black-arrow.svg' />
+        </div>
+        <div class='lav-p-extend__caption'>from a defect or accidental damage</div>
+      </div>
+    </div>
   `;
 
   init();
@@ -964,7 +1232,7 @@ localStorage.setItem('subtotal', '-999999');
     );
 
     const points = `
-      <div class='lav-point__wrap'>
+      <div class='lav-point__wrap lav-watch'>
         <div class='lav-point'>
           <img class='lav-point__icon' src='${exp.dir}/img/point1.svg' />
           <div class='lav-points__caption'><span>14 days Free</span> Returns &&nbsp;Exchange </div>
@@ -998,8 +1266,19 @@ localStorage.setItem('subtotal', '-999999');
       `<img src='${exp.dir}/img/bag.svg' />`
     );
 
+    $el('.product-single__form .add-to-cart').addEventListener('click', () => {
+      if (!isAddCart) {
+        pushDataLayer(
+          'new_payments_add_to_cart_new',
+          'Add to cart new',
+          'Button',
+          'Product Information'
+        );
+      }
+    });
+
     const benefits = `
-      <div class='lav-benefits'>
+      <div class='lav-benefits lav-watch'>
         <div class='lav-benefits__item'>
           <img src='${exp.dir}/img/delivery.svg' />
           Free insured shipping
@@ -1017,49 +1296,6 @@ localStorage.setItem('subtotal', '-999999');
       benefits
     );
 
-    const extend = `
-      <div class='lav-extend'>
-        <div class='lav-extend__head'>
-          <div class='lav-extend__caption'>
-            Add accident protection offered by
-            <img src='${exp.dir}/img/extend.svg' />
-          </div>
-          <div class='lav-extend__covered'>
-            <span>What is covered?</span>
-            <img src='${exp.dir}/img/black-arrow.svg' />
-          </div>
-        </div>
-        <div class='lav-extend__body'>
-          <div class='lav-extend__item'>
-            <div class='lav-extend__item-caption'>2 Years</div>
-            <div class='lav-extend__item-price'>$43.99</div>
-          </div>
-
-          <div class='lav-extend__item'>
-            <div class='lav-extend__item-caption'>3 Years</div>
-            <div class='lav-extend__item-price'>$54.99</div>
-          </div>
-
-          <div class='lav-extend__item'>
-            <div class='lav-extend__item-caption'>5 Years</div>
-            <div class='lav-extend__item-price'>$69.99</div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    $el(
-      '.product-single__form .add-to-cart + .lav-benefits'
-    ).insertAdjacentHTML('afterend', extend);
-
-    $$el('.lav-extend__item').forEach((item) => {
-      item.addEventListener('click', () => {
-        if (item.classList.contains('active')) return false;
-        $el('.lav-extend__item.active')?.classList.remove('active');
-        item.classList.add('active');
-      });
-    });
-
     handleShipping(benefits);
     handleSlideIn(benefits);
     addSticky();
@@ -1070,6 +1306,8 @@ localStorage.setItem('subtotal', '-999999');
     setInterval(() => {
       updateData();
     }, 500);
+
+    observerView();
   }
 
   function updateData() {
@@ -1082,25 +1320,216 @@ localStorage.setItem('subtotal', '-999999');
 
     const cart = $el('#CartDrawer');
 
+    handleExtend();
+    handleKlarna();
     handleDiscount();
     handleItems(cart);
     handleHand();
     findGift();
 
-    if (parseInt(localStorage.getItem('subtotal')) === subtotal) return false;
+    if (parseInt(localStorage.getItem('subtotal')) === parseInt(subtotal))
+      return false;
 
     updateTotal();
     handleEarn(subtotal);
+    handleItemsSummary();
 
     localStorage.setItem('subtotal', subtotal);
   }
 
+  function handleKlarna() {
+    if (
+      $el('#CartDrawerForm [part="osm-container"]') ||
+      !$el('klarna-placement div')
+    )
+      return false;
+
+    const original = $el('klarna-placement div')?.shadowRoot?.querySelector(
+      'div'
+    );
+
+    original.querySelector('.container').style = 'border: 0;padding: 3px 0;';
+    original.querySelector('.text-wrapper').style = 'margin-left: 9px;';
+    original.querySelector('.text-wrapper .text[part="osm-message"]').style =
+      'color: #565656';
+    original.querySelector('.text button').style = 'color: #000';
+
+    const clone = original?.cloneNode(true);
+
+    if (!clone) return false;
+
+    clone.classList.add('lav-klarna');
+
+    $el('klarna-placement div')
+      ?.shadowRoot?.querySelector('[part="osm-cta"]')
+      .addEventListener('click', () => {
+        if (!isKlarnaClick) {
+        }
+      });
+
+    clone.querySelector('[part="osm-cta"]').addEventListener('click', (e) => {
+      e.preventDefault();
+      pushDataLayer(
+        'new_payments_cart_clarna_learn',
+        'Klarna learn more',
+        'Link',
+        'Cart sidebar'
+      );
+      isKlarnaClick = true;
+      $el('klarna-placement div')
+        ?.shadowRoot?.querySelector('[part="osm-cta"]')
+        .click();
+      isKlarnaClick = false;
+    });
+
+    $el('.lav-summary').insertAdjacentElement('afterend', clone);
+  }
+
+  function handleExtend() {
+    if ($el('.lav-extend') || !$el('.extend-offer iframe')) return false;
+
+    const innerEl = $el('.extend-offer iframe').contentWindow.document;
+
+    const extend = `
+      <div class='lav-extend lav-watch'>
+        <div class='lav-extend__head'>
+          <div class='lav-extend__caption'>
+            Add accident protection offered by
+            <img src='${exp.dir}/img/extend.svg' />
+          </div>
+          <div class='lav-extend__covered'>
+            <span>What is covered?</span>
+            <img src='${exp.dir}/img/black-arrow.svg' />
+          </div>
+        </div>
+        <div class='lav-extend__body'></div>
+      </div>
+    `;
+
+    $el(
+      '.product-single__form .add-to-cart + .lav-benefits'
+    ).insertAdjacentHTML('afterend', extend);
+
+    for (let item of innerEl.querySelectorAll('.btn-offer')) {
+      const el = document.createElement('div');
+      el.classList.add('lav-extend__item');
+
+      el.innerHTML = `
+        <div class='lav-extend__item-caption'>${
+          item.querySelector('.term-length').innerText
+        }</div>
+        <div class='lav-extend__item-price'>${
+          item.querySelector('.plan-price').innerText
+        }</div>
+      `;
+
+      document
+        .querySelector('.lav-extend__body')
+        .insertAdjacentElement('beforeend', el);
+
+      el.addEventListener('click', () => {
+        item.click();
+
+        pushDataLayer(
+          'new_payments_extend_term',
+          `Term of protection: ${item.querySelector('.term-length').innerText}`,
+          'Button',
+          'Product Information'
+        );
+
+        if (el.classList.contains('active')) {
+          el.classList.remove('active');
+        } else {
+          $el('.lav-extend__item.active')?.classList.remove('active');
+          el.classList.add('active');
+        }
+      });
+    }
+
+    $el('.lav-extend__covered').addEventListener('click', () => {
+      pushDataLayer(
+        'new_payments_extend_what_is_covered',
+        'What is covered',
+        'Link',
+        'Product Information'
+      );
+      innerEl.querySelector('.info-link').click();
+    });
+  }
+
+  function handleItemsSummary() {
+    for (let item of $$el(
+      '.lav-summary__item:not(.lav-summary__item-subtotal)'
+    )) {
+      item.remove();
+    }
+
+    for (let item of $$el('.cart__items .cart__item')) {
+      const el = `
+        <div class="lav-summary__item ${
+          item.querySelector('.cart__item-name').innerText.trim() ===
+          'Free Gift'
+            ? 'lav-summary__item-gift'
+            : ''
+        }">
+          <div class="lav-summary__caption">
+          ${item.querySelector('.cart__item-name').innerText}
+          ${
+            item.querySelector('.cart__item-name').innerText.trim() ===
+            'Free Gift'
+              ? `(${item
+                  .querySelector('.cart__item--variants')
+                  .innerText.replace('Product:', '')
+                  .trim()})`
+              : ''
+          }
+          </div>
+          <div class="lav-summary__value">
+          ${item.querySelector('.cart__price').innerText} 
+          ${
+            item.querySelector('.js-qty__num')?.value > 1
+              ? `(X${item.querySelector('.js-qty__num')?.value})`
+              : ''
+          }
+      </div>
+        </div>
+      `;
+
+      $el('.lav-summary').insertAdjacentHTML('afterbegin', el);
+    }
+  }
+
   function handleHand() {
-    if (!$el('.product-single__meta .tangiblee-cta-wrapper')) return false;
+    if (
+      !$el('.product-single__meta .tangiblee-cta-wrapper') ||
+      $el('.product-single__meta .tangiblee-cta')?.style.display === 'none'
+    ) {
+      if (
+        $el('.product-single__meta .tangiblee-cta')?.style.display === 'none'
+      ) {
+        $el('.product-single__meta .tangiblee-cta-wrapper').classList.add(
+          'lav-hide'
+        );
+      }
+      return false;
+    }
+
+    $el('.product-single__meta .tangiblee-cta-wrapper').classList.remove(
+      'lav-hide'
+    );
 
     $el('.product-single__meta .tangiblee-cta-wrapper').classList.add(
       'lav-hand'
     );
+
+    $el('.lav-hand').addEventListener('click', () => {
+      pushDataLayer(
+        'new_payments_try_it_on_your_hand',
+        'Try it on your hand',
+        'Button',
+        'Gallery'
+      );
+    });
 
     $el('.product__main-photos').insertAdjacentElement(
       'afterbegin',
@@ -1145,19 +1574,29 @@ localStorage.setItem('subtotal', '-999999');
   }
 
   function handleDiscount() {
-    if (!$el('.needsclick[aria-label="Open Form"]')) return false;
+    if (!$el('.needsclick[aria-label="Open Form"]')) {
+      for (let item of $$el('.lav-discount:not(.lav-discount_applied)')) {
+        item.remove();
+      }
 
-    const getDiscount = `
-      <div class='lav-discount'>
-        <div class='lav-discount__icon'>
-          <img src='${exp.dir}/img/discount-icon.svg' />
-        </div>
-        <div class='lav-discount__caption'>Get Your 50$ Off</div>
-        <div class='lav-discount__arrow'>
-          <img src='${exp.dir}/img/discount-arrow.svg' />
-        </div>
-      </div>
-    `;
+      if (sessionStorage.getItem('lav-discount') === 'WF865DTT') {
+        if (!$el('.product-block--price .lav-discount')) {
+          $el('[data-product-price]').insertAdjacentHTML(
+            'beforeend',
+            appliedDiscount
+          );
+        }
+
+        if (!$el('.lav-sticky .lav-discount')) {
+          $el('.lav-sticky__price').insertAdjacentHTML(
+            'beforeend',
+            appliedDiscount
+          );
+        }
+      }
+
+      return false;
+    }
 
     if (!$el('.product-block--price .lav-discount')) {
       $el('[data-product-price]').insertAdjacentHTML('beforeend', getDiscount);
@@ -1165,7 +1604,19 @@ localStorage.setItem('subtotal', '-999999');
       $el('.product-block--price .lav-discount').addEventListener(
         'click',
         () => {
-          $el('.needsclick[aria-label="Open Form"]').click();
+          if ($el('.needsclick[aria-label="Open Form"]')) {
+            pushDataLayer(
+              'new_payments_pdp_get_your_50_off',
+              'Get your 50$ off',
+              'Link',
+              'Product Information'
+            );
+            $el('.needsclick[aria-label="Open Form"]').click();
+          } else {
+            for (let item of $$el('.lav-discount')) {
+              item.remove();
+            }
+          }
         }
       );
     }
@@ -1193,6 +1644,17 @@ localStorage.setItem('subtotal', '-999999');
         'beforebegin',
         earnGift2
       );
+      $el('[data-product-blocks] .lav-earn a')?.addEventListener(
+        'click',
+        () => {
+          pushDataLayer(
+            'new_payments_learn_more_brecelet',
+            'Learn more (earrings)',
+            'Link',
+            'Product Information'
+          );
+        }
+      );
     } else if (
       subtotal < 5000 &&
       subtotal >= 1500 &&
@@ -1202,6 +1664,17 @@ localStorage.setItem('subtotal', '-999999');
       $el('[class*=wishlist-action]')?.insertAdjacentHTML(
         'beforebegin',
         earnGift1
+      );
+      $el('[data-product-blocks] .lav-earn a')?.addEventListener(
+        'click',
+        () => {
+          pushDataLayer(
+            'new_payments_learn_more_earrings',
+            'Learn more (earrings)',
+            'Link',
+            'Product Information'
+          );
+        }
       );
     } else if (
       subtotal < 1500 &&
@@ -1232,11 +1705,29 @@ localStorage.setItem('subtotal', '-999999');
       );
 
     el.querySelector('.collapsible-content__inner').classList.remove('rte');
+
+    const options = { day: '2-digit', month: 'short' };
+    const date = new Date();
+    const currentDate = date.toLocaleString('en-US', options);
+    const dateAfter8Weeks = new Date(
+      date.getTime() + 8 * 7 * 24 * 60 * 60 * 1000
+    ).toLocaleString('en-US', options);
+    const dateAfter9Weeks = new Date(
+      date.getTime() + 9 * 7 * 24 * 60 * 60 * 1000
+    ).toLocaleString('en-US', options);
+
+    const deliveryFrom = new Date(
+      date.getTime() + (8 * 7 + 5) * 24 * 60 * 60 * 1000
+    ).toLocaleString('en-US', options);
+    const deliferyAfter = new Date(
+      date.getTime() + (9 * 7 + 5) * 24 * 60 * 60 * 1000
+    ).toLocaleString('en-US', options);
+
     el.querySelector('.collapsible-content__inner').innerHTML = `
         <div class='lav-shipping__caption'>Estimated arrival</div>
-        <div class='lav-shipping__date'>20 Jul-16 Aug</div>
+        <div class='lav-shipping__date'>${deliveryFrom}-${deliferyAfter}</div>
 
-        <div class='lav-shipping__rush'>
+        <div class='lav-shipping__rush lav-watch'>
           <div class='lav-shipping__rush-head'>
             <img src='${exp.dir}/img/rush.svg' />
             Rush order is activated!
@@ -1251,7 +1742,7 @@ localStorage.setItem('subtotal', '-999999');
             <div class='lav-timeline__item-icon'>
               <img src='${exp.dir}/img/shipping1.svg' />
             </div>
-            <div class='lav-timeline__item-date'>15 Jun</div>
+            <div class='lav-timeline__item-date'>${currentDate}</div>
             <div class='lav-timeline__item-caption'>Order placed</div>
           </div>
 
@@ -1259,7 +1750,7 @@ localStorage.setItem('subtotal', '-999999');
             <div class='lav-timeline__item-icon'>
               <img src='${exp.dir}/img/shipping2.svg' />
             </div>
-            <div class='lav-timeline__item-date'>19 Jul-02 Aug</div>
+            <div class='lav-timeline__item-date'>${dateAfter8Weeks}-${dateAfter9Weeks}</div>
             <div class='lav-timeline__item-caption'>Order dispatches</div>
           </div>
 
@@ -1267,13 +1758,24 @@ localStorage.setItem('subtotal', '-999999');
             <div class='lav-timeline__item-icon'>
               <img src='${exp.dir}/img/shipping3.svg' />
             </div>
-            <div class='lav-timeline__item-date'>20 Jul-16 Aug</div>
+            <div class='lav-timeline__item-date'>${deliveryFrom}-${deliferyAfter}</div>
             <div class='lav-timeline__item-caption'>Delivered!</div>
           </div>
         </div>
 
         ${benefits}
     `;
+
+    $el('[id="switch-label-rush"]')?.addEventListener('change', () => {
+      if ($el('[id="switch-label-rush"]').checked) {
+        $el('.lav-shipping__rush').classList.add('active');
+      } else {
+        $el('.lav-shipping__rush').classList.remove('active');
+      }
+
+      $el('.lav-shipping button').click();
+      $el('.lav-shipping button').click();
+    });
   }
 
   function addSticky() {
@@ -1289,10 +1791,6 @@ localStorage.setItem('subtotal', '-999999');
           <div class='lav-sticky__price'>
             <div class='lav-sticky__price-old'>$2,110.00</div>
             <div class='lav-sticky__price-new lav-product-price'></div>
-            <div class='lav-sticky__price-discount' style='display: none'>
-              <img src='${exp.dir}/img/discount-apply.svg' />
-              You save 50$
-            </div>
           </div>
         </div>
 
@@ -1307,7 +1805,17 @@ localStorage.setItem('subtotal', '-999999');
     $el('body').insertAdjacentHTML('beforeend', el);
 
     $el('.lav-sticky__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'new_payments_sticky_add_to_cart',
+        'Sticky add to cart',
+        'Button',
+        'Sticky section'
+      );
+      isAddCart = true;
       $el('button.add-to-cart').click();
+      setTimeout(() => {
+        isAddCart = false;
+      }, 200);
     });
 
     $el('.lav-product-price').innerText = $el(
@@ -1324,18 +1832,8 @@ localStorage.setItem('subtotal', '-999999');
         <span class='lav-notes__caption'>Leave order notes</span>
       </div>
 
-      <div class='lav-summary'>
-        <div class='lav-summary__item'>
-          <div class='lav-summary__caption'>Maria Kite Moss Agate...</div>
-          <div class='lav-summary__value'></div>
-        </div>
-
-        <div class='lav-summary__item'>
-          <div class='lav-summary__caption'>Maria Kite Moss Agate...</div>
-          <div class='lav-summary__value'></div>
-        </div>
-
-        <div class='lav-summary__item'>
+      <div class='lav-summary lav-watch'>
+        <div class='lav-summary__item lav-summary__item-subtotal'>
           <div class='lav-summary__caption'>Subtotal</div>
           <div class='lav-summary__value lav-cart-price'></div>
         </div>
@@ -1350,6 +1848,12 @@ localStorage.setItem('subtotal', '-999999');
     $el('.lav-notes', el).addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
+      pushDataLayer(
+        'new_payments_cart_leave_order_notes',
+        'Leave order notes',
+        'Link',
+        'Cart sidebar'
+      );
       $el('.lav-notes', el).remove();
       $el('[for="CartNoteDrawer"]', el).style.display = 'block';
       $el('.input-full.cart-notes', el).style.display = 'block';
@@ -1357,7 +1861,17 @@ localStorage.setItem('subtotal', '-999999');
 
     $el('.drawer__inner', el).insertAdjacentHTML('beforeend', benefits);
     $el('.lav-benefits', el).classList.add('lav-benefits__slide');
+    $el('.lav-benefits', el).classList.add('lav-watch');
     $el('[for="CartTermsDrawer"] a', el).innerText = 'Terms and Conditions';
+
+    $el('.cart__checkout-wrapper button', el).addEventListener('click', () => {
+      pushDataLayer(
+        'new_payments_cart_checkout',
+        'Checkout',
+        'Button',
+        'Cart sidebar'
+      );
+    });
 
     $el('.cart__checkout-wrapper button', el).innerHTML = `
       <img src='${exp.dir}/img/bag.svg' />
@@ -1369,6 +1883,78 @@ localStorage.setItem('subtotal', '-999999');
 
   function handleItems(el) {
     Array.from($$el('.cart__item', el)).forEach((pr) => {
+      if (
+        $el('.needsclick[aria-label="Open Form"]') &&
+        !pr.querySelector('.lav-discount')
+      ) {
+        pr.querySelector('.cart__price').insertAdjacentHTML(
+          'afterend',
+          getDiscount
+        );
+
+        pr.querySelector('.lav-discount').addEventListener(
+          'click',
+          function (e) {
+            if ($el('.needsclick[aria-label="Open Form"]')) {
+              pushDataLayer(
+                'new_payments_cart_get_your_50_off',
+                'Get your 50$ off',
+                'Link',
+                'Cart sidebar'
+              );
+              $el('.needsclick[aria-label="Open Form"]').click();
+            } else {
+              for (let item of $$el('.lav-discount')) {
+                item.remove();
+              }
+            }
+          }
+        );
+      }
+
+      if (
+        !$el('.needsclick[aria-label="Open Form"]') &&
+        sessionStorage.getItem('lav-discount') === 'WF865DTT' &&
+        !pr.querySelector('.lav-discount.lav-discount_applied')
+      ) {
+        pr.querySelector('.cart__price').insertAdjacentHTML(
+          'afterend',
+          appliedDiscount
+        );
+      }
+
+      if (
+        !pr.querySelector('.extend-simple-offer iframe') &&
+        pr.querySelector('.lav-p-extend')
+      ) {
+        pr.querySelector('.lav-p-extend').remove();
+      }
+
+      if (
+        pr.querySelector('.extend-simple-offer iframe') &&
+        !pr.querySelector('.lav-p-extend')
+      ) {
+        pr.querySelector('.cart__item-details').insertAdjacentHTML(
+          'beforeend',
+          productExtend
+        );
+
+        pr.querySelector('.lav-p-extend').addEventListener(
+          'click',
+          function () {
+            pushDataLayer(
+              'new_payments_cart_protect_your_gewellery',
+              'Protect your gewellery',
+              'Link',
+              'Cart sidebar'
+            );
+            pr.querySelector('.extend-simple-offer iframe')
+              .contentDocument.querySelector('button')
+              .click();
+          }
+        );
+      }
+
       if (
         !pr.querySelector('.js-qty__wrapper') ||
         pr.querySelector('.lav-product__remove')
@@ -1384,7 +1970,16 @@ localStorage.setItem('subtotal', '-999999');
       pr.querySelector('.lav-product__remove').addEventListener(
         'click',
         function (e) {
-          fetch(pr.querySelector('.cart__remove a.href'));
+          if (pr.querySelector('.js-qty__num')) {
+            pushDataLayer(
+              'new_payments_cart_remove',
+              'Remove',
+              'Link',
+              'Cart sidebar'
+            );
+            pr.querySelector('.js-qty__num').value = 0;
+            pr.querySelector('.js-qty__num').dispatchEvent(new Event('change'));
+          }
         }
       );
     });
@@ -1430,30 +2025,8 @@ localStorage.setItem('subtotal', '-999999');
     }, ms);
   }
 
-  // Alalytic 3
-  function gaEvent(action, label) {
-    if (!label) {
-      label = '';
-    }
-    try {
-      var objData = {
-        event: 'gaEv',
-        eventCategory: 'Experiment — also like',
-        eventAction: action,
-        eventLabel: label,
-        eventValue: '',
-      };
-      console.log('EventFire:', objData);
-      if (!exp.debug) {
-        dataLayer.push(objData);
-      }
-    } catch (e) {
-      console.log('Event Error:', e);
-    }
-  }
-
   // Alalytic 4
-  function gaEvent(name = '', desc = '', type = '', loc = '') {
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
     try {
       var objData = {
         event: 'event-to-ga4',
@@ -1463,21 +2036,28 @@ localStorage.setItem('subtotal', '-999999');
         event_loc: loc,
       };
       console.log('eventFire', objData);
-      if (!settings.debug) {
+      if (!exp.debug) {
         dataLayer.push(objData);
       }
     } catch (e) {
       console.log('Event Error:', e);
     }
   }
+
   // Mutation Observer
-  function initObserver(cb) {
+  function initObserver(cb, removedCb) {
     let observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
           cb(node);
+        }
+
+        for (let node of mutation.removedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+
+          removedCb(node);
         }
       }
     });
