@@ -952,6 +952,15 @@ let klaviyoStep = 1;
     .extend-side-cart-offer {
       display: none;
     }
+    .lav-paypal {
+      margin-bottom: 10px;
+    }
+    .lav-paypal * {
+      flex-grow: 1!important;
+    }
+    .lav-paypal [data-testid="grid-cell"] {
+      flex-grow: 1!important;
+    }
     @media(max-width: 768px) {
       .drawer--right {
         width: 320px;
@@ -2101,6 +2110,18 @@ let klaviyoStep = 1;
       <span class='lav-btn-caption'>CHECK OUT</span>
     `;
     $el('.cart__checkout-wrapper button', el).classList.add('lav-btn');
+
+    if ($el('.lav-paypal')) {
+      $el('.lav-paypal').style.display = 'flex';
+      $el('.lav-paypal').addEventListener('click', () => {
+        pushDataLayer(
+          'new_payments_cart_paypal',
+          'PayPal',
+          'Button',
+          'Cart sidebar'
+        );
+      });
+    }
   }
 
   function handleItems(el) {
