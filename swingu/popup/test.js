@@ -4,6 +4,12 @@ console.log = function () {
   navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
 };
 
+const origError = console.log;
+console.error = function () {
+  origError.apply(console, arguments);
+  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
+};
+
 // console.log('fire');
 console.log(location.href);
 console.log(document.body.innerHTML);
@@ -46,18 +52,21 @@ waitFor(
     );
 
     if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
-      console.log('fire');
-      sessionStorage.setItem('isRedirectedExp', 'yes');
-      document.querySelector(
-        1,
-        '[data-crstarget="hypothesis-2-upgrade-target"]'
+      console.log(
+        'fire',
+        document.querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
       );
+      sessionStorage.setItem('isRedirectedExp', 'yes');
+
       setTimeout(() => {
-        document.querySelector(
+        console.log(
           2,
-          '[data-crstarget="hypothesis-2-upgrade-target"]'
+          document.querySelector(
+            '[data-crstarget="hypothesis-2-upgrade-target"]'
+          )
         );
       }, 2000);
+
       waitFor(
         () => {
           document.querySelector(
@@ -66,6 +75,7 @@ waitFor(
         },
         () => {
           console.log(
+            3,
             document.querySelector(
               '[data-crstarget="hypothesis-2-upgrade-target"]'
             )
