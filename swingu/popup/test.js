@@ -53,32 +53,33 @@ waitFor(
 
     if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
       console.log(
-        'fire',
-        document.querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+        'fire' +
+          !!document.querySelector(
+            '[data-crstarget="hypothesis-2-upgrade-target"]'
+          )
       );
       sessionStorage.setItem('isRedirectedExp', 'yes');
 
       setTimeout(() => {
         console.log(
-          2,
-          document.querySelector(
-            '[data-crstarget="hypothesis-2-upgrade-target"]'
-          )
+          '2 ' +
+            !!document.querySelector(
+              '[data-crstarget="hypothesis-2-upgrade-target"]'
+            )
         );
       }, 2000);
 
       waitFor(
-        () => {
+        () =>
           document.querySelector(
             '[data-crstarget="hypothesis-2-upgrade-target"]'
-          );
-        },
+          ),
         () => {
           console.log(
-            3,
-            document.querySelector(
-              '[data-crstarget="hypothesis-2-upgrade-target"]'
-            )
+            '3 ' +
+              !!document.querySelector(
+                '[data-crstarget="hypothesis-2-upgrade-target"]'
+              )
           );
           document
             .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
