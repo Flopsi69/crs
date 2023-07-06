@@ -48,7 +48,9 @@ console.log('initExp');
 //   50
 // );
 
-initUpgradePage();
+if (location.href.includes('upgrade/player')) {
+  initUpgradePage();
+}
 
 function initUpgradePage() {
   /********* Settings **********/

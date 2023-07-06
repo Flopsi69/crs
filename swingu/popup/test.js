@@ -4,15 +4,9 @@ console.log = function () {
   navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
 };
 
-const origError = console.log;
-console.error = function () {
-  origError.apply(console, arguments);
-  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
-};
-
 // console.log('fire');
 console.log(location.href);
-console.log(document.body.innerHTML);
+// console.log(document.body.innerHTML);
 
 waitFor(
   () => document.body,
@@ -47,27 +41,12 @@ waitFor(
       `
     );
 
-    console.log(
-      's1: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
-    );
+    // console.log(
+    //   's1: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
+    // );
 
     if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
-      console.log(
-        'fire' +
-          !!document.querySelector(
-            '[data-crstarget="hypothesis-2-upgrade-target"]'
-          )
-      );
       sessionStorage.setItem('isRedirectedExp', 'yes');
-
-      setTimeout(() => {
-        console.log(
-          '2 ' +
-            !!document.querySelector(
-              '[data-crstarget="hypothesis-2-upgrade-target"]'
-            )
-        );
-      }, 2000);
 
       waitFor(
         () =>
@@ -75,12 +54,6 @@ waitFor(
             '[data-crstarget="hypothesis-2-upgrade-target"]'
           ),
         () => {
-          console.log(
-            '3 ' +
-              !!document.querySelector(
-                '[data-crstarget="hypothesis-2-upgrade-target"]'
-              )
-          );
           document
             .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
             .dispatchEvent(new Event('click'));
@@ -88,9 +61,9 @@ waitFor(
       );
     }
 
-    console.log(
-      's2: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
-    );
+    // console.log(
+    //   's2: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
+    // );
   },
   50
 );
