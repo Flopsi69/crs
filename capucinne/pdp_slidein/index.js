@@ -2,7 +2,10 @@ console.log('initExp');
 localStorage.setItem('subtotal', '-999999');
 
 let isAddCart,
-  isKlarnaClick = false;
+  isKlarnaClick,
+  isDiscountEvent = false;
+
+let klaviyoStep = 1;
 
 (function () {
   /********* exp **********/
@@ -21,24 +24,62 @@ let isAddCart,
     initObserver(
       (el) => {
         console.log(el);
-        if (el.innerText.trim() === 'WF865DTT') {
-          sessionStorage.setItem('lav-discount', 'WF865DTT');
+        if (el.ariaLabel === 'POPUP Form') {
+          pushDataLayer(
+            'new_payments_pp_get_50_off',
+            'Visibility',
+            'Popup',
+            'Popup 50$ off'
+          );
+        }
+
+        // if (el.classList.contains('.needsclick') && !isDiscountEvent) {
+        //   console.log('ffff1');
+        //   // TODO
+        //   observerView(el);
+        // }
+
+        if (
+          (el.closest('.needsclick') &&
+            el.querySelector('svg path') &&
+            el
+              .closest('[component="[object Object]"]')
+              ?.querySelector('svg path')
+              ?.getAttribute('d') ===
+              `M11.1597 18.9917L6.66651 14.4983C5.99844 13.8687 4.95494 13.8706 4.28909 14.5025C3.59908 15.1574 3.56725 16.2465 4.21784 16.9405L9.72916 23.085C10.5199 23.9286 11.862 23.9189 12.6405 23.064L25.9625 8.9336C26.5713 8.26509 26.5411 7.23449 25.8943 6.60272C25.2293 5.95322 24.1631 5.96785 23.5162 6.63534L11.1597 18.9917Z`) ||
+          el
+            .closest('[component="[object Object]"]')
+            ?.querySelector('svg path')
+            ?.getAttribute('d') ===
+            `M3.60156 1.09961C1.94471 1.09961 0.601562 2.44275 0.601562 4.09961V22.4996C0.601562 24.1565 1.94471 25.4996 3.60156 25.4996H8V23.4996H3.60156C3.04928 23.4996 2.60156 23.0519 2.60156 22.4996V4.09961C2.60156 3.54732 3.04928 3.09961 3.60156 3.09961H18.8016C19.3538 3.09961 19.8016 3.54732 19.8016 4.09961V5.30078H21.8016V4.09961C21.8016 2.44276 20.4584 1.09961 18.8016 1.09961H3.60156Z`
+        ) {
+          sessionStorage.setItem('lav-discount', 'yes');
         }
 
         if (el.name == 'phone-number' && el.closest('.needsclick')) {
           el.closest('form.needsclick')
             .querySelectorAll('button[class*="go"')[1]
             .click();
-          console.log('fire');
         }
 
         if (el.closest('.needsclick')?.querySelector('[title="Recaptcha"]')) {
           pushDataLayer(
-            'new_payments_pp_get_10_of_captcha_vis',
+            'new_payments_pp_get_50_off_captcha_vis',
             'CAPTCHA',
             'Element visibility',
-            'Popup 10 % off'
+            'Popup 50$ off'
           );
+
+          el.closest('.needsclick')
+            .querySelector('[title="Recaptcha"]')
+            .addEventListener('click', () => {
+              pushDataLayer(
+                'new_payments_pp_get_50_off_captcha_click',
+                'Klick on CAPTCHA',
+                'CAPTCHA',
+                'Popup 50$ off'
+              );
+            });
         }
       },
       (el) => {
@@ -239,6 +280,9 @@ let isAddCart,
       font-weight: 600;
       border-bottom: 1px solid #C1856F;
       margin: 0 4px;
+    }
+    .lav-discount_applied .lav-discount__caption {
+      border-color: transparent;
     }
 
     .lav-point__wrap {
@@ -1015,16 +1059,18 @@ let isAddCart,
     }
   `;
 
-  function observerView() {
+  function observerView(el) {
     const observerOptions = {
-      root: null,
-      threshold: 0,
-      rootMargin: '-40%',
+      // root: null,
+      threshold: 0.8,
+      rootMargin: '0px 0px -20% 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log('entry', entry);
         if (entry.isIntersecting) {
+          console.log('entry.target', entry.target);
           if (entry.target.classList.contains('lav-point__wrap')) {
             isElementInViewport(entry.target, [
               'new_payments_14_day_visibility',
@@ -1034,14 +1080,50 @@ let isAddCart,
             ]);
           }
 
-          // if (entry.target.classList.contains('lav-earn')) {
-          //   isElementInViewport(entry.target, [
-          //     'new_payments_free_earrings_vis',
-          //     'Free earrings banner',
-          //     'Element visibility',
-          //     'Product Information',
-          //   ]);
-          // }
+          if (entry.target.classList.contains('lav-klarna')) {
+            isElementInViewport(entry.target, [
+              'new_payments_cart_clarna_vis',
+              'Klarn block',
+              'Element visibility',
+              'Cart sidebar',
+            ]);
+          }
+
+          // TODO
+          if (entry.target.classList.contains('needsclick')) {
+            // console.log('ffff');
+            isElementInViewport(
+              entry.target.closest('.needsclick'),
+              [
+                'new_payments_pp_get_50_off',
+                'Visibility',
+                'Popup',
+                'Popup 50$ off',
+              ],
+              3,
+              () => {
+                isDiscountEvent = true;
+              }
+            );
+          }
+
+          if (entry.target.classList.contains('lav-earn')) {
+            if (entry.target.closest('.product-single__meta')) {
+              isElementInViewport(entry.target, [
+                'new_payments_free_earrings_vis',
+                'Free earrings banner',
+                'Element visibility',
+                'Product Information',
+              ]);
+            } else if (entry.target.closest('.drawer__inner')) {
+              isElementInViewport(entry.target, [
+                'new_payments_cart_free_earrings_vis',
+                'Free earrings banner',
+                'Element visibility',
+                'Cart sidebar',
+              ]);
+            }
+          }
 
           if (
             entry.target.classList.contains('lav-benefits') &&
@@ -1082,7 +1164,7 @@ let isAddCart,
             ]);
           }
 
-          if (entry.target.classList.contains('lav-benefits__slide')) {
+          if (entry.target.classList.contains('drawer__header')) {
             isElementInViewport(entry.target, [
               'new_payments_cart_free_shipping',
               'Free shipping',
@@ -1106,11 +1188,16 @@ let isAddCart,
       });
     }, observerOptions);
 
-    for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+    if (el) {
       observer.observe(el);
+    } else {
+      console.log(Array.from(document.querySelectorAll('.lav-watch')));
+      for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
+        observer.observe(el);
+      }
     }
 
-    function isElementInViewport(el, events, timeout = 3) {
+    function isElementInViewport(el, events, timeout = 3, cb) {
       setTimeout(() => {
         const rect = el.getBoundingClientRect();
         const windowHeight =
@@ -1122,8 +1209,11 @@ let isAddCart,
         ) {
           observer.unobserve(el);
           if (!el.classList.contains('in-view')) {
-            gaEvent(...events);
+            pushDataLayer(...events);
             el.classList.add('in-view');
+            if (typeof cb === 'function') {
+              cb();
+            }
           }
         }
       }, timeout * 1000);
@@ -1307,7 +1397,106 @@ let isAddCart,
       updateData();
     }, 500);
 
-    observerView();
+    handleDocumentClick();
+    setTimeout(() => {
+      observerView();
+    }, 500);
+  }
+
+  function handleDocumentClick() {
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (target.closest('.klaviyo-close-form')) {
+        pushDataLayer(
+          'new_payments_pp_get_50_off_close',
+          `Close. ${target
+            .closest('.klaviyo-close-form')
+            ?.nextElementSibling?.querySelector(
+              '[data-testid="form-component"]'
+            )
+            ?.innerText?.trim()}`,
+          'Button',
+          'Popup 50$ off'
+        );
+      }
+
+      if (target.closest('.needsclick')) {
+        if (
+          target.tagName === 'INPUT' &&
+          target.placeholder === 'Enter your email address'
+        ) {
+          pushDataLayer(
+            'new_payments_pp_get_50_off_email',
+            'Email',
+            'Input',
+            'Popup 50$ off'
+          );
+        }
+
+        if (
+          target.tagName === 'BUTTON' &&
+          target.innerText === 'UNLOCK MY DEAL' &&
+          klaviyoStep < 3
+        ) {
+          pushDataLayer(
+            'new_payments_pp_get_50_off_unlock',
+            `Unlock my deal. ${klaviyoStep === 1 ? 'Step 1' : 'Step 2'}`,
+            'Button',
+            'Popup 50$ off'
+          );
+
+          if (!target.closest('.klaviyo-form')) {
+            klaviyoStep++;
+          }
+        }
+
+        if (
+          target.tagName === 'BUTTON' &&
+          (target.innerText === 'No thanks I’ll pay full price' ||
+            target.innerText === `No thanks, I'll pay the full price`) &&
+          klaviyoStep < 3
+        ) {
+          pushDataLayer(
+            'new_payments_pp_get_50_off_no',
+            `No, thanks. ${klaviyoStep === 1 ? 'Step 1' : 'Step 2'}`,
+            'Button',
+            'Popup 50$ off'
+          );
+        }
+
+        if (
+          target
+            .closest('[component="[object Object]"]')
+            ?.querySelector('svg path')
+            ?.getAttribute('d') ===
+          `M11.1597 18.9917L6.66651 14.4983C5.99844 13.8687 4.95494 13.8706 4.28909 14.5025C3.59908 15.1574 3.56725 16.2465 4.21784 16.9405L9.72916 23.085C10.5199 23.9286 11.862 23.9189 12.6405 23.064L25.9625 8.9336C26.5713 8.26509 26.5411 7.23449 25.8943 6.60272C25.2293 5.95322 24.1631 5.96785 23.5162 6.63534L11.1597 18.9917Z`
+        ) {
+          sessionStorage.setItem('lav-discount', 'yes');
+
+          pushDataLayer(
+            'new_payments_pp_get_50_off_copy',
+            'Copy discount code',
+            'Button',
+            'Popup 50$ off'
+          );
+        }
+
+        if (
+          target.tagName === 'BUTTON' &&
+          target.innerText === 'CONTINUE SHOPPING'
+        ) {
+          sessionStorage.setItem('lav-discount', 'yes');
+
+          pushDataLayer(
+            'new_payments_pp_get_50_off_continue',
+            'Continue shopping',
+            'Button',
+            'Popup 50$ off'
+          );
+        }
+      }
+    });
   }
 
   function updateData() {
@@ -1360,11 +1549,34 @@ let isAddCart,
 
     clone.classList.add('lav-klarna');
 
+    observerView(clone);
+
     $el('klarna-placement div')
       ?.shadowRoot?.querySelector('[part="osm-cta"]')
       .addEventListener('click', () => {
         if (!isKlarnaClick) {
+          pushDataLayer(
+            'new_payments_klarna_link',
+            'Klarna learn more',
+            'Link',
+            'Product Information'
+          );
         }
+
+        setTimeout(() => {
+          $el('klarna-osm-interstitial')
+            .shadowRoot.querySelector(
+              '#learn-more-dialog-payment_calculator-light__footer-button-wrapper'
+            )
+            ?.addEventListener('click', () => {
+              pushDataLayer(
+                'new_payments_klarna_go_it',
+                'Go it',
+                'Button',
+                'Klarna popup'
+              );
+            });
+        }, 1000);
       });
 
     clone.querySelector('[part="osm-cta"]').addEventListener('click', (e) => {
@@ -1579,7 +1791,7 @@ let isAddCart,
         item.remove();
       }
 
-      if (sessionStorage.getItem('lav-discount') === 'WF865DTT') {
+      if (sessionStorage.getItem('lav-discount') === 'yes') {
         if (!$el('.product-block--price .lav-discount')) {
           $el('[data-product-price]').insertAdjacentHTML(
             'beforeend',
@@ -1611,6 +1823,13 @@ let isAddCart,
               'Link',
               'Product Information'
             );
+
+            pushDataLayer(
+              'new_payments_pp_get_50_off',
+              'Visibility',
+              'Popup',
+              'Popup 50$ off'
+            );
             $el('.needsclick[aria-label="Open Form"]').click();
           } else {
             for (let item of $$el('.lav-discount')) {
@@ -1625,6 +1844,12 @@ let isAddCart,
       $el('.lav-sticky__price').insertAdjacentHTML('beforeend', getDiscount);
 
       $el('.lav-sticky .lav-discount').addEventListener('click', () => {
+        pushDataLayer(
+          'new_payments_pp_get_50_off',
+          'Visibility',
+          'Popup',
+          'Popup 50$ off'
+        );
         $el('.needsclick[aria-label="Open Form"]').click();
       });
     }
@@ -1861,7 +2086,8 @@ let isAddCart,
 
     $el('.drawer__inner', el).insertAdjacentHTML('beforeend', benefits);
     $el('.lav-benefits', el).classList.add('lav-benefits__slide');
-    $el('.lav-benefits', el).classList.add('lav-watch');
+    $el('.drawer__header', el).classList.add('lav-watch');
+
     $el('[for="CartTermsDrawer"] a', el).innerText = 'Terms and Conditions';
 
     $el('.cart__checkout-wrapper button', el).addEventListener('click', () => {
@@ -1902,6 +2128,13 @@ let isAddCart,
                 'Link',
                 'Cart sidebar'
               );
+
+              pushDataLayer(
+                'new_payments_pp_get_50_off',
+                'Visibility',
+                'Popup',
+                'Popup 50$ off'
+              );
               $el('.needsclick[aria-label="Open Form"]').click();
             } else {
               for (let item of $$el('.lav-discount')) {
@@ -1914,7 +2147,7 @@ let isAddCart,
 
       if (
         !$el('.needsclick[aria-label="Open Form"]') &&
-        sessionStorage.getItem('lav-discount') === 'WF865DTT' &&
+        sessionStorage.getItem('lav-discount') === 'yes' &&
         !pr.querySelector('.lav-discount.lav-discount_applied')
       ) {
         pr.querySelector('.cart__price').insertAdjacentHTML(
