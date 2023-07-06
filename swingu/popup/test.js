@@ -48,6 +48,16 @@ waitFor(
     if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
       console.log('fire');
       sessionStorage.setItem('isRedirectedExp', 'yes');
+      document.querySelector(
+        1,
+        '[data-crstarget="hypothesis-2-upgrade-target"]'
+      );
+      setTimeout(() => {
+        document.querySelector(
+          2,
+          '[data-crstarget="hypothesis-2-upgrade-target"]'
+        );
+      }, 2000);
       waitFor(
         () => {
           document.querySelector(
@@ -55,9 +65,14 @@ waitFor(
           );
         },
         () => {
+          console.log(
+            document.querySelector(
+              '[data-crstarget="hypothesis-2-upgrade-target"]'
+            )
+          );
           document
             .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
-            .click();
+            .dispatchEvent(new Event('click'));
         }
       );
     }
