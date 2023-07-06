@@ -48,9 +48,18 @@ waitFor(
     if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
       console.log('fire');
       sessionStorage.setItem('isRedirectedExp', 'yes');
-      document
-        .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
-        .click();
+      waitFor(
+        () => {
+          document.querySelector(
+            '[data-crstarget="hypothesis-2-upgrade-target"]'
+          );
+        },
+        () => {
+          document
+            .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+            .click();
+        }
+      );
     }
 
     console.log(
