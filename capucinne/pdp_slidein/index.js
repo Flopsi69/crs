@@ -2113,8 +2113,12 @@ let klaviyoStep = 1;
 
     if ($el('.lav-paypal')) {
       $el('.lav-paypal').style.display = 'flex';
-      $el('.lav-paypal [data-testid="grid-cell"]').style.flexGrow =
+      $el('.lav-paypal [data-testid="grid-cell"]')?.style.flexGrow =
         '1!important';
+      setTimeout(() => {
+        el('.lav-paypal [data-testid="grid-cell"]')?.style.flexGrow =
+        '1!important';
+      }, 1200);
       $el('.lav-paypal').addEventListener('click', () => {
         pushDataLayer(
           'new_payments_cart_paypal',
