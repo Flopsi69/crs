@@ -23,7 +23,6 @@ let klaviyoStep = 1;
   if (exp.observer) {
     initObserver(
       (el) => {
-        console.log(el);
         if (el.ariaLabel === 'POPUP Form') {
           pushDataLayer(
             'new_payments_pp_get_50_off',
@@ -1068,9 +1067,7 @@ let klaviyoStep = 1;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log('entry', entry);
         if (entry.isIntersecting) {
-          console.log('entry.target', entry.target);
           if (entry.target.classList.contains('lav-point__wrap')) {
             isElementInViewport(entry.target, [
               'new_payments_14_day_visibility',
@@ -1191,7 +1188,6 @@ let klaviyoStep = 1;
     if (el) {
       observer.observe(el);
     } else {
-      console.log(Array.from(document.querySelectorAll('.lav-watch')));
       for (let el of Array.from(document.querySelectorAll('.lav-watch'))) {
         observer.observe(el);
       }
