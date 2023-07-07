@@ -1441,8 +1441,8 @@ let klaviyoStep = 1;
       }
     );
 
-    handleShipping(benefits);
-    handleSlideIn(benefits);
+    handleShipping();
+    handleSlideIn();
     addSticky();
     // updateTotal();
     // findGift();
