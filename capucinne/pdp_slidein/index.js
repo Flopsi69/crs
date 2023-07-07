@@ -1486,7 +1486,7 @@ let klaviyoStep = 1;
             }
           }
 
-          if (frame.wdtih === '130px') {
+          if (frame.width === '130px') {
             frame.style.right = '130px';
           }
         }
