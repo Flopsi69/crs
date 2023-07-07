@@ -1723,7 +1723,7 @@ let klaviyoStep = 1;
       isKlarnaClick = false;
     });
 
-    $el('.lav-summary').insertAdjacentElement('afterend', clone);
+    $el('.lav-summary')?.insertAdjacentElement('afterend', clone);
   }
 
   function handleExtend() {
