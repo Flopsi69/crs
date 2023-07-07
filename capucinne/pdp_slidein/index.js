@@ -978,6 +978,10 @@ let klaviyoStep = 1;
     }
     .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
       flex-grow: 1!important;
+      background: #ffc43c!important;
+    }
+    .paypal-button.paypal-button-shape-rect {
+      border: 0!important;
     }
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
@@ -1473,8 +1477,12 @@ let klaviyoStep = 1;
               frame.style.bottom = '80px';
               frame.style.right = '10px';
             } else {
-              frame.style.bottom = '100px';
+              frame.style.bottom = '110px';
             }
+          }
+
+          if (frame.wdtih === '130px') {
+            frame.style.right = '130px';
           }
         }
       }
@@ -1980,6 +1988,12 @@ let klaviyoStep = 1;
         .querySelector('.label')
         .innerText.includes('Shipping and Production');
     });
+
+    if (!el) {
+      setTimeout(() => {
+        handleShipping();
+      }, 1000);
+    }
 
     el.classList.add('lav-shipping');
 
