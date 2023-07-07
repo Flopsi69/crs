@@ -1461,7 +1461,12 @@ let klaviyoStep = 1;
       observerView();
     }, 500);
 
-    handleWidgets();
+    waitFor(
+      () => $el('.widget-visible iframe'),
+      () => {
+        handleWidgets();
+      }
+    );
   }
 
   function handleWidgets() {
