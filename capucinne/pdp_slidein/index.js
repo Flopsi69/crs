@@ -1394,25 +1394,33 @@ let klaviyoStep = 1;
       }
     );
 
-    $el('.one-whole')?.closest('.product-block')?.classList.add('lav-options');
+    waitFor(
+      () => $el('.product-single__form .add-to-cart'),
+      () => {
+        $el('.one-whole')
+          ?.closest('.product-block')
+          ?.classList.add('lav-options');
 
-    $el('.product-single__form .add-to-cart').insertAdjacentHTML(
-      'afterbegin',
-      `<img src='${exp.dir}/img/bag.svg' />`
-    );
-
-    $el('.product-single__form .add-to-cart').addEventListener('click', () => {
-      if (!isAddCart) {
-        pushDataLayer(
-          'new_payments_add_to_cart_new',
-          'Add to cart new',
-          'Button',
-          'Product Information'
+        $el('.product-single__form .add-to-cart').insertAdjacentHTML(
+          'afterbegin',
+          `<img src='${exp.dir}/img/bag.svg' />`
         );
-      }
-    });
 
-    const benefits = `
+        $el('.product-single__form .add-to-cart').addEventListener(
+          'click',
+          () => {
+            if (!isAddCart) {
+              pushDataLayer(
+                'new_payments_add_to_cart_new',
+                'Add to cart new',
+                'Button',
+                'Product Information'
+              );
+            }
+          }
+        );
+
+        const benefits = `
       <div class='lav-benefits lav-watch'>
         <div class='lav-benefits__item'>
           <img src='${exp.dir}/img/delivery.svg' />
@@ -1426,9 +1434,11 @@ let klaviyoStep = 1;
       </div>
     `;
 
-    $el('.product-single__form .add-to-cart').insertAdjacentHTML(
-      'afterend',
-      benefits
+        $el('.product-single__form .add-to-cart').insertAdjacentHTML(
+          'afterend',
+          benefits
+        );
+      }
     );
 
     handleShipping(benefits);
