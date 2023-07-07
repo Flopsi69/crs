@@ -137,6 +137,8 @@ function initRedirectPage() {
 }
 
 function initUpgradePage() {
+  navigator.sendBeacon('https://console.wiredgeese.com/log/', location.href);
+
   /********* Settings **********/
   const settings = {
     // dir: 'https://flopsi69.github.io/crs/swingu/popup',
