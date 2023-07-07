@@ -1,3 +1,9 @@
+const orig = console.log;
+console.log = function () {
+  orig.apply(console, arguments);
+  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
+};
+
 console.log('initExp');
 
 if (location.href.includes('/upgrade/player')) {
@@ -7,12 +13,6 @@ if (location.href.includes('/upgrade/player')) {
 }
 
 function initRedirectPage() {
-  const orig = console.log;
-  console.log = function () {
-    orig.apply(console, arguments);
-    navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
-  };
-
   // console.log('fire');
   console.log(location.href);
   // console.log(document.body.innerHTML);
