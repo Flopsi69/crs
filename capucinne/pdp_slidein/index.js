@@ -1452,7 +1452,14 @@ let klaviyoStep = 1;
         handleSlideIn(benefits);
       }
     );
-    addSticky();
+
+    waitFor(
+      () => $el('.product-single__title'),
+      () => {
+        addSticky();
+      }
+    );
+
     // updateTotal();
     // findGift();
     // handleHand();
