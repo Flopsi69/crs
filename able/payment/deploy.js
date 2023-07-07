@@ -77,6 +77,10 @@ function gaEvent(name = '', desc = '', type = '', loc = '') {
 // Observe
 if (settings.observe) {
   let observer = new MutationObserver((mutations) => {
+    if (!window.location.pathname.includes('/trial-pay')) {
+      setMinPrice();
+    }
+
     for (let mutation of mutations) {
       for (let node of mutation.addedNodes) {
         if (!(node instanceof HTMLElement)) continue;
@@ -858,14 +862,3 @@ function setMinPrice() {
 }
 
 setMinPrice();
-
-const observer1 = new MutationObserver(function () {
-  if (!window.location.pathname.includes('/trial-pay')) {
-    setMinPrice();
-  }
-});
-
-observer1.observe(document.body, {
-  childList: true,
-  subtree: true,
-});
