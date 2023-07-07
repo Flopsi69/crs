@@ -1380,14 +1380,16 @@ let klaviyoStep = 1;
       </div>
     `;
 
-    $el('.product-block--sales-point').insertAdjacentHTML(
-      'beforebegin',
-      points
-    );
+    waitFor(() => $el('.product-block--sales-point'), () => {
+      $el('.product-block--sales-point').insertAdjacentHTML(
+        'beforebegin',
+        points
+      );
 
-    $el('.lav-point:last-child').addEventListener('click', () => {
-      $el('.product-block--sales-point span[onclick]').click();
-    });
+      $el('.lav-point:last-child').addEventListener('click', () => {
+        $el('.product-block--sales-point span[onclick]').click();
+      });
+    })
 
     $el('.one-whole')?.closest('.product-block')?.classList.add('lav-options');
 
@@ -1576,7 +1578,9 @@ let klaviyoStep = 1;
     handleKlarna();
     handleDiscount();
     handleItems(cart);
-    handleHand();
+    setTimeout(() => {
+      handleHand();
+    }, 500);
     findGift();
 
     if (parseInt(localStorage.getItem('subtotal')) === parseInt(subtotal))
@@ -1811,7 +1815,7 @@ let klaviyoStep = 1;
       $el('.product-single__meta .tangiblee-cta-wrapper')
     );
 
-    $el('.tangiblee-cta-wrapper .tangiblee-cta__icon').innerHTML = `
+    $el('.tangiblee-cta-wrapper .tangiblee-cta__icon')?.innerHTML = `
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_420_3986)">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4238 3.57381C20.4238 2.47158 19.5302 1.57804 18.428 1.57804H14.7148V0L18.428 1.62302e-07C20.4018 2.48578e-07 22.0018 1.60005 22.0018 3.57381V7.28686H20.4238V3.57381Z" fill="#CC9286"/>
