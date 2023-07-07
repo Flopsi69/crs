@@ -1613,7 +1613,12 @@ let klaviyoStep = 1;
 
     handleExtend();
     handleKlarna();
-    handleDiscount();
+    waitFor(
+      () => $el('.lav-sticky'),
+      () => {
+        handleDiscount();
+      }
+    );
     handleItems(cart);
     setTimeout(() => {
       waitFor(
