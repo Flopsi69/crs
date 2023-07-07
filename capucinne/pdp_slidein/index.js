@@ -1278,20 +1278,6 @@ let klaviyoStep = 1;
     </div>
   `;
 
-  const benefits = `
-    <div class='lav-benefits lav-watch'>
-      <div class='lav-benefits__item'>
-        <img src='${exp.dir}/img/delivery.svg' />
-        Free insured shipping
-      </div>
-
-      <div class='lav-benefits__item'>
-        <img src='${exp.dir}/img/shield.svg' />
-        14 days Free Returns &&nbsp;Exchange 
-      </div>
-    </div>
-  `;
-
   const appliedDiscount = `
     <div class='lav-discount lav-discount_applied'>
       <div class='lav-discount__icon'>
@@ -1394,6 +1380,20 @@ let klaviyoStep = 1;
       </div>
     `;
 
+    const benefits = `
+    <div class='lav-benefits lav-watch'>
+      <div class='lav-benefits__item'>
+        <img src='${exp.dir}/img/delivery.svg' />
+        Free insured shipping
+      </div>
+
+      <div class='lav-benefits__item'>
+        <img src='${exp.dir}/img/shield.svg' />
+        14 days Free Returns &&nbsp;Exchange 
+      </div>
+    </div>
+  `;
+
     waitFor(
       () => $el('.product-block--sales-point'),
       () => {
@@ -1441,8 +1441,8 @@ let klaviyoStep = 1;
       }
     );
 
-    handleShipping();
-    handleSlideIn();
+    handleShipping(benefits);
+    handleSlideIn(benefits);
     addSticky();
     // updateTotal();
     // findGift();
