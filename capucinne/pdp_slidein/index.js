@@ -16,7 +16,7 @@ let klaviyoStep = 1;
       enable: true,
       params: ['set', 'new_payments', 'variant_1'],
     },
-    debug: true,
+    debug: false,
   };
 
   // Observer
@@ -422,7 +422,7 @@ let klaviyoStep = 1;
     }
     .lav-benefits__slide img {
       width: 20px;
-      margin-right: 4px;
+      // margin-right: 4px;
     }
     .lav-benefits__slide .lav-benefits__item + .lav-benefits__item {
       margin-left: 8px;
@@ -965,9 +965,9 @@ let klaviyoStep = 1;
       .drawer--right {
         width: 320px;
       }
-      [title="chat widget"] {
-        bottom: 90px!important;
-      }
+      // [title="chat widget"] {
+      //   bottom: 90px!important;
+      // }
       .tangiblee-cta-wrapper {
         top: initial;
         right: initial;
@@ -1044,6 +1044,11 @@ let klaviyoStep = 1;
       .lav-benefits__slide {
         margin-top: 0;
         border-top: 1px solid #FFF;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+      .lav-benefits__slide img {
+        width: 18px;
       }
       .drawer__footer {
         padding-top: 12px;
@@ -1406,6 +1411,29 @@ let klaviyoStep = 1;
     setTimeout(() => {
       observerView();
     }, 500);
+
+    handleWidgets();
+  }
+
+  function handleWidgets() {
+    waitFor(
+      () => $el('.widget-visible iframe'),
+      () => {
+        for (let frame of $$el('.widget-visible iframe')) {
+          if (frame.width === '120px') {
+            frame.style.display = 'none';
+          }
+          if (frame.width === '64px') {
+            if (window.innerWidth < 768) {
+              frame.style.bottom = '80px';
+              frame.style.right = '10px';
+            } else {
+              frame.style.bottom = '100px';
+            }
+          }
+        }
+      }
+    );
   }
 
   function handleDocumentClick() {
@@ -1862,7 +1890,7 @@ let klaviyoStep = 1;
 
   function handleEarn(subtotal) {
     if (!$el('[data-product-blocks] .lav-earn')) {
-      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
         'beforebegin',
         earnStart
       );
@@ -1870,7 +1898,7 @@ let klaviyoStep = 1;
 
     if (subtotal >= 5000 && !$el('[data-product-blocks] .lav-earn-5000')) {
       $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
         'beforebegin',
         earnGift2
       );
@@ -1891,7 +1919,7 @@ let klaviyoStep = 1;
       !$el('[data-product-blocks] .lav-earn-1500')
     ) {
       $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
         'beforebegin',
         earnGift1
       );
@@ -1911,7 +1939,7 @@ let klaviyoStep = 1;
       !$el('[data-product-blocks] .lav-earn-start')
     ) {
       $el('[data-product-blocks] .lav-earn')?.remove();
-      $el('[class*=wishlist-action]')?.insertAdjacentHTML(
+      $el('.the4-toolkit-wishlist')?.insertAdjacentHTML(
         'beforebegin',
         earnStart
       );
@@ -2026,7 +2054,7 @@ let klaviyoStep = 1;
 
         <button class='lav-sticky__btn lav-btn'>
           <img src='${exp.dir}/img/bag.svg' />
-          <span class='lav-cart-price lav-btn-price lav-mob'></span>
+          <span class='lav-product-price lav-btn-price lav-mob'></span>
           <span class='lav-btn-caption'>Add to cart</span>
         </button>
       </div>
@@ -2048,9 +2076,14 @@ let klaviyoStep = 1;
       }, 200);
     });
 
-    $el('.lav-product-price').innerText = $el(
-      '.product__price .money'
-    ).innerText.trim();
+    waitFor(
+      () => $el('.product__price .money')?.innerText,
+      () => {
+        for (let spot of $$el('.lav-product-price')) {
+          spot.innerText = $el('.product__price .money').innerText.trim();
+        }
+      }
+    );
   }
 
   function handleSlideIn(benefits) {
