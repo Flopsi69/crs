@@ -1993,6 +1993,7 @@ let klaviyoStep = 1;
       setTimeout(() => {
         handleShipping();
       }, 1000);
+      return false;
     }
 
     el.classList.add('lav-shipping');
