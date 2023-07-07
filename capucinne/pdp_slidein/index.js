@@ -1472,10 +1472,10 @@ let klaviyoStep = 1;
           if (frame.width === '120px') {
             frame.style.display = 'none';
           }
-          if (frame.width === '64px') {
+          if (frame.width === '64px' || frame.width === '67px') {
             if (window.innerWidth < 768) {
               frame.style.bottom = '80px';
-              frame.style.right = '10px';
+              // frame.style.right = '10px';
             } else {
               frame.style.bottom = '110px';
             }
