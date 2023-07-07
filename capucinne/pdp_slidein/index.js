@@ -1446,7 +1446,12 @@ let klaviyoStep = 1;
     );
 
     handleShipping(benefits);
-    handleSlideIn(benefits);
+    waitFor(
+      () => $el('#CartDrawer') && $el('#CartDrawer [for="CartNoteDrawer"]'),
+      () => {
+        handleSlideIn(benefits);
+      }
+    );
     addSticky();
     // updateTotal();
     // findGift();
