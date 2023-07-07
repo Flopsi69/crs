@@ -385,6 +385,24 @@ let klaviyoStep = 1;
       line-height: 12px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
+      transition: 0.3s!important;
+      transition-delay: 0s!important;
+    }
+    .product-single__form .add-to-cart:hover {
+      transition: 0.3s!important;
+      background: #fff!important;
+      color: #1C1D1D!important;
+      border-color: #1C1D1D!important;
+      transition-delay: 0s!important;
+    }
+    .product-single__form .add-to-cart img {
+      transition: inherit;
+    }
+    .product-single__form .add-to-cart:hover img {
+      filter: invert(106%) sepia(5%) saturate(360%) hue-rotate(131deg) brightness(92%) contrast(88%);
+    }
+    .product-single__form .add-to-cart:after {
+      display: none;
     }
     .product-single__form .add-to-cart img {
       margin-right: 8px;
@@ -958,10 +976,16 @@ let klaviyoStep = 1;
     .lav-paypal * {
       flex-grow: 1!important;
     }
-    .lav-paypal [data-testid="grid-cell"] {
+    .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
       flex-grow: 1!important;
     }
     @media(max-width: 768px) {
+      .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
+        // height: 42px!important;
+      }
+      .lav-paypal .shopify-cleanslate [title="Checkout with PayPal"] {
+        // max-height: 42px!important;
+      }
       .drawer--right {
         width: 320px;
       }
@@ -1045,10 +1069,10 @@ let klaviyoStep = 1;
         margin-top: 0;
         border-top: 1px solid #FFF;
         font-size: 11px;
-        line-height: 1.4;
+        line-height: 1.35;
       }
       .lav-benefits__slide img {
-        width: 18px;
+        // width: 18px;
       }
       .drawer__footer {
         padding-top: 12px;
@@ -1315,21 +1339,27 @@ let klaviyoStep = 1;
   function init() {
     console.log('init');
 
-    $el('[href="#reviews"]')
-      .closest('.product-block')
-      .classList.add('lav-reviews');
+    waitFor(
+      () => $el('[href="#reviews"]'),
+      () => {
+        $el('[href="#reviews"]')
+          .closest('.product-block')
+          ?.classList.add('lav-reviews');
 
-    $el('.lav-reviews > div span').innerText =
-      'Over ' + $el('.lav-reviews > div span').innerText.match(/\d+\s\w+/)[0];
+        $el('.lav-reviews > div span').innerText =
+          'Over ' +
+          $el('.lav-reviews > div span').innerText.match(/\d+\s\w+/)[0];
+
+        $el('[data-product-blocks]').insertAdjacentElement(
+          'afterbegin',
+          $el('[href="#reviews"]').closest('.product-block')
+        );
+      }
+    );
 
     // $el('.lav-reviews > div span').addEventListener('click', () => {
     //   $el('.lav-reviews > div a').click();
     // });
-
-    $el('[data-product-blocks]').insertAdjacentElement(
-      'afterbegin',
-      $el('[href="#reviews"]').closest('.product-block')
-    );
 
     const points = `
       <div class='lav-point__wrap lav-watch'>
@@ -2173,7 +2203,15 @@ let klaviyoStep = 1;
     Array.from($$el('.cart__item', el)).forEach((pr) => {
       if (
         $el('.needsclick[aria-label="Open Form"]') &&
-        !pr.querySelector('.lav-discount')
+        !pr.querySelector('.lav-discount') &&
+        !pr
+          .querySelector('.cart__item-name')
+          .innerText.toLowerCase()
+          .includes('gift') &&
+        !pr
+          .querySelector('.cart__item-name')
+          .innerText.toLowerCase()
+          .includes('extend protection')
       ) {
         pr.querySelector('.cart__price').insertAdjacentHTML(
           'afterend',
@@ -2210,7 +2248,15 @@ let klaviyoStep = 1;
       if (
         !$el('.needsclick[aria-label="Open Form"]') &&
         sessionStorage.getItem('lav-discount') === 'yes' &&
-        !pr.querySelector('.lav-discount.lav-discount_applied')
+        !pr.querySelector('.lav-discount.lav-discount_applied') &&
+        !pr
+          .querySelector('.cart__item-name')
+          .innerText.toLowerCase()
+          .includes('gift') &&
+        !pr
+          .querySelector('.cart__item-name')
+          .innerText.toLowerCase()
+          .includes('extend protection')
       ) {
         pr.querySelector('.cart__price').insertAdjacentHTML(
           'afterend',
