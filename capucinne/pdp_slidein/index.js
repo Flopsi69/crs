@@ -1465,33 +1465,32 @@ let klaviyoStep = 1;
       () => $el('.widget-visible iframe'),
       () => {
         handleWidgets();
+        setTimeout(() => {
+          handleWidgets();
+        }, 3000);
       }
     );
   }
 
   function handleWidgets() {
-    waitFor(
-      () => $el('.widget-visible iframe'),
-      () => {
-        for (let frame of $$el('.widget-visible iframe')) {
-          if (frame.width === '120px') {
-            frame.style.display = 'none';
-          }
-          if (frame.width === '64px' || frame.width === '67px') {
-            if (window.innerWidth < 768) {
-              frame.style.bottom = '80px';
-              // frame.style.right = '10px';
-            } else {
-              frame.style.bottom = '110px';
-            }
-          }
-
-          if (frame.width === '300px') {
-            frame.style.right = '130px';
-          }
+    for (let frame of $$el('.widget-visible iframe')) {
+      if (frame.width === '120px') {
+        frame.style.display = 'none';
+      }
+      if (frame.width === '64px' || frame.width === '67px') {
+        if (window.innerWidth < 768) {
+          frame.style.bottom = '80px';
+        } else {
+          frame.style.bottom = '110px';
+          frame.style.right = '10px';
         }
       }
-    );
+
+      if (frame.width === '300px') {
+        // frame.style.right = '130px';
+        frame.style.bottom = '100px';
+      }
+    }
   }
 
   function handleDocumentClick() {
