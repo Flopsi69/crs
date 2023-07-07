@@ -1454,7 +1454,7 @@ let klaviyoStep = 1;
     );
 
     waitFor(
-      () => $el('.product-single__title') && item && item.imageURL,
+      () => $el('.product-single__title') && item && item.ImageURL,
       () => {
         addSticky();
       }
