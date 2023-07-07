@@ -1657,13 +1657,26 @@ let klaviyoStep = 1;
 
         setTimeout(() => {
           $el('klarna-osm-interstitial')
-            .shadowRoot.querySelector(
+            ?.shadowRoot.querySelector(
               '#learn-more-dialog-payment_calculator-light__footer-button-wrapper'
             )
             ?.addEventListener('click', () => {
               pushDataLayer(
                 'new_payments_klarna_go_it',
                 'Go it',
+                'Button',
+                'Klarna popup'
+              );
+            });
+
+          $el('klarna-osm-interstitial')
+            ?.shadowRoot.querySelector(
+              '#learn-more-dialog-payment_calculator-light__nav-bar__right-icon'
+            )
+            ?.addEventListener('click', () => {
+              pushDataLayer(
+                'new_payments_klarna_close',
+                'Close',
                 'Button',
                 'Klarna popup'
               );
