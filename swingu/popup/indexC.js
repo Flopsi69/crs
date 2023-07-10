@@ -16,8 +16,7 @@ if (
 }
 
 function initRedirectPage() {
-  console.log('initRedirectPage' + location.href);
-  console.log(location.href);
+  console.log('initRedirectPage: ' + location.href);
 
   waitFor(
     () => document.body,
@@ -26,7 +25,10 @@ function initRedirectPage() {
       //   's1: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
       // );
 
-      if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
+      if (
+        sessionStorage.getItem('isRedirectedExp') !== 'yes' &&
+        !document.querySelector('.section__play-golf')
+      ) {
         sessionStorage.setItem('isRedirectedExp', 'yes');
 
         waitFor(
@@ -65,7 +67,7 @@ function initRedirectPage() {
 }
 
 function initUpgradePage() {
-  console.log('initUpgradePage' + location.href);
+  console.log('initUpgradePage: ' + location.href);
 
   /********* Settings **********/
   const settings = {
