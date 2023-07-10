@@ -17,6 +17,7 @@ if (
 
 function initRedirectPage() {
   console.log('initRedirectPage: ' + location.href);
+  console.log('mini ' + document.querySelector('.section__play-golf'));
 
   waitFor(
     () => document.body,
@@ -27,7 +28,8 @@ function initRedirectPage() {
 
       if (
         sessionStorage.getItem('isRedirectedExp') !== 'yes' &&
-        !document.querySelector('.section__play-golf')
+        JSON.parse(document.querySelector('#app').dataset.page).props
+          .subdomainData.subscriptionTier === 0
       ) {
         sessionStorage.setItem('isRedirectedExp', 'yes');
 
