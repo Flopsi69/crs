@@ -6,7 +6,10 @@ console.log = function () {
 
 console.log('initExp');
 
-if (location.href.includes('/upgrade/player')) {
+if (
+  location.href.includes('/upgrade/player') &&
+  location.href.includes('hypothesis-2')
+) {
   initUpgradePage();
 } else if (location.href.includes('/home')) {
   initRedirectPage();
