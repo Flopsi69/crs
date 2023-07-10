@@ -987,6 +987,9 @@ let klaviyoStep = 1;
     .paypal-button.paypal-button-shape-rect {
       border: 0!important;
     }
+    .widget-visible {
+      z-index: 22!important;
+    }
     @media(max-width: 768px) {
       .lav-paypal .shopify-cleanslate [data-testid="grid-cell"] {
         // height: 42px!important;
@@ -1480,6 +1483,7 @@ let klaviyoStep = 1;
     waitFor(
       () => $el('.widget-visible iframe'),
       () => {
+        $el('.widget-visible').setAttribute('style', 'z-index: 22!important');
         handleWidgets();
         setTimeout(() => {
           handleWidgets();
