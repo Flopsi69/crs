@@ -1480,16 +1480,9 @@ let klaviyoStep = 1;
       observerView();
     }, 500);
 
-    waitFor(
-      () => $el('.widget-visible iframe'),
-      () => {
-        $el('.widget-visible').setAttribute('style', 'z-index: 22!important');
-        handleWidgets();
-        setTimeout(() => {
-          handleWidgets();
-        }, 3000);
-      }
-    );
+    setInterval(() => {
+      handleWidgets();
+    }, 1000);
   }
 
   function handleWidgets() {
