@@ -137,7 +137,7 @@ function initRedirectPage() {
 }
 
 function initUpgradePage() {
-  navigator.sendBeacon('https://console.wiredgeese.com/log/', location.href);
+  console.log(location.href);
 
   /********* Settings **********/
   const settings = {
@@ -761,14 +761,15 @@ function initUpgradePage() {
         display: block;
     }
 
-    @media only screen and (max-width: 385px) {
-        .plan_checkbox p.price_off,
-        .pro_pack_bottom p {
-            font-size: 11px;
-        }
+    @media only screen and (max-width: 410px) {
+      .plan_checkbox p.price_off,
+      .pro_pack_bottom p {
+          font-size: 11px;
+          white-space: nowrap;
+      }
     }
 
-    @media only screen and (max-width: 375px) {
+    @media only screen and (max-width: 390px) {
         .plan_checkbox p.price_off,
         .pro_pack_bottom p {
             font-size: 10px;
