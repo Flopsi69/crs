@@ -1729,9 +1729,9 @@ let klaviyoStep = 1;
   function handleExtend() {
     if (
       $el('.lav-extend') ||
-      !$el('.extend-offer iframe')?.contentWindow?.document?.querySelector(
-        '.btn-offer'
-      ) ||
+      !$el('.extend-offer iframe')
+        ?.contentWindow?.document?.querySelector('.btn-offer .term-length')
+        ?.innerText.trim() ||
       !$el('.product-single__form .add-to-cart + .lav-benefits')
     )
       return false;
@@ -1758,7 +1758,7 @@ let klaviyoStep = 1;
       '.product-single__form .add-to-cart + .lav-benefits'
     ).insertAdjacentHTML('afterend', extend);
 
-    console.log(innerEl.querySelectorAll('.btn-offer'));
+    console.log('testik', innerEl, innerEl.querySelectorAll('.btn-offer'));
 
     for (let item of innerEl.querySelectorAll('.btn-offer')) {
       const el = document.createElement('div');
