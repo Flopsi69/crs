@@ -4,7 +4,7 @@ console.log = function () {
   navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
 };
 
-console.log('initExp');
+console.log('initExp: VariationC');
 
 if (
   location.href.includes('/upgrade/player') &&
@@ -16,43 +16,12 @@ if (
 }
 
 function initRedirectPage() {
-  // console.log('fire');
+  console.log('initRedirectPage' + location.href);
   console.log(location.href);
-  // console.log(document.body.innerHTML);
 
   waitFor(
     () => document.body,
     () => {
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        `
-          <style>
-          .ggg {
-            padding; 0 10px;
-          }
-          .lav-point {
-            width: 3px;
-            height: 3px;
-            border-radius: 50px;
-            background: green;
-            position: fixed;
-            top: 20px;
-            right: 3px;
-            z-index: 9999999999999999999999999;
-          }
-          .lav-point_2 {
-            right: 9px;
-            background-color: yellow;
-          }
-          .lav-point_3 {
-            right: 15px;
-            background-color: red;
-          }
-          </style>
-          <div class='lav-point'></div>
-        `
-      );
-
       // console.log(
       //   's1: ' + JSON.stringify(sessionStorage.getItem('isRedirectedExp'))
       // );
@@ -80,50 +49,6 @@ function initRedirectPage() {
     50
   );
 
-  waitFor(
-    () => document.querySelector('.upgradePopup .primaryAction'),
-    () => {
-      console.log('popup');
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        `
-          <style>
-          .lav-point {
-            width: 3px;
-            height: 3px;
-            border-radius: 50px;
-            background: green;
-            position: fixed;
-            top: 20px;
-            right: 3px;
-            z-index: 9999999999999999999999999;
-          }
-          .lav-point_2 {
-            right: 9px;
-            background-color: yellow;
-          }
-          .lav-point_3 {
-            right: 15px;
-            background-color: red;
-          }
-          </style>
-          <div class='lav-point lav-point_2'></div>
-        `
-      );
-
-      // document
-      //   .querySelector('.upgradePopup .primaryAction')
-      //   .dispatchEvent(new Event('click'));
-
-      // setInterval(function () {
-      //   document
-      //     .querySelector('.upgradePopup .primaryAction')
-      //     .dispatchEvent(new Event('click'));
-      // }, 200);
-    },
-    50
-  );
-
   function waitFor(condition, cb, ms = 1000) {
     if (condition()) {
       if (typeof cb == 'function') cb();
@@ -140,7 +65,7 @@ function initRedirectPage() {
 }
 
 function initUpgradePage() {
-  console.log(location.href);
+  console.log('initUpgradePage' + location.href);
 
   /********* Settings **********/
   const settings = {
@@ -816,10 +741,10 @@ function initUpgradePage() {
   scriptEl.async = false;
 
   const smallCheckSvg = `
-<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.02 8.26L4.4975 6.7375C4.36917 6.60917 4.21167 6.545 4.025 6.545C3.83833 6.545 3.675 6.615 3.535 6.755C3.40667 6.88333 3.3425 7.04667 3.3425 7.245C3.3425 7.44333 3.40667 7.60667 3.535 7.735L5.53 9.73C5.65833 9.85833 5.82167 9.9225 6.02 9.9225C6.21833 9.9225 6.38167 9.85833 6.51 9.73L10.4825 5.7575C10.6108 5.62917 10.675 5.47167 10.675 5.285C10.675 5.09833 10.605 4.935 10.465 4.795C10.3367 4.66667 10.1733 4.6025 9.975 4.6025C9.77667 4.6025 9.61333 4.66667 9.485 4.795L6.02 8.26ZM7 14C6.03167 14 5.12167 13.8161 4.27 13.4484C3.41833 13.0811 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.918867 10.5817 0.5516 9.73C0.183867 8.87833 0 7.96833 0 7C0 6.03167 0.183867 5.12167 0.5516 4.27C0.918867 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.918633 4.27 0.5509C5.12167 0.183633 6.03167 0 7 0C7.96833 0 8.87833 0.183633 9.73 0.5509C10.5817 0.918633 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0811 3.41833 13.4484 4.27C13.8161 5.12167 14 6.03167 14 7C14 7.96833 13.8161 8.87833 13.4484 9.73C13.0811 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0811 9.73 13.4484C8.87833 13.8161 7.96833 14 7 14Z" fill="#49BB54"/>
-</svg>
-`;
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.02 8.26L4.4975 6.7375C4.36917 6.60917 4.21167 6.545 4.025 6.545C3.83833 6.545 3.675 6.615 3.535 6.755C3.40667 6.88333 3.3425 7.04667 3.3425 7.245C3.3425 7.44333 3.40667 7.60667 3.535 7.735L5.53 9.73C5.65833 9.85833 5.82167 9.9225 6.02 9.9225C6.21833 9.9225 6.38167 9.85833 6.51 9.73L10.4825 5.7575C10.6108 5.62917 10.675 5.47167 10.675 5.285C10.675 5.09833 10.605 4.935 10.465 4.795C10.3367 4.66667 10.1733 4.6025 9.975 4.6025C9.77667 4.6025 9.61333 4.66667 9.485 4.795L6.02 8.26ZM7 14C6.03167 14 5.12167 13.8161 4.27 13.4484C3.41833 13.0811 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.918867 10.5817 0.5516 9.73C0.183867 8.87833 0 7.96833 0 7C0 6.03167 0.183867 5.12167 0.5516 4.27C0.918867 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.918633 4.27 0.5509C5.12167 0.183633 6.03167 0 7 0C7.96833 0 8.87833 0.183633 9.73 0.5509C10.5817 0.918633 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0811 3.41833 13.4484 4.27C13.8161 5.12167 14 6.03167 14 7C14 7.96833 13.8161 8.87833 13.4484 9.73C13.0811 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0811 9.73 13.4484C8.87833 13.8161 7.96833 14 7 14Z" fill="#49BB54"/>
+    </svg>
+  `;
 
   waitFor(
     () => document.head,
