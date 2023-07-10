@@ -1735,7 +1735,7 @@ let klaviyoStep = 1;
       $el('.lav-extend') ||
       !$el('.extend-offer iframe')
         ?.contentWindow?.document?.querySelector('.btn-offer .term-length')
-        ?.innerText.trim() ||
+        ?.textContent.trim() ||
       !$el('.product-single__form .add-to-cart + .lav-benefits')
     )
       return false;
