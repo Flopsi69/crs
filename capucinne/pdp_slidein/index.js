@@ -1473,19 +1473,18 @@ let klaviyoStep = 1;
 
     setInterval(() => {
       updateData();
+      handleWidgets();
     }, 500);
 
     handleDocumentClick();
     setTimeout(() => {
       observerView();
     }, 500);
-
-    setInterval(() => {
-      handleWidgets();
-    }, 1000);
   }
 
   function handleWidgets() {
+    $el('.widget-visible')?.setAttribute('style', 'z-index: 22!important');
+
     for (let frame of $$el('.widget-visible iframe')) {
       if (frame.width === '120px') {
         frame.style.display = 'none';
