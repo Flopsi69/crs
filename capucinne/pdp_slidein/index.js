@@ -1762,7 +1762,7 @@ let klaviyoStep = 1;
       '.product-single__form .add-to-cart + .lav-benefits'
     ).insertAdjacentHTML('afterend', extend);
 
-    console.log('testik', innerEl, innerEl.querySelectorAll('.btn-offer'));
+    // console.log('testik', innerEl, innerEl.querySelectorAll('.btn-offer'));
 
     for (let item of innerEl.querySelectorAll('.btn-offer')) {
       const el = document.createElement('div');
@@ -1770,10 +1770,10 @@ let klaviyoStep = 1;
 
       el.innerHTML = `
         <div class='lav-extend__item-caption'>${
-          item.querySelector('.term-length').innerText
+          item.querySelector('.term-length').textContent
         }</div>
         <div class='lav-extend__item-price'>${
-          item.querySelector('.plan-price').innerText
+          item.querySelector('.plan-price').textContent
         }</div>
       `;
 
@@ -1786,7 +1786,9 @@ let klaviyoStep = 1;
 
         pushDataLayer(
           'new_payments_extend_term',
-          `Term of protection: ${item.querySelector('.term-length').innerText}`,
+          `Term of protection: ${
+            item.querySelector('.term-length').textContent
+          }`,
           'Button',
           'Product Information'
         );
