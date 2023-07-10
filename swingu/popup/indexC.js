@@ -17,8 +17,6 @@ if (
 
 function initRedirectPage() {
   console.log('initRedirectPage: ' + location.href);
-  console.log('mini ' + document.querySelector('.section__play-golf'));
-
   waitFor(
     () => document.body,
     () => {
