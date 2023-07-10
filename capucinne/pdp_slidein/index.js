@@ -1621,14 +1621,14 @@ let klaviyoStep = 1;
     );
     handleItems(cart);
     setTimeout(() => {
-      waitFor(
-        () =>
-          $el('.product-single__meta .tangiblee-cta-wrapper') &&
-          $el('.product-single__meta .tangiblee-cta')?.style.display !== 'none',
-        () => {
-          handleHand();
-        }
-      );
+      // waitFor(
+      //   () =>
+      //     $el('.product-single__meta .tangiblee-cta-wrapper') &&
+      //     $el('.product-single__meta .tangiblee-cta')?.style.display !== 'none',
+      //   () => {
+      handleHand();
+      // }
+      // );
     }, 500);
     findGift();
 
@@ -1857,7 +1857,7 @@ let klaviyoStep = 1;
       if (
         $el('.product-single__meta .tangiblee-cta')?.style.display === 'none'
       ) {
-        $el('.product-single__meta .tangiblee-cta-wrapper').classList.add(
+        $el('.product-single__meta .tangiblee-cta-wrapper')?.classList.add(
           'lav-hide'
         );
       }
