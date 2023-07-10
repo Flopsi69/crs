@@ -545,9 +545,11 @@ let klaviyoStep = 1;
       z-index: 1;
       border-radius: 5px;
       padding: 6px;
+      background-color: #fff;
+      display: none;
     }
     .tangiblee-cta-wrapper.lav-hand {
-      background-color: #fff;
+      display: block;
     }
     .tangiblee-cta-wrapper .tangiblee-cta__icon {
       margin-top: 0;
