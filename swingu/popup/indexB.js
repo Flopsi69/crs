@@ -58,33 +58,32 @@ if (location.href.includes('/upgrade/player')) {
 }
 
 function initUpgradePage() {
-  function initUpgradePage() {
-    console.log('initUpgradePage: ' + location.href);
+  console.log('initUpgradePage: ' + location.href);
 
-    /********* Settings **********/
-    const settings = {
-      // dir: 'https://flopsi69.github.io/crs/swingu/popup',
-      dir: 'https://conversionratestore.github.io/projects/swingu/img',
-      observe: false,
-      clarity: {
-        enable: true,
-        params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
-      },
-      debug: true,
-    };
+  /********* Settings **********/
+  const settings = {
+    // dir: 'https://flopsi69.github.io/crs/swingu/popup',
+    dir: 'https://conversionratestore.github.io/projects/swingu/img',
+    observe: false,
+    clarity: {
+      enable: true,
+      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+    },
+    debug: true,
+  };
 
-    //Clarity
-    if (!settings.debug && settings.clarity.enable) {
-      waitFor(
-        () => typeof clarity == 'function',
-        () => {
-          clarity(...settings.clarity.params);
-        }
-      );
-    }
+  //Clarity
+  if (!settings.debug && settings.clarity.enable) {
+    waitFor(
+      () => typeof clarity == 'function',
+      () => {
+        clarity(...settings.clarity.params);
+      }
+    );
+  }
 
-    /*** STYLES / Start ***/
-    const styles = `
+  /*** STYLES / Start ***/
+  const styles = `
   <style>
     .fixed.bottom-0 {
       display: none!important;
@@ -726,31 +725,31 @@ function initUpgradePage() {
   </style>
   `;
 
-    const stylesEl = document.createElement('style');
-    stylesEl.innerHTML = styles;
+  const stylesEl = document.createElement('style');
+  stylesEl.innerHTML = styles;
 
-    let scriptEl = document.createElement('script');
-    scriptEl.src =
-      'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
-    scriptEl.async = false;
+  let scriptEl = document.createElement('script');
+  scriptEl.src =
+    'https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest/lib/bundle.min.js';
+  scriptEl.async = false;
 
-    const smallCheckSvg = `
+  const smallCheckSvg = `
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M6.02 8.26L4.4975 6.7375C4.36917 6.60917 4.21167 6.545 4.025 6.545C3.83833 6.545 3.675 6.615 3.535 6.755C3.40667 6.88333 3.3425 7.04667 3.3425 7.245C3.3425 7.44333 3.40667 7.60667 3.535 7.735L5.53 9.73C5.65833 9.85833 5.82167 9.9225 6.02 9.9225C6.21833 9.9225 6.38167 9.85833 6.51 9.73L10.4825 5.7575C10.6108 5.62917 10.675 5.47167 10.675 5.285C10.675 5.09833 10.605 4.935 10.465 4.795C10.3367 4.66667 10.1733 4.6025 9.975 4.6025C9.77667 4.6025 9.61333 4.66667 9.485 4.795L6.02 8.26ZM7 14C6.03167 14 5.12167 13.8161 4.27 13.4484C3.41833 13.0811 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.918867 10.5817 0.5516 9.73C0.183867 8.87833 0 7.96833 0 7C0 6.03167 0.183867 5.12167 0.5516 4.27C0.918867 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.918633 4.27 0.5509C5.12167 0.183633 6.03167 0 7 0C7.96833 0 8.87833 0.183633 9.73 0.5509C10.5817 0.918633 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0811 3.41833 13.4484 4.27C13.8161 5.12167 14 6.03167 14 7C14 7.96833 13.8161 8.87833 13.4484 9.73C13.0811 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0811 9.73 13.4484C8.87833 13.8161 7.96833 14 7 14Z" fill="#49BB54"/>
       </svg>
     `;
 
-    waitFor(
-      () => document.head,
-      () => {
-        document.head.appendChild(stylesEl);
-        document.head.appendChild(scriptEl);
-      },
-      100
-    );
-    /*** STYLES / End ***/
+  waitFor(
+    () => document.head,
+    () => {
+      document.head.appendChild(stylesEl);
+      document.head.appendChild(scriptEl);
+    },
+    100
+  );
+  /*** STYLES / End ***/
 
-    const html = `
+  const html = `
     <section class="choose_plan">
       <div class="my_header">
         <div class="close_x">
@@ -843,492 +842,484 @@ function initUpgradePage() {
     </div>
   `;
 
-    const drawTable = () => {
-      // define an array of data
-      const data = [
-        { benefit: 'Distances to Greens & Hazards', free: true, plus: true },
-        {
-          benefit:
-            'GPS Rangefinder And Scorecard For Every Course In The World',
-          free: true,
-          plus: true,
-        },
-        { benefit: 'SwingU Handicap', free: true, plus: true },
-        { benefit: 'Shot Tracking', free: true, plus: true },
-        { benefit: 'Clubhouse Content Feed', free: true, plus: true },
-        { benefit: 'Wind Speed & Elevation', free: false, plus: true },
-        { benefit: '"Plays Like" Distances', free: false, plus: true },
-        { benefit: 'Club Recommendation', free: false, plus: true },
-        {
-          benefit: 'Green-Reading Maps For 13,000+ Courses',
-          free: false,
-          plus: true,
-        },
-        { benefit: 'Enhanced Scorecard & Stats', free: false, plus: true },
-        { benefit: 'Hole Insights & Hole Notes', free: false, plus: true },
-        { benefit: 'No Ads ln-App', free: false, plus: true },
-        { benefit: 'Giveaway Eligibility', free: false, plus: true },
-        {
-          benefit: 'Strokes Gained Stats vs. Target Handicap Benchmarks',
-          free: false,
-          plus: false,
-        },
-        {
-          benefit:
-            'Handicap Index for Each Facet of Your Game (Driving, Approach, Chip/Pitch, Sand & Putting)',
-          free: false,
-          plus: false,
-        },
-        {
-          benefit: 'Personalized #1 Game Improvement Priority',
-          free: false,
-          plus: false,
-        },
-        {
-          benefit: 'Personalized Prescriptive Drill',
-          free: false,
-          plus: false,
-        },
-        {
-          benefit:
-            'Extensive Library of Performance Practice Drills, Premium Instructional Content and Informative Videos',
-          free: false,
-          plus: false,
-        },
-        {
-          benefit: 'Tour-Level Stats & Analysis Web Portal',
-          free: false,
-          plus: false,
-        },
-      ];
-
-      // define a function to create a table cell with an arrow or dash, depending on the value of the given property
-      function createArrowCell(value, color) {
-        const cell = document.createElement('td');
-        const img = document.createElement('img');
-
-        img.src = value
-          ? `${settings.dir}/check_circle_${color}.svg`
-          : `${settings.dir}/minus_circle.svg`;
-
-        cell.appendChild(img);
-        return cell;
-      }
-
-      // get a reference to the table element in the HTML document
-      const table = document.getElementById('plans_comparison_table');
-
-      // create the table header row
-      const headerRow = document.createElement('tr');
-      const headerNames = ['What do you get', 'Free', 'Plus', 'Pro'];
-
-      // loop through each header name and create a table cell for it
-      headerNames.forEach((headerName) => {
-        const headerCell = document.createElement('th');
-        headerCell.textContent = headerName;
-        headerRow.appendChild(headerCell);
-      });
-
-      // add the header row to the table
-      table.appendChild(headerRow);
-
-      // create a table row for each item in the data array
-      data.forEach((item) => {
-        const row = document.createElement('tr');
-
-        // create a table cell for the "What do you get" column
-        const benefitCell = document.createElement('td');
-        benefitCell.textContent = item.benefit;
-        row.appendChild(benefitCell);
-
-        // create a table cell for the "Free" column
-        const freeCell = createArrowCell(item.free, 'gray');
-        row.appendChild(freeCell);
-
-        // create a table cell for the "Plus" column
-        const plusCell = createArrowCell(item.plus, 'green');
-        row.appendChild(plusCell);
-
-        // create a table cell for the "Pro" column, using the same function as above
-        const proCell = createArrowCell(true, 'yellow');
-        row.appendChild(proCell);
-
-        // add the row to the table
-        table.appendChild(row);
-      });
-    };
-
-    /********* Custom Code **********/
-    waitFor(
-      () => document.querySelector('.antialiased'),
-      () => {
-        init();
+  const drawTable = () => {
+    // define an array of data
+    const data = [
+      { benefit: 'Distances to Greens & Hazards', free: true, plus: true },
+      {
+        benefit: 'GPS Rangefinder And Scorecard For Every Course In The World',
+        free: true,
+        plus: true,
       },
-      100
+      { benefit: 'SwingU Handicap', free: true, plus: true },
+      { benefit: 'Shot Tracking', free: true, plus: true },
+      { benefit: 'Clubhouse Content Feed', free: true, plus: true },
+      { benefit: 'Wind Speed & Elevation', free: false, plus: true },
+      { benefit: '"Plays Like" Distances', free: false, plus: true },
+      { benefit: 'Club Recommendation', free: false, plus: true },
+      {
+        benefit: 'Green-Reading Maps For 13,000+ Courses',
+        free: false,
+        plus: true,
+      },
+      { benefit: 'Enhanced Scorecard & Stats', free: false, plus: true },
+      { benefit: 'Hole Insights & Hole Notes', free: false, plus: true },
+      { benefit: 'No Ads ln-App', free: false, plus: true },
+      { benefit: 'Giveaway Eligibility', free: false, plus: true },
+      {
+        benefit: 'Strokes Gained Stats vs. Target Handicap Benchmarks',
+        free: false,
+        plus: false,
+      },
+      {
+        benefit:
+          'Handicap Index for Each Facet of Your Game (Driving, Approach, Chip/Pitch, Sand & Putting)',
+        free: false,
+        plus: false,
+      },
+      {
+        benefit: 'Personalized #1 Game Improvement Priority',
+        free: false,
+        plus: false,
+      },
+      {
+        benefit: 'Personalized Prescriptive Drill',
+        free: false,
+        plus: false,
+      },
+      {
+        benefit:
+          'Extensive Library of Performance Practice Drills, Premium Instructional Content and Informative Videos',
+        free: false,
+        plus: false,
+      },
+      {
+        benefit: 'Tour-Level Stats & Analysis Web Portal',
+        free: false,
+        plus: false,
+      },
+    ];
+
+    // define a function to create a table cell with an arrow or dash, depending on the value of the given property
+    function createArrowCell(value, color) {
+      const cell = document.createElement('td');
+      const img = document.createElement('img');
+
+      img.src = value
+        ? `${settings.dir}/check_circle_${color}.svg`
+        : `${settings.dir}/minus_circle.svg`;
+
+      cell.appendChild(img);
+      return cell;
+    }
+
+    // get a reference to the table element in the HTML document
+    const table = document.getElementById('plans_comparison_table');
+
+    // create the table header row
+    const headerRow = document.createElement('tr');
+    const headerNames = ['What do you get', 'Free', 'Plus', 'Pro'];
+
+    // loop through each header name and create a table cell for it
+    headerNames.forEach((headerName) => {
+      const headerCell = document.createElement('th');
+      headerCell.textContent = headerName;
+      headerRow.appendChild(headerCell);
+    });
+
+    // add the header row to the table
+    table.appendChild(headerRow);
+
+    // create a table row for each item in the data array
+    data.forEach((item) => {
+      const row = document.createElement('tr');
+
+      // create a table cell for the "What do you get" column
+      const benefitCell = document.createElement('td');
+      benefitCell.textContent = item.benefit;
+      row.appendChild(benefitCell);
+
+      // create a table cell for the "Free" column
+      const freeCell = createArrowCell(item.free, 'gray');
+      row.appendChild(freeCell);
+
+      // create a table cell for the "Plus" column
+      const plusCell = createArrowCell(item.plus, 'green');
+      row.appendChild(plusCell);
+
+      // create a table cell for the "Pro" column, using the same function as above
+      const proCell = createArrowCell(true, 'yellow');
+      row.appendChild(proCell);
+
+      // add the row to the table
+      table.appendChild(row);
+    });
+  };
+
+  /********* Custom Code **********/
+  waitFor(
+    () => document.querySelector('.antialiased'),
+    () => {
+      init();
+    },
+    100
+  );
+
+  function init() {
+    console.log('init');
+    gaEvent('exp_pick_a_plan_start');
+
+    document
+      .querySelector('.antialiased')
+      .insertAdjacentHTML('afterbegin', html);
+
+    const togglePlanEl = document.querySelector('.toggle_plan');
+    const plansCheckboxContainer = document.querySelector(
+      '.plans_checkbox_container'
     );
+    const payBtn = document.querySelector('.fixed_div button');
 
-    function init() {
-      console.log('init');
-      gaEvent('exp_pick_a_plan_start');
+    waitFor(
+      () => document.querySelector('.subscription-boxes'),
+      () => {
+        payBtn.innerText = 'Start 7-day free trial';
 
-      document
-        .querySelector('.antialiased')
-        .insertAdjacentHTML('afterbegin', html);
+        const isSubscriptionActive = document.querySelector(
+          '[dusk="upgrade-button--manage-subscription"]'
+        );
 
-      const togglePlanEl = document.querySelector('.toggle_plan');
-      const plansCheckboxContainer = document.querySelector(
-        '.plans_checkbox_container'
-      );
-      const payBtn = document.querySelector('.fixed_div button');
+        if (isSubscriptionActive) {
+          payBtn.innerText = 'Manage subscriptions';
 
-      waitFor(
-        () => document.querySelector('.subscription-boxes'),
-        () => {
-          payBtn.innerText = 'Start 7-day free trial';
+          document
+            .querySelector('.annual_checkbox_wrapper')
+            .classList.add('subs');
 
-          const isSubscriptionActive = document.querySelector(
-            '[dusk="upgrade-button--manage-subscription"]'
-          );
-
-          if (isSubscriptionActive) {
-            payBtn.innerText = 'Manage subscriptions';
-
-            document
-              .querySelector('.annual_checkbox_wrapper')
-              .classList.add('subs');
+          if (
+            document.querySelector(
+              '[dusk="segmented-control--annual"][data-active="true"]'
+            )
+          ) {
+            if (
+              document.querySelector(
+                '.checkbox_active_plan[data-pack="monthly_pro"]'
+              )
+            ) {
+              document
+                .querySelector('.checkbox_active_plan[data-pack="monthly_pro"]')
+                .classList.remove('checkbox_active_plan');
+            }
 
             if (
               document.querySelector(
-                '[dusk="segmented-control--annual"][data-active="true"]'
+                '[dusk="subscription-option--pro"][data-active="true"]'
               )
             ) {
-              if (
-                document.querySelector(
-                  '.checkbox_active_plan[data-pack="monthly_pro"]'
-                )
-              ) {
-                document
-                  .querySelector(
-                    '.checkbox_active_plan[data-pack="monthly_pro"]'
-                  )
-                  .classList.remove('checkbox_active_plan');
-              }
-
-              if (
-                document.querySelector(
-                  '[dusk="subscription-option--pro"][data-active="true"]'
-                )
-              ) {
-                document
-                  .querySelector('[data-pack="annual_pro"] .hide_curr_label')
-                  .classList.remove('hide_curr_label');
-              } else if (
-                document.querySelector(
-                  '[dusk="subscription-option--plus"][data-active="true"]'
-                )
-              ) {
-                document.querySelector('.list').classList.add('plus_list');
-
-                document
-                  .querySelector('.checkbox_active_plan')
-                  .classList.remove('checkbox_active_plan');
-                document
-                  .querySelector('[data-pack="annual_plus"]')
-                  .classList.add('checkbox_active_plan');
-
-                document
-                  .querySelector('[data-pack="annual_plus"] .hide_curr_label')
-                  .classList.remove('hide_curr_label');
-              }
+              document
+                .querySelector('[data-pack="annual_pro"] .hide_curr_label')
+                .classList.remove('hide_curr_label');
             } else if (
               document.querySelector(
-                '[dusk="segmented-control--monthly"][data-active="true"]'
+                '[dusk="subscription-option--plus"][data-active="true"]'
               )
             ) {
-              togglePlanEl.classList.add('monthly_active');
-              plansCheckboxContainer.classList.remove('show_annual');
-              if (
-                document.querySelector(
-                  '.checkbox_active_plan[data-pack="annual_pro"]'
-                )
-              ) {
-                document
-                  .querySelector(
-                    '.checkbox_active_plan[data-pack="annual_pro"]'
-                  )
-                  .classList.remove('checkbox_active_plan');
-              }
-
-              document
-                .querySelector(
-                  '.monthly_checkbox_wrapper .plan_checkbox .hide_curr_label'
-                )
-                .classList.remove('hide_curr_label');
-            }
-          }
-
-          // Annual/Monthly switcher
-          togglePlanEl.addEventListener('click', (event) => {
-            const target = event.target;
-            if (target.tagName !== 'SPAN') return false;
-
-            if (target.classList.contains('annual')) {
-              // the 'annual' span was clicked
-              togglePlanEl.classList.remove('monthly_active');
-              plansCheckboxContainer.classList.add('show_annual');
-
-              gaEvent(
-                'exp_pick_a_plan_annual_tab',
-                'Annual',
-                'Tab',
-                'Сhoice of subscription period'
-              );
-
-              if (isSubscriptionActive) return false;
-
-              payBtn.innerText = 'Start 7-day free trial';
-
-              if (
-                document.querySelector(
-                  '.annual_checkbox_wrapper .checkbox_active_plan'
-                ).dataset.pack === 'annual_plus'
-              ) {
-                payBtn.innerText = 'Continue';
-
-                if (!document.querySelector('.plus_list')) {
-                  document.querySelector('.list').classList.add('plus_list');
-                }
-              }
-            } else if (target.classList.contains('monthly')) {
-              // the 'monthly' span was clicked
-              togglePlanEl.classList.add('monthly_active');
-              plansCheckboxContainer.classList.remove('show_annual');
-
-              if (!isSubscriptionActive) {
-                payBtn.innerText = 'Continue';
-              }
-
-              document
-                .querySelector('.plus_list')
-                ?.classList.remove('plus_list');
-
-              gaEvent(
-                'exp_pick_a_plan_monthly_tab',
-                'Monthly',
-                'Tab',
-                'Сhoice of subscription period'
-              );
-            }
-          });
-
-          // plans checkbox
-          plansCheckboxContainer
-            .querySelector('.annual_checkbox_wrapper')
-            .addEventListener('click', (event) => {
-              const target = event.target.closest('[data-pack]');
-
-              if (!target || isSubscriptionActive) return false;
-
-              if (target.dataset.pack === 'annual_pro') {
-                payBtn.innerText = 'Start 7-day free trial';
-
-                gaEvent(
-                  'exp_pick_a_plan_pro',
-                  'Pro',
-                  'Button',
-                  'Сhoice of subscription type'
-                );
-
-                document.querySelector('.list').classList?.remove('plus_list');
-              } else {
-                payBtn.innerText = 'Continue';
-
-                document.querySelector('.list').classList.add('plus_list');
-
-                gaEvent(
-                  'exp_pick_a_plan_plus',
-                  'Plus',
-                  'Button',
-                  'Сhoice of subscription type'
-                );
-              }
+              document.querySelector('.list').classList.add('plus_list');
 
               document
                 .querySelector('.checkbox_active_plan')
                 .classList.remove('checkbox_active_plan');
+              document
+                .querySelector('[data-pack="annual_plus"]')
+                .classList.add('checkbox_active_plan');
 
-              target.classList.add('checkbox_active_plan');
-            });
-
-          // click on fixed btn
-          payBtn.addEventListener('click', () => {
-            const isMonthlyActive = document
-              .querySelector('.toggle_plan')
-              .classList.contains('monthly_active');
-
-            gaEvent(
-              'exp_pick_a_plan_cta',
-              payBtn.innerText,
-              'Button',
-              'Bottom of screen'
-            );
-
-            if (isSubscriptionActive) {
-              isSubscriptionActive.dispatchEvent(new Event('click'));
-            } else {
-              if (isMonthlyActive) {
-                document
-                  .querySelector('[dusk="segmented-control--monthly"]')
-                  .dispatchEvent(new Event('click'));
-              } else {
-                const selectedPack = document.querySelector(
-                  '.annual_checkbox_wrapper .checkbox_active_plan'
-                ).dataset.pack;
-
-                document
-                  .querySelector('[dusk="segmented-control--annual"]')
-                  .dispatchEvent(new Event('click'));
-
-                setTimeout(() => {
-                  if (selectedPack === 'annual_pro') {
-                    document
-                      .querySelector('[dusk="subscription-option--pro"]')
-                      .dispatchEvent(new Event('click'));
-                  } else {
-                    document
-                      .querySelector('[dusk="subscription-option--plus"]')
-                      .dispatchEvent(new Event('click'));
-                  }
-                }, 50);
-              }
-
-              setTimeout(() => {
-                document
-                  .querySelector('.fixed.z-20 [dusk]')
-                  .dispatchEvent(new Event('click'));
-              }, 100);
+              document
+                .querySelector('[data-pack="annual_plus"] .hide_curr_label')
+                .classList.remove('hide_curr_label');
             }
-          });
-        },
-        100
-      );
-
-      drawTable();
-
-      waitFor(
-        () =>
-          typeof seamless !== 'undefined' &&
-          typeof seamless.scrollBy === 'function',
-        () => {
-          const features = document.querySelector('.features');
-
-          features.addEventListener('click', () => {
-            features.classList.toggle('show_table');
-
-            if (features.classList.contains('show_table')) {
-              const tableRow = document.querySelector(
-                '#plans_comparison_table tr:nth-child(4)'
-              );
-              const rect1 = features.getBoundingClientRect();
-              const rect2 = tableRow.getBoundingClientRect();
-
-              // Calculate the distance in pixels between the two elements
-              const distance = Math.abs(rect1.top - rect2.top);
-
-              // Scroll to the calculated distance
-              seamless.scrollBy(window, {
-                behavior: 'smooth',
-                top: distance,
-                left: 0,
-              });
+          } else if (
+            document.querySelector(
+              '[dusk="segmented-control--monthly"][data-active="true"]'
+            )
+          ) {
+            togglePlanEl.classList.add('monthly_active');
+            plansCheckboxContainer.classList.remove('show_annual');
+            if (
+              document.querySelector(
+                '.checkbox_active_plan[data-pack="annual_pro"]'
+              )
+            ) {
+              document
+                .querySelector('.checkbox_active_plan[data-pack="annual_pro"]')
+                .classList.remove('checkbox_active_plan');
             }
 
-            gaEvent(
-              'exp_pick_a_plan_compare',
-              'drop down list',
-              'Button',
-              'What do you get'
-            );
-          });
-        },
-        100
-      );
-
-      // click on close x
-      waitFor(
-        () => document.querySelector('.close_x'),
-        () => {
-          document.querySelector('.close_x').addEventListener('click', () => {
             document
-              .querySelector('[dusk="gps-upgrade-container"] .absolute.top-xs')
-              .click();
-
-            gaEvent(
-              'exp_pick_a_plan_close',
-              'Close',
-              'Button',
-              'Top of the page'
-            );
-          });
-        },
-        1000
-      );
-    }
-
-    // *** Utils *** //
-    function waitFor(condition, cb, ms = 1000) {
-      if (condition()) {
-        if (typeof cb == 'function') cb();
-        return;
-      }
-
-      let interval = setInterval(function () {
-        if (condition()) {
-          clearInterval(interval);
-          if (typeof cb == 'function') cb();
-        }
-      }, ms);
-    }
-
-    // Alalytic 4
-    function gaEvent(name = '', desc = '', type = '', loc = '') {
-      try {
-        var objData = {
-          event: 'event-to-ga4',
-          event_name: name,
-          event_desc: desc,
-          event_type: type,
-          event_loc: loc,
-        };
-        console.log('eventFire', objData);
-        if (!settings.debug) {
-          dataLayer.push(objData);
-        }
-      } catch (e) {
-        console.log('Event Error:', e);
-      }
-    }
-
-    // Mutation Observer
-    function initObserver(cb) {
-      let observer = new MutationObserver((mutations) => {
-        for (let mutation of mutations) {
-          for (let node of mutation.addedNodes) {
-            if (!(node instanceof HTMLElement)) continue;
-
-            cb(node);
+              .querySelector(
+                '.monthly_checkbox_wrapper .plan_checkbox .hide_curr_label'
+              )
+              .classList.remove('hide_curr_label');
           }
         }
-      });
 
-      waitFor(
-        () => document.body,
-        () => {
-          observer.observe(document.body, { childList: true, subtree: true });
-        },
-        100
-      );
+        // Annual/Monthly switcher
+        togglePlanEl.addEventListener('click', (event) => {
+          const target = event.target;
+          if (target.tagName !== 'SPAN') return false;
+
+          if (target.classList.contains('annual')) {
+            // the 'annual' span was clicked
+            togglePlanEl.classList.remove('monthly_active');
+            plansCheckboxContainer.classList.add('show_annual');
+
+            gaEvent(
+              'exp_pick_a_plan_annual_tab',
+              'Annual',
+              'Tab',
+              'Сhoice of subscription period'
+            );
+
+            if (isSubscriptionActive) return false;
+
+            payBtn.innerText = 'Start 7-day free trial';
+
+            if (
+              document.querySelector(
+                '.annual_checkbox_wrapper .checkbox_active_plan'
+              ).dataset.pack === 'annual_plus'
+            ) {
+              payBtn.innerText = 'Continue';
+
+              if (!document.querySelector('.plus_list')) {
+                document.querySelector('.list').classList.add('plus_list');
+              }
+            }
+          } else if (target.classList.contains('monthly')) {
+            // the 'monthly' span was clicked
+            togglePlanEl.classList.add('monthly_active');
+            plansCheckboxContainer.classList.remove('show_annual');
+
+            if (!isSubscriptionActive) {
+              payBtn.innerText = 'Continue';
+            }
+
+            document.querySelector('.plus_list')?.classList.remove('plus_list');
+
+            gaEvent(
+              'exp_pick_a_plan_monthly_tab',
+              'Monthly',
+              'Tab',
+              'Сhoice of subscription period'
+            );
+          }
+        });
+
+        // plans checkbox
+        plansCheckboxContainer
+          .querySelector('.annual_checkbox_wrapper')
+          .addEventListener('click', (event) => {
+            const target = event.target.closest('[data-pack]');
+
+            if (!target || isSubscriptionActive) return false;
+
+            if (target.dataset.pack === 'annual_pro') {
+              payBtn.innerText = 'Start 7-day free trial';
+
+              gaEvent(
+                'exp_pick_a_plan_pro',
+                'Pro',
+                'Button',
+                'Сhoice of subscription type'
+              );
+
+              document.querySelector('.list').classList?.remove('plus_list');
+            } else {
+              payBtn.innerText = 'Continue';
+
+              document.querySelector('.list').classList.add('plus_list');
+
+              gaEvent(
+                'exp_pick_a_plan_plus',
+                'Plus',
+                'Button',
+                'Сhoice of subscription type'
+              );
+            }
+
+            document
+              .querySelector('.checkbox_active_plan')
+              .classList.remove('checkbox_active_plan');
+
+            target.classList.add('checkbox_active_plan');
+          });
+
+        // click on fixed btn
+        payBtn.addEventListener('click', () => {
+          const isMonthlyActive = document
+            .querySelector('.toggle_plan')
+            .classList.contains('monthly_active');
+
+          gaEvent(
+            'exp_pick_a_plan_cta',
+            payBtn.innerText,
+            'Button',
+            'Bottom of screen'
+          );
+
+          if (isSubscriptionActive) {
+            isSubscriptionActive.dispatchEvent(new Event('click'));
+          } else {
+            if (isMonthlyActive) {
+              document
+                .querySelector('[dusk="segmented-control--monthly"]')
+                .dispatchEvent(new Event('click'));
+            } else {
+              const selectedPack = document.querySelector(
+                '.annual_checkbox_wrapper .checkbox_active_plan'
+              ).dataset.pack;
+
+              document
+                .querySelector('[dusk="segmented-control--annual"]')
+                .dispatchEvent(new Event('click'));
+
+              setTimeout(() => {
+                if (selectedPack === 'annual_pro') {
+                  document
+                    .querySelector('[dusk="subscription-option--pro"]')
+                    .dispatchEvent(new Event('click'));
+                } else {
+                  document
+                    .querySelector('[dusk="subscription-option--plus"]')
+                    .dispatchEvent(new Event('click'));
+                }
+              }, 50);
+            }
+
+            setTimeout(() => {
+              document
+                .querySelector('.fixed.z-20 [dusk]')
+                .dispatchEvent(new Event('click'));
+            }, 100);
+          }
+        });
+      },
+      100
+    );
+
+    drawTable();
+
+    waitFor(
+      () =>
+        typeof seamless !== 'undefined' &&
+        typeof seamless.scrollBy === 'function',
+      () => {
+        const features = document.querySelector('.features');
+
+        features.addEventListener('click', () => {
+          features.classList.toggle('show_table');
+
+          if (features.classList.contains('show_table')) {
+            const tableRow = document.querySelector(
+              '#plans_comparison_table tr:nth-child(4)'
+            );
+            const rect1 = features.getBoundingClientRect();
+            const rect2 = tableRow.getBoundingClientRect();
+
+            // Calculate the distance in pixels between the two elements
+            const distance = Math.abs(rect1.top - rect2.top);
+
+            // Scroll to the calculated distance
+            seamless.scrollBy(window, {
+              behavior: 'smooth',
+              top: distance,
+              left: 0,
+            });
+          }
+
+          gaEvent(
+            'exp_pick_a_plan_compare',
+            'drop down list',
+            'Button',
+            'What do you get'
+          );
+        });
+      },
+      100
+    );
+
+    // click on close x
+    waitFor(
+      () => document.querySelector('.close_x'),
+      () => {
+        document.querySelector('.close_x').addEventListener('click', () => {
+          document
+            .querySelector('[dusk="gps-upgrade-container"] .absolute.top-xs')
+            .click();
+
+          gaEvent(
+            'exp_pick_a_plan_close',
+            'Close',
+            'Button',
+            'Top of the page'
+          );
+        });
+      },
+      1000
+    );
+  }
+
+  // *** Utils *** //
+  function waitFor(condition, cb, ms = 1000) {
+    if (condition()) {
+      if (typeof cb == 'function') cb();
+      return;
     }
+
+    let interval = setInterval(function () {
+      if (condition()) {
+        clearInterval(interval);
+        if (typeof cb == 'function') cb();
+      }
+    }, ms);
+  }
+
+  // Alalytic 4
+  function gaEvent(name = '', desc = '', type = '', loc = '') {
+    try {
+      var objData = {
+        event: 'event-to-ga4',
+        event_name: name,
+        event_desc: desc,
+        event_type: type,
+        event_loc: loc,
+      };
+      console.log('eventFire', objData);
+      if (!settings.debug) {
+        dataLayer.push(objData);
+      }
+    } catch (e) {
+      console.log('Event Error:', e);
+    }
+  }
+
+  // Mutation Observer
+  function initObserver(cb) {
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+
+          cb(node);
+        }
+      }
+    });
+
+    waitFor(
+      () => document.body,
+      () => {
+        observer.observe(document.body, { childList: true, subtree: true });
+      },
+      100
+    );
   }
 }
 
