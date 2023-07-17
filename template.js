@@ -91,7 +91,7 @@ console.log('initExp');
         event_loc: loc,
       };
       console.log('eventFire', objData);
-      if (!settings.debug) {
+      if (!exp.debug) {
         dataLayer.push(objData);
       }
     } catch (e) {
