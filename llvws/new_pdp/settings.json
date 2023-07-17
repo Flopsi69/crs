@@ -1,0 +1,202 @@
+{
+  "rental": [
+    {
+      "name": "Electric Boat",
+      "images": [
+        "https://drive.google.com/file/d/1yYnV-ZYT75-ezC0HvemU6JoB-hltHDYZ/view?usp=sharing",
+        "https://drive.google.com/file/d/1ee1Dm8OqJ8BrmjOZALr9TJn8fUTIubIi/view?usp=sharing",
+        "https://drive.google.com/file/d/1BeZysA-ormzZZ6gZS_moNFn1zZv12cDW/view?usp=sharing",
+        "https://drive.google.com/file/d/1oUWZ6qhmdSgO0IiSZvsAUAwV0CKZhtI2/view?usp=sharing",
+        "https://drive.google.com/file/d/1NycjPFv7s_oUtrLUNi2Id4fTCy1IVSNt/view?usp=sharing",
+        "https://drive.google.com/file/d/1kT9GKfa6dSl9PrIZQ2FtB7tblI4MYPTh/view?usp=sharing",
+        "https://drive.google.com/file/d/1Zb-on24s8unnUH6VNPvjzIj-6QMjYO7L/view?usp=sharing"
+      ],
+      "alsoLike": ["Paddleboard", "Pink Electric", "Kayak", "Cable", "Flyboard"]
+    },
+    {
+      "name": "Paddleboard",
+      "images": [
+        "https://drive.google.com/file/d/1YDlCNhju-wuAoRg1GZbJk6jwLGpQBjz3/view?usp=sharing",
+        "https://drive.google.com/file/d/1-gtwWonWA9jfFFMmvzmC2aP7kdZyWvXe/view?usp=sharing",
+        "https://drive.google.com/file/d/1zgf6H5zpW3eNTq9-KoYM18qiy1n5bEuZ/view?usp=sharing",
+        "https://drive.google.com/file/d/1mifwGe954Y1nvxlm6JG9dm9yaAJ0BPbU/view?usp=sharing",
+        "https://drive.google.com/file/d/1D7rHwA30iOLBZ-KLkprULe5fZIuTDa2V/view?usp=sharing",
+        "https://drive.google.com/file/d/1lRxzMVXlvw1ZLaiGN1OnyzUdRzGwOa0B/view?usp=sharing",
+        "https://drive.google.com/file/d/1tX87qSle8kM0FoKY-NaoNy4L2_HFObJf/view?usp=sharing ",
+        "https://drive.google.com/file/d/1wTVfAO8HwEjZz-EAQ7nfqIRKFJ_p2bmk/view?usp=sharing",
+        "https://drive.google.com/file/d/1sa3CeQjt-GOBQ_abGrp2zzUzF2ppKpnO/view?usp=sharing",
+        "https://drive.google.com/file/d/1IpiX7f2ZNUTAgE_f_gjn6YN5FtCpio2p/view?usp=sharing",
+        "https://drive.google.com/file/d/19WqMVsbGWY4NFc-gIQY-28PiybL3eQ-v/view?usp=sharing",
+        "https://drive.google.com/file/d/1yI0q83SNG-lQWR7x4GsVpUmhurdRWYa4/view?usp=sharing",
+        "https://drive.google.com/file/d/1DzArWYgoxup96P1R4T0l0eZ_4677qI0a/view?usp=sharing"
+      ],
+      "alsoLike": [
+        "Electric Boat",
+        "Pink Electric",
+        "Kayak",
+        "Cable",
+        "Flyboard"
+      ]
+    },
+    {
+      "name": "Kayak",
+      "images": [
+        "https://drive.google.com/file/d/1ljh0qpy38q4SsGqFWj8Cdr4phh8omxL6/view?usp=sharing ",
+        "https://drive.google.com/file/d/1hN_oNi5ZVhhv_1b-yapXNLFrREdXMims/view?usp=sharing",
+        "https://drive.google.com/file/d/1CchSoL3HbWMJ6sgi09g_FMDL0b5QSpwi/view?usp=sharing"
+      ],
+      "alsoLike": [
+        "Electric Boat",
+        "Paddleboard",
+        "Pink Electric",
+        "Cable",
+        "Flyboard"
+      ]
+    },
+    {
+      "name": "Cable",
+      "images": [
+        "https://drive.google.com/file/d/1boxbqbcB5QKE_iJa6i0to9mMFn51ML7u/view?usp=sharing "
+      ],
+      "alsoLike": [
+        "Electric Boat",
+        "Paddleboard",
+        "Pink Electric",
+        "Kayak",
+        "Flyboard"
+      ]
+    },
+
+    {
+      "name": "Swimmable Pontoon",
+      "images": [],
+      "alsoLike": [
+        "Electric Boat",
+        "Paddleboard",
+        "Pink Electric",
+        "Kayak",
+        "Cable"
+      ]
+    },
+    {
+      "name": "Pink Electric",
+      "images": [],
+      "alsoLike": ["Electric Boat", "Paddleboard", "Kayak", "Cable", "Flyboard"]
+    },
+    {
+      "name": "E-foil",
+      "images": [],
+      "alsoLike": [
+        "Electric Boat",
+        "Paddleboard",
+        "Pink Electric",
+        "Kayak",
+        "Cable"
+      ]
+    },
+    {
+      "name": "Flyboard",
+      "images": [],
+      "alsoLike": [
+        "Electric Boat",
+        "Paddleboard",
+        "Pink Electric",
+        "Kayak",
+        "Cable"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "imagesForEvents",
+      "images": [
+        "https://drive.google.com/file/d/1lYa3AMHEjGgX64gYQNkgjNjdnoTRC6Tf/view?usp=sharing",
+        "https://drive.google.com/file/d/1tvVqyxrOcyI_5CgjY5s3Xpa3vY0P9iQg/view?usp=sharing",
+        "https://drive.google.com/file/d/1cR_ZGK4HHSI4bwaqs4P76ahNqCz4o7ul/view?usp=sharing",
+        "https://drive.google.com/file/d/12KieCMeooo_fAHC6xx7t9BBUGC-7RmcW/view?usp=sharing",
+        "https://drive.google.com/file/d/1qGxEjgbMGUTND9iCyqXe5w2i14wpRUme/view?usp=sharing",
+        "https://drive.google.com/file/d/1zrJc35KC5uii2Grui4CIommt_1EGHD0V/view?usp=sharing",
+        "https://drive.google.com/file/d/1AXA-Q3dQRnk0KCQxJGAfbf1eWhX1hUf2/view?usp=sharing",
+        "https://drive.google.com/file/d/1YF31xaF7rbSH4f65fjxNqHsTuBKvdlsJ/view?usp=sharing",
+        "https://drive.google.com/file/d/1VmXXkY7aQQMkF6EfSmBENo4T_tq6iUkG/view?usp=sharing",
+        "https://drive.google.com/file/d/1WvZr4ZXFkpxnp-qFvcFs9t7hXzhGrFgS/view?usp=sharing",
+        "https://drive.google.com/file/d/155YdEr8w33S-rCqj0mH6pquCvHfV8DWP/view?usp=sharing",
+        "https://drive.google.com/file/d/11FIoExLh_KnUJkkJNR92YvVVzmW_syib/view?usp=sharing",
+        "https://drive.google.com/file/d/1pTk80rK7jRtDnZ-loCS-rxCSaYYGFZ6Y/view?usp=sharing",
+        "https://drive.google.com/file/d/1zo15RcVPo3UaoKNP6X6_bBb1sN_FNvVK/view?usp=sharing",
+        "https://drive.google.com/file/d/1rX5Ju9IGpTvewfZp_Y-6oUlE4CxcWAJG/view?usp=sharing",
+        "https://drive.google.com/file/d/1QMR-ovgFvvU1y_FgRr62Cyq0fWgBr7rp/view?usp=sharing"
+      ]
+    },
+    {
+      "name": "Latin Night",
+      "alsoLike": [
+        "Mimosa",
+        "Country",
+        "Throwback",
+        "Sangria Sunday",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Country",
+      "alsoLike": [
+        "Mimosa",
+        "Latin Night",
+        "Throwback",
+        "Sangria Sunday",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Throwback",
+      "alsoLike": [
+        "Mimosa",
+        "Latin Night",
+        "Country",
+        "Sangria Sunday",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Latin Night",
+      "alsoLike": [
+        "Mimosa",
+        "Country",
+        "Throwback",
+        "Sangria Sunday",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Sangria Sunday",
+      "alsoLike": [
+        "Mimosa",
+        "Latin Night",
+        "Country",
+        "Throwback",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Mimosa",
+      "alsoLike": [
+        "Latin Night",
+        "Country",
+        "Throwback",
+        "Sangria Sunday",
+        "Guided Sunset"
+      ]
+    },
+    {
+      "name": "Guided Sunset",
+      "alsoLike": [
+        "Mimosa",
+        "Latin Night",
+        "Country",
+        "Throwback",
+        "Sangria Sunday"
+      ]
+    }
+  ]
+}
