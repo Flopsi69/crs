@@ -1,7 +1,8 @@
 {
   "rentalAlsoLike": [
     {
-      "name": "Electric Boat Rental",
+      "name": "Hour Electric Boat",
+      "alias": "Electric Boat Rental",
       "url": "https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/",
       "caption": "2-Hour Rental | From: <span>$199</span>",
       "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2021/08/Hnet.com_image__4__lg.jpg"
@@ -39,7 +40,7 @@
   ],
   "rental": [
     {
-      "name": "Electric Boat",
+      "name": "Hour Electric Boat",
       "caption": "No Licence Needed, size Regular 9 guests or XL 12 guests",
       "images": [
         "https://drive.google.com/file/d/1yYnV-ZYT75-ezC0HvemU6JoB-hltHDYZ/view?usp=sharing",
