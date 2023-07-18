@@ -1,4 +1,36 @@
 {
+  "rentalAlsoLike": [
+    {
+      "name": "Electric Boat Rental",
+      "url": "https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/",
+      "caption": "2-Hour Rental | From: <span>$199</span>"
+    },
+    {
+      "name": "Paddleboard Rentals",
+      "url": "https://lakelasvegaswatersports.com/paddleboard-rentals/",
+      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>"
+    },
+    {
+      "name": "Pink Electric Boat Rental",
+      "url": "https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/",
+      "caption": "3-Hour Rental | From: <span>$449</span>"
+    },
+    {
+      "name": "Kayak Rentals",
+      "url": "https://lakelasvegaswatersports.com/kayak-rentals/",
+      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>"
+    },
+    {
+      "name": "Cable Park",
+      "url": "https://lakelasvegaswatersports.com/cable-park/",
+      "caption": "30-Minute Pass | From: <span>$60</span>"
+    },
+    {
+      "name": "Flyboard Experience",
+      "url": "https://lakelasvegaswatersports.com/flyboard-water-jetpack/",
+      "caption": "30-Minute Experience | From: <span>$99</span>"
+    }
+  ],
   "rental": [
     {
       "name": "Electric Boat",
@@ -11,13 +43,6 @@
         "https://drive.google.com/file/d/1NycjPFv7s_oUtrLUNi2Id4fTCy1IVSNt/view?usp=sharing",
         "https://drive.google.com/file/d/1kT9GKfa6dSl9PrIZQ2FtB7tblI4MYPTh/view?usp=sharing",
         "https://drive.google.com/file/d/1Zb-on24s8unnUH6VNPvjzIj-6QMjYO7L/view?usp=sharing"
-      ],
-      "alsoLike": [
-        "Paddleboard",
-        "Pink Electric",
-        "Kayak",
-        "Cable",
-        "Flyboard"
       ],
       "reviews": [
         {
@@ -79,13 +104,6 @@
         "https://drive.google.com/file/d/19WqMVsbGWY4NFc-gIQY-28PiybL3eQ-v/view?usp=sharing",
         "https://drive.google.com/file/d/1yI0q83SNG-lQWR7x4GsVpUmhurdRWYa4/view?usp=sharing",
         "https://drive.google.com/file/d/1DzArWYgoxup96P1R4T0l0eZ_4677qI0a/view?usp=sharing"
-      ],
-      "alsoLike": [
-        "Electric Boat",
-        "Pink Electric",
-        "Kayak",
-        "Cable",
-        "Flyboard"
       ],
       "reviews": [
         {
@@ -184,51 +202,23 @@
           "name": "Angelica Martinez",
           "text": "Had a wonderful morning renting a kayak at Lake Las Vegas! Although it was a holiday weekend, we got there right around their weekend opening hours of 8 am to beat the crowd and the heat. So glad we did, there was plenty of parking in the garage and the area was fairly quiet. We went into the store signed a waiver and got a kayak without a booking. After paying for your rental you walk over to their docking area and they help you into a kayak. We kayaked around the lake for a little over two hours, even though it was a summer day, getting there early helped us beat the heat. This is a great place if you’re looking for some fun on the water!"
         }
-      ],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Pink Electric",
-        "Cable",
-        "Flyboard"
       ]
     },
     {
       "name": "Cable",
       "images": [
         "https://drive.google.com/file/d/1boxbqbcB5QKE_iJa6i0to9mMFn51ML7u/view?usp=sharing "
-      ],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Pink Electric",
-        "Kayak",
-        "Flyboard"
       ]
     },
     {
       "name": "Swimmable Pontoon",
       "caption": "No License Needed, 3 or 4 Hours",
-      "images": [],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Pink Electric",
-        "Kayak",
-        "Cable"
-      ]
+      "images": []
     },
     {
       "name": "Pink Electric",
       "caption": "No License Needed, 3 or 4 Hours",
       "images": [],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Kayak",
-        "Cable",
-        "Flyboard"
-      ],
       "reviews": [
         {
           "type": "tripadvisor",
@@ -276,13 +266,6 @@
       "name": "E-foil",
       "captioin": "1 or 2 Hours",
       "images": [],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Pink Electric",
-        "Kayak",
-        "Cable"
-      ],
       "reviews": [
         {
           "type": "google",
@@ -339,13 +322,6 @@
     {
       "name": "Flyboard",
       "images": [],
-      "alsoLike": [
-        "Electric Boat",
-        "Paddleboard",
-        "Pink Electric",
-        "Kayak",
-        "Cable"
-      ],
       "reviews": [
         {
           "type": "tripadvisor",
@@ -381,6 +357,7 @@
     }
   ],
   "eventShare": {
+    "alsoLike": [],
     "reviews": [
       {
         "type": "yelp",
