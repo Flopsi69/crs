@@ -3,32 +3,38 @@
     {
       "name": "Electric Boat Rental",
       "url": "https://lakelasvegaswatersports.com/2-hour-electric-boat-rental/",
-      "caption": "2-Hour Rental | From: <span>$199</span>"
+      "caption": "2-Hour Rental | From: <span>$199</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2021/08/Hnet.com_image__4__lg.jpg"
     },
     {
       "name": "Paddleboard Rentals",
       "url": "https://lakelasvegaswatersports.com/paddleboard-rentals/",
-      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>"
+      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2020/02/paddleboard-main.jpg"
     },
     {
       "name": "Pink Electric Boat Rental",
       "url": "https://lakelasvegaswatersports.com/pink-electric-boat-rental-at-lake-las-vegas/",
-      "caption": "3-Hour Rental | From: <span>$449</span>"
+      "caption": "3-Hour Rental | From: <span>$449</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/06/pink-boat.jpg"
     },
     {
       "name": "Kayak Rentals",
       "url": "https://lakelasvegaswatersports.com/kayak-rentals/",
-      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>"
+      "caption": "1-Hour Rental | From: <span>$40</span><br/>2-Hour Rental | From: <span>$60</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2020/02/kayak-main.jpg"
     },
     {
       "name": "Cable Park",
       "url": "https://lakelasvegaswatersports.com/cable-park/",
-      "caption": "30-Minute Pass | From: <span>$60</span>"
+      "caption": "30-Minute Pass | From: <span>$60</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2020/02/cablepark-main.jpg"
     },
     {
       "name": "Flyboard Experience",
       "url": "https://lakelasvegaswatersports.com/flyboard-water-jetpack/",
-      "caption": "30-Minute Experience | From: <span>$99</span>"
+      "caption": "30-Minute Experience | From: <span>$99</span>",
+      "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2022/10/772A3296-3-1-1.jpg"
     }
   ],
   "rental": [
