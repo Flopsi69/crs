@@ -364,7 +364,49 @@
     }
   ],
   "eventShare": {
-    "alsoLike": [],
+    "alsoLike": [
+      {
+        "name": "Mimosa",
+        "alias": "Mimosa Cruise Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/mimosa-cruise-lake-las-vegas/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-06_04-11-13.jpg"
+      },
+      {
+        "name": "Latin Night",
+        "alias": "Latin Night Cruise at Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/latin-night-cruise-at-lake-las-vegas/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-10_01-29-13.jpg"
+      },
+      {
+        "name": "Country",
+        "alias": "Country Cruise at Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/country-cruise-at-lake-las-vegas/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/Brown_Vintage_Cowboy_Boot_and_Hat_Photo_Album_Cover__1_.png"
+      },
+      {
+        "name": "Throwback",
+        "alias": "Throwback Cruise at Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/throwback-cruise-at-lake-las-vegas/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/throw-back.jpg"
+      },
+      {
+        "name": "Sangria Sunday",
+        "url": "https://lakelasvegaswatersports.com/sip-sail-yacht-cruise/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/photo_2023-07-06_03-40-32.jpg"
+      },
+      {
+        "name": "Guided Sunset",
+        "alias": "Guided Sunset Paddle on Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/guided-sunset-paddle-on-lake-las-vegas/",
+        "caption": "From: <span>$25.00</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2022/09/sunset-paddle.jpg"
+      }
+    ],
     "reviews": [
       {
         "type": "yelp",
@@ -428,74 +470,25 @@
   },
   "events": [
     {
-      "name": "Latin Night",
-      "alsoLike": [
-        "Mimosa",
-        "Country",
-        "Throwback",
-        "Sangria Sunday",
-        "Guided Sunset"
-      ]
+      "name": "Latin Night"
     },
     {
-      "name": "Country",
-      "alsoLike": [
-        "Mimosa",
-        "Latin Night",
-        "Throwback",
-        "Sangria Sunday",
-        "Guided Sunset"
-      ]
+      "name": "Country"
     },
     {
-      "name": "Throwback",
-      "alsoLike": [
-        "Mimosa",
-        "Latin Night",
-        "Country",
-        "Sangria Sunday",
-        "Guided Sunset"
-      ]
+      "name": "Throwback"
     },
     {
-      "name": "Latin Night",
-      "alsoLike": [
-        "Mimosa",
-        "Country",
-        "Throwback",
-        "Sangria Sunday",
-        "Guided Sunset"
-      ]
+      "name": "Latin Night"
     },
     {
-      "name": "Sangria Sunday",
-      "alsoLike": [
-        "Mimosa",
-        "Latin Night",
-        "Country",
-        "Throwback",
-        "Guided Sunset"
-      ]
+      "name": "Sangria Sunday"
     },
     {
-      "name": "Mimosa",
-      "alsoLike": [
-        "Latin Night",
-        "Country",
-        "Throwback",
-        "Sangria Sunday",
-        "Guided Sunset"
-      ]
+      "name": "Mimosa"
     },
     {
-      "name": "Guided Sunset",
-      "alsoLike": [
-        "Mimosa",
-        "Latin Night",
-        "Country",
-        "Throwback",
-        "Sangria Sunday"
-      ]
+      "name": "Guided Sunset"
     }
   ]
 }
