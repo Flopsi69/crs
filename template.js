@@ -4,7 +4,10 @@ console.log('initExp');
   /********* exp **********/
   const exp = {
     dir: 'https://flopsi69.github.io/crs/capucinne/pdp_slidein',
-    observer: false,
+    observer: {
+      mutation: false,
+      intersection: false,
+    },
     clarity: {
       enable: true,
       params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
@@ -12,10 +15,20 @@ console.log('initExp');
     debug: true,
   };
 
-  // Observer
-  if (exp.observer) {
-    initObserver((el) => {
+  // Observers
+  if (exp.observer.mutation) {
+    initMutation((el) => {
       console.log(el);
+    });
+  }
+
+  if (exp.observer.intersection) {
+    initIntersection((el) => {
+      console.log(el);
+      if (isElementInViewport(el)) {
+        // pushDataLayer(...event);
+        el.classList.add('in-view');
+      }
     });
   }
 
@@ -58,30 +71,8 @@ console.log('initExp');
     }, ms);
   }
 
-  // Alalytic 3
-  function gaEvent(action, label) {
-    if (!label) {
-      label = '';
-    }
-    try {
-      var objData = {
-        event: 'gaEv',
-        eventCategory: 'Experiment — also like',
-        eventAction: action,
-        eventLabel: label,
-        eventValue: '',
-      };
-      console.log('EventFire:', objData);
-      if (!exp.debug) {
-        dataLayer.push(objData);
-      }
-    } catch (e) {
-      console.log('Event Error:', e);
-    }
-  }
-
   // Alalytic 4
-  function gaEvent(name = '', desc = '', type = '', loc = '') {
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
     try {
       var objData = {
         event: 'event-to-ga4',
@@ -99,7 +90,7 @@ console.log('initExp');
     }
   }
   // Mutation Observer
-  function initObserver(cb) {
+  function initMutation(cb) {
     let observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
@@ -117,6 +108,50 @@ console.log('initExp');
       },
       100
     );
+  }
+
+  // Intersection Observer
+  function initIntersection(cb, observeEl) {
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+      // rootMargin: '-40%',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          cb(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    if (observeEl) {
+      observer.observe(observeEl);
+    } else {
+      for (let el of Array.from(document.querySelectorAll('.lav-observe'))) {
+        observer.observe(el);
+      }
+    }
+  }
+
+  async function isElementInViewport(el, event, timeout = 5) {
+    if (el.classList.contains('in-view')) return false;
+
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        return true;
+      }
+
+      return false;
+    }, timeout * 1000);
   }
 
   //Clarity
