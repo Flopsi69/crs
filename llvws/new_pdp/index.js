@@ -2095,10 +2095,16 @@ console.log('**exp** initExp');
       }
     }
 
+    if ($('.fl-slideshow-main-image')) {
+      $('.fl-slideshow-main-image').click();
+    }
     // #1 Main slider
     setTimeout(() => {
+      if ($('.fl-slideshow-main-image')) {
+        $('.fl-slideshow-main-image').click();
+      }
       isReadyMainSlider = true;
-    }, 5000);
+    }, 4500);
     waitFor(
       () => isReadyMainSlider,
       () => {
