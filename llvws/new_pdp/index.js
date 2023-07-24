@@ -1701,7 +1701,7 @@ console.log('**exp** initExp');
           'beforebegin',
           `<div class="includes">${parent.innerHTML}</div>`
         );
-      } else if (text.includes('includes')) {
+      } else if (text.includes('include')) {
         const includes = `
           <div class="includes">
             <h6>${el.innerText}</h6>
