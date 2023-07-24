@@ -1488,7 +1488,13 @@ console.log('**exp** initExp');
 
     // Init Swiper
     waitFor(
-      () => typeof Swiper !== 'undefined' && settings && product !== null,
+      () =>
+        typeof Swiper !== 'undefined' &&
+        settings &&
+        product !== null &&
+        $(
+          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
+        ),
       () => {
         initSwiper();
       }
@@ -1569,30 +1575,38 @@ console.log('**exp** initExp');
     }
 
     // Slider
-    $$(
-      '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
-    ).forEach((slide) => {
-      const src = slide.src.replace('-150x150', '');
-      $('.main_slider .swiper-wrapper').insertAdjacentHTML(
-        'beforeend',
-        `
-        <div class="swiper-slide">
-          <img src="${src}" loading="lazy">
-          <div class="swiper-lazy-preloader"></div>
-        </div>
-      `
-      );
+    waitFor(
+      () =>
+        $(
+          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
+        ),
+      () => {
+        $$(
+          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
+        ).forEach((slide) => {
+          const src = slide.src.replace('-150x150', '');
+          $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+            <div class="swiper-slide">
+              <img src="${src}" loading="lazy">
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+          `
+          );
 
-      $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
-        'beforeend',
-        `
-        <div class="swiper-slide">
-          <img src="${src}" loading="lazy">
-          <div class="swiper-lazy-preloader"></div>
-        </div>
-      `
-      );
-    });
+          $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+            <div class="swiper-slide">
+              <img src="${src}" loading="lazy">
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+          `
+          );
+        });
+      }
+    );
 
     $('.lav-gallery__actions .lav-advisor a').addEventListener('click', () => {
       pushDataLayer(
