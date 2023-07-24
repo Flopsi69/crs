@@ -1475,6 +1475,8 @@ console.log('**exp** initExp');
     100
   );
 
+  let isReadyMainSlider = false;
+
   // *** Functions *** //
   function init() {
     console.log('**exp** init');
@@ -1488,13 +1490,7 @@ console.log('**exp** initExp');
 
     // Init Swiper
     waitFor(
-      () =>
-        typeof Swiper !== 'undefined' &&
-        settings &&
-        product !== null &&
-        $(
-          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
-        ),
+      () => typeof Swiper !== 'undefined' && settings && product !== null,
       () => {
         initSwiper();
       }
@@ -1605,6 +1601,8 @@ console.log('**exp** initExp');
           `
           );
         });
+
+        isReadyMainSlider = true;
       }
     );
 
@@ -2098,83 +2096,88 @@ console.log('**exp** initExp');
     }
 
     // #1 Main slider
-    const swiperMainSync = new Swiper('.main_slider_sync', {
-      slidesPerView: 6,
-      slideToClickedSlide: true,
-      spaceBetween: 8,
-      on: {
-        init: () => {
-          $$('.main_slider_sync .swiper-slide').forEach((slide) => {
-            slide.addEventListener('click', () => {
-              pushDataLayer(
-                'exp_improving_pdp_add_img_fs',
-                'Additional image',
-                'Image',
-                'First screen'
+    waitForEl(
+      () => isReadyMainSlider,
+      () => {
+        const swiperMainSync = new Swiper('.main_slider_sync', {
+          slidesPerView: 6,
+          slideToClickedSlide: true,
+          spaceBetween: 8,
+          on: {
+            init: () => {
+              $$('.main_slider_sync .swiper-slide').forEach((slide) => {
+                slide.addEventListener('click', () => {
+                  pushDataLayer(
+                    'exp_improving_pdp_add_img_fs',
+                    'Additional image',
+                    'Image',
+                    'First screen'
+                  );
+                });
+              });
+            },
+          },
+        });
+
+        let diff = 0;
+
+        const swiperMain = new Swiper('.main_slider', {
+          slidesPerView: 1,
+          pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+            renderFraction: function (currentClass, totalClass) {
+              return `<img src="${exp.dir}/img/24_picture.svg"><span class="${currentClass}"></span><span>/</span><span class="${totalClass}"></span>`;
+            },
+          },
+          touchEventsTarget: 'wrapper',
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          thumbs: {
+            swiper: swiperMainSync,
+          },
+          on: {
+            init: () => {
+              $('.main_slider .swiper-button-next').addEventListener(
+                'click',
+                () => {
+                  pushDataLayer(
+                    'exp_improving_pdp_img_fs',
+                    'right arrow',
+                    'Image',
+                    'First screen'
+                  );
+                }
               );
-            });
-          });
-        },
-      },
-    });
 
-    let diff = 0;
-
-    const swiperMain = new Swiper('.main_slider', {
-      slidesPerView: 1,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction',
-        renderFraction: function (currentClass, totalClass) {
-          return `<img src="${exp.dir}/img/24_picture.svg"><span class="${currentClass}"></span><span>/</span><span class="${totalClass}"></span>`;
-        },
-      },
-      touchEventsTarget: 'wrapper',
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      thumbs: {
-        swiper: swiperMainSync,
-      },
-      on: {
-        init: () => {
-          $('.main_slider .swiper-button-next').addEventListener(
-            'click',
-            () => {
+              $('.main_slider .swiper-button-prev').addEventListener(
+                'click',
+                () => {
+                  pushDataLayer(
+                    'exp_improving_pdp_img_fs',
+                    'left arrow',
+                    'Image',
+                    'First screen'
+                  );
+                }
+              );
+            },
+            slideChange: (swiper) => {
+              if (diff === swiper.touches.diff) return false;
+              diff = swiper.touches.diff;
               pushDataLayer(
                 'exp_improving_pdp_img_fs',
-                'right arrow',
+                `swipe ${diff > 0 ? 'left' : 'right'}`,
                 'Image',
                 'First screen'
               );
-            }
-          );
-
-          $('.main_slider .swiper-button-prev').addEventListener(
-            'click',
-            () => {
-              pushDataLayer(
-                'exp_improving_pdp_img_fs',
-                'left arrow',
-                'Image',
-                'First screen'
-              );
-            }
-          );
-        },
-        slideChange: (swiper) => {
-          if (diff === swiper.touches.diff) return false;
-          diff = swiper.touches.diff;
-          pushDataLayer(
-            'exp_improving_pdp_img_fs',
-            `swipe ${diff > 0 ? 'left' : 'right'}`,
-            'Image',
-            'First screen'
-          );
-        },
-      },
-    });
+            },
+          },
+        });
+      }
+    );
 
     if (productType === 'rental') {
       for (let item of settings.rentalAlsoLike.filter(
