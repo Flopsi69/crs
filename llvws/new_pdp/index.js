@@ -2096,7 +2096,7 @@ console.log('**exp** initExp');
     }
 
     // #1 Main slider
-    waitForEl(
+    waitFor(
       () => isReadyMainSlider,
       () => {
         const swiperMainSync = new Swiper('.main_slider_sync', {
