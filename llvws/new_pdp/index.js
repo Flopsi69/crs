@@ -1464,6 +1464,8 @@ console.log('**exp** initExp');
 `;
 
   /********* Custom Code **********/
+  let isReadyMainSlider = false;
+
   waitFor(
     () => document.head,
     () => {
@@ -1474,8 +1476,6 @@ console.log('**exp** initExp');
     },
     100
   );
-
-  let isReadyMainSlider = false;
 
   // *** Functions *** //
   function init() {
