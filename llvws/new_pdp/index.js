@@ -2096,6 +2096,9 @@ console.log('**exp** initExp');
     }
 
     // #1 Main slider
+    setTimeout(() => {
+      isReadyMainSlider = true;
+    }, 5000);
     waitFor(
       () => isReadyMainSlider,
       () => {
