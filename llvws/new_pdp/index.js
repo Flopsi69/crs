@@ -1,4 +1,4 @@
-console.log('initExp');
+console.log('**exp** initExp');
 
 (function () {
   /********* exp **********/
@@ -1477,7 +1477,7 @@ console.log('initExp');
 
   // *** Functions *** //
   function init() {
-    console.log('init');
+    console.log('**exp** init');
 
     // Add New Page
     $('#content').insertAdjacentHTML('beforebegin', html);
@@ -2586,12 +2586,12 @@ console.log('initExp');
         event_type: type,
         event_loc: loc,
       };
-      console.log('eventFire', objData);
+      console.log('**exp** eventFire', objData);
       if (!exp.debug) {
         dataLayer.push(objData);
       }
     } catch (e) {
-      console.log('Event Error:', e);
+      console.log('**exp** Event Error:', e);
     }
   }
 
@@ -2628,7 +2628,6 @@ console.log('initExp');
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const target = entry.target;
-          console.log('observerView', target);
           if (target.classList.contains('stories')) {
             isElementInViewport(target, [
               'exp_improving_pdp_rev_v',
@@ -2693,7 +2692,6 @@ console.log('initExp');
           }
 
           if (target.classList.contains('popup')) {
-            console.log('firrr');
             isElementInViewport(target, [
               'exp_improving_pdp_pp_s_v',
               target.dataset.step,
