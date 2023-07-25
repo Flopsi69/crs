@@ -9,7 +9,7 @@ console.log('**exp** initExp');
       enable: true,
       params: ['set', 'booking_page_exp', 'variant_1'],
     },
-    debug: true,
+    debug: false,
   };
 
   let settings = null;
