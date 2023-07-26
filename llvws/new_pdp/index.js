@@ -2310,7 +2310,8 @@ console.log('**exp** initExp');
         pushDataLayer(
           'exp_improving_pdp_rev_load',
           'Load more',
-          "Button', 'Be inspired by our customers' stories"
+          'Button',
+          "Be inspired by our customers' stories"
         );
         $('.stories').classList.add('stories_revealed');
       });
