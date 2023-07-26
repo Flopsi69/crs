@@ -40,7 +40,7 @@ console.log('initExp');
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
   waitFor(
-    document.head,
+    () => document.head,
     () => {
       document.head.appendChild(stylesEl);
     },
