@@ -554,6 +554,10 @@ console.log('**exp** initExp');
     top: 50%;
     transform: translateY(-50%);
   }
+
+  .similar_style .swiper_arrow.swiper-button-disabled {
+    opacity: 0!important;
+  }
   
   .similar_style .swiper-slide {
     border-radius: 8px;
@@ -923,6 +927,9 @@ console.log('**exp** initExp');
     @media(max-width: 768px) {
       .lav-desk {
         display: none;
+      }
+      .popup__btn:hover {
+        background: var(--18-aae-2, #18AAE2)!important;
       }
       .lav-mob {
         display: block;
@@ -1700,9 +1707,20 @@ console.log('**exp** initExp');
           `<div class="includes">${parent.innerHTML}</div>`
         );
       } else if (text.includes('include')) {
+        let title =
+          el.innerText[0].toUpperCase() +
+          el.innerText.substring(1).toLowerCase();
+
+        if (title.trim().startsWith('2023')) {
+          title =
+            '2023 ' +
+            el.innerText[5].toUpperCase() +
+            el.innerText.substring(6).toLowerCase();
+        }
+
         const includes = `
           <div class="includes">
-            <h6>${el.innerText}</h6>
+            <h6>${title}</h6>
             <ul>
               ${parent.nextElementSibling.innerHTML}
             </ul>
@@ -1760,7 +1778,7 @@ console.log('**exp** initExp');
       `
       <div class="accordion_item">
         <div class="accordion_header">
-          <h6>Cancellation & refunds</h6>
+          <h6>Cancellation & Refunds</h6>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M7 10L12 14L17 10" stroke="#333333" stroke-width="2" stroke-linejoin="round" />
           </svg>
