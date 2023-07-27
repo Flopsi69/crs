@@ -203,6 +203,7 @@ console.log('initExp');
       padding: 0 40px;
     }
     .lav-note span {
+      display: flex;
       color: #3CBE1A;
       font-size: 13px;
       font-weight: 500;
@@ -239,6 +240,9 @@ console.log('initExp');
     }
     .lav-note__link {
       margin-left: auto;
+    }
+    .size-guide-wrapper {
+      max-width: 810px;
     }
     
 

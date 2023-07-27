@@ -2097,7 +2097,7 @@ function initSwiper() {
         $('.fl-heading-text')?.innerText.includes('Country Cruise') &&
         id.includes('ovgFvvU1y')
       ) {
-        return false;
+        continue;
       }
       $('.main_slider .swiper-wrapper').insertAdjacentHTML(
         'beforeend',
