@@ -936,6 +936,9 @@ const styles = `
       .lav-desk {
         display: none;
       }
+      .main_slider .swiper-pagination {
+        top: 23px;
+      }
       .popup__btn:hover {
         background: var(--18-aae-2, #18AAE2)!important;
       }
