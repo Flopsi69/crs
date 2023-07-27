@@ -2140,7 +2140,7 @@ function initSwiper() {
   waitFor(
     () => isReadyMainSlider,
     () => {
-      $('.fl-slideshow-container').style.display = 'none';
+      // $('.fl-slideshow-container').style.display = 'none';
       const swiperMainSync = new Swiper('.main_slider_sync', {
         slidesPerView: 6,
         slideToClickedSlide: true,
