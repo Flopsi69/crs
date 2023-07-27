@@ -916,7 +916,7 @@ console.log('**exp** initExp');
     .lav-mob, .lav-mob-flex {
       display: none;
     }
-    .lav-slide-vert {
+    .lav-slide-vert img {
       object-fit: contain!imoprtant;
     }
     @media(max-width: 992px) {
@@ -1591,10 +1591,11 @@ console.log('**exp** initExp');
           '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
         ).forEach((slide) => {
           const src = slide.src.replace('-150x150', '');
+          const isVert = src.includes('Brown_Vintage_Cowboy');
           $('.main_slider .swiper-wrapper').insertAdjacentHTML(
             'beforeend',
             `
-            <div class="swiper-slide">
+            <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
               <img src="${src}" loading="lazy">
               <div class="swiper-lazy-preloader"></div>
             </div>
@@ -2095,7 +2096,12 @@ console.log('**exp** initExp');
       for (let src of images) {
         const id = parseIdFromUrl(src);
         const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
-
+        if (
+          $('.fl-heading-text')?.innerText.includes('Country Cruise') &&
+          id.includes('ovgFvvU1y')
+        ) {
+          return false;
+        }
         $('.main_slider .swiper-wrapper').insertAdjacentHTML(
           'beforeend',
           `
