@@ -916,6 +916,9 @@ console.log('**exp** initExp');
     .lav-mob, .lav-mob-flex {
       display: none;
     }
+    .lav-slide-vert {
+      object-fit: contain!imoprtant;
+    }
     @media(max-width: 992px) {
       .lav-product {
         display: block;
@@ -2091,10 +2094,12 @@ console.log('**exp** initExp');
     if (images?.length && !prTitle.includes('guided sunset')) {
       for (let src of images) {
         const id = parseIdFromUrl(src);
+        const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
+
         $('.main_slider .swiper-wrapper').insertAdjacentHTML(
           'beforeend',
           `
-          <div class="swiper-slide">
+          <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
             <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
             <div class="swiper-lazy-preloader"></div>
           </div>
