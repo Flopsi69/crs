@@ -911,7 +911,7 @@ const styles = `
       }
     }
     #content {
-      display: none;
+      // display: none;
     }
     .lav-mob, .lav-mob-flex {
       display: none;
@@ -1490,10 +1490,6 @@ waitFor(
 // *** Functions *** //
 function init() {
   console.log('**exp** init');
-  $('.site-footer').insertAdjacentElement(
-    'beforebegin',
-    $('.fl-slideshow-container')
-  );
 
   // Add New Page
   $('#content').insertAdjacentHTML('beforebegin', html);
@@ -2139,7 +2135,7 @@ function initSwiper() {
         }
       }
 
-      // $('.fl-slideshow-container').style.display = 'none';
+      $('#content').style.display = 'none';
       const swiperMainSync = new Swiper('.main_slider_sync', {
         slidesPerView: 6,
         slideToClickedSlide: true,
