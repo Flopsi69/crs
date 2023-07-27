@@ -1490,6 +1490,10 @@ console.log('**exp** initExp');
   // *** Functions *** //
   function init() {
     console.log('**exp** init');
+    $('.site-footer').insertAdjacentElement(
+      'beforestart',
+      $('.fl-slideshow-container')
+    );
 
     // Add New Page
     $('#content').insertAdjacentHTML('beforebegin', html);
@@ -2137,6 +2141,7 @@ console.log('**exp** initExp');
     waitFor(
       () => isReadyMainSlider,
       () => {
+        $('.fl-slideshow-container')?.style.display = 'none';
         const swiperMainSync = new Swiper('.main_slider_sync', {
           slidesPerView: 6,
           slideToClickedSlide: true,
