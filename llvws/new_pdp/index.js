@@ -1,51 +1,51 @@
 console.log('**exp** initExp');
 
-(function () {
-  /********* exp **********/
-  const exp = {
-    dir: 'https://flopsi69.github.io/crs/llvws/new_pdp',
-    observer: false,
-    clarity: {
-      enable: true,
-      params: ['set', 'booking_page_exp', 'variant_1'],
-    },
-    debug: false,
-  };
+// (function () {
+/********* exp **********/
+const exp = {
+  dir: 'https://flopsi69.github.io/crs/llvws/new_pdp',
+  observer: false,
+  clarity: {
+    enable: true,
+    params: ['set', 'booking_page_exp', 'variant_1'],
+  },
+  debug: false,
+};
 
-  let settings = null;
-  let product = null;
-  let productType = 'rental';
+let settings = null;
+let product = null;
+let productType = 'rental';
 
-  fetch(`${exp.dir}/settings.json`)
-    .then((response) => response.json())
-    .then((json) => {
-      settings = json;
-      product = json.rental.find((p) =>
+fetch(`${exp.dir}/settings.json`)
+  .then((response) => response.json())
+  .then((json) => {
+    settings = json;
+    product = json.rental.find((p) =>
+      $('.fl-heading-text')
+        .innerText.toLowerCase()
+        .includes(p.name.toLowerCase())
+    );
+
+    if (!product) {
+      product = json.events.find((p) =>
         $('.fl-heading-text')
           .innerText.toLowerCase()
           .includes(p.name.toLowerCase())
       );
 
-      if (!product) {
-        product = json.events.find((p) =>
-          $('.fl-heading-text')
-            .innerText.toLowerCase()
-            .includes(p.name.toLowerCase())
-        );
+      productType = 'event';
+    }
+  });
 
-        productType = 'event';
-      }
-    });
+// Observer
+if (exp.observer) {
+  initObserver((el) => {
+    console.log(el);
+  });
+}
 
-  // Observer
-  if (exp.observer) {
-    initObserver((el) => {
-      console.log(el);
-    });
-  }
-
-  /*** STYLES / Start ***/
-  const styles = `
+/*** STYLES / Start ***/
+const styles = `
   #custom-topbar {
     display: none;
   }
@@ -1222,9 +1222,9 @@ console.log('**exp** initExp');
       }
     }
   `;
-  /*** STYLES / End ***/
+/*** STYLES / End ***/
 
-  const html = `
+const html = `
   <div class="lav-page">
     <div class="lav-product">
       <div class="lav-product__left">
@@ -1473,260 +1473,253 @@ console.log('**exp** initExp');
   </div>
 `;
 
-  /********* Custom Code **********/
-  let isReadyMainSlider = false;
+/********* Custom Code **********/
+let isReadyMainSlider = false;
 
-  waitFor(
-    () => document.head,
-    () => {
-      addStyles();
-      addSwiper();
-      init();
-      observerView();
-    },
-    100
+waitFor(
+  () => document.head,
+  () => {
+    addStyles();
+    addSwiper();
+    init();
+    observerView();
+  },
+  100
+);
+
+// *** Functions *** //
+function init() {
+  console.log('**exp** init');
+  $('.site-footer').insertAdjacentElement(
+    'beforestart',
+    $('.fl-slideshow-container')
   );
 
-  // *** Functions *** //
-  function init() {
-    console.log('**exp** init');
-    $('.site-footer').insertAdjacentElement(
-      'beforestart',
-      $('.fl-slideshow-container')
-    );
+  // Add New Page
+  $('#content').insertAdjacentHTML('beforebegin', html);
 
-    // Add New Page
-    $('#content').insertAdjacentHTML('beforebegin', html);
+  changeFooter();
 
-    changeFooter();
+  handleProductInfo();
 
-    handleProductInfo();
-
-    // Init Swiper
-    waitFor(
-      () => typeof Swiper !== 'undefined' && settings && product !== null,
-      () => {
-        initSwiper();
-      }
-    );
-
-    // Init Popup
-    waitFor(
-      () => $('.popup'),
-      () => initPopup()
-    );
-
-    // Init Iframe
-    if (window.innerWidth < 992) {
-      $('.choice.lav-mob').insertAdjacentElement(
-        'beforebegin',
-        $('.lav-product__right')
-      );
+  // Init Swiper
+  waitFor(
+    () => typeof Swiper !== 'undefined' && settings && product !== null,
+    () => {
+      initSwiper();
     }
+  );
 
-    // $('.lav-product__right iframe').src = $('#booking-form iframe.rezdy').src;
-    $('.lav-product__right').insertAdjacentElement(
-      'afterbegin',
-      $('#booking-form iframe.rezdy')
+  // Init Popup
+  waitFor(
+    () => $('.popup'),
+    () => initPopup()
+  );
+
+  // Init Iframe
+  if (window.innerWidth < 992) {
+    $('.choice.lav-mob').insertAdjacentElement(
+      'beforebegin',
+      $('.lav-product__right')
     );
+  }
 
-    $('.lav-sticky__btn').addEventListener('click', () => {
-      $('.lav-product__right').scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
-      });
+  // $('.lav-product__right iframe').src = $('#booking-form iframe.rezdy').src;
+  $('.lav-product__right').insertAdjacentElement(
+    'afterbegin',
+    $('#booking-form iframe.rezdy')
+  );
+
+  $('.lav-sticky__btn').addEventListener('click', () => {
+    $('.lav-product__right').scrollIntoView({
+      block: 'start',
+      behavior: 'smooth',
+    });
+    pushDataLayer(
+      'exp_improving_pdp_sb_book',
+      'Book now',
+      'Button',
+      'Sticky button'
+    );
+  });
+}
+
+function handleProductInfo() {
+  // Title
+  $('.lav-product__head h2').innerText = $('.fl-heading-text').innerText;
+
+  waitFor(
+    () => settings && product !== null,
+    () => {
+      if (!product || !product.caption) {
+        $('.lav-product__head h3').remove();
+        return false;
+      }
+
+      $('.lav-product__head h3').innerText = product.caption;
+    }
+  );
+
+  // Share
+  for (let share of $$('.icon_share')) {
+    share.addEventListener('click', () => {
       pushDataLayer(
-        'exp_improving_pdp_sb_book',
-        'Book now',
+        'exp_improving_pdp_add_b_c',
+        'Share',
         'Button',
-        'Sticky button'
+        'Additional buttons'
       );
+      navigator.clipboard
+        .writeText(window.location)
+        .then(() => {
+          share.nextElementSibling.classList.add('active');
+
+          setTimeout(() => {
+            share.nextElementSibling.classList.remove('active');
+          }, 1200);
+        })
+        .catch((error) => {
+          console.error('Failed to copy link:', error);
+        });
     });
   }
 
-  function handleProductInfo() {
-    // Title
-    $('.lav-product__head h2').innerText = $('.fl-heading-text').innerText;
-
-    waitFor(
-      () => settings && product !== null,
-      () => {
-        if (!product || !product.caption) {
-          $('.lav-product__head h3').remove();
-          return false;
-        }
-
-        $('.lav-product__head h3').innerText = product.caption;
-      }
-    );
-
-    // Share
-    for (let share of $$('.icon_share')) {
-      share.addEventListener('click', () => {
-        pushDataLayer(
-          'exp_improving_pdp_add_b_c',
-          'Share',
-          'Button',
-          'Additional buttons'
-        );
-        navigator.clipboard
-          .writeText(window.location)
-          .then(() => {
-            share.nextElementSibling.classList.add('active');
-
-            setTimeout(() => {
-              share.nextElementSibling.classList.remove('active');
-            }, 1200);
-          })
-          .catch((error) => {
-            console.error('Failed to copy link:', error);
-          });
-      });
-    }
-
-    // Slider
-    waitFor(
-      () =>
-        $(
-          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
-        ),
-      () => {
-        $$(
-          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
-        ).forEach((slide) => {
-          const src = slide.src.replace('-150x150', '');
-          const isVert = src.includes('Brown_Vintage_Cowboy');
-          $('.main_slider .swiper-wrapper').insertAdjacentHTML(
-            'beforeend',
-            `
+  // Slider
+  waitFor(
+    () =>
+      $('.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'),
+    () => {
+      $$(
+        '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
+      ).forEach((slide) => {
+        const src = slide.src.replace('-150x150', '');
+        const isVert = src.includes('Brown_Vintage_Cowboy');
+        $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+          'beforeend',
+          `
             <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
               <img src="${src}" loading="lazy">
               <div class="swiper-lazy-preloader"></div>
             </div>
           `
-          );
+        );
 
-          $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
-            'beforeend',
-            `
+        $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+          'beforeend',
+          `
             <div class="swiper-slide">
               <img src="${src}" loading="lazy">
               <div class="swiper-lazy-preloader"></div>
             </div>
           `
-          );
-        });
+        );
+      });
 
-        isReadyMainSlider = true;
-      }
+      isReadyMainSlider = true;
+    }
+  );
+
+  $('.lav-gallery__actions .lav-advisor a').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_improving_pdp_see_fs',
+      'See all Reviews',
+      'Link',
+      'First screen'
     );
+  });
 
-    $('.lav-gallery__actions .lav-advisor a').addEventListener('click', () => {
-      pushDataLayer(
-        'exp_improving_pdp_see_fs',
-        'See all Reviews',
-        'Link',
-        'First screen'
-      );
-    });
+  // Looking & Booked
+  $('.looking>div:first-child span').innerText = $('.persons .grid').innerText;
+  $('.looking>div:last-child span').innerText = $('.booked .grid').innerText;
 
-    // Looking & Booked
-    $('.looking>div:first-child span').innerText =
-      $('.persons .grid').innerText;
-    $('.looking>div:last-child span').innerText = $('.booked .grid').innerText;
+  // Handle tooltip
+  $('.tooltip').addEventListener('click', function () {
+    this.classList.toggle('active');
+    // if (this.classList.contains('active')) {
+    pushDataLayer(
+      'exp_improving_pdp_tt_free_can',
+      'Free cancellation',
+      'Tooltip',
+      'Under booking'
+    );
+    // }
+  });
 
-    // Handle tooltip
-    $('.tooltip').addEventListener('click', function () {
-      this.classList.toggle('active');
-      // if (this.classList.contains('active')) {
+  $('.tooltip').addEventListener('mouseenter', function () {
+    if (window.innerWidth > 768) {
       pushDataLayer(
         'exp_improving_pdp_tt_free_can',
         'Free cancellation',
         'Tooltip',
         'Under booking'
       );
-      // }
-    });
+    }
+  });
 
-    $('.tooltip').addEventListener('mouseenter', function () {
-      if (window.innerWidth > 768) {
-        pushDataLayer(
-          'exp_improving_pdp_tt_free_can',
-          'Free cancellation',
-          'Tooltip',
-          'Under booking'
-        );
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.tooltip') && $('.tooltip.active')) {
+      $('.tooltip.active').classList.remove('active');
+    }
+  });
+
+  // Boats type
+  if (
+    !$('.lav-product__head h2')
+      .innerText.trim()
+      .includes('Hour Electric Boat Rental')
+  ) {
+    $('.boat_available').remove();
+  } else {
+    $('.boat_available').classList.add('active');
+  }
+
+  // About
+  $('.about .read_more').addEventListener('click', function () {
+    const readMoreBlock = this.closest('.read_more_block');
+
+    readMoreBlock.querySelector('.preview_text').style.display = 'none';
+    readMoreBlock.querySelector('.full_text').style.display = 'block';
+  });
+
+  // Included and Accordion
+  let beforeAccordionHandled = false;
+  $$('.fl-rich-text>p>strong').forEach((el) => {
+    const text = el.innerText.toLowerCase().trim();
+    const parent = el.closest('p');
+
+    if (!beforeAccordionHandled) {
+      beforeAccordionHandled = true;
+      let prevElement = parent.previousElementSibling;
+      while (prevElement) {
+        const cloneEl = prevElement.cloneNode(true);
+        cloneEl.classList.add('includes');
+
+        $('.choice.lav-desk').insertAdjacentElement('beforebegin', cloneEl);
+        prevElement = prevElement.previousElementSibling;
       }
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.tooltip') && $('.tooltip.active')) {
-        $('.tooltip.active').classList.remove('active');
-      }
-    });
-
-    // Boats type
-    if (
-      !$('.lav-product__head h2')
-        .innerText.trim()
-        .includes('Hour Electric Boat Rental')
-    ) {
-      $('.boat_available').remove();
-    } else {
-      $('.boat_available').classList.add('active');
     }
 
-    // About
-    $('.about .read_more').addEventListener('click', function () {
-      const readMoreBlock = this.closest('.read_more_block');
+    if ((text === 'about lake las vegas' && window.innerWidth > 768) || !text) {
+      return false;
+    }
 
-      readMoreBlock.querySelector('.preview_text').style.display = 'none';
-      readMoreBlock.querySelector('.full_text').style.display = 'block';
-    });
+    if (text === 'note:') {
+      $('.choice.lav-desk').insertAdjacentHTML(
+        'beforebegin',
+        `<div class="includes">${parent.innerHTML}</div>`
+      );
+    } else if (text.includes('include')) {
+      let title =
+        el.innerText[0].toUpperCase() + el.innerText.substring(1).toLowerCase();
 
-    // Included and Accordion
-    let beforeAccordionHandled = false;
-    $$('.fl-rich-text>p>strong').forEach((el) => {
-      const text = el.innerText.toLowerCase().trim();
-      const parent = el.closest('p');
-
-      if (!beforeAccordionHandled) {
-        beforeAccordionHandled = true;
-        let prevElement = parent.previousElementSibling;
-        while (prevElement) {
-          const cloneEl = prevElement.cloneNode(true);
-          cloneEl.classList.add('includes');
-
-          $('.choice.lav-desk').insertAdjacentElement('beforebegin', cloneEl);
-          prevElement = prevElement.previousElementSibling;
-        }
+      if (title.trim().startsWith('2023')) {
+        title =
+          '2023 ' +
+          el.innerText[5].toUpperCase() +
+          el.innerText.substring(6).toLowerCase();
       }
 
-      if (
-        (text === 'about lake las vegas' && window.innerWidth > 768) ||
-        !text
-      ) {
-        return false;
-      }
-
-      if (text === 'note:') {
-        $('.choice.lav-desk').insertAdjacentHTML(
-          'beforebegin',
-          `<div class="includes">${parent.innerHTML}</div>`
-        );
-      } else if (text.includes('include')) {
-        let title =
-          el.innerText[0].toUpperCase() +
-          el.innerText.substring(1).toLowerCase();
-
-        if (title.trim().startsWith('2023')) {
-          title =
-            '2023 ' +
-            el.innerText[5].toUpperCase() +
-            el.innerText.substring(6).toLowerCase();
-        }
-
-        const includes = `
+      const includes = `
           <div class="includes">
             <h6>${title}</h6>
             <ul>
@@ -1735,11 +1728,11 @@ console.log('**exp** initExp');
           </div>
         `;
 
-        $('.choice.lav-desk').insertAdjacentHTML('beforebegin', includes);
-      } else {
-        const accordionEl = document.createElement('div');
-        accordionEl.classList.add('accordion_item');
-        accordionEl.innerHTML = `
+      $('.choice.lav-desk').insertAdjacentHTML('beforebegin', includes);
+    } else {
+      const accordionEl = document.createElement('div');
+      accordionEl.classList.add('accordion_item');
+      accordionEl.innerHTML = `
           <div class="accordion_header">
             <h6>${
               el.innerText[0].toUpperCase() +
@@ -1752,38 +1745,38 @@ console.log('**exp** initExp');
           <div class="accordion_content"></div>
         `;
 
-        let nextEl = parent.nextElementSibling;
-        let nextElText = nextEl
+      let nextEl = parent.nextElementSibling;
+      let nextElText = nextEl
+        ?.querySelector('strong')
+        ?.innerText.toLowerCase()
+        .trim();
+
+      while (
+        nextEl &&
+        !(
+          nextEl.tagName === 'P' &&
+          nextEl.children.length === 1 &&
+          nextEl.children[0].tagName === 'STRONG'
+        )
+      ) {
+        accordionEl
+          .querySelector('.accordion_content')
+          .insertAdjacentHTML('beforeend', nextEl.outerHTML);
+
+        nextEl = nextEl.nextElementSibling;
+        nextElText = nextEl
           ?.querySelector('strong')
           ?.innerText.toLowerCase()
           .trim();
-
-        while (
-          nextEl &&
-          !(
-            nextEl.tagName === 'P' &&
-            nextEl.children.length === 1 &&
-            nextEl.children[0].tagName === 'STRONG'
-          )
-        ) {
-          accordionEl
-            .querySelector('.accordion_content')
-            .insertAdjacentHTML('beforeend', nextEl.outerHTML);
-
-          nextEl = nextEl.nextElementSibling;
-          nextElText = nextEl
-            ?.querySelector('strong')
-            ?.innerText.toLowerCase()
-            .trim();
-        }
-
-        $('.accordion').insertAdjacentElement('beforeend', accordionEl);
       }
-    });
 
-    $('.accordion').insertAdjacentHTML(
-      'beforeend',
-      `
+      $('.accordion').insertAdjacentElement('beforeend', accordionEl);
+    }
+  });
+
+  $('.accordion').insertAdjacentHTML(
+    'beforeend',
+    `
       <div class="accordion_item">
         <div class="accordion_header">
           <h6>Cancellation & Refunds</h6>
@@ -1796,14 +1789,14 @@ console.log('**exp** initExp');
         </div>
       </div>
     `
-    );
+  );
 
-    // Init Accordion
-    initAccordion();
-  }
+  // Init Accordion
+  initAccordion();
+}
 
-  function changeFooter() {
-    const howFindHtml = `
+function changeFooter() {
+  const howFindHtml = `
       <style>
         .lav-find {
           margin-top: 65px;
@@ -1911,40 +1904,40 @@ console.log('**exp** initExp');
       </div>
     `;
 
-    $('.lav-page').insertAdjacentHTML('beforeend', howFindHtml);
+  $('.lav-page').insertAdjacentHTML('beforeend', howFindHtml);
 
-    $$('.lav-product__head-icons p:first-child').forEach((item) => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        $('.lav-find').scrollIntoView({ block: 'center', behavior: 'smooth' });
-        pushDataLayer(
-          'exp_improving_pdp_add_b_c',
-          'How to find us',
-          'Button',
-          'Additional buttons'
-        );
-      });
+  $$('.lav-product__head-icons p:first-child').forEach((item) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      $('.lav-find').scrollIntoView({ block: 'center', behavior: 'smooth' });
+      pushDataLayer(
+        'exp_improving_pdp_add_b_c',
+        'How to find us',
+        'Button',
+        'Additional buttons'
+      );
     });
+  });
 
-    $$('.footer-adv-widget-3 li').forEach((item) => {
-      const cloneEl = item.cloneNode(true);
-      cloneEl.classList.add('lav-find__item');
-      $('.lav-find__list').insertAdjacentElement('beforeend', cloneEl);
-    });
+  $$('.footer-adv-widget-3 li').forEach((item) => {
+    const cloneEl = item.cloneNode(true);
+    cloneEl.classList.add('lav-find__item');
+    $('.lav-find__list').insertAdjacentElement('beforeend', cloneEl);
+  });
 
-    $('.lav-find__map').insertAdjacentElement(
-      'beforeend',
-      $('.footer-adv-widget-4 iframe')
-    );
+  $('.lav-find__map').insertAdjacentElement(
+    'beforeend',
+    $('.footer-adv-widget-4 iframe')
+  );
 
-    $$('.footer-adv-widget').forEach((item) => {
-      item.classList.remove('ast-col-lg-3', 'ast-col-md-3');
-      item.classList.add('ast-col-lg-4', 'ast-col-md-4');
-    });
+  $$('.footer-adv-widget').forEach((item) => {
+    item.classList.remove('ast-col-lg-3', 'ast-col-md-3');
+    item.classList.add('ast-col-lg-4', 'ast-col-md-4');
+  });
 
-    $('.footer-adv-widget-3').insertAdjacentHTML(
-      'beforeend',
-      `
+  $('.footer-adv-widget-3').insertAdjacentHTML(
+    'beforeend',
+    `
       <style>
       .lav-follow {
         margin-top: -15px;
@@ -2060,282 +2053,282 @@ console.log('**exp** initExp');
         </div>
       </div>
     `
-    );
-  }
+  );
+}
 
-  function initAccordion() {
-    const accordionItems = $$('.accordion_item');
-    accordionItems.forEach((item) => {
-      const header = item.querySelector('.accordion_header');
-      // const content = item.querySelector('.accordion_content')
+function initAccordion() {
+  const accordionItems = $$('.accordion_item');
+  accordionItems.forEach((item) => {
+    const header = item.querySelector('.accordion_header');
+    // const content = item.querySelector('.accordion_content')
 
-      header.addEventListener('click', () => {
-        pushDataLayer(
-          'exp_improving_pdp_dd_ret',
-          header.innerText.trim(),
-          'Dropdown',
-          'Accordion'
-        );
-        header.classList.toggle('active');
-      });
+    header.addEventListener('click', () => {
+      pushDataLayer(
+        'exp_improving_pdp_dd_ret',
+        header.innerText.trim(),
+        'Dropdown',
+        'Accordion'
+      );
+      header.classList.toggle('active');
     });
+  });
+}
+
+function initSwiper() {
+  function parseIdFromUrl(url) {
+    var id = null;
+    var match = url.match(/\/file\/d\/([^/]+)/);
+    if (match && match[1]) {
+      id = match[1];
+    }
+    return id;
   }
 
-  function initSwiper() {
-    function parseIdFromUrl(url) {
-      var id = null;
-      var match = url.match(/\/file\/d\/([^/]+)/);
-      if (match && match[1]) {
-        id = match[1];
+  const prTitle = $('.fl-heading-text').innerText.toLowerCase();
+
+  const images =
+    productType === 'event' ? settings.eventShare.images : product?.images;
+
+  if (images?.length && !prTitle.includes('guided sunset')) {
+    for (let src of images) {
+      const id = parseIdFromUrl(src);
+      const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
+      if (
+        $('.fl-heading-text')?.innerText.includes('Country Cruise') &&
+        id.includes('ovgFvvU1y')
+      ) {
+        return false;
       }
-      return id;
-    }
-
-    const prTitle = $('.fl-heading-text').innerText.toLowerCase();
-
-    const images =
-      productType === 'event' ? settings.eventShare.images : product?.images;
-
-    if (images?.length && !prTitle.includes('guided sunset')) {
-      for (let src of images) {
-        const id = parseIdFromUrl(src);
-        const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
-        if (
-          $('.fl-heading-text')?.innerText.includes('Country Cruise') &&
-          id.includes('ovgFvvU1y')
-        ) {
-          return false;
-        }
-        $('.main_slider .swiper-wrapper').insertAdjacentHTML(
-          'beforeend',
-          `
+      $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+        'beforeend',
+        `
           <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
             <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
             <div class="swiper-lazy-preloader"></div>
           </div>
         `
-        );
+      );
 
-        $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
-          'beforeend',
-          `
+      $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+        'beforeend',
+        `
           <div class="swiper-slide">
             <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
             <div class="swiper-lazy-preloader"></div>
           </div>
         `
-        );
-      }
+      );
     }
+  }
 
+  if ($('.fl-slideshow-main-image')) {
+    $('.fl-slideshow-main-image').click();
+  }
+  // #1 Main slider
+  setTimeout(() => {
     if ($('.fl-slideshow-main-image')) {
       $('.fl-slideshow-main-image').click();
     }
-    // #1 Main slider
-    setTimeout(() => {
-      if ($('.fl-slideshow-main-image')) {
-        $('.fl-slideshow-main-image').click();
-      }
-      isReadyMainSlider = true;
-    }, 4500);
-    waitFor(
-      () => isReadyMainSlider,
-      () => {
-        $('.fl-slideshow-container')?.style.display = 'none';
-        const swiperMainSync = new Swiper('.main_slider_sync', {
-          slidesPerView: 6,
-          slideToClickedSlide: true,
-          spaceBetween: 8,
-          on: {
-            init: () => {
-              $$('.main_slider_sync .swiper-slide').forEach((slide) => {
-                slide.addEventListener('click', () => {
-                  pushDataLayer(
-                    'exp_improving_pdp_add_img_fs',
-                    'Additional image',
-                    'Image',
-                    'First screen'
-                  );
-                });
+    isReadyMainSlider = true;
+  }, 4500);
+  waitFor(
+    () => isReadyMainSlider,
+    () => {
+      $('.fl-slideshow-container').style.display = 'none';
+      const swiperMainSync = new Swiper('.main_slider_sync', {
+        slidesPerView: 6,
+        slideToClickedSlide: true,
+        spaceBetween: 8,
+        on: {
+          init: () => {
+            $$('.main_slider_sync .swiper-slide').forEach((slide) => {
+              slide.addEventListener('click', () => {
+                pushDataLayer(
+                  'exp_improving_pdp_add_img_fs',
+                  'Additional image',
+                  'Image',
+                  'First screen'
+                );
               });
-            },
+            });
           },
-        });
-
-        let diff = 0;
-
-        const swiperMain = new Swiper('.main_slider', {
-          slidesPerView: 1,
-          pagination: {
-            el: '.swiper-pagination',
-            type: 'fraction',
-            renderFraction: function (currentClass, totalClass) {
-              return `<img src="${exp.dir}/img/24_picture.svg"><span class="${currentClass}"></span><span>/</span><span class="${totalClass}"></span>`;
-            },
-          },
-          touchEventsTarget: 'wrapper',
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          thumbs: {
-            swiper: swiperMainSync,
-          },
-          on: {
-            init: () => {
-              $('.main_slider .swiper-button-next').addEventListener(
-                'click',
-                () => {
-                  pushDataLayer(
-                    'exp_improving_pdp_img_fs',
-                    'right arrow',
-                    'Image',
-                    'First screen'
-                  );
-                }
-              );
-
-              $('.main_slider .swiper-button-prev').addEventListener(
-                'click',
-                () => {
-                  pushDataLayer(
-                    'exp_improving_pdp_img_fs',
-                    'left arrow',
-                    'Image',
-                    'First screen'
-                  );
-                }
-              );
-            },
-            slideChange: (swiper) => {
-              if (diff === swiper.touches.diff) return false;
-              diff = swiper.touches.diff;
-              pushDataLayer(
-                'exp_improving_pdp_img_fs',
-                `swipe ${diff > 0 ? 'left' : 'right'}`,
-                'Image',
-                'First screen'
-              );
-            },
-          },
-        });
-      }
-    );
-
-    if (productType === 'rental') {
-      for (let item of settings.rentalAlsoLike.filter(
-        (p) => !prTitle.includes(p.name.toLowerCase())
-      )) {
-        let slide = `
-          <a href="${item.url}" class="swiper-slide">
-            <img src="${item.src}" loading="lazy">
-            <div class="swiper-lazy-preloader"></div>
-            <h6>${item.alias || item.name}</h6>
-            <p>
-              ${item.caption}
-            </p>
-          </a>
-        `;
-
-        $('.may_like .swiper-wrapper').insertAdjacentHTML('beforeend', slide);
-      }
-    } else {
-      for (let item of settings.eventShare.alsoLike.filter(
-        (p) => !prTitle.includes(p.name.toLowerCase())
-      )) {
-        let slide = `
-          <a href="${item.url}" class="swiper-slide">
-            <img src="${item.src}" loading="lazy">
-            <div class="swiper-lazy-preloader"></div>
-            <h6>${item.alias || item.name}</h6>
-            <p>
-              ${item.caption}
-            </p>
-          </a>
-        `;
-
-        $('.may_like .swiper-wrapper').insertAdjacentHTML('beforeend', slide);
-      }
-    }
-
-    // #2 You may also like slider
-    const swiperMay = new Swiper('.may_like .swiper', {
-      slidesPerView: 1.5,
-      // slideToClickedSlide: true,
-      spaceBetween: 8,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        dynamicBullets: true,
-        dynamicMainBullets: 2,
-        clickable: true,
-      },
-      breakpoints: {
-        1100: {
-          slidesPerView: 4,
         },
-        768: {
-          slidesPerView: 3,
-          dynamicBullets: false,
-          spaceBetween: 20,
-        },
-      },
-      on: {
-        slideChange: (swiper) => {
-          pushDataLayer(
-            'exp_improving_pdp_ymal_hs',
-            'You may also like',
-            'horizontal scroll',
-            'You may also like'
-          );
-        },
-        reachEnd: function () {
-          this.slidesEl
-            .closest('.similar_style')
-            .classList.remove('similar_style_after');
-        },
-      },
-    });
-
-    let reviews =
-      productType === 'event' ? settings.eventShare.reviews : product?.reviews;
-
-    if (prTitle.includes('guided sunset')) {
-      reviews = settings.eventShare.reviewsPaddle;
-    }
-
-    if (!product || (!reviews?.length && productType === 'event')) {
-      $('.stories').remove();
-    } else {
-      if (!reviews?.length) {
-        reviews = settings.rental
-          .filter((p) => p.reviews?.length)
-          .map((p) => {
-            if (p.name === 'Pink Electric') {
-              return p.reviews[1];
-            }
-            return p.reviews[0];
-          });
-      }
-      $('.lav-loader').addEventListener('click', function () {
-        this.remove();
-        pushDataLayer(
-          'exp_improving_pdp_rev_load',
-          'Load more',
-          'Button',
-          "Be inspired by our customers' stories"
-        );
-        $('.stories').classList.add('stories_revealed');
       });
 
-      for (let review of reviews) {
-        const el = document.createElement('div');
-        el.classList.add('swiper-slide');
-        el.innerHTML = `
+      let diff = 0;
+
+      const swiperMain = new Swiper('.main_slider', {
+        slidesPerView: 1,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'fraction',
+          renderFraction: function (currentClass, totalClass) {
+            return `<img src="${exp.dir}/img/24_picture.svg"><span class="${currentClass}"></span><span>/</span><span class="${totalClass}"></span>`;
+          },
+        },
+        touchEventsTarget: 'wrapper',
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+          swiper: swiperMainSync,
+        },
+        on: {
+          init: () => {
+            $('.main_slider .swiper-button-next').addEventListener(
+              'click',
+              () => {
+                pushDataLayer(
+                  'exp_improving_pdp_img_fs',
+                  'right arrow',
+                  'Image',
+                  'First screen'
+                );
+              }
+            );
+
+            $('.main_slider .swiper-button-prev').addEventListener(
+              'click',
+              () => {
+                pushDataLayer(
+                  'exp_improving_pdp_img_fs',
+                  'left arrow',
+                  'Image',
+                  'First screen'
+                );
+              }
+            );
+          },
+          slideChange: (swiper) => {
+            if (diff === swiper.touches.diff) return false;
+            diff = swiper.touches.diff;
+            pushDataLayer(
+              'exp_improving_pdp_img_fs',
+              `swipe ${diff > 0 ? 'left' : 'right'}`,
+              'Image',
+              'First screen'
+            );
+          },
+        },
+      });
+    }
+  );
+
+  if (productType === 'rental') {
+    for (let item of settings.rentalAlsoLike.filter(
+      (p) => !prTitle.includes(p.name.toLowerCase())
+    )) {
+      let slide = `
+          <a href="${item.url}" class="swiper-slide">
+            <img src="${item.src}" loading="lazy">
+            <div class="swiper-lazy-preloader"></div>
+            <h6>${item.alias || item.name}</h6>
+            <p>
+              ${item.caption}
+            </p>
+          </a>
+        `;
+
+      $('.may_like .swiper-wrapper').insertAdjacentHTML('beforeend', slide);
+    }
+  } else {
+    for (let item of settings.eventShare.alsoLike.filter(
+      (p) => !prTitle.includes(p.name.toLowerCase())
+    )) {
+      let slide = `
+          <a href="${item.url}" class="swiper-slide">
+            <img src="${item.src}" loading="lazy">
+            <div class="swiper-lazy-preloader"></div>
+            <h6>${item.alias || item.name}</h6>
+            <p>
+              ${item.caption}
+            </p>
+          </a>
+        `;
+
+      $('.may_like .swiper-wrapper').insertAdjacentHTML('beforeend', slide);
+    }
+  }
+
+  // #2 You may also like slider
+  const swiperMay = new Swiper('.may_like .swiper', {
+    slidesPerView: 1.5,
+    // slideToClickedSlide: true,
+    spaceBetween: 8,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      dynamicBullets: true,
+      dynamicMainBullets: 2,
+      clickable: true,
+    },
+    breakpoints: {
+      1100: {
+        slidesPerView: 4,
+      },
+      768: {
+        slidesPerView: 3,
+        dynamicBullets: false,
+        spaceBetween: 20,
+      },
+    },
+    on: {
+      slideChange: (swiper) => {
+        pushDataLayer(
+          'exp_improving_pdp_ymal_hs',
+          'You may also like',
+          'horizontal scroll',
+          'You may also like'
+        );
+      },
+      reachEnd: function () {
+        this.slidesEl
+          .closest('.similar_style')
+          .classList.remove('similar_style_after');
+      },
+    },
+  });
+
+  let reviews =
+    productType === 'event' ? settings.eventShare.reviews : product?.reviews;
+
+  if (prTitle.includes('guided sunset')) {
+    reviews = settings.eventShare.reviewsPaddle;
+  }
+
+  if (!product || (!reviews?.length && productType === 'event')) {
+    $('.stories').remove();
+  } else {
+    if (!reviews?.length) {
+      reviews = settings.rental
+        .filter((p) => p.reviews?.length)
+        .map((p) => {
+          if (p.name === 'Pink Electric') {
+            return p.reviews[1];
+          }
+          return p.reviews[0];
+        });
+    }
+    $('.lav-loader').addEventListener('click', function () {
+      this.remove();
+      pushDataLayer(
+        'exp_improving_pdp_rev_load',
+        'Load more',
+        'Button',
+        "Be inspired by our customers' stories"
+      );
+      $('.stories').classList.add('stories_revealed');
+    });
+
+    for (let review of reviews) {
+      const el = document.createElement('div');
+      el.classList.add('swiper-slide');
+      el.innerHTML = `
           <div class="service">
               <img src="${exp.dir}/img/${review.type}.svg">
             </div>
@@ -2353,460 +2346,460 @@ console.log('**exp** initExp');
             </div>
         `;
 
-        el.querySelector('.read_more').addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          this.remove();
-          pushDataLayer(
-            'exp_improving_pdp_rev_read',
-            'Review',
-            'Link',
-            "Be inspired by our customers' stories"
-          );
-          el.querySelector('.preview_text').classList.add('active');
-          if (swiperStories) {
-            swiperStories.updateAutoHeight(500);
-          }
-        });
-
-        $('.stories .swiper-wrapper').insertAdjacentElement('beforeend', el);
-      }
-      let swiperStories;
-
-      // #3 Read inspired story
-      if (window.innerWidth > 768) {
-        swiperStories = new Swiper('.stories .swiper', {
-          slidesPerView: 1.5,
-          // slideToClickedSlide: true,
-          autoHeight: true,
-          spaceBetween: 20,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            dynamicBullets: true,
-            dynamicMainBullets: 2,
-            clickable: true,
-          },
-          breakpoints: {
-            1250: {
-              slidesPerView: 3.5,
-            },
-            992: {
-              slidesPerView: 2.5,
-            },
-          },
-          on: {
-            init: function () {
-              for (let item of $$('.stories .swiper .preview_text')) {
-                if (item.scrollHeight <= 150) {
-                  item.nextElementSibling.innerHTML = '&nbsp';
-                  item.nextElementSibling.classList.add('disable');
-                }
-              }
-            },
-            slideChange: function () {
-              pushDataLayer(
-                'exp_improving_pdp_reviews_types_hs',
-                "Be inspired by our customers' stories",
-                'horizontal scroll',
-                "Be inspired by our customers' stories"
-              );
-            },
-            resize: function () {
-              if (window.innerWidth < 768) {
-                swiperStories.destroy();
-                swiperStories.disable();
-              }
-            },
-            reachEnd: function () {
-              this.slidesEl
-                .closest('.similar_style')
-                .classList.remove('similar_style_after');
-            },
-          },
-        });
-      } else {
-        for (let item of $$('.stories .swiper .preview_text')) {
-          if (item.scrollHeight <= 150) {
-            item.classList.add('active');
-            item.nextElementSibling.classList.add('disable');
-          }
+      el.querySelector('.read_more').addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        this.remove();
+        pushDataLayer(
+          'exp_improving_pdp_rev_read',
+          'Review',
+          'Link',
+          "Be inspired by our customers' stories"
+        );
+        el.querySelector('.preview_text').classList.add('active');
+        if (swiperStories) {
+          swiperStories.updateAutoHeight(500);
         }
-      }
-    }
+      });
 
-    if ($('.boat_available')) {
-      const swiperBoats = new Swiper('.swiper.boats', {
-        slidesPerView: 1.07,
-        slideToClickedSlide: true,
-        spaceBetween: 4,
-        navigation: false,
+      $('.stories .swiper-wrapper').insertAdjacentElement('beforeend', el);
+    }
+    let swiperStories;
+
+    // #3 Read inspired story
+    if (window.innerWidth > 768) {
+      swiperStories = new Swiper('.stories .swiper', {
+        slidesPerView: 1.5,
+        // slideToClickedSlide: true,
+        autoHeight: true,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
         pagination: {
           el: '.swiper-pagination',
           type: 'bullets',
+          dynamicBullets: true,
+          dynamicMainBullets: 2,
           clickable: true,
         },
         breakpoints: {
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 16,
+          1250: {
+            slidesPerView: 3.5,
+          },
+          992: {
+            slidesPerView: 2.5,
           },
         },
         on: {
+          init: function () {
+            for (let item of $$('.stories .swiper .preview_text')) {
+              if (item.scrollHeight <= 150) {
+                item.nextElementSibling.innerHTML = '&nbsp';
+                item.nextElementSibling.classList.add('disable');
+              }
+            }
+          },
           slideChange: function () {
             pushDataLayer(
-              'exp_improving_pdp_boat_types_hs',
-              'Additional options',
+              'exp_improving_pdp_reviews_types_hs',
+              "Be inspired by our customers' stories",
               'horizontal scroll',
-              'Boat types available'
+              "Be inspired by our customers' stories"
             );
+          },
+          resize: function () {
+            if (window.innerWidth < 768) {
+              swiperStories.destroy();
+              swiperStories.disable();
+            }
+          },
+          reachEnd: function () {
+            this.slidesEl
+              .closest('.similar_style')
+              .classList.remove('similar_style_after');
           },
         },
       });
+    } else {
+      for (let item of $$('.stories .swiper .preview_text')) {
+        if (item.scrollHeight <= 150) {
+          item.classList.add('active');
+          item.nextElementSibling.classList.add('disable');
+        }
+      }
     }
   }
 
-  function initPopup() {
-    const popup = $('.popup');
-
-    $('.popup-trigger').addEventListener('click', () => {
-      pushDataLayer(
-        'exp_improving_pdp_get',
-        'Get your 10% off',
-        'Button',
-        'Under booking'
-      );
-      popup.showModal();
+  if ($('.boat_available')) {
+    const swiperBoats = new Swiper('.swiper.boats', {
+      slidesPerView: 1.07,
+      slideToClickedSlide: true,
+      spaceBetween: 4,
+      navigation: false,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 16,
+        },
+      },
+      on: {
+        slideChange: function () {
+          pushDataLayer(
+            'exp_improving_pdp_boat_types_hs',
+            'Additional options',
+            'horizontal scroll',
+            'Boat types available'
+          );
+        },
+      },
     });
+  }
+}
 
-    $('.popup__close').addEventListener('click', () => {
+function initPopup() {
+  const popup = $('.popup');
+
+  $('.popup-trigger').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_improving_pdp_get',
+      'Get your 10% off',
+      'Button',
+      'Under booking'
+    );
+    popup.showModal();
+  });
+
+  $('.popup__close').addEventListener('click', () => {
+    popup.close();
+    pushDataLayer(
+      'exp_improving_pdp_pp_s_c',
+      'Close - ' + $('.popup').dataset.step,
+      'Button',
+      'Popup PDP- Checkout/Custom booking form'
+    );
+  });
+
+  let isInputFire = false;
+
+  $('.popup__input').addEventListener('input', () => {
+    $('.popup__input').classList.remove('error');
+    if (!isInputFire) {
+      isInputFire = true;
+      pushDataLayer(
+        'exp_improving_pdp_pp_s1_email',
+        'Email - Step 1',
+        'Input',
+        'Popup PDP- Checkout/Custom booking form'
+      );
+    }
+  });
+
+  // $('.popup__input').addEventListener('click', (e) => {
+  //   if (
+  //     $('.popup').dataset.step === '2' &&
+  //     !e.target.closest('.popup__copy')
+  //   ) {
+  //     $('.popup__copy').click();
+  //   }
+  // });
+
+  $('.popup__copy').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_improving_pdp_pp_s2_code',
+      'Copy code - Step 2',
+      'Button',
+      'Popup PDP- Checkout/Custom booking form'
+    );
+    navigator.clipboard
+      .writeText('BOOK10')
+      .then(() => {
+        $('.popup__copy').classList.add('active');
+
+        setTimeout(() => {
+          $('.popup__copy').classList.remove('active');
+        }, 1200);
+      })
+      .catch((error) => {
+        console.error('Failed to copy link:', error);
+      });
+  });
+
+  $('.popup__btn').addEventListener('click', () => {
+    if (
+      $('.popup').dataset.step === '1' &&
+      !validateEmail($('.popup__input').value)
+    ) {
+      pushDataLayer(
+        'exp_improving_pdp_pp_s1_b',
+        'Get promo code - Step 1',
+        'Button',
+        'Popup PDP- Checkout/Custom booking form'
+      );
+      $('.popup__input').classList.add('error');
+      return false;
+    }
+
+    if ($('.popup').dataset.step === '1') {
+      $('.popup').dataset.step = '2';
+      $('.popup__title').innerText = 'CONGRATULATIONS!';
+      $('.popup__caption').innerHTML =
+        'You are one step closer to your dream&nbsp;water&nbsp;adventures';
+      $('.popup__input-caption').innerText = 'Your promo code is:';
+      $('.popup__input').value = 'BOOK10';
+      $('.popup__input').setAttribute('readonly', 'readonly');
+      $('.popup__icon').src = exp.dir + '/img/24_congrat.svg';
+      $('.popup__btn').innerText = 'CONTINUE SHOPPING';
+      $('.popup').classList.remove('in-view');
+      observerView($('.popup'));
+      pushDataLayer(
+        'exp_improving_pdp_pp_s1_b',
+        'Get promo code - Step 1',
+        'Button',
+        'Popup PDP- Checkout/Custom booking form'
+      );
+    } else {
       popup.close();
       pushDataLayer(
-        'exp_improving_pdp_pp_s_c',
-        'Close - ' + $('.popup').dataset.step,
+        'exp_improving_pdp_pp_s2_b',
+        'Continue shopping - Step 2',
         'Button',
         'Popup PDP- Checkout/Custom booking form'
       );
-    });
-
-    let isInputFire = false;
-
-    $('.popup__input').addEventListener('input', () => {
-      $('.popup__input').classList.remove('error');
-      if (!isInputFire) {
-        isInputFire = true;
-        pushDataLayer(
-          'exp_improving_pdp_pp_s1_email',
-          'Email - Step 1',
-          'Input',
-          'Popup PDP- Checkout/Custom booking form'
-        );
-      }
-    });
-
-    // $('.popup__input').addEventListener('click', (e) => {
-    //   if (
-    //     $('.popup').dataset.step === '2' &&
-    //     !e.target.closest('.popup__copy')
-    //   ) {
-    //     $('.popup__copy').click();
-    //   }
-    // });
-
-    $('.popup__copy').addEventListener('click', () => {
-      pushDataLayer(
-        'exp_improving_pdp_pp_s2_code',
-        'Copy code - Step 2',
-        'Button',
-        'Popup PDP- Checkout/Custom booking form'
-      );
-      navigator.clipboard
-        .writeText('BOOK10')
-        .then(() => {
-          $('.popup__copy').classList.add('active');
-
-          setTimeout(() => {
-            $('.popup__copy').classList.remove('active');
-          }, 1200);
-        })
-        .catch((error) => {
-          console.error('Failed to copy link:', error);
-        });
-    });
-
-    $('.popup__btn').addEventListener('click', () => {
-      if (
-        $('.popup').dataset.step === '1' &&
-        !validateEmail($('.popup__input').value)
-      ) {
-        pushDataLayer(
-          'exp_improving_pdp_pp_s1_b',
-          'Get promo code - Step 1',
-          'Button',
-          'Popup PDP- Checkout/Custom booking form'
-        );
-        $('.popup__input').classList.add('error');
-        return false;
-      }
-
-      if ($('.popup').dataset.step === '1') {
-        $('.popup').dataset.step = '2';
-        $('.popup__title').innerText = 'CONGRATULATIONS!';
-        $('.popup__caption').innerHTML =
-          'You are one step closer to your dream&nbsp;water&nbsp;adventures';
-        $('.popup__input-caption').innerText = 'Your promo code is:';
-        $('.popup__input').value = 'BOOK10';
-        $('.popup__input').setAttribute('readonly', 'readonly');
-        $('.popup__icon').src = exp.dir + '/img/24_congrat.svg';
-        $('.popup__btn').innerText = 'CONTINUE SHOPPING';
-        $('.popup').classList.remove('in-view');
-        observerView($('.popup'));
-        pushDataLayer(
-          'exp_improving_pdp_pp_s1_b',
-          'Get promo code - Step 1',
-          'Button',
-          'Popup PDP- Checkout/Custom booking form'
-        );
-      } else {
-        popup.close();
-        pushDataLayer(
-          'exp_improving_pdp_pp_s2_b',
-          'Continue shopping - Step 2',
-          'Button',
-          'Popup PDP- Checkout/Custom booking form'
-        );
-      }
-    });
-
-    popup.addEventListener('click', (e) => {
-      const dialogDimensions = popup.getBoundingClientRect();
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        popup.close();
-      }
-    });
-
-    function validateEmail(email) {
-      // Regular expression pattern for email validation
-      var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Check if the email matches the pattern
-      return pattern.test(email);
     }
+  });
+
+  popup.addEventListener('click', (e) => {
+    const dialogDimensions = popup.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      popup.close();
+    }
+  });
+
+  function validateEmail(email) {
+    // Regular expression pattern for email validation
+    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check if the email matches the pattern
+    return pattern.test(email);
+  }
+}
+
+function addStyles() {
+  const style = document.createElement('style');
+  style.innerHTML = styles;
+  document.head.appendChild(style);
+}
+
+function addSwiper() {
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
+  script.async = false;
+  document.head.appendChild(script);
+
+  const style = document.createElement('link');
+  style.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
+  style.rel = 'stylesheet';
+  document.head.appendChild(style);
+}
+// *** Utils *** //
+
+// Waiting for loading by condition
+function waitFor(condition, cb, ms = 1000) {
+  if (condition()) {
+    if (typeof cb == 'function') cb();
+    return;
   }
 
-  function addStyles() {
-    const style = document.createElement('style');
-    style.innerHTML = styles;
-    document.head.appendChild(style);
-  }
-
-  function addSwiper() {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
-    script.async = false;
-    document.head.appendChild(script);
-
-    const style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
-    style.rel = 'stylesheet';
-    document.head.appendChild(style);
-  }
-  // *** Utils *** //
-
-  // Waiting for loading by condition
-  function waitFor(condition, cb, ms = 1000) {
+  let interval = setInterval(function () {
     if (condition()) {
+      clearInterval(interval);
       if (typeof cb == 'function') cb();
-      return;
     }
+  }, ms);
+}
 
-    let interval = setInterval(function () {
-      if (condition()) {
-        clearInterval(interval);
-        if (typeof cb == 'function') cb();
-      }
-    }, ms);
-  }
-
-  // Alalytic 4
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-    try {
-      var objData = {
-        event: 'event-to-ga4',
-        event_name: name,
-        event_desc: desc,
-        event_type: type,
-        event_loc: loc,
-      };
-      console.log('**exp** eventFire', objData);
-      if (!exp.debug) {
-        dataLayer.push(objData);
-      }
-    } catch (e) {
-      console.log('**exp** Event Error:', e);
+// Alalytic 4
+function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  try {
+    var objData = {
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
+    };
+    console.log('**exp** eventFire', objData);
+    if (!exp.debug) {
+      dataLayer.push(objData);
     }
+  } catch (e) {
+    console.log('**exp** Event Error:', e);
   }
+}
 
-  // Mutation Observer
-  function initObserver(cb) {
-    let observer = new MutationObserver((mutations) => {
-      for (let mutation of mutations) {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
+// Mutation Observer
+function initObserver(cb) {
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      for (let node of mutation.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
 
-          cb(node);
+        cb(node);
+      }
+    }
+  });
+
+  waitFor(
+    () => document.body,
+    () => {
+      observer.observe(document.body, { childList: true, subtree: true });
+    },
+    100
+  );
+}
+
+// Intersection Observer
+function observerView(observeEl) {
+  const observerOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: '-20%',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        if (target.classList.contains('stories')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_rev_v',
+            'Review',
+            'Visibility',
+            "Be inspired by our customers' stories",
+          ]);
+        }
+
+        if (target.classList.contains('may_like')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_ymal_v',
+            'You may also like',
+            'Visibility',
+            'You may also like',
+          ]);
+        }
+
+        if (target.classList.contains('lav-cancel__text')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_free_can',
+            'Free cancellation',
+            'Visibility',
+            'Under booking',
+          ]);
+        }
+
+        if (target.classList.contains('lav-advisor')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_trip_v',
+            'Tripadvisor',
+            'Visibility',
+            'First screen',
+          ]);
+        }
+
+        if (target.classList.contains('lav-product__head-icons')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_add_b_v',
+            'Additional buttons',
+            'Visibility',
+            'Additional buttons',
+          ]);
+        }
+
+        if (target.classList.contains('looking')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_add_info',
+            'Additional info',
+            'Visibility',
+            'Additional info',
+          ]);
+        }
+
+        if (target.classList.contains('boat_available')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_boat_types',
+            'Additional options',
+            'Visibility',
+            'Boat types available',
+          ]);
+        }
+
+        if (target.classList.contains('popup')) {
+          isElementInViewport(target, [
+            'exp_improving_pdp_pp_s_v',
+            target.dataset.step,
+            'Visibility',
+            'Popup PDP- Checkout/Custom booking form',
+          ]);
         }
       }
     });
+  }, observerOptions);
 
-    waitFor(
-      () => document.body,
-      () => {
-        observer.observe(document.body, { childList: true, subtree: true });
-      },
-      100
-    );
-  }
-
-  // Intersection Observer
-  function observerView(observeEl) {
-    const observerOptions = {
-      root: null,
-      threshold: 0,
-      rootMargin: '-20%',
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target;
-          if (target.classList.contains('stories')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_rev_v',
-              'Review',
-              'Visibility',
-              "Be inspired by our customers' stories",
-            ]);
-          }
-
-          if (target.classList.contains('may_like')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_ymal_v',
-              'You may also like',
-              'Visibility',
-              'You may also like',
-            ]);
-          }
-
-          if (target.classList.contains('lav-cancel__text')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_free_can',
-              'Free cancellation',
-              'Visibility',
-              'Under booking',
-            ]);
-          }
-
-          if (target.classList.contains('lav-advisor')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_trip_v',
-              'Tripadvisor',
-              'Visibility',
-              'First screen',
-            ]);
-          }
-
-          if (target.classList.contains('lav-product__head-icons')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_add_b_v',
-              'Additional buttons',
-              'Visibility',
-              'Additional buttons',
-            ]);
-          }
-
-          if (target.classList.contains('looking')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_add_info',
-              'Additional info',
-              'Visibility',
-              'Additional info',
-            ]);
-          }
-
-          if (target.classList.contains('boat_available')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_boat_types',
-              'Additional options',
-              'Visibility',
-              'Boat types available',
-            ]);
-          }
-
-          if (target.classList.contains('popup')) {
-            isElementInViewport(target, [
-              'exp_improving_pdp_pp_s_v',
-              target.dataset.step,
-              'Visibility',
-              'Popup PDP- Checkout/Custom booking form',
-            ]);
-          }
-        }
-      });
-    }, observerOptions);
-
-    if (observeEl) {
-      observer.observe(observeEl);
-    } else {
-      for (let el of Array.from(document.querySelectorAll('.lav-observe'))) {
-        observer.observe(el);
-      }
-    }
-
-    function isElementInViewport(el, event, timeout = 5) {
-      setTimeout(() => {
-        const rect = el.getBoundingClientRect();
-        const windowHeight =
-          window.innerHeight || document.documentElement.clientHeight;
-
-        if (
-          rect.top + rect.height * 0.3 < windowHeight &&
-          rect.bottom > rect.height * 0.3
-        ) {
-          observer.unobserve(el);
-          if (!el.classList.contains('in-view')) {
-            pushDataLayer(...event);
-            el.classList.add('in-view');
-          }
-        }
-      }, timeout * 1000);
+  if (observeEl) {
+    observer.observe(observeEl);
+  } else {
+    for (let el of Array.from(document.querySelectorAll('.lav-observe'))) {
+      observer.observe(el);
     }
   }
 
-  //Clarity
-  if (!exp.debug && exp.clarity.enable) {
-    waitFor(
-      () => typeof clarity == 'function',
-      () => {
-        clarity(...exp.clarity.params);
+  function isElementInViewport(el, event, timeout = 5) {
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      if (
+        rect.top + rect.height * 0.3 < windowHeight &&
+        rect.bottom > rect.height * 0.3
+      ) {
+        observer.unobserve(el);
+        if (!el.classList.contains('in-view')) {
+          pushDataLayer(...event);
+          el.classList.add('in-view');
+        }
       }
-    );
+    }, timeout * 1000);
   }
+}
 
-  function $(selector, context = document) {
-    return context.querySelector(selector);
-  }
+//Clarity
+if (!exp.debug && exp.clarity.enable) {
+  waitFor(
+    () => typeof clarity == 'function',
+    () => {
+      clarity(...exp.clarity.params);
+    }
+  );
+}
 
-  function $$(selector, context = document) {
-    return context.querySelectorAll(selector);
-  }
-})();
+function $(selector, context = document) {
+  return context.querySelector(selector);
+}
+
+function $$(selector, context = document) {
+  return context.querySelectorAll(selector);
+}
+// })();
