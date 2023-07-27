@@ -34,7 +34,7 @@ fetch(`${exp.dir}/settings.json`)
       );
 
       productType = 'event';
-      document.classList.add('lav-event-page');
+      document.body.classList.add('lav-event-page');
     }
   });
 
