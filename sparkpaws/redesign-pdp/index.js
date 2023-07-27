@@ -242,7 +242,7 @@ console.log('initExp');
       margin-left: auto;
     }
     .size-guide-wrapper {
-      max-width: 810px;
+      max-width: 810px!important;
     }
     
 

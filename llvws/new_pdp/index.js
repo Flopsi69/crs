@@ -34,6 +34,7 @@ fetch(`${exp.dir}/settings.json`)
       );
 
       productType = 'event';
+      document.classList.add('lav-event-page');
     }
   });
 
@@ -262,6 +263,10 @@ const styles = `
     min-width: 100%;
     object-fit: cover;
     max-height: 500px;
+  }
+
+  .lav-event-page .swiper-slide img {
+    object-fit: contain;
   }
 
   .main_slider .swiper-slide {
