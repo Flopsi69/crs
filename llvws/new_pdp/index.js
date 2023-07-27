@@ -2096,7 +2096,10 @@ function initSwiper() {
   if (images?.length && !prTitle.includes('guided sunset')) {
     for (let src of images) {
       const id = parseIdFromUrl(src);
-      const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
+      const isVert =
+        id.includes('vgFvvU1y') ||
+        id.includes('6oUlE4CxcWAJG') ||
+        id.includes('11FIoExLh');
       if (
         ($('.fl-heading-text')?.innerText.includes('Country Cruise') &&
           id.includes('ovgFvvU1y')) ||
