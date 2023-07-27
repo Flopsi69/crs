@@ -2114,7 +2114,9 @@ function initSwiper() {
             id.includes('11FIoExLh');
           if (
             (prTitle.includes('country cruise') && id.includes('ovgFvvU1y')) ||
-            (prTitle.includes('throwback cruise') && id.includes('ovgFvvU1y'))
+            (prTitle.includes('throwback cruise') &&
+              id.includes('ovgFvvU1y')) ||
+            (prTitle.includes('sunset session') && id.includes('ovgFvvU1y'))
           ) {
             continue;
           }
