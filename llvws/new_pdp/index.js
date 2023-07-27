@@ -1504,11 +1504,7 @@ function init() {
 
   // Init Swiper
   waitFor(
-    () =>
-      typeof Swiper !== 'undefined' &&
-      settings &&
-      product !== null &&
-      $$('.fl-slideshow .fl-slideshow-image').length,
+    () => typeof Swiper !== 'undefined' && settings && product !== null,
     () => {
       initSwiper();
     }
@@ -1593,33 +1589,35 @@ function handleProductInfo() {
     () =>
       $('.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'),
     () => {
-      $$(
-        '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
-      ).forEach((slide) => {
-        const src = slide.src.replace('-150x150', '');
-        const isVert = src.includes('Brown_Vintage_Cowboy');
-        $('.main_slider .swiper-wrapper').insertAdjacentHTML(
-          'beforeend',
-          `
-            <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
-              <img src="${src}" loading="lazy">
-              <div class="swiper-lazy-preloader"></div>
-            </div>
-          `
-        );
+      setTimeout(() => {
+        $$(
+          '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
+        ).forEach((slide) => {
+          const src = slide.src.replace('-150x150', '');
+          const isVert = src.includes('Brown_Vintage_Cowboy');
+          $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+              <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
+                <img src="${src}" loading="lazy">
+                <div class="swiper-lazy-preloader"></div>
+              </div>
+            `
+          );
 
-        $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
-          'beforeend',
-          `
-            <div class="swiper-slide">
-              <img src="${src}" loading="lazy">
-              <div class="swiper-lazy-preloader"></div>
-            </div>
-          `
-        );
-      });
+          $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+              <div class="swiper-slide">
+                <img src="${src}" loading="lazy">
+                <div class="swiper-lazy-preloader"></div>
+              </div>
+            `
+          );
+        });
 
-      isReadyMainSlider = true;
+        isReadyMainSlider = true;
+      }, 500);
     }
   );
 
@@ -2139,7 +2137,7 @@ function initSwiper() {
       $('.fl-slideshow-main-image').click();
     }
     isReadyMainSlider = true;
-  }, 4500);
+  }, 5000);
   waitFor(
     () => isReadyMainSlider,
     () => {
