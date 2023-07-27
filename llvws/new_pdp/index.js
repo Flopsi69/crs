@@ -2088,46 +2088,6 @@ function initSwiper() {
 
   const prTitle = $('.fl-heading-text').innerText.toLowerCase();
 
-  const images =
-    productType === 'event' ? settings.eventShare.images : product?.images;
-
-  if (images?.length && !prTitle.includes('guided sunset')) {
-    for (let src of images) {
-      const id = parseIdFromUrl(src);
-      const isVert =
-        id.includes('vgFvvU1y') ||
-        id.includes('6oUlE4CxcWAJG') ||
-        id.includes('11FIoExLh');
-      if (
-        ($('.fl-heading-text')?.innerText.includes('Country Cruise') &&
-          id.includes('ovgFvvU1y')) ||
-        ($('.fl-heading-text')?.innerText.includes('Throwback Cruise') &&
-          id.includes('ovgFvvU1y'))
-      ) {
-        continue;
-      }
-      $('.main_slider .swiper-wrapper').insertAdjacentHTML(
-        'beforeend',
-        `
-          <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
-            <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
-            <div class="swiper-lazy-preloader"></div>
-          </div>
-        `
-      );
-
-      $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
-        'beforeend',
-        `
-          <div class="swiper-slide">
-            <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
-            <div class="swiper-lazy-preloader"></div>
-          </div>
-        `
-      );
-    }
-  }
-
   if ($('.fl-slideshow-main-image')) {
     $('.fl-slideshow-main-image').click();
   }
@@ -2141,6 +2101,44 @@ function initSwiper() {
   waitFor(
     () => isReadyMainSlider,
     () => {
+      const images =
+        productType === 'event' ? settings.eventShare.images : product?.images;
+
+      if (images?.length && !prTitle.includes('guided sunset')) {
+        for (let src of images) {
+          const id = parseIdFromUrl(src);
+          const isVert =
+            id.includes('vgFvvU1y') ||
+            id.includes('6oUlE4CxcWAJG') ||
+            id.includes('11FIoExLh');
+          if (
+            (prTitle.includes('country cruise') && id.includes('ovgFvvU1y')) ||
+            (prTitle.includes('throwback cruise') && id.includes('ovgFvvU1y'))
+          ) {
+            continue;
+          }
+          $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+            <div class="swiper-slide ${isVert ? 'lav-slide-vert' : ''}">
+              <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+          `
+          );
+
+          $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+            'beforeend',
+            `
+            <div class="swiper-slide">
+              <img src="https://drive.google.com/uc?export=view&id=${id}" loading="lazy">
+              <div class="swiper-lazy-preloader"></div>
+            </div>
+          `
+          );
+        }
+      }
+
       // $('.fl-slideshow-container').style.display = 'none';
       const swiperMainSync = new Swiper('.main_slider_sync', {
         slidesPerView: 6,
