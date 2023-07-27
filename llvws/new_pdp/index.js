@@ -1491,7 +1491,7 @@ waitFor(
 function init() {
   console.log('**exp** init');
   $('.site-footer').insertAdjacentElement(
-    'beforestart',
+    'beforebegin',
     $('.fl-slideshow-container')
   );
 
