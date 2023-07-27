@@ -1504,7 +1504,11 @@ function init() {
 
   // Init Swiper
   waitFor(
-    () => typeof Swiper !== 'undefined' && settings && product !== null,
+    () =>
+      typeof Swiper !== 'undefined' &&
+      settings &&
+      product !== null &&
+      $$('.fl-slideshow .fl-slideshow-image').length,
     () => {
       initSwiper();
     }
@@ -2094,8 +2098,10 @@ function initSwiper() {
       const id = parseIdFromUrl(src);
       const isVert = id.includes('vgFvvU1y') || id.includes('6oUlE4CxcWAJG');
       if (
-        $('.fl-heading-text')?.innerText.includes('Country Cruise') &&
-        id.includes('ovgFvvU1y')
+        ($('.fl-heading-text')?.innerText.includes('Country Cruise') &&
+          id.includes('ovgFvvU1y')) ||
+        ($('.fl-heading-text')?.innerText.includes('Throwback Cruise') &&
+          id.includes('ovgFvvU1y'))
       ) {
         continue;
       }
