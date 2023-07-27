@@ -172,3 +172,98 @@ console.log('initExp');
     return context.querySelectorAll(selector);
   }
 })();
+
+function initModals() {
+  const modalEl = `
+      <div class='lav-modal' style='display: none;'>
+        <div class='lav-modal__inner lav-modal__test'>
+        asdf
+        </div>
+      </div>
+    `;
+
+  document.body.insertAdjacentHTML('beforeend', modalEl);
+
+  document.querySelector('.lav-modal').addEventListener('click', function (e) {
+    if (e.target.classList.contains('lav-modal')) {
+      closeModal();
+    }
+  });
+
+  for (let el of document.querySelectorAll('.lav-modal__close')) {
+    el.addEventListener('click', function () {
+      closeModal();
+    });
+  }
+}
+
+function openModal(type) {
+  document.body.classList.add('lav-modal-open');
+  document.querySelector('html').classList.add('lav-modal-open');
+  document.querySelector('.lav-modal__' + type).classList.add('active');
+  document.querySelector('.lav-modal').style.display = 'flex';
+  setTimeout(() => {
+    document.querySelector('.lav-modal').classList.add('active');
+  }, 100);
+}
+
+function closeModal() {
+  document.body.classList.remove('lav-modal-open');
+  document.querySelector('html').classList.remove('lav-modal-open');
+  document.querySelector('.lav-modal').classList.remove('active');
+  setTimeout(() => {
+    document.querySelector('.lav-modal').style.display = 'none';
+    document
+      .querySelector('.lav-modal__inner.active')
+      .classList.remove('active');
+  }, 400);
+}
+`
+.lav-modal {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.35s;
+}
+.lav-modal:not(.active ){
+  opacity: 0;
+  pointer-events: none;
+}
+.lav-modal.active {
+  opacity: 1;
+}
+.lav-modal__inner:not(.active) {
+  display: none;
+}
+.lav-modal__inner {
+  background: #fff;
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+.lav-modal__close {
+  cursor: pointer;
+  transition: 0.35s;
+}
+@media(hover:hover) {
+  .lav-modal__close:hover {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+.lav-modal-open {
+  position: relative;
+  overflow: hidden;
+}`;

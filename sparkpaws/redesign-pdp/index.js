@@ -34,219 +34,314 @@ console.log('initExp');
 
   /*** STYLES / Start ***/
   const styles = `
-    .size-guide__link {
+  .lav-modal {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.35s;
+  }
+  .lav-modal:not(.active ){
+    opacity: 0;
+    pointer-events: none;
+  }
+  .lav-modal.active {
+    opacity: 1;
+  }
+  .lav-modal__inner:not(.active) {
+    display: none;
+  }
+  .lav-modal__inner {
+    background: #fff;
+    position: relative;
+    max-width: 380px;
+    width: 100%;
+    max-height: 90%;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+  .lav-modal__close {
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  @media(hover:hover) {
+    .lav-modal__close:hover {
       opacity: 0.5;
+      transform: scale(1.1);
     }
-    .lav-option-value {
-      color: var(--grey-800, #383A3D);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1;
-      margin-right: auto;
-      margin-left: 4px;
-    }
-    .template-product .ProductForm__Label {
-      align-items: center;
-    }
+  }
+  .lav-modal-open {
+    position: relative;
+    overflow: hidden;
+  }
+  .size-guide__link {
+    opacity: 0.5;
+  }
+  .lav-option-value {
+    color: var(--grey-800, #383A3D);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    margin-right: auto;
+    margin-left: 4px;
+  }
+  .template-product .ProductForm__Label {
+    align-items: center;
+  }
 
-    .lav-delivery {
-      margin: 28px 0;
+  .lav-delivery {
+    margin: 28px 0;
+  }
+  .lav-delivery__item {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+  .lav-delivery__icon {
+    width: 24px;
+    flex-shrink: 0;
+    line-height: 0;
+    margin-right: 16px;
+    margin-top: -4px;
+  }
+  .lav-delivery__info {
+    flex-grow: 1;
+  }
+  .lav-delivery__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .lav-delivery__title {
+    color: var(--grey-800, #383A3D);
+    font-weight: 700;
+  }
+  .lav-delivery__link {
+  }
+  .lav-link {
+    font-size: 10px;
+    white-space: nowrap;
+    color: var(--primary, #344D79);
+    font-weight: 400;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  @media(hover:hover) {
+    .lav-link:hover {
+      text-decoration-line: none;
+      opacity: 0.7;
     }
-    .lav-delivery__item {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 16px;
-    }
-    .lav-delivery__icon {
-      width: 24px;
-      flex-shrink: 0;
-      line-height: 0;
-      margin-right: 16px;
-      margin-top: -4px;
-    }
-    .lav-delivery__info {
-      flex-grow: 1;
-    }
-    .lav-delivery__head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 10px;
-      line-height: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .lav-delivery__title {
-      color: var(--grey-800, #383A3D);
-      font-weight: 700;
-    }
-    .lav-delivery__link {
-    }
-    .lav-link {
-      font-size: 10px;
-      white-space: nowrap;
-      color: var(--primary, #344D79);
-      font-weight: 400;
-      text-decoration-line: underline;
-      text-transform: uppercase;
-      cursor: pointer;
-      letter-spacing: 1px;
-    }
-    @media(hover:hover) {
-      .lav-link:hover {
-        text-decoration-line: none;
-        opacity: 0.7;
-      }
-    }
-    .lav-delivery__plate {
-      margin-top: 4px;
-      background: var(--grey-010, #FAFAFA);
-      padding: 4px 12px;
-      color: var(--grey-700, #5C5555);
-      font-size: 13px;
-      line-height: 22px;
-    }
-    .lav-delivery__plate {
-    }
-    .lav-delivery__plate-line + .lav-delivery__plate-line {
-      margin-top: 4px;
-    }
-    .lav-delivery__plate span {
-      font-weight: 700;
-    }
+  }
+  .lav-delivery__plate {
+    margin-top: 4px;
+    background: var(--grey-010, #FAFAFA);
+    padding: 4px 12px;
+    color: var(--grey-700, #5C5555);
+    font-size: 13px;
+    line-height: 22px;
+  }
+  .lav-delivery__plate {
+  }
+  .lav-delivery__plate-line + .lav-delivery__plate-line {
+    margin-top: 4px;
+  }
+  .lav-delivery__plate span {
+    font-weight: 700;
+  }
 
-    .lav-benefits {
-      margin: 28px 0;
-    }
-    .lav-benefits__icon {
-      flex-shrink: 0;
-    }
-    .lav-benefits__item {
-      display: flex;
-      align-items: center;
-    }
-    .lav-benefits__item + .lav-benefits__item {
-      margin-top: 12px;
-    }
-    .lav-benefits__title {
-      color: #383A3D;
-      font-size: 10px;
-      font-weight: 700;
-      line-height: 16px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      flex-grow: 1;
-      padding: 0 16px;
-    }
+  .lav-benefits {
+    margin: 28px 0;
+  }
+  .lav-benefits__icon {
+    flex-shrink: 0;
+  }
+  .lav-benefits__item {
+    display: flex;
+    align-items: center;
+  }
+  .lav-benefits__item + .lav-benefits__item {
+    margin-top: 12px;
+  }
+  .lav-benefits__title {
+    color: #383A3D;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-grow: 1;
+    padding: 0 16px;
+  }
 
-    .product-size-guide-title p {
-      display: none;
-    }
+  .product-size-guide-title p {
+    display: none;
+  }
 
-    .product-size-guide-title h2 {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 26px;
-    }
-    .size-guide-wrapper {
-      margin-top: 20px!important;
-    }
-    .size-guide-wrapper .tabs__button {
-      color: #5C5C5C;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 24px; 
-      padding: 11px 15px;
-    }
-    .size-guide-wrapper  .tabs__button:not(.is-active) {
-      border: 1px solid #E6E6E6;
-      border-top: none;
-      background: #F0F4F5;
-    }
+  .product-size-guide-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+  }
+  .size-guide-wrapper {
+    margin-top: 20px!important;
+  }
+  .size-guide-wrapper .tabs__button {
+    color: #5C5C5C;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px; 
+    padding: 11px 15px;
+  }
+  .size-guide-wrapper  .tabs__button:not(.is-active) {
+    border: 1px solid #E6E6E6;
+    border-top: none;
+    background: #F0F4F5;
+  }
 
-    .size-table-wrapper tr:first-child td {
-      color: #5C5C5C;
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 19px; 
-      vertical-align: bottom;
-    }
+  .size-table-wrapper tr:first-child td {
+    color: #5C5C5C;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 19px; 
+    vertical-align: bottom;
+  }
 
-    .size-table-wrapper tr:first-child td img {
-      display: block;
-      margin: 0 auto 9px;
-    }
-    .size-table-wrapper table tbody tr:first-child td {
-      padding-top: 0!important;
-    }
-    .size-table-wrapper {
-      margin-top: 0!important;
-    }
+  .size-table-wrapper tr:first-child td img {
+    display: block;
+    margin: 0 auto 9px;
+  }
+  .size-table-wrapper table tbody tr:first-child td {
+    padding-top: 0!important;
+  }
+  .size-table-wrapper {
+    margin-top: 0!important;
+  }
 
-    .lav-watch-measure {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-    .lav-watch-measure img {
-      margin-left: 4px;
-    }
+  .lav-watch-measure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 28px auto;
+  }
+  .lav-watch-measure img {
+    margin-left: 4px;
+  }
 
-    .lav-note {
-      display: flex;
-      align-items: center;
-      color: #5C5555;
-      font-size: 13px;
-      font-weight: 400;
-      margin-top: 22px;
-      padding: 0 40px;
-    }
-    .lav-note span {
-      display: flex;
-      color: #3CBE1A;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-right: 4px;
-    }
-    .lav-note span img {
-      margin-right: 6px;
-    }
-    .lav-note__plate {
-      display: flex;
-      align-items: center;
-      padding: 12px 40px;
-      border-top: 1px solid var(--grey-300, #E7E7E7);
-      border-bottom: 1px solid var(--grey-300, #E7E7E7);
-      background: var(--grey-010, #FAFAFA);
-      margin-top: 12px;
-    }
-    .lav-note__plate img {
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
-    }
-    .lav-note__title {
-      margin: 0 16px;
-      color: var(--grey-700, #5C5555);
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 18px;
-    }
-    .lav-note__title span {
-      font-weight: 700;
-    }
-    .lav-note__link {
-      margin-left: auto;
-    }
-    .size-guide-wrapper {
-      max-width: 810px!important;
-    }
-    
+  .lav-note {
+    display: flex;
+    align-items: center;
+    color: #5C5555;
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 20px;
+    padding: 0 40px;
+  }
+  .lav-note span {
+    display: flex;
+    color: #3CBE1A;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .lav-note span img {
+    margin-right: 6px;
+  }
+  .lav-note__plate {
+    display: flex;
+    align-items: center;
+    padding: 12px 40px;
+    border-top: 1px solid var(--grey-300, #E7E7E7);
+    border-bottom: 1px solid var(--grey-300, #E7E7E7);
+    background: var(--grey-010, #FAFAFA);
+    margin-top: 16px;
+  }
+  .lav-note__plate img {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .lav-note__title {
+    margin: 0 16px;
+    color: var(--grey-700, #5C5555);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .lav-note__title span {
+    font-weight: 700;
+  }
+  .lav-note__link {
+    margin-left: auto;
+  }
+  .size-guide-wrapper {
+    max-width: 810px!important;
+  }
 
-  `;
+  .lav-option-guide {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  .lav-option-guide img {
+    margin-right: 5px;
+  }
+  .tabs__body {
+    padding: 0!important;
+  }
+  #tab-content-measurements {
+    padding: 37px 30px 0;
+  }
+  .size-toggle-wrapper {
+    padding-bottom: 0!important;
+    margin-bottom: 0!important;
+  }
+  .search-breed__note {
+    color: #5C5C5C;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 19px;
+    margin-bottom: 16px;
+  }
+  .search-breed {
+    max-width: 320px!important;
+  }
+  #tab-content-breeds .sub-tabs__body {
+    margin-bottom: 0!important;
+  }
+  .size-table-wrapper table thead th {
+    border-bottom: 0!important;
+    padding: 0!important;
+  }
+  .tabs__panel-body-breeds .size-table-wrapper {
+    border-top: 1px solid var(--grey-200, #E6E6E6);
+    padding-top: 12px;
+    margin-top: 12px!important;
+    padding-bottom: 0!important;
+  }
+  .tabs__panel-body-breeds .size-toggle-wrapper {
+    margin-top: 10px;
+  }
+  .size-table-wrapper table thead th {
+    padding: 7px 0!important;
+  }
+`;
 
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
@@ -270,6 +365,7 @@ console.log('initExp');
 
     handleTables();
     handleUnderTable();
+    initModals();
 
     // handleColors();
   }
@@ -308,7 +404,9 @@ console.log('initExp');
     });
 
     // Add icons
-    $$('.size-table-wrapper tr:first-child td').forEach((item) => {
+    $$(
+      '.size-table-wrapper tr:first-child td, .size-table-wrapper tr:first-child th'
+    ).forEach((item) => {
       const text = item.innerText.trim();
 
       if (text === 'Chest') {
@@ -333,10 +431,10 @@ console.log('initExp');
       }
     });
 
-    $('.size-toggle-wrapper').insertAdjacentHTML(
-      'afterend',
+    $('.tabs__body').insertAdjacentHTML(
+      'beforeend',
       `<div class="lav-watch-measure">
-        <span>WATCH VIDEO ON HOW TO MEASURE</span>
+        <span class="lav-link">WATCH VIDEO ON HOW TO MEASURE</span>
         <img src="${exp.dir}/img/icon-play.svg" ></div>`
     );
   }
@@ -413,15 +511,20 @@ console.log('initExp');
           ) {
             labelEl.insertAdjacentHTML(
               'beforeend',
-              `<span class="lav-option-value">${
+              `
+              <span class="lav-option-value">${
                 $('.SizeSwatch__Radio:checked + .SizeSwatch', optionEl)
                   .innerText
-              }</span>`
+              }</span>
+              <span class='lav-option-guide'>
+                <img src="${exp.dir}/img/icon-ruler.svg" />
+                <span class="lav-link">View Size Guide</span>
+              </span>
+              `
             );
           }
         }
 
-        console.log('fire', labelEl);
         if (labelEl?.innerText.includes('Quantity')) {
           optionEl.classList.add('lav-quantity');
 
@@ -593,5 +696,53 @@ console.log('initExp');
 
   function $$(selector, context = document) {
     return context.querySelectorAll(selector);
+  }
+
+  function initModals() {
+    const modalEl = `
+      <div class='lav-modal' style='display: none;'>
+        <div class='lav-modal__inner lav-modal__test'>
+        asdf
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalEl);
+
+    document
+      .querySelector('.lav-modal')
+      .addEventListener('click', function (e) {
+        if (e.target.classList.contains('lav-modal')) {
+          closeModal();
+        }
+      });
+
+    for (let el of document.querySelectorAll('.lav-modal__close')) {
+      el.addEventListener('click', function () {
+        closeModal();
+      });
+    }
+  }
+
+  function openModal(type) {
+    document.body.classList.add('lav-modal-open');
+    document.querySelector('html').classList.add('lav-modal-open');
+    document.querySelector('.lav-modal__' + type).classList.add('active');
+    document.querySelector('.lav-modal').style.display = 'flex';
+    setTimeout(() => {
+      document.querySelector('.lav-modal').classList.add('active');
+    }, 100);
+  }
+
+  function closeModal() {
+    document.body.classList.remove('lav-modal-open');
+    document.querySelector('html').classList.remove('lav-modal-open');
+    document.querySelector('.lav-modal').classList.remove('active');
+    setTimeout(() => {
+      document.querySelector('.lav-modal').style.display = 'none';
+      document
+        .querySelector('.lav-modal__inner.active')
+        .classList.remove('active');
+    }, 400);
   }
 })();
