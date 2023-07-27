@@ -917,7 +917,7 @@ console.log('**exp** initExp');
       display: none;
     }
     .lav-slide-vert img {
-      object-fit: contain!imoprtant;
+      object-fit: contain!important;
     }
     @media(max-width: 992px) {
       .lav-product {
