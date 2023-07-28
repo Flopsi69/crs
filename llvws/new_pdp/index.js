@@ -2535,6 +2535,10 @@ function initSwiper() {
 function initPopup() {
   const popup = $('.popup');
 
+  setTimeout(() => {
+    popup.showModal();
+  }, 5000);
+
   $('.popup-trigger').addEventListener('click', () => {
     pushDataLayer(
       'exp_improving_pdp_get',
