@@ -2108,7 +2108,12 @@ function initSwiper() {
       const images =
         productType === 'event' ? settings.eventShare.images : product?.images;
 
-      if (images?.length && !prTitle.includes('guided sunset')) {
+      if (
+        images?.length &&
+        !prTitle.includes('guided sunset') &&
+        !prTitle.includes('neon paddle') &&
+        !prTitle.includes('doggie paddle')
+      ) {
         for (let src of images) {
           const id = parseIdFromUrl(src);
           const isVert =
@@ -2308,7 +2313,11 @@ function initSwiper() {
   let reviews =
     productType === 'event' ? settings.eventShare.reviews : product?.reviews;
 
-  if (prTitle.includes('guided sunset')) {
+  if (
+    prTitle.includes('guided sunset') ||
+    prTitle.includes('neon paddle') ||
+    prTitle.includes('doggie paddle')
+  ) {
     reviews = settings.eventShare.reviewsPaddle;
   }
 
