@@ -514,6 +514,19 @@ const styles = `
     padding-bottom: 16px;
   }
 
+  .accordion_content a {
+    text-decoration: underline;
+    transition: 0.35s;
+    cursor: pointer;
+    color: #0170B9
+  }
+  @media(hover:hover) {
+    .accordion_content a:hover {
+      text-decoration: underline;
+      opacity: 0.7;
+    }
+  }
+
   .accordion_header svg {
     transition: 0.35s;
   }
@@ -938,6 +951,9 @@ const styles = `
       }
       .main_slider .swiper-pagination {
         top: 23px;
+      }
+      #chat-widget-container[style*="max-height: calc(100% - 0px)"] {
+        bottom: 50px!important;
       }
       .popup__btn:hover {
         background: var(--18-aae-2, #18AAE2)!important;
@@ -1594,11 +1610,18 @@ function handleProductInfo() {
       $('.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'),
     () => {
       setTimeout(() => {
+        let isChangeDirection = false;
         $$(
           '.fl-slideshow-container .fl-slideshow-thumbs .fl-slideshow-image-img'
         ).forEach((slide) => {
           const src = slide.src.replace('-150x150', '');
           const isVert = src.includes('Brown_Vintage_Cowboy');
+
+          if (src.includes('516A2034_lg')) {
+            isChangeDirection = true;
+            return;
+          }
+
           $('.main_slider .swiper-wrapper').insertAdjacentHTML(
             'beforeend',
             `
@@ -1618,6 +1641,29 @@ function handleProductInfo() {
               </div>
             `
           );
+
+          if (isChangeDirection) {
+            isChangeDirection = false;
+            $('.main_slider .swiper-wrapper').insertAdjacentHTML(
+              'beforeend',
+              `
+                <div class="swiper-slide">
+                  <img src="https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/516A2034_lg.jpg" loading="lazy">
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+              `
+            );
+
+            $('.main_slider_sync .swiper-wrapper').insertAdjacentHTML(
+              'beforeend',
+              `
+                <div class="swiper-slide">
+                  <img src="https://lakelasvegaswatersports.com/wp-content/uploads/2020/03/516A2034_lg.jpg" loading="lazy">
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+              `
+            );
+          }
         });
 
         isReadyMainSlider = true;
@@ -1709,7 +1755,10 @@ function handleProductInfo() {
       return false;
     }
 
-    if (text === 'note:') {
+    if (
+      text === 'note:' ||
+      text === 'neon paddle | 2.5 hour event | neon glow paddle with dj'
+    ) {
       $('.choice.lav-desk').insertAdjacentHTML(
         'beforebegin',
         `<div class="includes">${parent.innerHTML}</div>`
@@ -1791,7 +1840,7 @@ function handleProductInfo() {
           </svg>
         </div>
         <div class="accordion_content">
-          <p>Our cancellation policy allows for free cancellations up to 24 hours before the event. To cancel, please send us an email or make a request through our chat service. Refunds will be processed according to our terms and conditions.</p>
+          <p>Our cancellation policy allows for free cancellations up to 24 hours before the event. For cancellations, please send us an email or submit your request via chat or SMS. Refunds will be processed according to our terms and conditions.</p>
         </div>
       </div>
     `
