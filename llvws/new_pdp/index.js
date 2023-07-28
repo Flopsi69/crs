@@ -2535,9 +2535,12 @@ function initSwiper() {
 function initPopup() {
   const popup = $('.popup');
 
-  setTimeout(() => {
-    popup.showModal();
-  }, 5000);
+  if (!sessionStorage.getItem('lav-popup-fire')) {
+    setTimeout(() => {
+      popup.showModal();
+      sessionStorage.setItem('lav-popup-fire', 'true');
+    }, 5000);
+  }
 
   $('.popup-trigger').addEventListener('click', () => {
     pushDataLayer(
