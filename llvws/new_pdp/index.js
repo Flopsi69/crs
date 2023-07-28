@@ -952,7 +952,8 @@ const styles = `
       .main_slider .swiper-pagination {
         top: 23px;
       }
-      #chat-widget-container[style*="max-height: calc(100% - 0px)"], #chat-widget-minimized {
+      #chat-widget-container[style*="max-height: calc(100% - 0px)"], 
+      #chat-widget-container[style*="height: 138px"]{
         bottom: 50px!important;
       }
       .popup__btn:hover {
