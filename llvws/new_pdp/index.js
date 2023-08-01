@@ -772,17 +772,13 @@ const styles = `
     }
 
     .popup__copy {
-      display: none;
+      display: block;
       position: absolute;
       width: 24px;
       height: 24px;
       bottom: 10px;
       right: 8px;
       transition: 0.35s;
-    }
-
-    [data-step="2"] .popup__copy {
-      display: block;
     }
 
     .popup__copy-check {
@@ -825,15 +821,13 @@ const styles = `
       background: #FFF;
       margin-top: 8px;
       color: #000;
-    }
-    .popup__input.error {
-      border-color: red;
-    }
-    [data-step="2"] .popup__input {
+
       text-align: center;
       pointer-events: none;
       font-weight: 700;
-      color: #000;
+    }
+    .popup__input.error {
+      border-color: red;
     }
     .popup__input:focus, .popup__input[type=text]:focus {
       border: 1px solid #18AAE2!important;
@@ -1429,21 +1423,21 @@ const html = `
           <span>Get Your 10% Off ></span>
         </div>
 
-        <dialog class="popup lav-observe" data-step='1'>
+        <dialog class="popup lav-observe">
           <img class="popup__close" src="${exp.dir}/img/24_cross.svg">
 
           <img class="popup__icon" src="${exp.dir}/img/24_sale.svg">
           <div class="popup__title"> Enjoy <span>10% Off</span> Water Activities!</div>
           <div class="popup__caption">Exclusive Online Discount for All Water&nbsp;Adventures</div>
           <div class="popup__input-wrap">
-            <div class="popup__input-caption">Enter your email:</div>
-            <input class="popup__input" type="text" placeholder="Email">
+            <div class="popup__input-caption">Your promo code is:</div>
+            <input value='BOOK10' class="popup__input" type="text" placeholder="promo" readonly="readonly">
             <div class="popup__copy">
               <img class="popup__copy-icon" src="${exp.dir}/img/24_copy.svg">
               <img class="popup__copy-check" src="${exp.dir}/img/check_green.svg">
             </div>
           </div>
-          <button class="popup__btn">GET PROMO CODE</button>
+          <button class="popup__btn">CONTINUE SHOPPING</button>
         </dialog>
 
         <div class='lav-cancel'>
@@ -2536,13 +2530,6 @@ function initSwiper() {
 function initPopup() {
   const popup = $('.popup');
 
-  if (!sessionStorage.getItem('lav-popup-fire')) {
-    setTimeout(() => {
-      popup.showModal();
-      sessionStorage.setItem('lav-popup-fire', 'true');
-    }, 5000);
-  }
-
   $('.popup-trigger').addEventListener('click', () => {
     pushDataLayer(
       'exp_improving_pdp_get',
@@ -2609,47 +2596,13 @@ function initPopup() {
   });
 
   $('.popup__btn').addEventListener('click', () => {
-    if (
-      $('.popup').dataset.step === '1' &&
-      !validateEmail($('.popup__input').value)
-    ) {
-      pushDataLayer(
-        'exp_improving_pdp_pp_s1_b',
-        'Get promo code - Step 1',
-        'Button',
-        'Popup PDP- Checkout/Custom booking form'
-      );
-      $('.popup__input').classList.add('error');
-      return false;
-    }
-
-    if ($('.popup').dataset.step === '1') {
-      $('.popup').dataset.step = '2';
-      $('.popup__title').innerText = 'CONGRATULATIONS!';
-      $('.popup__caption').innerHTML =
-        'You are one step closer to your dream&nbsp;water&nbsp;adventures';
-      $('.popup__input-caption').innerText = 'Your promo code is:';
-      $('.popup__input').value = 'BOOK10';
-      $('.popup__input').setAttribute('readonly', 'readonly');
-      $('.popup__icon').src = exp.dir + '/img/24_congrat.svg';
-      $('.popup__btn').innerText = 'CONTINUE SHOPPING';
-      $('.popup').classList.remove('in-view');
-      observerView($('.popup'));
-      pushDataLayer(
-        'exp_improving_pdp_pp_s1_b',
-        'Get promo code - Step 1',
-        'Button',
-        'Popup PDP- Checkout/Custom booking form'
-      );
-    } else {
-      popup.close();
-      pushDataLayer(
-        'exp_improving_pdp_pp_s2_b',
-        'Continue shopping - Step 2',
-        'Button',
-        'Popup PDP- Checkout/Custom booking form'
-      );
-    }
+    popup.close();
+    pushDataLayer(
+      'exp_improving_pdp_pp_s1_b',
+      'Continue shopping',
+      'Button',
+      'Popup PDP- Checkout/Custom booking form'
+    );
   });
 
   popup.addEventListener('click', (e) => {
