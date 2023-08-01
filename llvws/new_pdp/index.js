@@ -812,19 +812,21 @@ const styles = `
     .popup__input {
       width: 100%;
       padding: 5px 16px;
-      height: 44px;
+      height: 44px!important;
       font-size: 14px;
-      font-weight: 400;
       line-height: 20px;
       border-radius: 4px;
       border: 1px solid #DDD;
       background: #FFF;
       margin-top: 8px;
-      color: #000;
+      color: #000!important;
 
       text-align: center;
       pointer-events: none;
       font-weight: 700;
+      border-radius: 4px!important;
+      border: 1px solid #DDD!important;
+      background: #FAFAFA!important;
     }
     .popup__input.error {
       border-color: red;
