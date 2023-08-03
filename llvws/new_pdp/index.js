@@ -1523,7 +1523,7 @@ function init() {
         '.lav-product__right iframe'
       ).getBoundingClientRect();
 
-      if (bottom - 100 - height < 0 && bottom > 50) {
+      if (bottom - 100 - height < 0 && bottom > 40) {
         $('.lav-sticky').classList.add('lav-sticky_disable');
       } else if ($('.lav-sticky').classList.contains('lav-sticky_disable')) {
         $('.lav-sticky').classList.remove('lav-sticky_disable');
