@@ -1523,13 +1523,13 @@ function init() {
         '.lav-product__right iframe'
       ).getBoundingClientRect();
 
-      if (bottom - 100 - height < 0 && bottom > 40) {
+      if (bottom - height / 2 - window.innerHeight < 0 && bottom > 40) {
         $('.lav-sticky').classList.add('lav-sticky_disable');
       } else if ($('.lav-sticky').classList.contains('lav-sticky_disable')) {
         $('.lav-sticky').classList.remove('lav-sticky_disable');
       }
 
-      console.debug('bottomDiff:', bottom - height);
+      console.debug('bottomDiff:', bottom - window.innerHeight);
       console.debug('bottom:', bottom, 'height:', height, 'top:', top);
     }
   }

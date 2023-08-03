@@ -157,7 +157,7 @@ console.log('initExp');
       border-bottom: 1px solid var(--border-color);
     }
     .size-guide__link {
-      opacity: 0.5;
+      display: none;
     }
     .lav-option-value {
       color: var(--grey-800, #383A3D);
@@ -166,6 +166,17 @@ console.log('initExp');
       line-height: 1;
       margin-right: auto;
       margin-left: 4px;
+    }
+    .lav-quantity-stock {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: auto;
+      color: var(--green, #3CBE1A);
+    }
+    .lav-quantity-stock_out {
+      color: #FF2A00;
     }
     .template-product .ProductForm__Label {
       align-items: center;
@@ -213,6 +224,7 @@ console.log('initExp');
       text-transform: uppercase;
       cursor: pointer;
       letter-spacing: 1px;
+      text-underline-offset: 2px;
     }
     @media(hover:hover) {
       .lav-link:hover {
@@ -327,16 +339,13 @@ console.log('initExp');
       padding: 0 40px;
       line-height: 1.3;
     }
-    .lav-note span {
-      display: inline-flex;
-      align-items: center;
+    .lav-note span span {
       color: #3CBE1A;
       font-weight: 500;
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-right: 4px;
     }
-    .lav-note span img {
+    .lav-note img {
       margin-right: 6px;
     }
     .lav-note__plate {
@@ -506,8 +515,12 @@ console.log('initExp');
     .lav-modal__guide .Container {
       padding: 0;
     }
-    .lav-modal__guide  .size-guide-wrapper {
+    .lav-modal__guide .size-guide-wrapper {
       padding: 0;
+      margin: 0;
+    }
+    .Section[data-section-type="product-size-guide"] {
+      margin-bottom: 120px;
     }
     .lav-modal__guide [data-section-type="product-size-guide"] {
       margin: 0;
@@ -517,6 +530,197 @@ console.log('initExp');
     }
     .lav-modal__guide .tabs__body .lav-watch-measure {
       display: none;
+    }
+    .lav-modal__guide #tab-content-measurements {
+      padding-bottom: 28px;
+    }
+
+    .template-product .ProductMeta__Description {
+      margin-top: 28px;
+    }
+    .lav-product__title {
+      color: #5C5555;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px;
+      margin-bottom: 16px;
+    }
+    .template-product .ProductMeta__Description ul {
+      margin-left: 16px;
+    }
+
+    .lav-contact {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #E7E7E7;
+      text-align: center;
+    }
+
+    .lav-contact__caption {
+      color: #5C5C5C;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; 
+    }
+
+    .lav-contact__btn {
+      padding: 8px 24px;
+      cursor: pointer;
+      border: 1px solid #344D79;
+      text-align: center;
+      max-width: 260px;
+      width: 100%;
+      margin: 12px auto 0;
+      color: var(--primary, #344D79);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 13px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      transition: 0.35s;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media(hover: hover) {
+      .lav-contact__btn:hover {
+        background-color: var(--primary, #344D79);
+        color: #fff;
+      }
+    }
+
+    .lav-product-collapse {
+      display: none;
+    }
+    .lav-mob {
+      display: none;
+    }
+    .lav-how {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .lav-how__title {
+      color: #5C5555;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px
+    }
+    .lav-how__image {
+      line-height: 0;
+      margin-top: 20px;
+    }
+    .lav-how__image img {
+      max-width: 160px;
+      width: 100%;
+    }
+    .lav-how__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .lav-how__link img {
+      margin-left: 4px;
+    }
+    .size-guide__video {
+      height: 0!important;
+      overflow: hidden!important; 
+      padding: 0!important;
+    }
+    @media(max-width: 767px) {
+      .lav-desk {
+        display: none;
+      }
+      .lav-mob {
+        display: block;
+      }
+      .lav-delivery {
+        margin: 20px 0 5px;
+      }
+      .lav-benefits {
+        margin: 10px 0 0;
+      }
+      .single-product-size-guide {
+        margin-top: 50px;
+      }
+      .size-guide-wrapper .tabs__button {
+        white-space: nowrap;
+        padding: 10px;
+      }
+      .tabs__button:first-child {
+        width: 60%;
+      }
+      .tabs__button:last-child {
+        width: 40%;
+      }
+      #tab-content-measurements {
+        padding-left: 16px;
+        padding-right: 15px;
+      }
+      .lav-note {
+        padding: 0;
+      }
+      .lav-note__plate {
+        align-items: flex-start;
+        margin-left: -14px;
+        margin-right: -14px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      .lav-note__plate img {
+        width: 24px;
+        height: 24px;
+      }
+      .lav-note {
+        align-items: flex-start;
+      }
+      .lav-note img {
+        margin-top: 1px;
+      }
+      .search-breed {
+        min-height: auto!important;
+      }
+      #tab-content-breeds .sub-tabs__body {
+        min-height: 100px!important;
+      }
+      .tabs__panel-body-breeds .size-toggle-wrapper {
+        margin-top: 0;
+      }
+      .search-breed {
+        padding: 0 10px;
+      }
+      .lav-product-collapse {
+        display: block;
+        margin: 20px -24px 0;
+        padding: 0 24px;
+      }
+      .Product__Tabs {
+        margin-top: -1px!important;
+      }
+      .lav-product-collapse ul {
+        margin-left: 16px;
+      }
+      .ProductMeta__Description {
+        display: none;
+      }
+      .lav-modal__guide {
+        padding: 32px 12px;
+      }
+      .lav-modal {
+        padding: 12px;
+      }
+      .lav-modal__guide [data-section-type="product-size-guide"] {
+        padding-top: 0!important;
+        margin-top: 0!important;
+      }
+      .lav-modal__guide #tab-content-breeds {
+        padding-bottom: 20px;
+      }
     }
   `;
 
@@ -541,19 +745,55 @@ console.log('initExp');
     console.log(shippingOptions);
     handleBenefits();
 
-    handleTables();
-    handleUnderTable();
-    initModals();
-    handleShippingTable();
+    if ($('.size-guide__content')) {
+      handleTables();
+      handleUnderTable();
+    }
 
+    initModals();
+    handleProductInfo();
     // handleColors();
   }
 
-  function handleShippingTable() {}
+  function handleProductInfo() {
+    if (!$('.ProductMeta__Description')) return false;
+
+    $('.ProductMeta__Description').insertAdjacentHTML(
+      'afterbegin',
+      `
+      <div class='lav-product__title'>Product info</div>
+    `
+    );
+
+    const mobileCollapse = `
+      <div class="Collapsible Collapsible--large lav-product-collapse">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">Product info<span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    $('.ProductMeta__Description').insertAdjacentHTML(
+      'afterend',
+      mobileCollapse
+    );
+
+    $('.lav-product-collapse .Rte').innerHTML = $(
+      '.ProductMeta__Description .Rte'
+    ).innerHTML;
+    // todo check product info icons
+  }
+
   function handleUnderTable() {
     const el = `
         <div class="lav-note">
-          <span><img src='${exp.dir}/img/green-note.svg' /> NOTE:</span> Finding the right size for your dog can be tricky and thats why we offer:
+          <img src='${exp.dir}/img/green-note.svg' /><span>  <span>NOTE:</span> Finding the right size for your dog can be tricky and thats why we offer:</span>
         </div>
 
         <div class="lav-note__plate">
@@ -580,6 +820,13 @@ console.log('initExp');
       if (['CM', 'Inches'].includes(text)) {
         item.innerText = 'Size';
         item.classList.add('lav-col-size');
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      const tabEl = e.target.closest('.tabs__button');
+      if (tabEl) {
+        handleImageForPopUp(tabEl.dataset.tab);
       }
     });
 
@@ -625,12 +872,21 @@ console.log('initExp');
       }
     });
 
-    $('.tabs__body').insertAdjacentHTML(
+    // todo video what to do
+    // and .size-guide__video remove
+    $('.tabs__body')?.insertAdjacentHTML(
       'beforeend',
-      `<div class="lav-watch-measure">
-          <span class="lav-link">WATCH VIDEO ON HOW TO MEASURE</span>
-          <img src="${exp.dir}/img/icon-play.svg" ></div>`
+      `
+        <div class="lav-watch-measure">
+          <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
+          <img src="${exp.dir}/img/icon-play.svg" >
+        </div>
+      `
     );
+
+    $('.lav-link-measure').addEventListener('click', () => {
+      $('.measurements__cell-link')?.click();
+    });
   }
 
   function handleDelivery() {
@@ -639,7 +895,7 @@ console.log('initExp');
           <div class='lav-delivery__item ship-to'>
             <div class='ship-to__caption'>Ship to:</div>
             <div class='ship-to__dropdown'>
-              <div class='ship-to__value'>United States</div>
+              <div class='ship-to__value'></div>
               <div class='ship-to__list'></div>
             </div>
           </div>
@@ -703,36 +959,76 @@ console.log('initExp');
       });
     }
 
-    options.forEach((item, index) => {
-      const el = `
-          <div class='ship-to__item ${index === 0 ? 'active' : ''}'>${
-        item.title
-      }</div>
-        `;
-      $('.ship-to__list').insertAdjacentHTML('beforeend', el);
+    $('.ship-to__value').textContent = options[0].title;
+    $('.lav-delivery__plate-line:last-child span').textContent = countDelivery(
+      options[0].value
+    );
+
+    options.forEach((option, index) => {
+      const el = document.createElement('div');
+      el.classList.add('ship-to__item');
+      if (index === 0) el.classList.add('active');
+
+      el.textContent = option.title;
+
+      el.addEventListener('click', () => {
+        if (el.classList.contains('active')) return false;
+
+        const delivery = countDelivery(option.value);
+        $('.lav-delivery__plate-line:last-child span').textContent = delivery;
+
+        $('.ship-to__item.active')?.classList.remove('active');
+        el.classList.add('active');
+
+        $('.ship-to__value').textContent = option.title;
+        $('.ship-to__dropdown').classList.remove('active');
+      });
+
+      $('.ship-to__list').insertAdjacentElement('beforeend', el);
     });
 
     $('.ship-to__value').addEventListener('click', () => {
       $('.ship-to__dropdown').classList.toggle('active');
     });
 
-    for (let item of $$('.ship-to__item')) {
-      item.addEventListener('click', (e) => {
-        if (item.classList.contains('active')) return false;
-
-        $('.ship-to__item.active')?.classList.remove('active');
-        item.classList.add('active');
-
-        $('.ship-to__value').textContent = item.textContent;
-        $('.ship-to__dropdown').classList.remove('active');
-      });
-    }
-
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.ship-to__dropdown')) {
         $('.ship-to__dropdown').classList.remove('active');
       }
     });
+
+    function countDelivery([fromRange, toRange]) {
+      const today = new Date();
+      const firstDate = new Date(today);
+      firstDate.setDate(today.getDate() + parseInt(fromRange));
+
+      const secondDate = new Date(today);
+      secondDate.setDate(today.getDate() + parseInt(toRange));
+
+      const formatDate = (date) =>
+        `${date.getDate()} ${
+          [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ][date.getMonth()]
+        }`;
+
+      console.log(
+        'countDate:',
+        `${formatDate(firstDate)} - ${formatDate(secondDate)}`
+      );
+      return `${formatDate(firstDate)} - ${formatDate(secondDate)}`;
+    }
 
     return options;
   }
@@ -756,6 +1052,13 @@ console.log('initExp');
               }</span>`
             );
           }
+
+          $$('.SizeSwatch__Radio', optionEl).forEach((item) => {
+            item.addEventListener('change', () => {
+              $('.lav-option-value', optionEl).textContent =
+                item.nextElementSibling.textContent;
+            });
+          });
         }
 
         if (labelEl?.innerText.includes('Size')) {
@@ -771,27 +1074,56 @@ console.log('initExp');
                   $('.SizeSwatch__Radio:checked + .SizeSwatch', optionEl)
                     .innerText
                 }</span>
-                <span class='lav-option-guide lav-trigger-guide'>
-                  <img src="${exp.dir}/img/icon-ruler.svg" />
-                  <span class="lav-link">View Size Guide</span>
-                </span>
                 `
             );
+
+            if ($('.size-guide__content')) {
+              labelEl.insertAdjacentHTML(
+                'beforeend',
+                `
+                  <span class='lav-option-guide lav-trigger-guide'>
+                    <img src="${exp.dir}/img/icon-ruler.svg" />
+                    <span class="lav-link">View Size Guide</span>
+                  </span>
+                  `
+              );
+            }
           }
+
+          $$('.SizeSwatch__Radio', optionEl).forEach((item) => {
+            item.addEventListener('change', () => {
+              $('.lav-option-value', optionEl).textContent =
+                item.nextElementSibling.textContent;
+            });
+          });
         }
 
         if (labelEl?.innerText.includes('Quantity')) {
           optionEl.classList.add('lav-quantity');
 
           console.log($('[name="quantity"]', optionEl));
+          // TODO another variant
+          // out of stock
           if ($('[name="quantity"]', optionEl)?.value) {
             labelEl.insertAdjacentHTML(
               'beforeend',
-              `<span class="lav-option-value">${
+              `
+              <span class="lav-option-value">${
                 $('[name="quantity"]', optionEl).value
-              }</span>`
+              }</span>
+              <span class="lav-quantity-stock">In stock</span>
+              `
             );
           }
+
+          $('.QuantitySelector', optionEl).addEventListener('click', (e) => {
+            setTimeout(() => {
+              $('.lav-option-value', optionEl).textContent = $(
+                '[name="quantity"]',
+                optionEl
+              ).value;
+            }, 100);
+          });
         }
       }
     );
@@ -823,17 +1155,45 @@ console.log('initExp');
     $('.ProductMeta__Description').insertAdjacentHTML('beforebegin', el);
   }
 
-  function handleColors() {
-    $$('.ProductForm__Option').forEach((optionEl) => {
-      console.log(optionEl);
-      console.log($('.ProductForm__Label', optionEl));
-      if ($('.ProductForm__Label', optionEl)?.innerText.includes('Color')) {
-        optionEl.classList.add('lav-colors');
-      }
-    });
+  function handleImageForPopUp(tab) {
+    if (tab === 'tab-content-measurements') {
+      const arrHeadingCol = Array.from(
+        document.querySelectorAll(
+          '.size-table-wrapper tr:first-child td, .size-table-wrapper tr:first-child th'
+        )
+      ).map((el) => el.innerText.trim().toLowerCase());
 
-    if (!$('.lav-colors')) return false;
+      let src = '';
+      console.log(src);
+      if (arrHeadingCol.includes('neck')) {
+        src += 'neck';
+      }
+
+      if (arrHeadingCol.includes('chest')) {
+        src += src.length ? '-chest' : 'chest';
+      }
+
+      if (arrHeadingCol.includes('back')) {
+        src += src.length ? '-back' : 'back';
+      }
+
+      $('.lav-how__image img').src = `${exp.dir}/img/dog-${src}.svg`;
+    } else if (tab === 'tab-content-breeds') {
+      $('.lav-how__image img').src = `${exp.dir}/img/dog-weight.svg`;
+    }
   }
+
+  // function handleColors() {
+  //   $$('.ProductForm__Option').forEach((optionEl) => {
+  //     console.log(optionEl);
+  //     console.log($('.ProductForm__Label', optionEl));
+  //     if ($('.ProductForm__Label', optionEl)?.innerText.includes('Color')) {
+  //       optionEl.classList.add('lav-colors');
+  //     }
+  //   });
+
+  //   if (!$('.lav-colors')) return false;
+  // }
 
   // *** Utils *** //
 
@@ -1114,27 +1474,46 @@ console.log('initExp');
           </div>
 
           <div class='lav-modal__inner lav-modal__guide'>
+            <div class='lav-how'>
+              <div class='lav-how__title'>How to Measure</div>
+              <div class='lav-how__image'>
+                <img src='' />
+              </div>
+              <div class='lav-how__link'>
+                <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
+                <img src="${exp.dir}/img/icon-play.svg" >
+              </div>
+            </div>
+
+            <div class='lav-contact'>
+              <div class='lav-contact__caption'>Are you still uncertain about the size?</div>
+              <div class='lav-contact__btn'>
+                <span class='lav-desk'>Contact us</span>
+                <span class='lav-mob'>CHAT WITH A SPECIALIST</span>
+              </div>
+            </div>
+
             <div class='lav-modal__close'>
               <img src="${exp.dir}/img/icon-close.svg" />
             </div>
-
-            
           </div>
         </div>
       `;
 
     document.body.insertAdjacentHTML('beforeend', modalEl);
 
-    // const sizeClone = $('[data-section-type="product-size-guide"]').cloneNode(
-    //   true
-    // );
-    // const sizeClone = $('[data-section-type="product-size-guide"]').outerHTML;
-    // $('.lav-modal__guide').insertAdjacentElement('beforeend', sizeClone);
-    // $('.lav-modal__guide').insertAdjacentHTML('beforeend', sizeClone);
-    // $('.lav-modal__guide').insertAdjacentElement(
-    //   'beforeend',
-    //   $('[data-section-type="product-size-guide"]')
-    // );
+    if ($('.tabs__button.is-active')) {
+      handleImageForPopUp($('.tabs__button.is-active').dataset.tab);
+    }
+
+    $('.lav-how__link').addEventListener('click', function () {
+      closeModal();
+      $('.measurements__cell-link')?.click();
+    });
+
+    $('.lav-contact__btn').addEventListener('click', function () {
+      $('.olark-launch-button')?.click();
+    });
 
     document
       .querySelector('.lav-modal')
@@ -1187,9 +1566,10 @@ console.log('initExp');
         ).nextElementSibling.classList.add('to-add-back');
 
         $('.lav-modal__guide').insertAdjacentElement(
-          'beforeend',
+          'afterbegin',
           $('[data-section-type="product-size-guide"]')
         );
+
         openModal('guide');
       });
     }
@@ -1211,12 +1591,14 @@ console.log('initExp');
     document.body.classList.remove('lav-modal-open');
     document.querySelector('html').classList.remove('lav-modal-open');
     document.querySelector('.lav-modal').classList.remove('active');
+
     if (document.querySelector('.lav-modal__guide.active')) {
       $('.to-add-back').insertAdjacentElement(
         'beforebegin',
         $('[data-section-type="product-size-guide"]')
       );
     }
+
     setTimeout(() => {
       document.querySelector('.lav-modal').style.display = 'none';
       document
