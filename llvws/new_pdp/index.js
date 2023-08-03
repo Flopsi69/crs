@@ -1515,6 +1515,25 @@ function init() {
   // Add New Page
   $('#content').insertAdjacentHTML('beforebegin', html);
 
+  window.addEventListener('scroll', handleScroll);
+
+  function handleScroll() {
+    if ($('.lav-product__left .lav-product__right')) {
+      const { bottom, height, top } = $(
+        '.lav-product__right iframe'
+      ).getBoundingClientRect();
+
+      if (bottom - 100 - height < 0 && bottom > 50) {
+        $('.lav-sticky').classList.add('lav-sticky_disable');
+      } else if ($('.lav-sticky').classList.contains('lav-sticky_disable')) {
+        $('.lav-sticky').classList.remove('lav-sticky_disable');
+      }
+
+      console.debug('bottomDiff:', bottom - height);
+      console.debug('bottom:', bottom, 'height:', height, 'top:', top);
+    }
+  }
+
   changeFooter();
 
   handleProductInfo();
@@ -2045,6 +2064,11 @@ function changeFooter() {
       @media (max-width: 768px) {
         .lav-sticky {
           display: block;
+          transition: 0.35s;
+        }
+        .lav-sticky_disable {
+          opacity: 0;
+          pointer-events: none;
         }
         .site-footer {
           margin-bottom: 64px;
