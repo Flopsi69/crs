@@ -414,6 +414,9 @@ console.log('initExp');
     #tab-content-breeds .sub-tabs__body {
       margin-bottom: 0!important;
     }
+    .lav-modal__guide #tab-content-breeds .size-toggle-wrapper {
+      margin-bottom: 20px!important;
+    }
     .size-table-wrapper table thead th {
       border-bottom: 0!important;
       padding: 0!important;
@@ -632,12 +635,44 @@ console.log('initExp');
       overflow: hidden!important; 
       padding: 0!important;
     }
+    .lav-ach {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .lav-ach__item {
+      width: 33.33%;
+      padding: 0 15px 15px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cross-banner__widget {
+      display: none;
+    }
+    .size-table-wrapper > p {
+      display: none;
+    }
     @media(max-width: 767px) {
       .lav-desk {
         display: none;
       }
       .lav-mob {
         display: block;
+      }
+      .ProductForm__Option {
+        margin-bottom: 16px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #E6E6E6;
+      }
+      .ProductForm__Variants {
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+      .ProductMeta {
+        margin-bottom: 16px;
       }
       .lav-delivery {
         margin: 20px 0 5px;
@@ -784,10 +819,38 @@ console.log('initExp');
       mobileCollapse
     );
 
+    // todo check product info icons
+    if ($('.cross-banners .cross-banner')) {
+      const parent = document.createElement('div');
+      parent.classList.add('lav-ach');
+
+      $$('.ProductForm .cross-banners .cross-banner').forEach((el) => {
+        const child = document.createElement('div');
+        child.classList.add('lav-ach__item');
+
+        const text = el.querySelector('p').innerText.trim().toLowerCase();
+        if (text.includes('fit tested')) {
+          $('.lab-benefit__fit').classList.add('active');
+        }
+
+        if (text.includes('color retention')) {
+          $('.lab-benefit__retention').classList.add('active');
+        }
+
+        child.innerHTML = el.innerHTML;
+
+        parent.insertAdjacentElement('beforeend', child);
+      });
+
+      $('.ProductMeta__Description .Rte').insertAdjacentElement(
+        'beforeend',
+        parent
+      );
+    }
+
     $('.lav-product-collapse .Rte').innerHTML = $(
       '.ProductMeta__Description .Rte'
     ).innerHTML;
-    // todo check product info icons
   }
 
   function handleUnderTable() {
@@ -861,6 +924,13 @@ console.log('initExp');
         item.insertAdjacentHTML(
           'afterbegin',
           `<img src="${exp.dir}/img/dog-breed.svg" />`
+        );
+      }
+
+      if (text === 'Paw Width') {
+        item.insertAdjacentHTML(
+          'afterbegin',
+          `<img src="${exp.dir}/img/dog-paw-width.svg" />`
         );
       }
 
@@ -1105,15 +1175,39 @@ console.log('initExp');
           // TODO another variant
           // out of stock
           if ($('[name="quantity"]', optionEl)?.value) {
+            let text = 'In stock';
+            if ($('.ProductForm__AddToCart[disabled]')) {
+              text = 'Out of stock';
+            }
             labelEl.insertAdjacentHTML(
               'beforeend',
               `
               <span class="lav-option-value">${
                 $('[name="quantity"]', optionEl).value
               }</span>
-              <span class="lav-quantity-stock">In stock</span>
+              <span class="lav-quantity-stock">${text}</span>
               `
             );
+
+            setInterval(() => {
+              if (
+                $('.ProductForm__AddToCart[disabled]') &&
+                !$('.lav-quantity-stock_out')
+              ) {
+                text = 'Out of stock';
+                $('.lav-quantity-stock').classList.add(
+                  'lav-quantity-stock_out'
+                );
+              } else if (
+                !$('.ProductForm__AddToCart[disabled]') &&
+                $('.lav-quantity-stock_out')
+              ) {
+                $('.lav-quantity-stock').textContent = 'In stock';
+                $('.lav-quantity-stock').classList.remove(
+                  'lav-quantity-stock_out'
+                );
+              }
+            }, 500);
           }
 
           $('.QuantitySelector', optionEl).addEventListener('click', (e) => {
@@ -1132,19 +1226,19 @@ console.log('initExp');
   function handleBenefits() {
     const el = `
         <div class='lav-benefits'>
-          <div class='lav-benefits__item'>
+          <div class='lav-benefits__item lab-benefit__premium'>
             <img src="${exp.dir}/img/benefit-cloth.svg" />
             <div class='lav-benefits__title'>Premium Quality Materials</div>
             <div class='lav-benefits__link lav-link lav-trigger-premium'>LEARN MORE</div>
           </div>
 
-          <div class='lav-benefits__item'>
+          <div class='lav-benefits__item lab-benefit__fit'>
             <img src="${exp.dir}/img/benefit-dog.svg" />
             <div class='lav-benefits__title'>Fit Tested on 100.000+ Dogs</div>
             <div class='lav-benefits__link lav-link lav-trigger-fit'>LEARN MORE</div>
           </div>
 
-          <div class='lav-benefits__item'>
+          <div class='lav-benefits__item lab-benefit__retention'>
             <img src="${exp.dir}/img/benefit-material.svg" />
             <div class='lav-benefits__title'>Color retention materials</div>
             <div class='lav-benefits__link lav-link lav-trigger-retention'>LEARN MORE</div>
