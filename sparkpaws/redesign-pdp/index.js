@@ -1,5 +1,4 @@
 console.log('initExp');
-window.mfq.push(['improving_pdp', 'variant_1']);
 
 (function () {
   /********* exp **********/
