@@ -1,4 +1,5 @@
 console.log('initExp');
+window.mfq.push(['improving_pdp', 'variant_1']);
 
 (function () {
   /********* exp **********/
@@ -1024,11 +1025,50 @@ console.log('initExp');
         .textContent.trim()
         .split(' to ');
 
+      const title = item.querySelector('td:first-child').textContent.trim();
+
+      let price = null;
+      switch (title) {
+        case 'United States':
+          price = '50$';
+          break;
+        case 'Canada':
+          price = '$60 CAD';
+          break;
+        case 'Australia & NZ':
+          price = '$65 AUD';
+          break;
+        case 'United Kingdom':
+          price = '£40';
+          break;
+        case 'Germany':
+          price = '€50';
+          break;
+        case 'Italy':
+          price = '€50';
+          break;
+        case 'France':
+          price = '€50';
+          break;
+        case 'Japan':
+          price = '¥6500';
+          break;
+        case 'Rest of EU':
+          price = '€50';
+          break;
+        case 'Rest of World':
+          price = '50$';
+          break;
+      }
+
       options.push({
-        title: item.querySelector('td:first-child').textContent.trim(),
+        title: title,
         value: date,
+        deliveryFrom: price,
       });
     }
+
+    console.log(options);
 
     $('.ship-to__value').textContent = options[0].title;
     $('.lav-delivery__plate-line:last-child span').textContent = countDelivery(
@@ -1047,6 +1087,8 @@ console.log('initExp');
 
         const delivery = countDelivery(option.value);
         $('.lav-delivery__plate-line:last-child span').textContent = delivery;
+        $('.lav-delivery__plate-line:first-child span').textContent =
+          option.deliveryFrom;
 
         $('.ship-to__item.active')?.classList.remove('active');
         el.classList.add('active');
@@ -1494,17 +1536,10 @@ console.log('initExp');
 
               <div class="lav-modal__title">Premium Quality Materials</div>
 
-              <ul class="lav-modal__text">
-                <li>Premium human grade teddy sherpa exterior</li>
-                <li>Soft polar fleece interior</li>
-                <li>Double breasted front buttons for perfect fit</li>
-                <li>Dual buttons at the back of the neck to stabilize oversized hood</li>
-                <li>Hole opening back of the neck for leash</li>
-                <li>Ribbed knit bottom hem & sleeve cuffs</li>
-                <li>Adjustable drawstring</li>
-                <li>Perfect for indoor and outdoor wear</li>
-                <li>Machine wash cold, tumble dry cold, avoid softener</li>
-              </ul>
+              <div class="lav-modal__text">
+                <p>Every product that Spark Paws creates undergoes a rigorous material selection process, along with multiple rounds of sampling and prototyping, ensuring the final product and its sizing are perfected for you and your dog.</p>
+                <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they guarantee a cozy fit for endless play and picture-perfect moments.</p>
+              </div>
             </div>
 
             <div class='lav-modal__inner lav-modal__delivery'>
