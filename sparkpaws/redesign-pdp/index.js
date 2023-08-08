@@ -6,13 +6,13 @@ console.log('initExp');
     dir: 'https://flopsi69.github.io/crs/sparkpaws/redesign-pdp',
     observer: {
       mutation: false,
-      intersection: false,
+      intersection: true,
     },
     clarity: {
       enable: true,
-      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+      params: ['set', 'new_info_pdp', 'variant_1'],
     },
-    debug: true,
+    debug: false,
   };
 
   // Observers
@@ -22,21 +22,11 @@ console.log('initExp');
     });
   }
 
-  if (exp.observer.intersection) {
-    initIntersection((el) => {
-      console.log(el);
-      if (isElementInViewport(el)) {
-        // pushDataLayer(...event);
-        el.classList.add('in-view');
-      }
-    });
-  }
-
   /*** STYLES / Start ***/
   const styles = `
       .lav-modal {
         position: fixed;
-        z-index: 999;
+        z-index: 999999999999;
         left: 0;
         right: 0;
         top: 0;
@@ -656,6 +646,30 @@ console.log('initExp');
       .size-table-wrapper > p {
         display: none;
       }
+      .lav-colors .HorizontalList__Item {
+        margin-top: 0;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .lav-colors .lav-colors__item {
+        width: 39px;
+        height: 39px;
+        border-radius: 50%;
+        font-size: 0;
+        line-height: 0;
+        border: 2px solid #fff!important;
+      }
+      .lav-colors .disabled .lav-colors__item {
+        outline: 1px solid red;
+      }
+      .SizeSwatch__Radio:checked + .lav-colors__item {
+        outline: 1px solid;
+      }
+      .lav-colors .lav-colors__item:before {
+      }
+      .lav-color-black {
+        background:;
+      }
       @media(max-width: 767px) {
         .lav-desk {
           display: none;
@@ -778,7 +792,6 @@ console.log('initExp');
     handleOptions();
 
     const shippingOptions = handleDelivery();
-    console.log(shippingOptions);
     handleBenefits();
 
     if ($('.size-guide__content')) {
@@ -788,7 +801,6 @@ console.log('initExp');
 
     initModals();
     handleProductInfo();
-    // handleColors();
   }
 
   function handleProductInfo() {
@@ -860,7 +872,7 @@ console.log('initExp');
             <img src='${exp.dir}/img/green-note.svg' /><span>  <span>NOTE:</span> Finding the right size for your dog can be tricky and thats why we offer:</span>
           </div>
 
-          <div class="lav-note__plate">
+          <div class="lav-note__plate lav-observe">
             <img src="${exp.dir}/img/icon-return.svg">
             <div class="lav-note__title"><span>30-day free return & exchange</span> on your first purchase for all dog apparel items</div>
             <div class="lav-note__link lav-link lav-trigger-return">LEARN MORE</div>
@@ -871,6 +883,8 @@ console.log('initExp');
   }
 
   function handleTables() {
+    $('[data-section-type="product-size-guide"]').classList.add('lav-observe');
+
     if ($('.product-size-guide-title h2')) {
       $('.product-size-guide-title h2').innerText = $(
         '.product-size-guide-title h2'
@@ -888,9 +902,62 @@ console.log('initExp');
     });
 
     document.addEventListener('click', function (e) {
-      const tabEl = e.target.closest('.tabs__button');
+      const el = e.target;
+      const tabEl = el.closest('.tabs__button');
       if (tabEl) {
         handleImageForPopUp(tabEl.dataset.tab);
+
+        if (
+          tabEl.innerText === 'Size by Breed' &&
+          $('.lav-modal__guide.active')
+        ) {
+          pushDataLayer(
+            'exp_new_info_pdp_pp_v_breed',
+            'Pop up Size charts',
+            'Visibility',
+            'Pop up Size charts - Size by Breed'
+          );
+        }
+
+        if ($('.lav-modal__guide.active')) {
+          pushDataLayer(
+            'exp_new_info_pdp_pp_tab',
+            `${tabEl.innerText}`,
+            'Tab',
+            'Pop up Size charts'
+          );
+        } else {
+          pushDataLayer(
+            'exp_new_info_pdp_tab',
+            `${tabEl.innerText}`,
+            'Tab',
+            'Size chart'
+          );
+        }
+      }
+
+      if (el.closest('.select2') && el.closest('.search-breed')) {
+        setTimeout(() => {
+          $$('.select2-container .select2-results__option').forEach((item) => {
+            item.addEventListener('click', function () {
+              if ($('.lav-modal__guide.active')) {
+                pushDataLayer(
+                  'exp_new_info_pdp_pp_breed_mydog',
+                  `My dog is like a - ${item.innerText}`,
+                  'Dropdown',
+                  'Pop up Size charts - Size by Breed'
+                );
+              } else {
+                pushDataLayer(
+                  'exp_new_info_pdp_breed_mydog',
+                  `My dog is like a - ${item.innerText}`,
+                  'Dropdown',
+                  'Size chart'
+                );
+              }
+            });
+          });
+        }, 300);
       }
     });
 
@@ -956,13 +1023,47 @@ console.log('initExp');
     );
 
     $('.lav-link-measure').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_new_info_pdp_wvideo',
+        'Watch video on how to measure',
+        'Button',
+        'Size chart'
+      );
       $('.measurements__cell-link')?.click();
+    });
+
+    let isFireToggler = false;
+    $$('.toggle-button__switch').forEach((item) => {
+      item.addEventListener('click', function () {
+        if (!isFireToggler) {
+          isFireToggler = true;
+          if (item.closest('.lav-modal__guide')) {
+            pushDataLayer(
+              'exp_new_info_pdp_pp_toggle_in',
+              `${$('input:checked + label', item).innerText}`,
+              'Toggle',
+              'Pop up Size charts - Size by Measurements'
+            );
+          } else {
+            pushDataLayer(
+              'exp_new_info_pdp_toggle_in',
+              `${$('input:checked + label', item).innerText}`,
+              'Toggle',
+              'Size chart'
+            );
+          }
+
+          setTimeout(() => {
+            isFireToggler = false;
+          }, 500);
+        }
+      });
     });
   }
 
   function handleDelivery() {
     const el = `
-          <div class='lav-delivery'>
+          <div class='lav-delivery lav-observe'>
             <div class='lav-delivery__item ship-to'>
               <div class='ship-to__caption'>Ship to:</div>
               <div class='ship-to__dropdown'>
@@ -989,7 +1090,7 @@ console.log('initExp');
               </div>
             </div>
 
-            <div class='lav-delivery__item'>
+            <div class='lav-delivery__item lav-observe'>
               <div class='lav-delivery__icon'>
                 <img src="${exp.dir}/img/icon-return.svg" />
               </div>
@@ -1067,8 +1168,6 @@ console.log('initExp');
       });
     }
 
-    console.log(options);
-
     $('.ship-to__value').textContent = options[0].title;
     $('.lav-delivery__plate-line:last-child span').textContent = countDelivery(
       options[0].value
@@ -1135,10 +1234,6 @@ console.log('initExp');
           ][date.getMonth()]
         }`;
 
-      console.log(
-        'countDate:',
-        `${formatDate(firstDate)} - ${formatDate(secondDate)}`
-      );
       return `${formatDate(firstDate)} - ${formatDate(secondDate)}`;
     }
 
@@ -1151,7 +1246,7 @@ console.log('initExp');
         const labelEl = $('.ProductForm__Label', optionEl);
 
         if (labelEl?.innerText.includes('Color')) {
-          optionEl.classList.add('lav-colors');
+          optionEl.classList.add('lav-colors', 'lav-observe');
 
           if (
             $('.SizeSwatch__Radio:checked + .SizeSwatch', optionEl)?.innerText
@@ -1166,15 +1261,25 @@ console.log('initExp');
           }
 
           $$('.SizeSwatch__Radio', optionEl).forEach((item) => {
+            handleColors(item.closest('.HorizontalList__Item'));
+
             item.addEventListener('change', () => {
-              $('.lav-option-value', optionEl).textContent =
-                item.nextElementSibling.textContent;
+              const value = item.nextElementSibling.textContent;
+
+              pushDataLayer(
+                'exp_new_info_pdp_c_color',
+                `${value}`,
+                'Option',
+                'Color'
+              );
+
+              $('.lav-option-value', optionEl).textContent = value;
             });
           });
         }
 
         if (labelEl?.innerText.includes('Size')) {
-          optionEl.classList.add('lav-size');
+          optionEl.classList.add('lav-size', 'lav-observe');
 
           if (
             $('.SizeSwatch__Radio:checked + .SizeSwatch', optionEl)?.innerText
@@ -1213,7 +1318,6 @@ console.log('initExp');
         if (labelEl?.innerText.includes('Quantity')) {
           optionEl.classList.add('lav-quantity');
 
-          console.log($('[name="quantity"]', optionEl));
           // TODO another variant
           // out of stock
           if ($('[name="quantity"]', optionEl)?.value) {
@@ -1267,7 +1371,7 @@ console.log('initExp');
 
   function handleBenefits() {
     const el = `
-          <div class='lav-benefits'>
+          <div class='lav-benefits lav-observe'>
             <div class='lav-benefits__item lab-benefit__premium'>
               <img src="${exp.dir}/img/benefit-cloth.svg" />
               <div class='lav-benefits__title'>Premium Quality Materials</div>
@@ -1299,10 +1403,7 @@ console.log('initExp');
         )
       ).map((el) => el.innerText.trim().toLowerCase());
 
-      console.log('heading', arrHeadingCol);
-
       let src = '';
-      console.log(src);
       if (arrHeadingCol.includes('neck')) {
         src += 'neck';
       }
@@ -1325,19 +1426,201 @@ console.log('initExp');
     }
   }
 
-  // function handleColors() {
-  //   $$('.ProductForm__Option').forEach((optionEl) => {
-  //     console.log(optionEl);
-  //     console.log($('.ProductForm__Label', optionEl));
-  //     if ($('.ProductForm__Label', optionEl)?.innerText.includes('Color')) {
-  //       optionEl.classList.add('lav-colors');
-  //     }
-  //   });
+  function handleColors(el) {
+    const colors = {
+      black: '#1F2125',
+      grey: '#938F99',
+      pink: '#CF9996',
+      brown: '#B97553',
+      'pine-green': '#011F20',
+      maroon: '#40161B',
+      red: '#681414',
+      lilac: '#C0A9D5',
+      teal: '#688F8B',
+      green: '#AEA78D',
+      'pastel-icing':
+        'linear-gradient(180deg, #D77DC9 0%, #FFB6AC 50%, #AEDBFC 100%)',
+      'snow-cone':
+        'linear-gradient(180deg, #A99EE9 0%, #FE376F 50%, #738DE6 100%)',
+      kaleidoscope:
+        'linear-gradient(180deg, #6566B3 0%, #F095A5 30.21%, #FFC0A6 66.67%, #5AA2B6 100%)',
+      '90s-retro':
+        'linear-gradient(180deg, #C0EAFC 29.69%, #3D2777 59.90%, #E9B6E5 100%)',
+      'lime-wave':
+        'linear-gradient(180deg, #4E52AE 0%, #7698C8 37.58%, #95E58C 100%)',
+      'purple-lavender': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
+      'red-&-black': 'linear-gradient(180deg, #E14365 0%, #141921 100%)',
+      chestnut: 'linear-gradient(180deg, #C68D99 0%, #091019 100%)',
+      'ice-blue':
+        'linear-gradient(180deg, #7E8DA1 0%, #A7B6C7 50.52%, #416C88 100%)',
+      'tropical-storm': 'linear-gradient(180deg, #C3C58B 0%, #ACE8F3 100%)',
+      'pink-purple':
+        'linear-gradient(180deg, #E4D3CD 0%, #EEC3B9 49.48%, #A5A1D9 100%)',
+      'navy-turquoise-pink':
+        'linear-gradient(180deg, #2F70B3 0%, #FBCDCD 49.48%, #71C7C1 100%)',
+      'black-green-pink':
+        'linear-gradient(180deg, #27212A 0%, #FB4D8A 49.48%, #019365 100%)',
+      'cotton-candy':
+        'linear-gradient(180deg, #A9CFE4 0%, #E6D4EA 49.48%, #EFCFC5 100%)',
+      'purple-green-yellow':
+        'linear-gradient(180deg, #BBB7DD 0%, #F7E6D3 49.48%, #BDE7D5 100%)',
+      'yellow-blue-pink':
+        'linear-gradient(180deg, #96DAE9 0%, #FDECCD 49.48%, #FFC6E5 100%)',
+      'multi-plaid-teal':
+        'linear-gradient(180deg, #2A4B60 0%, #E5DFBF 25%, #934E4F 47.92%, #22686E 75.52%, #DCA389 100%)',
+      'multi-plaid-purple':
+        'linear-gradient(180deg, #4A4381 0%, #A8A5CA 25%, #E27FBE 47.92%, #B16460 75.52%, #5B5D95 100%)',
+      'green-&-red-plaid': 'linear-gradient(180deg, #045F57 0%, #DC3132 100%)',
+    };
 
-  //   if (!$('.lav-colors')) return false;
-  // }
+    const labelEl = el.querySelector('label');
+
+    const label = el
+      .querySelector('label')
+      .innerText.trim()
+      .toLowerCase()
+      .replaceAll(' ', '-');
+
+    if (colors[label]) {
+      labelEl.classList.add(`lav-colors__item`);
+      labelEl.style.background = colors[label];
+    }
+
+    console.log('labelColor', label);
+  }
 
   // *** Utils *** //
+
+  if (exp.observer.intersection) {
+    initIntersection(async (el) => {
+      if (!el.classList.contains('in-view')) {
+        // console.log('intersactin', el);
+      }
+
+      if (await isElementInViewport(el)) {
+        if (el.classList.contains('lav-colors')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_v_color',
+            'Color section',
+            'Visibility',
+            'Color'
+          );
+        }
+
+        if (el.classList.contains('lav-size')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_v_sguide',
+            'Size',
+            'Visibility',
+            'Size guide'
+          );
+        }
+
+        if (el.classList.contains('lav-note__plate')) {
+          if (
+            document.querySelector('.lav-modal__guide.active') &&
+            !el.classList.contains('in-view-popup')
+          ) {
+            el.classList.add('in-view-popup');
+            pushDataLayer(
+              'exp_new_info_pdp_pp_30',
+              '30-day free return',
+              'Visibility',
+              'Pop up Size charts'
+            );
+          } else if (!el.classList.contains('in-view-normal')) {
+            el.classList.add('in-view-normal');
+            pushDataLayer(
+              'exp_new_info_pdp_v_30',
+              '30-day free return',
+              'Visibility',
+              'Size chart'
+            );
+          }
+
+          if (
+            el.classList.contains('in-view-normal') &&
+            el.classList.contains('in-view-popup')
+          ) {
+            el.classList.add('in-view');
+          }
+        }
+
+        if (el.classList.contains('lav-contact__btn')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_pp_v_chat',
+            'Chat with a specialist',
+            'Visibility',
+            'Pop up Size charts'
+          );
+        }
+
+        if (el.classList.contains('lav-delivery')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_v_del',
+            'Delivery',
+            'Visibility',
+            'Ship to'
+          );
+        }
+
+        if (el.classList.contains('lav-delivery__item')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_pp_v_ret',
+            'Return policy',
+            'Visibility',
+            'Ship to'
+          );
+        }
+
+        if (el.classList.contains('lav-modal__return')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_pp_v_30',
+            'Pop up 30-day free return & exchange',
+            'Visibility',
+            '30-day free return & exchange'
+          );
+        }
+
+        if (el.classList.contains('lav-benefits')) {
+          el.classList.add('in-view');
+
+          pushDataLayer(
+            'exp_new_info_pdp_v_ainfo',
+            'Aadditional information',
+            'Visibility',
+            'additional information'
+          );
+        }
+
+        if (
+          el.dataset.sectionType === 'product-size-guide' &&
+          !$('.to-add-back')
+        ) {
+          pushDataLayer(
+            'exp_new_info_pdp_v_schart',
+            'Size charts table',
+            'Visibility',
+            'Size chart'
+          );
+
+          el.classList.add('in-view');
+        }
+      }
+    });
+  }
 
   // Waiting for loading by condition
   function waitFor(condition, cb, ms = 1000) {
@@ -1418,23 +1701,23 @@ console.log('initExp');
     }
   }
 
-  async function isElementInViewport(el, event, timeout = 5) {
+  async function isElementInViewport(el, timeout = 3) {
+    if (el.classList.contains('in-view')) return false;
+    await new Promise((r) => setTimeout(r, timeout * 1000));
     if (el.classList.contains('in-view')) return false;
 
-    setTimeout(() => {
-      const rect = el.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
+    const rect = el.getBoundingClientRect();
+    const windowHeight =
+      window.innerHeight || document.documentElement.clientHeight;
 
-      if (
-        rect.top + rect.height * 0.3 < windowHeight &&
-        rect.bottom > rect.height * 0.3
-      ) {
-        return true;
-      }
+    if (
+      rect.top + rect.height * 0.3 < windowHeight &&
+      rect.bottom > rect.height * 0.3
+    ) {
+      return true;
+    }
 
-      return false;
-    }, timeout * 1000);
+    return false;
   }
 
   //Clarity
@@ -1458,7 +1741,7 @@ console.log('initExp');
   function initModals() {
     const modalEl = `
           <div class='lav-modal' style='display: none;'>
-            <div class='lav-modal__inner lav-modal__return'>
+            <div class='lav-modal__inner lav-modal__return lav-observe'>
               <div class='lav-modal__close'>
                 <img src="${exp.dir}/img/icon-close.svg" />
               </div>
@@ -1534,10 +1817,9 @@ console.log('initExp');
               </div>
 
               <div class="lav-modal__title">Premium Quality Materials</div>
-
               <div class="lav-modal__text">
-                <p>Every product that Spark Paws creates undergoes a rigorous material selection process, along with multiple rounds of sampling and prototyping, ensuring the final product and its sizing are perfected for you and your dog.</p>
-                <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they guarantee a cozy fit for endless play and picture-perfect moments.</p>
+                <p>Every product that Spark Paws creates undergoes a <strong>rigorous material selection process,</strong> along with multiple rounds of sampling and prototyping, ensuring the <strong>final product and its sizing are perfected for you and your dog.</strong></p>
+                <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they <strong>guarantee a cozy fit for endless play and picture-perfect moments.</strong></p>
               </div>
             </div>
 
@@ -1622,7 +1904,7 @@ console.log('initExp');
 
               <div class='lav-contact'>
                 <div class='lav-contact__caption'>Are you still uncertain about the size?</div>
-                <div class='lav-contact__btn'>
+                <div class='lav-contact__btn lav-observe'>
                   <span class='lav-desk'>Contact us</span>
                   <span class='lav-mob'>CHAT WITH A SPECIALIST</span>
                 </div>
@@ -1643,10 +1925,22 @@ console.log('initExp');
 
     $('.lav-how__link').addEventListener('click', function () {
       closeModal();
+      pushDataLayer(
+        'exp_new_info_pdp_pp_wvideo',
+        'Watch video on how to measure',
+        'Button',
+        'Pop up Size charts'
+      );
       $('.measurements__cell-link')?.click();
     });
 
     $('.lav-contact__btn').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_chat',
+        'Chat with a specialist',
+        'Button',
+        'Pop up Size charts'
+      );
       $('.olark-launch-button')?.click();
     });
 
@@ -1666,36 +1960,124 @@ console.log('initExp');
 
     for (let el of $$('.lav-trigger-return')) {
       el.addEventListener('click', function () {
+        if (el.classList.contains('lav-delivery__link')) {
+          pushDataLayer(
+            'exp_new_info_pdp_lm_ret',
+            'Learn more',
+            'Button',
+            'Ship to - Return policy'
+          );
+        }
+
+        if (
+          el.classList.contains('lav-note__link') &&
+          !document.querySelector('.lav-modal__guide.active')
+        ) {
+          pushDataLayer(
+            'exp_new_info_pdp_lm_size',
+            'Learn more',
+            'Button',
+            'Size chart'
+          );
+        }
         openModal('return');
       });
     }
 
     for (let el of $$('.lav-trigger-retention')) {
       el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_info_pdp_lm_col',
+          'Learn more',
+          'Button',
+          'Color retention materials'
+        );
+
         openModal('retention');
+
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_col',
+          'Pop up Color retention materials',
+          'Visibility',
+          'Color retention materials'
+        );
       });
     }
 
     for (let el of $$('.lav-trigger-fit')) {
       el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_info_pdp_lm_fit',
+          'Learn more',
+          'Button',
+          'Fit tested on over 100000 dogs'
+        );
+
         openModal('fit');
+
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_fit',
+          'Pop up Fit tested on over 100000 dogs',
+          'Visibility',
+          'Fit tested on over 100000 dogs'
+        );
       });
     }
 
     for (let el of $$('.lav-trigger-premium')) {
       el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_info_pdp_lm_prem',
+          'Learn more',
+          'Button',
+          'Premium quality materials'
+        );
+
         openModal('premium');
+
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_prem',
+          'Pop up Premium quality materials',
+          'Visibility',
+          'Premium quality materials'
+        );
       });
     }
 
     for (let el of $$('.lav-trigger-delivery')) {
       el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_info_pdp_lm_del',
+          'Learn more',
+          'Button',
+          'Ship to - Delivery'
+        );
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_ship',
+          'Pop up Shipping Info',
+          'Visibility',
+          'Shipping Info'
+        );
         openModal('delivery');
       });
     }
 
     for (let el of $$('.lav-trigger-guide')) {
       el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_info_pdp_b_sguide',
+          'Size',
+          'Button',
+          'Size guide'
+        );
+
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_meas',
+          'Pop up Size charts',
+          'Visibility',
+          'Pop up Size charts - Size by Measurements'
+        );
+
         $(
           '[data-section-type="product-size-guide"]'
         ).nextElementSibling.classList.add('to-add-back');
@@ -1708,8 +2090,6 @@ console.log('initExp');
         openModal('guide');
       });
     }
-
-    // openModal('guide');
   }
 
   function openModal(type) {
@@ -1723,6 +2103,51 @@ console.log('initExp');
   }
 
   function closeModal() {
+    if ($('.lav-modal__delivery.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_cl_ship',
+        'Close',
+        'Button',
+        'Pop up Shipping Info'
+      );
+    }
+
+    if ($('.lav-modal__return.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_cl_30',
+        'Close',
+        'Button',
+        'Pop up 30-day free return & exchange'
+      );
+    }
+
+    if ($('.lav-modal__premium.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_cl_prem',
+        'Close',
+        'Button',
+        'Pop up Premium quality materials'
+      );
+    }
+
+    if ($('.lav-modal__fit.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_cl_fit',
+        'Close',
+        'Button',
+        'Pop up Fit tested on over 100000 dogs'
+      );
+    }
+
+    if ($('.lav-modal__retention.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_cl_col',
+        'Close',
+        'Button',
+        'Pop up Color retention materials'
+      );
+    }
+
     document.body.classList.remove('lav-modal-open');
     document.querySelector('html').classList.remove('lav-modal-open');
     document.querySelector('.lav-modal').classList.remove('active');
