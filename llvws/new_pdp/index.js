@@ -1,6 +1,6 @@
 console.log('**exp** initExp');
-if (window.mfq) {
-  window.mfq.push(['improving_pdp', 'variant_1']);
+if (window._mfq) {
+  window._mfq.push(['improving_pdp', 'variant_1']);
 }
 
 // (function () {
@@ -39,6 +39,9 @@ fetch(`${exp.dir}/settings.json`)
       productType = 'event';
       document.body.classList.add('lav-event-page');
     }
+
+    console.log('productType', productType);
+    console.log('product', product);
   });
 
 // Observer
@@ -2197,7 +2200,8 @@ function initSwiper() {
             (prTitle.includes('country cruise') && id.includes('ovgFvvU1y')) ||
             (prTitle.includes('throwback cruise') &&
               id.includes('ovgFvvU1y')) ||
-            (prTitle.includes('sunset session') && id.includes('ovgFvvU1y'))
+            (prTitle.includes('sunset session') && id.includes('ovgFvvU1y')) ||
+            (prTitle.includes('emo night') && id.includes('ovgFvvU1y'))
           ) {
             continue;
           }
