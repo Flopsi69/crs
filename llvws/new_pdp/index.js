@@ -2201,10 +2201,12 @@ function initSwiper() {
             (prTitle.includes('throwback cruise') &&
               id.includes('ovgFvvU1y')) ||
             (prTitle.includes('sunset session') && id.includes('ovgFvvU1y')) ||
-            (prTitle.includes('emo night') && id.includes('ovgFvvU1y'))
+            (prTitle.includes('emo night') && id.includes('ovgFvvU1y')) ||
+            (prTitle.includes('after dark neon') && id.includes('ovgFvvU1y'))
           ) {
             continue;
           }
+
           $('.main_slider .swiper-wrapper').insertAdjacentHTML(
             'beforeend',
             `
