@@ -792,8 +792,6 @@ console.log('initExp');
     handleOptions();
 
     // const shippingOptions = handleDelivery();
-    handleBenefits();
-
     if ($('.size-guide__content')) {
       handleTables();
       handleUnderTable();
@@ -803,6 +801,7 @@ console.log('initExp');
       () => $('.ProductForm__BuyButtons'),
       () => {
         const shippingOptions = handleDelivery();
+        handleBenefits();
         handleProductInfo();
         initModals();
       }
