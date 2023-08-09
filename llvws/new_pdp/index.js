@@ -1768,7 +1768,7 @@ function handleProductInfo() {
         const cloneEl = prevElement.cloneNode(true);
         cloneEl.classList.add('includes');
 
-        $('.choice.lav-desk').insertAdjacentElement('beforebegin', cloneEl);
+        $('.about.lav-desk').insertAdjacentElement('beforebegin', cloneEl);
         prevElement = prevElement.previousElementSibling;
       }
     }
