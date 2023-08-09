@@ -627,6 +627,7 @@ console.log('initExp');
         padding: 0!important;
       }
       .lav-ach {
+        margin-top: 15px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
@@ -670,8 +671,9 @@ console.log('initExp');
       .lav-color-black {
         background:;
       }
-      .template-product .ProductMeta__Description .lav-ach__item img {
-        margin-bottom: 5px;
+      .lav-ach__item img {
+        margin-top: 0!important;
+        margin-bottom: 5px!important;
       }
       @media(max-width: 767px) {
         .lav-desk {
