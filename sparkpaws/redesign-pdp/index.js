@@ -791,7 +791,7 @@ console.log('initExp');
     console.log('init');
     handleOptions();
 
-    const shippingOptions = handleDelivery();
+    // const shippingOptions = handleDelivery();
     handleBenefits();
 
     if ($('.size-guide__content')) {
@@ -799,8 +799,14 @@ console.log('initExp');
       handleUnderTable();
     }
 
-    initModals();
-    handleProductInfo();
+    waitFor(
+      () => $('.ProductForm__BuyButtons'),
+      () => {
+        const shippingOptions = handleDelivery();
+        handleProductInfo();
+        initModals();
+      }
+    );
   }
 
   function handleProductInfo() {
