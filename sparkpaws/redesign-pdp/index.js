@@ -670,6 +670,9 @@ console.log('initExp');
       .lav-color-black {
         background:;
       }
+      .template-product .ProductMeta__Description .lav-ach__item img {
+        margin-bottom: 5px;
+      }
       @media(max-width: 767px) {
         .lav-desk {
           display: none;
@@ -789,21 +792,42 @@ console.log('initExp');
   init();
   function init() {
     console.log('init');
-    handleOptions();
-
-    // const shippingOptions = handleDelivery();
-    if ($('.size-guide__content')) {
-      handleTables();
-      handleUnderTable();
-    }
+    waitFor(
+      () => $('.ProductForm__QuantitySelector'),
+      () => {
+        handleOptions();
+      }
+    );
 
     waitFor(
       () => $('.ProductForm__BuyButtons'),
       () => {
-        const shippingOptions = handleDelivery();
+        handleDelivery();
+      }
+    );
+
+    waitFor(
+      () => $('.cbb-frequently-bought-container'),
+      () => {
         handleBenefits();
+        setTimeout(initModals, 800);
+      }
+    );
+
+    waitFor(
+      () => $('[data-section-type="product-recommendations"]'),
+      () => {
+        if ($('.size-guide__content')) {
+          handleTables();
+          handleUnderTable();
+        }
+      }
+    );
+
+    waitFor(
+      () => $('.ProductMeta__Description'),
+      () => {
         handleProductInfo();
-        initModals();
       }
     );
   }
@@ -1397,7 +1421,8 @@ console.log('initExp');
           </div>
         `;
 
-    $('.ProductMeta__Description').insertAdjacentHTML('beforebegin', el);
+    // $('.ProductMeta__Description').insertAdjacentHTML('beforebegin', el);
+    $('.cbb-frequently-bought-container').insertAdjacentHTML('afterend', el);
   }
 
   function handleImageForPopUp(tab) {
