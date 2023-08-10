@@ -1115,7 +1115,7 @@ console.log('initExp');
                 </div>
 
                 <div class='lav-delivery__plate'>
-                  <div class='lav-delivery__plate-line'>Free shipping on orders over <span>$50</span></div>
+                  <div class='lav-delivery__plate-line'>Free shipping on orders over <span>50$</span></div>
                   <div class='lav-delivery__plate-line'>Est. Delivery: <span>20 Jun - 22 Jun</span></div>
                 </div>
               </div>
@@ -1325,17 +1325,19 @@ console.log('initExp');
                   `
             );
 
-            if ($('.size-guide__content')) {
-              labelEl.insertAdjacentHTML(
-                'beforeend',
-                `
-                    <span class='lav-option-guide lav-trigger-guide'>
-                      <img src="${exp.dir}/img/icon-ruler.svg" />
-                      <span class="lav-link">View Size Guide</span>
-                    </span>
-                    `
-              );
-            }
+            setTimeout(() => {
+              if ($('.size-guide__content')) {
+                labelEl.insertAdjacentHTML(
+                  'beforeend',
+                  `
+                      <span class='lav-option-guide lav-trigger-guide'>
+                        <img src="${exp.dir}/img/icon-ruler.svg" />
+                        <span class="lav-link">View Size Guide</span>
+                      </span>
+                      `
+                );
+              }
+            }, 1000);
           }
 
           $$('.SizeSwatch__Radio', optionEl).forEach((item) => {
