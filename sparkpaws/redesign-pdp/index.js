@@ -1066,6 +1066,13 @@ console.log('initExp');
         );
         $('.measurements__cell-link')?.click();
       });
+    } else {
+      $('.tabs__body')?.insertAdjacentHTML(
+        'beforeend',
+        `
+          <div class="lav-watch-measure"></div>
+        `
+      );
     }
 
     let isFireToggler = false;
