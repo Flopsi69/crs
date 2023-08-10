@@ -1984,14 +1984,21 @@ console.log('initExp');
       $('.lav-how__link').remove();
     }
 
-    $('.lav-contact__btn').addEventListener('click', function () {
+    $('.lav-contact__btn').addEventListener('click', async function () {
       pushDataLayer(
         'exp_new_info_pdp_pp_chat',
         'Chat with a specialist',
         'Button',
         'Pop up Size charts'
       );
-      $('.olark-launch-button')?.click();
+
+      if ('.olark-launch-button') {
+        $('.olark-launch-button')?.click();
+      } else {
+        const chat = await window.GorgiasChat.init();
+
+        chat.open();
+      }
     });
 
     document
