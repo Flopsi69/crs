@@ -1127,7 +1127,7 @@ console.log('initExp');
                 </div>
 
                 <div class='lav-delivery__plate'>
-                  <div class='lav-delivery__plate-line'>Free shipping on orders over <span>50$</span></div>
+                  <div class='lav-delivery__plate-line'>Free shipping on orders over <span>$50</span></div>
                   <div class='lav-delivery__plate-line'>Est. Delivery: <span>20 Jun - 22 Jun</span></div>
                 </div>
               </div>
@@ -1173,7 +1173,7 @@ console.log('initExp');
       let price = null;
       switch (title) {
         case 'United States':
-          price = '50$';
+          price = '$50';
           break;
         case 'Canada':
           price = '$60 CAD';
@@ -1200,7 +1200,7 @@ console.log('initExp');
           price = '€50';
           break;
         case 'Rest of World':
-          price = '50$';
+          price = '$50';
           break;
       }
 
