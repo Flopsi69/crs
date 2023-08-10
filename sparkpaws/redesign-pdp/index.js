@@ -1043,25 +1043,27 @@ console.log('initExp');
 
     // todo video what to do
     // and .size-guide__video remove
-    $('.tabs__body')?.insertAdjacentHTML(
-      'beforeend',
-      `
-          <div class="lav-watch-measure">
-            <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
-            <img src="${exp.dir}/img/icon-play.svg" >
-          </div>
+    if ($('.measurements__cell-link')) {
+      $('.tabs__body')?.insertAdjacentHTML(
+        'beforeend',
         `
-    );
-
-    $('.lav-link-measure').addEventListener('click', () => {
-      pushDataLayer(
-        'exp_new_info_pdp_wvideo',
-        'Watch video on how to measure',
-        'Button',
-        'Size chart'
+            <div class="lav-watch-measure">
+              <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
+              <img src="${exp.dir}/img/icon-play.svg" >
+            </div>
+          `
       );
-      $('.measurements__cell-link')?.click();
-    });
+
+      $('.lav-link-measure').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_new_info_pdp_wvideo',
+          'Watch video on how to measure',
+          'Button',
+          'Size chart'
+        );
+        $('.measurements__cell-link')?.click();
+      });
+    }
 
     let isFireToggler = false;
     $$('.toggle-button__switch').forEach((item) => {
@@ -1957,16 +1959,20 @@ console.log('initExp');
       handleImageForPopUp($('.tabs__button.is-active').dataset.tab);
     }
 
-    $('.lav-how__link').addEventListener('click', function () {
-      closeModal();
-      pushDataLayer(
-        'exp_new_info_pdp_pp_wvideo',
-        'Watch video on how to measure',
-        'Button',
-        'Pop up Size charts'
-      );
-      $('.measurements__cell-link')?.click();
-    });
+    if ($('.measurements__cell-link')) {
+      $('.lav-how__link').addEventListener('click', function () {
+        closeModal();
+        pushDataLayer(
+          'exp_new_info_pdp_pp_wvideo',
+          'Watch video on how to measure',
+          'Button',
+          'Pop up Size charts'
+        );
+        $('.measurements__cell-link')?.click();
+      });
+    } else {
+      $('.lav-how__link').remove();
+    }
 
     $('.lav-contact__btn').addEventListener('click', function () {
       pushDataLayer(
@@ -2096,8 +2102,8 @@ console.log('initExp');
       });
     }
 
-    for (let el of $$('.lav-trigger-guide')) {
-      el.addEventListener('click', function () {
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.lav-trigger-guide')) {
         pushDataLayer(
           'exp_new_info_pdp_b_sguide',
           'Size',
@@ -2122,8 +2128,11 @@ console.log('initExp');
         );
 
         openModal('guide');
-      });
-    }
+      }
+    });
+    // for (let el of $$('.lav-trigger-guide')) {
+    //   el.addEventListener('click', function () {});
+    // }
   }
 
   function openModal(type) {
