@@ -40,6 +40,9 @@ console.log('initExp');
         padding: 20px;
         max-height: 100vh;
       }
+      .select2-container {
+        z-index: 99999999999;
+      }
       .lav-modal:not(.active ){
         opacity: 0;
         pointer-events: none;
