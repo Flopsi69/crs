@@ -1992,7 +1992,9 @@ console.log('initExp');
         'Pop up Size charts'
       );
 
-      if ('.olark-launch-button') {
+      closeModal();
+
+      if ($('.olark-launch-button')) {
         $('.olark-launch-button')?.click();
       } else {
         const chat = await window.GorgiasChat.init();
