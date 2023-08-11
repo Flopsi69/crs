@@ -15,6 +15,11 @@ console.log('initExp');
     debug: false,
   };
 
+  const isDe = false;
+  if (location.host === 'www.sparkpaws.de') {
+    isDe = true;
+  }
+
   // Observers
   if (exp.observer.mutation) {
     initMutation((el) => {
@@ -846,6 +851,8 @@ console.log('initExp');
         handleProductInfo();
       }
     );
+
+    setTimeout(initTranslate, 1000);
   }
 
   function handleProductInfo() {
@@ -854,13 +861,17 @@ console.log('initExp');
     $('.ProductMeta__Description').insertAdjacentHTML(
       'afterbegin',
       `
-        <div class='lav-product__title'>Product info</div>
+        <div class='lav-product__title'>${
+          isDe ? 'Produktinformation' : 'Product info'
+        }</div>
       `
     );
 
     const mobileCollapse = `
         <div class="Collapsible Collapsible--large lav-product-collapse">
-          <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">Product info<span class="Collapsible__Plus"></span>
+          <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">${
+            isDe ? 'Produktinformation' : 'Product info'
+          }<span class="Collapsible__Plus"></span>
           </button>
 
           <div class="Collapsible__Inner">
@@ -877,7 +888,6 @@ console.log('initExp');
       mobileCollapse
     );
 
-    // todo check product info icons
     setTimeout(() => {
       if ($('.cross-banners .cross-banner')) {
         const parent = document.createElement('div');
@@ -916,12 +926,22 @@ console.log('initExp');
   function handleUnderTable() {
     const el = `
           <div class="lav-note">
-            <img src='${exp.dir}/img/green-note.svg' /><span>  <span>NOTE:</span> Finding the right size for your dog can be tricky and thats why we offer:</span>
+            <img src='${exp.dir}/img/green-note.svg' /><span>  <span>${
+      isDe ? 'HINWEIS' : 'NOTE'
+    }:</span> ${
+      isDe
+        ? 'Die richtige Größe für Ihren Hund zu finden, kann knifflig sein, daher bieten wir an'
+        : 'Finding the right size for your dog can be tricky and thats why we offer'
+    }:</span>
           </div>
 
           <div class="lav-note__plate lav-observe">
             <img src="${exp.dir}/img/icon-return.svg">
-            <div class="lav-note__title"><span>30-day free return & exchange</span> on your first purchase for all dog apparel items</div>
+            <div class="lav-note__title">${
+              isDe
+                ? 'Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
+                : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+            }</div>
             <div class="lav-note__link lav-link lav-trigger-return">LEARN MORE</div>
           </div>
         `;
@@ -1072,7 +1092,11 @@ console.log('initExp');
 
       el.innerHTML = `
         <span class="lav-link lav-link-measure">
-          WATCH VIDEO ON HOW TO MEASURE
+          ${
+            isDe
+              ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
+              : 'WATCH VIDEO ON HOW TO MEASURE'
+          }
           ${item.querySelector('.measurements__cell-title')?.textContent}
         </span>
         <img src="${exp.dir}/img/icon-play.svg" />
@@ -1124,7 +1148,9 @@ console.log('initExp');
     const el = `
           <div class='lav-delivery lav-observe'>
             <div class='lav-delivery__item ship-to'>
-              <div class='ship-to__caption'>Ship to:</div>
+              <div class='ship-to__caption'>${
+                isDe ? 'Versand nach' : 'Ship to'
+              }:</div>
               <div class='ship-to__dropdown'>
                 <div class='ship-to__value'></div>
                 <div class='ship-to__list'></div>
@@ -1138,13 +1164,21 @@ console.log('initExp');
 
               <div class='lav-delivery__info'>
                 <div class='lav-delivery__head'>
-                  <div class='lav-delivery__title'>Delivery</div>
+                  <div class='lav-delivery__title'>${
+                    isDe ? 'Lieferung' : 'Delivery'
+                  }</div>
                   <div class='lav-delivery__link lav-link lav-trigger-delivery'>Learn more</div>
                 </div>
 
                 <div class='lav-delivery__plate'>
-                  <div class='lav-delivery__plate-line'>Free shipping on orders over <span>$50</span></div>
-                  <div class='lav-delivery__plate-line'>Est. Delivery: <span>20 Jun - 22 Jun</span></div>
+                  <div class='lav-delivery__plate-line'>${
+                    isDe
+                      ? 'Kostenloser Versand bei Bestellungen'
+                      : 'Free shipping on orders over'
+                  } <span>$50</span></div>
+                  <div class='lav-delivery__plate-line'>${
+                    isDe ? 'Voraussichtliche Lieferung' : 'Est. Delivery'
+                  }: <span>20 Jun - 22 Jun</span></div>
                 </div>
               </div>
             </div>
@@ -1156,12 +1190,18 @@ console.log('initExp');
 
               <div class='lav-delivery__info'>
                 <div class='lav-delivery__head'>
-                  <div class='lav-delivery__title'>Return policy</div>
+                  <div class='lav-delivery__title'>${
+                    isDe ? 'Rückgaberecht' : 'Return policy'
+                  }</div>
                   <div class='lav-delivery__link lav-link lav-trigger-return'>Learn more</div>
                 </div>
 
                 <div class='lav-delivery__plate'>
-                  <div class='lav-delivery__plate-line'>30-day free return & exchange on your first purchase for all dog apparel items</div>
+                  <div class='lav-delivery__plate-line'>${
+                    isDe
+                      ? 'Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen bei Ihrem ersten Kauf für alle Hundebekleidungsartikel.'
+                      : '30-day free return & exchange on your first purchase for all dog apparel items'
+                  }</div>
                 </div>
               </div>
             </div>
@@ -1282,7 +1322,6 @@ console.log('initExp');
     // }
 
     if (location.host === 'www.sparkpaws.de') {
-      initTranslate();
       activeCountry = 4;
     } else if (location.host === 'www.sparkpaws.com') {
       activeCountry = 0;
@@ -1509,15 +1548,9 @@ console.log('initExp');
   }
 
   function initTranslate() {
-    $('.ship-to__caption').innerText = 'Versand nach:';
-
-    $('.lav-delivery__item:nth-child(2) .lav-delivery__title').innerText =
-      'Lieferung';
-
-    $('.lav-delivery__item:nth-child(3) .lav-delivery__title').innerText =
-      'Rückgaberecht';
-
-    $$('.lav-delivery__link').forEach((item) => {
+    if (!isDe) return false;
+    // lav-delivery__link
+    $$('.lav-link').forEach((item) => {
       item.innerText = 'MEHR ERFAHREN';
     });
   }
@@ -1527,19 +1560,29 @@ console.log('initExp');
           <div class='lav-benefits lav-observe'>
             <div class='lav-benefits__item lab-benefit__premium'>
               <img src="${exp.dir}/img/benefit-cloth.svg" />
-              <div class='lav-benefits__title'>Premium Quality Materials</div>
+              <div class='lav-benefits__title'>${
+                isDe ? 'Hochwertige Materialien' : 'Premium Quality Materials'
+              }</div>
               <div class='lav-benefits__link lav-link lav-trigger-premium'>LEARN MORE</div>
             </div>
 
             <div class='lav-benefits__item lab-benefit__fit'>
               <img src="${exp.dir}/img/benefit-dog.svg" />
-              <div class='lav-benefits__title'>Fit Tested on 100.000+ Dogs</div>
+              <div class='lav-benefits__title'>${
+                isDe
+                  ? 'An über 100.000 Hunden auf Passform getestet'
+                  : 'Fit Tested on 100.000+ Dogs'
+              }</div>
               <div class='lav-benefits__link lav-link lav-trigger-fit'>LEARN MORE</div>
             </div>
 
             <div class='lav-benefits__item lab-benefit__retention'>
               <img src="${exp.dir}/img/benefit-material.svg" />
-              <div class='lav-benefits__title'>Color retention materials</div>
+              <div class='lav-benefits__title'>${
+                isDe
+                  ? 'Farberhaltende Materialien'
+                  : 'Color retention materials'
+              }</div>
               <div class='lav-benefits__link lav-link lav-trigger-retention'>LEARN MORE</div>
             </div>
           </div>
@@ -1951,11 +1994,20 @@ console.log('initExp');
                 <img src="${exp.dir}/img/benefit-material.svg" />
               </div>
 
-              <div class="lav-modal__title">Color retention materials</div>
+              <div class="lav-modal__title">${
+                isDe
+                  ? 'Farberhaltende Materialien'
+                  : 'Color retention materials'
+              }</div>
 
               <div class="lav-modal__text">
                 <p>
-                  Color retention material used for our dog apparel involves innovative dyeing techniques, UV protection coatings, and/or fabric treatments that minimize color fading caused by sunlight exposure, frequent washing, and general wear and tear, allowing the garments to retain their original brightness and vividness over an extended period of time.
+                  ${
+                    isDe
+                      ? 'Die für unsere Hundebekleidung verwendeten Materialien zur Farberhaltung beinhalten innovative Färbetechniken, UV-Schutzbeschichtungen und/oder Stoffbehandlungen, die das Verblassen der Farben durch Sonneneinstrahlung, häufiges Waschen und allgemeinen Verschleiß minimieren. Dies ermöglicht es den Kleidungsstücken, ihre ursprüngliche Helligkeit und Lebendigkeit über einen längeren Zeitraum hinweg beizubehalten.'
+                      : 'Color retention material used for our dog apparel involves innovative dyeing techniques, UV protection coatings, and/or fabric treatments that minimize color fading caused by sunlight exposure, frequent washing, and general wear and tear, allowing the garments to retain their original brightness and vividness over an extended period of time.'
+                  }
+                  
                 </p>
               </div>
             </div>
@@ -1969,9 +2021,21 @@ console.log('initExp');
                 <img src="${exp.dir}/img/benefit-dog.svg" />
               </div>
 
-              <div class="lav-modal__title">Fit Tested on 100.000+ Dogs</div>
+              <div class="lav-modal__title">${
+                isDe
+                  ? 'An über 100.000 Hunden auf Passform getestet'
+                  : 'Fit Tested on 100.000+ Dogs'
+              }</div>
 
               <div class="lav-modal__text">
+              ${
+                isDe
+                  ? `
+                <p>Erleben Sie unübertroffene Qualität und Seelenfrieden mit unseren Hundespaziersets und -bekleidungen.</p>
+                <p>Jedes Produkt wurde an über 100.000 Hunden getestet, um optimalen Komfort, Sicherheit und eine makellose Passform zu gewährleisten.</p>
+                <p>Geben Sie Ihrem Hund das beste Spaziererlebnis, das er verdient.</p>
+              `
+                  : `
                 <p>
                   Experience unmatched quality and peace of mind with our dog walking sets and apparel.
                 </p>
@@ -1979,6 +2043,9 @@ console.log('initExp');
                   Each product has undergone testing on over 100,000 dogs, ensuring optimal comfort, safety, and a flawless fit. 
                 </p>
                 <p><strong>Give your dog the best walking experience they deserve.</strong></p>
+              `
+              }
+    
               </div>
             </div>
 
@@ -1991,10 +2058,16 @@ console.log('initExp');
                 <img src="${exp.dir}/img/benefit-cloth.svg" />
               </div>
 
-              <div class="lav-modal__title">Premium Quality Materials</div>
+              <div class="lav-modal__title">${
+                isDe ? 'Hochwertige Materialien' : 'Premium Quality Materials'
+              }</div>
               <div class="lav-modal__text">
-                <p>Every product that Spark Paws creates undergoes a <strong>rigorous material selection process,</strong> along with multiple rounds of sampling and prototyping, ensuring the <strong>final product and its sizing are perfected for you and your dog.</strong></p>
-                <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they <strong>guarantee a cozy fit for endless play and picture-perfect moments.</strong></p>
+                ${
+                  isDe
+                    ? '<p>Jedes Produkt, das Spark Paws kreiert, durchläuft einen strengen Auswahlprozess der Materialien sowie mehrere Runden von Probenahmen und Prototypen, um sicherzustellen, dass das endgültige Produkt und seine Größe perfekt für Sie und Ihren Hund sind.</p><p>Verwöhnen Sie Ihren pelzigen Freund mit unvergleichlichem Komfort und Stil mit unserer hochwertigen Hundebekleidung, Spaziersets und anderen Produkten. Sorgfältig gefertigt aus weichen, strapazierfähigen Materialien garantieren sie eine gemütliche Passform für endloses Spielen und bildschöne Moment</p>'
+                    : `<p>Every product that Spark Paws creates undergoes a <strong>rigorous material selection process,</strong> along with multiple rounds of sampling and prototyping, ensuring the <strong>final product and its sizing are perfected for you and your dog.</strong></p>
+                <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they <strong>guarantee a cozy fit for endless play and picture-perfect moments.</strong></p>`
+                }
               </div>
             </div>
 
@@ -2074,10 +2147,20 @@ console.log('initExp');
               </div>
 
               <div class='lav-contact'>
-                <div class='lav-contact__caption'>Are you still uncertain about the size?</div>
+                <div class='lav-contact__caption'>${
+                  isDe
+                    ? 'Sind Sie immer noch unsicher über die Größe?'
+                    : 'Are you still uncertain about the size?'
+                }</div>
                 <div class='lav-contact__btn lav-observe'>
-                  <span class='lav-desk'>Contact us</span>
-                  <span class='lav-mob'>CHAT WITH A SPECIALIST</span>
+                  <span class='lav-desk'>${
+                    isDe ? 'MIT EINEM SPEZIALISTEN CHATTEN' : 'Contact us'
+                  }</span>
+                  <span class='lav-mob'>${
+                    isDe
+                      ? 'MIT EINEM SPEZIALISTEN CHATTEN'
+                      : 'CHAT WITH A SPECIALIST'
+                  }</span>
                 </div>
               </div>
 
@@ -2103,7 +2186,11 @@ console.log('initExp');
 
         el.innerHTML = `
           <span class="lav-link lav-link-measure">
-            WATCH VIDEO ON HOW TO MEASURE
+            ${
+              isDe
+                ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
+                : 'WATCH VIDEO ON HOW TO MEASURE'
+            }
             ${item.querySelector('.measurements__cell-title')?.textContent}
           </span>
           <img src="${exp.dir}/img/icon-play.svg" >
