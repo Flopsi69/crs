@@ -591,7 +591,7 @@ console.log('initExp');
       }
 
       .ProductMeta__Description {
-        display: none;
+        // display: none;
       }
       .lav-product-collapse {
         // display: none;
@@ -767,7 +767,7 @@ console.log('initExp');
           margin-left: 16px;
         }
         .ProductMeta__Description {
-          display: none;
+          // display: none;
         }
         .lav-modal__guide {
           padding: 32px 12px;
@@ -902,6 +902,8 @@ console.log('initExp');
       $('.lav-product-collapse .Rte').innerHTML = $(
         '.ProductMeta__Description .Rte'
       ).innerHTML;
+
+      $('.ProductMeta__Descriptio').style.display = 'none';
     }, 1000);
   }
 
