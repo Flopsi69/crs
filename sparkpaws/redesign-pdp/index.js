@@ -1034,21 +1034,21 @@ console.log('initExp');
     ).forEach((item) => {
       const text = item.innerText.trim();
 
-      if (text === 'Chest') {
+      if (text === 'Chest' || text === 'Brust') {
         item.insertAdjacentHTML(
           'afterbegin',
           `<img src="${exp.dir}/img/dog-chest.svg" />`
         );
       }
 
-      if (text === 'Neck') {
+      if (text === 'Neck' || text === 'Hals') {
         item.insertAdjacentHTML(
           'afterbegin',
           `<img src="${exp.dir}/img/dog-neck.svg" />`
         );
       }
 
-      if (text === 'Back') {
+      if (text === 'Back' || text === 'Rücken') {
         item.insertAdjacentHTML(
           'afterbegin',
           `<img src="${exp.dir}/img/dog-back.svg" />`
@@ -1550,9 +1550,11 @@ console.log('initExp');
   function initTranslate() {
     if (!isDe) return false;
     // lav-delivery__link
-    $$('.lav-link').forEach((item) => {
-      item.innerText = 'MEHR ERFAHREN';
-    });
+    $$('.lav-link:not(.lav-link-measure):not(.lav-link-measure)').forEach(
+      (item) => {
+        item.innerText = 'MEHR ERFAHREN';
+      }
+    );
   }
 
   function handleBenefits() {
@@ -2140,7 +2142,9 @@ console.log('initExp');
 
             <div class='lav-modal__inner lav-modal__guide'>
               <div class='lav-how'>
-                <div class='lav-how__title'>How to Measure</div>
+                <div class='lav-how__title'>${
+                  isDe ? 'MAßNEHMUNG ANSEHEN' : 'How to Measure'
+                }</div>
                 <div class='lav-how__image'>
                   <img src='' />
                 </div>
