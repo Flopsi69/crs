@@ -15,7 +15,7 @@ console.log('initExp');
     debug: false,
   };
 
-  const isDe = false;
+  let isDe = false;
   if (location.host === 'www.sparkpaws.de') {
     isDe = true;
   }
