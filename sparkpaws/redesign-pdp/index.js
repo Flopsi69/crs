@@ -17,7 +17,7 @@ console.log('initExp');
 
   let isDe = false;
   if (location.host === 'www.sparkpaws.de') {
-    isDe = false;
+    isDe = true;
   }
 
   // Observers
@@ -1216,8 +1216,8 @@ console.log('initExp');
 
     $('.ProductForm__BuyButtons').insertAdjacentHTML('afterend', el);
 
-    if ($('.Product__Tabs .Heading').innerText.trim() !== 'Shipping Info')
-      return false;
+    // if ($('.Product__Tabs .Heading').innerText.trim() !== 'Shipping Info')
+    //   return false;
 
     const options = [
       {
