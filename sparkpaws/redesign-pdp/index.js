@@ -1173,69 +1173,144 @@ console.log('initExp');
     if ($('.Product__Tabs .Heading').innerText.trim() !== 'Shipping Info')
       return false;
 
-    const options = [];
+    const options = [
+      {
+        title: 'United States',
+        value: ['6', '12'],
+        deliveryFrom: '$50',
+      },
+      {
+        title: 'Canada',
+        value: ['8', '12'],
+        deliveryFrom: '$60 CAD',
+      },
+      {
+        title: 'Australia & NZ',
+        value: ['4', '10'],
+        deliveryFrom: '$65 AUD',
+      },
+      {
+        title: 'United Kingdom',
+        value: ['5', '10'],
+        deliveryFrom: '£40',
+      },
+      {
+        title: 'Germany', //4
+        value: ['5', '10'],
+        deliveryFrom: '€50',
+      },
+      {
+        title: 'Italy',
+        value: ['5', '10'],
+        deliveryFrom: '€50',
+      },
+      {
+        title: 'France',
+        value: ['5', '10'],
+        deliveryFrom: '€50',
+      },
+      {
+        title: 'Japan',
+        value: ['5', '10'],
+        deliveryFrom: '¥6500',
+      },
+      {
+        title: 'Rest of EU',
+        value: ['5', '12'],
+        deliveryFrom: '€50',
+      },
+      {
+        title: 'Rest of World',
+        value: ['10', '20'],
+        deliveryFrom: '$50',
+      },
+    ];
 
-    for (let item of $$('.Product__Tabs .Collapsible__Inner table tr')) {
-      if (item.querySelector('td:first-child').textContent === 'Location')
-        continue;
+    let activeCountry = 0;
 
-      const date = item
-        .querySelector('td:last-child')
-        .textContent.trim()
-        .split(' to ');
+    // Fill options
+    // for (let item of $$('.Product__Tabs .Collapsible__Inner table tr')) {
+    //   if (item.querySelector('td:first-child').textContent === 'Location')
+    //     continue;
 
-      const title = item.querySelector('td:first-child').textContent.trim();
+    //   const date = item
+    //     .querySelector('td:last-child')
+    //     .textContent.trim()
+    //     .split(' to ');
 
-      let price = null;
-      switch (title) {
-        case 'United States':
-          price = '$50';
-          break;
-        case 'Canada':
-          price = '$60 CAD';
-          break;
-        case 'Australia & NZ':
-          price = '$65 AUD';
-          break;
-        case 'United Kingdom':
-          price = '£40';
-          break;
-        case 'Germany':
-          price = '€50';
-          break;
-        case 'Italy':
-          price = '€50';
-          break;
-        case 'France':
-          price = '€50';
-          break;
-        case 'Japan':
-          price = '¥6500';
-          break;
-        case 'Rest of EU':
-          price = '€50';
-          break;
-        case 'Rest of World':
-          price = '$50';
-          break;
-      }
+    //   const title = item.querySelector('td:first-child').textContent.trim();
 
-      options.push({
-        title: title,
-        value: date,
-        deliveryFrom: price,
-      });
+    //   let price = null;
+    //   switch (title) {
+    //     case 'United States':
+    //       price = '$50';
+    //       break;
+    //     case 'Canada':
+    //       price = '$60 CAD';
+    //       break;
+    //     case 'Australia & NZ':
+    //       price = '$65 AUD';
+    //       break;
+    //     case 'United Kingdom':
+    //       price = '£40';
+    //       break;
+    //     case 'Germany':
+    //       price = '€50';
+    //       break;
+    //     case 'Italy':
+    //       price = '€50';
+    //       break;
+    //     case 'France':
+    //       price = '€50';
+    //       break;
+    //     case 'Japan':
+    //       price = '¥6500';
+    //       break;
+    //     case 'Rest of EU':
+    //       price = '€50';
+    //       break;
+    //     case 'Rest of World':
+    //       price = '$50';
+    //       break;
+    //   }
+
+    //   options.push({
+    //     title: title,
+    //     value: date,
+    //     deliveryFrom: price,
+    //   });
+    // }
+
+    if (location.host === 'www.sparkpaws.de') {
+      initTranslate();
+      activeCountry = 4;
+    } else if (location.host === 'www.sparkpaws.com') {
+      activeCountry = 0;
+    } else if (location.host === 'www.sparkpaws.ca') {
+      activeCountry = 1;
+    } else if (location.host === 'www.sparkpaws.au') {
+      activeCountry = 2;
+    } else if (location.host === 'www.sparkpaws.uk') {
+      activeCountry = 3;
+    } else if (location.host === 'www.sparkpaws.it') {
+      activeCountry = 5;
+    } else if (location.host === 'www.sparkpaws.fr') {
+      activeCountry = 6;
+    } else if (location.host === 'www.sparkpaws.jp') {
+      activeCountry = 7;
+    } else {
+      activeCountry = 8;
     }
 
-    $('.ship-to__value').textContent = options[0].title;
+    $('.ship-to__value').textContent = options[activeCountry].title;
     $('.lav-delivery__plate-line:last-child span').textContent = countDelivery(
-      options[0].value
+      options[activeCountry].value
     );
 
     options.forEach((option, index) => {
       const el = document.createElement('div');
       el.classList.add('ship-to__item');
-      if (index === 0) el.classList.add('active');
+      if (index === activeCountry) el.classList.add('active');
 
       el.textContent = option.title;
 
@@ -1256,8 +1331,6 @@ console.log('initExp');
 
       $('.ship-to__list').insertAdjacentElement('beforeend', el);
     });
-
-    console.log(options);
 
     $('.ship-to__value').addEventListener('click', () => {
       $('.ship-to__dropdown').classList.toggle('active');
@@ -1431,6 +1504,8 @@ console.log('initExp');
       }
     );
   }
+
+  function initTranslate() {}
 
   function handleBenefits() {
     const el = `
