@@ -17,7 +17,8 @@ console.log('initExp');
 
   let isDe = false;
   if (location.host === 'www.sparkpaws.de') {
-    isDe = true;
+    document.body.classList.add('lav-de');
+    isDe = false;
   }
 
   // Observers
@@ -728,9 +729,16 @@ console.log('initExp');
         }
         .tabs__button:first-child {
           width: 60%;
+          // todo
         }
         .tabs__button:last-child {
           width: 40%;
+        }
+        .lav-de .tabs__button:first-child  {
+          width: 45%;
+        }
+        .lav-de .tabs__button:last-child  {
+          width: 55%;
         }
         #tab-content-measurements {
           padding-left: 16px;
