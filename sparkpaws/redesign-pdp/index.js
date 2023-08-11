@@ -320,6 +320,12 @@ console.log('initExp');
         justify-content: center;
         cursor: pointer;
       }
+      .lav-watch-measure__item + .lav-watch-measure__item {
+        margin-top: 15px;
+      }
+      .Modal {
+        z-index: 99999999999;
+      }
       .lav-watch-measure img {
         margin-left: 4px;
       }
