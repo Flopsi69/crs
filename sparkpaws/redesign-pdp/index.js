@@ -1421,7 +1421,10 @@ console.log('initExp');
       (optionEl) => {
         const labelEl = $('.ProductForm__Label', optionEl);
 
-        if (labelEl?.innerText.includes('Color')) {
+        if (
+          labelEl?.innerText.includes('Color') ||
+          labelEl?.innerText.includes('Farbe')
+        ) {
           optionEl.classList.add('lav-colors', 'lav-observe');
 
           if (
