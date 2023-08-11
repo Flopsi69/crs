@@ -1979,10 +1979,6 @@ console.log('initExp');
                 <div class='lav-how__image'>
                   <img src='' />
                 </div>
-                <div class='lav-how__link'>
-                  <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
-                  <img src="${exp.dir}/img/icon-play.svg" >
-                </div>
               </div>
 
               <div class='lav-contact'>
