@@ -1493,7 +1493,10 @@ console.log('initExp');
           });
         }
 
-        if (labelEl?.innerText.includes('Quantity')) {
+        if (
+          labelEl?.innerText.includes('Quantity') ||
+          labelEl?.innerText.includes('Menge')
+        ) {
           optionEl.classList.add('lav-quantity');
 
           // TODO another variant
