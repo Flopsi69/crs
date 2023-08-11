@@ -590,8 +590,11 @@ console.log('initExp');
         }
       }
 
-      .lav-product-collapse {
+      .ProductMeta__Description {
         display: none;
+      }
+      .lav-product-collapse {
+        // display: none;
       }
       .lav-mob {
         display: none;
@@ -867,37 +870,39 @@ console.log('initExp');
     );
 
     // todo check product info icons
-    if ($('.cross-banners .cross-banner')) {
-      const parent = document.createElement('div');
-      parent.classList.add('lav-ach');
+    setTimeout(() => {
+      if ($('.cross-banners .cross-banner')) {
+        const parent = document.createElement('div');
+        parent.classList.add('lav-ach');
 
-      $$('.ProductForm .cross-banners .cross-banner').forEach((el) => {
-        const child = document.createElement('div');
-        child.classList.add('lav-ach__item');
+        $$('.ProductForm .cross-banners .cross-banner').forEach((el) => {
+          const child = document.createElement('div');
+          child.classList.add('lav-ach__item');
 
-        const text = el.querySelector('p').innerText.trim().toLowerCase();
-        if (text.includes('fit tested')) {
-          $('.lab-benefit__fit').classList.add('active');
-        }
+          const text = el.querySelector('p').innerText.trim().toLowerCase();
+          if (text.includes('fit tested')) {
+            $('.lab-benefit__fit').classList.add('active');
+          }
 
-        if (text.includes('color retention')) {
-          $('.lab-benefit__retention').classList.add('active');
-        }
+          if (text.includes('color retention')) {
+            $('.lab-benefit__retention').classList.add('active');
+          }
 
-        child.innerHTML = el.innerHTML;
+          child.innerHTML = el.innerHTML;
 
-        parent.insertAdjacentElement('beforeend', child);
-      });
+          parent.insertAdjacentElement('beforeend', child);
+        });
 
-      $('.ProductMeta__Description .Rte').insertAdjacentElement(
-        'beforeend',
-        parent
-      );
-    }
+        $('.ProductMeta__Description .Rte').insertAdjacentElement(
+          'beforeend',
+          parent
+        );
+      }
 
-    $('.lav-product-collapse .Rte').innerHTML = $(
-      '.ProductMeta__Description .Rte'
-    ).innerHTML;
+      $('.lav-product-collapse .Rte').innerHTML = $(
+        '.ProductMeta__Description .Rte'
+      ).innerHTML;
+    }, 1000);
   }
 
   function handleUnderTable() {
@@ -1439,6 +1444,27 @@ console.log('initExp');
 
     // $('.ProductMeta__Description').insertAdjacentHTML('beforebegin', el);
     $('.cbb-frequently-bought-container').insertAdjacentHTML('afterend', el);
+
+    const isHuman =
+      location.pathname.includes('human') ||
+      location.pathname.includes('-t-shirt') ||
+      location.pathname.includes('/essential-sweatpant') ||
+      location.pathname.includes('/poop-bag-holder');
+
+    if (isHuman) {
+      $('.lav-benefits__item.lab-benefit__fit').remove();
+    }
+
+    const isJevelry =
+      location.pathname.includes('jewelry-tag') ||
+      document
+        .querySelector('[name="return_to"]')
+        ?.value?.includes('jewelry-for-dogs') ||
+      location.pathname.includes('cuban-link-gold');
+
+    if (isJevelry) {
+      $('.lav-benefits__item.lab-benefit__retention').remove();
+    }
   }
 
   function handleImageForPopUp(tab) {
