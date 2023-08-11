@@ -1257,6 +1257,8 @@ console.log('initExp');
       $('.ship-to__list').insertAdjacentElement('beforeend', el);
     });
 
+    console.log(options);
+
     $('.ship-to__value').addEventListener('click', () => {
       $('.ship-to__dropdown').classList.toggle('active');
     });
