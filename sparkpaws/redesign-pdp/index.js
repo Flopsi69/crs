@@ -17,7 +17,7 @@ console.log('initExp');
 
   let isDe = false;
   if (location.host === 'www.sparkpaws.de') {
-    isDe = true;
+    isDe = false;
   }
 
   // Observers
@@ -963,7 +963,11 @@ console.log('initExp');
       const text = item.innerText.trim();
 
       if (['CM', 'Inches'].includes(text)) {
-        item.innerText = 'Size';
+        if (isDe) {
+          item.innerText = 'Größe';
+        } else {
+          item.innerText = 'Size';
+        }
         item.classList.add('lav-col-size');
       }
     });
@@ -975,7 +979,8 @@ console.log('initExp');
         handleImageForPopUp(tabEl.dataset.tab);
 
         if (
-          tabEl.innerText === 'Size by Breed' &&
+          (tabEl.innerText === 'Size by Breed' ||
+            tabEl.innerText === 'Größe nach Hunderasse') &&
           $('.lav-modal__guide.active')
         ) {
           pushDataLayer(
@@ -1055,6 +1060,7 @@ console.log('initExp');
         );
       }
 
+      //todo
       if (text === 'Breed') {
         item.insertAdjacentHTML(
           'afterbegin',
@@ -1062,6 +1068,7 @@ console.log('initExp');
         );
       }
 
+      //todo
       if (text === 'Paw Width') {
         item.insertAdjacentHTML(
           'afterbegin',
@@ -1069,6 +1076,7 @@ console.log('initExp');
         );
       }
 
+      //todo
       if (text.includes('Weight')) {
         item.insertAdjacentHTML(
           'afterbegin',
@@ -1077,8 +1085,6 @@ console.log('initExp');
       }
     });
 
-    // todo video what to do
-    // and .size-guide__video remove
     $('.tabs__body')?.insertAdjacentHTML(
       'beforeend',
       `<div class="lav-watch-measure"></div>`
@@ -1457,7 +1463,10 @@ console.log('initExp');
           });
         }
 
-        if (labelEl?.innerText.includes('Size')) {
+        if (
+          labelEl?.innerText.includes('Size') ||
+          labelEl?.innerText.includes('Größe')
+        ) {
           optionEl.classList.add('lav-size', 'lav-observe');
 
           if (
@@ -1473,6 +1482,7 @@ console.log('initExp');
                   `
             );
 
+            // todo
             setTimeout(() => {
               if ($('.size-guide__content')) {
                 labelEl.insertAdjacentHTML(
@@ -1502,8 +1512,7 @@ console.log('initExp');
         ) {
           optionEl.classList.add('lav-quantity');
 
-          // TODO another variant
-          // out of stock
+          // TODO
           if ($('[name="quantity"]', optionEl)?.value) {
             let text = 'In stock';
             if ($('.ProductForm__AddToCart[disabled]')) {
@@ -1532,6 +1541,7 @@ console.log('initExp');
                 !$('.ProductForm__AddToCart[disabled]') &&
                 $('.lav-quantity-stock_out')
               ) {
+                // todo
                 $('.lav-quantity-stock').textContent = 'In stock';
                 $('.lav-quantity-stock').classList.remove(
                   'lav-quantity-stock_out'
@@ -1630,18 +1640,19 @@ console.log('initExp');
       ).map((el) => el.innerText.trim().toLowerCase());
 
       let src = '';
-      if (arrHeadingCol.includes('neck')) {
+      if (arrHeadingCol.includes('neck') || arrHeadingCol.includes('hals')) {
         src += 'neck';
       }
 
-      if (arrHeadingCol.includes('chest')) {
+      if (arrHeadingCol.includes('chest') || arrHeadingCol.includes('brust')) {
         src += src.length ? '-chest' : 'chest';
       }
 
-      if (arrHeadingCol.includes('back')) {
+      if (arrHeadingCol.includes('back') || arrHeadingCol.includes('rücken')) {
         src += src.length ? '-back' : 'back';
       }
 
+      // todo
       if (arrHeadingCol.includes('paw width')) {
         src += 'paw-width';
       }
@@ -1653,6 +1664,7 @@ console.log('initExp');
   }
 
   function handleColors(el) {
+    // todo
     const colors = {
       black: '#1F2125',
       grey: '#938F99',
