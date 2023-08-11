@@ -591,7 +591,7 @@ console.log('initExp');
       }
 
       .ProductMeta__Description {
-        // display: none;
+        display: none;
       }
       .lav-product-collapse {
         // display: none;
@@ -767,7 +767,7 @@ console.log('initExp');
           margin-left: 16px;
         }
         .ProductMeta__Description {
-          // display: none;
+          display: none;
         }
         .lav-modal__guide {
           padding: 32px 12px;
@@ -879,14 +879,14 @@ console.log('initExp');
           const child = document.createElement('div');
           child.classList.add('lav-ach__item');
 
-          const text = el.querySelector('p').innerText.trim().toLowerCase();
-          if (text.includes('fit tested')) {
-            $('.lab-benefit__fit').classList.add('active');
-          }
+          // const text = el.querySelector('p').innerText.trim().toLowerCase();
+          // if (text.includes('fit tested')) {
+          //   $('.lab-benefit__fit').classList.add('active');
+          // }
 
-          if (text.includes('color retention')) {
-            $('.lab-benefit__retention').classList.add('active');
-          }
+          // if (text.includes('color retention')) {
+          //   $('.lab-benefit__retention').classList.add('active');
+          // }
 
           child.innerHTML = el.innerHTML;
 
@@ -902,8 +902,6 @@ console.log('initExp');
       $('.lav-product-collapse .Rte').innerHTML = $(
         '.ProductMeta__Description .Rte'
       ).innerHTML;
-
-      $('.ProductMeta__Descriptio').style.display = 'none';
     }, 1000);
   }
 
