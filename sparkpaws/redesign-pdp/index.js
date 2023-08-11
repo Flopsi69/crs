@@ -2001,18 +2001,33 @@ console.log('initExp');
     }
 
     if ($('.measurements__cell-link')) {
-      $('.lav-how__link').addEventListener('click', function () {
-        closeModal();
-        pushDataLayer(
-          'exp_new_info_pdp_pp_wvideo',
-          'Watch video on how to measure',
-          'Button',
-          'Pop up Size charts'
-        );
-        $('.measurements__cell-link')?.click();
+      $$('.measurements__content').forEach((item) => {
+        if (!item.querySelector('.measurements__cell-link')) return false;
+
+        const el = document.createElement('div');
+        el.classList.add('lav-how__link');
+
+        el.innerHTML = `
+          <span class="lav-link lav-link-measure">
+            WATCH VIDEO ON HOW TO MEASURE
+            ${item.querySelector('.measurements__cell-title')?.textContent}
+          </span>
+          <img src="${exp.dir}/img/icon-play.svg" >
+        `;
+
+        $('.lav-how').insertAdjacentElement('beforeend', el);
+
+        el.addEventListener('click', function () {
+          closeModal();
+          pushDataLayer(
+            'exp_new_info_pdp_pp_wvideo',
+            'Watch video on how to measure',
+            'Button',
+            'Pop up Size charts'
+          );
+          item.querySelector('.measurements__cell-link').click();
+        });
       });
-    } else {
-      $('.lav-how__link').remove();
     }
 
     $('.lav-contact__btn').addEventListener('click', async function () {
