@@ -1288,7 +1288,7 @@ console.log('initExp');
       activeCountry = 0;
     } else if (location.host === 'www.sparkpaws.ca') {
       activeCountry = 1;
-    } else if (location.host === 'www.sparkpaws.au') {
+    } else if (location.host === 'www.au-sparkpaws.com') {
       activeCountry = 2;
     } else if (location.host === 'www.sparkpaws.uk') {
       activeCountry = 3;
@@ -1306,6 +1306,8 @@ console.log('initExp');
     $('.lav-delivery__plate-line:last-child span').textContent = countDelivery(
       options[activeCountry].value
     );
+    $('.lav-delivery__plate-line:first-child span').textContent =
+      options[activeCountry].deliveryFrom;
 
     options.forEach((option, index) => {
       const el = document.createElement('div');
@@ -1318,6 +1320,7 @@ console.log('initExp');
         if (el.classList.contains('active')) return false;
 
         const delivery = countDelivery(option.value);
+
         $('.lav-delivery__plate-line:last-child span').textContent = delivery;
         $('.lav-delivery__plate-line:first-child span').textContent =
           option.deliveryFrom;
@@ -1505,7 +1508,19 @@ console.log('initExp');
     );
   }
 
-  function initTranslate() {}
+  function initTranslate() {
+    $('.ship-to__caption').innerText = 'Versand nach:';
+
+    $('.lav-delivery__item:nth-child(2) .lav-delivery__title').innerText =
+      'Lieferung';
+
+    $('.lav-delivery__item:nth-child(3) .lav-delivery__title').innerText =
+      'Rückgaberecht';
+
+    $$('.lav-delivery__link').forEach((item) => {
+      item.innerText = 'MEHR ERFAHREN';
+    });
+  }
 
   function handleBenefits() {
     const el = `
