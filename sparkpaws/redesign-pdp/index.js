@@ -312,11 +312,13 @@ console.log('initExp');
       }
 
       .lav-watch-measure {
+        margin: 28px auto;
+      }
+      .lav-watch-measure__item {
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        margin: 28px auto;
       }
       .lav-watch-measure img {
         margin-left: 4px;
@@ -1051,34 +1053,37 @@ console.log('initExp');
 
     // todo video what to do
     // and .size-guide__video remove
-    if ($('.measurements__cell-link')) {
-      $('.tabs__body')?.insertAdjacentHTML(
-        'beforeend',
-        `
-            <div class="lav-watch-measure">
-              <span class="lav-link lav-link-measure">WATCH VIDEO ON HOW TO MEASURE</span>
-              <img src="${exp.dir}/img/icon-play.svg" >
-            </div>
-          `
-      );
+    $('.tabs__body')?.insertAdjacentHTML(
+      'beforeend',
+      `<div class="lav-watch-measure"></div>`
+    );
 
-      $('.lav-link-measure').addEventListener('click', () => {
+    $$('.measurements__content').forEach((item) => {
+      if (!item.querySelector('.measurements__cell-link')) return false;
+
+      const el = document.createElement('div');
+      el.classList.add('lav-watch-measure__item');
+
+      el.innerHTML = `
+        <span class="lav-link lav-link-measure">
+          WATCH VIDEO ON HOW TO MEASURE
+          ${item.querySelector('.measurements__cell-title')?.textContent}
+        </span>
+        <img src="${exp.dir}/img/icon-play.svg" />
+      `;
+
+      $('.lav-watch-measure').insertAdjacentElement('beforeend', el);
+
+      el.addEventListener('click', () => {
         pushDataLayer(
           'exp_new_info_pdp_wvideo',
           'Watch video on how to measure',
           'Button',
           'Size chart'
         );
-        $('.measurements__cell-link')?.click();
+        item.querySelector('.measurements__cell-link').click();
       });
-    } else {
-      $('.tabs__body')?.insertAdjacentHTML(
-        'beforeend',
-        `
-          <div class="lav-watch-measure"></div>
-        `
-      );
-    }
+    });
 
     let isFireToggler = false;
     $$('.toggle-button__switch').forEach((item) => {
