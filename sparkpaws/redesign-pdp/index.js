@@ -21,7 +21,7 @@ console.log('initExp');
       () => document.body,
       () => {
         document.body.classList.add('lav-de');
-        isDe = false;
+        isDe = true;
       }
     );
   }
