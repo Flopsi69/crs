@@ -1531,11 +1531,10 @@ console.log('initExp');
         ) {
           optionEl.classList.add('lav-quantity');
 
-          // TODO
           if ($('[name="quantity"]', optionEl)?.value) {
-            let text = 'In stock';
+            let text = isDe ? 'Auf Lager' : 'In stock';
             if ($('.ProductForm__AddToCart[disabled]')) {
-              text = 'Out of stock';
+              text = isDe ? 'Nicht vorrätig' : 'Out of stock';
             }
             labelEl.insertAdjacentHTML(
               'beforeend',
@@ -1552,7 +1551,7 @@ console.log('initExp');
                 $('.ProductForm__AddToCart[disabled]') &&
                 !$('.lav-quantity-stock_out')
               ) {
-                text = 'Out of stock';
+                text = isDe ? 'Nicht vorrätig' : 'Out of stock';
                 $('.lav-quantity-stock').classList.add(
                   'lav-quantity-stock_out'
                 );
@@ -1560,8 +1559,9 @@ console.log('initExp');
                 !$('.ProductForm__AddToCart[disabled]') &&
                 $('.lav-quantity-stock_out')
               ) {
-                // todo
-                $('.lav-quantity-stock').textContent = 'In stock';
+                $('.lav-quantity-stock').textContent = isDe
+                  ? 'Auf Lager'
+                  : 'In stock';
                 $('.lav-quantity-stock').classList.remove(
                   'lav-quantity-stock_out'
                 );
@@ -1683,7 +1683,6 @@ console.log('initExp');
   }
 
   function handleColors(el) {
-    // todo
     const colors = {
       blue: '#2d789a',
       blau: '#2d789a',
@@ -1704,6 +1703,7 @@ console.log('initExp');
       red: '#681414',
       rot: '#681414',
       lilac: '#C0A9D5',
+      lila: '#C0A9D5',
       flieder: '#C0A9D5',
       teal: '#688F8B',
       petrol: '#688F8B',
@@ -1728,6 +1728,9 @@ console.log('initExp');
       limewelle:
         'linear-gradient(180deg, #4E52AE 0%, #7698C8 37.58%, #95E58C 100%)',
       'purple-lavender': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
+      'purple-and-lavender':
+        'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
+      'purple-&-lavender': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
       'lila-lavendel': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
       'red-&-black': 'linear-gradient(180deg, #E14365 0%, #141921 100%)',
       chestnut: 'linear-gradient(180deg, #C68D99 0%, #091019 100%)',
@@ -2046,19 +2049,35 @@ console.log('initExp');
                 <img src="${exp.dir}/img/icon-return.svg" />
               </div>
 
-              <div class="lav-modal__title">30-day free return & exchange</div>
+              <div class="lav-modal__title">${
+                isDe
+                  ? '30 Tage Rückgabe und Umtausch - Hundebekleidung'
+                  : '30-day free return & exchange'
+              }</div>
 
               <div class="lav-modal__text">
                 <p>
-                  Finding the right size for your dog can be tricky and thats why we offer <strong class='mark-red'>free exchange on your 1st purchase for all dog apparel items!</strong>
+                  ${
+                    isDe
+                      ? "Die richtige Größe für deinen Hund zu finden, kann schwierig sein. Deshalb bieten wir einen <strong class='mark-red'>kostenlosen Umtausch bei deinem ersten Kauf für alle Hundebekleidungsartikel an!</strong>"
+                      : "Finding the right size for your dog can be tricky and thats why we offer <strong class='mark-red'>free exchange on your 1st purchase for all dog apparel items!</strong>"
+                  }
                 </p>
 
                 <p>
-                  We will gladly help you exchange our products within <strong>30&nbsp;days</strong> of receiving the items as long as the items are in brand new condition, in original tags and packaging, and free of odor and dog hair.
+                  ${
+                    isDe
+                      ? 'Wir helfen dir gerne dabei, unsere Produkte innerhalb von <strong>30 Tagen</strong> nach Erhalt umzutauschen, solange sich die Artikel in einem brandneuen Zustand befinden, originalverpackt und frei von Gerüchen und Hundehaaren sind.'
+                      : 'We will gladly help you exchange our products within <strong>30&nbsp;days</strong> of receiving the items as long as the items are in brand new condition, in original tags and packaging, and free of odor and dog hair.'
+                  }
                 </p>
 
                 <p>
-                  To initiate a return, just shoot us an email <a href='mailto:service@sparkpaws.com'>service@sparkpaws.com</a> with your order # and our customer service team will help you out. We will respond to your <strong>request within 24 hours Mon-Fri</strong>.
+                  ${
+                    isDe
+                      ? "Um eine Rücksendung zu veranlassen, schick uns einfach eine E-Mail an <a href='mailto:service@sparkpaws.com'>service@sparkpaws.com</a> mit deiner Bestellnummer und unser Kundenservice wird dir weiterhelfen. Wir werden deiner Anfrage innerhalb <strong>von 24 Stunden von Montag bis Freitag nachkommen.</strong>"
+                      : "To initiate a return, just shoot us an email <a href='mailto:service@sparkpaws.com'> service@sparkpaws.com</a> with your order # and our customer service team will help you out.We will respond to your <strong> request within 24 hours Mon - Fri</strong>."
+                  }
                 </p>
               </div>
             </div>
