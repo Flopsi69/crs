@@ -17,8 +17,13 @@ console.log('initExp');
 
   let isDe = false;
   if (location.host === 'www.sparkpaws.de') {
-    document.body.classList.add('lav-de');
-    isDe = false;
+    waitFor(
+      () => document.body,
+      () => {
+        document.body.classList.add('lav-de');
+        isDe = false;
+      }
+    );
   }
 
   // Observers
@@ -818,7 +823,12 @@ console.log('initExp');
   /*** STYLES / End ***/
 
   /********* Custom Code **********/
-  init();
+  waitFor(
+    () => document.body,
+    () => {
+      init();
+    }
+  );
   function init() {
     console.log('init');
     waitFor(
@@ -1675,42 +1685,77 @@ console.log('initExp');
     // todo
     const colors = {
       black: '#1F2125',
+      schwarz: '#1F2125',
       grey: '#938F99',
+      grau: '#938F99',
       pink: '#CF9996',
+      rosa: '#CF9996',
       brown: '#B97553',
+      braun: '#B97553',
       'pine-green': '#011F20',
+      kieferngrün: '#011F20',
       maroon: '#40161B',
+      kastanienbraun: '#40161B',
       red: '#681414',
+      rot: '#681414',
       lilac: '#C0A9D5',
+      flieder: '#C0A9D5',
       teal: '#688F8B',
+      petrol: '#688F8B',
       green: '#AEA78D',
+      grün: '#AEA78D',
       'pastel-icing':
+        'linear-gradient(180deg, #D77DC9 0%, #FFB6AC 50%, #AEDBFC 100%)',
+      pastellglasur:
         'linear-gradient(180deg, #D77DC9 0%, #FFB6AC 50%, #AEDBFC 100%)',
       'snow-cone':
         'linear-gradient(180deg, #A99EE9 0%, #FE376F 50%, #738DE6 100%)',
+      'rosa-blau':
+        'linear-gradient(180deg, #A99EE9 0%, #FE376F 50%, #738DE6 100%)',
       kaleidoscope:
+        'linear-gradient(180deg, #6566B3 0%, #F095A5 30.21%, #FFC0A6 66.67%, #5AA2B6 100%)',
+      kaleidoskop:
         'linear-gradient(180deg, #6566B3 0%, #F095A5 30.21%, #FFC0A6 66.67%, #5AA2B6 100%)',
       '90s-retro':
         'linear-gradient(180deg, #C0EAFC 29.69%, #3D2777 59.90%, #E9B6E5 100%)',
       'lime-wave':
         'linear-gradient(180deg, #4E52AE 0%, #7698C8 37.58%, #95E58C 100%)',
+      limewelle:
+        'linear-gradient(180deg, #4E52AE 0%, #7698C8 37.58%, #95E58C 100%)',
       'purple-lavender': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
+      'lila-lavendel': 'linear-gradient(180deg, #884DAF 0%, #879CD9 100%)',
       'red-&-black': 'linear-gradient(180deg, #E14365 0%, #141921 100%)',
       chestnut: 'linear-gradient(180deg, #C68D99 0%, #091019 100%)',
+      kastanie: 'linear-gradient(180deg, #C68D99 0%, #091019 100%)',
+      'rot-&-schwarz': 'linear-gradient(180deg, #E14365 0%, #141921 100%)',
       'ice-blue':
+        'linear-gradient(180deg, #7E8DA1 0%, #A7B6C7 50.52%, #416C88 100%)',
+      eisblau:
         'linear-gradient(180deg, #7E8DA1 0%, #A7B6C7 50.52%, #416C88 100%)',
       'tropical-storm': 'linear-gradient(180deg, #C3C58B 0%, #ACE8F3 100%)',
       'pink-purple':
         'linear-gradient(180deg, #E4D3CD 0%, #EEC3B9 49.48%, #A5A1D9 100%)',
+      'rosa-lila':
+        'linear-gradient(180deg, #E4D3CD 0%, #EEC3B9 49.48%, #A5A1D9 100%)',
       'navy-turquoise-pink':
+        'linear-gradient(180deg, #2F70B3 0%, #FBCDCD 49.48%, #71C7C1 100%)',
+      'marineblau-türkis-rosa':
         'linear-gradient(180deg, #2F70B3 0%, #FBCDCD 49.48%, #71C7C1 100%)',
       'black-green-pink':
         'linear-gradient(180deg, #27212A 0%, #FB4D8A 49.48%, #019365 100%)',
+      'schwarz-grün-rosa':
+        'linear-gradient(180deg, #27212A 0%, #FB4D8A 49.48%, #019365 100%)',
       'cotton-candy':
+        'linear-gradient(180deg, #A9CFE4 0%, #E6D4EA 49.48%, #EFCFC5 100%)',
+      zuckerwatte:
         'linear-gradient(180deg, #A9CFE4 0%, #E6D4EA 49.48%, #EFCFC5 100%)',
       'purple-green-yellow':
         'linear-gradient(180deg, #BBB7DD 0%, #F7E6D3 49.48%, #BDE7D5 100%)',
+      'lila-grün-gelb':
+        'linear-gradient(180deg, #BBB7DD 0%, #F7E6D3 49.48%, #BDE7D5 100%)',
       'yellow-blue-pink':
+        'linear-gradient(180deg, #96DAE9 0%, #FDECCD 49.48%, #FFC6E5 100%)',
+      'gelb-blau-rosa':
         'linear-gradient(180deg, #96DAE9 0%, #FDECCD 49.48%, #FFC6E5 100%)',
       'multi-plaid-teal':
         'linear-gradient(180deg, #2A4B60 0%, #E5DFBF 25%, #934E4F 47.92%, #22686E 75.52%, #DCA389 100%)',
