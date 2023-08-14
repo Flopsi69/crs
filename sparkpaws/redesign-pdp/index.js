@@ -1500,7 +1500,6 @@ console.log('initExp');
                   `
             );
 
-            // todo
             setTimeout(() => {
               if ($('.size-guide__content')) {
                 labelEl.insertAdjacentHTML(
@@ -1508,7 +1507,9 @@ console.log('initExp');
                   `
                       <span class='lav-option-guide lav-trigger-guide'>
                         <img src="${exp.dir}/img/icon-ruler.svg" />
-                        <span class="lav-link">View Size Guide</span>
+                        <span class="lav-link">${
+                          isDe ? 'Größentabelle ansehen' : 'View Size Guide'
+                        }</span>
                       </span>
                       `
                 );
@@ -1684,6 +1685,10 @@ console.log('initExp');
   function handleColors(el) {
     // todo
     const colors = {
+      blue: '#2d789a',
+      blau: '#2d789a',
+      tan: '#cba89b',
+      bräune: '#cba89b',
       black: '#1F2125',
       schwarz: '#1F2125',
       grey: '#938F99',
