@@ -906,6 +906,24 @@ console.log('initExp');
       mobileCollapse
     );
 
+    $('.lav-product-collapse').add('click', function () {
+      if ($0.querySelector('[aria-expanded]').ariaExpanded === 'false') {
+        pushDataLayer(
+          'exp_new_info_pdp_product_info',
+          'Product info. Open',
+          'Expander',
+          'Product info'
+        );
+      } else {
+        pushDataLayer(
+          'exp_new_info_pdp_product_info',
+          'Product info. Close',
+          'Expander',
+          'Product info'
+        );
+      }
+    });
+
     setTimeout(() => {
       if ($('.cross-banners .cross-banner')) {
         const parent = document.createElement('div');
@@ -1802,137 +1820,139 @@ console.log('initExp');
       () =>
         $('.ProductForm__QuantitySelector') &&
         $('.ProductForm__BuyButtons') &&
-        $('.cbb-frequently-bought-container') &&
         $('.cbb-frequently-bought-container'),
       () => {
-        initIntersection(async (el) => {
-          if (!el.classList.contains('in-view')) {
-            // console.log('intersactin', el);
-          }
-
-          if (await isElementInViewport(el)) {
-            if (el.classList.contains('lav-colors')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_v_color',
-                'Color section',
-                'Visibility',
-                'Color'
-              );
+        setTimeout(() => {
+          initIntersection(async (el) => {
+            console.log('elObesrve', el);
+            if (!el.classList.contains('in-view')) {
+              // console.log('intersactin', el);
             }
 
-            if (el.classList.contains('lav-size')) {
-              el.classList.add('in-view');
+            if (await isElementInViewport(el)) {
+              if (el.classList.contains('lav-colors')) {
+                el.classList.add('in-view');
 
-              pushDataLayer(
-                'exp_new_info_pdp_v_sguide',
-                'Size',
-                'Visibility',
-                'Size guide'
-              );
-            }
-
-            if (el.classList.contains('lav-note__plate')) {
-              if (
-                document.querySelector('.lav-modal__guide.active') &&
-                !el.classList.contains('in-view-popup')
-              ) {
-                el.classList.add('in-view-popup');
                 pushDataLayer(
-                  'exp_new_info_pdp_pp_30',
-                  '30-day free return',
+                  'exp_new_info_pdp_v_color',
+                  'Color section',
+                  'Visibility',
+                  'Color'
+                );
+              }
+
+              if (el.classList.contains('lav-size')) {
+                el.classList.add('in-view');
+
+                pushDataLayer(
+                  'exp_new_info_pdp_v_sguide',
+                  'Size',
+                  'Visibility',
+                  'Size guide'
+                );
+              }
+
+              if (el.classList.contains('lav-note__plate')) {
+                if (
+                  document.querySelector('.lav-modal__guide.active') &&
+                  !el.classList.contains('in-view-popup')
+                ) {
+                  el.classList.add('in-view-popup');
+                  pushDataLayer(
+                    'exp_new_info_pdp_pp_30',
+                    '30-day free return',
+                    'Visibility',
+                    'Pop up Size charts'
+                  );
+                } else if (!el.classList.contains('in-view-normal')) {
+                  el.classList.add('in-view-normal');
+                  pushDataLayer(
+                    'exp_new_info_pdp_v_30',
+                    '30-day free return',
+                    'Visibility',
+                    'Size chart'
+                  );
+                }
+
+                if (
+                  el.classList.contains('in-view-normal') &&
+                  el.classList.contains('in-view-popup')
+                ) {
+                  el.classList.add('in-view');
+                }
+              }
+
+              if (el.classList.contains('lav-contact__btn')) {
+                el.classList.add('in-view');
+
+                pushDataLayer(
+                  'exp_new_info_pdp_pp_v_chat',
+                  'Chat with a specialist',
                   'Visibility',
                   'Pop up Size charts'
                 );
-              } else if (!el.classList.contains('in-view-normal')) {
-                el.classList.add('in-view-normal');
+              }
+
+              if (el.classList.contains('lav-delivery')) {
+                el.classList.add('in-view');
+
                 pushDataLayer(
-                  'exp_new_info_pdp_v_30',
-                  '30-day free return',
+                  'exp_new_info_pdp_v_del',
+                  'Delivery',
                   'Visibility',
-                  'Size chart'
+                  'Ship to'
+                );
+              }
+
+              if (el.classList.contains('lav-delivery__item')) {
+                el.classList.add('in-view');
+
+                pushDataLayer(
+                  'exp_new_info_pdp_pp_v_ret',
+                  'Return policy',
+                  'Visibility',
+                  'Ship to'
+                );
+              }
+
+              if (el.classList.contains('lav-modal__return')) {
+                el.classList.add('in-view');
+
+                pushDataLayer(
+                  'exp_new_info_pdp_pp_v_30',
+                  'Pop up 30-day free return & exchange',
+                  'Visibility',
+                  '30-day free return & exchange'
+                );
+              }
+
+              if (el.classList.contains('lav-benefits')) {
+                el.classList.add('in-view');
+
+                pushDataLayer(
+                  'exp_new_info_pdp_v_ainfo',
+                  'Aadditional information',
+                  'Visibility',
+                  'additional information'
                 );
               }
 
               if (
-                el.classList.contains('in-view-normal') &&
-                el.classList.contains('in-view-popup')
+                el.dataset.sectionType === 'product-size-guide' &&
+                !$('.to-add-back')
               ) {
+                pushDataLayer(
+                  'exp_new_info_pdp_v_schart',
+                  'Size charts table',
+                  'Visibility',
+                  'Size chart'
+                );
+
                 el.classList.add('in-view');
               }
             }
-
-            if (el.classList.contains('lav-contact__btn')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_pp_v_chat',
-                'Chat with a specialist',
-                'Visibility',
-                'Pop up Size charts'
-              );
-            }
-
-            if (el.classList.contains('lav-delivery')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_v_del',
-                'Delivery',
-                'Visibility',
-                'Ship to'
-              );
-            }
-
-            if (el.classList.contains('lav-delivery__item')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_pp_v_ret',
-                'Return policy',
-                'Visibility',
-                'Ship to'
-              );
-            }
-
-            if (el.classList.contains('lav-modal__return')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_pp_v_30',
-                'Pop up 30-day free return & exchange',
-                'Visibility',
-                '30-day free return & exchange'
-              );
-            }
-
-            if (el.classList.contains('lav-benefits')) {
-              el.classList.add('in-view');
-
-              pushDataLayer(
-                'exp_new_info_pdp_v_ainfo',
-                'Aadditional information',
-                'Visibility',
-                'additional information'
-              );
-            }
-
-            if (
-              el.dataset.sectionType === 'product-size-guide' &&
-              !$('.to-add-back')
-            ) {
-              pushDataLayer(
-                'exp_new_info_pdp_v_schart',
-                'Size charts table',
-                'Visibility',
-                'Size chart'
-              );
-
-              el.classList.add('in-view');
-            }
-          }
-        });
+          });
+        }, 300);
       }
     );
   }
