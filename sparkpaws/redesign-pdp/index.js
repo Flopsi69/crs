@@ -1632,7 +1632,8 @@ console.log('initExp');
       location.pathname.includes('human') ||
       location.pathname.includes('-t-shirt') ||
       location.pathname.includes('/essential-sweatpant') ||
-      location.pathname.includes('/poop-bag-holder');
+      location.pathname.includes('/poop-bag-holder') ||
+      location.pathname.includes('/poop-bags');
 
     if (isHuman) {
       $('.lav-benefits__item.lab-benefit__fit').remove();
