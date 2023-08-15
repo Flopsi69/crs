@@ -76,6 +76,9 @@ console.log('initExp');
         padding: 24px;
         margin: auto;
       }
+      .lav-de p {
+        font-family: inherit;
+      }
       .lav-modal__close {
         position: absolute;
         right: 24px;
