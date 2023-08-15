@@ -1003,7 +1003,7 @@ console.log('initExp');
             <img src="${exp.dir}/img/icon-return.svg">
             <div class="lav-note__title">${
               isDe
-                ? 'Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
+                ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
                 : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
             }</div>
             <div class="lav-note__link lav-link lav-trigger-return">LEARN MORE</div>
@@ -1946,13 +1946,6 @@ console.log('initExp');
 
               if (el.classList.contains('lav-modal__return')) {
                 el.classList.add('in-view');
-
-                pushDataLayer(
-                  'exp_new_info_pdp_pp_v_30',
-                  'Pop up 30-day free return & exchange',
-                  'Visibility',
-                  '30-day free return & exchange'
-                );
               }
 
               if (el.classList.contains('lav-benefits')) {
@@ -2195,7 +2188,7 @@ console.log('initExp');
                   ? `
                 <p>Erleben Sie unübertroffene Qualität und Seelenfrieden mit unseren Hundespaziersets und -bekleidungen.</p>
                 <p>Jedes Produkt wurde an über 100.000 Hunden getestet, um optimalen Komfort, Sicherheit und eine makellose Passform zu gewährleisten.</p>
-                <p>Geben Sie Ihrem Hund das beste Spaziererlebnis, das er verdient.</p>
+                <p><strong>Geben Sie Ihrem Hund das beste Spaziererlebnis, das er verdient.</strong></p>
               `
                   : `
                 <p>
@@ -2226,7 +2219,7 @@ console.log('initExp');
               <div class="lav-modal__text">
                 ${
                   isDe
-                    ? '<p>Jedes Produkt, das Spark Paws kreiert, durchläuft einen strengen Auswahlprozess der Materialien sowie mehrere Runden von Probenahmen und Prototypen, um sicherzustellen, dass das endgültige Produkt und seine Größe perfekt für Sie und Ihren Hund sind.</p><p>Verwöhnen Sie Ihren pelzigen Freund mit unvergleichlichem Komfort und Stil mit unserer hochwertigen Hundebekleidung, Spaziersets und anderen Produkten. Sorgfältig gefertigt aus weichen, strapazierfähigen Materialien garantieren sie eine gemütliche Passform für endloses Spielen und bildschöne Momente.</p>'
+                    ? '<p>Jedes Produkt, das Spark Paws kreiert, durchläuft <strong>einen strengen Auswahlprozess der Materialien</strong> sowie mehrere Runden von Probenahmen und Prototypen, um sicherzustellen, dass <strong>das endgültige Produkt und seine Größe perfekt für Sie und Ihren Hund sind.</strong></p><p>Verwöhnen Sie Ihren pelzigen Freund mit unvergleichlichem Komfort und Stil mit unserer hochwertigen Hundebekleidung, Spaziersets und anderen Produkten. Sorgfältig gefertigt aus weichen, strapazierfähigen Materialien <strong>garantieren sie eine gemütliche Passform für endloses Spielen und bildschöne Momente.</strong></p>'
                     : `<p>Every product that Spark Paws creates undergoes a <strong>rigorous material selection process,</strong> along with multiple rounds of sampling and prototyping, ensuring the <strong>final product and its sizing are perfected for you and your dog.</strong></p>
                 <p>Indulge your furry friend in unparalleled comfort and style with our premium quality dog apparel, walk sets, and other products. Meticulously crafted from soft, durable materials, they <strong>guarantee a cozy fit for endless play and picture-perfect moments.</strong></p>`
                 }
@@ -2242,20 +2235,71 @@ console.log('initExp');
                 <img src="${exp.dir}/img/icon-truck.svg" />
               </div>
 
-              <div class="lav-modal__title">Shipping info</div>
+              <div class="lav-modal__title"> ${
+                isDe ? 'Versand & Rücksendungen' : 'Shipping info'
+              }</div>
 
               <div class="lav-modal__text">
                 <p>
-                  We will process your order within 3 business days and provide step by step tracking for the package through email and SMS.
+                  ${
+                    isDe
+                      ? 'Wir werden deine Bestellung innerhalb von 3 Werktagen bearbeiten und bieten Schritt für Schritt Packetverfolgung per E-Mail und SMS an.'
+                      : 'We will process your order within 3 business days and provide step by step tracking for the package through email and SMS.'
+                  }
                 </p>
               </div>
 
               <table class="lav-modal__table">
                 <tbody>
                   <tr>
-                    <td>Location</td>
-                    <td>Business Days</td>
+                    <td>${isDe ? 'Standort' : 'Location'}</td>
+                    <td>${isDe ? 'Geschäftstage' : 'Business Days'}</td>
                   </tr>
+                  ${
+                    isDe
+                      ? `
+                  <tr>
+                    <td>Vereinigte Staaten</td>
+                    <td>6 bis 12</td>
+                  </tr>
+                  <tr>
+                    <td>Kanada</td>
+                    <td>8 bis 12</td>
+                  </tr>
+                  <tr>
+                    <td>Australien & Neuseeland</td>
+                    <td>4 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Vereinigtes Königreich</td>
+                    <td>5 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Deutschland</td>
+                    <td>5 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Italien</td>
+                    <td>5 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Frankreich</td>
+                    <td>5 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Japan</td>
+                    <td>5 bis 10</td>
+                  </tr>
+                  <tr>
+                    <td>Rest der EU</td>
+                    <td>5 bis 12</td>
+                  </tr>
+                  <tr>
+                    <td>Rest der Welt</td>
+                    <td>10 bis 20</td>
+                  </tr>                
+                  `
+                      : `
                   <tr>
                     <td>United States</td>
                     <td>6 to 12</td>
@@ -2296,6 +2340,8 @@ console.log('initExp');
                     <td>Rest of World</td>
                     <td>10 to 20</td>
                   </tr>
+                  `
+                  }
                 </tbody>
               </table>
             </div>
@@ -2416,6 +2462,13 @@ console.log('initExp');
             'Learn more',
             'Button',
             'Ship to - Return policy'
+          );
+
+          pushDataLayer(
+            'exp_new_info_pdp_pp_v_30',
+            'Pop up 30-day free return & exchange',
+            'Visibility',
+            '30-day free return & exchange'
           );
         }
 
