@@ -906,8 +906,8 @@ console.log('initExp');
       mobileCollapse
     );
 
-    $('.lav-product-collapse').add('click', function () {
-      if ($0.querySelector('[aria-expanded]').ariaExpanded === 'false') {
+    $('.lav-product-collapse').addEventListener('click', function () {
+      if (this.querySelector('[aria-expanded]').ariaExpanded === 'false') {
         pushDataLayer(
           'exp_new_info_pdp_product_info',
           'Product info. Open',
