@@ -992,6 +992,7 @@ console.log('initExp');
 
     document.addEventListener('click', function (e) {
       const el = e.target;
+      console.log('click', el);
       const tabEl = el.closest('.tabs__button');
       if (tabEl) {
         handleImageForPopUp(tabEl.dataset.tab);
