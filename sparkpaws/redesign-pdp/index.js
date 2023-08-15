@@ -51,8 +51,11 @@ console.log('initExp');
         padding: 20px;
         max-height: 100vh;
       }
-      .lav-modal__guide .select2-container {
+      .lav-modal-open .select2-container {
         z-index: 99999999999;
+      }
+      .lav-modal-open .select2-dropdown {
+        z-index: 9999999999;
       }
       .lav-modal:not(.active ){
         opacity: 0;
@@ -2500,7 +2503,10 @@ console.log('initExp');
         );
 
         initIntersection((el) => {
-          if (el.classList.contains('lav-contact__btn')) {
+          if (
+            el.classList.contains('lav-contact__btn') &&
+            !el.classList.contains('in-view')
+          ) {
             el.classList.add('in-view');
 
             pushDataLayer(
