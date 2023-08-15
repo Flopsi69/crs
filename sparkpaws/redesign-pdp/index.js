@@ -5,7 +5,7 @@ console.log('initExp');
   const exp = {
     dir: 'https://flopsi69.github.io/crs/sparkpaws/redesign-pdp',
     observer: {
-      mutation: false,
+      mutation: true,
       intersection: true,
     },
     clarity: {
@@ -29,7 +29,29 @@ console.log('initExp');
   // Observers
   if (exp.observer.mutation) {
     initMutation((el) => {
-      console.log(el);
+      if (el.classList.contains('select2-selection__clear')) {
+        setTimeout(() => {
+          if ($('.lav-modal__guide.active')) {
+            pushDataLayer(
+              'exp_new_info_pdp_pp_breed_mydog',
+              `My dog is like a - ${
+                $('.select2-selection__rendered').innerText
+              }`,
+              'Dropdown',
+              'Pop up Size charts - Size by Breed'
+            );
+          } else {
+            pushDataLayer(
+              'exp_new_info_pdp_breed_mydog',
+              `My dog is like a - ${
+                $('.select2-selection__rendered').innerText
+              }`,
+              'Dropdown',
+              'Size chart'
+            );
+          }
+        }, 200);
+      }
     });
   }
 
@@ -1052,32 +1074,33 @@ console.log('initExp');
       }
 
       if (el.closest('.select2') && el.closest('.search-breed')) {
-        console.log('selectWait');
-        let time = 800;
-        if (window.innerWidth < 768) {
-          time = 300;
-        }
-        setTimeout(() => {
-          $$('.select2-container .select2-results__option').forEach((item) => {
-            item.addEventListener('click', function () {
-              if ($('.lav-modal__guide.active')) {
-                pushDataLayer(
-                  'exp_new_info_pdp_pp_breed_mydog',
-                  `My dog is like a - ${item.innerText}`,
-                  'Dropdown',
-                  'Pop up Size charts - Size by Breed'
-                );
-              } else {
-                pushDataLayer(
-                  'exp_new_info_pdp_breed_mydog',
-                  `My dog is like a - ${item.innerText}`,
-                  'Dropdown',
-                  'Size chart'
-                );
-              }
-            });
-          });
-        }, 800);
+        // console.log('selectWait');
+        // let time = 800;
+        // if (window.innerWidth < 768) {
+        //   time = 300;
+        // }
+        // setTimeout(() => {
+        //   $$('.select2-container .select2-results__option').forEach((item) => {
+        //     console.log(item.innerText)
+        //     item.addEventListener('click', function () {
+        //       if ($('.lav-modal__guide.active')) {
+        //         pushDataLayer(
+        //           'exp_new_info_pdp_pp_breed_mydog',
+        //           `My dog is like a - ${item.innerText}`,
+        //           'Dropdown',
+        //           'Pop up Size charts - Size by Breed'
+        //         );
+        //       } else {
+        //         pushDataLayer(
+        //           'exp_new_info_pdp_breed_mydog',
+        //           `My dog is like a - ${item.innerText}`,
+        //           'Dropdown',
+        //           'Size chart'
+        //         );
+        //       }
+        //     });
+        //   });
+        // }, 300);
       }
     });
 
