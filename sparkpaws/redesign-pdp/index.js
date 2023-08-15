@@ -1292,52 +1292,52 @@ console.log('initExp');
 
     const options = [
       {
-        title: 'United States',
+        title: isDe ? 'Vereinigte Staaten' : 'United States',
         value: ['6', '12'],
         deliveryFrom: '$50',
       },
       {
-        title: 'Canada',
+        title: isDe ? 'Kanada' : 'Canada',
         value: ['8', '12'],
         deliveryFrom: '$60 CAD',
       },
       {
-        title: 'Australia & NZ',
+        title: isDe ? 'Australien & Neuseeland' : 'Australia & NZ',
         value: ['4', '10'],
         deliveryFrom: '$65 AUD',
       },
       {
-        title: 'United Kingdom',
+        title: isDe ? 'Vereinigtes Königreich' : 'United Kingdom',
         value: ['5', '10'],
         deliveryFrom: '£40',
       },
       {
-        title: 'Germany', //4
+        title: isDe ? 'Deutschland' : 'Germany', //4
         value: ['5', '10'],
         deliveryFrom: '€50',
       },
       {
-        title: 'Italy',
+        title: isDe ? 'Italien' : 'Italy',
         value: ['5', '10'],
         deliveryFrom: '€50',
       },
       {
-        title: 'France',
+        title: isDe ? 'Frankreich' : 'France',
         value: ['5', '10'],
         deliveryFrom: '€50',
       },
       {
-        title: 'Japan',
+        title: isDe ? 'Japan' : 'Japan',
         value: ['5', '10'],
         deliveryFrom: '¥6500',
       },
       {
-        title: 'Rest of EU',
+        title: isDe ? 'Rest der EU' : 'Rest of EU',
         value: ['5', '12'],
         deliveryFrom: '€50',
       },
       {
-        title: 'Rest of World',
+        title: isDe ? 'Rest der Welt' : 'Rest of World',
         value: ['10', '20'],
         deliveryFrom: '$50',
       },
