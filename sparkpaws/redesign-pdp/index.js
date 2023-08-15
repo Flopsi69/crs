@@ -51,7 +51,7 @@ console.log('initExp');
         padding: 20px;
         max-height: 100vh;
       }
-      .select2-container {
+      .lav-modal__guide .select2-container {
         z-index: 99999999999;
       }
       .lav-modal:not(.active ){
@@ -2498,6 +2498,19 @@ console.log('initExp');
           'Visibility',
           'Pop up Size charts - Size by Measurements'
         );
+
+        initIntersection((el) => {
+          if (el.classList.contains('lav-contact__btn')) {
+            el.classList.add('in-view');
+
+            pushDataLayer(
+              'exp_new_info_pdp_pp_v_chat',
+              'Chat with a specialist',
+              'Visibility',
+              'Pop up Size charts'
+            );
+          }
+        }, $('.lav-contact__btn'));
 
         $(
           '[data-section-type="product-size-guide"]'
