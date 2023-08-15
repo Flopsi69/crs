@@ -1027,6 +1027,11 @@ console.log('initExp');
       }
 
       if (el.closest('.select2') && el.closest('.search-breed')) {
+        console.log('selectWait');
+        let time = 800;
+        if (window.innerWidth < 768) {
+          time = 300;
+        }
         setTimeout(() => {
           $$('.select2-container .select2-results__option').forEach((item) => {
             item.addEventListener('click', function () {
@@ -1047,7 +1052,7 @@ console.log('initExp');
               }
             });
           });
-        }, 300);
+        }, 800);
       }
     });
 
@@ -1792,134 +1797,143 @@ console.log('initExp');
   // *** Utils *** //
 
   if (exp.observer.intersection) {
-    initIntersection(async (el) => {
-      if (!el.classList.contains('in-view')) {
-        // console.log('intersactin', el);
-      }
-
-      if (await isElementInViewport(el)) {
-        if (el.classList.contains('lav-colors')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_v_color',
-            'Color section',
-            'Visibility',
-            'Color'
-          );
-        }
-
-        if (el.classList.contains('lav-size')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_v_sguide',
-            'Size',
-            'Visibility',
-            'Size guide'
-          );
-        }
-
-        if (el.classList.contains('lav-note__plate')) {
-          if (
-            document.querySelector('.lav-modal__guide.active') &&
-            !el.classList.contains('in-view-popup')
-          ) {
-            el.classList.add('in-view-popup');
-            pushDataLayer(
-              'exp_new_info_pdp_pp_30',
-              '30-day free return',
-              'Visibility',
-              'Pop up Size charts'
-            );
-          } else if (!el.classList.contains('in-view-normal')) {
-            el.classList.add('in-view-normal');
-            pushDataLayer(
-              'exp_new_info_pdp_v_30',
-              '30-day free return',
-              'Visibility',
-              'Size chart'
-            );
+    waitFor(
+      () =>
+        $('.ProductForm__QuantitySelector') &&
+        $('.ProductForm__BuyButtons') &&
+        $('.cbb-frequently-bought-container') &&
+        $('.cbb-frequently-bought-container'),
+      () => {
+        initIntersection(async (el) => {
+          if (!el.classList.contains('in-view')) {
+            // console.log('intersactin', el);
           }
 
-          if (
-            el.classList.contains('in-view-normal') &&
-            el.classList.contains('in-view-popup')
-          ) {
-            el.classList.add('in-view');
+          if (await isElementInViewport(el)) {
+            if (el.classList.contains('lav-colors')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_v_color',
+                'Color section',
+                'Visibility',
+                'Color'
+              );
+            }
+
+            if (el.classList.contains('lav-size')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_v_sguide',
+                'Size',
+                'Visibility',
+                'Size guide'
+              );
+            }
+
+            if (el.classList.contains('lav-note__plate')) {
+              if (
+                document.querySelector('.lav-modal__guide.active') &&
+                !el.classList.contains('in-view-popup')
+              ) {
+                el.classList.add('in-view-popup');
+                pushDataLayer(
+                  'exp_new_info_pdp_pp_30',
+                  '30-day free return',
+                  'Visibility',
+                  'Pop up Size charts'
+                );
+              } else if (!el.classList.contains('in-view-normal')) {
+                el.classList.add('in-view-normal');
+                pushDataLayer(
+                  'exp_new_info_pdp_v_30',
+                  '30-day free return',
+                  'Visibility',
+                  'Size chart'
+                );
+              }
+
+              if (
+                el.classList.contains('in-view-normal') &&
+                el.classList.contains('in-view-popup')
+              ) {
+                el.classList.add('in-view');
+              }
+            }
+
+            if (el.classList.contains('lav-contact__btn')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_pp_v_chat',
+                'Chat with a specialist',
+                'Visibility',
+                'Pop up Size charts'
+              );
+            }
+
+            if (el.classList.contains('lav-delivery')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_v_del',
+                'Delivery',
+                'Visibility',
+                'Ship to'
+              );
+            }
+
+            if (el.classList.contains('lav-delivery__item')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_pp_v_ret',
+                'Return policy',
+                'Visibility',
+                'Ship to'
+              );
+            }
+
+            if (el.classList.contains('lav-modal__return')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_pp_v_30',
+                'Pop up 30-day free return & exchange',
+                'Visibility',
+                '30-day free return & exchange'
+              );
+            }
+
+            if (el.classList.contains('lav-benefits')) {
+              el.classList.add('in-view');
+
+              pushDataLayer(
+                'exp_new_info_pdp_v_ainfo',
+                'Aadditional information',
+                'Visibility',
+                'additional information'
+              );
+            }
+
+            if (
+              el.dataset.sectionType === 'product-size-guide' &&
+              !$('.to-add-back')
+            ) {
+              pushDataLayer(
+                'exp_new_info_pdp_v_schart',
+                'Size charts table',
+                'Visibility',
+                'Size chart'
+              );
+
+              el.classList.add('in-view');
+            }
           }
-        }
-
-        if (el.classList.contains('lav-contact__btn')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_pp_v_chat',
-            'Chat with a specialist',
-            'Visibility',
-            'Pop up Size charts'
-          );
-        }
-
-        if (el.classList.contains('lav-delivery')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_v_del',
-            'Delivery',
-            'Visibility',
-            'Ship to'
-          );
-        }
-
-        if (el.classList.contains('lav-delivery__item')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_pp_v_ret',
-            'Return policy',
-            'Visibility',
-            'Ship to'
-          );
-        }
-
-        if (el.classList.contains('lav-modal__return')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_pp_v_30',
-            'Pop up 30-day free return & exchange',
-            'Visibility',
-            '30-day free return & exchange'
-          );
-        }
-
-        if (el.classList.contains('lav-benefits')) {
-          el.classList.add('in-view');
-
-          pushDataLayer(
-            'exp_new_info_pdp_v_ainfo',
-            'Aadditional information',
-            'Visibility',
-            'additional information'
-          );
-        }
-
-        if (
-          el.dataset.sectionType === 'product-size-guide' &&
-          !$('.to-add-back')
-        ) {
-          pushDataLayer(
-            'exp_new_info_pdp_v_schart',
-            'Size charts table',
-            'Visibility',
-            'Size chart'
-          );
-
-          el.classList.add('in-view');
-        }
+        });
       }
-    });
+    );
   }
 
   // Waiting for loading by condition
@@ -2077,7 +2091,7 @@ console.log('initExp');
                   ${
                     isDe
                       ? "Um eine Rücksendung zu veranlassen, schick uns einfach eine E-Mail an <a href='mailto:service@sparkpaws.com'>service@sparkpaws.com</a> mit deiner Bestellnummer und unser Kundenservice wird dir weiterhelfen. Wir werden deiner Anfrage innerhalb <strong>von 24 Stunden von Montag bis Freitag nachkommen.</strong>"
-                      : "To initiate a return, just shoot us an email <a href='mailto:service@sparkpaws.com'> service@sparkpaws.com</a> with your order # and our customer service team will help you out.We will respond to your <strong> request within 24 hours Mon - Fri</strong>."
+                      : "To initiate a return, just shoot us an email <a href='mailto:service@sparkpaws.com'> service@sparkpaws.com</a> with your order # and our customer service team will help you out. We will respond to your <strong> request within 24 hours Mon - Fri</strong>."
                   }
                 </p>
               </div>
