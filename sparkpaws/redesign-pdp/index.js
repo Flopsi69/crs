@@ -1095,32 +1095,39 @@ console.log('initExp');
         );
       }
 
+      // `<div class='lav-preinfo'></div>`
+
       if ($('.ProductMeta__Description .VideoWrapper')) {
         $('.ProductMeta__Description').insertAdjacentHTML(
           'beforebegin',
           `<div class='lav-preinfo'></div>`
         );
 
-        let el = $('.ProductMeta__Description .Rte').firstElementChild;
+        $('.lav-preinfo').insertAdjacentElement(
+          'beforeend',
+          $('.ProductMeta__Description .VideoWrapper').cloneNode(true)
+        );
 
-        if ($('.ProductMeta__Description .Rte').childElementCount === 1) {
-          el = $('.ProductMeta__Description .Rte > div')?.firstElementChild;
-        }
+        // let el = $('.ProductMeta__Description .Rte').firstElementChild;
 
-        if (!el) return false;
+        // if ($('.ProductMeta__Description .Rte').childElementCount === 1) {
+        //   el = $('.ProductMeta__Description .Rte > div')?.firstElementChild;
+        // }
 
-        while (el) {
-          if (
-            el === $('.ProductMeta__Description .VideoWrapper') ||
-            el.querySelector('.VideoWrapper')
-          ) {
-            $('.lav-preinfo').insertAdjacentElement('beforeend', el);
-            break;
-          }
+        // if (!el) return false;
 
-          $('.lav-preinfo').insertAdjacentElement('beforeend', el);
-          el = $('.ProductMeta__Description .Rte > div').firstElementChild;
-        }
+        // while (el) {
+        //   if (
+        //     el === $('.ProductMeta__Description .VideoWrapper') ||
+        //     el.querySelector('.VideoWrapper')
+        //   ) {
+        //     $('.lav-preinfo').insertAdjacentElement('beforeend', el);
+        //     break;
+        //   }
+
+        //   $('.lav-preinfo').insertAdjacentElement('beforeend', el);
+        //   el = $('.ProductMeta__Description .Rte > div').firstElementChild;
+        // }
       }
 
       $('.lav-product-collapse .Rte').innerHTML = $(
@@ -1348,14 +1355,14 @@ console.log('initExp');
           if (item.closest('.lav-modal__guide')) {
             pushDataLayer(
               'exp_new_info_pdp_pp_toggle_in',
-              `${$('input:checked + label', item).innerText}`,
+              `${$('input:checked + label', item).innerText.toLowerCase()}`,
               'Toggle',
               'Pop up Size charts - Size by Measurements'
             );
           } else {
             pushDataLayer(
               'exp_new_info_pdp_toggle_in',
-              `${$('input:checked + label', item).innerText}`,
+              `${$('input:checked + label', item).innerText.toLowerCase()}`,
               'Toggle',
               'Size chart'
             );
@@ -1738,7 +1745,7 @@ console.log('initExp');
                   <div class='lav-custom__title'>${
                     isDe ? 'Größentabelle' : 'Size Charts'
                   }</div>
-                  <div class='lav-custom__table'>
+                  <div class='lav-custom__table lav-observe'>
                       <table>
                       </table>
                       <div class="toggle-button lav-custom__toggler" data-unit-toggle="">
@@ -1750,7 +1757,7 @@ console.log('initExp');
                         </div>
                       </div>
                   </div>
-                  <div class='lav-custom__delivery'>
+                  <div class='lav-custom__delivery lav-observe'>
                     <img src="${exp.dir}/img/icon-return.svg">
                     <div class="lav-note__title">${
                       isDe
@@ -1794,6 +1801,22 @@ console.log('initExp');
                   $$('.lav-custom__toggler input').forEach((inp) => {
                     inp.addEventListener('change', function () {
                       fillCellData(type.items, inp.value);
+                      if (inp.closest('.lav-modal__custom')) {
+                        pushDataLayer(
+                          'exp_new_info_pdp_pp_toggle_in',
+                          inp.value,
+                          'Toggle',
+                          'Pop up Size charts - Size by Measurements'
+                        );
+                      } else {
+                        pushDataLayer(
+                          'exp_new_info_pdp_toggle_in',
+                          inp.value,
+                          'Toggle',
+                          'Size chart'
+                        );
+                      }
+
                       console.log('fire', inp.value);
                     });
                   });
@@ -2077,6 +2100,11 @@ console.log('initExp');
   // *** Utils *** //
 
   if (exp.observer.intersection) {
+    let delay = 300;
+
+    if (isHumanPage) {
+      delay = 1500;
+    }
     waitFor(
       () =>
         $('.ProductForm__QuantitySelector') &&
@@ -2116,6 +2144,36 @@ console.log('initExp');
               if (el.classList.contains('lav-note__plate')) {
                 if (
                   document.querySelector('.lav-modal__guide.active') &&
+                  !el.classList.contains('in-view-popup')
+                ) {
+                  el.classList.add('in-view-popup');
+                  pushDataLayer(
+                    'exp_new_info_pdp_pp_30',
+                    '30-day free return',
+                    'Visibility',
+                    'Pop up Size charts'
+                  );
+                } else if (!el.classList.contains('in-view-normal')) {
+                  el.classList.add('in-view-normal');
+                  pushDataLayer(
+                    'exp_new_info_pdp_v_30',
+                    '30-day free return',
+                    'Visibility',
+                    'Size chart'
+                  );
+                }
+
+                if (
+                  el.classList.contains('in-view-normal') &&
+                  el.classList.contains('in-view-popup')
+                ) {
+                  el.classList.add('in-view');
+                }
+              }
+
+              if (el.classList.contains('lav-custom__delivery')) {
+                if (
+                  document.querySelector('.lav-modal__custom.active') &&
                   !el.classList.contains('in-view-popup')
                 ) {
                   el.classList.add('in-view-popup');
@@ -2204,9 +2262,37 @@ console.log('initExp');
 
                 el.classList.add('in-view');
               }
+
+              if (
+                el.classList.contains('lav-custom__table') &&
+                !el.closest('.lav-modal__custom')
+              ) {
+                pushDataLayer(
+                  'exp_new_info_pdp_v_schart',
+                  'Size charts table',
+                  'Visibility',
+                  'Size chart'
+                );
+
+                el.classList.add('in-view');
+              }
+
+              // if (
+              //   el.classList.contains('lav-custom__table') &&
+              //   el.closest('.lav-modal__custom')
+              // ) {
+              //   pushDataLayer(
+              //     'exp_new_info_pdp_v_schart',
+              //     'Size charts table',
+              //     'Visibility',
+              //     'Size chart'
+              //   );
+
+              //   el.classList.add('in-view');
+              // }
             }
           });
-        }, 300);
+        }, delay);
       }
     );
   }
@@ -2285,6 +2371,7 @@ console.log('initExp');
       observer.observe(observeEl);
     } else {
       for (let el of Array.from(document.querySelectorAll('.lav-observe'))) {
+        console.log('observe', el);
         observer.observe(el);
       }
     }
@@ -2615,11 +2702,11 @@ console.log('initExp');
               <div class='lav-custom__title'>${
                 isDe ? 'Größentabelle' : 'Size Charts'
               }</div>
-              <div class='lav-custom__table'>
+              <div class='lav-custom__table lav-observe'>
                 <table>
                 </table>
               </div>
-              <div class='lav-custom__delivery'>
+              <div class='lav-custom__delivery lav-observe'>
                 <img src="${exp.dir}/img/icon-return.svg">
                 <div class="lav-note__title">${
                   isDe
@@ -3069,6 +3156,15 @@ console.log('initExp');
         'Close',
         'Button',
         'Pop up Fit tested on over 100000 dogs'
+      );
+    }
+
+    if ($('.lav-modal__guide.active') || $('.lav-modal__custom.active')) {
+      pushDataLayer(
+        'exp_new_info_pdp_pp_close_btn',
+        'Close',
+        'Button',
+        'Pop up Size charts'
       );
     }
 
