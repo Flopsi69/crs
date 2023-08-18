@@ -26,6 +26,11 @@ console.log('initExp');
     );
   }
 
+  let isHumanPage =
+    location.pathname.includes('sweatpant') ||
+    location.pathname.includes('-t-shirt') ||
+    location.pathname.includes('human-hoodie');
+
   // Observers
   if (exp.observer.mutation) {
     initMutation((el) => {
@@ -786,6 +791,7 @@ console.log('initExp');
     }
     .lav-preinfo {
       margin-top: 25px;
+      margin-bottom: 35px;
     }
     .lav-preinfo .VideoWrapper {
       margin-top: 15px;
@@ -1038,10 +1044,7 @@ console.log('initExp');
     //   productInfoEl
     // );
 
-    $('.Product__Tabs .Collapsible').insertAdjacentHTML(
-      'afterend',
-      productInfoEl
-    );
+    $('.Product__Tabs').insertAdjacentHTML('afterbegin', productInfoEl);
 
     //
 
@@ -1142,8 +1145,14 @@ console.log('initExp');
             <img src="${exp.dir}/img/icon-return.svg">
             <div class="lav-note__title">${
               isDe
-                ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
-                : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+                ? `<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle ${
+                    isHumanPage
+                      ? 'menschlichen Bekleidungsartikel'
+                      : 'Hundebekleidungsartikel'
+                  }`
+                : `<span>30-day free return & exchange</span> on your first purchase for all ${
+                    isHumanPage ? 'human' : 'dog'
+                  } apparel items`
             }</div>
             <div class="lav-note__link lav-link lav-trigger-return">LEARN MORE</div>
           </div>
@@ -1415,8 +1424,14 @@ console.log('initExp');
                 <div class='lav-delivery__plate'>
                   <div class='lav-delivery__plate-line'>${
                     isDe
-                      ? 'Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen bei Ihrem ersten Kauf für alle Hundebekleidungsartikel.'
-                      : '30-day free return & exchange on your first purchase for all dog apparel items'
+                      ? `Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen bei Ihrem ersten Kauf für alle ${
+                          isHumanPage
+                            ? 'menschlichen Bekleidungsartikel'
+                            : 'Hundebekleidungsartikel'
+                        }.`
+                      : `30-day free return & exchange on your first purchase for all ${
+                          isHumanPage ? 'human' : 'dog'
+                        } apparel items`
                   }</div>
                 </div>
               </div>
@@ -1705,11 +1720,7 @@ console.log('initExp');
                     </span>
                     `
                 );
-              } else if (
-                location.pathname.includes('sweatpant') ||
-                location.pathname.includes('-t-shirt') ||
-                location.pathname.includes('human-hoodie')
-              ) {
+              } else if (isHumanPage) {
                 labelEl.insertAdjacentHTML(
                   'beforeend',
                   `
@@ -1743,8 +1754,14 @@ console.log('initExp');
                     <img src="${exp.dir}/img/icon-return.svg">
                     <div class="lav-note__title">${
                       isDe
-                        ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
-                        : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+                        ? `<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle ${
+                            isHumanPage
+                              ? 'menschlichen Bekleidungsartikel'
+                              : 'Hundebekleidungsartikel'
+                          }`
+                        : `<span>30-day free return & exchange</span> on your first purchase for all ${
+                            isHumanPage ? 'human' : 'dog'
+                          } apparel items`
                     }</div>
                     <div class="lav-note__link lav-link lav-trigger-return">${
                       isDe ? 'MEHR ERFAHREN' : 'LEARN MORE'
@@ -2606,8 +2623,8 @@ console.log('initExp');
                 <img src="${exp.dir}/img/icon-return.svg">
                 <div class="lav-note__title">${
                   isDe
-                    ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
-                    : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+                    ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle menschlichen Bekleidungsartikel'
+                    : `<span>30-day free return & exchange</span> on your first purchase for all human apparel items`
                 }</div>
               </div>
 
@@ -2721,9 +2738,34 @@ console.log('initExp');
               'Size chart'
             );
           }
+
+          if ($('.Product__Tabs')) {
+            const findAcc = Array.from(
+              document.querySelectorAll('.Product__Tabs .Collapsible__Button')
+            ).find(
+              (item) =>
+                item.innerText.toLowerCase().trim().includes('30 day return') ||
+                item.innerText.toLowerCase().trim().includes('30 tage rückgabe')
+            );
+
+            const textBody =
+              findAcc?.nextElementSibling?.querySelector('.Rte')?.innerHTML;
+
+            console.log('findAcc', findAcc, textBody);
+
+            if (findAcc) {
+              $('.lav-modal__return .lav-modal__title').innerText =
+                findAcc.innerText.trim();
+              if (textBody) {
+                $('.lav-modal__return .lav-modal__text').innerHTML = textBody;
+              }
+            }
+          }
+
           if ($('.lav-modal__custom.active')) {
             $('.lav-modal__custom.active').classList.remove('active');
           }
+
           openModal('return');
         });
       }
