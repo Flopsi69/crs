@@ -2972,6 +2972,18 @@ console.log('initExp');
     });
 
     fillCellData(items);
+
+    waitFor(
+      () => $('.lav-modal__custom .lav-custom__table table'),
+      () => {
+        $$('.lav-modal__custom .lav-custom__table table').forEach((item) => {
+          item.innerHTML = '';
+          item.insertAdjacentElement('beforeend', thead.cloneNode(true));
+        });
+
+        fillCellData(items);
+      }
+    );
   }
 
   function closeModal() {
