@@ -57,787 +57,891 @@ console.log('initExp');
 
   /*** STYLES / Start ***/
   const styles = `
-      .lav-modal {
-        position: fixed;
-        z-index: 999999999999;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: var(--pop-up-transparency, rgba(0, 0, 0, 0.70));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.35s;
-        overflow-y: scroll;
-        padding: 20px;
-        max-height: 100vh;
+    .lav-modal {
+      position: fixed;
+      z-index: 999999999999;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: var(--pop-up-transparency, rgba(0, 0, 0, 0.70));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.35s;
+      overflow-y: scroll;
+      padding: 20px;
+      max-height: 100vh;
+    }
+    .lav-modal-open .select2-container {
+      z-index: 99999999999;
+    }
+    .lav-modal-open .select2-dropdown {
+      z-index: 9999999999;
+    }
+    .lav-modal:not(.active ){
+      opacity: 0;
+      pointer-events: none;
+    }
+    .lav-modal.active {
+      opacity: 1;
+    }
+    .lav-modal__inner:not(.active) {
+      display: none;
+    }
+    .lav-modal__inner {
+      background: #fff;
+      position: relative;
+      max-width: 340px;
+      width: 100%;
+      overflow: hidden;
+      padding: 24px;
+      margin: auto;
+    }
+    .lav-de p {
+      font-family: inherit;
+    }
+    .lav-modal__close {
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      cursor: pointer;
+      transition: 0.35s;
+    }
+    @media(hover:hover) {
+      .lav-modal__close:hover {
+        opacity: 0.5;
+        transform: scale(1.1);
       }
-      .lav-modal-open .select2-container {
-        z-index: 99999999999;
+    }
+    .lav-modal-open {
+      position: relative;
+      overflow: hidden;
+    }
+    .lav-modal__icon {
+      line-height: 0;
+    }
+    .lav-modal__icon img {
+      width: 36px;
+      height: 36px;
+    }
+    .lav-modal__title {
+      color: #5C5555;
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-transform: capitalize;
+    }
+    .lav-modal__text {
+      margin-top: 20px;
+      color: #383A3D;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 21px;
+      list-style: none;
+    }
+    .lav-modal__text .mark-red {
+      color: #FF2A00;
+    }
+    .lav-modal__text a {
+      color: inherit;
+      text-decoration-line: underline;
+      transition: 0.35s;
+    }
+    @media(hover:hover) {
+      .lav-modal__text a:hover {
+        opacity: 0.7;
       }
-      .lav-modal-open .select2-dropdown {
-        z-index: 9999999999;
-      }
-      .lav-modal:not(.active ){
-        opacity: 0;
-        pointer-events: none;
-      }
-      .lav-modal.active {
-        opacity: 1;
-      }
-      .lav-modal__inner:not(.active) {
-        display: none;
-      }
-      .lav-modal__inner {
-        background: #fff;
-        position: relative;
-        max-width: 340px;
-        width: 100%;
-        overflow: hidden;
-        padding: 24px;
-        margin: auto;
-      }
-      .lav-de p {
-        font-family: inherit;
-      }
-      .lav-modal__close {
-        position: absolute;
-        right: 24px;
-        top: 24px;
-        cursor: pointer;
-        transition: 0.35s;
-      }
-      @media(hover:hover) {
-        .lav-modal__close:hover {
-          opacity: 0.5;
-          transform: scale(1.1);
-        }
-      }
-      .lav-modal-open {
-        position: relative;
-        overflow: hidden;
-      }
-      .lav-modal__icon {
-        line-height: 0;
-      }
-      .lav-modal__icon img {
-        width: 36px;
-        height: 36px;
-      }
-      .lav-modal__title {
-        color: #5C5555;
-        margin-top: 12px;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 1.3;
-        text-transform: capitalize;
-      }
-      .lav-modal__text {
-        margin-top: 20px;
-        color: #383A3D;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 21px;
-        list-style: none;
-      }
-      .lav-modal__text .mark-red {
-        color: #FF2A00;
-      }
-      .lav-modal__text a {
-        color: inherit;
-        text-decoration-line: underline;
-        transition: 0.35s;
-      }
-      @media(hover:hover) {
-        .lav-modal__text a:hover {
-          opacity: 0.7;
-        }
-      }
-      .lav-modal__text p {
-        margin: 0;
-      }
-      .lav-modal__text p + p {
-        margin-top: 15px;
-      }
-      .lav-modal__text li + li {
-        margin-top: 10px;
-      }
-      .lav-modal__text li {
-        position: relative;
-        padding-left: 16px;
-      }
-      .lav-modal__text li:before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 2px;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: #383A3D;
-      }
-      .lav-modal__table {
-        width: 100%;
-        margin-top: 20px;
-        text-align: center;
-      }
-      .lav-modal__table td {
-        padding: 15px 10px
-      }
-      .lav-modal__table tr:not(:last-child) {
-        border-bottom: 1px solid var(--border-color);
-      }
-      .size-guide__link {
-        display: none;
-      }
-      .lav-option-value {
-        color: var(--grey-800, #383A3D);
-        font-size: 13px;
-        font-weight: 700;
-        line-height: 1;
-        margin-right: auto;
-        margin-left: 4px;
-      }
-      .lav-quantity-stock {
-        font-size: 13px;
-        font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        margin-left: auto;
-        color: var(--green, #3CBE1A);
-      }
-      .lav-quantity-stock_out {
-        color: #FF2A00;
-      }
-      .template-product .ProductForm__Label {
-        align-items: center;
-      }
+    }
+    .lav-modal__text p {
+      margin: 0;
+    }
+    .lav-modal__text p + p {
+      margin-top: 15px;
+    }
+    .lav-modal__text li + li {
+      margin-top: 10px;
+    }
+    .lav-modal__text li {
+      position: relative;
+      padding-left: 16px;
+    }
+    .lav-modal__text li:before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 2px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #383A3D;
+    }
+    .lav-modal__table {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .lav-modal__table td {
+      padding: 15px 10px
+    }
+    .lav-modal__table tr:not(:last-child) {
+      border-bottom: 1px solid var(--border-color);
+    }
+    .size-guide__link {
+      display: none;
+    }
+    .lav-option-value {
+      color: var(--grey-800, #383A3D);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      margin-right: auto;
+      margin-left: 4px;
+    }
+    .lav-quantity-stock {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: auto;
+      color: var(--green, #3CBE1A);
+    }
+    .lav-quantity-stock_out {
+      color: #FF2A00;
+    }
+    .template-product .ProductForm__Label {
+      align-items: center;
+    }
 
-      .lav-delivery {
-        margin: 28px 0;
+    .lav-delivery {
+      margin: 28px 0;
+    }
+    .lav-delivery__item {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 16px;
+    }
+    .lav-delivery__icon {
+      width: 24px;
+      flex-shrink: 0;
+      line-height: 0;
+      margin-right: 16px;
+      margin-top: -4px;
+    }
+    .lav-delivery__info {
+      flex-grow: 1;
+    }
+    .lav-delivery__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      line-height: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .lav-delivery__title {
+      color: var(--grey-800, #383A3D);
+      font-weight: 700;
+    }
+    .lav-delivery__link {
+    }
+    .lav-link {
+      font-size: 10px;
+      white-space: nowrap;
+      color: var(--primary, #344D79);
+      font-weight: 400;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-underline-offset: 2px;
+    }
+    @media(hover:hover) {
+      .lav-link:hover {
+        text-decoration-line: none;
+        opacity: 0.7;
       }
-      .lav-delivery__item {
-        display: flex;
-        align-items: flex-start;
+    }
+    .lav-delivery__plate {
+      margin-top: 4px;
+      background: var(--grey-010, #FAFAFA);
+      padding: 4px 12px;
+      color: var(--grey-700, #5C5555);
+      font-size: 13px;
+      line-height: 22px;
+    }
+    .lav-delivery__plate {
+    }
+    .lav-delivery__plate-line + .lav-delivery__plate-line {
+      margin-top: 4px;
+    }
+    .lav-delivery__plate span {
+      font-weight: 700;
+    }
+
+    .lav-benefits {
+      margin: 28px 0;
+    }
+    .lav-benefits__icon {
+      flex-shrink: 0;
+    }
+    .lav-benefits__item {
+      display: flex;
+      align-items: center;
+    }
+    .lav-benefits__item + .lav-benefits__item {
+      margin-top: 12px;
+    }
+    .lav-benefits__title {
+      color: #383A3D;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      flex-grow: 1;
+      padding: 0 16px;
+    }
+
+    .product-size-guide-title p {
+      display: none;
+    }
+
+    .product-size-guide-title h2 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+    }
+    .size-guide-wrapper {
+      margin-top: 20px!important;
+    }
+    .size-guide-wrapper .tabs__button {
+      color: #5C5C5C;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px; 
+      padding: 11px 15px;
+    }
+    .size-guide-wrapper  .tabs__button:not(.is-active) {
+      border: 1px solid #E6E6E6;
+      border-top: none;
+      background: #F0F4F5;
+    }
+
+    #tab-content-measurements .size-table-wrapper tr:first-child td, .size-table-wrapper tr:first-child th {
+      color: #5C5C5C;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 19px; 
+      vertical-align: bottom;
+    }
+
+    .size-table-wrapper tr:first-child td img, .size-table-wrapper tr:first-child th img {
+      display: block;
+      margin: 0 auto 9px;
+      max-height: 40px;
+    }
+    .size-table-wrapper table tbody tr:first-child td {
+      padding-top: 0!important;
+    }
+    .size-table-wrapper {
+      margin-top: 0!important;
+    }
+
+    .lav-watch-measure {
+      margin: 28px auto;
+    }
+    .lav-watch-measure__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .lav-watch-measure__item + .lav-watch-measure__item {
+      margin-top: 15px;
+    }
+    .Modal {
+      z-index: 99999999999;
+    }
+    .lav-watch-measure img {
+      margin-left: 4px;
+    }
+
+    .lav-note {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      color: #5C5555;
+      font-size: 13px;
+      font-weight: 400;
+      margin-top: 20px;
+      padding: 0 40px;
+      line-height: 1.3;
+    }
+    .lav-note span span {
+      color: #3CBE1A;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .lav-note img {
+      margin-right: 6px;
+    }
+    .lav-note__plate, .lav-custom__delivery {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      padding: 12px 40px;
+      border-top: 1px solid var(--grey-300, #E7E7E7);
+      border-bottom: 1px solid var(--grey-300, #E7E7E7);
+      background: var(--grey-010, #FAFAFA);
+      margin-top: 16px;
+    }
+    .lav-note__plate img, .lav-custom__delivery img {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .lav-note__title {
+      margin: 0 16px;
+      color: var(--grey-700, #5C5555);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 18px;
+    }
+    .lav-note__title span {
+      font-weight: 700;
+    }
+    .lav-note__link {
+      margin-left: auto;
+    }
+    .lav-modal__guide .lav-note__link {
+      display: none;
+    }
+    .size-guide-wrapper {
+      max-width: 810px!important;
+    }
+
+    .lav-option-guide {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    .lav-option-guide img {
+      margin-right: 5px;
+    }
+    .tabs__body {
+      padding: 0!important;
+    }
+    #tab-content-measurements {
+      padding: 37px 30px 0;
+    }
+    .size-toggle-wrapper {
+      padding-bottom: 0!important;
+      margin-bottom: 0!important;
+    }
+    .search-breed__note {
+      color: #5C5C5C;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 19px;
+      margin-bottom: 16px;
+    }
+    .search-breed {
+      max-width: 320px!important;
+    }
+    #tab-content-breeds .sub-tabs__body {
+      margin-bottom: 0!important;
+    }
+    .lav-modal__guide #tab-content-breeds .size-toggle-wrapper {
+      margin-bottom: 20px!important;
+    }
+    .size-table-wrapper table thead th {
+      border-bottom: 0!important;
+      padding: 0!important;
+    }
+    .tabs__panel-body-breeds .size-table-wrapper {
+      border-top: 1px solid var(--grey-200, #E6E6E6);
+      padding-top: 12px;
+      margin-top: 12px!important;
+      padding-bottom: 0!important;
+    }
+    .tabs__panel-body-breeds .size-toggle-wrapper {
+      margin-top: 10px;
+    }
+    .size-table-wrapper table thead th {
+      padding: 7px 0!important;
+    }
+
+    .ship-to {
+      color: var(--grey-700, #5C5555);
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .ship-to__caption {
+      margin-right: 4px;
+    }
+    .ship-to__value {
+      position: relative;
+      font-weight: 700;
+      padding-right: 20px;
+      cursor: pointer;
+      transition: 0.35s;
+    }
+    @media(hover: hover) {
+      .ship-to__value:hover {
+        opacity: 0.7;
+      }
+    }
+    .ship-to__value:after {
+      content: '';
+      transition: 0.35s;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 8px;
+      background: url('${exp.dir}/img/icon-dropdown.svg') no-repeat center;
+      background-size: contain;
+    }
+    .ship-to__dropdown {
+      position: relative;
+      transition: 0.35s;
+    }
+    .ship-to__dropdown.active .ship-to__value:after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .ship-to__list {
+      display: none;
+      position: absolute;
+      left: -10px;
+      width: 160px;
+      padding: 10px;
+      top: calc(100% + 5px);
+      font-size: 12px;
+      z-index: 1;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px 0 rgb(87 87 87 / 40%);
+    }
+    .ship-to__dropdown.active .ship-to__list {
+      display: block;
+    }
+    .ship-to__item + .ship-to__item {
+      margin-top: 1px;
+    }
+    .ship-to__item {
+      cursor: pointer;
+      transition: 0.35s;
+      padding: 4px 10px;
+      border-radius: 5px;
+    }
+    .ship-to__item.active {
+      background-color: #ebecf2;
+    }
+    @media(hover:hover) {
+      .ship-to__item:hover {
+        background: #f7f7f7;
+      }
+    }
+
+    .below_add_to_cart {
+      display: none;
+    }
+    .lav-waist {
+      color: #5C5C5C!important;
+      font-size: 12px!important;
+      font-weight: 300!important;
+      line-height: 16px!important; 
+    }
+    .lav-custom__title {
+      color: #5C5555;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+    }
+    .lav-custom__wrap {
+      padding: 0 14px;
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+    .lav-custom__toggler {
+      margin-top: 28px;
+    }
+    .lav-custom__table {
+      padding: 28px 16px;
+      border: 1px solid #E7E7E7;
+      background: #FFF;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .lav-custom__table thead th {
+      color: #5C5C5C;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 19px;
+      vertical-align: bottom;
+    }
+    .lav-custom__table tbody td {
+      padding-top: 16px;
+      color: #5C5C5C;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 19px;
+    }
+    .lav-custom__table thead img {
+      display: block;
+      margin: auto;
+      margin-bottom: 8px;
+    }
+    .lav-custom__table tbody td:first-child {
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 19px;
+      text-transform: uppercase;
+    }
+    .lav-custom__table table {
+      width: 100%;
+    }
+    .lav-modal__guide, .lav-modal__custom {
+      max-width: 700px;
+      padding: 50px 72px;
+    }
+    .lav-modal__guide .Container {
+      padding: 0;
+    }
+    .lav-modal__guide .size-guide-wrapper {
+      padding: 0;
+      margin: 0;
+    }
+    .Section[data-section-type="product-size-guide"] {
+      margin-bottom: 120px;
+    }
+    .lav-modal__guide [data-section-type="product-size-guide"] {
+      margin: 0;
+    }
+    .lav-modal__guide .lav-note, .lav-modal__guide .lav-note__plate, .lav-custom__delivery {
+      font-size: 12px;
+    }
+    .lav-modal__guide .tabs__body .lav-watch-measure {
+      display: none;
+    }
+    .lav-modal__guide #tab-content-measurements {
+      padding-bottom: 28px;
+    }
+
+    .template-product .ProductMeta__Description {
+      margin-top: 28px;
+    }
+    .lav-product__title {
+      color: #5C5555;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px;
+      margin-bottom: 16px;
+    }
+    .template-product .ProductMeta__Description ul {
+      margin-left: 16px;
+    }
+
+    .lav-contact {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #E7E7E7;
+      text-align: center;
+    }
+
+    .lav-contact__caption {
+      color: #5C5C5C;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; 
+    }
+
+    .lav-contact__btn {
+      padding: 8px 24px;
+      cursor: pointer;
+      border: 1px solid #344D79;
+      text-align: center;
+      max-width: 260px;
+      width: 100%;
+      margin: 12px auto 0;
+      color: var(--primary, #344D79);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 13px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      transition: 0.35s;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media(hover: hover) {
+      .lav-contact__btn:hover {
+        background-color: var(--primary, #344D79);
+        color: #fff;
+      }
+    }
+
+    .ProductMeta__Description {
+      display: none;
+    }
+    .lav-product-collapse {
+      // display: none;
+    }
+    .lav-mob {
+      display: none;
+    }
+    .lav-how {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .lav-how__title {
+      color: #5C5555;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 24px
+    }
+    .lav-how__image {
+      line-height: 0;
+      margin-top: 20px;
+    }
+    .lav-how__image img {
+      max-width: 160px;
+      width: 100%;
+    }
+    .lav-how__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .lav-how__link img {
+      margin-left: 4px;
+    }
+    .size-guide__video {
+      height: 0!important;
+      overflow: hidden!important; 
+      padding: 0!important;
+    }
+    .lav-ach {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .lav-ach__item {
+      width: 33.33%;
+      padding: 0 15px 15px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cross-banner__widget {
+      display: none;
+    }
+    .size-table-wrapper > p {
+      display: none;
+    }
+    .lav-colors .HorizontalList__Item {
+      margin-top: 0;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .lav-colors .lav-colors__item {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      font-size: 0;
+      line-height: 0;
+      border: 2px solid #fff!important;
+    }
+    .lav-colors .disabled .lav-colors__item {
+      outline: 1px solid red;
+    }
+    .SizeSwatch__Radio:checked + .lav-colors__item {
+      outline: 1px solid;
+    }
+    .lav-colors .lav-colors__item:before {
+    }
+    .lav-color-black {
+      background:;
+    }
+    .lav-ach__item img {
+      margin-top: 0!important;
+      margin-bottom: 5px!important;
+    }
+    .lav-preinfo {
+      margin-top: 25px;
+    }
+    .lav-preinfo .VideoWrapper {
+      margin-top: 15px;
+    }
+    .size-table-wrapper {
+      overflow: auto;
+    }
+    @media(max-width: 767px) {
+      .lav-desk {
+        display: none;
+      }
+      .lav-mob {
+        display: block;
+      }
+      .lav-modal__custom .lav-custom__delivery .lav-note__link {
+        display: none;
+      }
+      .ProductForm__Option {
+        margin-bottom: 16px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid #E6E6E6;
+      }
+      .ProductForm__Variants {
         margin-top: 16px;
+        margin-bottom: 16px;
       }
-      .lav-delivery__icon {
-        width: 24px;
-        flex-shrink: 0;
-        line-height: 0;
-        margin-right: 16px;
-        margin-top: -4px;
+      .ProductMeta {
+        margin-bottom: 16px;
       }
-      .lav-delivery__info {
-        flex-grow: 1;
+      .lav-delivery {
+        margin: 20px 0 5px;
       }
-      .lav-delivery__head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 10px;
-        line-height: 16px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-      .lav-delivery__title {
-        color: var(--grey-800, #383A3D);
-        font-weight: 700;
-      }
-      .lav-delivery__link {
-      }
-      .lav-link {
-        font-size: 10px;
-        white-space: nowrap;
-        color: var(--primary, #344D79);
-        font-weight: 400;
-        text-decoration-line: underline;
-        text-transform: uppercase;
-        cursor: pointer;
-        letter-spacing: 1px;
-        text-underline-offset: 2px;
-      }
-      @media(hover:hover) {
-        .lav-link:hover {
-          text-decoration-line: none;
-          opacity: 0.7;
-        }
-      }
-      .lav-delivery__plate {
-        margin-top: 4px;
-        background: var(--grey-010, #FAFAFA);
-        padding: 4px 12px;
-        color: var(--grey-700, #5C5555);
-        font-size: 13px;
-        line-height: 22px;
-      }
-      .lav-delivery__plate {
-      }
-      .lav-delivery__plate-line + .lav-delivery__plate-line {
-        margin-top: 4px;
-      }
-      .lav-delivery__plate span {
-        font-weight: 700;
-      }
-
       .lav-benefits {
-        margin: 28px 0;
+        margin: 10px 0 0;
       }
-      .lav-benefits__icon {
-        flex-shrink: 0;
-      }
-      .lav-benefits__item {
-        display: flex;
-        align-items: center;
-      }
-      .lav-benefits__item + .lav-benefits__item {
-        margin-top: 12px;
-      }
-      .lav-benefits__title {
-        color: #383A3D;
-        font-size: 10px;
-        font-weight: 700;
-        line-height: 16px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        flex-grow: 1;
-        padding: 0 16px;
-      }
-
-      .product-size-guide-title p {
-        display: none;
-      }
-
-      .product-size-guide-title h2 {
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 26px;
-      }
-      .size-guide-wrapper {
-        margin-top: 20px!important;
+      .single-product-size-guide {
+        margin-top: 50px;
       }
       .size-guide-wrapper .tabs__button {
-        color: #5C5C5C;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 24px; 
-        padding: 11px 15px;
+        white-space: nowrap;
+        padding: 10px;
       }
-      .size-guide-wrapper  .tabs__button:not(.is-active) {
-        border: 1px solid #E6E6E6;
-        border-top: none;
-        background: #F0F4F5;
+      .tabs__button:first-child {
+        width: 60%;
+        // todo
       }
-
-      #tab-content-measurements .size-table-wrapper tr:first-child td, .size-table-wrapper tr:first-child th {
-        color: #5C5C5C;
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 19px; 
-        vertical-align: bottom;
+      .tabs__button:last-child {
+        width: 40%;
       }
-
-      .size-table-wrapper tr:first-child td img, .size-table-wrapper tr:first-child th img {
-        display: block;
-        margin: 0 auto 9px;
-        max-height: 40px;
+      .lav-de .tabs__button:first-child  {
+        width: 45%;
       }
-      .size-table-wrapper table tbody tr:first-child td {
-        padding-top: 0!important;
-      }
-      .size-table-wrapper {
-        margin-top: 0!important;
-      }
-
-      .lav-watch-measure {
-        margin: 28px auto;
-      }
-      .lav-watch-measure__item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-      .lav-watch-measure__item + .lav-watch-measure__item {
-        margin-top: 15px;
-      }
-      .Modal {
-        z-index: 99999999999;
-      }
-      .lav-watch-measure img {
-        margin-left: 4px;
-      }
-
-      .lav-note {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        color: #5C5555;
-        font-size: 13px;
-        font-weight: 400;
-        margin-top: 20px;
-        padding: 0 40px;
-        line-height: 1.3;
-      }
-      .lav-note span span {
-        color: #3CBE1A;
-        font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-      .lav-note img {
-        margin-right: 6px;
-      }
-      .lav-note__plate {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        padding: 12px 40px;
-        border-top: 1px solid var(--grey-300, #E7E7E7);
-        border-bottom: 1px solid var(--grey-300, #E7E7E7);
-        background: var(--grey-010, #FAFAFA);
-        margin-top: 16px;
-      }
-      .lav-note__plate img {
-        width: 36px;
-        height: 36px;
-        flex-shrink: 0;
-      }
-      .lav-note__title {
-        margin: 0 16px;
-        color: var(--grey-700, #5C5555);
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 18px;
-      }
-      .lav-note__title span {
-        font-weight: 700;
-      }
-      .lav-note__link {
-        margin-left: auto;
-      }
-      .lav-modal__guide .lav-note__link {
-        display: none;
-      }
-      .size-guide-wrapper {
-        max-width: 810px!important;
-      }
-
-      .lav-option-guide {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-      }
-      .lav-option-guide img {
-        margin-right: 5px;
-      }
-      .tabs__body {
-        padding: 0!important;
+      .lav-de .tabs__button:last-child  {
+        width: 55%;
       }
       #tab-content-measurements {
-        padding: 37px 30px 0;
+        padding-left: 16px;
+        padding-right: 15px;
       }
-      .size-toggle-wrapper {
-        padding-bottom: 0!important;
-        margin-bottom: 0!important;
+      .lav-note {
+        padding: 0;
       }
-      .search-breed__note {
-        color: #5C5C5C;
-        font-size: 13px;
-        font-weight: 300;
-        line-height: 19px;
-        margin-bottom: 16px;
+      .lav-note__plate, .lav-custom__delivery {
+        align-items: flex-start;
+        margin-left: -14px;
+        margin-right: -14px;
+        padding-left: 14px;
+        padding-right: 14px;
       }
-      .search-breed {
-        max-width: 320px!important;
+      .lav-note__plate img, .lav-custom__delivery img {
+        width: 24px;
+        height: 24px;
       }
-      #tab-content-breeds .sub-tabs__body {
-        margin-bottom: 0!important;
+      .lav-note {
+        align-items: flex-start;
       }
-      .lav-modal__guide #tab-content-breeds .size-toggle-wrapper {
-        margin-bottom: 20px!important;
-      }
-      .size-table-wrapper table thead th {
-        border-bottom: 0!important;
-        padding: 0!important;
-      }
-      .tabs__panel-body-breeds .size-table-wrapper {
-        border-top: 1px solid var(--grey-200, #E6E6E6);
-        padding-top: 12px;
-        margin-top: 12px!important;
-        padding-bottom: 0!important;
-      }
-      .tabs__panel-body-breeds .size-toggle-wrapper {
-        margin-top: 10px;
-      }
-      .size-table-wrapper table thead th {
-        padding: 7px 0!important;
-      }
-
-      .ship-to {
-        color: var(--grey-700, #5C5555);
-        font-size: 13px;
-        font-weight: 400;
-      }
-      .ship-to__caption {
-        margin-right: 4px;
-      }
-      .ship-to__value {
-        position: relative;
-        font-weight: 700;
-        padding-right: 20px;
-        cursor: pointer;
-        transition: 0.35s;
-      }
-      @media(hover: hover) {
-        .ship-to__value:hover {
-          opacity: 0.7;
-        }
-      }
-      .ship-to__value:after {
-        content: '';
-        transition: 0.35s;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 14px;
-        height: 8px;
-        background: url('${exp.dir}/img/icon-dropdown.svg') no-repeat center;
-        background-size: contain;
-      }
-      .ship-to__dropdown {
-        position: relative;
-        transition: 0.35s;
-      }
-      .ship-to__dropdown.active .ship-to__value:after {
-        transform: translateY(-50%) rotate(180deg);
-      }
-      .ship-to__list {
-        display: none;
-        position: absolute;
-        left: -10px;
-        width: 160px;
-        padding: 10px;
-        top: calc(100% + 5px);
-        font-size: 12px;
-        z-index: 1;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 10px 0 rgb(87 87 87 / 40%);
-      }
-      .ship-to__dropdown.active .ship-to__list {
-        display: block;
-      }
-      .ship-to__item + .ship-to__item {
+      .lav-note img {
         margin-top: 1px;
       }
-      .ship-to__item {
-        cursor: pointer;
-        transition: 0.35s;
-        padding: 4px 10px;
-        border-radius: 5px;
+      .search-breed {
+        min-height: auto!important;
       }
-      .ship-to__item.active {
-        background-color: #ebecf2;
+      #tab-content-breeds .sub-tabs__body {
+        min-height: 100px!important;
       }
-      @media(hover:hover) {
-        .ship-to__item:hover {
-          background: #f7f7f7;
-        }
+      .tabs__panel-body-breeds .size-toggle-wrapper {
+        margin-top: 0;
       }
-
-      .below_add_to_cart {
-        display: none;
+      .search-breed {
+        padding: 0 10px;
       }
-
-      .lav-modal__guide {
-        max-width: 700px;;
-        padding: 50px 72px;
+      .lav-product-collapse {
+        // display: block;
+        // margin: 20px -24px 0;
+        // padding: 0 24px;
       }
-      .lav-modal__guide .Container {
-        padding: 0;
+      .Product__Tabs {
+        margin-top: -1px!important;
       }
-      .lav-modal__guide .size-guide-wrapper {
-        padding: 0;
-        margin: 0;
-      }
-      .Section[data-section-type="product-size-guide"] {
-        margin-bottom: 120px;
-      }
-      .lav-modal__guide [data-section-type="product-size-guide"] {
-        margin: 0;
-      }
-      .lav-modal__guide .lav-note, .lav-modal__guide .lav-note__plate {
-        font-size: 12px;
-      }
-      .lav-modal__guide .tabs__body .lav-watch-measure {
-        display: none;
-      }
-      .lav-modal__guide #tab-content-measurements {
-        padding-bottom: 28px;
-      }
-
-      .template-product .ProductMeta__Description {
-        margin-top: 28px;
-      }
-      .lav-product__title {
-        color: #5C5555;
-        font-size: 13px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 21px;
-        margin-bottom: 16px;
-      }
-      .template-product .ProductMeta__Description ul {
+      .lav-product-collapse ul {
         margin-left: 16px;
       }
-
-      .lav-contact {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #E7E7E7;
-        text-align: center;
-      }
-
-      .lav-contact__caption {
-        color: #5C5C5C;
-        text-align: center;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 24px; 
-      }
-
-      .lav-contact__btn {
-        padding: 8px 24px;
-        cursor: pointer;
-        border: 1px solid #344D79;
-        text-align: center;
-        max-width: 260px;
-        width: 100%;
-        margin: 12px auto 0;
-        color: var(--primary, #344D79);
-        font-size: 11px;
-        font-weight: 400;
-        line-height: 13px;
-        letter-spacing: 2.2px;
-        text-transform: uppercase;
-        transition: 0.35s;
-        min-height: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      @media(hover: hover) {
-        .lav-contact__btn:hover {
-          background-color: var(--primary, #344D79);
-          color: #fff;
-        }
-      }
-
       .ProductMeta__Description {
         display: none;
       }
-      .lav-product-collapse {
-        // display: none;
+      .lav-modal__guide, .lav-modal__custom {
+        padding: 32px 12px;
       }
-      .lav-mob {
-        display: none;
+      .lav-modal {
+        padding: 12px;
       }
-      .lav-how {
-        text-align: center;
-        margin-top: 20px;
-      }
-      .lav-how__title {
-        color: #5C5555;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 24px
-      }
-      .lav-how__image {
-        line-height: 0;
-        margin-top: 20px;
-      }
-      .lav-how__image img {
-        max-width: 160px;
-        width: 100%;
-      }
-      .lav-how__link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-      .lav-how__link img {
-        margin-left: 4px;
-      }
-      .size-guide__video {
-        height: 0!important;
-        overflow: hidden!important; 
-        padding: 0!important;
-      }
-      .lav-ach {
-        margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-      .lav-ach__item {
-        width: 33.33%;
-        padding: 0 15px 15px;
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        align-items: center;
-      }
-      .cross-banner__widget {
-        display: none;
-      }
-      .size-table-wrapper > p {
-        display: none;
-      }
-      .lav-colors .HorizontalList__Item {
-        margin-top: 0;
-        margin-left: 5px;
-        margin-right: 5px;
-      }
-      .lav-colors .lav-colors__item {
-        width: 39px;
-        height: 39px;
-        border-radius: 50%;
-        font-size: 0;
-        line-height: 0;
-        border: 2px solid #fff!important;
-      }
-      .lav-colors .disabled .lav-colors__item {
-        outline: 1px solid red;
-      }
-      .SizeSwatch__Radio:checked + .lav-colors__item {
-        outline: 1px solid;
-      }
-      .lav-colors .lav-colors__item:before {
-      }
-      .lav-color-black {
-        background:;
-      }
-      .lav-ach__item img {
+      .lav-modal__guide [data-section-type="product-size-guide"] {
+        padding-top: 0!important;
         margin-top: 0!important;
-        margin-bottom: 5px!important;
       }
-      @media(max-width: 767px) {
-        .lav-desk {
-          display: none;
-        }
-        .lav-mob {
-          display: block;
-        }
-        .ProductForm__Option {
-          margin-bottom: 16px;
-          padding-bottom: 18px;
-          border-bottom: 1px solid #E6E6E6;
-        }
-        .ProductForm__Variants {
-          margin-top: 16px;
-          margin-bottom: 16px;
-        }
-        .ProductMeta {
-          margin-bottom: 16px;
-        }
-        .lav-delivery {
-          margin: 20px 0 5px;
-        }
-        .lav-benefits {
-          margin: 10px 0 0;
-        }
-        .single-product-size-guide {
-          margin-top: 50px;
-        }
-        .size-guide-wrapper .tabs__button {
-          white-space: nowrap;
-          padding: 10px;
-        }
-        .tabs__button:first-child {
-          width: 60%;
-          // todo
-        }
-        .tabs__button:last-child {
-          width: 40%;
-        }
-        .lav-de .tabs__button:first-child  {
-          width: 45%;
-        }
-        .lav-de .tabs__button:last-child  {
-          width: 55%;
-        }
-        #tab-content-measurements {
-          padding-left: 16px;
-          padding-right: 15px;
-        }
-        .lav-note {
-          padding: 0;
-        }
-        .lav-note__plate {
-          align-items: flex-start;
-          margin-left: -14px;
-          margin-right: -14px;
-          padding-left: 14px;
-          padding-right: 14px;
-        }
-        .lav-note__plate img {
-          width: 24px;
-          height: 24px;
-        }
-        .lav-note {
-          align-items: flex-start;
-        }
-        .lav-note img {
-          margin-top: 1px;
-        }
-        .search-breed {
-          min-height: auto!important;
-        }
-        #tab-content-breeds .sub-tabs__body {
-          min-height: 100px!important;
-        }
-        .tabs__panel-body-breeds .size-toggle-wrapper {
-          margin-top: 0;
-        }
-        .search-breed {
-          padding: 0 10px;
-        }
-        .lav-product-collapse {
-          display: block;
-          margin: 20px -24px 0;
-          padding: 0 24px;
-        }
-        .Product__Tabs {
-          margin-top: -1px!important;
-        }
-        .lav-product-collapse ul {
-          margin-left: 16px;
-        }
-        .ProductMeta__Description {
-          display: none;
-        }
-        .lav-modal__guide {
-          padding: 32px 12px;
-        }
-        .lav-modal {
-          padding: 12px;
-        }
-        .lav-modal__guide [data-section-type="product-size-guide"] {
-          padding-top: 0!important;
-          margin-top: 0!important;
-        }
-        .lav-modal__guide #tab-content-breeds {
-          padding-bottom: 20px;
-        }
+      .lav-modal__guide #tab-content-breeds {
+        padding-bottom: 20px;
       }
-    `;
+    }
+  `;
+
+  const pants = {
+    alias: 'pants',
+    title: ['Size', 'Length', 'Hip', 'Waist'],
+    items: [
+      ['s', 39, 45, 27, 35],
+      ['m', 39, 48, 29, 37],
+      ['l', 41, 51, 30, 38],
+      ['xl', 41, 55, 32, 40],
+      ['2xl', 42, 59, 34, 41],
+    ],
+  };
+
+  const shirts = {
+    alias: 'shirts',
+    title: ['Size', 'Chest', 'Length'],
+    items: [
+      ['s', 25.5, 39],
+      ['m', 27.5, 41.5],
+      ['l', 28.5, 45.5],
+      ['xl', 31.5, 50.5],
+      ['2xl', 33, 54.5],
+    ],
+  };
+
+  const hoodie = {
+    alias: 'hoodie',
+    title: ['Size', 'Chest', 'Sleeve', 'Length'],
+    items: [
+      ['s', [43, 44], 31, [26, 27]],
+      ['m', [45, 47], 31, [27, 28]],
+      ['l', [47, 49], 32, [28, 29]],
+      ['xl', [49, 51], 32, [29, 30]],
+      ['2xl', [51, 54], 33, [30, 31]],
+    ],
+  };
 
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
@@ -876,7 +980,7 @@ console.log('initExp');
     waitFor(
       () => $('.cbb-frequently-bought-container'),
       () => {
-        handleBenefits();
+        // handleBenefits();
         setTimeout(initModals, 800);
       }
     );
@@ -913,7 +1017,7 @@ console.log('initExp');
       `
     );
 
-    const mobileCollapse = `
+    const productInfoEl = `
         <div class="Collapsible Collapsible--large lav-product-collapse">
           <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">${
             isDe ? 'Produktinformation' : 'Product info'
@@ -929,10 +1033,17 @@ console.log('initExp');
         </div>
       `;
 
-    $('.ProductMeta__Description').insertAdjacentHTML(
+    // $('.ProductMeta__Description').insertAdjacentHTML(
+    //   'afterend',
+    //   productInfoEl
+    // );
+
+    $('.Product__Tabs .Collapsible').insertAdjacentHTML(
       'afterend',
-      mobileCollapse
+      productInfoEl
     );
+
+    //
 
     $('.lav-product-collapse').addEventListener('click', function () {
       if (this.querySelector('[aria-expanded]').ariaExpanded === 'false') {
@@ -979,6 +1090,34 @@ console.log('initExp');
           'beforeend',
           parent
         );
+      }
+
+      if ($('.ProductMeta__Description .VideoWrapper')) {
+        $('.ProductMeta__Description').insertAdjacentHTML(
+          'beforebegin',
+          `<div class='lav-preinfo'></div>`
+        );
+
+        let el = $('.ProductMeta__Description .Rte').firstElementChild;
+
+        if ($('.ProductMeta__Description .Rte').childElementCount === 1) {
+          el = $('.ProductMeta__Description .Rte > div')?.firstElementChild;
+        }
+
+        if (!el) return false;
+
+        while (el) {
+          if (
+            el === $('.ProductMeta__Description .VideoWrapper') ||
+            el.querySelector('.VideoWrapper')
+          ) {
+            $('.lav-preinfo').insertAdjacentElement('beforeend', el);
+            break;
+          }
+
+          $('.lav-preinfo').insertAdjacentElement('beforeend', el);
+          el = $('.ProductMeta__Description .Rte > div').firstElementChild;
+        }
       }
 
       $('.lav-product-collapse .Rte').innerHTML = $(
@@ -1558,7 +1697,23 @@ console.log('initExp');
                 labelEl.insertAdjacentHTML(
                   'beforeend',
                   `
-                      <span class='lav-option-guide lav-trigger-guide'>
+                    <span class='lav-option-guide lav-trigger-guide'>
+                      <img src="${exp.dir}/img/icon-ruler.svg" />
+                      <span class="lav-link">${
+                        isDe ? 'Größentabelle ansehen' : 'View Size Guide'
+                      }</span>
+                    </span>
+                    `
+                );
+              } else if (
+                location.pathname.includes('sweatpant') ||
+                location.pathname.includes('-t-shirt') ||
+                location.pathname.includes('human-hoodie')
+              ) {
+                labelEl.insertAdjacentHTML(
+                  'beforeend',
+                  `
+                      <span class='lav-option-guide lav-trigger-custom'>
                         <img src="${exp.dir}/img/icon-ruler.svg" />
                         <span class="lav-link">${
                           isDe ? 'Größentabelle ansehen' : 'View Size Guide'
@@ -1566,6 +1721,66 @@ console.log('initExp');
                       </span>
                       `
                 );
+
+                const sizeChart = `
+                <div class='lav-custom__wrap'>
+                  <div class='lav-custom__title'>${
+                    isDe ? 'Größentabelle' : 'Size Charts'
+                  }</div>
+                  <div class='lav-custom__table'>
+                      <table>
+                      </table>
+                      <div class="toggle-button lav-custom__toggler" data-unit-toggle="">
+                        <div class="toggle-button__switch">
+                          <input type="radio" name="size-by-measurements" id="size-by-measurements-cm" value="cm" class="toggle-button__input toggle-button__input_measurements" title="CM">
+                          <label class="toggle-button__label toggle-button__label--left" for="size-by-measurements-in">CM</label>
+                          <input type="radio" name="size-by-measurements" id="size-by-measurements-in" value="in" class="toggle-button__input toggle-button__input_measurements" title="IN" checked="checked">
+                          <label class="toggle-button__label toggle-button__label--right" for="size-by-measurements-cm">IN</label>
+                        </div>
+                      </div>
+                  </div>
+                  <div class='lav-custom__delivery'>
+                    <img src="${exp.dir}/img/icon-return.svg">
+                    <div class="lav-note__title">${
+                      isDe
+                        ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
+                        : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+                    }</div>
+                    <div class="lav-note__link lav-link lav-trigger-return">${
+                      isDe ? 'MEHR ERFAHREN' : 'LEARN MORE'
+                    }</div>
+                  </div>
+
+                  <div class='lav-modal__close'>
+                    <img src="${exp.dir}/img/icon-close.svg" />
+                  </div>
+                </div>
+                `;
+
+                $('.Product').insertAdjacentHTML('afterend', sizeChart);
+
+                if (location.pathname.includes('sweatpant')) {
+                  type = pants;
+                } else if (location.pathname.includes('-t-shirt')) {
+                  type = shirts;
+                } else if (location.pathname.includes('human-hoodie')) {
+                  type = hoodie;
+                }
+
+                fillCustomTable(type);
+
+                if (!$('.lav-custom__toggler.lav-custom__toggler_handled')) {
+                  $$('.lav-custom__toggler').forEach((item) => {
+                    item.classList.add('lav-custom__toggler_handled');
+                  });
+
+                  $$('.lav-custom__toggler input').forEach((inp) => {
+                    inp.addEventListener('change', function () {
+                      fillCellData(type.items, inp.value);
+                      console.log('fire', inp.value);
+                    });
+                  });
+                }
               }
             }, 1000);
           }
@@ -2378,6 +2593,28 @@ console.log('initExp');
                 <img src="${exp.dir}/img/icon-close.svg" />
               </div>
             </div>
+
+            <div class='lav-modal__inner lav-modal__custom'>
+              <div class='lav-custom__title'>${
+                isDe ? 'Größentabelle' : 'Size Charts'
+              }</div>
+              <div class='lav-custom__table'>
+                <table>
+                </table>
+              </div>
+              <div class='lav-custom__delivery'>
+                <img src="${exp.dir}/img/icon-return.svg">
+                <div class="lav-note__title">${
+                  isDe
+                    ? '<span>Kostenlose Rückgabe und Umtausch innerhalb von 30 Tagen</span> bei Ihrem ersten Kauf für alle Hundebekleidungsartikel'
+                    : `<span>30-day free return & exchange</span> on your first purchase for all dog apparel items`
+                }</div>
+              </div>
+
+              <div class='lav-modal__close'>
+                <img src="${exp.dir}/img/icon-close.svg" />
+              </div>
+            </div>
           </div>
         `;
 
@@ -2454,38 +2691,43 @@ console.log('initExp');
       });
     }
 
-    for (let el of $$('.lav-trigger-return')) {
-      el.addEventListener('click', function () {
-        if (el.classList.contains('lav-delivery__link')) {
-          pushDataLayer(
-            'exp_new_info_pdp_lm_ret',
-            'Learn more',
-            'Button',
-            'Ship to - Return policy'
-          );
+    setTimeout(() => {
+      for (let el of $$('.lav-trigger-return')) {
+        el.addEventListener('click', function () {
+          if (el.classList.contains('lav-delivery__link')) {
+            pushDataLayer(
+              'exp_new_info_pdp_lm_ret',
+              'Learn more',
+              'Button',
+              'Ship to - Return policy'
+            );
 
-          pushDataLayer(
-            'exp_new_info_pdp_pp_v_30',
-            'Pop up 30-day free return & exchange',
-            'Visibility',
-            '30-day free return & exchange'
-          );
-        }
+            pushDataLayer(
+              'exp_new_info_pdp_pp_v_30',
+              'Pop up 30-day free return & exchange',
+              'Visibility',
+              '30-day free return & exchange'
+            );
+          }
 
-        if (
-          el.classList.contains('lav-note__link') &&
-          !document.querySelector('.lav-modal__guide.active')
-        ) {
-          pushDataLayer(
-            'exp_new_info_pdp_lm_size',
-            'Learn more',
-            'Button',
-            'Size chart'
-          );
-        }
-        openModal('return');
-      });
-    }
+          if (
+            el.classList.contains('lav-note__link') &&
+            !document.querySelector('.lav-modal__guide.active')
+          ) {
+            pushDataLayer(
+              'exp_new_info_pdp_lm_size',
+              'Learn more',
+              'Button',
+              'Size chart'
+            );
+          }
+          if ($('.lav-modal__custom.active')) {
+            $('.lav-modal__custom.active').classList.remove('active');
+          }
+          openModal('return');
+        });
+      }
+    }, 1100);
 
     for (let el of $$('.lav-trigger-retention')) {
       el.addEventListener('click', function () {
@@ -2566,6 +2808,30 @@ console.log('initExp');
     }
 
     document.addEventListener('click', function (e) {
+      if (e.target.closest('.lav-trigger-custom')) {
+        pushDataLayer(
+          'exp_new_info_pdp_b_sguide',
+          'Size',
+          'Button',
+          'Size guide'
+        );
+
+        pushDataLayer(
+          'exp_new_info_pdp_pp_v_meas',
+          'Pop up Size charts',
+          'Visibility',
+          'Pop up Size charts - Size by Measurements'
+        );
+
+        if (!$('.lav-modal__custom .lav-custom__toggler')) {
+          !$('.lav-modal__custom .lav-custom__table').insertAdjacentElement(
+            'beforeend',
+            $('.lav-custom__toggler')
+          );
+        }
+        openModal('custom');
+      }
+
       if (e.target.closest('.lav-trigger-guide')) {
         pushDataLayer(
           'exp_new_info_pdp_b_sguide',
@@ -2624,7 +2890,98 @@ console.log('initExp');
     }, 100);
   }
 
+  function fillCellData(items, type = 'in') {
+    $$('.lav-custom__table table tbody').forEach((item) => item.remove());
+
+    const tbody = document.createElement('tbody');
+    for (let row of items) {
+      const tr = document.createElement('tr');
+
+      for (let cell of row) {
+        const td = document.createElement('td');
+        if (typeof cell === 'string') {
+          td.textContent = cell;
+        } else {
+          let text = null;
+          if (type === 'in') {
+            if (typeof cell === 'object') {
+              text = cell[0] + '"' + ' - ' + cell[1] + '"';
+            } else {
+              text = cell + '"';
+            }
+          } else {
+            if (typeof cell === 'object') {
+              text =
+                Math.round(cell[0] * 2.54) +
+                'cm' +
+                ' - ' +
+                Math.round(cell[1] * 2.54) +
+                'cm';
+            } else {
+              text = Math.round(cell * 2.54) + 'cm';
+            }
+          }
+          td.textContent = text;
+        }
+        tr.appendChild(td);
+      }
+
+      tbody.appendChild(tr);
+    }
+
+    $$('.lav-custom__table table').forEach((item) => {
+      item.insertAdjacentElement('beforeend', tbody.cloneNode(true));
+    });
+  }
+
+  function fillCustomTable({ title, alias, items } = pants) {
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    for (let titleItem of title) {
+      const th = document.createElement('th');
+      if (titleItem !== 'Size') {
+        th.insertAdjacentHTML(
+          'beforeend',
+          `<img src='${exp.dir}/img/${alias}-${titleItem.toLowerCase()}.svg' />`
+        );
+      }
+      if (titleItem === 'Waist' && alias === 'pants') {
+        th.colSpan = 2;
+      }
+      th.insertAdjacentHTML('beforeend', titleItem);
+      headRow.insertAdjacentElement('beforeend', th);
+    }
+    thead.insertAdjacentElement('beforeend', headRow);
+
+    if (alias === 'pants') {
+      thead.insertAdjacentHTML(
+        'beforeend',
+        `
+        <tr>
+          <th></th><th></th><th></th>
+          <th class='lav-waist'>Relaxed</th>
+          <th class='lav-waist'>Extended</th>
+        </tr>
+      `
+      );
+    }
+
+    $$('.lav-custom__table table').forEach((item) => {
+      item.innerHTML = '';
+      item.insertAdjacentElement('beforeend', thead.cloneNode(true));
+    });
+
+    fillCellData(items);
+  }
+
   function closeModal() {
+    if ($('.lav-modal__custom .lav-custom__toggler')) {
+      !$('.lav-custom__wrap .lav-custom__table').insertAdjacentElement(
+        'beforeend',
+        $('.lav-custom__toggler')
+      );
+    }
+
     if ($('.lav-modal__delivery.active')) {
       pushDataLayer(
         'exp_new_info_pdp_pp_cl_ship',
