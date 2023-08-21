@@ -3089,7 +3089,18 @@ console.log('initExp');
       if (titleItem === 'Waist' && alias === 'pants') {
         th.colSpan = 2;
       }
-      th.insertAdjacentHTML('beforeend', titleItem);
+      let text = titleItem;
+
+      if (isDe) {
+        if (titleItem === 'Size') text = 'Größe';
+        if (titleItem === 'Length') text = 'Länge';
+        if (titleItem === 'Hip') text = 'Hüfte';
+        if (titleItem === 'Waist') text = 'Taille';
+        if (titleItem === 'Chest') text = 'Brust';
+        if (titleItem === 'Sleeve') text = 'Ärmel';
+      }
+
+      th.insertAdjacentHTML('beforeend', text);
       headRow.insertAdjacentElement('beforeend', th);
     }
     thead.insertAdjacentElement('beforeend', headRow);
@@ -3100,8 +3111,8 @@ console.log('initExp');
         `
         <tr>
           <th></th><th></th><th></th>
-          <th class='lav-waist'>Relaxed</th>
-          <th class='lav-waist'>Extended</th>
+          <th class='lav-waist'>${isDe ? 'Entspannt' : 'Relaxed'}</th>
+          <th class='lav-waist'>${isDe ? 'Erweitert' : 'Extended'}</th>
         </tr>
       `
       );
