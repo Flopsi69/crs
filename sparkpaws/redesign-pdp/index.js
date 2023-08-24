@@ -30,7 +30,9 @@ console.log('initExp');
     location.pathname.includes('sweatpant') ||
     location.pathname.includes('-t-shirt') ||
     location.pathname.includes('human-hoodie') ||
-    location.pathname.includes('human-dog-matching-hoodie');
+    location.pathname.includes('human-dog-matching-hoodie') ||
+    location.pathname.includes('hoodie-human') ||
+    location.pathname.includes('pink-green-blue-colorblock-dog-hoodie');
 
   // Observers
   if (exp.observer.mutation) {
@@ -1802,7 +1804,11 @@ console.log('initExp');
                   type = shirts;
                 } else if (
                   location.pathname.includes('human-hoodie') ||
-                  location.pathname.includes('human-dog-matching-hoodie')
+                  location.pathname.includes('human-dog-matching-hoodie') ||
+                  location.pathname.includes('hoodie-human') ||
+                  location.pathname.includes(
+                    'pink-green-blue-colorblock-dog-hoodie'
+                  )
                 ) {
                   type = hoodie;
                 }
