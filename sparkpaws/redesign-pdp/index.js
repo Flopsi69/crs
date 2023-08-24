@@ -29,7 +29,8 @@ console.log('initExp');
   let isHumanPage =
     location.pathname.includes('sweatpant') ||
     location.pathname.includes('-t-shirt') ||
-    location.pathname.includes('human-hoodie');
+    location.pathname.includes('human-hoodie') ||
+    location.pathname.includes('human-dog-matching-hoodie');
 
   // Observers
   if (exp.observer.mutation) {
@@ -1799,7 +1800,10 @@ console.log('initExp');
                   type = pants;
                 } else if (location.pathname.includes('-t-shirt')) {
                   type = shirts;
-                } else if (location.pathname.includes('human-hoodie')) {
+                } else if (
+                  location.pathname.includes('human-hoodie') ||
+                  location.pathname.includes('human-dog-matching-hoodie')
+                ) {
                   type = hoodie;
                 }
 
