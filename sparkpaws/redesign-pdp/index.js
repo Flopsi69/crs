@@ -2958,7 +2958,9 @@ console.log('initExp');
       });
     }
 
+    console.log('preTrigger');
     document.addEventListener('click', function (e) {
+      console.log('clickTirgger', e.target);
       if (e.target.closest('.lav-trigger-custom')) {
         pushDataLayer(
           'exp_new_info_pdp_b_sguide',
