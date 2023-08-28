@@ -1354,7 +1354,6 @@ console.log('initExp');
               ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
               : 'WATCH VIDEO ON HOW TO MEASURE YOUR DOG'
           }
-          ${item.querySelector('.measurements__cell-title')?.textContent}
         </span>
         <img src="${exp.dir}/img/icon-play.svg" />
       `;
@@ -2790,7 +2789,6 @@ console.log('initExp');
                 ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
                 : 'WATCH VIDEO ON HOW TO MEASURE'
             }
-            ${item.querySelector('.measurements__cell-title')?.textContent}
           </span>
           <img src="${exp.dir}/img/icon-play.svg" >
         `;
