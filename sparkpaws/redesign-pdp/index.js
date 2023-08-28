@@ -1011,10 +1011,12 @@ console.log('initExp');
     waitFor(
       () => $('[data-section-type="product-recommendations"]'),
       () => {
-        if ($('.size-guide__content')) {
+        if ($('.size-guide__content') && !isHumanPage) {
           console.log('handleTables');
           handleTables();
           handleUnderTable();
+        } else if ($('.size-guide__content') && isHumanPage) {
+          $('.single-product-size-guide').style.display = 'none';
         }
       }
     );
@@ -1737,7 +1739,7 @@ console.log('initExp');
             );
 
             setTimeout(() => {
-              if ($('.size-guide__content')) {
+              if ($('.size-guide__content') && !isHumanPage) {
                 labelEl.insertAdjacentHTML(
                   'beforeend',
                   `
