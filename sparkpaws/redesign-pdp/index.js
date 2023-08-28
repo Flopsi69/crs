@@ -984,6 +984,7 @@ console.log('initExp');
     waitFor(
       () => $('.ProductForm__QuantitySelector'),
       () => {
+        console.log('handleOptions');
         handleOptions();
       }
     );
@@ -991,6 +992,7 @@ console.log('initExp');
     waitFor(
       () => $('.ProductForm__BuyButtons'),
       () => {
+        console.log('handleDelivery');
         handleDelivery();
       }
     );
@@ -998,6 +1000,7 @@ console.log('initExp');
     waitFor(
       () => $('.cbb-frequently-bought-container'),
       () => {
+        console.log('initModals');
         // handleBenefits();
         setTimeout(initModals, 800);
       }
@@ -1007,6 +1010,7 @@ console.log('initExp');
       () => $('[data-section-type="product-recommendations"]'),
       () => {
         if ($('.size-guide__content')) {
+          console.log('handleTables');
           handleTables();
           handleUnderTable();
         }
@@ -1016,6 +1020,7 @@ console.log('initExp');
     waitFor(
       () => $('.ProductMeta__Description'),
       () => {
+        console.log('handleProductInfo');
         handleProductInfo();
       }
     );
