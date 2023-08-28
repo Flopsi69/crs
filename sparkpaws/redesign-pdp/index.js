@@ -1349,11 +1349,7 @@ console.log('initExp');
 
       el.innerHTML = `
         <span class="lav-link lav-link-measure">
-          ${
-            isDe
-              ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
-              : 'WATCH VIDEO ON HOW TO MEASURE'
-          }
+          ${isDe ? 'VIDEO' : 'WATCH VIDEO ON'}
           ${item.querySelector('.measurements__cell-title')?.textContent}
         </span>
         <img src="${exp.dir}/img/icon-play.svg" />
@@ -2050,6 +2046,22 @@ console.log('initExp');
       petrol: '#688F8B',
       green: '#AEA78D',
       grün: '#AEA78D',
+      'lime-white-navy':
+        'linear-gradient(180deg, #D7F0A8 0%, #D7F0A8 10.42%, #C6C7D3 50%, #212E40 100%)',
+      'limette-weiß-marine':
+        'linear-gradient(180deg, #D7F0A8 0%, #D7F0A8 10.42%, #C6C7D3 50%, #212E40 100%)',
+      'green-brown-tan':
+        'linear-gradient(180deg, #66634D 0%, #66634D 16.38%, #473330 51.46%, #987860 100%)',
+      'grün-braun-braun':
+        'linear-gradient(180deg, #66634D 0%, #66634D 16.38%, #473330 51.46%, #987860 100%)',
+      'teal-white-purple':
+        'linear-gradient(180deg, #42C9DE 0%, #DFE1EE 49.48%, #B695C2 100%)',
+      'teal-weiß-lila':
+        'linear-gradient(180deg, #42C9DE 0%, #DFE1EE 49.48%, #B695C2 100%)',
+      'mustard-yellow': 'linear-gradient(180deg, #EA9A03 0%, #F4AA1B 100%)',
+      senfgelb: 'linear-gradient(180deg, #EA9A03 0%, #F4AA1B 100%)',
+      'royal-blue': 'linear-gradient(180deg, #1D3E71 0%, #305289 100%)',
+      königsblau: 'linear-gradient(180deg, #1D3E71 0%, #305289 100%)',
       'pastel-icing':
         'linear-gradient(180deg, #D77DC9 0%, #FFB6AC 50%, #AEDBFC 100%)',
       pastellglasur:
@@ -2769,11 +2781,7 @@ console.log('initExp');
 
         el.innerHTML = `
           <span class="lav-link lav-link-measure">
-            ${
-              isDe
-                ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
-                : 'WATCH VIDEO ON HOW TO MEASURE'
-            }
+            ${isDe ? 'VIDEO ' : 'WATCH VIDEO ON '}
             ${item.querySelector('.measurements__cell-title')?.textContent}
           </span>
           <img src="${exp.dir}/img/icon-play.svg" >
