@@ -1349,7 +1349,11 @@ console.log('initExp');
 
       el.innerHTML = `
         <span class="lav-link lav-link-measure">
-          ${isDe ? 'VIDEO' : 'WATCH VIDEO ON'}
+          ${
+            isDe
+              ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
+              : 'WATCH VIDEO ON HOW TO MEASURE YOUR DOG'
+          }
           ${item.querySelector('.measurements__cell-title')?.textContent}
         </span>
         <img src="${exp.dir}/img/icon-play.svg" />
@@ -2781,7 +2785,11 @@ console.log('initExp');
 
         el.innerHTML = `
           <span class="lav-link lav-link-measure">
-            ${isDe ? 'VIDEO ' : 'WATCH VIDEO ON '}
+            ${
+              isDe
+                ? 'VIDEO ZUR MAßNEHMUNG ANSEHEN'
+                : 'WATCH VIDEO ON HOW TO MEASURE'
+            }
             ${item.querySelector('.measurements__cell-title')?.textContent}
           </span>
           <img src="${exp.dir}/img/icon-play.svg" >
