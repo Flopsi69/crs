@@ -1017,6 +1017,7 @@ console.log('initExp');
           handleUnderTable();
         } else if ($('.size-guide__content') && isHumanPage) {
           $('.single-product-size-guide').style.display = 'none';
+          $('.single-product-size-guide .tabs__panel-body').remove();
         }
       }
     );
