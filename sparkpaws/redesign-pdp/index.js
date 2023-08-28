@@ -998,7 +998,9 @@ console.log('initExp');
     );
 
     waitFor(
-      () => $('.cbb-frequently-bought-container'),
+      () =>
+        $('.cbb-frequently-bought-container') ||
+        $('[data-section-type="product-recommendations"]'),
       () => {
         console.log('initModals');
         // handleBenefits();
