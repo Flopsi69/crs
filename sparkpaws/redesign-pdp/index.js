@@ -2049,6 +2049,10 @@ console.log('initExp');
       petrol: '#688F8B',
       green: '#AEA78D',
       grün: '#AEA78D',
+      olive: '#6E6D55',
+      white: '#E5E5E9',
+      weiss: '#E5E5E9',
+      orange: '#DE4B28',
       'lime-white-navy':
         'linear-gradient(180deg, #D7F0A8 0%, #D7F0A8 10.42%, #C6C7D3 50%, #212E40 100%)',
       'limette-weiß-marine':
