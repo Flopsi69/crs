@@ -116,9 +116,58 @@ console.log('initExp');
         // console.log('removed', el);
         if (el.classList.contains('loading-mask')) {
           console.log('city Updated');
-          if ($('.lav-delivery__caption span')) {
-            $('.lav-delivery__caption span').innerText =
-              $$('.shops .shop-item').length;
+          if ($$('.shops .shop-item').length) {
+            if ($('.lav-delivery__caption span')) {
+              $('.lav-delivery__caption span').innerText =
+                $$('.shops .shop-item').length;
+            }
+            $('.lav-del__to-go .lav-delivery__caption')?.classList.remove(
+              'lav-hide'
+            );
+            $('.lav-exist')?.classList.remove('lav-hide');
+            $('.lav-del__to-go')?.classList.remove('disabled');
+            $('.lav-del__courier')?.classList.remove('disabled');
+            $('.lav-del__note_empty')?.remove();
+            if ($('.lav-del__to-go .lav-delivery__price')) {
+              $('.lav-del__to-go .lav-delivery__price').innerText = isRu
+                ? 'Бесплатно'
+                : 'Безкоштовно';
+            }
+            if ($('.lav-del__courier .lav-delivery__price')) {
+              $('.lav-del__courier .lav-delivery__price').innerHTML = isRu
+                ? 'Бесплатно<br/>от 1000 грн'
+                : 'Безкоштовно<br/>від 1000 грн';
+            }
+          } else {
+            if (!$('.lav-del__note_empty') && $('.lav-del__up')) {
+              $('.lav-del__up').insertAdjacentHTML(
+                'afterend',
+                `
+              <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
+                <img src="${exp.dir}/img/note.svg" />
+                ${
+                  isRu
+                    ? 'Товар отсутствует в аптеках выбранного города.'
+                    : 'Товар відсутній в аптеках обраного міста.'
+                }
+              </div>
+            `
+              );
+            }
+            $('.lav-del__to-go .lav-delivery__caption')?.classList.add(
+              'lav-hide'
+            );
+            $('.lav-exist')?.classList.add('lav-hide');
+            $('.lav-del__to-go')?.classList.add('disabled');
+            $('.lav-del__courier')?.classList.add('disabled');
+            if ($('.lav-del__to-go .lav-delivery__price')) {
+              $('.lav-del__to-go .lav-delivery__price').innerText =
+                'Недоступно';
+            }
+            if ($('.lav-del__courier .lav-delivery__price')) {
+              $('.lav-del__courier .lav-delivery__price').innerText =
+                'Недоступно';
+            }
           }
 
           if ($('.lav-popup__count')) {
