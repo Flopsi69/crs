@@ -1920,12 +1920,12 @@ console.log('initExp');
     waitFor(
       () => $('.inventory-info-link'),
       () => {
-        $('.inventory-info-link').click();
-        $('.inventory-info-link').click();
-
+        console.log('fire', $('.inventory-info-link'));
         setTimeout(() => {
+          $('.inventory-info-link').click();
+          $('.inventory-info-link').click();
           $('body').classList.remove('lav-waiting');
-        }, 900);
+        }, 500);
       }
     );
 
