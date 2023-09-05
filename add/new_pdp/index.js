@@ -2031,11 +2031,21 @@ console.log('initExp');
       pushDataLayer('exp_pdp_click_i_search', 'Enter', 'Input', 'City Pop up');
     });
 
-    if (localStorage.getItem('lav-city')) {
-      toggleCity(localStorage.getItem('lav-city'));
-    } else {
-      toggleCity(isRu ? 'Киев' : 'Київ');
-    }
+    waitFor(
+      () =>
+        $('.product-tabs-heading .inventory-info-link')
+          ?.textContent.trim()
+          .includes('аптеках'),
+      () => {
+        setTimeout(() => {
+          if (localStorage.getItem('lav-city')) {
+            toggleCity(localStorage.getItem('lav-city'));
+          } else {
+            toggleCity(isRu ? 'Киев' : 'Київ');
+          }
+        }, 500);
+      }
+    );
 
     if (window.innerWidth > 992) {
       $(
