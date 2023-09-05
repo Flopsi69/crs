@@ -1912,16 +1912,22 @@ console.log('initExp');
 
     console.log('init');
 
-    if ($('.inventory-info-link')) {
-      $('body').classList.add('lav-bg-exist');
-    }
+    // if ($('.inventory-info-link')) {
+    //   $('body').classList.add('lav-bg-exist');
+    // }
 
     $('body').classList.add('lav-waiting');
-    $('.inventory-info-link').click();
-    $('.inventory-info-link').click();
-    setTimeout(() => {
-      $('body').classList.remove('lav-waiting');
-    }, 900);
+    waitFor(
+      () => $('.inventory-info-link'),
+      () => {
+        $('.inventory-info-link').click();
+        $('.inventory-info-link').click();
+
+        setTimeout(() => {
+          $('body').classList.remove('lav-waiting');
+        }, 900);
+      }
+    );
 
     handleNav();
     if (type === 'product') {
@@ -3056,7 +3062,7 @@ console.log('initExp');
 
             if (
               text.includes('подібний терапевтичний') ||
-              text.includes('cходный терапевтический')
+              text.includes('сходный терапевтический')
             ) {
               return true;
             }
@@ -3133,9 +3139,10 @@ console.log('initExp');
 
     const sectionEl = document.createElement('div');
     sectionEl.classList.add(extraClass, 'lav-slider');
+    console.log('title', title);
     if (
       title.toLowerCase().includes('подібний терапевтичний') ||
-      title.toLowerCase().includes('cходный терапевтический')
+      title.toLowerCase().includes('сходный терапевтический')
     ) {
       sectionEl.classList.add('lav-slider_analog');
 
