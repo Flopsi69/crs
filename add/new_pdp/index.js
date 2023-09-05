@@ -1918,12 +1918,15 @@ console.log('initExp');
 
     $('body').classList.add('lav-waiting');
     waitFor(
-      () => $('.inventory-info-link'),
+      () =>
+        $('.product-tabs-heading .inventory-info-link')
+          ?.textContent.trim()
+          .includes('аптеках'),
       () => {
         console.log('fire', $('.inventory-info-link'));
         setTimeout(() => {
-          $('.inventory-info-link').click();
-          $('.inventory-info-link').click();
+          $('.product-tabs-heading .inventory-info-link').click();
+          $('.product-tabs-heading .inventory-info-link').click();
           $('body').classList.remove('lav-waiting');
         }, 500);
       }
