@@ -6,32 +6,243 @@ console.log('initExp');
     dir: 'https://flopsi69.github.io/crs/add/new_pdp',
     observer: {
       mutation: true,
-      intersection: false,
+      intersection: true,
     },
     clarity: {
       enable: true,
-      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+      params: ['set', 'improve_pdp', 'variant_1'],
     },
     debug: true,
   };
+  const isRu =
+    window.location.href.includes('/ru/') ||
+    !window.location.href.includes('/ua/');
 
   // Observers
   if (exp.observer.mutation) {
-    initMutation((el) => {
-      if (el.classList.contains('loading-mask')) {
+    initMutation(
+      (el) => {
+        // console.log('added', el);
+        if (
+          el.classList.contains('favorites-block') &&
+          el.closest('.shop-item:not(.lav-card-handled)')
+        ) {
+          el = el.closest('.shop-item');
+          el.classList.add('lav-card-handled');
+          if (el.querySelector('.work-time')?.textContent) {
+            $('.work-time', el).innerHTML = $(
+              '.work-time',
+              el
+            )?.textContent?.replaceAll(', ', '<br />');
+          }
+
+          if (!el.querySelector('.lav-on-map')) {
+            $('.work-time', el).insertAdjacentHTML(
+              'beforeend',
+              `<div class='lav-on-map'>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_824_6789)"><mask id="mask0_824_6789" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16"><path d="M15.5 15.5V0.5H0.5V15.5H15.5Z" fill="white" stroke="white"/></mask><g mask="url(#mask0_824_6789)"><path d="M10.5 3.625L5.5 1.125L1.30459 3.2765C0.887375 3.49044 0.625 3.91988 0.625 4.38875V12.8292C0.625 13.2647 0.851656 13.6688 1.22328 13.8958C1.59487 14.1229 2.05788 14.1402 2.44538 13.9415L5.5 12.375L10.5 14.875L14.6954 12.7235C15.1126 12.5096 15.375 12.0801 15.375 11.6112V3.17081C15.375 2.73531 15.1483 2.33122 14.7767 2.10416C14.4051 1.87709 13.9421 1.85981 13.5546 2.05853L10.5 3.625Z" stroke="#4695FF" stroke-miterlimit="10" stroke-linecap="square"/><path d="M5.5 1.125V12.375" stroke="#4695FF" stroke-miterlimit="10"/><path d="M10.5 3.625V14.875" stroke="#4695FF" stroke-miterlimit="10"/></g></g><defs><clipPath id="clip0_824_6789"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>
+               <span>${isRu ? 'Смотреть на карте' : 'Дивитись на карті'}</span>
+              </div>`
+            );
+
+            let isBusy = false;
+            el.querySelector('.lav-on-map').addEventListener(
+              'click',
+              function (e) {
+                if (!isBusy) {
+                  isBusy = true;
+                  pushDataLayer(
+                    'exp_pdp_stock_v_map',
+                    'View on map',
+                    'Button',
+                    'In stock Pop up'
+                  );
+                  setTimeout(() => {
+                    isBusy = false;
+                  }, 900);
+                }
+                // e.preventDefault();
+                if (
+                  $('.inventory-info .block-inventory .map .placeholder').style
+                    .display === 'none'
+                ) {
+                  $(
+                    '.inventory-info .block-inventory .shops'
+                  ).style.opacity = 0;
+                  $('.inventory-info .block-inventory .body').classList.add(
+                    'lav-map-active'
+                  );
+                } else {
+                  $(
+                    '.inventory-info .block-inventory .shops'
+                  ).style.opacity = 0;
+                  $('.inventory-info .block-inventory .body').classList.add(
+                    'lav-map-active'
+                  );
+                  $('#showOnMapButton').click();
+                  setTimeout(() => {
+                    this.click();
+                    setTimeout(() => {
+                      window.dispatchEvent(new Event('resize'));
+                    }, 300);
+                  }, 500);
+                }
+              }
+            );
+          }
+
+          if ($('.inventory-info .block-inventory .body .map')) {
+            if (!$('.lav-map-close')) {
+              $(
+                '.inventory-info .block-inventory .body .map'
+              ).insertAdjacentHTML(
+                'beforeend',
+                `<div class='lav-map-close button'>${
+                  isRu ? 'Закрыть карту' : 'Закрити карту'
+                }</div>`
+              );
+
+              $('.lav-map-close').addEventListener('click', function () {
+                $('.inventory-info .block-inventory .body').classList.remove(
+                  'lav-map-active'
+                );
+                $('.inventory-info .block-inventory .shops').style.opacity = 1;
+              });
+            }
+          }
+        }
+      },
+      (el) => {
+        // console.log('removed', el);
+        if (el.classList.contains('loading-mask')) {
+          console.log('city Updated');
+          if ($('.lav-delivery__caption span')) {
+            $('.lav-delivery__caption span').innerText =
+              $$('.shops .shop-item').length;
+          }
+
+          if ($('.lav-popup__count')) {
+            $('.lav-popup__count').innerText = isRu
+              ? `В наличии в ${$$('.shops .shop-item').length} аптеках`
+              : `В навності у ${$$('.shops .shop-item').length} аптеках`;
+          } else {
+            $('.inventory-info .block-inventory .header').insertAdjacentHTML(
+              'beforeend',
+              `<div class='lav-popup__count'>${
+                isRu
+                  ? `В наличии в ${$$('.shops .shop-item').length} аптеках`
+                  : `В навності у ${$$('.shops .shop-item').length} аптеках`
+              }</div>`
+            );
+          }
+
+          $$(
+            '.inventory-info .block-inventory .shop-item:not(.lav-card-handled)'
+          ).forEach((el) => {
+            el.classList.add('lav-card-handled');
+            if (el.querySelector('.work-time')?.textContent) {
+              $('.work-time', el).innerHTML = $(
+                '.work-time',
+                el
+              )?.textContent?.replaceAll(', ', '<br />');
+            }
+
+            if (!el.querySelector('.lav-on-map')) {
+              $('.work-time', el).insertAdjacentHTML(
+                'beforeend',
+                `<div class='lav-on-map'>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_824_6789)"><mask id="mask0_824_6789" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16"><path d="M15.5 15.5V0.5H0.5V15.5H15.5Z" fill="white" stroke="white"/></mask><g mask="url(#mask0_824_6789)"><path d="M10.5 3.625L5.5 1.125L1.30459 3.2765C0.887375 3.49044 0.625 3.91988 0.625 4.38875V12.8292C0.625 13.2647 0.851656 13.6688 1.22328 13.8958C1.59487 14.1229 2.05788 14.1402 2.44538 13.9415L5.5 12.375L10.5 14.875L14.6954 12.7235C15.1126 12.5096 15.375 12.0801 15.375 11.6112V3.17081C15.375 2.73531 15.1483 2.33122 14.7767 2.10416C14.4051 1.87709 13.9421 1.85981 13.5546 2.05853L10.5 3.625Z" stroke="#4695FF" stroke-miterlimit="10" stroke-linecap="square"/><path d="M5.5 1.125V12.375" stroke="#4695FF" stroke-miterlimit="10"/><path d="M10.5 3.625V14.875" stroke="#4695FF" stroke-miterlimit="10"/></g></g><defs><clipPath id="clip0_824_6789"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>
+                 <span>${
+                   isRu ? 'Смотреть на карте' : 'Дивитись на карті'
+                 }</span>
+                </div>`
+              );
+
+              let isBusy = false;
+              el.querySelector('.lav-on-map').addEventListener(
+                'click',
+                function (e) {
+                  if (!isBusy) {
+                    isBusy = true;
+                    pushDataLayer(
+                      'exp_pdp_stock_v_map',
+                      'View on map',
+                      'Button',
+                      'In stock Pop up'
+                    );
+                    setTimeout(() => {
+                      isBusy = false;
+                    }, 900);
+                  }
+                  // e.preventDefault();
+                  if (
+                    $('.inventory-info .block-inventory .map .placeholder')
+                      .style.display === 'none'
+                  ) {
+                    $(
+                      '.inventory-info .block-inventory .shops'
+                    ).style.opacity = 0;
+                    $('.inventory-info .block-inventory .body').classList.add(
+                      'lav-map-active'
+                    );
+                  } else {
+                    $(
+                      '.inventory-info .block-inventory .shops'
+                    ).style.opacity = 0;
+                    $('.inventory-info .block-inventory .body').classList.add(
+                      'lav-map-active'
+                    );
+                    $('#showOnMapButton').click();
+                    setTimeout(() => {
+                      this.click();
+                      setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                      }, 300);
+                    }, 500);
+                  }
+                }
+              );
+            }
+
+            if ($('.inventory-info .block-inventory .body .map')) {
+              if (!$('.lav-map-close')) {
+                $(
+                  '.inventory-info .block-inventory .body .map'
+                ).insertAdjacentHTML(
+                  'beforeend',
+                  `<div class='lav-map-close button'>${
+                    isRu ? 'Закрыть карту' : 'Закрити карту'
+                  }</div>`
+                );
+
+                $('.lav-map-close').addEventListener('click', function () {
+                  $('.inventory-info .block-inventory .body').classList.remove(
+                    'lav-map-active'
+                  );
+                  $(
+                    '.inventory-info .block-inventory .shops'
+                  ).style.opacity = 1;
+                });
+              }
+            }
+          });
+        }
       }
-      // console.log(el);
-    });
+    );
   }
 
   if (exp.observer.intersection) {
-    initIntersection((el) => {
-      console.log(el);
-      if (isElementInViewport(el)) {
-        // pushDataLayer(...event);
-        el.classList.add('in-view');
-      }
-    });
+    // initIntersection((el) => {
+    //   if (el.classList.contains('in-view')) return;
+    //   if (el.classList.contains('lav-slider_analog')) {
+    //     isElementInViewport(el, [
+    //       'exp_pdp_v_se',
+    //       'Similar effect',
+    //       'Visibility',
+    //       'Similar effect Accordion',
+    //     ]);
+    //   }
+    // });
   }
 
   /*** STYLES / Start ***/
@@ -343,7 +554,7 @@ console.log('initExp');
       margin-top: 4px;
     }
     .lav-slider .swiper {
-      overflow: visible;
+      // overflow: visible;
       margin-top: 16px;
       width: 100%;
     }
@@ -412,6 +623,7 @@ console.log('initExp');
     .lav-slide__image img {
       max-width: 90%;
       max-height: 90%;
+      object-fit: contain;
     }
     .lav-slide__buy {
       height: 40px;
@@ -578,12 +790,243 @@ console.log('initExp');
       font-weight: 500;
       line-height: 20px 
     }
-    @media(max-width: 767px) {
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete .ui-menu-item a {
+      padding: 8px 5px;
+      display: block;
+      border-bottom: 1px solid #ccc;
+    }
+    .inventory-info .block-inventory .header .region {
+      position: absolute;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      font-size: 0;
+      padding: 0!important;
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper {
+      // display: flex;
+      // flex-flow: column;
+      position: fixed;
+      left: 0;
+      width: 100%;
+      right: auto;
+    }
+    .inventory-info .block-inventory .block-inventory-inner {
+      // height: auto;
+    }
+    .inventory-info.open[data-dropdown-container].open .body {
+      // display: none;
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete {
+      margin-top: 24px;
+    }
+    .d_desktop .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper:before {
+      display: none;
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper {
+      position: static!important;
+      border-radius: 0!important;
+      background: var(--bg-text, #00A950);
+      padding: 32px 16px 24px;
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title {
+
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .search-field {
+      margin-bottom: 0;
+    }
+    .lav-toggler {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .lav-toggler__item {
+      padding: 6px 12px;
+      color: var(--white, #FFF);
+      font-family: Manrope;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+    }
+    .lav-toggler__item.active {
+      border-radius: 6px;
+      background: #009948;
+    }
+    .lav-toggler__item:not(.active) {
+      text-decoration: underline dashed;
+      margin-left: 12px;
+      text-underline-offset: 3px;
+    }
+    .inventory-info .block-inventory .header {
+      background: var(--bg-text, #00A950);
+      margin: -16px -16px 0;
+      padding: 16px;
+    }
+    .lav-popup__count {
+      color: var(--white, #FFF);
+      text-align: center;
+      font-family: Manrope;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.021px;
+    }
+    .lav-map-close {
+      z-index: 99;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .inventory-info .block-inventory .header .search input::placeholder {
+      color: var(--text-grey-light, #A0A0A0);
+      font-family: Manrope;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    .inventory-info .block-inventory .header .search input {
+      padding: 5px 42px 5px 16px;
+    }
+    .lav-on-map {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      color: rgba(70, 149, 255, 0.94);
+      font-family: Manrope;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+    }
+    .inventory-info .block-inventory .header .search .icon-block {
+      left: initial;
+      right: 16px;
+    }
+    .lav-on-map span {
+      border-bottom: 1px dashed rgba(70, 149, 255, 0.94);
+    }
+    .lav-on-map svg {
+      margin-right: 4px;
+    }
+    .block-search {
+      z-index: 3;
+    }
+    .inventory-info .block-inventory .shop-item {
+      border-radius: 12px;
+      background: var(--bg, #F8F8F8);
+      padding: 16px 12px;
+    }
+    .inventory-info .block-inventory .shop-item .shop-data .in-stock {
+      display: none;
+    }
+    .inventory-info .block-inventory .shop-item .actions .button {
+      border-radius: 12px;
+      border: 2px solid var(--bg-text, #00A950);
+      color: var(--bg-text, #00A950);
+      text-align: center;
+      font-family: Manrope;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      background: transparent;
+    }
+    .inventory-info .block-inventory .shop-item .shop-data .work-time {
+      position: relative;
+      color: var(--text-grey, #73747B);
+      font-family: Manrope;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+      letter-spacing: 0.018px;
+    }
+    .inventory-info .block-inventory .shop-item .shop-data .title {
+      color: var(--text, #373843);
+      font-family: Manrope;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.021px; 
+      min-height: 24px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+    }
+    .inventory-info .block-inventory .shop-item .actions .favorites-block {
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+      margin: 0!important;
+    }
+    .inventory-info .block-inventory .block-inventory-inner {
+      grid-template-rows: auto 1fr;
+      padding-bottom: 0!important;
+    }
+    .inventory-info .block-inventory .shops {
+      padding-bottom: 20px;
+    }
+    .block-inventory-inner>.footer {
+      display: none;
+    }
+    .inventory-info .block-inventory .shop-item .shop-data {
+      grid-template-rows: auto;
+    }
+    .inventory-info .block-inventory .shop-item .small-logo {
+      left: 16px;
+      top: 16px;
+    }
+    .inventory-info .block-inventory .lav-map-active .map {
+      display: flex!important;
+    }
+    .inventory-info .block-inventory .map {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      width: auto;
+      height: auto;
+      bottom: 0;
+    }
+    .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title {
+      color: var(--white, #FFF);
+      font-family: Manrope;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-bottom: 12px;
+    }
+    .catalog-product-view .block.related {
+      display: none;
+    }
+    body:not(.catalog-product-view) .inventory-info .block-inventory .shop-item .shop-data .title {
+      padding-left: 0!important;
+      margin-bottom: 0;
+    }
+    body:not(.catalog-product-view) .inventory-info .block-inventory .shop-item .shop-data {
+      padding-left: 0!important;
+    }
+    .block-viewed-products-grid {
+      display: none;
+    }
+    .page-wrapper {
+      // overflow: hidden;
+    }
+    .lav-waiting .inventory-info.open {
+      opacity: 0;
+      pointer-events: none;
+    }
+    @media(max-width: 991px) {
       [data-bind="scope: 'widget_recently_viewed.widget_recently_viewed'"] {
         display: none;
       }
-      .block.related {
-        display: none;
+      .lav-slider .swiper {
+        overflow: visible;
       }
       .att-block {
         display: none;
@@ -773,46 +1216,24 @@ console.log('initExp');
       .box-tocart.single.out-of-stock [data-price-type="finalPrice"] .price {
         color: #A0A0A0;
       }
-      .inventory-info .block-inventory .shop-item {
-        border-radius: 12px;
-        background: var(--bg, #F8F8F8);
-        padding: 16px 12px;
-      }
-      .inventory-info .block-inventory .shop-item .shop-data .title {
-        color: var(--text, #373843);
-        font-family: Manrope;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20px;
-        letter-spacing: 0.021px; 
-        min-height: 24px;
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-      }
-      .inventory-info .block-inventory .shop-item .small-logo {
-        left: 16px;
-        top: 16px;
-      }
       .inventory-info .block-inventory .mobile-hat:before, .inventory-info .block-inventory .mobile-hat:after {
         border-radius: 12px 12px 0px 0px;
         background: var(--bg-text, #00A950);
       }
       .inventory-info .block-inventory .mobile-hat .mobile-hat-inner {
         z-index: 1;
+        box-shadow: 0px 4px 10px rgba(45, 66, 55, 0.20);
       }
       .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper {
         background: var(--bg-text, #00A950);
         padding-top: 7px;
         padding-bottom: 24px;
       }
-      .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title {
-        color: var(--white, #FFF);
-        font-family: Manrope;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20px;
-        margin-bottom: 12px;
+      .inventory-info .block-inventory {
+        // max-height: 100%!important;
+      }
+      .inventory-info .block-inventory .header {
+        grid-gap: 16px;
       }
       .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .search-field {
         margin-bottom: 0;
@@ -822,14 +1243,113 @@ console.log('initExp');
       }
     }
 
-    @media(min-width: 768px) {
+    @media(min-width: 992px) {
       .att-block {
         display: none;
       }
-
-      .lav-delivery__item.lav-city [
+      .inventory-info .block-inventory .select-wrapper .filter-select-wrapper {
+        top: 0;
+      }
+      .lav-sliders {
+        overflow: visible;
+      }
+      .inventory-info .block-inventory .shops {
+        height: auto;
+        max-height: 100%;
+      }
+      .lav-popular, .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper {
+        border-radius: 0 0 12px 12px!important;
+      }
+      .lav-popular__item{
+        cursor: pointer;
+        transition: 0.35s;
+      }
+      .lav-popular__item:not(.active):hover {
+        opacity: 0.7;
+      }
+      .lav-toggler__item:not(.active), .lav-on-map {
+        cursor: pointer;
+        transition: 0.35s;
+      }
+      .lav-toggler__item:not(.active):hover, .lav-on-map:hover {
+        opacity: 0.7;
+      }
+      .inventory-info .block-inventory .shop-item {
+        grid-template-columns: 1fr;
+        grid-gap: 12px;
+        min-height: auto!important;
+      }
+      .inventory-info .block-inventory .map {
+        display: none;
+        border-radius: 12px;
+      }
+      .lav-map-close {
+        bottom: 20px;
+        top: initial;
+      }
+      .inventory-info .block-inventory .shop-item .shop-data {
+        height: auto;
+      }
+      .inventory-info .block-inventory .shop-item .actions {
+        max-width: 100%!important;
+      }
+      .inventory-info .block-inventory .shop-item .shop-data .work-time {
         margin-top: 0;
-      ]
+      }
+      .inventory-info .block-inventory .header .search input {
+        max-width: 100%;
+      }
+      .inventory-info .block-inventory {
+        width: 432px;
+        top: 15%;
+        overflow: visible;
+        // min-height: 400px;
+      }
+      .lav-close-desk {
+        position: absolute;
+        right: -12px;
+        top: -12px;
+        z-index: 4;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(45, 66, 55, 0.20);
+        border-radius: 50%;
+        transition: 0.35s;
+      }
+      .lav-close-desk:hover {
+        opacity: 0.7;
+      }
+      .inventory-info .block-inventory .body {
+        display: block;
+      }
+      .inventory-info .block-inventory .block-inventory-inner {
+        padding: 16px 16px 0;
+        grid-gap: 16px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .inventory-info .block-inventory .select-wrapper .filter-select-wrapper {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .d_desktop .inventory-info .block-inventory .footer {
+        display: none;
+      }
+      .inventory-info .block-inventory .header {
+        grid-template-columns: 1fr;
+        grid-gap: 16px;
+        padding: 32px 16px 24px;
+        margin: -16px -16px 0;
+      }
+      .lav-delivery__item.lav-city {
+        margin-top: 0;
+      }
+      .lav-city__dropdown-item {
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .lav-city__dropdown-item:hover {
+        opacity: 0.6;
+      }
       .promo .main-product-info {
         margin-top: 8px;
         border-radius: 12px;
@@ -1198,6 +1718,8 @@ console.log('initExp');
     }
   `;
 
+  let isHandledToggle = false;
+
   waitFor(
     () => document.head,
     () => {
@@ -1221,19 +1743,180 @@ console.log('initExp');
   /*** STYLES / End ***/
 
   /********* Custom Code **********/
+  let type = 'none';
+
+  if (
+    location.href.includes('/analogi/') ||
+    location.href.includes('/reviews/') ||
+    location.href.includes('/manual/')
+  ) {
+    type = 'brief';
+  } else if (
+    $('.product') &&
+    $('.all-info-top-wrapper') &&
+    $('.gallery') &&
+    $('#reviews_tab')
+  ) {
+    type = 'product';
+  }
   init();
   function init() {
+    let dataLayerBusy = false;
+
+    document.addEventListener('click', function (e) {
+      const target = e.target;
+      console.log(target);
+
+      if (target.closest('.inventory-info-link')) {
+        pushDataLayer(
+          'exp_pdp_v_stock_popup',
+          'In stock',
+          'Visibility',
+          'In stock Pop up'
+        );
+      }
+
+      if (target.closest('.lav-slider_analog')) {
+        if (target.closest('.lav-slide__image')) {
+          pushDataLayer(
+            'exp_pdp_image_se',
+            'Product',
+            'Image',
+            'Similar effect Accordion'
+          );
+        }
+      }
+
+      if (target.closest('.button') && target.closest('.shop-item')) {
+        pushDataLayer(
+          'exp_pdp_stock_book',
+          'Book',
+          'Button',
+          'In stock Pop up'
+        );
+      }
+
+      if (target.name === 'address_search' && target.closest('.search')) {
+        pushDataLayer(
+          'exp_pdp_stock_search',
+          'Search',
+          'Input',
+          'In stock Pop up'
+        );
+      }
+      if (
+        target.closest('.product-tabs-heading__content') &&
+        target.closest('.item')
+      ) {
+        pushDataLayer(
+          `exp_pdp_sfb_${target
+            .closest('.item')
+            .innerText.trim()
+            .replaceAll(' ', '_')}`,
+          'Sticky filter',
+          'Button',
+          'Header'
+        );
+      }
+
+      if (target.closest('.mobile-hat-inner')) {
+        if (target.closest('.inventory-city-select')) {
+          pushDataLayer(
+            'exp_pdp_c_p_city',
+            'Pop up close',
+            'Button',
+            'City Pop up'
+          );
+        } else if (target.closest('.block-inventory')) {
+          pushDataLayer(
+            'exp_pdp_stock_close',
+            'Close',
+            'Button',
+            'In stock Pop up'
+          );
+        }
+      }
+
+      if (target.closest('.lav-toggler__item')) {
+        if (target.closest('.lav-toggler__item').classList.contains('active')) {
+          pushDataLayer(
+            'exp_pdp_stock_list',
+            'List',
+            'Button',
+            'In stock Pop up'
+          );
+        } else if (!dataLayerBusy) {
+          dataLayerBusy = true;
+          pushDataLayer(
+            'exp_pdp_stock_m_map',
+            'Main map',
+            'Button',
+            'In stock Pop up'
+          );
+
+          setTimeout(() => {
+            dataLayerBusy = false;
+          }, 500);
+        }
+      }
+    });
+
     console.log('init');
 
     if ($('.inventory-info-link')) {
       $('body').classList.add('lav-bg-exist');
     }
 
+    $('body').classList.add('lav-waiting');
     $('.inventory-info-link').click();
     $('.inventory-info-link').click();
+    setTimeout(() => {
+      $('body').classList.remove('lav-waiting');
+    }, 900);
 
     handleNav();
-    handleVariations();
+    if (type === 'product') {
+      handleVariations();
+    } else if (type === 'brief' && window.innerWidth < 992) {
+      // todo
+      const isStock = $('.product-tabs-heading-wrap .miniproduct .tocart')
+        ? true
+        : false;
+
+      $('.miniproduct').insertAdjacentHTML(
+        'beforeend',
+        `
+        ${
+          isStock
+            ? `
+        <button class='lav-sticky__btn button lav-buy'>
+          <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>
+          ${isRu ? 'Купить' : 'Купити'}
+        </button>
+        `
+            : `
+         <button class='button lav-analogs lav-sticky__btn'>${
+           isRu ? 'Смотреть аналоги' : 'Дивитися аналоги'
+         }</button>
+        `
+        }
+      `
+      );
+
+      $('.lav-sticky__btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (isStock) {
+          pushDataLayer('exp_pdp_sticky_b', 'Buy', 'Button', 'Sticky button');
+          $('.product-tabs-heading-wrap .miniproduct .tocart')?.click();
+        } else {
+          if ($('.box-tocart.single.out-of-stock .view-analogs')) {
+            $('.box-tocart.single.out-of-stock .view-analogs')?.click();
+          } else {
+            $('#tab-label-analog a')?.click();
+          }
+        }
+      });
+    }
     handleDelivery();
     setTimeout(() => {
       handleInventory();
@@ -1246,6 +1929,10 @@ console.log('initExp');
           handleRelated(el);
         });
         handleRecently();
+
+        if (!$('.lav-slider_analog')) {
+          handleAnalogSlider();
+        }
       }
     );
   }
@@ -1253,18 +1940,24 @@ console.log('initExp');
   function handleInventory() {
     $(
       '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title'
-    ).innerText = 'Ваше місто';
+    ).innerHTML = `${
+      isRu ? 'Ваш населенный пункт:' : 'Ваш населений пункт:'
+    } <span></span>`;
 
     const popular = `
       <div class="lav-popular">
-        <div class="lav-popular__title">Популярні міста:</div>
+        <div class="lav-popular__title">${
+          isRu ? 'Популярные города' : 'Популярні міста:'
+        }</div>
         <div class="lav-popular__list">
-          <div class="lav-popular__item active">Київ</div>
-          <div class="lav-popular__item">Харків</div>
-          <div class="lav-popular__item">Львів</div>
-          <div class="lav-popular__item">Одеса</div>
-          <div class="lav-popular__item">Дніпро</div>
-          <div class="lav-popular__item">Запоріжжя</div>
+          <div class="lav-popular__item active">${isRu ? 'Киев' : 'Київ'}</div>
+          <div class="lav-popular__item">${isRu ? 'Харьков' : 'Харків'}</div>
+          <div class="lav-popular__item">${isRu ? 'Львов' : 'Львів'}</div>
+          <div class="lav-popular__item">${isRu ? 'Одесса' : 'Одеса'}</div>
+          <div class="lav-popular__item">${isRu ? 'Днепр' : 'Дніпро'}</div>
+          <div class="lav-popular__item">${
+            isRu ? 'Запорожье' : 'Запоріжжя'
+          }</div>
         </div>
       </div>
     `;
@@ -1275,51 +1968,106 @@ console.log('initExp');
 
     $('#region-search').addEventListener('input', function () {
       checkInput(this.value);
-      // handleAutocomplete();
+      handleAutocomplete();
     });
 
-    toggleCity('Київ');
+    $('#region-search').addEventListener('focus', function () {
+      pushDataLayer('exp_pdp_click_i_search', 'Enter', 'Input', 'City Pop up');
+    });
+
+    if (localStorage.getItem('lav-city')) {
+      toggleCity(localStorage.getItem('lav-city'));
+    } else {
+      toggleCity(isRu ? 'Киев' : 'Київ');
+    }
+
+    if (window.innerWidth > 992) {
+      $(
+        '.inventory-info .block-inventory .header .region .select-wrapper'
+      ).addEventListener('click', function (e) {
+        console.log('clickCity', e.target);
+        if ($('.inventory-info .block-inventory .body')) {
+          if (
+            e.target.closest('.opener-style') ||
+            $('.inventory-city-select.open')
+          ) {
+            $('.inventory-info .block-inventory .body').style.display = 'none';
+          } else {
+            $('.inventory-info .block-inventory .body').style.display = 'block';
+          }
+        }
+      });
+
+      $('.inventory-info .block-inventory').insertAdjacentHTML(
+        'afterbegin',
+        `<svg class='lav-close-desk' width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="white"/><path d="M15 15L25 25" stroke="#373843" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 15L15 25" stroke="#373843" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      `
+      );
+
+      $('.lav-close-desk').addEventListener('click', function () {
+        $('.d_desktop .inventory-info .block-inventory .footer .close').click();
+      });
+    }
+
     checkInput($('#region-search').value);
-    // handleAutocomplete();
+    handleAutocomplete();
 
     $$('.lav-popular__item').forEach((el) => {
       el.addEventListener('click', function () {
         // if (this.classList.contains('active')) return;
         // $('.lav-popular__item.active')?.classList.remove('active');
         // this.classList.add('active');
+        pushDataLayer(
+          `exp_pdp_click_cn_${this.innerText
+            .replaceAll(' ', '_')
+            .toLowerCase()
+            .trim()}`,
+          'City name',
+          'Button',
+          'City Pop up'
+        );
         toggleCity(this.innerText);
       });
     });
 
-    // $('.inventory-info .block-inventory').addEventListener(
-    //   'click',
-    //   handleAutocomplete();
-    // );
+    $('.inventory-info .block-inventory').addEventListener(
+      'click',
+      handleAutocomplete
+    );
 
     function handleAutocomplete() {
       $$(
         '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete .ui-menu-item a:not(.lav-handled)'
       ).forEach((el) => {
         el.classList.add('lav-handled');
-        el.addEventListener('click', function () {
-          $('#region-search').value = '';
-          checkInput($('#region-search').value);
-          console.log('click', el.innerText);
-          const isSome = Array.from($$('.lav-popular__item')).some(
-            (innerEl) => {
-              if (innerEl.innerText.trim() === el.innerText.trim()) {
-                $('.lav-popular__item.active')?.classList.remove('active');
-                innerEl.classList.add('active');
-                return true;
-              }
 
-              return false;
-            }
-          );
-
-          if (!isSome) {
-            $('.lav-popular__item.active')?.classList.remove('active');
+        el.addEventListener('click', function (e) {
+          if (!isHandledToggle) {
+            console.log('clickNative', el.innerText);
+            e.preventDefault();
+            e.stopPropagation();
+            toggleCity(el.innerText);
           }
+          // $('#region-search').value = '';
+          // checkInput($('#region-search').value);
+
+          // togg
+
+          // const isSome = Array.from($$('.lav-popular__item')).some(
+          //   (innerEl) => {
+          //     if (innerEl.innerText.trim() === el.innerText.trim()) {
+          //       $('.lav-popular__item.active')?.classList.remove('active');
+          //       innerEl.classList.add('active');
+          //       return true;
+          //     }
+
+          //     return false;
+          //   }
+          // );
+
+          // if (!isSome) {
+          //   $('.lav-popular__item.active')?.classList.remove('active');
+          // }
         });
       });
     }
@@ -1340,11 +2088,37 @@ console.log('initExp');
   }
 
   function toggleCity(name) {
+    // const isValid = Array.from(
+    //   $$(
+    //     '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete .ui-menu-item'
+    //   )
+    // ).some((el) => {
+    //   if (el.textContent.trim() === name) {
+    //     return true;
+    //   }
+
+    //   return false;
+    // });
+
+    // if (!isValid) {
+    //   return;
+    // }
+
+    localStorage.setItem('lav-city', name);
+    isHandledToggle = true;
     console.log('toggleCity', name);
 
+    $(
+      '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title span'
+    ).innerText = name;
+
     $('#region-search').value = '';
+    $('#region-search').dispatchEvent(new Event('input'));
     checkInput($('#region-search').value);
-    $('.lav-city__value').innerText = name;
+
+    if (type === 'product' && $('.lav-city__value')) {
+      $('.lav-city__value').innerText = name;
+    }
 
     Array.from(
       $$(
@@ -1375,34 +2149,55 @@ console.log('initExp');
       $('.lav-popular__item.active')?.classList.remove('active');
     }
 
-    if ($$('.shops .shop-item').length) {
-      $('.lav-delivery__caption span').innerText = length;
-      $('.lav-del__to-go .lav-delivery__caption').classList.remove('lav-hide');
-      $('.lav-exist').classList.remove('lav-hide');
-      $('.lav-del__to-go').classList.remove('disabled');
-      $('.lav-del__courier').classList.remove('disabled');
-      $('.lav-del__note_empty')?.remove();
-
-      $('.lav-del__to-go .lav-delivery__price').innerText = 'Безкоштовно';
-      $('.lav-del__courier .lav-delivery__price').innerHTML =
-        'Безкоштовно<br/>від 1000 грн';
-    } else {
-      $('.lav-del__up').insertAdjacentHTML(
-        'afterend',
-        `
+    setTimeout(() => {
+      if ($$('.shops .shop-item').length) {
+        $('.lav-del__to-go .lav-delivery__caption')?.classList.remove(
+          'lav-hide'
+        );
+        $('.lav-exist')?.classList.remove('lav-hide');
+        $('.lav-del__to-go')?.classList.remove('disabled');
+        $('.lav-del__courier')?.classList.remove('disabled');
+        $('.lav-del__note_empty')?.remove();
+        if ($('.lav-del__to-go .lav-delivery__price')) {
+          $('.lav-del__to-go .lav-delivery__price').innerText = isRu
+            ? 'Бесплатно'
+            : 'Безкоштовно';
+        }
+        if ($('.lav-del__courier .lav-delivery__price')) {
+          $('.lav-del__courier .lav-delivery__price').innerHTML = isRu
+            ? 'Бесплатно<br/>от 1000 грн'
+            : 'Безкоштовно<br/>від 1000 грн';
+        }
+      } else {
+        if (!$('.lav-del__note_empty') && $('.lav-del__up')) {
+          $('.lav-del__up').insertAdjacentHTML(
+            'afterend',
+            `
         <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
           <img src="${exp.dir}/img/note.svg" />
-          Товар відсутній в аптеках обраного міста.
+          ${
+            isRu
+              ? 'Товар отсутствует в аптеках выбранного города.'
+              : 'Товар відсутній в аптеках обраного міста.'
+          }
         </div>
       `
-      );
-      $('.lav-del__to-go .lav-delivery__caption').classList.add('lav-hide');
-      $('.lav-exist').classList.add('lav-hide');
-      $('.lav-del__to-go').classList.add('disabled');
-      $('.lav-del__courier').classList.add('disabled');
-      $('.lav-del__to-go .lav-delivery__price').innerText = 'Недоступно';
-      $('.lav-del__courier .lav-delivery__price').innerText = 'Недоступно';
-    }
+          );
+        }
+        $('.lav-del__to-go .lav-delivery__caption')?.classList.add('lav-hide');
+        $('.lav-exist')?.classList.add('lav-hide');
+        $('.lav-del__to-go')?.classList.add('disabled');
+        $('.lav-del__courier')?.classList.add('disabled');
+        if ($('.lav-del__to-go .lav-delivery__price')) {
+          $('.lav-del__to-go .lav-delivery__price').innerText = 'Недоступно';
+        }
+        if ($('.lav-del__courier .lav-delivery__price')) {
+          $('.lav-del__courier .lav-delivery__price').innerText = 'Недоступно';
+        }
+      }
+    }, 800);
+
+    isHandledToggle = false;
   }
 
   function handleNav() {
@@ -1421,7 +2216,7 @@ console.log('initExp');
 
     if (navHome) {
       const cloneEl = navHome.cloneNode(true);
-      cloneEl.innerText = 'Про товар';
+      cloneEl.innerText = isRu ? 'О товаре' : 'Про товар';
 
       cloneEl.addEventListener('click', function (e) {
         if (this.getAttribute('href').startsWith('#')) {
@@ -1455,13 +2250,13 @@ console.log('initExp');
     };
 
     if ($('.advancedproductlabels-content-wrapper')) {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 992) {
         $('.page-title-wrapper').insertAdjacentHTML(
           'afterbegin',
           `
           <div class="lav-recipe">
             <img src="${exp.dir}/img/pen.svg" />
-            рецептурний
+            ${isRu ? 'рецептурный' : 'рецептурний'}
           </div>
           `
         );
@@ -1471,7 +2266,7 @@ console.log('initExp');
           `
           <div class="lav-recipe">
             <img src="${exp.dir}/img/pen.svg" />
-            рецептурний
+            ${isRu ? 'рецептурный' : 'рецептурний'}
           </div>
           `
         );
@@ -1524,7 +2319,9 @@ console.log('initExp');
           </div>
           <div class='lav-variant__footer'>
             <div class='lav-variant__old-price'>${oldPrice}</div>
-            <div class='lav-variant__disc'>Економія ${discount}%</div>
+            <div class='lav-variant__disc'>${
+              isRu ? 'Экономия' : 'Економія'
+            } ${discount}%</div>
           </div>
         `;
 
@@ -1533,6 +2330,12 @@ console.log('initExp');
         }
 
         newEl.addEventListener('click', function () {
+          pushDataLayer(
+            'exp_pdp_package',
+            title.replace('Упаковка', '1').replace(' упаковки', '').trim(),
+            'Checkbox',
+            'Product info'
+          );
           $('.product-add-form .box-tocart.active').classList.remove('active');
           el.classList.add('active');
 
@@ -1565,7 +2368,9 @@ console.log('initExp');
           '.box-tocart.single .old-price .price-final_price'
         ).insertAdjacentHTML(
           'beforeend',
-          `<span class='lav-variant__disc'>Економія ${discount}%</span>`
+          `<span class='lav-variant__disc'>${
+            isRu ? 'Экономия' : 'Економія'
+          } ${discount}%</span>`
         );
       }
     }
@@ -1573,7 +2378,7 @@ console.log('initExp');
     if (
       $('.left-wrapper .main-product-info') &&
       $('.all-info-wrapper .promo') &&
-      window.innerWidth >= 768
+      window.innerWidth >= 992
     ) {
       $('.all-info-wrapper .promo').insertAdjacentElement(
         'beforeend',
@@ -1582,13 +2387,13 @@ console.log('initExp');
     }
 
     if ($('.attention-text')) {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 992) {
         $('.attention-text')?.insertAdjacentHTML(
           'afterend',
           `
         <button class='lav-buy__main button lav-buy'>
           <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>
-          Купити
+          ${isRu ? 'Купить' : 'Купити'}
         </button>
       `
         );
@@ -1599,7 +2404,7 @@ console.log('initExp');
             <div class='lav-buy__main-wrap'>
               <button class='lav-buy__main button lav-buy'>
                 <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>
-                Купити
+                ${isRu ? 'Купить' : 'Купити'}
               </button>
             </div>
           `
@@ -1637,14 +2442,16 @@ console.log('initExp');
       });
 
       $('.attention-text').innerHTML = $('.attention-text').innerHTML.replace(
-        'Увага!',
-        '<span>Увага!</span>'
+        `${isRu ? 'Внимание' : 'Увага'}!`,
+        `<span>${isRu ? 'Внимание' : 'Увага'}!</span>`
       );
     } else if ($('.box-tocart.single.out-of-stock .view-analogs')) {
       options.isStock = false;
       $('.box-tocart.single.out-of-stock ')?.insertAdjacentHTML(
         'afterend',
-        `<button class='button lav-analogs lav-analogs-main'>Дивитися аналоги</button>`
+        `<button class='button lav-analogs lav-analogs-main'>${
+          isRu ? 'Смотреть аналоги' : 'Дивитися аналоги'
+        }</button>`
       );
 
       $('.lav-analogs').addEventListener('click', function (e) {
@@ -1673,7 +2480,7 @@ console.log('initExp');
       '-' + ($('.d_desktop .left-wrapper').offsetWidth + 24) + 'px';
   }
 
-  function handleSticky({ items = [], isStock = true }) {
+  function handleSticky({ items = [], isStock = true }, isAnother) {
     const isMulti = items.length > 1;
     const chooseEl = document.createElement('div');
     chooseEl.classList.add('lav-choose');
@@ -1689,6 +2496,12 @@ console.log('initExp');
       if (isMulti) {
         val.addEventListener('click', function () {
           $('.lav-choose_multi').classList.toggle('active');
+          pushDataLayer(
+            'exp_pdp_sticky_p',
+            'Package',
+            'Dropdown',
+            'Sticky dropdown'
+          );
           if (this.classList.contains('active')) return false;
 
           // $('.lav-choose__value.active').classList.remove('active');
@@ -1717,11 +2530,13 @@ console.log('initExp');
           ? `
       <button class='lav-sticky__btn button lav-buy'>
         <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>
-        Купити
+        ${isRu ? 'Купить' : 'Купити'}
       </button>
       `
           : `
-       <button class='button lav-analogs lav-sticky__btn'>Дивитися аналоги</button>
+       <button class='button lav-analogs lav-sticky__btn'>${
+         isRu ? 'Смотреть аналоги' : 'Дивитися аналоги'
+       }</button>
       `
       }
     `
@@ -1730,13 +2545,18 @@ console.log('initExp');
     $('.lav-sticky__btn').addEventListener('click', function (e) {
       e.preventDefault();
       if (isStock) {
+        pushDataLayer('exp_pdp_sticky_b', 'Buy', 'Button', 'Sticky button');
         if ($('.box-tocart.active')) {
           $('.product-add-form .box-tocart.active .tocart')?.click();
         } else {
           $('.product-add-form .box-tocart.single .tocart')?.click();
         }
       } else {
-        $('.box-tocart.single.out-of-stock .view-analogs').click();
+        if ($('.box-tocart.single.out-of-stock .view-analogs')) {
+          $('.box-tocart.single.out-of-stock .view-analogs')?.click();
+        } else {
+          $('#tab-label-analog a')?.click();
+        }
       }
     });
   }
@@ -1745,11 +2565,17 @@ console.log('initExp');
     const payment = `
       <div class='lav-payment'>
         <div class='lav-payment__item'>
-          <div class='lav-payment__title'>Готівкою або картою при отриманні</div>
+          <div class='lav-payment__title'> ${
+            isRu
+              ? 'Наличкой или картой при получении'
+              : 'Готівкою або картою при отриманні'
+          }</div>
           <img src="${exp.dir}/img/pay-recieve.svg" />
         </div>
         <div class='lav-payment__item'>
-          <div class='lav-payment__title'>Картою на сайті</div>
+          <div class='lav-payment__title'>${
+            isRu ? 'Картой на сайте' : 'Картою на сайті'
+          }</div>
           <img src="${exp.dir}/img/pay-cart.svg" />
         </div>
         <div class='lav-payment__item'>
@@ -1772,15 +2598,12 @@ console.log('initExp');
     const delivery = `
       <div class='lav-delivery'>
         <div class='lav-delivery__item lav-city'>
-          <div class='lav-city__caption'>Ваше місто</div>
+          <div class='lav-city__caption'>${
+            isRu ? 'Ваш город' : 'Ваше місто'
+          }</div>
           <div class='lav-city__dropdown-wrap'>
-            <div class='lav-city__value'>Київ</div>
-            <div class='lav-city__dropdown'>
-              <div class='lav-city__dropdown-item'>Київ</div>
-              <div class='lav-city__dropdown-item'>Біла церква</div>
-              <div class='lav-city__dropdown-item'>Якасась дуже велика назва</div>
-              <div class='lav-city__dropdown-item'>тестііі</div>
-            </div>
+            <div class='lav-city__value'></div>
+            <div class='lav-city__dropdown'></div>
           </div>
         </div>
         <div class='lav-delivery__item lav-del__to-go'>
@@ -1788,16 +2611,20 @@ console.log('initExp');
             <img src="${exp.dir}/img/delivery-add.svg" />
           </div>
           <div class='lav-delivery__info'>
-            <div class='lav-delivery__title'>Самовивіз з аптеки</div>
+            <div class='lav-delivery__title'>${
+              isRu ? 'Самовывоз из аптеки' : 'Самовивіз з аптеки'
+            }</div>
             <div class='lav-delivery__caption'>Доступно в <strong><span>-</span> аптеках</strong></div>
           </div>
           <div class='lav-delivery__price'>
-            Безкоштовно
+            ${isRu ? 'Бесплатно' : 'Безкоштовно'}
           </div>
         </div>
         <div class='lav-delivery__item lav-exist'>
           <img class='lav-exist__logo' src="${exp.dir}/img/placement.svg" />
-          <div class='lav-exist__title'>Дивитись наявність в аптеках</div>
+          <div class='lav-exist__title'>${
+            isRu ? 'Смотреть наличие в аптеках' : 'Дивитись наявність в аптеках'
+          }</div>
           <img class='lav-exist__arrow' src="${exp.dir}/img/arrow-top.svg" />
         </div>
         ${
@@ -1808,12 +2635,18 @@ console.log('initExp');
                 <img src="${exp.dir}/img/delivery-add.svg" />
               </div>
               <div class='lav-delivery__info'>
-                <div class='lav-delivery__title'>Кур’єр Аптеки Доброго Дня</div>
-                <div class='lav-delivery__caption'>Доставка до <strong>48 годин</strong></div>
+                <div class='lav-delivery__title'>${
+                  isRu
+                    ? 'Курьер Аптеки Доброго Дня'
+                    : 'Кур’єр Аптеки Доброго Дня'
+                }</div>
+                <div class='lav-delivery__caption'>Доставка до <strong>48 ${
+                  isRu ? 'часов' : 'годин'
+                }</strong></div>
               </div>
               <div class='lav-delivery__price'>
-                Безкоштовно <br/>
-                від 1000 грн
+                ${isRu ? 'Бесплтано' : 'Безкоштовно'}<br/>
+                ${isRu ? 'от' : 'від'} 1000 грн
               </div>
             </div>
           `
@@ -1824,7 +2657,11 @@ console.log('initExp');
             ? `
         <div class='lav-delivery__item lav-del__note'>
           <img src="${exp.dir}/img/note.svg" />
-          Рецептурний препарат. Можливий тільки самовивіз з аптеки.
+          ${
+            isRu
+              ? 'Рецептурный препарат. Возможен только самовывоз из аптеки.'
+              : 'Рецептурний препарат. Можливий тільки самовивіз з аптеки.'
+          }
         </div>
         `
             : ''
@@ -1836,11 +2673,15 @@ console.log('initExp');
             <img src="${exp.dir}/img/delivery-np.svg" />
           </div>
           <div class='lav-delivery__info'>
-            <div class='lav-delivery__title'>Нова Пошта </div>
-            <div class='lav-delivery__caption'>Доставка 2-3 дні</div>
+            <div class='lav-delivery__title'>${
+              isRu ? 'Новая Почта' : 'Нова Пошта'
+            }</div>
+            <div class='lav-delivery__caption'>${
+              isRu ? 'Доставка 2-3 дня' : 'Доставка 2-3 дні'
+            }</div>
           </div>
           <div class='lav-delivery__price'>${
-            isRecipe ? 'Недоступно' : 'Від 70&nbsp;₴'
+            isRecipe ? 'Недоступно' : `${isRu ? 'От' : 'Від'} 70&nbsp;₴`
           }</div>
         </div>
         <div class='lav-delivery__item ${
@@ -1850,11 +2691,15 @@ console.log('initExp');
             <img src="${exp.dir}/img/delivery-up.svg" />
           </div>
           <div class='lav-delivery__info'>
-            <div class='lav-delivery__title'>Укрпошта відділення</div>
-            <div class='lav-delivery__caption'>Доставка 2-3 дні</div>
+            <div class='lav-delivery__title'>${
+              isRu ? 'Укрпочта отделение' : 'Укрпошта відділення'
+            }</div>
+            <div class='lav-delivery__caption'>${
+              isRu ? 'Доставка 2-3 дня' : 'Доставка 2-3 дні'
+            }</div>
           </div>
           <div class='lav-delivery__price'>${
-            isRecipe ? 'Недоступно' : 'Від 55&nbsp;₴'
+            isRecipe ? 'Недоступно' : `${isRu ? 'От' : 'Від'} 55&nbsp;₴`
           }</div>
         </div>
       </div>
@@ -1864,40 +2709,101 @@ console.log('initExp');
       $('.shipping-info-block').insertAdjacentHTML('beforeend', delivery);
 
       $('.lav-city__value').addEventListener('click', function (e) {
-        $('.lav-city__dropdown-wrap').classList.toggle('active');
-        $('.lav-city__dropdown').classList.toggle('active');
+        pushDataLayer('exp_pdp_d_city', 'City', 'Dropdown', 'Additional info');
+        setTimeout(() => {
+          $('.inventory-info .inventory-info-link').dispatchEvent(
+            new Event('click')
+          );
+          $(
+            '.inventory-info .block-inventory .select-wrapper .opener-style'
+          ).click();
+        });
+        // $('.lav-city__dropdown-wrap').classList.toggle('active');
+        // $('.lav-city__dropdown').classList.toggle('active');
       });
 
-      document.addEventListener('click', function (e) {
-        if (
-          !e.target.closest('.lav-city__dropdown-wrap') &&
-          $('.lav-city__dropdown-wrap.active')
-        ) {
-          $('.lav-city__dropdown-wrap.active').classList.remove('active');
-          $('.lav-city__dropdown.active').classList.remove('active');
-        }
-      });
+      // document.addEventListener('click', function (e) {
+      //   if (
+      //     !e.target.closest('.lav-city__dropdown-wrap') &&
+      //     $('.lav-city__dropdown-wrap.active')
+      //   ) {
+      //     $('.lav-city__dropdown-wrap.active').classList.remove('active');
+      //     $('.lav-city__dropdown.active').classList.remove('active');
+      //   }
+      // });
 
-      $('.lav-exist').addEventListener(
-        'click',
-        function (e) {
-          e.preventDefault();
-          setTimeout(() => {
-            document
-              .querySelector('.inventory-info .inventory-info-link')
-              .dispatchEvent(new Event('click'));
-          });
-        },
-        100
-      );
+      $('.lav-exist').addEventListener('click', function (e) {
+        e.preventDefault();
+        pushDataLayer(
+          'exp_pdp_stock_b',
+          'In stock',
+          'Button',
+          'Additional info'
+        );
+        $('.inventory-info .block-inventory .body').style.display = 'block';
+        setTimeout(() => {
+          $('.inventory-info .inventory-info-link').dispatchEvent(
+            new Event('click')
+          );
+          pushDataLayer(
+            'exp_pdp_v_stock_popup',
+            'In stock',
+            'Visibility',
+            'In stock Pop up'
+          );
+        });
+      });
 
       setTimeout(() => {
         const length = $$('.shops .shop-item').length;
         const cities = $$('.autocomplete-menu-wrapper .ui-menu-item');
 
-        $('.lav-city__dropdown').innerHTML = '';
+        $(
+          '.inventory-info .block-inventory .header .search .icon-block'
+        ).innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_850_5810)"><path d="M11.1947 8.00009C11.1947 9.76734 9.76196 11.2 7.99472 11.2C6.22747 11.2 4.79492 9.76734 4.79492 8.00009C4.79492 6.23284 6.22747 4.80029 7.99472 4.80029C9.76196 4.80029 11.1947 6.23284 11.1947 8.00009Z" fill="#00A950"/><path d="M15.52 7.51985H14.4501C14.2096 4.32474 11.6703 1.78497 8.47517 1.54416V0.480006C8.47517 0.214882 8.26014 0 7.99517 0C7.73004 0 7.51516 0.214882 7.51516 0.480006V1.54416C4.31991 1.78497 1.78043 4.32474 1.53992 7.51985H0.480006C0.214882 7.51985 0 7.73488 0 7.99985C0 8.26498 0.214882 8.47986 0.480006 8.47986H1.53992C1.78043 11.675 4.31991 14.2147 7.51501 14.4555V15.52C7.51501 15.7851 7.7299 16 7.99502 16C8.26 16 8.47488 15.7851 8.47488 15.52V14.4555C11.6701 14.2149 14.2096 11.6751 14.4501 8.47986H15.52C15.7851 8.47986 16 8.26498 16 7.99985C16 7.73488 15.7851 7.51985 15.52 7.51985ZM7.99502 13.5196C4.94668 13.5194 2.47561 11.048 2.47561 7.99971C2.47576 4.95122 4.94712 2.48015 7.99546 2.48015C11.0439 2.48015 13.5152 4.95152 13.5152 7.99985C13.5115 11.047 11.0422 13.5162 7.99502 13.5196Z" fill="#00A950"/></g><defs><clipPath id="clip0_850_5810"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>`;
 
-        if (cities.length) {
+        $(
+          '.inventory-info .block-inventory .header .search'
+        ).insertAdjacentHTML(
+          'beforebegin',
+          `
+          <div class='lav-toggler'>
+            <div class='lav-toggler__item active'>Список</div>
+            <div class='lav-toggler__item'>На ${isRu ? 'карте' : 'карті'}</div>
+          </div>
+        `
+        );
+
+        $('.lav-toggler__item:not(.active)').addEventListener(
+          'click',
+          function () {
+            if (
+              $('.inventory-info .block-inventory .map .placeholder').style
+                .display === 'none'
+            ) {
+              $('.inventory-info .block-inventory .shops').style.opacity = 0;
+              $('.inventory-info .block-inventory .body').classList.add(
+                'lav-map-active'
+              );
+            } else {
+              $('.inventory-info .block-inventory .shops').style.opacity = 0;
+              $('.inventory-info .block-inventory .body').classList.add(
+                'lav-map-active'
+              );
+              $('#showOnMapButton').click();
+              setTimeout(() => {
+                //   this.click();
+                // setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+                // }, 1300);
+              }, 500);
+            }
+          }
+        );
+
+        // $('.lav-city__dropdown').innerHTML = '';
+
+        if (cities.length && false) {
           cities.forEach((city) => {
             const dropdownItem = document.createElement('div');
             dropdownItem.classList.add('lav-city__dropdown-item');
@@ -1919,15 +2825,21 @@ console.log('initExp');
         if (length) {
           $('.lav-delivery__caption span').innerText = length;
         } else {
-          $('.lav-del__up').insertAdjacentHTML(
-            'afterend',
+          if (!$('.lav-del__note lav-del__note_empty')) {
+            $('.lav-del__up').insertAdjacentHTML(
+              'afterend',
+              `
+              <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
+                <img src="${exp.dir}/img/note.svg" />
+                ${
+                  isRu
+                    ? 'Товар отсутствует в аптеках выбранного города.'
+                    : 'Товар відсутній в аптеках обраного міста.'
+                }
+              </div>
             `
-            <div class='lav-delivery__item lav-del__note'>
-              <img src="${exp.dir}/img/note.svg" />
-              Товар відсутній в аптеках обраного міста.
-            </div>
-          `
-          );
+            );
+          }
           $('.lav-del__to-go .lav-delivery__caption').classList.add('lav-hide');
           $('.lav-exist').classList.add('lav-hide');
           $('.lav-del__to-go').classList.add('disabled');
@@ -2007,9 +2919,11 @@ console.log('initExp');
     let caption = null;
 
     if (title.toLowerCase().includes('аналог')) {
-      title = 'Повний аналог';
-      caption =
-        '(повний збіг складу діючих речовин, їх дозування і форми випуску)';
+      title = isRu ? 'Полный аналог' : 'Повний аналог';
+      caption = isRu
+        ? '(полное совпадение состава действующих веществ, их дозировка и формы выпуска)'
+        : '(повний збіг складу діючих речовин, їх дозування і форми випуску)';
+      ('');
     }
 
     const options = {
@@ -2050,7 +2964,7 @@ console.log('initExp');
     });
 
     const options = {
-      title: 'Нещодавно переглянуті',
+      title: isRu ? 'Недавно просмотренные' : 'Нещодавно переглянуті',
       items: products,
     };
 
@@ -2058,9 +2972,136 @@ console.log('initExp');
     createSlider('lav-recently', options);
   }
 
-  function createSlider(extraClass, { title, caption, items }) {
+  async function handleAnalogSlider() {
+    const title = isRu
+      ? 'Сходный терапевтический эффект'
+      : 'Подібний терапевтичний ефект';
+    let caption = null;
+    // let caption = isRu
+    //   ? '(полное совпадение состава действующих веществ, их дозировка и формы выпуска)'
+    //   : '(повний збіг складу діючих речовин, їх дозування і форми випуску)';
+    // ('');
+
+    let slider = null;
+
+    if ($('#tab-label-analog-title')?.href) {
+      try {
+        let link = document.querySelector('#tab-label-analog-title').href;
+
+        let res = await fetch(link);
+        res = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(res, 'text/html');
+        console.log('doc', doc.querySelector('.products-related'));
+        // slider = doc.querySelector('.products-related');
+        slider = Array.from(doc.querySelectorAll('.products-related')).find(
+          (el) => {
+            const text = el
+              .closest('.related')
+              ?.querySelector('[id="block-related-heading"]')
+              ?.innerText.trim()
+              .toLowerCase();
+
+            if (!text) return false;
+
+            if (
+              text.includes('подібний терапевтичний') ||
+              text.includes('cходный терапевтический')
+            ) {
+              return true;
+            }
+
+            return false;
+          }
+        );
+        if (!slider) {
+          link = $(
+            '.breadcrumbs .item.product'
+          ).previousElementSibling.querySelector('a').href;
+
+          let res = await fetch(link);
+          res = await res.text();
+
+          const doc = parser.parseFromString(res, 'text/html');
+          console.log('doc2', doc.querySelector('.product-items'));
+          slider = doc.querySelector('.product-items');
+        }
+      } catch (error) {
+        console.error('Something went wrong.', error);
+      }
+    }
+
+    if (!slider) {
+      console.log('not found slider');
+      return false;
+    }
+
+    let items = Array.from($$('.product-item', slider)).map((el) => {
+      const link = $('.product-item-photo', el).getAttribute('href');
+      const img =
+        $('.product-image-photo', el).getAttribute('src') || $('picture', el);
+      const title = $('.product-item-link', el).innerText.trim();
+      const priceEl = $('.special-price .price', el) || $('.price', el);
+      const price = priceEl?.innerText.trim();
+      const oldPrice = $('.old-price .price', el)?.innerText.trim();
+      const buyEl = $('.tocart', el);
+      const discount = getDiscount(
+        $('.advancedproductlabel img', el)?.getAttribute('src')
+      );
+      // const form = $('form', el);
+
+      return {
+        title,
+        price,
+        oldPrice,
+        link,
+        img,
+        buyEl,
+        discount,
+        // form,
+      };
+    });
+
+    items = items.slice(0, 10);
+
+    const options = {
+      title,
+      caption,
+      items,
+    };
+
+    console.log('optionsAnalogs', options);
+    createSlider('lav-slider-analog', options, true);
+  }
+
+  function createSlider(
+    extraClass,
+    { title, caption, items },
+    isOutsource = false
+  ) {
+    if (type !== 'product') return false;
+
     const sectionEl = document.createElement('div');
     sectionEl.classList.add(extraClass, 'lav-slider');
+    if (
+      title.toLowerCase().includes('подібний терапевтичний') ||
+      title.toLowerCase().includes('cходный терапевтический')
+    ) {
+      sectionEl.classList.add('lav-slider_analog');
+
+      initIntersection((el) => {
+        if (el.classList.contains('in-view')) return;
+
+        console.log('intersecting', el);
+        isElementInViewport(el, [
+          'exp_pdp_v_se',
+          'Similar effect',
+          'Visibility',
+          'Similar effect Accordion',
+        ]);
+      }, sectionEl);
+    }
 
     sectionEl.innerHTML = `
       <div class='lav-slider__title'>${title}</div>
@@ -2101,17 +3142,37 @@ console.log('initExp');
           el.buyEl
             ? `
             <button class='lav-slide__buy button lav-buy'>
-              <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>
-              Купити
+            ${
+              !isOutsource
+                ? `
+              <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>`
+                : ''
+            }
+              ${
+                isRu
+                  ? `${isOutsource ? 'Cмотреть' : 'Купить'}`
+                  : `${isOutsource ? 'Дивитись' : 'Купити'}`
+              }
             </button>
           `
             : ''
         }
       `;
+      // ${el.form ? el.form.outerHTML : ''}
 
       // if ($('.lav-slide__buy', slide)) {
       $('.lav-slide__buy', slide)?.addEventListener('click', function (e) {
-        el.buyEl.click();
+        if (isOutsource) {
+          pushDataLayer(
+            'exp_pdp_buy_se',
+            'Buy',
+            'Button',
+            'Similar effect Accordion'
+          );
+          slide.querySelector('.lav-slide__title').click();
+        } else {
+          el.buyEl.click();
+        }
       });
       // }
 
@@ -2132,7 +3193,7 @@ console.log('initExp');
     if (!$('.lav-sliders')) {
       let el = $('.product-info-other') || $('.actions-and-price-wrap');
 
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 992) {
         el.insertAdjacentHTML('afterend', '<div class="lav-sliders"></div>');
       } else {
         $('.all-info-bottom-wrapper').insertAdjacentHTML(
@@ -2148,6 +3209,12 @@ console.log('initExp');
     const swiper = new Swiper(`.${extraClass} .swiper`, {
       slidesPerView: 2.1,
       spaceBetween: 8,
+      breakpoints: {
+        992: {
+          slidesPerView: 4.3,
+          spaceBetween: 12,
+        },
+      },
     });
   }
 
@@ -2188,13 +3255,19 @@ console.log('initExp');
   }
 
   // Mutation Observer
-  function initMutation(cb) {
+  function initMutation(cb, cb2) {
     let observer = new MutationObserver((mutations) => {
       for (let mutation of mutations) {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
 
           cb(node);
+        }
+
+        for (let node of mutation.removedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+
+          cb2(node);
         }
       }
     });
@@ -2210,10 +3283,11 @@ console.log('initExp');
 
   // Intersection Observer
   function initIntersection(cb, observeEl) {
+    console.log('initIntersection', observeEl);
     const observerOptions = {
       root: null,
       threshold: 0,
-      // rootMargin: '-40%',
+      rootMargin: '-40%',
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -2233,7 +3307,7 @@ console.log('initExp');
     }
   }
 
-  async function isElementInViewport(el, event, timeout = 5) {
+  async function isElementInViewport(el, event, timeout = 3) {
     if (el.classList.contains('in-view')) return false;
 
     setTimeout(() => {
@@ -2245,7 +3319,9 @@ console.log('initExp');
         rect.top + rect.height * 0.3 < windowHeight &&
         rect.bottom > rect.height * 0.3
       ) {
-        return true;
+        if (el.classList.contains('in-view')) return;
+        pushDataLayer(...event);
+        el.classList.add('in-view');
       }
 
       return false;
