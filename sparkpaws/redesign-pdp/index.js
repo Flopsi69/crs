@@ -79,7 +79,7 @@ console.log('initExp');
       transition: 0.35s;
       overflow-y: scroll;
       padding: 20px;
-      max-height: 100vh;
+      // max-height: 100vh;
     }
     .lav-modal-open .select2-container {
       z-index: 99999999999;
