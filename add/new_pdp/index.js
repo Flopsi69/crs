@@ -1924,11 +1924,9 @@ console.log('initExp');
           .includes('аптеках'),
       () => {
         console.log('fire', $('.inventory-info-link'));
-        setTimeout(() => {
-          $('.product-tabs-heading .inventory-info-link').click();
-          $('.product-tabs-heading .inventory-info-link').click();
-          $('body').classList.remove('lav-waiting');
-        }, 500);
+        $('.product-tabs-heading .inventory-info-link').click();
+        $('.product-tabs-heading .inventory-info-link').click();
+        $('body').classList.remove('lav-waiting');
       }
     );
 
