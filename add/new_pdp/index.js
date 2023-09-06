@@ -3254,7 +3254,7 @@ console.log('initExp');
           }
         </div>
         ${
-          el.buyEl ?? !isOutsource
+          el.buyEl && !isOutsource
             ? `
             <button class='lav-slide__buy button lav-buy'>
             ${
