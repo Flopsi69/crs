@@ -580,14 +580,13 @@ console.log('initExp');
       border-radius: 12px 12px 0 0;
     }
     .lav-sliders {
+      display: flex;
+      flex-flow: column;
       overflow: hidden;
       margin: 24px -16px;
       padding: 32px 16px;
       background: var(--bg, #F8F8F8);
       min-width: 100%;
-    }
-    .lav-slider + .lav-slider {
-      margin-top: 32px;
     }
     .lav-slider__title {
       color: var(--text, #373843);
@@ -1064,9 +1063,33 @@ console.log('initExp');
       opacity: 0;
       pointer-events: none;
     }
+    .all-info-wrapper .second-row .product-reviews-summary .rating-summary {
+      background: url(${exp.dir}/img/stars.svg) 0 50% no-repeat;
+    }
+    .lav-recently {
+      order: -4;
+    }
+    .lav-slider_full-analog {
+      order: -3;
+    }
+    .lav-slider-analog {
+      order: -2;
+    }
+    .lav-slider_same {
+      order: -1;
+    }
     @media(max-width: 991px) {
       [data-bind="scope: 'widget_recently_viewed.widget_recently_viewed'"] {
         display: none;
+      }
+      .lav-sliders {
+        margin-bottom: 0;
+        padding-top: 50px;
+        margin-top: 0;
+        padding-bottom: 0;
+      }
+      .lav-slider {
+        margin-bottom: 50px;
       }
       .catalog-product-view .block.related {
         display: none;
@@ -1296,11 +1319,13 @@ console.log('initExp');
       .att-block {
         display: none;
       }
-      .lav-sliders>div + div {
-        margin-top: 50px;
-      }
       .lav-sliders {
         padding-top: 60px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      .lav-sliders>div {
+        margin-bottom: 80px;
       }
       .lav-slider__title {
         font-weight: 500;
@@ -1955,7 +1980,9 @@ console.log('initExp');
         console.log('fire', $('.inventory-info-link'));
         $('.product-tabs-heading .inventory-info-link').click();
         $('.product-tabs-heading .inventory-info-link').click();
-        $('body').classList.remove('lav-waiting');
+        setTimeout(() => {
+          $('body').classList.remove('lav-waiting');
+        }, 1000);
       }
     );
 
@@ -3198,7 +3225,19 @@ console.log('initExp');
 
     const sectionEl = document.createElement('div');
     sectionEl.classList.add(extraClass, 'lav-slider');
+
     console.log('title', title);
+    if (title.toLowerCase().includes('аналог')) {
+      sectionEl.classList.add('lav-slider_full-analog');
+    }
+
+    if (
+      title.toLowerCase().includes('допродажі') ||
+      title.toLowerCase().includes('похожие товары')
+    ) {
+      sectionEl.classList.add('lav-slider_same');
+    }
+
     if (
       title.toLowerCase().includes('подібний терапевтичний') ||
       title.toLowerCase().includes('сходный терапевтический')
