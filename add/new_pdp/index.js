@@ -1069,13 +1069,13 @@ console.log('initExp');
     .lav-recently {
       order: -4;
     }
-    .lav-slider_full-analog {
+    .lav-slider_full-analog, #catalog_product_related_4 {
       order: -3;
     }
     .lav-slider-analog {
       order: -2;
     }
-    .lav-slider_same {
+    .lav-slider_same, #catalog_product_related {
       order: -1;
     }
     @media(max-width: 991px) {
@@ -1325,7 +1325,7 @@ console.log('initExp');
         margin-bottom: 0;
       }
       .lav-sliders>div {
-        margin-bottom: 80px;
+        margin-bottom: 70px;
       }
       .lav-slider__title {
         font-weight: 500;
@@ -2030,9 +2030,19 @@ console.log('initExp');
       });
     }
     handleDelivery();
-    setTimeout(() => {
-      handleInventory();
-    }, 1000);
+    waitFor(
+      () =>
+        $(
+          '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .title'
+        ) &&
+        $(
+          '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper'
+        ),
+      handleInventory
+    );
+    // setTimeout(() => {
+    //   handleInventory();
+    // }, 1000);
 
     waitFor(
       () => typeof Swiper == 'function',
@@ -2114,7 +2124,14 @@ console.log('initExp');
       () => {
         setTimeout(() => {
           if (localStorage.getItem('lav-city')) {
-            toggleCity(localStorage.getItem('lav-city'));
+            let city = $(
+              '.inventory-info .block-inventory .select-wrapper .opener-style .selected-value'
+            )
+              .textContent.trim()
+              .split(' ');
+
+            city = city.slice(1).join(' ');
+            toggleCity(city, localStorage.getItem('lav-city'));
           } else {
             toggleCity(isRu ? 'Киев' : 'Київ');
           }
@@ -2229,6 +2246,7 @@ console.log('initExp');
   }
 
   function toggleCity(name) {
+    // const isPassive = name === 'exist' ? true : false;
     // const isValid = Array.from(
     //   $$(
     //     '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete .ui-menu-item'
@@ -2245,7 +2263,9 @@ console.log('initExp');
     //   return;
     // }
 
+    // if (!isPassive) {
     localStorage.setItem('lav-city', name);
+    // }
     isHandledToggle = true;
     console.log('toggleCity', name);
 
@@ -2988,7 +3008,7 @@ console.log('initExp');
           $('.lav-del__to-go .lav-delivery__price').innerText = 'Недоступно';
           $('.lav-del__courier .lav-delivery__price').innerText = 'Недоступно';
         }
-      }, 1000);
+      }, 1400);
 
       $$('.delivery-info-item-list .c-item-group').forEach((el) => {
         const title = el.querySelector('.c-item').innerText.trim();
