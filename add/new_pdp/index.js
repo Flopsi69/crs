@@ -2334,15 +2334,15 @@ console.log('initExp');
           $('.lav-del__up').insertAdjacentHTML(
             'afterend',
             `
-        <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
-          <img src="${exp.dir}/img/note.svg" />
-          ${
-            isRu
-              ? 'Товар отсутствует в аптеках выбранного города.'
-              : 'Товар відсутній в аптеках обраного міста.'
-          }
-        </div>
-      `
+              <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
+                <img src="${exp.dir}/img/note.svg" />
+                ${
+                  isRu
+                    ? 'Товар отсутствует в аптеках выбранного города.'
+                    : 'Товар відсутній в аптеках обраного міста.'
+                }
+              </div>
+            `
           );
         }
         $('.lav-del__to-go .lav-delivery__caption')?.classList.add('lav-hide');
@@ -2986,7 +2986,7 @@ console.log('initExp');
         if (length) {
           $('.lav-delivery__caption span').innerText = length;
         } else {
-          if (!$('.lav-del__note .lav-del__note_empty')) {
+          if (!$('.lav-del__note_empty')) {
             $('.lav-del__up').insertAdjacentHTML(
               'afterend',
               `
