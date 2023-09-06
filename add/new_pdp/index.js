@@ -2986,7 +2986,7 @@ console.log('initExp');
         if (length) {
           $('.lav-delivery__caption span').innerText = length;
         } else {
-          if (!$('.lav-del__note lav-del__note_empty')) {
+          if (!$('.lav-del__note .lav-del__note_empty')) {
             $('.lav-del__up').insertAdjacentHTML(
               'afterend',
               `
