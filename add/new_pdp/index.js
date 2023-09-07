@@ -9,7 +9,7 @@ console.log('initExp');
       intersection: true,
     },
     clarity: {
-      enable: true,
+      enable: false,
       params: ['set', 'improve_pdp', 'variant_1'],
     },
     debug: false,
@@ -71,14 +71,14 @@ console.log('initExp');
                   $(
                     '.inventory-info .block-inventory .shops'
                   ).style.opacity = 0;
-                  $('.inventory-info .block-inventory .body').classList.add(
+                  $('.inventory-info .block-inventory .body')?.classList.add(
                     'lav-map-active'
                   );
                 } else {
                   $(
                     '.inventory-info .block-inventory .shops'
                   ).style.opacity = 0;
-                  $('.inventory-info .block-inventory .body').classList.add(
+                  $('.inventory-info .block-inventory .body')?.classList.add(
                     'lav-map-active'
                   );
                   $('#showOnMapButton').click();
@@ -105,7 +105,7 @@ console.log('initExp');
               );
 
               $('.lav-map-close').addEventListener('click', function () {
-                $('.inventory-info .block-inventory .body').classList.remove(
+                $('.inventory-info .block-inventory .body')?.classList.remove(
                   'lav-map-active'
                 );
                 $('.inventory-info .block-inventory .shops').style.opacity = 1;
@@ -137,8 +137,8 @@ console.log('initExp');
             }
             if ($('.lav-del__courier .lav-delivery__price')) {
               $('.lav-del__courier .lav-delivery__price').innerHTML = isRu
-                ? 'Бесплатно<br/>от 1000 грн'
-                : 'Безкоштовно<br/>від 1000 грн';
+                ? 'Бесплатно<br/>от 500 грн'
+                : 'Безкоштовно<br/>від 500 грн';
             }
           } else {
             if (!$('.lav-del__note_empty') && $('.lav-del__up')) {
@@ -233,14 +233,14 @@ console.log('initExp');
                     $(
                       '.inventory-info .block-inventory .shops'
                     ).style.opacity = 0;
-                    $('.inventory-info .block-inventory .body').classList.add(
+                    $('.inventory-info .block-inventory .body')?.classList.add(
                       'lav-map-active'
                     );
                   } else {
                     $(
                       '.inventory-info .block-inventory .shops'
                     ).style.opacity = 0;
-                    $('.inventory-info .block-inventory .body').classList.add(
+                    $('.inventory-info .block-inventory .body')?.classList.add(
                       'lav-map-active'
                     );
                     $('#showOnMapButton').click();
@@ -267,7 +267,7 @@ console.log('initExp');
                 );
 
                 $('.lav-map-close').addEventListener('click', function () {
-                  $('.inventory-info .block-inventory .body').classList.remove(
+                  $('.inventory-info .block-inventory .body')?.classList.remove(
                     'lav-map-active'
                   );
                   $(
@@ -1967,7 +1967,9 @@ console.log('initExp');
       }
 
       if (target.closest('.lav-toggler__item')) {
-        if (target.closest('.lav-toggler__item').classList.contains('active')) {
+        if (
+          target.closest('.lav-toggler__item')?.classList.contains('active')
+        ) {
           pushDataLayer(
             'exp_pdp_stock_list',
             'List',
@@ -1993,10 +1995,10 @@ console.log('initExp');
     console.log('init');
 
     // if ($('.inventory-info-link')) {
-    //   $('body').classList.add('lav-bg-exist');
+    //   $('body')?.classList.add('lav-bg-exist');
     // }
 
-    $('body').classList.add('lav-waiting');
+    $('body')?.classList.add('lav-waiting');
     waitFor(
       () =>
         $('.product-tabs-heading .inventory-info-link')
@@ -2008,7 +2010,7 @@ console.log('initExp');
         $('.product-tabs-heading .inventory-info-link').click();
         $('.product-tabs-heading .inventory-info-link').click();
         setTimeout(() => {
-          $('body').classList.remove('lav-waiting');
+          $('body')?.classList.remove('lav-waiting');
           isStartExp = false;
         }, 1000);
       }
@@ -2356,8 +2358,8 @@ console.log('initExp');
         }
         if ($('.lav-del__courier .lav-delivery__price')) {
           $('.lav-del__courier .lav-delivery__price').innerHTML = isRu
-            ? 'Бесплатно<br/>от 1000 грн'
-            : 'Безкоштовно<br/>від 1000 грн';
+            ? 'Бесплатно<br/>от 500 грн'
+            : 'Безкоштовно<br/>від 500 грн';
         }
       } else {
         if (!$('.lav-del__note_empty') && $('.lav-del__up')) {
@@ -2447,7 +2449,7 @@ console.log('initExp');
           `
           <div class="lav-recipe">
             <img src="${exp.dir}/img/pen.svg" />
-            ${isRu ? 'рецептурный' : 'рецептурний'}
+            ${isRu ? 'Рецептурный' : 'Рецептурний'}
           </div>
           `
         );
@@ -2457,7 +2459,7 @@ console.log('initExp');
           `
           <div class="lav-recipe">
             <img src="${exp.dir}/img/pen.svg" />
-            ${isRu ? 'рецептурный' : 'рецептурний'}
+            ${isRu ? 'Рецептурный' : 'Рецептурний'}
           </div>
           `
         );
@@ -2527,7 +2529,7 @@ console.log('initExp');
             'Checkbox',
             'Product info'
           );
-          $('.product-add-form .box-tocart.active').classList.remove('active');
+          $('.product-add-form .box-tocart.active')?.classList.remove('active');
           el.classList.add('active');
 
           if (this.classList.contains('active')) {
@@ -2537,11 +2539,11 @@ console.log('initExp');
 
           if ($('.lav-choose_multi')) {
             const activeSticky = $('.lav-choose__value.active');
-            $('.lav-choose__value:not(.active)').classList.add('active');
+            $('.lav-choose__value:not(.active)')?.classList.add('active');
             activeSticky.classList.remove('active');
           }
 
-          $('.lav-variant.active').classList.remove('active');
+          $('.lav-variant.active')?.classList.remove('active');
           this.classList.add('active');
         });
 
@@ -2686,7 +2688,7 @@ console.log('initExp');
 
       if (isMulti) {
         val.addEventListener('click', function () {
-          $('.lav-choose_multi').classList.toggle('active');
+          $('.lav-choose_multi')?.classList.toggle('active');
           pushDataLayer(
             'exp_pdp_sticky_p',
             'Package',
@@ -2695,7 +2697,7 @@ console.log('initExp');
           );
           if (this.classList.contains('active')) return false;
 
-          // $('.lav-choose__value.active').classList.remove('active');
+          // $('.lav-choose__value.active')?.classList.remove('active');
           // this.classList.add('active');
           item.ref.click();
         });
@@ -2909,8 +2911,8 @@ console.log('initExp');
             '.inventory-info .block-inventory .select-wrapper .opener-style'
           ).click();
         });
-        // $('.lav-city__dropdown-wrap').classList.toggle('active');
-        // $('.lav-city__dropdown').classList.toggle('active');
+        // $('.lav-city__dropdown-wrap')?.classList.toggle('active');
+        // $('.lav-city__dropdown')?.classList.toggle('active');
       });
 
       // document.addEventListener('click', function (e) {
@@ -2918,8 +2920,8 @@ console.log('initExp');
       //     !e.target.closest('.lav-city__dropdown-wrap') &&
       //     $('.lav-city__dropdown-wrap.active')
       //   ) {
-      //     $('.lav-city__dropdown-wrap.active').classList.remove('active');
-      //     $('.lav-city__dropdown.active').classList.remove('active');
+      //     $('.lav-city__dropdown-wrap.active')?.classList.remove('active');
+      //     $('.lav-city__dropdown.active')?.classList.remove('active');
       //   }
       // });
 
@@ -2979,14 +2981,14 @@ console.log('initExp');
                   $(
                     '.inventory-info .block-inventory .shops'
                   ).style.opacity = 0;
-                  $('.inventory-info .block-inventory .body').classList.add(
+                  $('.inventory-info .block-inventory .body')?.classList.add(
                     'lav-map-active'
                   );
                 } else {
                   $(
                     '.inventory-info .block-inventory .shops'
                   ).style.opacity = 0;
-                  $('.inventory-info .block-inventory .body').classList.add(
+                  $('.inventory-info .block-inventory .body')?.classList.add(
                     'lav-map-active'
                   );
                   $('#showOnMapButton').click();
@@ -3009,10 +3011,10 @@ console.log('initExp');
                 dropdownItem.innerText = city.textContent.trim();
 
                 dropdownItem.addEventListener('click', function () {
-                  $('.lav-city__dropdown-wrap.active').classList.remove(
+                  $('.lav-city__dropdown-wrap.active')?.classList.remove(
                     'active'
                   );
-                  $('.lav-city__dropdown.active').classList.remove('active');
+                  $('.lav-city__dropdown.active')?.classList.remove('active');
                   toggleCity(this.innerText);
                 });
 
@@ -3041,12 +3043,12 @@ console.log('initExp');
             `
                 );
               }
-              $('.lav-del__to-go .lav-delivery__caption').classList.add(
+              $('.lav-del__to-go .lav-delivery__caption')?.classList.add(
                 'lav-hide'
               );
-              $('.lav-exist').classList.add('lav-hide');
-              $('.lav-del__to-go').classList.add('disabled');
-              $('.lav-del__courier').classList.add('disabled');
+              $('.lav-exist')?.classList.add('lav-hide');
+              $('.lav-del__to-go')?.classList.add('disabled');
+              $('.lav-del__courier')?.classList.add('disabled');
               $('.lav-del__to-go .lav-delivery__price').innerText =
                 'Недоступно';
               $('.lav-del__courier .lav-delivery__price').innerText =
@@ -3060,15 +3062,15 @@ console.log('initExp');
         const title = el.querySelector('.c-item').innerText.trim();
 
         if (title === "Кур'єром" && !isRecipe) {
-          $('.lav-del__courier').classList.add('active');
+          $('.lav-del__courier')?.classList.add('active');
         }
 
         if (title === 'УкрПошта') {
-          $('.lav-del__up').classList.add('active');
+          $('.lav-del__up')?.classList.add('active');
         }
 
         if (title === 'Нова Пошта') {
-          $('.lav-del__np').classList.add('active');
+          $('.lav-del__np')?.classList.add('active');
         }
       });
     }
@@ -3359,19 +3361,29 @@ console.log('initExp');
           }
         </div>
         ${
-          el.buyEl && !isOutsource
+          extraClass === 'lav-recently' ||
+          (el.buyEl &&
+            (!isOutsource || (isOutsource && window.innerWidth < 992)))
             ? `
             <button class='lav-slide__buy button lav-buy'>
             ${
-              !isOutsource
+              !isOutsource && extraClass !== 'lav-recently'
                 ? `
               <svg class="lav-buy__icon"><use xlink:href="https://www.add.ua/static/version1692257628/frontend/Brander/Add/uk_UA/images/s.svg#icon-cart"></use></svg>`
                 : ''
             }
               ${
                 isRu
-                  ? `${isOutsource ? 'Cмотреть' : 'Купить'}`
-                  : `${isOutsource ? 'Дивитись' : 'Купити'}`
+                  ? `${
+                      isOutsource || extraClass === 'lav-recently'
+                        ? 'Cмотреть'
+                        : 'Купить'
+                    }`
+                  : `${
+                      isOutsource || extraClass === 'lav-recently'
+                        ? 'Дивитись'
+                        : 'Купити'
+                    }`
               }
             </button>
           `
@@ -3382,13 +3394,16 @@ console.log('initExp');
 
       // if ($('.lav-slide__buy', slide)) {
       $('.lav-slide__buy', slide)?.addEventListener('click', function (e) {
-        if (isOutsource) {
-          pushDataLayer(
-            'exp_pdp_buy_se',
-            'Buy',
-            'Button',
-            'Similar effect Accordion'
-          );
+        if (isOutsource || extraClass === 'lav-recently') {
+          if (isOutsource) {
+            pushDataLayer(
+              'exp_pdp_buy_se',
+              'Buy',
+              'Button',
+              'Similar effect Accordion'
+            );
+          }
+
           slide.querySelector('.lav-slide__title').click();
         } else {
           el.buyEl.click();
@@ -3593,18 +3608,18 @@ function initModals() {
 
 function openModal(type) {
   document.body.classList.add('lav-modal-open');
-  document.querySelector('html').classList.add('lav-modal-open');
-  document.querySelector('.lav-modal__' + type).classList.add('active');
+  document.querySelector('html')?.classList.add('lav-modal-open');
+  document.querySelector('.lav-modal__' + type)?.classList.add('active');
   document.querySelector('.lav-modal').style.display = 'flex';
   setTimeout(() => {
-    document.querySelector('.lav-modal').classList.add('active');
+    document.querySelector('.lav-modal')?.classList.add('active');
   }, 100);
 }
 
 function closeModal() {
   document.body.classList.remove('lav-modal-open');
-  document.querySelector('html').classList.remove('lav-modal-open');
-  document.querySelector('.lav-modal').classList.remove('active');
+  document.querySelector('html')?.classList.remove('lav-modal-open');
+  document.querySelector('.lav-modal')?.classList.remove('active');
   setTimeout(() => {
     document.querySelector('.lav-modal').style.display = 'none';
     document
