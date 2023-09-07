@@ -9,8 +9,8 @@ console.log('initExp');
       intersection: true,
     },
     clarity: {
-      enable: false,
-      params: ['set', 'improve_pdp', 'variant_1'],
+      enable: true,
+      params: ['set', 'new_pdp', 'variant_1'],
     },
     debug: false,
   };
