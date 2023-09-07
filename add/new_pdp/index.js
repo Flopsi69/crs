@@ -2091,7 +2091,9 @@ console.log('initExp');
         });
 
         // if (window.innerWidth < 992) {
-        handleRecently();
+        setTimeout(() => {
+          handleRecently();
+        }, 500);
         // } else if ($('.block-viewed-products-grid')) {
         //   $('.lav-sliders').insertAdjacentElement(
         //     'beforeend',
@@ -2791,7 +2793,7 @@ console.log('initExp');
             isRu ? 'Ваш город' : 'Ваше місто'
           }</div>
           <div class='lav-city__dropdown-wrap'>
-            <div class='lav-city__value'></div>
+            <div class='lav-city__value'>-</div>
             <div class='lav-city__dropdown'></div>
           </div>
         </div>
@@ -2944,80 +2946,90 @@ console.log('initExp');
       });
 
       setTimeout(() => {
-        const length = $$('.shops .shop-item').length;
-        const cities = $$('.autocomplete-menu-wrapper .ui-menu-item');
+        waitFor(
+          () =>
+            $('.inventory-info .block-inventory .header .search .icon-block'),
+          () => {
+            const length = $$('.shops .shop-item').length;
+            const cities = $$('.autocomplete-menu-wrapper .ui-menu-item');
 
-        $(
-          '.inventory-info .block-inventory .header .search .icon-block'
-        ).innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_850_5810)"><path d="M11.1947 8.00009C11.1947 9.76734 9.76196 11.2 7.99472 11.2C6.22747 11.2 4.79492 9.76734 4.79492 8.00009C4.79492 6.23284 6.22747 4.80029 7.99472 4.80029C9.76196 4.80029 11.1947 6.23284 11.1947 8.00009Z" fill="#00A950"/><path d="M15.52 7.51985H14.4501C14.2096 4.32474 11.6703 1.78497 8.47517 1.54416V0.480006C8.47517 0.214882 8.26014 0 7.99517 0C7.73004 0 7.51516 0.214882 7.51516 0.480006V1.54416C4.31991 1.78497 1.78043 4.32474 1.53992 7.51985H0.480006C0.214882 7.51985 0 7.73488 0 7.99985C0 8.26498 0.214882 8.47986 0.480006 8.47986H1.53992C1.78043 11.675 4.31991 14.2147 7.51501 14.4555V15.52C7.51501 15.7851 7.7299 16 7.99502 16C8.26 16 8.47488 15.7851 8.47488 15.52V14.4555C11.6701 14.2149 14.2096 11.6751 14.4501 8.47986H15.52C15.7851 8.47986 16 8.26498 16 7.99985C16 7.73488 15.7851 7.51985 15.52 7.51985ZM7.99502 13.5196C4.94668 13.5194 2.47561 11.048 2.47561 7.99971C2.47576 4.95122 4.94712 2.48015 7.99546 2.48015C11.0439 2.48015 13.5152 4.95152 13.5152 7.99985C13.5115 11.047 11.0422 13.5162 7.99502 13.5196Z" fill="#00A950"/></g><defs><clipPath id="clip0_850_5810"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>`;
+            $(
+              '.inventory-info .block-inventory .header .search .icon-block'
+            ).innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_850_5810)"><path d="M11.1947 8.00009C11.1947 9.76734 9.76196 11.2 7.99472 11.2C6.22747 11.2 4.79492 9.76734 4.79492 8.00009C4.79492 6.23284 6.22747 4.80029 7.99472 4.80029C9.76196 4.80029 11.1947 6.23284 11.1947 8.00009Z" fill="#00A950"/><path d="M15.52 7.51985H14.4501C14.2096 4.32474 11.6703 1.78497 8.47517 1.54416V0.480006C8.47517 0.214882 8.26014 0 7.99517 0C7.73004 0 7.51516 0.214882 7.51516 0.480006V1.54416C4.31991 1.78497 1.78043 4.32474 1.53992 7.51985H0.480006C0.214882 7.51985 0 7.73488 0 7.99985C0 8.26498 0.214882 8.47986 0.480006 8.47986H1.53992C1.78043 11.675 4.31991 14.2147 7.51501 14.4555V15.52C7.51501 15.7851 7.7299 16 7.99502 16C8.26 16 8.47488 15.7851 8.47488 15.52V14.4555C11.6701 14.2149 14.2096 11.6751 14.4501 8.47986H15.52C15.7851 8.47986 16 8.26498 16 7.99985C16 7.73488 15.7851 7.51985 15.52 7.51985ZM7.99502 13.5196C4.94668 13.5194 2.47561 11.048 2.47561 7.99971C2.47576 4.95122 4.94712 2.48015 7.99546 2.48015C11.0439 2.48015 13.5152 4.95152 13.5152 7.99985C13.5115 11.047 11.0422 13.5162 7.99502 13.5196Z" fill="#00A950"/></g><defs><clipPath id="clip0_850_5810"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>`;
 
-        $(
-          '.inventory-info .block-inventory .header .search'
-        ).insertAdjacentHTML(
-          'beforebegin',
-          `
+            $(
+              '.inventory-info .block-inventory .header .search'
+            ).insertAdjacentHTML(
+              'beforebegin',
+              `
           <div class='lav-toggler'>
             <div class='lav-toggler__item active'>Список</div>
             <div class='lav-toggler__item'>На ${isRu ? 'карте' : 'карті'}</div>
           </div>
         `
-        );
-
-        $('.lav-toggler__item:not(.active)').addEventListener(
-          'click',
-          function () {
-            if (
-              $('.inventory-info .block-inventory .map .placeholder').style
-                .display === 'none'
-            ) {
-              $('.inventory-info .block-inventory .shops').style.opacity = 0;
-              $('.inventory-info .block-inventory .body').classList.add(
-                'lav-map-active'
-              );
-            } else {
-              $('.inventory-info .block-inventory .shops').style.opacity = 0;
-              $('.inventory-info .block-inventory .body').classList.add(
-                'lav-map-active'
-              );
-              $('#showOnMapButton').click();
-              setTimeout(() => {
-                //   this.click();
-                // setTimeout(() => {
-                window.dispatchEvent(new Event('resize'));
-                // }, 1300);
-              }, 500);
-            }
-          }
-        );
-
-        // $('.lav-city__dropdown').innerHTML = '';
-
-        if (cities.length && false) {
-          cities.forEach((city) => {
-            const dropdownItem = document.createElement('div');
-            dropdownItem.classList.add('lav-city__dropdown-item');
-            dropdownItem.innerText = city.textContent.trim();
-
-            dropdownItem.addEventListener('click', function () {
-              $('.lav-city__dropdown-wrap.active').classList.remove('active');
-              $('.lav-city__dropdown.active').classList.remove('active');
-              toggleCity(this.innerText);
-            });
-
-            $('.lav-city__dropdown').insertAdjacentElement(
-              'beforeend',
-              dropdownItem
             );
-          });
-        }
 
-        if (length) {
-          $('.lav-delivery__caption span').innerText = length;
-        } else {
-          if (!$('.lav-del__note_empty')) {
-            $('.lav-del__up').insertAdjacentHTML(
-              'afterend',
-              `
+            $('.lav-toggler__item:not(.active)').addEventListener(
+              'click',
+              function () {
+                if (
+                  $('.inventory-info .block-inventory .map .placeholder').style
+                    .display === 'none'
+                ) {
+                  $(
+                    '.inventory-info .block-inventory .shops'
+                  ).style.opacity = 0;
+                  $('.inventory-info .block-inventory .body').classList.add(
+                    'lav-map-active'
+                  );
+                } else {
+                  $(
+                    '.inventory-info .block-inventory .shops'
+                  ).style.opacity = 0;
+                  $('.inventory-info .block-inventory .body').classList.add(
+                    'lav-map-active'
+                  );
+                  $('#showOnMapButton').click();
+                  setTimeout(() => {
+                    //   this.click();
+                    // setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                    // }, 1300);
+                  }, 500);
+                }
+              }
+            );
+
+            // $('.lav-city__dropdown').innerHTML = '';
+
+            if (cities.length && false) {
+              cities.forEach((city) => {
+                const dropdownItem = document.createElement('div');
+                dropdownItem.classList.add('lav-city__dropdown-item');
+                dropdownItem.innerText = city.textContent.trim();
+
+                dropdownItem.addEventListener('click', function () {
+                  $('.lav-city__dropdown-wrap.active').classList.remove(
+                    'active'
+                  );
+                  $('.lav-city__dropdown.active').classList.remove('active');
+                  toggleCity(this.innerText);
+                });
+
+                $('.lav-city__dropdown').insertAdjacentElement(
+                  'beforeend',
+                  dropdownItem
+                );
+              });
+            }
+
+            if (length) {
+              $('.lav-delivery__caption span').innerText = length;
+            } else {
+              if (!$('.lav-del__note_empty')) {
+                $('.lav-del__up').insertAdjacentHTML(
+                  'afterend',
+                  `
               <div class='lav-delivery__item lav-del__note lav-del__note_empty'>
                 <img src="${exp.dir}/img/note.svg" />
                 ${
@@ -3027,16 +3039,22 @@ console.log('initExp');
                 }
               </div>
             `
-            );
+                );
+              }
+              $('.lav-del__to-go .lav-delivery__caption').classList.add(
+                'lav-hide'
+              );
+              $('.lav-exist').classList.add('lav-hide');
+              $('.lav-del__to-go').classList.add('disabled');
+              $('.lav-del__courier').classList.add('disabled');
+              $('.lav-del__to-go .lav-delivery__price').innerText =
+                'Недоступно';
+              $('.lav-del__courier .lav-delivery__price').innerText =
+                'Недоступно';
+            }
           }
-          $('.lav-del__to-go .lav-delivery__caption').classList.add('lav-hide');
-          $('.lav-exist').classList.add('lav-hide');
-          $('.lav-del__to-go').classList.add('disabled');
-          $('.lav-del__courier').classList.add('disabled');
-          $('.lav-del__to-go .lav-delivery__price').innerText = 'Недоступно';
-          $('.lav-del__courier .lav-delivery__price').innerText = 'Недоступно';
-        }
-      }, 1400);
+        );
+      }, 1000);
 
       $$('.delivery-info-item-list .c-item-group').forEach((el) => {
         const title = el.querySelector('.c-item').innerText.trim();
@@ -3131,9 +3149,9 @@ console.log('initExp');
     const products = Array.from(
       $$('.viewed-products-slider .product-item')
     ).map((el) => {
-      const link = $('.product-item-photo', el).getAttribute('href');
-      const img = $('.product-image-photo', el).getAttribute('src');
-      const title = $('.product-item-link', el).innerText.trim();
+      const link = $('.product-item-photo', el)?.getAttribute('href');
+      const img = $('.product-image-photo', el)?.getAttribute('src');
+      const title = $('.product-item-link', el)?.innerText.trim();
       const priceEl = $('.special-price .price', el) || $('.price', el);
       console.log('priceEl', priceEl);
       const price = priceEl?.innerText.trim();
