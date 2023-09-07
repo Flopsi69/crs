@@ -12,11 +12,13 @@ console.log('initExp');
       enable: true,
       params: ['set', 'improve_pdp', 'variant_1'],
     },
-    debug: true,
+    debug: false,
   };
   const isRu =
     window.location.href.includes('/ru/') ||
     !window.location.href.includes('/ua/');
+
+  let isStartExp = false;
 
   // Observers
   if (exp.observer.mutation) {
@@ -1082,6 +1084,12 @@ console.log('initExp');
       [data-bind="scope: 'widget_recently_viewed.widget_recently_viewed'"] {
         display: none;
       }
+      .modal-is-open .evinent-search-input {
+        // pointer-events: none;
+      }
+      .modal-is-open .page-wrapper {
+        // overflow: hidden;
+      }
       .lav-sliders {
         margin-bottom: 0;
         padding-top: 50px;
@@ -1870,9 +1878,9 @@ console.log('initExp');
       const target = e.target;
       console.log(target);
 
-      if (target.closest('.inventory-info-link')) {
+      if (target.closest('.inventory-info-link') && !isStartExp) {
         pushDataLayer(
-          'exp_pdp_v_stock_popup',
+          'exp_pdp_v_stock_popup2',
           'In stock',
           'Visibility',
           'In stock Pop up'
@@ -1940,6 +1948,24 @@ console.log('initExp');
         }
       }
 
+      if (target.closest('.lav-close-desk')) {
+        if (target.closest('.inventory-city-select')) {
+          pushDataLayer(
+            'exp_pdp_c_p_city',
+            'Pop up close',
+            'Button',
+            'City Pop up'
+          );
+        } else if (target.closest('.block-inventory')) {
+          pushDataLayer(
+            'exp_pdp_stock_close',
+            'Close',
+            'Button',
+            'In stock Pop up'
+          );
+        }
+      }
+
       if (target.closest('.lav-toggler__item')) {
         if (target.closest('.lav-toggler__item').classList.contains('active')) {
           pushDataLayer(
@@ -1978,10 +2004,12 @@ console.log('initExp');
           .includes('аптеках'),
       () => {
         console.log('fire', $('.inventory-info-link'));
+        isStartExp = true;
         $('.product-tabs-heading .inventory-info-link').click();
         $('.product-tabs-heading .inventory-info-link').click();
         setTimeout(() => {
           $('body').classList.remove('lav-waiting');
+          isStartExp = false;
         }, 1000);
       }
     );
