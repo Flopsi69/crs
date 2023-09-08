@@ -1084,6 +1084,9 @@ console.log('initExp');
       [data-bind="scope: 'widget_recently_viewed.widget_recently_viewed'"] {
         display: none;
       }
+      .d_mobile:not(.v_tablet) .all-info-wrapper .left-wrapper .main-product-info {
+        margin: 0!important;
+      }
       .lav-slider .owl-nav {
         display: none!important;
       }
