@@ -1123,8 +1123,11 @@ console.log('initExp');
       .modal-is-open .evinent-search-input {
         // pointer-events: none;
       }
+      .page-header {
+        transition: transform 0.5s;
+      }
       .modal-is-open .page-header {
-        display: none;
+        transform: translateY(-150%);
       }
       .lav-sliders {
         margin-bottom: 0;
