@@ -2059,7 +2059,10 @@ console.log('initExp');
       () =>
         $('.product-tabs-heading .inventory-info-link')
           ?.textContent.trim()
-          .includes('аптеках'),
+          .includes('аптеках') ||
+        $('.product-tabs-heading .inventory-info-link')
+          ?.textContent.trim()
+          .includes('магазинах'),
       () => {
         console.log('fire', $('.inventory-info-link'));
         isStartExp = true;
@@ -2208,7 +2211,10 @@ console.log('initExp');
       () =>
         $('.product-tabs-heading .inventory-info-link')
           ?.textContent.trim()
-          .includes('аптеках'),
+          .includes('аптеках') ||
+        $('.product-tabs-heading .inventory-info-link')
+          ?.textContent.trim()
+          .includes('магазинах'),
       () => {
         setTimeout(() => {
           if (localStorage.getItem('lav-city')) {
