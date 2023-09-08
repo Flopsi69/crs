@@ -964,7 +964,7 @@ console.log('initExp');
       margin-right: 4px;
     }
     .block-search {
-      z-index: 3;
+      // z-index: 3;
     }
     .inventory-info .block-inventory .shop-item {
       border-radius: 12px;
@@ -1084,11 +1084,47 @@ console.log('initExp');
       [data-bind="scope: 'widget_recently_viewed.widget_recently_viewed'"] {
         display: none;
       }
+      .lav-slider .owl-nav {
+        display: none!important;
+      }
+      .lav-popular {
+        flex-grow: 1;
+      }
+      .d_mobile:not(.v_tablet) .inventory-info .block-inventory .select-wrapper.open .filter-select-wrapper {
+        display: flex;
+        flex-flow: column;
+      }
+      .d_mobile:not(.v_tablet) .product-tabs-heading-wrap .miniproduct {
+        transition: opacity 0.35s;
+      }
+      .inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper {
+        flex: 1;
+      }
+      .d_mobile:not(.v_tablet) .inventory-info .block-inventory {
+        top: 10%;
+        border-bottom-left-radius: 0;    border-bottom-right-radius: 0;
+      }
+      .inventory-info .block-inventory .shops {
+        grid-template-rows: min-content;
+      }
+      .inventory-info .block-inventory .select-wrapper .ui-autocomplete {
+        height: 60vh;
+      }
+      .d_mobile:not(.v_tablet) .inventory-info .block-inventory .select-wrapper .filter-select-wrapper {
+        top: 0;
+      }
+      .d_mobile:not(.v_tablet) .product-tabs-heading-wrap .miniproduct.lav-sticky-hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-is-open {
+        overflow: hidden;
+      }
       .modal-is-open .evinent-search-input {
         // pointer-events: none;
       }
-      .modal-is-open .page-wrapper {
-        // overflow: hidden;
+      .modal-is-open .page-header {
+        display: none;
       }
       .lav-sliders {
         margin-bottom: 0;
@@ -1324,6 +1360,19 @@ console.log('initExp');
     }
 
     @media(min-width: 992px) {
+      .lav-slider .owl-nav {
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      .lav-slider.arrow-style .owl-nav>div {
+        cursor: pointer;
+      }
+      .arrow-style .owl-nav .swiper-button-disabled {
+        --color: var(--primaryColorGray10);
+        pointer-events: none;
+      }
       .att-block {
         display: none;
       }
@@ -1333,6 +1382,7 @@ console.log('initExp');
         margin-bottom: 0;
       }
       .lav-sliders>div {
+        position: relative;
         margin-bottom: 70px;
       }
       .lav-slider__title {
@@ -2266,6 +2316,9 @@ console.log('initExp');
   function checkInput(val) {
     if (val) {
       $(
+        '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper'
+      ).style.flexGrow = '1';
+      $(
         '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete'
       ).style.display = 'block';
       $('.lav-popular').style.display = 'none';
@@ -2274,6 +2327,9 @@ console.log('initExp');
         '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper .ui-autocomplete'
       ).style.display = 'none';
       $('.lav-popular').style.display = 'block';
+      $(
+        '.inventory-info .block-inventory .select-wrapper .filter-select-wrapper .autocomplete-menu-wrapper'
+      ).style.flexGrow = 'initial';
     }
   }
 
@@ -2402,6 +2458,18 @@ console.log('initExp');
         el.classList.add('lav-nav-active');
       }
     });
+
+    if (
+      type === 'brief' &&
+      $('#tab-label-additional-title') &&
+      !$('#tab-label-additional-title').getAttribute('href').startsWith('#')
+    ) {
+      $('#tab-label-additional-title').setAttribute(
+        'href',
+        $('#tab-label-additional-title').getAttribute('href') +
+          '#product_attributes'
+      );
+    }
 
     const navHome =
       $('[id="tab-label-product.attributes-title"]') ||
@@ -2752,6 +2820,31 @@ console.log('initExp');
         }
       }
     });
+
+    if (type === 'product') {
+      const cta = $('.lav-buy__main');
+      const sticky = $('.miniproduct');
+
+      window.addEventListener('scroll', () => {
+        if (isInViewport(cta)) {
+          sticky.classList.add('lav-sticky-hide');
+        } else if (sticky.classList.contains('lav-sticky-hide')) {
+          sticky.classList.remove('lav-sticky-hide');
+        }
+      });
+
+      function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top >= $('.page-header .header.content').clientHeight &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+    }
   }
 
   function handleDelivery() {
@@ -2839,7 +2932,7 @@ console.log('initExp');
               </div>
               <div class='lav-delivery__price'>
                 ${isRu ? 'Бесплтано' : 'Безкоштовно'}<br/>
-                ${isRu ? 'от' : 'від'} 1000 грн
+                ${isRu ? 'от' : 'від'} 500 грн
               </div>
             </div>
           `
@@ -3292,7 +3385,7 @@ console.log('initExp');
     if (type !== 'product') return false;
 
     const sectionEl = document.createElement('div');
-    sectionEl.classList.add(extraClass, 'lav-slider');
+    sectionEl.classList.add(extraClass, 'lav-slider', 'arrow-style');
 
     console.log('title', title);
     if (title.toLowerCase().includes('аналог')) {
@@ -3329,6 +3422,15 @@ console.log('initExp');
       <div class='lav-slider__title'>${title}</div>
       ${caption ? `<div class='lav-slider__caption'>${caption}</div>` : ''}
 
+      <div class="owl-nav disabled">
+        <div class="owl-prev">
+          <span></span>
+        </div>
+        <div class="owl-next">
+          <span></span>
+        </div>
+      </div>
+
       <div class="swiper">
         <div class="swiper-wrapper"></div>
       </div>
@@ -3361,7 +3463,7 @@ console.log('initExp');
           }
         </div>
         ${
-          extraClass === 'lav-recently' ||
+          (extraClass === 'lav-recently' && window.innerWidth < 992) ||
           (el.buyEl &&
             (!isOutsource || (isOutsource && window.innerWidth < 992)))
             ? `
@@ -3448,6 +3550,11 @@ console.log('initExp');
         992: {
           slidesPerView: 4,
           spaceBetween: 2,
+          navigation: {
+            disabledClass: 'disabled',
+            nextEl: sectionEl.querySelector('.owl-next'),
+            prevEl: sectionEl.querySelector('.owl-prev'),
+          },
         },
       },
     });

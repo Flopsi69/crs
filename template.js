@@ -218,6 +218,17 @@ function closeModal() {
       .classList.remove('active');
   }, 400);
 }
+
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= $('.page-header .header.content').clientHeight &&
+    rect.left >= 0 &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 `
 .lav-modal {
   position: fixed;
