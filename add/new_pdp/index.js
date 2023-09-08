@@ -1189,7 +1189,7 @@ console.log('initExp');
       .d_mobile .product-tabs-heading-wrap {
         height: 52px;
       }
-      [id="tab-label-reviews.tab"] {
+      div[id*="tab-label-reviews"] {
         order: 1;
       }
       .d_mobile .product-tabs-heading {
@@ -1699,7 +1699,7 @@ console.log('initExp');
         line-height: 18px;
         display: inline-block;
       }
-      [id="tab-label-reviews.tab"] {
+      div[id*="tab-label-reviews"] {
         order: 1;
       }
       .d_desktop .inventory-info .inventory-info-link {
