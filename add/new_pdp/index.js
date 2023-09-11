@@ -2630,16 +2630,21 @@ console.log('initExp');
         $('.lav-variants').insertAdjacentElement('beforeend', newEl);
       });
     } else {
+      let capt = '.box-tocart.single';
+      if (!$(capt)) {
+        capt = '.product-add-form .box-tocart';
+        if ($('.product-add-form .actions')) {
+          $('.product-add-form .actions').style.display = 'none';
+        }
+      }
       options.items.push({
-        caption: $('.box-tocart.single span').innerText.trim(),
-        price: $('.box-tocart.single .price').innerText.trim(),
+        caption: $(capt + ' span').innerText.trim(),
+        price: $(capt + ' .price').innerText.trim(),
       });
       // const product = $('.box-tocart.single');
       // const stock = $('.stock', product)?.innerText.trim();
       if (discount) {
-        $(
-          '.box-tocart.single .old-price .price-final_price'
-        ).insertAdjacentHTML(
+        $(capt + ' .old-price .price-final_price').insertAdjacentHTML(
           'beforeend',
           `<span class='lav-variant__disc'>${
             isRu ? 'Экономия' : 'Економія'
