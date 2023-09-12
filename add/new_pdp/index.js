@@ -2162,7 +2162,10 @@ console.log('initExp');
         //   );
         // }
 
-        if (!$('.lav-slider_analog')) {
+        const isOutCategory = Array.from($$('.breadcrumbs .items a')).some(
+          (i) => i.getAttribute('href').includes('/medicamenti/')
+        );
+        if (!$('.lav-slider_analog') && isOutCategory) {
           handleAnalogSlider();
         }
       }
