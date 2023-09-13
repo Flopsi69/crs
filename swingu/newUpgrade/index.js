@@ -7,15 +7,6 @@ console.log = function () {
   );
 };
 
-const err = console.error;
-console.error = function () {
-  err.apply(console, arguments);
-  navigator.sendBeacon(
-    'https://console.wiredgeese.com/log/',
-    JSON.stringify(arguments)
-  );
-};
-
 console.log('initExp: newUpgrade');
 
 /********* Settings **********/
@@ -260,6 +251,7 @@ function handleHomepage() {
           margin: 0;
           padding: 0;
           overflow: hidden;
+          min-height: 0;
         }
         .section__video-basic > div {
           height: 0!important;;
