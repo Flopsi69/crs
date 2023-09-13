@@ -35,7 +35,9 @@ if (
 function handleHomepage() {
   console.log('initHomepage: ' + location.href);
   waitFor(
-    () => document.body,
+    () =>
+      document.body &&
+      document.querySelector('.antialiased .relative.flex-col'),
     () => {
       // JSON.parse(document.querySelector('#app').dataset.page).props
       // .subdomainData.subscriptionTier === 0
