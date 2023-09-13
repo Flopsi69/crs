@@ -1,13 +1,19 @@
 const orig = console.log;
 console.log = function () {
   orig.apply(console, arguments);
-  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
+  navigator.sendBeacon(
+    'https://console.wiredgeese.com/log/',
+    JSON.stringify(arguments)
+  );
 };
 
 const err = console.error;
 console.error = function () {
   err.apply(console, arguments);
-  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
+  navigator.sendBeacon(
+    'https://console.wiredgeese.com/log/',
+    JSON.stringify(arguments)
+  );
 };
 
 console.log('initExp: newUpgrade');
@@ -245,8 +251,22 @@ function handleHomepage() {
         }
     
 
-        .section__video-basic, .section__marketing-block {
+        .section__marketing-block {
           display: none!important;
+        }
+        .section__video-basic {
+          height: 0;
+          max-height: 0;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+        .section__video-basic > div {
+          height: 0!important;;
+          min-height: 0!important;
+        }
+        .video-basic {
+          display: none;
         }
       `;
       const stylesEl = document.createElement('style');
