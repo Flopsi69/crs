@@ -4,6 +4,12 @@ console.log = function () {
   navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
 };
 
+const err = console.error;
+console.error = function () {
+  err.apply(console, arguments);
+  navigator.sendBeacon('https://console.wiredgeese.com/log/', arguments[0]);
+};
+
 console.log('initExp: newUpgrade');
 
 /********* Settings **********/
