@@ -12,14 +12,14 @@ const settings = {
   observe: false,
   clarity: {
     enable: true,
-    params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+    params: ['set', 'exp_stripe_flow', 'variant_1'],
   },
-  debug: true,
+  debug: false,
 };
 
 if (
   location.href.includes('/upgrade/player') &&
-  (location.href.includes('hypothesis-2') || true)
+  location.href.includes('hypothesis-3')
 ) {
   handleUpgradePage();
 } else if (location.href.includes('/home')) {
@@ -34,25 +34,14 @@ function handleHomepage() {
       // JSON.parse(document.querySelector('#app').dataset.page).props
       // .subdomainData.subscriptionTier === 0
 
-      // waitFor(
-      //   () =>
-      //     document.querySelector(
-      //       '[data-crstarget="hypothesis-3-upgrade-target"]'
-      //     ),
-      //   () => {
-      //     document
-      //       .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-      //       .dispatchEvent(new Event('click'));
-      //   }
-      // );
-
+      connectSplide();
       const styles = `
         .lav-slider {
           position: relative;
           border-radius: 10px;
-          // outline: 5px solid rgba(255, 255, 255, 0.12);
-          // outline-offset: -5px;
           overflow: hidden;
+          display: flex;
+          flex-grow: 1;
         }
         .lav-slider:before {
           content: '';
@@ -67,12 +56,46 @@ function handleHomepage() {
         }
         .lav-slide {
           display: flex;
+          border-radius: 10px;
         }
         .lav-slide__info {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+          justify-content: space-evenly;
+          position: relative;
+          flex-shrink: 0;
           width: 50%;
-          background: rgba(23, 24, 26, 0.85) url('${settings.dir}/img/slide-bg.png') no-repeat center;
-          backdrop-filter: blur(2.5px);
+          background: url('${settings.dir}/img/slide-bg.png') no-repeat left;
+          background-size: cover;
           padding: 22px 15px 85px;
+        }
+        .lav-slide__info > * {
+          position: relative;
+          z-index: 2;
+        }
+        .lav-slide__info:before {
+          content: '';
+          position: absolute;
+          right: 0;
+          pointer-events: none;
+          bottom: 0;
+          top: 0;
+          left: 0;
+          background: rgba(23, 24, 26, 0.85);
+          backdrop-filter: blur(2.5px);
+        }
+        .lav-slide__image {
+          position: relative;
+          line-height: 0;
+          width: 50%;
+        }
+        .lav-slide__image img {
+          position: absolute;
+          min-height: 100%;
+          min-width: 100%;
+          object-fit: cover;
+          object-position: right;
         }
         .lav-slide__title {
           margin-top: 10px;
@@ -185,8 +208,34 @@ function handleHomepage() {
           line-height: 22px;
           letter-spacing: -0.408px;
         }
-        .lav-tip {}
-        .lav-tip {}
+
+        .splide__pagination {
+          position: absolute;
+          z-index: 999;
+          right: 15px;
+          top: 15px;
+          border-radius: 50px;
+          background: rgba(23, 24, 26, 0.65);
+          backdrop-filter: blur(2.5px);
+          padding: 5px;
+        }
+        .splide__pagination__page {
+          border-radius: 5px;
+          opacity: 0.25;
+          background: var(--common-white, #FFF);
+          width: 5px;
+          height: 5px;
+        }
+        .splide__pagination__page.is-active {
+          opacity: 1;
+        }
+        .splide__pagination li {
+          display: flex;
+        }
+        .splide__pagination li + li {
+          margin-left: 5px;
+        }
+    
 
         .section__video-basic, .section__marketing-block {
           display: none!important;
@@ -197,29 +246,105 @@ function handleHomepage() {
       document.head.appendChild(stylesEl);
 
       const html = `
-        <div class='lav-slider'>
-          <div class='lav-slide'>
-            <div class='lav-slide__info'>
-              <img src='${settings.dir}/img/logo-w.svg' alt='' />
-              <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
-              <div class="lav-slide__off">
-                <img src='${settings.dir}/img/conf.svg' alt='' />
-                40% off
-              </div>
-            </div>
-            <div class='lav-slide__image'>
-              <img src='${settings.dir}/img/slide1.png' alt='' />
-            </div>
+        <div class='splide lav-slider'>
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide1.png' alt='' />
+                </div>
 
-            <div class='lav-cta'>
-              <div class='lav-cta__caption'>Upgrade Now</div>
-              <div class='lav-cta__price'>
-                $4.99 <span>mo</span> 
-                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                  <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
-                </svg>
-              </div>
-            </div>
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Club Recommendations</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide2.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to ‘Plays Like’ distances</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide3.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Strokes Gained Pro Stats</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide4.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -241,172 +366,93 @@ function handleHomepage() {
       document.querySelector('.lav-tip__title').innerText = title;
 
       document.querySelector('.lav-tip').addEventListener('click', function () {
-        document.querySelector('.icon-play');
+        pushDataLayer(
+          'exp_stripe_s_tt_tt',
+          document.querySelector('.lav-tip__title').innerText.trim(),
+          'Section',
+          'Todays Tip'
+        );
+        document.querySelector('.icon-play').click();
       });
 
-      // let initSplideInterval = setInterval(() => {
-      //   if (typeof Splide == 'function') {
-      //     clearInterval(initSplideInterval);
-      //     initSlider();
-      //   }
-      // }, 20);
+      document
+        .querySelector('.lav-slider')
+        .addEventListener('click', function () {
+          if (
+            document.querySelector(
+              '[data-crstarget="hypothesis-3-upgrade-target"]'
+            )
+          ) {
+            pushDataLayer(
+              'exp_stripe_i_b_bt',
+              document
+                .querySelector('.lav-slide.is-active .lav-slide__title')
+                .innerText.trim(),
+              'Image',
+              'Banner'
+            );
+            document
+              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+              .dispatchEvent(new Event('click'));
+          }
+        });
+
+      waitFor(
+        () => typeof Splide == 'function',
+        () => {
+          initSlider();
+        }
+      );
     },
     50
   );
 }
 
-function addGallery() {
-  let el = `
-    <div class='lav-loader'>Loading</div>
-    <div class="splide lav-gallery">
-      <div class="splide__track">
-        <ul class="splide__list">
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide1.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide2.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide3.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide4.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide5.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide6.png" alt="">
-          </li>
-          <li class="splide__slide">
-            <img src="${settings.dir}/img2/slide7.png" alt="">
-          </li>
-          <li class="splide__slide lav-open-modal" data-target='1'>
-            <img src="${settings.dir}/img2/slide8.png" alt="">
-          </li>
-          <li class="splide__slide lav-open-modal" data-target='2'>
-            <img src="${settings.dir}/img2/slide9.png" alt="">
-          </li>
-        </ul>
-      </div>
-    </div>
-  `;
+function connectSplide() {
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+  document.head.appendChild(sliderStyles);
 
-  document.querySelector('.hand-banner').insertAdjacentHTML('beforebegin', el);
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+  document.head.appendChild(sliderScript);
 }
 
 function initSlider() {
-  const slider = new Splide('.lav-gallery', {
+  const slider = new Splide('.lav-slider', {
     rewind: true,
     pagination: true,
     arrows: false,
     autoplay: true,
     interval: 5000,
-    gap: 15,
+    type: 'fade',
+    speed: 800,
   });
 
-  slider.on('ready', function () {
-    console.log('ready');
-    document.querySelector('.lav-gallery').classList.add('ready');
-    document.querySelector('.lav-loader').style.display = 'none';
-    // This will be executed.
-  });
-
-  slider.on('autoplay:playing', function (rate) {
-    if (rate === 1) {
-      const num = parseInt(
-        document.querySelector('.splide__slide.is-next')?.ariaLabel || 1
-      );
-      if (isElementInViewport(document.querySelector('.lav-gallery'))) {
-        gaEvent('Click on element', `Auto swipe image. ${num}`);
-      }
-    }
-  });
-
-  slider.on('dragged', function () {
-    setTimeout(() => {
-      const num = parseInt(
-        document.querySelector('.splide__slide.is-active')?.ariaLabel || 1
-      );
-
-      gaEvent('Click on element', `Manual swipe image. ${num}`);
-    }, 500);
-  });
-
-  slider.on('pagination:mounted', function (data) {
-    data.items[3].li.classList.add('lav-pag-next');
-
-    let num = 1;
-    for (let item of data.items) {
-      let i = num;
-      item.li.addEventListener('click', function () {
-        gaEvent(
-          `Click on element', 'Click pagination. ${parseInt(
-            document.querySelector('.splide__slide.is-active').ariaLabel
-          )} - ${i}`
-        );
-      });
-      num++;
-    }
-  });
-
+  let i = 0;
+  setInterval(() => {
+    i += 50;
+  }, 50);
   slider.on('move', function (newIndex, prevIndex, destIndex) {
-    if (document.querySelector('.lav-pag-prev')) {
-      document.querySelector('.lav-pag-prev').classList.remove('lav-pag-prev');
+    let time = i / 1000;
+
+    if (time > 4.8) {
+      time = 5;
     }
 
-    if (document.querySelector('.lav-pag-prev-l')) {
-      document
-        .querySelector('.lav-pag-prev-l')
-        .classList.remove('lav-pag-prev-l');
-    }
+    pushDataLayer(
+      'exp_stripe_bbt_v_ft',
+      `${time}s`,
+      'Visibility',
+      `Banner - ${document
+        .querySelector('.lav-slide.is-active .lav-slide__title')
+        .innerText.trim()}`
+    );
 
-    if (newIndex > 2) {
-      document
-        .querySelector(
-          '.splide__pagination li:nth-child(' + (newIndex - 2) + ')'
-        )
-        .classList.add('lav-pag-prev');
-    }
-    if (newIndex > 3) {
-      document
-        .querySelector('.splide__pagination')
-        .classList.add('splide__pagination-prev');
-
-      document
-        .querySelector(
-          '.splide__pagination li:nth-child(' + (newIndex - 3) + ')'
-        )
-        .classList.add('lav-pag-prev-l');
-    } else {
-      document
-        .querySelector('.splide__pagination')
-        .classList.remove('splide__pagination-prev');
-    }
-
-    if (newIndex > 1) {
-      if (document.querySelector('.lav-pag-next')) {
-        document
-          .querySelector('.lav-pag-next')
-          .classList.remove('lav-pag-next');
-      }
-      if (
-        document.querySelector(
-          '.splide__pagination li:nth-child(' + (newIndex + 2) + ')'
-        )
-      ) {
-        document
-          .querySelector(
-            '.splide__pagination li:nth-child(' + (newIndex + 2) + ')'
-          )
-          .classList.add('lav-pag-next');
-      }
-    } else if (prevIndex === 8 && newIndex >= 0 && newIndex <= 3) {
-      document
-        .querySelector('.splide__pagination li:nth-child(4)')
-        .classList.add('lav-pag-next');
-    }
+    i = 0;
   });
 
   slider.mount();
@@ -705,11 +751,28 @@ function handleUpgradePage() {
   function init() {
     console.log('init');
 
+    pushDataLayer(
+      'exp_stripe_v_utsp_ps',
+      `Popup - ${
+        document.querySelector('.lav-table.active') ? 'extended' : 'short'
+      }`,
+      'Visibility',
+      'Upgrade to SwingU Pro'
+    );
+
     document
       .querySelector('.antialiased')
       .insertAdjacentHTML('afterbegin', html);
 
     document.querySelector('.lav-close').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_stripe_c_utsp_ps',
+        `Popup - ${
+          document.querySelector('.lav-table.active') ? 'extended' : 'short'
+        }`,
+        'Close',
+        'Upgrade to SwingU Pro'
+      );
       document
         .querySelector('[dusk="gps-upgrade-container"] .absolute')
         .click();
@@ -757,9 +820,25 @@ function handleUpgradePage() {
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
 
+          pushDataLayer(
+            'exp_stripe_v_utsp_usp',
+            'Unlock SwingPro',
+            'Button',
+            'Upgrade to SwingU Pro'
+          );
+
           window.open(url);
         }
       });
+
+    setTimeout(() => {
+      pushDataLayer(
+        'exp_stripe_v_utsp_ba',
+        'Billed annually',
+        'Visibility',
+        'Upgrade to SwingU Pro'
+      );
+    }, 2000);
   }
 
   function handleStickyOffset() {
@@ -839,6 +918,22 @@ function handleUpgradePage() {
     </svg>`;
 
     toggler.addEventListener('click', function () {
+      if (document.querySelector('.lav-table.active')) {
+        pushDataLayer(
+          'exp_stripe_b_utsp_vtf',
+          'View top features',
+          'Button',
+          'Upgrade to SwingU Pro'
+        );
+      } else {
+        pushDataLayer(
+          'exp_stripe_b_utsp_vaf',
+          'View all features',
+          'Button',
+          'Upgrade to SwingU Pro'
+        );
+      }
+
       table.classList.toggle('active');
       toggler.classList.toggle('active');
       toggler.querySelector('span').innerText = table.classList.contains(
@@ -868,9 +963,9 @@ function waitFor(condition, cb, ms = 1000) {
 }
 
 // Alalytic 4
-function gaEvent(name = '', desc = '', type = '', loc = '') {
+function pushDataLayer(name = '', desc = '', type = '', loc = '') {
   try {
-    var objitems = {
+    var objData = {
       event: 'event-to-ga4',
       event_name: name,
       event_desc: desc,
