@@ -628,15 +628,15 @@ function handleUpgradePage() {
       box-sizing: border-box;
       animation: rotation 1s linear infinite;;
     }
-  
-      @keyframes rotation {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-      } 
+
+    @keyframes rotation {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+    } 
     .lav-sticky__caption {
       color: rgba(247, 247, 247, 0.60);
       font-size: 12px;
@@ -888,7 +888,7 @@ function handleUpgradePage() {
       .querySelector('.lav-unlock:not(.lav-clicked)')
       .addEventListener('click', function () {
         this.classList.add('lav-clicked');
-        document.querySelector('lav-unlock__mo').classList.add('lav-loader');
+        document.querySelector('.lav-unlock__mo').classList.add('lav-loader');
         if (document.querySelector('[data-stripe-checkout-url]')) {
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
