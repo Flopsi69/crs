@@ -617,8 +617,8 @@ function handleUpgradePage() {
       color: var(--common-white, #FFF);
     }
     .lav-loader {
-      width: 24px;
-      height: 24px;
+      width: 29px;
+      height: 29px;
       font-size: 0;
       line-height: 0;
       border: 2px solid #FFF;
