@@ -877,7 +877,9 @@ function handleUpgradePage() {
             'Upgrade to SwingU Pro'
           );
 
-          window.open(url);
+          const link = document.createElement('a');
+          link.href = url;
+          link.click();
         }
       });
 
