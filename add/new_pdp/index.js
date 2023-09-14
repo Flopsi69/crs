@@ -1372,6 +1372,9 @@ console.log('initExp');
         right: 0;
         top: 0;
       }
+      .d_desktop .left-wrapper__sticky, .v_tablet .left-wrapper__sticky {
+        position: static;
+      }
       .lav-slider.arrow-style .owl-nav>div {
         cursor: pointer;
       }
