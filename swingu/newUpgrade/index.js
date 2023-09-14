@@ -616,6 +616,27 @@ function handleUpgradePage() {
       padding: 4px 10px;
       color: var(--common-white, #FFF);
     }
+    .lav-loader {
+      width: 24px;
+      height: 24px;
+      font-size: 0;
+      line-height: 0;
+      border: 2px solid #FFF;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;;
+    }
+  
+      @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+      } 
     .lav-sticky__caption {
       color: rgba(247, 247, 247, 0.60);
       font-size: 12px;
@@ -864,8 +885,10 @@ function handleUpgradePage() {
     window.addEventListener('resize', handleStickyOffset);
 
     document
-      .querySelector('.lav-unlock')
+      .querySelector('.lav-unlock:not(.lav-clicked)')
       .addEventListener('click', function () {
+        this.classList.add('lav-clicked');
+        document.querySelector('lav-unlock__mo').classList.add('lav-loader');
         if (document.querySelector('[data-stripe-checkout-url]')) {
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
