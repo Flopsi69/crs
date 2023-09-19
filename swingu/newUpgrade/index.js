@@ -27,10 +27,6 @@ if (location.href.includes('/upgrade/player')) {
     handleUpgradePage2();
   }
 } else if (location.href.includes('/home')) {
-  handleHomepage();
-}
-
-function handleHomepage() {
   //Clarity
   if (!settings.debug && settings.clarity.enable) {
     waitFor(
@@ -40,18 +36,34 @@ function handleHomepage() {
       }
     );
   }
-  console.log('initHomepage: ' + location.href);
 
   waitFor(
-    () =>
-      document.body &&
-      document.querySelector('.antialiased .relative.flex-col'),
+    () => document.body && document.querySelector('#app'),
     () => {
       if (
-        sessionStorage.getItem('isRedirectedExp') !== 'yes' &&
         JSON.parse(document.querySelector('#app').dataset.page).props
           .subdomainData.subscriptionTier === 0
       ) {
+        handleHomepage();
+      } else {
+        pushDataLayer(
+          'exp_stripe_membership',
+          `Membership with subscription`,
+          'Membership',
+          'Homepage'
+        );
+      }
+    }
+  );
+}
+
+function handleHomepage() {
+  console.log('initHomepage: ' + location.href);
+
+  waitFor(
+    () => document.querySelector('.antialiased .relative.flex-col'),
+    () => {
+      if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
         sessionStorage.setItem('isRedirectedExp', 'yes');
 
         waitFor(
