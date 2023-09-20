@@ -110,7 +110,7 @@ function handleHomepage() {
           display: flex;
           flex-flow: column;
           align-items: flex-start;
-          justify-content: space-evenly;
+          justify-content: space-between;
           position: relative;
           flex-shrink: 0;
           width: 50%;
@@ -165,11 +165,14 @@ function handleHomepage() {
         .lav-slide__title {
           margin-top: 10px;
           color: var(--common-white, #FFF);
-          font-size: 16px;
+          font-size: 6vw;
           font-style: normal;
           font-weight: 600;
-          line-height: 21px;
+          line-height: 1.3;
           letter-spacing: -0.32px;
+        }
+        .lav-slide:nth-child(2) .lav-slide__title {
+          font-size: 4.5vw;
         }
         .lav-slide__off {
           margin-top: 18px;
