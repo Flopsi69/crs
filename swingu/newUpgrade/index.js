@@ -871,6 +871,7 @@ function handleUpgradePage() {
       line-height: 20px;
       letter-spacing: -0.5px;
       flex-grow: 1;
+      text-transform: capitalize;
     }
     .lav-cell:nth-child(2), .lav-cell:nth-child(3) {
       text-align: center;
