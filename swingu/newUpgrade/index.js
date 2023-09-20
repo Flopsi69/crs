@@ -81,23 +81,23 @@ function handleHomepage() {
           }
         }
       );
-      if (
-        document.querySelector(
-          '[dusk="global/stats/handicap-with-last-ten--handicap"]'
-        )
-      ) {
-        handleHandicap();
-      }
 
-      setTimeout(() => {
+      let incr = 0;
+
+      const waitHandi = setInterval(() => {
+        incr++;
+        if (incr > 25) {
+          clearInterval(waitHandi);
+        }
         if (
           document.querySelector(
             '[dusk="global/stats/handicap-with-last-ten--handicap"]'
           )
         ) {
+          clearInterval(waitHandi);
           handleHandicap();
         }
-      }, 1500);
+      }, 100);
 
       if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
         sessionStorage.setItem('isRedirectedExp', 'yes');
@@ -373,7 +373,7 @@ function handleHomepage() {
           padding: 10px;
           height: auto;
         }
-        .section__last-round .text-[9px] {
+        .section__last-round >div>div.font-semibold:first-child {
           color: var(--common-grey-700-default-text, #596974);
           font-size: 13px;
           font-weight: 400;
@@ -389,7 +389,7 @@ function handleHomepage() {
           line-height: 1;
           letter-spacing: -0.408px;
         }
-        .section__last-round .flex .vmd:text-[17px] {
+        .section__last-round .flex>div:first-child {
           color: var(--common-grey-700-default-text, #596974);
           font-size: 17px;
           font-weight: 400;
