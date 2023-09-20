@@ -89,6 +89,7 @@ function handleHomepage() {
           overflow: hidden;
           display: flex;
           flex-grow: 1;
+          max-height: 400px;
         }
         .lav-slider:before {
           content: '';
@@ -137,12 +138,20 @@ function handleHomepage() {
           line-height: 0;
           width: 50%;
         }
-        .lav-slide__image img {
+        .lav-slide__image img:not(.lav-phone) {
           position: absolute;
           min-height: 100%;
           min-width: 100%;
           object-fit: cover;
           object-position: right;
+        }
+        .lav-slide:nth-child(2) .lav-slide__image img {
+          object-position: 45%;
+        }
+        .lav-slide:nth-child(3) .lav-slide__image img {
+          object-position: 83%;
+        }
+        .lav-slide:nth-child(4) .lav-slide__image img {
         }
         .lav-slide__title {
           margin-top: 10px;
@@ -393,7 +402,8 @@ function handleHomepage() {
                   </div>
                 </div>
                 <div class='lav-slide__image'>
-                  <img src='${settings.dir}/img/slide4.png' alt='' />
+                  <img src='${settings.dir}/img/slide4-bg.png' alt='' />
+                  <img class='lav-phone' src='${settings.dir}/img/slide4-phone.png' alt='' />
                 </div>
 
                 <div class='lav-cta'>
