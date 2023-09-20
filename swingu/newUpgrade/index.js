@@ -71,6 +71,10 @@ function handleHomepage() {
         handleHandicap();
       }
 
+      setTimeout(() => {
+        handleHandicap();
+      }, 1500);
+
       if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
         sessionStorage.setItem('isRedirectedExp', 'yes');
 
@@ -345,7 +349,7 @@ function handleHomepage() {
           padding: 10px;
           height: auto;
         }
-        .section__last-round .text-\[9px\] {
+        .section__last-round .text-[9px] {
           color: var(--common-grey-700-default-text, #596974);
           font-size: 13px;
           font-weight: 400;
@@ -361,7 +365,7 @@ function handleHomepage() {
           line-height: 1;
           letter-spacing: -0.408px;
         }
-        .section__last-round .flex .vmd\:text-\[17px\] {
+        .section__last-round .flex .vmd:text-[17px] {
           color: var(--common-grey-700-default-text, #596974);
           font-size: 17px;
           font-weight: 400;
