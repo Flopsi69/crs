@@ -171,6 +171,9 @@ function handleHomepage() {
           line-height: 1.3;
           letter-spacing: -0.32px;
         }
+        .lav-slide__info > img {
+          width: 75%;
+        }
         .lav-slide:nth-child(2) .lav-slide__title {
           font-size: 4.5vw;
         }
