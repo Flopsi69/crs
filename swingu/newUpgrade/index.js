@@ -165,7 +165,7 @@ function handleHomepage() {
         .lav-slide__title {
           margin-top: 10px;
           color: var(--common-white, #FFF);
-          font-size: 6vw;
+          font-size: 5vw;
           font-style: normal;
           font-weight: 600;
           line-height: 1.3;
