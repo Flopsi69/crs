@@ -400,10 +400,10 @@ function handleHomepage() {
           line-height: 41px;
           letter-spacing: 0.374px;
         }
-        [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end {
+         .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end {
           margin-top: 0;
         }
-        [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:last-child {
+         .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:last-child {
           color: var(--common-grey-800-impact-text, #253139);
           font-size: 14px;
           font-weight: 600;
@@ -411,7 +411,7 @@ function handleHomepage() {
           letter-spacing: -0.15px;
           margin: 0;
         }
-        [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:first-child .text-xs {
+         .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:first-child .text-xs {
           color: var(--common-grey-800-impact-text, #253139);
           font-size: 17px;
           font-weight: 700;
