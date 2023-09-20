@@ -165,11 +165,18 @@ function handleHomepage() {
         .lav-slide__title {
           margin-top: 10px;
           color: var(--common-white, #FFF);
-          font-size: 5vw;
+          font-size: 4.5vw;
           font-style: normal;
           font-weight: 600;
           line-height: 1.3;
           letter-spacing: -0.32px;
+        }
+        @media(min-width: 392px) {
+          .lav-slide__title {
+          }
+          .lav-slide:nth-child(2) .lav-slide__title {
+            // font-size: 4.5vw;
+          }
         }
         .lav-slide__info > img {
           width: 75%;
