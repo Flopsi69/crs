@@ -145,6 +145,15 @@ function handleHomepage() {
           object-fit: cover;
           object-position: right;
         }
+        .lav-slide__image img.lav-phone {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: 85%;
+          max-height: 90%;
+        }
         .lav-slide:nth-child(2) .lav-slide__image img {
           object-position: 45%;
         }
