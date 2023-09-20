@@ -60,13 +60,13 @@ if (location.href.includes('/upgrade/player')) {
 function handleHomepage() {
   console.log('initHomepage: ' + location.href);
 
-  if ($('[dusk="global/stats/handicap-with-last-ten--handicap"]')) {
-    handleHandicap();
-  }
-
   waitFor(
     () => document.querySelector('.antialiased .relative.flex-col'),
     () => {
+      if ($('[dusk="global/stats/handicap-with-last-ten--handicap"]')) {
+        handleHandicap();
+      }
+
       if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
         sessionStorage.setItem('isRedirectedExp', 'yes');
 
