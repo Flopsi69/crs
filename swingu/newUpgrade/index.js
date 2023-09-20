@@ -63,7 +63,11 @@ function handleHomepage() {
   waitFor(
     () => document.querySelector('.antialiased .relative.flex-col'),
     () => {
-      if ($('[dusk="global/stats/handicap-with-last-ten--handicap"]')) {
+      if (
+        document.querySelector(
+          '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+        )
+      ) {
         handleHandicap();
       }
 
@@ -588,9 +592,9 @@ function handleHomepage() {
 }
 
 function handleHandicap() {
-  $('[dusk="global/stats/handicap-with-last-ten"]').classList.add(
-    'lav-handicap'
-  );
+  document
+    .querySelector('[dusk="global/stats/handicap-with-last-ten"]')
+    .classList.add('lav-handicap');
 }
 
 function connectSplide() {
