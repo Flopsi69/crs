@@ -63,6 +63,24 @@ function handleHomepage() {
   waitFor(
     () => document.querySelector('.antialiased .relative.flex-col'),
     () => {
+      waitFor(
+        () =>
+          document.querySelector(
+            '[dusk="global/stats/handicap-with-last-ten--play-rounds"]'
+          ) ||
+          document.querySelector(
+            '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+          ),
+        () => {
+          if (
+            document.querySelector(
+              '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+            )
+          ) {
+            handleHandicap();
+          }
+        }
+      );
       if (
         document.querySelector(
           '[dusk="global/stats/handicap-with-last-ten--handicap"]'
@@ -72,7 +90,13 @@ function handleHomepage() {
       }
 
       setTimeout(() => {
-        handleHandicap();
+        if (
+          document.querySelector(
+            '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+          )
+        ) {
+          handleHandicap();
+        }
       }, 1500);
 
       if (sessionStorage.getItem('isRedirectedExp') !== 'yes') {
