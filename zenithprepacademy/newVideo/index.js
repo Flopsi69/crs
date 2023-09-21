@@ -255,7 +255,9 @@ console.log('initExp');
 
     if (window.innerWidth > 768) {
       waitFor(
-        () => $('.elVideoWrapper .fluid-width-video-wrapper'),
+        () =>
+          $('.elVideoWrapper .fluid-width-video-wrapper') &&
+          $('.start-session-wrapper'),
         () => {
           $('.elVideoWrapper .elVideo').insertAdjacentHTML('afterbegin', video);
           $('.elVideoWrapper .fluid-width-video-wrapper').remove();
