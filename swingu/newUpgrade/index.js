@@ -20,6 +20,8 @@ const settings = {
   debug: false,
 };
 
+let isHandicapFire = false;
+
 if (location.href.includes('/upgrade/player')) {
   if (location.href.includes('hypothesis-3')) {
     handleUpgradePage();
@@ -620,9 +622,33 @@ function handleHomepage() {
 }
 
 function handleHandicap() {
+  if (!isHandicapFire) {
+    isHandicapFire = true;
+    pushDataLayer('exp_stripe_v_h_ft', 'with score', 'Visibility', 'Handicap');
+  }
+
   document
     .querySelector('[dusk="global/stats/handicap-with-last-ten"]')
     .classList.add('lav-handicap');
+
+  if (
+    document.querySelector('.section__last-round') &&
+    !document.querySelector('.section__last-round.lav-handled-last')
+  ) {
+    document
+      .querySelector('.section__last-round')
+      .classList.add('lav-handled-last');
+    document
+      .querySelector('.section__last-round')
+      .addEventListener('click', function () {
+        pushDataLayer(
+          'exp_stripe_s_lr_tt',
+          document.querySelector('.section__last-round .truncate').textContent,
+          'Section',
+          'Last round'
+        );
+      });
+  }
 }
 
 function connectSplide() {
