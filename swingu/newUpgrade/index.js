@@ -624,7 +624,7 @@ function handleHomepage() {
 function handleHandicap() {
   if (!isHandicapFire) {
     isHandicapFire = true;
-    pushDataLayer('exp_stripe_v_h_ft', 'with score', 'Visibility', 'Handicap');
+    pushDataLayer('exp_stripe_v_h_ft', 'With score', 'Visibility', 'Handicap');
   }
 
   document
