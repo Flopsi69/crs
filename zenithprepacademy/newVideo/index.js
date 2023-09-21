@@ -261,15 +261,10 @@ console.log('initExp');
         () => $('.mobile-video-wrap .elCustomJS_code'),
         () => {
           $('.mobile-video-wrap .elCustomJS_code').remove();
+          $('.mobile-video-wrap').insertAdjacentHTML('afterbegin', video);
         }
       );
-      $('.mobile-video-wrap').insertAdjacentHTML('afterbegin', video);
     }
-
-    $('.wistia_responsive_padding').scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    });
 
     waitFor(
       () => $('.timeline'),
@@ -278,7 +273,17 @@ console.log('initExp');
       }
     );
 
-    initVideo();
+    waitFor(
+      () => $('.wistia_responsive_padding'),
+      () => {
+        $('.wistia_responsive_padding').scrollIntoView({
+          block: 'start',
+          behavior: 'smooth',
+        });
+
+        initVideo();
+      }
+    );
   }
 
   function initVideo() {
