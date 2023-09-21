@@ -59,6 +59,12 @@ console.log('initExp');
       padding: 12px 16px;
       transition: 0.35s;
     }
+    @media(hover:hover) {
+      .timeline2__item:not(.active):hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
     .timeline2__item.active {
       background: #FFF;
     }
@@ -75,30 +81,28 @@ console.log('initExp');
       margin-top: 10px;
     }
     .timeline2__time {
-      border-radius: 16px;
-      border: 1px solid var(--Gray-line, #D2DFED);
-      background: var(--White, #FFF);
-      padding: 2px 7px;
-      color: var(--Text-2, #505050);
+      color: #2E4AAC;
       font-size: 12px;
       font-weight: 700;
+      line-height: normal;
+      border-bottom: 1px solid #2E4AAC;
       transition: 0.35s;
     }
     .timeline2__item.active .timeline2__time {
-      color: #FFF;
-      background: var(--New-buttom, #51AF97);
-      border-color: var(--New-buttom, #51AF97);
+      // color: #FFF;
+      // background: var(--New-buttom, #51AF97);
+      // border-color: var(--New-buttom, #51AF97);
     }
     .timeline2__view {
       display: flex;
-      color: var(--Main-Orange, #FF9700);
+      // color: var(--Main-Orange, #FF9700);
       font-size: 14px;
       font-style: normal;
       font-weight: 700;
       line-height: 21px;
-      padding-right: 13px;
-      background: url(${exp.dir}/img/arrow-right.svg) no-repeat right center;
-      transition: 0.35s;
+      // padding-right: 13px;
+      // background: url(${exp.dir}/img/arrow-right.svg) no-repeat right center;
+      // transition: 0.35s;
     }
     .timeline2__item:not(.active) .timeline2__view {
       cursor: pointer;
@@ -114,6 +118,10 @@ console.log('initExp');
     }
     .elVideo {
       border-radius: 16px;
+      background: #fff;
+    }
+    #wistia_chrome_23 #wistia_grid_29_wrapper div.w-css-reset {
+      border-radius: 18px;
     }
     .timeline2__all {
       display: none;
@@ -141,14 +149,14 @@ console.log('initExp');
         line-height: 22.86px;
         letter-spacing: 0.8px;
         text-transform: uppercase;
-        margin-top: 16px;
+        margin-top: 20px;
       }
       .timeline2__all svg {
         margin-left: 10px;
       }
       .timeline2__list {
         overflow: hidden;
-        height: 470px;
+        height: 460px;
       }
       .timeline2__list.expanded {
         height: auto;
@@ -387,7 +395,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>00:43</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -398,7 +406,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>02:39</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -409,7 +417,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>03:15</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -420,7 +428,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>09:29</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -431,7 +439,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>15:11</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -442,7 +450,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>23:48</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -453,7 +461,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>25:17</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
 
@@ -468,7 +476,7 @@ console.log('initExp');
 
             <div class='timeline2__control'>
               <div class='timeline2__time'>29:37</div>
-              <div class='timeline2__view'>View</div>
+              <div class='timeline2__view'>&nbsp;</div>
             </div>
           </div>
         </div>
@@ -512,26 +520,26 @@ console.log('initExp');
     });
 
     $$('.timeline2__item').forEach((el, i) => {
-      el.querySelector('.timeline2__view').addEventListener(
-        'click',
-        function () {
-          pushDataLayer(
-            'exp_new_video_v_wywdtfw_sn',
-            `${el.querySelector('.timeline2__time').textContent.trim()}`,
-            'View',
-            'What you will discover in thisfree webinar:'
-          );
+      el.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_new_video_v_wywdtfw_sn',
+          `${el.querySelector('.timeline2__time').textContent.trim()}`,
+          'View',
+          'What you will discover in thisfree webinar:'
+        );
 
-          if (el.classList.contains('active')) return false;
+        if (el.classList.contains('active')) return false;
 
-          document.querySelector('.start-session-wrapper')?.remove();
+        document.querySelector('.start-session-wrapper')?.remove();
 
-          window.player.time(options[i + 1].from);
+        if (window.player.state() !== 'playing') {
           window.player.play();
-
-          // handleTimeline(i + 1);
         }
-      );
+
+        window.player.time(options[i + 1].from);
+
+        // handleTimeline(i + 1);
+      });
     });
   }
 
@@ -545,7 +553,7 @@ console.log('initExp');
 
     if (prevEl) {
       prevEl.classList.remove('active');
-      prevEl.querySelector('.timeline2__view').innerText = 'View';
+      prevEl.querySelector('.timeline2__view').innerHTML = '&nbsp';
     }
 
     if (targetEl) {
