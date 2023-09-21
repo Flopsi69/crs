@@ -254,8 +254,13 @@ console.log('initExp');
     `;
 
     if (window.innerWidth > 768) {
-      $('.elVideoWrapper .elVideo').insertAdjacentHTML('afterbegin', video);
-      $('.elVideoWrapper .fluid-width-video-wrapper').remove();
+      waitFor(
+        () => $('.elVideoWrapper .fluid-width-video-wrapper'),
+        () => {
+          $('.elVideoWrapper .elVideo').insertAdjacentHTML('afterbegin', video);
+          $('.elVideoWrapper .fluid-width-video-wrapper').remove();
+        }
+      );
     } else {
       waitFor(
         () => $('.mobile-video-wrap .elCustomJS_code'),
