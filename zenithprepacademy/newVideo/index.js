@@ -257,7 +257,12 @@ console.log('initExp');
       $('.elVideoWrapper .elVideo').insertAdjacentHTML('afterbegin', video);
       $('.elVideoWrapper .fluid-width-video-wrapper').remove();
     } else {
-      $('.mobile-video-wrap .elCustomJS_code').remove();
+      waitFor(
+        () => $('.mobile-video-wrap .elCustomJS_code'),
+        () => {
+          $('.mobile-video-wrap .elCustomJS_code').remove();
+        }
+      );
       $('.mobile-video-wrap').insertAdjacentHTML('afterbegin', video);
     }
 
