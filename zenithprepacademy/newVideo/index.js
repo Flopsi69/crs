@@ -527,7 +527,7 @@ console.log('initExp');
     $('.timeline2')?.closest('.row')?.classList.add('timeline2-wrap');
     $('.timeline2__all').addEventListener('click', function () {
       pushDataLayer(
-        'exp_new_video_',
+        'exp_new_video_b_wywdtfw_va',
         'View all',
         'Button',
         'What you will discover in this free webinar:'
