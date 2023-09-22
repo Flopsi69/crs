@@ -407,7 +407,7 @@ console.log('initExp');
         <div class='timeline2__list'>
           <div class='timeline2__item'>
             <div class='timeline2__item-title'>
-              Data, Facts, and Official University Statements: “Top universities =! top students”
+              Data, Facts, and Official University Statements: “Top universities ≠ top students”
             </div>
 
             <div class='timeline2__control'>
