@@ -283,12 +283,11 @@ console.log('initExp');
     waitFor(
       () => $('.wistia_responsive_padding'),
       () => {
+        initVideo();
         $('.wistia_responsive_padding').scrollIntoView({
           block: 'start',
           behavior: 'smooth',
         });
-
-        initVideo();
       }
     );
   }
