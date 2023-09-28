@@ -1,20 +1,57 @@
 console.log('initExp');
 
-(function () {
-  /********* exp **********/
-  const exp = {
-    dir: 'https://flopsi69.github.io/crs/zenithprepacademy/newVideo',
-    observer: {
-      mutation: false,
-      intersection: true,
-    },
-    clarity: {
-      enable: true,
-      params: ['set', 'new_video', 'variant_1'],
-    },
-    debug: false,
-  };
+/********* exp **********/
+const exp = {
+  dir: 'https://flopsi69.github.io/crs/zenithprepacademy/newVideo',
+  observer: {
+    mutation: false,
+    intersection: true,
+  },
+  clarity: {
+    enable: true,
+    params: ['set', 'new_video', 'variant_1'],
+  },
+  debug: false,
+};
 
+(function () {
+  if (location.href.includes('/booking-page')) {
+    let startFuncBooking = setInterval(() => {
+      if (document.querySelector('.calendly-iframe')) {
+        clearInterval(startFuncBooking);
+        document.querySelectorAll('.calendly-iframe').forEach((el) => {
+          if (
+            el.src !==
+            'https://calendly.com/d/2m6-c5q-fq4/zoom-meeting-w-admissions-counselor-45min?hide_event_type_details=1&hide_gdpr_banner=1&month=2023-05'
+          ) {
+            el.src =
+              'https://calendly.com/d/2m6-c5q-fq4/zoom-meeting-w-admissions-counselor-45min?hide_event_type_details=1&hide_gdpr_banner=1&month=2023-05';
+          }
+        });
+
+        if (document.querySelector('#col-right-144 h1 b')) {
+          document.querySelector('#col-right-144 h1 b').textContent =
+            'Zoom Meeting w/ Admissions Counselor (45min)';
+        }
+
+        if (document.querySelector('#headline-44670 h1 b')) {
+          document.querySelector('#headline-44670 h1 b').textContent =
+            'Zoom Meeting w/ Admissions Counselor (45min)';
+        }
+
+        // if (
+        //   document.querySelector('#col-right-144 h1 b').textContent !==
+        //   'Meeting w/ Admissions Counselor (Zoom)'
+        // ) {
+        //   document.querySelector('#col-right-144 h1 b').textContent =
+        //     'Meeting w/ Admissions Counselor (Zoom)';
+        // }
+
+        // Zoom Meeting w/ Admissions Counselor (45min)
+      }
+    }, 100);
+    return false;
+  }
   /*** STYLES / Start ***/
   const styles = `
     .timeline {
@@ -599,22 +636,6 @@ console.log('initExp');
     }
   }
   // *** Utils *** //
-
-  // Waiting for loading by condition
-  function waitFor(condition, cb, ms = 1000) {
-    if (condition()) {
-      if (typeof cb == 'function') cb();
-      return;
-    }
-
-    let interval = setInterval(function () {
-      if (condition()) {
-        clearInterval(interval);
-        if (typeof cb == 'function') cb();
-      }
-    }, ms);
-  }
-
   // Alalytic 4
   function pushDataLayer(name = '', desc = '', type = '', loc = '') {
     try {
@@ -696,16 +717,6 @@ console.log('initExp');
     }, timeout * 1000);
   }
 
-  //Clarity
-  if (!exp.debug && exp.clarity.enable) {
-    waitFor(
-      () => typeof clarity == 'function',
-      () => {
-        clarity(...exp.clarity.params);
-      }
-    );
-  }
-
   function $(selector, context = document) {
     return context.querySelector(selector);
   }
@@ -714,6 +725,16 @@ console.log('initExp');
     return context.querySelectorAll(selector);
   }
 })();
+
+//Clarity
+if (!exp.debug && exp.clarity.enable) {
+  waitFor(
+    () => typeof clarity == 'function',
+    () => {
+      clarity(...exp.clarity.params);
+    }
+  );
+}
 
 function isInViewport(el) {
   const rect = el.getBoundingClientRect();
@@ -724,4 +745,19 @@ function isInViewport(el) {
       (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
+}
+
+// Waiting for loading by condition
+function waitFor(condition, cb, ms = 1000) {
+  if (condition()) {
+    if (typeof cb == 'function') cb();
+    return;
+  }
+
+  let interval = setInterval(function () {
+    if (condition()) {
+      clearInterval(interval);
+      if (typeof cb == 'function') cb();
+    }
+  }, ms);
 }
