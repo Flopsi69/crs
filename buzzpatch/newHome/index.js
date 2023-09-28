@@ -10,9 +10,9 @@ console.log('initExp');
     },
     clarity: {
       enable: true,
-      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
+      params: ['set', 'lp_screen', 'variant_1'],
     },
-    debug: true,
+    debug: false,
   };
 
   // Observers
@@ -156,6 +156,7 @@ console.log('initExp');
       margin-left: -2%;
     }
     .lav-why__scroll {
+      display: none;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -172,7 +173,25 @@ console.log('initExp');
       line-height: 16px;
       max-width: 106px;
       width: 100%;
-      transition: 0.3s;
+      transition: opacity 0.45s;
+      box-shadow: 0 0 0 0 rgba(217, 217, 217, 0.4);
+    }
+    .lav-why__scroll.done {
+      animation: pulse 2.5s infinite;
+    }
+    .lav-why__scroll.active {
+      display: block;
+    }
+    @keyframes pulse {
+      0% {
+          box-shadow: 0 0 0 0 rgba(217, 217, 217, 1);
+      }
+      70% {
+          box-shadow: 0 0 0 10px rgba(217, 217, 217, 0);
+      }
+      100% {
+          box-shadow: 0 0 0 50px rgba(217, 217, 217, 0);
+      }
     }
     .lav-why__scroll svg {
       display: block;
@@ -549,20 +568,53 @@ console.log('initExp');
       $('header .wave-bg').cloneNode(true)
     );
 
-    initIntersection(
+    $('.lav-learn').addEventListener('click', (e) => {
+      e.preventDefault();
+      pushDataLayer(
+        'exp_lp_screen_b_mf_lm',
+        'Learn more',
+        'Button',
+        'Main Face'
+      );
+      $('.lav-why__scroll').classList.add('active');
+      $('.lav-why').scrollIntoView({ behavior: 'smooth', block: 'end' });
+    });
+
+    const obs = initIntersection(
       $('.lav-why__scroll'),
       (entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && $('.lav-why__scroll.active')) {
+          obs.disconnect();
+          $('.lav-why__scroll').classList.add('done');
           setTimeout(() => {
             $('.lav-why__scroll').style.opacity = '0';
             setTimeout(() => {
               $('.lav-why__scroll').remove();
-            }, 350);
-          }, 2000);
+            }, 500);
+          }, 5000);
         }
         console.log('entry', entry);
       },
-      { rootMargin: '0px' }
+      { rootMargin: '0px', threshold: 1 }
+    );
+
+    let time = 0;
+    initIntersection(
+      $('.lav-why'),
+      (entry) => {
+        if (entry.isIntersecting) {
+          time = entry.time;
+        } else if (time > 0) {
+          pushDataLayer(
+            'exp_lp_screen_v_wklbp_ft',
+            parseInt(entry.time - time),
+            'Visibility',
+            'Why kids love BuzzPatch'
+          );
+          time = 0;
+        }
+      },
+      { threshold: 0.1 }
     );
   }
 
@@ -615,6 +667,25 @@ console.log('initExp');
         .querySelector('.lav-protection .hidden_text')
         ?.classList.remove('toggle_opacity');
     });
+
+    let time = 0;
+    initIntersection(
+      $('.lav-protection'),
+      (entry) => {
+        if (entry.isIntersecting) {
+          time = entry.time;
+        } else if (time > 0) {
+          pushDataLayer(
+            'exp_lp_screen_v_sb_ft',
+            parseInt(entry.time - time),
+            'Visibility',
+            'Scientifically block'
+          );
+          time = 0;
+        }
+      },
+      { threshold: 0.1 }
+    );
   }
 
   function handleSolve() {
@@ -688,8 +759,24 @@ console.log('initExp');
         if (e.target.closest('.lav-get')) {
           e.preventDefault();
           document.querySelector('.get-it').click();
+
+          pushDataLayer(
+            'exp_lp_screen_b_mpbtrfs_ntgbp',
+            `${item
+              .querySelector('.lav-accordion__head')
+              .innerText.trim()} - Get BuzzPatch`,
+            'Button',
+            'Mosquito problems block Traditional repellents feel sticky'
+          );
           return false;
         }
+
+        pushDataLayer(
+          'exp_lp_screen_a_mpyls_nb',
+          `${item.querySelector('.lav-accordion__head').innerText.trim()}`,
+          'Accordion',
+          'Mosquito problems Are you looking to solve?'
+        );
 
         if (item.classList.contains('active')) {
           item.classList.remove('active');
@@ -699,6 +786,25 @@ console.log('initExp');
         }
       });
     });
+
+    let time = 0;
+    initIntersection(
+      $('.lav-solve'),
+      (entry) => {
+        if (entry.isIntersecting) {
+          time = entry.time;
+        } else if (time > 0) {
+          pushDataLayer(
+            'exp_lp_screen_v_mpb_ft',
+            parseInt(entry.time - time),
+            'Visibility',
+            'Mosquito problems block'
+          );
+          time = 0;
+        }
+      },
+      { threshold: 0.1 }
+    );
   }
 
   // *** Utils *** //
@@ -761,13 +867,14 @@ console.log('initExp');
   function initIntersection(observeEl, cb, options = {}) {
     const observerOptions = {
       root: null,
-      threshold: 1,
+      threshold: 0,
       ...options,
       // rootMargin: '-40%',
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log('entry', entry.isIntersecting, entry);
         cb(entry);
       });
     }, observerOptions);
@@ -779,6 +886,8 @@ console.log('initExp');
         observer.observe(el);
       }
     }
+
+    return observer;
   }
 
   async function isElementInViewport(el, event, timeout = 5) {
