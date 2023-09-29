@@ -357,7 +357,7 @@ console.log('initExp');
       font-style: normal;
       font-weight: 400;
       line-height: 130%;
-      padding: 16px 20px;
+      padding: 16px 52px 16px 20px;
     }
     .lav-accordion__head:before {
       content: '';
@@ -368,6 +368,20 @@ console.log('initExp');
       background-color: #FF3C7F;
       left: -3px;
       top: 24px;
+    }
+    .lav-accordion__head:after {
+      content: '';
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: url('${exp.dir}/img/drop-arrow.svg') no-repeat center center;
+      background-size: contain;
+      transition: 0.3s;
+    }
+    .lav-accordion__item.active .lav-accordion__head:after {
+      transform: rotate(180deg);
     }
     .lav-accordion__head span {
       font-weight: 700;
