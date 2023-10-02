@@ -447,7 +447,11 @@ console.log('initExp');
     handleProtection();
     handleSolve();
 
-    $('#getNow .days').src = `${exp.dir}/img/reviews.svg`;
+    $('#getNow .days').insertAdjacentHTML(
+      'afterend',
+      `<img class='days' src='${exp.dir}/img/reviews.svg' />`
+    );
+    $('#getNow .days').remove();
   }
 
   function handleJumb() {
@@ -590,7 +594,7 @@ console.log('initExp');
         'Button',
         'Main Face'
       );
-      $('.lav-why__scroll').classList.add('active');
+      $('.lav-why__scroll')?.classList.add('active');
       $('.lav-why').scrollIntoView({ behavior: 'smooth', block: 'end' });
     });
 
