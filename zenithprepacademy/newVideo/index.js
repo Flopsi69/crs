@@ -198,6 +198,9 @@ const exp = {
       .timeline2__list.expanded {
         height: auto;
       }
+      #row-104 [data-de-type="headline"] {
+        margin-top: 0!important;
+      }
     }
     @media(max-width: 450px) {
       .timeline2 {
@@ -419,17 +422,30 @@ const exp = {
     function handlePlay(video) {
       if (window.innerWidth <= 768) return false;
 
+      // waitFor(
+      // () => document.querySelector('.start-session'),
+      // () => {
+      // document.querySelector('.iframeBlocker')?.remove();
+      // document
+      //   .querySelector('.start-session')
+      //   .addEventListener('click', function (e) {
+      //     this.classList.add('active');
+      //     if (video.state() !== 'playing') {
+      //       video.play();
+      //     }
+      //   });
+      // }
+      // );
+    }
+
+    document.querySelector('#row-164')?.remove();
+    document.querySelector('#row-104 [data-de-type="headline"]')?.remove();
+
+    if (window.innerWidth > 768) {
       waitFor(
-        () => document.querySelector('.start-session'),
+        () => document.querySelector('.iframeBlocker'),
         () => {
-          document
-            .querySelector('.start-session')
-            .addEventListener('click', function (e) {
-              this.classList.add('active');
-              if (video.state() !== 'playing') {
-                video.play();
-              }
-            });
+          document.querySelector('.iframeBlocker')?.remove();
         }
       );
     }
