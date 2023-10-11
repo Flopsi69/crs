@@ -572,6 +572,31 @@ function handleHomepage() {
       });
 
       document
+        .querySelector('.lav-cta')
+        .addEventListener('click', function (e) {
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+          e.preventDefault();
+          if (
+            document.querySelector(
+              '[data-crstarget="hypothesis-3-upgrade-target"]'
+            )
+          ) {
+            document
+              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+              .click();
+            pushDataLayer(
+              'exp_stripe_i_b_bt',
+              document
+                .querySelector('.lav-slide.is-active .lav-slide__title')
+                ?.innerText.trim(),
+              'Image',
+              'Banner'
+            );
+          }
+        });
+
+      document
         .querySelector('.lav-slider')
         .addEventListener('click', function () {
           if (
@@ -579,17 +604,17 @@ function handleHomepage() {
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             )
           ) {
+            document
+              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+              .click();
             pushDataLayer(
               'exp_stripe_i_b_bt',
               document
                 .querySelector('.lav-slide.is-active .lav-slide__title')
-                .innerText.trim(),
+                ?.innerText.trim(),
               'Image',
               'Banner'
             );
-            document
-              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-              .dispatchEvent(new Event('click'));
           }
         });
 
