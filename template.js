@@ -1,280 +1,332 @@
-console.log('initExp');
+console.debug('*** Experiment started ***');
+await waitFor(() => document.head && document.body, false, { ms: 100 });
 
-(function () {
-  /********* exp **********/
-  const exp = {
-    dir: 'https://flopsi69.github.io/crs/capucinne/pdp_slidein',
-    observer: {
-      mutation: false,
-      intersection: false,
-    },
-    clarity: {
-      enable: true,
-      params: ['set', 'improve_upgrade_popup_v2', 'variant_1'],
-    },
-    debug: true,
-  };
+// Config for Experiment
+const config = {
+  dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
+  clarity: ['set', '', 'variant_1'],
+  debug: true,
+};
 
-  // Observers
-  if (exp.observer.mutation) {
-    initMutation((el) => {
-      console.log(el);
-    });
+// Styles for Experiment
+const styles = ``;
+
+const stylesEl = document.createElement('style');
+stylesEl.classList.add('exp-styles');
+stylesEl.innerHTML = styles;
+document.head.appendChild(stylesEl);
+
+// *** Logic *** //
+initExp();
+
+function initExp() {
+  console.debug('** InitExp **');
+}
+
+// *** Utils *** //
+class Modal {
+  static list = [];
+  constructor(name, innerHTML) {
+    if (!$('.lav-modal')) {
+      this.constructor.init();
+    }
+    this.el = document.createElement('div');
+    this.el.classList.add('lav-modal__inner', name);
+    this.name = name;
+    this.el.innerHTML = innerHTML;
+
+    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+
+    this.constructor.list.push(this);
   }
 
-  if (exp.observer.intersection) {
-    initIntersection((el) => {
-      console.log(el);
-      if (isElementInViewport(el)) {
-        // pushDataLayer(...event);
-        el.classList.add('in-view');
+  static init() {
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      "<div class='lav-modal'></div>"
+    );
+
+    document.addEventListener('click', (e) => {
+      if (
+        e.target.classList.contains('lav-modal') ||
+        e.target.closest('.lav-modal__close')
+      )
+        this.close();
+
+      if (e.target.dataset.modal) {
+        this.open(e.target.dataset.modal);
       }
     });
+
+    this.addStyles();
   }
 
-  /*** STYLES / Start ***/
-  const styles = `
-  
-`;
+  static open(modalName, cb) {
+    document.body.classList.add('lav-modal-open');
 
-  const stylesEl = document.createElement('style');
-  stylesEl.innerHTML = styles;
-  waitFor(
-    () => document.head,
-    () => {
-      document.head.appendChild(stylesEl);
-    },
-    100
-  );
-  /*** STYLES / End ***/
+    if ($('.lav-modal__inner.active')) {
+      $('.lav-modal__inner.active').classList.remove('active');
+    }
 
-  /********* Custom Code **********/
-  init();
-  function init() {
-    console.log('init');
+    $(modalName).classList.add('active');
+
+    if (typeof cb === 'function') cb();
+
+    setTimeout(() => {
+      $('.lav-modal').classList.add('active');
+    }, 100);
   }
 
-  // *** Utils *** //
+  static close(cb) {
+    document.body.classList.remove('lav-modal-open');
 
-  // Waiting for loading by condition
-  function waitFor(condition, cb, ms = 1000) {
+    $('.lav-modal')?.classList.remove('active');
+
+    if (typeof cb === 'function') cb();
+
+    setTimeout(() => {
+      $('.lav-modal__inner.active')?.classList.remove('active');
+    }, 400);
+  }
+
+  static addStyles() {
+    const styles = `
+      .lav-modal {
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.1);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        transition: 0.35s;
+        opacity: 0;
+        pointer-events: none;
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 100%;
+        display: flex;
+      }
+      .lav-modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .lav-modal__inner {
+        position: relative;
+        background: #fff;
+        max-width: 380px;
+        width: 100%;
+        display: none;
+        margin: auto;
+      }
+      .lav-modal__inner.active {
+        display: block;
+      }
+      .lav-modal__close {
+        cursor: pointer;
+        transition: 0.35s;
+      }
+      @media(hover:hover) {
+        .lav-modal__close:hover {
+          opacity: 0.5;
+        }
+      }
+      .lav-modal-open {
+        overflow: hidden;
+      }
+    `;
+
+    const stylesEl = document.createElement('style');
+    stylesEl.classList.add('exp-modal');
+    stylesEl.innerHTML = styles;
+    document.head.appendChild(stylesEl);
+  }
+}
+
+// *** HELPERS *** //
+
+// Waiting for loading by condition
+async function waitFor(condition, cb = false, customConfig = {}) {
+  const config = {
+    ms: 500, // repeat each 0.5 second if condition is false
+    limit: 10, // limit in second seconds
+
+    ...customConfig,
+  };
+
+  if (typeof condition === 'function') {
     if (condition()) {
-      if (typeof cb == 'function') cb();
+      if (typeof cb === 'function') cb();
       return;
     }
 
-    let interval = setInterval(function () {
-      if (condition()) {
-        clearInterval(interval);
-        if (typeof cb == 'function') cb();
-      }
-    }, ms);
-  }
-
-  // Alalytic 4
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-    try {
-      var objData = {
-        event: 'event-to-ga4',
-        event_name: name,
-        event_desc: desc,
-        event_type: type,
-        event_loc: loc,
-      };
-      console.log('eventFire', objData);
-      if (!exp.debug) {
-        dataLayer.push(objData);
-      }
-    } catch (e) {
-      console.log('Event Error:', e);
-    }
-  }
-  // Mutation Observer
-  function initMutation(cb) {
-    let observer = new MutationObserver((mutations) => {
-      for (let mutation of mutations) {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-
-          cb(node);
+    return new Promise((resolve) => {
+      let limit = config.limit * 1000;
+      const interval = setInterval(function () {
+        if (condition() || limit <= 0) {
+          clearInterval(interval);
+          if (limit > 0 && typeof cb === 'function') cb();
+          resolve();
         }
-      }
+        limit -= config.ms;
+      }, config.ms);
     });
-
-    waitFor(
-      () => document.body,
-      () => {
-        observer.observe(document.body, { childList: true, subtree: true });
-      },
-      100
-    );
   }
 
-  // Intersection Observer
-  function initIntersection(cb, observeEl) {
-    const observerOptions = {
-      root: null,
-      threshold: 0,
-      // rootMargin: '-40%',
-    };
+  if (condition.startsWith('.') || condition.startsWith('#')) {
+    if ($(condition)) {
+      if (typeof cb === 'function') cb($(condition));
+      return;
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          cb(entry.target);
+    return new Promise((resolve) => {
+      const observer = new MutationObserver((mutations, observer) => {
+        if ($(condition)) {
+          if (typeof cb === 'function') cb($(condition));
+          observer.disconnect();
+          resolve();
         }
       });
-    }, observerOptions);
 
-    if (observeEl) {
-      observer.observe(observeEl);
-    } else {
-      for (let el of Array.from(document.querySelectorAll('.lav-observe'))) {
-        observer.observe(el);
-      }
-    }
+      observer.observe(document, { childList: true, subtree: true });
+    });
   }
+}
 
-  async function isElementInViewport(el, event, timeout = 5) {
-    if (el.classList.contains('in-view')) return false;
+// Mutation Observer
+function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
 
-    setTimeout(() => {
-      const rect = el.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
+  if (!el) return;
 
-      if (
-        rect.top + rect.height * 0.3 < windowHeight &&
-        rect.bottom > rect.height * 0.3
-      ) {
-        return true;
+  let observer = new MutationObserver((mutations) => {
+    for (let mutation of mutations) {
+      if (typeof cbAdded === 'function') {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          cbAdded(node);
+        }
       }
 
-      return false;
-    }, timeout * 1000);
-  }
-
-  //Clarity
-  if (!exp.debug && exp.clarity.enable) {
-    waitFor(
-      () => typeof clarity == 'function',
-      () => {
-        clarity(...exp.clarity.params);
+      if (typeof cbRemoved === 'function') {
+        for (let node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          cbRemoved(node);
+        }
       }
-    );
-  }
-
-  function $(selector, context = document) {
-    return context.querySelector(selector);
-  }
-
-  function $$(selector, context = document) {
-    return context.querySelectorAll(selector);
-  }
-})();
-
-function initModals() {
-  const modalEl = `
-      <div class='lav-modal' style='display: none;'>
-        <div class='lav-modal__inner lav-modal__test'>
-        asdf
-        </div>
-      </div>
-    `;
-
-  document.body.insertAdjacentHTML('beforeend', modalEl);
-
-  document.querySelector('.lav-modal').addEventListener('click', function (e) {
-    if (e.target.classList.contains('lav-modal')) {
-      closeModal();
     }
   });
 
-  for (let el of document.querySelectorAll('.lav-modal__close')) {
-    el.addEventListener('click', function () {
-      closeModal();
+  observer.observe(el, { childList: true, subtree: true });
+
+  return observer;
+}
+
+// Intersection Observer
+function initIntersection(observeEl, cb, customConfig) {
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+
+  if (!el || typeof cb !== 'function') return;
+
+  const config = {
+    root: null,
+    threshold: 0.3, // 0 - 1
+    ...customConfig,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      cb(entry);
     });
-  }
+  }, config);
+
+  observer.observe(el);
+
+  return observer;
 }
 
-function openModal(type) {
-  document.body.classList.add('lav-modal-open');
-  document.querySelector('html').classList.add('lav-modal-open');
-  document.querySelector('.lav-modal__' + type).classList.add('active');
-  document.querySelector('.lav-modal').style.display = 'flex';
-  setTimeout(() => {
-    document.querySelector('.lav-modal').classList.add('active');
-  }, 100);
+function focusTimeEvent(el, cb) {
+  let entryTime = 0;
+  initIntersection(
+    el,
+    ({ isIntersecting, time }) => {
+      if (isIntersecting) {
+        entryTime = time;
+      } else if (entryTime) {
+        cb(time - entryTime);
+        entryTime = 0;
+      }
+    },
+    { threshold: 0.1 }
+  );
 }
 
-function closeModal() {
-  document.body.classList.remove('lav-modal-open');
-  document.querySelector('html').classList.remove('lav-modal-open');
-  document.querySelector('.lav-modal').classList.remove('active');
-  setTimeout(() => {
-    document.querySelector('.lav-modal').style.display = 'none';
-    document
-      .querySelector('.lav-modal__inner.active')
-      .classList.remove('active');
-  }, 400);
+// Artificial delay
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function isInViewport(el) {
+// Check if element in viewport
+function isElementInViewport(selector) {
+  const el = typeof selector === 'string' ? $(selector) : selector;
+
+  if (!el) return false;
+
   const rect = el.getBoundingClientRect();
   return (
-    rect.top >= $('.page-header .header.content').clientHeight &&
+    rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <=
       (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
-`
-.lav-modal {
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(0,0,0,.1);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.35s;
+
+// Shordcode for selectors
+function $(selector, context = document) {
+  return context.querySelector(selector);
 }
-.lav-modal:not(.active ){
-  opacity: 0;
-  pointer-events: none;
+function $$(selector, context = document, toSimpleArray = false) {
+  const arr = context.querySelectorAll(selector);
+
+  return toSimpleArray ? Array.from(arr) : arr;
 }
-.lav-modal.active {
-  opacity: 1;
-}
-.lav-modal__inner:not(.active) {
-  display: none;
-}
-.lav-modal__inner {
-  background: #fff;
-  position: relative;
-  max-width: 380px;
-  width: 100%;
-  max-height: 90%;
-  overflow-y: auto;
-  border-radius: 8px;
-}
-.lav-modal__close {
-  cursor: pointer;
-  transition: 0.35s;
-}
-@media(hover:hover) {
-  .lav-modal__close:hover {
-    opacity: 0.5;
-    transform: scale(1.1);
+
+// GA 4 events
+function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  try {
+    const event = {
+      event: 'event-to-ga4',
+      event_name: name,
+      event_desc: desc,
+      event_type: type,
+      event_loc: loc,
+    };
+
+    console.debug('** GA4 Event **', event);
+
+    if (!config.debug) {
+      dataLayer.push(event);
+    }
+  } catch (e) {
+    console.log('** GA4 Error **', e);
   }
 }
-.lav-modal-open {
-  position: relative;
-  overflow: hidden;
-}`;
+
+// *** Exp BG process *** //
+
+//Clarity
+if (
+  !config.debug &&
+  Array.isArray(config.clarity) &&
+  config.clarity.length === 3
+) {
+  waitFor(
+    () => typeof clarity == 'function',
+    () => {
+      clarity(...config.clarity);
+    }
+  );
+}
