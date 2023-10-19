@@ -335,6 +335,27 @@
         "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/07/Brown_Vintage_Cowboy_Boot_and_Hat_Photo_Album_Cover__1_.png"
       },
       {
+        "name": "Punk",
+        "alias": "Punk Cruise",
+        "url": "https://lakelasvegaswatersports.com/punk-cruise/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/10/Punk-Cruise.jpg"
+      },
+      {
+        "name": "Y2K",
+        "alias": "Y2K Cruise",
+        "url": "https://lakelasvegaswatersports.com/y2k-cruise/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/10/Y2K.jpg"
+      },
+      {
+        "name": "Haunted",
+        "alias": "Haunted Cruise at Lake Las Vegas",
+        "url": "https://lakelasvegaswatersports.com/haunted-cruise-at-lake-las-vegas/",
+        "caption": "From: <span>$29.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/09/Haunted-Cruise-at-Lake-Las-Vegas.jpg"
+      },
+      {
         "name": "Throwback",
         "alias": "Throwback Cruise at Lake Las Vegas",
         "url": "https://lakelasvegaswatersports.com/throwback-cruise-at-lake-las-vegas/",
@@ -501,6 +522,15 @@
     },
     {
       "name": "After Dark Neon"
+    },
+    {
+      "name": "Haunted"
+    },
+    {
+      "name": "Y2K"
+    },
+    {
+      "name": "Punk"
     }
   ]
 }
