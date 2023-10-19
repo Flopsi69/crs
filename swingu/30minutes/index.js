@@ -39,9 +39,16 @@ function handleUpgradePage() {
 
   /*** STYLES / Start ***/
   const styles = `
+    [dusk="gps-upgrade-container"] {
+      display: none;
+    }
     .antialiased {
       background: #262626;
     }
+    .lav-close {
+      margin-bottom: 16px;
+    }
+
     .lav-new {
       padding: 15px;
     }
@@ -118,14 +125,22 @@ function handleUpgradePage() {
       line-height: 20px;
       letter-spacing: -0.5px;
     }
+
     .lav-plate__wrap {
       margin-top: 12px;
       border-radius: 10px;
     }
     .lav-plate {
+      position: relative;
+      z-index: 1;
       padding: 15px;
       border-radius: 10px;
       background: #313131;
+      color: #fff;
+    }
+    .lav-plate__img {
+      width: 100%;
+      margin-bottom: -55px;
     }
     .lav-plate__caption {
       color: rgba(247, 247, 247, 0.60);
@@ -133,6 +148,45 @@ function handleUpgradePage() {
       font-weight: 400;
       line-height: 16px;
       margin-top: 15px;
+    }
+
+    .lav-list {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: -0.5px;
+    }
+    .lav-list__item {
+      display: flex;
+      align-items: center;
+    }
+    .lav-list__item + .lav-list__item {
+      margin-top: 10px;
+    }
+    .lav-list__item img {
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .lav-toggler {
+      display: flex;
+      align-items: center;
+      color: var(--Green-Main, #49BB54);
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: -0.24px;
+      margin-top: 15px;
+    }
+    .lav-toggler svg {
+      margin-left: 8px;
+      transition: 0.35s;
+      position: relative;
+      top: 1px;
+    }
+    .lav-toggler.active svg {
+      transform: rotate(180deg);
     }
 
     .lav-sticky {
@@ -145,6 +199,19 @@ function handleUpgradePage() {
       background: #313131;
       box-shadow: 0px -2px 12px 0px rgba(1, 1, 1, 0.20);
       z-index: 99;
+    }
+    .lav-sticky__off {
+      color: var(--Font-color, #2B2B2B);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 21px;
+      letter-spacing: -0.32px;
+      padding: 5px;
+      border-radius: 4px;
+      background: var(--common-medium-secondary, #FFC803);
+      display: flex;
+      align-items: center;
     }
     .lav-unlock {
       border-radius: 7px;
@@ -178,7 +245,6 @@ function handleUpgradePage() {
       box-sizing: border-box;
       animation: rotation 1s linear infinite;;
     }
-
     @keyframes rotation {
       0% {
           transform: rotate(0deg);
@@ -186,109 +252,6 @@ function handleUpgradePage() {
       100% {
           transform: rotate(360deg);
       }
-    }
-    
-    .lav-sticky__off {
-      color: var(--Font-color, #2B2B2B);
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 21px;
-      letter-spacing: -0.32px;
-      padding: 5px;
-      border-radius: 4px;
-      background: var(--common-medium-secondary, #FFC803);
-      display: flex;
-      align-items: center;
-    }
-
-    .lav-table {
-      margin-top: 16px;
-    }
-    .lav-row {
-      display: flex;
-      color: #fff;
-      border-bottom: 0.5px solid #545454;
-    }
-    .lav-row:not(.lav-row__head) {
-      padding: 7px 10px 7px 0;
-    }
-    .lav-cell:first-child {
-      color: var(--common-white, #FFF);
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.5px;
-      flex-grow: 1;
-      text-transform: capitalize;
-    }
-    .lav-cell:nth-child(2), .lav-cell:nth-child(3) {
-      text-align: center;
-      width: 36px;
-      flex-shrink: 0;
-    }
-    .lav-cell img {
-      margin: 2px auto 0;
-    }
-    .lav-row__head {
-      padding: 15px 10px 15px 0;
-      align-items: center;
-    }
-    .lav-row__head .lav-cell:nth-child(1) {
-      color: var(--common-white, #FFF);
-      font-size: 17px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 22px;
-      letter-spacing: -0.408px;
-    }
-    .lav-row__head .lav-cell:nth-child(2) {
-      color: var(--neutral-grey-5009-cabb-5, #9CABB5);
-      text-align: center;
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 20px;
-      letter-spacing: -0.5px;
-    }
-    .lav-row__head .lav-cell:nth-child(3) {
-      color: var(--common-medium-primary, #49BB54);
-      text-align: center;
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 20px;
-      letter-spacing: -0.5px;
-    }
-    .lav-toggler {
-      display: flex;
-      align-items: center;
-      color: var(--Green-Main, #49BB54);
-      font-size: 15px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 20px;
-      letter-spacing: -0.24px;
-      margin-top: 15px;
-    }
-    .lav-toggler svg {
-      margin-left: 8px;
-      transition: 0.35s;
-      position: relative;
-      top: 1px;
-    }
-    .lav-toggler.active svg {
-      transform: rotate(180deg);
-    }
-    .lav-table:not(.active) .lav-row:nth-child(1n+6) {
-      display: none;
-    }
-    .lav-close {
-      margin-bottom: 16px;
-    }
-    [dusk="gps-upgrade-container"] {
-      display: none;
     }
   `;
 
@@ -353,36 +316,36 @@ function handleUpgradePage() {
   function init() {
     console.log('init');
 
-    pushDataLayer(
-      'exp_stripe_v_utsp_ps',
-      `Popup - ${
-        document.querySelector('.lav-table.active') ? 'extended' : 'short'
-      }`,
-      'Visibility',
-      'Upgrade to SwingU Pro'
-    );
+    // pushDataLayer(
+    //   'exp_stripe_v_utsp_ps',
+    //   `Popup - ${
+    //     document.querySelector('.lav-table.active') ? 'extended' : 'short'
+    //   }`,
+    //   'Visibility',
+    //   'Upgrade to SwingU Pro'
+    // );
 
     document
       .querySelector('.antialiased')
       .insertAdjacentHTML('afterbegin', html);
 
     document.querySelector('.lav-close').addEventListener('click', function () {
-      pushDataLayer(
-        'exp_stripe_c_utsp_ps',
-        `Popup - ${
-          document.querySelector('.lav-table.active') ? 'extended' : 'short'
-        }`,
-        'Close',
-        'Upgrade to SwingU Pro'
-      );
+      // pushDataLayer(
+      //   'exp_stripe_c_utsp_ps',
+      //   `Popup - ${
+      //     document.querySelector('.lav-table.active') ? 'extended' : 'short'
+      //   }`,
+      //   'Close',
+      //   'Upgrade to SwingU Pro'
+      // );
       document
         .querySelector('[dusk="gps-upgrade-container"] .absolute')
         .click();
     });
 
-    drawTable();
-    addSticky();
     startCountdown();
+    drawList();
+    addSticky();
   }
 
   function startCountdown(duration = 30) {
@@ -439,12 +402,12 @@ function handleUpgradePage() {
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
 
-          pushDataLayer(
-            'exp_stripe_v_utsp_usp',
-            'Unlock SwingPro',
-            'Button',
-            'Upgrade to SwingU Pro'
-          );
+          // pushDataLayer(
+          //   'exp_stripe_v_utsp_usp',
+          //   'Unlock SwingPro',
+          //   'Button',
+          //   'Upgrade to SwingU Pro'
+          // );
 
           const link = document.createElement('a');
           link.href = url;
@@ -452,14 +415,14 @@ function handleUpgradePage() {
         }
       });
 
-    setTimeout(() => {
-      pushDataLayer(
-        'exp_stripe_v_utsp_ba',
-        'Billed annually',
-        'Visibility',
-        'Upgrade to SwingU Pro'
-      );
-    }, 2000);
+    // setTimeout(() => {
+    // pushDataLayer(
+    //   'exp_stripe_v_utsp_ba',
+    //   'Billed annually',
+    //   'Visibility',
+    //   'Upgrade to SwingU Pro'
+    // );
+    // }, 2000);
   }
 
   function handleStickyOffset() {
@@ -468,103 +431,93 @@ function handleUpgradePage() {
     }px`;
   }
 
-  function drawTable() {
-    const table = document.createElement('div');
-    table.classList.add('lav-table');
-
-    table.innerHTML = `
-      <div class="lav-row lav-row__head">
-        <div class="lav-cell">What you get with Pro</div>
-        <div class="lav-cell">Free</div>
-        <div class="lav-cell">Pro</div>
-      </div>
-    `;
+  function drawList() {
+    const parentEl = document.createElement('div');
+    parentEl.classList.add('lav-list');
 
     const items = [
-      { benefit: '"Plays Like" Distances' },
-      { benefit: 'Club Recommendations' },
-      { benefit: 'Green reading maps' },
-      { benefit: 'Advanced stats & strokes gained' },
-      { benefit: 'Distances to greens and hazards', free: true },
+      { caption: '‘Plays Like’ distances' },
+      { caption: 'Club recommendations' },
+      { caption: 'Green reading maps' },
+      { caption: 'Advanced stats & strokes gained' },
+      { caption: 'Ad free experience' },
+      { caption: 'Wind Speed & Elevation' },
+      { caption: 'Enhanced Scorecard & Stats' },
+      { caption: 'Green-Reading Maps For 13,000+ Courses' },
       {
-        benefit: 'GPS Rangefinder and scorecard for every course in the world',
-        free: true,
+        caption: 'GPS Rangefinder and scorecard for every course in the world',
       },
-      { benefit: 'Ad free experience' },
-      { benefit: 'Wind Speed & Elevation' },
-      { benefit: 'Enhanced Scorecard & Stats' },
-      { benefit: 'Green-Reading Maps For 13,000+ Courses' },
-      { benefit: 'SwingU Handicap', free: true },
-      { benefit: 'Shot Tracking', free: true },
-      { benefit: 'Clubhouse Content Feed', free: true },
-      { benefit: 'Giveaway Eligibility' },
-      { benefit: 'Strokes Gained Stats vs.<br/> Your Target Handicap' },
+      { caption: 'Distances to greens and hazards' },
+      { caption: 'SwingU Handicap' },
+      { caption: 'Shot Tracking' },
+      { caption: 'Clubhouse Content Feed' },
+      { caption: 'Giveaway Eligibility' },
+      { caption: 'Strokes Gained Stats vs. Your Target Handicap' },
       {
-        benefit:
+        caption:
           'Handicap Index for Each Facet of Your Game (Driving, Approach, Chip/Pitch, Bunker & Putting)',
       },
-      { benefit: 'Post-Round #1 Game<br/> Improvement Priority' },
-      { benefit: 'Post-Round Personalized,<br/> Prescriptive Drill' },
+      { caption: 'Post-Round #1 Game Improvement Priority' },
+      { caption: 'Post-Round Personalized, Prescriptive Drill' },
       {
-        benefit:
+        caption:
           'Extensive Library of Performance Practice Drills and Informative Videos',
       },
     ];
 
-    items.forEach((item) => {
-      const row = document.createElement('div');
-      row.classList.add('lav-row');
+    items.forEach((item, i) => {
+      const itemEl = document.createElement('div');
+      itemEl.classList.add('lav-list__item');
 
-      row.innerHTML = `
-        <div class="lav-cell">${item.benefit}</div>
-        <div class="lav-cell"><img src='${settings.dir}/img/${
-        item.free ? 'check-gray.svg' : 'uncheck.svg'
-      }' /></div>
-        <div class="lav-cell"><img src='${
-          settings.dir
-        }/img/check-green.svg' /></div>
+      itemEl.innerHTML = `
+        <img class="lav-list__img" src="${settings.dir}/img/benefits/benfit${i}.svg" alt="" />
+        <div class="lav-list__caption">${item.caption}</div>
       `;
 
-      table.appendChild(row);
+      parentEl.appendChild(itemEl);
     });
 
     document
       .querySelector('.lav-plate')
-      .insertAdjacentElement('afterbegin', table);
+      .insertAdjacentElement('afterbegin', parentEl);
 
-    const toggler = document.createElement('div');
-    toggler.classList.add('lav-toggler');
-    toggler.innerHTML = `<span>View all features</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <path d="M7 10C7.17281 10 7.3318 9.93865 7.45622 9.82209L12.8203 4.96319C12.9378 4.85276 13 4.71779 13 4.55828C13 4.2454 12.7304 4 12.371 4C12.1982 4 12.0392 4.06135 11.9217 4.15951L7 8.62577L2.07834 4.15951C1.96083 4.06135 1.80875 4 1.62903 4C1.26958 4 1 4.2454 1 4.55828C1 4.71779 1.06221 4.85276 1.18664 4.96319L6.54378 9.82209C6.67511 9.93865 6.82719 10 7 10Z" fill="#49BB54"/>
-    </svg>`;
+    addToggler();
 
-    toggler.addEventListener('click', function () {
-      if (document.querySelector('.lav-table.active')) {
-        pushDataLayer(
-          'exp_stripe_b_utsp_vtf',
-          'View top features',
-          'Button',
-          'Upgrade to SwingU Pro'
-        );
-      } else {
-        pushDataLayer(
-          'exp_stripe_b_utsp_vaf',
-          'View all features',
-          'Button',
-          'Upgrade to SwingU Pro'
-        );
-      }
+    function addToggler() {
+      const toggler = document.createElement('div');
+      toggler.classList.add('lav-toggler');
+      toggler.innerHTML = `<span>View all features</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M7 10C7.17281 10 7.3318 9.93865 7.45622 9.82209L12.8203 4.96319C12.9378 4.85276 13 4.71779 13 4.55828C13 4.2454 12.7304 4 12.371 4C12.1982 4 12.0392 4.06135 11.9217 4.15951L7 8.62577L2.07834 4.15951C1.96083 4.06135 1.80875 4 1.62903 4C1.26958 4 1 4.2454 1 4.55828C1 4.71779 1.06221 4.85276 1.18664 4.96319L6.54378 9.82209C6.67511 9.93865 6.82719 10 7 10Z" fill="#49BB54"/>
+      </svg>`;
 
-      table.classList.toggle('active');
-      toggler.classList.toggle('active');
-      toggler.querySelector('span').innerText = table.classList.contains(
-        'active'
-      )
-        ? 'View top features'
-        : 'View all features';
-    });
+      toggler.addEventListener('click', function () {
+        // if (document.querySelector('.lav-table.active')) {
+        //   pushDataLayer(
+        //     'exp_stripe_b_utsp_vtf',
+        //     'View top features',
+        //     'Button',
+        //     'Upgrade to SwingU Pro'
+        //   );
+        // } else {
+        //   pushDataLayer(
+        //     'exp_stripe_b_utsp_vaf',
+        //     'View all features',
+        //     'Button',
+        //     'Upgrade to SwingU Pro'
+        //   );
+        // }
 
-    table.insertAdjacentElement('afterend', toggler);
+        parentEl.classList.toggle('active');
+        toggler.classList.toggle('active');
+        toggler.querySelector('span').innerText = parentEl.classList.contains(
+          'active'
+        )
+          ? 'View top features'
+          : 'View all features';
+      });
+
+      parentEl.insertAdjacentElement('afterend', toggler);
+    }
   }
 }
 
