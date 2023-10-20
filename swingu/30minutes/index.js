@@ -20,9 +20,63 @@ const settings = {
   debug: true,
 };
 
-// location.href.includes('hypothesis-3')
-if (location.href.includes('/upgrade/player')) {
-  handleUpgradePage();
+if (
+  location.href.includes('/upgrade/player') &&
+  location.href.includes('hypothesis-2')
+) {
+  waitFor(
+    () => document.body,
+    () => {
+      handleUpgradePage();
+    },
+    50
+  );
+} else if (location.href.includes('/home')) {
+  waitFor(
+    () => document.body && document.querySelector('#app')?.dataset?.page,
+    () => {
+      handleHomepage();
+    },
+    50
+  );
+}
+
+function handleHomepage() {
+  if (!settings.debug && settings.clarity.enable) {
+    waitFor(
+      () => typeof clarity == 'function',
+      () => {
+        clarity(...settings.clarity.params);
+      },
+      500
+    );
+  }
+
+  console.log('initHomepage: ' + location.href);
+
+  const parseJson = document.querySelector('#app')?.dataset.page;
+
+  if (
+    parseJson &&
+    JSON.parse(parseJson)?.props?.subdomainData?.subscriptionTier === 0
+  ) {
+    // sessionStorage.setItem('isRedirectedExp', 'yes');
+
+    waitFor(
+      () =>
+        document.querySelector(
+          '[data-crstarget="hypothesis-2-upgrade-target"]'
+        ),
+      () => {
+        document
+          .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+          .dispatchEvent(new Event('click'));
+      }
+    );
+  } else {
+    console.log('empty json or not free tier');
+    return false;
+  }
 }
 
 function handleUpgradePage() {
@@ -33,7 +87,8 @@ function handleUpgradePage() {
       () => typeof clarity == 'function',
       () => {
         clarity(...settings.clarity.params);
-      }
+      },
+      500
     );
   }
 
@@ -138,6 +193,31 @@ function handleUpgradePage() {
       background: #313131;
       color: #fff;
     }
+    .lav-plate__head {
+      display: flex;
+      align-items: center;
+    }
+    .lav-plate__head-logo {
+      flex-shrink: 0;
+      margin-right: 15px;
+      box-shadow: 0px 2.65px 7.95px 0px rgba(0, 0, 0, 0.25);
+      width: 53px;
+    }
+    .lav-plate__head-title {
+      color: var(--common-white, #FFF);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 18px; /* 138.462% */
+      letter-spacing: -0.078px;
+    }
+    .lav-plate__head-caption {
+      color: #909094;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.078px;
+    }
     .lav-plate__img {
       width: 100%;
       margin-bottom: -55px;
@@ -155,6 +235,23 @@ function handleUpgradePage() {
       font-weight: 600;
       line-height: 20px;
       letter-spacing: -0.5px;
+      margin-top: 12px;
+    }
+    .lav-list:not(.active) .lav-list__item:nth-child(1n + 6) {
+      display: none;
+    }
+    .lav-list__wrap {
+      margin-top: 15px;
+      padding: 12px 0;
+      border-bottom: 0.5px solid #545454;
+      border-top: 0.5px solid #545454;
+    }
+    .lav-list__title {
+      color: var(--common-white, #FFF);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: -0.408px;
     }
     .lav-list__item {
       display: flex;
@@ -194,44 +291,60 @@ function handleUpgradePage() {
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 16px 15px 13px;
+      padding: 0 15px 15px;
       border-radius: 10px 10px 0px 0px;
-      background: #313131;
-      box-shadow: 0px -2px 12px 0px rgba(1, 1, 1, 0.20);
+      background: rgb(38,38,38);
+      background: linear-gradient(0deg, rgba(38,38,38,1) 33%, rgba(255,255,255,0) 69%);
       z-index: 99;
     }
-    .lav-sticky__off {
-      color: var(--Font-color, #2B2B2B);
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 21px;
-      letter-spacing: -0.32px;
-      padding: 5px;
-      border-radius: 4px;
-      background: var(--common-medium-secondary, #FFC803);
-      display: flex;
-      align-items: center;
-    }
     .lav-unlock {
+      position: relative;
       border-radius: 7px;
       background: var(--common-medium-primary, #49BB54);
       padding: 13px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 12px 0;
+      min-height: 60px;
     }
-    .lav-unlock__mo {
+    .lav-unlock__off {
+      position: absolute;
+      right: -6px;
+      top: -14px;
+      color: var(--common-grey-800-impact-text, #253139);
+      text-align: center;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 18px;
+      letter-spacing: -0.078px;
+      border-radius: 50px;
+      padding: 2px 6px;
+      background: var(--common-medium-secondary, #FFC803);
+    }
+    .lav-unlock__price {
+      display: flex;
+      align-items: center;
       font-size: 16px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--dark-primary-39-ac-44, #39AC44);
+    }
+    .lav-unlock__price-new {
+      color: var(--common-white, #FFF);
+      text-align: center;
       font-style: normal;
       font-weight: 700;
-      line-height: 21px;
-      letter-spacing: -0.32px;
-      border-radius: 4px;
-      background: #39AC44;
-      padding: 4px 10px;
+      line-height: normal;
+    }
+    .lav-unlock__price-old {
+      margin-right: 4px;
       color: var(--common-white, #FFF);
+      text-align: center;
+      font-weight: 400;
+      text-decoration: line-through;
+      text-transform: uppercase;
+      opacity: 0.5;
     }
     .lav-loader {
       width: 29px;
@@ -267,6 +380,25 @@ function handleUpgradePage() {
   );
   /*** STYLES / End ***/
 
+  function getDateRange() {
+    const today = new Date();
+    const nextYear = new Date(today);
+    nextYear.setFullYear(today.getFullYear() + 1);
+
+    const startDateString = `${new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(today)}`;
+    const endDateString = `${new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }).format(nextYear)}`;
+
+    return `${startDateString} - ${endDateString}`;
+  }
+
   const html = `
     <div class="lav-new">
       <div class="lav-close">
@@ -292,13 +424,28 @@ function handleUpgradePage() {
       </div>
 
       <div class="lav-title">An Exclusive Offer for You!</div>
-      <div class="lav-off">40% Off SwingU Pro Yearly</div>
+      <div class="lav-off">50% Off SwingU Pro Yearly</div>
 
       <div class="lav-plate__wrap">
-        <img class="lav-plate__img" src="${settings.dir}/img/plate-bg.png" alt="" />
+        <img class="lav-plate__img" src="${
+          settings.dir
+        }/img/plate-bg.png" alt="" />
         
         <div class="lav-plate">
-          <div class="lav-plate__caption">July 16, 2023 - July 16, 2024: $99.00 auto-renewal. No commitment. Cancel anytime.</div>
+          <div class="lav-plate__head">
+            <img class="lav-plate__head-logo" src="${
+              settings.dir
+            }/img/logo-square.png" alt="" />
+            <div class="lav-plate__head-info">
+              <div class="lav-plate__head-title">SwingU Pro</div>
+              <div class="lav-plate__head-caption">Top features</div>
+            </div>
+          </div>
+
+          <div class="lav-list__wrap">
+            <div class="lav-list__title">You’ll get:</div>
+          </div>
+          <div class="lav-plate__caption">${getDateRange()}: $99.00 auto-renewal. No commitment. Cancel anytime.</div>
         </div>
       </div>
     </div>
@@ -374,14 +521,12 @@ function handleUpgradePage() {
     el.classList.add('lav-sticky');
 
     el.innerHTML = `
-      <div class='lav-sticky__head'>
-        <div class='lav-sticky__off'>40% off</div>
-      </div>
-
-      <div class='lav-sticky__body'>
-        <div class='lav-unlock'>
-          <img class="lav-unlock__img" src="${settings.dir}/img/logo-white.svg" alt="" />
-          <div class="lav-unlock__mo">$4.99/mo</div>
+      <div class='lav-unlock'>
+        <div class='lav-unlock__off'>50% off</div>
+        <img class="lav-unlock__img" src="${settings.dir}/img/logo-white.svg" alt="" />
+        <div class="lav-unlock__price">
+          <div class="lav-unlock__price-old">$99.99</div>
+          <div class="lav-unlock__price-new">$49.99/yr</div>
         </div>
       </div>
     `;
@@ -394,14 +539,16 @@ function handleUpgradePage() {
     window.addEventListener('resize', handleStickyOffset);
 
     document
-      .querySelector('.lav-unlock:not(.lav-clicked)')
+      .querySelector('.lav-unlock')
       .addEventListener('click', function () {
-        this.classList.add('lav-clicked');
-        document.querySelector('.lav-unlock__mo').classList.add('lav-loader');
-        if (document.querySelector('[data-stripe-checkout-url]')) {
-          const url = document.querySelector('[data-stripe-checkout-url]')
-            .dataset.stripeCheckoutUrl;
+        if (document.querySelector('.lav-clicked')) return;
 
+        this.classList.add('lav-clicked');
+
+        document
+          .querySelector('.lav-unlock__price')
+          .classList.add('lav-loader');
+        if (document.querySelector('[data-stripe-checkout-url]')) {
           // pushDataLayer(
           //   'exp_stripe_v_utsp_usp',
           //   'Unlock SwingPro',
@@ -409,6 +556,8 @@ function handleUpgradePage() {
           //   'Upgrade to SwingU Pro'
           // );
 
+          const url = document.querySelector('[data-stripe-checkout-url]')
+            .dataset.stripeCheckoutUrl;
           const link = document.createElement('a');
           link.href = url;
           link.click();
@@ -470,7 +619,7 @@ function handleUpgradePage() {
       itemEl.classList.add('lav-list__item');
 
       itemEl.innerHTML = `
-        <img class="lav-list__img" src="${settings.dir}/img/benefits/benfit${i}.svg" alt="" />
+        <img class="lav-list__img" src="${settings.dir}/img/benefits/benefit${i}.svg" alt="" />
         <div class="lav-list__caption">${item.caption}</div>
       `;
 
@@ -478,8 +627,8 @@ function handleUpgradePage() {
     });
 
     document
-      .querySelector('.lav-plate')
-      .insertAdjacentElement('afterbegin', parentEl);
+      .querySelector('.lav-list__wrap')
+      .insertAdjacentElement('beforeend', parentEl);
 
     addToggler();
 
@@ -516,13 +665,15 @@ function handleUpgradePage() {
           : 'View all features';
       });
 
-      parentEl.insertAdjacentElement('afterend', toggler);
+      document
+        .querySelector('.lav-list__wrap')
+        .insertAdjacentElement('afterend', toggler);
     }
   }
 }
 
 // *** Utils *** //
-function waitFor(condition, cb, ms = 1000) {
+function waitFor(condition, cb, ms = 300) {
   if (condition()) {
     if (typeof cb == 'function') cb();
     return;
