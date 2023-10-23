@@ -3,38 +3,207 @@ await waitFor(() => document.head && document.body, false, { ms: 50 });
 
 // Config for Experiment
 const config = {
-  dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
+  dir: 'https://flopsi69.github.io/crs/zenithprepacademy/landing',
   clarity: ['set', '', 'variant_1'],
   debug: true,
 };
 
 // Styles for Experiment
 const styles = `
-  .jumb {
-    background: #0A132A url('${config.dir}/img/jumb-bg.jpg') top center / cover no-repeat;
+  .btn-cta {
+    border-radius: 2px;
+    background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
+    padding: 24px 60px;
+    color: #21223F;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    width: 100%;
+    height: 72px;
   }
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
+
+  .btn-cta img {
+    margin-left: 16px;
+  }
+
+  .jumb {
+    background: #0A132A url('${config.dir}/img/jumb-bg.jpeg') top center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 80px 0 100px;
+  }
+  .lav-container {
+    max-width: 1312px;
+    padding: 0 16px;
+    margin: auto;
+  }
+  .jumb__logo {
+    line-height: 0;
+  }
+  .jumb__title {
+    max-width: 1010px;
+    margin: 60px auto 0;
+    font-family: Kaisei Tokumin;
+    font-size: 56px;
+    line-height: 64px;
+  }
+  .jumb__caption {
+    margin-top: 32px;
+    color: #F9FAFB;
+    font-family: Inter;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  .jumb__btn {
+    margin-top: 32px;
+  }
+  .jumb__arrow {
+    line-height: 0;
+    margin: 30px 0;
+  }
+  .jumb__watched {
+    color: #F9FAFB;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .jumb__watched span {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .jumb-about {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 40px;
+    border: 1px dashed #FFD88A;
+    background: linear-gradient(140deg, rgba(3, 22, 64, 0.20) 16.4%, rgba(18, 22, 47, 0.20) 38.68%, rgba(23, 25, 53, 0.20) 61.31%, rgba(2, 11, 34, 0.20) 85.38%);
+    padding: 16px 44px 16px 16px;
+  }
+  .jumb-about__preview {
+    line-height: 0;
+    margin-right: 36px;
+    flex-shrink: 0;
+  }
+  .jumb-about__preview img {
+    width: 280px;
+  }
+  .jumb-about__info {
+    text-align: left;
+  }
+  .jumb-about__caption {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 18px;
+    line-height: 26px; 
+  }
+  .jumb-about__title {
+    margin-top: 16px;
+    font-family: Kaisei Tokumin;
+    border-bottom: 1px solid #FFD88A;
+    font-size: 32px;
+    line-height: 40px;
+    text-decoration-line: underline;
+    background: linear-gradient(114deg, #FFD88A 26.97%, #FFBA7E 74.53%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .jumb-featured {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+  }
+  .jumb-featured__title {
+    font-family: Inter;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-right: 80px;
+  }
+  .jumb-featured__logos {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    opacity: 0.7;
+  }
+  .jumb-owner {
+    margin: 60px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1024px;
+    width: 100%;
+  }
+  .jumb-owner__image {
+    line-height: 0;
+    margin-right: 64px;
+    flex-shrink: 0;
+  }
+  .jumb-owner__image img {
+    width: 400px;
+  }
+  .jumb-owner__info {
+    text-align: left;
+  }
+  .jumb-owner__title {
+    font-family: Kaisei Tokumin;
+    font-size: 48px;
+    line-height: 56px; 
+  }
+  .jumb-owner__caption {
+    margin-top: 8px;
+    color: #F9FAFB;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .jumb-owner__description {
+    position: relative;
+    margin-top: 32px;
+    padding-left: 32px;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.32px;
+  }
+  .jumb-owner__description p {
+    margin: 0;
+  }
+  .jumb-owner__description p + p {
+    margin-top: 20px;
+  }
+  .jumb-owner__description::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(134deg, #87F5FC 20.05%, #35C6BB 82.92%, #72F7FF 106.27%);
+  }
+  .jumb-owner__description span {
+    font-weight: 600;
+  }
+  .jumb-owner {}
+  .jumb-owner {}
   .jumb {}
   .jumb {}
   .jumb {}
@@ -62,7 +231,7 @@ function addLayout() {
     <div class='jumb'>
       <div class='lav-container'>
         <div class='jumb__logo'>
-          <img src='${config.dir}/img/feature1.svg' alt='' />
+          <img src='${config.dir}/img/logo.svg' />
         </div>
 
         <div class='jumb__title'>
@@ -77,21 +246,21 @@ function addLayout() {
 
         <button class='jumb__btn btn-cta'>
           watch FREE video
-          <img src='${config.dir}/img/feature1.svg' alt='' />
+          <img src='${config.dir}/img/arrow-right-solid.svg' />
         </button>
         
         <div class='jumb__arrow'>
-          <img src='${config.dir}/img/feature1.svg' alt='' />
+          <img src='${config.dir}/img/arrow-dashed.svg' />
         </div>
 
         <div class='jumb__watched'>Over <span>100,000+</span> parents just like you have watched this webinar</div>
 
         <div class='jumb-about'>
           <div class='jumb-about__preview'>
-            <img src='${config.dir}/img/feature1.svg' alt='' />
+            <img src='${config.dir}/img/jumb-preview.png' />
           </div>
           <div class='jumb-about__info'>
-            <div class='jumb-about__caption'></div>
+            <div class='jumb-about__caption'>Hear What They Think</div>
             <div class='jumb-about__title'>About Zenith Prep Academy</div>
           </div>
         </div>
@@ -99,30 +268,71 @@ function addLayout() {
         <div class='jumb-featured'>
           <div class='jumb-featured__title'>Featured on:</div>
           <div class='jumb-featured__logos'>
-            <img src='${config.dir}/img/feature1.svg' alt='' />
-            <img src='${config.dir}/img/feature2.svg' alt='' />
-            <img src='${config.dir}/img/feature3.svg' alt='' />
-            <img src='${config.dir}/img/feature4.svg' alt='' />
-            <img src='${config.dir}/img/feature5.svg' alt='' />
-            <img src='${config.dir}/img/feature6.svg' alt='' />
+            <img src='${config.dir}/img/featured1.svg' />
+            <img src='${config.dir}/img/featured2.svg' />
+            <img src='${config.dir}/img/featured3.svg' />
+            <img src='${config.dir}/img/featured4.svg' />
+            <img src='${config.dir}/img/featured5.svg' />
+            <img src='${config.dir}/img/featured6.svg' />
           </div>
         </div>
 
         <div class='jumb-owner'>
-          <div class='jumb-owner__image'></div>
+          <div class='jumb-owner__image'>
+            <img src='${config.dir}/img/kevin.png' />
+          </div>
           <div class='jumb-owner__info'>
             <div class='jumb-owner__title'>Kevin Hong</div>
-            <div class='jumb-owner__caption'>PROGRAM DIRECTOR & Host</div>
+            <div class='jumb-owner__caption'>Program Director & Host</div>
             <div class='jumb-owner__description'>
               <p>
-                In charge of managing the College Consulting program – Provided guidance & advice to 1,000s of families on how their students can gain admissions into top STEM, Business, and Healthcare summer programs, internships, and research opportunities
+                <span>In charge of managing the College Consulting program</span> – Provided guidance & advice to 1,000s of families on how their students can gain admissions into <span>top STEM, Business, and Healthcare summer programs,</span> internships, and research opportunities
               </p>
               <p>
-                Experience working with families from all around the US, helping them gain admission into the Ivy Leagues and other top universities
+                Experience working with families from <span>all around the US,</span> helping them gain admission into the Ivy Leagues and other top universities
               </p>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+
+    <div class='learn'>
+      <div class='lav-container'>
+        <div class='learn__section'>
+          <div class='learn__title'>
+           What you will <span>learn after</span><br/> watching the video
+          </div>
+          <div class='learn__list'>
+            <div class='learn__item'>
+              <div class='learn__image'>
+                <img src='${config.dir}/img/learn1.svg' />
+              </div>
+              <div class='learn__caption'>What universities actually want in an applicant (but never say)</div>
+            </div>
+            <div class='learn__item'>
+              <div class='learn__image'>
+                <img src='${config.dir}/img/learn2.svg' />
+              </div>
+              <div class='learn__caption'>At what age you should start the preparation to secure a spot in a good college</div>
+            </div>
+            <div class='learn__item'>
+              <div class='learn__image'>
+                <img src='${config.dir}/img/learn3.svg' />
+              </div>
+              <div class='learn__caption'>Proven methods and strategies for gaining admission to top-tier universities, even if your child does not have the best grades or SAT scores  </div>
+            </div>
+            <div class='learn__item'>
+              <div class='learn__image'>
+                <img src='${config.dir}/img/learn4.svg' />
+              </div>
+              <div class='learn__caption'>How you, as a parent, can assist your child in securing admission to the university they deserve</div>
+            </div>
+          </div>
+        </div>
+
+        <div class='learn__divider'></div>
       </div>
     </div>
   `;
