@@ -1,6 +1,15 @@
 console.debug('*** Experiment started ***');
 await waitFor(() => document.head && document.body, false, { ms: 50 });
 
+document.head.insertAdjacentHTML(
+  'beforeend',
+  `
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kaisei+Tokumin:wght@400;500;700&display=swap" rel="stylesheet">
+`
+);
+
 // Config for Experiment
 const config = {
   dir: 'https://flopsi69.github.io/crs/zenithprepacademy/landing',
@@ -10,12 +19,15 @@ const config = {
 
 // Styles for Experiment
 const styles = `
+  .exp-layout {
+    font-family: 'Inter', sans-serif;
+  }
   .btn-cta {
     border-radius: 2px;
     background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
     padding: 24px 60px;
     color: #21223F;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
@@ -29,6 +41,11 @@ const styles = `
     max-width: 400px;
     width: 100%;
     height: 72px;
+  }
+
+  .btn-cta_black {
+    background: linear-gradient(123deg, #031640 23.3%, #12162F 42.4%, #171935 61.8%, #020B22 82.43%);
+    color: #fff;
   }
 
   .btn-cta img {
@@ -52,14 +69,13 @@ const styles = `
   .jumb__title {
     max-width: 1010px;
     margin: 60px auto 0;
-    font-family: Kaisei Tokumin;
+    font-family: 'Kaisei Tokumin', serif;
     font-size: 56px;
     line-height: 64px;
   }
   .jumb__caption {
     margin-top: 32px;
     color: #F9FAFB;
-    font-family: Inter;
     font-size: 20px;
     line-height: 1.5;
   }
@@ -72,7 +88,6 @@ const styles = `
   }
   .jumb__watched {
     color: #F9FAFB;
-    font-family: Inter;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -104,13 +119,12 @@ const styles = `
   }
   .jumb-about__caption {
     color: #FFF;
-    font-family: Inter;
     font-size: 18px;
     line-height: 26px; 
   }
   .jumb-about__title {
     margin-top: 16px;
-    font-family: Kaisei Tokumin;
+    font-family: 'Kaisei Tokumin', serif;
     border-bottom: 1px solid #FFD88A;
     font-size: 32px;
     line-height: 40px;
@@ -127,7 +141,6 @@ const styles = `
     margin-top: 80px;
   }
   .jumb-featured__title {
-    font-family: Inter;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 2px;
@@ -160,14 +173,13 @@ const styles = `
     text-align: left;
   }
   .jumb-owner__title {
-    font-family: Kaisei Tokumin;
+    font-family: 'Kaisei Tokumin', serif;
     font-size: 48px;
     line-height: 56px; 
   }
   .jumb-owner__caption {
     margin-top: 8px;
     color: #F9FAFB;
-    font-family: Inter;
     font-size: 16px;
     font-style: italic;
     line-height: 1.5;
@@ -177,7 +189,6 @@ const styles = `
     margin-top: 32px;
     padding-left: 32px;
     color: #FFF;
-    font-family: Inter;
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
@@ -202,15 +213,495 @@ const styles = `
   .jumb-owner__description span {
     font-weight: 600;
   }
-  .jumb-owner {}
-  .jumb-owner {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
-  .jumb {}
+
+  .learn {
+    padding: 120px 0;
+  }
+  .learn__title {
+    color: #21293E;
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56px;
+  }
+  .learn__title span {
+    font-weight: 500;
+    border-bottom: 1px solid #5CDDDB;
+  }
+  .learn__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 72px;
+    margin-top: 50px;
+  }
+  .learn__image {
+    line-height: 0;
+    text-align: center;
+  }
+  .learn__caption {
+    margin-top: 20px;
+    color: #434C60;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .learn__caption span {
+    font-weight: 600;
+  }
+  .learn__divider {
+    position: relative;
+    margin: 48px 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .learn__divider:before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    width: 100%;
+    background: #DFE3EE;
+  }
+  .learn__divider img {
+    position: relative;
+  }
+  .learn__divider img + img {
+    right: 15px;
+  }
+  .learn__cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+
+  .examples {
+    padding: 90px 0;
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    color: #fff;
+  }
+  .examples__title {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .examples__title span {
+    font-weight: 500;
+    background: linear-gradient(128deg, #FFDA81 61.24%, #FFB574 98.6%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .examples__table {
+    margin: 72px auto 0;
+    max-width: 1260px;
+  }
+  .examples__item + .examples__item {
+    border-left: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  .examples__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #21293E;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  .examples__row + .examples__row {
+    border-top: none;
+  }
+  .examples__row + .examples__row .examples__item-head {
+    display: none;
+  }
+  .examples__item-head {
+    padding: 12px;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  .examples__item-body {
+    padding: 40px 30px;
+  }
+  .examples__subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .examples__subtitle + .examples__descr {
+    margin-top: 16px;
+  }
+  .examples__descr:not(.examples__descr_plain) {
+    display: flex;
+    align-items: flex-start;
+    color: #F9FAFB;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .examples__descr + .examples__descr {
+    margin-top: 8px;
+  }
+  .examples__descr img {
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+  .examples__descr span {
+    font-weight: 600;
+  }
+
+
+  .parents {
+    padding: 120px 0;
+  }
+  .parents__plate {
+    position: relative;
+    background: linear-gradient(114deg, #FFD88A 26.97%, #FFBA7E 74.53%);
+    padding: 112px 80px 72px 96px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 1150px;
+    margin: auto;
+  }
+  .parents__plate:before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px dashed #031640;
+    pointer-events: none;
+  }
+  .parents__info {
+    max-width: 560px;
+    padding-bottom: 40px;
+  }
+  .parents__image {
+    line-height: 0;
+    margin-left: 64px;
+  }
+  .parents__title {
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .parents__title span {
+    font-weight: 700;
+  }
+  .parents__caption {
+    margin-top: 24px;
+    color: #515E7A;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .parents__btn {
+    max-width: 350px;
+    margin-top: 40px;
+  }
+  .parents__age {
+    margin-top: 24px;
+    color: #122340;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .parents__age span {
+    font-weight: 600;
+  }
+
+  .who {
+    padding: 90px 0;
+    background: #0A132A url('${config.dir}/img/who-bg.jpeg') top center / cover no-repeat;
+    text-align: center;
+  }
+  .who__logo {
+    line-height: 0;
+  }
+  .who__title {
+    margin-top: 40px;
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: 1px;
+  }
+  .who__caption {
+    margin-top: 24px;
+    color: #515E7A;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .who__list {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .who__item {
+    border-radius: 4px;
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    color: #fff;
+    padding: 32px 40px 48px;
+  }
+  .who__item-title {
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(223, 227, 238, 0.20);
+  }
+  .who__item-descr {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .who__item-descr span {
+    font-weight: 600
+  }
+  .who__btn {
+    margin-top: 48px;
+  }
+
+  .trusted {
+    margin: 120px 0;
+  }
+  .trusted__inner {
+    position: relative;
+    background: linear-gradient(140deg, #031640 16.4%, #12162F 38.68%, #171935 61.31%, #020B22 85.38%);
+    padding: 90px 0;
+    color: #fff;
+  }
+  .trusted__inner:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: url('${config.dir}/img/trusted-quote.svg') -32px center / auto no-repeat;
+  }
+  .trusted__title {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+  }
+  .trusted__logos {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    justify-content: center;
+    margin-top: 72px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+    padding-bottom: 48px;
+  }
+  .trusted__logo {
+    position: relative;
+    line-height: 0;
+  }
+  .trusted__logo.active:before {
+    content: '';
+    position: absolute;
+    bottom: -55px;
+    left: -15px;
+    right: -15px;
+    background: linear-gradient(117deg, #FFDE8D 2.56%, #FFB97C 66.49%);
+    height: 1px;
+  }
+  .trusted__logo:not(.active) {
+    opacity: 0.6;
+  }
+  .trusted__quote {
+    margin: 48px auto 0;
+    max-width: 660px;
+  }
+  .trusted__descr {
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 18px;
+    line-height: 32px;
+  }
+  .trusted__author {
+    margin-top: 24px;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+
+  .reviews {
+    margin: 120px 0;
+  }
+  .reviews__title {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 40px;
+    line-height: 48px; 
+  }
+  .reviews__slider {
+    margin-top: 50px;
+  }
+  .reviews__cta {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .reviews {}
+
+  .review {
+    max-width: 410px;
+    width: 100%;
+  }
+  .review__preview {
+    line-height: 0;
+  }
+  .review__preview img {
+    max-width: 100%;
+  }
+  .review__body {
+    padding: 40px 32px;
+    border: 1px solid #DFE3EE;
+    background: #FFF;
+    border-radius: 0 0 4px 4px;
+  }
+  .review__name {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+  .review__descr {
+    margin-top: 20px;
+    color: #515E7A;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .review__details {
+    color: #21293E;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 20px;
+  }
+  .review__details span {
+    text-decoration-line: underline;
+  }
+
+
+  .webinars {
+    color: #FFF;
+    background: linear-gradient(140deg, #031640 16.4%, #12162F 38.68%, #171935 61.31%, #020B22 85.38%);
+    padding: 90px 0;
+  }
+  .webinars__title {
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+  }
+  .webinars {}
+
+
+
+  .metrics {
+    margin: 120px 0;
+    text-align: center;
+  }
+  .metrics__logo {
+    line-height: 0;
+  }
+  .metrics__title {
+    margin-top: 40px;
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 1px;
+  }
+  .metrics__list {
+    margin-top: 72px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+  }
+  .metrics__item {
+    max-width: 216px;
+    width: 100%;
+  }
+  .metrics__item-value {
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 56px;
+    color: #031640;
+    line-height: 64px;
+  }
+  .metrics__item:nth-child(4) .metrics__item-value  {
+    font-size: 40px;
+  }
+  .metrics__item-caption {
+    color: #515E7A;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #DFE3EE;
+  }
+  .metrics__btn {
+    margin-top: 48px;
+  }
+
+  
+  .award {
+    color: #fff;
+    text-align: center;
+    padding: 90px 0 100px;
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+  }
+  .award__title {
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+  }
+  .award__divider {
+    background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .award__arrow {
+    line-height: 0;
+    margin-top: 24px;
+  }
+  .award__device {
+    line-height: 0;
+    margin-top: 40px;
+  }
+  .award {}
+  .award {}
+  .award {}
+  .award {}
+
+
+
 `;
 
 const stylesEl = document.createElement('style');
@@ -228,112 +719,458 @@ function initExp() {
 
 function addLayout() {
   const html = `
-    <div class='jumb'>
-      <div class='lav-container'>
-        <div class='jumb__logo'>
-          <img src='${config.dir}/img/logo.svg' />
-        </div>
-
-        <div class='jumb__title'>
-          Discover the 3 factors <br/>
-          that prevent 6ᵗʰ - 12ᵗʰ graders from getting into the colleges they deserve
-        </div>
-
-        <div class='jumb__caption'>
-          And tips on how you can help your 12-18 year old <br/>
-          get accepted into a top university.
-        </div>
-
-        <button class='jumb__btn btn-cta'>
-          watch FREE video
-          <img src='${config.dir}/img/arrow-right-solid.svg' />
-        </button>
-        
-        <div class='jumb__arrow'>
-          <img src='${config.dir}/img/arrow-dashed.svg' />
-        </div>
-
-        <div class='jumb__watched'>Over <span>100,000+</span> parents just like you have watched this webinar</div>
-
-        <div class='jumb-about'>
-          <div class='jumb-about__preview'>
-            <img src='${config.dir}/img/jumb-preview.png' />
+    <div class='exp-layout'>
+      <div class='jumb'>
+        <div class='lav-container'>
+          <div class='jumb__logo'>
+            <img src='${config.dir}/img/logo.svg' />
           </div>
-          <div class='jumb-about__info'>
-            <div class='jumb-about__caption'>Hear What They Think</div>
-            <div class='jumb-about__title'>About Zenith Prep Academy</div>
-          </div>
-        </div>
 
-        <div class='jumb-featured'>
-          <div class='jumb-featured__title'>Featured on:</div>
-          <div class='jumb-featured__logos'>
-            <img src='${config.dir}/img/featured1.svg' />
-            <img src='${config.dir}/img/featured2.svg' />
-            <img src='${config.dir}/img/featured3.svg' />
-            <img src='${config.dir}/img/featured4.svg' />
-            <img src='${config.dir}/img/featured5.svg' />
-            <img src='${config.dir}/img/featured6.svg' />
+          <div class='jumb__title'>
+            Discover the 3 factors <br/>
+            that prevent 6ᵗʰ - 12ᵗʰ graders from getting into the colleges they deserve
           </div>
-        </div>
 
-        <div class='jumb-owner'>
-          <div class='jumb-owner__image'>
-            <img src='${config.dir}/img/kevin.png' />
+          <div class='jumb__caption'>
+            And tips on how you can help your 12-18 year old <br/>
+            get accepted into a top university.
           </div>
-          <div class='jumb-owner__info'>
-            <div class='jumb-owner__title'>Kevin Hong</div>
-            <div class='jumb-owner__caption'>Program Director & Host</div>
-            <div class='jumb-owner__description'>
-              <p>
-                <span>In charge of managing the College Consulting program</span> – Provided guidance & advice to 1,000s of families on how their students can gain admissions into <span>top STEM, Business, and Healthcare summer programs,</span> internships, and research opportunities
-              </p>
-              <p>
-                Experience working with families from <span>all around the US,</span> helping them gain admission into the Ivy Leagues and other top universities
-              </p>
+
+          <button class='jumb__btn btn-cta'>
+            watch FREE video
+            <img src='${config.dir}/img/arrow-right-solid.svg' />
+          </button>
+          
+          <div class='jumb__arrow'>
+            <img src='${config.dir}/img/arrow-dashed.svg' />
+          </div>
+
+          <div class='jumb__watched'>Over <span>100,000+</span> parents just like you have watched this webinar</div>
+
+          <div class='jumb-about'>
+            <div class='jumb-about__preview'>
+              <img src='${config.dir}/img/jumb-preview.png' />
+            </div>
+            <div class='jumb-about__info'>
+              <div class='jumb-about__caption'>Hear What They Think</div>
+              <div class='jumb-about__title'>About Zenith Prep Academy</div>
+            </div>
+          </div>
+
+          <div class='jumb-featured'>
+            <div class='jumb-featured__title'>Featured on:</div>
+            <div class='jumb-featured__logos'>
+              <img src='${config.dir}/img/featured1.svg' />
+              <img src='${config.dir}/img/featured2.svg' />
+              <img src='${config.dir}/img/featured3.svg' />
+              <img src='${config.dir}/img/featured4.svg' />
+              <img src='${config.dir}/img/featured5.svg' />
+              <img src='${config.dir}/img/featured6.svg' />
+            </div>
+          </div>
+
+          <div class='jumb-owner'>
+            <div class='jumb-owner__image'>
+              <img src='${config.dir}/img/kevin.png' />
+            </div>
+            <div class='jumb-owner__info'>
+              <div class='jumb-owner__title'>Kevin Hong</div>
+              <div class='jumb-owner__caption'>Program Director & Host</div>
+              <div class='jumb-owner__description'>
+                <p>
+                  <span>In charge of managing the College Consulting program</span> – Provided guidance & advice to 1,000s of families on how their students can gain admissions into <span>top STEM, Business, and Healthcare summer programs,</span> internships, and research opportunities
+                </p>
+                <p>
+                  Experience working with families from <span>all around the US,</span> helping them gain admission into the Ivy Leagues and other top universities
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
 
-    <div class='learn'>
-      <div class='lav-container'>
-        <div class='learn__section'>
-          <div class='learn__title'>
-           What you will <span>learn after</span><br/> watching the video
+      <div class='learn'>
+        <div class='lav-container'>
+          <div class='learn__section'>
+            <div class='learn__title'>
+            What you will <span>learn after</span><br/> watching the video
+            </div>
+            <div class='learn__list'>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn1.svg' />
+                </div>
+                <div class='learn__caption'>What universities actually <span>want in</span> an applicant (but never say)</div>
+              </div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn2.svg' />
+                </div>
+                <div class='learn__caption'>At <span>what age</span> you should start the preparation to secure a spot in a <span>good college</span></div>
+              </div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn3.svg' />
+                </div>
+                <div class='learn__caption'><span>Proven methods</span> and strategies for gaining admission to top-tier universities, even if your child does not have <span>the best grades or SAT</span> scores  </div>
+              </div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn4.svg' />
+                </div>
+                <div class='learn__caption'><span>How you, as a parent,</span> can assist your child in securing admission to the university they deserve</div>
+              </div>
+            </div>
           </div>
-          <div class='learn__list'>
-            <div class='learn__item'>
-              <div class='learn__image'>
-                <img src='${config.dir}/img/learn1.svg' />
-              </div>
-              <div class='learn__caption'>What universities actually want in an applicant (but never say)</div>
+
+          <div class='learn__divider'>
+            <img src='${config.dir}/img/round-plus.svg' />
+            <img src='${config.dir}/img/arrow-dashed-yellow.svg' />
+          </div>
+
+          <div class='learn__section'>
+            <div class='learn__title'>
+              High-Value <span>tips</span> And <span>secrets</span> </br> You’ll Discover Inside The Webinar
             </div>
-            <div class='learn__item'>
-              <div class='learn__image'>
-                <img src='${config.dir}/img/learn2.svg' />
+            <div class='learn__list'>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn5.svg' />
+                </div>
+                <div class='learn__caption'><span>Why ~90% of students who get 4.0</span> and above GPAs and perfect SAT scores are NOT accepted​ into Harvard, Stanford, or the top 10 universities (and what to do)</div>
               </div>
-              <div class='learn__caption'>At what age you should start the preparation to secure a spot in a good college</div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn6.svg' />
+                </div>
+                <div class='learn__caption'>How to identify your child’s <span>true interest</span> and passion, turn it into a unique advantage, and use it to get into a better university</div>
+              </div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn7.svg' />
+                </div>
+                <div class='learn__caption'>The truth about certain extracurricular activities that actually <span>hurt students’</span> chances​ of getting into better schools</div>
+              </div>
+              <div class='learn__item'>
+                <div class='learn__image'>
+                  <img src='${config.dir}/img/learn8.svg' />
+                </div>
+                <div class='learn__caption'>What <span>“value-added”</span> college planning is, and how early you should start if you want your child to enter a top university (most parents get this wrong)</div>
+              </div>
             </div>
-            <div class='learn__item'>
-              <div class='learn__image'>
-                <img src='${config.dir}/img/learn3.svg' />
+          </div>
+
+          <div class='learn__cta'>
+            <button class='learn__btn btn-cta'>
+              watch FREE video
+              <img src='${config.dir}/img/arrow-right-solid.svg' />
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='examples'>
+        <div class='lav-container'>
+          <div class='examples__title'>
+            Some examples of what universities actually<br/> want, in addition to good <span>GPAs and SAT scores:</span>
+          </div>
+
+          <div class='examples__table'>
+            <div class='examples__row'>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What universities ask</div>
+                <div class='examples__item-body'>
+                  <div class='examples__subtitle'>Essay</div>
+                  <div class='examples__descr examples__descr_plain'>
+                    <span>Example:</span> Think about an academic subject that inspires you. Describe how you have furthered this interest inside and/or outside of the classroom.
+                  </div>
+                </div>
               </div>
-              <div class='learn__caption'>Proven methods and strategies for gaining admission to top-tier universities, even if your child does not have the best grades or SAT scores  </div>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What applicants usually say</div>
+                <div class='examples__item-body'>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-cross.svg' />
+
+                    Since I was a child I loved science. Last summer, I volunteered at the local Red Cross and (redacted) hospital. Even as a child I constantly sought it out, first on television with Bill Nye and MythBusters, then later in person in every museum exhibit I could find. This reinforced my passion to be in science and confirmed what I already knew about my passion....
+                  </div>
+                </div>
+              </div>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What universities want to hear</div>
+                <div class='examples__item-body'>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-check.svg' />
+
+                    After a summer-long program of creating colorful designs of new molecules in Avogadro, detailed illustrations of proteins on the Protein Data Bank, and artistic organization of figures within my research paper, I presented my findings and placed First in the Biochemistry, Microbiology, and Molecular Biology (BMMB) category at my County Science Fair and eventually qualified for an international research and innovation competition.
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class='learn__item'>
-              <div class='learn__image'>
-                <img src='${config.dir}/img/learn4.svg' />
+
+            <div class='examples__row'>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What universities ask</div>
+                <div class='examples__item-body'>
+                  <div class='examples__subtitle'>Extracurricular / internships</div>
+                </div>
               </div>
-              <div class='learn__caption'>How you, as a parent, can assist your child in securing admission to the university they deserve</div>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What applicants usually say</div>
+                <div class='examples__item-body'>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-cross.svg' />
+                    Playing sports or musical instruments
+                  </div>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-cross.svg' />
+                    Math Olympiad, DECA, robotics club, etc.
+                  </div>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-cross.svg' />
+                    Volunteering at the Red Cross or local nonprofits
+                  </div>
+                </div>
+              </div>
+              <div class='examples__item'>
+                <div class='examples__item-head'>What universities want to hear</div>
+                <div class='examples__item-body'>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-check.svg' />
+                    Developed an Augmented Reality app for a Machine Learning company
+                  </div>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-check.svg' />
+                    Acceptances into summer programs & internships at universities, hospitals, clinics, and more
+                  </div>
+                  <div class='examples__descr'>
+                    <img src='${config.dir}/img/circle-check.svg' />
+                    Started drone filming business for real estate
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class='learn__divider'></div>
       </div>
+
+
+      <div class='parents'>
+        <div class='lav-container'>
+          <div class='parents__plate'>
+            <div class='parents__info'>
+              <div class='parents__title'>
+                <span>Parents are also responsible</span> for whether their child can get into a good university.
+              </div>
+
+              <div class='parents__caption'>
+                Ensure that you don't overlook important steps to secure<br/>your child's future.
+              </div>
+
+              <button class='parents__btn btn-cta btn-cta_black'>
+                watch FREE video
+                <img src='${config.dir}/img/arrow-right-solid_white.svg' />
+              </button>
+              <div class='parents__age'>For parents of <span>12-18 year-olds</span></div>
+            </div>
+
+            <div class='parents__image'>
+              <img src='${config.dir}/img/parents.svg' />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='who'>
+        <div class='lav-container'>
+          <div class='who__logo'>
+            <img src='${config.dir}/img/logo-contrast.svg' />
+          </div>
+          <div class='who__title'>Who is ZENITH PREP ACADEMY</div>
+          <div class='who__caption'>Ensure that you don't overlook important steps to foster a prosperous and secure future for your child</div>
+
+          <div class='who__list'>
+            <div class='who__item'>
+              <div class='who__item-title'>Personalized college<br/>guidance</div>
+              <div class='who__item-descr'><span>Create a customized</span> college preparation guide and roadmap that will help your child stand out to universities.</div>
+            </div>
+            <div class='who__item'>
+              <div class='who__item-title'>Assist in identifying your<br/>child's true interests<br/>and passions</div>
+              <div class='who__item-descr'>Leverage them as unique advantages to gain admission to a better university. <span>Guide your child and support them</span> in following the plan.</div>
+            </div>
+            <div class='who__item'>
+              <div class='who__item-title'>16 years of experience</div>
+              <div class='who__item-descr'>Through our college counseling program, our students have received a <span>4x higher acceptance rate</span> for Ivy Leagues/Top 15 universities and <span>more than 6x</span> for Top 25 universities. Additionally, more than <span>90% of our students</span> were accepted into a Top 50 university and <span>over 98%</span> for a Top 100.</div>
+            </div>
+          </div>
+
+          <button class='who__btn btn-cta'>
+            watch FREE video
+            <img src='${config.dir}/img/arrow-right-solid.svg' />
+          </button>
+        </div>
+      </div>
+
+
+      <div class='trusted'>
+        <div class='lav-container'>
+          <div class='trusted__inner'>
+            <div class='trusted__title'>
+              Trusted by industry experts<br/>and 50 000+ parents
+            </div>
+            <div class='trusted__logos'>
+              <div class='trusted__logo'>
+                <img src='${config.dir}/img/featured1.svg' />
+              </div>
+              <div class='trusted__logo'>
+                <img src='${config.dir}/img/featured2.svg' />
+              </div>
+              <div class='trusted__logo active'>
+                <img src='${config.dir}/img/featured3.svg' />
+              </div>
+              <div class='trusted__logo'>
+                <img src='${config.dir}/img/featured4.svg' />
+              </div>
+              <div class='trusted__logo'>
+                <img src='${config.dir}/img/featured5.svg' />
+              </div>
+              <div class='trusted__logo'>
+                <img src='${config.dir}/img/featured6.svg' />
+              </div>
+            </div>
+            <div class='trusted__quote'>
+              <div class='trusted__descr'>
+                “Since 2007, Zenith has been working with families and students to create fully tailored and customized online consulting and learning programs, designed specifically for the college application process, that help students identify their personalized paths of choice.”
+              </div>
+              <div class='trusted__author'>Rod Berger</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class='reviews'>
+        <div class='lav-container'>
+          <div class='reviews__hedaer'>
+            <div class='reviews__title'>Hear what parents just like YOU think about us</div>
+            <div class='reviews__pagination'></div>
+          </div>
+
+          <div class='reviews__slider'>
+            <div class='review'>
+              <div class='review__preview'>
+                <img src='${config.dir}/img/kevin.png' />
+              </div>
+              <div class='review__body'>
+                <div class='review__name'>Alex</div>
+                <div class='review__descr'>Alex has been so happy with his relationship with Zenith that he’s looking forward to signing up his younger kids when they’re old enough  ...</div>
+                <div class='review__details'><span>Read more</span> ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class='reviews__cta'>
+            <button class='reviews__btn btn-cta'>
+              watch FREE video
+              <img src='${config.dir}/img/arrow-right-solid.svg' />
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='webinars'>
+        <div class='lav-container'>
+          <div class='webinars__title'>Our webinars</div>
+          <div class='webinars__list'>
+            TODO SLIDES
+          </div>
+        </div>
+      </div>
+
+
+      <div class="metrics">
+        <div class="lav-container">
+          <div class="metrics__logo">
+            <img src="${config.dir}/img/logo-contrast.svg">
+          </div>
+          <div class="metrics__title">Who is ZENITH PREP ACADEMY</div>
+
+          <div class="metrics__list">
+            <div class="metrics__item">
+              <div class="metrics__item-value">650ᵗʰ</div>
+              <div class="metrics__item-caption">fastest-growing private company in the US</div>
+            </div>
+            <div class="metrics__item">
+              <div class="metrics__item-value">9ᵗʰ</div>
+              <div class="metrics__item-caption">fastest-growing education company in the US</div>
+            </div>
+            <div class="metrics__item">
+              <div class="metrics__item-value">16+</div>
+              <div class="metrics__item-caption">years in the business</div>
+            </div>
+            <div class="metrics__item">
+              <div class="metrics__item-value">Thousands</div>
+              <div class="metrics__item-caption">of students have worked with us</div>
+            </div>
+            <div class="metrics__item">
+              <div class="metrics__item-value">40+</div>
+              <div class="metrics__item-caption">states we have students in</div>
+            </div>
+          </div>
+
+          <button class="metrics__btn btn-cta">
+            watch FREE video
+            <img src="${config.dir}/img/arrow-right-solid.svg">
+          </button>
+        </div>
+      </div>
+
+
+      <div class='award'>
+        <div class='lav-container'>
+          <div class='award__title'>Awards won</div>
+          <div class='award__main'>
+            <img src="${config.dir}/img/awards.svg">
+            <div class='award__list'>
+            
+            </div>
+          </div>
+          <div class='award__divider award__title'>&</div>
+          <div class='award__title'>In The News</div>
+          <div class='award__arrow'>
+            <img src='${config.dir}/img/arrow-dashed.svg' />
+          </div>
+          <div class='award__device'>
+            <img src='${config.dir}/img/award-device.svg' />
+          </div>
+        </div>
+      </div>
+
+
+      <div class='sec'>
+        <div class='lav-container'></div>
+      </div>
+
+
+      <div class='sec'>
+        <div class='lav-container'></div>
+      </div>
+
+
+      <div class='sec'>
+        <div class='lav-container'></div>
+      </div>
+
+
+      <div class='sec'>
+        <div class='lav-container'></div>
+      </div>
+
+
     </div>
   `;
 
@@ -344,7 +1181,7 @@ function addLayout() {
 class Modal {
   static list = [];
   constructor(name, innerHTML) {
-    if (!$('.lav-modal')) {
+    if (!_$('.lav-modal')) {
       this.constructor.init();
     }
     this.el = document.createElement('div');
@@ -352,7 +1189,7 @@ class Modal {
     this.name = name;
     this.el.innerHTML = innerHTML;
 
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+    _$('.lav-modal').insertAdjacentElement('beforeend', this.el);
 
     this.constructor.list.push(this);
   }
@@ -381,28 +1218,28 @@ class Modal {
   static open(modalName, cb) {
     document.body.classList.add('lav-modal-open');
 
-    if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+    if (_$('.lav-modal__inner.active')) {
+      _$('.lav-modal__inner.active').classList.remove('active');
     }
 
-    $(modalName).classList.add('active');
+    _$(modalName).classList.add('active');
 
     if (typeof cb === 'function') cb();
 
     setTimeout(() => {
-      $('.lav-modal').classList.add('active');
+      _$('.lav-modal').classList.add('active');
     }, 100);
   }
 
   static close(cb) {
     document.body.classList.remove('lav-modal-open');
 
-    $('.lav-modal')?.classList.remove('active');
+    _$('.lav-modal')?.classList.remove('active');
 
     if (typeof cb === 'function') cb();
 
     setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
+      _$('.lav-modal__inner.active')?.classList.remove('active');
     }, 400);
   }
 
@@ -493,15 +1330,15 @@ async function waitFor(condition, cb = false, customConfig = {}) {
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
-    if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
+    if (_$(condition)) {
+      if (typeof cb === 'function') cb(_$(condition));
       return;
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
-        if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
+        if (_$(condition)) {
+          if (typeof cb === 'function') cb(_$(condition));
           observer.disconnect();
           resolve();
         }
@@ -514,7 +1351,7 @@ async function waitFor(condition, cb = false, customConfig = {}) {
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl;
 
   if (!el) return;
 
@@ -543,7 +1380,7 @@ function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl;
 
   if (!el || typeof cb !== 'function') return;
 
@@ -587,7 +1424,7 @@ function delay(ms) {
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
+  const el = typeof selector === 'string' ? _$(selector) : selector;
 
   if (!el) return false;
 
@@ -602,10 +1439,10 @@ function isElementInViewport(selector) {
 }
 
 // Shordcode for selectors
-function $(selector, context = document) {
+function _$(selector, context = document) {
   return context.querySelector(selector);
 }
-function $$(selector, context = document, toSimpleArray = false) {
+function _$$(selector, context = document, toSimpleArray = false) {
   const arr = context.querySelectorAll(selector);
 
   return toSimpleArray ? Array.from(arr) : arr;
