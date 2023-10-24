@@ -676,6 +676,13 @@ const styles = `
     padding: 90px 0 100px;
     background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
   }
+  .award img {
+    max-width: 100%;
+  }
+  .award__main {
+    line-height: 0;
+    margin-top: 72px;
+  }
   .award__title {
     font-family: 'Kaisei Tokumin', serif;
     font-size: 48px;
@@ -686,6 +693,7 @@ const styles = `
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-top: 80px;
   }
   .award__arrow {
     line-height: 0;
@@ -695,12 +703,122 @@ const styles = `
     line-height: 0;
     margin-top: 40px;
   }
-  .award {}
-  .award {}
-  .award {}
-  .award {}
+  .award__device img {
+    max-height: 485px;
+  }
 
 
+  .biggest {
+    padding: 120px 0;
+  }
+  .biggest__plate {
+    position: relative;
+    background: linear-gradient(114deg, #FFD88A 26.97%, #FFBA7E 74.53%);
+    padding: 112px 80px 72px 96px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 1150px;
+    margin: auto;
+  }
+  .biggest__plate:before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px dashed #031640;
+    pointer-events: none;
+  }
+  .biggest__info {
+    max-width: 560px;
+    padding-bottom: 40px;
+  }
+  .biggest__image {
+    line-height: 0;
+    margin-left: 64px;
+  }
+  .biggest__title {
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .biggest__title span {
+    font-weight: 700;
+  }
+  .biggest__caption {
+    margin-top: 24px;
+    color: #AE246E;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .biggest__caption span {
+    text-transform: uppercase;
+  }
+  .biggest__caption img {
+    margin-left: 8px;
+    margin-top: -2px;
+  }
+  .biggest__btn {
+    max-width: 350px;
+    margin-top: 40px;
+  }
+  .biggest__age {
+    margin-top: 24px;
+    color: #122340;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .biggest__age span {
+    font-weight: 600;
+  }
+
+
+  .hear {
+    padding: 90px 0;
+    background: url('${config.dir}/img/hear-bg.jpeg') -32px center / auto no-repeat;
+  }
+  .hear__title {
+    color: #fff;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+  }
+  .hear__list {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .hear__item {
+    padding: 48px 48px 56px;
+    border-radius: 4px;
+    background: #FFF;
+  }
+  .hear__item-img {
+    line-height: 0;
+    text-align: center;
+  }
+  .hear__item-descr {
+    margin-top: 24px;
+    padding-top: 24px;
+    color: #515E7A;
+    font-size: 16px;
+    line-height: 28px;
+    border-top: 1px solid #DFE3EE;
+  }
+  .hear__item {}
+  .hear {}
+  .hear {}
 
 `;
 
@@ -1134,7 +1252,7 @@ function addLayout() {
         <div class='lav-container'>
           <div class='award__title'>Awards won</div>
           <div class='award__main'>
-            <img src="${config.dir}/img/awards.svg">
+            <img src="${config.dir}/img/awards.png">
             <div class='award__list'>
             
             </div>
@@ -1145,14 +1263,63 @@ function addLayout() {
             <img src='${config.dir}/img/arrow-dashed.svg' />
           </div>
           <div class='award__device'>
-            <img src='${config.dir}/img/award-device.svg' />
+            <img src='${config.dir}/img/award-device.png' />
           </div>
         </div>
       </div>
 
 
-      <div class='sec'>
-        <div class='lav-container'></div>
+      <div class='biggest'>
+        <div class='lav-container'>
+          <div class='biggest__plate'>
+            <div class='biggest__info'>
+              <div class='biggest__title'>
+                <span>One of the biggest<br/> problems</span> with getting</br> into college is that:
+              </div>
+
+              <div class='biggest__caption'>
+                <span>Having Good GPA / SAT Scores</span> <img src='${config.dir}/img/not-equal.svg' /><br/> Getting Accepted into a Good University
+              </div>
+
+              <button class='biggest__btn btn-cta btn-cta_black'>
+                watch FREE video
+                <img src='${config.dir}/img/arrow-right-solid_white.svg' />
+              </button>
+              <div class='biggest__age'>For parents of  <span>12-18 year-olds</span></div>
+            </div>
+
+            <div class='biggest__image'>
+              <img src='${config.dir}/img/biggest.svg' />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='hear'>
+        <div class='lav-container'>
+          <div class='hear__title'>Hear from universities<br/>themselves:</div>
+          <div class='hear__list'>
+            <div class='hear__item'>
+              <div class='hear__item-img'>
+                <img src='${config.dir}/img/yale.svg' />
+              </div>
+              <div class='hear__item-descr'>
+                “Academic criteria are important to Yale’s selective admissions process, but we look at far more than test scores and grades... every applicant brings something unique to the admissions committee table. <br/><br/> 
+                Perhaps one application stands out because of sparkling recommendations, while another presents outstanding extracurricular talent; maybe your personality shines through a powerful written voice.”
+              </div>
+            </div>
+
+            <div class='hear__item'>
+              <div class='hear__item-img'>
+                <img src='${config.dir}/img/stanford.svg' />
+              </div>
+              <div class='hear__item-descr'>
+                "Even perfect test scores don't guarantee admission. Far from it: 69% of Stanford's applicants over the past five years who scored a perfect score on the SAT were rejected... we're also looking for evidence that this young person has a passion, that he or she will bring something to our community that is unique."
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
