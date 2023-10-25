@@ -315,6 +315,20 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
   }
 }
 
+// Slider
+function connectSplide() {
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+  document.head.appendChild(sliderStyles);
+
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+  document.head.appendChild(sliderScript);
+}
+
 // *** Exp BG process *** //
 
 //Clarity
