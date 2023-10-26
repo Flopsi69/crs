@@ -19,9 +19,40 @@ const config = {
 
 // Styles for Experiment
 const styles = `
+  .containerWrapper {
+    display: none;
+  }
   .exp-layout {
     font-family: 'Inter', sans-serif;
   }
+  .exp-layout img {
+    max-width: 100%;
+  }
+  .splide-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .splide__arrow {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  @media(hover: hover) {
+    .splide__arrow:hover {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+  .splide-nav__num {
+    width: 80px;
+    text-align: center;
+    margin: 0 80px;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 24px;
+    line-height: 32px; 
+  }
+
+
   .btn-cta {
     border-radius: 2px;
     background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
@@ -146,6 +177,7 @@ const styles = `
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-right: 80px;
+    white-space: nowrap;
   }
   .jumb-featured__logos {
     display: flex;
@@ -213,6 +245,142 @@ const styles = `
   .jumb-owner__description span {
     font-weight: 600;
   }
+  @media(max-width: 1280px) {
+    .jumb-featured__title {
+      margin-right: 40px;
+    }
+    .jumb-featured__logos {
+      gap: 20px;
+    }
+  }
+  @media(max-width: 992px) {
+    .jumb {
+      padding-top: 40px;
+      padding-bottom: 85px;
+    }
+    .jumb__title {
+      margin-top: 32px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .jumb__caption {
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 16px;
+    }
+    .jumb__btn {
+      margin-top: 24px;
+    }
+    .btn-cta {
+      max-width: 300px;
+      height: 56px;
+      padding: 16px;
+      font-size: 14px;
+    }
+    .btn-cta img {
+      margin-left: 12px;
+    }
+    .jumb__arrow {
+      display: none;
+    }
+    .jumb__watched {
+      margin-top: 24px;
+      font-size: 13px;
+      line-height: 18px
+    }
+    .jumb-about {
+      margin-top: 32px;
+      padding: 32px 16px 24px;
+    }
+    .jumb-about__caption {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .jumb-featured {
+      display: block;
+      margin-top: 40px;
+    }
+    .jumb-featured__title {
+      margin-right: 0;
+      margin-bottom: 24px;
+    }
+    .jumb-featured__logos {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px 48px;
+    }
+    .jumb-owner {
+      margin-top: 40px;
+    }
+    .jumb-owner__image {
+      flex-shrink: 1;
+      min-width: 300px;
+      margin-right: 30px;
+    }
+    .jumb-about__title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: 0;
+      text-align: center;
+      display: inline;
+    }
+    .jumb-about__info {
+      text-align: center;
+    }
+    .jumb-about {
+      flex-flow: column-reverse;
+      align-items: center;
+      max-width: 312px;
+      width: 100%;
+    }
+    .jumb-about__preview {
+      margin-top: 32px;
+      margin-right: 0;
+    }
+    .jumb-about__caption {
+      text-align: center;
+    }
+  }
+  @media(max-width: 768px) {
+    .jumb-owner {
+      display: block;
+    }
+    .jumb-owner__image {
+      margin-right: 0;
+      min-width: auto;
+    }
+    .jumb-owner__info {
+      margin-top: 24px;
+      text-align: center;
+    }
+    .jumb-owner__description {
+      padding-left: 0;
+      letter-spacing: -0.28px;
+      font-size: 14px;
+      line-height: 24px;
+      margin-top: 20px;
+    }
+    .jumb__caption br {
+      display: none;
+    }
+    .jumb-owner__description:before {
+      display: none;
+    }
+    .jumb-owner__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .jumb-owner__image img {
+      width: 240px;
+    }
+    .jumb-featured__title {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .jumb__logo img {
+      max-width: 150px;
+    }
+  }
 
   .learn {
     padding: 120px 0;
@@ -227,7 +395,8 @@ const styles = `
   }
   .learn__title span {
     font-weight: 500;
-    border-bottom: 1px solid #5CDDDB;
+    text-decoration: underline 1px solid #5CDDDB;
+    text-underline-offset: 10%;
   }
   .learn__list {
     display: grid;
@@ -277,6 +446,50 @@ const styles = `
   .learn__cta {
     margin-top: 48px;
     text-align: center;
+  }
+  @media(max-width: 992px) {
+    .learn__list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 15px;
+    }
+    .learn__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .learn {
+      padding: 40px 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .learn__list {
+      margin-top: 24px;
+    }
+    .learn__title br {
+      display: none;
+    }
+    .learn__caption {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.28px;
+    }
+    .learn__divider {
+      margin: 24px 0;
+    }
+    .learn__divider img:first-child {
+      width: 48px;
+    }
+    .learn__divider img:last-child {
+      width: 80px;
+    }
+    .learn__divider:before {
+      top: 24px;
+    }
+    .learn__cta {
+      margin-top: 32px;
+    }
+    .learn__btn {
+      max-width: 100%;
+    }
   }
 
 
@@ -359,6 +572,70 @@ const styles = `
   .examples__descr span {
     font-weight: 600;
   }
+  @media(max-width: 1280px) {
+    .examples__item-head {
+      font-size: 12px;
+    }
+  }
+  @media(max-width: 992px) {
+    .examples {
+      padding: 40px 0;
+    }
+    .examples__title {
+      font-size: 24px;
+      line-height: 32px; 
+    }
+    .examples__title br {
+      display: none;
+    }
+    .examples__table {
+      margin-top: 32px;
+    }
+    .examples__row {
+      display: block;
+    }
+    .examples__row + .examples__row {
+      margin-top: 24px;
+    }
+    .examples__item-head {
+      font-size: 13px;
+      line-height: 18px;
+    }
+    .examples__row + .examples__row .examples__item-head {
+      display: block;
+    }
+    .examples__item + .examples__item {
+      border-left: none;
+    }
+    .examples__item-head {
+      border-top: 1px solid rgba(255, 255, 255, 0.20);
+    }
+    .examples__row {
+      border-top: 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .examples__item-head {
+      padding: 9px 10px;
+    }
+    .examples__item-body {
+      padding: 16px;
+    }
+    .examples__descr img {
+      margin-right: 12px;
+    }
+    .examples__subtitle + .examples__descr {
+      margin-top: 10px;
+    }
+    .examples__row:first-child .examples__descr:not(.examples__descr_plain) {
+      display: block;
+    }
+    .examples__row:first-child .examples__descr img {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
 
 
   .parents {
@@ -425,7 +702,70 @@ const styles = `
   .parents__age span {
     font-weight: 600;
   }
+  @media(max-width: 1280px) {
+    .parents__info {
+      max-width: 50%;
+    }
+    .parents__plate {
+      padding: 50px;
+    }
+  }
+  @media(max-width: 992px) {
+    .parents__plate {
+      flex-flow: column-reverse;
+      text-align: center;
+      align-items: center;
+    }
+    .parents__info {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+    .parents__image {
+      margin-left: 0;
+    }
+    .parents {
+      padding: 40px 0;
+    }
+    .parents__info {
+      padding-bottom: 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .parents__plate:before {
+      left: 8px;
+      right: 8px;
+      top: 8px;
+      bottom: 8px;
+    }
+    .parents__title {
+      font-size: 22px;
+      line-height: 30px;
+    }
+    .parents__plate {
+      padding: 32px 30px 40px;
+    }
+    .parents__image {
+      max-width: 200px;
+    }
+    .parents__caption {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .parents__caption br {
+      display: none;
+    }
+    .parents__btn {
+      margin-top: 20px;
+    }
+    .parents__age {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
 
+  
   .who {
     padding: 90px 0;
     background: #0A132A url('${config.dir}/img/who-bg.jpeg') top center / cover no-repeat;
@@ -480,6 +820,52 @@ const styles = `
   .who__btn {
     margin-top: 48px;
   }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .who {
+      padding: 40px 0;
+    }
+    .who__title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: 16px;
+    }
+    .who__list {
+      margin-top: 32px;
+    }
+    .who__list {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  @media(max-width: 768px) {
+    .who__logo img {
+      max-width: 165px;
+    }
+    .who__caption {
+      margin-top: 12px;
+    }
+    .who__item {
+      padding: 24px;
+    }
+    .who__item-title {
+      font-size: 18px;
+      line-height: 26px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+    }
+    .who__item-title br {
+      display: none;
+    }
+    .who__item-descr {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .who__btn {
+      display: none;
+    }
+  }
+
 
   .trusted {
     margin: 120px 0;
@@ -547,6 +933,24 @@ const styles = `
     font-size: 24px;
     line-height: 32px;
   }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .trusted {
+      margin: 40px 0;
+    }
+    .trusted__inner {
+      padding: 40px 0;
+      overflow: hidden;
+    }
+    .trusted__title {
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .trusted__title br {
+      display: none;
+    }
+  }
+  @media(max-width: 768px) {}
 
 
   .reviews {
@@ -557,6 +961,10 @@ const styles = `
     font-family: 'Kaisei Tokumin', serif;
     font-size: 40px;
     line-height: 48px; 
+  }
+  .reviews__title span {
+    text-decoration: underline 1px solid #5CDDDB;
+    text-underline-offset: 10%;
   }
   .reviews__slider {
     margin-top: 50px;
@@ -606,6 +1014,36 @@ const styles = `
   .review__details span {
     text-decoration-line: underline;
   }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .reviews {
+      margin: 40px 0;
+    }
+    .reviews__title {
+      text-align: center;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .reviews__slider {
+      margin-top: 32px;
+    }
+  }
+  @media(max-width: 768px) {
+    .review__body {
+      padding: 24px 20px;
+    }
+    .review__descr {
+      line-height: 20px;
+      margin-top: 16px;
+    }
+    .review__details {
+      margin-top: 16px;
+    }
+    .review__name {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
 
 
   .webinars {
@@ -619,7 +1057,46 @@ const styles = `
     font-size: 48px;
     line-height: 56px;
   }
-  .webinars {}
+  .webinars__slider {
+    margin-top: 72px;
+  }
+  .webinars__nav {
+    margin-top: 56px;
+  }
+  .webinars .splide__slide.is-active {
+    position: relative; 
+    z-index: 1;
+  }
+  .webinars .splide__slide img {
+    transition: transform 0.3s;
+    min-height: 100%;
+    object-fit: cover;
+    min-width: 100%;
+  }
+  .webinars .splide__slide.is-active img {
+    transform: scale(1.25);
+  }
+  .webinars .splide__track {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .webinars {
+      padding: 40px 0;
+    }
+    .webinars__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .webinars__nav {
+      margin-top: 24px;
+    }
+    .webinars__slider {
+      margin-top: 32px;
+    }
+  }
+  @media(max-width: 768px) {}
 
 
 
@@ -668,6 +1145,52 @@ const styles = `
   .metrics__btn {
     margin-top: 48px;
   }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .metrics {
+      margin: 40px 0 60px;
+    }
+    .metrics__logo img {
+      max-width: 165px;
+    }
+    .metrics__title {
+      margin-top: 16px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .metrics__list {
+      margin-top: 32px;
+      display: grid;
+      gap: 20px 15px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .metrics__item {
+      max-width: 100%;
+    }
+    .metrics__btn {
+      margin-top: 32px;
+    }
+  }
+  @media(max-width: 768px) {
+    .metrics__btn {
+      max-width: 100%;
+    }
+    .metrics__item-value {
+      font-size: 32px;
+      line-height: 40px; 
+    }
+    .metrics__item-caption {
+      margin-top: 12px;
+      padding-top: 12px;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: left;
+    }
+    .metrics__item:nth-child(4) .metrics__item-value {
+      font-size: 22px;
+    }
+  }
+
 
   
   .award {
@@ -706,6 +1229,44 @@ const styles = `
   .award__device img {
     max-height: 485px;
   }
+  .award-mob {
+    display: none;
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    
+  }
+  @media(max-width: 768px) {
+    .award-desk {
+      display: none;
+    }
+    .award-mob {
+      display: block;
+    }
+    .award {
+      padding: 40px 0 0;
+    }
+    .award__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .award__main {
+      margin-top: 32px;
+    }
+    .award__divider {
+      margin-top: 32px;
+    }
+    .award__arrow {
+      margin-top: 16px;
+    }
+    .award__arrow img {
+      max-width: 80px;
+    }
+    .award__device {
+      margin-top: 26px;
+    }
+  }
+
 
 
   .biggest {
@@ -780,11 +1341,73 @@ const styles = `
   .biggest__age span {
     font-weight: 600;
   }
+  @media(max-width: 1280px) {
+    .biggest__info {
+      max-width: 50%;
+    }
+    .biggest__plate {
+      padding: 50px;
+    }
+  }
+  @media(max-width: 992px) {
+    .biggest__plate {
+      flex-flow: column-reverse;
+      text-align: center;
+      align-items: center;
+    }
+    .biggest__info {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+    .biggest__image {
+      margin-left: 0;
+    }
+    .biggest {
+      padding: 40px 0;
+    }
+    .biggest__info {
+      padding-bottom: 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .biggest__plate:before {
+      left: 8px;
+      right: 8px;
+      top: 8px;
+      bottom: 8px;
+    }
+    .biggest__title {
+      font-size: 22px;
+      line-height: 30px;
+    }
+    .biggest__plate {
+      padding: 32px 30px 40px;
+    }
+    .biggest__image {
+      max-width: 176px;
+    }
+    .biggest__caption {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .biggest__caption br {
+      display: none;
+    }
+    .biggest__btn {
+      margin-top: 20px;
+    }
+    .biggest__age {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
 
 
   .hear {
     padding: 90px 0;
-    background: url('${config.dir}/img/hear-bg.jpeg') -32px center / auto no-repeat;
+    background: url('${config.dir}/img/hear-bg.jpeg') -32px top / cover no-repeat;
   }
   .hear__title {
     color: #fff;
@@ -792,12 +1415,15 @@ const styles = `
     font-size: 48px;
     font-weight: 500;
     line-height: 56px;
+    text-align: center;
   }
   .hear__list {
-    margin-top: 72px;
+    margin: 72px auto 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
+    max-width: 1150px;
+    width: 100%;
   }
   .hear__item {
     padding: 48px 48px 56px;
@@ -816,10 +1442,474 @@ const styles = `
     line-height: 28px;
     border-top: 1px solid #DFE3EE;
   }
-  .hear__item {}
-  .hear {}
-  .hear {}
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .hear__list {
+      grid-template-columns: 1fr;
+      margin-top: 32px;
+      gap: 20px;
+    }
+    .hear__title {
+      line-height: 32px;
+      font-size: 28px;
+    }
+    .hear {
+      padding: 40px 0;
+    }
+  }
+  @media(max-width: 768px) {
+    .hear__item {
+      padding: 24px 20px;
+    }
+    .hear__item-descr {
+      padding-top: 16px;
+      margin-top: 16px;
+      font-size: 14px; 
+      line-height: 20px;
+    }
+  }
 
+
+  .cycles {
+    padding: 120px 0;
+    text-align: center;
+  }
+  .cycles__title {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: 1px;
+  }
+  .cycles__list {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .cycles__item {
+    border: 1px dashed #DFE3EE;
+    background: #F9FAFB;
+    padding: 0 32px 40px;
+  }
+  .cycles__accepted {
+    background: #DFE3EE;
+    padding: 6px 16px;
+    color: #21293E;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .cycles__accepted span {
+    font-weight: 600;
+  }
+  .cycles__logo {
+    margin-top: 48px;
+    line-height: 0;
+  }
+  .cycles__info {
+    margin: 24px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid #DFE3EE;
+    max-width: 317px;
+  }
+  .cycles__students {
+    color: #515E7A;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .cycles__descr {
+    margin-top: 16px;
+    color: #515E7A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .cycles__btn {
+    margin-top: 48px;
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .cycles {
+      padding: 40px 0;
+    }
+    .cycles__title {
+      font-size: 28px;
+      line-height: 32px
+    }
+    .cycles__list {
+      margin-top: 32px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .cycles__item {
+      padding: 0 20px 24px;
+    }
+    .cycles__info {
+      max-width: 100%;
+    }
+  }
+  @media(max-width: 768px) {
+    .cycles__accepted {
+      font-size: 13px;
+      line-height: 18px;
+    }
+    .cycles__logo {
+      margin-top: 32px;
+    }
+    .cycles__info {
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+    .cycles__students, .cycles__descr {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .cycles__btn {
+      margin-top: 32px;
+    }
+  }
+
+
+
+  .secret {
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    padding: 90px 0;
+    color: #fff;
+  }
+  .secret__problem {
+    position: relative;
+    text-align: center;
+    padding: 30px 80px;
+    max-width: 710px;
+    margin: 0 auto;
+    border: 1px dashed rgba(255, 255, 255, 0.10);
+    background: #21293E;
+  }
+  .secret__problem img {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(0%, -50%);
+  }
+  .secret__problem-title {
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px; 
+    background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .secret__problem-caption {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 32px;
+  }
+  .secret__title {
+    margin-top: 90px;
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+    background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .secret__caption {
+    margin: 24px auto 0;
+    text-align: center;
+    font-size: 18px;
+    line-height: 32px;
+    max-width: 620px
+  }
+  .secret__caption span {
+    font-weight: 600;
+  }
+  .secret__plate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px auto 0;
+    border-radius: 4px;
+    border: 1px dashed rgba(255, 255, 255, 0.10);
+    background: #0B132D;
+    padding: 55px 80px;
+    max-width: 1200px;
+    width: 100%;
+  }
+  .secret__plate-descr {
+    color: #F9FAFB;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 480px;
+    width: 100%;
+    margin-left: 50px;
+  }
+  .secret__plate-descr span {
+    font-weight: 600;
+  }
+  .secret__plate-descr div + div {
+    margin-top: 15px;
+  }
+  .secret_mark {
+    border-bottom: 1px solid #87F5FC;
+  }
+  .secret__footer {
+    text-align: center;
+  }
+  .secret__watch, .secret__parents {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .secret__watch {
+    margin-top: 50px;
+  }
+  .secret__watch span, .secret__parents span {
+    font-weight: 600;
+  }
+  .secret__btn {
+    margin-top: 40px;
+  }
+  .secret__parents {
+    color: #F9FAFB;
+    margin-top: 24px;
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {}
+  @media(max-width: 768px) {
+    .secret {
+      padding: 48px 0 40px;
+    }
+    .secret__problem {
+      padding: 30px 20px;
+    }
+    .secret__problem-title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .secret__problem-caption {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .secret__problem img {
+      max-width: 80px;
+    }
+    .secret__title {
+      margin-top: 40px;
+      font-size: 28px;
+      line-height: 36px
+    }
+    .secret__caption {
+      margin-top: 16px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .secret__plate {
+      margin-top: 24px;
+      display: block;
+      padding: 32px 20px;
+    }
+    .secret__plate-img img {
+      max-width: 260px;
+    }
+    .secret__plate-img {
+      text-align: center;
+    }
+    .secret__plate-descr {
+      margin-left: 0;
+      padding-top: 32px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .secret__watch {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .secret__btn {
+      margin-top: 32px;
+    }
+    .secret__parents {
+      margin-top: 20px;
+    }
+  }
+
+
+  .proven {
+    padding: 90px 0 140px;
+    background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
+    color: #fff;
+  }
+  .proven__title {
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+  }
+  .proven__caption {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 32px;
+  }
+  .proven__list {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .proven__item {
+    border-radius: 4px;
+    border: 1px dashed rgba(255, 255, 255, 0.10);
+    background: #0B132D;
+    padding: 40px;
+  }
+  .proven__value {
+    text-align: center;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 56px;
+    line-height: 64px;
+    background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .proven__descr {
+    color: #F9FAFB;
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.20);
+  }
+  @media(max-width: 1280px) {
+    .proven__item {
+      padding: 24px 20px;
+    }
+  }
+  @media(max-width: 992px) {
+    .proven__list {
+      margin-top: 32px;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+  }
+  @media(max-width: 768px) {
+    .proven {
+      padding: 40px 0 15px;
+    }
+    .proven__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    .proven__title br {
+      display: none;
+    }
+    .proven__caption {
+      margin-top: 16px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .proven__value {
+      font-size: 32px;
+      line-height: 40px;
+    }
+    .proven__descr {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+
+
+  .attend {
+    text-align: center;
+    padding: 120px 0;
+  }
+  .attend__title {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 1px;
+  }
+  .attend__universities {
+    line-height: 0;
+    margin-top: 72px;
+    text-align: center;
+  }
+  .attend__btn {
+    margin-top: 64px;
+  }
+  .attend__caption {
+    margin-top: 40px;
+    color: #515E7A;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .attend__caption span {
+    font-weight: 600;
+  }
+  .attend-mob {
+    display: none;
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .attend {
+      padding: 40px 0;
+    }
+    .attend__title br {
+      display: none;
+    }
+    .attend__title {
+      line-height: 32px;
+      font-size: 24px;
+    }
+  }
+  @media(max-width: 768px) {
+    .attend-mob {
+      display: block;
+    }
+    .attend-desk {
+      display: none;
+    }
+    .attend__universities {
+      margin-top: 32px;
+    }
+    .attend__btn {
+      margin-top: 48px;
+    }
+    .attend__caption {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+
+  .footer {
+    background: linear-gradient(140deg, #031640 16.4%, #12162F 38.68%, #171935 61.31%, #020B22 85.38%);
+    text-align: center;
+    padding: 8px 0;
+    color: #F9FAFB;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .footer a {
+    color: inherit;
+    text-decoration: underline;
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -833,6 +1923,8 @@ initExp();
 function initExp() {
   console.debug('** InitExp **');
   addLayout();
+  connectSplide();
+  waitFor(() => typeof Splide !== 'undefined', initSliders);
 }
 
 function addLayout() {
@@ -896,7 +1988,7 @@ function addLayout() {
               <div class='jumb-owner__caption'>Program Director & Host</div>
               <div class='jumb-owner__description'>
                 <p>
-                  <span>In charge of managing the College Consulting program</span> – Provided guidance & advice to 1,000s of families on how their students can gain admissions into <span>top STEM, Business, and Healthcare summer programs,</span> internships, and research opportunities
+                  <span>In charge of managing the College Consulting program</span>&nbsp;– Provided guidance & advice to 1,000s of families on how their students can gain admissions into <span>top STEM, Business, and Healthcare summer programs,</span> internships, and research opportunities
                 </p>
                 <p>
                   Experience working with families from <span>all around the US,</span> helping them gain admission into the Ivy Leagues and other top universities
@@ -949,7 +2041,7 @@ function addLayout() {
 
           <div class='learn__section'>
             <div class='learn__title'>
-              High-Value <span>tips</span> And <span>secrets</span> </br> You’ll Discover Inside The Webinar
+              High-Value <span>Tips</span> And <span>Secrets</span> </br> You’ll Discover Inside The Webinar
             </div>
             <div class='learn__list'>
               <div class='learn__item'>
@@ -1091,7 +2183,7 @@ function addLayout() {
                 watch FREE video
                 <img src='${config.dir}/img/arrow-right-solid_white.svg' />
               </button>
-              <div class='parents__age'>For parents of <span>12-18 year-olds</span></div>
+              <div class='parents__age'>For parents of <span>12-18 year&#8209;olds</span></div>
             </div>
 
             <div class='parents__image'>
@@ -1173,7 +2265,7 @@ function addLayout() {
       <div class='reviews'>
         <div class='lav-container'>
           <div class='reviews__hedaer'>
-            <div class='reviews__title'>Hear what parents just like YOU think about us</div>
+            <div class='reviews__title'>Hear what parents just like YOU <span>think about us</span></div>
             <div class='reviews__pagination'></div>
           </div>
 
@@ -1203,8 +2295,71 @@ function addLayout() {
       <div class='webinars'>
         <div class='lav-container'>
           <div class='webinars__title'>Our webinars</div>
-          <div class='webinars__list'>
-            TODO SLIDES
+          
+          <div class="splide webinars__slider">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/1.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/2.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/3.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/4.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/5.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/6.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/7.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/8.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/9.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/10.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/11.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/12.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/13.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/14.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/15.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/16.jpeg' />
+                </li>
+                <li class="splide__slide">
+                  <img src='${config.dir}/img/webinar/17.jpeg' />
+                </li>
+              </ul>
+            </div>
+
+            <div class='splide-nav webinars__nav splide__arrows'>
+              <img class='splide__arrow splide__arrow--prev webinars__nav-prev' src='${config.dir}/img/nav-arrow-left.svg' />
+
+              <div class='splide-nav__num webinars__nav-num'><span>1</span>/ 17</div>
+
+              <img class='splide__arrow splide__arrow--next webinars__nav-next' src='${config.dir}/img/nav-arrow-right.svg' />
+            </div>
           </div>
         </div>
       </div>
@@ -1252,10 +2407,8 @@ function addLayout() {
         <div class='lav-container'>
           <div class='award__title'>Awards won</div>
           <div class='award__main'>
-            <img src="${config.dir}/img/awards.png">
-            <div class='award__list'>
-            
-            </div>
+            <img class='award-desk' src="${config.dir}/img/awards.png">
+            <img class='award-mob' src="${config.dir}/img/awards-mob.png">
           </div>
           <div class='award__divider award__title'>&</div>
           <div class='award__title'>In The News</div>
@@ -1263,7 +2416,8 @@ function addLayout() {
             <img src='${config.dir}/img/arrow-dashed.svg' />
           </div>
           <div class='award__device'>
-            <img src='${config.dir}/img/award-device.png' />
+            <img class='award-desk' src='${config.dir}/img/award-device.png' />
+            <img class='award-mob' src='${config.dir}/img/award-device-mob.png' />
           </div>
         </div>
       </div>
@@ -1285,7 +2439,7 @@ function addLayout() {
                 watch FREE video
                 <img src='${config.dir}/img/arrow-right-solid_white.svg' />
               </button>
-              <div class='biggest__age'>For parents of  <span>12-18 year-olds</span></div>
+              <div class='biggest__age'>For parents of  <span>12-18 year&#8209;olds</span></div>
             </div>
 
             <div class='biggest__image'>
@@ -1323,25 +2477,166 @@ function addLayout() {
       </div>
 
 
-      <div class='sec'>
-        <div class='lav-container'></div>
+      <div class='cycles'>
+        <div class='lav-container'>
+          <div class='cycles__title'>The reality of recent admissions cycles:</div>
+
+          <div class='cycles__list'>
+            <div class='cycles__item'>
+              <div class='cycles__accepted'>accepted <span>14,429 students</span></div>
+              <div class='cycles__logo'>
+                <img src='${config.dir}/img/berkeley.svg' />
+              </div>
+              <div class='cycles__info'>
+                <div class='cycles__students'>40,706 students had a 4.0 GPA or above</div>
+                <div class='cycles__descr'>For every 1 spot available at Berkeley, there are ~3 students that apply with a 4.0+ GPA</div>
+              </div>
+            </div>
+            <div class='cycles__item'>
+              <div class='cycles__accepted'>accepted <span>2,114 students</span></div>
+              <div class='cycles__logo'>
+                <img src='${config.dir}/img/stanford.svg' />
+              </div>
+              <div class='cycles__info'>
+                <div class='cycles__students'>25,518 students had a 4.0 GPA or above</div>
+                <div class='cycles__descr'>For every 1 spot available at Stanford, there are 12 students that apply with a 4.0+ GPA</div>
+              </div>
+            </div>
+            <div class='cycles__item'>
+              <div class='cycles__accepted'>accepted <span>41,684 students</span></div>
+              <div class='cycles__logo'>
+                <img src='${config.dir}/img/ucdavis.svg' />
+              </div>
+              <div class='cycles__info'>
+                <div class='cycles__students'>41,684 students applied with a 3.7-4.0+ GPA and only 25,580 of those students were admitted</div>
+                <div class='cycles__descr'>That means 16,104 students were still rejected with a competitive GPA for UC Davis</div>
+              </div>
+            </div>
+          </div>
+
+          <button class='cycles__btn btn-cta'>
+            watch FREE video
+            <img src='${config.dir}/img/arrow-right-solid.svg' />
+          </button>
+        </div>
       </div>
 
 
-      <div class='sec'>
-        <div class='lav-container'></div>
+      <div class='secret'>
+        <div class='lav-container'>
+          <div class='secret__problem'>
+            <img src='${config.dir}/img/arrow-dashed-red.svg' />
+            <div class='secret__problem-title'>The problem is</div>
+            <div class='secret__problem-caption'>That there are FEWER SPACES available THAN STUDENTS who meet the qualification criteria</div>
+          </div>
+
+          <div class='secret__title'>3 secret factors</div>
+          <div class='secret__caption'>There are 3 factors that universities won't tell you, but are <span>CRITICAL</span> for them in deciding which students to admit.</div>
+          
+          <div class='secret__plate'>
+            <div class='secret__plate-img'>
+              <img src='${config.dir}/img/secret-character.svg' />
+            </div>
+            <div class='secret__plate-descr'>
+              <div>In fact, top universities <span>COMMONLY reject students with perfect GPA and SAT</span> scores if they don't have these 3 factors.</div>
+              <div>No, we're not talking about gender, race, or income. <span>These 3 factors are 100%</span> within your control if you want to make sure your child has the best chances of getting into a top university.</div>
+              <div>And yes, you can even do these when your child is in the 6ᵗʰ-12ᵗʰ grade, but the <span>earlier they start, the more powerful it will be.</span></div>
+              <div><span class='secret_mark'>All will be explained in the webinar.</span></div>
+            </div>
+          </div>
+
+          <div class='secret__footer'>
+            <div class='secret__watch'>Watch the webinar and and learn <span>the 3 factors NOW</span></div>
+            <button class='secret__btn btn-cta'>
+              watch FREE video
+              <img src='${config.dir}/img/arrow-right-solid.svg' />
+            </button>
+            <div class='secret__parents'>For parents of <span>12-18 year&#8209;olds</span></div>
+          </div>
+        </div>
       </div>
 
 
+      // todo section
       <div class='sec'>
-        <div class='lav-container'></div>
+        <div class='lav-container'>S0me Section</div>
       </div>
 
 
+      <div class='proven'>
+        <div class='lav-container'>
+          <div class='proven__title'>Our proven track record</div>
+          <div class='proven__caption'>In a recent admissions cycle, Zenith Prep Academy had:</div>
+          <div class='proven__list'>
+            <div class='proven__item'>
+              <div class='proven__value'>5x</div>
+              <div class='proven__descr'>Higher acceptance rate into an Ivy League / Top 15 university (Stanford, Harvard, Yale, MIT, Johns Hopkins, Duke, and more)</div>
+            </div>
+
+            <div class='proven__item'>
+              <div class='proven__value'>8x</div>
+              <div class='proven__descr'>Higher acceptance rate into a Top 25 university (compared to the nationwide average)</div>
+            </div>
+
+            <div class='proven__item'>
+              <div class='proven__value'>90%+</div>
+              <div class='proven__descr'>Were accepted into a Top 50 university</div>
+            </div>
+
+            <div class='proven__item'>
+              <div class='proven__value'>98%+</div>
+              <div class='proven__descr'>Were accepted into a Top 100 university</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='attend'>
+        <div class='lav-container'>
+          <div class='attend__title'>Zenith students now attend the following </br>universities:</div>
+
+          <div class='attend__universities'>
+            <img class='attend-desk' src='${config.dir}/img/universities.svg' />
+            <img class='attend-mob' src='${config.dir}/img/universities-mob.svg' />
+          </div>
+
+          <button class='attend__btn btn-cta'>
+            watch FREE video
+            <img src='${config.dir}/img/arrow-right-solid.svg' />
+          </button>
+        
+          <div class='attend__caption'><span>OVER 100,000 PARENTS</span> JUST LIKE YOU HAVE WATCHED THIS WEBINAR</div>
+        </div>
+      </div>
+   
+      <div class='footer'>
+        <div class='lav-container'>Copyright &copy; 2023 All Rights Reserved by Zenith Prep Academy | <a href='https://www.zenithprepacademy.com/privacy-policy'>Privacy Policy</a></div>
+      </div>
     </div>
   `;
 
   document.body.insertAdjacentHTML('afterbegin', html);
+}
+
+function initSliders() {
+  const webinar = new Splide('.webinars__slider', {
+    autoplay: true,
+    type: 'loop',
+    perPage: 3,
+    gap: 35,
+    focus: 'center',
+    pagination: false,
+    updateOnMove: true,
+    isNavigation: true,
+    lazyLoad: 'nearby',
+    breakpoints: {},
+  });
+
+  webinar.on('move', function (newIndex) {
+    _$('.webinars__nav-num span').innerHTML = newIndex + 1;
+  });
+
+  webinar.mount();
 }
 
 // *** Utils *** //
@@ -1634,6 +2929,20 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
   } catch (e) {
     console.log('** GA4 Error **', e);
   }
+}
+
+// Slider
+function connectSplide() {
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+  document.head.appendChild(sliderStyles);
+
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+  document.head.appendChild(sliderScript);
 }
 
 // *** Exp BG process *** //
