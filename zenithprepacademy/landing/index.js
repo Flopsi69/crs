@@ -17,6 +17,158 @@ const config = {
   debug: true,
 };
 
+// Modal class
+class Modal {
+  static list = [];
+  constructor(name, innerHTML) {
+    if (!_$('.lav-modal')) {
+      this.constructor.init();
+    }
+    this.el = document.createElement('div');
+    this.el.classList.add('lav-modal__inner', name);
+    this.name = name;
+    this.el.innerHTML = innerHTML;
+
+    _$('.lav-modal').insertAdjacentElement('beforeend', this.el);
+
+    this.constructor.list.push(this);
+  }
+
+  static init() {
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      `<div class='lav-modal'>
+        <div class='lav-modal__close'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M1 1L19 19" stroke="white"/>
+            <path d="M19 1L1 19" stroke="white"/>
+          </svg>
+        </div>
+      </div>`
+    );
+
+    document.addEventListener('click', (e) => {
+      if (
+        e.target.classList.contains('lav-modal') ||
+        e.target.closest('.lav-modal__close')
+      ) {
+        if (_$('.lav-modal__inner.active iframe')) {
+          _$('.lav-modal__inner.active iframe').src = _$(
+            '.lav-modal__inner.active iframe'
+          ).src;
+        }
+
+        this.close();
+      }
+
+      if (e.target.dataset.modal) {
+        this.open(e.target.dataset.modal);
+      }
+
+      if (e.target.closest('[data-modal]')) {
+        this.open(e.target.closest('[data-modal]').dataset.modal);
+      }
+    });
+
+    this.addStyles();
+  }
+
+  static open(modalName, cb) {
+    document.body.classList.add('lav-modal-open');
+
+    if (_$('.lav-modal__inner.active')) {
+      _$('.lav-modal__inner.active').classList.remove('active');
+    }
+
+    _$(modalName).classList.add('active');
+
+    if (typeof cb === 'function') cb();
+
+    setTimeout(() => {
+      _$('.lav-modal').classList.add('active');
+    }, 100);
+  }
+
+  static close(cb) {
+    document.body.classList.remove('lav-modal-open');
+
+    _$('.lav-modal')?.classList.remove('active');
+
+    if (typeof cb === 'function') cb();
+
+    setTimeout(() => {
+      _$('.lav-modal__inner.active')?.classList.remove('active');
+    }, 400);
+  }
+
+  static addStyles() {
+    const styles = `
+      .lav-modal {
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: linear-gradient(140deg, rgba(2, 16, 47, 0.80) 16.4%, rgba(18, 22, 47, 0.80) 28.44%, rgba(18, 22, 47, 0.80) 36.41%, rgba(17, 19, 43, 0.80) 53.66%, rgba(2, 11, 34, 0.80) 73.88%, rgba(17, 19, 43, 0.80) 85.38%);
+        transition: 0.35s;
+        opacity: 0;
+        pointer-events: none;
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 100%;
+        display: flex;
+      }
+      .lav-modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .lav-modal__inner {
+        position: relative;
+        line-height: 0;
+        // width: 100%;
+        display: none;
+        margin: auto;
+      }
+      .lav-modal__inner iframe {
+        max-width: 100%;
+        border: 0;
+      }
+      .lav-modal__inner.active {
+        display: block;
+      }
+      .lav-modal__close {
+        position: absolute;
+        right: 35px;
+        top: 35px;
+        cursor: pointer;
+        transition: 0.35s;
+        line-height: 0;
+      }
+      [data-modal] {
+        cursor: pointer;
+        transition: 0.35s;
+      }
+      @media(hover:hover) {
+        .lav-modal__close:hover {
+          opacity: 0.5;
+        }
+        [data-modal]:hover {
+          opacity: 0.7;
+        }
+      }
+      .lav-modal-open {
+        overflow: hidden;
+      }
+    `;
+
+    const stylesEl = document.createElement('style');
+    stylesEl.classList.add('exp-modal');
+    stylesEl.innerHTML = styles;
+    document.head.appendChild(stylesEl);
+  }
+}
+
 // Styles for Experiment
 const styles = `
   .containerWrapper {
@@ -51,6 +203,35 @@ const styles = `
     font-size: 24px;
     line-height: 32px; 
   }
+  @media(max-width: 768px) {
+    .splide-nav__num {
+      font-size: 20px;
+      line-height: 28px;
+      margin: 0 48px;
+    }
+  }
+
+  .splide__pagination {
+    padding: 0;
+    margin-top: 65px!important;
+  }
+  .splide__pagination li {
+    line-height: 0;
+    flex: 1;
+  }
+  .splide__pagination__page {
+    border: 0;
+    background: #DFE3EE;
+    display: flex;
+    width: 100%;
+    border-radius: 0;
+    height: 1px;
+    transition: 0.3s;
+  }
+  .splide__pagination__page.is-active {
+    background: #FFC93E;
+    height: 3px;
+  }
 
 
   .btn-cta {
@@ -72,6 +253,12 @@ const styles = `
     max-width: 400px;
     width: 100%;
     height: 72px;
+  }
+  @media(hover:hover) {
+    .btn-cta:hover {
+      transform: scale(1.04);
+      opacity: 0.9;
+    }
   }
 
   .btn-cta_black {
@@ -345,6 +532,9 @@ const styles = `
     .jumb-owner {
       display: block;
     }
+    .jumb-about__preview {
+      margin-top: 25px;
+    }
     .jumb-owner__image {
       margin-right: 0;
       min-width: auto;
@@ -379,6 +569,10 @@ const styles = `
     }
     .jumb__logo img {
       max-width: 150px;
+    }
+    .jumb {
+      // background-size: 175% auto;
+      background: #0A132A url('${config.dir}/img/jumb-bg-mob.jpeg') top center / cover no-repeat;
     }
   }
 
@@ -839,6 +1033,9 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .who {
+      background: #0A132A url('${config.dir}/img/who-bg-mob.jpeg') top center / cover no-repeat;
+    }
     .who__logo img {
       max-width: 165px;
     }
@@ -954,6 +1151,7 @@ const styles = `
 
 
   .reviews {
+    overflow: hidden;
     margin: 120px 0;
   }
   .reviews__title {
@@ -973,14 +1171,36 @@ const styles = `
     margin-top: 50px;
     text-align: center;
   }
-  .reviews {}
+  .reviews__nav-num {
+    margin: 0 24px;
+  }
+  .reviews .splide__track {
+    overflow: visible;
+  }
 
   .review {
     max-width: 410px;
     width: 100%;
   }
   .review__preview {
+    position: relative;
     line-height: 0;
+  }
+  .review__preview img {
+    height: 230px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .review__preview:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 66px;
+    height: 66px;
+    transform: translate(-50%, -50%);
+    background: url('${config.dir}/img/play.svg') center no-repeat;
+
   }
   .review__preview img {
     max-width: 100%;
@@ -1004,6 +1224,9 @@ const styles = `
     font-size: 14px;
     line-height: 24px;
   }
+  .review__descr div + div {
+    margin-top: 20px;
+  }
   .review__details {
     color: #21293E;
     font-size: 14px;
@@ -1013,6 +1236,19 @@ const styles = `
   }
   .review__details span {
     text-decoration-line: underline;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  @media(hover:hover) {
+    .review__details span:hover {
+      opacity: 0.7;
+    }
+  }
+  .reviews__nav {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    transform: translateY(-100%);
   }
   @media(max-width: 1280px) {}
   @media(max-width: 992px) {
@@ -1047,7 +1283,7 @@ const styles = `
 
 
   .webinars {
-    color: #FFF;
+    color: #fff;
     background: linear-gradient(140deg, #031640 16.4%, #12162F 38.68%, #171935 61.31%, #020B22 85.38%);
     padding: 90px 0;
   }
@@ -1096,7 +1332,12 @@ const styles = `
       margin-top: 32px;
     }
   }
-  @media(max-width: 768px) {}
+  @media(max-width: 768px) {
+    .webinars__slider {
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+  }
 
 
 
@@ -1211,6 +1452,12 @@ const styles = `
     font-size: 48px;
     line-height: 56px;
   }
+  .award__caption {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 32px;
+  }
   .award__divider {
     background: linear-gradient(135deg, #FFDA81 24.24%, #FFB574 73.2%);
     background-clip: text;
@@ -1264,6 +1511,11 @@ const styles = `
     }
     .award__device {
       margin-top: 26px;
+    }
+    .award__caption {
+      margin-top: 16px;
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 
@@ -1458,6 +1710,9 @@ const styles = `
     }
   }
   @media(max-width: 768px) {
+    .hear {
+      background: url('${config.dir}/img/hear-bg.jpeg') center top / cover no-repeat;
+    }
     .hear__item {
       padding: 24px 20px;
     }
@@ -1572,7 +1827,6 @@ const styles = `
       margin-top: 32px;
     }
   }
-
 
 
   .secret {
@@ -1741,6 +1995,125 @@ const styles = `
   }
 
 
+  .rev {
+    overflow: hidden;
+    margin: 120px 0;
+  }
+  .rev__title {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 40px;
+    line-height: 48px; 
+    max-width: 80%;
+  }
+  .rev__title span {
+    text-decoration: underline 1px solid #5CDDDB;
+    text-underline-offset: 10%;
+  }
+  .rev__slider {
+    margin-top: 75px;
+  }
+  .rev__nav-num {
+    margin: 0 24px;
+  }
+  .rev .splide__track {
+    overflow: visible;
+  }
+  .rev__nav {
+    position: absolute;
+    top: -80px;
+    right: 0;
+    transform: translateY(-100%);
+  }
+  .rev-item {
+    padding: 40px 32px;
+    border-radius: 4px;
+    border: 1px solid #DFE3EE;
+  }
+  .rev-item__name {
+    color: #21293E;
+    font-family: 'Kaisei Tokumin', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+  .rev-item__details {
+    color: #21293E;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 20px;
+  }
+  .rev-item__details span {
+    text-decoration-line: underline;
+    cursor: pointer;
+    transition: 0.35s;
+  }
+  .rev-item__descr {
+    margin-top: 20px;
+    color: #515E7A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .rev-item__descr:not(.active) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media(hover:hover) {
+    .rev-item__details span:hover {
+      opacity: 0.7;
+    }
+  }
+  @media(max-width: 1280px) {}
+  @media(max-width: 992px) {
+    .rev {
+      margin: 40px 0;
+    }
+    .rev__title {
+      text-align: center;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .rev__slider {
+      margin-top: 32px;
+    }
+    .rev__title {
+      max-width: 100%;
+    }
+    .rev__nav {
+      position: static;
+      transform: none;
+      margin-top: 24px;
+    }
+    .splide__pagination {
+      margin-top: 30px!important;
+    }
+  }
+  @media(max-width: 768px) {
+    .rev-item {
+      padding: 24px 20px;
+    }
+    .rev-item__name {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .rev-item__descr {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .rev-item__details {
+      margin-top: 16px;
+    }
+    .rev-item__descr:not(.active) {
+      -webkit-line-clamp: 5;
+    }
+  }
+
+
   .proven {
     padding: 90px 0 140px;
     background: linear-gradient(140deg, #02102F 16.4%, #12162F 28.44%, #12162F 36.41%, #11132B 53.66%, #020B22 73.88%, #11132B 85.38%);
@@ -1828,7 +2201,6 @@ const styles = `
   }
 
 
-
   .attend {
     text-align: center;
     padding: 120px 0;
@@ -1910,6 +2282,12 @@ const styles = `
     color: inherit;
     text-decoration: underline;
   }
+  @media(max-width: 768px) {
+    .footer {
+      padding: 12px;
+      line-height: 20px;
+    }
+  }
 `;
 
 const stylesEl = document.createElement('style');
@@ -1924,7 +2302,16 @@ function initExp() {
   console.debug('** InitExp **');
   addLayout();
   connectSplide();
+  initModals();
   waitFor(() => typeof Splide !== 'undefined', initSliders);
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-cta')) {
+      // TODO
+      alert('Open');
+      // _$('[href="#open-popup"]').click();
+    }
+  });
 }
 
 function addLayout() {
@@ -1958,12 +2345,12 @@ function addLayout() {
           <div class='jumb__watched'>Over <span>100,000+</span> parents just like you have watched this webinar</div>
 
           <div class='jumb-about'>
-            <div class='jumb-about__preview'>
+            <div class='jumb-about__preview' data-modal='.lav-solo'>
               <img src='${config.dir}/img/jumb-preview.png' />
             </div>
             <div class='jumb-about__info'>
               <div class='jumb-about__caption'>Hear What They Think</div>
-              <div class='jumb-about__title'>About Zenith Prep Academy</div>
+              <div class='jumb-about__title' data-modal='.lav-solo'>About Zenith Prep Academy</div>
             </div>
           </div>
 
@@ -2264,21 +2651,19 @@ function addLayout() {
       
       <div class='reviews'>
         <div class='lav-container'>
-          <div class='reviews__hedaer'>
-            <div class='reviews__title'>Hear what parents just like YOU <span>think about us</span></div>
-            <div class='reviews__pagination'></div>
-          </div>
+          <div class='reviews__title'>Hear what parents just like YOU <span>think&nbsp;about&nbsp;us</span></div>
 
-          <div class='reviews__slider'>
-            <div class='review'>
-              <div class='review__preview'>
-                <img src='${config.dir}/img/kevin.png' />
-              </div>
-              <div class='review__body'>
-                <div class='review__name'>Alex</div>
-                <div class='review__descr'>Alex has been so happy with his relationship with Zenith that he’s looking forward to signing up his younger kids when they’re old enough  ...</div>
-                <div class='review__details'><span>Read more</span> ></div>
-              </div>
+          <div class="splide reviews__slider">
+            <div class="splide__track">
+              <div class="splide__list"></div>
+            </div>
+
+            <div class='splide-nav reviews__nav splide__arrows'>
+              <img class='splide__arrow splide__arrow--prev reviews__nav-prev' src='${config.dir}/img/nav-arrow-left-default.svg' />
+
+              <div class='splide-nav__num reviews__nav-num'><span>1</span>/ 22</div>
+
+              <img class='splide__arrow splide__arrow--next reviews__nav-next' src='${config.dir}/img/nav-arrow-right-default.svg' />
             </div>
           </div>
 
@@ -2406,6 +2791,7 @@ function addLayout() {
       <div class='award'>
         <div class='lav-container'>
           <div class='award__title'>Awards won</div>
+          <div class='award__caption'>Thousands of happy families have put us on the Inc. 5000 list of fastest growing companies in America 2 years IN A ROW</div>
           <div class='award__main'>
             <img class='award-desk' src="${config.dir}/img/awards.png">
             <img class='award-mob' src="${config.dir}/img/awards-mob.png">
@@ -2557,9 +2943,25 @@ function addLayout() {
       </div>
 
 
-      // todo section
-      <div class='sec'>
-        <div class='lav-container'>S0me Section</div>
+      <div class='rev'>
+        <div class='lav-container'>
+          <div class='rev__title'>Hear what parents just like YOU <span>think&nbsp;about&nbsp;us</span></div>
+
+          <div class="splide rev__slider">
+            <div class="splide__track">
+              <div class="splide__list">
+              </div>
+            </div>
+
+            <div class='splide-nav rev__nav splide__arrows'>
+              <img class='splide__arrow splide__arrow--prev rev__nav-prev' src='${config.dir}/img/nav-arrow-left-default.svg' />
+
+              <div class='splide-nav__num rev__nav-num'><span>1</span>/ 22</div>
+
+              <img class='splide__arrow splide__arrow--next rev__nav-next' src='${config.dir}/img/nav-arrow-right-default.svg' />
+            </div>
+          </div>
+        </div>
       </div>
 
 
@@ -2616,6 +3018,357 @@ function addLayout() {
   `;
 
   document.body.insertAdjacentHTML('afterbegin', html);
+
+  const reviews = [
+    {
+      name: 'Alex',
+      brief:
+        "Alex has been so happy with his relationship with Zenith that he’s looking forward to signing up his younger kids when they’re old enough<span class='lav-dots'>...</span>",
+      descr:
+        'Alex’s daughter was in the 7<sup>th</sup> grade when she began her college prep guidance with Zenith Prep Academy. Although Alex attended a Top 30 university in the US himself, he realized how challenging the admissions process had become, and was unsure of what classes, activities, and competitions would help his daughter best explore her passions and find her area of interest. He was looking for a highly customized strategy for his daughter to build the right extracurricular profile so she’d be able to stand out from the tens of thousands of other students with similar academics. Alex has been so happy with his relationship with Zenith that he’s looking forward to signing up his younger kids when they’re old enough.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/755af17af521e6dd765bfbaf451c7b0e6087a332.webp?image_crop_resized=960x540',
+      videoId: 'yfs2xu8e7p',
+    },
+    {
+      name: 'Lana',
+      brief:
+        "Lana’s son joined our program in the 7<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Lana had quickly realized her son’s school wasn’t challenging or engaging enough for him. He was a very bright, driven, and articulate student who had specific fields that he was interested in. He and Lana wanted to know how he could further his interests in these fields through more advanced classes and different competitions, projects, activities,<br>and more.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/fdc05f72cabd5c3fc0d8741c8acfb8de59b2a86e.webp?image_crop_resized=960x540',
+      videoId: 'jzb6c2i01s',
+    },
+    {
+      name: 'Leo',
+      brief:
+        "Leo’s daughters were both accepted and joined our college consulting program in their 8<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Having twin daughters with very different personalities, interests, and strengths was hard enough as it is. Guiding them through high school – with all the different options for honors/AP classes, clubs, competitions, programs/internships, and activities – with no experience ahead of the college admissions process seemed impossible to handle without help. Leo’s daughters were both accepted and joined our college consulting program in their 8<sup>th</sup> grade, as their family desired a partner in guiding and supporting the girls through junior high and high school.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/f47993e2b373e150c20235809afe732d4a140a42.webp?image_crop_resized=960x540',
+      videoId: 'dw6r5fywa3',
+    },
+    {
+      name: 'Manisha',
+      brief:
+        "Manisha’s daughter gained acceptance into her dream university<span class='lav-dots'>...</span>",
+      descr:
+        'Manisha’s daughter was an 11<sup>th</sup> grader when they started working with our college counseling team. A first–generation parent, she turned to Zenith to guide her daughter toward how to best use the one year they had left before college applications, highlighting her daughter’s strengths and interests to ultimately help her shine on college applications. With Zenith’s help, Manisha’s daughter gained acceptance into her dream university.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/f4bf00a2a8681f7be0a5c90284b1bd02e5f31e3f.webp?image_crop_resized=960x540',
+      videoId: '8zda6sjzsu',
+    },
+    {
+      name: 'Phani',
+      brief:
+        "Family sought guidance on how to help his son identify his interests and further develop his passion to stand out to top colleges<span class='lav-dots'>...</span>",
+      descr:
+        'Phani’s son was in the 8<sup>th</sup> grade when they joined our college consulting program. His son was bright and doing well academically, though he had no exposure to any fields/majors. Outside of sports, he also hadn’t participated in any academic or extracurricular activities. Given that Phani didn’t have any experience with how college admissions in the US worked, his family sought guidance on how to help his son identify his interests and further develop his passion to stand out to top colleges.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/e8ac4d991d0335b2c959fcdf1a02997c27e3733a.webp?image_crop_resized=960x540',
+      videoId: 'y5evtkig7i',
+    },
+    {
+      name: 'Manoj',
+      brief:
+        "Manoj enrolled his youngest son into our program towards the end of his 9th grade to give him the right opportunities, exposure, and guidance that his older son unfortunately missed out on<span class='lav-dots'>...</span>",
+      descr:
+        'Having gone through the college application process once with his older son and knowing how challenging and overwhelming it was, Manoj wanted to find a college consulting program for his younger son to stand out. They understood having a strong academic profile with lots of honors/AP classes, a high–weighted GPA (ex. 4.5+), and high standardized scores was not going to help his son get into the colleges he was looking to attend. Manoj enrolled him into our program early on in high school, towards the end of his 9<sup>th</sup> grade, to give him the right opportunities, exposure, and guidance that his older son unfortunately missed out on.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/d3d585cd19829b07b8ab7df052f5a3927b93e851.webp?image_crop_resized=960x540',
+      videoId: 'is0wgu8ul0',
+    },
+    {
+      name: 'Robert',
+      brief:
+        "Robert’s son joined our program during his 10<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Although Robert attended high school and college in the US, given that his son went to a hyper–competitive high school (ranked top 100 in the United States), he wanted a highly customized strategy and plan for their son to further his academic interests and build the right extracurricular profile to stand out from his peers in their high school and in the college applications.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/d78614b348bdf6f49e68a4791f246fad478b5df1.webp?image_crop_resized=960x540',
+      videoId: 'azf6fx3gi5',
+    },
+    {
+      name: 'Steve',
+      brief:
+        "Steve’s family wanted to make sure his son could reach his full potential by the time he applied for college as a senior<span class='lav-dots'>...</span>",
+      descr:
+        'Steve’s son joined our college counseling program as a 10<sup>th</sup> grader. Though Steve had attended high school and college in the US, he realized how much had changed in the college admissions process during his son’s 9<sup>th</sup> grade at an academically competitive high school. While his son was hard–working, Steve wanted someone who could motivate their son, help him identify his unique strengths, and most importantly, find an area of interest to pursue outside of school. Given various opportunities in terms of classes, activities, and competitions, Steve’s family wanted to make sure his son could reach his full potential by the time he applied for college as a senior.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/899b7bff289762f15b09ee987307fc7ecd4bcdda.webp?image_crop_resized=960x540',
+      videoId: '1c0on4q7xf',
+    },
+    {
+      name: 'Vincy',
+      brief:
+        "She wanted to make sure her daughter could build a comprehensive profile highlighting her strengths and unique talents on the college application<span class='lav-dots'>...</span>",
+      descr:
+        'Vincy came from a strong business background, having done her education at USC, a top 20 business school. Her daughter was a bright and motivated middle school student, but they wanted to expose her to different fields of interest so she could find a passion best fitting her college/career goals. Given how much has changed with the college application process (requirements, trends, and competitiveness), she wanted to make sure her daughter could build a comprehensive profile highlighting her strengths and unique talents on the college application.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/9afb218537f7dadda459ed145e063b3e.webp?image_crop_resized=960x540',
+      videoId: 'bfuxrp4svl',
+    },
+    {
+      name: 'Govin &amp; Ramya',
+      brief:
+        "Ramya and Govin were so pleased with the successful working relationship with their older son that they signed up their younger son as well<span class='lav-dots'>...</span>",
+      descr:
+        'Ramya and Govin’s son joined our college consulting program in the 10<sup>th</sup> grade. Although he was doing fine academically, they knew he would need a strong extracurricular profile to stand out to universities. With two years left prior to applying to college, they wanted someone to motivate their son, identify the best extracurriculars/activities that would help him gain an edge over his peers, and highlight his strengths so he’d gain admission into the universities that he deserved. Ramya and Govin were so pleased with the successful working relationship with their older son that they signed up their younger son as well.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/37ca6debf9f882afc7e4a90177e64f3817469135.webp?image_crop_resized=960x540',
+      videoId: 'b4ri1l4kvi',
+    },
+    {
+      name: 'Sa &amp; David',
+      brief:
+        "Guidance on helping their daughter get into her dream university<span class='lav-dots'>...</span>",
+      descr:
+        'Sa and David’s daughter was a very strong student academically, involved with various activities including sports, volunteering, leadership positions in clubs and youth councils, dancing, and more. Given that their daughter was in 10<sup>th</sup> grade, Sa and David enrolled her into our college consulting program to help provide resources, recommendations, strategies, and guidance on helping their daughter get into her dream university.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/e5493d614320ea3e1854ac52640f6bae4e5f65ea.webp?image_crop_resized=960x540',
+      videoId: '6rp9ponayt',
+    },
+    {
+      name: 'Yun',
+      brief:
+        "Yun, having an 8<sup>th</sup> grader who excelled academically but lacked a sense of direction and focus, quickly enrolled him into our college consulting program once he was accepted<span class='lav-dots'>...</span>",
+      descr:
+        'Aside from wanting guidance on navigating high school in terms of what classes to take, when to take standardized tests, and all the other traditional things that college counselors do, Yun wanted specific guidance on figuring out her son’s interests and the strategy/roadmap on what her son could do in terms of programs, internships, competitions, and other extracurricular activities to help him stand out to universities when he applied in the 12<sup>th</sup> grade.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/08795c38806adec21362a5c94537f78698c0acef.webp?image_crop_resized=960x540',
+      videoId: 'irxug13a6p',
+    },
+    {
+      name: 'Archana &amp; Sunil',
+      brief:
+        "They enrolled their son into our college consulting program towards the end of 7<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Archana’s son, aside from being a bright student, was excelling in various extracurricular activities ranging from music to coding to debate. Feeling at a loss what would be most helpful for college, and unsure of how to continuously engage and help their son reach his fullest potential, they enrolled their son into our college consulting program towards the end of 7<sup>th</sup> grade.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/2150990d6a1fd2bd4cfe30d53362ee20e8859ff8.webp?image_crop_resized=960x540',
+      videoId: 'kve7ayqy0t',
+    },
+    {
+      name: 'Kunal &amp; Deepal',
+      brief:
+        "They wanted guidance and highly specific, customized recommendations to turn their son’s passion into activities, achievements, and accomplishments that would help him stand out to universities<span class='lav-dots'>...</span>",
+      descr:
+        'Kunal and Deepal’s son was in the 8<sup>th</sup> grade when they started their college prep guidance with Zenith Prep Academy. They wanted to help their bright and extremely motivated son find his passion, so he could focus his hard work in one field and set himself apart as a singular applicant for universities. Given that they were both first–generation parents, they were overwhelmed with all of the different classes, clubs, and competitions their son could try. As a result, they wanted guidance and highly specific, customized recommendations to turn their son’s passion into activities, achievements, and accomplishments that would help him stand out to universities.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/4f9dde9ba0c2f74d9045bf7a24a435bee3ef1673.webp?image_crop_resized=960x540',
+      videoId: 'f0zzc5yspi',
+    },
+    {
+      name: 'Nidhi',
+      brief:
+        "She enrolled her 8<sup>th</sup> grader son into our college consulting program so that we can recommend different classes, programs…<span class='lav-dots'>...</span>",
+      descr:
+        'Being a first–generation parent, Nidhi wanted to help her son identify and develop his passion to get into the universities he wanted to go to. Although her son had not done much from an extracurricular standpoint, he was a bright and motivated 8<sup>th</sup> grader who always worked really hard and put his 100% effort into everything that he did. Seeing her son doing well academically, she enrolled him into our college consulting program so that we can recommend different classes, programs, internships, competitions, and other extracurricular activities that will help him stand out to universities.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/29677dd0ee524347985d7996538f727fba549172.webp?image_crop_resized=960x540',
+      videoId: '2nkrh3pkgx',
+    },
+    {
+      name: 'Sanjay &amp; Vaishali',
+      brief:
+        "Sanjay and Vaishali enrolled their son into our college consulting program in 8<sup>th</sup> grade to get a head start in planning for high school and college<span class='lav-dots'>...</span>",
+      descr:
+        'Being first–generation parents in the US, Sanjay and Vaishali were unsure how to guide their oldest son to navigate through high school and the eventual college admissions process. Given the different classes a student can take inside and outside of school, the wide variety of clubs offered in high school, and the various extracurricular activities that they heard through various parents, Sanjay and Vaishali enrolled their son into our college consulting program in 8<sup>th</sup> grade to get a head start in planning for high school and college.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/f06a5993936d2fa7fbddefb5736d89958f2626fa.webp?image_crop_resized=960x540',
+      videoId: '6zgibmlxcm',
+    },
+    {
+      name: 'Rajesh',
+      brief:
+        "Rajesh’s son joined our college consulting program in 8<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Given that his son was doing well academically, Rajesh wanted guidance on resources, programs, and classes that could provide his son with exposure to different fields and majors – in turn helping him identify his interests and turn his passions into activities, helping him attract the attention of his choice universities.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/fdbdf42359212d73bdb4fc0e76248a2c9f5fb8e1.webp?image_crop_resized=960x540',
+      videoId: '27pw1w7nl9',
+    },
+    {
+      name: 'Mughda &amp; Vijay',
+      brief:
+        "They sought Zenith’s guidance in order to help their daughter identify her area of interest, highlight her academic strengths, and use her passion to stand out to universities<span class='lav-dots'>...</span>",
+      descr:
+        'Mugdha &amp; Vijay’s daughter was in the 9<sup>th</sup> grade when they joined our college counseling program. Their daughter was doing well in her classes academically, but they wanted a way to identify her interests and develop her strengths. Given that they had only done their post–grad education in the United States, they were unsure of how the college admissions process worked, but knew that it was very competitive. They sought Zenith’s guidance in order to help their daughter identify her area of interest, highlight her academic strengths, and use her passion to stand out to universities.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/6ef5b42ef1ccf2d9d3123a55d942644574e94bfa.webp?image_crop_resized=960x540',
+      videoId: '87p1tuqicb',
+    },
+    {
+      name: 'Seema',
+      brief:
+        "She wanted to find a college consulting program that specialized in her son’s varied interests and had the expertise to equip him with a strong profile for his top universities of interest<span class='lav-dots'>...</span>",
+      descr:
+        'Seema’s son, a 7<sup>th</sup> grader at the time of joining our program, was a very bright and mature student who excelled academically and in his extracurricular activities. However, having moved to California from the East Coast, Seema was unaware of all the different programs, classes, and competitions that her son could do (locally, regionally, nationally). She wanted to find a college consulting program that specialized in her son’s varied interests and had the expertise to equip him with a strong profile for his top universities of interest.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/93ba96cd1c127e34ca428258411bfcd05c14e840.webp?image_crop_resized=960x540',
+      videoId: '3cii42ifdm',
+    },
+    {
+      name: 'Priya',
+      brief:
+        "Priya’s daughter was accepted and joined our program when she was in 8<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Given that Priya did not grow up here and was unfamiliar with how college admissions worked in the US, her family was seeking our guidance on how to help their daughter build a comprehensive profile that would highlight her academic strengths while combining that with her extracurricular interests to stand out to universities.',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/32f446d5bfd84847d17f46cc7e09e518fecbde8f.webp?image_crop_resized=960x540',
+      videoId: 't86lwtkn2f',
+    },
+    {
+      name: 'Charu &amp; Vivek',
+      brief:
+        "Their daughter began her college prep guidance under Zenith Prep Academy midway through her 10<sup>th</sup> grade<span class='lav-dots'>...</span>",
+      descr:
+        'Although their daughter was strong academically and had numerous extracurricular activities involving leadership, sports, and volunteering, Charu and Vivek wanted more specialized guidance on how to identify their daughter’s interests and what she could do in the 18 months prior to college applications to help her stand out to admission officers comparing tens of thousands of other students applying for the same colleges with similar academic profiles (grades, honors/AP classes, SAT/ACT scores, etc.).',
+      image:
+        'https://embed-ssl.wistia.com/deliveries/2084d286cb610f1aece59492a5c473fe69256fdd.webp?image_crop_resized=960x540',
+      videoId: '0nlkksp255',
+    },
+  ];
+  // name: "Connie's Family",
+  // brief:
+  //   'Connie’s son was in the 8th grade when they joined our College Consulting Program',
+  // descr:
+  //   'Although strong academically, they wanted to make sure he had the right guidance and mentorship, was effectively utilizing his time, and could turn his interest into a genuine passion. And with Zenith’s help, he was able to gain acceptance into his dream university',
+  // image:
+  //   'https://www.zenithprepacademy.com/wp-content/uploads/2023/02/hfp-section-02-vid-img-12-1024x576.jpg',
+
+  for (let review of reviews) {
+    const el = document.createElement('div');
+    el.classList.add('review', 'splide__slide');
+    el.innerHTML = `
+      <div class='review__preview'>
+        <img src='${review.image}' />
+      </div>
+      <div class='review__body'>
+        <div class='review__name'>${review.name}</div>
+        <div class='review__descr'>
+          <div>${review.brief}</div>
+          <div style='display: none'>${review.descr}</div>
+        </div>
+        <div class='review__details'><span>Read more</span> ></div>
+      </div>
+    `;
+
+    _$('.review__details span', el).addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (this.textContent.includes('more')) {
+        _$('.review__descr div:last-child', el).style.display = 'block';
+        _$('.review__descr div:first-child .lav-dots', el).innerText = '.';
+        this.textContent = 'Read less';
+      } else {
+        _$('.review__descr div:last-child', el).style.display = 'none';
+        _$('.review__descr div:first-child .lav-dots', el).innerText = '...';
+        this.textContent = 'Read more';
+      }
+    });
+
+    _$('.review__preview', el).addEventListener('click', function () {
+      el.insertAdjacentHTML(
+        'afterbegin',
+        `
+        <div class="influex-wistia-player">
+          <div class="wistia_embed wistia_async_${review.videoId}  popover=false" style="height:300px;width:400px">&nbsp;</div>
+        </div>
+      `
+      );
+
+      _wq.push({
+        id: review.videoId,
+        onReady: function (video) {
+          // container.addClass('playing');
+          video.play();
+        },
+      });
+    });
+
+    _$('.reviews__slider .splide__list').insertAdjacentElement('beforeend', el);
+  }
+
+  const revs = [
+    {
+      name: 'Vivek S.',
+      descr:
+        "My 11th grader took 2 classes during summer andwe were really impressed with the professionalismand the deep knowledge of the Zenith staff. Theclasses were very informative & easy-to-follow, andit piqued my daughter's interest in those subjectsespecially the mini-MBA class. The collegecounseling program was excellent; the Zenithcoordinator guided my daughter through everystage of the complex application process and helpedher stand out. I would highly recommend the ZenithPrep Academy.",
+    },
+    {
+      name: 'S G.',
+      descr:
+        "Samuel has been exceptional in supporting my daughter through her college application process. While many college counseling offer services focussed primarily on essay writing, Samuel really helped my daughter build a solid profile through advising on academic extra curricular activities (internships, research, competitions, volunteering). This is a multi-year process and eventually helps build a narrative which then can be referenced in essays and other artifacts in the application. The 2021-22 application cycle was extremely challenging with most reach colleges reporting single digit acceptance rates. Through Samuel's help, my daughter was able to get acceptance to several reach programs. We as a family couldn't be happier with the all the support that we received from Samuel. Thank you",
+    },
+    {
+      name: 'Priya R.',
+      descr:
+        "I am tremendously happy and pleased with the Zenith Prep college counseling team. So much so that I have enrolled my second kid also into their program. They have a very robust plan for the child and develop the child's overall ability in tackling things in their own. They are not just focused on college admission but on improving their organization skills along with making them responsible for their actions and always staying on top of their to do list. I cannot thank the college counseling team enough for everything they have done for my child.",
+    },
+    {
+      name: 'A K.',
+      descr:
+        'Will and his team were very helpful throughout the couple of years that we were with them. Not having attended undergraduate college in the US, both of us were quite apprehensive and clueless about the overall process. Our son latched on to his academic area of interest half-way through the high school. Will and his team tirelessly worked with our son by showing him avenues to get deeper knowledge in his area of interest and explore the field in various ways. They provided excellent guidance for him to pursue it further. Thanks to their guidance and close partnership with our son, as well as invaluable help throughout the application process, he got acceptances from highly ranked universities such as UC Berkeley, pre-admit to Ross School of Business at Umich, and many more.  We are proud to be Cal Parents and are thankful to Will and his team for everything they have done for our son.',
+    },
+    {
+      name: 'Pardeep K.',
+      descr:
+        'My son took two courses at Zenith  - Web Development and Software Development. These courses are not just about learning computer language, but more about applying those skills in developing real life applications. At the of the course enterprise quality applications were built. This whole process has helped in improving problem solving skill.  Instructors at Zenith are very knowledgeable and true professionals, understand how to pace the program still keep students motivated. Highly recommended!!!',
+    },
+    {
+      name: 'Sim A.',
+      descr:
+        'My children love Zenith. My daughter is a Sophomore now. She joined back when she was in 8th grade. She enjoys the different programs that Zenith offers. As parents, we like that Zenith helps her explore career choices such as business, technology, and medical fields. We like the service so much, that our 7th grader son is now also enrolled in the program. We highly recommend Zenith.',
+    },
+    {
+      name: 'S L.',
+      descr:
+        'My child began working with Zenith Prep Academy in freshmen year of high school, and they have been a great help in providing resources for academic interests, internships/summer programs, and especially the college application process. Throughout high school, the Zenith Prep team provided my child with countless resources for pursuing academic-related programs/internships which helped develop their interests and experiences. Particularly throughout the college application process, they have been able to answer our numerous questions, as well as provide consistent feedback on essays, extracurricular activities lists, etc. Overall, the team at Zenith Prep Academy has helped guide my family throughout both high school and especially through the college application process, which we are grateful for.',
+    },
+    {
+      name: 'Anita D.',
+      descr:
+        "Zenith Prep Academy is a very professional yet student interest led counseling centre. I was very impressed with their approach which combines best practices with helping a student excel in their area of interest. The counselors are very well informed and are prompt to respond to any questions we have. The whole effort of the team is encouraging the student to work hard and develop successful practices which will lay a foundation for future success.My son took their Web Development Class online and is very happy with his experience. He was very motivated to work hard in the class. The IA's in the class were very good to work with. I especially loved the detailed feedback after the class, which focuses not only on the technical part but also on the work ethics and tips for a building successful work habits. He is now looking forward to the Software Development class.",
+    },
+    {
+      name: 'Jason T.',
+      descr:
+        "Our son is a 7th grader and he was still trying to figure out what direction he wanted to go towards (business, technology, video editing).  We attended a few seminars with Zenith to understand their approach to helping students prepare for college and to how they help students find their interest.  Our son really enjoyed making videos and editing so we decided on the entry level web development class.  This class was in addition to his normal workload with school.  He was new to development so we didn't know how he would receive it.  With the help of his tutor which is provided through the class, his enjoyment in the class shown through each passing day, so much he would focus on doing the homework from the web development class over his middle school work.  In the end my son created an easy to navigate and beautiful UX look of a website.  He was always been able to work independently before and taking this course has only increased his own personal confidence in his ability to learn and grow.  He's leaning more towards software development now with a future focus on building software for making videos.  If you are looking for classes to build interest for your children in technology, I would recommend they give Zenith a try.",
+    },
+    {
+      name: 'Fei L.',
+      descr:
+        'My son enjoyed the one-on-one Software Development class. The curriculum was carefully designed to teach him the fundamentals, get him the logic thinking behind the coding, analyze the mistakes he made and provided good coding practice along the course. He also got the personal attention and feedback in the private on-line class. At the end of the class, he was proud of himself that he not only learned a new computer language but also built a website that he had never thought he could.',
+    },
+  ];
+
+  for (let rev of revs) {
+    const el = document.createElement('div');
+    el.classList.add('rev-item', 'splide__slide');
+    el.innerHTML = `
+      <div class="rev-item__name">${rev.name}</div>
+      <div class="rev-item__descr">${rev.descr}</div>
+      <div class='rev-item__details'><span>Read more</span> ></div>
+    `;
+
+    _$('.rev-item span', el).addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (this.textContent.includes('more')) {
+        _$('.rev-item__descr', el).classList.add('active');
+        this.textContent = 'Read less';
+      } else {
+        _$('.rev-item__descr', el).classList.remove('active');
+        this.textContent = 'Read more';
+      }
+    });
+
+    _$('.rev__slider .splide__list').insertAdjacentElement('beforeend', el);
+  }
 }
 
 function initSliders() {
@@ -2629,7 +3382,12 @@ function initSliders() {
     updateOnMove: true,
     isNavigation: true,
     lazyLoad: 'nearby',
-    breakpoints: {},
+    breakpoints: {
+      768: {
+        perPage: 1.5,
+        gap: 5,
+      },
+    },
   });
 
   webinar.on('move', function (newIndex) {
@@ -2637,128 +3395,66 @@ function initSliders() {
   });
 
   webinar.mount();
+
+  const reviews = new Splide('.reviews__slider', {
+    autoplay: true,
+    rewind: true,
+    perPage: 3,
+    gap: 24,
+    pagination: false,
+    updateOnMove: true,
+    // isNavigation: true,
+    breakpoints: {},
+  });
+
+  reviews.on('move', function (newIndex) {
+    _$('.reviews__nav-num span').innerHTML = newIndex + 1;
+  });
+
+  // _$('.reviews__nav-prev').addEventListener('click', () => {
+  //   _$('.reviews__slider .splide__arrow--prev').click();
+  // });
+  // _$('.reviews__nav-next').addEventListener('click', () => {
+  //   _$('.reviews__slider .splide__arrow--next').click();
+  // });
+
+  reviews.mount();
+
+  const rev = new Splide('.rev__slider', {
+    type: 'loop',
+    autoplay: true,
+    rewind: true,
+    perPage: 3,
+    gap: 24,
+    // pagination: false,
+    updateOnMove: true,
+    isNavigation: true,
+    breakpoints: {
+      992: {
+        perPage: 2,
+      },
+      768: {
+        perPage: 1.2,
+        gap: 8,
+        pagination: false,
+      },
+    },
+  });
+
+  rev.on('move', function (newIndex) {
+    _$('.rev__nav-num span').innerHTML = newIndex + 1;
+  });
+
+  rev.mount();
 }
 
-// *** Utils *** //
-class Modal {
-  static list = [];
-  constructor(name, innerHTML) {
-    if (!_$('.lav-modal')) {
-      this.constructor.init();
-    }
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = innerHTML;
-
-    _$('.lav-modal').insertAdjacentElement('beforeend', this.el);
-
-    this.constructor.list.push(this);
-  }
-
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      "<div class='lav-modal'></div>"
-    );
-
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close();
-
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
-      }
-    });
-
-    this.addStyles();
-  }
-
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
-
-    if (_$('.lav-modal__inner.active')) {
-      _$('.lav-modal__inner.active').classList.remove('active');
-    }
-
-    _$(modalName).classList.add('active');
-
-    if (typeof cb === 'function') cb();
-
-    setTimeout(() => {
-      _$('.lav-modal').classList.add('active');
-    }, 100);
-  }
-
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open');
-
-    _$('.lav-modal')?.classList.remove('active');
-
-    if (typeof cb === 'function') cb();
-
-    setTimeout(() => {
-      _$('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
-  }
-
-  static addStyles() {
-    const styles = `
-      .lav-modal {
-        position: fixed;
-        z-index: 999;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: rgba(0,0,0,.1);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
-        transition: 0.35s;
-        opacity: 0;
-        pointer-events: none;
-        padding: 15px;
-        overflow-y: auto;
-        max-height: 100%;
-        display: flex;
-      }
-      .lav-modal.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .lav-modal__inner {
-        position: relative;
-        background: #fff;
-        max-width: 380px;
-        width: 100%;
-        display: none;
-        margin: auto;
-      }
-      .lav-modal__inner.active {
-        display: block;
-      }
-      .lav-modal__close {
-        cursor: pointer;
-        transition: 0.35s;
-      }
-      @media(hover:hover) {
-        .lav-modal__close:hover {
-          opacity: 0.5;
-        }
-      }
-      .lav-modal-open {
-        overflow: hidden;
-      }
-    `;
-
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
-  }
+function initModals() {
+  new Modal(
+    'lav-solo',
+    `
+     <iframe src="https://drive.google.com/file/d/1O4EpOclzq63vcKGpmJSS7nihM8cZB8ZJ/preview" height='520' width='920' allow="autoplay"></iframe>
+    `
+  );
 }
 
 // *** HELPERS *** //
