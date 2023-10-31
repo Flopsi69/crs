@@ -8,6 +8,11 @@ const config = {
   debug: true,
 };
 
+const orig = console.log;
+console.log = function (...args) {
+  orig.apply(console, ['Debug:', ...args]);
+};
+
 // Styles for Experiment
 const styles = ``;
 
@@ -55,6 +60,10 @@ class Modal {
 
       if (e.target.dataset.modal) {
         this.open(e.target.dataset.modal);
+      }
+
+      if (e.target.closest('[data-modal]')) {
+        this.open(e.target.closest('[data-modal]').dataset.modal);
       }
     });
 
@@ -127,6 +136,10 @@ class Modal {
       .lav-modal__close {
         cursor: pointer;
         transition: 0.35s;
+        line-height: 0;
+      }
+      [data-modal] {
+        cursor: pointer;
       }
       @media(hover:hover) {
         .lav-modal__close:hover {
