@@ -15,7 +15,7 @@ const settings = {
   observe: false,
   clarity: {
     enable: true,
-    params: ['set', 'exp_stripe_flow', 'variant_1'],
+    params: ['set', 'exp_stripe_cancel_flow', 'variant_1'],
   },
   debug: true,
 };
@@ -24,14 +24,22 @@ if (
   location.href.includes('/upgrade/player') &&
   location.href.includes('hypothesis-2')
 ) {
+  pushDataLayer('exp_stripe_cancel_flow_loaded');
   waitFor(
     () => document.body,
     () => {
       handleUpgradePage();
+      pushDataLayer(
+        'exp_stripe_cancel_flow_view',
+        'View popup',
+        'Element on screen',
+        'Popup: An Exclusive Offer for You'
+      );
     },
     50
   );
 } else if (location.href.includes('/home')) {
+  pushDataLayer('exp_stripe_cancel_flow_loaded');
   waitFor(
     () => document.body && document.querySelector('#app')?.dataset?.page,
     () => {
@@ -54,29 +62,63 @@ function handleHomepage() {
 
   console.log('initHomepage: ' + location.href);
 
-  const parseJson = document.querySelector('#app')?.dataset.page;
+  // const parseJson = document.querySelector('#app')?.dataset.page;
 
-  if (
-    parseJson &&
-    JSON.parse(parseJson)?.props?.subdomainData?.subscriptionTier === 0
-  ) {
-    // sessionStorage.setItem('isRedirectedExp', 'yes');
+  waitFor(
+    () => document.querySelector('[data-has-active-subscription]'),
+    () => {
+      const isFreeTrial = document
+        .querySelector('[data-is-eligible-for-free-trial]')
+        .getAttribute('data-is-eligible-for-free-trial');
 
-    waitFor(
-      () =>
-        document.querySelector(
-          '[data-crstarget="hypothesis-2-upgrade-target"]'
-        ),
-      () => {
-        document
-          .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
-          .dispatchEvent(new Event('click'));
+      const isActiveSubscription = document
+        .querySelector('[data-has-active-subscription]')
+        .getAttribute('data-has-active-subscription');
+
+      if (isFreeTrial === 'false' && isActiveSubscription === 'false') {
+        waitFor(
+          () =>
+            document.querySelector(
+              '[data-crstarget="hypothesis-2-upgrade-target"]'
+            ),
+          () => {
+            document
+              .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+              .dispatchEvent(new Event('click'));
+          }
+        );
+      } else {
+        console.log(
+          'Fail: isFreeTrial: ' +
+            isFreeTrial +
+            ' isActiveSubscription: ' +
+            isActiveSubscription
+        );
       }
-    );
-  } else {
-    console.log('empty json or not free tier');
-    return false;
-  }
+    }
+  );
+
+  // if (
+  //   parseJson &&
+  //   JSON.parse(parseJson)?.props?.subdomainData?.subscriptionTier === 0
+  // ) {
+  //   // sessionStorage.setItem('isRedirectedExp', 'yes');
+
+  //   waitFor(
+  //     () =>
+  //       document.querySelector(
+  //         '[data-crstarget="hypothesis-2-upgrade-target"]'
+  //       ),
+  //     () => {
+  //       document
+  //         .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+  //         .dispatchEvent(new Event('click'));
+  //     }
+  //   );
+  // } else {
+  //   console.log('empty json or not free tier');
+  //   return false;
+  // }
 }
 
 function handleUpgradePage() {
@@ -460,31 +502,36 @@ function handleUpgradePage() {
     100
   );
 
+  let seconds = 0;
+  const secondsInterval = setInterval(() => {
+    seconds += 500;
+    console.log(seconds);
+  }, 500);
+
   function init() {
     console.log('init');
-
-    // pushDataLayer(
-    //   'exp_stripe_v_utsp_ps',
-    //   `Popup - ${
-    //     document.querySelector('.lav-table.active') ? 'extended' : 'short'
-    //   }`,
-    //   'Visibility',
-    //   'Upgrade to SwingU Pro'
-    // );
 
     document
       .querySelector('.antialiased')
       .insertAdjacentHTML('afterbegin', html);
 
     document.querySelector('.lav-close').addEventListener('click', function () {
-      // pushDataLayer(
-      //   'exp_stripe_c_utsp_ps',
-      //   `Popup - ${
-      //     document.querySelector('.lav-table.active') ? 'extended' : 'short'
-      //   }`,
-      //   'Close',
-      //   'Upgrade to SwingU Pro'
-      // );
+      pushDataLayer(
+        'exp_stripe_cancel_flow_close',
+        'Close popup',
+        'Button',
+        'Popup: An Exclusive Offer for You'
+      );
+
+      clearInterval(secondsInterval);
+
+      pushDataLayer(
+        'exp_stripe_cancel_flow_focus',
+        `${seconds / 1000}s`,
+        'Element on screen',
+        'Popup: An Exclusive Offer for You'
+      );
+
       document
         .querySelector('[dusk="gps-upgrade-container"] .absolute')
         .click();
@@ -543,35 +590,35 @@ function handleUpgradePage() {
       .addEventListener('click', function () {
         if (document.querySelector('.lav-clicked')) return;
 
+        clearInterval(secondsInterval);
+
+        pushDataLayer(
+          'exp_stripe_cancel_flow_focus',
+          `${seconds / 1000}s`,
+          'Element on screen',
+          'Popup: An Exclusive Offer for You'
+        );
+
+        pushDataLayer(
+          'exp_stripe_cancel_flow_cta',
+          'CTA',
+          'Button',
+          'Popup: An Exclusive Offer for You'
+        );
+
         this.classList.add('lav-clicked');
 
         document
           .querySelector('.lav-unlock__price')
           .classList.add('lav-loader');
         if (document.querySelector('[data-stripe-checkout-url]')) {
-          // pushDataLayer(
-          //   'exp_stripe_v_utsp_usp',
-          //   'Unlock SwingPro',
-          //   'Button',
-          //   'Upgrade to SwingU Pro'
-          // );
-
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
           const link = document.createElement('a');
-          link.href = url;
+          link.href = url.replace('CRO40', 'COMEBACK50');
           link.click();
         }
       });
-
-    // setTimeout(() => {
-    // pushDataLayer(
-    //   'exp_stripe_v_utsp_ba',
-    //   'Billed annually',
-    //   'Visibility',
-    //   'Upgrade to SwingU Pro'
-    // );
-    // }, 2000);
   }
 
   function handleStickyOffset() {
@@ -640,21 +687,21 @@ function handleUpgradePage() {
       </svg>`;
 
       toggler.addEventListener('click', function () {
-        // if (document.querySelector('.lav-table.active')) {
-        //   pushDataLayer(
-        //     'exp_stripe_b_utsp_vtf',
-        //     'View top features',
-        //     'Button',
-        //     'Upgrade to SwingU Pro'
-        //   );
-        // } else {
-        //   pushDataLayer(
-        //     'exp_stripe_b_utsp_vaf',
-        //     'View all features',
-        //     'Button',
-        //     'Upgrade to SwingU Pro'
-        //   );
-        // }
+        if (document.querySelector('.lav-toggler.active')) {
+          pushDataLayer(
+            'exp_stripe_cancel_flow_show',
+            'View top features',
+            'Button',
+            'Popup: An Exclusive Offer for You'
+          );
+        } else {
+          pushDataLayer(
+            'exp_stripe_cancel_flow_show',
+            'View all features',
+            'Button',
+            'Popup: An Exclusive Offer for You'
+          );
+        }
 
         parentEl.classList.toggle('active');
         toggler.classList.toggle('active');
