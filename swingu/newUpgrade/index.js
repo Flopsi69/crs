@@ -1,11 +1,11 @@
-const orig = console.log;
-console.log = function () {
-  orig.apply(console, arguments);
-  navigator.sendBeacon(
-    'https://console.wiredgeese.com/log/',
-    JSON.stringify(arguments)
-  );
-};
+// const orig = console.log;
+// console.log = function () {
+//   orig.apply(console, arguments);
+//   navigator.sendBeacon(
+//     'https://console.wiredgeese.com/log/',
+//     JSON.stringify(arguments)
+//   );
+// };
 
 console.log('initExp: newUpgrade + C');
 
