@@ -728,12 +728,15 @@ function initSlider() {
     i = 0;
   });
 
-  const isSliderClicked = false;
+  let isSliderClicked = false;
   slider.on('click', function () {
     if (isSliderClicked) {
       return false;
     }
     isSliderClicked = true;
+    setTimeout(() => {
+      isSliderClicked = false;
+    }, 2000);
     pushDataLayer(
       'exp_stripe_i_b_bt',
       document
