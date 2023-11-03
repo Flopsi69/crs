@@ -22,7 +22,7 @@ const settings = {
 
 if (
   location.href.includes('/upgrade/player') &&
-  location.href.includes('hypothesis-2')
+  location.href.includes('hypothesis-3')
 ) {
   pushDataLayer('exp_stripe_cancel_flow_loaded');
   waitFor(
@@ -65,7 +65,9 @@ function handleHomepage() {
   // const parseJson = document.querySelector('#app')?.dataset.page;
 
   waitFor(
-    () => document.querySelector('[data-has-active-subscription]'),
+    () =>
+      document.querySelector('[data-has-active-subscription]') &&
+      document.querySelector('.antialiased .relative.flex-col'),
     () => {
       const isFreeTrial = document
         .querySelector('[data-is-eligible-for-free-trial]')
@@ -75,15 +77,542 @@ function handleHomepage() {
         .querySelector('[data-has-active-subscription]')
         .getAttribute('data-has-active-subscription');
 
+      if (
+        JSON.parse(document.querySelector('#app').dataset.page).props
+          .subdomainData.subscriptionTier === 0
+      ) {
+        waitFor(
+          () =>
+            document.querySelector(
+              '[dusk="global/stats/handicap-with-last-ten--play-rounds"]'
+            ) ||
+            document.querySelector(
+              '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+            ),
+          () => {
+            if (
+              document.querySelector(
+                '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+              )
+            ) {
+              handleHandicap();
+            }
+          }
+        );
+
+        let incr = 0;
+
+        const waitHandi = setInterval(() => {
+          incr++;
+          if (incr > 25) {
+            clearInterval(waitHandi);
+          }
+          if (
+            document.querySelector(
+              '[dusk="global/stats/handicap-with-last-ten--handicap"]'
+            )
+          ) {
+            clearInterval(waitHandi);
+            handleHandicap();
+          }
+        }, 100);
+
+        connectSplide();
+
+        const styles = `
+          .lav-slider {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-grow: 1;
+            max-height: 400px;
+          }
+          .lav-slider:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            pointer-events: none;
+            border: 5px solid rgba(255, 255, 255, 0.12);
+            z-index: 1;
+          }
+          .lav-slide {
+            display: flex;
+            border-radius: 10px;
+          }
+          .lav-slide__info {
+            display: flex;
+            flex-flow: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            flex-shrink: 0;
+            width: 50%;
+            background: url('${settings.dir}/img/slide-bg.png') no-repeat left;
+            background-size: cover;
+            padding: 22px 15px 85px;
+          }
+          .lav-slide__info > * {
+            position: relative;
+            z-index: 2;
+          }
+          .lav-slide__info:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            pointer-events: none;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            background: rgba(23, 24, 26, 0.85);
+            backdrop-filter: blur(2.5px);
+          }
+          .lav-slide__image {
+            position: relative;
+            line-height: 0;
+            width: 50%;
+          }
+          .lav-slide__image img:not(.lav-phone) {
+            position: absolute;
+            min-height: 100%;
+            min-width: 100%;
+            object-fit: cover;
+            object-position: right;
+          }
+          .lav-slide__image img.lav-phone {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 85%;
+            max-height: 90%;
+          }
+          .lav-slide:nth-child(2) .lav-slide__image img {
+            object-position: 45%;
+          }
+          .lav-slide:nth-child(3) .lav-slide__image img {
+            object-position: 83%;
+          }
+          .lav-slide:nth-child(4) .lav-slide__image img {
+          }
+          .lav-slide__title {
+            margin-top: 10px;
+            color: var(--common-white, #FFF);
+            font-size: 4.5vw;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.32px;
+          }
+          @media(min-width: 392px) {
+            .lav-slide__title {
+            }
+            .lav-slide:nth-child(2) .lav-slide__title {
+              // font-size: 4.5vw;
+            }
+          }
+          .lav-slide__info > img {
+            width: 75%;
+          }
+          .lav-slide:nth-child(2) .lav-slide__title {
+            font-size: 4.5vw;
+          }
+          .lav-slide__off {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            color: var(--neutral-grey-90017181-a, #17181A);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 19px;
+            letter-spacing: -0.15px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            border: 1px solid var(--common-medium-secondary, #FFC803);
+            background: var(--common-medium-secondary, #FFC803);
+            padding: 0 10px;
+            min-height: 32px;
+          }
+          .lav-slide__off img {
+            margin-right: 8px;
+          }
+
+          .lav-cta {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            right: 15px;
+            border-radius: 7px;
+            background: var(--common-medium-primary, #49BB54);
+            padding: 0 16px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .lav-cta__caption {
+            color: var(--common-white, #FFF);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 21px;
+            letter-spacing: -0.32px;
+          }
+          .lav-cta__price {
+            display: flex;
+            align-items: center;
+            color: var(--common-white, #FFF);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 21px;
+            letter-spacing: -0.32px;
+          }
+          .lav-cta__price span {
+            color: var(--common-white, #FFF);
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 19px;
+            letter-spacing: -0.15px;
+            opacity: 0.75;
+            align-self: flex-end;
+            margin-left: 2px;
+          }
+          .lav-cta__price svg {
+            margin-left: 12px;
+          }
+
+          .lav-tip {
+            position: relative;
+            border-radius: 4px;
+            border: 1px solid var(--common-grey-200-strokes, #D9E1E8);
+            background: var(--common-white, #FFF);
+            padding: 9px 10px;
+            padding-right: 35px;
+          }
+          .lav-tip:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: url('${settings.dir}/img/solid-arrow.svg') no-repeat center;
+            background-size: contain;
+            width: 15px;
+            height: 22px;
+          }
+          .lav-tip__caption {
+            color: var(--common-grey-700-default-text, #596974);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: -0.078px;
+          }
+          .lav-tip__title {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 17px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+          }
+
+          .splide__pagination {
+            position: absolute;
+            z-index: 999;
+            right: 15px;
+            top: 15px;
+            border-radius: 50px;
+            background: rgba(23, 24, 26, 0.65);
+            backdrop-filter: blur(2.5px);
+            padding: 5px;
+          }
+          .splide__pagination__page {
+            border-radius: 5px;
+            opacity: 0.25;
+            background: var(--common-white, #FFF);
+            width: 5px;
+            height: 5px;
+          }
+          .splide__pagination__page.is-active {
+            opacity: 1;
+          }
+          .splide__pagination li {
+            display: flex;
+          }
+          .splide__pagination li + li {
+            margin-left: 5px;
+          }
+      
+
+          .section__marketing-block {
+            display: none!important;
+          }
+          .section__video-basic {
+            height: 0;
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            min-height: 0;
+          }
+          .section__video-basic > div {
+            height: 0!important;;
+            min-height: 0!important;
+          }
+          .video-basic {
+            display: none;
+          }
+          .section__last-round {
+            padding: 10px;
+            height: auto;
+          }
+          .section__last-round >div>div.font-semibold:first-child {
+            color: var(--common-grey-700-default-text, #596974);
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 18px;
+            letter-spacing: -0.078px;
+            text-transform: none;
+            margin-bottom: 0;
+          }
+          .section__last-round .truncate {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.408px;
+          }
+          .section__last-round .flex>div:first-child {
+            color: var(--common-grey-700-default-text, #596974);
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"] {
+            color: #253139;
+            box-shadow: none;
+            border-radius: 10px;
+            border: 1px solid var(--common-grey-200-strokes, #D9E1E8);
+            background: var(--common-white, #FFF)!important;
+
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"] > div {
+            background: none;
+            padding: 15px;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"] > div > div {
+            padding: 0;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"] > div > div > div {
+            padding: 0;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex>.flex:first-child {
+            flex-flow: column-reverse;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex>.flex:first-child div:first-child {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+            margin: 0;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex>.flex:first-child div:last-child {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 41px;
+            letter-spacing: 0.374px;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end {
+            margin-top: 0;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:last-child {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 19px;
+            letter-spacing: -0.15px;
+            margin: 0;
+          }
+          .lav-handicap [dusk="global/stats/handicap-with-last-ten--loaded"]>.flex>.flex>.flex .flex-col.items-end > div:first-child .text-xs {
+            color: var(--common-grey-800-impact-text, #253139);
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 22px;
+            letter-spacing: -0.408px;
+          }
+        `;
+        const stylesEl = document.createElement('style');
+        stylesEl.innerHTML = styles;
+        document.head.appendChild(stylesEl);
+
+        const html = `
+        <div class='splide lav-slider'>
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide1.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Club Recommendations</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide2.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to ‘Plays Like’ distances</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide3.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+
+              <li class='lav-slide splide__slide'>
+                <div class='lav-slide__info'>
+                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                  <div class="lav-slide__title">Upgrade to Strokes Gained Pro Stats</div>
+                  <div class="lav-slide__off">
+                    <img src='${settings.dir}/img/conf.svg' alt='' />
+                    40% off
+                  </div>
+                </div>
+                <div class='lav-slide__image'>
+                  <img src='${settings.dir}/img/slide4-bg.png' alt='' />
+                  <img class='lav-phone' src='${settings.dir}/img/slide4-phone.png' alt='' />
+                </div>
+
+                <div class='lav-cta'>
+                  <div class='lav-cta__caption'>Upgrade Now</div>
+                  <div class='lav-cta__price'>
+                    $4.99 <span>mo</span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lav-tip">
+          <div class="lav-tip__caption">Today’s Tip</div>
+          <div class="lav-tip__title">-</div>
+        </div>
+      `;
+
+        document
+          .querySelector('.antialiased .relative.flex-col')
+          .insertAdjacentHTML('beforeend', html);
+
+        const title = document
+          .querySelector('.video-basic__title')
+          .innerText.replace("Today's Tip", '')
+          .trim();
+
+        document.querySelector('.lav-tip__title').innerText = title;
+
+        document
+          .querySelector('.lav-tip')
+          .addEventListener('click', function () {
+            pushDataLayer(
+              'exp_stripe_s_tt_tt',
+              document.querySelector('.lav-tip__title').innerText.trim(),
+              'Section',
+              'Todays Tip'
+            );
+            document.querySelector('.icon-play').click();
+          });
+
+        waitFor(
+          () => typeof Splide == 'function',
+          () => {
+            initSlider();
+          }
+        );
+      } else {
+        pushDataLayer(
+          'exp_stripe_membership',
+          `Membership with subscription`,
+          'Membership',
+          'Homepage'
+        );
+      }
+
       if (isFreeTrial === 'false' && isActiveSubscription === 'false') {
         waitFor(
           () =>
             document.querySelector(
-              '[data-crstarget="hypothesis-2-upgrade-target"]'
+              '[data-crstarget="hypothesis-3-upgrade-target"]'
             ),
           () => {
             document
-              .querySelector('[data-crstarget="hypothesis-2-upgrade-target"]')
+              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
               .dispatchEvent(new Event('click'));
           }
         );
@@ -119,6 +648,106 @@ function handleHomepage() {
   //   console.log('empty json or not free tier');
   //   return false;
   // }
+}
+
+function connectSplide() {
+  const sliderStyles = document.createElement('link');
+  sliderStyles.rel = 'stylesheet';
+  sliderStyles.href =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+  document.head.appendChild(sliderStyles);
+
+  let sliderScript = document.createElement('script');
+  sliderScript.src =
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+  document.head.appendChild(sliderScript);
+}
+
+function initSlider() {
+  const slider = new Splide('.lav-slider', {
+    rewind: true,
+    pagination: true,
+    arrows: false,
+    autoplay: true,
+    interval: 5000,
+    type: 'fade',
+    speed: 800,
+  });
+
+  let i = 0;
+  setInterval(() => {
+    i += 50;
+  }, 50);
+  slider.on('move', function (newIndex, prevIndex, destIndex) {
+    let time = i / 1000;
+
+    if (time > 4.8) {
+      time = 5;
+    }
+
+    pushDataLayer(
+      'exp_stripe_bbt_v_ft',
+      `${time}s`,
+      'Visibility',
+      `Banner - ${document
+        .querySelector('.lav-slide.is-active .lav-slide__title')
+        .innerText.trim()}`
+    );
+
+    i = 0;
+  });
+
+  slider.on('click', function () {
+    if (
+      document.querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+    ) {
+      document
+        .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+        .click();
+      pushDataLayer(
+        'exp_stripe_i_b_bt',
+        document
+          .querySelector('.lav-slide.is-active .lav-slide__title')
+          ?.innerText.trim(),
+        'Image',
+        'Banner'
+      );
+    } else {
+      console.log('no element');
+    }
+  });
+
+  slider.mount();
+}
+
+function handleHandicap() {
+  if (!isHandicapFire) {
+    isHandicapFire = true;
+    pushDataLayer('exp_stripe_v_h_ft', 'With score', 'Visibility', 'Handicap');
+  }
+
+  document
+    .querySelector('[dusk="global/stats/handicap-with-last-ten"]')
+    .classList.add('lav-handicap');
+
+  if (
+    document.querySelector('.section__last-round') &&
+    !document.querySelector('.section__last-round.lav-handled-last')
+  ) {
+    document
+      .querySelector('.section__last-round')
+      .classList.add('lav-handled-last');
+    document
+      .querySelector('.section__last-round')
+      .addEventListener('click', function () {
+        pushDataLayer(
+          'exp_stripe_s_lr_tt',
+          document.querySelector('.section__last-round .truncate').textContent,
+          'Section',
+          'Last round'
+        );
+      });
+  }
 }
 
 function handleUpgradePage() {

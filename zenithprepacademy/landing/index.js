@@ -53,20 +53,34 @@ class Modal {
         e.target.closest('.lav-modal__close')
       ) {
         if (_$('.lav-modal__inner.active iframe')) {
-          _$('.lav-modal__inner.active iframe').src = _$(
-            '.lav-modal__inner.active iframe'
-          ).src;
+          // _$('.lav-modal__inner.active iframe').src = _$(
+          //   '.lav-modal__inner.active iframe'
+          // ).src;
         }
 
         this.close();
       }
 
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
-      }
-
       if (e.target.closest('[data-modal]')) {
+        const id = e.target.closest('[data-modal]')?.dataset?.id;
+        if (id) {
+          console.log(id);
+          _$('.lav-solo').innerHTML = `
+            <div class="influex-wistia-player">
+              <div class="wistia_embed wistia_async_${id} popover=false">&nbsp;</div>
+            </div>
+          `;
+        }
+
         this.open(e.target.closest('[data-modal]').dataset.modal);
+
+        _wq.push({
+          id,
+          onReady: function (video) {
+            // container.addClass('playing');
+            video.play();
+          },
+        });
       }
     });
 
@@ -98,6 +112,7 @@ class Modal {
 
     setTimeout(() => {
       _$('.lav-modal__inner.active')?.classList.remove('active');
+      document.body.classList.remove('lav-form-open');
     }, 400);
   }
 
@@ -159,6 +174,136 @@ class Modal {
       }
       .lav-modal-open {
         overflow: hidden;
+      }
+      .lav-solo .wistia_embed {
+        width: 920px;
+        height: 520px;
+        
+      }
+      @media(max-width: 992px) {
+        .lav-solo .wistia_embed {
+          width: 90vw;
+          height: 50vw;
+        }
+        .lav-modal__inner iframe {
+          max-height: 55vw;
+        }
+      }
+
+      .lav-multi {
+        max-width: 1000px;
+      }
+      .lav-multi img {
+        max-width: 100%;
+      }
+      .lav-multi .splide__slide {
+        background: red;
+        border: 1px solid blue;
+      }
+      
+      .lav-form {
+        background: #fff;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+        padding: 56px 100px 62px;
+        line-height: 1;
+      }
+      .lav-form__title {
+        color: var(--Dark-blue-1, #21293E);
+        font-family: 'Kaisei Tokumin', serif;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 40px;
+      }
+      .lav-form__descr {
+        margin-top: 16px;
+        color: var(--Blue-200, #434C60);
+        font-family: 'Kaisei Tokumin', serif;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        margin-bottom: 32px;
+      }
+
+      .lav-form__btn {
+        margin-top: 24px;
+        height: 64px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+      .lav-form__note {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 24px;
+        color: var(--Blue-100, #515E7A);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: left;
+      }
+      .lav-form__note img {
+        margin-right: 8px;
+        margin-top: 2px;
+      }
+      .lav-form__group {
+        text-align: left;
+      }
+      .lav-form__group + .lav-form__group {
+        margin-top: 20px;
+      }
+      .lav-form__label {
+        color: var(--Blue-200, #434C60);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+      .lav-form__input {
+        padding: 12px 16px;
+        margin-top: 8px;
+        border-radius: 2px;
+        border: 1px solid var(--Light-blue-2, #DFE3EE);
+        width: 100%;
+        height: 48px;
+      }
+      .lav-form .lav-modal__close {
+        display: none;
+      }
+      @media(max-width: 768px) {
+        .lav-form__title {
+          font-size: 28px;
+          line-height: 36px;
+        }
+        .lav-form__descr {
+          margin-top: 12px;
+          font-size: 16px;
+          line-height: 24px;
+          margin-bottom: 24px;
+        }
+        .lav-form {
+          padding: 34px 24px;
+          border-radius: 4px 4px 0px 0px;
+          max-width: 100%;
+          margin-bottom: 0;
+        }
+        .lav-form__btn {
+          height: 56px;
+          max-width: 100%;
+        }
+        .lav-form-open .lav-modal {
+          padding: 0;
+          padding-top: 20px;
+          align-items: flex-end;
+        }
+        .lav-form-open .lav-modal>.lav-modal__close {
+          display: none;
+        }
+        .lav-form .lav-modal__close {
+          display: block;
+          top: 15px;
+          right: 15px;
+        }
       }
     `;
 
@@ -271,7 +416,7 @@ const styles = `
   }
 
   .jumb {
-    background: #0A132A url('${config.dir}/img/jumb-bg.jpeg') top center / cover no-repeat;
+    background: #070d23 url('${config.dir}/img/jumb-bg.jpeg') top center / 100% auto no-repeat;
     color: #fff;
     text-align: center;
     padding: 80px 0 100px;
@@ -571,8 +716,9 @@ const styles = `
       max-width: 150px;
     }
     .jumb {
+      background: #070d23 url('${config.dir}/img/jumb-bg-mob.jpeg') top center / 100% auto no-repeat;
+
       // background-size: 175% auto;
-      background: #0A132A url('${config.dir}/img/jumb-bg-mob.jpeg') top center / cover no-repeat;
     }
   }
 
@@ -1070,7 +1216,7 @@ const styles = `
   .trusted__inner {
     position: relative;
     background: linear-gradient(140deg, #031640 16.4%, #12162F 38.68%, #171935 61.31%, #020B22 85.38%);
-    padding: 90px 0;
+    padding: 90px 20px;
     color: #fff;
   }
   .trusted__inner:before {
@@ -1136,7 +1282,7 @@ const styles = `
       margin: 40px 0;
     }
     .trusted__inner {
-      padding: 40px 0;
+      padding: 40px 20px;
       overflow: hidden;
     }
     .trusted__title {
@@ -1146,8 +1292,35 @@ const styles = `
     .trusted__title br {
       display: none;
     }
+    .trusted__logos {
+      margin-top: 32px;
+      gap: 30px;
+      padding-bottom: 24px;
+    }
+    .trusted__inner:before {
+      display: none;
+    }
+    .trusted__descr {
+      font-size: 16px;
+      line-height: 28px;
+    }
+    .trusted__quote {
+      margin-top: 24px;
+    }
+    .trusted__logo.active:before {
+      bottom: -31px;
+    }
   }
-  @media(max-width: 768px) {}
+  @media(max-width: 768px) {
+    .trusted__author {
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .trusted__quote {
+      text-align: center;
+    }
+  }
 
 
   .reviews {
@@ -1159,6 +1332,7 @@ const styles = `
     font-family: 'Kaisei Tokumin', serif;
     font-size: 40px;
     line-height: 48px; 
+    max-width: 80%;
   }
   .reviews__title span {
     text-decoration: underline 1px solid #5CDDDB;
@@ -1185,11 +1359,14 @@ const styles = `
   .review__preview {
     position: relative;
     line-height: 0;
+    cursor: pointer;
+    transition: 0.3s;
   }
   .review__preview img {
     height: 230px;
     object-fit: cover;
     object-position: center;
+    transition: 0.3s;
   }
   .review__preview:before {
     content: '';
@@ -1200,7 +1377,12 @@ const styles = `
     height: 66px;
     transform: translate(-50%, -50%);
     background: url('${config.dir}/img/play.svg') center no-repeat;
-
+    transition: 0.3s;
+  }
+  @media(hover:hover) {
+    .review__preview:hover:before {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
   }
   .review__preview img {
     max-width: 100%;
@@ -1256,12 +1438,23 @@ const styles = `
       margin: 40px 0;
     }
     .reviews__title {
+      max-width: 100%;
+    }
+    .reviews__title {
       text-align: center;
       font-size: 24px;
       line-height: 32px;
     }
     .reviews__slider {
       margin-top: 32px;
+    }
+    .reviews__nav {
+      position: static;
+      transform: none;
+      margin-top: 24px;
+    }
+    .reviews__cta {
+      margin-top: 30px;
     }
   }
   @media(max-width: 768px) {
@@ -1711,7 +1904,7 @@ const styles = `
   }
   @media(max-width: 768px) {
     .hear {
-      background: url('${config.dir}/img/hear-bg.jpeg') center top / cover no-repeat;
+      background: url('${config.dir}/img/hear-bg-mob.jpeg') center top / cover no-repeat;
     }
     .hear__item {
       padding: 24px 20px;
@@ -2307,8 +2500,9 @@ function initExp() {
 
   document.addEventListener('click', (e) => {
     if (e.target.closest('.btn-cta')) {
-      // TODO
-      alert('Open');
+      document.body.classList.add('lav-form-open');
+      Modal.open('.lav-form');
+      // alert('Open');
       // _$('[href="#open-popup"]').click();
     }
   });
@@ -2345,12 +2539,12 @@ function addLayout() {
           <div class='jumb__watched'>Over <span>100,000+</span> parents just like you have watched this webinar</div>
 
           <div class='jumb-about'>
-            <div class='jumb-about__preview' data-modal='.lav-solo'>
+            <div class='jumb-about__preview' data-modal='.lav-solo' data-id='6rp9ponayt'>
               <img src='${config.dir}/img/jumb-preview.png' />
             </div>
             <div class='jumb-about__info'>
               <div class='jumb-about__caption'>Hear What They Think</div>
-              <div class='jumb-about__title' data-modal='.lav-solo'>About Zenith Prep Academy</div>
+              <div class='jumb-about__title' data-modal='.lav-solo' data-id='6rp9ponayt'>About Zenith Prep Academy</div>
             </div>
           </div>
 
@@ -2642,7 +2836,7 @@ function addLayout() {
               <div class='trusted__descr'>
                 “Since 2007, Zenith has been working with families and students to create fully tailored and customized online consulting and learning programs, designed specifically for the college application process, that help students identify their personalized paths of choice.”
               </div>
-              <div class='trusted__author'>Rod Berger</div>
+              <div class='trusted__author'>Rod Berger, CEO OF MC</div>
             </div>
           </div>
         </div>
@@ -2956,7 +3150,7 @@ function addLayout() {
             <div class='splide-nav rev__nav splide__arrows'>
               <img class='splide__arrow splide__arrow--prev rev__nav-prev' src='${config.dir}/img/nav-arrow-left-default.svg' />
 
-              <div class='splide-nav__num rev__nav-num'><span>1</span>/ 22</div>
+              <div class='splide-nav__num rev__nav-num'><span>1</span>/ 24</div>
 
               <img class='splide__arrow splide__arrow--next rev__nav-next' src='${config.dir}/img/nav-arrow-right-default.svg' />
             </div>
@@ -3230,6 +3424,16 @@ function addLayout() {
         'https://embed-ssl.wistia.com/deliveries/2084d286cb610f1aece59492a5c473fe69256fdd.webp?image_crop_resized=960x540',
       videoId: '0nlkksp255',
     },
+    {
+      name: "Connie's Family",
+      brief:
+        "Connie’s son was in the 8th grade when they joined our College Consulting Program<span class='lav-dots'>...</span>",
+      descr:
+        'Although strong academically, they wanted to make sure he had the right guidance and mentorship, was effectively utilizing his time, and could turn his interest into a genuine passion. And with Zenith’s help, he was able to gain acceptance into his dream university',
+      image:
+        'https://www.zenithprepacademy.com/wp-content/uploads/2023/02/hfp-section-02-vid-img-12-1024x576.jpg',
+      videoId: '8wy4wajbxy',
+    },
   ];
   // name: "Connie's Family",
   // brief:
@@ -3243,7 +3447,7 @@ function addLayout() {
     const el = document.createElement('div');
     el.classList.add('review', 'splide__slide');
     el.innerHTML = `
-      <div class='review__preview'>
+      <div class='review__preview' data-modal='.lav-solo' data-id='${review.videoId}'>
         <img src='${review.image}' />
       </div>
       <div class='review__body'>
@@ -3272,22 +3476,27 @@ function addLayout() {
     });
 
     _$('.review__preview', el).addEventListener('click', function () {
-      el.insertAdjacentHTML(
-        'afterbegin',
-        `
-        <div class="influex-wistia-player">
-          <div class="wistia_embed wistia_async_${review.videoId}  popover=false" style="height:300px;width:400px">&nbsp;</div>
-        </div>
-      `
-      );
-
-      _wq.push({
-        id: review.videoId,
-        onReady: function (video) {
-          // container.addClass('playing');
-          video.play();
-        },
-      });
+      // Modal.open('.lav-multi');
+      // _$('.lav-multi').innerHTML = `
+      //   <div class="influex-wistia-player">
+      //     <div class="wistia_embed wistia_async_${review.videoId}  popover=false" style="height:300px;width:400px">&nbsp;</div>
+      //   </div>
+      // `;
+      // el.insertAdjacentHTML(
+      //   'afterbegin',
+      //   `
+      //   <div class="influex-wistia-player">
+      //     <div class="wistia_embed wistia_async_${review.videoId}  popover=false" style="height:300px;width:400px">&nbsp;</div>
+      //   </div>
+      // `
+      // );
+      // _wq.push({
+      //   id: review.videoId,
+      //   onReady: function (video) {
+      //     // container.addClass('playing');
+      //     video.play();
+      //   },
+      // });
     });
 
     _$('.reviews__slider .splide__list').insertAdjacentElement('beforeend', el);
@@ -3344,6 +3553,76 @@ function addLayout() {
       descr:
         'My son enjoyed the one-on-one Software Development class. The curriculum was carefully designed to teach him the fundamentals, get him the logic thinking behind the coding, analyze the mistakes he made and provided good coding practice along the course. He also got the personal attention and feedback in the private on-line class. At the end of the class, he was proud of himself that he not only learned a new computer language but also built a website that he had never thought he could.',
     },
+    {
+      name: 'Gul R.',
+      descr:
+        'We are very happy with Zenith Prep Academy. My kids loved the Zenith programming class.  They proactively worked on their homework in advance of the next class, and could not wait for the next class. Unlike prior programming classes they took, which were superficial and overly theoretical, the Zenith class actually taught them how to build something tangible, bolstering their conference and excitement about CS. The TAs are excellent and helpful too. I work in software, and can see how the curriculum has been crafted  and iterated upon several times to have maximum learning impact. Thank you Zenith!',
+    },
+    {
+      name: 'Klara F.',
+      descr:
+        "My son, 14 years old, took the Mini MBA 1 program last spring at this Academy and a Web Development (Front End) class this summer. Best investment of our time and resources we have been able to gift him so far! I wish we knew about this place before, when our daughter was his age. College choices and possibilities would probably be much wider for her...These are some of the challenges we have been facing before discovering this program and the transformation we observed:Our son has been a talented and creative fun child, who's enthusiasm about exploring possibilities has been steadily going down the more time he has been spending in a public school, doing homework and studying for good grades... It got to the point that when he was interested (or when we were on top of his responsibilities), he would get straight A's- usually just towards the end of the school year, and when not interested or monitored constantly, he would get C's and even D's... Always getting distracted, forgetful and bored...After only one class at Zenith, he got inspired not only about researching new possibilities, solving real problems but also, he got excited about life in general. He even started working out in the gym ( his own initiative!) and moving up in Kung Fu .  A's were not a chore anymore but a natural byproduct of his newly found enthusiasm and confidence. His work was done still in school and we have been able to have very lively and mature conversations at home, including conversations about his business :-)At the age of 14, my son has an understanding of business that many business owners like myself can be jealous of. He also became very good in negotiation and quite impressive at understating human psychology ( may it be a warning to you if you don't want your kids become confident and powerful)He talks about Mr. Frank Song as the \"coolest guy and a mentor\" :-) This aspect is what I value the most about our experience with this place. We appreciate Mr. Song's generosity immensely. There aren't many people who will take time to listen to a teen as an equal, and  help bring the best out of them in all situations... This is priceless to me. All of the people Mr. Song brings to inspire and teach at the Academy are high quality, educated, successful young people who are still able to connect with the teens but have a wealth of real life academic and business experiences, to help the teens dream and grow big.I am very excited where my teen is heading. Thank you Zenith Academy! Klara F., Lafayette",
+    },
+    {
+      name: 'Vivian L.',
+      descr:
+        "My son just took a software development course from Zenith during 2021 summer as he is coming to 9th grade.  He told me that he really likes the course; in fact, after the course he becomes more motivated in coding that he is exploring more in other online coding classes.  The teacher is very knowledgeable and my son learned a lot from each of the class sessions and looked forward to the next class session during the course.  I was hesitated at first with the online/virtual course, but it turns out surprisingly very good and convenient especially during the pandemic.  In fact, during the course, we needed to take an unexpected trip to Houston for 3 weeks and having 3 people in a hotel room with remote working and learning were a bit challenge, but we did it with a breeze.  Thanks to the flexibility on virtual class and excellent teacher!  On top of that, Zenith was also accommodating on early class sessions since my son's school started earlier than others' so that my son can finish the course before his school started.  Thanks so much to Zenith team!!",
+    },
+    {
+      name: 'Mangesh D.',
+      descr:
+        "As someone who has personally taken courses at Zenith Prep Academy, I can definitively say that it's been one of the best experiences of my life. I have never seen a course so well-designed and well-executed like the ones offered at Zenith. Whether it's the instructors or the material itself, there is something about these courses that makes the student want to keep learning. I took the web development and mini-MBA courses at Zenith and I was expecting to just learn the basics; however, our instructor taught us much more than I had expected. Not only did we master the basics, we dove into the deeper nuances of programming as well. The best part about attending Zenith is that your instructors truly care. The class size is relatively small, so if there is something that is confusing to understand, help is readily available. Not only do your instructors care, but they are also super passionate. Believe me, you're not in a room with someone just reading a script or speaking in monotone. The instructors love what they teach and they are just as excited as you when they come to class. If you're looking for a course that teaches you more than just the cookie-cutter basics found in a textbook, then Zenith Prep Academy is the place for you.",
+    },
+    {
+      name: 'Danny L.',
+      descr:
+        "Interacted heavily with Kevin Hong, William Chung, and Samuel Fung over the course of the last 3 months.  Amazing caliber of hard-working professionals!  The team works tirelessly, into late nights and weekends, accommodating their client parents' schedules and students' needs.  Very impressed with how the team's divided and succeeded in their roles, their quick assessment of my child's strengths and areas of opportunities, laying out different learning options, with a recommended \"actionable\" target plan.  In a mere 2 months, also very happy with my child's project achievements, having attended Zenith's Web Development intensive bootcamp.  Nonetheless, their excellent teaching instructor, interactive teacher/student sessions, and most of all, \"results-oriented\" project deliverables (with tremendously-useful feedback) helped reinforce and solidify an effective working approach to my child's pre-college development needs. Also looking forward to the next Zenith Software bootcamp, to continually build on this momentum and positive trajectory!  Thank you Zenith!",
+    },
+    {
+      name: 'Shefali S.',
+      descr:
+        "My son took the Web Development class and it was an awesome experience for him. The virtual class was better than in person class as there was TA alignment throughout the session who watched over my son's progress every class. My son had to miss a few classes and he was provided with a full recording of the class to make up!Overall Frank is a wonderful instructor. My son has developed a keen interest in coding and would be taking up more coding classes with Zenith Prep Academy. They are very student focussed and show they care for the student's learning and progress. Kevin was always there to help and promptly addressed all my questions!I would say that they go beyond their call of duty to help their students and coach them on a one to one basis, even though it's a group class. The TA's are wonderful.I am glad I invested in their program!",
+    },
+    {
+      name: 'Joyce H.',
+      descr:
+        "My 10th grade son really enjoyed and loved his mini-mba class! Even on his birthday, he was working through the homework and case study so that he could be better prepared for the in-class discussion. To see him actively want to prepare and do well speaks very highly about the class. The class was very well designed where they not only taught important and useful business/finance concepts in a way that any student would be able to understand, but also really challenged the students through their case studies, analysis, and projects as well. I would definitely recommend this class to any parent that has students who has even the slightest interest in business or just wants them to learn helpful and useful skills that they can use. Also, Will and the Zenith team were great in providing guidance and answering any question we had with the college admissions' process. Would highly recommend them to everyone!",
+    },
+    {
+      name: 'Kristy H.',
+      descr:
+        "After receiving a recommendation from a friend, I decided to enroll in the web development class. Looking back on it now, I realize it was a great investment for my future. Each class is engaging, and challenges me to think critically about the information taught in class. Frank is an awesome instructor who makes sure you understand the purpose of each component before moving on to a bigger project. As a graphic designer I can now code my own websites for my portfolio, and am now learning about web design in my free time. The curriculum is explained thoroughly, but if you need help, it's readily available due to the small class size. Frank deeply cares about each student, their progress, and that all their questions are answered. Whether you were a beginner or at the intermediate level, all of us were experts when the course ended. I decided to register for the software development class which starts next Monday and I'm looking forward to it!Update:                   This is a continuation of my review from taking their web development class and transitioning to software development. I highly recommend for any student to take web dev first because it will help you learn php faster. The curriculum is just as well-designed and organized as web dev. I'm glad I challenged myself to take this course, because I have definitely learned so much thanks to Frank.                 The classes are small in size, and with the help of the instructor and teacher assistant each student receives the individual attention they need. In each session, the material is taught thoroughly, with plenty of practice to ensure that students understand what's going on. After learning the basics, we apply our skills on a project we would be tasked to work on if we were a software developer in the real world. By doing so, we learn best practices, the kind of roadblocks we would run into, and critically think about problems. Overall, I'm happy I decided to enroll in software development, and would recommend this to any of my friends.",
+    },
+    {
+      name: 'S U.',
+      descr:
+        'Zenith Prep Academy has brought future professional work experience to the life of kids . I highly recommend them to everyone . Their intensive research of current trends in the market and keeping both parents and kids abreast of it , is one of the major strengths. Most of the time we are lost in too many things -Kids with their homework and age old way of teaching method and parents in earning and managing their profession . Kids are left with googling or screen time or something , Zenith rightly places and bridges these gaps by their conversations , talks in schools and colleges , providing tools to keep up fit. Good Job!',
+    },
+    {
+      name: 'Phani S.',
+      descr:
+        'My son took the mini MBA class with Zenith Prep Academy. He learned to research and create financial models on case studies. The class is highly recommended for kids interested in learning business basics and performing business cost analysis. The class size being small helped the instructor focus individually on each student.',
+    },
+    {
+      name: 'Inna P.',
+      descr:
+        "My son took Classes here during the summer. He loved it and was excited. Didn't complain was always excited about going. He felt instructors made it worth it because of the way they interacted with the students.",
+    },
+    {
+      name: 'Sandeep D.',
+      descr:
+        'We had a very good experience with this company. The results were as we expected. Last year our daughter was accepted into 4 ivy league schools and is attending Princeton as Freshman. We worked with Will and Frank for their special college planning service. They worked hard and are very strategic. They think through everything and we always felt comfortable with them. They are also very nice people and my daughter bonded with them well which is why we decided to work with them. Over the 4 or 5 years we worked with them we always felt in control of the process even though my wife and I are not born here or are experts on the american college system. Many of my friends still work with them, and some have finished and have had similar results. My youngest daughter is now in her second year with them and is focusing on engineering and business. I am very glad this company exist because it has been a very positive influence on my children and they look up to the people at this company.',
+    },
+    {
+      name: 'Rebecca',
+      descr:
+        "My daughter has been with Zenith since 8th grade and is now a rising sophomore. Zenith has constantly encouraged the best from their students and are consistent in providing helpful resources to build up their resumes and skills outside of a classroom. My daughter participated in Zenith's Web Development online course in April this year, and although she was hesitant at first, she is now confident in her abilities to code from scratch and looks forward in doing so.",
+    },
+    {
+      name: 'Jason',
+      descr:
+        "He was always been able to work independently before and taking this course has only increased his own personal confidence in his ability to learn and grow. He's leaning more towards software development now with a future focus on building software for making videos. If you are looking for classes to build interest for your children in technology, I would recommend they give Zenith a try.",
+    },
   ];
 
   for (let rev of revs) {
@@ -3391,7 +3670,7 @@ function initSliders() {
   });
 
   webinar.on('move', function (newIndex) {
-    _$('.webinars__nav-num span').innerHTML = newIndex + 1;
+    _$('.webinars__nav-num span').innerHTML = parseInt(newIndex + 1);
   });
 
   webinar.mount();
@@ -3401,14 +3680,24 @@ function initSliders() {
     rewind: true,
     perPage: 3,
     gap: 24,
-    pagination: false,
+    // pagination: false,
     updateOnMove: true,
-    // isNavigation: true,
-    breakpoints: {},
+    isNavigation: true,
+    breakpoints: {
+      992: {
+        perPage: 2,
+      },
+      768: {
+        isNavigation: true,
+        perPage: 1.15,
+        gap: 8,
+        pagination: false,
+      },
+    },
   });
 
   reviews.on('move', function (newIndex) {
-    _$('.reviews__nav-num span').innerHTML = newIndex + 1;
+    _$('.reviews__nav-num span').innerHTML = parseInt(newIndex + 1);
   });
 
   // _$('.reviews__nav-prev').addEventListener('click', () => {
@@ -3434,7 +3723,8 @@ function initSliders() {
         perPage: 2,
       },
       768: {
-        perPage: 1.2,
+        type: 'slide',
+        perPage: 1.15,
         gap: 8,
         pagination: false,
       },
@@ -3442,19 +3732,268 @@ function initSliders() {
   });
 
   rev.on('move', function (newIndex) {
-    _$('.rev__nav-num span').innerHTML = newIndex + 1;
+    _$('.rev__nav-num span').innerHTML = parseInt(newIndex + 1);
   });
 
   rev.mount();
+
+  // const main = new Splide('.splide0', {
+  //   type: 'fade',
+  //   rewind: true,
+  //   pagination: false,
+  //   arrows: false,
+  // });
+
+  // const thumbnails = new Splide('.splide1', {
+  //   fixedWidth: 100,
+  //   fixedHeight: 60,
+  //   gap: 10,
+  //   rewind: true,
+  //   pagination: false,
+  //   isNavigation: true,
+  //   breakpoints: {
+  //     600: {
+  //       fixedWidth: 60,
+  //       fixedHeight: 44,
+  //     },
+  //   },
+  // });
+
+  // main.sync(thumbnails);
+  // main.mount();
+  // thumbnails.mount();
 }
 
 function initModals() {
   new Modal(
     'lav-solo',
     `
-     <iframe src="https://drive.google.com/file/d/1O4EpOclzq63vcKGpmJSS7nihM8cZB8ZJ/preview" height='520' width='920' allow="autoplay"></iframe>
+      <div class="influex-wistia-player">
+        <div class="wistia_embed wistia_async_6rp9ponayt popover=false">&nbsp;</div>
+      </div>
     `
   );
+
+  new Modal(
+    'lav-form',
+    `
+      <div class='lav-modal__close'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+          <path d="M1 1L19 19" stroke="#122340"/>
+          <path d="M19 1L1 19" stroke="#122340"/>
+        </svg>
+      </div>
+
+      <div class='lav-form__title'>Watch free video</div>
+      <div class='lav-form__descr'>
+        Discover the 3 factors <br/>that prevent 6ᵗʰ - 12ᵗʰ graders from <br/>getting into the colleges they deserve
+      </div>
+
+      <div class='lav-form__group'>
+        <div class='lav-form__label'>Name</div>
+        <input type='text' class='lav-form__input lav-form__name' placeholder='Lisa' />
+      </div>
+      <div class='lav-form__group'>
+        <div class='lav-form__label'>Email</div>
+        <input type='email' class='lav-form__input lav-form__email' placeholder='example@gmail.com' />
+      </div>
+
+      <button class="lav-form__btn btn-cta">
+        watch Now
+        <img src="https://flopsi69.github.io/crs/zenithprepacademy/landing/img/arrow-right-solid.svg">
+      </button>
+
+      <div class='lav-form__note'>
+        <img src='${config.dir}/img/note.svg' />
+        No spam. No payment or prior commitment is required.
+      </div>
+    `
+  );
+
+  _$('.lav-form__name').addEventListener('input', function () {
+    _$('input[type="name"][name="name"]').value = this.value;
+  });
+
+  _$('.lav-form__email').addEventListener('input', function () {
+    _$('input[type="email"][name="email"]').value = this.value;
+  });
+
+  _$('.lav-form__btn').addEventListener('click', function () {
+    const blackList = [
+      'bizbuyblah',
+      'lubde',
+      'bitvoo',
+      'ezgiant',
+      'dni8',
+      'triots',
+      'dealerspecialties',
+      'bracc',
+      'temporary-mail',
+      'fsouda',
+      'ggusd',
+      'jollyfree',
+      'cmeinbox',
+      'crtsec',
+      'paxven',
+      'nightorb',
+      'fandua',
+      'chotunai',
+      'iucake',
+      'mirtox',
+      'eurokool',
+      'laserlip',
+      'fanneat',
+      'jobsfeel',
+      'mustbeit',
+      'ngopy',
+      'mailinator',
+      'runte.org',
+      'aosod',
+      'ritchie',
+      'otanhome',
+      'satterfield',
+      'wwgoc',
+      'pubpng',
+      'jourrapide',
+      'wiroute',
+      'wifame',
+      'wireps',
+      'vootin',
+      'qq',
+      'buckeye-express',
+      'teleworm',
+      'dayrep',
+      'v2ssr',
+      'test',
+      'youke1',
+      'gpipes',
+      'rolenot',
+      'luxeic',
+      'valanides',
+      'razuz',
+      'rhyta',
+      'galcake',
+      'asoflex',
+      'oniecan',
+      'huvacliq',
+      'bugfoo',
+      'cyclesat',
+      'mitigado',
+      'fenwazi',
+      'dogemn',
+      'raotus',
+      'moneyzon',
+      'fitzola',
+      'snowlash',
+      'lieboe',
+      'hajjars',
+      'dewareff',
+      'meidecn',
+      'fectode',
+      'jobbrett',
+      'in2reach',
+      'soombo',
+      'syinxun',
+      'larland',
+      'hamiltonrealtyin',
+      'saeoil',
+      'pixiil',
+      'webonoid',
+      'jwsuns',
+      'andorem',
+      'dekaps',
+      'appxapi',
+      'glumark',
+      'asuflex',
+      'aicogz',
+      'internetkeno',
+      'lehmanhs',
+      'prolug',
+      'netzero',
+      'kaudat',
+      'subdito',
+      'temporary-mail',
+      'cutefier',
+      'cosxo',
+      'pyadu',
+      'onlcool',
+      'rungel',
+      'cutefier',
+      'farebus',
+      'pgobo',
+      'mevori',
+      'vaband',
+      'favilu',
+      'duscore',
+      'ratedane',
+      'rockdian',
+      'peogi',
+      'carpetra',
+    ];
+    const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    const nameValue = _$('.lav-form__name').value.trim();
+    const emailValue = _$('.lav-form__email').value.trim();
+
+    if (!nameValue) {
+      alert('Please enter your name');
+    } else if (!emailValue) {
+      alert('Please enter your email');
+    } else if (!pattern.test(emailValue)) {
+      alert('Please enter a valid email');
+    } else if (blackList.includes(emailValue.split('@')[1].split('.')[0])) {
+      alert('Please enter a valid email');
+    } else {
+      _$('[href="#submit-form"]').click();
+    }
+  });
+  // document.body.classList.add('lav-form-open');
+  // Modal.open('.lav-form');
+
+  // new Modal(
+  //   'lav-multi',
+  //   `
+  //     <div class="splide splide0">
+  //       <div class="splide__track">
+  //         <div class="splide__list">
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+
+  //     <div class="splide splide1">
+  //       <div class="splide__track">
+  //         <div class="splide__list">
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //           <div class="splide__slide">
+  //             <img src='${config.dir}/img/jumb-preview.png' />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+
+  //     <div class="influex-wistia-player">
+  //       <div class="wistia_embed wistia_async_6rp9ponayt popover=false">&nbsp;</div>
+  //     </div>
+  //   `
+  // );
+
+  // Modal.open('.lav-multi');
+
+  // <iframe src="https://drive.google.com/file/d/1O4EpOclzq63vcKGpmJSS7nihM8cZB8ZJ/preview" height='520' width='920' allow="autoplay"></iframe>
 }
 
 // *** HELPERS *** //
