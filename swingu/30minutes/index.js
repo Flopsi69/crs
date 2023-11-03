@@ -1,11 +1,11 @@
-// const orig = console.log;
-// console.log = function () {
-//   orig.apply(console, arguments);
-//   navigator.sendBeacon(
-//     'https://console.wiredgeese.com/log/',
-//     JSON.stringify(arguments)
-//   );
-// };
+const orig = console.log;
+console.log = function () {
+  orig.apply(console, arguments);
+  navigator.sendBeacon(
+    'https://console.wiredgeese.com/log/',
+    JSON.stringify(arguments)
+  );
+};
 
 console.log('initExp: 30Minutes');
 
@@ -19,6 +19,8 @@ const settings = {
   },
   debug: true,
 };
+
+let isHandicapFire = false;
 
 if (
   location.href.includes('/upgrade/player') &&
@@ -231,12 +233,19 @@ function handleHomepage() {
             font-weight: 600;
             line-height: 19px;
             letter-spacing: -0.15px;
-            text-transform: uppercase;
             border-radius: 3px;
             border: 1px solid var(--common-medium-secondary, #FFC803);
             background: var(--common-medium-secondary, #FFC803);
             padding: 0 10px;
             min-height: 32px;
+          }
+          .lav-slide__off-new {
+            color: #000;
+          }
+          .lav-slide__off-old {
+            color: rgba(89, 105, 116, 0.73);
+            font-weight: 400;
+            text-decoration: line-through;
           }
           .lav-slide__off img {
             margin-right: 8px;
@@ -465,8 +474,8 @@ function handleHomepage() {
                   <img src='${settings.dir}/img/logo-w.svg' alt='' />
                   <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
                   <div class="lav-slide__off">
-                    <img src='${settings.dir}/img/conf.svg' alt='' />
-                    40% off
+                    <span class='lav-slide__off-old'>$99.99</span>
+                    <span class='lav-slide__off-new'>$59.99/yr</span>
                   </div>
                 </div>
                 <div class='lav-slide__image'>
@@ -476,7 +485,7 @@ function handleHomepage() {
                 <div class='lav-cta'>
                   <div class='lav-cta__caption'>Upgrade Now</div>
                   <div class='lav-cta__price'>
-                    $4.99 <span>mo</span> 
+                    GET 40% OFF 
                     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
                       <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
                     </svg>
@@ -489,8 +498,8 @@ function handleHomepage() {
                   <img src='${settings.dir}/img/logo-w.svg' alt='' />
                   <div class="lav-slide__title">Upgrade to Club Recommendations</div>
                   <div class="lav-slide__off">
-                    <img src='${settings.dir}/img/conf.svg' alt='' />
-                    40% off
+                    <span class='lav-slide__off-old'>$99.99</span>
+                    <span class='lav-slide__off-new'>$59.99/yr</span>
                   </div>
                 </div>
                 <div class='lav-slide__image'>
@@ -500,7 +509,7 @@ function handleHomepage() {
                 <div class='lav-cta'>
                   <div class='lav-cta__caption'>Upgrade Now</div>
                   <div class='lav-cta__price'>
-                    $4.99 <span>mo</span> 
+                    GET 40% OFF 
                     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
                       <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
                     </svg>
@@ -513,8 +522,8 @@ function handleHomepage() {
                   <img src='${settings.dir}/img/logo-w.svg' alt='' />
                   <div class="lav-slide__title">Upgrade to ‘Plays Like’ distances</div>
                   <div class="lav-slide__off">
-                    <img src='${settings.dir}/img/conf.svg' alt='' />
-                    40% off
+                    <span class='lav-slide__off-old'>$99.99</span>
+                    <span class='lav-slide__off-new'>$59.99/yr</span>
                   </div>
                 </div>
                 <div class='lav-slide__image'>
@@ -524,7 +533,7 @@ function handleHomepage() {
                 <div class='lav-cta'>
                   <div class='lav-cta__caption'>Upgrade Now</div>
                   <div class='lav-cta__price'>
-                    $4.99 <span>mo</span> 
+                    GET 40% OFF 
                     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
                       <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
                     </svg>
@@ -537,8 +546,8 @@ function handleHomepage() {
                   <img src='${settings.dir}/img/logo-w.svg' alt='' />
                   <div class="lav-slide__title">Upgrade to Strokes Gained Pro Stats</div>
                   <div class="lav-slide__off">
-                    <img src='${settings.dir}/img/conf.svg' alt='' />
-                    40% off
+                    <span class='lav-slide__off-old'>$99.99</span>
+                    <span class='lav-slide__off-new'>$59.99/yr</span>
                   </div>
                 </div>
                 <div class='lav-slide__image'>
@@ -549,7 +558,7 @@ function handleHomepage() {
                 <div class='lav-cta'>
                   <div class='lav-cta__caption'>Upgrade Now</div>
                   <div class='lav-cta__price'>
-                    $4.99 <span>mo</span> 
+                    GET 40% OFF
                     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
                       <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
                     </svg>
@@ -604,7 +613,21 @@ function handleHomepage() {
         );
       }
 
-      if (isFreeTrial === 'false' && isActiveSubscription === 'false') {
+      let isStorageEligable = parseInt(
+        localStorage.getItem('sessionsPopupCount')
+      );
+
+      if (
+        isFreeTrial === 'false' &&
+        isActiveSubscription === 'false' &&
+        (!isStorageEligable || isStorageEligable <= 3) &&
+        sessionStorage.getItem('isRedirectedExp') !== 'yes'
+      ) {
+        sessionStorage.setItem('isRedirectedExp', 'yes');
+        localStorage.getItem('sessionsPopupCount')
+          ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
+          : localStorage.setItem('sessionsPopupCount', 1);
+
         waitFor(
           () =>
             document.querySelector(
@@ -620,7 +643,7 @@ function handleHomepage() {
         console.log(
           'Fail: isFreeTrial: ' +
             isFreeTrial +
-            ' isActiveSubscription: ' +
+            ' || isActiveSubscription: ' +
             isActiveSubscription
         );
       }
@@ -698,22 +721,21 @@ function initSlider() {
   });
 
   slider.on('click', function () {
-    if (
-      document.querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-    ) {
+    pushDataLayer(
+      'exp_stripe_i_b_bt',
       document
-        .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-        .click();
-      pushDataLayer(
-        'exp_stripe_i_b_bt',
-        document
-          .querySelector('.lav-slide.is-active .lav-slide__title')
-          ?.innerText.trim(),
-        'Image',
-        'Banner'
-      );
-    } else {
-      console.log('no element');
+        .querySelector('.lav-slide.is-active .lav-slide__title')
+        ?.innerText.trim(),
+      'Image',
+      'Banner'
+    );
+
+    if (document.querySelector('[data-stripe-checkout-url]')) {
+      const url = document.querySelector('[data-stripe-checkout-url]').dataset
+        .stripeCheckoutUrl;
+      const link = document.createElement('a');
+      link.href = url;
+      link.click();
     }
   });
 
@@ -1134,7 +1156,6 @@ function handleUpgradePage() {
   let seconds = 0;
   const secondsInterval = setInterval(() => {
     seconds += 500;
-    console.log(seconds);
   }, 500);
 
   function init() {
@@ -1187,7 +1208,7 @@ function handleUpgradePage() {
 
       if (--timer < 0) {
         clearInterval(countdownInterval);
-        alert('Countdown timer has expired!');
+        // alert('Countdown timer has expired!');
       }
     }, 1000);
   }
@@ -1244,7 +1265,8 @@ function handleUpgradePage() {
           const url = document.querySelector('[data-stripe-checkout-url]')
             .dataset.stripeCheckoutUrl;
           const link = document.createElement('a');
-          link.href = url.replace('CRO40', 'COMEBACK50');
+          link.href = url;
+          // .replace('CRO40', 'COMEBACK50');
           link.click();
         }
       });
