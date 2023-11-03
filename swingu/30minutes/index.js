@@ -625,10 +625,11 @@ function handleHomepage() {
       );
 
       if (
-        isFreeTrial === 'false' &&
-        isActiveSubscription === 'false' &&
-        (!isStorageEligable || isStorageEligable <= 3) &&
-        sessionStorage.getItem('isRedirectedExp') !== 'yes'
+        settings.debug ||
+        (isFreeTrial === 'false' &&
+          isActiveSubscription === 'false' &&
+          (!isStorageEligable || isStorageEligable <= 3) &&
+          sessionStorage.getItem('isRedirectedExp') !== 'yes')
       ) {
         sessionStorage.setItem('isRedirectedExp', 'yes');
         localStorage.getItem('sessionsPopupCount')
