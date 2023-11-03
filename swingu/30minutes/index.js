@@ -7,7 +7,7 @@ console.log = function () {
   );
 };
 
-console.log('initExp: 30Minutes');
+console.log('initExp: 30Minutes!');
 
 /********* Settings **********/
 const settings = {
