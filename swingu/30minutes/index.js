@@ -617,6 +617,13 @@ function handleHomepage() {
         localStorage.getItem('sessionsPopupCount')
       );
 
+      console.log(
+        'isStorageEligable: ' +
+          isStorageEligable +
+          '-' +
+          sessionStorage.getItem('isRedirectedExp')
+      );
+
       if (
         isFreeTrial === 'false' &&
         isActiveSubscription === 'false' &&
@@ -720,7 +727,12 @@ function initSlider() {
     i = 0;
   });
 
+  const isSliderClicked = false;
   slider.on('click', function () {
+    if (isSliderClicked) {
+      return false;
+    }
+    isSliderClicked = true;
     pushDataLayer(
       'exp_stripe_i_b_bt',
       document
