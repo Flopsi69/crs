@@ -660,17 +660,15 @@ function handleHomepage() {
           localStorage.getItem('isFirstSessionPopupClosed')
       );
 
+      // settings.debug ||
+
       if (
-        settings.debug ||
-        (isFreeTrial === 'false' &&
-          isActiveSubscription === 'false' &&
-          (!isStorageEligable || isStorageEligable <= 3) &&
-          sessionStorage.getItem('isRedirectedExp') !== 'yes')
+        isFreeTrial === 'false' &&
+        isActiveSubscription === 'false' &&
+        (!isStorageEligable || isStorageEligable <= 3) &&
+        sessionStorage.getItem('isRedirectedExp') !== 'yes'
       ) {
-        sessionStorage.setItem('isRedirectedExp', 'yes');
-        localStorage.getItem('sessionsPopupCount')
-          ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
-          : localStorage.setItem('sessionsPopupCount', 1);
+        localStorage.removeItem('isFirstSessionPopupClosed');
 
         waitFor(
           () =>
@@ -678,7 +676,14 @@ function handleHomepage() {
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             ) && localStorage.getItem('isFirstSessionPopupClosed') === 'true',
           () => {
-            localStorage.removeItem('isFirstSessionPopupClosed');
+            sessionStorage.setItem('isRedirectedExp', 'yes');
+            localStorage.getItem('sessionsPopupCount')
+              ? localStorage.setItem(
+                  'sessionsPopupCount',
+                  isStorageEligable + 1
+                )
+              : localStorage.setItem('sessionsPopupCount', 1);
+
             console.log('fire0');
             // todo
             // setTimeout(() => {
