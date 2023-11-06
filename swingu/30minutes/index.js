@@ -193,30 +193,6 @@ function handleHomepage() {
             width: 85%;
             max-height: 90%;
           }
-          .lav-loader {
-            width: 29px;
-            height: 29px;
-            font-size: 0;
-            line-height: 0;
-            border: 2px solid #FFF;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-          }
-          .lav-cta__price.lav-loader svg {
-            dipslay: none;
-
-          }
-          @keyframes rotation {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-          }
           .lav-slide:nth-child(2) .lav-slide__image img {
             object-position: 45%;
           }
@@ -483,6 +459,30 @@ function handleHomepage() {
             font-weight: 700;
             line-height: 22px;
             letter-spacing: -0.408px;
+          }
+          .lav-loader {
+            width: 29px;
+            height: 29px;
+            font-size: 0;
+            line-height: 0;
+            border: 2px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+          }
+          .lav-cta__price.lav-loader svg {
+            dipslay: none;
+
+          }
+          @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
           }
         `;
         const stylesEl = document.createElement('style');
