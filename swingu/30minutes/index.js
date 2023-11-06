@@ -49,6 +49,16 @@ if (
     },
     50
   );
+} else if (
+  location.href.includes('/upgrade/player') &&
+  !location.href.includes('hypothesis-3') &&
+  document.querySelector('.absolute.top-xs.left-xs')
+) {
+  document
+    .querySelector('.absolute.top-xs.left-xs')
+    .addEventListener('click', function () {
+      localStorage.setItem('isFirstSessionPopupClosed', 'true');
+    });
 }
 
 function handleHomepage() {
@@ -644,18 +654,22 @@ function handleHomepage() {
       console.log(
         'isStorageEligable: ' +
           isStorageEligable +
-          '-' +
-          sessionStorage.getItem('isRedirectedExp')
+          ' - ' +
+          sessionStorage.getItem('isRedirectedExp') +
+          ' - ' +
+          localStorage.getItem('isFirstSessionPopupClosed')
       );
 
       if (
-        settings.debug ||
+        (settings.debug &&
+          localStorage.getItem('isFirstSessionPopupClosed') === 'true') ||
         (isFreeTrial === 'false' &&
           isActiveSubscription === 'false' &&
           (!isStorageEligable || isStorageEligable <= 3) &&
           sessionStorage.getItem('isRedirectedExp') !== 'yes')
       ) {
         sessionStorage.setItem('isRedirectedExp', 'yes');
+        localStorage.removeItem('isFirstSessionPopupClosed');
         localStorage.getItem('sessionsPopupCount')
           ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
           : localStorage.setItem('sessionsPopupCount', 1);
