@@ -661,8 +661,7 @@ function handleHomepage() {
       );
 
       if (
-        (settings.debug &&
-          localStorage.getItem('isFirstSessionPopupClosed') === 'true') ||
+        settings.debug ||
         (isFreeTrial === 'false' &&
           isActiveSubscription === 'false' &&
           (!isStorageEligable || isStorageEligable <= 3) &&
@@ -678,8 +677,9 @@ function handleHomepage() {
           () =>
             document.querySelector(
               '[data-crstarget="hypothesis-3-upgrade-target"]'
-            ),
+            ) && localStorage.getItem('isFirstSessionPopupClosed') === 'true',
           () => {
+            console.log('fire0');
             // todo
             setTimeout(() => {
               document
@@ -687,9 +687,11 @@ function handleHomepage() {
                 .dispatchEvent(new Event('click'));
               console.log('fire');
             }, 10000);
-          }
+          },
+          1500
         );
       } else {
+        localStorage.removeItem('isFirstSessionPopupClosed');
         console.log(
           'Fail: isFreeTrial: ' +
             isFreeTrial +
