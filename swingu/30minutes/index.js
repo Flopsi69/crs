@@ -473,7 +473,7 @@ function handleHomepage() {
             animation: rotation 1s linear infinite;
           }
           .lav-cta__price.lav-loader svg {
-            dipslay: none;
+            display: none;
 
           }
           @keyframes rotation {
@@ -490,114 +490,114 @@ function handleHomepage() {
         document.head.appendChild(stylesEl);
 
         const html = `
-        <div class='splide lav-slider'>
-          <div class="splide__track">
-            <ul class="splide__list">
-              <li class='lav-slide splide__slide'>
-                <div class='lav-slide__info'>
-                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
-                  <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
-                  <div class="lav-slide__off">
-                    <span class='lav-slide__off-old'>$99.99</span>
-                    <span class='lav-slide__off-new'>$59.99/yr</span>
+          <div class='splide lav-slider'>
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class='lav-slide splide__slide'>
+                  <div class='lav-slide__info'>
+                    <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                    <div class="lav-slide__title">Upgrade to Green Reading Maps</div>
+                    <div class="lav-slide__off">
+                      <span class='lav-slide__off-old'>$99.99</span>
+                      <span class='lav-slide__off-new'>$59.99/yr</span>
+                    </div>
                   </div>
-                </div>
-                <div class='lav-slide__image'>
-                  <img src='${settings.dir}/img/slide1.png' alt='' />
-                </div>
+                  <div class='lav-slide__image'>
+                    <img src='${settings.dir}/img/slide1.png' alt='' />
+                  </div>
 
-                <div class='lav-cta'>
-                  <div class='lav-cta__caption'>Upgrade Now</div>
-                  <div class='lav-cta__price'>
-                    GET 40% OFF 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
-                    </svg>
+                  <div class='lav-cta'>
+                    <div class='lav-cta__caption'>Upgrade Now</div>
+                    <div class='lav-cta__price'>
+                      GET 40% OFF 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                        <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
 
-              <li class='lav-slide splide__slide'>
-                <div class='lav-slide__info'>
-                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
-                  <div class="lav-slide__title">Upgrade to Club Recommendations</div>
-                  <div class="lav-slide__off">
-                    <span class='lav-slide__off-old'>$99.99</span>
-                    <span class='lav-slide__off-new'>$59.99/yr</span>
+                <li class='lav-slide splide__slide'>
+                  <div class='lav-slide__info'>
+                    <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                    <div class="lav-slide__title">Upgrade to Club Recommendations</div>
+                    <div class="lav-slide__off">
+                      <span class='lav-slide__off-old'>$99.99</span>
+                      <span class='lav-slide__off-new'>$59.99/yr</span>
+                    </div>
                   </div>
-                </div>
-                <div class='lav-slide__image'>
-                  <img src='${settings.dir}/img/slide2.png' alt='' />
-                </div>
+                  <div class='lav-slide__image'>
+                    <img src='${settings.dir}/img/slide2.png' alt='' />
+                  </div>
 
-                <div class='lav-cta'>
-                  <div class='lav-cta__caption'>Upgrade Now</div>
-                  <div class='lav-cta__price'>
-                    GET 40% OFF 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
-                    </svg>
+                  <div class='lav-cta'>
+                    <div class='lav-cta__caption'>Upgrade Now</div>
+                    <div class='lav-cta__price'>
+                      GET 40% OFF 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                        <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
 
-              <li class='lav-slide splide__slide'>
-                <div class='lav-slide__info'>
-                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
-                  <div class="lav-slide__title">Upgrade to ‘Plays Like’ distances</div>
-                  <div class="lav-slide__off">
-                    <span class='lav-slide__off-old'>$99.99</span>
-                    <span class='lav-slide__off-new'>$59.99/yr</span>
+                <li class='lav-slide splide__slide'>
+                  <div class='lav-slide__info'>
+                    <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                    <div class="lav-slide__title">Upgrade to ‘Plays Like’ distances</div>
+                    <div class="lav-slide__off">
+                      <span class='lav-slide__off-old'>$99.99</span>
+                      <span class='lav-slide__off-new'>$59.99/yr</span>
+                    </div>
                   </div>
-                </div>
-                <div class='lav-slide__image'>
-                  <img src='${settings.dir}/img/slide3.png' alt='' />
-                </div>
+                  <div class='lav-slide__image'>
+                    <img src='${settings.dir}/img/slide3.png' alt='' />
+                  </div>
 
-                <div class='lav-cta'>
-                  <div class='lav-cta__caption'>Upgrade Now</div>
-                  <div class='lav-cta__price'>
-                    GET 40% OFF 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
-                    </svg>
+                  <div class='lav-cta'>
+                    <div class='lav-cta__caption'>Upgrade Now</div>
+                    <div class='lav-cta__price'>
+                      GET 40% OFF 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                        <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
 
-              <li class='lav-slide splide__slide'>
-                <div class='lav-slide__info'>
-                  <img src='${settings.dir}/img/logo-w.svg' alt='' />
-                  <div class="lav-slide__title">Upgrade to Strokes Gained Pro Stats</div>
-                  <div class="lav-slide__off">
-                    <span class='lav-slide__off-old'>$99.99</span>
-                    <span class='lav-slide__off-new'>$59.99/yr</span>
+                <li class='lav-slide splide__slide'>
+                  <div class='lav-slide__info'>
+                    <img src='${settings.dir}/img/logo-w.svg' alt='' />
+                    <div class="lav-slide__title">Upgrade to Strokes Gained Pro Stats</div>
+                    <div class="lav-slide__off">
+                      <span class='lav-slide__off-old'>$99.99</span>
+                      <span class='lav-slide__off-new'>$59.99/yr</span>
+                    </div>
                   </div>
-                </div>
-                <div class='lav-slide__image'>
-                  <img src='${settings.dir}/img/slide4-bg.png' alt='' />
-                  <img class='lav-phone' src='${settings.dir}/img/slide4-phone.png' alt='' />
-                </div>
+                  <div class='lav-slide__image'>
+                    <img src='${settings.dir}/img/slide4-bg.png' alt='' />
+                    <img class='lav-phone' src='${settings.dir}/img/slide4-phone.png' alt='' />
+                  </div>
 
-                <div class='lav-cta'>
-                  <div class='lav-cta__caption'>Upgrade Now</div>
-                  <div class='lav-cta__price'>
-                    GET 40% OFF
-                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
-                      <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
-                    </svg>
+                  <div class='lav-cta'>
+                    <div class='lav-cta__caption'>Upgrade Now</div>
+                    <div class='lav-cta__price'>
+                      GET 40% OFF
+                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14" fill="none">
+                        <path d="M8 7C8 6.79839 7.9182 6.6129 7.76278 6.46774L1.28425 0.209677C1.13701 0.0725806 0.957055 0 0.744376 0C0.327198 0 0 0.314516 0 0.733871C0 0.935484 0.0817996 1.12097 0.212679 1.25806L6.16769 7L0.212679 12.7419C0.0817996 12.879 0 13.0565 0 13.2661C0 13.6855 0.327198 14 0.744376 14C0.957055 14 1.13701 13.9274 1.28425 13.7823L7.76278 7.53226C7.9182 7.37903 8 7.20161 8 7Z" fill="white"/>
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div class="lav-tip">
-          <div class="lav-tip__caption">Today’s Tip</div>
-          <div class="lav-tip__title">-</div>
-        </div>
-      `;
+          <div class="lav-tip">
+            <div class="lav-tip__caption">Today’s Tip</div>
+            <div class="lav-tip__title">-</div>
+          </div>
+        `;
 
         document
           .querySelector('.antialiased .relative.flex-col')
@@ -660,18 +660,13 @@ function handleHomepage() {
           ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
           : localStorage.setItem('sessionsPopupCount', 1);
 
-        setInterval(() => {
-          console.log(
-            'test: ' + document.querySelector('#device-emit-log')?.outerHTML
-          );
-        }, 1000);
-
         waitFor(
           () =>
             document.querySelector(
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             ),
           () => {
+            // todo
             setTimeout(() => {
               document
                 .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
