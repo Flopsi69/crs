@@ -193,6 +193,30 @@ function handleHomepage() {
             width: 85%;
             max-height: 90%;
           }
+          .lav-loader {
+            width: 29px;
+            height: 29px;
+            font-size: 0;
+            line-height: 0;
+            border: 2px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+          }
+          .lav-cta__price.lav-loader svg {
+            dipslay: none;
+
+          }
+          @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+          }
           .lav-slide:nth-child(2) .lav-slide__image img {
             object-position: 45%;
           }
@@ -373,7 +397,7 @@ function handleHomepage() {
             min-height: 0;
           }
           .section__video-basic > div {
-            height: 0!important;;
+            height: 0!important;
             min-height: 0!important;
           }
           .video-basic {
@@ -636,6 +660,10 @@ function handleHomepage() {
           ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
           : localStorage.setItem('sessionsPopupCount', 1);
 
+        setInterval(() => {
+          console.log('test: ' + _$('#device-emit-log')?.outerHTML);
+        }, 1000);
+
         waitFor(
           () =>
             document.querySelector(
@@ -748,6 +776,10 @@ function initSlider() {
       'Image',
       'Banner'
     );
+
+    _$$('.lav-cta__price').forEach((el) => {
+      el.classList.add('lav-loader');
+    });
 
     if (document.querySelector('[data-stripe-checkout-url]')) {
       const url = document.querySelector('[data-stripe-checkout-url]').dataset
@@ -1068,7 +1100,7 @@ function handleUpgradePage() {
       border-radius: 50%;
       display: inline-block;
       box-sizing: border-box;
-      animation: rotation 1s linear infinite;;
+      animation: rotation 1s linear infinite;
     }
     @keyframes rotation {
       0% {
@@ -1083,13 +1115,13 @@ function handleUpgradePage() {
   const stylesEl = document.createElement('style');
   stylesEl.innerHTML = styles;
 
-  waitFor(
-    () => document.head,
-    () => {
-      document.head.appendChild(stylesEl);
-    },
-    100
-  );
+  // waitFor(
+  //   () => document.head,
+  //   () => {
+  document.head.appendChild(stylesEl);
+  //   },
+  //   100
+  // );
   /*** STYLES / End ***/
 
   function getDateRange() {
@@ -1165,7 +1197,7 @@ function handleUpgradePage() {
 
   /********* Custom Code **********/
   waitFor(
-    () => document.querySelector('.antialiased'),
+    () => document.querySelector('main'),
     () => {
       init();
     },
