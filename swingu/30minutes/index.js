@@ -642,9 +642,12 @@ function handleHomepage() {
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             ),
           () => {
-            document
-              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-              .dispatchEvent(new Event('click'));
+            setTimeout(() => {
+              document
+                .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+                .dispatchEvent(new Event('click'));
+              console.log('fire');
+            }, 10000);
           }
         );
       } else {
