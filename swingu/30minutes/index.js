@@ -17,7 +17,7 @@ const settings = {
     enable: true,
     params: ['set', 'exp_stripe_cancel_flow', 'variant_1'],
   },
-  debug: true,
+  debug: false,
 };
 
 let isHandicapFire = false;
