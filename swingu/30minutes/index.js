@@ -681,12 +681,11 @@ function handleHomepage() {
             localStorage.removeItem('isFirstSessionPopupClosed');
             console.log('fire0');
             // todo
-            setTimeout(() => {
-              document
-                .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
-                .dispatchEvent(new Event('click'));
-              console.log('fire');
-            }, 10000);
+            // setTimeout(() => {
+            document
+              .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
+              .dispatchEvent(new Event('click'));
+            // }, 10000);
           },
           1500
         );
