@@ -668,7 +668,6 @@ function handleHomepage() {
           sessionStorage.getItem('isRedirectedExp') !== 'yes')
       ) {
         sessionStorage.setItem('isRedirectedExp', 'yes');
-        localStorage.removeItem('isFirstSessionPopupClosed');
         localStorage.getItem('sessionsPopupCount')
           ? localStorage.setItem('sessionsPopupCount', isStorageEligable + 1)
           : localStorage.setItem('sessionsPopupCount', 1);
@@ -679,6 +678,7 @@ function handleHomepage() {
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             ) && localStorage.getItem('isFirstSessionPopupClosed') === 'true',
           () => {
+            localStorage.removeItem('isFirstSessionPopupClosed');
             console.log('fire0');
             // todo
             setTimeout(() => {
