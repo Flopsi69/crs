@@ -661,7 +661,9 @@ function handleHomepage() {
           : localStorage.setItem('sessionsPopupCount', 1);
 
         setInterval(() => {
-          console.log('test: ' + _$('#device-emit-log')?.outerHTML);
+          console.log(
+            'test: ' + document.querySelector('#device-emit-log')?.outerHTML
+          );
         }, 1000);
 
         waitFor(
@@ -777,7 +779,7 @@ function initSlider() {
       'Banner'
     );
 
-    _$$('.lav-cta__price').forEach((el) => {
+    document.querySelectorAll('.lav-cta__price').forEach((el) => {
       el.classList.add('lav-loader');
     });
 
