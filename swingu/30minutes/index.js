@@ -669,14 +669,13 @@ function handleHomepage() {
         (!isStorageEligable || isStorageEligable <= 3) &&
         sessionStorage.getItem('isRedirectedExp') !== 'yes'
       ) {
-        localStorage.removeItem('isFirstSessionPopupClosed');
-
         waitFor(
           () =>
             document.querySelector(
               '[data-crstarget="hypothesis-3-upgrade-target"]'
             ) && localStorage.getItem('isFirstSessionPopupClosed') === 'true',
           () => {
+            localStorage.removeItem('isFirstSessionPopupClosed');
             sessionStorage.setItem('isRedirectedExp', 'yes');
             localStorage.getItem('sessionsPopupCount')
               ? localStorage.setItem(
@@ -686,12 +685,9 @@ function handleHomepage() {
               : localStorage.setItem('sessionsPopupCount', 1);
 
             console.log('fire0');
-            // todo
-            // setTimeout(() => {
             document
               .querySelector('[data-crstarget="hypothesis-3-upgrade-target"]')
               .dispatchEvent(new Event('click'));
-            // }, 10000);
           },
           1500
         );
