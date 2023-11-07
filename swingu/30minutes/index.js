@@ -54,6 +54,7 @@ if (
   !location.href.includes('hypothesis-3') &&
   document.querySelector('.absolute.top-xs.left-xs')
 ) {
+  console.log('iniLocalStorageUpgrade: ' + location.href);
   document
     .querySelector('.absolute.top-xs.left-xs')
     .addEventListener('click', function () {
