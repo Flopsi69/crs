@@ -28,6 +28,7 @@
     if (
       document.querySelector('[dusk="upgrade-button--manage-subscription"]')
     ) {
+      console.log('User has subscription!');
       // todo - add event for user with subscription
       return false;
     }
