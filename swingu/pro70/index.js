@@ -241,16 +241,19 @@
           '.text-\\[17px\\]'
         ).innerHTML = `<span class='lav-price__old'>$99.99</span> <span class='lav-price__new'>$69.99/yr</span>`;
 
-        proEl
-          .querySelector('.absolute.rounded-\\[15px\\]')
-          .classList.add('lav-offer');
-        proEl.querySelector('.lav-offer').innerText = 'Limited Offer';
+        if (proEl.querySelector('.absolute.rounded-\\[15px\\]')) {
+          proEl
+            .querySelector('.absolute.rounded-\\[15px\\]')
+            .classList.add('lav-offer');
+          proEl.querySelector('.lav-offer').innerText = 'Limited Offer';
+        }
 
         // proEl.querySelector('h2 svg').remove();
       }
     }
 
     function handleCta() {
+      if (!document.querySelector('.lav-button')) return;
       const typeSubscr = document.querySelector(
         '[dusk="segmented-control--monthly"][data-active="true"]'
       )
@@ -293,7 +296,11 @@
     }
 
     function addCustomButton() {
-      if (document.querySelector('.lav-button')) return;
+      if (
+        document.querySelector('.lav-button') ||
+        document.querySelector('[dusk="upgrade-button--manage-subscription"]')
+      )
+        return;
 
       const el = document.querySelector('.fixed.bottom-0');
       el.querySelector('.justify-center').classList.add('lav-orig');
