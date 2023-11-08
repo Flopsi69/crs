@@ -21,7 +21,10 @@
     debug: true,
   };
 
-  if (location.href.includes('/upgrade/player')) {
+  if (
+    location.href.includes('/upgrade/player') &&
+    !location.href.includes('hypothesis')
+  ) {
     waitFor(
       () => document.body,
       () => {
