@@ -25,6 +25,12 @@
     location.href.includes('/upgrade/player') &&
     !location.href.includes('hypothesis')
   ) {
+    if (
+      document.querySelector('[dusk="upgrade-button--manage-subscription"]')
+    ) {
+      // todo - add event for user with subscription
+      return false;
+    }
     waitFor(
       () => document.body,
       () => {
@@ -296,11 +302,7 @@
     }
 
     function addCustomButton() {
-      if (
-        document.querySelector('.lav-button') ||
-        document.querySelector('[dusk="upgrade-button--manage-subscription"]')
-      )
-        return;
+      if (document.querySelector('.lav-button')) return;
 
       const el = document.querySelector('.fixed.bottom-0');
       el.querySelector('.justify-center').classList.add('lav-orig');
