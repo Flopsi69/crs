@@ -12,14 +12,14 @@
   // *** Utils *** //
   class Modal {
     static list = [];
-    constructor(name, innerHTML) {
+    constructor(name, html) {
       if (!$('.lav-modal')) {
         this.constructor.init();
       }
       this.el = document.createElement('div');
       this.el.classList.add('lav-modal__inner', name);
       this.name = name;
-      this.el.innerHTML = innerHTML;
+      this.el.innerHTML = html;
 
       $('.lav-modal').insertAdjacentElement('beforeend', this.el);
 
