@@ -983,8 +983,10 @@
   }
 
   navigation.addEventListener('navigate', (e) => {
-    console.log('fireNavigate');
-    setTimeout(init, 300);
+    if (e.navigationType === 'push') {
+      console.log('fireNavigate');
+      setTimeout(init, 300);
+    }
   });
 
   function initCheckout() {
