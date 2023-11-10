@@ -962,16 +962,24 @@
 
   // *** Logic *** //
   console.debug('** InitExp **');
-  if (location.href.includes('/pricing')) {
-    initPricing();
-    document.head.appendChild(stylePricingEl);
-  } else if (location.href.includes('/how-it-works')) {
-    initHowItWorks();
-    document.head.appendChild(styleHowEl);
-  } else if (location.href.includes('/checkout')) {
-    waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
-    document.head.appendChild(styleCheckoutEl);
+
+  init();
+  function init() {
+    if (location.href.includes('/pricing')) {
+      initPricing();
+      document.head.appendChild(stylePricingEl);
+    } else if (location.href.includes('/how-it-works')) {
+      initHowItWorks();
+      document.head.appendChild(styleHowEl);
+    } else if (location.href.includes('/checkout')) {
+      waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
+      document.head.appendChild(styleCheckoutEl);
+    }
   }
+
+  navigation.addEventListener('navigate', (e) => {
+    setTimeout(init, 300);
+  });
 
   function initCheckout() {
     $('section').classList.add('lav-header');
