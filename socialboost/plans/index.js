@@ -969,7 +969,7 @@
     initHowItWorks();
     document.head.appendChild(styleHowEl);
   } else if (location.href.includes('/checkout')) {
-    initCheckout();
+    waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
     document.head.appendChild(styleCheckoutEl);
   }
 
@@ -1356,7 +1356,6 @@
       'Accelerate your reach quickly and effectively, perfect for prominent profiles and established businesses.';
 
     $('[for="switch"]').addEventListener('click', function () {
-      console.log('fire', this.querySelector('.translate-x-8'));
       setTimeout(() => {
         if (this.querySelector('.translate-x-0')) {
           $$('.lav-plan__price_year').forEach((item) => {
