@@ -9,6 +9,8 @@
     debug: true,
   };
 
+  let isMutationInit = false;
+
   // *** Utils *** //
   class Modal {
     static list = [];
@@ -966,18 +968,22 @@
   init();
   function init() {
     if (location.href.includes('/pricing')) {
+      console.log('init Pricing');
       initPricing();
       document.head.appendChild(stylePricingEl);
     } else if (location.href.includes('/how-it-works')) {
+      console.log('init HowItWorks');
       initHowItWorks();
       document.head.appendChild(styleHowEl);
     } else if (location.href.includes('/checkout')) {
+      console.log('init Checkout');
       waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
       document.head.appendChild(styleCheckoutEl);
     }
   }
 
   navigation.addEventListener('navigate', (e) => {
+    console.log('fireNavigate');
     setTimeout(init, 300);
   });
 
@@ -1083,12 +1089,15 @@
   }
 
   function initPricing() {
-    initMutation(document.body, (el) => {
-      if (el.id === 'login') {
-        console.log(el);
-        handleLogin(el);
-      }
-    });
+    if (!isMutationInit) {
+      isMutationInit = true;
+      initMutation(document.body, (el) => {
+        if (el.id === 'login') {
+          console.log(el);
+          handleLogin(el);
+        }
+      });
+    }
     addTrustWallet();
     changeCopy();
 
