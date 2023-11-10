@@ -1,34 +1,35 @@
-console.debug('*** Experiment started ***');
-await waitFor(() => document.head && document.body, false, { ms: 100 });
+(async function () {
+  console.debug('*** Experiment started ***');
+  await waitFor(() => document.head && document.body, false, { ms: 100 });
 
-// Config for Experiment
-const config = {
-  dir: 'https://flopsi69.github.io/crs/socialboost/plans',
-  clarity: ['set', '', 'variant_1'],
-  debug: true,
-};
+  // Config for Experiment
+  const config = {
+    dir: 'https://flopsi69.github.io/crs/socialboost/plans',
+    clarity: ['set', '', 'variant_1'],
+    debug: true,
+  };
 
-// *** Utils *** //
-class Modal {
-  static list = [];
-  constructor(name, innerHTML) {
-    if (!$('.lav-modal')) {
-      this.constructor.init();
+  // *** Utils *** //
+  class Modal {
+    static list = [];
+    constructor(name, innerHTML) {
+      if (!$('.lav-modal')) {
+        this.constructor.init();
+      }
+      this.el = document.createElement('div');
+      this.el.classList.add('lav-modal__inner', name);
+      this.name = name;
+      this.el.innerHTML = innerHTML;
+
+      $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+
+      this.constructor.list.push(this);
     }
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = innerHTML;
 
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
-
-    this.constructor.list.push(this);
-  }
-
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      `<div class='lav-modal'>
+    static init() {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<div class='lav-modal'>
         <div class='lav-modal__close'>
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
           <path d="M0.879054 17.9998C0.705203 17.9998 0.535246 17.9483 0.390683 17.8517C0.246121 17.7551 0.133446 17.6179 0.0669111 17.4573C0.000376487 17.2966 -0.0170287 17.1199 0.016897 16.9494C0.0508227 16.7789 0.134555 16.6223 0.257503 16.4993L16.4994 0.257455C16.6642 0.0926093 16.8878 0 17.1209 0C17.3541 0 17.5777 0.0926093 17.7425 0.257455C17.9073 0.4223 18 0.645879 18 0.879006C18 1.11213 17.9073 1.33571 17.7425 1.50056L1.50061 17.7424C1.41906 17.8242 1.32217 17.889 1.2155 17.9331C1.10884 17.9773 0.9945 17.9999 0.879054 17.9998Z" fill="white"/>
@@ -36,62 +37,62 @@ class Modal {
           </svg>
         </div>
       </div>`
-    );
+      );
 
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close();
+      document.addEventListener('click', (e) => {
+        if (
+          e.target.classList.contains('lav-modal') ||
+          e.target.closest('.lav-modal__close')
+        )
+          this.close();
 
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
-      }
+        if (e.target.dataset.modal) {
+          this.open(e.target.dataset.modal);
+        }
 
-      if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
-      }
-    });
+        if (e.target.closest('[data-modal]')) {
+          this.open(e.target.closest('[data-modal]').dataset.modal);
+        }
+      });
 
-    this.addStyles();
-  }
-
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
-
-    if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+      this.addStyles();
     }
 
-    $(modalName).classList.add('active');
+    static open(modalName, cb) {
+      document.body.classList.add('lav-modal-open');
 
-    if (typeof cb === 'function') cb();
+      if ($('.lav-modal__inner.active')) {
+        $('.lav-modal__inner.active').classList.remove('active');
+      }
 
-    setTimeout(() => {
-      $('.lav-modal').classList.add('active');
-    }, 100);
-  }
+      $(modalName).classList.add('active');
 
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+      if (typeof cb === 'function') cb();
 
-    $('.lav-modal')?.classList.remove('active');
+      setTimeout(() => {
+        $('.lav-modal').classList.add('active');
+      }, 100);
+    }
 
-    $('.lav-video iframe').src = $('.lav-video iframe').src.replace(
-      'autoplay=1',
-      'autoplay=0'
-    );
+    static close(cb) {
+      document.body.classList.remove('lav-modal-open');
 
-    if (typeof cb === 'function') cb();
+      $('.lav-modal')?.classList.remove('active');
 
-    setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
-  }
+      $('.lav-video iframe').src = $('.lav-video iframe').src.replace(
+        'autoplay=1',
+        'autoplay=0'
+      );
 
-  static addStyles() {
-    const styles = `
+      if (typeof cb === 'function') cb();
+
+      setTimeout(() => {
+        $('.lav-modal__inner.active')?.classList.remove('active');
+      }, 400);
+    }
+
+    static addStyles() {
+      const styles = `
       .lav-modal {
         position: fixed;
         z-index: 999;
@@ -212,20 +213,20 @@ class Modal {
       .lav-video {}
     `;
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
+      const stylesEl = document.createElement('style');
+      stylesEl.classList.add('exp-modal');
+      stylesEl.innerHTML = styles;
+      document.head.appendChild(stylesEl);
+    }
   }
-}
 
-const orig = console.log;
-console.log = function (...args) {
-  orig.apply(console, ['Debug:', ...args]);
-};
+  const orig = console.log;
+  console.log = function (...args) {
+    orig.apply(console, ['Debug:', ...args]);
+  };
 
-// Styles for Experiment
-const stylePricing = `
+  // Styles for Experiment
+  const stylePricing = `
   .lav-trust {
     display: flex;
     align-items: center;
@@ -741,11 +742,11 @@ const stylePricing = `
   }
 `;
 
-const stylePricingEl = document.createElement('style');
-stylePricingEl.classList.add('exp-styles');
-stylePricingEl.innerHTML = stylePricing;
+  const stylePricingEl = document.createElement('style');
+  stylePricingEl.classList.add('exp-styles');
+  stylePricingEl.innerHTML = stylePricing;
 
-const stylesHow = `
+  const stylesHow = `
   .lav-back {
     display: inline-flex;
     align-items: center;
@@ -771,11 +772,11 @@ const stylesHow = `
   }
 `;
 
-const styleHowEl = document.createElement('style');
-styleHowEl.classList.add('exp-styles');
-styleHowEl.innerHTML = stylesHow;
+  const styleHowEl = document.createElement('style');
+  styleHowEl.classList.add('exp-styles');
+  styleHowEl.innerHTML = stylesHow;
 
-const stylesCheckout = `
+  const stylesCheckout = `
   .fixed.overflow-hidden, .fixed.overflow-hidden>.overflow-hidden {
     position: static;
     overflow: initial;
@@ -955,40 +956,40 @@ const stylesCheckout = `
   .lav-summary {}
 `;
 
-const styleCheckoutEl = document.createElement('style');
-styleCheckoutEl.classList.add('exp-styles');
-styleCheckoutEl.innerHTML = stylesCheckout;
+  const styleCheckoutEl = document.createElement('style');
+  styleCheckoutEl.classList.add('exp-styles');
+  styleCheckoutEl.innerHTML = stylesCheckout;
 
-// *** Logic *** //
-console.debug('** InitExp **');
-if (location.href.includes('/pricing')) {
-  initPricing();
-  document.head.appendChild(stylePricingEl);
-} else if (location.href.includes('/how-it-works')) {
-  initHowItWorks();
-  document.head.appendChild(styleHowEl);
-} else if (location.href.includes('/checkout')) {
-  initCheckout();
-  document.head.appendChild(styleCheckoutEl);
-}
+  // *** Logic *** //
+  console.debug('** InitExp **');
+  if (location.href.includes('/pricing')) {
+    initPricing();
+    document.head.appendChild(stylePricingEl);
+  } else if (location.href.includes('/how-it-works')) {
+    initHowItWorks();
+    document.head.appendChild(styleHowEl);
+  } else if (location.href.includes('/checkout')) {
+    initCheckout();
+    document.head.appendChild(styleCheckoutEl);
+  }
 
-function initCheckout() {
-  $('section').classList.add('lav-header');
-  $('section.absolute').classList.add('lav-payment');
+  function initCheckout() {
+    $('section').classList.add('lav-header');
+    $('section.absolute').classList.add('lav-payment');
 
-  handlePaymentForm();
+    handlePaymentForm();
 
-  function handlePaymentForm() {
-    $('.lav-payment').insertAdjacentHTML(
-      'beforebegin',
-      '<div class="lav-payment__wrap"></div>'
-    );
-    $('.lav-payment__wrap').insertAdjacentElement(
-      'beforeend',
-      $('.lav-payment')
-    );
+    function handlePaymentForm() {
+      $('.lav-payment').insertAdjacentHTML(
+        'beforebegin',
+        '<div class="lav-payment__wrap"></div>'
+      );
+      $('.lav-payment__wrap').insertAdjacentElement(
+        'beforeend',
+        $('.lav-payment')
+      );
 
-    const summaryEl = `
+      const summaryEl = `
       <div class='lav-summary'>
         <div class='lav-summary__title'>Order summary:</div>
         <div class='lav-summary__list'>
@@ -1008,94 +1009,96 @@ function initCheckout() {
       </div>
     `;
 
-    $('.lav-payment__wrap').insertAdjacentHTML('beforeend', summaryEl);
+      $('.lav-payment__wrap').insertAdjacentHTML('beforeend', summaryEl);
 
-    $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
-    $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
+      $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
+      $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
 
-    const price = $('.tracking-normal').textContent.trim().replace(' ', '');
+      const price = $('.tracking-normal').textContent.trim().replace(' ', '');
 
-    const term = $('.lav-header .tracking .leading-0').textContent;
-    $('.lav-summary__total-value').innerHTML = `<span>${price}</span> ${term}`;
+      const term = $('.lav-header .tracking .leading-0').textContent;
+      $(
+        '.lav-summary__total-value'
+      ).innerHTML = `<span>${price}</span> ${term}`;
 
-    const planName = $('.lav-header h3 + p').textContent;
+      const planName = $('.lav-header h3 + p').textContent;
 
-    $('.lav-summary__item:first-child .lav-summary__item-value').innerText =
-      planName;
+      $('.lav-summary__item:first-child .lav-summary__item-value').innerText =
+        planName;
 
-    $('.lav-summary__item:nth-child(2) .lav-summary__item-value').innerText =
-      planName === 'Turbocharged'
-        ? 'up to 1000 organic followers /month'
-        : planName === 'Basic'
-        ? '200+ organic followers /month'
-        : '300+ organic followers /month';
+      $('.lav-summary__item:nth-child(2) .lav-summary__item-value').innerText =
+        planName === 'Turbocharged'
+          ? 'up to 1000 organic followers /month'
+          : planName === 'Basic'
+          ? '200+ organic followers /month'
+          : '300+ organic followers /month';
 
-    $('.lav-summary').insertAdjacentElement(
-      'beforeend',
-      $('#email-description')
-    );
+      $('.lav-summary').insertAdjacentElement(
+        'beforeend',
+        $('#email-description')
+      );
 
-    $('[typeof="email"] + div').insertAdjacentHTML(
-      'beforeend',
-      `
+      $('[typeof="email"] + div').insertAdjacentHTML(
+        'beforeend',
+        `
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
         <path d="M8.46281 7.91503C8.31169 8.00948 8.14168 8.04726 7.99056 8.04726C7.83943 8.04726 7.66942 8.00948 7.5183 7.91503L0 3.32471V9.42624C0 10.7297 1.05785 11.7875 2.36128 11.7875H13.6387C14.9421 11.7875 16 10.7297 16 9.42624V3.32471L8.46281 7.91503Z" fill="#9CA3AF"/>
         <path d="M13.6388 0H2.3614C1.24688 0 0.302366 0.793388 0.0756836 1.85124L8.00957 6.68713L15.9246 1.85124C15.6979 0.793388 14.7534 0 13.6388 0Z" fill="#9CA3AF"/>
       </svg>
     `
-    );
+      );
 
-    $('.lav-payment header').insertAdjacentHTML(
-      'beforeend',
-      `
+      $('.lav-payment header').insertAdjacentHTML(
+        'beforeend',
+        `
       <div class='lav-title'>Payment</div>
       <div class='lav-caption'>Finish setup and start growing your Instagram today!</div>
       `
-    );
+      );
+    }
   }
-}
 
-function initHowItWorks() {
-  $('section .container').insertAdjacentHTML(
-    'afterbegin',
-    `<div class='lav-back'>
+  function initHowItWorks() {
+    $('section .container').insertAdjacentHTML(
+      'afterbegin',
+      `<div class='lav-back'>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M0.212937 7.29511L5.3039 2.20416C5.44106 2.07168 5.62477 1.99837 5.81546 2.00003C6.00616 2.00168 6.18857 2.07817 6.32341 2.21302C6.45825 2.34786 6.53474 2.53027 6.5364 2.72096C6.53806 2.91165 6.46475 3.09536 6.33227 3.23253L2.48278 7.08202H15.2727C15.4656 7.08202 15.6506 7.15865 15.787 7.29504C15.9234 7.43143 16 7.61641 16 7.8093C16 8.00219 15.9234 8.18717 15.787 8.32357C15.6506 8.45996 15.4656 8.53658 15.2727 8.53658H2.48278L6.33227 12.3861C6.40173 12.4532 6.45714 12.5334 6.49525 12.6221C6.53337 12.7109 6.55343 12.8063 6.55427 12.9029C6.55511 12.9994 6.53671 13.0952 6.50014 13.1846C6.46357 13.274 6.40957 13.3552 6.34128 13.4235C6.273 13.4917 6.1918 13.5457 6.10242 13.5823C6.01304 13.6189 5.91727 13.6373 5.8207 13.6364C5.72413 13.6356 5.6287 13.6155 5.53997 13.5774C5.45124 13.5393 5.37099 13.4839 5.3039 13.4144L0.212937 8.32349C0.0765934 8.1871 0 8.00215 0 7.8093C0 7.61645 0.0765934 7.4315 0.212937 7.29511Z" fill="black"/>
       </svg>
       Back
     </div>`
-  );
+    );
 
-  document.querySelector('.lav-back').addEventListener('click', function () {
-    location.href = 'https://social-boost.co/pricing';
-  });
-}
+    document.querySelector('.lav-back').addEventListener('click', function () {
+      location.href = 'https://social-boost.co/pricing';
+    });
+  }
 
-function initPricing() {
-  initMutation(document.body, (el) => {
-    if (el.id === 'login') {
-      console.log(el);
-      handleLogin(el);
-    }
-  });
-  addTrustWallet();
-  changeCopy();
+  function initPricing() {
+    initMutation(document.body, (el) => {
+      if (el.id === 'login') {
+        console.log(el);
+        handleLogin(el);
+      }
+    });
+    addTrustWallet();
+    changeCopy();
 
-  $('#pricing').insertAdjacentHTML(
-    'afterend',
-    `<div class='lav-learn'><span data-modal='.howItWork'>Learn how we do it</span></div>`
-  );
+    $('#pricing').insertAdjacentHTML(
+      'afterend',
+      `<div class='lav-learn'><span data-modal='.howItWork'>Learn how we do it</span></div>`
+    );
 
-  $('[for="switch"]').insertAdjacentHTML(
-    'beforebegin',
-    `<div class='lav-switch__title'>Choose your plan</div>`
-  );
+    $('[for="switch"]').insertAdjacentHTML(
+      'beforebegin',
+      `<div class='lav-switch__title'>Choose your plan</div>`
+    );
 
-  handlePlans();
+    handlePlans();
 
-  new Modal(
-    'howItWork',
-    `
+    new Modal(
+      'howItWork',
+      `
     <div class='lav-video'>
       <iframe style='display:none;' frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="How Social Boost Works | How We grow Real Instagram followers for you" width="100%" height="100%" src="" data-gtm-yt-inspected-11="true"></iframe>
       <img class='lav-video__preview' src="/assets/how-it-works/how-it-works-poster.webp" />
@@ -1105,70 +1108,70 @@ function initPricing() {
       <a href='/how-it-works'>Learn more</a>
     </div>
   `
-  );
-
-  $('.lav-video__play').addEventListener('click', function () {
-    $('.lav-video iframe').src =
-      'https://www.youtube.com/embed/85jyo_pTwhw?autoplay=1&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fsocial-boost.co&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1';
-
-    $('.lav-video iframe').style.display = 'block';
-    $('.lav-video__preview').style.display = 'none';
-    $('.lav-video__play').style.display = 'none';
-  });
-
-  // Modal.open('.howItWork');
-}
-
-function handleLogin(el) {
-  $('h3', el).innerText = 'Your Email';
-  $('h3 + p', el).innerHTML =
-    'Finish setup and start growing<br/>your Instagram today!';
-
-  $('#login [type="email"]')
-    .closest('.relative')
-    .insertAdjacentHTML(
-      'afterend',
-      '<div class="lav-form-caption">Your data is secured. We never spam or share your email with third parties</div>'
     );
 
-  $('#login .my-6').classList.add('lav-email-form');
-  $('#login form [type="submit"]').innerText = 'Continue';
-  const cloneBtn = $('#login form [type="submit"]').cloneNode(false);
-  cloneBtn.innerText = 'Continue';
-  cloneBtn.classList.add('lav-clone-login');
-  cloneBtn.removeAttribute('type');
-  cloneBtn.removeAttribute('disabled');
-  $('#login form [type="submit"]').insertAdjacentElement(
-    'beforebegin',
-    cloneBtn
-  );
+    $('.lav-video__play').addEventListener('click', function () {
+      $('.lav-video iframe').src =
+        'https://www.youtube.com/embed/85jyo_pTwhw?autoplay=1&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fsocial-boost.co&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1';
 
-  $('.lav-clone-login').addEventListener('click', function (e) {
-    console.log('click');
-    e.preventDefault();
-    if (
-      !$('#login [type="email"]').value ||
-      !$('[type="email"].\\!border-green-400')
-    ) {
-      $('#login [type="email"]').focus();
-      return false;
-    }
+      $('.lav-video iframe').style.display = 'block';
+      $('.lav-video__preview').style.display = 'none';
+      $('.lav-video__play').style.display = 'none';
+    });
 
-    $('h3', el).innerText = 'Your Username';
-    $('#login .lav-email-form').insertAdjacentHTML(
-      'beforeend',
-      '<div class="lav-form-caption">By creating an account, you authorize Social Boost marketing team to perform marketing activity on your Instagram Account</div>'
+    // Modal.open('.howItWork');
+  }
+
+  function handleLogin(el) {
+    $('h3', el).innerText = 'Your Email';
+    $('h3 + p', el).innerHTML =
+      'Finish setup and start growing<br/>your Instagram today!';
+
+    $('#login [type="email"]')
+      .closest('.relative')
+      .insertAdjacentHTML(
+        'afterend',
+        '<div class="lav-form-caption">Your data is secured. We never spam or share your email with third parties</div>'
+      );
+
+    $('#login .my-6').classList.add('lav-email-form');
+    $('#login form [type="submit"]').innerText = 'Continue';
+    const cloneBtn = $('#login form [type="submit"]').cloneNode(false);
+    cloneBtn.innerText = 'Continue';
+    cloneBtn.classList.add('lav-clone-login');
+    cloneBtn.removeAttribute('type');
+    cloneBtn.removeAttribute('disabled');
+    $('#login form [type="submit"]').insertAdjacentElement(
+      'beforebegin',
+      cloneBtn
     );
-    $('.lav-email-form', el).classList.add('active');
-    $('[type="submit"]', el).classList.add('active');
-    this.remove();
-    $('.lav-form-caption', el).remove();
-    $('.mantine-Input-input', el).focus();
-  });
-}
 
-function handlePlans() {
-  const el = `
+    $('.lav-clone-login').addEventListener('click', function (e) {
+      console.log('click');
+      e.preventDefault();
+      if (
+        !$('#login [type="email"]').value ||
+        !$('[type="email"].\\!border-green-400')
+      ) {
+        $('#login [type="email"]').focus();
+        return false;
+      }
+
+      $('h3', el).innerText = 'Your Username';
+      $('#login .lav-email-form').insertAdjacentHTML(
+        'beforeend',
+        '<div class="lav-form-caption">By creating an account, you authorize Social Boost marketing team to perform marketing activity on your Instagram Account</div>'
+      );
+      $('.lav-email-form', el).classList.add('active');
+      $('[type="submit"]', el).classList.add('active');
+      this.remove();
+      $('.lav-form-caption', el).remove();
+      $('.mantine-Input-input', el).focus();
+    });
+  }
+
+  function handlePlans() {
+    const el = `
     <div class='lav-plans'>
       <div class='lav-plan'>
         <div class='lav-plan__head'>
@@ -1343,74 +1346,74 @@ function handlePlans() {
     </div>
   `;
 
-  $('.lg\\:grid.lg\\:grid-cols-7').insertAdjacentHTML('beforebegin', el);
+    $('.lg\\:grid.lg\\:grid-cols-7').insertAdjacentHTML('beforebegin', el);
 
-  $('.table-fixed tr:first-child td:nth-child(2) .leading-5').innerHTML =
-    'Start building your audience organically, ideal for personal accounts eager to grow.';
-  $('.table-fixed tr:first-child td:nth-child(3) .leading-5').innerHTML =
-    'Enhance your online presence with targeted engagement, suited for influencers and small businesses.';
-  $('.table-fixed tr:first-child td:nth-child(4) .leading-5').innerHTML =
-    'Accelerate your reach quickly and effectively, perfect for prominent profiles and established businesses.';
+    $('.table-fixed tr:first-child td:nth-child(2) .leading-5').innerHTML =
+      'Start building your audience organically, ideal for personal accounts eager to grow.';
+    $('.table-fixed tr:first-child td:nth-child(3) .leading-5').innerHTML =
+      'Enhance your online presence with targeted engagement, suited for influencers and small businesses.';
+    $('.table-fixed tr:first-child td:nth-child(4) .leading-5').innerHTML =
+      'Accelerate your reach quickly and effectively, perfect for prominent profiles and established businesses.';
 
-  $('[for="switch"]').addEventListener('click', function () {
-    console.log('fire', this.querySelector('.translate-x-8'));
-    setTimeout(() => {
-      if (this.querySelector('.translate-x-0')) {
-        $$('.lav-plan__price_year').forEach((item) => {
-          item.style.display = 'none';
-        });
+    $('[for="switch"]').addEventListener('click', function () {
+      console.log('fire', this.querySelector('.translate-x-8'));
+      setTimeout(() => {
+        if (this.querySelector('.translate-x-0')) {
+          $$('.lav-plan__price_year').forEach((item) => {
+            item.style.display = 'none';
+          });
 
-        $$('.lav-plan__price_month').forEach((item) => {
-          item.style.display = 'flex';
-        });
+          $$('.lav-plan__price_month').forEach((item) => {
+            item.style.display = 'flex';
+          });
 
-        $$('.lav-plan__yearly').forEach((item) => {
-          item.classList.remove('active');
-        });
-      } else {
-        $$('.lav-plan__price_year').forEach((item) => {
-          item.style.display = 'flex';
-        });
+          $$('.lav-plan__yearly').forEach((item) => {
+            item.classList.remove('active');
+          });
+        } else {
+          $$('.lav-plan__price_year').forEach((item) => {
+            item.style.display = 'flex';
+          });
 
-        $$('.lav-plan__price_month').forEach((item) => {
-          item.style.display = 'none';
-        });
+          $$('.lav-plan__price_month').forEach((item) => {
+            item.style.display = 'none';
+          });
 
-        $$('.lav-plan__yearly').forEach((item) => {
-          item.classList.add('active');
-        });
-      }
-    }, 100);
-  });
-
-  $$('.lav-plan__btn').forEach((item, i) => {
-    const index = i + 1;
-    item.addEventListener('click', function () {
-      $(
-        '.lg\\:grid.lg\\:grid-cols-7>div:nth-child(' +
-          index +
-          ') button.checkout'
-      ).click();
+          $$('.lav-plan__yearly').forEach((item) => {
+            item.classList.add('active');
+          });
+        }
+      }, 100);
     });
-  });
 
-  // updatePrice();
+    $$('.lav-plan__btn').forEach((item, i) => {
+      const index = i + 1;
+      item.addEventListener('click', function () {
+        $(
+          '.lg\\:grid.lg\\:grid-cols-7>div:nth-child(' +
+            index +
+            ') button.checkout'
+        ).click();
+      });
+    });
 
-  // function updatePrice() {
-  //   $('.lg\\:grid.lg\\:grid-cols-7>div').forEach((item, i) => {
-  //     const price = item.querySelector
-  //   });
-  // }
-}
+    // updatePrice();
 
-function changeCopy() {
-  $('#pricing .leading-9').innerHTML = 'Unlock Your Instagram&nbsp;Potential';
-  $('#pricing .leading-7').innerHTML =
-    'Choose a plan that best fits your growth goals. Get ready to<br/>see real results within hours!';
-}
+    // function updatePrice() {
+    //   $('.lg\\:grid.lg\\:grid-cols-7>div').forEach((item, i) => {
+    //     const price = item.querySelector
+    //   });
+    // }
+  }
 
-function addTrustWallet() {
-  const el = `
+  function changeCopy() {
+    $('#pricing .leading-9').innerHTML = 'Unlock Your Instagram&nbsp;Potential';
+    $('#pricing .leading-7').innerHTML =
+      'Choose a plan that best fits your growth goals. Get ready to<br/>see real results within hours!';
+  }
+
+  function addTrustWallet() {
+    const el = `
     <div class='lav-trust'>
       <div class='lav-trust__caption'><span>Excellent</span> 227&nbsp;Reviews</div>
       <img class='lav-trust__stars' src='${config.dir}/img/trust-stars.svg' alt='' />
@@ -1419,205 +1422,206 @@ function addTrustWallet() {
     </div>
   `;
 
-  $('#pricing').insertAdjacentHTML('beforebegin', el);
-}
-
-// *** HELPERS *** //
-
-// Waiting for loading by condition
-async function waitFor(condition, cb = false, customConfig = {}) {
-  const config = {
-    ms: 500, // repeat each 0.5 second if condition is false
-    limit: 10, // limit in second seconds
-
-    ...customConfig,
-  };
-
-  if (typeof condition === 'function') {
-    if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
-    }
-
-    return new Promise((resolve) => {
-      let limit = config.limit * 1000;
-      const interval = setInterval(function () {
-        if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
-        }
-        limit -= config.ms;
-      }, config.ms);
-    });
+    $('#pricing').insertAdjacentHTML('beforebegin', el);
   }
 
-  if (condition.startsWith('.') || condition.startsWith('#')) {
-    if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
-    }
+  // *** HELPERS *** //
 
-    return new Promise((resolve) => {
-      const observer = new MutationObserver((mutations, observer) => {
-        if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
-        }
-      });
+  // Waiting for loading by condition
+  async function waitFor(condition, cb = false, customConfig = {}) {
+    const config = {
+      ms: 500, // repeat each 0.5 second if condition is false
+      limit: 10, // limit in second seconds
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
-  }
-}
-
-// Mutation Observer
-function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
-
-  if (!el) return;
-
-  let observer = new MutationObserver((mutations) => {
-    for (let mutation of mutations) {
-      if (typeof cbAdded === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node);
-        }
-      }
-
-      if (typeof cbRemoved === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node);
-        }
-      }
-    }
-  });
-
-  observer.observe(el, { childList: true, subtree: true });
-
-  return observer;
-}
-
-// Intersection Observer
-function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
-
-  if (!el || typeof cb !== 'function') return;
-
-  const config = {
-    root: null,
-    threshold: 0.3, // 0 - 1
-    ...customConfig,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      cb(entry);
-    });
-  }, config);
-
-  observer.observe(el);
-
-  return observer;
-}
-
-function focusTimeEvent(el, cb) {
-  let entryTime = 0;
-  initIntersection(
-    el,
-    ({ isIntersecting, time }) => {
-      if (isIntersecting) {
-        entryTime = time;
-      } else if (entryTime) {
-        cb(time - entryTime);
-        entryTime = 0;
-      }
-    },
-    { threshold: 0.1 }
-  );
-}
-
-// Artificial delay
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// Check if element in viewport
-function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
-
-  if (!el) return false;
-
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-}
-
-// Shordcode for selectors
-function $(selector, context = document) {
-  return context.querySelector(selector);
-}
-function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
-
-  return toSimpleArray ? Array.from(arr) : arr;
-}
-
-// GA 4 events
-function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  try {
-    const event = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
+      ...customConfig,
     };
 
-    console.debug('** GA4 Event **', event);
+    if (typeof condition === 'function') {
+      if (condition()) {
+        if (typeof cb === 'function') cb();
+        return;
+      }
 
-    if (!config.debug) {
-      dataLayer.push(event);
+      return new Promise((resolve) => {
+        let limit = config.limit * 1000;
+        const interval = setInterval(function () {
+          if (condition() || limit <= 0) {
+            clearInterval(interval);
+            if (limit > 0 && typeof cb === 'function') cb();
+            resolve();
+          }
+          limit -= config.ms;
+        }, config.ms);
+      });
     }
-  } catch (e) {
-    console.log('** GA4 Error **', e);
+
+    if (condition.startsWith('.') || condition.startsWith('#')) {
+      if ($(condition)) {
+        if (typeof cb === 'function') cb($(condition));
+        return;
+      }
+
+      return new Promise((resolve) => {
+        const observer = new MutationObserver((mutations, observer) => {
+          if ($(condition)) {
+            if (typeof cb === 'function') cb($(condition));
+            observer.disconnect();
+            resolve();
+          }
+        });
+
+        observer.observe(document, { childList: true, subtree: true });
+      });
+    }
   }
-}
 
-// Slider
-function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+  // Mutation Observer
+  function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
 
-  let sliderScript = document.createElement('script');
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
-}
+    if (!el) return;
 
-// *** Exp BG process *** //
+    let observer = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (typeof cbAdded === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            cbAdded(node);
+          }
+        }
 
-//Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
-  waitFor(
-    () => typeof clarity == 'function',
-    () => {
-      clarity(...config.clarity);
+        if (typeof cbRemoved === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            cbRemoved(node);
+          }
+        }
+      }
+    });
+
+    observer.observe(el, { childList: true, subtree: true });
+
+    return observer;
+  }
+
+  // Intersection Observer
+  function initIntersection(observeEl, cb, customConfig) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+
+    if (!el || typeof cb !== 'function') return;
+
+    const config = {
+      root: null,
+      threshold: 0.3, // 0 - 1
+      ...customConfig,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        cb(entry);
+      });
+    }, config);
+
+    observer.observe(el);
+
+    return observer;
+  }
+
+  function focusTimeEvent(el, cb) {
+    let entryTime = 0;
+    initIntersection(
+      el,
+      ({ isIntersecting, time }) => {
+        if (isIntersecting) {
+          entryTime = time;
+        } else if (entryTime) {
+          cb(time - entryTime);
+          entryTime = 0;
+        }
+      },
+      { threshold: 0.1 }
+    );
+  }
+
+  // Artificial delay
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  // Check if element in viewport
+  function isElementInViewport(selector) {
+    const el = typeof selector === 'string' ? $(selector) : selector;
+
+    if (!el) return false;
+
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Shordcode for selectors
+  function $(selector, context = document) {
+    return context.querySelector(selector);
+  }
+  function $$(selector, context = document, toSimpleArray = false) {
+    const arr = context.querySelectorAll(selector);
+
+    return toSimpleArray ? Array.from(arr) : arr;
+  }
+
+  // GA 4 events
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+    try {
+      const event = {
+        event: 'event-to-ga4',
+        event_name: name,
+        event_desc: desc,
+        event_type: type,
+        event_loc: loc,
+      };
+
+      console.debug('** GA4 Event **', event);
+
+      if (!config.debug) {
+        dataLayer.push(event);
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e);
     }
-  );
-}
+  }
+
+  // Slider
+  function connectSplide() {
+    const sliderStyles = document.createElement('link');
+    sliderStyles.rel = 'stylesheet';
+    sliderStyles.href =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+    document.head.appendChild(sliderStyles);
+
+    let sliderScript = document.createElement('script');
+    sliderScript.src =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+    document.head.appendChild(sliderScript);
+  }
+
+  // *** Exp BG process *** //
+
+  //Clarity
+  if (
+    !config.debug &&
+    Array.isArray(config.clarity) &&
+    config.clarity.length === 3
+  ) {
+    waitFor(
+      () => typeof clarity == 'function',
+      () => {
+        clarity(...config.clarity);
+      }
+    );
+  }
+})();
