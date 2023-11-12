@@ -432,6 +432,7 @@
     font-size: 16px;
     line-height: 24px;
     flex-flow: column;
+    align-items: flex-start;
     display: flex
   }
   .lav-plan__item + .lav-plan__item {
@@ -592,6 +593,9 @@
     margin-top: 12px;
     padding-left: 10px;
   }
+  .lav-form-logo {
+    display: none;
+  }
   @media(max-width: 1023px) {
     .lav-plans {
       margin-top: 50px;
@@ -718,6 +722,9 @@
       font-size: 48px;
       line-height: 1;
     }
+    .lav-plan__value-old {
+      font-size: 28px;
+    }
     .lav-plan__term {
       font-size: 18px;
       line-height: 25px;
@@ -731,6 +738,14 @@
       margin-top: 12px;
       font-size: 14px;
     }
+    .lav-form-logo {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 32px;
+    }
   }
   @media(max-width: 450px) {
     .lav-trust img {
@@ -740,6 +755,16 @@
     }
     .lav-trust__stars {
       margin: 0 8px;
+    }
+    .lav-tip__body {
+      transform: translateX(-70%);
+    }
+    #login > div {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+    .lav-form-caption {
+      font-size: 12px;
     }
   }
 `;
@@ -770,6 +795,11 @@
   @media(hover:hover) {
     .lav-back:hover {
       opacity: 0.7;
+    }
+  }
+  @media(max-width: 767px) {
+    .lav-back {
+      margin-left: 15px;
     }
   }
 `;
@@ -952,10 +982,79 @@
     padding: 0;
     border: none;
   }
-  .lav-summary {}
-  .lav-summary {}
-  .lav-summary {}
-  .lav-summary {}
+  .lav-header__logo {
+    display: none;
+  }
+  .lav-header__close {
+    display: none;
+  }
+  @media(max-width: 767px) {
+    .lav-payment .bg-white.flex, .lav-summary {
+      padding: 15px;
+    }
+  }
+
+  @media(max-width: 639px) {
+    .lav-payment__wrap {
+      display: block;
+      padding: 24px 32px 58px;
+      background: #FFF;
+    }
+    .lav-payment {
+      max-width: 100%;
+    }
+    .lav-payment .bg-white.flex {
+      padding: 0;
+    }
+    .lav-summary {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      margin-top: 40px;
+    }
+    .lav-summary__total {
+      padding-top: 20px;
+    }
+    .lav-summary__total-value span {
+      font-size: 22px;
+    }
+    .lav-summary__list {
+      margin-top: 24px;
+    }
+    .lav-summary__title {
+      font-size: 20px;
+      line-height: 28px;
+      text-align: center;
+    }
+    .lav-title {
+      font-size: 20px;
+      line-height: 28px;
+      text-align: center;
+    }
+    .lav-caption {
+      margin-top: 8px;
+      text-align: center;
+    }
+    .lav-header {
+      background: #FFF;
+      padding: 32px 24px;
+      justify-content: center;
+    }
+    .lav-header> .pt-10, .lav-header > .absolute {
+      display: none;
+    }
+    .lav-header__logo {
+      display: block;
+      width: 125px;
+    }
+    .lav-header__close {
+      position: absolute;
+      right: 19px;
+      top: 19px;
+      display: block;
+    }
+    
+  }
 `;
 
   const styleCheckoutEl = document.createElement('style');
@@ -993,6 +1092,22 @@
     $('section').classList.add('lav-header');
     $('section.absolute').classList.add('lav-payment');
 
+    $('.lav-header').insertAdjacentHTML(
+      'beforeend',
+      `
+        <img class='lav-header__logo' src="/assets/sb-logo-blue.svg" alt="social-boost-logo">
+        <svg class='lav-header__close' xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M0.879054 17.9998C0.705203 17.9998 0.535246 17.9483 0.390683 17.8517C0.246121 17.7551 0.133446 17.6179 0.0669111 17.4573C0.000376487 17.2966 -0.0170287 17.1199 0.016897 16.9494C0.0508227 16.7789 0.134555 16.6223 0.257503 16.4993L16.4994 0.257455C16.6642 0.0926093 16.8878 0 17.1209 0C17.3541 0 17.5777 0.0926093 17.7425 0.257455C17.9073 0.4223 18 0.645879 18 0.879006C18 1.11213 17.9073 1.33571 17.7425 1.50056L1.50061 17.7424C1.41906 17.8242 1.32217 17.889 1.2155 17.9331C1.10884 17.9773 0.9945 17.9999 0.879054 17.9998Z" fill="#161E2E"/>
+          <path d="M17.1209 17.9998C17.0055 17.9999 16.8911 17.9773 16.7844 17.9331C16.6778 17.889 16.5809 17.8242 16.4993 17.7424L0.257455 1.50056C0.0926093 1.33571 0 1.11213 0 0.879006C0 0.645879 0.0926093 0.4223 0.257455 0.257455C0.4223 0.0926093 0.645879 0 0.879006 0C1.11213 0 1.33571 0.0926093 1.50056 0.257455L17.7424 16.4993C17.8654 16.6223 17.9491 16.7789 17.9831 16.9494C18.017 17.1199 17.9996 17.2966 17.933 17.4573C17.8665 17.6179 17.7538 17.7551 17.6093 17.8517C17.4647 17.9483 17.2947 17.9998 17.1209 17.9998Z" fill="#161E2E"/>
+        </svg>
+      `
+    );
+
+    $('.lav-header__close').addEventListener('click', function (e) {
+      e.preventDefault();
+      location.href = '/pricing';
+    });
+
     handlePaymentForm();
 
     function handlePaymentForm() {
@@ -1006,26 +1121,33 @@
       );
 
       const summaryEl = `
-      <div class='lav-summary'>
-        <div class='lav-summary__title'>Order summary:</div>
-        <div class='lav-summary__list'>
-          <div class='lav-summary__item'>
-            <div class='lav-summary__item-caption'>Plan:</div>
-            <div class='lav-summary__item-value'>Premium</div>
+        <div class='lav-summary'>
+          <div class='lav-summary__title'>Order summary:</div>
+          <div class='lav-summary__list'>
+            <div class='lav-summary__item'>
+              <div class='lav-summary__item-caption'>Plan:</div>
+              <div class='lav-summary__item-value'>Premium</div>
+            </div>
+            <div class='lav-summary__item'>
+              <div class='lav-summary__item-caption'>Growth:</div>
+              <div class='lav-summary__item-value'>300+ organic followers /month</div>
+            </div>
           </div>
-          <div class='lav-summary__item'>
-            <div class='lav-summary__item-caption'>Growth:</div>
-            <div class='lav-summary__item-value'>300+ organic followers /month</div>
+          <div class='lav-summary__total'>
+            <div class='lav-summary__total-caption'>Total:</div>
+            <div class='lav-summary__total-value'><span>€99</span> /month</div>
           </div>
         </div>
-        <div class='lav-summary__total'>
-          <div class='lav-summary__total-caption'>Total:</div>
-          <div class='lav-summary__total-value'><span>€99</span> /month</div>
-        </div>
-      </div>
-    `;
+      `;
 
-      $('.lav-payment__wrap').insertAdjacentHTML('beforeend', summaryEl);
+      if (window.innerWidth < 639) {
+        $('.lav-payment form .hidden')?.insertAdjacentHTML(
+          'afterend',
+          summaryEl
+        );
+      } else {
+        $('.lav-payment__wrap')?.insertAdjacentHTML('beforeend', summaryEl);
+      }
 
       $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
       $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
@@ -1145,6 +1267,11 @@
     $('h3', el).innerText = 'Your Email';
     $('h3 + p', el).innerHTML =
       'Finish setup and start growing<br/>your Instagram today!';
+
+    $('#login .relative').insertAdjacentHTML(
+      'afterbegin',
+      `<img src="/assets/sb-logo-blue.svg" alt="social-boost-logo" class="lav-form-logo w-[140px]">`
+    );
 
     $('#login [type="email"]')
       .closest('.relative')
