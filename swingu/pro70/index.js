@@ -357,7 +357,7 @@
             clearInterval(timerInterval);
             pushDataLayer(
               'exp_pay_scre_spri_vis_plagbetgo_foc',
-              timer / 1000 + ' s',
+              timer / 1000 + 's',
               'Visibility ',
               'Start Playing Better Golf Today gets swing pro now'
             );
