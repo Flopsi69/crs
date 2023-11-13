@@ -18,7 +18,7 @@
     observe: false,
     clarity: {
       enable: true,
-      params: ['set', 'exp_stripe_cancel_flow', 'variant_1'],
+      params: ['set', 'exp_stripe_pro_30off', 'variant_1'],
     },
     debug: false,
   };
