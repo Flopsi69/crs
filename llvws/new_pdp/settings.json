@@ -342,6 +342,20 @@
         "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/10/Punk-Cruise.jpg"
       },
       {
+        "name": "Jingle",
+        "alias": "Jingle On The Waves: Christmas Cruise",
+        "url": "https://lakelasvegaswatersports.com/jingle-on-the-waves-christmas-cruise/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/red_xmas_yacht.png"
+      },
+      {
+        "name": "Santa",
+        "alias": "Santa Sail - Kid Friendly Yacht Cruise",
+        "url": "https://lakelasvegaswatersports.com/santa-sail-kid-friendly-yacht-cruise/",
+        "caption": "From: <span>$19.99</span>",
+        "src": "https://lakelasvegaswatersports.com/wp-content/uploads/2023/11/Red_Santa_Hat_Christmas_Greeting_Card.png"
+      },
+      {
         "name": "Y2K",
         "alias": "Y2K Cruise",
         "url": "https://lakelasvegaswatersports.com/y2k-cruise/",
@@ -531,6 +545,12 @@
     },
     {
       "name": "Punk"
+    },
+    {
+      "name": "Jingle"
+    },
+    {
+      "name": "Santa"
     }
   ]
 }
