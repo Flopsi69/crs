@@ -345,6 +345,15 @@
             'Button',
             'Start Playing Better Golf Today'
           );
+          if (timer > 0) {
+            clearInterval(timerInterval);
+            pushDataLayer(
+              'exp_pay_scre_spri_vis_plagbetgo_foc',
+              timer / 1000 + ' s',
+              'Visibility ',
+              'Start Playing Better Golf Today gets swing pro now'
+            );
+          }
           const newCouponCode = '30OFFCRS';
           if (document.querySelector('[data-stripe-checkout-url]')) {
             this.classList.add('lav-loader');
