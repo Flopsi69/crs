@@ -217,7 +217,11 @@
     /*** STYLES / End ***/
 
     /********* Custom Code **********/
-    addCustomButton();
+    waitFor(
+      () => document.querySelector('.fixed.bottom-0 .justify-center'),
+      addCustomButton,
+      100
+    );
     handlePrice();
     handleCta();
     initObserver((el) => {
@@ -284,7 +288,7 @@
         clearInterval(timerInterval);
         pushDataLayer(
           'exp_pay_scre_spri_vis_plagbetgo_foc',
-          timer / 1000 + ' s',
+          timer / 1000 + 's',
           'Visibility ',
           'Start Playing Better Golf Today gets swing pro now'
         );
