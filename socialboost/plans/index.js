@@ -813,12 +813,19 @@
     position: static;
     overflow: initial;
   }
+  .fixed.overflow-hidden>.overflow-hidden {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 15px 40px;
+  }
   .lav-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1310px;
-    padding: 40px 15px;
+    padding: 40px 0;
+    width: 100%;
   }
   .lav-header .absolute {
     position: static;
@@ -834,6 +841,7 @@
     position: static;
     padding: 0;
     max-width: 628px;
+    flex-basis: 628px;
     border-radius: 8px;
     overflow: hidden;
   }
@@ -897,6 +905,7 @@
     background: #FFF;
     margin-left: 24px;
     max-width: 410px;
+    flex-basis: 410px;
     width: 100%;
   }
   .lav-summary__title {
@@ -988,6 +997,15 @@
   .lav-header__close {
     display: none;
   }
+  @media(max-width: 1100px) {
+    .lav-summary {
+      flex-basis: calc(45% - 24px);
+      width: auto;
+    }
+    .lav-payment {
+      flex-basis: 55%;
+    }
+  }
   @media(max-width: 767px) {
     .lav-payment .bg-white.flex, .lav-summary {
       padding: 15px;
@@ -1000,13 +1018,20 @@
       padding: 24px 32px 58px;
       background: #FFF;
     }
+    .fixed.overflow-hidden>.overflow-hidden {
+      padding: 0 32px 58px;
+      background: #fff;
+    }
     .lav-payment {
       max-width: 100%;
+      flex-basis: 100%;
+      margin-top: 24px;
     }
     .lav-payment .bg-white.flex {
       padding: 0;
     }
     .lav-summary {
+      flex-basis: 100%;
       margin: 0;
       padding: 0;
       max-width: 100%;
@@ -1111,14 +1136,14 @@
     handlePaymentForm();
 
     function handlePaymentForm() {
-      $('.lav-payment').insertAdjacentHTML(
-        'beforebegin',
-        '<div class="lav-payment__wrap"></div>'
-      );
-      $('.lav-payment__wrap').insertAdjacentElement(
-        'beforeend',
-        $('.lav-payment')
-      );
+      // $('.lav-payment').insertAdjacentHTML(
+      //   'beforebegin',
+      //   '<div class="lav-payment__wrap"></div>'
+      // );
+      // $('.lav-payment__wrap').insertAdjacentElement(
+      //   'beforeend',
+      //   $('.lav-payment')
+      // );
 
       const summaryEl = `
         <div class='lav-summary'>
@@ -1146,7 +1171,11 @@
           summaryEl
         );
       } else {
-        $('.lav-payment__wrap')?.insertAdjacentHTML('beforeend', summaryEl);
+        // $('.lav-payment__wrap')?.insertAdjacentHTML('beforeend', summaryEl);
+        $('.fixed.overflow-hidden>.overflow-hidden')?.insertAdjacentHTML(
+          'beforeend',
+          summaryEl
+        );
       }
 
       $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
@@ -1190,7 +1219,7 @@
         'beforeend',
         `
       <div class='lav-title'>Payment</div>
-      <div class='lav-caption'>Finish setup and start growing your Instagram today!</div>
+      <div class='lav-caption'>Finish setup and start growing your Instagram&nbsp;today!</div>
       `
       );
     }

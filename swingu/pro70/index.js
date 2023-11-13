@@ -9,6 +9,8 @@
   // };
 
   console.log('initExp: pro70!');
+  let timer = 0;
+  let timerInterval;
 
   /********* Settings **********/
   const settings = {
@@ -272,6 +274,22 @@
         .getAttribute('dusk');
 
       console.log(typeSubscr, activeEl);
+
+      if (activeEl === 'subscription-option--pro') {
+        timer = 0;
+        timerInterval = setInterval(() => {
+          timer += 500;
+        }, 500);
+      } else if (timer > 0) {
+        clearInterval(timerInterval);
+        pushDataLayer(
+          'exp_pay_scre_spri_vis_plagbetgo_foc',
+          timer + ' ms',
+          'Visibility ',
+          'Start Playing Better Golf Today gets swing pro now'
+        );
+      }
+
       let isOriginalButton = true;
 
       if (typeSubscr === 'monthly') {
@@ -321,6 +339,12 @@
       document
         .querySelector('.lav-button')
         .addEventListener('click', function () {
+          pushDataLayer(
+            'exp_pay_scre_spri_but_plagbetgo_swin',
+            'Gets swing pro now',
+            'Button',
+            'Start Playing Better Golf Today'
+          );
           const newCouponCode = '30OFFCRS';
           if (document.querySelector('[data-stripe-checkout-url]')) {
             this.classList.add('lav-loader');
