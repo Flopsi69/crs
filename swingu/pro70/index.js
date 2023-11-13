@@ -275,7 +275,7 @@
 
       console.log(typeSubscr, activeEl);
 
-      if (activeEl === 'subscription-option--pro') {
+      if (activeEl === 'subscription-option--pro' && typeSubscr === 'yearly') {
         timer = 0;
         timerInterval = setInterval(() => {
           timer += 500;
