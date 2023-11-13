@@ -217,11 +217,12 @@
     /*** STYLES / End ***/
 
     /********* Custom Code **********/
-    waitFor(
-      () => document.querySelector('.fixed.bottom-0 .justify-center'),
-      addCustomButton,
-      100
-    );
+    // waitFor(
+    //   () => document.querySelector('.fixed.bottom-0 .justify-center'),
+    //   addCustomButton,
+    //   100
+    // );
+    addCustomButton();
     handlePrice();
     handleCta();
     initObserver((el) => {
