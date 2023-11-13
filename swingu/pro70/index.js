@@ -220,7 +220,7 @@
     waitFor(
       () => document.querySelector('.fixed.bottom-0 .justify-center'),
       addCustomButton,
-      100
+      25
     );
     handlePrice();
     handleCta();
