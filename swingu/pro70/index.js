@@ -222,7 +222,11 @@
       addCustomButton,
       25
     );
-    handlePrice();
+    waitFor(
+      () => document.querySelector('[dusk="subscription-option--pro"]'),
+      handlePrice,
+      25
+    );
     handleCta();
     initObserver((el) => {
       if (el.closest('[data-action]')) {
