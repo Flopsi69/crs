@@ -5,7 +5,7 @@
   // Config for Experiment
   const config = {
     dir: 'https://flopsi69.github.io/crs/socialboost/plans',
-    clarity: ['set', '', 'variant_1'],
+    clarity: ['set', 'exp_pric_pag_imp', 'variant_1'],
     debug: true,
   };
 
@@ -45,8 +45,17 @@
         if (
           e.target.classList.contains('lav-modal') ||
           e.target.closest('.lav-modal__close')
-        )
+        ) {
+          if (e.target.closest('.lav-modal__close')) {
+            pushDataLayer(
+              'exp_pric_pag_imp_but_popup_clos',
+              'Close',
+              'Button',
+              'Pop up did you now'
+            );
+          }
           this.close();
+        }
 
         if (e.target.dataset.modal) {
           this.open(e.target.dataset.modal);
@@ -815,6 +824,7 @@
   }
   .fixed.overflow-hidden>.overflow-hidden {
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 15px 40px;
@@ -1178,6 +1188,15 @@
         );
       }
 
+      focusTimeEvent($('.lav-summary'), (time) => {
+        pushDataLayer(
+          'exp_pric_pag_imp_vis_paymord_foc',
+          time,
+          'Visibility',
+          'Payment. Order summary'
+        );
+      });
+
       $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
       $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
 
@@ -1237,6 +1256,12 @@
     );
 
     document.querySelector('.lav-back').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pric_pag_imp_but_howit_back',
+        'Back',
+        'Button',
+        'How it worsk'
+      );
       location.href = 'https://social-boost.co/pricing';
     });
   }
@@ -1246,8 +1271,17 @@
       isMutationInit = true;
       initMutation(document.body, (el) => {
         if (el.id === 'login') {
-          console.log(el);
+          // console.log(el);
           handleLogin(el);
+
+          focusTimeEvent($('#login'), (time) => {
+            pushDataLayer(
+              'exp_pric_pag_imp_vis_popupreguse_foc',
+              time,
+              'Visibility',
+              'Pop up did you now. Registration. Your Username'
+            );
+          });
         }
       });
     }
@@ -1280,13 +1314,37 @@
   `
     );
 
+    focusTimeEvent($('.lav-video'), (time) => {
+      pushDataLayer(
+        'exp_pric_pag_imp_vis_popup_foc',
+        time,
+        'Visibility',
+        'Pop up did you now'
+      );
+    });
+
     $('.lav-video__play').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pric_pag_imp_but_popup_play',
+        'Play',
+        'Button',
+        'Pop up did you now'
+      );
       $('.lav-video iframe').src =
         'https://www.youtube.com/embed/85jyo_pTwhw?autoplay=1&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fsocial-boost.co&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1';
 
       $('.lav-video iframe').style.display = 'block';
       $('.lav-video__preview').style.display = 'none';
       $('.lav-video__play').style.display = 'none';
+    });
+
+    $('.lav-video__learn a').addEventListener('click', function (e) {
+      pushDataLayer(
+        'exp_pric_pag_imp_lin_popup_learn',
+        'Learn more',
+        'Link',
+        'Pop up did you now'
+      );
     });
 
     // Modal.open('.howItWork');
@@ -1309,6 +1367,44 @@
         '<div class="lav-form-caption">Your data is secured. We never spam or share your email with third parties</div>'
       );
 
+    $('#login [type="email"]').addEventListener('click', () => {
+      if ($('.lav-email-form.active')) {
+        pushDataLayer(
+          'exp_pric_pag_imp_inp_popupreguse_emai',
+          'Email',
+          'Input',
+          'Pop up did you now. Registration. Your Username'
+        );
+      } else {
+        pushDataLayer(
+          'exp_pric_pag_imp_inp_popupregem_ema',
+          'Email',
+          'Input',
+          'Pop up did you now. Registration. Your Email'
+        );
+      }
+    });
+
+    $('#login [type="email"]').addEventListener('click', () => {});
+
+    $('#login .mantine-Input-wrapper').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pric_pag_imp_inp_popupreguse_inst',
+        'Instagram Username',
+        'Input',
+        'Pop up did you now. Registration. Your Username'
+      );
+    });
+
+    $('#login form button').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pric_pag_imp_but_popupreguse_cont',
+        'Continue',
+        'Button',
+        'Pop up did you now. Registration. Your Username'
+      );
+    });
+
     $('#login .my-6').classList.add('lav-email-form');
     $('#login form [type="submit"]').innerText = 'Continue';
     const cloneBtn = $('#login form [type="submit"]').cloneNode(false);
@@ -1324,6 +1420,14 @@
     $('.lav-clone-login').addEventListener('click', function (e) {
       console.log('click');
       e.preventDefault();
+
+      pushDataLayer(
+        'exp_pric_pag_imp_but_popupregem_cont',
+        'Continue',
+        'Button',
+        'Pop up did you now. Registration. Your Email'
+      );
+
       if (
         !$('#login [type="email"]').value ||
         !$('[type="email"].\\!border-green-400')
@@ -1341,7 +1445,7 @@
       $('[type="submit"]', el).classList.add('active');
       this.remove();
       $('.lav-form-caption', el).remove();
-      $('.mantine-Input-input', el).focus();
+      // $('.mantine-Input-input', el).focus();
     });
   }
 
@@ -1709,7 +1813,8 @@
         if (isIntersecting) {
           entryTime = time;
         } else if (entryTime) {
-          cb(time - entryTime);
+          const diffTime = +((time - entryTime) / 1000).toFixed(1);
+          cb(diffTime + 's');
           entryTime = 0;
         }
       },

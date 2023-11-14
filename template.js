@@ -245,7 +245,7 @@ function initIntersection(observeEl, cb, customConfig) {
 
   const config = {
     root: null,
-    threshold: 0.3, // 0 - 1
+    threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
     ...customConfig,
   };
 
@@ -260,7 +260,7 @@ function initIntersection(observeEl, cb, customConfig) {
   return observer;
 }
 
-function focusTimeEvent(el, cb) {
+function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
   let entryTime = 0;
   initIntersection(
     el,
@@ -268,11 +268,12 @@ function focusTimeEvent(el, cb) {
       if (isIntersecting) {
         entryTime = time;
       } else if (entryTime) {
-        cb(time - entryTime);
+        const diffTime = +((time - entryTime) / 1000).toFixed(1);
+        cb(diffTime + 's');
         entryTime = 0;
       }
     },
-    { threshold: 0.1 }
+    { threshold: viewElementProcent }
   );
 }
 
