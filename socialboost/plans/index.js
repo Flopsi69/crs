@@ -1274,7 +1274,8 @@
     if ($('.lav-back')) return false;
     waitFor(
       () => $('section.px-4 .container .grid > .col-span-12'),
-      () => {
+      async () => {
+        await delay(500);
         $('section.px-4 .container .grid').insertAdjacentHTML(
           'beforebegin',
           `
