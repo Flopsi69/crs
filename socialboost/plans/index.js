@@ -18,6 +18,12 @@
       if (!$('.lav-modal')) {
         this.constructor.init();
       }
+
+      if (this.constructor.list.find((item) => item.name === name)) {
+        console.warn('Modal with this name already exists');
+        return;
+      }
+
       this.el = document.createElement('div');
       this.el.classList.add('lav-modal__inner', name);
       this.name = name;
@@ -48,7 +54,7 @@
         ) {
           if (e.target.closest('.lav-modal__close')) {
             pushDataLayer(
-              'exp_pric_pag_imp_but_popup_clos',
+              'exp_pric_pag_imp_but_popup_close',
               'Close',
               'Button',
               'Pop up did you now'
@@ -634,9 +640,12 @@
   }
   @media(max-width: 767px) {
     .lav-trust {
-      margin: 0 -24px 48px;
+      margin: 0 -24px 0;
       background: #FFF;
       padding: 5px 15px;
+    }
+    #pricing {
+      padding-top: 48px;
     }
     .mb-\\[140px\\] {
       margin-bottom: 0;
@@ -779,7 +788,7 @@
 `;
 
   const stylePricingEl = document.createElement('style');
-  stylePricingEl.classList.add('exp-styles');
+  stylePricingEl.classList.add('exp-styles', 'exp-styles-pricing');
   stylePricingEl.innerHTML = stylePricing;
 
   const stylesHow = `
@@ -814,7 +823,7 @@
 `;
 
   const styleHowEl = document.createElement('style');
-  styleHowEl.classList.add('exp-styles');
+  styleHowEl.classList.add('exp-styles', 'exp-styles-how');
   styleHowEl.innerHTML = stylesHow;
 
   const stylesCheckout = `
@@ -1093,7 +1102,7 @@
 `;
 
   const styleCheckoutEl = document.createElement('style');
-  styleCheckoutEl.classList.add('exp-styles');
+  styleCheckoutEl.classList.add('exp-styles', 'exp-styles-checkout');
   styleCheckoutEl.innerHTML = stylesCheckout;
 
   // *** Logic *** //
@@ -1101,18 +1110,28 @@
 
   init();
   function init() {
-    if (location.href.includes('/pricing')) {
+    if (
+      location.href.includes('/pricing') ||
+      location.pathname === '/' ||
+      location.href.includes('/growth')
+    ) {
       console.log('init Pricing');
       initPricing();
-      document.head.appendChild(stylePricingEl);
+      if (!document.querySelector('.exp-styles-pricing')) {
+        document.head.appendChild(stylePricingEl);
+      }
     } else if (location.href.includes('/how-it-works')) {
       console.log('init HowItWorks');
       initHowItWorks();
-      document.head.appendChild(styleHowEl);
+      if (!document.querySelector('.exp-styles-how')) {
+        document.head.appendChild(styleHowEl);
+      }
     } else if (location.href.includes('/checkout')) {
       console.log('init Checkout');
       waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
-      document.head.appendChild(styleCheckoutEl);
+      if (!document.querySelector('.exp-styles-checkout')) {
+        document.head.appendChild(styleCheckoutEl);
+      }
     }
   }
 
@@ -1140,6 +1159,7 @@
 
     $('.lav-header__close').addEventListener('click', function (e) {
       e.preventDefault();
+      // window.history.back();
       location.href = '/pricing';
     });
 
@@ -1262,7 +1282,8 @@
         'Button',
         'How it worsk'
       );
-      location.href = 'https://social-boost.co/pricing';
+      // window.history.back();
+      location.href = '/pricing';
     });
   }
 
@@ -1285,7 +1306,10 @@
         }
       });
     }
-    addTrustWallet();
+
+    if (location.href.includes('/pricing')) {
+      addTrustWallet();
+    }
     changeCopy();
 
     $('#pricing').insertAdjacentHTML(
@@ -1303,51 +1327,52 @@
     new Modal(
       'howItWork',
       `
-    <div class='lav-video'>
-      <iframe style='display:none;' frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="How Social Boost Works | How We grow Real Instagram followers for you" width="100%" height="100%" src="" data-gtm-yt-inspected-11="true"></iframe>
-      <img class='lav-video__preview' src="/assets/how-it-works/how-it-works-poster.webp" />
-      <img class='lav-video__play' src="/assets/how-it-works/play-icon.svg" alt="play" />
-    </div>
-    <div class='lav-video__learn'>
-      <a href='/how-it-works'>Learn more</a>
-    </div>
-  `
+      <div class='lav-video'>
+        <iframe style='display:none;' frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="How Social Boost Works | How We grow Real Instagram followers for you" width="100%" height="100%" src="" data-gtm-yt-inspected-11="true"></iframe>
+        <img class='lav-video__preview' src="/assets/how-it-works/how-it-works-poster.webp" />
+        <img class='lav-video__play' src="/assets/how-it-works/play-icon.svg" alt="play" />
+      </div>
+      <div class='lav-video__learn'>
+        <a href='/how-it-works'>Learn more</a>
+      </div>
+      `
     );
 
-    focusTimeEvent($('.lav-video'), (time) => {
-      pushDataLayer(
-        'exp_pric_pag_imp_vis_popup_foc',
-        time,
-        'Visibility',
-        'Pop up did you now'
-      );
-    });
+    if (!$('.lav-video.lav-handled')) {
+      focusTimeEvent($('.lav-video'), (time) => {
+        pushDataLayer(
+          'exp_pric_pag_imp_vis_popup_foc',
+          time,
+          'Visibility',
+          'Pop up did you now'
+        );
+      });
 
-    $('.lav-video__play').addEventListener('click', function () {
-      pushDataLayer(
-        'exp_pric_pag_imp_but_popup_play',
-        'Play',
-        'Button',
-        'Pop up did you now'
-      );
-      $('.lav-video iframe').src =
-        'https://www.youtube.com/embed/85jyo_pTwhw?autoplay=1&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fsocial-boost.co&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1';
+      $('.lav-video').classList.add('lav-handled');
+      $('.lav-video__play').addEventListener('click', function () {
+        pushDataLayer(
+          'exp_pric_pag_imp_but_popup_play',
+          'Play',
+          'Button',
+          'Pop up did you now'
+        );
+        $('.lav-video iframe').src =
+          'https://www.youtube.com/embed/85jyo_pTwhw?autoplay=1&amp;mute=0&amp;controls=1&amp;origin=https%3A%2F%2Fsocial-boost.co&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp;widgetid=1';
 
-      $('.lav-video iframe').style.display = 'block';
-      $('.lav-video__preview').style.display = 'none';
-      $('.lav-video__play').style.display = 'none';
-    });
+        $('.lav-video iframe').style.display = 'block';
+        $('.lav-video__preview').style.display = 'none';
+        $('.lav-video__play').style.display = 'none';
+      });
 
-    $('.lav-video__learn a').addEventListener('click', function (e) {
-      pushDataLayer(
-        'exp_pric_pag_imp_lin_popup_learn',
-        'Learn more',
-        'Link',
-        'Pop up did you now'
-      );
-    });
-
-    // Modal.open('.howItWork');
+      $('.lav-video__learn a').addEventListener('click', function (e) {
+        pushDataLayer(
+          'exp_pric_pag_imp_lin_popup_learn',
+          'Learn more',
+          'Link',
+          'Pop up did you now'
+        );
+      });
+    }
   }
 
   function handleLogin(el) {
@@ -1451,179 +1476,179 @@
 
   function handlePlans() {
     const el = `
-    <div class='lav-plans'>
-      <div class='lav-plan'>
-        <div class='lav-plan__head'>
-          <div class='lav-plan__title'>Basic</div>
-          <div class='lav-plan__price lav-plan__price_month'>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value'>69</div>
-            <div class='lav-plan__term'>/month</div>
-          </div>
-          <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
-            <div class='lav-plan__value lav-plan__value-old'>€69</div>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value lav-plan__value-new'>57</div>
-            <div class='lav-plan__term'>/month</div>
-          </div>
-          <div class='lav-plan__yearly'>$690 billed yearly</div>
-          <div class='lav-plan__offer'><span>200+</span> organic followers /month</div>
-          <div class='lav-plan__caption'>
-            <span>Real people</span> who like, comment, share and&nbsp;engage with your page
-          </div>
-        </div>
-        <div class='lav-plan__body'>
-          <div class='lav-plan__list'>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Niche targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target followers that share your interests</div>
-              </div>
+      <div class='lav-plans'>
+        <div class='lav-plan'>
+          <div class='lav-plan__head'>
+            <div class='lav-plan__title'>Basic</div>
+            <div class='lav-plan__price lav-plan__price_month'>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value'>69</div>
+              <div class='lav-plan__term'>/month</div>
             </div>
-            <div class='lav-plan__item'><span>24/7 live support</span></div>
-            <div class='lav-plan__item'><span>Cancel Anytime</span></div>
+            <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
+              <div class='lav-plan__value lav-plan__value-old'>€69</div>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value lav-plan__value-new'>57</div>
+              <div class='lav-plan__term'>/month</div>
+            </div>
+            <div class='lav-plan__yearly'>$690 billed yearly</div>
+            <div class='lav-plan__offer'><span>200+</span> organic followers /month</div>
+            <div class='lav-plan__caption'>
+              <span>Real people</span> who like, comment, share and&nbsp;engage with your page
+            </div>
           </div>
-          <div class='lav-plan__btn'>Get Started</div>
+          <div class='lav-plan__body'>
+            <div class='lav-plan__list'>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Niche targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target followers that share your interests</div>
+                </div>
+              </div>
+              <div class='lav-plan__item'><span>24/7 live support</span></div>
+              <div class='lav-plan__item'><span>Cancel Anytime</span></div>
+            </div>
+            <div class='lav-plan__btn'>Get Started</div>
+          </div>
         </div>
-      </div>
 
-      <div class='lav-plan lav-plan_popular'>
-        <div class='lav-plan__head'>
-          <div class='lav-plan__title'>Premium</div>
-          <div class='lav-plan__price lav-plan__price_month'>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value'>99</div>
-            <div class='lav-plan__term'>/month</div>
+        <div class='lav-plan lav-plan_popular'>
+          <div class='lav-plan__head'>
+            <div class='lav-plan__title'>Premium</div>
+            <div class='lav-plan__price lav-plan__price_month'>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value'>99</div>
+              <div class='lav-plan__term'>/month</div>
+            </div>
+            <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
+              <div class='lav-plan__value lav-plan__value-old'>€99</div>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value lav-plan__value-new'>82</div>
+              <div class='lav-plan__term'>/month</div>
+            </div>
+            <div class='lav-plan__yearly'>$990 billed yearly</div>
+            <div class='lav-plan__offer'><span>300+</span> organic followers /month</div>
+            <div class='lav-plan__caption'>
+              <span>Real people</span> who like, comment, share and&nbsp;engage with your page
+            </div>
           </div>
-          <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
-            <div class='lav-plan__value lav-plan__value-old'>€99</div>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value lav-plan__value-new'>82</div>
-            <div class='lav-plan__term'>/month</div>
-          </div>
-          <div class='lav-plan__yearly'>$990 billed yearly</div>
-          <div class='lav-plan__offer'><span>300+</span> organic followers /month</div>
-          <div class='lav-plan__caption'>
-            <span>Real people</span> who like, comment, share and&nbsp;engage with your page
+          <div class='lav-plan__body'>
+            <div class='lav-plan__list'>
+              <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
+                <span>Dedicated Manager</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>A dedicated Campaign Manager, who will assist you with your Instagram growth. Available Mon-Fri by email or video call</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Niche targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target followers that share your interests</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Location targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target followers in a country or city of your choice</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Gender-based targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target males or females</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Profile optimization</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Our team will help you to optimize your profile for faster growth and higher engagement</div>
+                </div>
+              </div>
+              <div class='lav-plan__item'><span>24/7 live support</span></div>
+              <div class='lav-plan__item'><span>Cancel Anytime</span></div>
+            </div>
+            <div class='lav-plan__btn'>Get Started</div>
           </div>
         </div>
-        <div class='lav-plan__body'>
-          <div class='lav-plan__list'>
-            <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
-              <span>Dedicated Manager</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>A dedicated Campaign Manager, who will assist you with your Instagram growth. Available Mon-Fri by email or video call</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Niche targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target followers that share your interests</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Location targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target followers in a country or city of your choice</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Gender-based targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target males or females</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Profile optimization</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Our team will help you to optimize your profile for faster growth and higher engagement</div>
-              </div>
-            </div>
-            <div class='lav-plan__item'><span>24/7 live support</span></div>
-            <div class='lav-plan__item'><span>Cancel Anytime</span></div>
-          </div>
-          <div class='lav-plan__btn'>Get Started</div>
-        </div>
-      </div>
 
-      <div class='lav-plan'>
-        <div class='lav-plan__head'>
-          <div class='lav-plan__title'>Turbocharged</div>
-          <div class='lav-plan__price lav-plan__price_month'>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value'>249</div>
-            <div class='lav-plan__term'>/month</div>
+        <div class='lav-plan'>
+          <div class='lav-plan__head'>
+            <div class='lav-plan__title'>Turbocharged</div>
+            <div class='lav-plan__price lav-plan__price_month'>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value'>249</div>
+              <div class='lav-plan__term'>/month</div>
+            </div>
+            <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
+              <div class='lav-plan__value lav-plan__value-old'>€249</div>
+              <div class='lav-plan__currency'>€</div>
+              <div class='lav-plan__value lav-plan__value-new'>207</div>
+              <div class='lav-plan__term'>/month</div>
+            </div>
+            <div class='lav-plan__yearly'>$2,490 billed yearly</div>
+            <div class='lav-plan__offer'><span>up to 1000</span> organic followers /month</div>
+            <div class='lav-plan__caption'>
+              <span>Real people</span> who like, comment, share and&nbsp;engage with your page
+            </div>
           </div>
-          <div class='lav-plan__price lav-plan__price_year' style='display: none;'>
-            <div class='lav-plan__value lav-plan__value-old'>€249</div>
-            <div class='lav-plan__currency'>€</div>
-            <div class='lav-plan__value lav-plan__value-new'>207</div>
-            <div class='lav-plan__term'>/month</div>
+          <div class='lav-plan__body'>
+            <div class='lav-plan__list'>
+              <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
+                <span>Monthly content coaching</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Monthly content coaching calls from your Dedicated Campaign Manager</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
+                <span>Dedicated Senior Manager</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>A dedicated Senior Campaign Manager, who will assist you with your Instagram growth. Available Mon-Fri by email or video call.</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Niche targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target followers that share your interests</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Location targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target followers in a country or city of your choice</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Gender-based targeting</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Target males or females</div>
+                </div>
+              </div>
+              <div class='lav-plan__item lav-plan__item_tip'>
+                <span>Profile optimization</span>
+                <div class='lav-tip'>
+                  <img src='${config.dir}/img/quest.svg' />
+                  <div class='lav-tip__body'>Our team will help you to optimize your profile for faster growth and higher engagement</div>
+                </div>
+              </div>
+              <div class='lav-plan__item'><span>24/7 live support</span></div>
+              <div class='lav-plan__item'><span>Cancel Anytime</span></div>
+            </div>
+            <div class='lav-plan__btn'>Get Started</div>
           </div>
-          <div class='lav-plan__yearly'>$2,490 billed yearly</div>
-          <div class='lav-plan__offer'><span>up to 1000</span> organic followers /month</div>
-          <div class='lav-plan__caption'>
-            <span>Real people</span> who like, comment, share and&nbsp;engage with your page
-          </div>
-        </div>
-        <div class='lav-plan__body'>
-          <div class='lav-plan__list'>
-            <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
-              <span>Monthly content coaching</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Monthly content coaching calls from your Dedicated Campaign Manager</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_mark lav-plan__item_tip'>
-              <span>Dedicated Senior Manager</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>A dedicated Senior Campaign Manager, who will assist you with your Instagram growth. Available Mon-Fri by email or video call.</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Niche targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target followers that share your interests</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Location targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target followers in a country or city of your choice</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Gender-based targeting</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Target males or females</div>
-              </div>
-            </div>
-            <div class='lav-plan__item lav-plan__item_tip'>
-              <span>Profile optimization</span>
-              <div class='lav-tip'>
-                <img src='${config.dir}/img/quest.svg' />
-                <div class='lav-tip__body'>Our team will help you to optimize your profile for faster growth and higher engagement</div>
-              </div>
-            </div>
-            <div class='lav-plan__item'><span>24/7 live support</span></div>
-            <div class='lav-plan__item'><span>Cancel Anytime</span></div>
-          </div>
-          <div class='lav-plan__btn'>Get Started</div>
         </div>
       </div>
-    </div>
-  `;
+    `;
 
     $('.lg\\:grid.lg\\:grid-cols-7').insertAdjacentHTML('beforebegin', el);
 

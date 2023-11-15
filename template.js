@@ -35,6 +35,12 @@ class Modal {
     if (!$('.lav-modal')) {
       this.constructor.init();
     }
+
+    if (this.constructor.list.find((item) => item.name === name)) {
+      console.warn('Modal with this name already exists');
+      return;
+    }
+
     this.el = document.createElement('div');
     this.el.classList.add('lav-modal__inner', name);
     this.name = name;
