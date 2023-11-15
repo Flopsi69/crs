@@ -1128,7 +1128,9 @@
       }
     } else if (location.href.includes('/checkout')) {
       console.log('init Checkout');
-      waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
+      if (!$('.lav-header')) {
+        waitFor(() => $('section.absolute'), initCheckout, { ms: 50 });
+      }
       if (!document.querySelector('.exp-styles-checkout')) {
         document.head.appendChild(styleCheckoutEl);
       }
@@ -1137,9 +1139,12 @@
 
   navigation.addEventListener('navigate', (e) => {
     if (e.navigationType === 'push') {
-      console.log('fireNavigate');
+      console.log('fireNavigate', e);
       setTimeout(init, 300);
     }
+  });
+  window.addEventListener('popstate', (event) => {
+    setTimeout(init, 300);
   });
 
   function initCheckout() {
@@ -1265,6 +1270,7 @@
   }
 
   function initHowItWorks() {
+    if ($('.lav-back')) return false;
     $('section .container').insertAdjacentHTML(
       'afterbegin',
       `<div class='lav-back'>
@@ -1288,6 +1294,8 @@
   }
 
   function initPricing() {
+    if ($('.lav-plans')) return false;
+
     if (!isMutationInit) {
       isMutationInit = true;
       initMutation(document.body, (el) => {
