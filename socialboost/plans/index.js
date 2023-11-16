@@ -558,11 +558,15 @@
     background: rgba(22, 30, 46, 0.90);
   }
   #login > div {
-    max-width: 500px;
+    max-width: 480px;
     width: 100%;
   }
   #login button {
     transition: 0.3s;
+  }
+  .g_id_signin {
+    display: flex;
+    justify-content: center;
   }
   #login h3 {
     text-align: center;
@@ -584,8 +588,34 @@
   .lav-email-form:not(.active) {
     display: none;
   }
-  #login form + span.text-sm {
+  #login form + span.text-sm, .g_id_signin + span.text-sm {
     display: none;
+  }
+  .lav-divider {
+    position: relative;
+    margin: 24px 0 16px;
+    text-align: center;
+    color: var(--blue-blue-500, #6B7280);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .lav-divider span {
+    display: inline-block;
+    padding: 0 24px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+  }
+  .lav-divider:before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    right: 20px;
+    background: #D1D5DB;
   }
   #login form [type="submit"]:not(.active) {
     display: none;
@@ -1242,6 +1272,15 @@
       $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
       $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
 
+      $('.lav-coupon').addEventListener('click', function () {
+        pushDataLayer(
+          'exp_pric_pag_imp_but_paymord_coup',
+          'Have a coupon?',
+          'Button',
+          'Payment. Order summary'
+        );
+      });
+
       const price = $('.tracking-normal').textContent.trim().replace(' ', '');
 
       const term = $('.lav-header .tracking .leading-0').textContent;
@@ -1279,8 +1318,8 @@
       $('.lav-payment header').insertAdjacentHTML(
         'beforeend',
         `
-      <div class='lav-title'>Payment</div>
-      <div class='lav-caption'>Finish setup and start growing your Instagram&nbsp;today!</div>
+        <div class='lav-title'>Payment</div>
+        <div class='lav-caption'>Finish setup and start growing your Instagram&nbsp;today!</div>
       `
       );
     }
@@ -1411,6 +1450,7 @@
   }
 
   function handleLogin(el) {
+    let isFirstSkip = false;
     $('h3', el).innerText = 'Your Email';
     $('h3 + p', el).innerHTML =
       'Finish setup and start growing<br/>your Instagram today!';
@@ -1420,11 +1460,85 @@
       `<img src="/assets/sb-logo-blue.svg" alt="social-boost-logo" class="lav-form-logo w-[140px]">`
     );
 
+    if (!$('#lav-google-script')) {
+      const scriptTag = document.createElement('script');
+      scriptTag.id = 'lav-google-script';
+      scriptTag.src = 'https://accounts.google.com/gsi/client';
+      scriptTag.async = true;
+      scriptTag.defer = true;
+      document.head.insertAdjacentElement('beforeend', scriptTag);
+
+      window.handleCredentialResponse = function ({ credential }) {
+        pushDataLayer(
+          'exp_pric_pag_imp_but_popupregem_goog',
+          'Sign up with Google',
+          'Button',
+          'Pop up did you now. Registration. Your Email'
+        );
+
+        const { email } = parseJwt(credential);
+        console.log('Email response:', email);
+
+        const input = $('[type="email"]');
+        const lastValue = input.value;
+        input.value = email;
+        const inputEvent = new Event('input', { bubbles: true });
+        // Hack for React 15
+        inputEvent.simulated = true;
+
+        // Hack for React 16
+        const tracker = input._valueTracker;
+        if (tracker) {
+          tracker.setValue(lastValue);
+        }
+
+        input.dispatchEvent(inputEvent);
+
+        isFirstSkip = true;
+
+        $('.lav-clone-login').click();
+      };
+    }
+
+    $('#loginForm').insertAdjacentHTML(
+      'afterend',
+      `
+        <div
+          id="g_id_onload"
+          data-client_id="236296659274-dcdui2jlv2dj7caaf6l21t23ffr4mtak.apps.googleusercontent.com"
+          data-callback="handleCredentialResponse"
+        >
+        </div>
+        <div 
+          class="g_id_signin" 
+          data-type="standard"
+          data-size='large'
+          data-width='300'
+        ></div>
+      `
+    );
+
+    function parseJwt(token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(
+        window
+          .atob(base64)
+          .split('')
+          .map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+
+      return JSON.parse(jsonPayload);
+    }
+
     $('#login [type="email"]')
       .closest('.relative')
       .insertAdjacentHTML(
         'afterend',
-        '<div class="lav-form-caption">Your data is secured. We never spam or share your email with third parties</div>'
+        '<div div class= "lav-form-caption" > Your data is secured.We never spam or share your email with third parties</div> '
       );
 
     $('#login [type="email"]').addEventListener('click', () => {
@@ -1476,17 +1590,25 @@
       'beforebegin',
       cloneBtn
     );
+    $('#loginForm').insertAdjacentHTML(
+      'afterend',
+      `<div class='lav-divider'><span>or</span></div>`
+    );
 
     $('.lav-clone-login').addEventListener('click', function (e) {
       console.log('click');
       e.preventDefault();
 
-      pushDataLayer(
-        'exp_pric_pag_imp_but_popupregem_cont',
-        'Continue',
-        'Button',
-        'Pop up did you now. Registration. Your Email'
-      );
+      if (!isFirstSkip) {
+        pushDataLayer(
+          'exp_pric_pag_imp_but_popupregem_cont',
+          'Continue',
+          'Button',
+          'Pop up did you now. Registration. Your Email'
+        );
+      }
+
+      isFirstSkip = false;
 
       if (
         !$('#login [type="email"]').value ||
@@ -1495,6 +1617,10 @@
         $('#login [type="email"]').focus();
         return false;
       }
+
+      $('.lav-divider').remove();
+      $('#g_id_onload').remove();
+      $('.g_id_signin').remove();
 
       $('h3', el).innerText = 'Your Username';
       $('#login .lav-email-form').insertAdjacentHTML(
