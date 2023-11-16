@@ -1167,12 +1167,14 @@
     }
   }
 
-  navigation.addEventListener('navigate', (e) => {
-    if (e.navigationType === 'push') {
-      console.log('fireNavigate', e);
-      setTimeout(init, 300);
-    }
-  });
+  if (navigation) {
+    navigation.addEventListener('navigate', (e) => {
+      if (e.navigationType === 'push') {
+        console.log('fireNavigate', e);
+        setTimeout(init, 300);
+      }
+    });
+  }
   window.addEventListener('popstate', (e) => {
     console.log('firePopState', e);
     setTimeout(init, 300);
@@ -1370,6 +1372,9 @@
     if (!isMutationInit) {
       isMutationInit = true;
       initMutation(document.body, (el) => {
+        if (el.id === 'nprogress') {
+          setTimeout(init, 300);
+        }
         if (el.id === 'login') {
           // console.log(el);
           handleLogin(el);
