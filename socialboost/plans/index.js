@@ -1201,22 +1201,6 @@
 
     handlePaymentForm();
 
-    if ($('[name="coupon"]')) {
-      console.log('handleCoupon');
-      $('[name="coupon"]').addEventListener('blur', async () => {
-        await delay(300);
-        waitFor(
-          () => $('.tracking-normal'),
-          () => {
-            const price = $('.tracking-normal')
-              .textContent.trim()
-              .replace(' ', '');
-            $('.lav-summary__total-value span').innerText = price;
-          }
-        );
-      });
-    }
-
     function handlePaymentForm() {
       // $('.lav-payment').insertAdjacentHTML(
       //   'beforebegin',
@@ -1272,13 +1256,34 @@
       $('.lav-payment form>.cursor-pointer').classList.add('lav-coupon');
       $('.lav-summary').insertAdjacentElement('beforeend', $('.lav-coupon'));
 
-      $('.lav-coupon').addEventListener('click', function () {
+      let isCouponFire = false;
+      $('.lav-coupon').addEventListener('click', async function () {
         pushDataLayer(
           'exp_pric_pag_imp_but_paymord_coup',
           'Have a coupon?',
           'Button',
           'Payment. Order summary'
         );
+
+        await delay(300);
+
+        if ($('[name="coupon"]') && !isCouponFire) {
+          isCouponFire = true;
+          console.log('handleCoupon');
+          $('[name="coupon"]').addEventListener('blur', async () => {
+            console.log('blur');
+            await delay(300);
+            waitFor(
+              () => $('.tracking-normal'),
+              () => {
+                const price = $('.tracking-normal')
+                  .textContent.trim()
+                  .replace(' ', '');
+                $('.lav-summary__total-value span').innerText = price;
+              }
+            );
+          });
+        }
       });
 
       const price = $('.tracking-normal').textContent.trim().replace(' ', '');
@@ -1460,14 +1465,9 @@
       `<img src="/assets/sb-logo-blue.svg" alt="social-boost-logo" class="lav-form-logo w-[140px]">`
     );
 
-    if (!$('#lav-google-script')) {
-      const scriptTag = document.createElement('script');
-      scriptTag.id = 'lav-google-script';
-      scriptTag.src = 'https://accounts.google.com/gsi/client';
-      scriptTag.async = true;
-      scriptTag.defer = true;
-      document.head.insertAdjacentElement('beforeend', scriptTag);
-
+    if ($('#lav-google-script')) {
+      $('#lav-google-script').remove();
+    } else {
       window.handleCredentialResponse = function ({ credential }) {
         pushDataLayer(
           'exp_pric_pag_imp_but_popupregem_goog',
@@ -1499,6 +1499,13 @@
         $('.lav-clone-login').click();
       };
     }
+
+    const scriptTag = document.createElement('script');
+    scriptTag.id = 'lav-google-script';
+    scriptTag.src = 'https://accounts.google.com/gsi/client';
+    scriptTag.async = true;
+    scriptTag.defer = true;
+    document.head.insertAdjacentElement('beforeend', scriptTag);
 
     $('#loginForm').insertAdjacentHTML(
       'afterend',
