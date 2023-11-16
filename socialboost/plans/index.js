@@ -1168,12 +1168,12 @@
   }
 
   if (navigation) {
-    navigation.addEventListener('navigate', (e) => {
-      if (e.navigationType === 'push') {
-        console.log('fireNavigate', e);
-        setTimeout(init, 300);
-      }
-    });
+    // navigation.addEventListener('navigate', (e) => {
+    //   if (e.navigationType === 'push') {
+    //     console.log('fireNavigate', e);
+    //     setTimeout(init, 300);
+    //   }
+    // });
   }
   window.addEventListener('popstate', (e) => {
     console.log('firePopState', e);
