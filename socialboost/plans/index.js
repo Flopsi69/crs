@@ -1171,6 +1171,22 @@
 
     handlePaymentForm();
 
+    if ($('[name="coupon"]')) {
+      console.log('handleCoupon');
+      $('[name="coupon"]').addEventListener('blur', async () => {
+        await delay(300);
+        waitFor(
+          () => $('.tracking-normal'),
+          () => {
+            const price = $('.tracking-normal')
+              .textContent.trim()
+              .replace(' ', '');
+            $('.lav-summary__total-value span').innerText = price;
+          }
+        );
+      });
+    }
+
     function handlePaymentForm() {
       // $('.lav-payment').insertAdjacentHTML(
       //   'beforebegin',
@@ -1253,11 +1269,11 @@
       $('[typeof="email"] + div').insertAdjacentHTML(
         'beforeend',
         `
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
-        <path d="M8.46281 7.91503C8.31169 8.00948 8.14168 8.04726 7.99056 8.04726C7.83943 8.04726 7.66942 8.00948 7.5183 7.91503L0 3.32471V9.42624C0 10.7297 1.05785 11.7875 2.36128 11.7875H13.6387C14.9421 11.7875 16 10.7297 16 9.42624V3.32471L8.46281 7.91503Z" fill="#9CA3AF"/>
-        <path d="M13.6388 0H2.3614C1.24688 0 0.302366 0.793388 0.0756836 1.85124L8.00957 6.68713L15.9246 1.85124C15.6979 0.793388 14.7534 0 13.6388 0Z" fill="#9CA3AF"/>
-      </svg>
-    `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
+            <path d="M8.46281 7.91503C8.31169 8.00948 8.14168 8.04726 7.99056 8.04726C7.83943 8.04726 7.66942 8.00948 7.5183 7.91503L0 3.32471V9.42624C0 10.7297 1.05785 11.7875 2.36128 11.7875H13.6387C14.9421 11.7875 16 10.7297 16 9.42624V3.32471L8.46281 7.91503Z" fill="#9CA3AF"/>
+            <path d="M13.6388 0H2.3614C1.24688 0 0.302366 0.793388 0.0756836 1.85124L8.00957 6.68713L15.9246 1.85124C15.6979 0.793388 14.7534 0 13.6388 0Z" fill="#9CA3AF"/>
+          </svg>
+        `
       );
 
       $('.lav-payment header').insertAdjacentHTML(
