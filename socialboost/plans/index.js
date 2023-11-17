@@ -1146,7 +1146,7 @@
       location.href.includes('/growth')
     ) {
       console.log('init Pricing');
-      initPricing();
+      waitFor(() => $('#pricing'), initPricing, { ms: 50 });
       if (!document.querySelector('.exp-styles-pricing')) {
         document.head.appendChild(stylePricingEl);
       }
