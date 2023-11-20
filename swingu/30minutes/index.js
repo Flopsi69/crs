@@ -960,6 +960,7 @@ function handleUpgradePage() {
       margin-right: 15px;
       box-shadow: 0px 2.65px 7.95px 0px rgba(0, 0, 0, 0.25);
       width: 53px;
+      border-radius: 14px;
     }
     .lav-plate__head-title {
       color: var(--common-white, #FFF);
