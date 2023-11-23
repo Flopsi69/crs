@@ -1204,7 +1204,7 @@ function handleUpgradePage() {
           <div class="lav-list__wrap">
             <div class="lav-list__title">You’ll get:</div>
           </div>
-          <div class="lav-plate__caption">${getDateRange()}: $99.00 auto-renewal. No commitment. Cancel anytime.</div>
+          <div class="lav-plate__caption">${getDateRange()}: $99.99 auto-renewal. No commitment. Cancel anytime.</div>
         </div>
       </div>
     </div>
