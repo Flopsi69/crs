@@ -66,9 +66,7 @@ class Modal {
 
       if (e.target.dataset.modal) {
         this.open(e.target.dataset.modal);
-      }
-
-      if (e.target.closest('[data-modal]')) {
+      } else if (e.target.closest('[data-modal]')) {
         this.open(e.target.closest('[data-modal]').dataset.modal);
       }
     });
