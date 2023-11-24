@@ -78,6 +78,13 @@
     static open(modalName, cb) {
       document.body.classList.add('lav-modal-open');
 
+      pushDataLayer(
+        'exp_pric_pag_imp_lin_unlock_clic',
+        'Click',
+        'Link',
+        'Pricing. Unlock Your Instagram Potential'
+      );
+
       if ($('.lav-modal__inner.active')) {
         $('.lav-modal__inner.active').classList.remove('active');
       }
