@@ -1320,6 +1320,15 @@ const styles = `
     .trusted__quote {
       text-align: center;
     }
+    .trusted__logos {
+      flex-wrap: wrap;
+    }
+    .trusted__logo.active {
+      opacity: 0.6;
+    }
+    .trusted__logo.active:before {
+      display: none;
+    }
   }
 
 
@@ -2810,7 +2819,7 @@ function addLayout() {
         <div class='lav-container'>
           <div class='trusted__inner'>
             <div class='trusted__title'>
-              Trusted by industry experts<br/>and 50 000+ parents
+              Trusted by industry experts<br/>and 50&nbsp;000+ parents
             </div>
             <div class='trusted__logos'>
               <div class='trusted__logo'>
