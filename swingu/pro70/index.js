@@ -228,7 +228,6 @@
       25
     );
     waitFor(() => document.querySelector('.lav-button'), handleCta, 100);
-    handleCta();
     initObserver((el) => {
       if (el.closest('[data-action]')) {
         waitFor(() => document.querySelector('.lav-button'), handleCta, 25);
@@ -319,13 +318,11 @@
       }
 
       if (isOriginalButton) {
-        console.log('show original button');
         document
           .querySelector('.lav-button')
           .classList.add('lav-button_hidden');
         document.querySelector('.lav-orig').classList.remove('lav-orig_hidden');
       } else {
-        console.log('hide original button');
         document
           .querySelector('.lav-button')
           .classList.remove('lav-button_hidden');
