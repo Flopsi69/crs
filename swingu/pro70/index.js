@@ -227,10 +227,11 @@
       handlePrice,
       25
     );
+    waitFor(() => document.querySelector('.lav-button'), handleCta, 100);
     handleCta();
     initObserver((el) => {
       if (el.closest('[data-action]')) {
-        handleCta();
+        waitFor(() => document.querySelector('.lav-button'), handleCta, 25);
         handlePrice();
       }
     });
@@ -270,7 +271,9 @@
     }
 
     function handleCta() {
-      if (!document.querySelector('.lav-button')) return;
+      // if (!document.querySelector('.lav-button')) {
+      //   setTimeout(handleCta, 200);
+      // }
       const typeSubscr = document.querySelector(
         '[dusk="segmented-control--monthly"][data-active="true"]'
       )
