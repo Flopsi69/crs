@@ -1152,6 +1152,9 @@ async function initBasedOnInterests() {
       }
     }
     @media(max-width: 992px) {
+      .interest {
+        padding: 24px 0;
+      }
       .view .video-list {
         grid-template-columns: 1fr;
       }
@@ -2021,7 +2024,7 @@ function addBriefInterests() {
         flex-wrap: wrap;
       }
       .interest__head {
-        padding: 0 0 24px;
+        padding: 24px 0;
       }
       .interest__body {
         padding: 1.5rem 0;
