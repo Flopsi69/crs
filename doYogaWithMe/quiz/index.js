@@ -1,6 +1,6 @@
 (async function () {
   console.log('*** Experiment started ***');
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
+  await waitFor(() => document.head && document.body, false, { ms: 20 });
 
   // Config for Experiment
   const config = {
