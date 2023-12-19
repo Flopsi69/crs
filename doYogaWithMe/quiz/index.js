@@ -3694,7 +3694,9 @@
 
     const time = formatTime(video['field_media_duration']);
     const lvlCaption = video.field_difficulty;
-    const lvl = lvlCaption.includes('Beginner')
+    const lvl = !lvlCaption
+      ? false
+      : lvlCaption.includes('Beginner')
       ? 1
       : lvlCaption.includes('Intermediate')
       ? 2
@@ -3707,10 +3709,17 @@
       video.thumbnail__target_id
     }' />
           <div class='video__preview-info'>
-            <div class='video__preview-lvl'>
-              <iconify-icon icon="mdi:signal-cellular-${lvl}"></iconify-icon>
-              ${lvlCaption}
-            </div>
+            ${
+              lvl
+                ? `
+              <div class='video__preview-lvl'>
+                <iconify-icon icon="mdi:signal-cellular-${lvl}"></iconify-icon>
+                ${lvlCaption}
+              </div>
+            `
+                : ''
+            }
+            
             <div class='video__preview-time'>${time}</div>
           </div>
         </div>
