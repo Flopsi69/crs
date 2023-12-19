@@ -985,25 +985,45 @@
     const link = !getQuizResult(true)
       ? '/personalization'
       : '/based-on-interests';
-
     waitFor(
       () =>
         $(
           '#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]'
+        ) ||
+        $(
+          '#block-lotus-main-menu [data-drupal-link-system-path="yoga-classes"]'
         ),
       () => {
-        $(
+        let target = $(
           '#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]'
-        )
-          .closest('.c-dropdownMenu__item')
-          .insertAdjacentHTML(
-            'beforebegin',
-            `
+        );
+
+        if (!target) {
+          target = $(
+            '#block-lotus-main-menu [data-drupal-link-system-path="yoga-classes"]'
+          );
+        }
+
+        target.closest('.c-dropdownMenu__item').insertAdjacentHTML(
+          'beforebegin',
+          `
               <li class="c-dropdownMenu__item c-dropdownMenu__item--level1">
                   <a href="${link}" class="c-dropdownMenu__link is-active lav-nav-for-you">For you</a>
               </li>
             `
-          );
+        );
+
+        $('.c-dropdownMenu__link.lav-nav-for-you').addEventListener(
+          'click',
+          (e) => {
+            pushDataLayer(
+              'exp_person_cont_but_menu_foryou',
+              'For You',
+              'Button',
+              'Menu'
+            );
+          }
+        );
       }
     );
 
@@ -1025,15 +1045,13 @@
         `
           );
 
-        $$('.lav-nav-for-you').forEach((item) => {
-          item.addEventListener('click', (e) => {
-            pushDataLayer(
-              'exp_person_cont_but_menu_foryou',
-              'For You',
-              'Button',
-              'Menu'
-            );
-          });
+        $('.nav-link.lav-nav-for-you').addEventListener('click', (e) => {
+          pushDataLayer(
+            'exp_person_cont_but_menu_foryou',
+            'For You',
+            'Button',
+            'Menu'
+          );
         });
       }
     );
