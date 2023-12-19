@@ -814,7 +814,6 @@
         }
       );
     }
-    view - filters;
 
     if (path.includes('/yoga-classes') && isAuth() && getQuizResult(true)) {
       waitFor(() => $('#main-content'), addBriefInterests, { ms: 100 });
