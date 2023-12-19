@@ -710,7 +710,8 @@
     },
     {
       step: 4,
-      title: 'How much time can you allocate for your yoga practice?',
+      title:
+        'How much time can you allocate for&nbsp;your&nbsp;yoga&nbsp;practice?',
       type: 'checkbox',
       resultCaption: 'Preferred Duration:',
       variants: [
@@ -765,14 +766,7 @@
       }
     }
 
-    waitFor(
-      () =>
-        $(
-          '#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]'
-        ),
-      addNavigationMenu,
-      { ms: 100 }
-    );
+    addNavigationMenu();
 
     if (path === '/') {
       if (isAuth() && getQuizResult(true)) {
@@ -992,16 +986,26 @@
       ? '/personalization'
       : '/based-on-interests';
 
-    $('#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]')
-      .closest('.c-dropdownMenu__item')
-      .insertAdjacentHTML(
-        'beforebegin',
-        `
-          <li class="c-dropdownMenu__item c-dropdownMenu__item--level1">
-              <a href="${link}" class="c-dropdownMenu__link is-active lav-nav-for-you">For you</a>
-          </li>
-        `
-      );
+    waitFor(
+      () =>
+        $(
+          '#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]'
+        ),
+      () => {
+        $(
+          '#block-samsara-main-menu [data-drupal-link-system-path="yoga-classes"]'
+        )
+          .closest('.c-dropdownMenu__item')
+          .insertAdjacentHTML(
+            'beforebegin',
+            `
+              <li class="c-dropdownMenu__item c-dropdownMenu__item--level1">
+                  <a href="${link}" class="c-dropdownMenu__link is-active lav-nav-for-you">For you</a>
+              </li>
+            `
+          );
+      }
+    );
 
     waitFor(
       () => $('[data-level="1"] [data-drupal-link-system-path="yoga-classes"]'),
@@ -2167,6 +2171,7 @@
       }
 
       .quiz {
+        font-family: "Manrope", sans-serif;
         min-height: 100%;
         display: flex;
       }
@@ -2599,6 +2604,9 @@
         }
       }
       @media(max-width: 768px) {
+        .quiz__title br {
+          display: none;
+        }
         .quiz {
           display: block;
         }
@@ -2731,6 +2739,7 @@
         }
         .result__btn {
           margin-top: 0;
+          font-size: 14px;
         }
       }
     `;
