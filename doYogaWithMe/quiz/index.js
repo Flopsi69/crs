@@ -806,6 +806,16 @@
       initQuiz();
     }
 
+    if (path.includes('/yoga-classes')) {
+      waitFor(
+        () => $('.view-filters h2'),
+        () => {
+          $('.view-filters h2').innerText = 'All classes';
+        }
+      );
+    }
+    view - filters;
+
     if (path.includes('/yoga-classes') && isAuth() && getQuizResult(true)) {
       waitFor(() => $('#main-content'), addBriefInterests, { ms: 100 });
     }
