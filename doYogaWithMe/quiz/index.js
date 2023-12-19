@@ -3705,9 +3705,12 @@
     const el = `
       <div class='video-card'>
         <div class='video__preview'>
-          <img class='video__preview-img' ${isLazyLoad ? 'data-' : ''}src='${
-      video.thumbnail__target_id
-    }' />
+          <img class='video__preview-img' ${
+            isLazyLoad ? 'data-' : ''
+          }src='${video.thumbnail__target_id.replace(
+      'https://www.doyogawithme.com',
+      ''
+    )}' />
           <div class='video__preview-info'>
             ${
               lvl
