@@ -666,7 +666,7 @@ function handleHomepage() {
       if (
         isFreeTrial === 'false' &&
         isActiveSubscription === 'false' &&
-        (!isStorageEligable || isStorageEligable < 3) &&
+        (!isStorageEligable || isStorageEligable < 300) &&
         sessionStorage.getItem('isRedirectedExp') !== 'yes'
       ) {
         waitFor(
