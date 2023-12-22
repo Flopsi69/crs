@@ -16,7 +16,6 @@ function initCards() {
   });
 
   function handleCard(el) {
-    console.log(el);
     const text = el.querySelector('.quality-list')?.innerText;
 
     if (
@@ -66,7 +65,6 @@ function initCards() {
       let flag;
       if (foundEl) {
         [, { flag }] = foundEl;
-        console.log('foundEl', flag);
       }
 
       if (!flag) continue;
