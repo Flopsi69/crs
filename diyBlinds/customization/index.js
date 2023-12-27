@@ -8,11 +8,6 @@ const config = {
   debug: true,
 };
 
-let script = document.createElement('script');
-script.src = 'https://flopsi69.github.io/crs/diyBlinds/customization/index.js';
-script.async = false;
-document.head.appendChild(script);
-
 // const orig = console.log;
 // console.log = function (...args) {
 //   orig.apply(console, ['Debug:', ...args]);
