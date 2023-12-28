@@ -922,6 +922,294 @@ function initSteps(target) {
       let caption = '100% Polyester';
       let stars = 4;
 
+      const acrylyc = [
+        'Linesque BOBlanco',
+        'Linesque BOAlmond',
+        'Linesque BOSoba',
+        'Linesque BOVine',
+        'Linesque BODove',
+        'Linesque BORaffia',
+        'Linesque BOFig',
+        'Linesque BOFossil',
+        'Linesque BOFleece',
+        'Linesque BOAspen',
+        'Linesque BOBreeze',
+        'Linesque BODenim',
+      ];
+
+      const finish = [
+        'DominoIvory',
+        'DominoWhite',
+        'DominoNatural',
+        'DominoLava',
+        'DominoStone',
+        'DominoSteel',
+        'DominoMidnight',
+      ];
+
+      const pvc = [
+        'One ScreenIce',
+        'One ScreenWhite',
+        'Solar ViewWhite',
+        'DakotaQuartz',
+        'Solar ViewAlabaster',
+        'Solar ViewBone / Off White',
+        'Solar ViewCotton',
+        'Solar ViewOff White',
+        'One ScreenSand',
+        'Solar ViewTaupe',
+        'DakotaMarble',
+        'One ScreenGrey',
+        'Solar ViewGrey',
+        'DakotaOre',
+        'One ScreenDune',
+        'One ScreenLinen/ Bronze',
+        'One ScreenWallaby',
+        'Solar ViewBlack/ Copper',
+        'Solar ViewBronze / Charcoal',
+        'Solar ViewPlatinum',
+        'DakotaGranite',
+        'One ScreenGunmetal',
+        'One ScreenMercury',
+        'One ScreenSilver/ Black',
+        'Solar ViewCharcoal',
+        'DakotaFlint',
+        'One ScreenBlack',
+        'One ScreenCharcoal',
+        'Solar ViewBlack',
+        'DakotaCoal',
+      ];
+
+      const threeStars = [
+        'Metro LFIce Grey LF',
+        'Balmoral LFWhite LF',
+        'Jersey LFOpal LF',
+        'Serengetti LFPolar LF',
+        'Sanctuary LFPlaster LF',
+        'Metro LFDove/White LF',
+        'Linesque LFLily',
+        'Linesque LFOatcake',
+        'Linesque LFWicker',
+        'Jersey LFStone LF',
+        'Serengetti LFLlama LF',
+        'Sanctuary LFMarble LF',
+        'Balmoral LFPearl LF',
+        'Metro LFEcru LF',
+        'Metro LFNougat LF',
+        'Balmoral LFBirch LF',
+        'Jersey LFRender LF',
+        'Serengetti LFOnyx LF',
+        'Serengetti LFOwl LF',
+        'Metro LFQuill LF',
+        'Linesque LFHazel',
+        'Linesque LFOwl',
+        'Linesque LFTrellis',
+        'Balmoral LFDove LF',
+        'Balmoral LFConcrete LF',
+        'Balmoral LFPutty LF',
+        'Serengetti LFAlbatross LF',
+        'Serengetti LFEland LF',
+        'Serengetti LFHyrax LF',
+        'Sanctuary LFMineral LF',
+        'Sanctuary LFSuede LF',
+        'Linesque LFChestnut',
+        'Linesque LFGranite',
+        'Balmoral LFBournville LF',
+        'Balmoral LFPyrite LF',
+        'Jersey LFOrganic LF',
+        'Jersey LFTimber LF',
+        'Serengetti LFAntelope LF',
+        'Serengetti LFCaribou LF',
+        'Serengetti LFChamois LF',
+        'Linesque LFWinter',
+        'Linesque LFDelta',
+        'Balmoral LFSteel LF',
+        'Balmoral LFPlatinum LF',
+        'Balmoral LFChrome LF',
+        'Balmoral LFArmour LF',
+        'Jersey LFSteel LF',
+        'Serengetti LFJackal LF',
+        'Sanctuary LFBaltic LF',
+        'Balmoral LFJet LF',
+        'Jersey LFPavement LF',
+        'Serengetti LFMamba LF',
+        'Serengetti LFPanther LF',
+        'Sanctuary LFLava LF',
+        'Linesque LFStonewash',
+        'Linesque LFLevi',
+        'Sanctuary LFCeramic LF',
+        'MaviIce',
+        'AllusionGhost',
+        'AllusionMist',
+        'MaviPorcelain',
+        'CentennialGhost',
+        'MaviOpal',
+        'CentennialPowder',
+        'MortonIce',
+        'MortonBlanc',
+        'AlexandraBlanc',
+        'JillibyIce',
+        'BuranoTalc',
+        'BuranoIvory',
+        'BuranoVanilla',
+        'AudianceSwan',
+        'AudianceNatural',
+        'AudianceLimestone',
+        'AllusionSnow',
+        'Laconia AirSwan',
+        'AllusionPearl',
+        'AesopParchment',
+        'AesopMist',
+        'MaviDusk',
+        'MaviDune',
+        'CentennialBiscuit',
+        'MortonWheat',
+        'AlexandraSmoke',
+        'JillibyFlax',
+        'AllusionMarzipan',
+        'AllusionRattan',
+        'Laconia AirLinen',
+        'AesopQuartz',
+        'MaviPewter',
+        'MaviAsh',
+        'CentennialHaze',
+        'CentennialAsh/Grey',
+        'AlexandraTitanium',
+        'AlexandraSilver',
+        'JillibyGrey Sand',
+        'BuranoFrost',
+        'AudianceDove',
+        'AudianceSilver',
+        'AllusionLimestone',
+        'Laconia AirCloud',
+        'AllusionLinen',
+        'Laconia AirLichen',
+        'AllusionSilver',
+        'AllusionMushroom',
+        'AllusionNougat',
+        'AesopAtlantic',
+        'MaviCinder',
+        'CentennialCharcoal',
+        'AlexandraSalt and Pepper',
+        'JillibySmoke',
+        'BuranoStorm',
+        'BuranoDenim',
+        'AudianceDice',
+        'AllusionLiquorice',
+        'AesopSmoke',
+        'AlexandraGravel',
+        'CentennialStone',
+        'MortonGranite',
+        'AesopFlint',
+        'Laconia AirBallet',
+      ];
+
+      const fiveStars = [
+        'AsproEcru',
+        'AsproIce',
+        'BelmoreChalk',
+        'AnsteyBlanc',
+        'MavroLint',
+        'AsproDove',
+        'BelmoreFrost',
+        'BelmoreAlmond',
+        'AnsteyLatte',
+        'AnsteyStone',
+        'MavroPearl',
+        'BelmoreAsphalt',
+        'AnsteyPewter',
+        'AnsteySilver',
+        'MavroCharcoal',
+        'AsproOnyx',
+        'MavroEbony',
+        'BelmoreBluestone',
+      ];
+
+      const polyester86 = [
+        'AureliusSnow',
+        'AureliusEcru',
+        'AureliusLinen',
+        'AureliusFog',
+        'AureliusSky',
+        'AureliusShale',
+        'AureliusBlush',
+      ];
+
+      const linen54 = [
+        'AllusionGhost',
+        'AllusionMist',
+        'AllusionPearl',
+        'AllusionSnow',
+        'AllusionMarzipan',
+        'AllusionRattan',
+        'AllusionLimestone',
+        'AllusionLinen',
+        'AllusionSilver',
+        'AllusionMushroom',
+        'AllusionNougat',
+        'AllusionLiquorice',
+      ];
+
+      const linen50 = [
+        'AesopParchment',
+        'AesopMist',
+        'BuranoTalc',
+        'BuranoIvory',
+        'BuranoVanilla',
+        'AesopQuartz',
+        'BuranoFrost',
+        'AesopAtlantic',
+        'BuranoStorm',
+        'BuranoDenim',
+        'AesopSmoke',
+        'AesopFlint',
+      ];
+
+      const linen100 = [
+        'Laconia AirSwan',
+        'Laconia AirLinen',
+        'Laconia AirCloud',
+        'Laconia AirLichen',
+        'Laconia AirBallet',
+      ];
+
+      if (acrylyc.includes(title)) {
+        caption = '100% Polyester with Acrylic Coating';
+      }
+
+      if (pvc.includes(title)) {
+        caption = '30% Polyester, 70% PVC';
+      }
+
+      if (linen54.includes(title)) {
+        caption = '54% Linen, 32% Cotton, 14% Polyester';
+      }
+
+      if (linen50.includes(title)) {
+        caption = '50% Linen, 50% Polyester';
+      }
+
+      if (linen100.includes(title)) {
+        caption = '100% Linen';
+      }
+
+      if (finish.includes(title)) {
+        caption = '100% Polyester, Acrylic Coated With Silicone Finish';
+        stars = 5;
+      }
+
+      if (polyester86.includes(title)) {
+        caption = '86% Polyester, 14% Cotton';
+      }
+
+      if (threeStars.includes(title)) {
+        stars = 3;
+      }
+
+      if (fiveStars.includes(title)) {
+        stars = 5;
+      }
+
       card.insertAdjacentHTML(
         'beforeend',
         `
