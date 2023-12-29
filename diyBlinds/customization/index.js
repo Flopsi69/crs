@@ -908,7 +908,7 @@
           if (item.innerText === 'Colours') {
             item.querySelector(
               'span'
-            ).style = `url(background: ${config.dir}/img/color-diff.png) center no-repeat;background-size: cover;`;
+            ).style = `background: url(${config.dir}/img/color-diff.png) center no-repeat;background-size: cover;`;
           }
         }
 
