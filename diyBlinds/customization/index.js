@@ -897,6 +897,16 @@
 
         $('.colour-chooser__wrap').classList.add('lav-colour-handled');
 
+        for (let item of document.querySelectorAll(
+          '.colour-chooser__wrap li'
+        )) {
+          if (item.innerText === 'Colours') {
+            item.querySelector(
+              'span'
+            ).style = `url(background: ${config.dir}/img/color-diff.png) center no-repeat;background-size: cover;`;
+          }
+        }
+
         $('.colour-chooser__wrap').addEventListener('click', function (e) {
           if (!e.target.closest('li') || e.target.closest('li.active')) return;
 
