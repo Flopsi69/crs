@@ -1,20 +1,21 @@
-console.debug('*** Experiment started ***');
-await waitFor(() => document.head && document.body, false, { ms: 100 });
+(async function () {
+  console.debug('*** Experiment started ***');
+  await waitFor(() => document.head && document.body, false, { ms: 100 });
 
-// Config for Experiment
-const config = {
-  dir: 'https://flopsi69.github.io/crs/diyBlinds/customization',
-  clarity: ['set', '', 'variant_1'],
-  debug: true,
-};
+  // Config for Experiment
+  const config = {
+    dir: 'https://flopsi69.github.io/crs/diyBlinds/customization',
+    clarity: ['set', '', 'variant_1'],
+    debug: false,
+  };
 
-// const orig = console.log;
-// console.log = function (...args) {
-//   orig.apply(console, ['Debug:', ...args]);
-// };
+  // const orig = console.log;
+  // console.log = function (...args) {
+  //   orig.apply(console, ['Debug:', ...args]);
+  // };
 
-// Styles for Experiment
-const styles = `
+  // Styles for Experiment
+  const styles = `
   .configurator__step-heading h3 {
     color: #444C5F;
     font-size: 24px;
@@ -629,42 +630,42 @@ const styles = `
   }
 `;
 
-const svgObj = getSvgObj();
+  const svgObj = getSvgObj();
 
-addStyles(styles, 'exp-styles');
+  addStyles(styles, 'exp-styles');
 
-// *** Logic *** //
-const observer = initMutation(document.body, (node, observer) => {
-  if (node.classList.contains('o-sidebar--scrollable')) {
+  // *** Logic *** //
+  const observer = initMutation(document.body, (node, observer) => {
+    if (node.classList.contains('o-sidebar--scrollable')) {
+      initExp();
+      observer.disconnect();
+    }
+  });
+
+  if ($('.o-sidebar--scrollable')) {
     initExp();
     observer.disconnect();
   }
-});
 
-if ($('.o-sidebar--scrollable')) {
-  initExp();
-  observer.disconnect();
-}
+  function initExp() {
+    console.debug('** InitExp **');
+    // TODO make current step with black dot
 
-function initExp() {
-  console.debug('** InitExp **');
-  // TODO make current step with black dot
+    const target = location.href.includes('diy-designer-curtains/order')
+      ? 'curtain'
+      : location.href.includes('roller-blinds/order')
+      ? 'blinds'
+      : false;
 
-  const target = location.href.includes('diy-designer-curtains/order')
-    ? 'curtain'
-    : location.href.includes('roller-blinds/order')
-    ? 'blinds'
-    : false;
+    if (!target) return false;
 
-  if (!target) return false;
+    addHeader(target);
+    initSteps(target);
+    handleSidebar();
+  }
 
-  addHeader(target);
-  initSteps(target);
-  handleSidebar();
-}
-
-function addHeader(target) {
-  let headerEl = `
+  function addHeader(target) {
+    let headerEl = `
     <div class='lav-header'>
       <div class='lav-header__title'>Choose your perfect ${
         target === 'blinds' ? 'Roller Blind' : 'Curtain'
@@ -675,8 +676,8 @@ function addHeader(target) {
     </div>
   `;
 
-  if (location.pathname.includes('roller-blinds/order') && false) {
-    headerEl += `
+    if (location.pathname.includes('roller-blinds/order') && false) {
+      headerEl += `
       <div class='lav-choose lav-header__choose'>
         <div class='lav-choose__icon'>${svgObj.question}</div>
         <div class='lav-choose__info'>
@@ -685,91 +686,106 @@ function addHeader(target) {
         </div>
       </div>
     `;
-  }
-
-  $('.o-sidebar__workflow').insertAdjacentHTML('afterbegin', headerEl);
-
-  visibilityEvent($('.lav-header__choose'), () => {
-    pushDataLayer(
-      'exp_pdp_clarity_vis_rollblin_link',
-      'Separate link',
-      'Visibility',
-      'PDP. Choose your perfect Roller Blind!'
-    );
-  });
-
-  $('.lav-choose__popular')?.addEventListener('click', function () {
-    pushDataLayer(
-      'exp_pdp_clarity_lin_rollblin_chec',
-      'Check out our most popular options',
-      'Link',
-      'PDP. Choose your perfect Roller Blind! Not sure what to choose? '
-    );
-    // location.href = '';
-  });
-}
-
-function initSteps(target) {
-  const activeStep = '1';
-  const stepsEl = Array.from($$('.configurator__step'));
-
-  for (const step in stepsEl) {
-    const idx = +step + 1;
-    stepsEl[step].classList.add('lav-step', 'lav-step-' + idx);
-
-    if (idx == 1 || idx == 2) {
-      stepsEl[step].classList.add('active');
-      $('.lav-step.current')?.classList.remove('current');
-      stepsEl[step].classList.add('current');
     }
+
+    $('.o-sidebar__workflow').insertAdjacentHTML('afterbegin', headerEl);
+
+    visibilityEvent($('.lav-header__choose'), () => {
+      pushDataLayer(
+        'exp_pdp_clarity_vis_rollblin_link',
+        'Separate link',
+        'Visibility',
+        'PDP. Choose your perfect Roller Blind!'
+      );
+    });
+
+    $('.lav-choose__popular')?.addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pdp_clarity_lin_rollblin_chec',
+        'Check out our most popular options',
+        'Link',
+        'PDP. Choose your perfect Roller Blind! Not sure what to choose? '
+      );
+      // location.href = '';
+    });
   }
 
-  initMutation($('.o-sidebar--scrollable'), (node) => {
-    if (
-      node.classList.contains('configurator__step') &&
-      node.querySelector('.filter-nav')
-    ) {
-      node.classList.add('lav-step', 'lav-step-2', 'active');
-      $('.lav-step-3').classList.remove('active');
-      $('.lav-step-4').classList.remove('active');
-      // console.log('fire1');
+  function initSteps(target) {
+    const activeStep = '1';
+    const stepsEl = Array.from($$('.configurator__step'));
 
-      if (
-        !$('.lav-step-2 .filter-nav__item:last-of-type').classList.contains(
-          'filter-nav__item--is-active'
-        )
-      ) {
-        $('.filter-nav__item:last-of-type').click();
+    for (const step in stepsEl) {
+      const idx = +step + 1;
+      stepsEl[step].classList.add('lav-step', 'lav-step-' + idx);
+
+      if (idx == 1 || idx == 2) {
+        stepsEl[step].classList.add('active');
+        $('.lav-step.current')?.classList.remove('current');
+        stepsEl[step].classList.add('current');
       }
     }
 
-    if (node.classList.contains('colour-chooser')) {
-      // console.log('fire2');
-      waitFor(
-        () => $$('.lav-step-2 .card-grid .customiser-card--fabric').length,
-        async () => {
-          $('.lav-step-2 .colour-chooser__wrap .is-selected')
-            .closest('li')
-            .classList.add('active');
-          // console.log('fire3');
-          await delay(100);
-          updateCards();
-        },
-        { ms: 25 }
-      );
-    }
+    initMutation($('.o-sidebar--scrollable'), (node) => {
+      if (
+        node.classList.contains('configurator__step') &&
+        node.querySelector('.filter-nav')
+      ) {
+        node.classList.add('lav-step', 'lav-step-2', 'active');
+        $('.lav-step-3').classList.remove('active');
+        $('.lav-step-4').classList.remove('active');
+        // console.log('fire1');
 
-    if (
-      node.closest('.features-list') &&
-      node.querySelector('[style="flex-direction: column;"]')
-    ) {
-      node.classList.add('lav-features-handled');
-    }
+        if (
+          !$('.lav-step-2 .filter-nav__item:last-of-type').classList.contains(
+            'filter-nav__item--is-active'
+          )
+        ) {
+          $('.filter-nav__item:last-of-type').click();
+        }
+      }
 
-    if (node.closest('.lav-step-3') && node.tagName === 'FIELDSET') {
-      $('.lav-step-4').classList.remove('active');
-      $$('.input input', node)?.forEach((item) => {
-        item.addEventListener('input', function () {
+      if (node.classList.contains('colour-chooser')) {
+        // console.log('fire2');
+        waitFor(
+          () => $$('.lav-step-2 .card-grid .customiser-card--fabric').length,
+          async () => {
+            $('.lav-step-2 .colour-chooser__wrap .is-selected')
+              .closest('li')
+              .classList.add('active');
+            // console.log('fire3');
+            await delay(100);
+            updateCards();
+          },
+          { ms: 25 }
+        );
+      }
+
+      if (
+        node.closest('.features-list') &&
+        node.querySelector('[style="flex-direction: column;"]')
+      ) {
+        node.classList.add('lav-features-handled');
+      }
+
+      if (node.closest('.lav-step-3') && node.tagName === 'FIELDSET') {
+        $('.lav-step-4').classList.remove('active');
+        $$('.input input', node)?.forEach((item) => {
+          item.addEventListener('input', function () {
+            if ($('.lav-step-3 .input.has-error')) {
+              $('.lav-step-4').classList.remove('active');
+              $('.lav-step.current')?.classList.remove('current');
+              $('.lav-step-3').classList.add('current');
+            } else {
+              $('.lav-step-4').classList.add('active');
+              $('.lav-step.current')?.classList.remove('current');
+              $('.lav-step-4').classList.add('current');
+            }
+          });
+        });
+        $(
+          '.button--icon-light-and-text + .button--icon-light-and-text',
+          node
+        )?.addEventListener('click', function () {
           if ($('.lav-step-3 .input.has-error')) {
             $('.lav-step-4').classList.remove('active');
             $('.lav-step.current')?.classList.remove('current');
@@ -780,51 +796,36 @@ function initSteps(target) {
             $('.lav-step-4').classList.add('current');
           }
         });
-      });
-      $(
-        '.button--icon-light-and-text + .button--icon-light-and-text',
-        node
-      )?.addEventListener('click', function () {
-        if ($('.lav-step-3 .input.has-error')) {
-          $('.lav-step-4').classList.remove('active');
-          $('.lav-step.current')?.classList.remove('current');
-          $('.lav-step-3').classList.add('current');
-        } else {
-          $('.lav-step-4').classList.add('active');
-          $('.lav-step.current')?.classList.remove('current');
-          $('.lav-step-4').classList.add('current');
-        }
-      });
-    }
-  });
+      }
+    });
 
-  handleStepThree();
+    handleStepThree();
 
-  if (
-    !$('.lav-step-2 .filter-nav__item:last-of-type').classList.contains(
-      'filter-nav__item--is-active'
-    )
-  ) {
-    $('.lav-step-2 .filter-nav__item:last-of-type').click();
-  }
-
-  // Step 2
-  async function updateCards() {
-    console.log('UpdateCards');
-    $('.lav-step-3').classList.remove('active');
-    $('.lav-step-4').classList.remove('active');
-
-    if (!$('.step2__title')) {
-      $('.lav-step-2 .filter-nav').insertAdjacentHTML(
-        'beforebegin',
-        '<div class="step2__title">Select your colour</div>'
-      );
+    if (
+      !$('.lav-step-2 .filter-nav__item:last-of-type').classList.contains(
+        'filter-nav__item--is-active'
+      )
+    ) {
+      $('.lav-step-2 .filter-nav__item:last-of-type').click();
     }
 
-    if (!$('.lav-step-2 .how-choose') && false) {
-      $('.lav-step-2  .configurator__step-heading').insertAdjacentHTML(
-        'afterend',
-        `
+    // Step 2
+    async function updateCards() {
+      console.log('UpdateCards');
+      $('.lav-step-3').classList.remove('active');
+      $('.lav-step-4').classList.remove('active');
+
+      if (!$('.step2__title')) {
+        $('.lav-step-2 .filter-nav').insertAdjacentHTML(
+          'beforebegin',
+          '<div class="step2__title">Select your colour</div>'
+        );
+      }
+
+      if (!$('.lav-step-2 .how-choose') && false) {
+        $('.lav-step-2  .configurator__step-heading').insertAdjacentHTML(
+          'afterend',
+          `
       <div class='how-choose'>
         <div class='how-choose__head'>
           <div class='how-choose__title'>How to choose colour and fabric?</div>
@@ -837,382 +838,384 @@ function initSteps(target) {
         </div>
       </div>
     `
-      );
-
-      visibilityEvent($('.lav-step-2 .how-choose'), () => {
-        pushDataLayer(
-          'exp_pdp_clarity_vis_blockout_drop',
-          'Dropdown',
-          'Visibility',
-          "PDP. Choose 'Blockout' colour & fabric"
         );
-      });
 
-      $('.lav-step-2 .how-choose').addEventListener('click', function () {
-        pushDataLayer(
-          'exp_pdp_clarity_drop_blockout_colou',
-          'How to choose colour and fabric?',
-          'Dropdown',
-          "PDP. Choose 'Blockout' colour & fabric"
-        );
-        this.classList.toggle('active');
-      });
-    }
+        visibilityEvent($('.lav-step-2 .how-choose'), () => {
+          pushDataLayer(
+            'exp_pdp_clarity_vis_blockout_drop',
+            'Dropdown',
+            'Visibility',
+            "PDP. Choose 'Blockout' colour & fabric"
+          );
+        });
 
-    if ($('.colour-chooser__wrap:not(.lav-colour-handled)')) {
-      visibilityEvent($('.colour-chooser'), () => {
-        pushDataLayer(
-          'exp_pdp_clarity_vis_youcol_icon',
-          'Icone colour',
-          'Visibility',
-          "PDP. Choose 'Blockout' colour & fabric. Select your colour"
-        );
-      });
+        $('.lav-step-2 .how-choose').addEventListener('click', function () {
+          pushDataLayer(
+            'exp_pdp_clarity_drop_blockout_colou',
+            'How to choose colour and fabric?',
+            'Dropdown',
+            "PDP. Choose 'Blockout' colour & fabric"
+          );
+          this.classList.toggle('active');
+        });
+      }
 
-      $('.colour-chooser__wrap').classList.add('lav-colour-handled');
+      if ($('.colour-chooser__wrap:not(.lav-colour-handled)')) {
+        visibilityEvent($('.colour-chooser'), () => {
+          pushDataLayer(
+            'exp_pdp_clarity_vis_youcol_icon',
+            'Icone colour',
+            'Visibility',
+            "PDP. Choose 'Blockout' colour & fabric. Select your colour"
+          );
+        });
 
-      $('.colour-chooser__wrap').addEventListener('click', function (e) {
-        if (!e.target.closest('li') || e.target.closest('li.active')) return;
+        $('.colour-chooser__wrap').classList.add('lav-colour-handled');
 
-        pushDataLayer(
-          'exp_pdp_clarity_icon_youcol_sele',
-          `${$('.sr-only', e.target.closest('li')).textContent} - Select`,
-          'Icone',
-          "PDP. Choose 'Blockout' colour & fabric. Select your colour"
-        );
-        $('.colour-chooser__wrap li.active')?.classList.remove('active');
-        e.target.closest('li').classList.add('active');
-        updateCards();
-      });
+        $('.colour-chooser__wrap').addEventListener('click', function (e) {
+          if (!e.target.closest('li') || e.target.closest('li.active')) return;
 
-      visibilityEvent($('.lav-step-2 .card-grid'), () => {
-        pushDataLayer(
-          'exp_pdp_clarity_vis_youfabr_icon',
-          'Icone fabrics',
-          'Visibility',
-          "PDP. Choose 'Blockout' colour & fabric. Stark white "
-        );
-      });
-    }
+          pushDataLayer(
+            'exp_pdp_clarity_icon_youcol_sele',
+            `${$('.sr-only', e.target.closest('li')).textContent} - Select`,
+            'Icone',
+            "PDP. Choose 'Blockout' colour & fabric. Select your colour"
+          );
+          $('.colour-chooser__wrap li.active')?.classList.remove('active');
+          e.target.closest('li').classList.add('active');
+          updateCards();
+        });
 
-    $$('.lav-step-2 .customiser-card').forEach((card) => {
-      card.addEventListener('click', function () {
-        pushDataLayer(
-          'exp_pdp_clarity_icon_youfabr_sele',
-          `${$('.lav-card__title', card).textContent} - Select`,
-          'Icone',
-          "PDP. Choose 'Blockout' colour & fabric. Stark white fabrics"
-        );
-        $('.lav-step-3').classList.add('active');
-        $('.lav-step.current')?.classList.remove('current');
-        $('.lav-step-3').classList.add('current');
-        if ($('.lav-step-3 .input.has-error')) {
-          $('.lav-step-4').classList.remove('active');
+        visibilityEvent($('.lav-step-2 .card-grid'), () => {
+          pushDataLayer(
+            'exp_pdp_clarity_vis_youfabr_icon',
+            'Icone fabrics',
+            'Visibility',
+            "PDP. Choose 'Blockout' colour & fabric. Stark white "
+          );
+        });
+      }
+
+      $$('.lav-step-2 .customiser-card').forEach((card) => {
+        card.addEventListener('click', function () {
+          pushDataLayer(
+            'exp_pdp_clarity_icon_youfabr_sele',
+            `${$('.lav-card__title', card).textContent} - Select`,
+            'Icone',
+            "PDP. Choose 'Blockout' colour & fabric. Stark white fabrics"
+          );
+          $('.lav-step-3').classList.add('active');
           $('.lav-step.current')?.classList.remove('current');
           $('.lav-step-3').classList.add('current');
-        } else {
-          $('.lav-step-4').classList.add('active');
-          $('.lav-step.current')?.classList.remove('current');
-          $('.lav-step-4').classList.add('current');
+          if ($('.lav-step-3 .input.has-error')) {
+            $('.lav-step-4').classList.remove('active');
+            $('.lav-step.current')?.classList.remove('current');
+            $('.lav-step-3').classList.add('current');
+          } else {
+            $('.lav-step-4').classList.add('active');
+            $('.lav-step.current')?.classList.remove('current');
+            $('.lav-step-4').classList.add('current');
+          }
+        });
+
+        const title = card.querySelector('.customiser-card__title').innerText;
+        const price = card.querySelector(
+          '.customiser-card__subtitle'
+        ).innerText;
+        let caption = '100% Polyester';
+        let stars = 4;
+
+        const acrylyc = [
+          'Linesque BOBlanco',
+          'Linesque BOAlmond',
+          'Linesque BOSoba',
+          'Linesque BOVine',
+          'Linesque BODove',
+          'Linesque BORaffia',
+          'Linesque BOFig',
+          'Linesque BOFossil',
+          'Linesque BOFleece',
+          'Linesque BOAspen',
+          'Linesque BOBreeze',
+          'Linesque BODenim',
+        ];
+
+        const finish = [
+          'DominoIvory',
+          'DominoWhite',
+          'DominoNatural',
+          'DominoLava',
+          'DominoStone',
+          'DominoSteel',
+          'DominoMidnight',
+        ];
+
+        const pvc = [
+          'One ScreenIce',
+          'One ScreenWhite',
+          'Solar ViewWhite',
+          'DakotaQuartz',
+          'Solar ViewAlabaster',
+          'Solar ViewBone / Off White',
+          'Solar ViewCotton',
+          'Solar ViewOff White',
+          'One ScreenSand',
+          'Solar ViewTaupe',
+          'DakotaMarble',
+          'One ScreenGrey',
+          'Solar ViewGrey',
+          'DakotaOre',
+          'One ScreenDune',
+          'One ScreenLinen/ Bronze',
+          'One ScreenWallaby',
+          'Solar ViewBlack/ Copper',
+          'Solar ViewBronze / Charcoal',
+          'Solar ViewPlatinum',
+          'DakotaGranite',
+          'One ScreenGunmetal',
+          'One ScreenMercury',
+          'One ScreenSilver/ Black',
+          'Solar ViewCharcoal',
+          'DakotaFlint',
+          'One ScreenBlack',
+          'One ScreenCharcoal',
+          'Solar ViewBlack',
+          'DakotaCoal',
+        ];
+
+        const threeStars = [
+          'Metro LFIce Grey LF',
+          'Balmoral LFWhite LF',
+          'Jersey LFOpal LF',
+          'Serengetti LFPolar LF',
+          'Sanctuary LFPlaster LF',
+          'Metro LFDove/White LF',
+          'Linesque LFLily',
+          'Linesque LFOatcake',
+          'Linesque LFWicker',
+          'Jersey LFStone LF',
+          'Serengetti LFLlama LF',
+          'Sanctuary LFMarble LF',
+          'Balmoral LFPearl LF',
+          'Metro LFEcru LF',
+          'Metro LFNougat LF',
+          'Balmoral LFBirch LF',
+          'Jersey LFRender LF',
+          'Serengetti LFOnyx LF',
+          'Serengetti LFOwl LF',
+          'Metro LFQuill LF',
+          'Linesque LFHazel',
+          'Linesque LFOwl',
+          'Linesque LFTrellis',
+          'Balmoral LFDove LF',
+          'Balmoral LFConcrete LF',
+          'Balmoral LFPutty LF',
+          'Serengetti LFAlbatross LF',
+          'Serengetti LFEland LF',
+          'Serengetti LFHyrax LF',
+          'Sanctuary LFMineral LF',
+          'Sanctuary LFSuede LF',
+          'Linesque LFChestnut',
+          'Linesque LFGranite',
+          'Balmoral LFBournville LF',
+          'Balmoral LFPyrite LF',
+          'Jersey LFOrganic LF',
+          'Jersey LFTimber LF',
+          'Serengetti LFAntelope LF',
+          'Serengetti LFCaribou LF',
+          'Serengetti LFChamois LF',
+          'Linesque LFWinter',
+          'Linesque LFDelta',
+          'Balmoral LFSteel LF',
+          'Balmoral LFPlatinum LF',
+          'Balmoral LFChrome LF',
+          'Balmoral LFArmour LF',
+          'Jersey LFSteel LF',
+          'Serengetti LFJackal LF',
+          'Sanctuary LFBaltic LF',
+          'Balmoral LFJet LF',
+          'Jersey LFPavement LF',
+          'Serengetti LFMamba LF',
+          'Serengetti LFPanther LF',
+          'Sanctuary LFLava LF',
+          'Linesque LFStonewash',
+          'Linesque LFLevi',
+          'Sanctuary LFCeramic LF',
+          'MaviIce',
+          'AllusionGhost',
+          'AllusionMist',
+          'MaviPorcelain',
+          'CentennialGhost',
+          'MaviOpal',
+          'CentennialPowder',
+          'MortonIce',
+          'MortonBlanc',
+          'AlexandraBlanc',
+          'JillibyIce',
+          'BuranoTalc',
+          'BuranoIvory',
+          'BuranoVanilla',
+          'AudianceSwan',
+          'AudianceNatural',
+          'AudianceLimestone',
+          'AllusionSnow',
+          'Laconia AirSwan',
+          'AllusionPearl',
+          'AesopParchment',
+          'AesopMist',
+          'MaviDusk',
+          'MaviDune',
+          'CentennialBiscuit',
+          'MortonWheat',
+          'AlexandraSmoke',
+          'JillibyFlax',
+          'AllusionMarzipan',
+          'AllusionRattan',
+          'Laconia AirLinen',
+          'AesopQuartz',
+          'MaviPewter',
+          'MaviAsh',
+          'CentennialHaze',
+          'CentennialAsh/Grey',
+          'AlexandraTitanium',
+          'AlexandraSilver',
+          'JillibyGrey Sand',
+          'BuranoFrost',
+          'AudianceDove',
+          'AudianceSilver',
+          'AllusionLimestone',
+          'Laconia AirCloud',
+          'AllusionLinen',
+          'Laconia AirLichen',
+          'AllusionSilver',
+          'AllusionMushroom',
+          'AllusionNougat',
+          'AesopAtlantic',
+          'MaviCinder',
+          'CentennialCharcoal',
+          'AlexandraSalt and Pepper',
+          'JillibySmoke',
+          'BuranoStorm',
+          'BuranoDenim',
+          'AudianceDice',
+          'AllusionLiquorice',
+          'AesopSmoke',
+          'AlexandraGravel',
+          'CentennialStone',
+          'MortonGranite',
+          'AesopFlint',
+          'Laconia AirBallet',
+        ];
+
+        const fiveStars = [
+          'AsproEcru',
+          'AsproIce',
+          'BelmoreChalk',
+          'AnsteyBlanc',
+          'MavroLint',
+          'AsproDove',
+          'BelmoreFrost',
+          'BelmoreAlmond',
+          'AnsteyLatte',
+          'AnsteyStone',
+          'MavroPearl',
+          'BelmoreAsphalt',
+          'AnsteyPewter',
+          'AnsteySilver',
+          'MavroCharcoal',
+          'AsproOnyx',
+          'MavroEbony',
+          'BelmoreBluestone',
+        ];
+
+        const polyester86 = [
+          'AureliusSnow',
+          'AureliusEcru',
+          'AureliusLinen',
+          'AureliusFog',
+          'AureliusSky',
+          'AureliusShale',
+          'AureliusBlush',
+        ];
+
+        const linen54 = [
+          'AllusionGhost',
+          'AllusionMist',
+          'AllusionPearl',
+          'AllusionSnow',
+          'AllusionMarzipan',
+          'AllusionRattan',
+          'AllusionLimestone',
+          'AllusionLinen',
+          'AllusionSilver',
+          'AllusionMushroom',
+          'AllusionNougat',
+          'AllusionLiquorice',
+        ];
+
+        const linen50 = [
+          'AesopParchment',
+          'AesopMist',
+          'BuranoTalc',
+          'BuranoIvory',
+          'BuranoVanilla',
+          'AesopQuartz',
+          'BuranoFrost',
+          'AesopAtlantic',
+          'BuranoStorm',
+          'BuranoDenim',
+          'AesopSmoke',
+          'AesopFlint',
+        ];
+
+        const linen100 = [
+          'Laconia AirSwan',
+          'Laconia AirLinen',
+          'Laconia AirCloud',
+          'Laconia AirLichen',
+          'Laconia AirBallet',
+        ];
+
+        if (acrylyc.includes(title)) {
+          caption = '100% Polyester with Acrylic Coating';
         }
-      });
 
-      const title = card.querySelector('.customiser-card__title').innerText;
-      const price = card.querySelector('.customiser-card__subtitle').innerText;
-      let caption = '100% Polyester';
-      let stars = 4;
+        if (pvc.includes(title)) {
+          caption = '30% Polyester, 70% PVC';
+        }
 
-      const acrylyc = [
-        'Linesque BOBlanco',
-        'Linesque BOAlmond',
-        'Linesque BOSoba',
-        'Linesque BOVine',
-        'Linesque BODove',
-        'Linesque BORaffia',
-        'Linesque BOFig',
-        'Linesque BOFossil',
-        'Linesque BOFleece',
-        'Linesque BOAspen',
-        'Linesque BOBreeze',
-        'Linesque BODenim',
-      ];
+        if (linen54.includes(title)) {
+          caption = '54% Linen, 32% Cotton, 14% Polyester';
+        }
 
-      const finish = [
-        'DominoIvory',
-        'DominoWhite',
-        'DominoNatural',
-        'DominoLava',
-        'DominoStone',
-        'DominoSteel',
-        'DominoMidnight',
-      ];
+        if (linen50.includes(title)) {
+          caption = '50% Linen, 50% Polyester';
+        }
 
-      const pvc = [
-        'One ScreenIce',
-        'One ScreenWhite',
-        'Solar ViewWhite',
-        'DakotaQuartz',
-        'Solar ViewAlabaster',
-        'Solar ViewBone / Off White',
-        'Solar ViewCotton',
-        'Solar ViewOff White',
-        'One ScreenSand',
-        'Solar ViewTaupe',
-        'DakotaMarble',
-        'One ScreenGrey',
-        'Solar ViewGrey',
-        'DakotaOre',
-        'One ScreenDune',
-        'One ScreenLinen/ Bronze',
-        'One ScreenWallaby',
-        'Solar ViewBlack/ Copper',
-        'Solar ViewBronze / Charcoal',
-        'Solar ViewPlatinum',
-        'DakotaGranite',
-        'One ScreenGunmetal',
-        'One ScreenMercury',
-        'One ScreenSilver/ Black',
-        'Solar ViewCharcoal',
-        'DakotaFlint',
-        'One ScreenBlack',
-        'One ScreenCharcoal',
-        'Solar ViewBlack',
-        'DakotaCoal',
-      ];
+        if (linen100.includes(title)) {
+          caption = '100% Linen';
+        }
 
-      const threeStars = [
-        'Metro LFIce Grey LF',
-        'Balmoral LFWhite LF',
-        'Jersey LFOpal LF',
-        'Serengetti LFPolar LF',
-        'Sanctuary LFPlaster LF',
-        'Metro LFDove/White LF',
-        'Linesque LFLily',
-        'Linesque LFOatcake',
-        'Linesque LFWicker',
-        'Jersey LFStone LF',
-        'Serengetti LFLlama LF',
-        'Sanctuary LFMarble LF',
-        'Balmoral LFPearl LF',
-        'Metro LFEcru LF',
-        'Metro LFNougat LF',
-        'Balmoral LFBirch LF',
-        'Jersey LFRender LF',
-        'Serengetti LFOnyx LF',
-        'Serengetti LFOwl LF',
-        'Metro LFQuill LF',
-        'Linesque LFHazel',
-        'Linesque LFOwl',
-        'Linesque LFTrellis',
-        'Balmoral LFDove LF',
-        'Balmoral LFConcrete LF',
-        'Balmoral LFPutty LF',
-        'Serengetti LFAlbatross LF',
-        'Serengetti LFEland LF',
-        'Serengetti LFHyrax LF',
-        'Sanctuary LFMineral LF',
-        'Sanctuary LFSuede LF',
-        'Linesque LFChestnut',
-        'Linesque LFGranite',
-        'Balmoral LFBournville LF',
-        'Balmoral LFPyrite LF',
-        'Jersey LFOrganic LF',
-        'Jersey LFTimber LF',
-        'Serengetti LFAntelope LF',
-        'Serengetti LFCaribou LF',
-        'Serengetti LFChamois LF',
-        'Linesque LFWinter',
-        'Linesque LFDelta',
-        'Balmoral LFSteel LF',
-        'Balmoral LFPlatinum LF',
-        'Balmoral LFChrome LF',
-        'Balmoral LFArmour LF',
-        'Jersey LFSteel LF',
-        'Serengetti LFJackal LF',
-        'Sanctuary LFBaltic LF',
-        'Balmoral LFJet LF',
-        'Jersey LFPavement LF',
-        'Serengetti LFMamba LF',
-        'Serengetti LFPanther LF',
-        'Sanctuary LFLava LF',
-        'Linesque LFStonewash',
-        'Linesque LFLevi',
-        'Sanctuary LFCeramic LF',
-        'MaviIce',
-        'AllusionGhost',
-        'AllusionMist',
-        'MaviPorcelain',
-        'CentennialGhost',
-        'MaviOpal',
-        'CentennialPowder',
-        'MortonIce',
-        'MortonBlanc',
-        'AlexandraBlanc',
-        'JillibyIce',
-        'BuranoTalc',
-        'BuranoIvory',
-        'BuranoVanilla',
-        'AudianceSwan',
-        'AudianceNatural',
-        'AudianceLimestone',
-        'AllusionSnow',
-        'Laconia AirSwan',
-        'AllusionPearl',
-        'AesopParchment',
-        'AesopMist',
-        'MaviDusk',
-        'MaviDune',
-        'CentennialBiscuit',
-        'MortonWheat',
-        'AlexandraSmoke',
-        'JillibyFlax',
-        'AllusionMarzipan',
-        'AllusionRattan',
-        'Laconia AirLinen',
-        'AesopQuartz',
-        'MaviPewter',
-        'MaviAsh',
-        'CentennialHaze',
-        'CentennialAsh/Grey',
-        'AlexandraTitanium',
-        'AlexandraSilver',
-        'JillibyGrey Sand',
-        'BuranoFrost',
-        'AudianceDove',
-        'AudianceSilver',
-        'AllusionLimestone',
-        'Laconia AirCloud',
-        'AllusionLinen',
-        'Laconia AirLichen',
-        'AllusionSilver',
-        'AllusionMushroom',
-        'AllusionNougat',
-        'AesopAtlantic',
-        'MaviCinder',
-        'CentennialCharcoal',
-        'AlexandraSalt and Pepper',
-        'JillibySmoke',
-        'BuranoStorm',
-        'BuranoDenim',
-        'AudianceDice',
-        'AllusionLiquorice',
-        'AesopSmoke',
-        'AlexandraGravel',
-        'CentennialStone',
-        'MortonGranite',
-        'AesopFlint',
-        'Laconia AirBallet',
-      ];
+        if (finish.includes(title)) {
+          caption = '100% Polyester, Acrylic Coated With Silicone Finish';
+          stars = 5;
+        }
 
-      const fiveStars = [
-        'AsproEcru',
-        'AsproIce',
-        'BelmoreChalk',
-        'AnsteyBlanc',
-        'MavroLint',
-        'AsproDove',
-        'BelmoreFrost',
-        'BelmoreAlmond',
-        'AnsteyLatte',
-        'AnsteyStone',
-        'MavroPearl',
-        'BelmoreAsphalt',
-        'AnsteyPewter',
-        'AnsteySilver',
-        'MavroCharcoal',
-        'AsproOnyx',
-        'MavroEbony',
-        'BelmoreBluestone',
-      ];
+        if (polyester86.includes(title)) {
+          caption = '86% Polyester, 14% Cotton';
+        }
 
-      const polyester86 = [
-        'AureliusSnow',
-        'AureliusEcru',
-        'AureliusLinen',
-        'AureliusFog',
-        'AureliusSky',
-        'AureliusShale',
-        'AureliusBlush',
-      ];
+        if (threeStars.includes(title)) {
+          stars = 3;
+        }
 
-      const linen54 = [
-        'AllusionGhost',
-        'AllusionMist',
-        'AllusionPearl',
-        'AllusionSnow',
-        'AllusionMarzipan',
-        'AllusionRattan',
-        'AllusionLimestone',
-        'AllusionLinen',
-        'AllusionSilver',
-        'AllusionMushroom',
-        'AllusionNougat',
-        'AllusionLiquorice',
-      ];
+        if (fiveStars.includes(title)) {
+          stars = 5;
+        }
 
-      const linen50 = [
-        'AesopParchment',
-        'AesopMist',
-        'BuranoTalc',
-        'BuranoIvory',
-        'BuranoVanilla',
-        'AesopQuartz',
-        'BuranoFrost',
-        'AesopAtlantic',
-        'BuranoStorm',
-        'BuranoDenim',
-        'AesopSmoke',
-        'AesopFlint',
-      ];
-
-      const linen100 = [
-        'Laconia AirSwan',
-        'Laconia AirLinen',
-        'Laconia AirCloud',
-        'Laconia AirLichen',
-        'Laconia AirBallet',
-      ];
-
-      if (acrylyc.includes(title)) {
-        caption = '100% Polyester with Acrylic Coating';
-      }
-
-      if (pvc.includes(title)) {
-        caption = '30% Polyester, 70% PVC';
-      }
-
-      if (linen54.includes(title)) {
-        caption = '54% Linen, 32% Cotton, 14% Polyester';
-      }
-
-      if (linen50.includes(title)) {
-        caption = '50% Linen, 50% Polyester';
-      }
-
-      if (linen100.includes(title)) {
-        caption = '100% Linen';
-      }
-
-      if (finish.includes(title)) {
-        caption = '100% Polyester, Acrylic Coated With Silicone Finish';
-        stars = 5;
-      }
-
-      if (polyester86.includes(title)) {
-        caption = '86% Polyester, 14% Cotton';
-      }
-
-      if (threeStars.includes(title)) {
-        stars = 3;
-      }
-
-      if (fiveStars.includes(title)) {
-        stars = 5;
-      }
-
-      card.insertAdjacentHTML(
-        'beforeend',
-        `
+        card.insertAdjacentHTML(
+          'beforeend',
+          `
         <div class="lav-card__info">
           <div class="lav-card__line">
             <div class="lav-card__title">${title}</div>
@@ -1232,46 +1235,46 @@ function initSteps(target) {
           </div>
         </div>
       `
-      );
+        );
 
-      $('.lav-card__info', card);
-    });
+        $('.lav-card__info', card);
+      });
 
-    if (
-      $$('.lav-step-2 .customiser-card').length > 8 &&
-      !$('.lav-toggler') &&
-      !$('.lav-step-2 .card-grid.active')
-    ) {
-      $('.lav-step-2 .card-grid').insertAdjacentHTML(
-        'afterend',
-        `
+      if (
+        $$('.lav-step-2 .customiser-card').length > 8 &&
+        !$('.lav-toggler') &&
+        !$('.lav-step-2 .card-grid.active')
+      ) {
+        $('.lav-step-2 .card-grid').insertAdjacentHTML(
+          'afterend',
+          `
         <div class="lav-toggler">Show more fabrics ${svgObj.chevronDown}</div>
       `
-      );
+        );
 
-      $('.lav-step-2 .lav-toggler').addEventListener('click', function () {
-        this.remove();
-        $('.lav-step-2 .card-grid').classList.add('active');
-      });
+        $('.lav-step-2 .lav-toggler').addEventListener('click', function () {
+          this.remove();
+          $('.lav-step-2 .card-grid').classList.add('active');
+        });
+      }
+
+      $('.lav-step.current')?.classList.remove('current');
+      $('.lav-step-2').classList.add('current');
     }
 
-    $('.lav-step.current')?.classList.remove('current');
-    $('.lav-step-2').classList.add('current');
-  }
+    // Step 3
+    function handleStepThree() {
+      const parent = stepsEl[2];
 
-  // Step 3
-  function handleStepThree() {
-    const parent = stepsEl[2];
-
-    let markup = `
+      let markup = `
       <div class='lav-step-3__descr'>
         <span>Min/max width and drop will vary based on selected fabric range in the previous step.</span>
         <span>*Motorised options available for Blinds  wider than 595mm.</span>
       </div>
     `;
 
-    if ($('.measure-panel__howto', parent)) {
-      markup += `
+      if ($('.measure-panel__howto', parent)) {
+        markup += `
         <div class='lav-choose lav-step-3__choose'>
           <div class='lav-choose__icon'>${svgObj.question}</div>
           <div class='lav-choose__info'>
@@ -1280,231 +1283,231 @@ function initSteps(target) {
           </div>
         </div>
       `;
-    }
+      }
 
-    $('.step-desc', parent).insertAdjacentHTML('beforebegin', markup);
+      $('.step-desc', parent).insertAdjacentHTML('beforebegin', markup);
 
-    visibilityEvent($('.lav-step-3__descr'), () => {
-      pushDataLayer(
-        'exp_pdp_clarity_vis_measur_icon',
-        'Text',
-        'Visibility',
-        'PDP. Measurements'
-      );
-    });
-
-    $('.lav-choose__btn', parent)?.addEventListener('click', function () {
-      pushDataLayer(
-        'exp_pdp_clarity_lin_measur_guid',
-        'Check guide',
-        'Link',
-        'PDP. Measurements. How to measure?'
-      );
-      $('.measure-panel__howto a', parent).click();
-    });
-
-    $$('.lav-step-3 .input input')?.forEach((item) => {
-      item.addEventListener('input', function () {
-        if ($('.lav-step-3 .input.has-error')) {
-          $('.lav-step-4').classList.remove('active');
-          $('.lav-step.current')?.classList.remove('current');
-          $('.lav-step-3').classList.add('current');
-        } else {
-          $('.lav-step-4').classList.add('active');
-          $('.lav-step.current')?.classList.remove('current');
-          $('.lav-step-4').classList.add('current');
-        }
-      });
-    });
-
-    $('#measure-width-blind-0')?.addEventListener('input', function () {});
-  }
-}
-
-function handleSidebar() {
-  $$('.o-sidebar__panel .offset-md-1').forEach((item) => {
-    item.classList.remove('offset-md-1', 'col-md-10');
-    item.classList.add('col-md-12');
-  });
-
-  $('.project').insertAdjacentElement('afterend', $('.accepted-payments'));
-
-  $('.accepted-payments').insertAdjacentHTML(
-    'afterend',
-    `<div class='lav-shipping-return'>Shipping calculator and return details</div>`
-  );
-
-  $('.lav-shipping-return').addEventListener('click', function () {
-    pushDataLayer(
-      'exp_pdp_clarity_lin_stickdet_shipp',
-      'Shipping calculator and return details',
-      'Link',
-      'PDP Sticky Details'
-    );
-    location.href = '/shipping-returns';
-  });
-
-  $$('.features-list [style="flex-direction: column;"]').forEach((item) => {
-    item.closest('li').classList.add('lav-features-handled');
-  });
-  // $('.features-list__attributes').previousElementSibling
-  $('.cart-title__text').insertAdjacentHTML(
-    'beforeend',
-    `<img src='${config.dir}/img/benefits.svg' alt=''>`
-  );
-
-  waitFor(
-    () => $('.features-list__attributes>button'),
-    () => {
-      $('.features-list__attributes>button').click();
-
-      $('.features-list__attributes>button').addEventListener('click', () => {
+      visibilityEvent($('.lav-step-3__descr'), () => {
         pushDataLayer(
-          'exp_pdp_clarity_drop_stickdet_show',
-          'Show selected options',
-          'Dropdown',
-          'PDP Sticky Details'
+          'exp_pdp_clarity_vis_measur_icon',
+          'Text',
+          'Visibility',
+          'PDP. Measurements'
         );
       });
+
+      $('.lav-choose__btn', parent)?.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_pdp_clarity_lin_measur_guid',
+          'Check guide',
+          'Link',
+          'PDP. Measurements. How to measure?'
+        );
+        $('.measure-panel__howto a', parent).click();
+      });
+
+      $$('.lav-step-3 .input input')?.forEach((item) => {
+        item.addEventListener('input', function () {
+          if ($('.lav-step-3 .input.has-error')) {
+            $('.lav-step-4').classList.remove('active');
+            $('.lav-step.current')?.classList.remove('current');
+            $('.lav-step-3').classList.add('current');
+          } else {
+            $('.lav-step-4').classList.add('active');
+            $('.lav-step.current')?.classList.remove('current');
+            $('.lav-step-4').classList.add('current');
+          }
+        });
+      });
+
+      $('#measure-width-blind-0')?.addEventListener('input', function () {});
     }
-  );
+  }
 
-  $('.cart-totals__total dl').insertAdjacentHTML(
-    'beforeend',
-    `<div class="mob-toggler-details mob-open-details">Show details</div>`
-  );
+  function handleSidebar() {
+    $$('.o-sidebar__panel .offset-md-1').forEach((item) => {
+      item.classList.remove('offset-md-1', 'col-md-10');
+      item.classList.add('col-md-12');
+    });
 
-  $('.js-fixed-sidebar-wrap').insertAdjacentHTML(
-    'afterbegin',
-    `
+    $('.project').insertAdjacentElement('afterend', $('.accepted-payments'));
+
+    $('.accepted-payments').insertAdjacentHTML(
+      'afterend',
+      `<div class='lav-shipping-return'>Shipping calculator and return details</div>`
+    );
+
+    $('.lav-shipping-return').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pdp_clarity_lin_stickdet_shipp',
+        'Shipping calculator and return details',
+        'Link',
+        'PDP Sticky Details'
+      );
+      location.href = '/shipping-returns';
+    });
+
+    $$('.features-list [style="flex-direction: column;"]').forEach((item) => {
+      item.closest('li').classList.add('lav-features-handled');
+    });
+    // $('.features-list__attributes').previousElementSibling
+    $('.cart-title__text').insertAdjacentHTML(
+      'beforeend',
+      `<img src='${config.dir}/img/benefits.svg' alt=''>`
+    );
+
+    waitFor(
+      () => $('.features-list__attributes>button'),
+      () => {
+        $('.features-list__attributes>button').click();
+
+        $('.features-list__attributes>button').addEventListener('click', () => {
+          pushDataLayer(
+            'exp_pdp_clarity_drop_stickdet_show',
+            'Show selected options',
+            'Dropdown',
+            'PDP Sticky Details'
+          );
+        });
+      }
+    );
+
+    $('.cart-totals__total dl').insertAdjacentHTML(
+      'beforeend',
+      `<div class="mob-toggler-details mob-open-details">Show details</div>`
+    );
+
+    $('.js-fixed-sidebar-wrap').insertAdjacentHTML(
+      'afterbegin',
+      `
       <div class="mob-close-details__wrap">
         <div class="mob-toggler-details mob-close-details">Hide details</div>
       </div>
     `
-  );
-
-  $('.mob-open-details').addEventListener('click', function () {
-    pushDataLayer(
-      'exp_pdp_clarity_but_rollblin_detai',
-      'Show details',
-      'Button',
-      'PDP. Select Roller Blind type'
-    );
-    $('.js-fixed-sidebar').classList.add('lav-details_active');
-    document.body.classList.add('lav-details__overflow');
-  });
-
-  $('.mob-close-details').addEventListener('click', function () {
-    pushDataLayer(
-      'exp_pdp_clarity_but_stickdet_hide',
-      'Hide details',
-      'Button',
-      'PDP Sticky Details'
-    );
-    $('.js-fixed-sidebar').classList.remove('lav-details_active');
-    document.body.classList.remove('lav-details__overflow');
-  });
-
-  waitFor(
-    () => $('.handheld-action button'),
-    () => {
-      $('.handheld-action button').addEventListener('click', () => {
-        pushDataLayer(
-          'exp_pdp_clarity_sticbut_rollblin_add',
-          'Add to cart',
-          'Sticky button ',
-          'PDP. Choose your perfect Roller Blind!'
-        );
-      });
-    }
-  );
-
-  visibilityEvent($('.o-sidebar__panel-content'), () => {
-    pushDataLayer(
-      'exp_pdp_clarity_vis_stickdet_page',
-      'Page view',
-      'Visibility ',
-      'PDP Sticky Details'
-    );
-  });
-}
-
-// *** Utils *** //
-class Modal {
-  static list = [];
-  constructor(name, html) {
-    if (!$('.lav-modal')) {
-      this.constructor.init();
-    }
-
-    if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists');
-      return;
-    }
-
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = html;
-
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
-
-    this.constructor.list.push(this);
-  }
-
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      "<div class='lav-modal'></div>"
     );
 
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close();
-
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
-      } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
-      }
+    $('.mob-open-details').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pdp_clarity_but_rollblin_detai',
+        'Show details',
+        'Button',
+        'PDP. Select Roller Blind type'
+      );
+      $('.js-fixed-sidebar').classList.add('lav-details_active');
+      document.body.classList.add('lav-details__overflow');
     });
 
-    this.addStyles();
+    $('.mob-close-details').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pdp_clarity_but_stickdet_hide',
+        'Hide details',
+        'Button',
+        'PDP Sticky Details'
+      );
+      $('.js-fixed-sidebar').classList.remove('lav-details_active');
+      document.body.classList.remove('lav-details__overflow');
+    });
+
+    waitFor(
+      () => $('.handheld-action button'),
+      () => {
+        $('.handheld-action button').addEventListener('click', () => {
+          pushDataLayer(
+            'exp_pdp_clarity_sticbut_rollblin_add',
+            'Add to cart',
+            'Sticky button ',
+            'PDP. Choose your perfect Roller Blind!'
+          );
+        });
+      }
+    );
+
+    visibilityEvent($('.o-sidebar__panel-content'), () => {
+      pushDataLayer(
+        'exp_pdp_clarity_vis_stickdet_page',
+        'Page view',
+        'Visibility ',
+        'PDP Sticky Details'
+      );
+    });
   }
 
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
+  // *** Utils *** //
+  class Modal {
+    static list = [];
+    constructor(name, html) {
+      if (!$('.lav-modal')) {
+        this.constructor.init();
+      }
 
-    if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+      if (this.constructor.list.find((item) => item.name === name)) {
+        console.warn('Modal with this name already exists');
+        return;
+      }
+
+      this.el = document.createElement('div');
+      this.el.classList.add('lav-modal__inner', name);
+      this.name = name;
+      this.el.innerHTML = html;
+
+      $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+
+      this.constructor.list.push(this);
     }
 
-    $(modalName).classList.add('active');
+    static init() {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        "<div class='lav-modal'></div>"
+      );
 
-    if (typeof cb === 'function') cb();
+      document.addEventListener('click', (e) => {
+        if (
+          e.target.classList.contains('lav-modal') ||
+          e.target.closest('.lav-modal__close')
+        )
+          this.close();
 
-    setTimeout(() => {
-      $('.lav-modal').classList.add('active');
-    }, 100);
-  }
+        if (e.target.dataset.modal) {
+          this.open(e.target.dataset.modal);
+        } else if (e.target.closest('[data-modal]')) {
+          this.open(e.target.closest('[data-modal]').dataset.modal);
+        }
+      });
 
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+      this.addStyles();
+    }
 
-    $('.lav-modal')?.classList.remove('active');
+    static open(modalName, cb) {
+      document.body.classList.add('lav-modal-open');
 
-    if (typeof cb === 'function') cb();
+      if ($('.lav-modal__inner.active')) {
+        $('.lav-modal__inner.active').classList.remove('active');
+      }
 
-    setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
-  }
+      $(modalName).classList.add('active');
 
-  static addStyles() {
-    const styles = `
+      if (typeof cb === 'function') cb();
+
+      setTimeout(() => {
+        $('.lav-modal').classList.add('active');
+      }, 100);
+    }
+
+    static close(cb) {
+      document.body.classList.remove('lav-modal-open');
+
+      $('.lav-modal')?.classList.remove('active');
+
+      if (typeof cb === 'function') cb();
+
+      setTimeout(() => {
+        $('.lav-modal__inner.active')?.classList.remove('active');
+      }, 400);
+    }
+
+    static addStyles() {
+      const styles = `
       .lav-modal {
         position: fixed;
         z-index: 999;
@@ -1556,255 +1559,256 @@ class Modal {
       }
     `;
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
-  }
-}
-
-// *** HELPERS *** //
-
-// Waiting for loading by condition
-async function waitFor(condition, cb = false, customConfig = {}) {
-  const config = {
-    ms: 500, // repeat each 0.5 second if condition is false
-    limit: 10, // limit in second seconds
-
-    ...customConfig,
-  };
-
-  if (typeof condition === 'function') {
-    if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
+      const stylesEl = document.createElement('style');
+      stylesEl.classList.add('exp-modal');
+      stylesEl.innerHTML = styles;
+      document.head.appendChild(stylesEl);
     }
-
-    return new Promise((resolve) => {
-      let limit = config.limit * 1000;
-      const interval = setInterval(function () {
-        if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
-        }
-        limit -= config.ms;
-      }, config.ms);
-    });
   }
 
-  if (condition.startsWith('.') || condition.startsWith('#')) {
-    if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
-    }
+  // *** HELPERS *** //
 
-    return new Promise((resolve) => {
-      const observer = new MutationObserver((mutations, observer) => {
-        if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
-        }
-      });
+  // Waiting for loading by condition
+  async function waitFor(condition, cb = false, customConfig = {}) {
+    const config = {
+      ms: 500, // repeat each 0.5 second if condition is false
+      limit: 10, // limit in second seconds
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
-  }
-}
-
-// Mutation Observer
-function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
-
-  if (!el) return;
-
-  let observer = new MutationObserver((mutations, observer) => {
-    for (let mutation of mutations) {
-      if (typeof cbAdded === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node, observer);
-        }
-      }
-
-      if (typeof cbRemoved === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node, observer);
-        }
-      }
-    }
-  });
-
-  observer.observe(el, { childList: true, subtree: true });
-
-  return observer;
-}
-
-// Intersection Observer
-function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
-
-  if (!el || typeof cb !== 'function') return;
-
-  const config = {
-    root: null,
-    threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      cb(entry);
-    });
-  }, config);
-
-  observer.observe(el);
-
-  return observer;
-}
-
-function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
-  initIntersection(
-    el,
-    ({ isIntersecting, time }) => {
-      if (isIntersecting) {
-        entryTime = time;
-      } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1);
-        cb(diffTime + 's');
-        entryTime = 0;
-      }
-    },
-    { threshold: viewElementProcent }
-  );
-}
-
-function visibilityEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
-  let interval;
-
-  initIntersection(
-    el,
-    ({ isIntersecting, time }) => {
-      if (isIntersecting) {
-        interval = setInterval(() => {
-          entryTime += 500;
-          if (entryTime >= 3000) {
-            clearInterval(interval);
-            entryTime = 0;
-            cb();
-          }
-        }, 500);
-      } else {
-        clearInterval(interval);
-        entryTime = 0;
-      }
-    },
-    { threshold: viewElementProcent }
-  );
-}
-
-// Artificial delay
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-// Check if element in viewport
-function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
-
-  if (!el) return false;
-
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-}
-
-function addStyles(css, customClass) {
-  const stylesEl = document.createElement('style');
-  if (customClass) {
-    stylesEl.classList.add(customClass);
-  }
-  stylesEl.innerHTML = css;
-  document.head.appendChild(stylesEl);
-}
-
-// Shordcode for selectors
-function $(selector, context = document) {
-  return context.querySelector(selector);
-}
-function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
-
-  return toSimpleArray ? Array.from(arr) : arr;
-}
-
-// GA 4 events
-function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  try {
-    const event = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
+      ...customConfig,
     };
 
-    console.debug('** GA4 Event **', event);
+    if (typeof condition === 'function') {
+      if (condition()) {
+        if (typeof cb === 'function') cb();
+        return;
+      }
 
-    if (!config.debug) {
-      dataLayer.push(event);
+      return new Promise((resolve) => {
+        let limit = config.limit * 1000;
+        const interval = setInterval(function () {
+          if (condition() || limit <= 0) {
+            clearInterval(interval);
+            if (limit > 0 && typeof cb === 'function') cb();
+            resolve();
+          }
+          limit -= config.ms;
+        }, config.ms);
+      });
     }
-  } catch (e) {
-    console.log('** GA4 Error **', e);
+
+    if (condition.startsWith('.') || condition.startsWith('#')) {
+      if ($(condition)) {
+        if (typeof cb === 'function') cb($(condition));
+        return;
+      }
+
+      return new Promise((resolve) => {
+        const observer = new MutationObserver((mutations, observer) => {
+          if ($(condition)) {
+            if (typeof cb === 'function') cb($(condition));
+            observer.disconnect();
+            resolve();
+          }
+        });
+
+        observer.observe(document, { childList: true, subtree: true });
+      });
+    }
   }
-}
 
-// Slider
-function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+  // Mutation Observer
+  function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
 
-  let sliderScript = document.createElement('script');
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
-}
+    if (!el) return;
 
-// *** Exp BG process *** //
+    let observer = new MutationObserver((mutations, observer) => {
+      for (let mutation of mutations) {
+        if (typeof cbAdded === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            cbAdded(node, observer);
+          }
+        }
 
-function getSvgObj() {
-  return {
-    question: `
+        if (typeof cbRemoved === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            cbRemoved(node, observer);
+          }
+        }
+      }
+    });
+
+    observer.observe(el, { childList: true, subtree: true });
+
+    return observer;
+  }
+
+  // Intersection Observer
+  function initIntersection(observeEl, cb, customConfig) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+
+    if (!el || typeof cb !== 'function') return;
+
+    const config = {
+      root: null,
+      threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
+      ...customConfig,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        cb(entry);
+      });
+    }, config);
+
+    observer.observe(el);
+
+    return observer;
+  }
+
+  function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
+    let entryTime = 0;
+    initIntersection(
+      el,
+      ({ isIntersecting, time }) => {
+        if (isIntersecting) {
+          entryTime = time;
+        } else if (entryTime) {
+          const diffTime = +((time - entryTime) / 1000).toFixed(1);
+          cb(diffTime + 's');
+          entryTime = 0;
+        }
+      },
+      { threshold: viewElementProcent }
+    );
+  }
+
+  function visibilityEvent(el, cb, viewElementProcent = 0.1) {
+    let entryTime = 0;
+    let interval;
+
+    initIntersection(
+      el,
+      ({ isIntersecting, time }) => {
+        if (isIntersecting) {
+          interval = setInterval(() => {
+            entryTime += 500;
+            if (entryTime >= 3000) {
+              clearInterval(interval);
+              entryTime = 0;
+              cb();
+            }
+          }, 500);
+        } else {
+          clearInterval(interval);
+          entryTime = 0;
+        }
+      },
+      { threshold: viewElementProcent }
+    );
+  }
+
+  // Artificial delay
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  // Check if element in viewport
+  function isElementInViewport(selector) {
+    const el = typeof selector === 'string' ? $(selector) : selector;
+
+    if (!el) return false;
+
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  function addStyles(css, customClass) {
+    const stylesEl = document.createElement('style');
+    if (customClass) {
+      stylesEl.classList.add(customClass);
+    }
+    stylesEl.innerHTML = css;
+    document.head.appendChild(stylesEl);
+  }
+
+  // Shordcode for selectors
+  function $(selector, context = document) {
+    return context.querySelector(selector);
+  }
+  function $$(selector, context = document, toSimpleArray = false) {
+    const arr = context.querySelectorAll(selector);
+
+    return toSimpleArray ? Array.from(arr) : arr;
+  }
+
+  // GA 4 events
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+    try {
+      const event = {
+        event: 'event-to-ga4',
+        event_name: name,
+        event_desc: desc,
+        event_type: type,
+        event_loc: loc,
+      };
+
+      console.debug('** GA4 Event **', event);
+
+      if (!config.debug) {
+        dataLayer.push(event);
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e);
+    }
+  }
+
+  // Slider
+  function connectSplide() {
+    const sliderStyles = document.createElement('link');
+    sliderStyles.rel = 'stylesheet';
+    sliderStyles.href =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
+    document.head.appendChild(sliderStyles);
+
+    let sliderScript = document.createElement('script');
+    sliderScript.src =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
+    document.head.appendChild(sliderScript);
+  }
+
+  // *** Exp BG process *** //
+
+  function getSvgObj() {
+    return {
+      question: `
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.0003 29.3334C23.3337 29.3334 29.3337 23.3334 29.3337 16.0001C29.3337 8.66675 23.3337 2.66675 16.0003 2.66675C8.66699 2.66675 2.66699 8.66675 2.66699 16.0001C2.66699 23.3334 8.66699 29.3334 16.0003 29.3334Z" stroke="#E83B68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.9997 17.3334V17.0224C15.9997 16.015 16.6744 15.4816 17.3491 15.052C18.0078 14.6372 18.6663 14.1038 18.6663 13.1261C18.6663 11.7631 17.4776 10.6667 15.9997 10.6667C14.5217 10.6667 13.333 11.7631 13.333 13.1261" stroke="#E83B68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.9883 20.6667H16.0123" stroke="#E83B68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     `,
-    chevronDown: `
+      chevronDown: `
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="#444C5F" stroke-width="2" stroke-linecap="round"/></svg>
     `,
-  };
-}
+    };
+  }
 
-//Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
-  waitFor(
-    () => typeof clarity == 'function',
-    () => {
-      clarity(...config.clarity);
-    }
-  );
-}
+  //Clarity
+  if (
+    !config.debug &&
+    Array.isArray(config.clarity) &&
+    config.clarity.length === 3
+  ) {
+    waitFor(
+      () => typeof clarity == 'function',
+      () => {
+        clarity(...config.clarity);
+      }
+    );
+  }
+})();
