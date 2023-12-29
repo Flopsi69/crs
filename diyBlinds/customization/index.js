@@ -671,7 +671,6 @@
 
   function initExp() {
     console.debug('** InitExp **');
-    // TODO make current step with black dot
 
     const target = location.href.includes('diy-designer-curtains/order')
       ? 'curtain'
@@ -680,6 +679,12 @@
       : false;
 
     if (!target) return false;
+
+    for (let link of document.querySelectorAll('a')) {
+      if (link.target !== '_blank' && link.href.includes('/')) {
+        link.target = '_blank';
+      }
+    }
 
     addHeader(target);
     initSteps(target);
