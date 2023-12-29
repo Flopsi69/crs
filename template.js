@@ -218,19 +218,19 @@ function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
 
   if (!el) return;
 
-  let observer = new MutationObserver((mutations) => {
+  let observer = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node);
+          cbAdded(node, observer);
         }
       }
 
       if (typeof cbRemoved === 'function') {
         for (let node of mutation.addedNodes) {
           if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node);
+          cbRemoved(node, observer);
         }
       }
     }
