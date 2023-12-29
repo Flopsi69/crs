@@ -439,7 +439,7 @@
       height: auto!important;
       bottom: 0!important;
     }
-    .o-sidebar--scrollable .o-sidebar__panel-wrap:not([style*='position'] {
+    .o-sidebar--scrollable .o-sidebar__panel-wrap:not([style*='position']) {
       top: 110px!important;
       bottom: 0!important;
       height: auto!important;
