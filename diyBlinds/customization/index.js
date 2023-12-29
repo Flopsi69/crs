@@ -439,8 +439,11 @@
       height: auto!important;
       bottom: 0!important;
     }
-    .o-sidebar--scrollable .o-sidebar__panel-wrap {
-
+    .o-sidebar--scrollable .o-sidebar__panel-wrap:not([style*='position'] {
+      top: 110px!important;
+      bottom: 0!important;
+      height: auto!important;
+      position: fixed!important;
     }
   }
   @media(max-width: 1280px) {
@@ -743,6 +746,9 @@
         stepsEl[step].classList.add('current');
       }
     }
+
+    $('.lav-step-1 .configurator__step-heading h3 span + span').innerText =
+      target === 'blinds' ? 'Select Roller Blind type' : 'Select Curtain type';
 
     initMutation($('.o-sidebar--scrollable'), (node) => {
       if (
