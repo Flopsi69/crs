@@ -2017,6 +2017,9 @@
         background: #fff;
         padding: 30px 0;
       }
+      .interest_brief .interest__footer {
+        padding-top: 0;
+      }
       .interest__container {
         max-width:  var(--page-container-width);
         margin: auto;
@@ -2034,13 +2037,22 @@
       .interest__body {
         padding: 2.5rem 0;
       }
+      .interest_brief .interest__body {
+        display: none;
+      }
       .ineterest__body-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-bottom: 20px;
       }
-      @media(max-width: 992px) {
-        .interest .video-list {
-          grid-template-columns: 1fr;
-        }
+      .interest__visibility {
+        margin-left: auto;
+      }
+      .interest:not(.interest_brief) .interest__head .interest__visibility {
+        display: none;
+      }
+      @media(max-width: 1270px) {
         .interest__title {
           font-size: 24px;
         }
@@ -2052,6 +2064,11 @@
           justify-content: center;
           width: 100%;
           box-sizing: border-box;
+        }
+      }
+      @media(max-width: 992px) {
+        .interest .video-list {
+          grid-template-columns: 1fr;
         }
         .interest__head-container {
           flex-wrap: wrap;
@@ -2067,6 +2084,12 @@
         }
         .interest__footer {
           padding: 24px 0;
+        }
+        .interest__visibility {
+          margin-left: 0;
+          padding: 10px 20px;
+          font-size: 14px;
+          line-height: 22px;
         }
         #block-samsara-maintenancemessage {
           margin: 0 auto;
@@ -2085,6 +2108,9 @@
         <div class='interest__head'>
           <div class='interest__container interest__head-container'>
             <div class='interest__title'>Based On Your Interests</div>
+            <div class='interest__visibility interest__btn'>
+              Show recommended
+            </div>
             <div class='interest__change interest__btn' data-modal='.personlaize'>
               <img src='${config.dir}/img/icon-edit.svg' alt=''>
               Change preferences
@@ -2094,7 +2120,12 @@
 
         <div class='interest__body'>
           <div class='interest__container'>
-            <div class='ineterest__body-head'></div>
+            <div class='ineterest__body-head'>
+              <span></span>
+              <div class='interest__visibility interest__btn'>
+                Hide recommended
+              </div>
+            </div>
             <div class='video-list'></div>
           </div>
         </div>
@@ -2143,6 +2174,32 @@
       );
     });
 
+    if (localStorage.getItem('isInterestsShow') === 'show') {
+      $('.interest').classList.add('interest_brief');
+    }
+
+    $('.interest__head .interest__visibility').addEventListener('click', () => {
+      $('.interest').classList.remove('interest_brief');
+      localStorage.removeItem('isInterestsShow');
+      pushDataLayer(
+        'exp_person_cont_but_authbasinter_show',
+        'Show recommended',
+        'Button',
+        'Yoga-classes. Authorised user. Based On Your Interests'
+      );
+    });
+
+    $('.interest__body .interest__visibility').addEventListener('click', () => {
+      $('.interest').classList.add('interest_brief');
+      localStorage.setItem('isInterestsShow', 'show');
+      pushDataLayer(
+        'exp_person_cont_but_authbasinter_hide',
+        'Hide recommended',
+        'Button',
+        'Yoga-classes. Authorised user. Based On Your Interests'
+      );
+    });
+
     waitFor(
       () => $('.personlaize__save'),
       () => {
@@ -2163,7 +2220,13 @@
       $('.video-list').innerHTML = '';
       const videos = await getMetadata();
 
-      $('.ineterest__body-head').textContent = `${videos.length} Classes`;
+      if ($('.ineterest__body-head span')) {
+        $(
+          '.ineterest__body-head span'
+        ).textContent = `${videos.length} Classes`;
+      } else {
+        $('.ineterest__body-head').textContent = `${videos.length} Classes`;
+      }
 
       for (const video of getRandomUniqueItems(videos, 3)) {
         $('.video-list').insertAdjacentHTML('beforeend', getVideoCard(video));
