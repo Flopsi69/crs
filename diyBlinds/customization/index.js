@@ -282,6 +282,7 @@
   }
   .lav-step-2 .card-grid li {
     padding: 0;
+    min-width: 0;
     max-width: 100%;
   }
   .lav-step-2 .customiser-card {
@@ -301,6 +302,7 @@
   .lav-card__info {
     margin-left: 16px;
     flex-grow: 1;
+    min-width: 0;
   }
   .lav-card__line {
     display: flex;
@@ -614,6 +616,9 @@
       line-height: 18px;
       white-space: nowrap;
     }
+    .lav-card__line:nth-child(2) .lav-card__caption {
+      white-space: normal;
+    }
     .lav-card__line {
       gap: 10px;
     }
@@ -692,11 +697,13 @@
   }
 
   function addHeader(target) {
+    const titleText =
+      target === 'blinds'
+        ? 'Choose your perfect Roller Blinds!'
+        : 'Create your curtains with the help of our customisation tool&nbsp;below.';
     let headerEl = `
     <div class='lav-header'>
-      <div class='lav-header__title'>Choose your perfect ${
-        target === 'blinds' ? 'Roller Blind' : 'Curtain'
-      }!</div>
+      <div class='lav-header__title'>${titleText}</div>
       <div class='lav-header__caption'>Create your unique ${
         target === 'blinds' ? 'Blinds' : 'Curtains'
       } with the help of our customization widget</div>
