@@ -700,7 +700,7 @@
     const titleText =
       target === 'blinds'
         ? 'Choose your perfect Roller Blinds!'
-        : 'Create your curtains with the help of our customisation tool&nbsp;below.';
+        : 'Create your curtains with the help of our customisation tool&nbsp;below';
     let headerEl = `
     <div class='lav-header'>
       <div class='lav-header__title'>${titleText}</div>
