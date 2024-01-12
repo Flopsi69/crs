@@ -697,16 +697,20 @@
   }
 
   function addHeader(target) {
-    const titleText =
-      target === 'blinds'
-        ? 'Choose your perfect Roller Blinds!'
-        : 'Create your curtains with the help of our customisation tool&nbsp;below';
+    // const titleText =
+    // target === 'blinds'
+    //   ? 'Choose your perfect Roller Blinds!'
+    //   : 'Create your curtains with the help of our customisation tool&nbsp;below';
+    const titleText = `Choose your perfect ${
+      target === 'blinds' ? 'Roller Blind' : 'Curtain'
+    }!`;
+    const captionText = `Create your ${
+      target === 'blinds' ? 'blinds' : 'curtains'
+    } with the help of our customisation tool below`;
     let headerEl = `
     <div class='lav-header'>
       <div class='lav-header__title'>${titleText}</div>
-      <div class='lav-header__caption'>Create your unique ${
-        target === 'blinds' ? 'Blinds' : 'Curtains'
-      } with the help of our customization widget</div>
+      <div class='lav-header__caption'>${captionText}</div>
     </div>
   `;
 
