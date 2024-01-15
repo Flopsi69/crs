@@ -430,7 +430,7 @@
     display: none;
   }
   @media(min-width: 1281px) {
-    .o-sidebar__panel-wrap.js-fixed-sidebar-wrap[style*='top: auto; bottom: auto;'] {
+    body:not(.lav-scrolled) .o-sidebar__panel-wrap.js-fixed-sidebar-wrap[style*='top: auto; bottom: auto;'] {
       top: 110px!important;
       bottom: 0!important;
       height: auto!important;
@@ -676,6 +676,14 @@
 
   function initExp() {
     console.debug('** InitExp **');
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 270) {
+        $('body').classList.add('lav-scrolled');
+      } else {
+        $('body').classList.remove('lav-scrolled');
+      }
+    });
 
     const target = location.href.includes('diy-designer-curtains/order')
       ? 'curtain'
