@@ -436,6 +436,11 @@
       height: auto!important;
       position: fixed!important;
     }
+    body.lav-scrolled .o-sidebar__panel-wrap.js-fixed-sidebar-wrap[style*='top: auto; bottom: auto;'] {
+      position: absolute!important;
+      top: auto!important;
+      bottom: 0px!important;
+    }
     .o-sidebar__panel-wrap.js-fixed-sidebar-wrap[style*='top: 0px;'] {
       top: 110px!important;
       height: auto!important;
