@@ -10,7 +10,7 @@
     dir: 'https://flopsi69.github.io/crs/treblehealth/survey',
     // dir: 'http://127.0.0.1:5500/treblehealth/survey',
     clarity: ['set', 'exp_new_surv_flow', 'variant_1'],
-    debug: true,
+    debug: false,
   };
 
   // const orig = console.log;
@@ -608,13 +608,7 @@
   }
 
   [data-elementor-type="wp-page"] {
-  }
-
-  [data-elementor-type="wp-page"] section {
     display: none!important;
-  }
-  [data-elementor-type="wp-page"] #crs-form{
-    display: block!important;
   }
 
   @media(min-width: 768px) {
