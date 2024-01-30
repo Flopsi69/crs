@@ -627,6 +627,7 @@
     overflow: hidden;
     left: -9999%;
   }
+  
   @media(min-width: 768px) {
     .lav-quiz__control_fixed .lav-quiz__next {
       // position: fixed;
