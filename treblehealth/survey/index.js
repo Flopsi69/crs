@@ -627,7 +627,7 @@
     overflow: hidden;
     left: -9999%;
   }
-  
+
   @media(min-width: 768px) {
     .lav-quiz__control_fixed .lav-quiz__next {
       // position: fixed;
@@ -2401,6 +2401,13 @@
     $('#crs-form textarea').value = answers;
 
     $('#gform_submit_button_19').click();
+
+    setTimeout(() => {
+      $('.lav-quiz__wrap_submitting')?.classList.remove(
+        'lav-quiz__wrap_submitting'
+      );
+      $('.lav-body_submitting')?.classList.remove('lav-body_submitting');
+    }, 3000);
   }
 
   // *** Utils *** //
