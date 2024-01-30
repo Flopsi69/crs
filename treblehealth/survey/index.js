@@ -616,9 +616,6 @@
     pointer-events: none;
     visibility:hidden;
     position: absolute;
-    height: 0px!important;
-    overflow: hidden;
-    left: -9999%;
   }
 
   .lav-body_submitting [data-elementor-type="wp-page"] {
@@ -626,9 +623,10 @@
     pointer-events: none;
     visibility: hidden;
     position: absolute;
+    height: 0px!important;
+    overflow: hidden;
+    left: -9999%;
   }
-  #crs-form
-
   @media(min-width: 768px) {
     .lav-quiz__control_fixed .lav-quiz__next {
       // position: fixed;
