@@ -661,8 +661,11 @@
       height: 100%;
       flex-grow: 1;
     }
-    .lav-intro__descr {
+    .lav-intro__list + .lav-intro__descr {
       margin-top: 0;
+    }
+    .lav-title + .lav-intro__descr {
+      max-width: 320px;
     }
     .lav-quiz {
       align-items: flex-start;
@@ -2004,7 +2007,7 @@
       );
     });
 
-    visibilityEvent($('.lav-google-auth'), () => {
+    visibilityEvent($('.lav-mobile'), () => {
       pushDataLayer(
         'exp_new_surv_flow_vis_almost_page',
         'Page view ',
@@ -2346,17 +2349,16 @@
             locale: 'en',
             text: 'continue_with',
             width: '480',
+            click_listener: () => {
+              pushDataLayer(
+                'exp_new_surv_flow_but_results_googl',
+                'Sign up with Google',
+                'Button',
+                'Your results of assessment are ready!'
+              );
+            },
           } // customization attributes
         );
-
-        $('.lav-google-auth').addEventListener('click', () => {
-          pushDataLayer(
-            'exp_new_surv_flow_but_results_googl',
-            'Sign up with Google',
-            'Button',
-            'Your results of assessment are ready!'
-          );
-        });
       }
     );
     // google.accounts.id.renderButton(
