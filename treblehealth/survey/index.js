@@ -611,6 +611,24 @@
     display: none!important;
   }
 
+  .lav-body_submitting #crs-form {
+    display: block!important;
+    pointer-events: none;
+    visibility:hidden;
+    position: absolute;
+    height: 0px!important;
+    overflow: hidden;
+    left: -9999%;
+  }
+
+  .lav-body_submitting [data-elementor-type="wp-page"] {
+    display: block!important;
+    pointer-events: none;
+    visibility: hidden;
+    position: absolute;
+  }
+  #crs-form
+
   @media(min-width: 768px) {
     .lav-quiz__control_fixed .lav-quiz__next {
       // position: fixed;
@@ -638,11 +656,14 @@
     .lav-quiz {
       height: 100%;
     }
-    .lav-step {
+    .lav-step, .lav-intro {
       flex-flow: column;
       display: flex;
       height: 100%;
       flex-grow: 1;
+    }
+    .lav-intro__descr {
+      margin-top: 0;
     }
     .lav-quiz {
       align-items: flex-start;
@@ -710,6 +731,7 @@
     }
     .lav-variants {
       margin-top: 20px;
+      margin-bottom: 14px;
     }
     .lav-variant {
       min-height: 56px;
@@ -815,7 +837,7 @@
             Find Your Tinnitus Solution
           </div>
           <div class="lav-descr lav-intro__descr">
-            Treble Health’s <strong>Tinnitus Quiz</strong> is your chance to:
+            Treble Health’s <strong>Tinnitus Quiz</strong> is&nbsp;your&nbsp;chance&nbsp;to:
           </div>
 
           <div class='lav-intro__list'>
@@ -835,7 +857,7 @@
 
         <div class="lav-step" data-step='1' data-required>
           <div class="lav-title">
-            What is your primary reason for seeking a tinnitus relief solution?
+            What is your primary reason&nbsp;for&nbsp;seeking a tinnitus&nbsp;relief&nbsp;solution?
           </div>
 
           <div class="lav-descr fw-500">
@@ -1207,7 +1229,7 @@
 
         <div class="lav-step" data-step='7' data-single data-target='8'>
           <div class="lav-title">
-            How ready are you to treat your tinnitus today?
+            How ready are you to treat your tinnitus&nbsp;today?
           </div>
 
           <div class="lav-variants lav-variants_rate">
@@ -1266,7 +1288,7 @@
 
         <div class="lav-step" data-step='8'>
           <div class="lav-title">
-            Have you tried any techniques to reduce your tinnitus?
+            How does tinnitus cause anxiety or stress in your life?
           </div>
 
           <div class="lav-descr fw-500">Choose all that apply.</div>
@@ -2351,6 +2373,7 @@
 
   function submitResults() {
     $('.lav-quiz__wrap').classList.add('lav-quiz__wrap_submitting');
+    $('body').classList.add('lav-body_submitting');
     $('.lav-mobile__btn').innerText = 'Saving...';
 
     const email = $('#lav-email').value;
