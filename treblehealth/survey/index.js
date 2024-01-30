@@ -1290,7 +1290,7 @@
 
         <div class="lav-step" data-step='8'>
           <div class="lav-title">
-            How does tinnitus cause anxiety or stress in your life?
+            Have you tried any techniques to reduce your tinnitus?
           </div>
 
           <div class="lav-descr fw-500">Choose all that apply.</div>
