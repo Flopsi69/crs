@@ -3,6 +3,7 @@ await waitFor(() => document.head && document.body, false, { ms: 100 });
 
 // Config for Experiment
 const config = {
+  // dir: 'http://127.0.0.1:5500/<dir>/<project>',
   dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
   clarity: ['set', '', 'variant_1'],
   debug: true,
@@ -361,4 +362,11 @@ if (
       clarity(...config.clarity);
     }
   );
+}
+
+// Svg objects
+function getSvg(name) {
+  const svgObj = {};
+
+  return svgObj[name];
 }
