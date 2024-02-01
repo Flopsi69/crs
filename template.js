@@ -1,5 +1,4 @@
 console.debug('*** Experiment started ***');
-await waitFor(() => document.head && document.body, false, { ms: 100 });
 
 // Config for Experiment
 const config = {
@@ -20,12 +19,15 @@ const styles = ``;
 const stylesEl = document.createElement('style');
 stylesEl.classList.add('exp-styles');
 stylesEl.innerHTML = styles;
-document.head.appendChild(stylesEl);
 
 // *** Logic *** //
 initExp();
 
-function initExp() {
+async function initExp() {
+  await waitFor(() => document.head && document.body, false, { ms: 100 });
+
+  document.head.appendChild(stylesEl);
+
   console.debug('** InitExp **');
 }
 
