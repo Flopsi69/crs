@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***');
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantsupply/pdp_cart',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/pdp_cart',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'exp_pdp_car_imp', 'variant_1'],
   debug: true,
 };
 
@@ -831,6 +831,7 @@ function initPdp() {
     $('.product-view-sku-wrap')?.insertAdjacentHTML('afterbegin', markup);
 
     $('.lav-rating span').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_car_imp_link_pdp_review', 'Review', 'Link', 'PDP');
       jQuery('html, body').animate(
         {
           scrollTop:
@@ -904,6 +905,15 @@ function initPdp() {
 
     $('header.page-header').insertAdjacentHTML('afterend', markup);
 
+    visibilityEvent('.lav-cart__wrap', () => {
+      pushDataLayer(
+        'exp_pdp_car_imp_vis_pdphead_block',
+        'Block view',
+        'Visibility',
+        'PDP. First screen. Header block'
+      );
+    });
+
     for (const item of cart.items) {
       console.log('product', item, href);
       addProduct(item, href);
@@ -918,6 +928,12 @@ function initPdp() {
     $('.lav-total span').innerHTML = $('.lav-total span span').innerText;
 
     $('.lav-summary__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_car_imp_but_pdphead_viecart',
+        'View cart',
+        'Button',
+        'PDP. First screen. Header block'
+      );
       $('.action.showcart').click();
     });
 
@@ -1007,6 +1023,57 @@ function initPdp() {
     `;
 
     $('#block-related-heading', parent).insertAdjacentHTML('afterend', tip);
+
+    visibilityEvent(parent, () => {
+      pushDataLayer(
+        'exp_pdp_car_imp_vis_pdpgreat_block',
+        'Block view',
+        'Visibility',
+        'PDP. Block. Works great together with.'
+      );
+    });
+
+    for (const el of $$('.tocart', parent)) {
+      el.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_car_imp_but_pdpgreat_addcar',
+          'Add to Cart',
+          'Button',
+          'PDP. Block. Works great together with.'
+        );
+      });
+    }
+
+    for (const el of $$('.product-item-link', parent)) {
+      el.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_car_imp_icon_pdpgreat_prod',
+          'Product',
+          'Icone',
+          'PDP. Block. Works great together with.'
+        );
+      });
+    }
+
+    if (window.innerWidth > 768) {
+      $('.lav-tip').addEventListener('mouseenter', () => {
+        pushDataLayer(
+          'exp_pdp_car_imp_tooltip_pdpgreat_click',
+          'Hover',
+          'Tooltip',
+          'PDP. Block. Works great together with.'
+        );
+      });
+    }
+
+    $('.lav-tip').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_car_imp_tooltip_pdpgreat_click',
+        'Click',
+        'Tooltip',
+        'PDP. Block. Works great together with.'
+      );
+    });
   }
 
   function handleSimilar() {
@@ -1035,6 +1102,14 @@ function initPdp() {
     for (const anchor of $$('.lav-quick__item')) {
       anchor.addEventListener('click', () => {
         const target = anchor.dataset.target;
+        const text = anchor.innerText;
+
+        pushDataLayer(
+          'exp_pdp_car_imp_but_pdpundgre_item',
+          `${text} - Choose navigation`,
+          'Button',
+          'PDP. Under. Block Works great together with '
+        );
 
         jQuery('html, body').animate(
           {
@@ -1080,6 +1155,12 @@ function initPdp() {
     });
 
     $('.lav-sticky__btn').addEventListener('click', function () {
+      pushDataLayer(
+        'exp_pdp_car_imp_sticbut_pdp_addcar',
+        'Add to Cart',
+        'Sticky button',
+        'PDP'
+      );
       $('#qty').value = $('.lav-sticky__amount').value;
       this.innerText = 'Adding...';
       this.classList.add('disabled');
@@ -1130,6 +1211,63 @@ function initCart() {
     () =>
       $('#shopping-cart-table .item-info .product-item-name')?.innerText.trim(),
     handleProducts
+  );
+
+  waitFor(
+    () => $('.totals-wrapper'),
+    () => {
+      visibilityEvent('.totals-wrapper', () => {
+        pushDataLayer(
+          'exp_pdp_car_imp_vis_shopcarpric_block',
+          'Block view',
+          'Visibility',
+          'Shopping Cart. Price detail'
+        );
+      });
+    }
+  );
+
+  waitFor(
+    () => $('[data-opt="spark.checkout.button"] .qscustomcart'),
+    () => {
+      $('[data-opt="spark.checkout.button"] .qscustomcart').addEventListener(
+        'click',
+        (e) => {
+          if (
+            e.target.closest('a') &&
+            e.target.closest('div')?.innerText.includes('As low as')
+          ) {
+            pushDataLayer(
+              'exp_pdp_car_imp_but_shopcarpric_aslow',
+              'As low as',
+              'Button',
+              'Shopping Cart. Price detail'
+            );
+          } else {
+            pushDataLayer(
+              'exp_pdp_car_imp_but_shopcarpric_aplly',
+              'Aplly now',
+              'Button',
+              'Shopping Cart. Price detail'
+            );
+          }
+        }
+      );
+    }
+  );
+
+  waitFor(
+    () => $('[data-tid="bolt-checkout-button"]'),
+    () => {
+      $('[data-tid="bolt-checkout-button"]').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_car_imp_but_shopcarpric_cred',
+          'CREDIT OR DEBIT CARD',
+          'Button',
+          'Shopping Cart. Price detail'
+        );
+      });
+    }
   );
 
   function handleProducts() {
@@ -1185,6 +1323,15 @@ function initCart() {
           });
 
           pr.insertAdjacentElement('afterend', warrantyEl);
+
+          visibilityEvent(warrantyEl, () => {
+            pushDataLayer(
+              'exp_pdp_car_imp_vis_shopcarwarr_elem',
+              'Element view',
+              'Visibility',
+              'Shopping Cart. Warranty'
+            );
+          });
         }
       );
 
@@ -1219,9 +1366,35 @@ function initCart() {
             pr.insertAdjacentElement('afterend', target);
           }
 
+          if (window.innerWidth > 768) {
+            $('.lav-tip', target).addEventListener('mouseenter', () => {
+              pushDataLayer(
+                'exp_pdp_car_imp_tooltip_shopcar_click',
+                'Hover',
+                'Tooltip',
+                'Shopping Cart'
+              );
+            });
+          }
+
+          $('.lav-tip', target).addEventListener('click', () => {
+            pushDataLayer(
+              'exp_pdp_car_imp_tooltip_shopcar_click',
+              'Click',
+              'Tooltip',
+              'Shopping Cart'
+            );
+          });
+
           for (const addToCart of $$('.tocart', target)) {
             addToCart.addEventListener('click', (e) => {
               e.preventDefault();
+              pushDataLayer(
+                'exp_pdp_car_imp_but_shopcar_addcar',
+                'Add to Cart',
+                'Button',
+                'Shopping Cart'
+              );
               const form = addToCart.closest('form');
               const id = $('[name="product"]', form).value;
               const key = $('.main.column > [name="form_key"]').value;
@@ -1234,6 +1407,17 @@ function initCart() {
               // console.log(addToCart.closest('form'));
               // $('.tocart', target).click();
               // addToCart.closest('form').submit();
+            });
+          }
+
+          for (const addToCart of $$('.product-item-link', target)) {
+            addToCart.addEventListener('click', (e) => {
+              pushDataLayer(
+                'exp_pdp_car_imp_icon_shopcar_prod',
+                'Product',
+                'Icone',
+                'Shopping Cart'
+              );
             });
           }
 
@@ -1264,6 +1448,15 @@ function initCart() {
                     items: 3,
                   },
                 },
+              });
+
+              visibilityEvent(target, () => {
+                pushDataLayer(
+                  'exp_pdp_car_imp_vis_shopcar_block',
+                  'Block view',
+                  'Visibility',
+                  'Shopping Cart'
+                );
               });
             }
           );
@@ -1660,6 +1853,27 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
   );
 }
 
+function visibilityEvent(el, cb, customConfig = {}) {
+  const config = {
+    threshold: 0.3,
+    ...customConfig,
+  };
+  initIntersection(
+    el,
+    ({ isIntersecting, target }) => {
+      // console.log(target, isIntersecting);
+      if (isIntersecting) {
+        setTimeout(() => {
+          if (isElementInViewport(target)) {
+            cb();
+          }
+        }, 3000);
+      }
+    },
+    config
+  );
+}
+
 // Artificial delay
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -1672,12 +1886,12 @@ function isElementInViewport(selector) {
   if (!el) return false;
 
   const rect = el.getBoundingClientRect();
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.top + rect.height * 0.3 < windowHeight &&
+    rect.bottom > rect.height * 0.3
   );
 }
 
@@ -1696,10 +1910,10 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
   try {
     const event = {
       event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc,
+      event_name: name.trim(),
+      event_desc: desc.trim(),
+      event_type: type.trim(),
+      event_loc: loc.trim(),
     };
 
     console.debug('** GA4 Event **', event);
