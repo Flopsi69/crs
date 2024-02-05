@@ -1262,7 +1262,7 @@ function initCart() {
       $('[data-tid="bolt-checkout-button"]').addEventListener('click', () => {
         pushDataLayer(
           'exp_pdp_car_imp_but_shopcarpric_cred',
-          'CREDIT OR DEBIT CARD',
+          'Checkout',
           'Button',
           'Shopping Cart. Price detail'
         );
