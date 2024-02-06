@@ -559,7 +559,7 @@ const stylesCart = /* css */ `
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
   }
   .product-related-wrap .owl-carousel-products .owl-nav button.owl-prev {
-    display: none;
+    // display: none;
   }
   .product-related-wrap .product-slider .product-slider-content {
     border-radius: 0;
@@ -1430,7 +1430,7 @@ function initCart() {
                 items: 3,
                 dots: false,
                 nav: true,
-                loop: true,
+                // loop: true,
                 responsive: {
                   0: {
                     items: 1,
