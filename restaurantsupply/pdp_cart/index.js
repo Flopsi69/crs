@@ -460,28 +460,28 @@ const stylesCart = /* css */ `
     margin-top: 16px;
   }
   .totals-wrapper .checkout-methods-items ul[data-methods-list] li:not(.active) {
-    display: block;
+    // display: block;
   }
   .totals-wrapper .checkout-methods-items .select-wrapper {
-    display: none;
+    // display: none;
   }
   .totals-wrapper .cart-discount {
-    top: 0;
-    order: -1;
-    margin-top: 16px;
+    // top: 0;
+    // order: -1;
+    // margin-top: 16px;
   }
   .cart-container .cart-summary {
-    display: flex;
-    flex-flow: column;
+    // display: flex;
+    // flex-flow: column;
   }
   .totals-wrapper .cart-discount .coupon {
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
   .totals-wrapper .checkout-methods-items .pay-with-wrapper {
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
   [data-opt="spark.checkout.button"] {
-    margin-bottom: 0;
+    // margin-bottom: 0;
   }
   .cart-info {
     margin-top: 20px;
