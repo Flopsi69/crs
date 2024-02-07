@@ -977,7 +977,7 @@
               </svg>
             </div>
             <div class="lav-variant" data-point='3'>
-              Mild
+              Slight
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
                 <rect x="10" y="24" width="6" height="14" rx="1" fill="#4622DA"/>
@@ -987,7 +987,7 @@
               </svg>
             </div>
             <div class="lav-variant" data-point='6'>
-              Moderate
+              Intermediate
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
                 <rect x="10" y="24" width="6" height="14" rx="1" fill="#4622DA"/>
@@ -997,7 +997,7 @@
               </svg>
             </div>
             <div class="lav-variant" data-point='9'>
-              Serious
+              Intense
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
                 <rect x="10" y="24" width="6" height="14" rx="1" fill="#4622DA"/>
@@ -1007,7 +1007,7 @@
               </svg>
             </div>
             <div class="lav-variant" data-point='12'>
-              Severe
+              Extremely bothersome
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
                 <rect x="10" y="24" width="6" height="14" rx="1" fill="#4622DA"/>
