@@ -50,7 +50,7 @@
     max-width: 100%;
   }
   .lav-quiz__wrap_loader .lav-loader {
-    max-width: 1230px;
+    max-width: 630px;
     padding: 0 15px;
     margin-left: auto;
     margin-right: auto;
@@ -75,6 +75,9 @@
     line-height: 0;
     cursor: pointer;
     transition: 0.15s;
+  }
+  .lav-header__back[style="opacity: 0;"] {
+    pointer-events: none;
   }
   .lav-quiz__wrap_loader .lav-header__back {
     transition: 0s;
@@ -165,9 +168,9 @@
     font-size: 16px;
   }
   .page .lav-btn_disabled {
-    filter: grayscale(1);
-    opacity: 0.9;
     pointer-events: none;
+    background: var(--purple-100, #EEEBFB);
+    border-color: var(--purple-100, #EEEBFB);
   }
   .lav-intro {
     max-width: 500px;
@@ -382,22 +385,17 @@
     position: relative;
     line-height: 0;
     margin-top: 16px;
-    cursor: pointer;
     display: block;
     text-decoration: none;
   }
   .lav-find__video-btn {
     position: absolute;
+    display: none;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     max-width: 48px;
     transition: 0.2s;
-  }
-  @media(hover:hover) {
-    .lav-find__video:hover .lav-find__video-btn {
-      transform: translate(-50%, -50%) scale(1.1);
-    }
   }
   .lav-quote__sub {
     color: #2E168D;
@@ -417,47 +415,76 @@
   }
 
   .lav-loader {
-    margin: 48px 0;
+    margin: 32px 0 48px;
   }
   .lav-loader:not(.active) {
     display: none;
   }
   .lav-preloader {
-    color: #2E168D;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px; 
+    background-color: #EEEBFB;
+    border-radius: 10px;
+    box-shadow: 0px 10px 35px -6px #00000020;
+    padding: 45px;
   }
   .lav-preloader__img {
     line-height: 0;
+    margin-top: 50px;
   }
-  .lav-preloader__img img {
-    animation: spin 2.5s linear infinite;
+  .lav-preloader__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 40px;
+    color: #2E168D;
+    margin: auto;
+    position: relative;
+  }
+  .lav-preloader__descr {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 40px;
+    color: #2C168D;
+    max-width: 535px;
+    position: relative;
+    margin: 50px auto 0;
   }
   .lav-preloader__value {
-    font-size: 32px;
+    background: #B5A6F2;
+    border-radius: 10px;
+    max-width: 465px;
+    width: 100%;
+    margin: auto;
+    position: relative;
+    height: 60px;
+    margin-top: 20px;
+  }
+  .lav-preloader__value-num {
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-weight: 700;
-    line-height: 36px;
-    margin-top: 32px;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .lav-preloader__fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #2E168D;
+    border-radius: 10px;
   }
   .lav-preloader__caption {
-    margin-top: 8px;
-  }
-  @keyframes spin { 
-    from { 
-        transform: rotate(0deg); 
-    } to { 
-        transform: rotate(360deg); 
-    }
-  }
-  .lav-trustpilot{
-    max-width: 1200px;
-    margin-top: 110px;
-  }
-  .lav-trustpilot__desk {
-  }
-  .lav-trustpilot__mob {
-    display: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 40px;
+    color: #2C168D;
+    margin-top: 20px;
   }
 
   .lav-result:not(.active) {
@@ -755,15 +782,26 @@
       margin-top: 12px;
     }
     .lav-loader {
-      margin-top: 32px;
-      margin-bottom: 40px;
+      margin-top: 24px;
+      margin-bottom: 30px;
     }
-    .lav-preloader__value {
-      font-size: 24px;
-      line-height: 32px;
+    .lav-preloader {
+      padding: 30px 10px;
     }
-    .lav-trustpilot {
-      margin-top: 50px;
+    .lav-preloader__title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    .lav-preloader__img {
+      margin-top: 30px;
+    }
+    .lav-preloader__descr {
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 30px;
+    }
+    .lav-preloader__caption {
+      line-height: 1;
     }
     .lav-trustpilot__desk {
       display: none;
@@ -772,11 +810,13 @@
       display: block;
     }
     .lav-quiz__wrap_loader .lav-loader {
-      padding: 0 24px;
+      padding: 0 15px;
     }
     .lav-quiz__wrap_forms .lav-result {
       margin: 32px 0 12px;
       height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
     }
     .lav-login {
       margin-bottom: 32px;
@@ -849,11 +889,11 @@
           </div>
 
           <div class="lav-descr lav-intro__descr">
-          Ready for relief? Let's get started.
+            Ready for relief? Let's get started.
           </div>
           
           <div class="lav-quiz__control">
-            <button class="lav-quiz__next lav-btn" data-target='1'>Next</button>
+            <button class="lav-quiz__next lav-btn" data-target='1'>Continue</button>
           </div>
         </div>
 
@@ -1006,7 +1046,7 @@
 
         <div class="lav-step lav-say" data-step='i1'>
           <div class="lav-title lav-say__title">
-            Many people say, “Tinnitus&nbsp;is&nbsp;treatable”.
+            Join Those Who Have Found&nbsp;Relief from Tinnitus
           </div>
 
           <div class="lav-plate lav-say__plate text-center">
@@ -1015,7 +1055,7 @@
             </div>
             <div class="lav-plate__value">82%</div>
             <div class="lav-plate__descr">
-              of  TrebleHealth patients showed clinically significant improvements in their tinnitus within six months*
+              of TrebleHealth patients showed clinically significant improvements in their tinnitus within six months*
             </div>
           </div>
 
@@ -1036,7 +1076,7 @@
 
           <div class="lav-variants lav-variants_emoji">
             <div class="lav-variant" data-point='0'>
-              <img src="${config.dir}/img/smile0.svg" /> Does not affect
+              <img src="${config.dir}/img/smile0.svg" /> Does not affect me
             </div>
             <div class="lav-variant" data-point='1'>
               <img src="${config.dir}/img/smile2.svg" /> Slightly
@@ -1060,7 +1100,7 @@
 
           <div class="lav-variants lav-variants_emoji">
             <div class="lav-variant" data-point='0'>
-              <img src="${config.dir}/img/smile1.svg" /> Does not affect
+              <img src="${config.dir}/img/smile1.svg" /> Does not affect me
             </div>
             <div class="lav-variant" data-point='1'>
               <img src="${config.dir}/img/smile2.svg" /> Slightly
@@ -1180,14 +1220,14 @@
               Randy <span>lowered his tinnitus and got his life back</span> working with Treble Health over a <span>three-month</span> time period.
             </div>
 
-            <a href='https://www.youtube.com/watch?v=PaJhaIUSSfQ' target='_blank' class="lav-find__video">
+            <div class="lav-find__video">
               <img class="lav-find__video-img" src="${
                 config.dir
               }/img/video-preview.png" alt="">
               <img class="lav-find__video-btn" src="${
                 config.dir
               }/img/video-preview-btn.png" alt="">
-            </a>
+            </div>
           </div>
 
           <div class="lav-plate lav-quote lav-easy__plate">
@@ -1212,7 +1252,7 @@
 
           <div class="lav-variants lav-variants_emoji">
             <div class="lav-variant" data-point='0'>
-              <img src="${config.dir}/img/smile1.svg" /> Does not affect
+              <img src="${config.dir}/img/smile1.svg" /> Does not affect me
             </div>
             <div class="lav-variant" data-point='1'>
               <img src="${config.dir}/img/smile2.svg" /> Slightly negatively
@@ -1310,23 +1350,15 @@
             </div>
             <div class="lav-variant" data-point='0'>
               <span class="lav-variant__checkbox"></span>
-              Tinnitus maskers
-            </div>
-            <div class="lav-variant" data-point='0'>
-              <span class="lav-variant__checkbox"></span>
               Cognitive Behavioural Therapy (CBT)
             </div>
             <div class="lav-variant" data-point='0'>
               <span class="lav-variant__checkbox"></span>
-              Meditation
-            </div>
-            <div class="lav-variant" data-point='0'>
-              <span class="lav-variant__checkbox"></span>
-              Tinnitus Retraining Therapy (TRT)
-            </div>
-            <div class="lav-variant" data-point='0'>
-              <span class="lav-variant__checkbox"></span>
               Other
+            </div>
+            <div class="lav-variant" data-point='0'>
+              <span class="lav-variant__checkbox"></span>
+              No, I haven’t tried anything
             </div>
             <textarea class='lav-area' placeholder='Your text here'></textarea>
           </div>
@@ -1340,18 +1372,18 @@
 
       <div class='lav-loader'>
         <div class='lav-preloader text-center'>
-          <div class='lav-preloader__img'>
-            <img src='${config.dir}/img/preloader.svg' alt=''>
+          <div class='lav-preloader__title'>
+            Find <b>twice as much</b> relief with Treble Health vs. trying on your own
           </div>
-          <div class='lav-preloader__value'>0%</div>
+          <div class='lav-preloader__img'>
+            <img src="/wp-content/uploads/2023/03/Group-122.svg" alt="">
+          </div>
+          <div class='lav-preloader__descr'>Based on a study over 12 weeks of active <br/>Treble Health patients.</div>
           <div class='lav-preloader__caption'>Analyzing Responses...</div>
-        </div>
-
-        <div class="trustpilot-widget lav-trustpilot lav-trustpilot__desk" data-locale="en-US" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="6397ccb1f1b97c8d18a77a5d" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5" data-review-languages="en" data-font-family="Open Sans">
-            <a href="https://www.trustpilot.com/review/treblehealth.com" target="_blank" rel="noopener">Trustpilot</a>
-        </div>
-        <div class="trustpilot-widget lav-trustpilot lav-trustpilot__mob" data-locale="en-US" data-template-id="539ad0ffdec7e10e686debd7" data-businessunit-id="6397ccb1f1b97c8d18a77a5d" data-style-height="320px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5" data-review-languages="en" data-font-family="Open Sans">
-            <a href="https://www.trustpilot.com/review/treblehealth.com" target="_blank" rel="noopener">Trustpilot</a>
+          <div class='lav-preloader__value'>
+            <span class='lav-preloader__fill' style='width: 100%'></span>
+            <span class='lav-preloader__value-num'>0%</span>
+          </div>
         </div>
       </div>
 
@@ -1404,10 +1436,10 @@
             </div>
           </div>
 
-          <button class="lav-mobile__btn lav-btn">See My Results</button>
+          <button class="lav-mobile__btn lav-btn lav-btn_disabled">See My Results</button>
 
           <div class="lav-link lav-mobile__link text-center">
-            <span>No, I don’t want the free offers</span>
+            <span>No, I don’t want the free offer</span>
           </div>
 
           <div class='lav-mobile__caption'>
@@ -1507,11 +1539,11 @@
         }
 
         if (targetStep === 'finish') {
-          const trustpilot = document.createElement('script');
-          trustpilot.src =
-            '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          trustpilot.async = true;
-          document.body.appendChild(trustpilot);
+          // const trustpilot = document.createElement('script');
+          // trustpilot.src =
+          //   '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
+          // trustpilot.async = true;
+          // document.body.appendChild(trustpilot);
           saveQuizResult();
           initGoogleAuth();
           initLoader();
@@ -2134,7 +2166,12 @@
     $('.lav-loader').classList.add('active');
 
     jQuery('#lav-phone')
-      .mask('(999) 999-9999')
+      .mask('(999) 999-9999', {
+        completed: function () {
+          console.log('completed');
+          $('.lav-mobile__btn').classList.remove('lav-btn_disabled');
+        },
+      })
       .bind('keypress', function (e) {
         if (e.which == 13) {
           jQuery(this).blur();
@@ -2160,8 +2197,8 @@
       if (progress >= 47) text = 'Calculating Tinnitus Quiz Result...';
       if (progress >= 75) text = 'Preparing Results...';
 
-      // $('.lav-preloader__value').style.width = progress + '%';
-      $('.lav-preloader__value').innerText = progress * 1 + '%';
+      $('.lav-preloader__fill').style.width = progress + '%';
+      $('.lav-preloader__value-num').innerText = progress * 1 + '%';
       $('.lav-preloader__caption').innerText = text;
     }
   }
@@ -2239,6 +2276,26 @@
       );
     });
 
+    $('#lav-phone').addEventListener('keyup', () => {
+      console.log('keyup');
+      const val = $('#lav-phone').value;
+      if (val.includes('_') || !val) {
+        $('.lav-mobile__btn').classList.add('lav-btn_disabled');
+      } else {
+        $('.lav-mobile__btn').classList.remove('lav-btn_disabled');
+      }
+    });
+
+    $('#lav-phone').addEventListener('blur', () => {
+      console.log('blur');
+      const val = $('#lav-phone').value;
+      if (val.includes('_') || !val) {
+        $('.lav-mobile__btn').classList.add('lav-btn_disabled');
+      } else {
+        $('.lav-mobile__btn').classList.remove('lav-btn_disabled');
+      }
+    });
+
     $('.lav-login__btn').addEventListener('click', () => {
       if ($('.lav-login__btn').classList.contains('lav-btn_disabled'))
         return false;
@@ -2288,6 +2345,12 @@
         'Button',
         'Almost Done!'
       );
+
+      if (!$('#lav-phone').value) {
+        $('#lav-phone').focus();
+        $('.lav-mobile__btn').classList.add('lav-btn_disabled');
+        return false;
+      }
 
       submitResults();
     });
@@ -2375,7 +2438,6 @@
   function submitResults() {
     $('.lav-quiz__wrap').classList.add('lav-quiz__wrap_submitting');
     $('body').classList.add('lav-body_submitting');
-    $('.lav-mobile__btn').innerText = 'Saving...';
 
     const email = $('#lav-email').value;
     const name = $('#lav-name').value;
