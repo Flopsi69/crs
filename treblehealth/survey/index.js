@@ -7,8 +7,8 @@
 
   // Config for Experiment
   const config = {
-    dir: 'https://flopsi69.github.io/crs/treblehealth/survey',
-    // dir: 'http://127.0.0.1:5500/treblehealth/survey',
+    // dir: 'https://flopsi69.github.io/crs/treblehealth/survey',
+    dir: 'http://127.0.0.1:5500/treblehealth/survey',
     clarity: ['set', 'exp_new_surv_flow', 'variant_1'],
     debug: false,
   };
@@ -210,6 +210,9 @@
   .lav-intro__img {
     text-align: center;
     line-height: 0;
+  }
+  .lav-intro__img img {
+    max-width: 225px;
   }
   .fw-500 {
     font-weight: 500;
@@ -674,6 +677,9 @@
     .lav-intro .lav-quiz__control {
       // margin-top: 16px;
     }
+    .lav-intro__img img {
+      max-width: 216px;
+    }
     .lav-quiz__wrap {
       height: 100%;
       display: flex;
@@ -873,7 +879,7 @@
       <div class="lav-quiz">
         <div class="lav-intro" data-step='0'>
           <div class="lav-intro__img">
-            <img src="${config.dir}/img/intro.svg" alt="">
+            <img src="${config.dir}/img/intro.png" alt="">
           </div>
           <div class="lav-title lav-intro__title">
             Find Your Tinnitus Solution
