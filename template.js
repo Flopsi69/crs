@@ -231,7 +231,7 @@ function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
       }
 
       if (typeof cbRemoved === 'function') {
-        for (let node of mutation.addedNodes) {
+        for (let node of mutation.removedNodes) {
           if (!(node instanceof HTMLElement)) continue;
           cbRemoved(node, observer);
         }
@@ -284,6 +284,27 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
   );
 }
 
+function visibilityEvent(el, cb, customConfig = {}) {
+  const config = {
+    threshold: 0.3,
+    ...customConfig,
+  };
+  initIntersection(
+    el,
+    ({ isIntersecting, target }) => {
+      // console.log(target, isIntersecting);
+      if (isIntersecting) {
+        setTimeout(() => {
+          if (isElementInViewport(target)) {
+            cb();
+          }
+        }, 3000);
+      }
+    },
+    config
+  );
+}
+
 // Artificial delay
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -296,13 +317,20 @@ function isElementInViewport(selector) {
   if (!el) return false;
 
   const rect = el.getBoundingClientRect();
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.top + rect.height * 0.3 < windowHeight &&
+    rect.bottom > rect.height * 0.3
   );
+  // return (
+  //   rect.top >= 0 &&
+  //   rect.left >= 0 &&
+  //   rect.bottom <=
+  //     (window.innerHeight || document.documentElement.clientHeight) &&
+  //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  // );
 }
 
 // Shordcode for selectors
