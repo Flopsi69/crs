@@ -1551,7 +1551,10 @@
           initGoogleAuth();
           initLoader();
           setTimeout(() => {
-            window.scrollTo(0, 0);
+            $('.lav-preloader').scrollIntoView({
+              block: 'end',
+              behavior: 'smooth',
+            });
           }, 50);
           return false;
         }
