@@ -7,8 +7,8 @@
 
   // Config for Experiment
   const config = {
-    // dir: 'https://flopsi69.github.io/crs/treblehealth/survey',
-    dir: 'http://127.0.0.1:5500/treblehealth/survey',
+    dir: 'https://flopsi69.github.io/crs/treblehealth/survey',
+    // dir: 'http://127.0.0.1:5500/treblehealth/survey',
     clarity: ['set', 'exp_new_surv_flow', 'variant_1'],
     debug: false,
   };
