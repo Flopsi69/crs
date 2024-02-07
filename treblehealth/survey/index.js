@@ -731,9 +731,6 @@
       padding: 16px 24px;
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     }
-    .lav-intro__img img {
-      max-width: 162px;
-    }
     .lav-intro__title {
       margin-top: 20px;
     }
