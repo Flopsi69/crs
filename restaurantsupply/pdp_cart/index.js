@@ -1285,8 +1285,8 @@ function initCart() {
       const html = await res.text();
       const doc = parser.parseFromString(html, 'text/html');
 
-      if (!$('.item-options', pr).children.length) {
-        $('.item-options', pr).remove();
+      if (!$('.item-options', pr)?.children.length) {
+        $('.item-options', pr)?.remove();
       }
 
       // Add warranty
@@ -1342,13 +1342,15 @@ function initCart() {
           // .product-slider-list
           const target = $('.product-related-wrap', doc).cloneNode(true);
           const tip = /*html*/ `
-          <div class='lav-tip'>
-          ${getSvg('tip')}
-            <div class='lav-tip__popup'>
-              ✨ Perfect Match: Elevate your choice with complementary items designed to enhance performance and experience!
+            <div class='lav-tip'>
+            ${getSvg('tip')}
+              <div class='lav-tip__popup'>
+                ✨ Perfect Match: Elevate your choice with complementary items designed to enhance performance and experience!
+              </div>
             </div>
-          </div>
-        `;
+          `;
+
+          console.log(target.outerHTML);
 
           $('.product-slider-title span', target).removeAttribute('id');
           $(
@@ -1408,6 +1410,16 @@ function initCart() {
               // $('.tocart', target).click();
               // addToCart.closest('form').submit();
             });
+          }
+
+          for (const img of $$('.product-image-photo', target)) {
+            // data-cfsrc
+            const lazySrc = img.dataset.cfsrc;
+            if (lazySrc) {
+              img.removeAttribute('data-cfsrc');
+              img.removeAttribute('style');
+              img.src = lazySrc;
+            }
           }
 
           for (const addToCart of $$('.product-item-link', target)) {
