@@ -175,6 +175,7 @@
   .lav-intro {
     max-width: 500px;
     width: 100%;
+    text-align: center;
   }
   .lav-intro:not(.active) {
     display: none;
@@ -188,6 +189,8 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+    text-align: left;
+    display: inline-block;
   }
   .lav-intro__item {
     position: relative;
@@ -694,6 +697,13 @@
       height: 100%;
       flex-grow: 1;
     }
+    .lav-intro {
+      align-items: center;
+      max-width: 100%;
+    }
+    .lav-intro .lav-quiz__control {
+      width: 100%;
+    }
     .lav-intro__list + .lav-intro__descr {
       margin-top: 0;
     }
@@ -1018,9 +1028,6 @@
                 <rect x="30" y="8" width="6" height="30" rx="1" fill="#4622DA"/>
                 <rect x="40" width="6" height="38" rx="1" fill="#4622DA"/>
               </svg>
-            </div>
-            <div class="lav-link lav-link__pass text-center">
-              <span>Not Sure</span>
             </div>
           </div>
         </div>
