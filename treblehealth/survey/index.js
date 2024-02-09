@@ -2484,7 +2484,7 @@
         'lav-quiz__wrap_submitting'
       );
       $('.lav-body_submitting')?.classList.remove('lav-body_submitting');
-    }, 3000);
+    }, 5000);
   }
 
   // *** Utils *** //
