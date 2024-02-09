@@ -958,16 +958,16 @@
           </div>
 
           <div class="lav-variants">
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               Rarely (Monthly)
             </div>
-            <div class="lav-variant" data-point='2'>
+            <div class="lav-variant" data-point='1'>
               Occasionally (Weekly)
             </div>
             <div class="lav-variant" data-point='3'>
               Frequently (Daily)
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='5'>
               Constantly (Always present)
             </div>
           </div>
@@ -989,7 +989,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='0'>
               Slight
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
@@ -1038,19 +1038,19 @@
           </div>
 
           <div class="lav-variants lav-variants_emoji">
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/ringing.svg" /> Ringing
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/buzzing.svg" /> Buzzing
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/humming.svg" /> Humming
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/hissing.svg" /> Hissing
             </div>
-            <div class="lav-variant" data-point='1'>Other</div>
+            <div class="lav-variant" data-point='0'>Other</div>
           </div>
         </div>
 
@@ -1088,16 +1088,16 @@
             <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/smile0.svg" /> Does not affect me
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/smile2.svg" /> Slightly
             </div>
-            <div class="lav-variant" data-point='2'>
+            <div class="lav-variant" data-point='1'>
               <img src="${config.dir}/img/smile3.svg" /> Moderately
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='2'>
               <img src="${config.dir}/img/smile4.svg" /> Very much
             </div>
-            <div class="lav-variant" data-point='4'>
+            <div class="lav-variant" data-point='3'>
               <img src="${config.dir}/img/smile6.svg" /> I cannot sleep
             </div>
           </div>
@@ -1112,16 +1112,16 @@
             <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/smile1.svg" /> Does not affect me
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='0'>
               <img src="${config.dir}/img/smile2.svg" /> Slightly
             </div>
-            <div class="lav-variant" data-point='2'>
+            <div class="lav-variant" data-point='1'>
               <img src="${config.dir}/img/smile3.svg" /> Moderately
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='2'>
               <img src="${config.dir}/img/smile4.svg" /> Very much
             </div>
-            <div class="lav-variant" data-point='4'>
+            <div class="lav-variant" data-point='3'>
               <img src="${config.dir}/img/smile5.svg" /> Extremely
             </div>
           </div>
@@ -1153,7 +1153,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='2'>
+            <div class="lav-variant" data-point='1'>
               Occasionally
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
@@ -1163,7 +1163,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='2'>
               In noisy environments
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
@@ -1173,7 +1173,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='4'>
+            <div class="lav-variant" data-point='3'>
               All the time
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
@@ -1205,7 +1205,7 @@
               <span class="lav-variant__checkbox"></span>
               Makes me feel distressed
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='2'>
               <span class="lav-variant__checkbox"></span>
               Constantly thinking about it
             </div>
@@ -1270,10 +1270,10 @@
             <div class="lav-variant" data-point='2'>
               <img src="${config.dir}/img/smile3.svg" /> Moderately negatively
             </div>
-            <div class="lav-variant" data-point='3'>
+            <div class="lav-variant" data-point='4'>
               <img src="${config.dir}/img/smile4.svg" /> Very negatively
             </div>
-            <div class="lav-variant" data-point='4'>
+            <div class="lav-variant" data-point='5'>
               <img src="${config.dir}/img/smile5.svg" /> Extremely negatively
             </div>
           </div>
@@ -1315,7 +1315,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='1'>
+            <div class="lav-variant" data-point='4'>
               Quite ready but need more information
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>
@@ -1325,7 +1325,7 @@
                 <rect x="40" width="6" height="38" rx="1" fill="#B5A6F2"/>
               </svg>
             </div>
-            <div class="lav-variant" data-point='2'>
+            <div class="lav-variant" data-point='5'>
               Need to start now
               <svg width="46" height="38" viewBox="0 0 46 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="30" width="6" height="8" rx="1" fill="#4622DA"/>

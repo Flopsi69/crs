@@ -516,6 +516,20 @@ class Modal {
           left: 3px;
         }
       }
+      .lav-body_submitting #lav-form__orign-wrap {
+        display: block!important;
+        pointer-events: none;
+        visibility:hidden;
+        position: absolute;
+        height: 0px!important;
+        overflow: hidden;
+        left: -9999%;
+      }
+      .lav-body_submitting .lav-btn {
+        pointer-events: none;
+        filter: grayscale(1);
+        opacity: 0.7;
+      }
     `;
 
     const stylesEl = document.createElement('style');
@@ -728,23 +742,58 @@ function handleForm() {
       'Pop - up. How can we contact you?'
     );
 
-    if (!$('#lav-name').value) {
+    const name = $('#lav-name').value;
+    const phone = $('#lav-phone').value;
+    const message = $('#lav-message').value;
+
+    if (!name) {
       $('#lav-name').style.borderColor = 'red';
       alert('Please enter your name');
       return;
     }
 
-    if (!$('#lav-phone').value) {
+    if (!phone) {
       $('#lav-phone').style.borderColor = 'red';
       alert('Please enter your phone number');
       return;
     }
 
-    if ($('#lav-phone').value.length < 14) {
+    if (phone.length < 14) {
       $('#lav-phone').style.borderColor = 'red';
       alert('Please enter a valid phone number');
       return;
     }
+
+    $('body').classList.add('lav-body_submitting');
+    this.innerText = 'Submitting...';
+
+    initMutation('#lav_form__orig', (el, ob) => {
+      console.log(el);
+      if (el.classList.contains('elementor-message-success')) {
+        ob.disconnect();
+        $('body').classList.remove('lav-body_submitting');
+        this.innerText = 'Request a call back';
+        alert(el.innerText);
+        Modal.close();
+      }
+
+      if (
+        el.classList.contains('elementor-message-danger') &&
+        el.parentElement.id === 'lav_form__orig'
+      ) {
+        ob.disconnect();
+        $('body').classList.remove('lav-body_submitting');
+        this.innerText = 'Request a call back';
+        // alert('Something went wrong. Please try again later');
+        alert(el.innerText);
+      }
+    });
+
+    $('#form-field-lav_name__orig').value = name;
+    $('#form-field-lav_phone__orig').value = phone.trim().replaceAll(' ', '');
+    $('#form-field-lav_message_orig').value = message;
+
+    $('#lav_submit__orig').click();
   });
 }
 
@@ -964,9 +1013,9 @@ function addHandlers() {
 function isPopupShown() {
   if ($('.calendly-overlay')) return true;
 
-  if (sessionStorage.getItem('isPopupShown')) {
-    return true;
-  }
+  // if (sessionStorage.getItem('isPopupShown')) {
+  //   return true;
+  // }
 
   return false;
 }
