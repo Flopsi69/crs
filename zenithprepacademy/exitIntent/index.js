@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***');
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/zenithprepacademy/exitIntent',
-  // dir: 'https://flopsi69.github.io/crs/zenithprepacademy/exitIntent',
+  // dir: 'http://127.0.0.1:5500/zenithprepacademy/exitIntent',
+  dir: 'https://flopsi69.github.io/crs/zenithprepacademy/exitIntent',
   clarity: ['set', 'exp_exi_int_poplp', 'variant_1'],
-  debug: true,
+  debug: false,
 };
 
 const orig = console.log;
