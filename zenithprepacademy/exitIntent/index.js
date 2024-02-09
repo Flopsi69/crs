@@ -1013,9 +1013,9 @@ function addHandlers() {
 function isPopupShown() {
   if ($('.calendly-overlay')) return true;
 
-  // if (sessionStorage.getItem('isPopupShown')) {
-  //   return true;
-  // }
+  if (sessionStorage.getItem('isPopupShown')) {
+    return true;
+  }
 
   return false;
 }
