@@ -733,7 +733,6 @@ function handleForm() {
     );
   });
 
-  // TODO validation and sending
   $('.lav-submit').addEventListener('click', function () {
     pushDataLayer(
       'exp_exi_int_poplp_but_popcontac_requ',
@@ -766,6 +765,30 @@ function handleForm() {
 
     $('body').classList.add('lav-body_submitting');
     this.innerText = 'Submitting...';
+
+    // const hookUrl =
+    //   'https://hooks.slack.com/services/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';
+    // const payload = {
+    //   channel: 'alex-dev',
+    //   // attachments: [
+    //   //   {
+    //   //     title: 'My first Slack Message',
+    //   //     text: 'Random example message text',
+    //   //     author_name: 'alejandrogonzalez3',
+    //   //     color: '#00FF00',
+    //   //   },
+    //   // ],
+    //   text: 'This is a line of text in a channel.\nAnd this is another line of text.',
+    //   token: 'dGWjFPi0houjm45ypDyjBvLg',
+    // };
+
+    // fetch(hookUrl, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(payload),
+    // });
 
     initMutation('#lav_form__orig', (el, ob) => {
       console.log(el);
@@ -1013,6 +1036,7 @@ function addHandlers() {
 function isPopupShown() {
   if ($('.calendly-overlay')) return true;
 
+  // TODO
   if (sessionStorage.getItem('isPopupShown')) {
     return true;
   }
