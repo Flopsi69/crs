@@ -766,30 +766,6 @@ function handleForm() {
     $('body').classList.add('lav-body_submitting');
     this.innerText = 'Submitting...';
 
-    // const hookUrl =
-    //   'https://hooks.slack.com/services/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';
-    // const payload = {
-    //   channel: 'alex-dev',
-    //   // attachments: [
-    //   //   {
-    //   //     title: 'My first Slack Message',
-    //   //     text: 'Random example message text',
-    //   //     author_name: 'alejandrogonzalez3',
-    //   //     color: '#00FF00',
-    //   //   },
-    //   // ],
-    //   text: 'This is a line of text in a channel.\nAnd this is another line of text.',
-    //   token: 'dGWjFPi0houjm45ypDyjBvLg',
-    // };
-
-    // fetch(hookUrl, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(payload),
-    // });
-
     initMutation('#lav_form__orig', (el, ob) => {
       console.log(el);
       if (el.classList.contains('elementor-message-success')) {
@@ -814,7 +790,7 @@ function handleForm() {
 
     $('#form-field-lav_name__orig').value = name;
     $('#form-field-lav_phone__orig').value = phone.trim().replaceAll(' ', '');
-    $('#form-field-lav_message_orig').value = message;
+    $('#form-field-lav_message_orig').value = message || '-';
 
     $('#lav_submit__orig').click();
   });
