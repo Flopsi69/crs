@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/restaurantsupply/pdp_cart',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/pdp_cart',
   clarity: ['set', 'exp_pdp_car_imp', 'variant_1'],
-  debug: true,
+  debug: false,
 };
 
 // const orig = console.log;
