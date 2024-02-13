@@ -829,14 +829,10 @@ function initPdp() {
 
       waitFor(
         () =>
+          localStorage['mage-cache-storage'] &&
           JSON.parse(localStorage['mage-cache-storage'])?.cart.items[0]
             ?.product_image,
         () => {
-          console.log(
-            'test2',
-            href,
-            JSON.parse(localStorage['mage-cache-storage'])
-          );
           addMiniCart(href);
         }
       );
@@ -912,6 +908,9 @@ function initPdp() {
     if ($('.lav-cart__wrap')) {
       $('.lav-cart__wrap').remove();
     }
+
+    if (!localStorage['mage-cache-storage']) return false;
+
     const cart = JSON.parse(localStorage['mage-cache-storage'])?.cart;
 
     if (!cart || !cart.items.length) return false;
