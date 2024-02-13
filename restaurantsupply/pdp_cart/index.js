@@ -782,10 +782,14 @@ function initPdp() {
 
       waitFor(
         () =>
-          localStorage['mage-cache-storage'] &&
           JSON.parse(localStorage['mage-cache-storage'])?.cart.items[0]
             ?.product_image,
         () => {
+          console.log(
+            'test2',
+            href,
+            JSON.parse(localStorage['mage-cache-storage'])
+          );
           addMiniCart(href);
         }
       );
@@ -858,8 +862,6 @@ function initPdp() {
   }
 
   function addMiniCart(href) {
-    if (!localStorage['mage-cache-storage']) return false;
-
     if ($('.lav-cart__wrap')) {
       $('.lav-cart__wrap').remove();
     }
