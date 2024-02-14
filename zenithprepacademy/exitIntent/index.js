@@ -8,10 +8,10 @@ const config = {
   debug: false,
 };
 
-const orig = console.log;
-console.log = function (...args) {
-  orig.apply(console, ['Debug:', ...args]);
-};
+// const orig = console.log;
+// console.log = function (...args) {
+//   orig.apply(console, ['Debug:', ...args]);
+// };
 
 // Styles for Experiment
 const styles = /* css */ `
@@ -918,6 +918,9 @@ function handleProblemsPopup() {
       timerClick += 500;
       timerScroll += 500;
 
+      console.log('timerClick:', timerClick, ', timerScroll:', timerScroll);
+      console.log('timerScroll', timerScroll);
+
       if (isPopupShown()) {
         clearInterval(timer);
         return;
@@ -932,12 +935,14 @@ function handleProblemsPopup() {
 
     document.addEventListener('click', (e) => {
       if (e.target.closest('a') || e.target.closest('button')) {
+        console.log('reset click scroll');
         timerClick = 0;
         timerScroll = 0;
       }
     });
 
     window.onscroll = function () {
+      console.log('reset timer scroll');
       timerScroll = 0;
     };
   }
