@@ -831,10 +831,10 @@ function handleProblemsPopup() {
   if (!isMob) {
     checkOutside();
   } else {
-    let timer = 0;
-    const timerInterval = setInterval(() => {
-      timer += 500;
-    }, 500);
+    // let timer = 0;
+    // const timerInterval = setInterval(() => {
+    //   timer += 500;
+    // }, 500);
 
     checkAction();
     checkFastScroll();
@@ -920,6 +920,7 @@ function handleProblemsPopup() {
 
       if (isPopupShown()) {
         clearInterval(timer);
+        return;
       }
 
       if (timerClick >= 20000 || timerScroll >= 5000) {
