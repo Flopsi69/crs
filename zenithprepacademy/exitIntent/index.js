@@ -941,10 +941,12 @@ function handleProblemsPopup() {
       }
     });
 
-    window.onscroll = function () {
-      console.log('reset timer scroll');
-      timerScroll = 0;
-    };
+    setTimeout(() => {
+      window.onscroll = function () {
+        console.log('reset timer scroll');
+        timerScroll = 0;
+      };
+    }, 500);
   }
 }
 
