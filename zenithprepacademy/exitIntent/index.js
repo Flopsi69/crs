@@ -914,23 +914,24 @@ function handleProblemsPopup() {
   function checkAction() {
     let timerClick = 0;
     let timerScroll = 0;
-    const timer = setInterval(() => {
-      timerClick += 1000;
-      timerScroll += 1000;
+    const delay = 500;
+    const timerInterval = setInterval(function () {
+      timerClick += delay;
+      timerScroll += delay;
 
       console.log('timerClick:', timerClick, ', timerScroll:', timerScroll);
 
       if (isPopupShown()) {
-        clearInterval(timer);
+        clearInterval(timerInterval);
         return;
       }
 
       if (timerClick >= 20000 || timerScroll >= 5000) {
-        console.log('fireAction', timerClick, timerScroll);
+        console.log('fireAction: showPopup');
         Modal.open('.lav-problems');
-        clearInterval(timer);
+        clearInterval(timerInterval);
       }
-    }, 1000);
+    }, delay);
 
     document.addEventListener('click', (e) => {
       if (e.target.closest('a') || e.target.closest('button')) {
