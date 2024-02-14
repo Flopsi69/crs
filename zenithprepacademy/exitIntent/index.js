@@ -915,11 +915,10 @@ function handleProblemsPopup() {
     let timerClick = 0;
     let timerScroll = 0;
     const timer = setInterval(() => {
-      timerClick += 500;
-      timerScroll += 500;
+      timerClick += 1000;
+      timerScroll += 1000;
 
       console.log('timerClick:', timerClick, ', timerScroll:', timerScroll);
-      console.log('timerScroll', timerScroll);
 
       if (isPopupShown()) {
         clearInterval(timer);
@@ -931,7 +930,7 @@ function handleProblemsPopup() {
         Modal.open('.lav-problems');
         clearInterval(timer);
       }
-    }, 500);
+    }, 1000);
 
     document.addEventListener('click', (e) => {
       if (e.target.closest('a') || e.target.closest('button')) {
@@ -1209,6 +1208,8 @@ function $$(selector, context = document, toSimpleArray = false) {
 
 // GA 4 events
 function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  window.dataLayer = window.dataLayer || [];
+
   try {
     const event = {
       event: 'event-to-ga4',
