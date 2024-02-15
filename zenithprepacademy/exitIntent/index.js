@@ -934,7 +934,11 @@ function handleProblemsPopup() {
     }, delay);
 
     document.addEventListener('click', (e) => {
-      if (e.target.closest('a') || e.target.closest('button')) {
+      if (
+        e.target.closest('a') ||
+        e.target.closest('button') ||
+        e.target.closest('.elementor-menu-toggle')
+      ) {
         console.log('reset click scroll');
         timerClick = 0;
         timerScroll = 0;
