@@ -919,12 +919,12 @@ function handleProblemsPopup() {
       timerClick += delay;
       timerScroll += delay;
 
-      console.log('timerClick:', timerClick, ', timerScroll:', timerScroll);
-
       if (isPopupShown()) {
         clearInterval(timerInterval);
         return;
       }
+
+      console.log('timerClick:', timerClick, ', timerScroll:', timerScroll);
 
       if (timerClick >= 20000 || timerScroll >= 5000) {
         console.log('fireAction: showPopup');
