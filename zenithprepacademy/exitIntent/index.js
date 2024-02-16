@@ -673,7 +673,7 @@ function addModals() {
 
       <div class='lav-form__group'>
         <label class='lav-form__label' for="lav-phone">Phone number</label>
-        <input class='lav-form__input' type="tel" id="lav-phone" name="phone" placeholder="(xxx) xxx-xxxx" required>
+        <input class='lav-form__input' type="tel" id="lav-phone" name="phone" placeholder="(484) 123-4567" required>
       </div>
 
       <div class='lav-form__group'>
