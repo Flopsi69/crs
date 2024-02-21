@@ -345,6 +345,8 @@ function $$(selector, context = document, toSimpleArray = false) {
 
 // GA 4 events
 function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  window.dataLayer = window.dataLayer || [];
+
   try {
     const event = {
       event: 'event-to-ga4',
