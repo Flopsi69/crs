@@ -746,6 +746,7 @@ function handlePopupTriggers() {
 }
 
 function getDiscount() {
+  return 'DIYB02_XPS';
   const startDate = '2024-02-21';
   const coupons = [
     'DIYB02_NGZ',
@@ -770,7 +771,7 @@ function getDiscount() {
   const diffInDays = Math.floor(diffInTime / (1000 * 60 * 60 * 24));
 
   if (diffInDays < 0 || diffInDays >= coupons.length) {
-    return 'Coupon Not Available';
+    return 'Promotional code is not valid';
   }
 
   const currentCoupon = coupons[diffInDays % coupons.length];
