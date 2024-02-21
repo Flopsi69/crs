@@ -511,6 +511,7 @@ async function initExp() {
   console.debug('** InitExp **');
   await waitFor(() => document.head && document.body, false, { ms: 100 });
 
+  hj('event', 'first_hypotesys');
   // if (isPopupShown()) {
   //   console.log('Popup already shown');
   //   return;
