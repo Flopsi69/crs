@@ -791,7 +791,7 @@ function handleForm() {
     $('#form-field-lav_name__orig').value = name;
     $('#form-field-lav_phone__orig').value = phone.trim().replaceAll(' ', '');
     $('#form-field-lav_message_orig').value = message || '-';
-    $('#form-field-lav_check_orig').value = '11';
+    $('#form-field-lav_check_orig').value = '7285';
 
     $('#lav_submit__orig').click();
   });
