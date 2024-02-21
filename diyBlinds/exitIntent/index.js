@@ -8,12 +8,6 @@ const config = {
   debug: false,
 };
 
-// const orig = console.log;
-// console.log = function (...args) {
-//   orig.apply(console, ['Debug:', ...args]);
-// };
-
-// Styles for Experiment
 // *** Logic *** //
 class Modal {
   static list = [];
