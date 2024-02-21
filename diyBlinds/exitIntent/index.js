@@ -746,7 +746,6 @@ function handlePopupTriggers() {
 }
 
 function getDiscount() {
-  return 'DIYB02_XPS';
   const startDate = '2024-02-21';
   const coupons = [
     'DIYB02_NGZ',
@@ -760,10 +759,21 @@ function getDiscount() {
     'DIYB02_VYT',
     'DIYB02_GJL',
     'DIYB02_TPS',
+    'DIYB02_TPL',
+    'DIYB02_TSD',
+    'DIYB02_TWE',
+    'DIYB02_QAS',
+    'DIYB02_LLS',
+    'DIYB02_GHT',
+    'DIYB02_TSD',
+    'DIYB02_BVV',
+    'DIYB02_MNN',
+    'DIYB02_ZXS',
+    'DIYB02_MAQ',
   ];
 
   const currentDate = new Date().toLocaleString('en-US', {
-    timeZone: 'Australia/Sydney',
+    timeZone: 'Australia/Perth',
   });
 
   const diffInTime = new Date(currentDate) - new Date(startDate);
