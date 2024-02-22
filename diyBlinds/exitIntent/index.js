@@ -292,7 +292,7 @@ class Modal {
         object-fit: contain;
       }
       .lav-offer__body {
-        padding: 30px 64px 26px;
+        padding: 30px 58px 26px;
         color: var(--Text, #444C5F);
       }
       .lav-offer__get {
@@ -522,7 +522,7 @@ async function initExp() {
   addHandlers();
   // handlePopupTriggers();
 
-  openModal();
+  // openModal();
   // Modal.open('.lav-almost');
 }
 
@@ -540,7 +540,7 @@ function addModals() {
 
     <div class='lav-offer__body'>
       <div class="lav-offer__get">
-        <span>Get 10%</span> OFF Your Order Now!
+        <span>Get 10%</span> OFF Your Order&nbsp;Now!
       </div>
 
       <img class="lav-offer__divider" src='${
