@@ -512,15 +512,15 @@ async function initExp() {
   await waitFor(() => document.head && document.body, false, { ms: 100 });
 
   hj('event', 'first_hypotesys');
-  // if (isPopupShown()) {
-  //   console.log('Popup already shown');
-  //   return;
-  // }
+  if (isPopupShown()) {
+    console.log('Popup already shown');
+    return;
+  }
 
   connectSplide();
   addModals();
   addHandlers();
-  // handlePopupTriggers();
+  handlePopupTriggers();
 
   // openModal();
   // Modal.open('.lav-almost');
