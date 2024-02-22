@@ -125,9 +125,6 @@ class Modal {
         width: 4px;
         background-color: #444C5F;
       }
-      #fullpageFormat9 {
-        display: none!important;
-      }
       .lav-btn {
         outline: none;
         margin-top: 24px;
@@ -509,9 +506,25 @@ initExp();
 
 async function initExp() {
   console.debug('** InitExp **');
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
 
-  hj('event', 'first_hypotesys');
+  waitFor(
+    () => typeof hj === 'function',
+    () => {
+      hj('event', 'first_hypotesys');
+    },
+    { ms: 100 }
+  );
+
+  await waitFor(() => document.head && document.body, false, { ms: 100 });
+  const stylesEl = document.createElement('style');
+  stylesEl.classList.add('exp-full');
+  stylesEl.innerHTML = /* css */ `
+    #fullpageFormat9 {
+      display: none!important;
+    }
+  `;
+  document.head.appendChild(stylesEl);
+
   if (isPopupShown()) {
     console.log('Popup already shown');
     return;
