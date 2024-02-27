@@ -3,10 +3,10 @@ console.debug('*** Experiment started ***');
 let isDisableEvents = false;
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/paintScratch/homepageChat',
-  // dir: 'https://flopsi69.github.io/crs/paintScratch/homepageChat',
+  // dir: 'http://127.0.0.1:5500/paintScratch/homepageChat',
+  dir: 'https://flopsi69.github.io/crs/paintScratch/homepageChat',
   clarity: ['set', 'exp_conv_mech', 'variant_1'],
-  debug: true,
+  debug: false,
 };
 
 // const orig = console.log;
