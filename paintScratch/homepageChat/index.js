@@ -441,7 +441,7 @@ async function initExp() {
   setTimeout(() => {
     createMessage('select');
     createCarSelector();
-  }, 2000);
+  }, 4000);
 
   function checkBenefitsPos() {
     if (window.innerWidth < 768) {
