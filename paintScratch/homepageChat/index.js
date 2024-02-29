@@ -363,7 +363,9 @@ stylesEl.classList.add('exp-styles');
 stylesEl.innerHTML = styles;
 
 // *** Logic *** //
-initExp();
+if (location.pathname === '/') {
+  initExp();
+}
 
 async function initExp() {
   console.debug('** InitExp **');
@@ -473,7 +475,7 @@ function addListeners() {
       'Button',
       'PaintScratch Assistant'
     );
-    $('#find_colors_button').click();
+    _$('#find_colors_button').click();
   });
 
   _$('.lav-another').addEventListener('click', () => {
@@ -484,8 +486,13 @@ function addListeners() {
       'PaintScratch Assistant'
     );
     isDisableEvents = true;
-    $('#select_year').val('').change();
-    isDisableEvents = false;
+    waitFor(
+      () => typeof $ === 'function',
+      () => {
+        $('#select_year').val('').change();
+        isDisableEvents = false;
+      }
+    );
     _$('.lav-car').classList.remove('lav-car_disabled');
   });
 }
@@ -516,16 +523,22 @@ function handleReadyStatus() {
   // _$('.lav-car').classList.add('lav-car_disabled');
   _$('.lav-control').classList.add('active');
 
-  if (!_$('[data-message="color"]')) {
-    createMessage('color');
-  }
-  setTimeout(() => {
-    _$('.lav-control').style.opacity = 1;
-    _$('.lav-chat__body').scrollTo({
-      top: _$('.lav-chat__body').scrollHeight,
-      behavior: 'smooth',
-    });
-  }, 250);
+  waitFor(
+    () => _$('.lav-car'),
+    () => {
+      if (!_$('[data-message="color"]')) {
+        createMessage('color');
+      }
+
+      setTimeout(() => {
+        _$('.lav-control').style.opacity = 1;
+        _$('.lav-chat__body').scrollTo({
+          top: _$('.lav-chat__body').scrollHeight,
+          behavior: 'smooth',
+        });
+      }, 250);
+    }
+  );
 }
 
 function createCarSelector() {
@@ -554,47 +567,50 @@ function createCarSelector() {
     }, 350);
   }, 250);
 
-  $('.lav-car select').on('change', function () {
-    if ($(this).attr('id') === 'select_year' && !isDisableEvents) {
-      pushDataLayer(
-        'exp_conv_mech_inpu_assit_year',
-        'Year',
-        'Input',
-        'PaintScratch Assistant'
-      );
+  waitFor(
+    () => typeof $ === 'function',
+    () => {
+      $('.lav-car select').on('change', function () {
+        if ($(this).attr('id') === 'select_year' && !isDisableEvents) {
+          pushDataLayer(
+            'exp_conv_mech_inpu_assit_year',
+            'Year',
+            'Input',
+            'PaintScratch Assistant'
+          );
+        }
+
+        if ($(this).attr('id') === 'select_make') {
+          pushDataLayer(
+            'exp_conv_mech_inpu_assit_make',
+            'Сar Make ',
+            'Input',
+            'PaintScratch Assistant'
+          );
+        }
+
+        if ($(this).attr('id') === 'select_model') {
+          pushDataLayer(
+            'exp_conv_mech_inpu_assit_model',
+            'Сar Model',
+            'Input',
+            'PaintScratch Assistant'
+          );
+        }
+
+        if (_$('[data-message="color"]')) {
+          let car = _$('#select_year').value + ' ' + _$('#select_make').value;
+
+          if (_$('#select_model').value !== 'All Models') {
+            car += ' ' + _$('#select_model').value;
+          }
+
+          _$('[data-message="color"] .lav-message__text b').innerHTML =
+            car.replace(/-/g, '&#8209;');
+        }
+      });
     }
-
-    if ($(this).attr('id') === 'select_make') {
-      pushDataLayer(
-        'exp_conv_mech_inpu_assit_make',
-        'Сar Make ',
-        'Input',
-        'PaintScratch Assistant'
-      );
-    }
-
-    if ($(this).attr('id') === 'select_model') {
-      pushDataLayer(
-        'exp_conv_mech_inpu_assit_model',
-        'Сar Model',
-        'Input',
-        'PaintScratch Assistant'
-      );
-    }
-
-    if (_$('[data-message="color"]')) {
-      let car = _$('#select_year').value + ' ' + _$('#select_make').value;
-
-      if (_$('#select_model').value !== 'All Models') {
-        car += ' ' + _$('#select_model').value;
-      }
-
-      _$('[data-message="color"] .lav-message__text b').innerHTML = car.replace(
-        /-/g,
-        '&#8209;'
-      );
-    }
-  });
+  );
 
   if (!_$('#select_model').value) {
     _$('#select_model').value = '';
