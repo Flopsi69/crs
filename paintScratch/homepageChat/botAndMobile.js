@@ -1797,6 +1797,9 @@ class mobileDesign {
   cartPage() {
     const style = /* html */ `
       <style>
+        #color_search_pop a.action-button-orange {
+          width: 185px;
+        }
         #show_any_warnings .closebutton {
           position: absolute;
           right: 5px;
