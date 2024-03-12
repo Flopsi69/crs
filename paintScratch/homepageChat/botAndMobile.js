@@ -179,6 +179,9 @@ class mobileDesign {
   globalStyle() {
     const style = /* html */ `
       <style>
+        .green-check-mark, .warning-sign {
+          flex-shrink: 0;
+        }
         #wrapper {
           width: 100%;
           margin-top: 0;
@@ -585,6 +588,7 @@ class mobileDesign {
         .select-color ul#benefit-list li span {
           font-weight: 400;
           line-height: 22px;
+          margin-left: 10px!important;
         }
         .select-color span.instructions {
           display: flex !important;
@@ -1808,6 +1812,7 @@ class mobileDesign {
           align-items: center;
           column-gap: 12px;
           margin-bottom: 24px;
+          padding-top: 2px;
         }
         .color_head .color {
           width: 50px;
@@ -2098,15 +2103,15 @@ class mobileDesign {
     const totalBlock = /* html */ `
       <div class="total_block">
         <p class="sub">Subtotal:<span>${
-          $('#subtotals_and_shipping .right_side_text').html().split('<br>')[0]
+          $('#subtotals_and_shipping .right_side_text').html()?.split('<br>')[0]
         }</span></p>
         <p class="ship">Shipping:<span>${
-          $('#subtotals_and_shipping .right_side_text').html().split('<br>')[1]
+          $('#subtotals_and_shipping .right_side_text').html()?.split('<br>')[1]
         }</span></p>
         <p>Free shipping on orders over $149.00</p>
         <p class="total">Total:<span>${$(
           '#total_and_checkout .right_side_text'
-        ).text()}</span></p>
+        )?.text()}</span></p>
         <div class="btns">
           <button class="checkout">Secure checkout${btnArrowSvg}</button>
           <div class="or"><span>OR</span></div>
