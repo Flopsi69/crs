@@ -584,11 +584,13 @@ class mobileDesign {
           display: flex;
           align-items: center;
           font-size: 14px;
+          flex-wrap: wrap;
         }
         .select-color ul#benefit-list li span {
           font-weight: 400;
           line-height: 22px;
           margin-left: 10px!important;
+          flex: 1 0 48%;
         }
         .select-color span.instructions {
           display: flex !important;
