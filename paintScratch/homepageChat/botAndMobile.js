@@ -1795,6 +1795,18 @@ class mobileDesign {
   cartPage() {
     const style = /* html */ `
       <style>
+        #show_any_warnings .closebutton {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          margin: 0;
+        }
+        #show_any_warnings .inner table {
+          min-width: 185px;
+        }
+        #show_any_warnings .inner table a.silver-button {
+          height: auto;
+        }
         .cart table.cart-group, #bottom-secure-checkout, .cart h1, .cart-group+hr {
           display: none;
         }
