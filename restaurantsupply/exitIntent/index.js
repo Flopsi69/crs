@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***');
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
-  // dir: 'https://flopsi69.github.io/crs/restaurantSupply/exitIntent',
+  // dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
+  dir: 'https://flopsi69.github.io/crs/restaurantsupply/exitIntent',
   clarity: ['set', 'exp_scarcity', 'variant_1'],
-  debug: true,
+  debug: false,
 };
 
 // *** Utils *** //
