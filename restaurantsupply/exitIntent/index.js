@@ -634,14 +634,12 @@ function handleExitIntent() {
   }
 
   // let cartTimeout = null;
-  // let isCartTrack = false;
+  let isCartTrack = false;
 
   if (location.href.includes('/checkout/cart/')) {
-    console.log('gfire Checkout');
     waitFor('#form-validate', () => {
       $('#form-validate').addEventListener('click', () => {
         isCartTrack = true;
-        console.log('gfire clicked');
       });
     });
   }
@@ -660,29 +658,16 @@ function handleExitIntent() {
           }
         );
       }
-
-      // console.log('added', node);
-      // if (
-      //   location.href.includes('/checkout/cart/') &&
-      //   node.classList.contains('price') &&
-      //   isCartTrack
-      // ) {
-      //   console.log('gfire timer');
-      //   // clearTimeout(cartTimeout);
-      //   // cartTimeout = setTimeout(() => {
-      //     // location.reload();
-      //   // }, 1500);
-      // }
     },
     (node) => {
       if (
         location.href.includes('/checkout/cart/') &&
-        node.classList.contains('loading-mask')
+        node.classList.contains('loading-mask') &&
+        isCartTrack
       ) {
         location.reload();
         console.log('gfire reload');
       }
-      // console.log('removed', node);
     }
   );
 
@@ -956,7 +941,9 @@ function handleExitIntent() {
     }
 
     if (JSON.parse(localStorage['mage-cache-storage'])?.cart?.items?.length) {
-      addProducts();
+      if (location.href.includes('/checkout/cart/')) {
+        addProducts();
+      }
       sessionStorage.setItem('isPopupShown', true);
       Modal.open('.lav-intent');
     } else {
