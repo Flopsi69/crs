@@ -633,8 +633,8 @@ function handleExitIntent() {
     );
   }
 
-  let cartTimeout = null;
-  let isCartTrack = false;
+  // let cartTimeout = null;
+  // let isCartTrack = false;
 
   if (location.href.includes('/checkout/cart/')) {
     console.log('gfire Checkout');
@@ -646,32 +646,45 @@ function handleExitIntent() {
     });
   }
 
-  initMutation(document.body, (node) => {
-    if (node.closest('.notify-addcart')) {
-      waitFor(
-        () =>
-          localStorage['mage-cache-storage'] &&
-          JSON.parse(localStorage['mage-cache-storage'])?.cart.items[0]
-            ?.product_image,
-        () => {
-          addProducts();
-        }
-      );
-    }
+  initMutation(
+    document.body,
+    (node) => {
+      if (node.closest('.notify-addcart')) {
+        waitFor(
+          () =>
+            localStorage['mage-cache-storage'] &&
+            JSON.parse(localStorage['mage-cache-storage'])?.cart.items[0]
+              ?.product_image,
+          () => {
+            addProducts();
+          }
+        );
+      }
 
-    console.log('node', node);
-    if (
-      location.href.includes('/checkout/cart/') &&
-      node.classList.contains('price') &&
-      isCartTrack
-    ) {
-      console.log('gfire timer');
-      clearTimeout(cartTimeout);
-      cartTimeout = setTimeout(() => {
+      // console.log('added', node);
+      // if (
+      //   location.href.includes('/checkout/cart/') &&
+      //   node.classList.contains('price') &&
+      //   isCartTrack
+      // ) {
+      //   console.log('gfire timer');
+      //   // clearTimeout(cartTimeout);
+      //   // cartTimeout = setTimeout(() => {
+      //     // location.reload();
+      //   // }, 1500);
+      // }
+    },
+    (node) => {
+      if (
+        location.href.includes('/checkout/cart/') &&
+        node.classList.contains('loading-mask')
+      ) {
         location.reload();
-      }, 1500);
+        console.log('gfire reload');
+      }
+      // console.log('removed', node);
     }
-  });
+  );
 
   handlePopupTriggers();
 
