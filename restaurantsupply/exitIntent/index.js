@@ -637,9 +637,11 @@ function handleExitIntent() {
   let isCartTrack = false;
 
   if (location.href.includes('/checkout/cart/')) {
-    waitFor('.cart-left-col', () => {
-      $('.cart-left-col').addEventListener('click', () => {
+    console.log('gfire Checkout');
+    waitFor('#form-validate', () => {
+      $('#form-validate').addEventListener('click', () => {
         isCartTrack = true;
+        console.log('gfire clicked');
       });
     });
   }
@@ -657,12 +659,14 @@ function handleExitIntent() {
       );
     }
 
+    console.log('node', node);
     if (
       location.href.includes('/checkout/cart/') &&
       node.classList.contains('price') &&
       isCartTrack
     ) {
-      clearTimeout(timeout);
+      console.log('gfire timer');
+      clearTimeout(cartTimeout);
       cartTimeout = setTimeout(() => {
         location.reload();
       }, 1500);
