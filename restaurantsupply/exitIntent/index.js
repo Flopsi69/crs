@@ -602,6 +602,7 @@ function handleExitIntent() {
     console.log('Popup already shown');
     return;
   }
+
   addProducts();
 
   function addSatisfied() {
@@ -632,11 +633,19 @@ function handleExitIntent() {
     );
   }
 
+  let cartTimeout = null;
+  let isCartTrack = false;
+
+  if (location.href.includes('/checkout/cart/')) {
+    waitFor('.cart-left-col', () => {
+      $('.cart-left-col').addEventListener('click', () => {
+        isCartTrack = true;
+      });
+    });
+  }
+
   initMutation(document.body, (node) => {
-    if (
-      node.classList.contains('notify-addcart-wrapper') &&
-      node.closest('.notify-addcart')
-    ) {
+    if (node.closest('.notify-addcart')) {
       waitFor(
         () =>
           localStorage['mage-cache-storage'] &&
@@ -646,6 +655,17 @@ function handleExitIntent() {
           addProducts();
         }
       );
+    }
+
+    if (
+      location.href.includes('/checkout/cart/') &&
+      node.classList.contains('price') &&
+      isCartTrack
+    ) {
+      clearTimeout(timeout);
+      cartTimeout = setTimeout(() => {
+        location.reload();
+      }, 1500);
     }
   });
 
