@@ -919,6 +919,7 @@ function handleExitIntent() {
     }
 
     if (JSON.parse(localStorage['mage-cache-storage'])?.cart?.items?.length) {
+      addProducts();
       sessionStorage.setItem('isPopupShown', true);
       Modal.open('.lav-intent');
     } else {
@@ -1208,11 +1209,11 @@ function visibilityEvent(el, cb, customConfig = {}) {
     ({ isIntersecting, target }) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
-        setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb();
-          }
-        }, 3000);
+        // setTimeout(() => {
+        // if (isElementInViewport(target)) {
+        cb();
+        // }
+        // }, 3000);
       }
     },
     config
