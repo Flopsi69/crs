@@ -378,10 +378,14 @@ class Modal {
 
       @media(min-width: 1024px) and (max-width: 1470px) {
         body .logo-menu-container .logo img {
-          max-width: 150px;
+          max-width: 135px;
         }
         .phone-container .header-link-phone span {
           white-space: nowrap;
+          font-size: 1.2rem;
+        }
+        .page-header .authorisation-cart-container {
+          justify-content: flex-end;
         }
         .lav-satisfied__info {
           white-space: nowrap;
@@ -974,11 +978,15 @@ function handleExitIntent() {
       } else {
         $('.lav-intent')?.classList.remove('lav-intent__no-qty');
       }
+      sessionStorage.setItem('isPopupShown', true);
       if (location.href.includes('/checkout/cart/')) {
         addProducts();
+        setTimeout(() => {
+          Modal.open('.lav-intent');
+        }, 1000);
+      } else {
+        Modal.open('.lav-intent');
       }
-      sessionStorage.setItem('isPopupShown', true);
-      Modal.open('.lav-intent');
     } else {
       console.log('Trigger fire but cart empty!');
     }
