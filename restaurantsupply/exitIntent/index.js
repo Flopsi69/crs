@@ -120,6 +120,9 @@ class Modal {
         max-height: 100%;
         display: flex;
       }
+      .lav-intent__no-qty .lav-product__qty {
+        display: none!important;
+      }
       .lav-modal.active {
         opacity: 1;
         pointer-events: auto;
@@ -634,15 +637,15 @@ function handleExitIntent() {
   }
 
   // let cartTimeout = null;
-  let isCartTrack = false;
+  // let isCartTrack = false;
 
-  if (location.href.includes('/checkout/cart/')) {
-    waitFor('#form-validate', () => {
-      $('#form-validate').addEventListener('click', () => {
-        isCartTrack = true;
-      });
-    });
-  }
+  // if (location.href.includes('/checkout/cart/')) {
+  //   waitFor('#form-validate', () => {
+  //     $('#form-validate').addEventListener('click', () => {
+  //       isCartTrack = true;
+  //     });
+  //   });
+  // }
 
   initMutation(
     document.body,
@@ -658,17 +661,18 @@ function handleExitIntent() {
           }
         );
       }
-    },
-    (node) => {
-      if (
-        location.href.includes('/checkout/cart/') &&
-        node.classList.contains('loading-mask') &&
-        isCartTrack
-      ) {
-        location.reload();
-        console.log('gfire reload');
-      }
     }
+    // (node) => {
+    //   if (
+    //     location.href.includes('/checkout/cart/') &&
+    //     node.classList.contains('loading-mask') &&
+    //     isCartTrack &&
+    //     !isPopupShown()
+    //   ) {
+    //     // console.log('gfire reload');
+    //     location.reload();
+    //   }
+    // }
   );
 
   handlePopupTriggers();
@@ -941,6 +945,18 @@ function handleExitIntent() {
     }
 
     if (JSON.parse(localStorage['mage-cache-storage'])?.cart?.items?.length) {
+      const cart = JSON.parse(localStorage['mage-cache-storage'])?.cart;
+      const qty = cart?.items.reduce((acc, item) => {
+        return acc + item.qty;
+      }, 0);
+
+      console.log('qty', qty);
+
+      if (qty !== cart?.summary_count) {
+        $('.lav-intent')?.classList.add('lav-intent__no-qty');
+      } else {
+        $('.lav-intent')?.classList.remove('lav-intent__no-qty');
+      }
       if (location.href.includes('/checkout/cart/')) {
         addProducts();
       }
