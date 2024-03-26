@@ -196,6 +196,10 @@ class Modal {
         overflow: hidden;
         background-color: #F8F9FD;
       }
+      .lavm__slider {
+        max-height: 225px;
+        overflow: hidden;
+      }
       .lavm__slider .owl-item + .owl-item:before {
         content: '';
         position: absolute;
@@ -978,15 +982,11 @@ function handleExitIntent() {
       } else {
         $('.lav-intent')?.classList.remove('lav-intent__no-qty');
       }
-      sessionStorage.setItem('isPopupShown', true);
       if (location.href.includes('/checkout/cart/')) {
         addProducts();
-        setTimeout(() => {
-          Modal.open('.lav-intent');
-        }, 1000);
-      } else {
-        Modal.open('.lav-intent');
       }
+      sessionStorage.setItem('isPopupShown', true);
+      Modal.open('.lav-intent');
     } else {
       console.log('Trigger fire but cart empty!');
     }
