@@ -375,7 +375,24 @@ class Modal {
       .lav-satisfied__info span {
         color: #B51F23;
       }
-    
+
+      @media(min-width: 1024px) and (max-width: 1470px) {
+        body .logo-menu-container .logo img {
+          max-width: 150px;
+        }
+        .phone-container .header-link-phone span {
+          white-space: nowrap;
+        }
+        .lav-satisfied__info {
+          white-space: nowrap;
+          font-size: 12px;
+          line-height: 1.5;
+          margin-right: 7px;
+        }
+        .page-header .authorization-wrapper .auth-button, .page-header .wishlist-tab-container .wishlist-tab, .page-header .authorisation-cart-container .minicart-wrapper .action.showcart {
+          padding: 10px 8px;
+        }
+      }
       @media(max-width: 1024px) {
         .logo-menu-container .lav-satisfied {
           display: none;
