@@ -209,7 +209,7 @@ class Modal {
         width: 1px;
         background: #EBECED;
       }
-      .lavm__slider .owl-stage-outer {
+      .lavm__slider.owl-loaded .owl-stage-outer {
         overflow: visible;
       }
       .lavm__slider.owl-carousel .owl-nav button.owl-prev, .lavm__slider.owl-carousel .owl-nav button.owl-next {
