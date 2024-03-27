@@ -516,14 +516,25 @@ const styles = /* css */ `
   .lavt-slider {
     margin-top: 16px;
   }
+  .lavt-slider .owl-stage {
+    display: flex;
+  }
+  .lavt-slider .owl-item {
+    display: flex;
+  }
+  .lavt-slider__slide {
+    display: flex;
+    flex-flow: column;
+  }
   .lavt-slider__text {
     color:  #536D80;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+    margin-bottom: 16px;
   }
   .lavt-slider__author {
-    margin-top: 16px;
+    margin-top: auto;
     display: flex;
     gap: 9px;
     align-items: center;
