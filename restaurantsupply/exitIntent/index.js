@@ -526,6 +526,9 @@ const styles = /* css */ `
     display: flex;
     flex-flow: column;
   }
+  .lavt-slider__position {
+    line-height: 1.2;
+  }
   .lavt-slider__text {
     color:  #536D80;
     font-size: 14px;
