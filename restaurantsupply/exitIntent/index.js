@@ -527,7 +527,7 @@ const styles = /* css */ `
     flex-flow: column;
   }
   .lavt-slider__position {
-    line-height: 1.2;
+    line-height: 1.3;
   }
   .lavt-slider__text {
     color:  #536D80;
