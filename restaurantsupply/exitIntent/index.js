@@ -4,7 +4,6 @@ console.debug('*** Experiment started ***');
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/exitIntent',
-  clarity: ['set', 'exp_scarcity', 'variant_1'],
   debug: false,
 };
 
@@ -1040,34 +1039,51 @@ function handlePdp() {
 
             <div class="splide__slide lavt-slider__slide">
               <div class="lavt-slider__text">
-                "Quick shipping and quality equipment have always been consistent with RestaurantSupply. The latest fridge we got was delivered ahead of schedule, and it's been perfect for our fast-paced environment. Truly remarkable service!"
+                "The prompt service from RestaurantSupply has made our kitchen's hectic schedules more manageable. Their ranges are dependable, supporting our goal to deliver culinary excellence every day."
               </div>
 
               <div class="lavt-slider__author">
                 <div class="lavt-slider__photo">
-                  <img src="${config.dir}/img/author-1.png" alt="Avatar">
+                  <img src="${config.dir}/img/author-2.png" alt="Avatar">
                 </div>
 
                 <div class="lavt-slider__info">
-                  <div class="lavt-slider__name">Jamie Smith,</div>
-                  <div class="lavt-slider__position">Head Chef, Downtown Bistro</div>
+                  <div class="lavt-slider__name">Tom Sullivan,</div>
+                  <div class="lavt-slider__position">Chef/Owner, Greenfield’s Gastropub</div>
                 </div>
               </div>
             </div>
 
             <div class="splide__slide lavt-slider__slide">
               <div class="lavt-slider__text">
-                "Quick shipping and quality equipment have always been consistent with RestaurantSupply. The latest fridge we got was delivered ahead of schedule, and it's been perfect for our fast-paced environment. Truly remarkable service!"
+                "Every order from RestaurantSupply has been spot on, helping us keep our kitchen running smoothly. Their commitment to quality and fast delivery is why they're our first call for new equipment."
               </div>
 
               <div class="lavt-slider__author">
                 <div class="lavt-slider__photo">
-                  <img src="${config.dir}/img/author-1.png" alt="Avatar">
+                  <img src="${config.dir}/img/author-3.png" alt="Avatar">
                 </div>
 
                 <div class="lavt-slider__info">
-                  <div class="lavt-slider__name">Jamie Smith,</div>
-                  <div class="lavt-slider__position">Head Chef, Downtown Bistro</div>
+                  <div class="lavt-slider__name">Rohit Kumar,</div>
+                  <div class="lavt-slider__position">Director of Operations, Modern Bistro</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="splide__slide lavt-slider__slide">
+              <div class="lavt-slider__text">
+                "Quick orders and reliable gear have been a game changer for us. The latest freezer unit we received from RestaurantSupply not only arrived early but has been a powerhouse for our storage needs. It's companies like this that make a difference."
+              </div>
+
+              <div class="lavt-slider__author">
+                <div class="lavt-slider__photo">
+                  <img src="${config.dir}/img/author-4.png" alt="Avatar">
+                </div>
+
+                <div class="lavt-slider__info">
+                  <div class="lavt-slider__name">Anita Peterson,</div>
+                  <div class="lavt-slider__position">General Manager, The Brunch Spot</div>
                 </div>
               </div>
             </div>
@@ -1364,15 +1380,11 @@ function connectSplide() {
 // *** Exp BG process *** //
 
 //Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
+if (!config.debug) {
   waitFor(
-    () => typeof clarity == 'function',
+    () => typeof hj == 'function',
     () => {
-      clarity(...config.clarity);
+      hj('event', 'exit_int_p');
     }
   );
 }
