@@ -1037,7 +1037,7 @@ function handlePdp() {
               </div>
             </div>
 
-            <div class="splide__slide lavt-slider__slide">
+            <div class="lavt-slider__slide">
               <div class="lavt-slider__text">
                 "The prompt service from RestaurantSupply has made our kitchen's hectic schedules more manageable. Their ranges are dependable, supporting our goal to deliver culinary excellence every day."
               </div>
@@ -1054,7 +1054,7 @@ function handlePdp() {
               </div>
             </div>
 
-            <div class="splide__slide lavt-slider__slide">
+            <div class="lavt-slider__slide">
               <div class="lavt-slider__text">
                 "Every order from RestaurantSupply has been spot on, helping us keep our kitchen running smoothly. Their commitment to quality and fast delivery is why they're our first call for new equipment."
               </div>
@@ -1071,7 +1071,7 @@ function handlePdp() {
               </div>
             </div>
 
-            <div class="splide__slide lavt-slider__slide">
+            <div class="lavt-slider__slide">
               <div class="lavt-slider__text">
                 "Quick orders and reliable gear have been a game changer for us. The latest freezer unit we received from RestaurantSupply not only arrived early but has been a powerhouse for our storage needs. It's companies like this that make a difference."
               </div>
@@ -1157,6 +1157,14 @@ function handlePdp() {
           'PDP. What our clients say about us'
         );
       });
+
+      window.dispatchEvent(new Event('resize'));
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 1000);
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 2000);
     }
   }
 }
