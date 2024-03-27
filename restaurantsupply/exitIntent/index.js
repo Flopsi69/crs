@@ -525,6 +525,7 @@ const styles = /* css */ `
   .lavt-slider__slide {
     display: flex;
     flex-flow: column;
+    padding-left: 1px;
   }
   .lavt-slider__position {
     line-height: 1.3;
