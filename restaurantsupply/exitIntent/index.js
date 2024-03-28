@@ -489,7 +489,7 @@ const styles = /* css */ `
     border-radius: 8px;
     background: var(--Main-White, #FFF);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
-    padding: 16px;
+    padding: 16px 16px 18px;
     margin-bottom: 16px;
   }
   .lav-trusted__title {
@@ -503,6 +503,33 @@ const styles = /* css */ `
   .lav-trusted__logos {
     line-height: 0;
     margin-top: 16px;
+  }
+  .lavt-list__wrap {
+    margin-top: 16px;
+    border-top: 1px solid #EBECED;
+    padding-top: 17px;
+  }
+  .lavt-list__title {
+    color: #536D80;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+  }
+  .lavt-list {
+    margin-top: 16px;
+    color: #536D80;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 0;
+    padding-left: 22px;
+  }
+  .lavt-list__item {
+    margin: 0;
+  }
+  .lavt-list__item + .lavt-list__item {
+    margin-top: 5px;
   }
   .lavt-slider__wrap {
     margin-top: 16px;
@@ -1031,7 +1058,17 @@ function handlePdp() {
           <img src="${config.dir}/img/trusted.png">
         </div>
 
-        <div class="lavt-slider__wrap">
+        <div class='lavt-list__wrap'>
+          <div class='lavt-list__title'>Our Commitment</div>
+          <ul class='lavt-list'>
+            <li class='lavt-list__item'><strong>Top Brands, Best Selection:</strong> Handpicked supplies from leading kitchen brands to fulfill every chef’s requirement.</li>
+            <li class='lavt-list__item'><strong>Competitive Pricing:</strong> Ensuring value with competitive prices across our extensive range.</li>
+            <li class='lavt-list__item'><strong>Rapid Delivery:</strong> Fast, reliable shipping to keep your operations running smoothly.</li>
+            <li class='lavt-list__item'><strong>Customer-Centric Service:</strong> Your satisfaction is our priority, with expert support just a call away.</li>
+          </ul>
+        </div>
+
+        <div class="lavt-slider__wrap" style='display: none'>
           <div class="lav-trusted__title lavt-slider__title">What our clients say about us</div>
 
           <div class="lavt-slider owl-carousel">
@@ -1123,21 +1160,30 @@ function handlePdp() {
       );
     });
 
-    visibilityEvent('.lavt-slider__wrap', () => {
+    visibilityEvent('.lavt-list__wrap', () => {
       pushDataLayer(
         'exp_scarcity_section_05',
         'Section',
         'Visibility',
-        'PDP. What our clients say about us'
+        'PDP. Commitment'
       );
     });
 
-    waitFor(
-      () =>
-        typeof jQuery === 'function' &&
-        typeof jQuery('body').owlCarousel === 'function',
-      initSlider
-    );
+    // visibilityEvent('.lavt-slider__wrap', () => {
+    //   pushDataLayer(
+    //     'exp_scarcity_section_05',
+    //     'Section',
+    //     'Visibility',
+    //     'PDP. What our clients say about us'
+    //   );
+    // });
+
+    // waitFor(
+    //   () =>
+    //     typeof jQuery === 'function' &&
+    //     typeof jQuery('body').owlCarousel === 'function',
+    //   initSlider
+    // );
 
     function initSlider() {
       const slider = jQuery('.lavt-slider').owlCarousel({
