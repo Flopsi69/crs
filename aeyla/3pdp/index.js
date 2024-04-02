@@ -1075,10 +1075,6 @@ const styles = /* css */ `
     .lav-trusted-clone {
       margin-top: 28px;
     }
-    .img_txt_wrapp a, .img_txt_wrapp .google-rating {
-      display: flex !important;
-      margin: 26px 8px 0 8px !important;
-    }
     .img_txt_wrapp .gap-y-5.crs_cta {
       flex-direction: row!important;
       column-gap: normal!important;
@@ -1087,10 +1083,13 @@ const styles = /* css */ `
       order: 2;
       justify-content: center;
     }
-    .img_txt_wrapp a,
-    .img_txt_wrapp .google-rating {
+    .img_txt_wrapp .crs_cta a,
+    .img_txt_wrapp .crs_cta .google-rating {
         display: flex!important;
         margin: 26px 8px 0 8px!important;
+    }
+    .crs_cta-origin:not(.crs_cta) {
+      display: none!important;
     }
     .btn-section-cta {
         width: 100%;
@@ -1993,9 +1992,12 @@ function addCta() {
   _$$('.img_txt_wrapp > .txt_sec > .flex').forEach((item, index) => {
     if (!_$('.btn-section-cta', item)) return;
 
-    item.classList.add('crs_cta');
+    item.classList.add('crs_cta-origin');
 
-    _$('.btn-section-cta', item).addEventListener('click', (e) => {
+    const cloneItem = item.cloneNode(true);
+    cloneItem.classList.add('crs_cta');
+
+    _$('.btn-section-cta', cloneItem).addEventListener('click', (e) => {
       e.preventDefault();
 
       // pushDataLayer([
@@ -2014,12 +2016,12 @@ function addCta() {
     });
 
     if (item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')) {
-      item.style.marginTop = '-40px';
+      cloneItem.style.marginTop = '-40px';
       item.closest('.img_txt_wrapp').querySelector('.img_sec').style =
         'order: 3;margin-top: 46px;';
     }
 
-    item.parentElement.nextElementSibling.after(item);
+    item.parentElement.nextElementSibling.after(cloneItem);
   });
 }
 // function handle() {}
