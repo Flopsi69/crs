@@ -751,6 +751,9 @@ const styles = /* css */ `
     display: flex;
     gap: 12px;
   }
+  .lavs-fit__similar {
+    display: none;
+  }
   .lavs-fit__title {
     color: var(--Dark-Green, #2B4632);
     font-family: 'Inter';
@@ -889,7 +892,7 @@ const styles = /* css */ `
   }
 
   @media(max-width: 1023px) {
-   .lav-breadcrumbs {
+    .lav-breadcrumbs {
       padding: 5px 16px;
     }
     .lav-approved, .lav-off {
@@ -1084,7 +1087,7 @@ const styles = /* css */ `
       order: 2;
       justify-content: center;
     }
-    .img_txt_wrapp a, 
+    .img_txt_wrapp a,
     .img_txt_wrapp .google-rating {
         display: flex!important;
         margin: 26px 8px 0 8px!important;
@@ -1093,41 +1096,85 @@ const styles = /* css */ `
         width: 100%;
         max-width: 240px;
     }
-    .lavs-buy, .lavs-fit {
+    .lavs-buy {
       display: none!important;
     }
-    @media(max-width: 389px) {
-      .kl_wrapper span.kl {
-        font-size: 12px;
-      }
-      span#CurrentVariantOriginalPrice, span#CurrentVariantPrice {
-        font-size: 22px;
-        line-height: 30px;
-      }
-      .pro_form .money_back>div {
-        font-size: 12px;
-      }
-      .lav-setup__btn {
-        padding: 6px 8px;
-      }
-      a.tabs-component-tab-a {
-        font-size: 13px!important;
-      }
-      .lav-pr__title {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      .lav-pr__title, .lav-pr__price {
-        font-size: 13px;
-      }
-      .featured-products-section .tabs-component ul {
-        gap: 50px;
-      }
-      .lav-trusted__item-descr {
-        font-size: 15px;
-      }
+    .lavs-fit {
+      padding: 11px 17px;
+      bottom: initial;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 51;
+      box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+      border-radius: 0;
+    }
+    .lavs-fit__info {
+      display: none;
+    }
+    .lavs-fit:not(.active) {
+      transform: translateY(-100%);
+    }
+    .lavs-fit__btn {
+      max-width: 205px;
+      font-size: 18px;
+      padding: 13px 8px;
+    }
+    .lavs-fit__similar {
+      display: block;
+      color: var(--Dark-Green, #2B4632);
+      font-family: 'Inter';
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      text-decoration-line: underline;
+      white-space: nowrap;
+      transition: 0.2s;
+    }
+    .lavs-fit__similar.active {
+      pointer-events: none;
+      cursor: auto;
+      filter: grayscale(1);
+    }
+  }
+  @media(max-width: 389px) {
+    .kl_wrapper span.kl {
+      font-size: 12px;
+    }
+    .lavs-fit {
+      gap: 12px;
+    }
+    .lavs-fit__btn {
+      font-size: 16px;
+      padding: 12px 7px;
+    }
+    span#CurrentVariantOriginalPrice, span#CurrentVariantPrice {
+      font-size: 22px;
+      line-height: 30px;
+    }
+    .pro_form .money_back>div {
+      font-size: 12px;
+    }
+    .lav-setup__btn {
+      padding: 6px 8px;
+    }
+    a.tabs-component-tab-a {
+      font-size: 13px!important;
+    }
+    .lav-pr__title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lav-pr__title, .lav-pr__price {
+      font-size: 13px;
+    }
+    .featured-products-section .tabs-component ul {
+      gap: 50px;
+    }
+    .lav-trusted__item-descr {
+      font-size: 15px;
     }
   }
 
@@ -1632,20 +1679,48 @@ function handleProductInfo() {
         <div class='lavs-fit__caption'>${caption}</div>
       </div>
 
+      <div class='lavs-fit__similar'>Similar products</div>
+
       <div class='lavs-fit__btn'>Choose your best fit</div>
     `;
 
     stickyFit
       .querySelector('.lavs-fit__btn')
-      .addEventListener('click', function () {
+      .addEventListener('click', function (e) {
+        e.preventDefault();
         if (this.classList.contains('active')) return;
         this.classList.add('active');
+        let offset =
+          $('.lav-options').offset().top -
+          $('#shopify-section-header').height() -
+          10;
+
+        if (window.innerWidth >= 1024) {
+          offset -= $('#shopify-section-layout-announcement-bar').height();
+        }
+
         $('html, body').animate({
-          scrollTop:
-            $('.lav-options').offset().top -
-            $('#shopify-section-header').height() -
-            $('#shopify-section-layout-announcement-bar').height() -
-            10,
+          scrollTop: offset,
+        });
+        setTimeout(() => {
+          this.classList.remove('active');
+        }, 1000);
+      });
+
+    stickyFit
+      .querySelector('.lavs-fit__similar')
+      .addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (this.classList.contains('active')) return;
+        this.classList.add('active');
+        let offset =
+          $('.lav-similar').offset().top -
+          $('#shopify-section-header').height() -
+          10;
+
+        $('html, body').animate({
+          scrollTop: offset,
         });
         setTimeout(() => {
           this.classList.remove('active');
@@ -1938,12 +2013,11 @@ function addCta() {
       );
     });
 
-    // if (
-    //   item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')
-    // ) {
-    //   item.closest('.img_txt_wrapp').querySelector('.img_sec').style =
-    //     'order: 3;margin-top: 46px;';
-    // }
+    if (item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')) {
+      item.style.marginTop = '-40px';
+      item.closest('.img_txt_wrapp').querySelector('.img_sec').style =
+        'order: 3;margin-top: 46px;';
+    }
 
     item.parentElement.nextElementSibling.after(item);
   });
