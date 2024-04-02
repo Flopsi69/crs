@@ -690,7 +690,7 @@ const styles = /* css */ `
   .lavs-buy .btn-cw-cta {
     width: 100%;
   }
-  .pro_wrapper + .flex + .fixed {
+  .pro_wrapper + .fixed + .fixed, .pro_wrapper + .fixed {
     display: none;
   }
 
@@ -890,7 +890,9 @@ const styles = /* css */ `
   .shopify-section.banner-section {
     display: none;
   }
-
+  .crs_cta {
+    display: none;
+  }
   @media(max-width: 1023px) {
     .lav-breadcrumbs {
       padding: 5px 16px;
