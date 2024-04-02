@@ -52,12 +52,11 @@ const styles = /* css */ `
     z-index: 9999;
     top: 30px;
     right: 0;
-    padding: 8px 8px 6px;
+    padding: 7px 8px 5px;
     color: var(--Dark-Green, #2B4632);
     font-family: 'Inter';
     font-size: 20px;
     font-weight: 700;
-    margin-top: 1px;
     line-height: 1;
     border-radius: 6px 0px 0px 6px;
     background: #FAF000;
@@ -893,6 +892,12 @@ const styles = /* css */ `
   .crs_cta {
     display: none;
   }
+  .lav-page-foamo #MainPhoto1 .flag {
+    display: none;
+  }
+  .tp_widget_wrapper .tp_wid {
+    display: none;
+  }
   @media(max-width: 1023px) {
     .lav-breadcrumbs {
       padding: 5px 16px;
@@ -900,6 +905,9 @@ const styles = /* css */ `
     .lav-approved, .lav-off {
       top: 20px;
       font-size: 16px;
+    }
+    .lav-off {
+      margin-top: 1px;
     }
     div#MainProductForm .lav-title__wrap h1 {
       padding-left: 17px;
@@ -1262,6 +1270,25 @@ function handleGallery() {
       'beforeend',
       /* html */ `<div class='lav-off'>20-50% Off</div>`
     );
+  } else if (lavType === 'foamo') {
+    _$('.product-carousel .swiper-slide .relative').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-approved'>${getSvg(
+        'approved'
+      )} Osteopath-approved</div>`
+    );
+
+    _$('#MainPhoto1').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-approved'>${getSvg(
+        'approved'
+      )} Osteopath-approved</div><div class='lav-off'>New</div>`
+    );
+
+    _$('.product-carousel').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-off'>New</div>`
+    );
   }
 }
 
@@ -1310,40 +1337,71 @@ function handleProductInfo() {
   }
 
   function handleOptions() {
-    const options = [
-      {
-        title: '1 Pillow',
-        price: '69.00',
-        caption: 'pillow',
-        img: 'new-dual.png',
-        discount: 20,
-        isBestSeller: false,
-        target: '8133597004062-1-0',
-      },
-      {
-        title: '2 Pillows',
-        price: '49.50',
-        caption: 'pillow',
-        img: '2pillow.jpg',
-        discount: 45,
-        isBestSeller: true,
-        target: '8133597004062-1-1',
-      },
-      {
-        title: '4 Pillows',
-        price: '44.50',
-        caption: 'pillow',
-        img: '4pillow.jpg',
-        discount: 50,
-        isBestSeller: false,
-        target: '8133597004062-1-2',
-      },
-    ];
+    const options = {
+      dual: [
+        {
+          title: '1 Pillow',
+          price: '69.00',
+          caption: 'pillow',
+          img: 'new-dual.png',
+          discount: 20,
+          isBestSeller: false,
+          target: '8133597004062-1-0',
+        },
+        {
+          title: '2 Pillows',
+          price: '49.50',
+          caption: 'pillow',
+          img: '2pillow.jpg',
+          discount: 45,
+          isBestSeller: true,
+          target: '8133597004062-1-1',
+        },
+        {
+          title: '4 Pillows',
+          price: '44.50',
+          caption: 'pillow',
+          img: '4pillow.jpg',
+          discount: 50,
+          isBestSeller: false,
+          target: '8133597004062-1-2',
+        },
+      ],
+      foamo: [
+        {
+          title: '1 Pillow',
+          price: '79.00',
+          caption: 'pillow',
+          img: 'new-dual.png',
+          discount: 10,
+          isBestSeller: false,
+          target: '8133596217630-1-0',
+        },
+        {
+          title: '2 Pillows',
+          price: '49.50',
+          caption: 'pillow',
+          img: '2pillow.jpg',
+          discount: 45,
+          isBestSeller: true,
+          target: '8133596217630-1-1',
+        },
+        {
+          title: '4 Pillows',
+          price: '44.50',
+          caption: 'pillow',
+          img: '4pillow.jpg',
+          discount: 50,
+          isBestSeller: false,
+          target: '8133596217630-1-2',
+        },
+      ],
+    };
 
     const optionsEl = document.createElement('div');
     optionsEl.classList.add('lav-options');
 
-    options.forEach((option) => {
+    options[lavType].forEach((option) => {
       const optionEl = document.createElement('div');
       optionEl.classList.add('lav-option');
       optionEl.innerHTML = /* html */ `
@@ -1432,6 +1490,11 @@ function handleProductInfo() {
     const reserved = _$(
       '.pre_order_wrapper .reserved_wrapper span'
     ).textContent;
+    let caption = `<strong>Get 5% OFF</strong> your order when reserving. Use Code: <strong>RESERVE</strong> at checkout`;
+
+    if (lavType === 'foamo') {
+      caption = `Buy 1 <strong>Get 1 FREE</strong> when reserving! Use Code: <strong>B1G1</strong>`;
+    }
 
     const nextBatch = /* html */ `
       <div class="lav-batch">
@@ -1446,7 +1509,7 @@ function handleProductInfo() {
           }</span> ${reserved.split(' ')[1]}</div>
         </div>
         <div class="lav-batch__caption">
-          <strong>Get 5% OFF</strong> your order when reserving. Use Code: <strong>RESERVE</strong> at checkout
+          ${caption}
         </div>
         <div class='lav-batch__sub'>Reserved <strong>${getRandomNumber()} pillows</strong> in the last 24 hours</div>
       </div>
@@ -1569,7 +1632,7 @@ function handleProductInfo() {
     `;
 
     const products = {
-      pillow: [
+      dual: [
         {
           title: 'The Dual Pillow',
           priceOld: '89.00',
@@ -1605,7 +1668,9 @@ function handleProductInfo() {
       ],
     };
 
-    const similarProducts = products.pillow.filter(
+    products['foamo'] = products['dual'];
+
+    const similarProducts = products[lavType].filter(
       (p) => !location.href.includes(p.url)
     );
 
@@ -1684,6 +1749,16 @@ function handleProductInfo() {
 
       <div class='lavs-fit__btn'>Choose your best fit</div>
     `;
+
+    // waitFor('.trustpilot-widget iframe', () => {
+    //   _$('.lavs-fit__trust', stickyFit).insertAdjacentHTML(
+    //     'beforeend',
+    //     _$('.trustpilot-widget').innerHTML
+    //     // `<iframe src='${
+    //     //   _$('.trustpilot-widget iframe:last-child').src
+    //     // }'></iframe>`
+    //   );
+    // });
 
     stickyFit
       .querySelector('.lavs-fit__btn')
