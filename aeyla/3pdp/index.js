@@ -247,10 +247,66 @@ const styles = /* css */ `
     line-height: 22px;
     font-family: "Open Sans";
   }
-  
-  .pro_price {
-
+  .lav-size__drop {
+    margin-top: 14px;
+    border-radius: 6px;
+    border: 1px solid #DAE5D9;
+    background: #FFF;
+    cursor: pointer;
+    transition: 0.3s;
   }
+  @media(hover:hover) {
+    .lav-size__drop:not(.active):hover {
+      background-color: #F4FAF6;
+    }
+  }
+  .lav-size__value {
+    position: relative;
+    padding: 10px 12px;
+    color: #2B4632;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .lav-size__value:before {
+    content: '';
+    position: absolute;
+    right: 19px;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    line-height: 0;
+    background: url('${config.dir}/img/dropdown.svg') no-repeat;
+    background-size: contain;
+    transition: 0.3s;
+  }
+  .lav-size__drop.active .lav-size__value:before {
+    transform: translateY(-50%) rotate(180deg);
+    top: 50%;
+  }
+  .lav-size__list {
+    border-top: 1px solid #DAE5D9;
+  }
+  .lav-size__item {
+    padding: 8px 12px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .lav-size__item.active {
+    background: #2B4632;
+    color: #fff;
+  }
+  @media(hover:hover) {
+    .lav-size__item:not(.active):hover {
+      background-color: #F4FAF6;
+    }
+  }
+  .lav-size__item + .lav-size__item {
+    border-top: 1px solid #eee;
+  }
+  
   .pro_price .pricing {
     display: flex;
     align-items: center;
@@ -1381,7 +1437,7 @@ function handleProductInfo() {
   if (lavType !== 'blanket') {
     handleOptions();
   } else {
-    handleSize();
+    waitFor('.shadow-product-option', handleSize);
   }
   addSaved();
   initMutation(_$('.pricing + .usave'), addSaved);
@@ -1561,19 +1617,78 @@ function handleProductInfo() {
 
     sizeEl.innerHTML = /* html */ `
       <div class='lav-size__toggler'>
-        <div class='lav-size__toggle active'>
+        <div class='lav-size__toggle' data-value='standart'>
           <div class='lav-size__toggle-title'>Standard</div>
           <div class='lav-size__toggle-caption'>190 cm x 100 cm</div>
         </div>
-        <div class='lav-size__toggle'>
+        <div class='lav-size__toggle' data-value='large'>
           <div class='lav-size__toggle-title'>Large</div>
           <div class='lav-size__toggle-caption'>190 cm x 135 cm</div>
         </div>
       </div>
+
+      <div class='lav-size__drop'>
+        <div class='lav-size__value'><strong>4kg -</strong> for bodyweight between <span>30-45kg</span></div>
+        <div class='lav-size__list' style='display: none'>
+          <div class='lav-size__item' data-item='0'><strong>4kg -</strong> for bodyweight between <span>30-45kg</span></div>
+          <div class='lav-size__item' data-item='1'><strong>5.5kg -</strong> for bodyweight between <span>45-65kg</span></div>
+          <div class='lav-size__item' data-item='2'><strong>7kg -</strong> for bodyweight between <span>65-80kg</span></div>
+          <div class='lav-size__item' data-item='3'><strong>9kg -</strong> for bodyweight between <span>80kg+</span></div>
+        </div>
+      </div>
     `;
 
+    _$('.lav-size__drop', sizeEl).addEventListener('click', function (e) {
+      $('.lav-size__drop').toggleClass('active');
+      $('.lav-size__list').slideToggle();
+    });
+
+    // console.log(_$('.shadow-product-option .text-main-blue').innerText);
+    // _$('.shadow-product-option .leading-6').click();
+    // _$$('.shadow-product-option.absolute .cursor-pointer').indexOf()
+
+    _$$('.lav-size__item', sizeEl).forEach((sizeItem) => {
+      sizeItem.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (sizeItem.classList.contains('active')) return;
+
+        _$('.lav-size__item.active', sizeEl)?.classList.remove('active');
+
+        sizeItem.classList.add('active');
+      });
+    });
+
+    _$$('.lav-size__toggle', sizeEl).forEach((toggleEl) => {
+      toggleEl.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (toggleEl.classList.contains('active')) return;
+
+        _$('.lav-size__toggle.active', sizeEl)?.classList.remove('active');
+
+        toggleEl.classList.add('active');
+
+        if (toggleEl.dataset.value === 'standart') {
+          _$('[for="8133599232286-1-0"]').click();
+        }
+
+        if (toggleEl.dataset.value === 'large') {
+          _$('[for="8133599232286-1-1"]').click();
+        }
+      });
+    });
+
     _$('.lav-title__wrap').insertAdjacentElement('afterend', sizeEl);
+
+    if (document.getElementById('8133599232286-1-0').checked) {
+      _$("[data-value='standart']").classList.add('active');
+    } else if (document.getElementById('8133599232286-1-1').checked) {
+      _$("[data-value='large']").classList.add('active');
+    }
   }
+
+  function fillSizeDropdown() {}
 
   function addSaved() {
     if (_$('#MainProductForm .lav-saved'))
@@ -1613,7 +1728,7 @@ function handleProductInfo() {
     const reserved = _$(
       '.pre_order_wrapper .reserved_wrapper span'
     ).textContent;
-    let caption = `<strong>Get 5% OFF</strong> your order when reserving. Use Code: <strong>RESERVE</strong> at checkout`;
+    let caption = `<strong>Get 5% OFF</strong> your order when reserving.<br/> Use Code: <strong>RESERVE</strong> at checkout`;
 
     if (lavType === 'foamo') {
       caption = `Buy 1 <strong>Get 1 FREE</strong> when reserving!<br/> Use Code: <strong>B1G1</strong>`;
@@ -2614,6 +2729,14 @@ if (
 // Svg objects
 function getSvg(name) {
   const svgObj = {
+    dropdown: `
+    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <mask id="path-1-inside-1_200_30368" fill="white">
+      <path d="M0 8L7.07107 0.928932L14.1421 8L7.07107 15.0711L0 8Z"/>
+      </mask>
+      <path d="M7.07107 15.0711L5.65685 16.4853L7.07107 17.8995L8.48528 16.4853L7.07107 15.0711ZM12.7279 6.58579L5.65685 13.6569L8.48528 16.4853L15.5563 9.41421L12.7279 6.58579ZM8.48528 13.6569L1.41421 6.58579L-1.41421 9.41421L5.65685 16.4853L8.48528 13.6569Z" fill="#4F6054" mask="url(#path-1-inside-1_200_30368)"/>
+    </svg>
+    `,
     approved: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M16.1702 8.05687L15.1502 6.87187C14.9552 6.64687 14.7977 6.22688 14.7977 5.92688V4.65188C14.7977 3.85687 14.1452 3.20437 13.3502 3.20437H12.0752C11.7827 3.20437 11.3552 3.04687 11.1302 2.85187L9.94516 1.83187C9.42766 1.38938 8.58016 1.38938 8.05516 1.83187L6.87766 2.85937C6.65266 3.04687 6.22516 3.20437 5.93266 3.20437H4.63516C3.84016 3.20437 3.18766 3.85687 3.18766 4.65188V5.93437C3.18766 6.22687 3.03016 6.64687 2.84266 6.87187L1.83016 8.06437C1.39516 8.58187 1.39516 9.42187 1.83016 9.93937L2.84266 11.1319C3.03016 11.3569 3.18766 11.7769 3.18766 12.0694V13.3519C3.18766 14.1469 3.84016 14.7994 4.63516 14.7994H5.93266C6.22516 14.7994 6.65266 14.9569 6.87766 15.1519L8.06266 16.1719C8.58016 16.6144 9.42766 16.6144 9.95266 16.1719L11.1377 15.1519C11.3627 14.9569 11.7827 14.7994 12.0827 14.7994H13.3577C14.1527 14.7994 14.8052 14.1469 14.8052 13.3519V12.0769C14.8052 11.7844 14.9627 11.3569 15.1577 11.1319L16.1777 9.94687C16.6127 9.42937 16.6127 8.57437 16.1702 8.05687ZM12.1202 7.58437L8.49766 11.2069C8.39266 11.3119 8.25016 11.3719 8.10016 11.3719C7.95016 11.3719 7.80766 11.3119 7.70266 11.2069L5.88766 9.39188C5.67016 9.17438 5.67016 8.81437 5.88766 8.59687C6.10516 8.37937 6.46516 8.37937 6.68266 8.59687L8.10016 10.0144L11.3252 6.78938C11.5427 6.57188 11.9027 6.57188 12.1202 6.78938C12.3377 7.00688 12.3377 7.36687 12.1202 7.58437Z" fill="white"/>
     </svg>`,
