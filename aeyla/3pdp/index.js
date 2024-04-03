@@ -205,6 +205,48 @@ const styles = /* css */ `
     padding-right: 15px;
     margin-right: -3px;
   }
+  .lav-size {
+    margin-top: 16px;
+    margin-bottom: 20px;
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .lav-size__toggler {
+    position: relative;
+    display: flex;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #DAE5D9;
+    background: #FFF;
+  }
+  .lav-size__toggle {
+    position: relative;
+    color: #2B4632;
+    padding: 5px;
+    width: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 6px;
+  }
+  @media(hover:hover) {
+    .lav-size__toggle:not(.active):hover {
+      background: #F4FAF6;
+    }
+  }
+  .lav-size__toggle.active {
+    background: #2B4632;
+    color: #fff;
+  }
+  .lav-size__toggle-title {
+    font-weight: 700;
+  }
+  .lav-size__toggle-caption {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    font-family: "Open Sans";
+  }
   
   .pro_price {
 
@@ -905,6 +947,9 @@ const styles = /* css */ `
     .lav-breadcrumbs {
       padding: 5px 16px;
     }
+    .crs_cta {
+      display: flex;
+    }
     .lav-approved, .lav-off {
       top: 20px;
       font-size: 16px;
@@ -1103,7 +1148,7 @@ const styles = /* css */ `
         display: flex!important;
         margin: 26px 8px 0 8px!important;
     }
-    .crs_cta-origin:not(.crs_cta) {
+    .crs_cta-origin {
       display: none!important;
     }
     .btn-section-cta {
@@ -1227,6 +1272,13 @@ async function initExp() {
   handleAdditionalInfo();
 
   waitFor('.img_txt_wrapp > .txt_sec > .flex', addCta);
+  waitFor('.customKlaviyo', () => {
+    _$$('.customKlaviyo').forEach((node) => {
+      if (node.textContent.includes('Additional')) {
+        node.innerHTML = node.innerHTML.replace('Additional', 'additional');
+      }
+    });
+  });
 }
 
 function addBreadcrumbs() {
@@ -1320,7 +1372,11 @@ function handleGallery() {
 
 function handleProductInfo() {
   handleHead();
-  handleOptions();
+  if (lavType !== 'blanket') {
+    handleOptions();
+  } else {
+    handleSize();
+  }
   addSaved();
   initMutation(_$('.pricing + .usave'), addSaved);
   moveKlaviyo();
@@ -1491,6 +1547,26 @@ function handleProductInfo() {
     });
 
     _$('.lav-title__wrap').insertAdjacentElement('afterend', optionsEl);
+  }
+
+  function handleSize() {
+    const sizeEl = document.createElement('div');
+    sizeEl.classList.add('lav-size');
+
+    sizeEl.innerHTML = /* html */ `
+      <div class='lav-size__toggler'>
+        <div class='lav-size__toggle active'>
+          <div class='lav-size__toggle-title'>Standard</div>
+          <div class='lav-size__toggle-caption'>190 cm x 100 cm</div>
+        </div>
+        <div class='lav-size__toggle'>
+          <div class='lav-size__toggle-title'>Large</div>
+          <div class='lav-size__toggle-caption'>190 cm x 135 cm</div>
+        </div>
+      </div>
+    `;
+
+    _$('.lav-title__wrap').insertAdjacentElement('afterend', sizeEl);
   }
 
   function addSaved() {
@@ -2121,10 +2197,9 @@ function addCta() {
   _$$('.img_txt_wrapp > .txt_sec > .flex').forEach((item, index) => {
     if (!_$('.btn-section-cta', item)) return;
 
-    item.classList.add('crs_cta-origin');
-
     const cloneItem = item.cloneNode(true);
     cloneItem.classList.add('crs_cta');
+    item.classList.add('crs_cta-origin');
 
     _$('.btn-section-cta', cloneItem).addEventListener('click', (e) => {
       e.preventDefault();
@@ -2136,12 +2211,18 @@ function addCta() {
       //   item.closest('.img_txt_wrapp').querySelector('h2').innerText,
       // ]);
 
-      $('html, body').animate(
-        {
-          scrollTop: $('form').offset().top - 122,
-        },
-        250
-      );
+      let offset =
+        $('.lav-options').offset().top -
+        $('#shopify-section-header').height() -
+        10;
+
+      if (window.innerWidth >= 1024) {
+        offset -= $('#shopify-section-layout-announcement-bar').height();
+      }
+
+      $('html, body').animate({
+        scrollTop: offset,
+      });
     });
 
     if (item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')) {
