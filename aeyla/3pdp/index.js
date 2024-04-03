@@ -744,7 +744,7 @@ const styles = /* css */ `
     justify-content: space-between;
     gap: 20px;
     position: fixed;
-    z-index: 9;
+    z-index: 25;
     bottom: 20px;
     left: 0;
     right: 0;
