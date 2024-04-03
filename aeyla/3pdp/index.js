@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***');
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/aeyla/3pdp',
-  // dir: 'https://flopsi69.github.io/crs/aeyla/3pdp',
+  // dir: 'http://127.0.0.1:5500/aeyla/3pdp',
+  dir: 'https://flopsi69.github.io/crs/aeyla/3pdp',
   clarity: ['set', '', 'variant_1'],
   debug: true,
 };
@@ -81,6 +81,9 @@ const styles = /* css */ `
   }
   .product-carousel .on-sale {
     display: none;
+  }
+  .tp_widget_wrapper {
+    margin-bottom: 12px;
   }
   @media(max-width: 1023px) {
     .pro_wrapper .mg {
@@ -892,7 +895,7 @@ const styles = /* css */ `
   .crs_cta {
     display: none;
   }
-  .lav-page-foamo #MainPhoto1 .flag {
+  .lav-page-foamo #MainPhoto1 .flag, .lav-page-foamo  .pro_wrapper .mg .flag, .lav-page-blanket #MainPhoto1 .flag, .lav-page-blanket  .pro_wrapper .mg .flag  {
     display: none;
   }
   .tp_widget_wrapper .tp_wid {
@@ -908,6 +911,8 @@ const styles = /* css */ `
     }
     .lav-off {
       margin-top: 1px;
+      right: 1px;
+      padding: 8px 8px 6px;
     }
     div#MainProductForm .lav-title__wrap h1 {
       padding-left: 17px;
@@ -1231,7 +1236,9 @@ function addBreadcrumbs() {
         ${_$('.breadcrumb .text-base:first-child').textContent}
       </a>
       <span> / </span>
-      <a href="/collections/pillows">Pillows</a>
+      <a href="/collections/${
+        lavType === 'blanket' ? 'weighted-blanket-blanket-covers' : 'pillows'
+      }">${lavType === 'blanket' ? 'Blankets' : 'Pillows'}</a>
       <span> / </span>
       <span>${_$('.breadcrumb .text-base:last-child').textContent}</span>
     </div>
@@ -1289,6 +1296,25 @@ function handleGallery() {
       'beforeend',
       /* html */ `<div class='lav-off'>New</div>`
     );
+  } else if (lavType === 'blanket') {
+    _$('.product-carousel .swiper-slide .relative').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-approved'>${getSvg(
+        'approved'
+      )} Top-Rated Blanket</div>`
+    );
+
+    _$('#MainPhoto1').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-approved'>${getSvg(
+        'approved'
+      )} Top-Rated Blanket</div><div class='lav-off'>35% Off</div>`
+    );
+
+    _$('.product-carousel').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<div class='lav-off'>35% Off</div>`
+    );
   }
 }
 
@@ -1298,7 +1324,7 @@ function handleProductInfo() {
   addSaved();
   initMutation(_$('.pricing + .usave'), addSaved);
   moveKlaviyo();
-  handleNextBatch();
+  waitFor(() => _$('.pre_order_wrapper .pre_order_info>h3'), handleNextBatch);
   waitFor('.upsell_wrapper', addSetup);
   addSimilar();
   handleAddToCart();
@@ -1324,15 +1350,28 @@ function handleProductInfo() {
       .closest('div')
       .classList.add('lav-title__wrap');
 
-    let size = '50cm x 75cm';
-    _$('.lav-title__wrap h1').insertAdjacentHTML(
-      'beforeend',
-      /* html */ `<span class='lav-title__size'>${size}</span>`
-    );
+    if (lavType === 'dual' || lavType === 'foamo') {
+      let size = '50cm x 75cm';
+      _$('.lav-title__wrap h1').insertAdjacentHTML(
+        'beforeend',
+        /* html */ `<span class='lav-title__size'>${size}</span>`
+      );
+    }
+
+    let caption =
+      'From the first sleep, say goodbye to morning pain and grogginess';
+
+    if (lavType === 'foamo') {
+      caption =
+        'Adjustable pillow for custom comfort, reducing neck and back pain';
+    }
+    if (lavType === 'blanket') {
+      caption = 'Discover relaxation in the comforting clasp of a gentle hug';
+    }
 
     _$('.lav-title__wrap').insertAdjacentHTML(
       'beforeend',
-      /* html */ `<div class='lav-title__caption'>From the first sleep, say goodbye to morning pain and grogginess</div>`
+      /* html */ `<div class='lav-title__caption'>${caption}</div>`
     );
   }
 
@@ -1398,10 +1437,12 @@ function handleProductInfo() {
       ],
     };
 
+    if (!options[lavType]) return;
+
     const optionsEl = document.createElement('div');
     optionsEl.classList.add('lav-options');
 
-    options[lavType].forEach((option) => {
+    options[lavType]?.forEach((option) => {
       const optionEl = document.createElement('div');
       optionEl.classList.add('lav-option');
       optionEl.innerHTML = /* html */ `
@@ -1670,7 +1711,9 @@ function handleProductInfo() {
 
     products['foamo'] = products['dual'];
 
-    const similarProducts = products[lavType].filter(
+    if (!products[lavType]) return;
+
+    const similarProducts = products[lavType]?.filter(
       (p) => !location.href.includes(p.url)
     );
 
@@ -1722,34 +1765,6 @@ function handleProductInfo() {
   function handleSticky() {
     _$('#MainProductForm').parentElement.classList.add('lavs-buy__wrap');
 
-    const stickyBuy = document.createElement('div');
-    stickyBuy.classList.add('lavs-buy');
-
-    const stickyFit = document.createElement('div');
-    stickyFit.classList.add('lavs-fit');
-    const title = _$(
-      'div#MainProductForm .lav-title__wrap h1'
-    ).firstChild.textContent.trim();
-    let caption = 'Standard Size Luxury Pillow (50cm x 75cm)';
-
-    if (lavType === 'blanket') {
-      caption = 'Weighted Blanket with Integrated Cover';
-    }
-
-    stickyFit.innerHTML = /* html */ `
-      <div class='lavs-fit__info'>
-        <div class='lavs-fit__head'>
-          <div class='lavs-fit__title'>${title}</div>
-          <div class='lavs-fit__trust'></div>
-        </div>
-        <div class='lavs-fit__caption'>${caption}</div>
-      </div>
-
-      <div class='lavs-fit__similar'>Similar products</div>
-
-      <div class='lavs-fit__btn'>Choose your best fit</div>
-    `;
-
     // waitFor('.trustpilot-widget iframe', () => {
     //   _$('.lavs-fit__trust', stickyFit).insertAdjacentHTML(
     //     'beforeend',
@@ -1760,74 +1775,111 @@ function handleProductInfo() {
     //   );
     // });
 
-    stickyFit
-      .querySelector('.lavs-fit__btn')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
-        if (this.classList.contains('active')) return;
-        this.classList.add('active');
-        let offset =
-          $('.lav-options').offset().top -
-          $('#shopify-section-header').height() -
-          10;
+    if (_$('.lav-options')) {
+      addBuy();
+    }
+    addFit();
 
-        if (window.innerWidth >= 1024) {
-          offset -= $('#shopify-section-layout-announcement-bar').height();
+    function addBuy() {
+      const stickyBuy = document.createElement('div');
+      stickyBuy.classList.add('lavs-buy');
+
+      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyBuy);
+      fillStickyBuy();
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > _$('#AddToCart').offsetTop + 200) {
+          stickyBuy.classList.add('active');
+          _$('.lavs-buy__wrap').style.marginTop =
+            '-' + _$('.lavs-buy').offsetHeight + 'px';
+          _$('.lavs-buy').style.opacity = 1;
+        } else {
+          stickyBuy.classList.remove('active');
+          _$('.lavs-buy__wrap').style.marginTop = 0;
+          _$('.lavs-buy').style.opacity = 0;
         }
-
-        $('html, body').animate({
-          scrollTop: offset,
-        });
-        setTimeout(() => {
-          this.classList.remove('active');
-        }, 1000);
       });
+    }
 
-    stickyFit
-      .querySelector('.lavs-fit__similar')
-      .addEventListener('click', function (e) {
-        e.preventDefault();
+    function addFit() {
+      const stickyFit = document.createElement('div');
+      stickyFit.classList.add('lavs-fit');
+      const title = _$(
+        'div#MainProductForm .lav-title__wrap h1'
+      ).firstChild.textContent.trim();
+      let caption = 'Standard Size Luxury Pillow (50cm x 75cm)';
 
-        if (this.classList.contains('active')) return;
-        this.classList.add('active');
-        let offset =
-          $('.lav-similar').offset().top -
-          $('#shopify-section-header').height() -
-          10;
-
-        $('html, body').animate({
-          scrollTop: offset,
-        });
-        setTimeout(() => {
-          this.classList.remove('active');
-        }, 1000);
-      });
-
-    _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyBuy);
-
-    fillStickyBuy();
-
-    _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyFit);
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > _$('#AddToCart').offsetTop + 200) {
-        stickyBuy.classList.add('active');
-        _$('.lavs-buy__wrap').style.marginTop =
-          '-' + _$('.lavs-buy').offsetHeight + 'px';
-        _$('.lavs-buy').style.opacity = 1;
-      } else {
-        stickyBuy.classList.remove('active');
-        _$('.lavs-buy__wrap').style.marginTop = 0;
-        _$('.lavs-buy').style.opacity = 0;
+      if (lavType === 'blanket') {
+        caption = 'Weighted Blanket with Integrated Cover';
       }
 
-      // add active class to sticky if scroll after .shopify-section banner-section
-      if (window.scrollY > _$('.featured-products-section').offsetTop - 100) {
-        stickyFit.classList.add('active');
-      } else {
-        stickyFit.classList.remove('active');
-      }
-    });
+      stickyFit.innerHTML = /* html */ `
+        <div class='lavs-fit__info'>
+          <div class='lavs-fit__head'>
+            <div class='lavs-fit__title'>${title}</div>
+            <div class='lavs-fit__trust'></div>
+          </div>
+          <div class='lavs-fit__caption'>${caption}</div>
+        </div>
+  
+        <div class='lavs-fit__similar'>Similar products</div>
+  
+        <div class='lavs-fit__btn'>Choose your best fit</div>
+      `;
+
+      stickyFit
+        .querySelector('.lavs-fit__btn')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+          if (this.classList.contains('active')) return;
+          this.classList.add('active');
+          let offset =
+            $('.lav-options').offset().top -
+            $('#shopify-section-header').height() -
+            10;
+
+          if (window.innerWidth >= 1024) {
+            offset -= $('#shopify-section-layout-announcement-bar').height();
+          }
+
+          $('html, body').animate({
+            scrollTop: offset,
+          });
+          setTimeout(() => {
+            this.classList.remove('active');
+          }, 1000);
+        });
+
+      stickyFit
+        .querySelector('.lavs-fit__similar')
+        .addEventListener('click', function (e) {
+          e.preventDefault();
+
+          if (this.classList.contains('active')) return;
+          this.classList.add('active');
+          let offset =
+            $('.lav-similar').offset().top -
+            $('#shopify-section-header').height() -
+            10;
+
+          $('html, body').animate({
+            scrollTop: offset,
+          });
+          setTimeout(() => {
+            this.classList.remove('active');
+          }, 1000);
+        });
+
+      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyFit);
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > _$('.featured-products-section').offsetTop - 100) {
+          stickyFit.classList.add('active');
+        } else {
+          stickyFit.classList.remove('active');
+        }
+      });
+    }
   }
 }
 
