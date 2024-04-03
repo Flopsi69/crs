@@ -943,9 +943,15 @@ const styles = /* css */ `
   .tp_widget_wrapper .tp_wid {
     display: none;
   }
+  .lav-batch__caption br {
+    display: none;
+  }
   @media(max-width: 1023px) {
     .lav-breadcrumbs {
       padding: 5px 16px;
+    }
+    .lav-batch__caption br {
+      display: block;
     }
     .crs_cta {
       display: flex;
@@ -1610,7 +1616,7 @@ function handleProductInfo() {
     let caption = `<strong>Get 5% OFF</strong> your order when reserving. Use Code: <strong>RESERVE</strong> at checkout`;
 
     if (lavType === 'foamo') {
-      caption = `Buy 1 <strong>Get 1 FREE</strong> when reserving! Use Code: <strong>B1G1</strong>`;
+      caption = `Buy 1 <strong>Get 1 FREE</strong> when reserving!<br/> Use Code: <strong>B1G1</strong>`;
     }
 
     const nextBatch = /* html */ `
