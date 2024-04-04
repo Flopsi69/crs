@@ -1471,7 +1471,7 @@ async function initExp() {
         'lav-setup_load'
       );
       handleMiniCart();
-      if (_$('.cart_count')) {
+      if (_$('.cart_count') && _$('.minicart_items')) {
         _$('.cart_count').innerText = parseInt(
           _$('.minicart_items').textContent
         );
