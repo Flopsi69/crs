@@ -119,6 +119,17 @@ const styles = /* css */ `
     font-weight: 600;
     line-height: 20px;
   }
+  .lav-title__caption-sup {
+    color: var(--Dark-Green, #2B4632);
+    font-family: 'Inter';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-top: 6px;
+  }
+  .lav-page-blanket .lav-title__caption {
+    max-width: 356px;
+  }
   .pro_price .pricing, .pro_price {
     margin: 0;
   }
@@ -284,7 +295,7 @@ const styles = /* css */ `
   }
   .lav-size__drop.active .lav-size__value:before {
     transform: translateY(-50%) rotate(180deg);
-    top: 50%;
+    top: 55%;
   }
   .lav-size__list {
     border-top: 1px solid #DAE5D9;
@@ -395,6 +406,10 @@ const styles = /* css */ `
   .pro_form .qq {
     display: none;
   }
+  .lav-page-blanket .pro_form .qq {
+    display: flex;
+    height: auto;
+  }
   .pro_form .qw {
     margin: 12px 0;
   }
@@ -490,6 +505,9 @@ const styles = /* css */ `
   [action="/cart/add"] .ol {
     display: none;
   }
+  [action="/cart/add"] > .flex.flex-col.mt-4, [action="/cart/add"] .ol {
+    // display: block!important;
+  }
   [action="/cart/add"] > .flex.flex-col.mt-4 {
     display: none;
   }
@@ -506,6 +524,9 @@ const styles = /* css */ `
     border-radius: 6px;
     height: 64px;
     gap: 10px;
+  }
+  .lav-page-blanket .btn-cw-cta[name="add"] {
+    height: 56px;
   }
   button.btn-cw-cta[name="add"] span {
     color: #FFF;
@@ -555,6 +576,12 @@ const styles = /* css */ `
     align-items: center;
     gap: 15px;
   }
+  .lav-page-blanket .lav-similar__control {
+    display: none;
+  }
+  .lav-page-blanket  .lav-pr__image {
+    border: none;
+  }
   .lav-similar__arrow {
     cursor: pointer;
     transition: 0.2s;
@@ -580,6 +607,9 @@ const styles = /* css */ `
   .lav-similar__slider .slick-list {
     overflow: visible;
   }
+  .lav-page-blanket .lav-pr {
+    max-width: 175px;
+  }
   .lav-pr {
     position: relative;
     margin: 0 8px;
@@ -590,13 +620,14 @@ const styles = /* css */ `
     border: 1px solid #FFF;
     background-color: lightgray;
     overflow: hidden;
-    height: 165px;
+    height: 175px;
     line-height: 0;
   }
   .lav-pr__image img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: bottom;
   }
   .lav-pr__title {
     color: var(--White, #FFF);
@@ -814,6 +845,9 @@ const styles = /* css */ `
     width: 100%;
     transition: 0.3s;
   }
+  .lav-page-blanket .lavs-fit__info {
+    flex-shrink: 0;
+  }
   .lavs-fit:not(.active) {
     opacity: 0;
     pointer-events: none;
@@ -861,6 +895,17 @@ const styles = /* css */ `
     font-weight: 700;
     line-height: 32px;
   }
+  .lavs-fit__trust {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--Dark-Green, #2B4632);
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 13px;
+    white-space: nowrap;
+  }
   .lavs-fit__caption {
     margin-top: 4px;
     color: #2B4632;
@@ -907,8 +952,17 @@ const styles = /* css */ `
     border-bottom: 24px solid #DCE6DA;
     padding: 100px 0 110px;
   }
+  .lav-trusted .slick-track {
+    display: flex !important;
+  }
+  .lav-trusted .slick-slide {
+    height: inherit
+  }
   .lav-trusted-clone {
     border-top: 0;
+  }
+  .lav-trusted-clone .lav-trusted__title {
+    display: none;
   }
   .lav-trusted__container {
     max-width: 1330px;
@@ -937,6 +991,8 @@ const styles = /* css */ `
     margin: 42px -8px 0;
   }
   .lav-trusted__item {
+    display: flex!important;
+    flex-direction: column;
     margin: 0 8px;
     border-radius: 10px;
     border: 1px solid #DBE8F4;
@@ -973,7 +1029,8 @@ const styles = /* css */ `
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
-    margin-top: 5px;
+    padding-top: 5px;
+    margin-top: auto;
   }
   .lav-trusted .slick-arrow {
     width: auto;
@@ -1002,6 +1059,61 @@ const styles = /* css */ `
   .lav-batch__caption br {
     display: none;
   }
+  .shipped_within_wrapper {
+    margin: 0 0 4px;
+  }
+  .shippd_w_inner {
+    justify-content: center;
+  }
+  .shippd_w_inner .sw_svg {
+    display: none;
+  }
+  .shippd_w_inner .sw_text {
+    margin-left: 0;
+    display: flex;
+    gap: 7px;
+  }
+  .shippd_w_inner .sw_text h3 {
+    color: var(--Dark-Green, #2B4632);
+    font-family: 'Inter';
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  .lav-stock {
+    position: relative;
+    color: #15AA0B;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 17px;
+    margin-top: 12px;
+    padding-left: 20px;
+  }
+  .lav-stock:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #15AA0B;
+  }
+  .lav-stock_out {
+    color: #d21c1c;
+  }
+  .lav-stock_out:before {
+    background: #d21c1c;
+  }
+  .lavs-buy__title {
+    color: #2B4632;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+  }
   @media(max-width: 1023px) {
     .lav-breadcrumbs {
       padding: 5px 16px;
@@ -1027,6 +1139,19 @@ const styles = /* css */ `
     }
     .lav-title__caption {
       padding: 0 17px;
+    }
+    .lav-title__caption-sup {
+      padding: 0 17px;
+    }
+    .lav-size {
+      padding: 0 17px;
+    }
+    .lav-stock {
+      margin-left: 17px;
+      margin-right: 17px;
+    }
+    .shipped_within_wrapper {
+      margin-bottom: 8px;
     }
     .lav-options {
       padding: 0 17px;
@@ -1257,10 +1382,24 @@ const styles = /* css */ `
       cursor: auto;
       filter: grayscale(1);
     }
+    .lav-size__value {
+      padding-right: 40px;
+      white-space: nowrap;
+    }
+    .lav-size__value:before {
+      right: 10px;
+    }
   }
   @media(max-width: 389px) {
     .kl_wrapper span.kl {
       font-size: 12px;
+    }
+    .lav-size__drop {
+      font-size: 13px;
+    }
+    .lav-size__value {
+      font-size: 14px;
+      padding-right: 30px;
     }
     .lavs-fit {
       gap: 12px;
@@ -1313,8 +1452,6 @@ initExp();
 async function initExp() {
   await waitFor(() => document.head && document.body, false, { ms: 100 });
 
-  document.body.appendChild(stylesEl);
-
   console.debug('** InitExp **');
 
   if (location.href.includes('/the-dual-pillow')) {
@@ -1326,7 +1463,11 @@ async function initExp() {
   } else if (location.href.includes('/mela-weighted-blanket')) {
     _$('body').classList.add('lav-page-blanket');
     lavType = 'blanket';
+  } else {
+    return false;
   }
+
+  document.body.appendChild(stylesEl);
 
   addBreadcrumbs();
   handleGallery();
@@ -1436,7 +1577,8 @@ function handleProductInfo() {
   handleHead();
   if (lavType !== 'blanket') {
     handleOptions();
-  } else {
+  }
+  if (lavType === 'blanket') {
     waitFor('.shadow-product-option', handleSize);
   }
   addSaved();
@@ -1461,6 +1603,13 @@ function handleProductInfo() {
         _$('#AddToCart').innerHTML = innerHtmlAddToCart;
       }
     });
+
+    if (lavType === 'blanket' && _$('.shipped_within_wrapper')) {
+      _$('.pro_form .money_back').insertAdjacentElement(
+        'beforebegin',
+        _$('.shipped_within_wrapper')
+      );
+    }
   }
 
   function handleHead() {
@@ -1485,6 +1634,11 @@ function handleProductInfo() {
     }
     if (lavType === 'blanket') {
       caption = 'Discover relaxation in the comforting clasp of a gentle hug';
+
+      _$('.lav-title__wrap').insertAdjacentHTML(
+        'beforeend',
+        /* html */ `<div class='lav-title__caption-sup'>Weighted Blanket with Integrated Cover</div>`
+      );
     }
 
     _$('.lav-title__wrap').insertAdjacentHTML(
@@ -1643,9 +1797,35 @@ function handleProductInfo() {
       $('.lav-size__list').slideToggle();
     });
 
-    // console.log(_$('.shadow-product-option .text-main-blue').innerText);
-    // _$('.shadow-product-option .leading-6').click();
-    // _$$('.shadow-product-option.absolute .cursor-pointer').indexOf()
+    _$('.shadow-product-option .leading-6').click();
+    waitFor(
+      () => _$('.shadow-product-option.absolute .cursor-pointer'),
+      () => {
+        const idxActive = Array.from(
+          _$$('.shadow-product-option.absolute .cursor-pointer')
+        ).findIndex((el) => {
+          console.log(
+            _$('.shadow-product-option .text-main-blue').innerText,
+            el.innerText
+          );
+
+          return (
+            _$('.shadow-product-option .text-main-blue').textContent ===
+            el.textContent
+          );
+        });
+
+        if (idxActive >= 0) {
+          _$('.lav-size__value').innerHTML = _$$('.lav-size__item', sizeEl)[
+            idxActive
+          ].innerHTML;
+          _$$('.lav-size__item', sizeEl)[idxActive].classList.add('active');
+        }
+      },
+      {
+        ms: 50,
+      }
+    );
 
     _$$('.lav-size__item', sizeEl).forEach((sizeItem) => {
       sizeItem.addEventListener('click', function (e) {
@@ -1653,9 +1833,31 @@ function handleProductInfo() {
 
         if (sizeItem.classList.contains('active')) return;
 
+        if (!_$('.shadow-product-option.absolute .cursor-pointer')) {
+          _$('.shadow-product-option .leading-6').click();
+        }
+
+        waitFor(
+          () => _$('.shadow-product-option.absolute .cursor-pointer'),
+          () => {
+            _$$('.shadow-product-option.absolute .cursor-pointer')[
+              sizeItem.dataset.item
+            ].click();
+          },
+          {
+            ms: 50,
+          }
+        );
+
         _$('.lav-size__item.active', sizeEl)?.classList.remove('active');
 
         sizeItem.classList.add('active');
+
+        _$('.lav-size__value').innerHTML = sizeItem.innerHTML;
+
+        setTimeout(() => {
+          fillStickyBuy();
+        }, 500);
       });
     });
 
@@ -1676,6 +1878,10 @@ function handleProductInfo() {
         if (toggleEl.dataset.value === 'large') {
           _$('[for="8133599232286-1-1"]').click();
         }
+
+        setTimeout(() => {
+          fillStickyBuy();
+        }, 500);
       });
     });
 
@@ -1687,8 +1893,6 @@ function handleProductInfo() {
       _$("[data-value='large']").classList.add('active');
     }
   }
-
-  function fillSizeDropdown() {}
 
   function addSaved() {
     if (_$('#MainProductForm .lav-saved'))
@@ -1711,6 +1915,19 @@ function handleProductInfo() {
       <div class='lav-saved'><strong>-${discount}%</strong> (${price})</div>
     `
     );
+
+    if (lavType === 'blanket') {
+      if (_$('.lav-stock')) _$('.lav-stock').remove();
+
+      const caption = _$('.pricing + .usave>span:last-child').textContent;
+
+      _$('.pro_form .qw').insertAdjacentHTML(
+        'beforebegin',
+        /* html */ `<div class='lav-stock ${
+          caption.includes('OUT') ? 'lav-stock_out' : ''
+        }'>${caption}</div>`
+      );
+    }
   }
 
   function moveKlaviyo() {
@@ -1843,9 +2060,9 @@ function handleProductInfo() {
     );
 
     function getImage(src) {
-      if (src.includes('Stone_Pillowcase-x')) {
-        return `${config.dir}/img/setup-pillow-1.png`;
-      }
+      // if (src.includes('Stone_Pillowcase-x')) {
+      //   return `${config.dir}/img/setup-pillow-1.png`;
+      // }
       return src;
     }
   }
@@ -1904,6 +2121,16 @@ function handleProductInfo() {
           url: '/products/pillow-pillowcase-bundle',
         },
       ],
+      blanket: [
+        {
+          title: 'The Mela Weighted Blanket',
+          priceOld: '159.00',
+          priceNew: '74.25',
+          img: 'upsell-blanket.png',
+          discount: 55,
+          url: '/products/the-mela-weighted-blanket-with-removable-cover',
+        },
+      ],
     };
 
     products['foamo'] = products['dual'];
@@ -1938,25 +2165,28 @@ function handleProductInfo() {
     });
 
     _$('.bg-main-tertiary-100').insertAdjacentElement('afterend', similarEl);
-
-    $('.lav-similar__slider').slick({
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      infinite: false,
-      autoplaySpeed: 5000,
-      prevArrow: $('.lav-similar__prev'),
-      nextArrow: $('.lav-similar__next'),
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2.3,
-            autoplay: false,
+    // centerMode: true,
+    // rtl: true,
+    if (lavType !== 'blanket') {
+      $('.lav-similar__slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: false,
+        infinite: false,
+        autoplaySpeed: 5000,
+        prevArrow: $('.lav-similar__prev'),
+        nextArrow: $('.lav-similar__next'),
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2.3,
+              autoplay: false,
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    }
   }
 
   function handleSticky() {
@@ -1972,9 +2202,7 @@ function handleProductInfo() {
     //   );
     // });
 
-    if (_$('.lav-options')) {
-      addBuy();
-    }
+    addBuy();
     addFit();
 
     function addBuy() {
@@ -2005,16 +2233,23 @@ function handleProductInfo() {
         'div#MainProductForm .lav-title__wrap h1'
       ).firstChild.textContent.trim();
       let caption = 'Standard Size Luxury Pillow (50cm x 75cm)';
+      let count = '854';
 
+      if (lavType === 'foamo') {
+        count = '368';
+      }
       if (lavType === 'blanket') {
         caption = 'Weighted Blanket with Integrated Cover';
+        count = '2,313';
       }
 
       stickyFit.innerHTML = /* html */ `
         <div class='lavs-fit__info'>
           <div class='lavs-fit__head'>
             <div class='lavs-fit__title'>${title}</div>
-            <div class='lavs-fit__trust'></div>
+            <div class='lavs-fit__trust'>
+              ${getSvg('trustStars')} ${count} reviews
+            </div>
           </div>
           <div class='lavs-fit__caption'>${caption}</div>
         </div>
@@ -2031,7 +2266,8 @@ function handleProductInfo() {
           if (this.classList.contains('active')) return;
           this.classList.add('active');
           let offset =
-            $('.lav-options').offset().top -
+            $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset()
+              .top -
             $('#shopify-section-header').height() -
             10;
 
@@ -2105,18 +2341,45 @@ function clickAddToCart() {
 function fillStickyBuy() {
   _$('.lavs-buy').innerHTML = '';
 
-  const optionEL = _$('.lav-option.active').cloneNode(true);
+  let optionEl = null;
+
+  if (lavType === 'blanket') {
+    // optionEl = _$('.lav-size').cloneNode(true);
+    optionEl = document.createElement('div');
+    optionEl.classList.add('lavs-buy__title');
+    optionEl.innerHTML = /* html */ `
+      ${_$('.lav-size__toggle.active .lav-size__toggle-title').textContent} (${
+      _$('.lav-size__toggle.active .lav-size__toggle-caption').textContent
+    }) | ${_$('.lav-size__value').textContent}
+    `;
+
+    // _$('.lav-size__toggle.active')
+  } else {
+    optionEl = _$('.lav-option.active').cloneNode(true);
+  }
+
   const priceEl = _$('.pro_price .pricing').cloneNode(true);
   const btnEl = _$('#AddToCart').cloneNode(true);
   btnEl.removeAttribute('id');
 
-  _$('.lavs-buy').insertAdjacentElement('beforeend', optionEL);
+  _$('.lavs-buy').insertAdjacentElement('beforeend', optionEl);
   _$('.lavs-buy').insertAdjacentElement('beforeend', priceEl);
   _$('.lavs-buy').insertAdjacentElement('beforeend', btnEl);
 
   btnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    const prevCount = _$('#qty').value;
+
+    _$('#qty').value = 1;
+
     clickAddToCart();
+
+    waitFor(
+      () => _$('.opnd.opn'),
+      () => {
+        _$('#qty').value = prevCount;
+      }
+    );
   });
 }
 
@@ -2281,7 +2544,6 @@ function handleAdditionalInfo() {
           settings: {
             slidesToShow: 1,
             dots: true,
-            adaptiveHeight: true,
           },
         },
       ],
@@ -2292,18 +2554,18 @@ function handleAdditionalInfo() {
         const feedbackEl = document.createElement('div');
         feedbackEl.classList.add('lav-trusted__item');
         feedbackEl.innerHTML = /* html */ `
-          <div data-url='${feedback.url}' class='lav-trusted__item-title'>${feedback.title}</div>
+          <div class='lav-trusted__item-title'>${feedback.title}</div>
           <div class='lav-trusted__item-descr'>${feedback.descr}</div>
           <div class='lav-trusted__item-author'>${feedback.author}</div>
         `;
 
-        _$('.lav-trusted__item-title', feedbackEl).addEventListener(
-          'click',
-          (e) => {
-            e.preventDefault();
-            window.open(feedback.url, '_blank').focus();
-          }
-        );
+        // _$('.lav-trusted__item-title', feedbackEl).addEventListener(
+        //   'click',
+        //   (e) => {
+        //     e.preventDefault();
+        //     window.open(feedback.url, '_blank').focus();
+        //   }
+        // );
 
         _$('.lav-trusted__list', trusted).insertAdjacentElement(
           'beforeend',
@@ -2333,7 +2595,7 @@ function addCta() {
       // ]);
 
       let offset =
-        $('.lav-options').offset().top -
+        $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset().top -
         $('#shopify-section-header').height() -
         10;
 
@@ -2729,6 +2991,31 @@ if (
 // Svg objects
 function getSvg(name) {
   const svgObj = {
+    trustStars: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="15" viewBox="0 0 80 15" fill="none">
+      <g clip-path="url(#clip0_246_3387)">
+        <path d="M0.015625 15.1076H14.7915V0H0.015625V15.1076Z" fill="#00B67A"/>
+        <path d="M12.6129 6.4255L4.2322 12.6502L5.45511 8.80313L2.25391 6.4255H6.21075L7.4334 2.57812L8.65606 6.4255H12.6129ZM7.43371 10.2729L9.7225 9.78063L10.6344 12.6502L7.43371 10.2729Z" fill="white"/>
+        <path d="M16.3438 15.1076H31.1196V0H16.3438V15.1076Z" fill="#00B67A"/>
+        <path d="M16.3438 15.1076H23.7317V0H16.3438V15.1076Z" fill="#00B67A"/>
+        <path d="M23.9096 10.217L25.8723 9.78329L26.78 12.7181L23.7022 10.3693L20.5042 12.7181L21.7454 8.85698L18.4961 6.47072H22.5124L23.7531 2.60938L24.9943 6.47072H29.0103L23.9096 10.217Z" fill="white"/>
+        <path d="M32.6836 15.1076H47.4595V0H32.6836V15.1076Z" fill="#00B67A"/>
+        <path d="M32.6836 15.1076H40.0715V0H32.6836V15.1076Z" fill="#00B67A"/>
+        <path d="M45.2809 6.4255L36.9002 12.6502L38.1231 8.80313L34.9219 6.4255H38.8787L40.1014 2.57812L41.324 6.4255L45.2809 6.4255ZM40.1017 10.2729L42.3905 9.78063L43.3024 12.6502L40.1017 10.2729Z" fill="white"/>
+        <path d="M49.0234 15.1076H63.7993V0H49.0234V15.1076Z" fill="#00B67A"/>
+        <path d="M49.0234 15.1076H56.4114V0H49.0234V15.1076Z" fill="#00B67A"/>
+        <path d="M61.6168 6.4255L53.2364 12.6502L54.459 8.80313L51.2578 6.4255H55.2147L56.4373 2.57812L57.66 6.4255L61.6168 6.4255ZM56.4376 10.2729L58.7264 9.78063L59.6383 12.6502L56.4376 10.2729Z" fill="white"/>
+        <path d="M65.3516 15.1076H80.1274V0H65.3516V15.1076Z" fill="#00B67A"/>
+        <path d="M65.3516 15.1076H72.7395V0H65.3516V15.1076Z" fill="#00B67A"/>
+        <path d="M77.9449 6.4255L69.5645 12.6502L70.7871 8.80313L67.5859 6.4255H71.5428L72.7654 2.57812L73.9881 6.4255H77.9449ZM72.7657 10.2729L75.0545 9.78063L75.9664 12.6502L72.7657 10.2729Z" fill="white"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_246_3387">
+          <rect width="80" height="15" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
+    `,
     dropdown: `
     <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask id="path-1-inside-1_200_30368" fill="white">
