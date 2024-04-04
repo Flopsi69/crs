@@ -670,17 +670,17 @@ const styles = /* css */ `
       text-decoration: line-through;
     }
 
-    .lav-setup {
+    #MainProductForm .lav-setup {
       padding: 24px 40px;
       background: #E7EAF2;
       margin: 18px -2.5rem 0;
       transition: 0.2s;
     }
-    .lav-setup_load {
+    #MainProductForm .lav-setup_load {
       pointer-events: none;
       opacity: 0.5;
     }
-    .lav-setup__title {
+    #MainProductForm .lav-setup__title {
       color: var(--Blue, #1B437E);
       font-family: 'Inter';
       font-size: 16px;
@@ -688,10 +688,10 @@ const styles = /* css */ `
       line-height: 24px;
       text-transform: uppercase;
     }
-    .lav-setup__list {
+    #MainProductForm .lav-setup__list {
       margin-top: 8px;
     }
-    .lav-setup__plate {
+    #MainProductForm .lav-setup__plate {
       border-radius: 6px;
       border: 1.5px solid #B0BFD4;
       background: #FFF;
@@ -700,15 +700,15 @@ const styles = /* css */ `
       gap: 18px;
       padding: 16px;
     }
-    .lav-setup__plate + .lav-setup__plate {
+    #MainProductForm .lav-setup__plate + .lav-setup__plate {
       margin-top: 8px;
     }
-    .lav-setup__image {
+    #MainProductForm .lav-setup__image {
       position: relative;
       line-height: 0;
       flex-shrink: 0;
     }
-    .lav-setup__image svg {
+    #MainProductForm .lav-setup__image svg {
       position: absolute;
       bottom: 8px;
       right: 0;
@@ -717,24 +717,24 @@ const styles = /* css */ `
       width: 100%;
       z-index: 1;
     }
-    .lav-setup__info {
+    #MainProductForm .lav-setup__info {
       flex-grow: 1;
     }
-    .lav-setup__image img {
+    #MainProductForm .lav-setup__image img {
       width: 80px;
       height: 80px;
       flex-shrink: 0;
       border-radius: 6px;
       overflow: hidden;
     }
-    .lav-setup__name {
+    #MainProductForm .lav-setup__name {
       color: var(--Blue, #1B437E);
       font-family: 'Inter';
       font-size: 14px;
       font-weight: 800;
       line-height: 24px;
     }
-    .lav-setup__caption {
+    #MainProductForm .lav-setup__caption {
       color: var(--Blue, #1B437E);
       font-family: 'Inter';
       font-size: 14px;
@@ -742,26 +742,26 @@ const styles = /* css */ `
       line-height: 20px;
       margin-top: 4px;
     }
-    .lav-setup__control {
+    #MainProductForm .lav-setup__control {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 15px;
       margin-top: 4px;
     }
-    .lav-setup__price {
+    #MainProductForm .lav-setup__price {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .lav-setup__price-new {
+    #MainProductForm .lav-setup__price-new {
       color: var(--Blue, #1B437E);
       font-family: 'Inter';
       font-size: 16px;
       font-weight: 700;
       line-height: 24px;
     }
-    .lav-setup__price-old {
+    #MainProductForm .lav-setup__price-old {
       color: #646464;
       font-family: 'Inter';
       font-size: 14px;
@@ -769,7 +769,7 @@ const styles = /* css */ `
       line-height: 20px;
       text-decoration: line-through;
     }
-    .lav-setup__btn {
+    #MainProductForm .lav-setup__btn {
       border-radius: 6px;
       background: var(--Blue, #1B437E);
       padding: 6px 14px;
@@ -782,7 +782,7 @@ const styles = /* css */ `
       cursor: pointer;
     }
     @media(hover:hover) {
-      .lav-setup__btn:hover {
+      #MainProductForm .lav-setup__btn:hover {
         background-color: #0b2d61;
       }
     }
@@ -1192,19 +1192,19 @@ const styles = /* css */ `
       .lav-batch__sub {
         font-size: 14px;
       }
-      .lav-setup {
+      #MainProductForm .lav-setup {
         margin-left: 0;
         margin-right: 0;
         padding: 24px 17px;
       }
-      .lav-setup__plate {
+      #MainProductForm .lav-setup__plate {
         padding: 13px 12px;
         gap: 16px;
       }
-      .lav-setup__name {
+      #MainProductForm .lav-setup__name {
         line-height: 21px;
       }
-      .lav-setup__control {
+      #MainProductForm .lav-setup__control {
         gap: 10px;
       }
       .bg-main-tertiary-100 {
@@ -1422,7 +1422,7 @@ const styles = /* css */ `
       .pro_form .money_back>div {
         font-size: 12px;
       }
-      .lav-setup__btn {
+      #MainProductForm .lav-setup__btn {
         padding: 6px 8px;
       }
       a.tabs-component-tab-a {
@@ -1465,10 +1465,17 @@ async function initExp() {
   handleMiniCart();
 
   initMutation('#shopify-section-minicart', (el) => {
-    console.log('add', el);
     if (!(el instanceof HTMLElement)) return;
     if (el.classList.contains('minicart_inner')) {
+      _$('#MainProductForm .lav-setup.lav-setup_load')?.classList.remove(
+        'lav-setup_load'
+      );
       handleMiniCart();
+      if (_$('.cart_count')) {
+        _$('.cart_count').innerText = parseInt(
+          _$('.minicart_items').textContent
+        );
+      }
     }
   });
 
@@ -1503,9 +1510,25 @@ async function initExp() {
 }
 
 function handleMiniCart() {
+  if (_$('#shopify-section-minicart .empty_cart')) return;
+
   console.log('updateMiniCart');
-  const style = /* html */ `
-    <style>
+
+  if (!_$('#lav-minicart-style')) {
+    addStyles();
+  }
+
+  handleFree();
+  handleBody();
+  handleFooter();
+  addUpsell();
+  updateHeight();
+
+  window.addEventListener('resize', updateHeight);
+
+  function addStyles() {
+    const style = /* html */ `
+    <style id='lav-minicart-style'>
       .minicart_header {
         padding: 8px 16px;
         justify-content: left;
@@ -1722,21 +1745,124 @@ function handleMiniCart() {
           opacity: 0.7;
         }
       }
+      #shopify-section-minicart .lav-setup {
+        margin-top: 16px;
+        transition: 0.2s;
+      }
+      #shopify-section-minicart .lav-setup_load {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+      #shopify-section-minicart .lav-setup__title {
+        color: var(--Blue, #1B437E);
+        font-family: 'Inter';
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 24px;
+        text-transform: uppercase;
+      }
+      #shopify-section-minicart .lav-setup__list {
+        margin-top: 4px;
+      }
+      #shopify-section-minicart .lav-setup__plate {
+        border-radius: 6px;
+        border: 1.5px solid #B0BFD4;
+        background: #FFF;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+      }
+      #shopify-section-minicart .lav-setup__plate + .lav-setup__plate {
+        margin-top: 4px;
+      }
+      #shopify-section-minicart .lav-setup__image {
+        position: relative;
+        line-height: 0;
+        flex-shrink: 0;
+      }
+      #shopify-section-minicart .lav-setup__image svg {
+        position: absolute;
+        bottom: 8px;
+        right: 0;
+        left: 0;
+        padding: 0 8px;
+        width: 100%;
+        z-index: 1;
+      }
+      #shopify-section-minicart .lav-setup__info {
+        flex-grow: 1;
+      }
+      #shopify-section-minicart .lav-setup__image img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      #shopify-section-minicart .lav-setup__name {
+        color: var(--Blue, #1B437E);
+        font-family: 'Inter';
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 21px;
+      }
+      #shopify-section-minicart .lav-setup__control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      #shopify-section-minicart .lav-setup__price {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #shopify-section-minicart .lav-setup__price-new {
+        color: var(--Blue, #1B437E);
+        font-family: 'Inter';
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+      #shopify-section-minicart .lav-setup__price-old {
+        color: #646464;
+        font-family: 'Inter';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        text-decoration: line-through;
+      }
+      #shopify-section-minicart .lav-setup__btn {
+        border-radius: 6px;
+        background: var(--Blue, #1B437E);
+        padding: 6px 20px;
+        color: #FFF;
+        font-family: 'Inter';
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      @media(hover:hover) {
+        #shopify-section-minicart .lav-setup__btn:hover {
+          background-color: #0b2d61;
+        }
+      }
+      @media(max-width: 1023px) {
+      }
+      @media(max-width: 389px) {
+        #shopify-section-minicart .lav-setup__btn {
+          padding: 6px 8px;
+        }
+      }
     </style>
   `;
 
-  const upsellList = [];
-
-  document.body.insertAdjacentHTML('beforeend', style);
-
-  handleFree();
-  handleBody();
-  handleFooter();
-  updateHeight();
-
-  window.addEventListener('resize', updateHeight);
-
-  isFireExpand = true;
+    document.body.insertAdjacentHTML('beforeend', style);
+  }
 
   function handleFree() {
     if (!_$('.free_shipping_wrapper')) return;
@@ -1766,6 +1892,7 @@ function handleMiniCart() {
 
       _$('.lavc-expand__toggler').addEventListener('click', function () {
         this.remove();
+        isFireExpand = true;
         _$('.minicart_inner').classList.add('lav-mini-expand');
       });
     }
@@ -1835,6 +1962,49 @@ function handleMiniCart() {
   }
 
   function addUpsell() {
+    const upsellList = [
+      {
+        title: 'Eucalyptus Silk Pillowcases (2&#160;Pack) Light Blue',
+        src: '//www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?v=1704709097&width=300&height=300&crop=center',
+        url: 'https://www.aeyla.co.uk/products/eucalyptus-silk-pillow-cases',
+        oldPrice: '£65.00',
+        newPrice: '£39.00',
+        alias: 'Eucalyptus Silk Pillow Cases - 2 Pack',
+        id: '44467943047454',
+      },
+      {
+        title: 'Eucalyptus Sleep Mask White',
+        src: 'https://www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfortWHITE.webp?crop=center&height=300&v=1677417887&width=300',
+        url: 'https://www.aeyla.co.uk/products/eucalyptus-silk-eye-mask',
+        oldPrice: '£25.00',
+        newPrice: '£15.00',
+        alias: 'Eucalyptus Silk Eye Mask',
+        id: '44467937280286',
+      },
+      {
+        title: 'Sleep Enhancer Pillow Spray (50ml)',
+        src: '//www.aeyla.co.uk/cdn/shop/products/MEL2923-MelaComfort7438.webp?crop=center&height=300&v=1677452179&width=300',
+        url: 'https://www.aeyla.co.uk/products/sleep-enhancing-spray',
+        oldPrice: '£19.99',
+        newPrice: '£14.99',
+        alias: 'Sleep Enhancer Pillow Spray',
+        id: '44467910967582',
+      },
+    ];
+
+    const productInCart = Array.from(_$$('.minicart_inner .item_block')).map(
+      (el) => _$('h3', el).textContent.trim()
+    );
+
+    upsellListFiltered = upsellList.filter(({ alias }) => {
+      return productInCart.every((name) => {
+        // return true;
+        return !name.includes(alias);
+      });
+    });
+
+    if (!upsellListFiltered.length) return;
+
     const setupWrapper = document.createElement('div');
     setupWrapper.classList.add('lav-setup');
     setupWrapper.innerHTML = /* html */ `
@@ -1842,61 +2012,95 @@ function handleMiniCart() {
       <div class="lav-setup__list"></div>
     `;
 
-    _$$('.upsell_wrapper > label').forEach((el) => {
+    upsellListFiltered.forEach((item) => {
       const pr = document.createElement('div');
       pr.classList.add('lav-setup__plate');
       pr.innerHTML = /* html */ `
           <div class="lav-setup__image">
-            <img src='${getImage(_$('img', el).src)}' />
+            <img src='${item.src}' />
             ${getSvg('trust')}
           </div>
   
           <div class="lav-setup__info">
-            <div class="lav-setup__name">${_$('span.hidden', el).textContent} ${
-        _$('span.hidden + div', el).textContent
-      }</div>
-            <div class="lav-setup__caption">${
-              _$('.font-normal', el).textContent
-            }</div>
+            <div class="lav-setup__name">${item.title}</div>
   
             <div class="lav-setup__control">
               <div class="lav-setup__price">
-                <div class="lav-setup__price-new">${
-                  _$('.text-blue-grey', el).textContent
-                }</div>
-                <div class="lav-setup__price-old">${
-                  _$('.line-through', el).textContent
-                }</div>
+                <div class="lav-setup__price-new">${item.oldPrice}</div>
+                <div class="lav-setup__price-old">${item.newPrice}</div>
               </div>
-              <div class="lav-setup__btn">Add to cart</div>
+              <div class="lav-setup__btn">Add</div>
             </div>
           </div>
         `;
 
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
-        el.click();
-        _$('#qty').value = 0;
-        clickAddToCart();
-
-        waitFor(
-          () => _$('.opnd.opn'),
-          () => {
-            el.click();
-            _$('#qty').value = 1;
-          }
+        // window.open(item.url, '_blank');
+        // return;
+        // todo add to cart
+        _$('#shopify-section-minicart .lav-setup')?.classList.add(
+          'lav-setup_load'
         );
+
+        addToCartByAjax(item.id);
       });
+
+      const handle = item.url.split('/').pop();
 
       setupWrapper
         .querySelector('.lav-setup__list')
         .insertAdjacentElement('beforeend', pr);
+
+      $.ajax({
+        type: 'GET',
+        url: '/products/' + handle + '.js',
+        dataType: 'json',
+        success: function (product) {
+          if (!product.available) {
+            pr.remove();
+            console.log('Product is out of stock.', product);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log('Error fetching product data:', error);
+        },
+      });
     });
 
-    _$('.bg-main-tertiary-100').insertAdjacentElement(
-      'beforebegin',
+    _$('#shopify-section-minicart  .items_wrapper').insertAdjacentElement(
+      'beforeend',
       setupWrapper
     );
   }
+}
+
+function addToCartByAjax(id) {
+  $.ajax({
+    url: '/cart/add.js',
+    type: 'POST',
+    data: {
+      items: [
+        {
+          id: id,
+          quantity: 1,
+        },
+      ],
+    },
+    dataType: 'json',
+    error: function (err) {
+      console.log(err);
+    },
+  }).done(function (item) {
+    addToCartOK();
+    // _$('#shopify-section-minicart .lav-setup')?.classList.remove(
+    //   'lav-setup_load'
+    // );
+
+    // $.getJSON('/cart.js', function (c) {
+    //   $('.ic').find('.cart_count').text(c.item_count)
+    //   $('#AddToCart').text('ADD TO CART')
+    // })
+  });
 }
 
 function addBreadcrumbs() {
@@ -2451,6 +2655,12 @@ function handleProductInfo() {
         `;
 
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
+        if (_$('#AddToCart').disabled) {
+          _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
+
+          addToCartByAjax(el.getAttribute('for'));
+          return;
+        }
         el.click();
         _$('#qty').value = 0;
         clickAddToCart();
@@ -2737,7 +2947,7 @@ function clickAddToCart() {
   }
   _$('.lavs-buy')?.classList.add('lavs-buy_load');
   _$('.lav-options')?.classList.add('lav-options_load');
-  _$('.lav-setup')?.classList.add('lav-setup_load');
+  _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
   _$('#AddToCart')?.click();
 
   waitFor(
@@ -2748,7 +2958,7 @@ function clickAddToCart() {
       }
       _$('.lavs-buy')?.classList.remove('lavs-buy_load');
       _$('.lav-options')?.classList.remove('lav-options_load');
-      _$('.lav-setup')?.classList.remove('lav-setup_load');
+      _$('#MainProductForm .lav-setup')?.classList.remove('lav-setup_load');
     }
   );
 }
