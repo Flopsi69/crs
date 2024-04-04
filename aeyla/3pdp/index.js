@@ -1453,6 +1453,7 @@ stylesEl.innerHTML = styles;
 
 // *** Logic *** //
 let lavType = null;
+let isFireExpand = false;
 
 initExp();
 
@@ -1462,6 +1463,14 @@ async function initExp() {
   console.debug('** InitExp **');
 
   handleMiniCart();
+
+  initMutation('#shopify-section-minicart', (el) => {
+    console.log('add', el);
+    if (!(el instanceof HTMLElement)) return;
+    if (el.classList.contains('minicart_inner')) {
+      handleMiniCart();
+    }
+  });
 
   if (location.href.includes('/the-dual-pillow')) {
     _$('body').classList.add('lav-page-dual');
@@ -1494,6 +1503,7 @@ async function initExp() {
 }
 
 function handleMiniCart() {
+  console.log('updateMiniCart');
   const style = /* html */ `
     <style>
       .minicart_header {
@@ -1715,11 +1725,18 @@ function handleMiniCart() {
     </style>
   `;
 
+  const upsellList = [];
+
   document.body.insertAdjacentHTML('beforeend', style);
 
   handleFree();
   handleBody();
   handleFooter();
+  updateHeight();
+
+  window.addEventListener('resize', updateHeight);
+
+  isFireExpand = true;
 
   function handleFree() {
     if (!_$('.free_shipping_wrapper')) return;
@@ -1732,6 +1749,11 @@ function handleMiniCart() {
   }
 
   function handleBody() {
+    if (isFireExpand) {
+      _$('.minicart_inner').classList.add('lav-mini-expand');
+      return;
+    }
+
     const items = _$$('.minicart_inner .item_block');
 
     if (items.length > 1) {
@@ -1799,6 +1821,81 @@ function handleMiniCart() {
         `<span class="lavc-disc">${price.trim()}</span>`
       );
     }
+  }
+
+  function updateHeight() {
+    if (!_$('.items_wrapper')) return;
+
+    const offset =
+      _$('.checkout_wrapper').offsetHeight +
+      _$('.minicart_header').offsetHeight +
+      _$('.lavc-shipping').offsetHeight;
+
+    _$('.items_wrapper').style.maxHeight = `calc(100vh - ${offset}px`;
+  }
+
+  function addUpsell() {
+    const setupWrapper = document.createElement('div');
+    setupWrapper.classList.add('lav-setup');
+    setupWrapper.innerHTML = /* html */ `
+      <div class="lav-setup__title">Complete your ultimate sleep setup</div>
+      <div class="lav-setup__list"></div>
+    `;
+
+    _$$('.upsell_wrapper > label').forEach((el) => {
+      const pr = document.createElement('div');
+      pr.classList.add('lav-setup__plate');
+      pr.innerHTML = /* html */ `
+          <div class="lav-setup__image">
+            <img src='${getImage(_$('img', el).src)}' />
+            ${getSvg('trust')}
+          </div>
+  
+          <div class="lav-setup__info">
+            <div class="lav-setup__name">${_$('span.hidden', el).textContent} ${
+        _$('span.hidden + div', el).textContent
+      }</div>
+            <div class="lav-setup__caption">${
+              _$('.font-normal', el).textContent
+            }</div>
+  
+            <div class="lav-setup__control">
+              <div class="lav-setup__price">
+                <div class="lav-setup__price-new">${
+                  _$('.text-blue-grey', el).textContent
+                }</div>
+                <div class="lav-setup__price-old">${
+                  _$('.line-through', el).textContent
+                }</div>
+              </div>
+              <div class="lav-setup__btn">Add to cart</div>
+            </div>
+          </div>
+        `;
+
+      pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
+        el.click();
+        _$('#qty').value = 0;
+        clickAddToCart();
+
+        waitFor(
+          () => _$('.opnd.opn'),
+          () => {
+            el.click();
+            _$('#qty').value = 1;
+          }
+        );
+      });
+
+      setupWrapper
+        .querySelector('.lav-setup__list')
+        .insertAdjacentElement('beforeend', pr);
+    });
+
+    _$('.bg-main-tertiary-100').insertAdjacentElement(
+      'beforebegin',
+      setupWrapper
+    );
   }
 }
 
