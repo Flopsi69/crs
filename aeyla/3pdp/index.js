@@ -1456,6 +1456,7 @@ stylesEl.innerHTML = styles;
 // *** Logic *** //
 let lavType = null;
 let isFireExpand = false;
+const eventsFireList = [];
 
 initExp();
 
@@ -2266,7 +2267,7 @@ function handleMiniCart() {
       setupWrapper
     );
 
-    visibilityEvent(setupWrapper, () => {
+    visibilityEvent('#shopify-section-minicart .lav-setup', () => {
       pushDataLayer(
         'exp_pdp_slide_cart_section_19',
         'Section',
@@ -4002,6 +4003,9 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
 }
 
 function visibilityEvent(el, cb, customConfig = {}) {
+  if (typeof el === 'string' && eventsFireList.includes(el)) {
+    return;
+  }
   const config = {
     threshold: 0.3,
     ...customConfig,
@@ -4016,6 +4020,9 @@ function visibilityEvent(el, cb, customConfig = {}) {
           // if (isElementInViewport(target)) {
           observer.disconnect();
           cb();
+          if (typeof el === 'string') {
+            eventsFireList.push(el);
+          }
           // }
         }, 3000);
       } else {
