@@ -1525,7 +1525,7 @@ function addMiniCartEvents() {
   });
 
   document.addEventListener('click', (e) => {
-    console.log('clickMini', e.target);
+    // console.log('clickMini', e.target);
     if (
       e.target.closest('#shopify-section-minicart') &&
       e.target.innerText?.includes('Get additional')
@@ -1569,17 +1569,17 @@ function addMiniCartEvents() {
       );
     }
 
-    if (
-      e.target.closest('.slide_cart_quantity') &&
-      e.target.closest('#shopify-section-minicart')
-    ) {
-      pushDataLayer(
-        'exp_pdp_slide_cart_button_15',
-        'Quantity',
-        'Button',
-        'Slide-in cart'
-      );
-    }
+    // if (
+    //   e.target.closest('.slide_cart_quantity') &&
+    //   e.target.closest('#shopify-section-minicart')
+    // ) {
+    //   pushDataLayer(
+    //     'exp_pdp_slide_cart_button_15',
+    //     'Quantity',
+    //     'Button',
+    //     'Slide-in cart'
+    //   );
+    // }
   });
 }
 
@@ -1638,6 +1638,17 @@ function handleMiniCart() {
       );
     });
   }
+
+  _$$('.minicart_inner [name="quantity"]').forEach((item) => {
+    item.addEventListener('change', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_15',
+        'Quantity',
+        'Button',
+        'Slide-in cart'
+      );
+    });
+  });
 
   function addStyles() {
     const style = /* html */ `
@@ -2311,6 +2322,17 @@ function addBreadcrumbs() {
     `;
 
   _$('#MainProductSection').insertAdjacentHTML('afterbegin', breadcrumbs);
+
+  _$$('.lav-breadcrumbs a').forEach((link) => {
+    link.addEventListener('click', function (e) {
+      pushDataLayer(
+        'exp_pdp_breadcrumbs_link',
+        link.innerText.trim(),
+        'Link',
+        'PDP breadcrumbs'
+      );
+    });
+  });
 }
 
 function handleGallery() {
@@ -3291,7 +3313,7 @@ function handleProductInfo() {
     });
 
     document.addEventListener('click', (e) => {
-      console.log('click', e.target);
+      // console.log('click', e.target);
 
       if (
         e.target.closest('.customKlaviyo') &&
