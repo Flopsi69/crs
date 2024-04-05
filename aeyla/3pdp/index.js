@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***');
 const config = {
   // dir: 'http://127.0.0.1:5500/aeyla/3pdp',
   dir: 'https://flopsi69.github.io/crs/aeyla/3pdp',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'exp_pdp_slide_cart', 'variant_1'],
   debug: true,
 };
 
@@ -1753,6 +1753,9 @@ function handleMiniCart() {
         pointer-events: none;
         opacity: 0.5;
       }
+      #shopify-section-minicart .lav-setup_disable {
+        display: none!important;
+      }
       #shopify-section-minicart .lav-setup__title {
         color: var(--Blue, #1B437E);
         font-family: 'Inter';
@@ -1852,6 +1855,16 @@ function handleMiniCart() {
         }
       }
       @media(max-width: 1023px) {
+      }
+      @media(max-width: 640px) {
+        .minicart {
+          max-width: 96%;
+        }
+        .minicart_inner {
+        }
+        .needsclick.kl-private-reset-css-Xuajs1[tabindex="0"] {
+          z-index: 99999!important;
+        }
       }
       @media(max-width: 389px) {
         #shopify-section-minicart .lav-setup__btn {
@@ -1958,19 +1971,19 @@ function handleMiniCart() {
       _$('.minicart_header').offsetHeight +
       _$('.lavc-shipping').offsetHeight;
 
-    _$('.items_wrapper').style.maxHeight = `calc(100vh - ${offset}px`;
+    height = _$('.items_wrapper').style.maxHeight = `calc(100dvh - ${offset}px`;
   }
 
   function addUpsell() {
     const upsellList = [
       {
-        title: 'Eucalyptus Silk Pillowcases (2&#160;Pack) Light Blue',
-        src: '//www.aeyla.co.uk/cdn/shop/products/Stone_Pillowcase-x.webp?v=1704709097&width=300&height=300&crop=center',
+        title: 'Eucalyptus Silk Pillowcases (2&#160;Pack) White',
+        src: '//www.aeyla.co.uk/cdn/shop/products/Euclayptussilkpillowcase_white.webp?crop=center&height=300&v=1704709097&width=300',
         url: 'https://www.aeyla.co.uk/products/eucalyptus-silk-pillow-cases',
         oldPrice: '£65.00',
         newPrice: '£39.00',
         alias: 'Eucalyptus Silk Pillow Cases - 2 Pack',
-        id: '44467943047454',
+        id: '44467942981918',
       },
       {
         title: 'Eucalyptus Sleep Mask White',
@@ -2007,6 +2020,7 @@ function handleMiniCart() {
 
     const setupWrapper = document.createElement('div');
     setupWrapper.classList.add('lav-setup');
+    setupWrapper.classList.add('lav-setup_disable');
     setupWrapper.innerHTML = /* html */ `
       <div class="lav-setup__title">Complete your ultimate sleep setup</div>
       <div class="lav-setup__list"></div>
@@ -2026,8 +2040,8 @@ function handleMiniCart() {
   
             <div class="lav-setup__control">
               <div class="lav-setup__price">
-                <div class="lav-setup__price-new">${item.oldPrice}</div>
-                <div class="lav-setup__price-old">${item.newPrice}</div>
+                <div class="lav-setup__price-new">${item.newPrice}</div>
+                <div class="lav-setup__price-old">${item.oldPrice}</div>
               </div>
               <div class="lav-setup__btn">Add</div>
             </div>
@@ -2047,18 +2061,29 @@ function handleMiniCart() {
 
       const handle = item.url.split('/').pop();
 
-      setupWrapper
-        .querySelector('.lav-setup__list')
-        .insertAdjacentElement('beforeend', pr);
-
       $.ajax({
         type: 'GET',
         url: '/products/' + handle + '.js',
         dataType: 'json',
         success: function (product) {
-          if (!product.available) {
+          const variant = product.variants.find((v) => v.id == item.id);
+
+          if (variant && !variant.available) {
             pr.remove();
             console.log('Product is out of stock.', product);
+            if (!_$('#shopify-section-minicart .lav-setup__plate')) {
+              _$('#shopify-section-minicart .lav-setup')?.classList.add(
+                'lav-setup_disable'
+              );
+            }
+          } else {
+            _$('#shopify-section-minicart .lav-setup').classList.remove(
+              'lav-setup_disable'
+            );
+
+            setupWrapper
+              .querySelector('.lav-setup__list')
+              .insertAdjacentElement('beforeend', pr);
           }
         },
         error: function (xhr, status, error) {
@@ -2208,6 +2233,7 @@ function handleProductInfo() {
   addSimilar();
   handleAddToCart();
   handleSticky();
+  addEvents();
 
   function handleAddToCart() {
     _$('#AddToCart').insertAdjacentHTML('afterbegin', getSvg('basket'));
@@ -2361,6 +2387,12 @@ function handleProductInfo() {
 
       optionEl.addEventListener('click', (e) => {
         e.preventDefault();
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_06',
+          `${option.title} - Select`,
+          'Button',
+          'PDP. The product section (1pillow/2pillows/4pillows)'
+        );
         if (optionEl.classList.contains('active')) {
           clickAddToCart();
           return;
@@ -2382,6 +2414,15 @@ function handleProductInfo() {
     });
 
     _$('.lav-title__wrap').insertAdjacentElement('afterend', optionsEl);
+
+    visibilityEvent('.lav-options', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_10',
+        'Section',
+        'Visibility',
+        'PDP. The product section (1pillow/2pillows/4pillows)'
+      );
+    });
   }
 
   function handleSize() {
@@ -2591,6 +2632,15 @@ function handleProductInfo() {
 
     _$('.prod_desc').insertAdjacentHTML('beforebegin', nextBatch);
 
+    visibilityEvent('.lav-batch__progress', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_08',
+        'Section',
+        'Visibility',
+        'PDP. Next Batch Ships '
+      );
+    });
+
     function getRandomNumber() {
       const storedNumber = localStorage.getItem('randomNumber');
       const expirationTime = localStorage.getItem('expirationTime');
@@ -2616,6 +2666,7 @@ function handleProductInfo() {
 
   function addSetup() {
     if (!_$$('.upsell_wrapper > label').length) return;
+
     const setupWrapper = document.createElement('div');
     setupWrapper.classList.add('lav-setup');
     setupWrapper.innerHTML = /* html */ `
@@ -2655,6 +2706,12 @@ function handleProductInfo() {
         `;
 
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_05',
+          `${pr.querySelector('.lav-setup__name').innerText} - Add to cart`,
+          'Button',
+          'PDP. Complete your ultimate sleep setup'
+        );
         if (_$('#AddToCart').disabled) {
           _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
 
@@ -2683,6 +2740,15 @@ function handleProductInfo() {
       'beforebegin',
       setupWrapper
     );
+
+    visibilityEvent(setupWrapper, () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_09',
+        'Section',
+        'Visibility',
+        'PDP. Complete your ultimate sleep setup'
+      );
+    });
 
     function getImage(src) {
       // if (src.includes('Stone_Pillowcase-x')) {
@@ -2770,6 +2836,12 @@ function handleProductInfo() {
       const productEl = document.createElement('div');
       productEl.classList.add('lav-pr');
       productEl.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_07',
+          `${product.title} - Select`,
+          'Button',
+          'PDP. Section Similar products'
+        );
         window.open(product.url, '_blank');
       });
       productEl.innerHTML = /* html */ `
@@ -2790,6 +2862,15 @@ function handleProductInfo() {
     });
 
     _$('.bg-main-tertiary-100').insertAdjacentElement('afterend', similarEl);
+
+    visibilityEvent(similarEl, () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_11',
+        'Section',
+        'Visibility',
+        'PDP. Section Similar products'
+      );
+    });
     // centerMode: true,
     // rtl: true,
     if (lavType !== 'blanket') {
@@ -2889,6 +2970,13 @@ function handleProductInfo() {
         .addEventListener('click', function (e) {
           e.preventDefault();
           if (this.classList.contains('active')) return;
+          pushDataLayer(
+            'exp_pdp_slide_cart_button_03',
+            'Choose your best fit',
+            'Button',
+            'PDP. The sticky section. “Choose your best fit” '
+          );
+
           this.classList.add('active');
           let offset =
             $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset()
@@ -2914,6 +3002,14 @@ function handleProductInfo() {
           e.preventDefault();
 
           if (this.classList.contains('active')) return;
+
+          pushDataLayer(
+            'exp_pdp_slide_cart_link_01',
+            'Similar products',
+            'Link',
+            'PDP. The sticky section. Mobile'
+          );
+
           this.classList.add('active');
           let offset =
             $('.lav-similar').offset().top -
@@ -2938,6 +3034,100 @@ function handleProductInfo() {
         }
       });
     }
+  }
+
+  function addEvents() {
+    visibilityEvent('.pro_price .pricing', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_01',
+        'Section',
+        'Visibility',
+        'PDP. The section with a product price '
+      );
+    });
+
+    visibilityEvent('#AddToCart', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_02',
+        'Section',
+        'Visibility',
+        'PDP. Button. Add to cart'
+      );
+    });
+
+    visibilityEvent('.pro_form .qq', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_03',
+        'Section',
+        'Visibility',
+        'PDP. The Mela Weighted Blanket. The quantity selector '
+      );
+    });
+
+    visibilityEvent('.lavs-buy', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_04',
+        'Section',
+        'Visibility',
+        'PDP. The sticky section with the “Add to cart”. Desktop'
+      );
+    });
+
+    visibilityEvent('.lavs-fit', () => {
+      if (window.innerWidth < 1024) {
+        pushDataLayer(
+          'exp_pdp_slide_cart_section_05',
+          'Section',
+          'Visibility',
+          'PDP. The sticky section. “Choose your best fit” and “Similar products”. Mobile'
+        );
+      } else {
+        pushDataLayer(
+          'exp_pdp_slide_cart_section_06',
+          'Section',
+          'Visibility',
+          'PDP. The sticky section. “Choose your best fit”. Desktop'
+        );
+      }
+    });
+
+    visibilityEvent('#MainProductForm .customKlaviyo', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_07',
+        'Section',
+        'Visibility',
+        'PDP. Get additional 15% Off'
+      );
+    });
+
+    document.addEventListener('click', (e) => {
+      console.log('click', e.target);
+
+      if (
+        e.target.closest('.customKlaviyo') &&
+        e.target.closest('#MainProductForm')
+      ) {
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_04',
+          'Get additional 15% Off',
+          'Button',
+          'PDP'
+        );
+      }
+
+      if (e.target.closest('.btn-section-cta')) {
+        let title = e.target
+          .closest('.img_txt_wrapp')
+          ?.querySelector('h2')
+          ?.textContent.trim();
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_10',
+          `${title} - Get Yours Now`,
+          'Button',
+          'PDP. Customised Comfort. Perfectly Balanced. Hypoallergenic. Get Yours Now'
+        );
+      }
+    });
   }
 }
 
@@ -2995,6 +3185,12 @@ function fillStickyBuy() {
 
   btnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    pushDataLayer(
+      'exp_pdp_slide_cart_button_02',
+      'Add to cart',
+      'Button',
+      'PDP. The sticky section. Desktop'
+    );
     const prevCount = _$('#qty').value;
 
     _$('#qty').value = 1;
@@ -3020,6 +3216,37 @@ function handleAdditionalInfo() {
       'beforebegin',
       _$('.featured-products-section')
     );
+
+    visibilityEvent('.featured-products-section', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_12',
+        'Section',
+        'Visibility',
+        'PDP. You might also like'
+      );
+    });
+
+    _$$('.featured-products-section .tabs-component-tab').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_08',
+          `${item.textContent.trim()} - Select`,
+          'Button',
+          'PDP. You might also like'
+        );
+      });
+    });
+
+    _$$('.featured-products-section .product-card').forEach((item) => {
+      item.addEventListener('click', () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_09',
+          `${item.querySelector('.font-heading').textContent.trim()} - Select`,
+          'Button',
+          'PDP. You might also like'
+        );
+      });
+    });
   }
 
   function addTrustedSlider() {
@@ -3155,7 +3382,26 @@ function handleAdditionalInfo() {
     const trustedClone = trusted.cloneNode(true);
     trustedClone.classList.add('lav-trusted-clone');
     _$('.featured-products-section').insertAdjacentElement('afterend', trusted);
+
+    visibilityEvent('.lav-trusted__list', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_13',
+        'Section',
+        'Visibility',
+        'PDP. More than 85,000+ customers have already trusted us'
+      );
+    });
+
     _$('.faq-section').insertAdjacentElement('afterend', trustedClone);
+
+    visibilityEvent('.lav-trusted-clone .lav-trusted__list', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_14',
+        'Section',
+        'Visibility',
+        'PDP. Section reviews on the bottom of the page'
+      );
+    });
 
     $('.lav-trusted__list').slick({
       slidesToShow: 3,
@@ -3175,6 +3421,48 @@ function handleAdditionalInfo() {
         },
       ],
     });
+
+    _$('.slick-prev', trusted).addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_arrow_01',
+        'left',
+        'Click',
+        'PDP. More than 85,000+ customers have already trusted us'
+      );
+    });
+
+    _$('.slick-next', trusted).addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_arrow_01',
+        'right',
+        'Click',
+        'PDP. More than 85,000+ customers have already trusted us'
+      );
+    });
+
+    _$('.lav-trusted-clone .slick-prev', trusted).addEventListener(
+      'click',
+      () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_arrow_02',
+          'left',
+          'Click',
+          'PDP. Section reviews on the bottom of the page'
+        );
+      }
+    );
+
+    _$('.lav-trusted-clone .slick-next', trusted).addEventListener(
+      'click',
+      () => {
+        pushDataLayer(
+          'exp_pdp_slide_cart_arrow_02',
+          'right',
+          'Click',
+          'PDP. Section reviews on the bottom of the page'
+        );
+      }
+    );
 
     function fillTrusted() {
       feedbacks[lavType].forEach((feedback) => {
@@ -3495,7 +3783,9 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
         entryTime = time;
       } else if (entryTime) {
         const diffTime = +((time - entryTime) / 1000).toFixed(1);
-        cb(diffTime + 's');
+        if (diffTime >= 3) {
+          cb(diffTime);
+        }
         entryTime = 0;
       }
     },
