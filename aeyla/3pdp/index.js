@@ -3181,6 +3181,7 @@ function handleProductInfo() {
           );
 
           this.classList.add('active');
+
           let offset =
             $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset()
               .top -
@@ -3188,7 +3189,8 @@ function handleProductInfo() {
             10;
 
           if (window.innerWidth >= 1024) {
-            offset -= $('#shopify-section-layout-announcement-bar').height();
+            // offset -= $('#shopify-section-layout-announcement-bar').height();
+            offset = 0;
           }
 
           $('html, body').animate({
