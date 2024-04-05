@@ -2009,6 +2009,10 @@ function handleMiniCart() {
         }
       }
       @media(max-width: 640px) {
+        .minicart_inner, .minicart.activated, .opnd {
+          height: 100vh;
+          height: 100dvh;
+        }
         .minicart {
           max-width: 96%;
         }
