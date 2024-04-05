@@ -4003,17 +4003,20 @@ function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
     ...customConfig,
+    timer: null,
   };
   initIntersection(
     el,
     ({ isIntersecting, target }) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
-        setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb();
-          }
+        config.timer = setTimeout(() => {
+          // if (isElementInViewport(target)) {
+          cb();
+          // }
         }, 3000);
+      } else {
+        clearTimeout(config.timer);
       }
     },
     config
