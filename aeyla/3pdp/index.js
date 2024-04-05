@@ -85,12 +85,6 @@ const styles = /* css */ `
     .tp_widget_wrapper {
       margin-bottom: 12px;
     }
-    @media(max-width: 1023px) {
-      .pro_wrapper .mg {
-        padding-top: 0;
-      }
-    }
-
     div#MainProductForm p.var_meta {
       display: none;
     }
@@ -1088,7 +1082,42 @@ const styles = /* css */ `
     [action="/cart/add"] .customKlaviyoSubmitted {
       display: none!important;
     }
+    #MainProductSection .customKlaviyo {
+      margin: 0;
+      margin-top: 16px;
+      border-radius: 5px;
+      border: 1px dashed #A7A5A5;
+      background: #FFF;
+      color: var(--Dark-Green, #2B4632);
+      font-family: 'Inter';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 22px;
+      padding: 3px 8px;
+      gap: 4px;
+      text-transform: none;
+      transition: 0.2s;
+    }
+    @media (hover:hover) {
+       #MainProductSection .customKlaviyo:hover {
+        opacity: 0.8;
+      }
+    }
+     #MainProductSection .customKlaviyo svg * {
+      fill: #2B4632;
+    }
+     #MainProductSection .customKlaviyo svg:last-child {
+      margin-left: 6px;
+    }
     @media(max-width: 1023px) {
+      .pro_wrapper .mg {
+        padding-top: 0;
+      }
+      #MainProductSection .customKlaviyo {
+        margin-left: 17px;
+        margin-right: 17px;
+      }
       .lav-breadcrumbs {
         padding: 5px 16px;
       }
@@ -1703,22 +1732,6 @@ function handleMiniCart() {
           background-color: #FFD700
         }
       }
-      .checkout_wrapper .customKlaviyo {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-left: 8px;
-        padding-right: 8px;
-        width: calc(100% - 28px);
-      }
-      .checkout_wrapper .customKlaviyo svg:last-child {
-        margin-left: 0;
-      }
-      .checkout_wrapper .customKlaviyo>div {
-        width: 100%;
-      }
-      .checkout_wrapper .customKlaviyo>div svg:last-child {
-        margin-left: auto;
-      }
       .minicart_inner .shipping_wrapper {
         display: none;
       }
@@ -1932,8 +1945,8 @@ function handleMiniCart() {
           background-color: #0b2d61;
         }
       }
-      .customKlaviyo {
-        margin: 0;
+      #shopify-section-minicart .customKlaviyo {
+        margin: 0 auto
         margin-top: 16px;
         border-radius: 5px;
         border: 1px dashed #A7A5A5;
@@ -1947,21 +1960,33 @@ function handleMiniCart() {
         padding: 3px 8px;
         gap: 4px;
         text-transform: none;
+        padding-left: 8px;
+        padding-right: 8px;
+        width: calc(100% - 28px);
         transition: 0.2s;
       }
       @media (hover:hover) {
-        .customKlaviyo:hover {
+         #shopify-section-minicart .customKlaviyo:hover {
           opacity: 0.8;
         }
       }
-      .customKlaviyo svg * {
+       #shopify-section-minicart .customKlaviyo svg * {
         fill: #2B4632;
       }
-      .customKlaviyo svg:last-child {
+      #shopify-section-minicart .customKlaviyo svg:last-child {
         margin-left: 6px;
       }
+      #shopify-section-minicart .customKlaviyo svg:last-child {
+        margin-left: 0;
+      }
+      #shopify-section-minicart .customKlaviyo>div {
+        width: 100%;
+      }
+      #shopify-section-minicart .customKlaviyo>div svg:last-child {
+        margin-left: auto;
+      }
       @media(max-width: 1023px) {
-        .customKlaviyo {
+         #shopify-section-minicart .customKlaviyo {
           margin-left: 17px;
           margin-right: 17px;
         }
