@@ -2087,7 +2087,13 @@ function handleMiniCart() {
       _$('.minicart_header').offsetHeight +
       _$('.lavc-shipping').offsetHeight;
 
-    height = _$('.items_wrapper').style.maxHeight = `calc(100dvh - ${offset}px`;
+    height = _$(
+      '.items_wrapper'
+    ).style.maxHeight = `calc(${window.innerHeight}px - ${offset}px`;
+
+    if (window.innerWidth < 640) {
+      _$('.minicart_inner').style.maxHeight = window.innerHeight + 'px';
+    }
   }
 
   function addUpsell() {
