@@ -1946,8 +1946,7 @@ function handleMiniCart() {
         }
       }
       #shopify-section-minicart .customKlaviyo {
-        margin: 0 auto
-        margin-top: 16px;
+        margin: 0 auto;
         border-radius: 5px;
         border: 1px dashed #A7A5A5;
         background: #FFF;
