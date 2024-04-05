@@ -371,35 +371,6 @@ const styles = /* css */ `
       padding-bottom: 0;
       margin-top: 7px;
     }
-    .customKlaviyo {
-      margin: 0;
-      margin-top: 16px;
-      border-radius: 5px;
-      border: 1px dashed #A7A5A5;
-      background: #FFF;
-      color: var(--Dark-Green, #2B4632);
-      font-family: 'Inter';
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 22px;
-      padding: 3px 8px;
-      gap: 4px;
-      text-transform: none;
-      transition: 0.2s;
-    }
-    @media (hover:hover) {
-      .customKlaviyo:hover {
-        opacity: 0.8;
-      }
-    }
-    .customKlaviyo svg * {
-      fill: #2B4632;
-    }
-    .customKlaviyo svg:last-child {
-      margin-left: 6px;
-    }
-
     .prod_desc {
       display: none;
     }
@@ -1177,10 +1148,6 @@ const styles = /* css */ `
         padding: 5px 12px;
         border-radius: 4px 0px;
       }
-      .customKlaviyo {
-        margin-left: 17px;
-        margin-right: 17px;
-      }
       .lav-batch {
         padding: 10px 16px 0;
         margin-left: 17px;
@@ -1463,6 +1430,7 @@ async function initExp() {
   console.debug('** InitExp **');
 
   handleMiniCart();
+  addMiniCartEvents();
 
   initMutation('#shopify-section-minicart', (el) => {
     if (!(el instanceof HTMLElement)) return;
@@ -1470,7 +1438,9 @@ async function initExp() {
       _$('#MainProductForm .lav-setup.lav-setup_load')?.classList.remove(
         'lav-setup_load'
       );
+
       handleMiniCart();
+
       if (_$('.cart_count') && _$('.minicart_items')) {
         _$('.cart_count').innerText = parseInt(
           _$('.minicart_items').textContent
@@ -1509,6 +1479,75 @@ async function initExp() {
   });
 }
 
+function addMiniCartEvents() {
+  visibilityEvent('#shopify-section-minicart', () => {
+    pushDataLayer(
+      'exp_pdp_slide_cart_section_15',
+      'Section',
+      'Visibility',
+      'Slide-in cart'
+    );
+  });
+
+  document.addEventListener('click', (e) => {
+    console.log('clickMini', e.target);
+    if (
+      e.target.closest('#shopify-section-minicart') &&
+      e.target.innerText?.includes('Get additional')
+    ) {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_11',
+        'Get additional 15% Off',
+        'Button',
+        'Slide-in cart'
+      );
+    }
+
+    if (e.target.closest('.chckout') && e.target.closest('.checkout_wrapper')) {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_12',
+        'Proceed to secure checkout',
+        'Button',
+        'Slide-in cart'
+      );
+    }
+
+    if (e.target.closest('.minicart_head') && e.target.closest('svg')) {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_13',
+        'Close',
+        'Button',
+        'Slide-in cart'
+      );
+    }
+
+    if (
+      e.target.closest('.trash') &&
+      e.target.closest('svg') &&
+      e.target.closest('#shopify-section-minicart')
+    ) {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_14',
+        'Delete',
+        'Button',
+        'Slide-in cart'
+      );
+    }
+
+    if (
+      e.target.closest('.slide_cart_quantity') &&
+      e.target.closest('#shopify-section-minicart')
+    ) {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_15',
+        'Quantity',
+        'Button',
+        'Slide-in cart'
+      );
+    }
+  });
+}
+
 function handleMiniCart() {
   if (_$('#shopify-section-minicart .empty_cart')) return;
 
@@ -1525,6 +1564,45 @@ function handleMiniCart() {
   updateHeight();
 
   window.addEventListener('resize', updateHeight);
+
+  if (_$('#shopify-section-minicart .customKlaviyo')) {
+    _$('#shopify-section-minicart .customKlaviyo').innerHTML = _$(
+      '#shopify-section-minicart .customKlaviyo'
+    ).innerHTML.replace('Additional', 'additional');
+  }
+
+  if (_$('#shopify-section-minicart .customKlaviyo')) {
+    visibilityEvent('#shopify-section-minicart .customKlaviyo', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_16',
+        'Section',
+        'Visibility',
+        'Slide-in cart. Get additional 15% Off'
+      );
+    });
+  }
+
+  if (_$('.minicart_inner .chckout')) {
+    visibilityEvent('.minicart_inner .chckout', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_17',
+        'Section',
+        'Visibility',
+        'Slide-in cart. Proceed to secure checkout'
+      );
+    });
+  }
+
+  if (_$('.lavc-guarantee')) {
+    visibilityEvent('.lavc-guarantee', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_18',
+        'Section',
+        'Visibility',
+        'Slide-in cart. 30-Day Money Back Guarantee | 365-Day Warranty'
+      );
+    });
+  }
 
   function addStyles() {
     const style = /* html */ `
@@ -1854,7 +1932,39 @@ function handleMiniCart() {
           background-color: #0b2d61;
         }
       }
+      .customKlaviyo {
+        margin: 0;
+        margin-top: 16px;
+        border-radius: 5px;
+        border: 1px dashed #A7A5A5;
+        background: #FFF;
+        color: var(--Dark-Green, #2B4632);
+        font-family: 'Inter';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+        padding: 3px 8px;
+        gap: 4px;
+        text-transform: none;
+        transition: 0.2s;
+      }
+      @media (hover:hover) {
+        .customKlaviyo:hover {
+          opacity: 0.8;
+        }
+      }
+      .customKlaviyo svg * {
+        fill: #2B4632;
+      }
+      .customKlaviyo svg:last-child {
+        margin-left: 6px;
+      }
       @media(max-width: 1023px) {
+        .customKlaviyo {
+          margin-left: 17px;
+          margin-right: 17px;
+        }
       }
       @media(max-width: 640px) {
         .minicart {
@@ -1904,6 +2014,12 @@ function handleMiniCart() {
       );
 
       _$('.lavc-expand__toggler').addEventListener('click', function () {
+        pushDataLayer(
+          'exp_pdp_slide_cart_link_02',
+          'Show all products',
+          'Link',
+          'Slide-in cart'
+        );
         this.remove();
         isFireExpand = true;
         _$('.minicart_inner').classList.add('lav-mini-expand');
@@ -2051,7 +2167,13 @@ function handleMiniCart() {
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
         // window.open(item.url, '_blank');
         // return;
-        // todo add to cart
+        pushDataLayer(
+          'exp_pdp_slide_cart_button_16',
+          `${item.title} - Add to cart`,
+          'Button',
+          'Slide-in cart. Complete your ultimate sleep setup'
+        );
+
         _$('#shopify-section-minicart .lav-setup')?.classList.add(
           'lav-setup_load'
         );
@@ -2096,6 +2218,15 @@ function handleMiniCart() {
       'beforeend',
       setupWrapper
     );
+
+    visibilityEvent(setupWrapper, () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_section_19',
+        'Section',
+        'Visibility',
+        'Slide-in cart. Complete your ultimate sleep setup'
+      );
+    });
   }
 }
 
@@ -2712,12 +2843,14 @@ function handleProductInfo() {
           'Button',
           'PDP. Complete your ultimate sleep setup'
         );
+
         if (_$('#AddToCart').disabled) {
           _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
 
           addToCartByAjax(el.getAttribute('for'));
           return;
         }
+
         el.click();
         _$('#qty').value = 0;
         clickAddToCart();
@@ -3100,6 +3233,15 @@ function handleProductInfo() {
       );
     });
 
+    _$('.pro_form .qw').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_button_01',
+        'Add to cart',
+        'Button',
+        'PDP'
+      );
+    });
+
     document.addEventListener('click', (e) => {
       console.log('click', e.target);
 
@@ -3440,29 +3582,23 @@ function handleAdditionalInfo() {
       );
     });
 
-    _$('.lav-trusted-clone .slick-prev', trusted).addEventListener(
-      'click',
-      () => {
-        pushDataLayer(
-          'exp_pdp_slide_cart_arrow_02',
-          'left',
-          'Click',
-          'PDP. Section reviews on the bottom of the page'
-        );
-      }
-    );
+    _$('.slick-prev', trustedClone).addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_arrow_02',
+        'left',
+        'Click',
+        'PDP. Section reviews on the bottom of the page'
+      );
+    });
 
-    _$('.lav-trusted-clone .slick-next', trusted).addEventListener(
-      'click',
-      () => {
-        pushDataLayer(
-          'exp_pdp_slide_cart_arrow_02',
-          'right',
-          'Click',
-          'PDP. Section reviews on the bottom of the page'
-        );
-      }
-    );
+    _$('.slick-next', trustedClone).addEventListener('click', () => {
+      pushDataLayer(
+        'exp_pdp_slide_cart_arrow_02',
+        'right',
+        'Click',
+        'PDP. Section reviews on the bottom of the page'
+      );
+    });
 
     function fillTrusted() {
       feedbacks[lavType].forEach((feedback) => {
