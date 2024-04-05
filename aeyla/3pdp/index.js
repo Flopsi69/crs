@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/aeyla/3pdp',
   dir: 'https://flopsi69.github.io/crs/aeyla/3pdp',
   clarity: ['set', 'exp_pdp_slide_cart', 'variant_1'],
-  debug: true,
+  debug: false,
 };
 
 // const orig = console.log;
