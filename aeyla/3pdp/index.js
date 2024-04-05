@@ -210,6 +210,12 @@ const styles = /* css */ `
       padding-right: 15px;
       margin-right: -3px;
     }
+    .lav-option__discount .lav-option__discount-value {
+      background: var(--Dark-Green, #CE603A);
+      color: #fff;
+      padding-right: 15px;
+      margin-right: -3px;
+    }
     .lav-size {
       margin-top: 16px;
       margin-bottom: 20px;
@@ -1171,7 +1177,7 @@ const styles = /* css */ `
         align-items: flex-end;
         border-radius: 0;
       }
-      .lav-option__discount .lav-option__discount-seller {
+      .lav-option__discount .lav-option__discount-seller, .lav-option__discount .lav-option__discount-value {
         order: 1;
         margin-right: 0;
         padding: 5px 12px;
@@ -2463,6 +2469,7 @@ function handleProductInfo() {
           img: 'new-dual.png',
           discount: 20,
           isBestSeller: false,
+          isBestValue: false,
           target: '8133597004062-1-0',
         },
         {
@@ -2472,6 +2479,7 @@ function handleProductInfo() {
           img: '2pillow.jpg',
           discount: 45,
           isBestSeller: true,
+          isBestValue: false,
           target: '8133597004062-1-1',
         },
         {
@@ -2481,6 +2489,7 @@ function handleProductInfo() {
           img: '4pillow.jpg',
           discount: 50,
           isBestSeller: false,
+          isBestValue: true,
           target: '8133597004062-1-2',
         },
       ],
@@ -2492,6 +2501,7 @@ function handleProductInfo() {
           img: 'new-dual.png',
           discount: 10,
           isBestSeller: false,
+          isBestValue: false,
           target: '8133596217630-1-0',
         },
         {
@@ -2501,6 +2511,7 @@ function handleProductInfo() {
           img: '2pillow.jpg',
           discount: 45,
           isBestSeller: true,
+          isBestValue: false,
           target: '8133596217630-1-1',
         },
         {
@@ -2510,6 +2521,7 @@ function handleProductInfo() {
           img: '4pillow.jpg',
           discount: 50,
           isBestSeller: false,
+          isBestValue: true,
           target: '8133596217630-1-2',
         },
       ],
@@ -2535,6 +2547,7 @@ function handleProductInfo() {
           </div>
           <div class='lav-option__discount'>
             <div class='lav-option__discount-seller'>Best Seller</div>
+            <div class='lav-option__discount-value'>Best Value</div>
             <div>Save ${option.discount}%</div>
           </div>
         `;
@@ -2542,6 +2555,11 @@ function handleProductInfo() {
       if (!option.isBestSeller) {
         optionEl.querySelector('.lav-option__discount-seller').remove();
       }
+
+      if (!option.isBestValue) {
+        optionEl.querySelector('.lav-option__discount-value').remove();
+      }
+
       if (document.getElementById(option.target).checked) {
         optionEl.classList.add('active');
       }
