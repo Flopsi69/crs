@@ -3971,9 +3971,9 @@ function initIntersection(observeEl, cb, customConfig) {
     ...customConfig,
   };
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      cb(entry);
+      cb(entry, observer);
     });
   }, config);
 
@@ -4009,11 +4009,12 @@ function visibilityEvent(el, cb, customConfig = {}) {
   };
   initIntersection(
     el,
-    ({ isIntersecting, target }) => {
+    ({ isIntersecting, target }, observer) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
         config.timer = setTimeout(() => {
           // if (isElementInViewport(target)) {
+          observer.disconnect();
           cb();
           // }
         }, 3000);
