@@ -591,7 +591,6 @@ const styles = /* css */ `
       border: 1px solid #FFF;
       background-color: lightgray;
       overflow: hidden;
-      height: 175px;
       line-height: 0;
     }
     .lav-pr__image img {
@@ -1251,6 +1250,7 @@ const styles = /* css */ `
       .lav-similar {
         margin: 24px 0 0;
         padding: 32px 17px;
+        overflow: hidden;
       }
       .lav-similar__head {
         justify-content: center;
@@ -2812,10 +2812,15 @@ function handleProductInfo() {
     const reserved = _$(
       '.pre_order_wrapper .reserved_wrapper span'
     ).textContent;
-    let caption = `<strong>Get 5% OFF</strong> your order when reserving.<br/> Use Code: <strong>RESERVE</strong> at checkout`;
+    let caption = `<strong>Get 20% OFF</strong> your order when reserving.<br/> Use Code: <strong>BEST20</strong> at checkout`;
+
+    if (lavType === 'dual' && parseDiscount()) {
+      const [percent, code] = parseDiscount();
+      caption = `<strong>Get ${percent}% OFF</strong> your order when reserving.<br/> Use Code: <strong>${code}</strong> at checkout`;
+    }
 
     if (lavType === 'foamo') {
-      caption = `Buy 1 <strong>Get 1 FREE</strong> when reserving!<br/> Use Code: <strong>B1G1</strong>`;
+      caption = `Add two single pillows to the cart and get one of them for free with code: B1G1!`;
     }
 
     const nextBatch = /* html */ `
@@ -2847,6 +2852,35 @@ function handleProductInfo() {
         'PDP. Next Batch Ships '
       );
     });
+
+    function parseDiscount() {
+      const template = _$('.pre_order_info ul li:last-child').textContent;
+
+      if (!template) {
+        console.log('Discount template not found.');
+        return false;
+      }
+
+      // Define regex patterns to match the percent discount and discount code
+      const percentRegex = /\b(\d+)% off\b/;
+      const codeRegex = /'([^']+)'/;
+
+      // Match the percent discount and discount code using regex
+      const percentMatch = template.match(percentRegex);
+      const codeMatch = template.match(codeRegex);
+
+      // Check if matches were found and extract the values
+      if (percentMatch && codeMatch) {
+        const percentDiscount = parseInt(percentMatch[1]); // Extract the percent value and convert to integer
+        const discountCode = codeMatch[1]; // Extract the discount code
+        console.log('Percent Discount:', percentDiscount);
+        console.log('Discount Code:', discountCode);
+        return [percentDiscount, discountCode];
+      } else {
+        console.log('Discount details not found in the template.');
+        return false;
+      }
+    }
 
     function getRandomNumber() {
       const storedNumber = localStorage.getItem('randomNumber');
