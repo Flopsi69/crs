@@ -1357,12 +1357,13 @@ const styles = /* css */ `
       .lavs-fit {
         padding: 11px 17px;
         bottom: initial;
-        top: 0;
+        top: 70px;
         left: 0;
         right: 0;
-        z-index: 51;
+        z-index: 49;
         box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
         border-radius: 0;
+        border-top: 1px solid #F9F9F9;
       }
       .lavs-fit__info {
         display: none;
@@ -3178,6 +3179,7 @@ function handleProductInfo() {
         .addEventListener('click', function (e) {
           e.preventDefault();
           if (this.classList.contains('active')) return;
+
           pushDataLayer(
             'exp_pdp_slide_cart_button_03',
             'Choose your best fit',
@@ -3194,8 +3196,8 @@ function handleProductInfo() {
             10;
 
           if (window.innerWidth >= 1024) {
-            // offset -= $('#shopify-section-layout-announcement-bar').height();
-            offset = 0;
+            offset -= $('#shopify-section-layout-announcement-bar').height();
+            // offset = 0;
           }
 
           $('html, body').animate({
@@ -3221,14 +3223,20 @@ function handleProductInfo() {
           );
 
           this.classList.add('active');
+
           let offset =
             $('.lav-similar').offset().top -
             $('#shopify-section-header').height() -
             10;
 
+          if (window.innerWidth < 1024) {
+            offset -= $('.lavs-fit').height();
+          }
+
           $('html, body').animate({
             scrollTop: offset,
           });
+
           setTimeout(() => {
             this.classList.remove('active');
           }, 1000);
@@ -3237,10 +3245,24 @@ function handleProductInfo() {
       _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyFit);
 
       window.addEventListener('scroll', () => {
-        if (window.scrollY > _$('.featured-products-section').offsetTop - 100) {
-          stickyFit.classList.add('active');
+        if (window.innerWidth < 1024) {
+          if (
+            window.scrollY >
+            _$('.pro_form .qw').offsetTop + window.innerHeight - 100
+          ) {
+            stickyFit.classList.add('active');
+          } else {
+            stickyFit.classList.remove('active');
+          }
         } else {
-          stickyFit.classList.remove('active');
+          if (
+            window.scrollY >
+            _$('.featured-products-section').offsetTop - 100
+          ) {
+            stickyFit.classList.add('active');
+          } else {
+            stickyFit.classList.remove('active');
+          }
         }
       });
     }
@@ -3404,24 +3426,47 @@ function fillStickyBuy() {
 
   btnEl.addEventListener('click', (e) => {
     e.preventDefault();
+    if (_$('.lavs-buy_load')) return;
+
     pushDataLayer(
       'exp_pdp_slide_cart_button_02',
       'Add to cart',
       'Button',
       'PDP. The sticky section. Desktop'
     );
-    const prevCount = _$('#qty').value;
 
-    _$('#qty').value = 1;
+    _$('.lavs-buy')?.classList.add('lavs-buy_load');
 
-    clickAddToCart();
+    let offset =
+      $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset().top -
+      $('#shopify-section-header').height() -
+      10;
 
-    waitFor(
-      () => _$('.opnd.opn'),
-      () => {
-        _$('#qty').value = prevCount;
-      }
-    );
+    if (window.innerWidth >= 1024) {
+      offset -= $('#shopify-section-layout-announcement-bar').height();
+      // offset = 0;
+    }
+
+    $('html, body').animate({
+      scrollTop: offset,
+    });
+
+    setTimeout(() => {
+      _$('.lavs-buy')?.classList.remove('lavs-buy_load');
+    }, 1000);
+
+    // const prevCount = _$('#qty').value;
+
+    // _$('#qty').value = 1;
+
+    // clickAddToCart();
+
+    // waitFor(
+    //   () => _$('.opnd.opn'),
+    //   () => {
+    //     _$('#qty').value = prevCount;
+    //   }
+    // );
   });
 }
 
