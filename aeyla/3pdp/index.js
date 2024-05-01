@@ -1,12 +1,12 @@
-console.debug('*** Experiment started ***');
+console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
   // dir: 'http://127.0.0.1:5500/aeyla/3pdp',
   dir: 'https://flopsi69.github.io/crs/aeyla/3pdp',
   clarity: ['set', 'exp_pdp_slide_cart', 'variant_1'],
-  debug: false,
-};
+  debug: false
+}
 
 // const orig = console.log;
 // console.log = function (...args) {
@@ -96,6 +96,13 @@ const styles = /* css */ `
       margin-bottom: 0;
       color: #2B4632;
       line-height: 1.25;
+    }
+    .junip-product-summary-review-count {
+      font-size: 14px;
+    }
+    .junip-product-summary-clickable {
+      margin-top: -10px;
+      margin-bottom: 10px;
     }
     .lav-title__size {
       white-space: nowrap;
@@ -1145,6 +1152,10 @@ const styles = /* css */ `
         padding-left: 17px;
         padding-right: 17px;
       }
+      .junip-product-summary-clickable {
+        margin-top: 0;
+        padding: 0 17px;
+      }
       .lav-title__caption {
         padding: 0 17px;
       }
@@ -1448,72 +1459,72 @@ const styles = /* css */ `
       }
     }
 
-  `;
+  `
 
-const stylesEl = document.createElement('style');
-stylesEl.classList.add('exp-styles');
-stylesEl.innerHTML = styles;
+const stylesEl = document.createElement('style')
+stylesEl.classList.add('exp-styles')
+stylesEl.innerHTML = styles
 
 // *** Logic *** //
-let lavType = null;
-let isFireExpand = false;
-const eventsFireList = [];
+let lavType = null
+let isFireExpand = false
+const eventsFireList = []
 
-initExp();
+initExp()
 
 async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
+  await waitFor(() => document.head && document.body, false, { ms: 100 })
 
-  console.debug('** InitExp **');
+  console.debug('** InitExp **')
 
-  handleMiniCart();
-  addMiniCartEvents();
+  handleMiniCart()
+  addMiniCartEvents()
 
   initMutation('#shopify-section-minicart', (el) => {
-    if (!(el instanceof HTMLElement)) return;
+    if (!(el instanceof HTMLElement)) return
     if (el.classList.contains('minicart_inner')) {
       _$('#MainProductForm .lav-setup.lav-setup_load')?.classList.remove(
         'lav-setup_load'
-      );
+      )
 
-      handleMiniCart();
+      handleMiniCart()
 
       if (_$('.cart_count') && _$('.minicart_items')) {
         _$('.cart_count').innerText = parseInt(
           _$('.minicart_items').textContent
-        );
+        )
       }
     }
-  });
+  })
 
   if (location.href.includes('/the-dual-pillow')) {
-    _$('body').classList.add('lav-page-dual');
-    lavType = 'dual';
+    _$('body').classList.add('lav-page-dual')
+    lavType = 'dual'
   } else if (location.href.includes('/the-foamo')) {
-    _$('body').classList.add('lav-page-foamo');
-    lavType = 'foamo';
+    _$('body').classList.add('lav-page-foamo')
+    lavType = 'foamo'
   } else if (location.href.includes('/mela-weighted-blanket')) {
-    _$('body').classList.add('lav-page-blanket');
-    lavType = 'blanket';
+    _$('body').classList.add('lav-page-blanket')
+    lavType = 'blanket'
   } else {
-    return false;
+    return false
   }
 
-  document.body.appendChild(stylesEl);
+  document.body.appendChild(stylesEl)
 
-  addBreadcrumbs();
-  handleGallery();
-  handleProductInfo();
-  handleAdditionalInfo();
+  addBreadcrumbs()
+  handleGallery()
+  handleProductInfo()
+  handleAdditionalInfo()
 
-  waitFor('.img_txt_wrapp > .txt_sec > .flex', addCta);
+  waitFor('.img_txt_wrapp > .txt_sec > .flex', addCta)
   waitFor('.customKlaviyo', () => {
     _$$('.customKlaviyo').forEach((node) => {
       if (node.textContent.includes('Additional')) {
-        node.innerHTML = node.innerHTML.replace('Additional', 'additional');
+        node.innerHTML = node.innerHTML.replace('Additional', 'additional')
       }
-    });
-  });
+    })
+  })
 }
 
 function addMiniCartEvents() {
@@ -1523,8 +1534,8 @@ function addMiniCartEvents() {
       'Section',
       'Visibility',
       'Slide-in cart'
-    );
-  });
+    )
+  })
 
   document.addEventListener('click', (e) => {
     // console.log('clickMini', e.target);
@@ -1537,7 +1548,7 @@ function addMiniCartEvents() {
         'Get additional 15% Off',
         'Button',
         'Slide-in cart'
-      );
+      )
     }
 
     if (e.target.closest('.chckout') && e.target.closest('.checkout_wrapper')) {
@@ -1546,7 +1557,7 @@ function addMiniCartEvents() {
         'Proceed to secure checkout',
         'Button',
         'Slide-in cart'
-      );
+      )
     }
 
     if (e.target.closest('.minicart_head') && e.target.closest('svg')) {
@@ -1555,7 +1566,7 @@ function addMiniCartEvents() {
         'Close',
         'Button',
         'Slide-in cart'
-      );
+      )
     }
 
     if (
@@ -1568,7 +1579,7 @@ function addMiniCartEvents() {
         'Delete',
         'Button',
         'Slide-in cart'
-      );
+      )
     }
 
     // if (
@@ -1582,30 +1593,30 @@ function addMiniCartEvents() {
     //     'Slide-in cart'
     //   );
     // }
-  });
+  })
 }
 
 function handleMiniCart() {
-  if (_$('#shopify-section-minicart .empty_cart')) return;
+  if (_$('#shopify-section-minicart .empty_cart')) return
 
-  console.log('updateMiniCart');
+  console.log('updateMiniCart')
 
   if (!_$('#lav-minicart-style')) {
-    addStyles();
+    addStyles()
   }
 
-  handleFree();
-  handleBody();
-  handleFooter();
-  addUpsell();
-  updateHeight();
+  handleFree()
+  handleBody()
+  handleFooter()
+  addUpsell()
+  updateHeight()
 
-  window.addEventListener('resize', updateHeight);
+  window.addEventListener('resize', updateHeight)
 
   if (_$('#shopify-section-minicart .customKlaviyo')) {
     _$('#shopify-section-minicart .customKlaviyo').innerHTML = _$(
       '#shopify-section-minicart .customKlaviyo'
-    ).innerHTML.replace('Additional', 'additional');
+    ).innerHTML.replace('Additional', 'additional')
   }
 
   if (_$('#shopify-section-minicart .customKlaviyo')) {
@@ -1615,8 +1626,8 @@ function handleMiniCart() {
         'Section',
         'Visibility',
         'Slide-in cart. Get additional 15% Off'
-      );
-    });
+      )
+    })
   }
 
   if (_$('.minicart_inner .chckout')) {
@@ -1626,8 +1637,8 @@ function handleMiniCart() {
         'Section',
         'Visibility',
         'Slide-in cart. Proceed to secure checkout'
-      );
-    });
+      )
+    })
   }
 
   if (_$('.lavc-guarantee')) {
@@ -1637,8 +1648,8 @@ function handleMiniCart() {
         'Section',
         'Visibility',
         'Slide-in cart. 30-Day Money Back Guarantee | 365-Day Warranty'
-      );
-    });
+      )
+    })
   }
 
   _$$('.minicart_inner [name="quantity"]').forEach((item) => {
@@ -1648,9 +1659,9 @@ function handleMiniCart() {
         'Quantity',
         'Button',
         'Slide-in cart'
-      );
-    });
-  });
+      )
+    })
+  })
 
   function addStyles() {
     const style = /* html */ `
@@ -2029,28 +2040,28 @@ function handleMiniCart() {
         }
       }
     </style>
-  `;
+  `
 
-    document.body.insertAdjacentHTML('beforeend', style);
+    document.body.insertAdjacentHTML('beforeend', style)
   }
 
   function handleFree() {
-    if (!_$('.free_shipping_wrapper')) return;
+    if (!_$('.free_shipping_wrapper')) return
 
     const freeEl = /* html */ `<div class='lavc-shipping'>${getSvg(
       'freeShipping'
-    )} You've qualified for FREE UK shipping!</div>`;
+    )} You've qualified for FREE UK shipping!</div>`
 
-    _$('.minicart_header').insertAdjacentHTML('afterend', freeEl);
+    _$('.minicart_header').insertAdjacentHTML('afterend', freeEl)
   }
 
   function handleBody() {
     if (isFireExpand) {
-      _$('.minicart_inner').classList.add('lav-mini-expand');
-      return;
+      _$('.minicart_inner').classList.add('lav-mini-expand')
+      return
     }
 
-    const items = _$$('.minicart_inner .item_block');
+    const items = _$$('.minicart_inner .item_block')
 
     if (items.length > 1) {
       _$('.items_wrapper').insertAdjacentHTML(
@@ -2058,7 +2069,7 @@ function handleMiniCart() {
         `<div class='lavc-expand__toggler'>Show all products (${
           items.length - 1
         })</div>`
-      );
+      )
 
       _$('.lavc-expand__toggler').addEventListener('click', function () {
         pushDataLayer(
@@ -2066,80 +2077,80 @@ function handleMiniCart() {
           'Show all products',
           'Link',
           'Slide-in cart'
-        );
-        this.remove();
-        isFireExpand = true;
-        _$('.minicart_inner').classList.add('lav-mini-expand');
-      });
+        )
+        this.remove()
+        isFireExpand = true
+        _$('.minicart_inner').classList.add('lav-mini-expand')
+      })
     }
   }
 
   function handleFooter() {
     // Checkout button
     _$('.secure_checkout a.chckout span').innerText =
-      'Proceed to secure checkout';
-    _$('.secure_checkout a.chckout svg').remove();
+      'Proceed to secure checkout'
+    _$('.secure_checkout a.chckout svg').remove()
     _$('.secure_checkout a.chckout').insertAdjacentHTML(
       'afterbegin',
       getSvg('lock')
-    );
+    )
 
     // Checkout button caption
     const guarantee = /* html */ `
       <div class='lavc-guarantee'>30-Day Money Back Guarantee <span>|</span> 365-Day Warranty</div>
-    `;
-    _$('.secure_checkout').insertAdjacentHTML('beforeend', guarantee);
+    `
+    _$('.secure_checkout').insertAdjacentHTML('beforeend', guarantee)
 
     // Klaviyo
     if (_$('.minicart_wrapper .customKlaviyo')) {
-      _$('.minicart_wrapper .customKlaviyo > svg').remove();
+      _$('.minicart_wrapper .customKlaviyo > svg').remove()
       _$('.minicart_wrapper .customKlaviyo > div').insertAdjacentHTML(
         'beforeend',
         getSvg('arrowRight')
-      );
+      )
     }
 
     // Subtotal
     if (_$('.minicart_inner .total + .total .tot')) {
-      _$('.minicart_inner .total + .total .tot').innerText = 'You just saved';
+      _$('.minicart_inner .total + .total .tot').innerText = 'You just saved'
     }
 
     if (_$('.minicart_inner .shipping .shp')) {
       _$('.minicart_inner .shipping .shp').innerText = _$(
         '.minicart_inner .shipping .shp'
-      ).innerText.replace(':', '');
+      ).innerText.replace(':', '')
     }
 
     if (_$('.minicart_inner .cart_total .sub_total')) {
-      _$('.minicart_inner .cart_total .sub_total .st').textContent = 'Subtotal';
+      _$('.minicart_inner .cart_total .sub_total .st').textContent = 'Subtotal'
     }
 
     if (_$('.minicart_inner .total .lineth')) {
       _$('.minicart_inner .total .lineth').closest('.total').style.display =
-        'none';
-      const price = _$('.minicart_inner .total .lineth').innerText;
+        'none'
+      const price = _$('.minicart_inner .total .lineth').innerText
 
       _$('.minicart_inner .sub_total span.stt').insertAdjacentHTML(
         'afterbegin',
         `<span class="lavc-disc">${price.trim()}</span>`
-      );
+      )
     }
   }
 
   function updateHeight() {
-    if (!_$('.items_wrapper')) return;
+    if (!_$('.items_wrapper')) return
 
     const offset =
       _$('.checkout_wrapper').offsetHeight +
       _$('.minicart_header').offsetHeight +
-      _$('.lavc-shipping').offsetHeight;
+      _$('.lavc-shipping').offsetHeight
 
     height = _$(
       '.items_wrapper'
-    ).style.maxHeight = `calc(${window.innerHeight}px - ${offset}px`;
+    ).style.maxHeight = `calc(${window.innerHeight}px - ${offset}px`
 
     if (window.innerWidth < 640) {
-      _$('.minicart_inner').style.maxHeight = window.innerHeight + 'px';
+      _$('.minicart_inner').style.maxHeight = window.innerHeight + 'px'
     }
   }
 
@@ -2152,7 +2163,7 @@ function handleMiniCart() {
         oldPrice: '£65.00',
         newPrice: '£39.00',
         alias: 'Eucalyptus Silk Pillow Cases - 2 Pack',
-        id: '44467942981918',
+        id: '44467942981918'
       },
       {
         title: 'Eucalyptus Sleep Mask White',
@@ -2161,7 +2172,7 @@ function handleMiniCart() {
         oldPrice: '£25.00',
         newPrice: '£15.00',
         alias: 'Eucalyptus Silk Eye Mask',
-        id: '44467937280286',
+        id: '44467937280286'
       },
       {
         title: 'Sleep Enhancer Pillow Spray (50ml)',
@@ -2170,34 +2181,34 @@ function handleMiniCart() {
         oldPrice: '£19.99',
         newPrice: '£14.99',
         alias: 'Sleep Enhancer Pillow Spray',
-        id: '44467910967582',
-      },
-    ];
+        id: '44467910967582'
+      }
+    ]
 
     const productInCart = Array.from(_$$('.minicart_inner .item_block')).map(
       (el) => _$('h3', el).textContent.trim()
-    );
+    )
 
     upsellListFiltered = upsellList.filter(({ alias }) => {
       return productInCart.every((name) => {
         // return true;
-        return !name.includes(alias);
-      });
-    });
+        return !name.includes(alias)
+      })
+    })
 
-    if (!upsellListFiltered.length) return;
+    if (!upsellListFiltered.length) return
 
-    const setupWrapper = document.createElement('div');
-    setupWrapper.classList.add('lav-setup');
-    setupWrapper.classList.add('lav-setup_disable');
+    const setupWrapper = document.createElement('div')
+    setupWrapper.classList.add('lav-setup')
+    setupWrapper.classList.add('lav-setup_disable')
     setupWrapper.innerHTML = /* html */ `
       <div class="lav-setup__title">Complete your ultimate sleep setup</div>
       <div class="lav-setup__list"></div>
-    `;
+    `
 
     upsellListFiltered.forEach((item) => {
-      const pr = document.createElement('div');
-      pr.classList.add('lav-setup__plate');
+      const pr = document.createElement('div')
+      pr.classList.add('lav-setup__plate')
       pr.innerHTML = /* html */ `
           <div class="lav-setup__image">
             <img src='${item.src}' />
@@ -2215,7 +2226,7 @@ function handleMiniCart() {
               <div class="lav-setup__btn">Add</div>
             </div>
           </div>
-        `;
+        `
 
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
         // window.open(item.url, '_blank');
@@ -2225,52 +2236,52 @@ function handleMiniCart() {
           `${item.title} - Add to cart`,
           'Button',
           'Slide-in cart. Complete your ultimate sleep setup'
-        );
+        )
 
         _$('#shopify-section-minicart .lav-setup')?.classList.add(
           'lav-setup_load'
-        );
+        )
 
-        addToCartByAjax(item.id);
-      });
+        addToCartByAjax(item.id)
+      })
 
-      const handle = item.url.split('/').pop();
+      const handle = item.url.split('/').pop()
 
       $.ajax({
         type: 'GET',
         url: '/products/' + handle + '.js',
         dataType: 'json',
         success: function (product) {
-          const variant = product.variants.find((v) => v.id == item.id);
+          const variant = product.variants.find((v) => v.id == item.id)
 
           if (variant && !variant.available) {
-            pr.remove();
-            console.log('Product is out of stock.', product);
+            pr.remove()
+            console.log('Product is out of stock.', product)
             if (!_$('#shopify-section-minicart .lav-setup__plate')) {
               _$('#shopify-section-minicart .lav-setup')?.classList.add(
                 'lav-setup_disable'
-              );
+              )
             }
           } else {
             _$('#shopify-section-minicart .lav-setup').classList.remove(
               'lav-setup_disable'
-            );
+            )
 
             setupWrapper
               .querySelector('.lav-setup__list')
-              .insertAdjacentElement('beforeend', pr);
+              .insertAdjacentElement('beforeend', pr)
           }
         },
         error: function (xhr, status, error) {
-          console.log('Error fetching product data:', error);
-        },
-      });
-    });
+          console.log('Error fetching product data:', error)
+        }
+      })
+    })
 
     _$('#shopify-section-minicart  .items_wrapper').insertAdjacentElement(
       'beforeend',
       setupWrapper
-    );
+    )
 
     visibilityEvent('#shopify-section-minicart .lav-setup', () => {
       pushDataLayer(
@@ -2278,8 +2289,8 @@ function handleMiniCart() {
         'Section',
         'Visibility',
         'Slide-in cart. Complete your ultimate sleep setup'
-      );
-    });
+      )
+    })
   }
 }
 
@@ -2291,16 +2302,16 @@ function addToCartByAjax(id) {
       items: [
         {
           id: id,
-          quantity: 1,
-        },
-      ],
+          quantity: 1
+        }
+      ]
     },
     dataType: 'json',
     error: function (err) {
-      console.log(err);
-    },
+      console.log(err)
+    }
   }).done(function (item) {
-    addToCartOK();
+    addToCartOK()
     // _$('#shopify-section-minicart .lav-setup')?.classList.remove(
     //   'lav-setup_load'
     // );
@@ -2309,7 +2320,7 @@ function addToCartByAjax(id) {
     //   $('.ic').find('.cart_count').text(c.item_count)
     //   $('#AddToCart').text('ADD TO CART')
     // })
-  });
+  })
 }
 
 function addBreadcrumbs() {
@@ -2325,9 +2336,9 @@ function addBreadcrumbs() {
         <span> / </span>
         <span>${_$('.breadcrumb .text-base:last-child').textContent}</span>
       </div>
-    `;
+    `
 
-  _$('#MainProductSection').insertAdjacentHTML('afterbegin', breadcrumbs);
+  _$('#MainProductSection').insertAdjacentHTML('afterbegin', breadcrumbs)
 
   _$$('.lav-breadcrumbs a').forEach((link) => {
     link.addEventListener('click', function (e) {
@@ -2336,155 +2347,153 @@ function addBreadcrumbs() {
         link.innerText.trim(),
         'Link',
         'PDP breadcrumbs'
-      );
-    });
-  });
+      )
+    })
+  })
 }
 
 function handleGallery() {
   if (lavType === 'dual') {
-    _$('[href="#MainPhoto1"] img').removeAttribute('srcset');
-    _$('[href="#MainPhoto1"] img').src = `${config.dir}/img/new-dual.png`;
-    _$('#MainPhoto1 img').removeAttribute('srcset');
-    _$('#MainPhoto1 img').src = `${config.dir}/img/new-dual.png`;
+    _$('[href="#MainPhoto1"] img').removeAttribute('srcset')
+    _$('[href="#MainPhoto1"] img').src = `${config.dir}/img/new-dual.png`
+    _$('#MainPhoto1 img').removeAttribute('srcset')
+    _$('#MainPhoto1 img').src = `${config.dir}/img/new-dual.png`
 
-    _$('.product-carousel .swiper-slide img').removeAttribute('srcset');
+    _$('.product-carousel .swiper-slide img').removeAttribute('srcset')
     _$(
       '.product-carousel .swiper-slide img'
-    ).src = `${config.dir}/img/new-dual.png`;
+    ).src = `${config.dir}/img/new-dual.png`
 
     _$('.product-carousel .swiper-slide .relative').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Osteopath-approved</div>`
-    );
+    )
 
     _$('#MainPhoto1').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Osteopath-approved</div><div class='lav-off'>20-50% Off</div>`
-    );
+    )
 
     _$('.product-carousel').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-off'>20-50% Off</div>`
-    );
+    )
   } else if (lavType === 'foamo') {
     _$('.product-carousel .swiper-slide .relative').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Osteopath-approved</div>`
-    );
+    )
 
     _$('#MainPhoto1').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Osteopath-approved</div><div class='lav-off'>New</div>`
-    );
+    )
 
     _$('.product-carousel').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-off'>New</div>`
-    );
+    )
   } else if (lavType === 'blanket') {
     _$('.product-carousel .swiper-slide .relative').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Top-Rated Blanket</div>`
-    );
+    )
 
     _$('#MainPhoto1').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-approved'>${getSvg(
         'approved'
       )} Top-Rated Blanket</div><div class='lav-off'>35% Off</div>`
-    );
+    )
 
     _$('.product-carousel').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-off'>35% Off</div>`
-    );
+    )
   }
 }
 
 function handleProductInfo() {
-  handleHead();
+  handleHead()
   if (lavType !== 'blanket') {
-    handleOptions();
+    handleOptions()
   }
   if (lavType === 'blanket') {
-    waitFor('.shadow-product-option', handleSize);
+    waitFor('.shadow-product-option', handleSize)
   }
-  addSaved();
-  initMutation(_$('.pricing + .usave'), addSaved);
-  moveKlaviyo();
-  waitFor(() => _$('.pre_order_wrapper .pre_order_info>h3'), handleNextBatch);
-  waitFor('.upsell_wrapper', addSetup);
-  addSimilar();
-  handleAddToCart();
-  handleSticky();
-  addEvents();
+  addSaved()
+  initMutation(_$('.pricing + .usave'), addSaved)
+  moveKlaviyo()
+  waitFor(() => _$('.pre_order_wrapper .pre_order_info>h3'), handleNextBatch)
+  waitFor('.upsell_wrapper', addSetup)
+  addSimilar()
+  handleAddToCart()
+  handleSticky()
+  addEvents()
 
   function handleAddToCart() {
-    _$('#AddToCart').insertAdjacentHTML('afterbegin', getSvg('basket'));
+    _$('#AddToCart').insertAdjacentHTML('afterbegin', getSvg('basket'))
 
-    const innerHtmlAddToCart = _$('#AddToCart').innerHTML;
+    const innerHtmlAddToCart = _$('#AddToCart').innerHTML
 
     initMutation(_$('#AddToCart'), (node) => {
       if (
         node.textContent.toLowerCase().includes('add to cart') &&
         !_$('#AddToCart span')
       ) {
-        _$('#AddToCart').innerHTML = innerHtmlAddToCart;
+        _$('#AddToCart').innerHTML = innerHtmlAddToCart
       }
-    });
+    })
 
     if (lavType === 'blanket' && _$('.shipped_within_wrapper')) {
       _$('.pro_form .money_back').insertAdjacentElement(
         'beforebegin',
         _$('.shipped_within_wrapper')
-      );
+      )
     }
   }
 
   function handleHead() {
-    _$('div#MainProductForm h1')
-      .closest('div')
-      .classList.add('lav-title__wrap');
+    _$('div#MainProductForm h1').closest('div').classList.add('lav-title__wrap')
 
     if (lavType === 'dual' || lavType === 'foamo') {
-      let size = '50cm x 75cm';
+      let size = '50cm x 75cm'
       _$('.lav-title__wrap h1').insertAdjacentHTML(
         'beforeend',
         /* html */ `<span class='lav-title__size'>${size}</span>`
-      );
+      )
     }
 
     let caption =
-      'From the first sleep, say goodbye to morning pain and grogginess';
+      'From the first sleep, say goodbye to morning pain and grogginess'
 
     if (lavType === 'foamo') {
       caption =
-        'Adjustable pillow for custom comfort, reducing neck and back pain';
+        'Adjustable pillow for custom comfort, reducing neck and back pain'
     }
     if (lavType === 'blanket') {
-      caption = 'Discover relaxation in the comforting clasp of a gentle hug';
+      caption = 'Discover relaxation in the comforting clasp of a gentle hug'
 
       _$('.lav-title__wrap').insertAdjacentHTML(
         'beforeend',
         /* html */ `<div class='lav-title__caption-sup'>Weighted Blanket with Integrated Cover</div>`
-      );
+      )
     }
 
     _$('.lav-title__wrap').insertAdjacentHTML(
       'beforeend',
       /* html */ `<div class='lav-title__caption'>${caption}</div>`
-    );
+    )
   }
 
   function handleOptions() {
@@ -2498,7 +2507,7 @@ function handleProductInfo() {
           discount: 20,
           isBestSeller: false,
           isBestValue: false,
-          target: '8133597004062-1-0',
+          target: '8133597004062-1-0'
         },
         {
           title: '2 Pillows',
@@ -2508,7 +2517,7 @@ function handleProductInfo() {
           discount: 45,
           isBestSeller: true,
           isBestValue: false,
-          target: '8133597004062-1-1',
+          target: '8133597004062-1-1'
         },
         {
           title: '4 Pillows',
@@ -2518,8 +2527,8 @@ function handleProductInfo() {
           discount: 50,
           isBestSeller: false,
           isBestValue: true,
-          target: '8133597004062-1-2',
-        },
+          target: '8133597004062-1-2'
+        }
       ],
       foamo: [
         {
@@ -2530,7 +2539,7 @@ function handleProductInfo() {
           discount: 10,
           isBestSeller: false,
           isBestValue: false,
-          target: '8133596217630-1-0',
+          target: '8133596217630-1-0'
         },
         {
           title: '2 Pillows',
@@ -2540,7 +2549,7 @@ function handleProductInfo() {
           discount: 45,
           isBestSeller: true,
           isBestValue: false,
-          target: '8133596217630-1-1',
+          target: '8133596217630-1-1'
         },
         {
           title: '4 Pillows',
@@ -2550,19 +2559,19 @@ function handleProductInfo() {
           discount: 50,
           isBestSeller: false,
           isBestValue: true,
-          target: '8133596217630-1-2',
-        },
-      ],
-    };
+          target: '8133596217630-1-2'
+        }
+      ]
+    }
 
-    if (!options[lavType]) return;
+    if (!options[lavType]) return
 
-    const optionsEl = document.createElement('div');
-    optionsEl.classList.add('lav-options');
+    const optionsEl = document.createElement('div')
+    optionsEl.classList.add('lav-options')
 
     options[lavType]?.forEach((option) => {
-      const optionEl = document.createElement('div');
-      optionEl.classList.add('lav-option');
+      const optionEl = document.createElement('div')
+      optionEl.classList.add('lav-option')
       optionEl.innerHTML = /* html */ `
           <div class='lav-option__image'>
             <img src='${config.dir}/img/${option.img}' alt='${option.title}' />
@@ -2578,49 +2587,49 @@ function handleProductInfo() {
             <div class='lav-option__discount-value'>Best Value</div>
             <div>Save ${option.discount}%</div>
           </div>
-        `;
+        `
 
       if (!option.isBestSeller) {
-        optionEl.querySelector('.lav-option__discount-seller').remove();
+        optionEl.querySelector('.lav-option__discount-seller').remove()
       }
 
       if (!option.isBestValue) {
-        optionEl.querySelector('.lav-option__discount-value').remove();
+        optionEl.querySelector('.lav-option__discount-value').remove()
       }
 
       if (document.getElementById(option.target).checked) {
-        optionEl.classList.add('active');
+        optionEl.classList.add('active')
       }
 
       optionEl.addEventListener('click', (e) => {
-        e.preventDefault();
+        e.preventDefault()
         pushDataLayer(
           'exp_pdp_slide_cart_button_06',
           `${option.title} - Select`,
           'Button',
           'PDP. The product section (1pillow/2pillows/4pillows)'
-        );
+        )
         if (optionEl.classList.contains('active')) {
-          clickAddToCart();
-          return;
+          clickAddToCart()
+          return
         }
 
-        _$('.lavs-buy').innerHTML = '';
+        _$('.lavs-buy').innerHTML = ''
 
-        _$('.lav-option.active', optionsEl)?.classList.remove('active');
+        _$('.lav-option.active', optionsEl)?.classList.remove('active')
 
-        _$(`[for="${option.target}"]`).click();
-        optionEl.classList.add('active');
+        _$(`[for="${option.target}"]`).click()
+        optionEl.classList.add('active')
 
         setTimeout(() => {
-          fillStickyBuy();
-        }, 500);
-      });
+          fillStickyBuy()
+        }, 500)
+      })
 
-      optionsEl.insertAdjacentElement('beforeend', optionEl);
-    });
+      optionsEl.insertAdjacentElement('beforeend', optionEl)
+    })
 
-    _$('.lav-title__wrap').insertAdjacentElement('afterend', optionsEl);
+    _$('.lav-title__wrap').insertAdjacentElement('afterend', optionsEl)
 
     visibilityEvent('.lav-options', () => {
       pushDataLayer(
@@ -2628,13 +2637,13 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. The product section (1pillow/2pillows/4pillows)'
-      );
-    });
+      )
+    })
   }
 
   function handleSize() {
-    const sizeEl = document.createElement('div');
-    sizeEl.classList.add('lav-size');
+    const sizeEl = document.createElement('div')
+    sizeEl.classList.add('lav-size')
 
     sizeEl.innerHTML = /* html */ `
         <div class='lav-size__toggler'>
@@ -2657,14 +2666,14 @@ function handleProductInfo() {
             <div class='lav-size__item' data-item='3'><strong>9kg -</strong> for bodyweight between <span>80kg+</span></div>
           </div>
         </div>
-      `;
+      `
 
     _$('.lav-size__drop', sizeEl).addEventListener('click', function (e) {
-      $('.lav-size__drop').toggleClass('active');
-      $('.lav-size__list').slideToggle();
-    });
+      $('.lav-size__drop').toggleClass('active')
+      $('.lav-size__list').slideToggle()
+    })
 
-    _$('.shadow-product-option .leading-6').click();
+    _$('.shadow-product-option .leading-6').click()
     waitFor(
       () => _$('.shadow-product-option.absolute .cursor-pointer'),
       () => {
@@ -2674,34 +2683,34 @@ function handleProductInfo() {
           console.log(
             _$('.shadow-product-option .text-main-blue').innerText,
             el.innerText
-          );
+          )
 
           return (
             _$('.shadow-product-option .text-main-blue').textContent ===
             el.textContent
-          );
-        });
+          )
+        })
 
         if (idxActive >= 0) {
           _$('.lav-size__value').innerHTML = _$$('.lav-size__item', sizeEl)[
             idxActive
-          ].innerHTML;
-          _$$('.lav-size__item', sizeEl)[idxActive].classList.add('active');
+          ].innerHTML
+          _$$('.lav-size__item', sizeEl)[idxActive].classList.add('active')
         }
       },
       {
-        ms: 50,
+        ms: 50
       }
-    );
+    )
 
     _$$('.lav-size__item', sizeEl).forEach((sizeItem) => {
       sizeItem.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault()
 
-        if (sizeItem.classList.contains('active')) return;
+        if (sizeItem.classList.contains('active')) return
 
         if (!_$('.shadow-product-option.absolute .cursor-pointer')) {
-          _$('.shadow-product-option .leading-6').click();
+          _$('.shadow-product-option .leading-6').click()
         }
 
         waitFor(
@@ -2709,118 +2718,116 @@ function handleProductInfo() {
           () => {
             _$$('.shadow-product-option.absolute .cursor-pointer')[
               sizeItem.dataset.item
-            ].click();
+            ].click()
           },
           {
-            ms: 50,
+            ms: 50
           }
-        );
+        )
 
-        _$('.lav-size__item.active', sizeEl)?.classList.remove('active');
+        _$('.lav-size__item.active', sizeEl)?.classList.remove('active')
 
-        sizeItem.classList.add('active');
+        sizeItem.classList.add('active')
 
-        _$('.lav-size__value').innerHTML = sizeItem.innerHTML;
+        _$('.lav-size__value').innerHTML = sizeItem.innerHTML
 
         setTimeout(() => {
-          fillStickyBuy();
-        }, 500);
-      });
-    });
+          fillStickyBuy()
+        }, 500)
+      })
+    })
 
     _$$('.lav-size__toggle', sizeEl).forEach((toggleEl) => {
       toggleEl.addEventListener('click', (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        if (toggleEl.classList.contains('active')) return;
+        if (toggleEl.classList.contains('active')) return
 
-        _$('.lav-size__toggle.active', sizeEl)?.classList.remove('active');
+        _$('.lav-size__toggle.active', sizeEl)?.classList.remove('active')
 
-        toggleEl.classList.add('active');
+        toggleEl.classList.add('active')
 
         if (toggleEl.dataset.value === 'standart') {
-          _$('[for="8133599232286-1-0"]').click();
+          _$('[for="8133599232286-1-0"]').click()
         }
 
         if (toggleEl.dataset.value === 'large') {
-          _$('[for="8133599232286-1-1"]').click();
+          _$('[for="8133599232286-1-1"]').click()
         }
 
         setTimeout(() => {
-          fillStickyBuy();
-        }, 500);
-      });
-    });
+          fillStickyBuy()
+        }, 500)
+      })
+    })
 
-    _$('.lav-title__wrap').insertAdjacentElement('afterend', sizeEl);
+    _$('.lav-title__wrap').insertAdjacentElement('afterend', sizeEl)
 
     if (document.getElementById('8133599232286-1-0').checked) {
-      _$("[data-value='standart']").classList.add('active');
+      _$("[data-value='standart']").classList.add('active')
     } else if (document.getElementById('8133599232286-1-1').checked) {
-      _$("[data-value='large']").classList.add('active');
+      _$("[data-value='large']").classList.add('active')
     }
   }
 
   function addSaved() {
     if (_$('#MainProductForm .lav-saved'))
-      _$('#MainProductForm .lav-saved').remove();
+      _$('#MainProductForm .lav-saved').remove()
 
     const parsed = _$(
       '.pricing + .usave span span:last-child'
-    )?.textContent.trim();
-    if (!parsed) return;
+    )?.textContent.trim()
+    if (!parsed) return
 
     const [price, discount] = parsed
       .replace('% Off', '')
       .replace('(', '')
       .replace(')', '')
-      .split(' ');
+      .split(' ')
 
     _$('.pro_price .pricing').insertAdjacentHTML(
       'beforeend',
       /* html */ `
         <div class='lav-saved'><strong>-${discount}%</strong> (${price})</div>
       `
-    );
+    )
 
     if (lavType === 'blanket') {
-      if (_$('.lav-stock')) _$('.lav-stock').remove();
+      if (_$('.lav-stock')) _$('.lav-stock').remove()
 
-      const caption = _$('.pricing + .usave>span:last-child').textContent;
+      const caption = _$('.pricing + .usave>span:last-child').textContent
 
       _$('.pro_form .qw').insertAdjacentHTML(
         'beforebegin',
         /* html */ `<div class='lav-stock ${
           caption.includes('OUT') ? 'lav-stock_out' : ''
         }'>${caption}</div>`
-      );
+      )
     }
   }
 
   function moveKlaviyo() {
-    if (!_$('.kl_wrapper')) return false;
+    if (!_$('.kl_wrapper')) return false
 
-    _$('.pro_price').insertAdjacentElement('afterend', _$('.kl_wrapper'));
+    _$('.pro_price').insertAdjacentElement('afterend', _$('.kl_wrapper'))
 
-    _$('.customKlaviyo svg:last-child').remove();
-    _$('.customKlaviyo').insertAdjacentHTML('beforeend', getSvg('arrowRight'));
+    _$('.customKlaviyo svg:last-child').remove()
+    _$('.customKlaviyo').insertAdjacentHTML('beforeend', getSvg('arrowRight'))
   }
 
   function handleNextBatch() {
-    const title = _$('.pre_order_wrapper .pre_order_info>h3').textContent;
-    const date = _$('.pre_order_wrapper .reserved_wrapper h3').textContent;
-    const reserved = _$(
-      '.pre_order_wrapper .reserved_wrapper span'
-    ).textContent;
-    let caption = `<strong>Get 20% OFF</strong> your order when reserving.<br/> Use Code: <strong>BEST20</strong> at checkout`;
+    const title = _$('.pre_order_wrapper .pre_order_info>h3').textContent
+    const date = _$('.pre_order_wrapper .reserved_wrapper h3').textContent
+    const reserved = _$('.pre_order_wrapper .reserved_wrapper span').textContent
+    let caption = `<strong>Get 20% OFF</strong> your order when reserving.<br/> Use Code: <strong>BEST20</strong> at checkout`
 
     if (lavType === 'dual' && parseDiscount()) {
-      const [percent, code] = parseDiscount();
-      caption = `<strong>Get ${percent}% OFF</strong> your order when reserving.<br/> Use Code: <strong>${code}</strong> at checkout`;
+      const [percent, code] = parseDiscount()
+      caption = `<strong>Get ${percent}% OFF</strong> your order when reserving.<br/> Use Code: <strong>${code}</strong> at checkout`
     }
 
     if (lavType === 'foamo') {
-      caption = `Add two single pillows to the cart and get one of them for free with code: B1G1!`;
+      caption = `Add two single pillows to the cart and get one of them for free with code: B1G1!`
     }
 
     const nextBatch = /* html */ `
@@ -2840,9 +2847,9 @@ function handleProductInfo() {
           </div>
           <div class='lav-batch__sub'>Reserved <strong>${getRandomNumber()} pillows</strong> in the last 24 hours</div>
         </div>
-      `;
+      `
 
-    _$('.prod_desc').insertAdjacentHTML('beforebegin', nextBatch);
+    _$('.prod_desc').insertAdjacentHTML('beforebegin', nextBatch)
 
     visibilityEvent('.lav-batch__progress', () => {
       pushDataLayer(
@@ -2850,74 +2857,74 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. Next Batch Ships '
-      );
-    });
+      )
+    })
 
     function parseDiscount() {
-      const template = _$('.pre_order_info ul li:last-child').textContent;
+      const template = _$('.pre_order_info ul li:last-child').textContent
 
       if (!template) {
-        console.log('Discount template not found.');
-        return false;
+        console.log('Discount template not found.')
+        return false
       }
 
       // Define regex patterns to match the percent discount and discount code
-      const percentRegex = /\b(\d+)% off\b/;
-      const codeRegex = /'([^']+)'/;
+      const percentRegex = /\b(\d+)% off\b/
+      const codeRegex = /'([^']+)'/
 
       // Match the percent discount and discount code using regex
-      const percentMatch = template.match(percentRegex);
-      const codeMatch = template.match(codeRegex);
+      const percentMatch = template.match(percentRegex)
+      const codeMatch = template.match(codeRegex)
 
       // Check if matches were found and extract the values
       if (percentMatch && codeMatch) {
-        const percentDiscount = parseInt(percentMatch[1]); // Extract the percent value and convert to integer
-        const discountCode = codeMatch[1]; // Extract the discount code
-        console.log('Percent Discount:', percentDiscount);
-        console.log('Discount Code:', discountCode);
-        return [percentDiscount, discountCode];
+        const percentDiscount = parseInt(percentMatch[1]) // Extract the percent value and convert to integer
+        const discountCode = codeMatch[1] // Extract the discount code
+        console.log('Percent Discount:', percentDiscount)
+        console.log('Discount Code:', discountCode)
+        return [percentDiscount, discountCode]
       } else {
-        console.log('Discount details not found in the template.');
-        return false;
+        console.log('Discount details not found in the template.')
+        return false
       }
     }
 
     function getRandomNumber() {
-      const storedNumber = localStorage.getItem('randomNumber');
-      const expirationTime = localStorage.getItem('expirationTime');
+      const storedNumber = localStorage.getItem('randomNumber')
+      const expirationTime = localStorage.getItem('expirationTime')
 
       if (
         storedNumber &&
         expirationTime &&
         Date.now() < parseInt(expirationTime, 10)
       ) {
-        return parseInt(storedNumber, 10);
+        return parseInt(storedNumber, 10)
       } else {
-        const newNumber = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
+        const newNumber = Math.floor(Math.random() * (100 - 50 + 1)) + 50
 
-        localStorage.setItem('randomNumber', newNumber);
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        localStorage.setItem('expirationTime', tomorrow.getTime().toString());
+        localStorage.setItem('randomNumber', newNumber)
+        const tomorrow = new Date()
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        localStorage.setItem('expirationTime', tomorrow.getTime().toString())
 
-        return newNumber;
+        return newNumber
       }
     }
   }
 
   function addSetup() {
-    if (!_$$('.upsell_wrapper > label').length) return;
+    if (!_$$('.upsell_wrapper > label').length) return
 
-    const setupWrapper = document.createElement('div');
-    setupWrapper.classList.add('lav-setup');
+    const setupWrapper = document.createElement('div')
+    setupWrapper.classList.add('lav-setup')
     setupWrapper.innerHTML = /* html */ `
         <div class="lav-setup__title">Complete your ultimate sleep setup</div>
         <div class="lav-setup__list"></div>
-      `;
+      `
 
     _$$('.upsell_wrapper > label').forEach((el) => {
-      const pr = document.createElement('div');
-      pr.classList.add('lav-setup__plate');
+      const pr = document.createElement('div')
+      pr.classList.add('lav-setup__plate')
       pr.innerHTML = /* html */ `
           <div class="lav-setup__image">
             <img src='${getImage(_$('img', el).src)}' />
@@ -2944,7 +2951,7 @@ function handleProductInfo() {
               <div class="lav-setup__btn">Add to cart</div>
             </div>
           </div>
-        `;
+        `
 
       pr.querySelector('.lav-setup__btn').addEventListener('click', () => {
         pushDataLayer(
@@ -2952,37 +2959,37 @@ function handleProductInfo() {
           `${pr.querySelector('.lav-setup__name').innerText} - Add to cart`,
           'Button',
           'PDP. Complete your ultimate sleep setup'
-        );
+        )
 
         if (_$('#AddToCart').disabled) {
-          _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
+          _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load')
 
-          addToCartByAjax(el.getAttribute('for'));
-          return;
+          addToCartByAjax(el.getAttribute('for'))
+          return
         }
 
-        el.click();
-        _$('#qty').value = 0;
-        clickAddToCart();
+        el.click()
+        _$('#qty').value = 0
+        clickAddToCart()
 
         waitFor(
           () => _$('.opnd.opn'),
           () => {
-            el.click();
-            _$('#qty').value = 1;
+            el.click()
+            _$('#qty').value = 1
           }
-        );
-      });
+        )
+      })
 
       setupWrapper
         .querySelector('.lav-setup__list')
-        .insertAdjacentElement('beforeend', pr);
-    });
+        .insertAdjacentElement('beforeend', pr)
+    })
 
     _$('.bg-main-tertiary-100').insertAdjacentElement(
       'beforebegin',
       setupWrapper
-    );
+    )
 
     visibilityEvent(setupWrapper, () => {
       pushDataLayer(
@@ -2990,20 +2997,20 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. Complete your ultimate sleep setup'
-      );
-    });
+      )
+    })
 
     function getImage(src) {
       // if (src.includes('Stone_Pillowcase-x')) {
       //   return `${config.dir}/img/setup-pillow-1.png`;
       // }
-      return src;
+      return src
     }
   }
 
   async function addSimilar() {
-    const similarEl = document.createElement('div');
-    similarEl.classList.add('lav-similar');
+    const similarEl = document.createElement('div')
+    similarEl.classList.add('lav-similar')
     similarEl.innerHTML = /* html */ `
         <div class="lav-similar__head">
           <div class="lav-similar__title">Similar products</div>
@@ -3018,7 +3025,7 @@ function handleProductInfo() {
         </div>
         
         <div class="lav-similar__slider"></div>
-      `;
+      `
 
     const products = {
       dual: [
@@ -3028,7 +3035,7 @@ function handleProductInfo() {
           priceNew: '69.00',
           img: '1pillow.jpg',
           discount: 20,
-          url: '/products/the-dual-pillow',
+          url: '/products/the-dual-pillow'
         },
         {
           title: 'The FOAMO Pillow',
@@ -3036,7 +3043,7 @@ function handleProductInfo() {
           priceNew: '79.00',
           img: 'upsell-pillow-foam.webp',
           discount: 10,
-          url: '/products/the-foamo',
+          url: '/products/the-foamo'
         },
         {
           title: 'Opposites Attract Bundle',
@@ -3044,7 +3051,7 @@ function handleProductInfo() {
           priceNew: '99.00',
           img: 'upsell-pillow-opposites.avif',
           discount: 45,
-          url: '/products/opposites-attract-bundle',
+          url: '/products/opposites-attract-bundle'
         },
         {
           title: 'Pillow & Pillowcase Bundle',
@@ -3052,8 +3059,8 @@ function handleProductInfo() {
           priceNew: '79.00',
           img: 'upsell-pillow-bundle.avif',
           discount: 45,
-          url: '/products/pillow-pillowcase-bundle',
-        },
+          url: '/products/pillow-pillowcase-bundle'
+        }
       ],
       blanket: [
         {
@@ -3062,31 +3069,31 @@ function handleProductInfo() {
           priceNew: '74.25',
           img: 'upsell-blanket.png',
           discount: 55,
-          url: '/products/the-mela-weighted-blanket-with-removable-cover',
-        },
-      ],
-    };
+          url: '/products/the-mela-weighted-blanket-with-removable-cover'
+        }
+      ]
+    }
 
-    products['foamo'] = products['dual'];
+    products['foamo'] = products['dual']
 
-    if (!products[lavType]) return;
+    if (!products[lavType]) return
 
     const similarProducts = products[lavType]?.filter(
       (p) => !location.href.includes(p.url)
-    );
+    )
 
     similarProducts.forEach((product) => {
-      const productEl = document.createElement('div');
-      productEl.classList.add('lav-pr');
+      const productEl = document.createElement('div')
+      productEl.classList.add('lav-pr')
       productEl.addEventListener('click', () => {
         pushDataLayer(
           'exp_pdp_slide_cart_button_07',
           `${product.title} - Select`,
           'Button',
           'PDP. Section Similar products'
-        );
-        window.open(product.url, '_blank');
-      });
+        )
+        window.open(product.url, '_blank')
+      })
       productEl.innerHTML = /* html */ `
           <div class="lav-pr__image">
             <img src='${config.dir}/img/${product.img}' alt='${product.title}' />
@@ -3097,14 +3104,14 @@ function handleProductInfo() {
             <div class="lav-pr__price-old">£${product.priceOld}</div>
           </div>
           <div class="lav-pr__off">${product.discount}% Off</div>
-        `;
+        `
 
       similarEl
         .querySelector('.lav-similar__slider')
-        .insertAdjacentElement('beforeend', productEl);
-    });
+        .insertAdjacentElement('beforeend', productEl)
+    })
 
-    _$('.bg-main-tertiary-100').insertAdjacentElement('afterend', similarEl);
+    _$('.bg-main-tertiary-100').insertAdjacentElement('afterend', similarEl)
 
     visibilityEvent(similarEl, () => {
       pushDataLayer(
@@ -3112,8 +3119,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. Section Similar products'
-      );
-    });
+      )
+    })
     // centerMode: true,
     // rtl: true,
     if (lavType !== 'blanket') {
@@ -3130,16 +3137,16 @@ function handleProductInfo() {
             breakpoint: 1024,
             settings: {
               slidesToShow: 2.3,
-              autoplay: false,
-            },
-          },
-        ],
-      });
+              autoplay: false
+            }
+          }
+        ]
+      })
     }
   }
 
   function handleSticky() {
-    _$('#MainProductForm').parentElement.classList.add('lavs-buy__wrap');
+    _$('#MainProductForm').parentElement.classList.add('lavs-buy__wrap')
 
     // waitFor('.trustpilot-widget iframe', () => {
     //   _$('.lavs-fit__trust', stickyFit).insertAdjacentHTML(
@@ -3151,45 +3158,45 @@ function handleProductInfo() {
     //   );
     // });
 
-    addBuy();
-    addFit();
+    addBuy()
+    addFit()
 
     function addBuy() {
-      const stickyBuy = document.createElement('div');
-      stickyBuy.classList.add('lavs-buy');
+      const stickyBuy = document.createElement('div')
+      stickyBuy.classList.add('lavs-buy')
 
-      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyBuy);
-      fillStickyBuy();
+      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyBuy)
+      fillStickyBuy()
 
       window.addEventListener('scroll', () => {
         if (window.scrollY > _$('#AddToCart').offsetTop + 200) {
-          stickyBuy.classList.add('active');
+          stickyBuy.classList.add('active')
           _$('.lavs-buy__wrap').style.marginTop =
-            '-' + _$('.lavs-buy').offsetHeight + 'px';
-          _$('.lavs-buy').style.opacity = 1;
+            '-' + _$('.lavs-buy').offsetHeight + 'px'
+          _$('.lavs-buy').style.opacity = 1
         } else {
-          stickyBuy.classList.remove('active');
-          _$('.lavs-buy__wrap').style.marginTop = 0;
-          _$('.lavs-buy').style.opacity = 0;
+          stickyBuy.classList.remove('active')
+          _$('.lavs-buy__wrap').style.marginTop = 0
+          _$('.lavs-buy').style.opacity = 0
         }
-      });
+      })
     }
 
     function addFit() {
-      const stickyFit = document.createElement('div');
-      stickyFit.classList.add('lavs-fit');
+      const stickyFit = document.createElement('div')
+      stickyFit.classList.add('lavs-fit')
       const title = _$(
         'div#MainProductForm .lav-title__wrap h1'
-      ).firstChild.textContent.trim();
-      let caption = 'Standard Size Luxury Pillow (50cm x 75cm)';
-      let count = '854';
+      ).firstChild.textContent.trim()
+      let caption = 'Standard Size Luxury Pillow (50cm x 75cm)'
+      let count = '854'
 
       if (lavType === 'foamo') {
-        count = '368';
+        count = '368'
       }
       if (lavType === 'blanket') {
-        caption = 'Weighted Blanket with Integrated Cover';
-        count = '2,313';
+        caption = 'Weighted Blanket with Integrated Cover'
+        count = '2,313'
       }
 
       stickyFit.innerHTML = /* html */ `
@@ -3206,77 +3213,77 @@ function handleProductInfo() {
           <div class='lavs-fit__similar'>Similar products</div>
     
           <div class='lavs-fit__btn'>Choose your best fit</div>
-        `;
+        `
 
       stickyFit
         .querySelector('.lavs-fit__btn')
         .addEventListener('click', function (e) {
-          e.preventDefault();
-          if (this.classList.contains('active')) return;
+          e.preventDefault()
+          if (this.classList.contains('active')) return
 
           pushDataLayer(
             'exp_pdp_slide_cart_button_03',
             'Choose your best fit',
             'Button',
             'PDP. The sticky section. “Choose your best fit” '
-          );
+          )
 
-          this.classList.add('active');
+          this.classList.add('active')
 
           let offset =
             $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset()
               .top -
             $('#shopify-section-header').height() -
-            10;
+            10
 
           if (window.innerWidth >= 1024) {
-            offset -= $('#shopify-section-layout-announcement-bar').height();
+            offset -= $('#shopify-section-layout-announcement-bar').height()
             // offset = 0;
           }
 
           $('html, body').animate({
-            scrollTop: offset,
-          });
+            scrollTop: offset
+          })
           setTimeout(() => {
-            this.classList.remove('active');
-          }, 1000);
-        });
+            this.classList.remove('active')
+          }, 1000)
+        })
 
       stickyFit
         .querySelector('.lavs-fit__similar')
         .addEventListener('click', function (e) {
-          e.preventDefault();
+          e.preventDefault()
 
-          if (this.classList.contains('active')) return;
+          if (this.classList.contains('active')) return
 
           pushDataLayer(
             'exp_pdp_slide_cart_link_01',
             'Similar products',
             'Link',
             'PDP. The sticky section. Mobile'
-          );
+          )
 
-          this.classList.add('active');
+          this.classList.add('active')
 
           let offset =
             $('.lav-similar').offset().top -
             $('#shopify-section-header').height() -
-            10;
+            10
 
           if (window.innerWidth < 1024) {
-            offset -= $('.lavs-fit').height();
+            offset -= $('.lavs-fit').height()
           }
 
           $('html, body').animate({
-            scrollTop: offset,
-          });
+            scrollTop: offset
+          })
 
           setTimeout(() => {
-            this.classList.remove('active');
-          }, 1000);
-        });
+            this.classList.remove('active')
+          }, 1000)
+        })
 
-      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyFit);
+      _$('#MainProductForm').insertAdjacentElement('beforebegin', stickyFit)
 
       window.addEventListener('scroll', () => {
         if (window.innerWidth < 1024) {
@@ -3284,21 +3291,21 @@ function handleProductInfo() {
             window.scrollY >
             _$('.pro_form .qw').offsetTop + window.innerHeight - 100
           ) {
-            stickyFit.classList.add('active');
+            stickyFit.classList.add('active')
           } else {
-            stickyFit.classList.remove('active');
+            stickyFit.classList.remove('active')
           }
         } else {
           if (
             window.scrollY >
             _$('.featured-products-section').offsetTop - 100
           ) {
-            stickyFit.classList.add('active');
+            stickyFit.classList.add('active')
           } else {
-            stickyFit.classList.remove('active');
+            stickyFit.classList.remove('active')
           }
         }
-      });
+      })
     }
   }
 
@@ -3309,8 +3316,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. The section with a product price '
-      );
-    });
+      )
+    })
 
     visibilityEvent('#AddToCart', () => {
       pushDataLayer(
@@ -3318,8 +3325,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. Button. Add to cart'
-      );
-    });
+      )
+    })
 
     visibilityEvent('.pro_form .qq', () => {
       pushDataLayer(
@@ -3327,8 +3334,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. The Mela Weighted Blanket. The quantity selector '
-      );
-    });
+      )
+    })
 
     visibilityEvent('.lavs-buy', () => {
       pushDataLayer(
@@ -3336,8 +3343,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. The sticky section with the “Add to cart”. Desktop'
-      );
-    });
+      )
+    })
 
     visibilityEvent('.lavs-fit', () => {
       if (window.innerWidth < 1024) {
@@ -3346,16 +3353,16 @@ function handleProductInfo() {
           'Section',
           'Visibility',
           'PDP. The sticky section. “Choose your best fit” and “Similar products”. Mobile'
-        );
+        )
       } else {
         pushDataLayer(
           'exp_pdp_slide_cart_section_06',
           'Section',
           'Visibility',
           'PDP. The sticky section. “Choose your best fit”. Desktop'
-        );
+        )
       }
-    });
+    })
 
     visibilityEvent('#MainProductForm .customKlaviyo', () => {
       pushDataLayer(
@@ -3363,8 +3370,8 @@ function handleProductInfo() {
         'Section',
         'Visibility',
         'PDP. Get additional 15% Off'
-      );
-    });
+      )
+    })
 
     _$('.pro_form .qw').addEventListener('click', () => {
       pushDataLayer(
@@ -3372,8 +3379,8 @@ function handleProductInfo() {
         'Add to cart',
         'Button',
         'PDP'
-      );
-    });
+      )
+    })
 
     document.addEventListener('click', (e) => {
       // console.log('click', e.target);
@@ -3387,107 +3394,107 @@ function handleProductInfo() {
           'Get additional 15% Off',
           'Button',
           'PDP'
-        );
+        )
       }
 
       if (e.target.closest('.btn-section-cta')) {
         let title = e.target
           .closest('.img_txt_wrapp')
           ?.querySelector('h2')
-          ?.textContent.trim();
+          ?.textContent.trim()
         pushDataLayer(
           'exp_pdp_slide_cart_button_10',
           `${title} - Get Yours Now`,
           'Button',
           'PDP. Customised Comfort. Perfectly Balanced. Hypoallergenic. Get Yours Now'
-        );
+        )
       }
-    });
+    })
   }
 }
 
 function clickAddToCart() {
   if (_$('.lavs-buy .btn-cw-cta span')) {
-    _$('.lavs-buy .btn-cw-cta span').innerHTML = 'Adding...';
+    _$('.lavs-buy .btn-cw-cta span').innerHTML = 'Adding...'
   }
-  _$('.lavs-buy')?.classList.add('lavs-buy_load');
-  _$('.lav-options')?.classList.add('lav-options_load');
-  _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load');
-  _$('#AddToCart')?.click();
+  _$('.lavs-buy')?.classList.add('lavs-buy_load')
+  _$('.lav-options')?.classList.add('lav-options_load')
+  _$('#MainProductForm  .lav-setup')?.classList.add('lav-setup_load')
+  _$('#AddToCart')?.click()
 
   waitFor(
     () => _$('.opnd.opn'),
     () => {
       if (_$('.lavs-buy .btn-cw-cta span')) {
-        _$('.lavs-buy .btn-cw-cta span').innerHTML = 'Add to cart';
+        _$('.lavs-buy .btn-cw-cta span').innerHTML = 'Add to cart'
       }
-      _$('.lavs-buy')?.classList.remove('lavs-buy_load');
-      _$('.lav-options')?.classList.remove('lav-options_load');
-      _$('#MainProductForm .lav-setup')?.classList.remove('lav-setup_load');
+      _$('.lavs-buy')?.classList.remove('lavs-buy_load')
+      _$('.lav-options')?.classList.remove('lav-options_load')
+      _$('#MainProductForm .lav-setup')?.classList.remove('lav-setup_load')
     }
-  );
+  )
 }
 
 function fillStickyBuy() {
-  _$('.lavs-buy').innerHTML = '';
+  _$('.lavs-buy').innerHTML = ''
 
-  let optionEl = null;
+  let optionEl = null
 
   if (lavType === 'blanket') {
     // optionEl = _$('.lav-size').cloneNode(true);
-    optionEl = document.createElement('div');
-    optionEl.classList.add('lavs-buy__title');
+    optionEl = document.createElement('div')
+    optionEl.classList.add('lavs-buy__title')
     optionEl.innerHTML = /* html */ `
         ${
           _$('.lav-size__toggle.active .lav-size__toggle-title').textContent
         } (${
       _$('.lav-size__toggle.active .lav-size__toggle-caption').textContent
     }) | ${_$('.lav-size__value').textContent}
-      `;
+      `
 
     // _$('.lav-size__toggle.active')
   } else {
-    optionEl = _$('.lav-option.active').cloneNode(true);
+    optionEl = _$('.lav-option.active').cloneNode(true)
   }
 
-  const priceEl = _$('.pro_price .pricing').cloneNode(true);
-  const btnEl = _$('#AddToCart').cloneNode(true);
-  btnEl.removeAttribute('id');
+  const priceEl = _$('.pro_price .pricing').cloneNode(true)
+  const btnEl = _$('#AddToCart').cloneNode(true)
+  btnEl.removeAttribute('id')
 
-  _$('.lavs-buy').insertAdjacentElement('beforeend', optionEl);
-  _$('.lavs-buy').insertAdjacentElement('beforeend', priceEl);
-  _$('.lavs-buy').insertAdjacentElement('beforeend', btnEl);
+  _$('.lavs-buy').insertAdjacentElement('beforeend', optionEl)
+  _$('.lavs-buy').insertAdjacentElement('beforeend', priceEl)
+  _$('.lavs-buy').insertAdjacentElement('beforeend', btnEl)
 
   btnEl.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (_$('.lavs-buy_load')) return;
+    e.preventDefault()
+    if (_$('.lavs-buy_load')) return
 
     pushDataLayer(
       'exp_pdp_slide_cart_button_02',
       'Add to cart',
       'Button',
       'PDP. The sticky section. Desktop'
-    );
+    )
 
-    _$('.lavs-buy')?.classList.add('lavs-buy_load');
+    _$('.lavs-buy')?.classList.add('lavs-buy_load')
 
     let offset =
       $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset().top -
       $('#shopify-section-header').height() -
-      10;
+      10
 
     if (window.innerWidth >= 1024) {
-      offset -= $('#shopify-section-layout-announcement-bar').height();
+      offset -= $('#shopify-section-layout-announcement-bar').height()
       // offset = 0;
     }
 
     $('html, body').animate({
-      scrollTop: offset,
-    });
+      scrollTop: offset
+    })
 
     setTimeout(() => {
-      _$('.lavs-buy')?.classList.remove('lavs-buy_load');
-    }, 1000);
+      _$('.lavs-buy')?.classList.remove('lavs-buy_load')
+    }, 1000)
 
     // const prevCount = _$('#qty').value;
 
@@ -3501,19 +3508,19 @@ function fillStickyBuy() {
     //     _$('#qty').value = prevCount;
     //   }
     // );
-  });
+  })
 }
 
 function handleAdditionalInfo() {
-  waitFor('.featured-products-section', addYouMayAlsoLike);
-  waitFor('.featured-products-section', addTrustedSlider);
+  waitFor('.featured-products-section', addYouMayAlsoLike)
+  waitFor('.featured-products-section', addTrustedSlider)
 
   function addYouMayAlsoLike() {
-    _$('.featured-products-section h2').innerHTML = 'You might also like';
+    _$('.featured-products-section h2').innerHTML = 'You might also like'
     _$('.banner-section').insertAdjacentElement(
       'beforebegin',
       _$('.featured-products-section')
-    );
+    )
 
     visibilityEvent('.featured-products-section', () => {
       pushDataLayer(
@@ -3521,8 +3528,8 @@ function handleAdditionalInfo() {
         'Section',
         'Visibility',
         'PDP. You might also like'
-      );
-    });
+      )
+    })
 
     _$$('.featured-products-section .tabs-component-tab').forEach((item) => {
       item.addEventListener('click', () => {
@@ -3531,9 +3538,9 @@ function handleAdditionalInfo() {
           `${item.textContent.trim()} - Select`,
           'Button',
           'PDP. You might also like'
-        );
-      });
-    });
+        )
+      })
+    })
 
     _$$('.featured-products-section .product-card').forEach((item) => {
       item.addEventListener('click', () => {
@@ -3542,9 +3549,9 @@ function handleAdditionalInfo() {
           `${item.querySelector('.font-heading').textContent.trim()} - Select`,
           'Button',
           'PDP. You might also like'
-        );
-      });
-    });
+        )
+      })
+    })
   }
 
   function addTrustedSlider() {
@@ -3555,36 +3562,36 @@ function handleAdditionalInfo() {
           descr:
             'My neck and shoulder pain relieved. The soft comfort of the pillow and the support is wonderful, most definitely recommend. Excellent value better than more popular brands',
           author: 'Peg',
-          url: 'https://uk.trustpilot.com/reviews/653e267b2658d3ad9cc4fd16',
+          url: 'https://uk.trustpilot.com/reviews/653e267b2658d3ad9cc4fd16'
         },
         {
           title: 'I bought a pair of pillows one for…',
           descr:
             'I bought a pair of pillows one for myself and one for my husband. We are both finding them to be super comfy and have adjusted the filling to suit our needs.',
           author: 'Angy Bovill',
-          url: 'https://uk.trustpilot.com/reviews/6543eb3364f14f1575abe1b2',
+          url: 'https://uk.trustpilot.com/reviews/6543eb3364f14f1575abe1b2'
         },
         {
           title: ' Great pillow for neck pain',
           descr:
             'After trying many different pillows for my neck pain I ordered the dual pillow, not holding out much hope. It took a while to arrive but I have slept better than I have for months and importantly I can lift my head off the pillow in the morning without being in agony. Thank you',
           author: 'E Kempson',
-          url: 'https://uk.trustpilot.com/reviews/652c3036378df9146af2d427',
+          url: 'https://uk.trustpilot.com/reviews/652c3036378df9146af2d427'
         },
         {
           title: 'Comfy pillow!',
           descr:
             'Definitely recommend the pillows. Have tried countless pillows and all seem to either go lumpy, or give me bad neck pain. With this pillow, so far, I have not experienced either!',
           author: 'Alexandra',
-          url: 'https://uk.trustpilot.com/reviews/64d63527a1a96e0d819d5011',
+          url: 'https://uk.trustpilot.com/reviews/64d63527a1a96e0d819d5011'
         },
         {
           title: 'So very pleased with my pillow super…',
           descr:
             'So very pleased with my pillow super comfortable.Very impressed with the customer service at Aeyla highly recommend.',
           author: 'ruth cooke',
-          url: 'https://uk.trustpilot.com/reviews/651c5c53f7fc06e0a624222d',
-        },
+          url: 'https://uk.trustpilot.com/reviews/651c5c53f7fc06e0a624222d'
+        }
       ],
       foamo: [
         {
@@ -3592,36 +3599,36 @@ function handleAdditionalInfo() {
           descr:
             'I’ve just swapped my orthopaedic memory foam pillow for this one and my neck ache and headaches went almost immediately and I have a lot less sleepless nights!What a bliss!',
           author: 'Beata',
-          url: 'https://uk.trustpilot.com/reviews/653cc5a19cc581c7acd343a9',
+          url: 'https://uk.trustpilot.com/reviews/653cc5a19cc581c7acd343a9'
         },
         {
           title: 'These pillows are insanely good!',
           descr:
             'After spending hundreds juat in the last two years on pillows to give a good nights sleep and not trigger my neck and shoulder issues I ordered these, literally can’t rate the foamo pillows enough, I took out some of the stuffing so it was perfect height for me xx',
           author: 'Mrs Debbie Green',
-          url: 'https://uk.trustpilot.com/reviews/653e63274f7cbe8d65c73ecb',
+          url: 'https://uk.trustpilot.com/reviews/653e63274f7cbe8d65c73ecb'
         },
         {
           title: 'Fabulous pillows !',
           descr:
             'These have helped us tremendously with our sleep . Thank you Aeyla, a great product that arrived efficiently and packed beautifull',
           author: 'Jude Gough',
-          url: 'https://uk.trustpilot.com/reviews/652d1ded5a245b9b7611854e',
+          url: 'https://uk.trustpilot.com/reviews/652d1ded5a245b9b7611854e'
         },
         {
           title: 'Finally a pillow that I love!',
           descr:
             "I've tried a lot of pillows over recent years and I've finally found The One! Amazing support and it stays plump all night. I love that I could adjust the filling if I wanted to and that I can clean the outer case. Highly recommended! \nI pre-ordered and so I had to contact Aeyla to ask about delivery. I found Customer Services to be quick, friendly and really helpful. Thank you!",
           author: 'Emily Lamont',
-          url: 'https://uk.trustpilot.com/reviews/649b482c706f837cb1079318',
+          url: 'https://uk.trustpilot.com/reviews/649b482c706f837cb1079318'
         },
         {
           title: 'We have both slept a lot better since…',
           descr:
             'We have both slept a lot better since purchasing the aeyla pillows - particularly love that you can adjust it to suit your personal preference!',
           author: 'Sarah',
-          url: 'https://uk.trustpilot.com/reviews/653cb77a0438bf8582bfb629',
-        },
+          url: 'https://uk.trustpilot.com/reviews/653cb77a0438bf8582bfb629'
+        }
       ],
       blanket: [
         {
@@ -3629,41 +3636,41 @@ function handleAdditionalInfo() {
           descr:
             'Ordered the Large (9kg) weighted blanket. Has helped me to sleep better and although the 9kg may feel too heavy for some, I find it very comforting.Appears well made and should last for years.',
           author: 'David',
-          url: 'https://uk.trustpilot.com/reviews/653e5fa2eeee9a4594e92ea7',
+          url: 'https://uk.trustpilot.com/reviews/653e5fa2eeee9a4594e92ea7'
         },
         {
           title: 'Was recommended to buy a weighted…',
           descr:
             'Was recommended to buy a weighted blanket. Googled and found this. And glad I did. It arrived a day after I ordered and the quality is fantastic. Highly recommended using Aeyla.',
           author: 'Anita Aris',
-          url: 'https://uk.trustpilot.com/reviews/6543eb3364f14f1575abe1b2',
+          url: 'https://uk.trustpilot.com/reviews/6543eb3364f14f1575abe1b2'
         },
         {
           title: 'Fabulous weighted blanket',
           descr:
             'Easy to order and superfast delivery. The weighted blanket was a gift and she absolutely loves it. First order from this company but would definitely order again.',
           author: 'Denise',
-          url: 'https://uk.trustpilot.com/reviews/64d167d03884aa3003c9417c',
+          url: 'https://uk.trustpilot.com/reviews/64d167d03884aa3003c9417c'
         },
         {
           title: 'The weighted blanket is excellent and…',
           descr:
             "The weighted blanket is excellent and has really helped me to get a good night's quality sleep which I was not getting before.",
           author: 'SR',
-          url: 'https://uk.trustpilot.com/reviews/64f6dad9dc4838d6459d46a2',
+          url: 'https://uk.trustpilot.com/reviews/64f6dad9dc4838d6459d46a2'
         },
         {
           title: 'Amazing weighted blanket',
           descr:
             'Amazing weighted blanket - feels like I’m being cuddled all night long. I’m a terrible sleeper and it’s improved my life so much that I look forward to going to bed now. Siblings have tried it out and love it.',
           author: 'Niamh Coll',
-          url: 'https://uk.trustpilot.com/reviews/64ec6bb803a6c07b3fbeb340',
-        },
-      ],
-    };
+          url: 'https://uk.trustpilot.com/reviews/64ec6bb803a6c07b3fbeb340'
+        }
+      ]
+    }
 
-    const trusted = document.createElement('div');
-    trusted.classList.add('lav-trusted');
+    const trusted = document.createElement('div')
+    trusted.classList.add('lav-trusted')
     trusted.innerHTML = /* html */ `
         <div class='lav-trusted__container'>
           <div class='lav-trusted__logo'>
@@ -3673,13 +3680,13 @@ function handleAdditionalInfo() {
 
           <div class='lav-trusted__list'></div>
         </div>
-      `;
+      `
 
-    fillTrusted();
+    fillTrusted()
 
-    const trustedClone = trusted.cloneNode(true);
-    trustedClone.classList.add('lav-trusted-clone');
-    _$('.featured-products-section').insertAdjacentElement('afterend', trusted);
+    const trustedClone = trusted.cloneNode(true)
+    trustedClone.classList.add('lav-trusted-clone')
+    _$('.featured-products-section').insertAdjacentElement('afterend', trusted)
 
     visibilityEvent('.lav-trusted__list', () => {
       pushDataLayer(
@@ -3687,10 +3694,10 @@ function handleAdditionalInfo() {
         'Section',
         'Visibility',
         'PDP. More than 85,000+ customers have already trusted us'
-      );
-    });
+      )
+    })
 
-    _$('.faq-section').insertAdjacentElement('afterend', trustedClone);
+    _$('.faq-section').insertAdjacentElement('afterend', trustedClone)
 
     visibilityEvent('.lav-trusted-clone .lav-trusted__list', () => {
       pushDataLayer(
@@ -3698,8 +3705,8 @@ function handleAdditionalInfo() {
         'Section',
         'Visibility',
         'PDP. Section reviews on the bottom of the page'
-      );
-    });
+      )
+    })
 
     $('.lav-trusted__list').slick({
       slidesToShow: 3,
@@ -3714,11 +3721,11 @@ function handleAdditionalInfo() {
           breakpoint: 1024,
           settings: {
             slidesToShow: 1,
-            dots: true,
-          },
-        },
-      ],
-    });
+            dots: true
+          }
+        }
+      ]
+    })
 
     _$('.slick-prev', trusted).addEventListener('click', () => {
       pushDataLayer(
@@ -3726,8 +3733,8 @@ function handleAdditionalInfo() {
         'left',
         'Click',
         'PDP. More than 85,000+ customers have already trusted us'
-      );
-    });
+      )
+    })
 
     _$('.slick-next', trusted).addEventListener('click', () => {
       pushDataLayer(
@@ -3735,8 +3742,8 @@ function handleAdditionalInfo() {
         'right',
         'Click',
         'PDP. More than 85,000+ customers have already trusted us'
-      );
-    });
+      )
+    })
 
     _$('.slick-prev', trustedClone).addEventListener('click', () => {
       pushDataLayer(
@@ -3744,8 +3751,8 @@ function handleAdditionalInfo() {
         'left',
         'Click',
         'PDP. Section reviews on the bottom of the page'
-      );
-    });
+      )
+    })
 
     _$('.slick-next', trustedClone).addEventListener('click', () => {
       pushDataLayer(
@@ -3753,18 +3760,18 @@ function handleAdditionalInfo() {
         'right',
         'Click',
         'PDP. Section reviews on the bottom of the page'
-      );
-    });
+      )
+    })
 
     function fillTrusted() {
       feedbacks[lavType].forEach((feedback) => {
-        const feedbackEl = document.createElement('div');
-        feedbackEl.classList.add('lav-trusted__item');
+        const feedbackEl = document.createElement('div')
+        feedbackEl.classList.add('lav-trusted__item')
         feedbackEl.innerHTML = /* html */ `
             <div class='lav-trusted__item-title'>${feedback.title}</div>
             <div class='lav-trusted__item-descr'>${feedback.descr}</div>
             <div class='lav-trusted__item-author'>${feedback.author}</div>
-          `;
+          `
 
         // _$('.lav-trusted__item-title', feedbackEl).addEventListener(
         //   'click',
@@ -3777,22 +3784,22 @@ function handleAdditionalInfo() {
         _$('.lav-trusted__list', trusted).insertAdjacentElement(
           'beforeend',
           feedbackEl
-        );
-      });
+        )
+      })
     }
   }
 }
 
 function addCta() {
   _$$('.img_txt_wrapp > .txt_sec > .flex').forEach((item, index) => {
-    if (!_$('.btn-section-cta', item)) return;
+    if (!_$('.btn-section-cta', item)) return
 
-    const cloneItem = item.cloneNode(true);
-    cloneItem.classList.add('crs_cta');
-    item.classList.add('crs_cta-origin');
+    const cloneItem = item.cloneNode(true)
+    cloneItem.classList.add('crs_cta')
+    item.classList.add('crs_cta-origin')
 
     _$('.btn-section-cta', cloneItem).addEventListener('click', (e) => {
-      e.preventDefault();
+      e.preventDefault()
 
       // pushDataLayer([
       //   `exp_pdp_get_yours_now_${index + 1}`,
@@ -3804,25 +3811,25 @@ function addCta() {
       let offset =
         $(`.lav-${lavType === 'blanket' ? 'size' : 'options'}`).offset().top -
         $('#shopify-section-header').height() -
-        10;
+        10
 
       if (window.innerWidth >= 1024) {
-        offset -= $('#shopify-section-layout-announcement-bar').height();
+        offset -= $('#shopify-section-layout-announcement-bar').height()
       }
 
       $('html, body').animate({
-        scrollTop: offset,
-      });
-    });
+        scrollTop: offset
+      })
+    })
 
     if (item.closest('.img_txt_wrapp').innerText.includes('Happy Customers')) {
-      cloneItem.style.marginTop = '-40px';
+      cloneItem.style.marginTop = '-40px'
       item.closest('.img_txt_wrapp').querySelector('.img_sec').style =
-        'order: 3;margin-top: 46px;';
+        'order: 3;margin-top: 46px;'
     }
 
-    item.parentElement.nextElementSibling.after(cloneItem);
-  });
+    item.parentElement.nextElementSibling.after(cloneItem)
+  })
 }
 // function handle() {}
 // function handle() {}
@@ -3832,76 +3839,76 @@ function addCta() {
 
 // *** Utils *** //
 class Modal {
-  static list = [];
+  static list = []
   constructor(name, html) {
     if (!$('.lav-modal')) {
-      this.constructor.init();
+      this.constructor.init()
     }
 
     if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists');
-      return;
+      console.warn('Modal with this name already exists')
+      return
     }
 
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = html;
+    this.el = document.createElement('div')
+    this.el.classList.add('lav-modal__inner', name)
+    this.name = name
+    this.el.innerHTML = html
 
-    _$('.lav-modal').insertAdjacentElement('beforeend', this.el);
+    _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
 
-    this.constructor.list.push(this);
+    this.constructor.list.push(this)
   }
 
   static init() {
     document.body.insertAdjacentHTML(
       'beforeend',
       "<div class='lav-modal'></div>"
-    );
+    )
 
     document.addEventListener('click', (e) => {
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
       )
-        this.close();
+        this.close()
 
       if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
+        this.open(e.target.dataset.modal)
       } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
+        this.open(e.target.closest('[data-modal]').dataset.modal)
       }
-    });
+    })
 
-    this.addStyles();
+    this.addStyles()
   }
 
   static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
+    document.body.classList.add('lav-modal-open')
 
     if ($('.lav-modal__inner.active')) {
-      _$('.lav-modal__inner.active').classList.remove('active');
+      _$('.lav-modal__inner.active').classList.remove('active')
     }
 
-    _$(modalName).classList.add('active');
+    _$(modalName).classList.add('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      _$('.lav-modal').classList.add('active');
-    }, 100);
+      _$('.lav-modal').classList.add('active')
+    }, 100)
   }
 
   static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+    document.body.classList.remove('lav-modal-open')
 
-    _$('.lav-modal')?.classList.remove('active');
+    _$('.lav-modal')?.classList.remove('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      _$('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
+      _$('.lav-modal__inner.active')?.classList.remove('active')
+    }, 400)
   }
 
   static addStyles() {
@@ -3955,12 +3962,12 @@ class Modal {
         .lav-modal-open {
           overflow: hidden;
         }
-      `;
+      `
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
+    const stylesEl = document.createElement('style')
+    stylesEl.classList.add('exp-modal')
+    stylesEl.innerHTML = styles
+    document.head.appendChild(stylesEl)
   }
 }
 
@@ -3972,128 +3979,128 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     ms: 500, // repeat each 0.5 second if condition is false
     limit: 10, // limit in second seconds
 
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   if (typeof condition === 'function') {
     if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
+      if (typeof cb === 'function') cb()
+      return
     }
 
     return new Promise((resolve) => {
-      let limit = config.limit * 1000;
+      let limit = config.limit * 1000
       const interval = setInterval(function () {
         if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
+          clearInterval(interval)
+          if (limit > 0 && typeof cb === 'function') cb()
+          resolve()
         }
-        limit -= config.ms;
-      }, config.ms);
-    });
+        limit -= config.ms
+      }, config.ms)
+    })
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
     if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
+      if (typeof cb === 'function') cb($(condition))
+      return
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
         if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
+          if (typeof cb === 'function') cb($(condition))
+          observer.disconnect()
+          resolve()
         }
-      });
+      })
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
+      observer.observe(document, { childList: true, subtree: true })
+    })
   }
 }
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
-  if (!el) return;
+  if (!el) return
 
   let observer = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
           // if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node, observer);
+          cbAdded(node, observer)
         }
       }
 
       if (typeof cbRemoved === 'function') {
         for (let node of mutation.removedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbRemoved(node, observer)
         }
       }
     }
-  });
+  })
 
-  observer.observe(el, { childList: true, subtree: true });
+  observer.observe(el, { childList: true, subtree: true })
 
-  return observer;
+  return observer
 }
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
-  if (!el || typeof cb !== 'function') return;
+  if (!el || typeof cb !== 'function') return
 
   const config = {
     root: null,
     threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      cb(entry, observer);
-    });
-  }, config);
+      cb(entry, observer)
+    })
+  }, config)
 
-  observer.observe(el);
+  observer.observe(el)
 
-  return observer;
+  return observer
 }
 
 function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
+  let entryTime = 0
   initIntersection(
     el,
     ({ isIntersecting, time }) => {
       if (isIntersecting) {
-        entryTime = time;
+        entryTime = time
       } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1);
+        const diffTime = +((time - entryTime) / 1000).toFixed(1)
         if (diffTime >= 3) {
-          cb(diffTime);
+          cb(diffTime)
         }
-        entryTime = 0;
+        entryTime = 0
       }
     },
     { threshold: viewElementProcent }
-  );
+  )
 }
 
 function visibilityEvent(el, cb, customConfig = {}) {
   if (typeof el === 'string' && eventsFireList.includes(el)) {
-    return;
+    return
   }
   const config = {
     threshold: 0.3,
     ...customConfig,
-    timer: null,
-  };
+    timer: null
+  }
   initIntersection(
     el,
     ({ isIntersecting, target }, observer) => {
@@ -4101,40 +4108,40 @@ function visibilityEvent(el, cb, customConfig = {}) {
       if (isIntersecting) {
         config.timer = setTimeout(() => {
           // if (isElementInViewport(target)) {
-          observer.disconnect();
-          cb();
+          observer.disconnect()
+          cb()
           if (typeof el === 'string') {
-            eventsFireList.push(el);
+            eventsFireList.push(el)
           }
           // }
-        }, 3000);
+        }, 3000)
       } else {
-        clearTimeout(config.timer);
+        clearTimeout(config.timer)
       }
     },
     config
-  );
+  )
 }
 
 // Artificial delay
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? _$(selector) : selector;
+  const el = typeof selector === 'string' ? _$(selector) : selector
 
-  if (!el) return false;
+  if (!el) return false
 
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight;
+    window.innerHeight || document.documentElement.clientHeight
 
   return (
     rect.top + rect.height * 0.3 < windowHeight &&
     rect.bottom > rect.height * 0.3
-  );
+  )
   // return (
   //   rect.top >= 0 &&
   //   rect.left >= 0 &&
@@ -4146,17 +4153,17 @@ function isElementInViewport(selector) {
 
 // Shordcode for selectors
 function _$(selector, context = document) {
-  return context.querySelector(selector);
+  return context.querySelector(selector)
 }
 function _$$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
+  const arr = context.querySelectorAll(selector)
 
-  return toSimpleArray ? Array.from(arr) : arr;
+  return toSimpleArray ? Array.from(arr) : arr
 }
 
 // GA 4 events
 function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
 
   try {
     const event = {
@@ -4164,31 +4171,31 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
       event_name: name,
       event_desc: desc,
       event_type: type,
-      event_loc: loc,
-    };
+      event_loc: loc
+    }
 
-    console.debug('** GA4 Event **', event);
+    console.debug('** GA4 Event **', event)
 
     if (!config.debug) {
-      dataLayer.push(event);
+      dataLayer.push(event)
     }
   } catch (e) {
-    console.log('** GA4 Error **', e);
+    console.log('** GA4 Error **', e)
   }
 }
 
 // Slider
 function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
+  const sliderStyles = document.createElement('link')
+  sliderStyles.rel = 'stylesheet'
   sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+  document.head.appendChild(sliderStyles)
 
-  let sliderScript = document.createElement('script');
+  let sliderScript = document.createElement('script')
   sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+  document.head.appendChild(sliderScript)
 }
 
 // *** Exp BG process *** //
@@ -4202,9 +4209,9 @@ if (
   waitFor(
     () => typeof clarity == 'function',
     () => {
-      clarity(...config.clarity);
+      clarity(...config.clarity)
     }
-  );
+  )
 }
 
 // Svg objects
@@ -4322,8 +4329,8 @@ function getSvg(name) {
         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.4 19H13.6C14.2365 19 14.847 18.7498 15.2971 18.3044C15.7471 17.859 16 17.2549 16 16.625V9.5C16 8.87011 15.7471 8.26602 15.2971 7.82062C14.847 7.37522 14.2365 7.125 13.6 7.125H2.4C1.76348 7.125 1.15303 7.37522 0.702944 7.82062C0.252856 8.26602 0 8.87011 0 9.5V16.625C0 17.2549 0.252856 17.859 0.702944 18.3044C1.15303 18.7498 1.76348 19 2.4 19ZM9.60039 13.0625C9.60039 13.9369 8.88405 14.6458 8.00039 14.6458C7.11673 14.6458 6.40039 13.9369 6.40039 13.0625C6.40039 12.188 7.11673 11.4791 8.00039 11.4791C8.88405 11.4791 9.60039 12.188 9.60039 13.0625Z" fill="black"/>
         <path d="M11.9992 9.30208C11.787 9.30208 11.5836 9.21868 11.4335 9.07021C11.2835 8.92174 11.1992 8.72038 11.1992 8.51042V4.75C11.1992 3.91015 10.8621 3.10469 10.262 2.51083C9.66184 1.91696 8.84791 1.58333 7.99922 1.58333C7.15053 1.58333 6.33659 1.91696 5.73648 2.51083C5.13636 3.10469 4.79922 3.91015 4.79922 4.75L4.79902 4.99737C4.79902 5.20733 4.71474 5.4087 4.56471 5.55716C4.41468 5.70563 4.2112 5.78904 3.99902 5.78904C3.78685 5.78904 3.58337 5.70563 3.43334 5.55716C3.28331 5.4087 3.19902 5.20733 3.19902 4.99737L3.19922 4.75C3.19922 3.49022 3.70493 2.28204 4.60511 1.39124C5.50528 0.500445 6.72618 0 7.99922 0C9.27226 0 10.4932 0.500445 11.3933 1.39124C12.2935 2.28204 12.7992 3.49022 12.7992 4.75V8.51042C12.7992 8.72038 12.7149 8.92174 12.5649 9.07021C12.4149 9.21868 12.2114 9.30208 11.9992 9.30208Z" fill="black"/>
       </svg>
-    `,
-  };
+    `
+  }
 
-  return svgObj[name];
+  return svgObj[name]
 }
