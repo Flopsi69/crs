@@ -167,21 +167,6 @@
   .b-booking-def-head .box .secure span {
     margin-top: 0.25rem;
   }
-  @media(max-width: 992px) {
-    .b-booking-def-footer .title a[href="mailto:hello@oakwell.com"] {
-      text-decoration: none;
-      /* border-bottom: 1px solid; */
-      display: block;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .b-booking-def-footer .title  br {
-      display: none;
-    }
-    .b-booking-def-footer .title {
-      line-height: 1.3;
-    }
-  }
   @media(min-width: 992px) {
     body {
       padding-bottom: 0;
@@ -605,6 +590,12 @@
   /**
    * Steps -- Start --
   */
+
+  /* TODO remove */
+  .modalsWrap {
+    /* display: none; */
+  }
+
   .steps {
     display: grid;
     gap: 24px;
@@ -984,18 +975,6 @@
   .picker-calendar .air-datepicker-cell.-disabled- {
     color: rgba(0,0,0,.4)!important;
   }
-  .air-datepicker-cell.-day-.-other-month- {
-    opacity: 0.5;
-  }
-  .air-datepicker-cell.-day-.-other-month-:hover {
-    opacity: 1;
-  }
-  @media(max-width: 500px) {
-    .air-datepicker-body--cells.-days- {
-      /* grid-auto-rows: 2.425rem; */
-      grid-auto-rows: 10vw;
-    }
-  }
   @media(min-width: 640px) {
     .picker-calendar .air-datepicker {
       background: #fff;
@@ -1123,9 +1102,6 @@
   .picker-plate.times-empty ~ .picker-note {
     display: none;
   }
-  .picker-calendar .air-datepicker-cell {
-    font-size: 16px;
-  }
   @media(min-width: 992px) {
     .picker-row {
       display: grid;
@@ -1175,6 +1151,9 @@
       font-size: 14px;
       line-height: 140%;
       letter-spacing: 0.98px;
+    }
+    .picker-calendar .air-datepicker-cell {
+      font-size: 16px;
     }
     .picker-calendar .air-datepicker-body--day-names {
       margin-bottom: 26px;
@@ -1852,7 +1831,7 @@
     <!-- Steps -->
     <div class="steps ff-lato">
       <!-- Services -->
-      <div class="step services" data-title="service">
+      <div class="step services" data-title="services">
         <!-- Title -->
         <div class="services-title booking-title">Choose a Service</div>
 
@@ -1924,7 +1903,7 @@
       <!-- Packages -->
       <div class="step packages" data-title="package">
         <!-- Title -->
-        <div class="packages-title booking-title">Choose a package</div>
+        <div class="packages-title booking-title">Choose a packages</div>
 
         <!-- List -->
         <div class="packages-list">
@@ -2527,7 +2506,6 @@
     static steps = document.querySelectorAll('.step');
     static stickyEl = document.querySelector('.steps-sticky');
     static stickyBtn = document.querySelector('.steps-sticky__btn');
-    static isDelay = false;
 
     static init() {
       for (const [index, stepEl] of Array.from(this.steps).entries()) {
@@ -2579,7 +2557,7 @@
         const step = this.steps[this.currentStep];
         const offset = $(step).offset().top + $(step).height()
         
-        if (!this.isDelay && ($(window).scrollTop() > offset || this.currentStep === 2)) {
+        if ($(window).scrollTop() > offset) {
           this.stickyEl.classList.add('active')
         } else {
           this.stickyEl.classList.remove('active')
@@ -2592,7 +2570,7 @@
         this.stickyBtn.classList.add('steps-sticky__btn_clicked');
 
         if ([0,1].includes(this.currentStep)) {
-          const offset = $(this.steps[this.currentStep]).offset().top - 25;
+          const offset =$(this.steps[this.currentStep]).offset().top - 25;
           scrollToStep(offset);
         } else if (this.currentStep === 2) {
           document.querySelector('.addons-btn').click();
@@ -2784,8 +2762,7 @@
         document.querySelector('.summary-error')?.remove();
         submitBtn.disabled = true;
 
-        // const res = await submitForm();
-        const res = validateForm();
+        const res = await submitForm();
 
         if (!res.successfully) {
           document.querySelector('.summary-checkbox').insertAdjacentHTML('beforebegin', `<div class="summary-error">${res.error}</div>`);
@@ -2793,38 +2770,37 @@
           return;
         }
 
-        this.nextStep(res.data);
+        document.querySelector('.logs')?.classList.add('logs_disabled');
+        document.querySelector('.back')?.remove();
+
+        const { orderId, lastName, firstName, email, phone, price, beerRoom, location } = res.data;
+        document.querySelector('#orderId').value = orderId;		
+        document.querySelector('#orderFirstName').value = firstName;
+        document.querySelector('#orderLastName').value = lastName;	
+        document.querySelector('#orderEmail').value = email;
+        document.querySelector('#orderPhone').value = phone;
+        document.querySelector('#orderPrice').value = price;
+
+        const caption = firstName + ' ' + lastName + ', ' + email + ', ' + phone + ', ' + document.querySelector('#summary-zip').value;
 
         submitBtn.disabled = false;
 
-        // document.querySelector('.logs')?.classList.add('logs_disabled');
-        // document.querySelector('.back')?.remove();
+        this.nextStep(caption);
 
-        // const { orderId, lastName, firstName, email, phone, price, beerRoom, location } = res.data;
-        // document.querySelector('#orderId').value = orderId;		
-        // document.querySelector('#orderFirstName').value = firstName;
-        // document.querySelector('#orderLastName').value = lastName;	
-        // document.querySelector('#orderEmail').value = email;
-        // document.querySelector('#orderPhone').value = phone;
-        // document.querySelector('#orderPrice').value = price;
-
-        // submitBtn.disabled = false;
-
-        // this.nextStep(caption);
-
-        // if (beerRoom) {
-        //   document.querySelector('.summary-row_final + .summary-row_final').innerHTML = location + '<br/></br>' + beerRoom;
-        //   // document.querySelector('.summary-row_final').insertAdjacentHTML('beforebegin', `
-        //   //   <div class="summary-row summary-row_final">
-        //   //     <div class="summary-row__caption">${beerRoom}</div>
-        //   //   </div>
-        //   // `);
-        // }
+        if (beerRoom) {
+          document.querySelector('.summary-row_final + .summary-row_final').innerHTML = location + '<br/></br>' + beerRoom;
+          // document.querySelector('.summary-row_final').insertAdjacentHTML('beforebegin', `
+          //   <div class="summary-row summary-row_final">
+          //     <div class="summary-row__caption">${beerRoom}</div>
+          //   </div>
+          // `);
+        }
       })
 
-      function validateForm() {
+      async function submitForm() {
         const typeId = document.querySelector('#bookingTypeId').value;
         const datetime = document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value;
+        // const price = 111;
         const firstname = document.querySelector('#summary-firstname').value;
         const lastname = document.querySelector('#summary-lastname').value;
         const phone = document.querySelector('#summary-phone').value;
@@ -2844,7 +2820,7 @@
         } else if (!phone) {
           error = 'Please enter your phone number';
           target = document.querySelector('#summary-phone');
-        } else if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        } else if (!email || !validateEmail(email)) {
           error = 'Please enter a valid email';
           target = document.querySelector('#summary-email');
         } else if (!zip) {
@@ -2854,8 +2830,12 @@
           error = 'Please agree with the terms';
           target = document.querySelector('.summary-checkbox__icon');
         }
+        // if (!typeId || !datetime || !price || !firstname || !lastname || !phone || !email || !zip) {
+        //   alert('Please fill all fields');
+        //   return;
+        // }
 
-        if (error) {
+        if (error) {;
           target.closest('.book-form__group')?.classList.add('book-form_error');
 
           if (target.classList.contains('summary-checkbox__icon')) {
@@ -2868,12 +2848,67 @@
           };
         }
 
-        const caption = firstname + ' ' + lastname + ', ' + email + ', ' + phone + ', ' + zip;
+        const formData = new FormData();
+        formData.append('appointmentTypeID', typeId);
+        formData.append('datetime', datetime);
+        // formData.append('price', price);
+        formData.append('firstname', firstname);
+        formData.append('lastname', lastname);
+        formData.append('phone', phone);
+        formData.append('email', email);
+        formData.append('zip', zip);
+        formData.append('addons', addons);
 
-        return {
-          successfully: true,
-          data: caption
-        }
+        const res = await fetch("https://test.ukr-agro-select.com.ua/order.php", { method: 'POST', body: formData });
+        const data = await res.json();
+
+        console.log('orderData', data);
+
+        return data;
+
+        // var response = JSON.parse(this.responseText);
+        // var containerrr = response['container'][0];
+
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.open("POST", "https://test.ukr-agro-select.com.ua/order.php", true); 
+        // xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // xhttp.onreadystatechange = function() {
+        //   if(xhttp.readyState == 4 && xhttp.status == 200) {
+        //     var response = JSON.parse(this.responseText);
+        //     var containerrr = response['container'][0];
+        //     console.log(containerrr);
+        //     //document.querySelectorAll('#bookingDay')[0].value=datefinal2;
+        //   }
+        // }
+
+        // var id='';
+        // var dt='';
+        // var pr='';
+
+        // var fn='';
+        // var ln='';
+        // var ph='';
+        // var em='';
+        // var zc='';
+
+
+        // id=document.querySelector('#bookingTypeId').value;
+        // dt=document.querySelector('#bookingDay').value+" "+document.querySelector('#bookingTime').value;
+        // pr=document.querySelector('.summary-row__value').innerText.replaceAll('$','');
+        // fn=document.querySelector('#summary-firstname').value;
+        // ln=document.querySelector('#summary-lastname').value;
+        // ph=document.querySelector('#summary-phone').value;
+        // em=document.querySelector('#summary-email').value;
+        // zc=document.querySelector('#summary-zip').value;
+
+
+
+        // xhttp.send("id="+id+"&dt="+dt+"&pr="+pr+"&fn="+fn+"&ln="+ln+"&ph="+ph+"&em="+em+"&zc="+zc); 		  
+      }
+
+      function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
       }
     }
 
@@ -2932,24 +2967,24 @@
         }     
       };
 
-      // let payments;
-      // try {
-      //   payments = window.Square.payments(appId, locationId);
-      // } catch {
-      //   const statusContainer = document.getElementById(
-      //     'paymnet-status',
-      //   );
-      //   statusContainer.className = 'missing-credentials';
-      //   statusContainer.style.visibility = 'visible';
-      //   return;
-      // }
+    // let payments;
+    // try {
+    //   payments = window.Square.payments(appId, locationId);
+    // } catch {
+    //   const statusContainer = document.getElementById(
+    //     'paymnet-status',
+    //   );
+    //   statusContainer.className = 'missing-credentials';
+    //   statusContainer.style.visibility = 'visible';
+    //   return;
+    // }
 
       const squarePayments = await Square.payments(appId, locationId);
       const squareCardForm = await squarePayments.card({ style: darkModeCardStyle });
       await squareCardForm.attach('#payment-slot');
 
       const squareCardButton = document.querySelector('.payment-btn');
-      squareCardButton.addEventListener('click', submitForm);
+      squareCardButton.addEventListener('click', submitCardForm);
 
         // TODO
       // let afterpay;
@@ -2963,162 +2998,14 @@
       //   }
       // }
 
-      // Checkpoint 2.
-      // if (afterpay) {
-      //   const afterpayButton = document.getElementById('afterpay-button');
-      //   afterpayButton.addEventListener('click', async function (event) {
-      //     await handlePaymentMethodSubmission(event, afterpay);
-      //   });
-      // }
+    // Checkpoint 2.
+    // if (afterpay) {
+    //   const afterpayButton = document.getElementById('afterpay-button');
+    //   afterpayButton.addEventListener('click', async function (event) {
+    //     await handlePaymentMethodSubmission(event, afterpay);
+    //   });
+    // }
 
-      // async function submitForm(e) {
-      //   await submitSummaryForm(e)
-      //   await submitCardForm(e);
-      // }
-
-      async function submitForm(e) {
-        // const typeId = document.querySelector('#bookingTypeId').value;
-        // const datetime = document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value;
-        // const firstname = document.querySelector('#summary-firstname').value;
-        // const lastname = document.querySelector('#summary-lastname').value;
-        // const phone = document.querySelector('#summary-phone').value;
-        // const email = document.querySelector('#summary-email').value;
-        // const zip = document.querySelector('#summary-zip').value;
-        // const addons = document.querySelector('#bookingAddons').value;
-
-
-        // const formData = new FormData();
-        // formData.append('appointmentTypeID', typeId);
-        // formData.append('datetime', datetime);
-        // formData.append('firstname', firstname);
-        // formData.append('lastname', lastname);
-        // formData.append('phone', phone);
-        // formData.append('email', email);
-        // formData.append('zip', zip);
-        // formData.append('addons', addons);
-
-
-        e.preventDefault();
-
-        squareCardButton.disabled = true;
-
-        const data = {
-          locationId,
-          sourceId: null,
-          idempotencyKey: window.crypto.randomUUID(),
-
-          appointmentTypeID: document.querySelector('#bookingTypeId').value,
-          datetime: document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value,
-          firstname: document.querySelector('#summary-firstname').value,
-          lastname: document.querySelector('#summary-lastname').value,
-          phone: document.querySelector('#summary-phone').value,
-          email: document.querySelector('#summary-email').value,
-          zip: document.querySelector('#summary-zip').value,
-          addons: document.querySelector('#bookingAddons').value,
-        }
-
-        try {
-          const token = await tokenize();
-          data.sourceId = token;
-
-          const res = await fetch("https://test.ukr-agro-select.com.ua/order.php", { method: 'POST', body: JSON.stringify(data) });
-          const result = await res.json();
-          
-          console.log('** Order response **', result);
-
-          if (result.isSuccess) {
-            showResultPage(result.data);
-            return;
-          }
-
-          if (result.error) {
-            throw new Error(result.error);
-          }
-        } catch (error) {
-          console.log('error', error);
-          if (error.message) {
-            alert(error.message);
-          } else {
-            alert(error);
-          }
-        } finally {
-          squareCardButton.disabled = false;
-        }
-
-        // if (!resParsed.successfully) {
-        //   document.querySelector('.summary-checkbox').insertAdjacentHTML('beforebegin', `<div class="summary-error">${resParsed.error}</div>`);
-        //   this.currentStep--;
-        //   this.moveToStep();
-        //   return;
-        // }
-
-        // const { data } = resParsed;
-        // { orderId, lastName, firstName, email, phone, price, beerRoom, location } = resParsed.data;
-        // document.querySelector('#orderId').value = data.orderId;		
-        // document.querySelector('#orderFirstName').value = data.firstName;
-        // document.querySelector('#orderLastName').value = data.lastName;	
-        // document.querySelector('#orderEmail').value = data.email;
-        // document.querySelector('#orderPhone').value = data.phone;
-        // document.querySelector('#orderPrice').value = data.price;
-
-        // TODO
-        // if (beerRoom) {
-        //   document.querySelector('.summary-row_final + .summary-row_final').innerHTML = data.location + '<br/></br>' + data.beerRoom;
-        // }
-
-        function showResultPage(data) {
-          document.querySelector('.logs')?.classList.add('logs_disabled');
-          document.querySelector('.back')?.remove();
-
-          const sticky = document.querySelector('.steps-sticky');
-          const logs = document.querySelector('.logs');
-          const paymentStep = document.querySelector('.payment');
-          const summaryStep = document.querySelector('.summary');
-
-          document.body.classList.add('booking-result-page')
-          sticky.style.display = 'none';
-          logs?.remove();
-          paymentStep?.classList.remove('active')
-          summaryStep?.classList.add('active', 'summary_result');
-
-          if (data?.order?.beerRoom && data.order.location) {
-            document.querySelector('.summary-row_final + .summary-row_final').innerHTML = data.order.location + '<br/></br>' + data.order.beerRoom;
-          }
-        }
-
-        function showStatus(isSuccess = false, result = '') {
-          // const statusEl = document.querySelector('#paymnet-status');
-
-          // if (isSuccess) {
-          //   statusEl.classList.remove('is-failure');
-          //   statusEl.classList.add('is-success');
-          // } else {
-          //   statusEl.classList.remove('is-success');
-          //   statusEl.classList.add('is-failure');
-          //   // alert(result);
-          // }
-
-          // statusEl.style.visibility = 'visible';
-
-          console.log('** Payment Result (' + isSuccess + ') **', result);
-        }
-
-        async function tokenize() {
-          const tokenResult = await squareCardForm.tokenize();
-          console.log('** Token Result **', tokenResult);
-
-          if (tokenResult.status === 'OK') {
-            return tokenResult.token;
-          }
-        
-
-          if (tokenResult.errors) {
-            throw new Error(tokenResult.errors[0]?.message);
-          }
-        }
-
-        // return data;
-      }
 
       async function submitCardForm(e) {
         e.preventDefault();
@@ -3147,12 +3034,11 @@
             body: JSON.stringify(data),
           });
           const paymentResults = await res.json();
-
           if (paymentResults.errors?.length) {
             throw new Error(paymentResults.errors[0].detail);
           }
           showStatus(true, paymentResults)
-          showResultPage(paymentResults.data);
+          showResultPage();
         } catch (e) {
           squareCardButton.disabled = false;
           showStatus(false, e.message)
@@ -3196,16 +3082,15 @@
             return tokenResult.token;
           }
         
-          // let errorMessage = `Tokenization failed with status:\n - ${tokenResult.sta tus}`;
+          let errorMessage = `Tokenization failed with status:\n - ${tokenResult.status}`;
 
           if (tokenResult.errors) {
-            // errorMessage += `\n - Errors: ${ JSON.stringify(tokenResult.errors) }`;
-            throw new Error(tokenResult.errors[0]?.message);
+            errorMessage += `\n - Errors: ${ JSON.stringify(tokenResult.errors) }`;
           }
 
+          throw new Error(errorMessage);
         }
       }
-      
       // TODO delete if we don't use afterpay
       async function initializeAfterpay() {
         const paymentRequest = buildPaymentRequest(squarePayments);
@@ -3319,11 +3204,9 @@
     }
 
     static recordLog(logValue) {
-      const title =  this.steps[this.currentStep].dataset.title || this.steps[this.currentStep].querySelector('.booking-title').textContent;
-
       const log = {
         step: this.currentStep,
-        title,
+        title: this.steps[this.currentStep].querySelector('.booking-title').textContent,
         value: logValue 
       }
        
@@ -3344,7 +3227,7 @@
       this.buildLogsMarkup()
 
       for (const tickerEl of document.querySelectorAll('.tickers')) {
-
+        console.log(this.currentStep, 'ticker')
         if ([0, 1].includes(this.currentStep)) {
           tickerEl.classList.remove('tickers_hide');
         } else {
@@ -3374,16 +3257,9 @@
 
       // scroll to active step
       if (!isInit) {
-        if (this.currentStep !== 2) {
-          this.isDelay = true;
-        }
         $('html, body').animate({
-          scrollTop: $(this.steps[this.currentStep]).offset().top - 10
-        }, 500);
-
-        setTimeout(() => {
-          this.isDelay = false;
-        }, 550);
+          scrollTop: $('.progress').offset().top - 50
+        }, 0);
       }
 
       this.updateSticky()
@@ -3546,7 +3422,7 @@
       altField: document.querySelector('.picker-calendar__caption'),
       altFieldDateFormat: 'EEEE,MMMM,d',
       minDate: new Date(),
-      // showOtherMonths: false,
+      showOtherMonths: false,
       prevHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.6084 28.3337C22.4241 28.3337 22.2398 28.2664 22.0944 28.1222L15.771 21.8544C14.743 20.8355 14.743 19.1628 15.771 18.1438L22.0944 11.8761C22.3756 11.5973 22.8411 11.5973 23.1224 11.8761C23.4036 12.1549 23.4036 12.6163 23.1224 12.8951L16.799 19.1628C16.3335 19.6242 16.3335 20.374 16.799 20.8355L23.1224 27.1032C23.4036 27.382 23.4036 27.8434 23.1224 28.1222C22.9769 28.2568 22.7926 28.3337 22.6084 28.3337Z" fill="#3C6C60"/></svg>',
       nextHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3925 28.3337C17.2083 28.3337 17.0242 28.2664 16.8788 28.1222C16.5977 27.8434 16.5977 27.382 16.8788 27.1032L23.1985 20.8355C23.6637 20.374 23.6637 19.6242 23.1985 19.1628L16.8788 12.8951C16.5977 12.6163 16.5977 12.1549 16.8788 11.8761C17.1599 11.5973 17.6251 11.5973 17.9062 11.8761L24.2259 18.1438C24.7202 18.6341 25.0013 19.2974 25.0013 19.9991C25.0013 20.7009 24.7299 21.3642 24.2259 21.8544L17.9062 28.1222C17.7608 28.2568 17.5767 28.3337 17.3925 28.3337Z" fill="#0C5947"/></svg>',
       
@@ -3752,10 +3628,7 @@
       </div>
     </div>
     <div class="bot">
-      <div class="box-title"> 
-        <!-- <?php echo get_field('accepted_payments'); ?>  -->
-        Accepted Payments
-      </div>
+      <div class="box-title"> <?php echo get_field('accepted_payments'); ?> </div>
       <div class="line">
         <div class="copyright">© <?php echo get_field('copyright', 'options'); ?> <?php echo date('Y'); ?> </div>
         <div class="soc"> <?php if (get_field('faceboook_link', 'options')) { ?> <a href="
