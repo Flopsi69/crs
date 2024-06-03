@@ -1,12 +1,12 @@
-console.debug('*** Experiment started ***');
+console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/restaurantsupply/delivery',
-  // dir: 'https://flopsi69.github.io/crs/restaurantsupply/delivery',
+  // dir: 'http://127.0.0.1:5500/restaurantsupply/delivery',
+  dir: 'https://flopsi69.github.io/crs/restaurantsupply/delivery',
   clarity: ['set', '', 'variant_1'],
-  debug: true,
-};
+  debug: false
+}
 
 // const orig = console.log;
 // console.log = function (...args) {
@@ -14,76 +14,76 @@ const config = {
 // };
 
 class Modal {
-  static list = [];
+  static list = []
   constructor(name, html) {
     if (!$('.lav-modal')) {
-      this.constructor.init();
+      this.constructor.init()
     }
 
     if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists');
-      return;
+      console.warn('Modal with this name already exists')
+      return
     }
 
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = html;
+    this.el = document.createElement('div')
+    this.el.classList.add('lav-modal__inner', name)
+    this.name = name
+    this.el.innerHTML = html
 
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+    $('.lav-modal').insertAdjacentElement('beforeend', this.el)
 
-    this.constructor.list.push(this);
+    this.constructor.list.push(this)
   }
 
   static init() {
     document.body.insertAdjacentHTML(
       'beforeend',
       "<div class='lav-modal'></div>"
-    );
+    )
 
     document.addEventListener('click', (e) => {
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
       )
-        this.close();
+        this.close()
 
       if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
+        this.open(e.target.dataset.modal)
       } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
+        this.open(e.target.closest('[data-modal]').dataset.modal)
       }
-    });
+    })
 
-    this.addStyles();
+    this.addStyles()
   }
 
   static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
+    document.body.classList.add('lav-modal-open')
 
     if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+      $('.lav-modal__inner.active').classList.remove('active')
     }
 
-    $(modalName).classList.add('active');
+    $(modalName).classList.add('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal').classList.add('active');
-    }, 100);
+      $('.lav-modal').classList.add('active')
+    }, 100)
   }
 
   static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+    document.body.classList.remove('lav-modal-open')
 
-    $('.lav-modal')?.classList.remove('active');
+    $('.lav-modal')?.classList.remove('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
+      $('.lav-modal__inner.active')?.classList.remove('active')
+    }, 400)
   }
 
   static addStyles() {
@@ -364,12 +364,12 @@ class Modal {
           padding-left: 20px;
         }
       }
-    `;
+    `
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
+    const stylesEl = document.createElement('style')
+    stylesEl.classList.add('exp-modal')
+    stylesEl.innerHTML = styles
+    document.head.appendChild(stylesEl)
   }
 }
 
@@ -466,7 +466,7 @@ const styles = /* css */ `
       padding-bottom: 16px;
     }
     .lav-faq__item.active .lav-faq__question::before {
-      opacity: 0;
+      // opacity: 0;
     }
   }
 
@@ -513,12 +513,18 @@ const styles = /* css */ `
     padding-top: 4px;
     color: #4F9E34;
     font-weight: 600;
-    margin-bottom: 16px;
   }
   .product-shipping-time .product-shipping-time-title {
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  #block-shipping .shipping-title {
+    // font-size: 16px;
+    // font-style: normal;
+    // font-weight: 700;
+    // line-height: 24px;
+    // letter-spacing: 0.5px;
   }
   .lav-delivery__text {
     color: #536D80;
@@ -527,11 +533,112 @@ const styles = /* css */ `
     line-height: 20px; 
   }
 
-  .lav-choose {
+  #block-summary .title .shipping-title {
+    display: block;
+    color: #536D80;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  #block-summary .shipping-address-form {
+    margin-top: 12px;
+  }
+
+  #block-summary .pac-target-input {
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+    height: 42px;
+    background: #fff;
+    padding: 8px 12px 8px 44px;
+  }
+
+  #block-summary .street-wrapper {
+    position: relative
+  }
+  
+  .lav-delivery__text + .street-wrapper {
+    margin-top: 12px;
+  }
+
+  #block-summary .visible-form .heading {
+    display: none;
+  }
+
+  #block-summary .visible-form[style]:not([style='display: none;']) + .shipping-rates {
+    display: none;
+  }
+
+  #block-summary .shipping-rates .title {
+    display: none;
+  }
+
+  #block-summary .shipping-rates {
+    color: #536D80;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  #block-summary .visible-information .heading span:first-child {
+    display: none;
+  }
+
+  #block-summary .visible-information .heading span {
+    padding-left: 0;
+    color: #1F6699;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-decoration-line: underline;
+    transition: 0.3s;
+  }
+
+  #block-summary .visible-information .heading span:hover {
+    opacity: 0.7;
+  }
+
+  #block-summary .shipping-rates [data-bind="text: $parent.formatPrice(shippingRate.price)"] {
+    font-weight: 700;
+  }
+
+  #block-summary .visible-information {
+    flex-flow: column-reverse;
+    gap: 12px;
+  }
+  #block-summary .shipping-address-form .visible-information .heading {
+    padding-bottom: 0;
+  }
+
+  #block-summary .street-wrapper svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+  }
+
+  #block-summary .pac-target-input::placeholder {
+    color: #9B9B9B;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .lav-calc {
+    margin: 16px 0;
     padding: 12px 0;
     border-top: 1px solid #EBECED;
     border-bottom: 1px solid #EBECED;
   }
+
+  #block-summary .shipping-rates .lav-delivery__text {
+    border-top: 1px solid #EBECED;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
   .lav-policy {
     color: #1F6699;
     font-size: 14px;
@@ -539,39 +646,38 @@ const styles = /* css */ `
     line-height: 20px;
     transition: 0.3s;
     cursor: pointer;
-    margin-top: 16px;
   }
   .lav-policy span {
     text-decoration-line: underline;
   }
-`;
+`
 
-const stylesEl = document.createElement('style');
-stylesEl.classList.add('exp-styles');
-stylesEl.innerHTML = styles;
+const stylesEl = document.createElement('style')
+stylesEl.classList.add('exp-styles')
+stylesEl.innerHTML = styles
 
 // *** Logic *** //
-initExp();
+initExp()
 
 async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
-  console.debug('** InitExp **');
+  await waitFor(() => document.head && document.body, false, { ms: 50 })
+  console.debug('** InitExp **')
 
   if (
     location.href.includes('checkout/cart') ||
     ($('.catalog-product-view') && !$('.cart-empty'))
   ) {
-    document.head.appendChild(stylesEl);
+    document.head.appendChild(stylesEl)
   } else {
-    return false;
+    return false
   }
 
   if (location.href.includes('checkout/cart')) {
-    waitFor(() => $('.cart-container>.cart-summary'), initFAQ);
+    waitFor(() => $('.cart-container>.cart-summary'), initFAQ)
   } else if ($('.catalog-product-view') && !$('.cart-empty')) {
-    addHeaderLink();
+    addHeaderLink()
 
-    waitFor('.product-shipping-time.stock-status-logic', handleShipping);
+    waitFor('.product-shipping-time.stock-status-logic', handleShipping)
 
     waitFor(
       () =>
@@ -580,26 +686,26 @@ async function initExp() {
         $('.product-add-form .action.tocart')?.innerText.toLowerCase() ===
           'out of stock',
       handleWait
-    );
-    initModal();
+    )
+
+    initModal()
   }
 }
 
 function handleShipping() {
-  if (!$('.product-shipping-time.stock-status-logic')) return;
+  if (!$('.product-shipping-time.stock-status-logic')) return
 
   const waitHtml = /* html */ `
-    <div class='lav-choose lav-delivery__text'>Choose the shipping method for all selected products at checkout</div>
+    <div class="lav-calc"></div>
     <div class="lav-policy" data-modal='.lav-shipping'>
         <span>Shipping and Delivery policy</span>&nbsp;&nbsp;>
-      </div>
     </div>
-  `;
+  `
 
   $('.product-shipping-time.stock-status-logic').insertAdjacentHTML(
     'beforeend',
     waitHtml
-  );
+  )
 
   if (
     $('.product-shipping-time.stock-status-logic .product-shipping-time-title')
@@ -610,22 +716,75 @@ function handleShipping() {
       getSvg('truck') +
       $(
         '.product-shipping-time.stock-status-logic .product-shipping-time-title'
-      ).innerHTML;
+      ).innerHTML
+  }
+
+  if ($('#block-shipping')) {
+    waitFor('#block-shipping .street-wrapper', handleCalc)
   }
 
   if (window.innerWidth < 768) {
     $('.product-view-left').insertAdjacentElement(
       'afterend',
       $('.product-shipping-time.stock-status-logic')
-    );
+    )
 
     if ($('.product-shipping-time:not(.stock-status-logic)')) {
       $('.product-shipping-time.stock-status-logic').insertAdjacentElement(
         'afterend',
         $('.product-shipping-time')
-      );
+      )
     }
   }
+}
+
+function handleCalc() {
+  const el = $('#block-shipping')
+
+  $('.shipping-title', el).innerText = 'Estimate Shipping Cost and Tax'
+  // $('.shipping-title', el).insertAdjacentHTML(
+  //   'afterend',
+  //   ``
+  // )
+
+  $('#block-summary .shipping-rates', el).insertAdjacentHTML(
+    'beforeend',
+    `<div class='lav-delivery__text'>Choose the shipping method for all selected products at checkout</div>`
+  )
+
+  $('#block-summary .street-wrapper').insertAdjacentHTML(
+    'afterbegin',
+    `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M18.7857 6.36242C18.217 5.24114 17.3756 4.28082 16.3387 3.56975C15.3019 2.85867 14.1029 2.41966 12.852 2.29307C12.2862 2.23629 11.7161 2.23629 11.1502 2.29307C9.89936 2.41974 8.70042 2.85874 7.66353 3.56973C6.62664 4.28072 5.78506 5.2409 5.21613 6.36204C4.50032 7.79256 4.22383 9.4029 4.42149 10.9902C4.61915 12.5776 5.28211 14.071 6.32688 15.2822L11.4216 21.4763C11.4919 21.5619 11.5804 21.6309 11.6805 21.6782C11.7807 21.7255 11.8901 21.7501 12.0009 21.7501C12.1117 21.7501 12.2211 21.7255 12.3213 21.6782C12.4215 21.6309 12.5099 21.5619 12.5803 21.4763L17.675 15.2822C18.7197 14.071 19.3827 12.5777 19.5803 10.9904C19.778 9.40315 19.5015 7.79287 18.7857 6.36242ZM16.5163 14.3294L12.0009 19.8192L7.48593 14.3292C6.63947 13.3405 6.09949 12.1266 5.93202 10.8359C5.76455 9.54521 5.97685 8.23368 6.54295 7.06172C6.99807 6.1603 7.67246 5.38773 8.50415 4.81503C9.33584 4.24233 10.2981 3.88787 11.3026 3.78422C11.5346 3.76092 11.7677 3.74946 12.0009 3.74987C12.2344 3.74967 12.4677 3.76153 12.7 3.78542C13.7044 3.88894 14.6666 4.24329 15.4982 4.81588C16.3299 5.38847 17.0042 6.16093 17.4593 7.06224C18.0253 8.23416 18.2376 9.54562 18.0701 10.8362C17.9026 12.1269 17.3627 13.3407 16.5163 14.3294Z" fill="#9B9B9B"/>
+      <path d="M12 6C11.2583 6 10.5333 6.21993 9.91661 6.63199C9.29993 7.04404 8.81928 7.62971 8.53545 8.31494C8.25162 9.00016 8.17736 9.75416 8.32206 10.4816C8.46675 11.209 8.8239 11.8772 9.34835 12.4017C9.8728 12.9261 10.541 13.2833 11.2684 13.4279C11.9958 13.5726 12.7498 13.4984 13.4351 13.2145C14.1203 12.9307 14.706 12.4501 15.118 11.8334C15.5301 11.2167 15.75 10.4917 15.75 9.75C15.7488 8.7558 15.3534 7.80265 14.6504 7.09964C13.9474 6.39664 12.9942 6.00117 12 6ZM12 12C11.555 12 11.12 11.868 10.75 11.6208C10.38 11.3736 10.0916 11.0222 9.92127 10.611C9.75098 10.1999 9.70642 9.7475 9.79323 9.31105C9.88005 8.87459 10.0943 8.47368 10.409 8.15901C10.7237 7.84434 11.1246 7.63005 11.561 7.54323C11.9975 7.45642 12.4499 7.50097 12.861 7.67127C13.2722 7.84157 13.6236 8.12996 13.8708 8.49997C14.118 8.86998 14.25 9.30499 14.25 9.75C14.2493 10.3465 14.0121 10.9185 13.5903 11.3403C13.1685 11.7621 12.5965 11.9993 12 12Z" fill="#9B9B9B"/>
+    </svg>
+    `
+  )
+
+  $('#block-summary .visible-information .heading .change').addEventListener(
+    'click',
+    function () {
+      $('#block-summary .pac-target-input').value = ''
+      $('#block-summary .pac-target-input').focus()
+    }
+  )
+
+  $('#block-summary .street-wrapper').insertAdjacentHTML(
+    'beforebegin',
+    `
+      <div class='lav-delivery__text'>Start typing your address here for shipping estimations</div>
+    `
+  )
+
+  if ($('[placeholder="Start typing your address for shipping estimate..."]')) {
+    $(
+      '[placeholder="Start typing your address for shipping estimate..."]'
+    ).placeholder = 'Delivery address'
+  }
+
+  $('.lav-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
+  // el.style.display = 'block'
 }
 
 function handleWait() {
@@ -639,25 +798,25 @@ function handleWait() {
         <span>View similar products ready for shipping</span>&nbsp;&nbsp;>
       </div>
     </div>
-  `;
+  `
 
   $('.product-shipping-time.stock-status-logic').insertAdjacentHTML(
     'afterend',
     waitHtml
-  );
+  )
 
   $('.lav-wait__link').addEventListener('click', () => {
-    if (!$('.product-interested-in')) return;
+    if (!$('.product-interested-in')) return
 
     jQuery('html, body').animate(
       {
         scrollTop:
           jQuery('.product-interested-in').offset().top -
-          (jQuery(window).width() < 768 ? 10 : 60),
+          (jQuery(window).width() < 768 ? 10 : 60)
       },
       500
-    );
-  });
+    )
+  })
 }
 
 function addHeaderLink() {
@@ -669,8 +828,8 @@ function addHeaderLink() {
         <a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a>
       </li>
     `
-    );
-  });
+    )
+  })
 
   waitFor('.you-may-be-interested-in .item', () => {
     $('.you-may-be-interested-in .item')?.insertAdjacentHTML(
@@ -678,12 +837,12 @@ function addHeaderLink() {
       /* html */ `
       <p class="item lav-link-delivery-mob" role="menuitem"><a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a></p>
     `
-    );
-  });
+    )
+  })
 }
 
 function initFAQ() {
-  console.log('init FAQ');
+  console.log('init FAQ')
 
   const cartStyles = /* css */ `
     .lav-faq {
@@ -702,12 +861,24 @@ function initFAQ() {
       margin-top: 16px;
       max-width: 600px;
     }
-  `;
+    @media(max-width: 1023px) {
+      .cart-info {
+        order: 1;
+      }
+      .lav-faq {
+        padding: 16px;
+      }
+      .lav-faq__title {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  `
 
-  const cartStylesEl = document.createElement('style');
-  cartStylesEl.classList.add('exp-cart-styles');
-  cartStylesEl.innerHTML = cartStyles;
-  document.head.appendChild(cartStylesEl);
+  const cartStylesEl = document.createElement('style')
+  cartStylesEl.classList.add('exp-cart-styles')
+  cartStylesEl.innerHTML = cartStyles
+  document.head.appendChild(cartStylesEl)
 
   const faqHtml = /* html */ `
     <div class='lav-faq'>
@@ -730,19 +901,23 @@ function initFAQ() {
         </div>
       </div>
     </div>
-  `;
+  `
 
-  $('.cart-container>.cart-summary').insertAdjacentHTML('afterend', faqHtml);
+  if (window.innerWidth > 1024) {
+    $('.cart-container>.cart-summary').insertAdjacentHTML('afterend', faqHtml)
+  } else {
+    $('.cart-right-col').insertAdjacentHTML('beforeend', faqHtml)
+  }
 
   for (const item of $$('.lav-faq__item')) {
     item.addEventListener('click', function () {
       if (this.classList.contains('active')) {
-        this.classList.remove('active');
+        this.classList.remove('active')
       } else {
-        $('.lav-faq__item.active')?.classList.remove('active');
-        this.classList.add('active');
+        $('.lav-faq__item.active')?.classList.remove('active')
+        this.classList.add('active')
       }
-    });
+    })
   }
 }
 
@@ -855,32 +1030,32 @@ function initModal() {
         If you have any further questions or need assistance, feel free to contact our Customer Service Team at: Toll Free 1-855-838-1010
       </div>
     </div>
-  `;
+  `
 
-  new Modal('lav-shipping', modalHtml);
+  new Modal('lav-shipping', modalHtml)
 
   for (const tab of $$('.lav-tabs__item')) {
     tab.addEventListener('click', function () {
-      if (this.classList.contains('active')) return;
+      if (this.classList.contains('active')) return
 
-      $('.lav-tabs__item.active').classList.remove('active');
-      this.classList.add('active');
+      $('.lav-tabs__item.active').classList.remove('active')
+      this.classList.add('active')
 
-      const tabName = this.dataset.tab;
-      $('.lav-tabs__pane.active').classList.remove('active');
-      $(`.lav-tabs__pane[data-tab="${tabName}"]`).classList.add('active');
-    });
+      const tabName = this.dataset.tab
+      $('.lav-tabs__pane.active').classList.remove('active')
+      $(`.lav-tabs__pane[data-tab="${tabName}"]`).classList.add('active')
+    })
   }
 
   for (const item of $$('.lav-faq__item')) {
     item.addEventListener('click', function () {
       if (this.classList.contains('active')) {
-        this.classList.remove('active');
+        this.classList.remove('active')
       } else {
-        $('.lav-faq__item.active')?.classList.remove('active');
-        this.classList.add('active');
+        $('.lav-faq__item.active')?.classList.remove('active')
+        this.classList.add('active')
       }
-    });
+    })
   }
 
   // Modal.open('.lav-shipping');
@@ -896,122 +1071,122 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     ms: 500, // repeat each 0.5 second if condition is false
     limit: 10, // limit in second seconds
 
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   if (typeof condition === 'function') {
     if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
+      if (typeof cb === 'function') cb()
+      return
     }
 
     return new Promise((resolve) => {
-      let limit = config.limit * 1000;
+      let limit = config.limit * 1000
       const interval = setInterval(function () {
         if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
+          clearInterval(interval)
+          if (limit > 0 && typeof cb === 'function') cb()
+          resolve()
         }
-        limit -= config.ms;
-      }, config.ms);
-    });
+        limit -= config.ms
+      }, config.ms)
+    })
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
     if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
+      if (typeof cb === 'function') cb($(condition))
+      return
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
         if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
+          if (typeof cb === 'function') cb($(condition))
+          observer.disconnect()
+          resolve()
         }
-      });
+      })
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
+      observer.observe(document, { childList: true, subtree: true })
+    })
   }
 }
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el) return;
+  if (!el) return
 
   let observer = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbAdded(node, observer)
         }
       }
 
       if (typeof cbRemoved === 'function') {
         for (let node of mutation.removedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbRemoved(node, observer)
         }
       }
     }
-  });
+  })
 
-  observer.observe(el, { childList: true, subtree: true });
+  observer.observe(el, { childList: true, subtree: true })
 
-  return observer;
+  return observer
 }
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el || typeof cb !== 'function') return;
+  if (!el || typeof cb !== 'function') return
 
   const config = {
     root: null,
     threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      cb(entry);
-    });
-  }, config);
+      cb(entry)
+    })
+  }, config)
 
-  observer.observe(el);
+  observer.observe(el)
 
-  return observer;
+  return observer
 }
 
 function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
+  let entryTime = 0
   initIntersection(
     el,
     ({ isIntersecting, time }) => {
       if (isIntersecting) {
-        entryTime = time;
+        entryTime = time
       } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1);
-        cb(diffTime + 's');
-        entryTime = 0;
+        const diffTime = +((time - entryTime) / 1000).toFixed(1)
+        cb(diffTime + 's')
+        entryTime = 0
       }
     },
     { threshold: viewElementProcent }
-  );
+  )
 }
 
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
-    ...customConfig,
-  };
+    ...customConfig
+  }
   initIntersection(
     el,
     ({ isIntersecting, target }) => {
@@ -1019,34 +1194,34 @@ function visibilityEvent(el, cb, customConfig = {}) {
       if (isIntersecting) {
         setTimeout(() => {
           if (isElementInViewport(target)) {
-            cb();
+            cb()
           }
-        }, 3000);
+        }, 3000)
       }
     },
     config
-  );
+  )
 }
 
 // Artificial delay
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
+  const el = typeof selector === 'string' ? $(selector) : selector
 
-  if (!el) return false;
+  if (!el) return false
 
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight;
+    window.innerHeight || document.documentElement.clientHeight
 
   return (
     rect.top + rect.height * 0.3 < windowHeight &&
     rect.bottom > rect.height * 0.3
-  );
+  )
   // return (
   //   rect.top >= 0 &&
   //   rect.left >= 0 &&
@@ -1058,17 +1233,17 @@ function isElementInViewport(selector) {
 
 // Shordcode for selectors
 function $(selector, context = document) {
-  return context.querySelector(selector);
+  return context.querySelector(selector)
 }
 function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
+  const arr = context.querySelectorAll(selector)
 
-  return toSimpleArray ? Array.from(arr) : arr;
+  return toSimpleArray ? Array.from(arr) : arr
 }
 
 // GA 4 events
 function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
 
   try {
     const event = {
@@ -1076,31 +1251,31 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
       event_name: name,
       event_desc: desc,
       event_type: type,
-      event_loc: loc,
-    };
+      event_loc: loc
+    }
 
-    console.debug('** GA4 Event **', event);
+    console.debug('** GA4 Event **', event)
 
     if (!config.debug) {
-      dataLayer.push(event);
+      dataLayer.push(event)
     }
   } catch (e) {
-    console.log('** GA4 Error **', e);
+    console.log('** GA4 Error **', e)
   }
 }
 
 // Slider
 function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
+  const sliderStyles = document.createElement('link')
+  sliderStyles.rel = 'stylesheet'
   sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+  document.head.appendChild(sliderStyles)
 
-  let sliderScript = document.createElement('script');
+  let sliderScript = document.createElement('script')
   sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+  document.head.appendChild(sliderScript)
 }
 
 // *** Exp BG process *** //
@@ -1114,9 +1289,9 @@ if (
   waitFor(
     () => typeof clarity == 'function',
     () => {
-      clarity(...config.clarity);
+      clarity(...config.clarity)
     }
-  );
+  )
 }
 
 // Svg objects
@@ -1158,8 +1333,8 @@ function getSvg(name) {
         <path d="M7.21008 9.75635H0.756281C0.338578 9.75635 0 10.0949 0 10.5127C0 10.9304 0.338578 11.269 0.756281 11.269H7.21008C7.62783 11.269 7.96636 10.9304 7.96636 10.5127C7.96636 10.095 7.62783 9.75635 7.21008 9.75635Z" fill="#536D80"/>
         <path d="M8.44445 6.78125H1.99066C1.57291 6.78125 1.23438 7.11983 1.23438 7.53753C1.23438 7.95528 1.57295 8.29381 1.99066 8.29381H8.44445C8.8622 8.29381 9.20073 7.95523 9.20073 7.53753C9.20078 7.11983 8.8622 6.78125 8.44445 6.78125Z" fill="#536D80"/>
       </svg>
-    `,
-  };
+    `
+  }
 
-  return svgObj[name];
+  return svgObj[name]
 }
