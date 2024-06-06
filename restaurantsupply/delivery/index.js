@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantsupply/delivery',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/delivery',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'exp_shipping_info', 'variant_1'],
   debug: false
 }
 
@@ -42,6 +42,15 @@ class Modal {
     )
 
     document.addEventListener('click', (e) => {
+      if (e.target.closest('.lav-modal__close')) {
+        pushDataLayer(
+          'exp_shipping_info_popup_button_03',
+          'Close',
+          'Button',
+          'Popup. Shipping and Delivery at RestaurantSupply.com'
+        )
+      }
+
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
@@ -695,6 +704,15 @@ async function initExp() {
 function handleShipping() {
   if (!$('.product-shipping-time.stock-status-logic')) return
 
+  visibilityEvent('.product-shipping-time.stock-status-logic', () => {
+    pushDataLayer(
+      'exp_shipping_info_pdp_section_01',
+      'Section',
+      'Visibility',
+      'PDP. Shipping '
+    )
+  })
+
   const waitHtml = /* html */ `
     <div class="lav-calc"></div>
     <div class="lav-policy" data-modal='.lav-shipping'>
@@ -702,10 +720,21 @@ function handleShipping() {
     </div>
   `
 
+  $('.product-shipping-time.stock-status-logic')
+
   $('.product-shipping-time.stock-status-logic').insertAdjacentHTML(
     'beforeend',
     waitHtml
   )
+
+  $('.lav-policy').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_shipping_info_pdp_link_01',
+      'Shipping and Delivery policy',
+      'Link',
+      'PDP. Shipping and Delivery policy'
+    )
+  })
 
   if (
     $('.product-shipping-time.stock-status-logic .product-shipping-time-title')
@@ -780,6 +809,17 @@ function handleCalc() {
   if ($('[placeholder="Start typing your address for shipping estimate..."]')) {
     $(
       '[placeholder="Start typing your address for shipping estimate..."]'
+    ).addEventListener('focus', () => {
+      pushDataLayer(
+        'exp_shipping_info_pdp_input_01',
+        'Shipping',
+        'Input',
+        'PDP. Delivery address'
+      )
+    })
+
+    $(
+      '[placeholder="Start typing your address for shipping estimate..."]'
     ).placeholder = 'Delivery address'
   }
 
@@ -805,7 +845,23 @@ function handleWait() {
     waitHtml
   )
 
+  visibilityEvent('.lav-wait', () => {
+    pushDataLayer(
+      'exp_shipping_info_pdp_section_02',
+      'Section',
+      'Visibility',
+      'PDP. Don’t want to wait?'
+    )
+  })
+
   $('.lav-wait__link').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_shipping_info_pdp_link_02',
+      'View similar products ready for shipping',
+      'Link',
+      'PDP. Don’t want to wait?'
+    )
+
     if (!$('.product-interested-in')) return
 
     jQuery('html, body').animate(
@@ -829,6 +885,15 @@ function addHeaderLink() {
       </li>
     `
     )
+
+    $('.lav-link-delivery').addEventListener('click', (e) => {
+      pushDataLayer(
+        'exp_shipping_info_sitewide_button_01',
+        'Shipping and handling',
+        'Button',
+        'Sitewide Header'
+      )
+    })
   })
 
   waitFor('.you-may-be-interested-in .item', () => {
@@ -838,6 +903,15 @@ function addHeaderLink() {
       <p class="item lav-link-delivery-mob" role="menuitem"><a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a></p>
     `
     )
+
+    $('.lav-link-delivery-mob').addEventListener('click', (e) => {
+      pushDataLayer(
+        'exp_shipping_info_sitewide_button_01',
+        'Shipping and handling',
+        'Button',
+        'Sitewide Header'
+      )
+    })
   })
 }
 
@@ -911,6 +985,12 @@ function initFAQ() {
 
   for (const item of $$('.lav-faq__item')) {
     item.addEventListener('click', function () {
+      pushDataLayer(
+        'exp_shipping_info_cart_accordion_02',
+        `${item.querySelector('.lav-faq__question').innerText} - F.A.Q`,
+        'Accordion',
+        'Shopping cart. Shipping and returns'
+      )
       if (this.classList.contains('active')) {
         this.classList.remove('active')
       } else {
@@ -1034,8 +1114,24 @@ function initModal() {
 
   new Modal('lav-shipping', modalHtml)
 
+  visibilityEvent('.lav-shipping', () => {
+    pushDataLayer(
+      'exp_shipping_info_popup_section_03',
+      'Section',
+      'Visibility',
+      'Popup. Shipping and Delivery at RestaurantSupply.com'
+    )
+  })
+
   for (const tab of $$('.lav-tabs__item')) {
     tab.addEventListener('click', function () {
+      pushDataLayer(
+        'exp_shipping_info_popup_button_02',
+        `${tab.innerText} - tab`,
+        'Button',
+        'Popup. Shipping and Delivery. Your Area on the Map'
+      )
+
       if (this.classList.contains('active')) return
 
       $('.lav-tabs__item.active').classList.remove('active')
@@ -1049,6 +1145,12 @@ function initModal() {
 
   for (const item of $$('.lav-faq__item')) {
     item.addEventListener('click', function () {
+      pushDataLayer(
+        'exp_shipping_info_popup_accordion_01',
+        `${item.querySelector('.lav-faq__question').innerText} - F.A.Q`,
+        'Accordion',
+        'Popup. Shipping and Delivery. Frequently Asked Questions'
+      )
       if (this.classList.contains('active')) {
         this.classList.remove('active')
       } else {
@@ -1154,9 +1256,9 @@ function initIntersection(observeEl, cb, customConfig) {
     ...customConfig
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      cb(entry)
+      cb(entry, observer)
     })
   }, config)
 
@@ -1185,18 +1287,22 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
-    ...customConfig
+    ...customConfig,
+    timer: null
   }
   initIntersection(
     el,
-    ({ isIntersecting, target }) => {
-      // console.log(target, isIntersecting);
+    ({ isIntersecting, target }, observer) => {
+      console.log(target, isIntersecting)
       if (isIntersecting) {
-        setTimeout(() => {
+        config.timer = setTimeout(() => {
           if (isElementInViewport(target)) {
             cb()
+            observer.disconnect()
           }
         }, 3000)
+      } else {
+        clearTimeout(config.timer)
       }
     },
     config
