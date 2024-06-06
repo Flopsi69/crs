@@ -1,108 +1,108 @@
-console.debug('*** Experiment started ***');
+console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
   // dir: 'http://127.0.0.1:5500/<dir>/<project>',
   dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
   clarity: ['set', '', 'variant_1'],
-  debug: true,
-};
+  debug: true
+}
 
-const orig = console.log;
+const orig = console.log
 console.log = function (...args) {
-  orig.apply(console, ['Debug:', ...args]);
-};
+  orig.apply(console, ['Debug:', ...args])
+}
 
 // Styles for Experiment
-const styles = ``;
+const styles = ``
 
-const stylesEl = document.createElement('style');
-stylesEl.classList.add('exp-styles');
-stylesEl.innerHTML = styles;
+const stylesEl = document.createElement('style')
+stylesEl.classList.add('exp-styles')
+stylesEl.innerHTML = styles
 
 // *** Logic *** //
-initExp();
+initExp()
 
 async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
+  await waitFor(() => document.head && document.body, false, { ms: 100 })
 
-  document.head.appendChild(stylesEl);
+  document.head.appendChild(stylesEl)
 
-  console.debug('** InitExp **');
+  console.debug('** InitExp **')
 }
 
 // *** Utils *** //
 class Modal {
-  static list = [];
+  static list = []
   constructor(name, html) {
     if (!$('.lav-modal')) {
-      this.constructor.init();
+      this.constructor.init()
     }
 
     if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists');
-      return;
+      console.warn('Modal with this name already exists')
+      return
     }
 
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = html;
+    this.el = document.createElement('div')
+    this.el.classList.add('lav-modal__inner', name)
+    this.name = name
+    this.el.innerHTML = html
 
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+    $('.lav-modal').insertAdjacentElement('beforeend', this.el)
 
-    this.constructor.list.push(this);
+    this.constructor.list.push(this)
   }
 
   static init() {
     document.body.insertAdjacentHTML(
       'beforeend',
       "<div class='lav-modal'></div>"
-    );
+    )
 
     document.addEventListener('click', (e) => {
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
       )
-        this.close();
+        this.close()
 
       if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
+        this.open(e.target.dataset.modal)
       } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
+        this.open(e.target.closest('[data-modal]').dataset.modal)
       }
-    });
+    })
 
-    this.addStyles();
+    this.addStyles()
   }
 
   static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
+    document.body.classList.add('lav-modal-open')
 
     if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+      $('.lav-modal__inner.active').classList.remove('active')
     }
 
-    $(modalName).classList.add('active');
+    $(modalName).classList.add('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal').classList.add('active');
-    }, 100);
+      $('.lav-modal').classList.add('active')
+    }, 100)
   }
 
   static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+    document.body.classList.remove('lav-modal-open')
 
-    $('.lav-modal')?.classList.remove('active');
+    $('.lav-modal')?.classList.remove('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
+      $('.lav-modal__inner.active')?.classList.remove('active')
+    }, 400)
   }
 
   static addStyles() {
@@ -156,12 +156,12 @@ class Modal {
       .lav-modal-open {
         overflow: hidden;
       }
-    `;
+    `
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
+    const stylesEl = document.createElement('style')
+    stylesEl.classList.add('exp-modal')
+    stylesEl.innerHTML = styles
+    document.head.appendChild(stylesEl)
   }
 }
 
@@ -173,160 +173,161 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     ms: 500, // repeat each 0.5 second if condition is false
     limit: 10, // limit in second seconds
 
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   if (typeof condition === 'function') {
     if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
+      if (typeof cb === 'function') cb()
+      return
     }
 
     return new Promise((resolve) => {
-      let limit = config.limit * 1000;
+      let limit = config.limit * 1000
       const interval = setInterval(function () {
         if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
+          clearInterval(interval)
+          if (limit > 0 && typeof cb === 'function') cb()
+          resolve()
         }
-        limit -= config.ms;
-      }, config.ms);
-    });
+        limit -= config.ms
+      }, config.ms)
+    })
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
     if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
+      if (typeof cb === 'function') cb($(condition))
+      return
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
         if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
+          if (typeof cb === 'function') cb($(condition))
+          observer.disconnect()
+          resolve()
         }
-      });
+      })
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
+      observer.observe(document, { childList: true, subtree: true })
+    })
   }
 }
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el) return;
+  if (!el) return
 
   let observer = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbAdded(node, observer)
         }
       }
 
       if (typeof cbRemoved === 'function') {
         for (let node of mutation.removedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbRemoved(node, observer)
         }
       }
     }
-  });
+  })
 
-  observer.observe(el, { childList: true, subtree: true });
+  observer.observe(el, { childList: true, subtree: true })
 
-  return observer;
+  return observer
 }
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el || typeof cb !== 'function') return;
+  if (!el || typeof cb !== 'function') return
 
   const config = {
     root: null,
     threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      cb(entry);
-    });
-  }, config);
+      cb(entry, observer)
+    })
+  }, config)
 
-  observer.observe(el);
+  observer.observe(el)
 
-  return observer;
+  return observer
 }
 
 function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
+  let entryTime = 0
   initIntersection(
     el,
     ({ isIntersecting, time }) => {
       if (isIntersecting) {
-        entryTime = time;
+        entryTime = time
       } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1);
-        cb(diffTime + 's');
-        entryTime = 0;
+        const diffTime = +((time - entryTime) / 1000).toFixed(1)
+        cb(diffTime + 's')
+        entryTime = 0
       }
     },
     { threshold: viewElementProcent }
-  );
+  )
 }
 
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
     ...customConfig,
-    timer: null,
-  };
+    timer: null
+  }
   initIntersection(
     el,
-    ({ isIntersecting, target }) => {
+    ({ isIntersecting, target }, observer) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
         config.timer = setTimeout(() => {
           if (isElementInViewport(target)) {
-            cb();
+            cb()
+            observer.disconnect()
           }
-        }, 3000);
+        }, 3000)
       } else {
-        clearTimeout(config.timer);
+        clearTimeout(config.timer)
       }
     },
     config
-  );
+  )
 }
 
 // Artificial delay
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
+  const el = typeof selector === 'string' ? $(selector) : selector
 
-  if (!el) return false;
+  if (!el) return false
 
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight;
+    window.innerHeight || document.documentElement.clientHeight
 
   return (
     rect.top + rect.height * 0.3 < windowHeight &&
     rect.bottom > rect.height * 0.3
-  );
+  )
   // return (
   //   rect.top >= 0 &&
   //   rect.left >= 0 &&
@@ -338,17 +339,17 @@ function isElementInViewport(selector) {
 
 // Shordcode for selectors
 function $(selector, context = document) {
-  return context.querySelector(selector);
+  return context.querySelector(selector)
 }
 function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
+  const arr = context.querySelectorAll(selector)
 
-  return toSimpleArray ? Array.from(arr) : arr;
+  return toSimpleArray ? Array.from(arr) : arr
 }
 
 // GA 4 events
 function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
 
   try {
     const event = {
@@ -356,31 +357,31 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
       event_name: name,
       event_desc: desc,
       event_type: type,
-      event_loc: loc,
-    };
+      event_loc: loc
+    }
 
-    console.debug('** GA4 Event **', event);
+    console.debug('** GA4 Event **', event)
 
     if (!config.debug) {
-      dataLayer.push(event);
+      dataLayer.push(event)
     }
   } catch (e) {
-    console.log('** GA4 Error **', e);
+    console.log('** GA4 Error **', e)
   }
 }
 
 // Slider
 function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
+  const sliderStyles = document.createElement('link')
+  sliderStyles.rel = 'stylesheet'
   sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+  document.head.appendChild(sliderStyles)
 
-  let sliderScript = document.createElement('script');
+  let sliderScript = document.createElement('script')
   sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+  document.head.appendChild(sliderScript)
 }
 
 // *** Exp BG process *** //
@@ -394,14 +395,14 @@ if (
   waitFor(
     () => typeof clarity == 'function',
     () => {
-      clarity(...config.clarity);
+      clarity(...config.clarity)
     }
-  );
+  )
 }
 
 // Svg objects
 function getSvg(name) {
-  const svgObj = {};
+  const svgObj = {}
 
-  return svgObj[name];
+  return svgObj[name]
 }
