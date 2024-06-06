@@ -34,7 +34,7 @@
 
     if ($id == '45350327') {
       // father
-      $type['caption'] = 'Ideal solo or for family';
+      $type['caption'] = 'Ideal for Dad';
       $type['adults'] = 2;
       $type['icons'] = 1;
       $type['brief'] = ['90-minute session', 'Private spa suite', 'Beverage credit & 15-minute zero-gravity massages'];
@@ -128,7 +128,8 @@
     $decodeRes = json_decode($response, true);
     $filterRes = array_filter($decodeRes, function($resItem) {
       // return true;
-      return $resItem['active'] === true && $resItem['private'] === false || $resItem['category'] === 'Test';
+      // || $resItem['category'] === 'Test'
+      return $resItem['active'] === true && $resItem['private'] === false;
     });
 
     return $filterRes;
@@ -140,9 +141,23 @@
 <!-- <?php echo '<pre>'; print_r($addons); echo '</pre>'; ?> -->
 
 <script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
+<script>
+  let observer = new MutationObserver((mutations, observer) => {
+    for (let mutation of mutations) {
+      if (mutation.type == 'attributes' && mutation.attributeName == 'content' && mutation.target.getAttribute('name') == 'viewport' && mutation.target.getAttribute('content') !== "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"){
+        document.querySelector('[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
+      }
+    }
+  })
+
+  observer.observe(document.head, { subtree: true, attributes: true})
+</script>
 
 <style>
   /* Refactoring existing elements */
+  .modalsWrap .fathers {
+    display: none!important;
+  }
   .b-booking-def-cont {
     padding-top: 24px;
     border-top-left-radius: 32px;
@@ -2329,7 +2344,7 @@
       <div class="marquee">
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-time.png' alt='Time ticker'>
+            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-time.png' alt='Time ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Time’s</div>
@@ -2339,7 +2354,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-entr.png' alt='Enterpreneur ticker'>
+            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-entr.png' alt='Enterpreneur ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Enterpreneur</div>
@@ -2349,7 +2364,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-5280.png' alt='5280 ticker'>
+            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-5280.png' alt='5280 ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>5280’s</div>
