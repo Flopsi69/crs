@@ -17,7 +17,7 @@
   class Modal {
     static list = []
     constructor(name, html) {
-      if (!$('.lav-modal')) {
+      if (!$('.lavd-modal')) {
         this.constructor.init()
       }
 
@@ -27,11 +27,11 @@
       }
 
       this.el = document.createElement('div')
-      this.el.classList.add('lav-modal__inner', name)
+      this.el.classList.add('lavd-modal__inner', name)
       this.name = name
       this.el.innerHTML = html
 
-      $('.lav-modal').insertAdjacentElement('beforeend', this.el)
+      $('.lavd-modal').insertAdjacentElement('beforeend', this.el)
 
       this.constructor.list.push(this)
     }
@@ -39,11 +39,11 @@
     static init() {
       document.body.insertAdjacentHTML(
         'beforeend',
-        "<div class='lav-modal'></div>"
+        "<div class='lavd-modal'></div>"
       )
 
       document.addEventListener('click', (e) => {
-        if (e.target.closest('.lav-modal__close')) {
+        if (e.target.closest('.lavd-modal__close')) {
           pushDataLayer(
             'exp_shipping_info_popup_button_03',
             'Close',
@@ -53,8 +53,8 @@
         }
 
         if (
-          e.target.classList.contains('lav-modal') ||
-          e.target.closest('.lav-modal__close')
+          e.target.classList.contains('lavd-modal') ||
+          e.target.closest('.lavd-modal__close')
         )
           this.close()
 
@@ -69,10 +69,10 @@
     }
 
     static open(modalName, cb) {
-      document.body.classList.add('lav-modal-open')
+      document.body.classList.add('lavd-modal-open')
 
-      if ($('.lav-modal__inner.active')) {
-        $('.lav-modal__inner.active').classList.remove('active')
+      if ($('.lavd-modal__inner.active')) {
+        $('.lavd-modal__inner.active').classList.remove('active')
       }
 
       $(modalName).classList.add('active')
@@ -80,25 +80,25 @@
       if (typeof cb === 'function') cb()
 
       setTimeout(() => {
-        $('.lav-modal').classList.add('active')
+        $('.lavd-modal').classList.add('active')
       }, 100)
     }
 
     static close(cb) {
-      document.body.classList.remove('lav-modal-open')
+      document.body.classList.remove('lavd-modal-open')
 
-      $('.lav-modal')?.classList.remove('active')
+      $('.lavd-modal')?.classList.remove('active')
 
       if (typeof cb === 'function') cb()
 
       setTimeout(() => {
-        $('.lav-modal__inner.active')?.classList.remove('active')
+        $('.lavd-modal__inner.active')?.classList.remove('active')
       }, 400)
     }
 
     static addStyles() {
       const styles = /* css */ `
-      .lav-modal {
+      .lavd-modal {
         position: fixed;
         z-index: 99999999999;
         left: 0;
@@ -114,11 +114,11 @@
         max-height: 100%;
         display: flex;
       }
-      .lav-modal.active {
+      .lavd-modal.active {
         opacity: 1;
         pointer-events: auto;
       }
-      .lav-modal__inner {
+      .lavd-modal__inner {
         position: relative;
         background: #fff;
         max-width: 380px;
@@ -126,10 +126,10 @@
         display: none;
         margin: auto;
       }
-      .lav-modal__inner.active {
+      .lavd-modal__inner.active {
         display: block;
       }
-      .lav-modal__close {
+      .lavd-modal__close {
         cursor: pointer;
         transition: 0.35s;
         line-height: 0;
@@ -138,46 +138,46 @@
         cursor: pointer;
       }
       @media(hover:hover) {
-        .lav-modal__close:hover {
+        .lavd-modal__close:hover {
           opacity: 0.5;
         }
       }
-      .lav-modal-open {
+      .lavd-modal-open {
         overflow: hidden!important;
       }
 
-      .lav-shipping {
+      .lavd-shipping {
         padding: 32px 8px 0 32px;
         max-width: 664px;
         border-radius: 8px;
         max-height: 100%;
       }
-      .lav-shipping.active {
+      .lavd-shipping.active {
         display: flex;
         flex-flow: column;
       }
-      .lav-shipping__title {
+      .lavd-shipping__title {
         color: #536D80;
         font-size: 20px;
         font-weight: 700;
         line-height: 28px;
         padding-right: 24px;
       }
-      .lav-modal__close {
+      .lavd-modal__close {
         position: absolute;
         top: 16px;
         right: 16px;
       }
-      .lav-shipping__content {
+      .lavd-shipping__content {
         margin-top: 24px;
         padding-bottom: 32px;
         padding-right: 24px;
       }
       @media(min-width: 768px) {
-        .lav-shipping__content {
+        .lavd-shipping__content {
           overflow: auto;
         }
-        .lav-shipping__content::-webkit-scrollbar {
+        .lavd-shipping__content::-webkit-scrollbar {
           width: 1px;
           background: #DADADA;
           border-bottom: 20px white solid;
@@ -189,52 +189,52 @@
           margin-bottom: 20px;
         }
         
-        .lav-shipping__content::-webkit-scrollbar-thumb {
+        .lavd-shipping__content::-webkit-scrollbar-thumb {
           height: 80px;
           border-radius: 1px;
           background: #165389;
         }
       }
-      .lav-shipping__text {
+      .lavd-shipping__text {
         font-size: 14px;
         font-weight: 400;
         line-height: 20px;
         margin: 0;
       }
-      .lav-shipping__text a {
+      .lavd-shipping__text a {
         color: #1F6699;
         text-decoration: underline;
         transition: 0.2s;
       }
       @media(hover:hover) {
-        .lav-shipping__text a:hover {
+        .lavd-shipping__text a:hover {
           color: #0056B3;
           opacity: .7;
         }
       }
-      .lav-shipping__text_bold {
+      .lavd-shipping__text_bold {
         font-weight: 600;
         margin-top: 20px;
       }
-      .lav-shipping__subtitle {
+      .lavd-shipping__subtitle {
         color: #536D80;
         font-size: 14px;
         font-weight: 700;
         line-height: 20px;
         margin-top: 24px;
       }
-      .lav-shipping__subtitle + .lav-shipping__text {
+      .lavd-shipping__subtitle + .lavd-shipping__text {
         margin-top: 16px;
       }
 
-      .lav-tabs {
+      .lavd-tabs {
         margin-top: 16px;
       }
-      .lav-tabs__header {
+      .lavd-tabs__header {
         display: flex;
         gap: 16px;
       }
-      .lav-tabs__item {
+      .lavd-tabs__item {
         border-radius: 4px;
         border: 1px solid #EBECED;
         background: var(--Main-White, #FFF);
@@ -246,42 +246,42 @@
         transition: 0.2s;
         padding: 8px 16px;
       }
-      .lav-tabs__item:not(.active) {
+      .lavd-tabs__item:not(.active) {
         cursor: pointer;
       }
       @media(hover:hover) {
-        .lav-tabs__item:not(.active):hover {
+        .lavd-tabs__item:not(.active):hover {
           background: #F7F8F9;
         }
       }
-      .lav-tabs__item.active {
+      .lavd-tabs__item.active {
         background: #EDF3F7;
         color: #1F6699;
         font-size: 14px;
         font-weight: 600;
         line-height: 20px;
       }
-      .lav-tabs__content {
+      .lavd-tabs__content {
         margin-top: 24px;
       }
-      .lav-tabs__pane {
+      .lavd-tabs__pane {
         line-height: 0;
       }
-      .lav-tabs__pane img {
+      .lavd-tabs__pane img {
         max-width: 100%;
         height: 235px;
       }
-      .lav-tabs__pane:not(.active) {
+      .lavd-tabs__pane:not(.active) {
         display: none;
       }
-      .lav-ground {
+      .lavd-ground {
         padding-bottom: 25px;
         border-bottom: 1px solid #EBECED;
       }
-      .lav-ground__subtitle {
+      .lavd-ground__subtitle {
         margin-top: 16px;
       }
-      .lav-ground__list {
+      .lavd-ground__list {
         margin-top: 12px;
         display: flex;
         gap: 2px;
@@ -289,87 +289,87 @@
         font-weight: 600;
         line-height: 16px;
       }
-      .lav-ground__item {
+      .lavd-ground__item {
         padding: 4px 12px;
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
         border-radius: 4px;
       }
-      .lav-ground__item:nth-child(1) {
+      .lavd-ground__item:nth-child(1) {
         background: #FF007F;
         color: #fff;
       }
-      .lav-ground__item:nth-child(2) {
+      .lavd-ground__item:nth-child(2) {
         background: #0FF;
       }
-      .lav-ground__item:nth-child(3) {
+      .lavd-ground__item:nth-child(3) {
         background: #FF7F00;
         color: #fff;
       }
-      .lav-ground__item:nth-child(4) {
+      .lavd-ground__item:nth-child(4) {
         background: #0F0;
       }
-      .lav-ground__item:nth-child(5) {
+      .lavd-ground__item:nth-child(5) {
         background: #4C148C;
         color: #fff;
       }
-      .lav-ground__item:nth-child(6) {
+      .lavd-ground__item:nth-child(6) {
         background: #FFF200;
       }
-      .lav-ground__item:nth-child(7) {
+      .lavd-ground__item:nth-child(7) {
         background: #00F;
         color: #fff;
       }
-      .lav-shipping__faq {
+      .lavd-shipping__faq {
         margin-top: 32px;
         margin-bottom: 24px;
       }
 
       @media(max-width: 768px) {
-        .lav-shipping__title {
+        .lavd-shipping__title {
           font-size: 18px;
           line-height: 26px;
           padding: 0;
         }
-        .lav-shipping__content {
+        .lavd-shipping__content {
           margin-top: 16px;
           padding: 0;
         }
-        .lav-shipping__subtitle + .lav-shipping__text {
+        .lavd-shipping__subtitle + .lavd-shipping__text {
           margin-top: 12px;
         }
-        .lav-tabs__item {
+        .lavd-tabs__item {
           padding: 8px 12px;
         }
-        .lav-tabs__header {
+        .lavd-tabs__header {
           gap: 8px;
           flex-wrap: wrap;
         }
-        .lav-tabs {
+        .lavd-tabs {
           margin-top: 12px;
         }
-        .lav-tabs__pane img {
+        .lavd-tabs__pane img {
           height: auto;
           max-height: 225px;
         }
-        .lav-ground__list {
+        .lavd-ground__list {
           flex-wrap: wrap;
         }
-        .lav-shipping__faq {
+        .lavd-shipping__faq {
           margin-top: 24px;
           margin-bottom: 16px;
         }
-        .lav-shipping__text_bold {
+        .lavd-shipping__text_bold {
           margin-top; 16px;
         }
-        .lav-shipping {
+        .lavd-shipping {
           padding: 32px 20px 48px;
           border-radius: 8px 0px 0px 8px;
           max-height: initial;
           margin-right: initial;
         }
-        .lav-modal {
+        .lavd-modal {
           padding: 0;
           padding-left: 20px;
         }
@@ -385,22 +385,22 @@
 
   // Styles for Experiment
   const styles = /* css */ `
-  [class*='lav-'] {
+  [class*='lavd-'] {
     box-sizing: border-box;
   }
-  .lav-faq__title {
+  .lavd-faq__title {
     color: #536D80;
     font-size: 20px;
     font-weight: 700;
     line-height: 28px;
   }
-  .lav-faq__list {
+  .lavd-faq__list {
     margin-top: 24px;
   }
-  .lav-faq__item + .lav-faq__item {
+  .lavd-faq__item + .lavd-faq__item {
     margin-top: 4px;
   }
-  .lav-faq__question {
+  .lavd-faq__question {
     position: relative;
     color: #70818C;
     font-size: 14px;
@@ -409,7 +409,7 @@
     padding-right: 24px;
     transition: 0.3s;
   }
-  .lav-faq__question::before {
+  .lavd-faq__question::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -424,7 +424,7 @@
     transition: 0.3s;
   }
 
-  .lav-faq__item {
+  .lavd-faq__item {
     border-radius: 8px;
     border: 1px solid #EBECED;
     background: #FAFAFA;
@@ -432,50 +432,50 @@
     padding: 10px 16px;
     cursor: pointer;
   }
-  .lav-faq__answer {
+  .lavd-faq__answer {
     display: none;
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
   }
-  .lav-faq__item.active {
+  .lavd-faq__item.active {
     padding-top: 16px;
     padding-bottom: 20px;
     background: var(--Main-White, #FFF);
   }
-  .lav-faq__item.active .lav-faq__question {
+  .lavd-faq__item.active .lavd-faq__question {
     color: #1F6699;
     margin-bottom: 16px;
   }
-  .lav-faq__item.active .lav-faq__question::before {
+  .lavd-faq__item.active .lavd-faq__question::before {
     background-image: url('${config.dir}/img/faq-minus.svg');
   }
     
-  .lav-faq__item.active .lav-faq__answer {
+  .lavd-faq__item.active .lavd-faq__answer {
     display: block;
   }
 
-  .lav-faq__item:not(.active) {
+  .lavd-faq__item:not(.active) {
     cursor: pointer;
   }
   @media(hover:hover) {
-    .lav-faq__item:not(.active):hover {
+    .lavd-faq__item:not(.active):hover {
       background: #F7F8F9;
     }
   }
   @media(max-width: 768px) {
-    .lav-faq__title {
+    .lavd-faq__title {
       font-size: 18px;
       line-height: 26px;
     }
-    .lav-faq__list {
+    .lavd-faq__list {
       margin-top: 16px;
     }
-    .lav-faq__item.active {
+    .lavd-faq__item.active {
       padding-top: 10px;
       padding-bottom: 16px;
     }
-    .lav-faq__item.active .lav-faq__question::before {
+    .lavd-faq__item.active .lavd-faq__question::before {
       // opacity: 0;
     }
   }
@@ -484,14 +484,14 @@
     background: #4F9E34;
   }
 
-  .lav-wait {
+  .lavd-wait {
     border-radius: 8px;
     background: var(--Main-White, #FFF);
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
     padding: 18px 16px 16px;
     margin-bottom: 16px;
   }
-  .lav-wait__title {
+  .lavd-wait__title {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -502,7 +502,7 @@
     letter-spacing: 0.5px;
     margin-bottom: 12px;
   }
-  .lav-wait__link {
+  .lavd-wait__link {
     color: #1F6699;
     font-size: 14px;
     font-weight: 600;
@@ -510,11 +510,11 @@
     transition: 0.3s;
     cursor: pointer;
   }
-  .lav-wait__link span {
+  .lavd-wait__link span {
     text-decoration-line: underline;
   }
   @media(hover:hover) {
-    .lav-wait__link:hover {
+    .lavd-wait__link:hover {
       opacity: 0.7;
     }
   }
@@ -536,7 +536,7 @@
     // line-height: 24px;
     // letter-spacing: 0.5px;
   }
-  .lav-delivery__text {
+  .lavd-delivery__text {
     color: #536D80;
     font-size: 14px;
     font-weight: 400;
@@ -569,7 +569,7 @@
     position: relative
   }
   
-  .lav-delivery__text + .street-wrapper {
+  .lavd-delivery__text + .street-wrapper {
     margin-top: 12px;
   }
 
@@ -636,20 +636,20 @@
     line-height: 24px;
   }
 
-  .lav-calc {
+  .lavd-calc {
     margin: 16px 0;
     padding: 12px 0;
     border-top: 1px solid #EBECED;
     border-bottom: 1px solid #EBECED;
   }
 
-  #block-summary .shipping-rates .lav-delivery__text {
+  #block-summary .shipping-rates .lavd-delivery__text {
     border-top: 1px solid #EBECED;
     margin-top: 12px;
     padding-top: 12px;
   }
 
-  .lav-policy {
+  .lavd-policy {
     color: #1F6699;
     font-size: 14px;
     font-weight: 600;
@@ -657,7 +657,7 @@
     transition: 0.3s;
     cursor: pointer;
   }
-  .lav-policy span {
+  .lavd-policy span {
     text-decoration-line: underline;
   }
 `
@@ -715,8 +715,8 @@
     })
 
     const waitHtml = /* html */ `
-    <div class="lav-calc"></div>
-    <div class="lav-policy" data-modal='.lav-shipping'>
+    <div class="lavd-calc"></div>
+    <div class="lavd-policy" data-modal='.lavd-shipping'>
         <span>Shipping and Delivery policy</span>&nbsp;&nbsp;>
     </div>
   `
@@ -728,7 +728,7 @@
       waitHtml
     )
 
-    $('.lav-policy').addEventListener('click', () => {
+    $('.lavd-policy').addEventListener('click', () => {
       pushDataLayer(
         'exp_shipping_info_pdp_link_01',
         'Shipping and Delivery policy',
@@ -781,7 +781,7 @@
 
     $('#block-summary .shipping-rates', el).insertAdjacentHTML(
       'beforeend',
-      `<div class='lav-delivery__text'>Choose the shipping method for all selected products at checkout</div>`
+      `<div class='lavd-delivery__text'>Choose the shipping method for all selected products at checkout</div>`
     )
 
     $('#block-summary .street-wrapper').insertAdjacentHTML(
@@ -805,7 +805,7 @@
     $('#block-summary .street-wrapper').insertAdjacentHTML(
       'beforebegin',
       `
-      <div class='lav-delivery__text'>Start typing your address here for shipping estimations</div>
+      <div class='lavd-delivery__text'>Start typing your address here for shipping estimations</div>
     `
     )
 
@@ -828,18 +828,18 @@
       ).placeholder = 'Delivery address'
     }
 
-    $('.lav-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
+    $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
     // el.style.display = 'block'
   }
 
   function handleWait() {
     const waitHtml = /* html */ `
-    <div class="lav-wait">
-      <div class="lav-wait__title">
+    <div class="lavd-wait">
+      <div class="lavd-wait__title">
         ${getSvg('clock')}
         Don’t want to wait?
       </div>
-      <div class="lav-wait__link">
+      <div class="lavd-wait__link">
         <span>View similar products ready for shipping</span>&nbsp;&nbsp;>
       </div>
     </div>
@@ -850,7 +850,7 @@
       waitHtml
     )
 
-    visibilityEvent('.lav-wait', () => {
+    visibilityEvent('.lavd-wait', () => {
       pushDataLayer(
         'exp_shipping_info_pdp_section_02',
         'Section',
@@ -859,7 +859,7 @@
       )
     })
 
-    $('.lav-wait__link').addEventListener('click', () => {
+    $('.lavd-wait__link').addEventListener('click', () => {
       pushDataLayer(
         'exp_shipping_info_pdp_link_02',
         'View similar products ready for shipping',
@@ -885,13 +885,13 @@
       $('.page-header .links-container ul')?.insertAdjacentHTML(
         'beforeend',
         /* html */ `
-      <li class="link lav-link-delivery">
+      <li class="link lavd-link-delivery">
         <a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a>
       </li>
     `
       )
 
-      $('.lav-link-delivery').addEventListener('click', (e) => {
+      $('.lavd-link-delivery').addEventListener('click', (e) => {
         pushDataLayer(
           'exp_shipping_info_sitewide_button_01',
           'Shipping and handling',
@@ -905,11 +905,11 @@
       $('.you-may-be-interested-in .item')?.insertAdjacentHTML(
         'beforebegin',
         /* html */ `
-      <p class="item lav-link-delivery-mob" role="menuitem"><a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a></p>
+      <p class="item lavd-link-delivery-mob" role="menuitem"><a href="https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery">Shipping and handling</a></p>
     `
       )
 
-      $('.lav-link-delivery-mob').addEventListener('click', (e) => {
+      $('.lavd-link-delivery-mob').addEventListener('click', (e) => {
         pushDataLayer(
           'exp_shipping_info_sitewide_button_01',
           'Shipping and handling',
@@ -924,19 +924,19 @@
     console.log('init FAQ')
 
     const cartStyles = /* css */ `
-    .lav-faq {
+    .lavd-faq {
       border-radius: 8px;
       background: var(--Main-White, #FFF);
       box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
       padding: 32px;
       margin-top: -9px;
     }
-    .lav-faq__title {
+    .lavd-faq__title {
       font-size: 18px;
       line-height: 26px;
       letter-spacing: 0.5px;
     }
-    .lav-faq__list {
+    .lavd-faq__list {
       margin-top: 16px;
       max-width: 600px;
     }
@@ -944,10 +944,10 @@
       .cart-info {
         order: 1;
       }
-      .lav-faq {
+      .lavd-faq {
         padding: 16px;
       }
-      .lav-faq__title {
+      .lavd-faq__title {
         font-size: 16px;
         line-height: 24px;
       }
@@ -960,23 +960,23 @@
     document.head.appendChild(cartStylesEl)
 
     const faqHtml = /* html */ `
-    <div class='lav-faq'>
-      <div class="lav-faq__title">Shipping and returns F.A.Q</div>
+    <div class='lavd-faq'>
+      <div class="lavd-faq__title">Shipping and returns F.A.Q</div>
 
-      <div class="lav-faq__list">
-        <div class="lav-faq__item">
-          <div class="lav-faq__question">When will I receive my order?</div>
-          <div class="lav-faq__answer">The delivery timeframe for your order depends on the selected shipping method and the warehouse location from which your item is dispatched. You will receive a confirmation email shortly after placing your order, which will include an estimated delivery date. For the most accurate delivery information, please contact us via email before placing your order.</div>
+      <div class="lavd-faq__list">
+        <div class="lavd-faq__item">
+          <div class="lavd-faq__question">When will I receive my order?</div>
+          <div class="lavd-faq__answer">The delivery timeframe for your order depends on the selected shipping method and the warehouse location from which your item is dispatched. You will receive a confirmation email shortly after placing your order, which will include an estimated delivery date. For the most accurate delivery information, please contact us via email before placing your order.</div>
         </div>
 
-        <div class="lav-faq__item">
-          <div class="lav-faq__question">How can I return an item?</div>
-          <div class="lav-faq__answer">To return an item, kindly visit our Returns Policy page for step-by-step instructions. Returns should be initiated within 90 days of receipt, with the item in its original condition and packaging. Note that some items may incur restocking fees. Contact our customer service to obtain an RMA (Return Merchandise Authorization) number and further instructions.</div>
+        <div class="lavd-faq__item">
+          <div class="lavd-faq__question">How can I return an item?</div>
+          <div class="lavd-faq__answer">To return an item, kindly visit our Returns Policy page for step-by-step instructions. Returns should be initiated within 90 days of receipt, with the item in its original condition and packaging. Note that some items may incur restocking fees. Contact our customer service to obtain an RMA (Return Merchandise Authorization) number and further instructions.</div>
         </div>
 
-        <div class="lav-faq__item">
-          <div class="lav-faq__question">Where can I find warranty information?</div>
-          <div class="lav-faq__answer">You can find detailed warranty information on each product's detail page (PDP). This includes the manufacturer's warranty terms, such as the duration and what's covered. If you have further questions about warranties or need assistance with a claim, our customer service team is here to help.</div>
+        <div class="lavd-faq__item">
+          <div class="lavd-faq__question">Where can I find warranty information?</div>
+          <div class="lavd-faq__answer">You can find detailed warranty information on each product's detail page (PDP). This includes the manufacturer's warranty terms, such as the duration and what's covered. If you have further questions about warranties or need assistance with a claim, our customer service team is here to help.</div>
         </div>
       </div>
     </div>
@@ -988,18 +988,18 @@
       $('.cart-right-col').insertAdjacentHTML('beforeend', faqHtml)
     }
 
-    for (const item of $$('.lav-faq__item')) {
+    for (const item of $$('.lavd-faq__item')) {
       item.addEventListener('click', function () {
         pushDataLayer(
           'exp_shipping_info_cart_accordion_02',
-          `${item.querySelector('.lav-faq__question').innerText} - F.A.Q`,
+          `${item.querySelector('.lavd-faq__question').innerText} - F.A.Q`,
           'Accordion',
           'Shopping cart. Shipping and returns'
         )
         if (this.classList.contains('active')) {
           this.classList.remove('active')
         } else {
-          $('.lav-faq__item.active')?.classList.remove('active')
+          $('.lavd-faq__item.active')?.classList.remove('active')
           this.classList.add('active')
         }
       })
@@ -1008,118 +1008,118 @@
 
   function initModal() {
     const modalHtml = /* html */ `
-    <div class="lav-modal__close" title="Close">
+    <div class="lavd-modal__close" title="Close">
       ${getSvg('closeModal')}
     </div>
 
-    <div class="lav-shipping__title">Shipping and Delivery at RestaurantSupply.com</div>
+    <div class="lavd-shipping__title">Shipping and Delivery at RestaurantSupply.com</div>
 
-    <div class='lav-shipping__content'>
-      <div class="lav-shipping__text">
+    <div class='lavd-shipping__content'>
+      <div class="lavd-shipping__text">
         We at RestaurantSupply.com are committed to making your purchasing experience as smooth and transparent as possible. Below, you'll find an overview of our shipping and delivery policies, designed to address your main concerns and streamline your shopping process. For more detailed information, please refer to the full text of our shipping and delivery policy.
       </div>
 
-      <div class="lav-shipping__subtitle">When will I receive my order?</div>
+      <div class="lavd-shipping__subtitle">When will I receive my order?</div>
 
-      <div class="lav-shipping__text">
+      <div class="lavd-shipping__text">
         Most orders are dispatched within 1-2 business days. However, during peak times or due to supply issues, there might be delays. For urgent needs, specify your required date in the customer comment box at checkout, and we'll inform you promptly of any potential delays. Delivery times vary based on your location. For faster delivery, you can select Second Day or Next Day shipping in your cart, ensuring same-day dispatch for in-stock items and delivery within 1 or 2 days, respectively.
       </div>
 
-      <div class="lav-shipping__subtitle">Select a Warehouse Tab Below to View Estimated Delivery Times to <br/>  Your Area on the Map</div>
+      <div class="lavd-shipping__subtitle">Select a Warehouse Tab Below to View Estimated Delivery Times to <br/>  Your Area on the Map</div>
 
-      <div class="lav-tabs">
-        <div class="lav-tabs__header">
-          <div class="lav-tabs__item active" data-tab="tab1">Connecticut (CT)</div>
-          <div class="lav-tabs__item" data-tab="tab2">Florida (FL)</div>
-          <div class="lav-tabs__item" data-tab="tab3">Tennessee (TN)</div>
+      <div class="lavd-tabs">
+        <div class="lavd-tabs__header">
+          <div class="lavd-tabs__item active" data-tab="tab1">Connecticut (CT)</div>
+          <div class="lavd-tabs__item" data-tab="tab2">Florida (FL)</div>
+          <div class="lavd-tabs__item" data-tab="tab3">Tennessee (TN)</div>
         </div>
 
-        <div class="lav-tabs__content">
-          <div class="lav-tabs__pane active" data-tab="tab1">
+        <div class="lavd-tabs__content">
+          <div class="lavd-tabs__pane active" data-tab="tab1">
             <img src="${config.dir}/img/map1.png" alt="Connecticut (CT)" />
           </div>
-          <div class="lav-tabs__pane" data-tab="tab2">
+          <div class="lavd-tabs__pane" data-tab="tab2">
             <img src="${config.dir}/img/map2.png" alt="Florida (FL)" />
           </div>
-          <div class="lav-tabs__pane" data-tab="tab3">
+          <div class="lavd-tabs__pane" data-tab="tab3">
             <img src="${config.dir}/img/map3.png" alt="Tennessee (TN)" />
           </div>
         </div>
       </div>
 
-      <div class='lav-ground'>
-        <div class="lav-shipping__subtitle lav-ground__subtitle">When will your FedEx Ground shipment be scheduled for delivery? </div>
+      <div class='lavd-ground'>
+        <div class="lavd-shipping__subtitle lavd-ground__subtitle">When will your FedEx Ground shipment be scheduled for delivery? </div>
 
-        <div class="lav-ground__list">
-          <div class="lav-ground__item">1 Day</div>
-          <div class="lav-ground__item">2 Days</div>
-          <div class="lav-ground__item">3 Days</div>
-          <div class="lav-ground__item">4 Days</div>
-          <div class="lav-ground__item">5 Days</div>
-          <div class="lav-ground__item">6 Days</div>
-          <div class="lav-ground__item">7+ Days</div>
+        <div class="lavd-ground__list">
+          <div class="lavd-ground__item">1 Day</div>
+          <div class="lavd-ground__item">2 Days</div>
+          <div class="lavd-ground__item">3 Days</div>
+          <div class="lavd-ground__item">4 Days</div>
+          <div class="lavd-ground__item">5 Days</div>
+          <div class="lavd-ground__item">6 Days</div>
+          <div class="lavd-ground__item">7+ Days</div>
         </div>
       </div>
 
-      <div class='lav-shipping__faq'>
-        <div class="lav-faq__title">Frequently Asked Questions (F.A.Q)</div>
+      <div class='lavd-shipping__faq'>
+        <div class="lavd-faq__title">Frequently Asked Questions (F.A.Q)</div>
 
-        <div class="lav-faq__list">
-          <div class="lav-faq__item active">
-            <div class="lav-faq__question">How are shipping charges calculated?</div>
-            <div class="lav-faq__answer">Shipping charges are based on dimensions, weight, freight class, and destination zip code. Our system finds the lowest rates by comparing multiple freight carriers, including our volume discounts.</div>
+        <div class="lavd-faq__list">
+          <div class="lavd-faq__item active">
+            <div class="lavd-faq__question">How are shipping charges calculated?</div>
+            <div class="lavd-faq__answer">Shipping charges are based on dimensions, weight, freight class, and destination zip code. Our system finds the lowest rates by comparing multiple freight carriers, including our volume discounts.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">Is there an option for free shipping?</div>
-            <div class="lav-faq__answer">Yes, we offer free freight on select items, which is applicable only within the 48 continental states and includes basic delivery charges.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">Is there an option for free shipping?</div>
+            <div class="lavd-faq__answer">Yes, we offer free freight on select items, which is applicable only within the 48 continental states and includes basic delivery charges.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">What does standard delivery include?</div>
-            <div class="lav-faq__answer">Standard shipments are curbside deliveries, meaning the driver will bring the equipment to the nearest entrance of your property. Liftgate services for lowering items from the truck are available at an additional cost.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">What does standard delivery include?</div>
+            <div class="lavd-faq__answer">Standard shipments are curbside deliveries, meaning the driver will bring the equipment to the nearest entrance of your property. Liftgate services for lowering items from the truck are available at an additional cost.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">What are the options and conditions for expedited shipping?</div>
-            <div class="lav-faq__answer">We offer 2nd Day AM Delivery and Priority Overnight Delivery. Orders must be placed before 1PM EST from Monday to Friday for timely delivery. The delivery times and conditions vary based on the destination and type of service.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">What are the options and conditions for expedited shipping?</div>
+            <div class="lavd-faq__answer">We offer 2nd Day AM Delivery and Priority Overnight Delivery. Orders must be placed before 1PM EST from Monday to Friday for timely delivery. The delivery times and conditions vary based on the destination and type of service.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">Can I pick up my order locally?</div>
-            <div class="lav-faq__answer">Local pickup is available near our distribution centers. We'll notify you when your order is ready. Pickup times are between 9:00 am - 5:00 pm, Monday to Friday.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">Can I pick up my order locally?</div>
+            <div class="lavd-faq__answer">Local pickup is available near our distribution centers. We'll notify you when your order is ready. Pickup times are between 9:00 am - 5:00 pm, Monday to Friday.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">Are there any special considerations for residential customers?</div>
-            <div class="lav-faq__answer">Yes, additional charges apply for liftgate service and deliveries to residential or limited access areas. It's important to correctly identify your shipping address during checkout. Also, note that installing commercial equipment in homes may void warranties and not meet residential expectations.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">Are there any special considerations for residential customers?</div>
+            <div class="lavd-faq__answer">Yes, additional charges apply for liftgate service and deliveries to residential or limited access areas. It's important to correctly identify your shipping address during checkout. Also, note that installing commercial equipment in homes may void warranties and not meet residential expectations.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">What should I do upon receiving my order?</div>
-            <div class="lav-faq__answer">Inspect your order upon delivery. Note any damages or missing items on the delivery receipt and report them to our Customer Service immediately at Toll-Free 1-855-838-1010.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">What should I do upon receiving my order?</div>
+            <div class="lavd-faq__answer">Inspect your order upon delivery. Note any damages or missing items on the delivery receipt and report them to our Customer Service immediately at Toll-Free 1-855-838-1010.</div>
           </div>
 
-          <div class="lav-faq__item">
-            <div class="lav-faq__question">What are the policies on refused shipments and cancelled orders?</div>
-            <div class="lav-faq__answer">You will be responsible for roundtrip freight charges and restocking fees for refused shipments, except in cases of damage or our shipping error. Cancellation fees also apply once an order has shipped.</div>
+          <div class="lavd-faq__item">
+            <div class="lavd-faq__question">What are the policies on refused shipments and cancelled orders?</div>
+            <div class="lavd-faq__answer">You will be responsible for roundtrip freight charges and restocking fees for refused shipments, except in cases of damage or our shipping error. Cancellation fees also apply once an order has shipped.</div>
           </div>
         </div>
       </div>
 
-      <div class="lav-shipping__text">
+      <div class="lavd-shipping__text">
         For more details on our shipping and delivery policies, including information on international shipping, processing times, and damage policies, please <a href='https://www.restaurantsupply.com/terms-and-conditions/shipping-and-delivery'>click here to read the full text</a>. Our goal is to ensure that your experience with us is efficient, clear, and satisfactory.
       </div>
 
-      <div class='lav-shipping__text lav-shipping__text_bold'>
+      <div class='lavd-shipping__text lavd-shipping__text_bold'>
         If you have any further questions or need assistance, feel free to contact our Customer Service Team at: Toll Free 1-855-838-1010
       </div>
     </div>
   `
 
-    new Modal('lav-shipping', modalHtml)
+    new Modal('lavd-shipping', modalHtml)
 
-    visibilityEvent('.lav-shipping', () => {
+    visibilityEvent('.lavd-shipping', () => {
       pushDataLayer(
         'exp_shipping_info_popup_section_03',
         'Section',
@@ -1128,7 +1128,7 @@
       )
     })
 
-    for (const tab of $$('.lav-tabs__item')) {
+    for (const tab of $$('.lavd-tabs__item')) {
       tab.addEventListener('click', function () {
         pushDataLayer(
           'exp_shipping_info_popup_button_02',
@@ -1139,33 +1139,33 @@
 
         if (this.classList.contains('active')) return
 
-        $('.lav-tabs__item.active').classList.remove('active')
+        $('.lavd-tabs__item.active').classList.remove('active')
         this.classList.add('active')
 
         const tabName = this.dataset.tab
-        $('.lav-tabs__pane.active').classList.remove('active')
-        $(`.lav-tabs__pane[data-tab="${tabName}"]`).classList.add('active')
+        $('.lavd-tabs__pane.active').classList.remove('active')
+        $(`.lavd-tabs__pane[data-tab="${tabName}"]`).classList.add('active')
       })
     }
 
-    for (const item of $$('.lav-faq__item')) {
+    for (const item of $$('.lavd-faq__item')) {
       item.addEventListener('click', function () {
         pushDataLayer(
           'exp_shipping_info_popup_accordion_01',
-          `${item.querySelector('.lav-faq__question').innerText} - F.A.Q`,
+          `${item.querySelector('.lavd-faq__question').innerText} - F.A.Q`,
           'Accordion',
           'Popup. Shipping and Delivery. Frequently Asked Questions'
         )
         if (this.classList.contains('active')) {
           this.classList.remove('active')
         } else {
-          $('.lav-faq__item.active')?.classList.remove('active')
+          $('.lavd-faq__item.active')?.classList.remove('active')
           this.classList.add('active')
         }
       })
     }
 
-    // Modal.open('.lav-shipping');
+    // Modal.open('.lavd-shipping');
   }
 
   // *** Utils *** //
