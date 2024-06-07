@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/restaurantsupply/delivery',
     dir: 'https://flopsi69.github.io/crs/restaurantsupply/delivery',
-    clarity: ['set', 'exp_shipping_info', 'variant_1'],
+    // clarity: ['set', 'exp_shipping_info', 'variant_1'],
     debug: false
   }
 
@@ -1391,16 +1391,12 @@
 
   // *** Exp BG process *** //
 
-  //Clarity
-  if (
-    !config.debug &&
-    Array.isArray(config.clarity) &&
-    config.clarity.length === 3
-  ) {
+  //Hotjar
+  if (!config.debug) {
     waitFor(
-      () => typeof clarity == 'function',
+      () => typeof hj == 'function',
       () => {
-        clarity(...config.clarity)
+        hj('event', 'exp_shipping_info')
       }
     )
   }
