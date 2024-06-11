@@ -673,6 +673,8 @@
     await waitFor(() => document.head && document.body, false, { ms: 50 })
     console.debug('** InitExp **')
 
+    addHeaderLink()
+
     if (
       location.href.includes('checkout/cart') ||
       ($('.catalog-product-view') && !$('.cart-empty'))
@@ -685,8 +687,6 @@
     if (location.href.includes('checkout/cart')) {
       waitFor(() => $('.cart-container>.cart-summary'), initFAQ)
     } else if ($('.catalog-product-view') && !$('.cart-empty')) {
-      addHeaderLink()
-
       waitFor('.product-shipping-time.stock-status-logic', handleShipping)
 
       waitFor(
@@ -756,6 +756,24 @@
     }
 
     if (window.innerWidth < 768) {
+      initMutation('.product-view-left', (el) => {
+        if (
+          el.classList.contains('stock-status-logic') &&
+          window.innerWidth < 768
+        ) {
+          $('.product-view-left').insertAdjacentElement(
+            'afterend',
+            $('.product-shipping-time.stock-status-logic')
+          )
+
+          if ($('.product-shipping-time:not(.stock-status-logic)')) {
+            $(
+              '.product-shipping-time.stock-status-logic'
+            ).insertAdjacentElement('afterend', $('.product-shipping-time'))
+          }
+        }
+      })
+
       $('.product-view-left').insertAdjacentElement(
         'afterend',
         $('.product-shipping-time.stock-status-logic')
