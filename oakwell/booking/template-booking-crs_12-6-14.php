@@ -138,8 +138,7 @@
   // $categories = array_unique(array_column($types, 'category'));
 ?>
 
-<!-- <?php echo '<pre>'; print_r($addons); echo '</pre>'; ?> -->
-
+<!-- TODO: remove ** Form for experiment -->
 <script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
 <script>
   let observer = new MutationObserver((mutations, observer) => {
@@ -414,125 +413,18 @@
   .back {
     display: inline-flex;
     align-content: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     transition: 0.3s;
-    color: #0C5947;
-    font-size: 13px;
+    color: #000;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 120%;
-    letter-spacing: 0.91px;
-    text-transform: uppercase;
-    margin-top: 16px;
-    padding: 12px 16px;
-    border-radius: 24px;
-    background: #DDF2D0;
-  }
-  .back:not(.active) {
-    display: none;
-  }
-  .back.active + .steps {
-    margin-top: 12px;
+    line-height: 1;
   }
   @media(hover:hover) {
     .back:hover {
       opacity: 0.6;
     }
-  }
-
-  /* New Progress */
-  .progress2 {
-    display: flex;
-    background: #fff;
-    height: 70px;
-    border-radius: 10000px;
-    border: 1px solid #DBE7D7;
-    background: #FFF;
-    color: #5F6959;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 140%; 
-    margin-bottom: 32px;
-    overflow: hidden;
-  }
-  .progress2-step {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    transition: .3s;
-    padding: 0 12px;
-    flex-flow: column;
-    gap: 3px;
-    min-width: 0;
-  }
-  .progress2-step:first-child {
-    padding-left: 24px;
-  }
-  .progress2-step:last-child {
-    padding-right: 24px;
-  }
-  .progress2-step.active {
-    background: #0C5947;
-  }
-  .progress2-step.pass {
-    align-items: flex-start;
-  }
-  .progress2-step + .progress2-step {
-    border-left: 1px solid #DBE7D7;
-  }
-  .progress2-step__title {
-    position: relative;
-    padding-left: 27px;
-    transition: .3s;
-  }
-  .progress2-step__title:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    border: 1px solid #5F6959;
-  }
-  .progress2-step.active .progress2-step__title {
-    color: #DDF2D0;
-    font-weight: 500;
-  }
-  .progress2-step.pass .progress2-step__title {
-    color: #0C5947;
-  }
-  .progress2-step.active .progress2-step__title:before {
-    border-color:#DDF2D0;
-  }
-  .progress2-step.pass .progress2-step__title:before {
-    background: #0d5947 url('https://flopsi69.github.io/crs/oakwell/booking/img/check.svg') center no-repeat;
-    background-size: cover;
-    border-color: transparent;
-  }
-  .progress2-step__caption {
-    transition: .3s;
-    color: #5F6959;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.2; 
-    padding-left: 27px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
-  .progress2-step__divider {
-    height: 70px;
-    margin-top: -1px;
-  }
-
-  .progress2-step:not(.pass) .progress2-step__caption {
-    display: none;
   }
 
   /* Progress */
@@ -542,8 +434,7 @@
     gap: 15px;
     text-align: center;
     justify-content: space-between;
-
-    display: none;
+    margin-top: 24px;
   }
   .progress-line {
     position: absolute;
@@ -638,6 +529,7 @@
   .logs {
     display: grid;
     gap: 12px;
+    margin-top: 16px;
   }
   .logs:not(.active) {
     display: none;
@@ -645,7 +537,7 @@
   .logs-step {
     position: relative;
     padding: 14px 24px 14px 46px;
-    border-radius: 100px;
+    border-radius: 32px;
     border: 1px solid rgba(185, 209, 177, 0.50);
     background: #fff;
   }
@@ -669,16 +561,18 @@
   }
   .logs-step__title-value {
     color: #024F3D;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.84px;
+    text-transform: uppercase;
   }
   .logs-step__action {
     color: #0C5947;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 14px;
-    letter-spacing: 0.7px;
+    line-height: 16px;
+    letter-spacing: 0.84px;
     border-bottom: 1px solid #0C5947;
     text-transform: uppercase;
     cursor: pointer;
@@ -694,8 +588,8 @@
     color: #5F6959;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px; 
-    margin-top: 4px;
+    line-height: 22px; 
+    margin-top: 6px;
   }
   .logs_disabled .logs-step__action {
     display: none!important;
@@ -728,9 +622,10 @@
   .steps {
     display: grid;
     gap: 24px;
+    margin-top: 24px;
   }
   .step:not(.active) {
-    /* display: none; */
+    display: none;
   }
   .steps-container {
     max-width: 1120px;
@@ -1650,23 +1545,12 @@
     gap: 8px;
   }
   .tickers-item {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 6px;
     border-radius: 18px;
     border: 1px solid #ECE2D8;
-  }
-  .tickers-item:before {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: -8px;
-    width: 18px;
-    height: 14px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/quote.svg') center no-repeat;
-    background-size: contain;
   }
   .tickers-item__image {
     width: 40px;
@@ -1711,12 +1595,6 @@
     .tickers-item {
       padding: 12px;
       border-radius: 32px;
-    }
-    .tickers-item:before {
-      right: 19px;
-      top: -12px;
-      width: 28px;
-      height: 22px;
     }
     .tickers-item__title {
       color: #9B9C9F;
@@ -1934,6 +1812,14 @@
 
 <div class="b-booking-def-cont">
   <div class="container steps-container">
+    <!-- Back -->
+    <div class="back ff-lato">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M9.99953 13.78C9.87286 13.78 9.7462 13.7333 9.6462 13.6333L5.29953 9.28668C4.59286 8.58001 4.59286 7.42001 5.29953 6.71335L9.6462 2.36668C9.83953 2.17335 10.1595 2.17335 10.3529 2.36668C10.5462 2.56001 10.5462 2.88001 10.3529 3.07335L6.0062 7.42001C5.6862 7.74001 5.6862 8.26001 6.0062 8.58001L10.3529 12.9267C10.5462 13.12 10.5462 13.44 10.3529 13.6333C10.2529 13.7267 10.1262 13.78 9.99953 13.78Z" fill="black"/>
+      </svg>
+      Back
+    </div>
+
     <!-- Progress for steps -->
     <div class="progress ff-lato">
       <div class="progress-line">
@@ -1973,73 +1859,14 @@
         </div>
       </div>
     </div>
-
-    <!-- New Progress -->
-    <div class="progress2 ff-lato">
-      <div class="progress2-step pass" data-progress2-step='1'>
-        <div class="progress2-step__title">Services</div>
-        <div class="progress2-step__caption">Date Night Package</div>
-      </div>
-
-      <svg class="progress2-step__divider" xmlns="http://www.w3.org/2000/svg" width="18" height="71" viewBox="0 0 18 71" fill="none">
-      <path d="M1 0.383788L15.4535 30.1409C17.0613 33.4513 17.0613 37.3163 15.4535 40.6266L1 70.3838" stroke="#DBE7D7"/>
-      </svg>
-
-      <div class="progress2-step active" data-progress2-step='2'>
-        <div class="progress2-step__title">Package</div>
-        <div class="progress2-step__caption"></div>
-      </div>
-
-      <svg class="progress2-step__divider" xmlns="http://www.w3.org/2000/svg" width="18" height="71" viewBox="0 0 18 71" fill="none">
-      <path d="M1 0.383788L15.4535 30.1409C17.0613 33.4513 17.0613 37.3163 15.4535 40.6266L1 70.3838" stroke="#DBE7D7"/>
-      </svg>
-
-      <div class="progress2-step" data-progress2-step='3'>
-        <div class="progress2-step__title">Additional Services</div>
-        <div class="progress2-step__caption"></div>
-      </div>
-
-      <svg class="progress2-step__divider" xmlns="http://www.w3.org/2000/svg" width="18" height="71" viewBox="0 0 18 71" fill="none">
-      <path d="M1 0.383788L15.4535 30.1409C17.0613 33.4513 17.0613 37.3163 15.4535 40.6266L1 70.3838" stroke="#DBE7D7"/>
-      </svg>
-
-      <div class="progress2-step" data-progress2-step='4'>
-        <div class="progress2-step__title">Date and Time</div>
-        <div class="progress2-step__caption"></div>
-      </div>
-
-      <svg class="progress2-step__divider" xmlns="http://www.w3.org/2000/svg" width="18" height="71" viewBox="0 0 18 71" fill="none">
-      <path d="M1 0.383788L15.4535 30.1409C17.0613 33.4513 17.0613 37.3163 15.4535 40.6266L1 70.3838" stroke="#DBE7D7"/>
-      </svg>
-
-      <div class="progress2-step" data-progress2-step='5'>
-        <div class="progress2-step__title">Contact information</div>
-        <div class="progress2-step__caption"></div>
-      </div>
-    </div>
     
     <!-- Logs for completed steps -->
     <div class="logs ff-lato"></div>
 
-        <!-- Back -->
-    <div class="back ff-dm-sans">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <g clip-path="url(#clip0_2012_1639)">
-          <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-        </g>
-        <defs>
-          <clipPath id="clip0_2012_1639">
-            <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-          </clipPath>
-        </defs>
-      </svg>
-      previous step
-    </div>
-
     <!-- Steps -->
     <div class="steps ff-lato">
       <!-- Services -->
-      <div class="step services" data-title="Service">
+      <div class="step services" data-title="service">
         <!-- Title -->
         <div class="services-title booking-title">Choose a Service</div>
 
@@ -2109,7 +1936,7 @@
       </div>
 
       <!-- Packages -->
-      <div class="step packages" data-title="Package">
+      <div class="step packages" data-title="package">
         <!-- Title -->
         <div class="packages-title booking-title">Choose a package</div>
 
@@ -2172,7 +1999,7 @@
       </div> 
 
       <!-- Addons -->
-      <div class="step addons" data-title="Additional services">
+      <div class="step addons" data-title="additional services">
         <!-- Title -->
         <div class="addons-title booking-title">Add to your appointment</div>
 
@@ -2235,7 +2062,7 @@
       <!-- ?php print_R($curlResponse); ? -->
 	  
       <!-- Dates -->
-      <div class="step picker" data-title='Date and time of visit'>
+      <div class="step picker" data-title='date and time of visit'>
         <!-- Title -->
         <div class="picker-title booking-title">Pick a date and time</div>
 
@@ -2319,7 +2146,7 @@
       </div>
 
       <!-- Summary -->
-      <div class="step summary" data-title='Contact information'>
+      <div class="step summary" data-title='contact information'>
         <!-- Title -->
         <div class="summary-title booking-title">Booking summary</div>
 
@@ -3530,13 +3357,8 @@
 
       this.buildLogsMarkup()
 
-      if (this.currentStep === 0) {
-        document.querySelector('.back').classList.remove('active')
-      } else {
-        document.querySelector('.back').classList.add('active')
-      }
-
       for (const tickerEl of document.querySelectorAll('.tickers')) {
+
         if ([0, 1].includes(this.currentStep)) {
           tickerEl.classList.remove('tickers_hide');
         } else {
@@ -4000,6 +3822,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class='exp-waitlist-form' style="display: none!important;background: white;width: 500px;margin: auto;">
+  <?php echo do_shortcode('[contact-form-7 id="28e2ba5" title="JoinToWaitlist CRS"]'); ?>
 </div>
 
 <?php
