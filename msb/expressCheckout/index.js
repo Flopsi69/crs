@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/msb/expressCheckout/',
   dir: 'https://flopsi69.github.io/crs/msb/expressCheckout/',
   clarity: ['set', '', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 const orig = console.log
