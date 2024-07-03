@@ -34,7 +34,7 @@
 
     if ($id == '45350327') {
       // father
-      $type['caption'] = 'Ideal for Dad';
+      $type['caption'] = 'Ideal solo or for family';
       $type['adults'] = 2;
       $type['icons'] = 1;
       $type['brief'] = ['90-minute session', 'Private spa suite', 'Beverage credit & 15-minute zero-gravity massages'];
@@ -128,8 +128,7 @@
     $decodeRes = json_decode($response, true);
     $filterRes = array_filter($decodeRes, function($resItem) {
       // return true;
-      // || $resItem['category'] === 'Test'
-      return $resItem['active'] === true && $resItem['private'] === false;
+      return $resItem['active'] === true && $resItem['private'] === false || $resItem['category'] === 'Test';
     });
 
     return $filterRes;
@@ -141,33 +140,13 @@
 <!-- <?php echo '<pre>'; print_r($addons); echo '</pre>'; ?> -->
 
 <script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
-<script>
-  let observer = new MutationObserver((mutations, observer) => {
-    for (let mutation of mutations) {
-      if (mutation.type == 'attributes' && mutation.attributeName == 'content' && mutation.target.getAttribute('name') == 'viewport' && mutation.target.getAttribute('content') !== "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"){
-        document.querySelector('[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
-      }
-    }
-  })
-
-  observer.observe(document.head, { subtree: true, attributes: true})
-</script>
 
 <style>
   /* Refactoring existing elements */
-  .modalsWrap .fathers {
-    display: none!important;
-  }
   .b-booking-def-cont {
     padding-top: 24px;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
-  }
-  body {
-    padding-bottom: 36px;
-  }
-  body.booking-result-page {
-    padding-bottom: 0;
   }
   .b-booking-def-head {
     padding: 17px 0;
@@ -182,25 +161,7 @@
   .b-booking-def-head .box .secure span {
     margin-top: 0.25rem;
   }
-  @media(max-width: 992px) {
-    .b-booking-def-footer .title a[href="mailto:hello@oakwell.com"] {
-      text-decoration: none;
-      /* border-bottom: 1px solid; */
-      display: block;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .b-booking-def-footer .title  br {
-      display: none;
-    }
-    .b-booking-def-footer .title {
-      line-height: 1.3;
-    }
-  }
   @media(min-width: 992px) {
-    body {
-      padding-bottom: 0;
-    }
     .b-booking-def-cont {
       padding-bottom: 270px;
       border-top-left-radius: 90px;
@@ -271,11 +232,6 @@
     pointer-events: none;
   }
   @media(min-width: 992px) {
-    .step > .booking-title {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
     .booking-list {
       gap: 8px;
     }
@@ -311,9 +267,6 @@
     transition: 0.3s;
     pointer-events: none;
   }
-  .book-form__group.book-form_error label {
-    color: red;
-  }
   .book-form__group label span {
     color: #E12F2F;
   }
@@ -326,9 +279,6 @@
     padding: 17px 5px 6px 0;
     font-weight: 500;
     font-size: 14px;
-  }
-  .book-form__group.book-form_error input {
-    border-color: red;
   }
   .book-focus label {
     font-size: 12px;
@@ -419,30 +369,13 @@
   .back {
     display: inline-flex;
     align-content: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     transition: 0.3s;
-    color: #0C5947;
-    font-size: 13px;
+    color: #000;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 120%;
-    letter-spacing: 0.91px;
-    text-transform: uppercase;
-    padding: 12px 16px;
-    border-radius: 24px;
-    background: #DDF2D0;
-  }
-  .back-step {
-    display: none;
-  }
-  .back-mob {
-    margin-top: 16px;
-  }
-  .back-mob:not(.active) {
-    display: none;
-  }
-  .back-mob.active + .steps {
-    margin-top: 12px;
+    line-height: 1;
   }
   @media(hover:hover) {
     .back:hover {
@@ -450,177 +383,101 @@
     }
   }
 
-  /* New Progress */
+  /* Progress */
   .progress {
-    display: none;
-    background: #fff;
-    height: 70px;
-    border-radius: 10000px;
-    border: 1px solid #DBE7D7;
-    background: #FFF;
-    color: #5F6959;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 140%; 
-    margin-bottom: 32px;
+    position: relative;
+    display: flex;
+    gap: 15px;
+    text-align: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .progress-line {
+    position: absolute;
+    left: 47px;
+    right: 47px;
+    top: 15px;
+    height: 1px;
+    background: rgba(185, 209, 177, 0.50);
+  }
+  .progress-line span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #0C5947;
+    border-radius: 2px;
+    transition: 0.3s;
   }
   .progress-step {
     position: relative;
-    display: flex;
-    justify-content: center;
+    z-index: 1;
+    max-width: 94px;
+    width: 100%;
+  }
+  .progress-step__num-wrapper {
+    padding: 0 4px;
+    background-color: #FBF6F1;
+    display: inline-flex;
+    height: 30px;
     align-items: center;
-    flex: 1;
-    padding: 0 12px;
-    flex-flow: column;
-    gap: 3px;
-    min-width: 0;
   }
-  .progress-tooltip {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    z-index: 2;
-    transform: translate(-50%, 12px);;
-    border-radius: 16px;
-    background: #FFF;
-    display: flex;
-    justify-content: center;
-    padding: 6px 8px;
-    width: 265px;
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4; 
-    background-color: #F0F0F0;
-    border: 1px solid #B9D1B1;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.16);
+  .progress-step__num {
+    border: 1px solid transparent;
     transition: 0.3s;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .progress-tooltip i {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -100%);
-    /* margin-left: -12px; */
-    width: 24px;
-    height: 12px;
-    overflow: hidden;
-  }
-  .progress-tooltip i::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    left: 50%;
-    top: 12px;
-    transform: translate(-50%,-50%) rotate(45deg);
-    background-color:  #F0F0F0;
-    border: 1px solid #B9D1B1;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.16);
-  }
-  .progress-step.pass:hover .progress-tooltip {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .progress-step:first-child {
-    padding-left: 24px;
-    border-radius: 100px 0 0 100px;
-  }
-  .progress-step:last-child {
-    padding-right: 24px;
-    border-radius: 0 100px 100px 0;
-  }
-  .progress-step.active {
-    background: #0C5947;
-    padding-left: 28px;
-  }
-  .progress-step__divider + .progress-step.active {
-    margin-left: -16px;
-  }
-  .progress-step.pass {
-    align-items: flex-start;
-    cursor: help;
-  }
-  .progress-step + .progress-step {
-    border-left: 1px solid #DBE7D7;
-  }
-  .progress-step__title {
-    position: relative;
-    padding-left: 27px;
-    transition: .3s;
-    white-space: nowrap;
-  }
-  .progress-step__title:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 17px;
-    height: 17px;
     border-radius: 50%;
-    box-sizing: border-box;
-    border: 1px solid #5F6959;
   }
-  .progress-step.active .progress-step__title {
-    color: #DDF2D0;
-    font-weight: 500;
+  .active .progress-step__num {
+    background-color: #DDF2D0;
+    border-color: #0C5947;
+    padding: 2px;
   }
-  .progress-step.pass .progress-step__title {
+  .progress-step__num span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     color: #0C5947;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #FBF6F1;
+    transition: 0.3s;
+    border: 1px solid #0C5947;
   }
-  .progress-step.active .progress-step__title:before {
-    border-color:#DDF2D0;
+  .active .progress-step__num span {
+    background-color: #0C5947;
+    color: #DDF2D0;
   }
-  .progress-step.pass .progress-step__title:before {
-    background: #0d5947 url('https://flopsi69.github.io/crs/oakwell/booking/img/check.svg') center no-repeat;
-    background-size: cover;
-    border-color: transparent;
+  .pass .progress-step__num span {
+    font-size: 0;
+    background: #0C5947 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEyIDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLjk5NjA5NCA1LjA5NTExTDQuNDI0NjcgOC4yOTUxTDExLjAwMzkgMS4yOTQ4NiIgc3Ryb2tlPSIjRERGMkQwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==') center no-repeat;
   }
   .progress-step__caption {
-    transition: .3s;
-    color: #5F6959;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.2; 
-    padding-left: 27px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  } 
-  .progress-step__divider {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    width: 17px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-trans.svg') center no-repeat;
-    background-size: cover;
+    color: #0C5947;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 4px;
   }
-  .progress-step.active + .progress-step__divider {
-    background-image: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-next.svg');
-    margin-left: -1px;
-  }
-  .progress-step__divider.pass_current {
-    background-image: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-prev.svg');
-  }
-  .progress-step:not(.pass) .progress-step__caption {
-    display: none;
-  }
-  
   @media (min-width: 992px) {
-    .progress {
-      display: flex;
+    .progress-line {
+      height: 2px;
+      top: 18px;
     }
-    .back-step {
-      display: inline-flex;
-      margin-top: -2px;
+    .progress-step__caption {
+      font-size: 16px;
+      line-height: 140%;
     }
-    .back-mob {
-      display: none;
+    .progress-step__num-wrapper {
+      padding: 0 8px;
+      height: 38px;
+    }
+    .progress-step__num span {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
     }
   }
 
@@ -628,6 +485,7 @@
   .logs {
     display: grid;
     gap: 12px;
+    margin-top: 16px;
   }
   .logs:not(.active) {
     display: none;
@@ -635,7 +493,7 @@
   .logs-step {
     position: relative;
     padding: 14px 24px 14px 46px;
-    border-radius: 60px;
+    border-radius: 32px;
     border: 1px solid rgba(185, 209, 177, 0.50);
     background: #fff;
   }
@@ -659,16 +517,18 @@
   }
   .logs-step__title-value {
     color: #024F3D;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.84px;
+    text-transform: uppercase;
   }
   .logs-step__action {
     color: #0C5947;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 14px;
-    letter-spacing: 0.7px;
+    line-height: 16px;
+    letter-spacing: 0.84px;
     border-bottom: 1px solid #0C5947;
     text-transform: uppercase;
     cursor: pointer;
@@ -684,15 +544,11 @@
     color: #5F6959;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px; 
-    margin-top: 4px;
-  }
-  .logs_disabled .logs-step__action {
-    display: none!important;
+    line-height: 22px; 
+    margin-top: 6px;
   }
   @media(min-width: 992px) {
     .logs {
-      display: none;
       margin-top: 24px;
     }
     .logs-step {
@@ -716,9 +572,16 @@
   /**
    * Steps -- Start --
   */
+
+  /* TODO remove */
+  .modalsWrap {
+    display: none;
+  }
+
   .steps {
     display: grid;
     gap: 24px;
+    margin-top: 24px;
   }
   .step:not(.active) {
     display: none;
@@ -742,7 +605,7 @@
     padding: 8px;
     border-radius: 32px 32px 0px 0px;
     background: #FFF;
-    box-shadow: 0px -8px 24px 0px rgba(12, 89, 71, 0.18);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.08);
     transform: translateY(100%);
     transition: 0.4s;
   }
@@ -750,23 +613,8 @@
     transform: translateY(0%);
   }
   @media(min-width: 992px) {
-    .steps-sticky_hide {
-      display: none!important
-    }
     .steps-sticky {
-      max-width: 1036px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .steps-sticky .booking-btn {
-      min-width: 236px;
-      width: auto;
-      padding-left: 85px;
-      padding-right: 85px;
+      display: none;
     }
   }
 
@@ -1109,18 +957,6 @@
   .picker-calendar .air-datepicker-cell.-disabled- {
     color: rgba(0,0,0,.4)!important;
   }
-  .air-datepicker-cell.-day-.-other-month- {
-    opacity: 0.5;
-  }
-  .air-datepicker-cell.-day-.-other-month-:hover {
-    opacity: 1;
-  }
-  @media(max-width: 500px) {
-    .air-datepicker-body--cells.-days- {
-      /* grid-auto-rows: 2.425rem; */
-      grid-auto-rows: 10vw;
-    }
-  }
   @media(min-width: 640px) {
     .picker-calendar .air-datepicker {
       background: #fff;
@@ -1248,9 +1084,6 @@
   .picker-plate.times-empty ~ .picker-note {
     display: none;
   }
-  .picker-calendar .air-datepicker-cell {
-    font-size: 16px;
-  }
   @media(min-width: 992px) {
     .picker-row {
       display: grid;
@@ -1291,19 +1124,6 @@
     }
     .picker-calendar .air-datepicker-nav {
       margin-right: -100%;
-      padding-right: 97%;
-    }
-    .air-datepicker-nav--action {
-      border-radius: 100px;
-      height: 2.5rem;
-      margin-top: -4px;
-    }
-    .air-datepicker-cell.-month- {
-      border-radius: 100px;
-      margin-bottom: 5px;
-    }
-    .air-datepicker-nav .air-datepicker-nav--action:last-child {
-      margin-left: 10px;
     }
     .air-datepicker-body--cells.-days- {
       grid-auto-rows: 36px;
@@ -1313,6 +1133,9 @@
       font-size: 14px;
       line-height: 140%;
       letter-spacing: 0.98px;
+    }
+    .picker-calendar .air-datepicker-cell {
+      font-size: 16px;
     }
     .picker-calendar .air-datepicker-body--day-names {
       margin-bottom: 26px;
@@ -1338,67 +1161,52 @@
 
   /* Summary */
   .summary {}
-  .summary-location {
-    margin-top: 15px;
-    font-weight: bold;
-  }
   .summary-plate {
     margin-top: 16px;
   }
   .summary-head {
-    padding: 24px 24px 12px;
+    padding: 24px 24px 16px;
+  }
+  .summary-head__title {
     color: #000;
     font-size: 22px;
     font-weight: 400;
     line-height: 140%;
   }
   .summary-table {
-    padding: 16px 24px 12px;
+    padding: 0 24px 16px;
     border-top: 1px solid #DBE7D7;
     color: #000;
     font-size: 14px;
     font-weight: 400;
     line-height: 140%;
   }
-  .summary-block__caption {
+  .summary-table__head {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 0 -24px;
+    padding: 4px 24px;
+    background: rgba(185, 209, 177, 0.25);
     color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    margin-bottom: 5px;
-  }
-  .summary-block_disable {
-    display: none;
-  }
-  .summary-block + .summary-block {
-    margin-top: 16px;
+    margin-bottom: 16px;
   }
   .summary-row {
+    margin-top: 12px;
     display: flex;
     gap: 15px;
     justify-content: space-between;
     align-items: flex-end;
-  }
-  .summary-row + .summary-row {
-    margin-top: 6px;
-  }
-  .summary-row_name {
-    font-size: 16px;
-    line-height: 1.4;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(237, 243, 235, 0.25);
   }
   .summary-row_addon:last-child {
     border-bottom: 0;
     padding-bottom: 0;
   }
   .summary-row_final {
-    font-size: 20px;
-    line-height: 1.3;
-  }
-  .summary-row_final sup {
-    /* top: -9px; */
-    font-size: 11px;
-    vertical-align: super;
-    /* position: relative; */
+    font-weight: 600;
+    border-bottom: 0!important;
   }
   .summary-row__value {
     text-align: right;
@@ -1406,17 +1214,15 @@
   }
   .summary-table__divider {
     margin: 16px -24px;
-    border-top: 1px dashed #DBE7D7;
+    border-top: 1px solid #DBE7D7;
   }
   .summary-brief {
     display: grid;
-    background: #fff;
     gap: 8px;
     color: #000;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 140%; 
-    border-top: 1px solid rgba(185, 209, 177, 0.50);
-    padding: 12px 24px;
+    margin-top: 8px;
   }
   .summary-brief__item {
     display: flex;
@@ -1431,31 +1237,14 @@
     background-size: contain;
     background-repeat: repeat-x;
   }
-  .summary-note {
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    padding: 12px 24px 24px;
-    border-bottom: 1px solid rgba(185, 209, 177, 0.50);
-  }
   .summary-form__title {
     color: #000;
     font-size: 22px;
     font-weight: 400;
     line-height: 140%;
   }
-  .summary-form__caption {
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    margin-top: 12px;
-  }
   .summary-form__inner {
-    margin: 12px -24px 0;
-    border-top: 1px solid rgba(185, 209, 177, 0.50);
-    padding: 13px 24px 0;
+    margin-top: 12px;
   }
   .summary-btn {
     margin-top: 24px;
@@ -1499,9 +1288,6 @@
     border: 1px solid #000;
     transition: 0.2s;
   }
-  .summary-checkbox__icon.book-form_error:before {
-    border-color: red;
-  }
   .summary-checkbox.active .summary-checkbox__icon:before {
     opacity: 0;
   }
@@ -1512,43 +1298,6 @@
     font-size: 14px;
     line-height: 1.4;
   } 
-  .summary.summary_result .summary-form {
-    display: none;
-  }
-  .summary.summary_result .summary-title {
-    text-align: center;
-    justify-content: center;
-  }
-  .summary.summary_result .summary-plate {
-    margin-top: 30px;
-    justify-content: center;
-    background: none;
-    border: none;
-  }
-  .summary.summary_result .summary-info {
-    border: none;
-    box-shadow: none;
-  }
-  .summary.summary_result .summary-table {
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-    background: #fff;
-  }
-  .summary.summary_result .summary-divider {
-    margin-top: -7px;
-    background-repeat: no-repeat;
-  }
-  .summary.summary_result .summary-head {
-    background: #fff;
-    border-radius: 32px 32px 0 0;
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-    box-shadow: 0px 2px 0px 0px #0C5947 inset;
-  }
-  .summary.summary_result .summary-brief {
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-  }
   @media(min-width: 992px) {
     .summary-plate {
       display: flex;
@@ -1563,10 +1312,6 @@
       margin-top: -7px;
       background-repeat: no-repeat;
     }
-    .summary-brief {
-      border-left: 1px solid #B9D1B1;
-      border-right: 1px solid #B9D1B1;
-    }
     .summary-head {
       padding-left: 36px;
       padding-right: 36px;
@@ -1576,29 +1321,21 @@
       box-shadow: 0px 2px 0px 0px #0C5947 inset;
       border-radius: 4px 32px 0 0;
     }
-    .summary-form__inner {
+    .summary-table__head {
       padding-left: 36px;
       padding-right: 36px;
       margin-left: -36px;
       margin-right: -36px;
     }
-    .summary-form__caption {
-      margin-top: 8px;
-    }
-    .summary-table__divider {
-      margin-left: -36px;
-      margin-right: -36px;
-    }
     .summary-table {
-      padding: 16px 36px;
+      padding: 0 36px 16px;
       background: #fff;
       border-left: 1px solid #B9D1B1;
       border-right: 1px solid #B9D1B1;
     }
-    .summary-note {
-      padding: 0;
-      border: none;
-      margin-top: 16px;
+    .summary-table__divider {
+      margin-left: -36px;
+      margin-right: -36px;
     }
     .summary-form {
       order: -1;
@@ -1614,15 +1351,19 @@
     .summary-info {
       border-radius: 4px 32px 4px 4px;
       overflow: hidden;
-      max-width: 460px;
+      max-width: 390px;
       flex-grow: 1;
       flex-shrink: 0;
       border-bottom: 0;
       box-shadow: 0px 2px 0px 0px #0C5947 inset;
     }
+    .summary-row {
+      border-bottom: 1px solid rgba(185, 209, 177, 0.25);
+      font-size: 16px;
+      margin-top: 16px;
+    }
     .summary-row_final {
-      font-size: 22px;
-      /* line-height: 24px; */
+      line-height: 24px;
     }
   }
 
@@ -1716,23 +1457,12 @@
     gap: 8px;
   }
   .tickers-item {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 6px;
     border-radius: 18px;
     border: 1px solid #ECE2D8;
-  }
-  .tickers-item:before {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: -8px;
-    width: 18px;
-    height: 14px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/quote.svg') center no-repeat;
-    background-size: contain;
   }
   .tickers-item__image {
     width: 40px;
@@ -1777,12 +1507,6 @@
     .tickers-item {
       padding: 12px;
       border-radius: 32px;
-    }
-    .tickers-item:before {
-      right: 19px;
-      top: -12px;
-      width: 28px;
-      height: 22px;
     }
     .tickers-item__title {
       color: #9B9C9F;
@@ -2000,72 +1724,63 @@
 
 <div class="b-booking-def-cont">
   <div class="container steps-container">
-    <!-- New Progress for steps -->
+    <!-- Back -->
+    <div class="back ff-lato">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M9.99953 13.78C9.87286 13.78 9.7462 13.7333 9.6462 13.6333L5.29953 9.28668C4.59286 8.58001 4.59286 7.42001 5.29953 6.71335L9.6462 2.36668C9.83953 2.17335 10.1595 2.17335 10.3529 2.36668C10.5462 2.56001 10.5462 2.88001 10.3529 3.07335L6.0062 7.42001C5.6862 7.74001 5.6862 8.26001 6.0062 8.58001L10.3529 12.9267C10.5462 13.12 10.5462 13.44 10.3529 13.6333C10.2529 13.7267 10.1262 13.78 9.99953 13.78Z" fill="black"/>
+      </svg>
+      Back
+    </div>
+
+    <!-- Progress for steps -->
     <div class="progress ff-lato">
-      <div class="progress-step" data-progress-step='0'>
-        <div class="progress-step__title">Service</div>
-        <div class="progress-step__caption">Date Night Package</div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+      <div class="progress-line">
+        <span style='width: 0%;'></span>
       </div>
 
-      <div class="progress-step__divider"></div>
-
-
-      <div class="progress-step" data-progress-step='1'>
-        <div class="progress-step__title">Package</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+      <div class="progress-step active" data-progress-step='1'>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>1</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Choose Appointment
+        </div>
       </div>
-
-      <div class="progress-step__divider"></div>
 
       <div class="progress-step" data-progress-step='2'>
-        <div class="progress-step__title">Additional Services</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>2</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Your Info
+        </div>
       </div>
-
-      <div class="progress-step__divider"></div>
 
       <div class="progress-step" data-progress-step='3'>
-        <div class="progress-step__title">Date and Time</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
-      </div>
-
-      <div class="progress-step__divider"></div>
-
-      <div class="progress-step" data-progress-step='4'>
-        <div class="progress-step__title">Contact information</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>3</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Confirmation
+        </div>
       </div>
     </div>
     
     <!-- Logs for completed steps -->
     <div class="logs ff-lato"></div>
 
-    <!-- Back -->
-    <div class="back-mob back ff-dm-sans">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <g clip-path="url(#clip0_2012_1639)">
-          <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-        </g>
-        <defs>
-          <clipPath id="clip0_2012_1639">
-            <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-          </clipPath>
-        </defs>
-      </svg>
-      previous step
-    </div>
-
     <!-- Steps -->
     <div class="steps ff-lato">
       <!-- Services -->
-      <div class="step services" data-title="Service">
+      <div class="step services" data-title="services">
         <!-- Title -->
-        <div class="services-title booking-title"><span>Choose a Service</span></div>
+        <div class="services-title booking-title">Choose a Service</div>
 
         <!-- List -->
         <div class="services-list">
@@ -2133,24 +1848,9 @@
       </div>
 
       <!-- Packages -->
-      <div class="step packages" data-title="Package">
+      <div class="step packages" data-title="package">
         <!-- Title -->
-        <div class="packages-title booking-title">
-          <span>Choose a package</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="packages-title booking-title">Choose a packages</div>
 
         <!-- List -->
         <div class="packages-list">
@@ -2211,24 +1911,9 @@
       </div> 
 
       <!-- Addons -->
-      <div class="step addons" data-title="Additional services">
+      <div class="step addons" data-title="additional services">
         <!-- Title -->
-        <div class="addons-title booking-title">
-          <span>Add to your appointment</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="addons-title booking-title">Add to your appointment</div>
 
         <!-- List -->
         <div class="addons-list">
@@ -2289,24 +1974,9 @@
       <!-- ?php print_R($curlResponse); ? -->
 	  
       <!-- Dates -->
-      <div class="step picker" data-title='Date and time of visit'>
+      <div class="step picker" data-title='date and time of visit'>
         <!-- Title -->
-        <div class="picker-title booking-title">
-          <span>Pick a date and time</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="picker-title booking-title">Pick a date and time</div>
 
         <!-- Row -->
         <div class="picker-row">
@@ -2388,105 +2058,88 @@
       </div>
 
       <!-- Summary -->
-      <div class="step summary" data-title='Contact information'>
+      <div class="step summary" data-title='contact information'>
         <!-- Title -->
-        <div class="summary-title booking-title">
-          <span>Booking summary</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="summary-title booking-title">Booking summary</div>
 
         <!-- Plate -->
         <div class="plate summary-plate">
           <!-- Info -->
           <div class="summary-info">
-            <!-- Title -->
             <div class="summary-head">
-              Order Summary
-            </div>
+              <!-- Title -->
+              <div class="summary-head__title set-category"></div>
 
-            <!-- Brief summary -->
-            <div class="summary-brief">
-              <div class="summary-brief__item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M13.9584 2.96675V1.66675C13.9584 1.32508 13.6751 1.04175 13.3334 1.04175C12.9918 1.04175 12.7084 1.32508 12.7084 1.66675V2.91675H7.29178V1.66675C7.29178 1.32508 7.00844 1.04175 6.66678 1.04175C6.32511 1.04175 6.04178 1.32508 6.04178 1.66675V2.96675C3.79178 3.17508 2.70011 4.51675 2.53344 6.50841C2.51678 6.75008 2.71678 6.95008 2.95011 6.95008H17.0501C17.2918 6.95008 17.4918 6.74175 17.4668 6.50841C17.3001 4.51675 16.2084 3.17508 13.9584 2.96675Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M16.6667 8.2002H3.33333C2.875 8.2002 2.5 8.5752 2.5 9.03353V14.1669C2.5 16.6669 3.75 18.3335 6.66667 18.3335H13.3333C16.25 18.3335 17.5 16.6669 17.5 14.1669V9.03353C17.5 8.5752 17.125 8.2002 16.6667 8.2002ZM7.675 15.1752C7.63333 15.2085 7.59167 15.2502 7.55 15.2752C7.5 15.3085 7.45 15.3335 7.4 15.3502C7.35 15.3752 7.3 15.3919 7.25 15.4002C7.19167 15.4085 7.14167 15.4169 7.08333 15.4169C6.975 15.4169 6.86667 15.3919 6.76667 15.3502C6.65833 15.3085 6.575 15.2502 6.49167 15.1752C6.34167 15.0169 6.25 14.8002 6.25 14.5835C6.25 14.3669 6.34167 14.1502 6.49167 13.9919C6.575 13.9169 6.65833 13.8585 6.76667 13.8169C6.91667 13.7502 7.08333 13.7335 7.25 13.7669C7.3 13.7752 7.35 13.7919 7.4 13.8169C7.45 13.8335 7.5 13.8585 7.55 13.8919C7.59167 13.9252 7.63333 13.9585 7.675 13.9919C7.825 14.1502 7.91667 14.3669 7.91667 14.5835C7.91667 14.8002 7.825 15.0169 7.675 15.1752ZM7.675 12.2585C7.51667 12.4085 7.3 12.5002 7.08333 12.5002C6.86667 12.5002 6.65 12.4085 6.49167 12.2585C6.34167 12.1002 6.25 11.8835 6.25 11.6669C6.25 11.4502 6.34167 11.2335 6.49167 11.0752C6.725 10.8419 7.09167 10.7669 7.4 10.9002C7.50833 10.9419 7.6 11.0002 7.675 11.0752C7.825 11.2335 7.91667 11.4502 7.91667 11.6669C7.91667 11.8835 7.825 12.1002 7.675 12.2585ZM10.5917 15.1752C10.4333 15.3252 10.2167 15.4169 10 15.4169C9.78333 15.4169 9.56667 15.3252 9.40833 15.1752C9.25833 15.0169 9.16667 14.8002 9.16667 14.5835C9.16667 14.3669 9.25833 14.1502 9.40833 13.9919C9.71667 13.6835 10.2833 13.6835 10.5917 13.9919C10.7417 14.1502 10.8333 14.3669 10.8333 14.5835C10.8333 14.8002 10.7417 15.0169 10.5917 15.1752ZM10.5917 12.2585C10.55 12.2919 10.5083 12.3252 10.4667 12.3585C10.4167 12.3919 10.3667 12.4169 10.3167 12.4335C10.2667 12.4585 10.2167 12.4752 10.1667 12.4835C10.1083 12.4919 10.0583 12.5002 10 12.5002C9.78333 12.5002 9.56667 12.4085 9.40833 12.2585C9.25833 12.1002 9.16667 11.8835 9.16667 11.6669C9.16667 11.4502 9.25833 11.2335 9.40833 11.0752C9.48333 11.0002 9.575 10.9419 9.68333 10.9002C9.99167 10.7669 10.3583 10.8419 10.5917 11.0752C10.7417 11.2335 10.8333 11.4502 10.8333 11.6669C10.8333 11.8835 10.7417 12.1002 10.5917 12.2585ZM13.5083 15.1752C13.35 15.3252 13.1333 15.4169 12.9167 15.4169C12.7 15.4169 12.4833 15.3252 12.325 15.1752C12.175 15.0169 12.0833 14.8002 12.0833 14.5835C12.0833 14.3669 12.175 14.1502 12.325 13.9919C12.6333 13.6835 13.2 13.6835 13.5083 13.9919C13.6583 14.1502 13.75 14.3669 13.75 14.5835C13.75 14.8002 13.6583 15.0169 13.5083 15.1752ZM13.5083 12.2585C13.4667 12.2919 13.425 12.3252 13.3833 12.3585C13.3333 12.3919 13.2833 12.4169 13.2333 12.4335C13.1833 12.4585 13.1333 12.4752 13.0833 12.4835C13.025 12.4919 12.9667 12.5002 12.9167 12.5002C12.7 12.5002 12.4833 12.4085 12.325 12.2585C12.175 12.1002 12.0833 11.8835 12.0833 11.6669C12.0833 11.4502 12.175 11.2335 12.325 11.0752C12.4083 11.0002 12.4917 10.9419 12.6 10.9002C12.75 10.8335 12.9167 10.8169 13.0833 10.8502C13.1333 10.8585 13.1833 10.8752 13.2333 10.9002C13.2833 10.9169 13.3333 10.9419 13.3833 10.9752C13.425 11.0085 13.4667 11.0419 13.5083 11.0752C13.6583 11.2335 13.75 11.4502 13.75 11.6669C13.75 11.8835 13.6583 12.1002 13.5083 12.2585Z" fill="#0C5947"/>
-                </svg>
-                <span class='set-time'>June 18, 2024, at 10:30 AM</span>
+              <!-- Brief summary -->
+              <div class="summary-brief">
+                <div class="summary-brief__item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <path d="M6.66699 5.58665C6.32533 5.58665 6.04199 5.30332 6.04199 4.96165V2.46165C6.04199 2.11999 6.32533 1.83665 6.66699 1.83665C7.00866 1.83665 7.29199 2.11999 7.29199 2.46165V4.96165C7.29199 5.30332 7.00866 5.58665 6.66699 5.58665Z" fill="#0C5947"/>
+                    <path d="M13.333 5.58665C12.9913 5.58665 12.708 5.30332 12.708 4.96165V2.46165C12.708 2.11999 12.9913 1.83665 13.333 1.83665C13.6747 1.83665 13.958 2.11999 13.958 2.46165V4.96165C13.958 5.30332 13.6747 5.58665 13.333 5.58665Z" fill="#0C5947"/>
+                    <path d="M7.08333 12.8783C6.975 12.8783 6.86667 12.8533 6.76667 12.8117C6.65833 12.77 6.575 12.7116 6.49167 12.6366C6.34167 12.4783 6.25 12.27 6.25 12.045C6.25 11.9367 6.275 11.8283 6.31667 11.7283C6.35833 11.6283 6.41667 11.5367 6.49167 11.4533C6.575 11.3783 6.65833 11.32 6.76667 11.2783C7.06667 11.1533 7.44167 11.22 7.675 11.4533C7.825 11.6117 7.91667 11.8283 7.91667 12.045C7.91667 12.095 7.90833 12.1533 7.9 12.2117C7.89167 12.2617 7.875 12.3117 7.85 12.3617C7.83333 12.4117 7.80833 12.4617 7.775 12.5117C7.75 12.5533 7.70833 12.595 7.675 12.6366C7.51667 12.7866 7.3 12.8783 7.08333 12.8783Z" fill="#0C5947"/>
+                    <path d="M10.0003 12.8783C9.89199 12.8783 9.78366 12.8533 9.68366 12.8117C9.57532 12.77 9.49199 12.7116 9.40866 12.6366C9.25866 12.4783 9.16699 12.27 9.16699 12.045C9.16699 11.9367 9.19199 11.8283 9.23366 11.7283C9.27533 11.6283 9.33366 11.5367 9.40866 11.4533C9.49199 11.3783 9.57532 11.32 9.68366 11.2783C9.98366 11.145 10.3587 11.22 10.592 11.4533C10.742 11.6117 10.8337 11.8283 10.8337 12.045C10.8337 12.095 10.8253 12.1533 10.817 12.2117C10.8087 12.2617 10.792 12.3117 10.767 12.3617C10.7503 12.4117 10.7253 12.4616 10.692 12.5116C10.667 12.5533 10.6253 12.595 10.592 12.6366C10.4337 12.7866 10.217 12.8783 10.0003 12.8783Z" fill="#0C5947"/>
+                    <path d="M12.9163 12.8783C12.808 12.8783 12.6997 12.8533 12.5997 12.8117C12.4913 12.77 12.408 12.7116 12.3247 12.6366C12.2913 12.595 12.258 12.5533 12.2247 12.5116C12.1913 12.4616 12.1663 12.4117 12.1497 12.3617C12.1247 12.3117 12.108 12.2617 12.0997 12.2117C12.0913 12.1533 12.083 12.095 12.083 12.045C12.083 11.8283 12.1747 11.6117 12.3247 11.4533C12.408 11.3783 12.4913 11.32 12.5997 11.2783C12.908 11.145 13.2747 11.22 13.508 11.4533C13.658 11.6117 13.7497 11.8283 13.7497 12.045C13.7497 12.095 13.7413 12.1533 13.733 12.2117C13.7247 12.2617 13.708 12.3117 13.683 12.3617C13.6663 12.4117 13.6413 12.4616 13.608 12.5116C13.583 12.5533 13.5413 12.595 13.508 12.6366C13.3497 12.7866 13.133 12.8783 12.9163 12.8783Z" fill="#0C5947"/>
+                    <path d="M7.08333 15.795C6.975 15.795 6.86667 15.77 6.76667 15.7283C6.66667 15.6867 6.575 15.6283 6.49167 15.5533C6.34167 15.395 6.25 15.1783 6.25 14.9617C6.25 14.8533 6.275 14.745 6.31667 14.645C6.35833 14.5367 6.41667 14.445 6.49167 14.37C6.8 14.0617 7.36667 14.0617 7.675 14.37C7.825 14.5283 7.91667 14.745 7.91667 14.9617C7.91667 15.1783 7.825 15.395 7.675 15.5533C7.51667 15.7033 7.3 15.795 7.08333 15.795Z" fill="#0C5947"/>
+                    <path d="M10.0003 15.795C9.78366 15.795 9.56699 15.7033 9.40866 15.5533C9.25866 15.395 9.16699 15.1783 9.16699 14.9617C9.16699 14.8533 9.19199 14.745 9.23366 14.645C9.27533 14.5367 9.33366 14.445 9.40866 14.37C9.71699 14.0617 10.2837 14.0617 10.592 14.37C10.667 14.445 10.7253 14.5367 10.767 14.645C10.8087 14.745 10.8337 14.8533 10.8337 14.9617C10.8337 15.1783 10.742 15.395 10.592 15.5533C10.4337 15.7033 10.217 15.795 10.0003 15.795Z" fill="#0C5947"/>
+                    <path d="M12.9163 15.795C12.6997 15.795 12.483 15.7033 12.3247 15.5533C12.2497 15.4783 12.1913 15.3867 12.1497 15.2784C12.108 15.1784 12.083 15.07 12.083 14.9617C12.083 14.8534 12.108 14.745 12.1497 14.645C12.1913 14.5367 12.2497 14.445 12.3247 14.37C12.5163 14.1784 12.808 14.0867 13.0747 14.145C13.133 14.1533 13.183 14.17 13.233 14.195C13.283 14.2117 13.333 14.2367 13.383 14.27C13.4247 14.295 13.4663 14.3367 13.508 14.37C13.658 14.5284 13.7497 14.745 13.7497 14.9617C13.7497 15.1784 13.658 15.395 13.508 15.5533C13.3497 15.7033 13.133 15.795 12.9163 15.795Z" fill="#0C5947"/>
+                    <path d="M17.0837 8.99495H2.91699C2.57533 8.99495 2.29199 8.71162 2.29199 8.36995C2.29199 8.02828 2.57533 7.74495 2.91699 7.74495H17.0837C17.4253 7.74495 17.7087 8.02828 17.7087 8.36995C17.7087 8.71162 17.4253 8.99495 17.0837 8.99495Z" fill="#0C5947"/>
+                    <path d="M13.3333 19.7533H6.66667C3.625 19.7533 1.875 18.0033 1.875 14.9617V7.87832C1.875 4.83665 3.625 3.08665 6.66667 3.08665H13.3333C16.375 3.08665 18.125 4.83665 18.125 7.87832V14.9617C18.125 18.0033 16.375 19.7533 13.3333 19.7533ZM6.66667 4.33665C4.28333 4.33665 3.125 5.49499 3.125 7.87832V14.9617C3.125 17.345 4.28333 18.5033 6.66667 18.5033H13.3333C15.7167 18.5033 16.875 17.345 16.875 14.9617V7.87832C16.875 5.49499 15.7167 4.33665 13.3333 4.33665H6.66667Z" fill="#0C5947"/>
+                  </svg>
+                  <span class='set-time'>June 18, 2024, at 10:30 AM</span>
+                </div>
+
+                <div class="summary-brief__item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                    <path d="M7.63216 10.4783C7.60716 10.4783 7.5905 10.4783 7.5655 10.4783C7.52383 10.47 7.46549 10.47 7.41549 10.4783C4.99883 10.4033 3.17383 8.50332 3.17383 6.16165C3.17383 3.77832 5.11549 1.83665 7.49883 1.83665C9.88216 1.83665 11.8238 3.77832 11.8238 6.16165C11.8155 8.50332 9.98216 10.4033 7.65716 10.4783C7.64883 10.4783 7.64049 10.4783 7.63216 10.4783ZM7.49883 3.08665C5.80716 3.08665 4.42383 4.46999 4.42383 6.16165C4.42383 7.82832 5.72383 9.16999 7.38216 9.22832C7.43216 9.21999 7.5405 9.21999 7.64883 9.22832C9.28216 9.15332 10.5655 7.81165 10.5738 6.16165C10.5738 4.46999 9.1905 3.08665 7.49883 3.08665Z" fill="#0C5947"/>
+                    <path d="M13.782 10.5866C13.757 10.5866 13.732 10.5866 13.707 10.5783C13.3653 10.6116 13.0153 10.37 12.982 10.0283C12.9487 9.68664 13.157 9.37831 13.4987 9.33664C13.5987 9.32831 13.707 9.32831 13.7987 9.32831C15.0153 9.26164 15.9653 8.26164 15.9653 7.03664C15.9653 5.76998 14.9403 4.74498 13.6737 4.74498C13.332 4.75331 13.0487 4.46998 13.0487 4.12831C13.0487 3.78664 13.332 3.50331 13.6737 3.50331C15.6237 3.50331 17.2153 5.09498 17.2153 7.04498C17.2153 8.96164 15.7153 10.5116 13.807 10.5866C13.7987 10.5866 13.7903 10.5866 13.782 10.5866Z" fill="#0C5947"/>
+                    <path d="M7.64329 19.5866C6.00996 19.5866 4.36829 19.17 3.12663 18.3366C1.96829 17.57 1.33496 16.52 1.33496 15.3783C1.33496 14.2366 1.96829 13.1783 3.12663 12.4033C5.62663 10.745 9.67663 10.745 12.16 12.4033C13.31 13.17 13.9516 14.22 13.9516 15.3616C13.9516 16.5033 13.3183 17.5616 12.16 18.3366C10.91 19.17 9.27663 19.5866 7.64329 19.5866ZM3.81829 13.4533C3.01829 13.9866 2.58496 14.67 2.58496 15.3866C2.58496 16.095 3.02663 16.7783 3.81829 17.3033C5.89329 18.695 9.39329 18.695 11.4683 17.3033C12.2683 16.77 12.7016 16.0866 12.7016 15.37C12.7016 14.6616 12.26 13.9783 11.4683 13.4533C9.39329 12.07 5.89329 12.07 3.81829 13.4533Z" fill="#0C5947"/>
+                    <path d="M15.2815 18.0867C14.9899 18.0867 14.7315 17.8867 14.6732 17.5867C14.6065 17.245 14.8232 16.92 15.1565 16.845C15.6815 16.7367 16.1649 16.5283 16.5399 16.2367C17.0149 15.8783 17.2732 15.4283 17.2732 14.9533C17.2732 14.4783 17.0149 14.0283 16.5482 13.6783C16.1815 13.395 15.7232 13.195 15.1815 13.07C14.8482 12.995 14.6315 12.6617 14.7065 12.32C14.7815 11.9867 15.1148 11.77 15.4565 11.845C16.1732 12.0033 16.7982 12.2867 17.3065 12.6783C18.0815 13.2617 18.5232 14.0867 18.5232 14.9533C18.5232 15.82 18.0732 16.645 17.2982 17.2367C16.7815 17.6367 16.1315 17.9283 15.4149 18.07C15.3649 18.0867 15.3232 18.0867 15.2815 18.0867Z" fill="#0C5947"/>
+                  </svg>
+                  <span>For up to <span class='set-adults'></span> people, 90-Minute Session</span>
+                </div>
               </div>
-
-              <div class="summary-brief__item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.50008 1.66663C5.31675 1.66663 3.54175 3.44163 3.54175 5.62496C3.54175 7.76663 5.21675 9.49996 7.40008 9.57496C7.46675 9.56663 7.53341 9.56663 7.58342 9.57496C7.60008 9.57496 7.60841 9.57496 7.62508 9.57496C7.63341 9.57496 7.63341 9.57496 7.64175 9.57496C9.77508 9.49996 11.4501 7.76663 11.4584 5.62496C11.4584 3.44163 9.68341 1.66663 7.50008 1.66663Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M11.7333 11.7917C9.4083 10.2417 5.61663 10.2417 3.27497 11.7917C2.21663 12.5 1.6333 13.4583 1.6333 14.4833C1.6333 15.5083 2.21663 16.4583 3.26663 17.1583C4.4333 17.9417 5.96663 18.3333 7.49997 18.3333C9.0333 18.3333 10.5666 17.9417 11.7333 17.1583C12.7833 16.45 13.3666 15.5 13.3666 14.4667C13.3583 13.4417 12.7833 12.4917 11.7333 11.7917Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M16.6583 6.11671C16.7916 7.73338 15.6416 9.15004 14.05 9.34171C14.0416 9.34171 14.0416 9.34171 14.0333 9.34171H14.0083C13.9583 9.34171 13.9083 9.34171 13.8666 9.35838C13.0583 9.40004 12.3166 9.14171 11.7583 8.66671C12.6166 7.90004 13.1083 6.75004 13.0083 5.50004C12.95 4.82504 12.7166 4.20838 12.3666 3.68338C12.6833 3.52504 13.05 3.42504 13.425 3.39171C15.0583 3.25004 16.5166 4.46671 16.6583 6.11671Z" fill="#0C5947"/>
-                  <path d="M18.3251 13.825C18.2584 14.6334 17.7418 15.3334 16.8751 15.8084C16.0418 16.2667 14.9918 16.4834 13.9501 16.4584C14.5501 15.9167 14.9001 15.2417 14.9668 14.525C15.0501 13.4917 14.5584 12.5 13.5751 11.7084C13.0168 11.2667 12.3668 10.9167 11.6584 10.6584C13.5001 10.125 15.8168 10.4834 17.2418 11.6334C18.0084 12.25 18.4001 13.025 18.3251 13.825Z" fill="#0C5947"/>
-                </svg>
-                <span>For up to <span class='set-adults'></span> people, 90-Minute Session</span>
-              </div>
             </div>
-
-            <!-- Set-category -->
 
             <!-- Price table -->
             <div class="summary-table">
-              <div class="summary-block">
-                <div class="summary-block__caption">Service:</div>
-                <div class="summary-row summary-row_name">
-                  <div class="summary-row__caption set-name">-</div>
-                  <div class="summary-row__value set-price">-</div>
-                </div>
+              <div class="summary-table__head">
+                <div class="summary-table__title">Service</div>
+                <div class="summary-table__title">Price</div>
               </div>
 
-              <div class="summary-block">
-                <div class="summary-block__caption">Additional services:</div>
+              <div class="summary-row summary-row_name">
+                <div class="summary-row__caption set-name">Package</div>
+                <div class="summary-row__value set-price">$0</div>
+              </div>
 
-                <div class="summary-addons"></div>
+              <div class="summary-addons">
+                <!-- <div class="summary-row summary-row_addon">
+                  <div class="summary-row__caption">30 Minutes Zero Gravity Massage: </div>
+                  <div class="summary-row__value">$30 / person</div>
+                </div> -->
               </div>
 
               <div class="summary-table__divider"></div>
 
               <div class="summary-row summary-row_final">
-                <div class="summary-row__caption">Pay Now<sup>1</sup>:</div>
-                <div class="summary-row__value">$0</div>
+                <div class="summary-row__caption">Due on <span class='set-date'>June 18, 2024</span>:</div>
+                <div class="summary-row__value set-total">$0</div>
               </div>
 
               <div class="summary-row summary-row_final">
-                <div class="summary-row__caption">Due on <span class='set-date'>June 18, 2024</span><sup>2</sup>:</div>
-                <div class="summary-row__value set-total">$0</div>
+                <div class="summary-row__caption">Pay Now:</div>
+                <div class="summary-row__value">$0</div>
               </div>
             </div>
 
             <!-- Divider -->
             <div class="summary-divider"></div>
-
-            <!-- Note -->
-            <div class="summary-note">
-              1. Reserve now, pay after your experience <br>
-              2. The total due is for reference only and does not include sales tax, beverages, cosmetic minibar products, add-ons, or gratuity.
-            </div>
           </div>
 
           <!-- Form -->
           <div class="summary-form">
             <!-- Title -->
             <div class="summary-form__title">Enter Contact Information</div>
-
-            <!-- Caption -->
-            <div class="summary-form__caption">
-              We use your info to confirm appointments, send reminders, and select the best time based on your location. Your data is confidential
-            </div>
 
             <!-- Form -->
             <div class="summary-form__inner book-form">
@@ -2503,7 +2156,7 @@
 
               <div class="summary-form__group book-form__group">
                 <label for="summary-phone">Phone<span>*</span></label>
-                <input type="text" id="summary-phone" name="summary-phone" required>
+                <input type="tel" id="summary-phone" name="summary-phone" required>
               </div>
 
               <div class="summary-form__group book-form__group">
@@ -2538,22 +2191,7 @@
       <!-- Payment -->
       <div class="step payment" data-title='Confirmation'>
         <!-- Title -->
-        <div class="payment-title booking-title">
-          <span>Confirmation</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="payment-title booking-title">Confirmation</div>
 
         <div class="payment-row">
           <!-- Plate -->
@@ -2596,11 +2234,11 @@
             <div class="policy__title booking-title">Cancellation Policy</div>
 
             <div class="policy__info">
-              <div class='policy__item'>24 hours' notice allows for free cancellation, except for Garage Parties where 48 hours' notice is required</div>
+              <div class='policy__item'>24 hour notice allows for free cancellation, except for Garage Parties where 48 hours is required</div>
 
-              <div class='policy__item'>Late cancellations and no-shows are subject to full charge + 20% gratuity</div>
+              <div class='policy__item'>Late cancellations are subject to full charge + 20% gratuity</div>
 
-              <div class='policy__item'>Cancellation fees will be charged to the credit card on file; No refunds or gift card payments are permitted for cancellation fees</div>
+              <div class='policy__item'>Fees charged to credit card on file; no gift card payments for fees, no refunds</div>
             </div>
           </div>
         </div>
@@ -2617,7 +2255,7 @@
       <div class="marquee">
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-time.png' alt='Time ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-time.png' alt='Time ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Time’s</div>
@@ -2627,7 +2265,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-entr.png' alt='Enterpreneur ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-entr.png' alt='Enterpreneur ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Enterpreneur</div>
@@ -2637,7 +2275,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-5280.png' alt='5280 ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-5280.png' alt='5280 ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>5280’s</div>
@@ -2727,11 +2365,11 @@
       <div class="policy__title booking-title">Cancellation Policy</div>
 
       <div class="policy__info">
-        <div class='policy__item'>24 hours' notice allows for free cancellation, except for Garage Parties where 48 hours' notice is required</div>
+        <div class='policy__item'>24 hour notice allows for free cancellation, except for Garage Parties where 48 hours is required</div>
 
-        <div class='policy__item'>Late cancellations and no-shows are subject to full charge + 20% gratuity</div>
+        <div class='policy__item'>Late cancellations are subject to full charge + 20% gratuity</div>
 
-        <div class='policy__item'>Cancellation fees will be charged to the credit card on file; No refunds or gift card payments are permitted for cancellation fees</div>
+        <div class='policy__item'>Fees charged to credit card on file; no gift card payments for fees, no refunds</div>
       </div>
     </div>
   </div>
@@ -2815,7 +2453,6 @@
     static steps = document.querySelectorAll('.step');
     static stickyEl = document.querySelector('.steps-sticky');
     static stickyBtn = document.querySelector('.steps-sticky__btn');
-    static isDelay = false;
 
     static init() {
       for (const [index, stepEl] of Array.from(this.steps).entries()) {
@@ -2837,7 +2474,6 @@
         const parent = e.target.closest('.book-form__group');
 
         if (parent) {
-          parent.classList.remove('book-form_error');
           parent.classList.add('book-focus');
         }
       })
@@ -2860,15 +2496,9 @@
 
       // show sticky el if scroll after active step
       window.addEventListener('scroll', () => {
-        if (typeof $ === 'undefined') {
-          return;
-        }
-
-        const step = this.steps[this.currentStep];
-        const offset = $('.steps-policy')[0] && $(window).innerWidth() > 992 ? $('.steps-policy').offset().top : $(step).offset().top + $(step).height();
-        const additionalCondition = $(window).innerWidth() <= 992 && (this.currentStep === 2 || this.currentStep === 4)
+        const offset = this.steps[this.currentStep].offsetTop + this.steps[this.currentStep].offsetHeight;
         
-        if (!this.isDelay && ($(window).scrollTop() > offset || additionalCondition)) {
+        if (window.scrollY > offset) {
           this.stickyEl.classList.add('active')
         } else {
           this.stickyEl.classList.remove('active')
@@ -2876,71 +2506,48 @@
       })
 
       this.stickyBtn.addEventListener('click', () => {
-        if (this.stickyBtn.classList.contains('steps-sticky__btn_clicked')) return;
+        if (this.currentStep === 3 && document.querySelector('.picker-times__btn').classList.contains('booking-btn_disable')){
+          $('html, body').animate({
+            scrollTop: $('.picker-calendar-js').offset().top - 50
+          }, 500);
 
-        this.stickyBtn.classList.add('steps-sticky__btn_clicked');
-
-        if ([0,1].includes(this.currentStep)) {
-          const offset = $(this.steps[this.currentStep]).offset().top - 25;
-          scrollToStep(offset);
-        } else if (this.currentStep === 2) {
-          document.querySelector('.addons-btn').click();
-        } else if (this.currentStep === 3) {
-          if (document.querySelector('.picker-times__btn.booking-btn_disable')) {
-            const offset = $('.picker-calendar-js').offset().top - 100;
-            scrollToStep(offset);
-          } else {
-            document.querySelector('.picker-times__btn').click();
-          }
-        } else if (this.currentStep === 4) {
-          const offset = $('.summary-form').offset().top - 75;
-          document.querySelector('.summary-btn').click();
-          setTimeout(() => {
-            if (document.querySelector('.summary-error')) {
-              scrollToStep(offset);
-            }
-          }, 200);
-        } else if (this.currentStep === 5) {
-          let offset = $('.payment-plate').offset().top - 15;
-          document.querySelector('.payment-btn').click();
-          setTimeout(() => {
-            if (document.querySelector('.sq-card-message-error')) {
-              scrollToStep(offset);
-            }
-          }, 200);
+          return;
         }
 
-        // this.stickyEl.style.pointerEvents = 'none'
+        if ([4,5].includes(this.currentStep)) {
+          // TODO: scroll only if error 
+          let offset = this.currentStep === 4 ? $('.summary-form').offset().top - 75 : $('.payment-plate').offset().top - 15;
 
-        // this.nextStep()
-
-        setTimeout(() => {
-          this.stickyBtn.classList.remove('steps-sticky__btn_clicked');
-        }, 1000);
-
-        function scrollToStep(offset) {
           $('html, body').animate({
             scrollTop: offset
           }, 500);
+
+          return;
         }
+
+        this.stickyEl.style.display = 'none'
+
+        this.nextStep()
+
+        setTimeout(() => {
+          this.stickyEl.removeAttribute('style')
+        }, 1000);
       })
 
-      for (const backEl of document.querySelectorAll('.back')) {
-        backEl.addEventListener('click', () => {
-          if (this.currentStep === 0) {
-            // window.history.back();
-            // location.href = '/';
-            return;
-          }
+      document.querySelector('.back').addEventListener('click', () => {
+        if (this.currentStep === 0) {
+          // window.history.back();
+          location.href = '/';
+          return;
+        }
 
-          if (this.currentStep === 3 && this.logs.length == 2) {
-            this.currentStep--
-          }
+        if (this.currentStep === 3 && this.logs.length == 2) {
           this.currentStep--
-          this.moveToStep();
-          this.buildLogsMarkup()
-        })
-      }
+        }
+        this.currentStep--
+        this.moveToStep();
+        this.buildLogsMarkup()
+      })
     }
 
     static initStep1() {
@@ -2977,14 +2584,6 @@
           document.querySelector('#bookingTypeId').value = id;
           document.querySelector('#bookingName').value = packageValue;
 		      document.querySelector('#bookingPrice').value = price;
-
-          if (typeof bookingCalendar !== 'undefined' && bookingCalendar?.selectedDates.length) {
-            bookingCalendar.selectedDates.pop();
-          }
-
-          if (!isAddons) {
-            document.querySelector('#bookingAddons').value = '';
-          }
 
           this.nextStep(packageValue, !isAddons)
         })
@@ -3036,10 +2635,6 @@
             price = `${price} / person`;
           }
 
-          if (captionValue.includes('item')) {
-            price = `${price} / item`;
-          }
-
           const priceClear = parseInt(price.replace('$', ''));
 
           const addonData = { id, title, price, priceClear };
@@ -3070,11 +2665,7 @@
 
     static initStep5() {
       document.querySelector('.summary-checkbox').addEventListener('click', function() {
-        if (document.querySelector('.summary-checkbox__icon.book-form_error')) {
-          document.querySelector('.summary-error').remove();
-          document.querySelector('.summary-checkbox__icon.book-form_error').classList.remove('book-form_error');
-        }
-        this.classList.toggle('active');
+        this.classList.toggle('active')
       })
 
       const submitBtn = document.querySelector('.summary-btn');
@@ -3082,7 +2673,8 @@
       submitBtn.addEventListener('click', async () => {
         document.querySelector('.summary-error')?.remove();
         submitBtn.disabled = true;
-        const res = validateForm();
+
+        const res = await submitForm();
 
         if (!res.successfully) {
           document.querySelector('.summary-checkbox').insertAdjacentHTML('beforebegin', `<div class="summary-error">${res.error}</div>`);
@@ -3090,63 +2682,92 @@
           return;
         }
 
-        this.nextStep(res.data);
+        const { orderId, lastName, firstName, email, phone, price } = res.data;
+        document.querySelector('#orderId').value = orderId;		
+        document.querySelector('#orderFirstName').value = firstName;
+        document.querySelector('#orderLastName').value = lastName;	
+        document.querySelector('#orderEmail').value = email;
+        document.querySelector('#orderPhone').value = phone;
+        document.querySelector('#orderPrice').value = price;
+
+        const caption = firstName + ' ' + lastName + ', ' + email + ', ' + phone + ', ' + document.querySelector('#summary-zip').value;
 
         submitBtn.disabled = false;
+
+        this.nextStep(caption)
       })
 
-      function validateForm() {
+      // TODO
+      async function submitForm() {
         const typeId = document.querySelector('#bookingTypeId').value;
         const datetime = document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value;
+        const price = 111;
         const firstname = document.querySelector('#summary-firstname').value;
         const lastname = document.querySelector('#summary-lastname').value;
         const phone = document.querySelector('#summary-phone').value;
         const email = document.querySelector('#summary-email').value;
         const zip = document.querySelector('#summary-zip').value;
-        const addons = document.querySelector('#bookingAddons').value;
 
-        let error = false;
-        let target = null;
+        // if (!typeId || !datetime || !price || !firstname || !lastname || !phone || !email || !zip) {
+        //   alert('Please fill all fields');
+        //   return;
+        // }
 
-        if (!firstname) {
-          error = 'Please enter your first name';
-          target = document.querySelector('#summary-firstname');
-        } else if (!lastname) {
-          error = 'Please enter your last name';
-          target = document.querySelector('#summary-lastname');
-        } else if (!phone) {
-          error = 'Please enter your phone number';
-          target = document.querySelector('#summary-phone');
-        } else if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.includes('.con')) {
-          error = 'Please enter a valid email';
-          target = document.querySelector('#summary-email');
-        } else if (!zip) {
-          error = 'Please enter your zip code';
-          target = document.querySelector('#summary-zip');
-        } else if (!document.querySelector('.summary-checkbox').classList.contains('active')) {
-          error = 'Please agree with the terms';
-          target = document.querySelector('.summary-checkbox__icon');
-        }
+        const formData = new FormData();
+        formData.append('appointmentTypeID', typeId);
+        formData.append('datetime', datetime);
+        formData.append('price', price);
+        formData.append('firstname', firstname);
+        formData.append('lastname', lastname);
+        formData.append('phone', phone);
+        formData.append('email', email);
+        formData.append('zip', zip);
 
-        if (error) {
-          target.closest('.book-form__group')?.classList.add('book-form_error');
+        const res = await fetch("https://test.ukr-agro-select.com.ua/order.php", { method: 'POST', body: formData });
+        const data = await res.json();
 
-          if (target.classList.contains('summary-checkbox__icon')) {
-            target.classList.add('book-form_error');
-          }
+        console.log('orderData', data);
 
-          return {
-            successfully: false,
-            error,
-          };
-        }
+        return data;
 
-        const caption = firstname + ' ' + lastname + ', ' + email + ', ' + phone + ', ' + zip;
+        // var response = JSON.parse(this.responseText);
+        // var containerrr = response['container'][0];
 
-        return {
-          successfully: true,
-          data: caption
-        }
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.open("POST", "https://test.ukr-agro-select.com.ua/order.php", true); 
+        // xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // xhttp.onreadystatechange = function() {
+        //   if(xhttp.readyState == 4 && xhttp.status == 200) {
+        //     var response = JSON.parse(this.responseText);
+        //     var containerrr = response['container'][0];
+        //     console.log(containerrr);
+        //     //document.querySelectorAll('#bookingDay')[0].value=datefinal2;
+        //   }
+        // }
+
+        // var id='';
+        // var dt='';
+        // var pr='';
+
+        // var fn='';
+        // var ln='';
+        // var ph='';
+        // var em='';
+        // var zc='';
+
+
+        // id=document.querySelector('#bookingTypeId').value;
+        // dt=document.querySelector('#bookingDay').value+" "+document.querySelector('#bookingTime').value;
+        // pr=document.querySelector('.summary-row__value').innerText.replaceAll('$','');
+        // fn=document.querySelector('#summary-firstname').value;
+        // ln=document.querySelector('#summary-lastname').value;
+        // ph=document.querySelector('#summary-phone').value;
+        // em=document.querySelector('#summary-email').value;
+        // zc=document.querySelector('#summary-zip').value;
+
+
+
+        // xhttp.send("id="+id+"&dt="+dt+"&pr="+pr+"&fn="+fn+"&ln="+ln+"&ph="+ph+"&em="+em+"&zc="+zc); 		  
       }
     }
 
@@ -3205,88 +2826,97 @@
         }     
       };
 
+    // let payments;
+    // try {
+    //   payments = window.Square.payments(appId, locationId);
+    // } catch {
+    //   const statusContainer = document.getElementById(
+    //     'paymnet-status',
+    //   );
+    //   statusContainer.className = 'missing-credentials';
+    //   statusContainer.style.visibility = 'visible';
+    //   return;
+    // }
+
       const squarePayments = await Square.payments(appId, locationId);
       const squareCardForm = await squarePayments.card({ style: darkModeCardStyle });
       await squareCardForm.attach('#payment-slot');
 
       const squareCardButton = document.querySelector('.payment-btn');
-      squareCardButton.addEventListener('click', submitForm);
+      squareCardButton.addEventListener('click', submitCardForm);
+
+        // TODO
+      // let afterpay;
+      // try {
+      //     afterpay = await initializeAfterpay(payments);
+      //   } catch (e) {
+      //     console.error('Initializing Afterpay/Clearpay failed', e);
+      //     // There are a number of reason why Afterpay/Clearpay may not be supported
+      //     // (e.g. Browser Support, Device Support, Account). Therefore you should handle
+      //     // initialization failures, while still loading other applicable payment methods.
+      //   }
+      // }
+
+    // Checkpoint 2.
+    // if (afterpay) {
+    //   const afterpayButton = document.getElementById('afterpay-button');
+    //   afterpayButton.addEventListener('click', async function (event) {
+    //     await handlePaymentMethodSubmission(event, afterpay);
+    //   });
+    // }
 
 
-      async function submitForm(e) {
+      async function submitCardForm(e) {
         e.preventDefault();
-
-        squareCardButton.disabled = true;
-
+        // TODO
         const data = {
           locationId,
           sourceId: null,
           idempotencyKey: window.crypto.randomUUID(),
-
-          appointmentTypeID: document.querySelector('#bookingTypeId').value,
-          datetime: document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value,
-          firstname: document.querySelector('#summary-firstname').value,
-          lastname: document.querySelector('#summary-lastname').value,
-          phone: document.querySelector('#summary-phone').value,
-          email: document.querySelector('#summary-email').value,
-          zip: document.querySelector('#summary-zip').value,
-          addons: document.querySelector('#bookingAddons').value,
+      
+          id2:document.querySelector('#orderId').value,	
+          lastName2:document.querySelector('#orderLastName').value,	
+          firstName2:document.querySelector('#orderFirstName').value,
+          email2:document.querySelector('#orderEmail').value,
+          phone2:document.querySelector('#orderPhone').value,
+          sum2:document.querySelector('#orderPrice').value,
         }
+
+        squareCardButton.disabled = true;
 
         try {
           const token = await tokenize();
           data.sourceId = token;
-
-          const res = await fetch("https://test.ukr-agro-select.com.ua/order.php", { method: 'POST', body: JSON.stringify(data) });
-          const result = await res.json();
-          
-          console.log('** Order response **', result);
-
-          if (result.isSuccess) {
-            showResultPage(result.data);
-            return;
+          const res = await fetch('https://test.ukr-agro-select.com.ua/payment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const paymentResults = await res.json();
+          if (paymentResults.errors?.length) {
+            throw new Error(paymentResults.errors[0].detail);
           }
-
-          if (result.error) {
-            throw new Error(result.error);
-          }
-        } catch (error) {
-          console.log('error', error);
-          if (error.message) {
-            alert(error.message);
-          } else {
-            alert(error);
-          }
-        } finally {
+          showStatus(true, paymentResults)
+        } catch (e) {
           squareCardButton.disabled = false;
+          showStatus(false, e.message)
         }
 
-        function showResultPage(data) {
-          // document.querySelector('.logs')?.classList.add('logs_disabled');
-          for (const backEl of document.querySelectorAll('.back')) {
-            backEl.remove();
+        function showStatus(isSuccess = false, result = '') {
+          const statusEl = document.querySelector('#paymnet-status');
+
+          if (isSuccess) {
+            statusEl.classList.remove('is-failure');
+            statusEl.classList.add('is-success');
+          } else {
+            statusEl.classList.remove('is-success');
+            statusEl.classList.add('is-failure');
+            alert(result);
           }
 
-          const logs = document.querySelector('.logs');
-          const paymentStep = document.querySelector('.payment');
-          const summaryStep = document.querySelector('.summary');
+          statusEl.style.visibility = 'visible';
 
-          document.body.classList.add('booking-result-page')
-          document.querySelector('.steps-sticky').style.display = 'none';
-          logs?.remove();
-          paymentStep?.classList.remove('active')
-
-          summaryStep.querySelector('.summary-note').innerHTML = `
-            *The total due is for reference only and does not include sales tax, beverages, cosmetic minibar products, add-ons, or gratuity.
-          `;
-
-          summaryStep?.classList.add('active', 'summary_result');
-          document.querySelector('.summary-row_final')?.remove();
-          document.querySelector('.summary-row_final sup').outerHTML = '*';
-
-          if ( data?.order?.location) {
-            document.querySelector('.summary-table').insertAdjacentHTML('beforeend', `<div class="summary-location">Location: ${data.order.location}</div>`);
-          }
+          console.log('** Payment Result (' + isSuccess + ') **', result);
         }
 
         async function tokenize() {
@@ -3297,10 +2927,65 @@
             return tokenResult.token;
           }
         
+          let errorMessage = `Tokenization failed with status:\n - ${tokenResult.status}`;
 
           if (tokenResult.errors) {
-            throw new Error(tokenResult.errors[0]?.message);
+            errorMessage += `\n - Errors: ${ JSON.stringify(tokenResult.errors) }`;
           }
+
+          throw new Error(errorMessage);
+        }
+      }
+      // TODO delete if we don't use afterpay
+      async function initializeAfterpay() {
+        const paymentRequest = buildPaymentRequest(squarePayments);
+        const afterpay = await squarePayments.afterpayClearpay(paymentRequest);
+        await afterpay.attach('#afterpay-button');
+
+        return afterpay;
+
+        function buildPaymentRequest(payments) {
+          const req = payments.paymentRequest({
+            countryCode: 'US',
+            currencyCode: 'USD',
+            total: {
+              amount: '1.00',
+              label: 'Total',
+            },
+            requestShippingContact: true,
+          });
+
+          req.addEventListener('afterpay_shippingaddresschanged', function () {
+            return {
+              shippingOptions: [
+                {
+                  amount: '0.00',
+                  id: 'shipping-option-1',
+                  label: 'Free',
+                  taxLineItems: [
+                    {
+                      amount: '0.00',
+                      label: 'Tax',
+                    },
+                  ],
+                  total: {
+                    amount: '1.00',
+                    label: 'total',
+                  },
+                },
+              ],
+            };
+          });
+
+          req.addEventListener(
+            'afterpay_shippingoptionchanged',
+            function (_option) {
+              // This event listener is for information purposes only.
+              // Changes here (or values returned) will not affect the Afterpay/Clearpay PaymentRequest.
+            },
+          );
+
+          return req;
         }
       }
     }
@@ -3330,14 +3015,32 @@
       const typeId = document.querySelector('#bookingTypeId').value;
       const date = this.formatDate(document.querySelector('#bookingDay').value);
       const time = document.querySelector('#bookingTime').value;
-      const addons = document.querySelector('#bookingAddons').value || '[]';
+      
+	  if (document.querySelector('#bookingAddons').value!=''){
+	  const addons = JSON.parse(document.querySelector('#bookingAddons').value);
+	  
+	     document.querySelector('.summary-addons').innerHTML = '';
+
+      for (const addonItem of addons) {
+        const addonEl = document.createElement('div');
+        addonEl.classList.add('summary-row', 'summary-row_addon');
+        total += parseFloat(addonItem.priceClear);
+        addonEl.dataset.price = addonItem.priceClear;
+        addonEl.innerHTML = /* html */ `
+          <div class="summary-row__caption">${addonItem.title}</div>
+          <div class="summary-row__value">${addonItem.price}</div>
+        `;
+
+        document.querySelector('.summary-addons').appendChild(addonEl);
+      }
+	  }
+	  
+	  
       const price = document.querySelector('#bookingPrice').value;
       let total = parseFloat(price);
 
-      console.log('addons', addons)
 
-
-      // document.querySelector('.set-category').textContent = category;
+      document.querySelector('.set-category').textContent = category;
       document.querySelector('.set-time').textContent = `${date}, at ${time}`;
       document.querySelector('.set-date').textContent = date;
       document.querySelector('.set-name').textContent = name;
@@ -3345,36 +3048,15 @@
       document.querySelector('.set-adults').textContent = document.querySelector(`.package[data-id="${typeId}"] .package-price__caption span`).textContent;
       document.querySelector('.set-total').textContent = '';
       
-      document.querySelector('.summary-addons').innerHTML = '';
-
-      if (JSON.parse(addons).length) {
-        document.querySelector('.summary-addons').closest('.summary-block').classList.remove('summary-block_disable');
-      } else {
-        document.querySelector('.summary-addons').closest('.summary-block').classList.add('summary-block_disable');
-      }
-
-      for (const addonItem of JSON.parse(addons)) {
-        const addonEl = document.createElement('div');
-        addonEl.classList.add('summary-row', 'summary-row_addon');
-        total += parseFloat(addonItem.priceClear);
-        addonEl.dataset.price = addonItem.priceClear;
-        addonEl.innerHTML = /* html */ `
-          <div class="summary-row__caption">+ ${addonItem.title} ${addonItem.price.replace(`$${addonItem.priceClear}`, '')}</div>
-          <div class="summary-row__value">$${addonItem.priceClear}</div>
-        `;
-
-        document.querySelector('.summary-addons').appendChild(addonEl);
-      }
+   
 
       document.querySelector('.set-total').textContent = '$' + total;
     }
 
     static recordLog(logValue) {
-      const title =  this.steps[this.currentStep].dataset.title || this.steps[this.currentStep].querySelector('.booking-title span').textContent;
-
       const log = {
         step: this.currentStep,
-        title,
+        title: this.steps[this.currentStep].querySelector('.booking-title').textContent,
         value: logValue 
       }
        
@@ -3394,13 +3076,8 @@
 
       this.buildLogsMarkup()
 
-      if (this.currentStep === 0) {
-        document.querySelector('.back-mob').classList.remove('active')
-      } else {
-        document.querySelector('.back-mob').classList.add('active')
-      }
-
       for (const tickerEl of document.querySelectorAll('.tickers')) {
+        console.log(this.currentStep, 'ticker')
         if ([0, 1].includes(this.currentStep)) {
           tickerEl.classList.remove('tickers_hide');
         } else {
@@ -3408,40 +3085,26 @@
         }
       }
 
-      if (this.currentStep === 3 && (typeof bookingCalendar === 'undefined' || !bookingCalendar.selectedDates.length)) {
-        console.log('reset date')
-        const waitForCalendar = setInterval(() => {
-          if (typeof bookingCalendar !== 'undefined' ) {
-            clearInterval(waitForCalendar)
+      if (this.currentStep < 4) {
+        document.querySelector('.picker-plate').classList.remove('active', 'times-empty', 'picker-plate_loader');
+        document.querySelector('.picker-times__btn').classList.add('booking-btn_disable');
 
-            document.querySelector('.picker-plate').classList.remove('active', 'times-empty', 'picker-plate_loader');
-            document.querySelector('.picker-times__btn').classList.add('booking-btn_disable');
-
-            document.querySelector('.air-datepicker-cell.-current-').click();
-          }
-        }, 200);
+        if (document.querySelector('.air-datepicker-cell.-selected-')) {
+          document.querySelector('.air-datepicker-cell.-selected-').click();
+        }
       }
 
       if (this.currentStep === this.steps.length - 1) {
         document.querySelector('.steps-policy').classList.add('policy_hide')
-        document.querySelector('.steps-sticky').classList.add('steps-sticky_hide');
       } else {
         document.querySelector('.steps-policy').classList.remove('policy_hide')
-        document.querySelector('.steps-sticky').classList.remove('steps-sticky_hide');
       }
 
       // scroll to active step
       if (!isInit) {
-        if (this.currentStep !== 2 && this.currentStep !== 4) {
-          this.isDelay = true;
-        }
         $('html, body').animate({
-          scrollTop: $(this.steps[this.currentStep]).offset().top - ($(window).innerWidth() < 992 ? 60 : 10)
-        }, 500);
-
-        setTimeout(() => {
-          this.isDelay = false;
-        }, 550);
+          scrollTop: $('.progress').offset().top - 50
+        }, 0);
       }
 
       this.updateSticky()
@@ -3489,8 +3152,6 @@
         `;
 
         logEl.querySelector('.logs-step__action').addEventListener('click', () => {
-          if (logEl.closest('.logs_disabled')) return;
-
           this.logs.splice(log.step)
           this.currentStep = log.step
           this.moveToStep();
@@ -3501,46 +3162,40 @@
     }
 
     static updateProgress() {
-      for (let i = 0; i < this.currentStep; i++) {
-        const step = document.querySelector(`.progress-step[data-progress-step="${i}"]`);
+      const progressEl = document.querySelector('.progress-line span');
 
-        step.querySelector('.progress-step__caption').textContent = this.logs[i]?.value || '-';
-        step.querySelector('.progress-tooltip span').textContent = this.logs[i]?.value || 'Not available';
-      }
-      
-      // console.log('logs', this.logs)
-      // for (const log of this.logs) {
-      //   console.log('log', log)
-      //   const step = document.querySelector(`.progress-step[data-progress-step="${log.step}"]`);
-
-      //   step.querySelector('.progress-step__caption').textContent = log.value;
-      //   step.querySelector('.progress-tooltip span').textContent = log.value;
-      // }
-
-      if (this.currentStep === document.querySelectorAll('.progress-step').length) {
-        document.querySelector('.progress-step__divider.pass_current')?.classList.remove('pass_current');
-        document.querySelector('.progress-step.active')?.classList.add('pass');
-        document.querySelector('.progress-step.active')?.classList.remove('active')
-
-        return;
+      for (const progressStep of document.querySelectorAll('.progress-step')) {
+        progressStep.classList.remove('active', 'pass');
       }
 
-      for (const progressStep of document.querySelectorAll('.progress-step, .progress-step__divider')) {
-        progressStep.classList.remove('active', 'pass', 'pass_current');
+      let width = 0;
+
+      const stepOne = document.querySelector('[data-progress-step="1"]');
+      const stepTwo = document.querySelector('[data-progress-step="2"]');
+      const stepThree = document.querySelector('[data-progress-step="3"]');
+
+      if (this.currentStep < 3) {
+        stepOne.classList.add('active');
+      } else if (this.currentStep < 5) {
+        stepOne.classList.add('pass');
+        stepTwo.classList.add('active');
+      } else if (this.currentStep === 5) {
+        stepOne.classList.add('pass');
+        stepTwo.classList.add('pass');
+        stepThree.classList.add('active');
       }
 
-      const currentStep = document.querySelector(`[data-progress-step="${this.currentStep}"]`);
-      currentStep.classList.add('active');
-
-      let prevEl = currentStep.previousElementSibling;
-
-      while (prevEl) {
-        if (prevEl.classList.contains('progress-step__divider') && !document.querySelector('.pass_current')) {
-          prevEl.classList.add('pass_current');
-        }
-        prevEl.classList.add('pass');
-        prevEl = prevEl.previousElementSibling;
+      if ([1,2].includes(this.currentStep)) {
+        width = 16.65 * this.currentStep;
+      } else if (this.currentStep === 3) {
+        width = 50;
+      } else if (this.currentStep === 4) {
+        width = 83.3;
+      } else if (this.currentStep === 5) {
+        width = 100;
       }
+
+      progressEl.style.width = `${width}%`;
     }
 
     static updateSticky() {
@@ -3563,10 +3218,33 @@
 
 <!-- Calendar handler -->
 <script>
+  // TODO
   const waitForCalendar = setInterval(() => {
     if (typeof AirDatepicker !== 'undefined') {
       clearInterval(waitForCalendar)
-      initCalendar()
+      const calendar = initCalendar()
+	  
+	  	// var xhttp = new XMLHttpRequest();
+      // xhttp.open("POST", "https://test.ukr-agro-select.com.ua/dates.php", true);
+      // xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      // xhttp.onreadystatechange = function() {
+      //   if(xhttp.readyState == 4 && xhttp.status == 200) {
+      //     var response = JSON.parse(this.responseText);
+      //     console.log('containersCalendars', response)
+      //     var container = response['container'][0];
+      //     var container1 = response['container1'][0];
+      //     var container2 = response['container2'][0];
+      //     var container3 = response['container3'][0];
+      //     var container4 = response['container4'][0];
+      //     var container5 = response['container5'][0];
+      //     var container6 = response['container6'][0];
+      //     var container7 = response['container7'][0];
+
+      //     const calendar = initCalendar(container,container1,container2,container3,container4,container5,container6,container7)
+      //   }
+      // }
+
+      // xhttp.send(); 
     }
   }, 200);
 
@@ -3580,19 +3258,82 @@
     const plateEl = document.querySelector('.picker-plate');
 
     const options = {
-      toggleSelected: false,
-      startDate: new Date(),
+      // inline: true,
+      toggleSelected: true,
       dateFormat: 'EEEE, MMMM d',
       altField: document.querySelector('.picker-calendar__caption'),
       altFieldDateFormat: 'EEEE,MMMM,d',
       minDate: new Date(),
+      showOtherMonths: false,
       prevHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.6084 28.3337C22.4241 28.3337 22.2398 28.2664 22.0944 28.1222L15.771 21.8544C14.743 20.8355 14.743 19.1628 15.771 18.1438L22.0944 11.8761C22.3756 11.5973 22.8411 11.5973 23.1224 11.8761C23.4036 12.1549 23.4036 12.6163 23.1224 12.8951L16.799 19.1628C16.3335 19.6242 16.3335 20.374 16.799 20.8355L23.1224 27.1032C23.4036 27.382 23.4036 27.8434 23.1224 28.1222C22.9769 28.2568 22.7926 28.3337 22.6084 28.3337Z" fill="#3C6C60"/></svg>',
       nextHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3925 28.3337C17.2083 28.3337 17.0242 28.2664 16.8788 28.1222C16.5977 27.8434 16.5977 27.382 16.8788 27.1032L23.1985 20.8355C23.6637 20.374 23.6637 19.6242 23.1985 19.1628L16.8788 12.8951C16.5977 12.6163 16.5977 12.1549 16.8788 11.8761C17.1599 11.5973 17.6251 11.5973 17.9062 11.8761L24.2259 18.1438C24.7202 18.6341 25.0013 19.2974 25.0013 19.9991C25.0013 20.7009 24.7299 21.3642 24.2259 21.8544L17.9062 28.1222C17.7608 28.2568 17.5767 28.3337 17.3925 28.3337Z" fill="#0C5947"/></svg>',
+      
+	    onRenderCell({
+        date,
+        cellType
+      }) {
+        // TODO remove
+        return {}
+        //var dayshow=[];
+
+        if (date.getMonth() === 4) {
+          var dayshow0 = container;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 5) {
+          var dayshow0 = container1;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 6) {
+          var dayshow0 = container2;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 7) {
+          var dayshow0 = container3;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 8) {
+          var dayshow0 = container4;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 9) {
+          var dayshow0 = container5;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 10) {
+          var dayshow0 = container6;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else if (date.getMonth() === 11) {
+          var dayshow0 = container7;
+          var dayshow = dayshow0.map(function (x) {
+            return parseInt(x, 10);
+          });
+        } else {
+          dayshow = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+        }
+
+        if (cellType === 'day' && $.inArray(date.getDate(), dayshow) == -1) {
+          return {
+            disabled: true,
+            // classes: 'disabled-class',
+            attrs: {
+              title: 'Cell is disabled',
+            },
+          };
+        }
+      },
       onSelect: onSelectHandler,
     };
 
     function onSelectHandler({date, formattedDate}) {
-      console.log('click');
       document.querySelector('.picker-times__btn').classList.add('booking-btn_disable');
 
       if (!date) { 
@@ -3663,8 +3404,6 @@
     }
 
     const calendar = new AirDatepicker('.picker-calendar-js', options);
-
-    window.bookingCalendar = calendar
     
     return calendar
   }
@@ -3728,10 +3467,7 @@
       </div>
     </div>
     <div class="bot">
-      <div class="box-title"> 
-        <!-- <?php echo get_field('accepted_payments'); ?>  -->
-        Accepted Payments
-      </div>
+      <div class="box-title"> <?php echo get_field('accepted_payments'); ?> </div>
       <div class="line">
         <div class="copyright">© <?php echo get_field('copyright', 'options'); ?> <?php echo date('Y'); ?> </div>
         <div class="soc"> <?php if (get_field('faceboook_link', 'options')) { ?> <a href="

@@ -4,171 +4,21 @@
    */
 
   get_header();
-  // $curlHandle = curl_init('https://test.ukr-agro-select.com.ua/List.php');
-  // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
-  // curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-  // $curlResponse = curl_exec($curlHandle);
-  // curl_close($curlHandle);
+
+  $acuityscheduling_obj = new App\Classes\AcuityschedulingHandler();
+  $appointment_types = $acuityscheduling_obj->get_appointments();
+  $categories = $acuityscheduling_obj->get_categories();
+  $addons = $acuityscheduling_obj->get_addons();
+
+  $title = get_field('title_booking');
+  $desc = get_field('desc_booking');
+
   $faqs_l = get_field('faq_left');
   $faqs_r = get_field('faq_right');
-
-  $types = makeHttpRequest('https://acuityscheduling.com/api/v1/appointment-types?includeDeleted=false');
-
-  foreach ($types as &$type) {
-    addMetadataForTypes($type);
-  }
-
-  unset($type);
-
-
-  $addons = makeHttpRequest('https://acuityscheduling.com/api/v1/appointment-addons');
-
-  foreach ($addons as &$addon) {
-    addMetadataForAddons($addon);
-  }
-
-  unset($addon);
-
-  function addMetadataForTypes(&$type) {
-    $id = $type['id'];
-
-    if ($id == '45350327') {
-      // father
-      $type['caption'] = 'Ideal for Dad';
-      $type['adults'] = 2;
-      $type['icons'] = 1;
-      $type['brief'] = ['90-minute session', 'Private spa suite', 'Beverage credit & 15-minute zero-gravity massages'];
-      $type['descr'] = ['90-minute access to your own private spa suite', 'Includes a personal beer bath, infrared sauna, and rain shower', '$15 cosmetic mini-bar credit and 15-minute zero-gravity massages included', 'Complete with gourmet chocolates, beverage credit & charcuterie board', 'Enjoy a complimentary drink at check-in and access to a mimosa bar'];
-    } elseif ($id == '22530026') {
-      // date night 30
-      $type['caption'] = 'Ideal for couples';
-      $type['adults'] = 2;
-      $type['icons'] = 2;
-      $type['brief'] = ['90-minute session', 'Romantic private spa suite', 'Beverage credit or sparkling wine'];
-      $type['descr'] = ['90-minute access to your own private spa suite', 'Includes a personal beer bath, infrared sauna, and rain shower', 'Complete with romantic candles, rose petals, gourmet chocolates & <span class="tooltip"><span class="tooltip-trigger">$30&nbsp;beverage&nbsp;credit</span><span class="tooltip-body">The $30 beverage credit can be used towards any beverage from our self-pour tap wall, including beer, wine, cider, kombucha. Additional beverages will be charged by the ounce. <i></i></span></span>'];
-      
-    } elseif ($id == '22530047') {
-      // date night w/
-      $type['caption'] = 'Ideal for couples';
-      $type['adults'] = 2;
-      $type['icons'] = 2;
-      $type['brief'] = ['90-minute session', 'Romantic private spa suite', 'Beverage credit or sparkling wine'];
-      $type['descr'] = ['90-minute access to your own private spa suite', 'Includes a personal beer bath, infrared sauna, and rain shower', 'Complete with romantic candles, rose petals, gourmet chocolates & bottle of sparkling wine'];
-    } elseif ($id == '27351564') {
-      //  garage
-      $type['caption'] = 'Ideal for groups';
-      $type['adults'] = 4;
-      $type['icons'] = 3;
-      $type['brief'] = ['90-minute session', '2 private spa suites joined together'];
-      $type['descr'] = ['90-minute access to your own 2 private spa suites joined together', 'Includes two personal beer baths, two infrared saunas and two rain showers', 'Beverages sold separately'];
-    } elseif ($id == '22529967') {
-      // standart
-      $type['caption'] = 'Ideal solo or for friends';
-      $type['adults'] = 2;
-      $type['icons'] = 1;
-      $type['brief'] = ['90-minute session', 'Private spa suite'];
-      $type['descr'] = ['90-minute access to your own private spa suite', 'Includes a personal beer bath, infrared sauna, and rain shower', 'Beverages sold separately'];
-    }
-  }
-
-  function addMetadataForAddons(&$addon) {
-    $id = $addon['id'];
-
-    $pattern = '/^(.*?)(?:\((?:\$([\d.]+)|free)(?:\s(per person))?\))?$/';
-    preg_match($pattern, $addon['name'], $matches);
-
-    $addon['renderTitle'] = trim($matches[1]);
-    $addon['renderPrice'] = isset($matches[2]) ? '+ $' . $matches[2] : 'free';
-    $addon['renderPriceCaption'] = isset($matches[3]) ? 'per person' : '';
-
-    if ($addon['renderPrice'] !== 'free' && !$addon['renderPriceCaption']) {
-      $addon['renderPriceCaption'] = 'per item';
-    }
-
-    $addon['image'] = 'https://flopsi69.github.io/crs/oakwell/booking/img/addon-' . $id . '.png';
-
-    if ($id == '1581536') {
-      // 15min
-      $addon['caption'] = 'Experience a 15-minute, head-to-toe full body massage';
-    } elseif ($id == '1581538') {
-      // 30min
-      $addon['caption'] = 'Experience a 30-minute, head-to-toe full body and stretching massage';
-    } elseif ($id == '1786732') {
-      $addon['renderTitleAlias'] = 'French Sparkling Wine';
-      $addon['caption'] = 'Elevate your celebration with a bottle of Crémant d\'Alsace tubside';
-    } elseif ($id == '1784570') {
-      $addon['caption'] = 'Elevate Your Celebration with Our Exclusive Anniversary Set-Up. It includes a happy anniversary banner, a gourmet box of chocolate, and a keepsake card from a local artist!';
-    } elseif ($id == '1785893') {
-      $addon['caption'] = 'Transform Your Celebration with Our Exclusive Birthday Set-Up. It includes a happy birthday banner, a gourmet box of chocolate, and a keepsake card from a local artist!';
-    } elseif ($id == '1755839') {
-      $addon['renderTitleAlias'] = 'Charcuterie Board';
-      $addon['caption'] = 'Pair your beverage with cured meats and fine cheeses';
-    } elseif ($id == '1785616') {
-      $addon['renderTitleAlias'] = 'Happy Anniversary Banner';
-      $addon['caption'] = 'Celebrate this special occasion with a happy anniversary banner';
-    } elseif ($id == '1785614') {
-      $addon['renderTitleAlias'] = 'Happy Birthday Banner';
-      $addon['caption'] = 'Celebrate this special occasion with a happy birthday banner';
-    }
-  }
-
-  function makeHttpRequest($url) {
-    $headers = array(
-      'accept: application/json',
-      'authorization: Basic MzE2NzIxNDU6YTBjYTVkZjA2YjE2ZmQ1NGIzZDc2NGJkMDQ0Y2QyMzc='
-    );
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    $decodeRes = json_decode($response, true);
-    $filterRes = array_filter($decodeRes, function($resItem) {
-      // return true;
-      // || $resItem['category'] === 'Test'
-      return $resItem['active'] === true && $resItem['private'] === false;
-    });
-
-    return $filterRes;
-  }
-
-  // $categories = array_unique(array_column($types, 'category'));
 ?>
-
-<!-- <?php echo '<pre>'; print_r($addons); echo '</pre>'; ?> -->
-
-<script type="text/javascript" src="https://web.squarecdn.com/v1/square.js"></script>
-<script>
-  let observer = new MutationObserver((mutations, observer) => {
-    for (let mutation of mutations) {
-      if (mutation.type == 'attributes' && mutation.attributeName == 'content' && mutation.target.getAttribute('name') == 'viewport' && mutation.target.getAttribute('content') !== "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"){
-        document.querySelector('[name="viewport"]').setAttribute('content', "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no");
-      }
-    }
-  })
-
-  observer.observe(document.head, { subtree: true, attributes: true})
-</script>
 
 <style>
   /* Refactoring existing elements */
-  .modalsWrap .fathers {
-    display: none!important;
-  }
-  .b-booking-def-cont {
-    padding-top: 24px;
-    border-top-left-radius: 32px;
-    border-top-right-radius: 32px;
-  }
-  body {
-    padding-bottom: 36px;
-  }
-  body.booking-result-page {
-    padding-bottom: 0;
-  }
   .b-booking-def-head {
     padding: 17px 0;
   }
@@ -182,30 +32,9 @@
   .b-booking-def-head .box .secure span {
     margin-top: 0.25rem;
   }
-  @media(max-width: 992px) {
-    .b-booking-def-footer .title a[href="mailto:hello@oakwell.com"] {
-      text-decoration: none;
-      /* border-bottom: 1px solid; */
-      display: block;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .b-booking-def-footer .title  br {
-      display: none;
-    }
-    .b-booking-def-footer .title {
-      line-height: 1.3;
-    }
-  }
   @media(min-width: 992px) {
-    body {
-      padding-bottom: 0;
-    }
     .b-booking-def-cont {
-      padding-bottom: 270px;
-      border-top-left-radius: 90px;
-      border-top-right-radius: 90px;
-      padding-top: 40px;
+      padding-bottom: 300px;
     }
     .b-booking-def-head {
       padding: 26px 0 16px;
@@ -266,16 +95,7 @@
     width: 100%;
     height: 52px;
   }
-  .booking-btn_disable, .booking-btn[disabled] {
-    background: #74A187!important;
-    pointer-events: none;
-  }
   @media(min-width: 992px) {
-    .step > .booking-title {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
     .booking-list {
       gap: 8px;
     }
@@ -311,9 +131,6 @@
     transition: 0.3s;
     pointer-events: none;
   }
-  .book-form__group.book-form_error label {
-    color: red;
-  }
   .book-form__group label span {
     color: #E12F2F;
   }
@@ -326,9 +143,6 @@
     padding: 17px 5px 6px 0;
     font-weight: 500;
     font-size: 14px;
-  }
-  .book-form__group.book-form_error input {
-    border-color: red;
   }
   .book-focus label {
     font-size: 12px;
@@ -343,7 +157,6 @@
   .tooltip-trigger {
     text-decoration: underline;
     cursor: help;
-    text-underline-offset: 3px;
   }
   .tooltip-body {
     position: absolute;
@@ -415,212 +228,100 @@
     font-weight: 500;
   }
 
-  /* Back */
-  .back {
-    display: inline-flex;
-    align-content: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #0C5947;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 120%;
-    letter-spacing: 0.91px;
-    text-transform: uppercase;
-    padding: 12px 16px;
-    border-radius: 24px;
-    background: #DDF2D0;
-  }
-  .back-step {
-    display: none;
-  }
-  .back-mob {
-    margin-top: 16px;
-  }
-  .back-mob:not(.active) {
-    display: none;
-  }
-  .back-mob.active + .steps {
-    margin-top: 12px;
-  }
-  @media(hover:hover) {
-    .back:hover {
-      opacity: 0.6;
-    }
-  }
-
-  /* New Progress */
+  /* Progress */
   .progress {
-    display: none;
-    background: #fff;
-    height: 70px;
-    border-radius: 10000px;
-    border: 1px solid #DBE7D7;
-    background: #FFF;
-    color: #5F6959;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 140%; 
-    margin-bottom: 32px;
+    position: relative;
+    display: flex;
+    gap: 15px;
+    text-align: center;
+    justify-content: space-between;
+  }
+  .progress-line {
+    position: absolute;
+    left: 47px;
+    right: 47px;
+    top: 15px;
+    height: 1px;
+    background: rgba(185, 209, 177, 0.50);
+  }
+  .progress-line span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #0C5947;
+    border-radius: 2px;
+    transition: 0.3s;
   }
   .progress-step {
     position: relative;
-    display: flex;
-    justify-content: center;
+    z-index: 1;
+    max-width: 94px;
+    width: 100%;
+  }
+  .progress-step__num-wrapper {
+    padding: 0 4px;
+    background-color: #FBF6F1;
+    display: inline-flex;
+    height: 30px;
     align-items: center;
-    flex: 1;
-    padding: 0 12px;
-    flex-flow: column;
-    gap: 3px;
-    min-width: 0;
   }
-  .progress-tooltip {
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    z-index: 2;
-    transform: translate(-50%, 12px);;
-    border-radius: 16px;
-    background: #FFF;
-    display: flex;
-    justify-content: center;
-    padding: 6px 8px;
-    width: 265px;
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4; 
-    background-color: #F0F0F0;
-    border: 1px solid #B9D1B1;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.16);
+  .progress-step__num {
+    border: 1px solid transparent;
     transition: 0.3s;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .progress-tooltip i {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -100%);
-    /* margin-left: -12px; */
-    width: 24px;
-    height: 12px;
-    overflow: hidden;
-  }
-  .progress-tooltip i::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    left: 50%;
-    top: 12px;
-    transform: translate(-50%,-50%) rotate(45deg);
-    background-color:  #F0F0F0;
-    border: 1px solid #B9D1B1;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.16);
-  }
-  .progress-step.pass:hover .progress-tooltip {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .progress-step:first-child {
-    padding-left: 24px;
-    border-radius: 100px 0 0 100px;
-  }
-  .progress-step:last-child {
-    padding-right: 24px;
-    border-radius: 0 100px 100px 0;
-  }
-  .progress-step.active {
-    background: #0C5947;
-    padding-left: 28px;
-  }
-  .progress-step__divider + .progress-step.active {
-    margin-left: -16px;
-  }
-  .progress-step.pass {
-    align-items: flex-start;
-    cursor: help;
-  }
-  .progress-step + .progress-step {
-    border-left: 1px solid #DBE7D7;
-  }
-  .progress-step__title {
-    position: relative;
-    padding-left: 27px;
-    transition: .3s;
-    white-space: nowrap;
-  }
-  .progress-step__title:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 17px;
-    height: 17px;
     border-radius: 50%;
-    box-sizing: border-box;
-    border: 1px solid #5F6959;
   }
-  .progress-step.active .progress-step__title {
-    color: #DDF2D0;
-    font-weight: 500;
+  .active .progress-step__num {
+    background-color: #DDF2D0;
+    border-color: #0C5947;
+    padding: 2px;
   }
-  .progress-step.pass .progress-step__title {
+  .progress-step__num span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     color: #0C5947;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #FBF6F1;
+    transition: 0.3s;
+    border: 1px solid #0C5947;
   }
-  .progress-step.active .progress-step__title:before {
-    border-color:#DDF2D0;
+  .active .progress-step__num span {
+    background-color: #0C5947;
+    color: #DDF2D0;
   }
-  .progress-step.pass .progress-step__title:before {
-    background: #0d5947 url('https://flopsi69.github.io/crs/oakwell/booking/img/check.svg') center no-repeat;
-    background-size: cover;
-    border-color: transparent;
+  .pass .progress-step__num span {
+    font-size: 0;
+    background: #0C5947 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEyIDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wLjk5NjA5NCA1LjA5NTExTDQuNDI0NjcgOC4yOTUxTDExLjAwMzkgMS4yOTQ4NiIgc3Ryb2tlPSIjRERGMkQwIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==') center no-repeat;
   }
   .progress-step__caption {
-    transition: .3s;
-    color: #5F6959;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.2; 
-    padding-left: 27px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  } 
-  .progress-step__divider {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    width: 17px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-trans.svg') center no-repeat;
-    background-size: cover;
+    color: #0C5947;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 4px;
   }
-  .progress-step.active + .progress-step__divider {
-    background-image: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-next.svg');
-    margin-left: -1px;
-  }
-  .progress-step__divider.pass_current {
-    background-image: url('https://flopsi69.github.io/crs/oakwell/booking/img/divider-prev.svg');
-  }
-  .progress-step:not(.pass) .progress-step__caption {
-    display: none;
-  }
-  
   @media (min-width: 992px) {
-    .progress {
-      display: flex;
+    .progress-line {
+      height: 2px;
+      top: 18px;
     }
-    .back-step {
-      display: inline-flex;
-      margin-top: -2px;
+    .progress-step__caption {
+      font-size: 16px;
+      line-height: 140%;
     }
-    .back-mob {
-      display: none;
+    .progress-step__num-wrapper {
+      padding: 0 8px;
+      height: 38px;
+    }
+    .progress-step__num span {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
     }
   }
 
@@ -628,6 +329,7 @@
   .logs {
     display: grid;
     gap: 12px;
+    margin-top: 16px;
   }
   .logs:not(.active) {
     display: none;
@@ -635,7 +337,7 @@
   .logs-step {
     position: relative;
     padding: 14px 24px 14px 46px;
-    border-radius: 60px;
+    border-radius: 32px;
     border: 1px solid rgba(185, 209, 177, 0.50);
     background: #fff;
   }
@@ -659,16 +361,18 @@
   }
   .logs-step__title-value {
     color: #024F3D;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.84px;
+    text-transform: uppercase;
   }
   .logs-step__action {
     color: #0C5947;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 14px;
-    letter-spacing: 0.7px;
+    line-height: 16px;
+    letter-spacing: 0.84px;
     border-bottom: 1px solid #0C5947;
     text-transform: uppercase;
     cursor: pointer;
@@ -684,15 +388,11 @@
     color: #5F6959;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px; 
-    margin-top: 4px;
-  }
-  .logs_disabled .logs-step__action {
-    display: none!important;
+    line-height: 22px; 
+    margin-top: 6px;
   }
   @media(min-width: 992px) {
     .logs {
-      display: none;
       margin-top: 24px;
     }
     .logs-step {
@@ -716,9 +416,16 @@
   /**
    * Steps -- Start --
   */
+
+  /* TODO remove */
+  .modalsWrap {
+    display: none;
+  }
+
   .steps {
     display: grid;
     gap: 24px;
+    margin-top: 24px;
   }
   .step:not(.active) {
     display: none;
@@ -742,7 +449,7 @@
     padding: 8px;
     border-radius: 32px 32px 0px 0px;
     background: #FFF;
-    box-shadow: 0px -8px 24px 0px rgba(12, 89, 71, 0.18);
+    box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.08);
     transform: translateY(100%);
     transition: 0.4s;
   }
@@ -750,23 +457,8 @@
     transform: translateY(0%);
   }
   @media(min-width: 992px) {
-    .steps-sticky_hide {
-      display: none!important
-    }
     .steps-sticky {
-      max-width: 1036px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .steps-sticky .booking-btn {
-      min-width: 236px;
-      width: auto;
-      padding-left: 85px;
-      padding-right: 85px;
+      display: none;
     }
   }
 
@@ -818,15 +510,15 @@
   }
   .service-price {
     color: #000;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 20px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.91px;
     text-transform: uppercase;
   }
   .service-price span {
     color: #0C5947;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1.12px;
   }
@@ -847,8 +539,7 @@
       padding-bottom: 6px;
     }
     .service-title {
-      /* font-size: 22px; */
-      font-size: 20px;
+      font-size: 22px;
       line-height: 140%;
     }
     .service-options {
@@ -861,9 +552,6 @@
     .service-footer {
       margin-top: auto;
       padding: 16px;
-    }
-    .service-price {
-      letter-spacing: 0.6px;
     }
   }
 
@@ -1071,11 +759,9 @@
   .picker {}
   .picker-plate {
     padding: 12px;
-    transition: .3s;
   }
-  .picker-plate_loader {
-    pointer-events: none;
-    filter: grayscale(1);
+  .picker-calendar .air-datepicker.-inline- {
+
   }
   .picker-calendar .air-datepicker-nav {
     height: 64px;
@@ -1109,18 +795,6 @@
   .picker-calendar .air-datepicker-cell.-disabled- {
     color: rgba(0,0,0,.4)!important;
   }
-  .air-datepicker-cell.-day-.-other-month- {
-    opacity: 0.5;
-  }
-  .air-datepicker-cell.-day-.-other-month-:hover {
-    opacity: 1;
-  }
-  @media(max-width: 500px) {
-    .air-datepicker-body--cells.-days- {
-      /* grid-auto-rows: 2.425rem; */
-      grid-auto-rows: 10vw;
-    }
-  }
   @media(min-width: 640px) {
     .picker-calendar .air-datepicker {
       background: #fff;
@@ -1144,49 +818,12 @@
     text-transform: uppercase;
   }
   .picker-times {
-    position: relative;
     display: flex;
     justify-content: space-between;
     flex-flow: column;
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid rgba(185, 209, 177, 0.50);
-  }
-  /* HTML: <div class="loader"></div> */
-  .picker-times__loader {
-    position: absolute;
-    display: none;
-    left: 50%;
-    top: 30%;
-    width: 50px;
-    aspect-ratio: 1;
-    margin-left: -25px;
-    border-radius: 50%;
-    border: 8px solid #0000;
-    border-right-color: #0C5947;
-    animation: l24 1.5s infinite linear;
-    pointer-events: none;
-  }
-  .picker-plate_loader .picker-times__loader {
-    display: block;
-  }
-  .picker-times__loader:before,
-  .picker-times__loader:after {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: inherit;
-    animation: inherit;
-    animation-duration: 2s;
-  }
-  .picker-times__loader:after {
-    animation-duration: 4s;
-  }
-  @keyframes l24 {
-    100% {
-      transform: rotate(1turn);
-    }
   }
   .picker-plate:not(.active) .picker-times, .picker-plate:not(.active) .picker-calendar__caption {
     display: none;
@@ -1233,6 +870,10 @@
   .picker-btn {
     margin-top: 24px;
   }
+  .picker-btn_disable {
+    background: #74A187!important;
+    pointer-events: none;
+  }
   .picker-note {
     margin-top: 32px;
   }
@@ -1242,14 +883,8 @@
   .picker-row {
     margin-top: 16px;
   }
-  .picker-plate:not(.times-empty) .picker-unavailable {
+  .picker-plate:not(.active) .temp-toggler {
     display: none;
-  }
-  .picker-plate.times-empty ~ .picker-note {
-    display: none;
-  }
-  .picker-calendar .air-datepicker-cell {
-    font-size: 16px;
   }
   @media(min-width: 992px) {
     .picker-row {
@@ -1278,7 +913,7 @@
     .picker-plate:not(.active) .picker-times {
       display: block;
     }
-    .picker-plate:not(.active) .picker-times__choose, .picker-plate.times-empty .picker-times__choose {
+    .picker-plate:not(.active) .picker-times__choose {
       display: none;
     }
     .picker-times {
@@ -1291,19 +926,6 @@
     }
     .picker-calendar .air-datepicker-nav {
       margin-right: -100%;
-      padding-right: 97%;
-    }
-    .air-datepicker-nav--action {
-      border-radius: 100px;
-      height: 2.5rem;
-      margin-top: -4px;
-    }
-    .air-datepicker-cell.-month- {
-      border-radius: 100px;
-      margin-bottom: 5px;
-    }
-    .air-datepicker-nav .air-datepicker-nav--action:last-child {
-      margin-left: 10px;
     }
     .air-datepicker-body--cells.-days- {
       grid-auto-rows: 36px;
@@ -1313,6 +935,9 @@
       font-size: 14px;
       line-height: 140%;
       letter-spacing: 0.98px;
+    }
+    .picker-calendar .air-datepicker-cell {
+      font-size: 16px;
     }
     .picker-calendar .air-datepicker-body--day-names {
       margin-bottom: 26px;
@@ -1332,130 +957,73 @@
       display: none;
     }
     .picker-times__btn {
-      display: flex;
+      display: flex!important;
     }
   }
 
   /* Summary */
   .summary {}
-  .summary-location {
-    margin-top: 15px;
-    font-weight: bold;
-  }
   .summary-plate {
     margin-top: 16px;
   }
   .summary-head {
-    padding: 24px 24px 12px;
+    padding: 24px 24px 16px;
+  }
+  .summary-head__title {
     color: #000;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 400;
-    line-height: 140%;
+    line-height: 36px;
   }
-  .summary-table {
-    padding: 16px 24px 12px;
-    border-top: 1px solid #DBE7D7;
-    color: #000;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-  }
-  .summary-block__caption {
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    margin-bottom: 5px;
-  }
-  .summary-block_disable {
-    display: none;
-  }
-  .summary-block + .summary-block {
+  .summary-meta {
+    display: grid;
+    gap: 12px;
+    color: #000;  
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 1.12px;
+    text-transform: uppercase;
     margin-top: 16px;
   }
-  .summary-row {
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    align-items: flex-end;
+  .summary-meta__value {
+    color: #024F3D;
   }
-  .summary-row + .summary-row {
-    margin-top: 6px;
-  }
-  .summary-row_name {
-    font-size: 16px;
-    line-height: 1.4;
-  }
-  .summary-row_addon:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-  .summary-row_final {
-    font-size: 20px;
-    line-height: 1.3;
-  }
-  .summary-row_final sup {
-    /* top: -9px; */
-    font-size: 11px;
-    vertical-align: super;
-    /* position: relative; */
-  }
-  .summary-row__value {
-    text-align: right;
-    white-space: nowrap;
-  }
-  .summary-table__divider {
-    margin: 16px -24px;
-    border-top: 1px dashed #DBE7D7;
+  .summary-body {
+    padding: 16px 24px;
+    border-top: 1px dashed #B9D1B1;
+    border-bottom: 1px dashed #B9D1B1;
   }
   .summary-brief {
     display: grid;
-    background: #fff;
-    gap: 8px;
+    gap: 12px;
     color: #000;
-    font-size: 15px;
-    line-height: 140%; 
-    border-top: 1px solid rgba(185, 209, 177, 0.50);
-    padding: 12px 24px;
+    font-size: 16px;
+    line-height: 120%; 
   }
   .summary-brief__item {
     display: flex;
-    gap: 8px;
+    gap: 12px;
+  }
+  .summary-includes {
+    margin-top: 16px;
+  }
+  .summary-includes__list {
+    margin-top: 8px;
+    color: #5F6959;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 160%;
+  }
+  .summary-includes__list span {
+    color: #024F3D;
+    padding-right: 5px;
   }
   .summary-form {
-    padding: 24px;
-  }
-  .summary-divider {
-    height: 33px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/summary-divider_desk.svg') center no-repeat;
-    background-size: contain;
-    background-repeat: repeat-x;
-  }
-  .summary-note {
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    padding: 12px 24px 24px;
-    border-bottom: 1px solid rgba(185, 209, 177, 0.50);
-  }
-  .summary-form__title {
-    color: #000;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 140%;
-  }
-  .summary-form__caption {
-    color: #5F6959;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 140%;
-    margin-top: 12px;
+    padding: 16px 24px;
   }
   .summary-form__inner {
-    margin: 12px -24px 0;
-    border-top: 1px solid rgba(185, 209, 177, 0.50);
-    padding: 13px 24px 0;
+    margin-top: 12px;
   }
   .summary-btn {
     margin-top: 24px;
@@ -1499,130 +1067,29 @@
     border: 1px solid #000;
     transition: 0.2s;
   }
-  .summary-checkbox__icon.book-form_error:before {
-    border-color: red;
-  }
   .summary-checkbox.active .summary-checkbox__icon:before {
     opacity: 0;
   }
-  .summary-error {
-    color: red;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 1.4;
-  } 
-  .summary.summary_result .summary-form {
-    display: none;
-  }
-  .summary.summary_result .summary-title {
-    text-align: center;
-    justify-content: center;
-  }
-  .summary.summary_result .summary-plate {
-    margin-top: 30px;
-    justify-content: center;
-    background: none;
-    border: none;
-  }
-  .summary.summary_result .summary-info {
-    border: none;
-    box-shadow: none;
-  }
-  .summary.summary_result .summary-table {
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-    background: #fff;
-  }
-  .summary.summary_result .summary-divider {
-    margin-top: -7px;
-    background-repeat: no-repeat;
-  }
-  .summary.summary_result .summary-head {
-    background: #fff;
-    border-radius: 32px 32px 0 0;
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-    box-shadow: 0px 2px 0px 0px #0C5947 inset;
-  }
-  .summary.summary_result .summary-brief {
-    border-left: 1px solid #B9D1B1;
-    border-right: 1px solid #B9D1B1;
-  }
   @media(min-width: 992px) {
     .summary-plate {
-      display: flex;
-      gap: 24px;
-      box-shadow: none;
-      background: none;
-      border-radius: 0;
-      border: none;
-      align-items: flex-start;
-    }
-    .summary-divider {
-      margin-top: -7px;
-      background-repeat: no-repeat;
-    }
-    .summary-brief {
-      border-left: 1px solid #B9D1B1;
-      border-right: 1px solid #B9D1B1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: min-content 1fr;
+      padding-top: 3px;
     }
     .summary-head {
-      padding-left: 36px;
-      padding-right: 36px;
-      background: #fff;
-      border-left: 1px solid #B9D1B1;
-      border-right: 1px solid #B9D1B1;
-      box-shadow: 0px 2px 0px 0px #0C5947 inset;
-      border-radius: 4px 32px 0 0;
+      grid-area: 1 / 1 / 2 / 2;
     }
-    .summary-form__inner {
-      padding-left: 36px;
-      padding-right: 36px;
-      margin-left: -36px;
-      margin-right: -36px;
-    }
-    .summary-form__caption {
-      margin-top: 8px;
-    }
-    .summary-table__divider {
-      margin-left: -36px;
-      margin-right: -36px;
-    }
-    .summary-table {
-      padding: 16px 36px;
-      background: #fff;
-      border-left: 1px solid #B9D1B1;
-      border-right: 1px solid #B9D1B1;
-    }
-    .summary-note {
-      padding: 0;
-      border: none;
-      margin-top: 16px;
+    .summary-body {
+      grid-area: 2 / 1 / 3 / 2;
+      border-bottom: 0;
     }
     .summary-form {
-      order: -1;
-      max-width: 460px;
-      flex-grow: 1;
-      border-radius: 32px 4px 4px 32px;
-      border: 1px solid #B9D1B1;
-      border-top: none;
-      background: #fff;
-      box-shadow: 0px 2px 0px 0px #0C5947 inset;
-      padding: 24px 36px 16px;
+      grid-area: 1 / 2 / 3 / 3;
+      border-left: 1px dashed #B9D1B1;
+      padding-top: 24px;
     }
-    .summary-info {
-      border-radius: 4px 32px 4px 4px;
-      overflow: hidden;
-      max-width: 460px;
-      flex-grow: 1;
-      flex-shrink: 0;
-      border-bottom: 0;
-      box-shadow: 0px 2px 0px 0px #0C5947 inset;
-    }
-    .summary-row_final {
-      font-size: 22px;
-      /* line-height: 24px; */
+    .summary-plate {
     }
   }
 
@@ -1666,9 +1133,6 @@
   .payment-form {
     padding: 16px 24px;
     border-top: 1px dashed #B9D1B1;
-  }
-  .payment-form__inner {
-    position: relative;
   }
   .payment-btn {
     margin-top: 24px;
@@ -1716,23 +1180,12 @@
     gap: 8px;
   }
   .tickers-item {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 6px;
     border-radius: 18px;
     border: 1px solid #ECE2D8;
-  }
-  .tickers-item:before {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: -8px;
-    width: 18px;
-    height: 14px;
-    background: url('https://flopsi69.github.io/crs/oakwell/booking/img/quote.svg') center no-repeat;
-    background-size: contain;
   }
   .tickers-item__image {
     width: 40px;
@@ -1777,12 +1230,6 @@
     .tickers-item {
       padding: 12px;
       border-radius: 32px;
-    }
-    .tickers-item:before {
-      right: 19px;
-      top: -12px;
-      width: 28px;
-      height: 22px;
     }
     .tickers-item__title {
       color: #9B9C9F;
@@ -1835,10 +1282,7 @@
   /* Reviews */
   .reviews {
     background-color: #0C5947;
-    margin: 10px 0 40px;
-  }
-  .b-booking-def-cont .faq-block {
-    margin-top: 35px;
+    margin: 30px -1rem 40px;
   }
   .reviews-decor {
     width: 100%;
@@ -1872,78 +1316,18 @@
   .reviews + .faq-block {
     margin-top: 0;
   }
-  .reviews-decor_desk {
-    display: none;
-  }
-
   @media(min-width: 992px) {
-    .reviews-decor_mob {
+    .reviews {
       display: none;
     }
-    .reviews-decor_desk {
-      display: block;
-    }
-    .reviews {
-      margin: 0 0 64px;
-      /* display: none; */
-    }
-    .reviews .b-goog-review {
-      padding: 0 0 50px;
-    }
-    .b-goog-review .container {
-      padding-left: 56px;
-      padding-right: 56px;
-    }
   }
-
-  .sq-card-wrapper .sq-card-message {
-    margin-bottom: 0;
-  }
-  .sq-card-message-no-error, .sq-card-message:not(.sq-card-message-no-error):not(.sq-card-message-error) {
-    display: none;
-  }
-	
-
-	#fast-checkout .fail,
-	#fast-checkout .success {
-		background: #FAFAFA;
-		color: black;
-	}
-
-	#fast-checkout .fail h2,
-	#fast-checkout .success h2 {
-		color: rgba(0, 0, 0, 0.55);
-	}
-
-	#fast-checkout .fail button,
-	#fast-checkout .success button {
-		background: #006AFF;
-		border-radius: 6px;
-		border: none;
-		color: white;
-	}
-
-	#fast-checkout p.warning {
-		text-align: center;
-		color: rgba(0, 0, 0, 0.4);
-	}
 </style>
 
-
-<input type="hidden" id="bookingCategory" value="">
-<input type="hidden" id="bookingName" value="">
-<input type="hidden" id="bookingTypeId" value="">
-<input type="hidden" id="bookingAddons" value="">
-<input type="hidden" id="bookingDay" value="">
-<input type="hidden" id="bookingPrice" value="">
-<input type="hidden" id="bookingTime" value="">
-
-<input type="hidden" id="orderPrice" value="">
-<input type="hidden" id="orderId" value="">
-<input type="hidden" id="orderLastName" value="">
-<input type="hidden" id="orderFirstName" value="">
-<input type="hidden" id="orderEmail" value="">
-<input type="hidden" id="orderPhone" value="">
+<input type="hidden" class="logs-step__value2" value="">
+<input type="hidden" class="logs-step__value3" value="">
+<input type="hidden" class="logs-step__value4" value="">
+<input type="hidden" class="logs-step__value5" value="">
+<input type="hidden" class="logs-step__value6" value="">
 		
 
 <div class="b-booking-def-head">
@@ -2000,313 +1384,106 @@
 
 <div class="b-booking-def-cont">
   <div class="container steps-container">
-    <!-- New Progress for steps -->
+    <!-- Progress for steps -->
     <div class="progress ff-lato">
-      <div class="progress-step" data-progress-step='0'>
-        <div class="progress-step__title">Service</div>
-        <div class="progress-step__caption">Date Night Package</div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+      <div class="progress-line">
+        <span style='width: 0%;'></span>
       </div>
 
-      <div class="progress-step__divider"></div>
-
-
-      <div class="progress-step" data-progress-step='1'>
-        <div class="progress-step__title">Package</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+      <div class="progress-step active" data-progress-step='1'>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>1</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Choose Appointment
+        </div>
       </div>
-
-      <div class="progress-step__divider"></div>
 
       <div class="progress-step" data-progress-step='2'>
-        <div class="progress-step__title">Additional Services</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>2</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Your Info
+        </div>
       </div>
-
-      <div class="progress-step__divider"></div>
 
       <div class="progress-step" data-progress-step='3'>
-        <div class="progress-step__title">Date and Time</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
-      </div>
-
-      <div class="progress-step__divider"></div>
-
-      <div class="progress-step" data-progress-step='4'>
-        <div class="progress-step__title">Contact information</div>
-        <div class="progress-step__caption"></div>
-        <div class="progress-tooltip"><span></span> <i></i></div>
+        <div class="progress-step__num-wrapper">
+          <div class="progress-step__num">
+            <span>3</span>
+          </div>
+        </div>
+        <div class="progress-step__caption">
+          Confirmation
+        </div>
       </div>
     </div>
     
     <!-- Logs for completed steps -->
-    <div class="logs ff-lato"></div>
+    <div class="logs ff-lato">
+      <div class="logs-step">
+        <div class="logs-step__head">
+          <div class="logs-step__title">
+            <svg class='logs-step__title-icon' width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.795044" width="14" height="14" rx="7" fill="#0C5947"/>
+              <path d="M4 7.97502L6.05554 9.89352L10 5.69666" stroke="#DDF2D0" stroke-linecap="round"/>
+            </svg>
 
-    <!-- Back -->
-    <div class="back-mob back ff-dm-sans">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <g clip-path="url(#clip0_2012_1639)">
-          <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-        </g>
-        <defs>
-          <clipPath id="clip0_2012_1639">
-            <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-          </clipPath>
-        </defs>
-      </svg>
-      previous step
+            <span class='logs-step__title-value'>Services</span>
+          </div>
+
+          <div class="logs-step__action ff-dm-sans">Change</div>
+        </div>
+
+        <div class="logs-step__value">Date Night Package</div>
+      </div>
+      
+      <div class="logs-step">
+        <div class="logs-step__head">
+          <div class="logs-step__title">
+            <svg class='logs-step__title-icon' width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.795044" width="14" height="14" rx="7" fill="#0C5947"/>
+              <path d="M4 7.97502L6.05554 9.89352L10 5.69666" stroke="#DDF2D0" stroke-linecap="round"/>
+            </svg>
+
+            <span class='logs-step__title-value'>Services</span>
+          </div>
+
+          <div class="logs-step__action ff-dm-sans">Change</div>
+        </div>
+
+        <div class="logs-step__value">Date Night Package</div>
+      </div>
     </div>
 
     <!-- Steps -->
     <div class="steps ff-lato">
-      <!-- Services -->
-      <div class="step services" data-title="Service">
-        <!-- Title -->
-        <div class="services-title booking-title"><span>Choose a Service</span></div>
+ 
+		
+		
+ <?php        
+        $curlHandle = curl_init('https://test.ukr-agro-select.com.ua/List.php');
+curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $postParameter);
+curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 
-        <!-- List -->
-        <div class="services-list">
-          <?php 
-            $uniqCategories = [];
+$curlResponse = curl_exec($curlHandle);
+curl_close($curlHandle);
 
-            foreach($types as $type): 
-              if (in_array($type['category'], $uniqCategories)) continue;
 
-              $id = $type['id'];
-              $uniqCategories[] = $type['category'];
-              $category = $type['category'];
-              $price = $type['price'];
-              $caption = $type['caption'];
-              $brief = $type['brief'];
-              $adults = $type['adults'];
-              $icons = $type['icons'];
-          ?>
-          <!-- Item -->
-          <div class="service services__item" data-id="<?php echo $id; ?>">
-            <div class="service-head">
-              <div class="service-head__icons">
-                <?php 
-                  for ($i=0; $i < $icons; $i++) { 
-                    echo '
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-                        <g clip-path="url(#clip0_504_2359)">
-                        <path d="M6.41448 6.57542C7.2086 6.57542 7.89625 6.2906 8.45811 5.72865C9.01997 5.16679 9.30479 4.47933 9.30479 3.68511C9.30479 2.89117 9.01997 2.20361 8.45802 1.64157C7.89607 1.0798 7.20851 0.794983 6.41448 0.794983C5.62026 0.794983 4.93279 1.0798 4.37094 1.64166C3.80908 2.20352 3.52417 2.89107 3.52417 3.68511C3.52417 4.47933 3.80908 5.16688 4.37103 5.72874C4.93298 6.29051 5.62054 6.57542 6.41448 6.57542Z" fill="#0C5947" fill-opacity="0.7"/>
-                        <path d="M11.4717 10.0224C11.4555 9.78853 11.4228 9.53347 11.3745 9.26412C11.3258 8.99276 11.2631 8.73623 11.188 8.50176C11.1105 8.25942 11.005 8.02011 10.8746 7.79077C10.7393 7.55273 10.5804 7.34546 10.402 7.17489C10.2155 6.99646 9.98721 6.853 9.72317 6.74835C9.46005 6.64426 9.16846 6.59152 8.85654 6.59152C8.73404 6.59152 8.61557 6.64178 8.38678 6.79074C8.24598 6.88257 8.08127 6.98877 7.89744 7.10623C7.74024 7.20639 7.52729 7.30023 7.26426 7.38519C7.00764 7.46823 6.74708 7.51034 6.48991 7.51034C6.23274 7.51034 5.97227 7.46823 5.71538 7.38519C5.45262 7.30032 5.23967 7.20648 5.08266 7.10632C4.90056 6.98996 4.73577 6.88376 4.59285 6.79065C4.36434 6.64169 4.24578 6.59143 4.12328 6.59143C3.81127 6.59143 3.51977 6.64426 3.25674 6.74844C2.99288 6.8529 2.76446 6.99637 2.57779 7.17499C2.39953 7.34564 2.24051 7.55282 2.10537 7.79077C1.9751 8.02011 1.86963 8.25933 1.79199 8.50185C1.71701 8.73632 1.6543 8.99276 1.60559 9.26412C1.55734 9.5331 1.52457 9.78826 1.50836 10.0226C1.49243 10.2522 1.48438 10.4906 1.48438 10.7312C1.48438 11.3576 1.6835 11.8648 2.07617 12.2387C2.46399 12.6078 2.97714 12.795 3.60116 12.795H9.37921C10.0032 12.795 10.5162 12.6079 10.9041 12.2387C11.2969 11.865 11.496 11.3578 11.496 10.7312C11.4959 10.4894 11.4878 10.2509 11.4717 10.0224Z" fill="#0C5947"/>
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_504_2359">
-                            <rect width="12" height="12" fill="white" transform="translate(0.5 0.794983)"/>
-                          </clipPath>
-                        </defs>
-                      </svg>
-                    ';
-                  } 
-                ?>
-               
-              </div>
-
-              <span class="service-head__value"><?php echo $caption; ?></span>
-            </div>
-
-            <div class="service-body">
-              <div class="service-title"><?php echo $category; ?></div>
-
-              <?php if (is_array($brief) && !empty($brief)): ?>
-              <div class="service-options booking-list">
-                <?php foreach($brief as $item): ?>
-                <div class="service-options__item booking-list__item"><?php echo $item; ?></div>
-                <?php endforeach; ?>
-              </div>
-              <?php endif; ?>
-            </div>
-
-            <div class="service-footer">
-              <div class="service-price">Starts from <span>$<?php echo $price; ?></span> for up to  <?php echo $adults; ?> adults</div>
-              <button class="service-btn link-btn dark booking-btn" data-value="<?php echo $category; ?>">Select</button>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-      </div>
-
-      <!-- Packages -->
-      <div class="step packages" data-title="Package">
-        <!-- Title -->
-        <div class="packages-title booking-title">
-          <span>Choose a package</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
-
-        <!-- List -->
-        <div class="packages-list">
-          <?php foreach($types as $type): 
-            $id = $type['id'];
-            $name = $type['name'];
-            $category = $type['category'];
-            $image = $type['image'];
-            $price = $type['price'];
-            $addonsList = $type['addonIDs'];
-
-            $caption = $type['caption'];
-            $brief = $type['brief'];
-            $adults = $type['adults'];
-            $icons = $type['icons'];
-            $descr = $type['descr'];
-
-            // $description = $type['description'];
-            // $duration = $type['duration'];
-            // $private = $type['private'];
-            // $type = $type['type'];
-            // $price = explode(".",$type['price'])[0];
-          ?>
-          <!-- Item -->
-          <div class="package" data-category="<?php echo $category ?>" data-id="<?php echo $id ?>" data-addons="<?php echo json_encode($addonsList) ?>">
-            <div class="package-body">
-              <div class="package-image">
-                <img src="<?php echo $image ?>" alt="">
-              </div>
-
-              <div class="package-title"><?php echo $name ?></div>
-
-              <?php if (is_array($descr) && !empty($descr)): ?>
-              <div class="package-list booking-list">
-                <?php foreach($descr as $item): ?>
-                <div class="package-list__item booking-list__item"><?php echo $item; ?></div>
-                <?php endforeach; ?>
-              </div>
-              <?php endif; ?>
-              <!-- <div class="package-list booking-list">
-                <div class="package-list__item booking-list__item">Exclusive 90-minute access to your own private Beer Therapy™ Room</div>
-                <div class="package-list__item booking-list__item">Includes a personal beer bath, infrared sauna, and rain shower</div>
-                <div class="package-list__item booking-list__item">Complete with romantic candles, rose petals, and gourmet chocolates, & sparkling wine</div>
-              </div> -->
-            </div>
-
-            <div class="package-footer">
-              <div class="package-price">
-                <span class="package-price__value">$<?php echo $price; ?></span>
-                <span class="package-price__caption">for <span><?php echo $adults; ?></span> adults</span>
-              </div>
-
-              <button class="package-btn link-btn dark booking-btn" data-price="<?php echo $price ?>" data-value="<?php echo $name ?>" data-id="<?php echo $id ?>">Book</button>
-            </div>
-          </div> 
-          <?php endforeach; ?>
-        </div>
-      </div> 
-
-      <!-- Addons -->
-      <div class="step addons" data-title="Additional services">
-        <!-- Title -->
-        <div class="addons-title booking-title">
-          <span>Add to your appointment</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
-
-        <!-- List -->
-        <div class="addons-list">
-          <?php foreach($addons as $addon): 
-            $id = $addon['id'];
-            $name = $addon['name'];
-            $caption = $addon['caption'];
-            $title = $addon['renderTitleAlias'] ?? $addon['renderTitle'];
-            $price = $addon['renderPrice'];
-            $priceCaption = $addon['renderPriceCaption'];
-            $image = $addon['image'];
-          ?>
-          <!-- Item -->
-          <div class="addon" data-id='<?php echo $id; ?>'>
-            <div class="addon-image">
-              <img src="<?php echo $image; ?>" alt="">
-            </div>
-            
-            <div class="addon-info">
-              <div class="addon-head">
-                <div class="addon-title"><?php echo $title; ?></div>
-
-                <div class="addon-checkbox">
-                  <svg class="addon-checkbox_inactive" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                    <path d="M15 23.545H9C3.57 23.545 1.25 21.225 1.25 15.795V9.79498C1.25 4.36498 3.57 2.04498 9 2.04498H15C20.43 2.04498 22.75 4.36498 22.75 9.79498V15.795C22.75 21.225 20.43 23.545 15 23.545ZM9 3.54498C4.39 3.54498 2.75 5.18498 2.75 9.79498V15.795C2.75 20.405 4.39 22.045 9 22.045H15C19.61 22.045 21.25 20.405 21.25 15.795V9.79498C21.25 5.18498 19.61 3.54498 15 3.54498H9Z" fill="black"/>
-                  </svg>
-                  <svg class="addon-checkbox_active" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-                    <path d="M18 3.33014H6C3.79086 3.33014 2 5.121 2 7.33014V18.3301C2 20.5393 3.79086 22.3301 6 22.3301H18C20.2091 22.3301 22 20.5393 22 18.3301V7.33014C22 5.121 20.2091 3.33014 18 3.33014Z" fill="#0C5947"/>
-                    <path d="M15 23.545H9C3.57 23.545 1.25 21.225 1.25 15.795V9.79498C1.25 4.36498 3.57 2.04498 9 2.04498H15C20.43 2.04498 22.75 4.36498 22.75 9.79498V15.795C22.75 21.225 20.43 23.545 15 23.545ZM9 3.54498C4.39 3.54498 2.75 5.18498 2.75 9.79498V15.795C2.75 20.405 4.39 22.045 9 22.045H15C19.61 22.045 21.25 20.405 21.25 15.795V9.79498C21.25 5.18498 19.61 3.54498 15 3.54498H9Z" fill="#0C5947"/>
-                    <path d="M10.5814 16.3751C10.3814 16.3751 10.1914 16.2951 10.0514 16.1551L7.22141 13.3251C6.93141 13.0351 6.93141 12.5551 7.22141 12.2651C7.51141 11.9751 7.99141 11.9751 8.28141 12.2651L10.5814 14.5651L15.7214 9.42508C16.0114 9.13508 16.4914 9.13508 16.7814 9.42508C17.0714 9.71508 17.0714 10.1951 16.7814 10.4851L11.1114 16.1551C10.9714 16.2951 10.7814 16.3751 10.5814 16.3751Z" fill="#DDF2D0"/>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="addon-descr">
-                <?php echo $caption; ?>
-              </div>
-
-              <div class="addon-price">
-                <span class="addon-price__value"><?php echo $price; ?></span>
-                <span class="addon-price__caption"><?php echo $priceCaption; ?></span>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-
-        <!-- Note -->
-        <div class="note addons-note">
-          <div class="note-title booking-title">Alcohol & Non-Alcoholic Beverages</div>
-          <div class="note-descr ff-dm-sans">Beverages are available for purchase in our taproom and will be charged by the ounce</div>
-        </div>
-
-        <!-- Continue button -->
-        <button class="addons-btn link-btn dark booking-btn">Continue</button>
-      </div>
-
-      <!-- ?php print_R($curlResponse); ? -->
+print_R($curlResponse);
+?>
+         
 	  
+
       <!-- Dates -->
-      <div class="step picker" data-title='Date and time of visit'>
+      <div class="step picker" data-title='date and time of visit'>
         <!-- Title -->
-        <div class="picker-title booking-title">
-          <span>Pick a date and time</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="picker-title booking-title">Pick a date and time</div>
 
         <!-- Row -->
         <div class="picker-row">
@@ -2319,9 +1496,6 @@
 
             <!-- Choose time -->
             <div class="picker-times">
-              <!-- Loader -->
-              <div class="picker-times__loader"></div>
-
               <!-- Time selector -->
               <div class="picker-times__choose">
                 <div class="picker-times__title booking-title">Select time</div>
@@ -2341,9 +1515,9 @@
               </div>
 
               <!-- Unavailable time | Note -->
-              <div class="note picker-unavailable">
+              <div class="note picker-unavailable" style='display: none;'>
                 <div class="note-title booking-title">
-                  Sorry, we are fully committed on this day
+                  Sorry, no available time slots on this day 
                 </div>
 
                 <div class="note-descr ff-dm-sans">
@@ -2365,12 +1539,14 @@
               </div>
 
               <!-- Button to continue -->
-              <button class="picker-times__btn booking-btn_disable link-btn dark booking-btn">Continue</button>
+              <button class="picker-times__btn picker-btn_disable link-btn dark booking-btn">Continue</button>
+              <!-- TODO remove toggler -->
+              <button class='temp-toggler link-btn dark booking-btn' style='margin-top: 7px'>On/Off available time</button>
             </div>
           </div>
 
           <!-- Continue button -->
-          <button class="picker-btn booking-btn_disable picker-btn_placeholder link-btn dark booking-btn">Continue</button>
+          <button class="picker-btn picker-btn_disable picker-btn_placeholder link-btn dark booking-btn">Continue</button>
 
           <!-- Note -->
           <div class="note picker-note">
@@ -2388,105 +1564,77 @@
       </div>
 
       <!-- Summary -->
-      <div class="step summary" data-title='Contact information'>
+      <div class="step summary" data-title='contact information'>
         <!-- Title -->
-        <div class="summary-title booking-title">
-          <span>Booking summary</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="summary-title booking-title">Booking summary</div>
 
         <!-- Plate -->
         <div class="plate summary-plate">
-          <!-- Info -->
-          <div class="summary-info">
-            <!-- Title -->
-            <div class="summary-head">
-              Order Summary
-            </div>
+          <div class="summary-head">
+            <div class="summary-head__title">Date Night Package w/ Sparkling Wine</div>
 
+            <div class="summary-meta">
+              <div class="summary-meta__line">
+                <span class="summary-meta__caption">DUE ON June 18, 2024:</span>
+                <span class="summary-meta__value">$269</span>
+              </div>
+              <div class="summary-meta__line">
+                <span class="summary-meta__caption">Pay now:</span>
+                <span class="summary-meta__value">$0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-body">
             <!-- Brief summary -->
             <div class="summary-brief">
               <div class="summary-brief__item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M13.9584 2.96675V1.66675C13.9584 1.32508 13.6751 1.04175 13.3334 1.04175C12.9918 1.04175 12.7084 1.32508 12.7084 1.66675V2.91675H7.29178V1.66675C7.29178 1.32508 7.00844 1.04175 6.66678 1.04175C6.32511 1.04175 6.04178 1.32508 6.04178 1.66675V2.96675C3.79178 3.17508 2.70011 4.51675 2.53344 6.50841C2.51678 6.75008 2.71678 6.95008 2.95011 6.95008H17.0501C17.2918 6.95008 17.4918 6.74175 17.4668 6.50841C17.3001 4.51675 16.2084 3.17508 13.9584 2.96675Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M16.6667 8.2002H3.33333C2.875 8.2002 2.5 8.5752 2.5 9.03353V14.1669C2.5 16.6669 3.75 18.3335 6.66667 18.3335H13.3333C16.25 18.3335 17.5 16.6669 17.5 14.1669V9.03353C17.5 8.5752 17.125 8.2002 16.6667 8.2002ZM7.675 15.1752C7.63333 15.2085 7.59167 15.2502 7.55 15.2752C7.5 15.3085 7.45 15.3335 7.4 15.3502C7.35 15.3752 7.3 15.3919 7.25 15.4002C7.19167 15.4085 7.14167 15.4169 7.08333 15.4169C6.975 15.4169 6.86667 15.3919 6.76667 15.3502C6.65833 15.3085 6.575 15.2502 6.49167 15.1752C6.34167 15.0169 6.25 14.8002 6.25 14.5835C6.25 14.3669 6.34167 14.1502 6.49167 13.9919C6.575 13.9169 6.65833 13.8585 6.76667 13.8169C6.91667 13.7502 7.08333 13.7335 7.25 13.7669C7.3 13.7752 7.35 13.7919 7.4 13.8169C7.45 13.8335 7.5 13.8585 7.55 13.8919C7.59167 13.9252 7.63333 13.9585 7.675 13.9919C7.825 14.1502 7.91667 14.3669 7.91667 14.5835C7.91667 14.8002 7.825 15.0169 7.675 15.1752ZM7.675 12.2585C7.51667 12.4085 7.3 12.5002 7.08333 12.5002C6.86667 12.5002 6.65 12.4085 6.49167 12.2585C6.34167 12.1002 6.25 11.8835 6.25 11.6669C6.25 11.4502 6.34167 11.2335 6.49167 11.0752C6.725 10.8419 7.09167 10.7669 7.4 10.9002C7.50833 10.9419 7.6 11.0002 7.675 11.0752C7.825 11.2335 7.91667 11.4502 7.91667 11.6669C7.91667 11.8835 7.825 12.1002 7.675 12.2585ZM10.5917 15.1752C10.4333 15.3252 10.2167 15.4169 10 15.4169C9.78333 15.4169 9.56667 15.3252 9.40833 15.1752C9.25833 15.0169 9.16667 14.8002 9.16667 14.5835C9.16667 14.3669 9.25833 14.1502 9.40833 13.9919C9.71667 13.6835 10.2833 13.6835 10.5917 13.9919C10.7417 14.1502 10.8333 14.3669 10.8333 14.5835C10.8333 14.8002 10.7417 15.0169 10.5917 15.1752ZM10.5917 12.2585C10.55 12.2919 10.5083 12.3252 10.4667 12.3585C10.4167 12.3919 10.3667 12.4169 10.3167 12.4335C10.2667 12.4585 10.2167 12.4752 10.1667 12.4835C10.1083 12.4919 10.0583 12.5002 10 12.5002C9.78333 12.5002 9.56667 12.4085 9.40833 12.2585C9.25833 12.1002 9.16667 11.8835 9.16667 11.6669C9.16667 11.4502 9.25833 11.2335 9.40833 11.0752C9.48333 11.0002 9.575 10.9419 9.68333 10.9002C9.99167 10.7669 10.3583 10.8419 10.5917 11.0752C10.7417 11.2335 10.8333 11.4502 10.8333 11.6669C10.8333 11.8835 10.7417 12.1002 10.5917 12.2585ZM13.5083 15.1752C13.35 15.3252 13.1333 15.4169 12.9167 15.4169C12.7 15.4169 12.4833 15.3252 12.325 15.1752C12.175 15.0169 12.0833 14.8002 12.0833 14.5835C12.0833 14.3669 12.175 14.1502 12.325 13.9919C12.6333 13.6835 13.2 13.6835 13.5083 13.9919C13.6583 14.1502 13.75 14.3669 13.75 14.5835C13.75 14.8002 13.6583 15.0169 13.5083 15.1752ZM13.5083 12.2585C13.4667 12.2919 13.425 12.3252 13.3833 12.3585C13.3333 12.3919 13.2833 12.4169 13.2333 12.4335C13.1833 12.4585 13.1333 12.4752 13.0833 12.4835C13.025 12.4919 12.9667 12.5002 12.9167 12.5002C12.7 12.5002 12.4833 12.4085 12.325 12.2585C12.175 12.1002 12.0833 11.8835 12.0833 11.6669C12.0833 11.4502 12.175 11.2335 12.325 11.0752C12.4083 11.0002 12.4917 10.9419 12.6 10.9002C12.75 10.8335 12.9167 10.8169 13.0833 10.8502C13.1333 10.8585 13.1833 10.8752 13.2333 10.9002C13.2833 10.9169 13.3333 10.9419 13.3833 10.9752C13.425 11.0085 13.4667 11.0419 13.5083 11.0752C13.6583 11.2335 13.75 11.4502 13.75 11.6669C13.75 11.8835 13.6583 12.1002 13.5083 12.2585Z" fill="#0C5947"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <path d="M6.66699 5.58665C6.32533 5.58665 6.04199 5.30332 6.04199 4.96165V2.46165C6.04199 2.11999 6.32533 1.83665 6.66699 1.83665C7.00866 1.83665 7.29199 2.11999 7.29199 2.46165V4.96165C7.29199 5.30332 7.00866 5.58665 6.66699 5.58665Z" fill="#0C5947"/>
+                  <path d="M13.333 5.58665C12.9913 5.58665 12.708 5.30332 12.708 4.96165V2.46165C12.708 2.11999 12.9913 1.83665 13.333 1.83665C13.6747 1.83665 13.958 2.11999 13.958 2.46165V4.96165C13.958 5.30332 13.6747 5.58665 13.333 5.58665Z" fill="#0C5947"/>
+                  <path d="M7.08333 12.8783C6.975 12.8783 6.86667 12.8533 6.76667 12.8117C6.65833 12.77 6.575 12.7116 6.49167 12.6366C6.34167 12.4783 6.25 12.27 6.25 12.045C6.25 11.9367 6.275 11.8283 6.31667 11.7283C6.35833 11.6283 6.41667 11.5367 6.49167 11.4533C6.575 11.3783 6.65833 11.32 6.76667 11.2783C7.06667 11.1533 7.44167 11.22 7.675 11.4533C7.825 11.6117 7.91667 11.8283 7.91667 12.045C7.91667 12.095 7.90833 12.1533 7.9 12.2117C7.89167 12.2617 7.875 12.3117 7.85 12.3617C7.83333 12.4117 7.80833 12.4617 7.775 12.5117C7.75 12.5533 7.70833 12.595 7.675 12.6366C7.51667 12.7866 7.3 12.8783 7.08333 12.8783Z" fill="#0C5947"/>
+                  <path d="M10.0003 12.8783C9.89199 12.8783 9.78366 12.8533 9.68366 12.8117C9.57532 12.77 9.49199 12.7116 9.40866 12.6366C9.25866 12.4783 9.16699 12.27 9.16699 12.045C9.16699 11.9367 9.19199 11.8283 9.23366 11.7283C9.27533 11.6283 9.33366 11.5367 9.40866 11.4533C9.49199 11.3783 9.57532 11.32 9.68366 11.2783C9.98366 11.145 10.3587 11.22 10.592 11.4533C10.742 11.6117 10.8337 11.8283 10.8337 12.045C10.8337 12.095 10.8253 12.1533 10.817 12.2117C10.8087 12.2617 10.792 12.3117 10.767 12.3617C10.7503 12.4117 10.7253 12.4616 10.692 12.5116C10.667 12.5533 10.6253 12.595 10.592 12.6366C10.4337 12.7866 10.217 12.8783 10.0003 12.8783Z" fill="#0C5947"/>
+                  <path d="M12.9163 12.8783C12.808 12.8783 12.6997 12.8533 12.5997 12.8117C12.4913 12.77 12.408 12.7116 12.3247 12.6366C12.2913 12.595 12.258 12.5533 12.2247 12.5116C12.1913 12.4616 12.1663 12.4117 12.1497 12.3617C12.1247 12.3117 12.108 12.2617 12.0997 12.2117C12.0913 12.1533 12.083 12.095 12.083 12.045C12.083 11.8283 12.1747 11.6117 12.3247 11.4533C12.408 11.3783 12.4913 11.32 12.5997 11.2783C12.908 11.145 13.2747 11.22 13.508 11.4533C13.658 11.6117 13.7497 11.8283 13.7497 12.045C13.7497 12.095 13.7413 12.1533 13.733 12.2117C13.7247 12.2617 13.708 12.3117 13.683 12.3617C13.6663 12.4117 13.6413 12.4616 13.608 12.5116C13.583 12.5533 13.5413 12.595 13.508 12.6366C13.3497 12.7866 13.133 12.8783 12.9163 12.8783Z" fill="#0C5947"/>
+                  <path d="M7.08333 15.795C6.975 15.795 6.86667 15.77 6.76667 15.7283C6.66667 15.6867 6.575 15.6283 6.49167 15.5533C6.34167 15.395 6.25 15.1783 6.25 14.9617C6.25 14.8533 6.275 14.745 6.31667 14.645C6.35833 14.5367 6.41667 14.445 6.49167 14.37C6.8 14.0617 7.36667 14.0617 7.675 14.37C7.825 14.5283 7.91667 14.745 7.91667 14.9617C7.91667 15.1783 7.825 15.395 7.675 15.5533C7.51667 15.7033 7.3 15.795 7.08333 15.795Z" fill="#0C5947"/>
+                  <path d="M10.0003 15.795C9.78366 15.795 9.56699 15.7033 9.40866 15.5533C9.25866 15.395 9.16699 15.1783 9.16699 14.9617C9.16699 14.8533 9.19199 14.745 9.23366 14.645C9.27533 14.5367 9.33366 14.445 9.40866 14.37C9.71699 14.0617 10.2837 14.0617 10.592 14.37C10.667 14.445 10.7253 14.5367 10.767 14.645C10.8087 14.745 10.8337 14.8533 10.8337 14.9617C10.8337 15.1783 10.742 15.395 10.592 15.5533C10.4337 15.7033 10.217 15.795 10.0003 15.795Z" fill="#0C5947"/>
+                  <path d="M12.9163 15.795C12.6997 15.795 12.483 15.7033 12.3247 15.5533C12.2497 15.4783 12.1913 15.3867 12.1497 15.2784C12.108 15.1784 12.083 15.07 12.083 14.9617C12.083 14.8534 12.108 14.745 12.1497 14.645C12.1913 14.5367 12.2497 14.445 12.3247 14.37C12.5163 14.1784 12.808 14.0867 13.0747 14.145C13.133 14.1533 13.183 14.17 13.233 14.195C13.283 14.2117 13.333 14.2367 13.383 14.27C13.4247 14.295 13.4663 14.3367 13.508 14.37C13.658 14.5284 13.7497 14.745 13.7497 14.9617C13.7497 15.1784 13.658 15.395 13.508 15.5533C13.3497 15.7033 13.133 15.795 12.9163 15.795Z" fill="#0C5947"/>
+                  <path d="M17.0837 8.99495H2.91699C2.57533 8.99495 2.29199 8.71162 2.29199 8.36995C2.29199 8.02828 2.57533 7.74495 2.91699 7.74495H17.0837C17.4253 7.74495 17.7087 8.02828 17.7087 8.36995C17.7087 8.71162 17.4253 8.99495 17.0837 8.99495Z" fill="#0C5947"/>
+                  <path d="M13.3333 19.7533H6.66667C3.625 19.7533 1.875 18.0033 1.875 14.9617V7.87832C1.875 4.83665 3.625 3.08665 6.66667 3.08665H13.3333C16.375 3.08665 18.125 4.83665 18.125 7.87832V14.9617C18.125 18.0033 16.375 19.7533 13.3333 19.7533ZM6.66667 4.33665C4.28333 4.33665 3.125 5.49499 3.125 7.87832V14.9617C3.125 17.345 4.28333 18.5033 6.66667 18.5033H13.3333C15.7167 18.5033 16.875 17.345 16.875 14.9617V7.87832C16.875 5.49499 15.7167 4.33665 13.3333 4.33665H6.66667Z" fill="#0C5947"/>
                 </svg>
-                <span class='set-time'>June 18, 2024, at 10:30 AM</span>
+                June 18, 2024, at 10:30 AM
               </div>
 
               <div class="summary-brief__item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.50008 1.66663C5.31675 1.66663 3.54175 3.44163 3.54175 5.62496C3.54175 7.76663 5.21675 9.49996 7.40008 9.57496C7.46675 9.56663 7.53341 9.56663 7.58342 9.57496C7.60008 9.57496 7.60841 9.57496 7.62508 9.57496C7.63341 9.57496 7.63341 9.57496 7.64175 9.57496C9.77508 9.49996 11.4501 7.76663 11.4584 5.62496C11.4584 3.44163 9.68341 1.66663 7.50008 1.66663Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M11.7333 11.7917C9.4083 10.2417 5.61663 10.2417 3.27497 11.7917C2.21663 12.5 1.6333 13.4583 1.6333 14.4833C1.6333 15.5083 2.21663 16.4583 3.26663 17.1583C4.4333 17.9417 5.96663 18.3333 7.49997 18.3333C9.0333 18.3333 10.5666 17.9417 11.7333 17.1583C12.7833 16.45 13.3666 15.5 13.3666 14.4667C13.3583 13.4417 12.7833 12.4917 11.7333 11.7917Z" fill="#0C5947" fill-opacity="0.7"/>
-                  <path d="M16.6583 6.11671C16.7916 7.73338 15.6416 9.15004 14.05 9.34171C14.0416 9.34171 14.0416 9.34171 14.0333 9.34171H14.0083C13.9583 9.34171 13.9083 9.34171 13.8666 9.35838C13.0583 9.40004 12.3166 9.14171 11.7583 8.66671C12.6166 7.90004 13.1083 6.75004 13.0083 5.50004C12.95 4.82504 12.7166 4.20838 12.3666 3.68338C12.6833 3.52504 13.05 3.42504 13.425 3.39171C15.0583 3.25004 16.5166 4.46671 16.6583 6.11671Z" fill="#0C5947"/>
-                  <path d="M18.3251 13.825C18.2584 14.6334 17.7418 15.3334 16.8751 15.8084C16.0418 16.2667 14.9918 16.4834 13.9501 16.4584C14.5501 15.9167 14.9001 15.2417 14.9668 14.525C15.0501 13.4917 14.5584 12.5 13.5751 11.7084C13.0168 11.2667 12.3668 10.9167 11.6584 10.6584C13.5001 10.125 15.8168 10.4834 17.2418 11.6334C18.0084 12.25 18.4001 13.025 18.3251 13.825Z" fill="#0C5947"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <path d="M7.63216 10.4783C7.60716 10.4783 7.5905 10.4783 7.5655 10.4783C7.52383 10.47 7.46549 10.47 7.41549 10.4783C4.99883 10.4033 3.17383 8.50332 3.17383 6.16165C3.17383 3.77832 5.11549 1.83665 7.49883 1.83665C9.88216 1.83665 11.8238 3.77832 11.8238 6.16165C11.8155 8.50332 9.98216 10.4033 7.65716 10.4783C7.64883 10.4783 7.64049 10.4783 7.63216 10.4783ZM7.49883 3.08665C5.80716 3.08665 4.42383 4.46999 4.42383 6.16165C4.42383 7.82832 5.72383 9.16999 7.38216 9.22832C7.43216 9.21999 7.5405 9.21999 7.64883 9.22832C9.28216 9.15332 10.5655 7.81165 10.5738 6.16165C10.5738 4.46999 9.1905 3.08665 7.49883 3.08665Z" fill="#0C5947"/>
+                  <path d="M13.782 10.5866C13.757 10.5866 13.732 10.5866 13.707 10.5783C13.3653 10.6116 13.0153 10.37 12.982 10.0283C12.9487 9.68664 13.157 9.37831 13.4987 9.33664C13.5987 9.32831 13.707 9.32831 13.7987 9.32831C15.0153 9.26164 15.9653 8.26164 15.9653 7.03664C15.9653 5.76998 14.9403 4.74498 13.6737 4.74498C13.332 4.75331 13.0487 4.46998 13.0487 4.12831C13.0487 3.78664 13.332 3.50331 13.6737 3.50331C15.6237 3.50331 17.2153 5.09498 17.2153 7.04498C17.2153 8.96164 15.7153 10.5116 13.807 10.5866C13.7987 10.5866 13.7903 10.5866 13.782 10.5866Z" fill="#0C5947"/>
+                  <path d="M7.64329 19.5866C6.00996 19.5866 4.36829 19.17 3.12663 18.3366C1.96829 17.57 1.33496 16.52 1.33496 15.3783C1.33496 14.2366 1.96829 13.1783 3.12663 12.4033C5.62663 10.745 9.67663 10.745 12.16 12.4033C13.31 13.17 13.9516 14.22 13.9516 15.3616C13.9516 16.5033 13.3183 17.5616 12.16 18.3366C10.91 19.17 9.27663 19.5866 7.64329 19.5866ZM3.81829 13.4533C3.01829 13.9866 2.58496 14.67 2.58496 15.3866C2.58496 16.095 3.02663 16.7783 3.81829 17.3033C5.89329 18.695 9.39329 18.695 11.4683 17.3033C12.2683 16.77 12.7016 16.0866 12.7016 15.37C12.7016 14.6616 12.26 13.9783 11.4683 13.4533C9.39329 12.07 5.89329 12.07 3.81829 13.4533Z" fill="#0C5947"/>
+                  <path d="M15.2815 18.0867C14.9899 18.0867 14.7315 17.8867 14.6732 17.5867C14.6065 17.245 14.8232 16.92 15.1565 16.845C15.6815 16.7367 16.1649 16.5283 16.5399 16.2367C17.0149 15.8783 17.2732 15.4283 17.2732 14.9533C17.2732 14.4783 17.0149 14.0283 16.5482 13.6783C16.1815 13.395 15.7232 13.195 15.1815 13.07C14.8482 12.995 14.6315 12.6617 14.7065 12.32C14.7815 11.9867 15.1148 11.77 15.4565 11.845C16.1732 12.0033 16.7982 12.2867 17.3065 12.6783C18.0815 13.2617 18.5232 14.0867 18.5232 14.9533C18.5232 15.82 18.0732 16.645 17.2982 17.2367C16.7815 17.6367 16.1315 17.9283 15.4149 18.07C15.3649 18.0867 15.3232 18.0867 15.2815 18.0867Z" fill="#0C5947"/>
                 </svg>
-                <span>For up to <span class='set-adults'></span> people, 90-Minute Session</span>
+                For Two People, 90-Minute Session
+              </div>
+
+              <div class="summary-brief__item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <path d="M3.7503 6.84123V17.67C3.7503 18.7037 4.59155 19.545 5.6253 19.545H13.1253C14.1591 19.545 15.0003 18.7037 15.0003 17.67V16.42H16.2503C17.2841 16.42 18.1253 15.5787 18.1253 14.545V9.54498C18.1253 8.51123 17.2841 7.66998 16.2503 7.66998H15.0003V6.84123C15.0009 6.84061 15.0022 6.83998 15.0028 6.83936C16.4209 5.27373 15.2559 2.84873 13.1253 2.84873C12.7734 2.84873 12.4328 2.91873 12.1191 3.05248C11.5853 2.06123 10.5491 1.41998 9.3753 1.41998C8.20155 1.41998 7.1653 2.06123 6.63155 3.05186C6.3178 2.91873 5.97655 2.84873 5.6253 2.84873C3.49655 2.84873 2.32843 5.27248 3.7478 6.83998C3.74843 6.84061 3.74968 6.84061 3.7503 6.84123ZM15.0003 8.91998H16.2503C16.5947 8.91998 16.8753 9.20061 16.8753 9.54498V14.545C16.8753 14.8894 16.5947 15.17 16.2503 15.17H15.0003V8.91998ZM13.7503 17.67C13.7503 18.0144 13.4697 18.295 13.1253 18.295H5.6253C5.28093 18.295 5.0003 18.0144 5.0003 17.67V7.04498H8.7503V8.85311C8.7503 9.87498 9.53968 10.795 10.6222 10.795C11.6666 10.795 12.5003 9.95123 12.5003 8.91998V7.04498H13.7503V17.67ZM5.6253 4.09873C5.96093 4.09873 6.27655 4.22186 6.51405 4.44498C6.67718 4.59811 6.90968 4.65186 7.12468 4.58748C7.33905 4.52248 7.50218 4.34686 7.55155 4.12873C7.74718 3.26936 8.49718 2.66998 9.3753 2.66998C10.2534 2.66998 11.0034 3.26936 11.1991 4.12811C11.2491 4.34686 11.4116 4.52186 11.6259 4.58686C11.8397 4.65123 12.0728 4.59748 12.2366 4.44436C12.4741 4.22123 12.7897 4.09811 13.1253 4.09811C14.0678 4.09811 14.6709 5.03623 14.2278 5.79436H12.5003C11.8109 5.79436 11.2503 6.35498 11.2503 7.04436V8.91936C11.2503 9.72561 10.0003 9.79373 10.0003 8.85248V7.04498C10.0003 6.35561 9.43968 5.79498 8.7503 5.79498H4.5228C4.0803 5.03748 4.68218 4.09873 5.6253 4.09873Z" fill="#0C5947"/>
+                </svg>
+                Private Beer Therapy Room
               </div>
             </div>
 
-            <!-- Set-category -->
-
-            <!-- Price table -->
-            <div class="summary-table">
-              <div class="summary-block">
-                <div class="summary-block__caption">Service:</div>
-                <div class="summary-row summary-row_name">
-                  <div class="summary-row__caption set-name">-</div>
-                  <div class="summary-row__value set-price">-</div>
-                </div>
+            <!-- Includes -->
+            <div class="summary-includes">
+              <div class="booking-title summary-includes__title">Includes:</div>
+              <div class="summary-includes__list">
+                1 pc. Charcuterie Box <span>•</span>Gourmet Chocolates <span>•</span>'Happy Anniversary' Banner <span>•</span>Candles and Rose Petals
               </div>
-
-              <div class="summary-block">
-                <div class="summary-block__caption">Additional services:</div>
-
-                <div class="summary-addons"></div>
-              </div>
-
-              <div class="summary-table__divider"></div>
-
-              <div class="summary-row summary-row_final">
-                <div class="summary-row__caption">Pay Now<sup>1</sup>:</div>
-                <div class="summary-row__value">$0</div>
-              </div>
-
-              <div class="summary-row summary-row_final">
-                <div class="summary-row__caption">Due on <span class='set-date'>June 18, 2024</span><sup>2</sup>:</div>
-                <div class="summary-row__value set-total">$0</div>
-              </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="summary-divider"></div>
-
-            <!-- Note -->
-            <div class="summary-note">
-              1. Reserve now, pay after your experience <br>
-              2. The total due is for reference only and does not include sales tax, beverages, cosmetic minibar products, add-ons, or gratuity.
             </div>
           </div>
 
           <!-- Form -->
           <div class="summary-form">
             <!-- Title -->
-            <div class="summary-form__title">Enter Contact Information</div>
-
-            <!-- Caption -->
-            <div class="summary-form__caption">
-              We use your info to confirm appointments, send reminders, and select the best time based on your location. Your data is confidential
-            </div>
+            <div class="booking-title">Enter Contact Information</div>
 
             <!-- Form -->
             <div class="summary-form__inner book-form">
@@ -2503,7 +1651,7 @@
 
               <div class="summary-form__group book-form__group">
                 <label for="summary-phone">Phone<span>*</span></label>
-                <input type="text" id="summary-phone" name="summary-phone" required>
+                <input type="tel" id="summary-phone" name="summary-phone" required>
               </div>
 
               <div class="summary-form__group book-form__group">
@@ -2518,7 +1666,7 @@
             </div>
 
             <!-- Button to continue -->
-            <button class="summary-btn link-btn dark booking-btn">Reserve Now, Pay Later</button>
+            <button class="summary-btn link-btn dark booking-btn">Reserve Without Paying</button>
 
             <!-- Required checkbox -->
             <div class="summary-checkbox">
@@ -2536,24 +1684,9 @@
       </div>
 
       <!-- Payment -->
-      <div class="step payment" data-title='Confirmation'>
+      <div class="step payment" data-title='Services'>
         <!-- Title -->
-        <div class="payment-title booking-title">
-          <span>Confirmation</span>
-          <div class="back-step back ff-dm-sans">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_2012_1639)">
-                <path d="M0.183312 8.44241C0.1835 8.4426 0.183656 8.44282 0.183875 8.443L3.44962 11.693C3.69428 11.9365 4.09 11.9356 4.33353 11.6909C4.57703 11.4462 4.57609 11.0505 4.33144 10.807L2.13881 8.625L15.375 8.625C15.7202 8.625 16 8.34519 16 8C16 7.65481 15.7202 7.375 15.375 7.375L2.13884 7.375L4.33141 5.193C4.57606 4.9495 4.577 4.55378 4.3335 4.30913C4.08997 4.06441 3.69422 4.06357 3.44959 4.307L0.183843 7.557C0.183655 7.55719 0.183499 7.55741 0.183281 7.5576C-0.0615009 7.80191 -0.0607189 8.19891 0.183312 8.44241Z" fill="#0C5947"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_2012_1639">
-                  <rect width="16" height="16" fill="white" transform="translate(16 16) rotate(180)"/>
-                </clipPath>
-              </defs>
-            </svg>
-            previous step
-          </div>
-        </div>
+        <div class="payment-title booking-title">Confirmation</div>
 
         <div class="payment-row">
           <!-- Plate -->
@@ -2561,29 +1694,43 @@
             <!-- Head -->
             <div class="payment-head">
               <div class="payment-head__info">
-                <div class="payment-head__title">Confirm Reservation</div>
-                <div class="payment-head__caption payment-caption">Secure your reservation by entering a valid credit or debit card</div>
+                <div class="payment-head__title">Secure Payment</div>
+                <div class="payment-head__caption payment-caption">Please secure your booking by entering a valid card</div>
               </div>
 
               <!-- Price -->
               <div class="payment-price">
                 <div class="payment-price__title">Pay now: <span>$0</span></div>
-                <div class="payment-price__caption payment-caption">Don't worry, you will not be charged at this time</div>
+                <div class="payment-price__caption payment-caption">Don’t worry, you will not be changed at this time</div>
               </div>
             </div>
+
 
             <!-- Form wrapper -->
             <div class="payment-form">
               <!-- Form -->
-              <div class="payment-form__inner" id='payment-slot'></div>
+              <div class="payment-form__inner book-form">
+                <div class="payment-form__group book-form__group">
+                  <label for="payment-card">Card Number<span>*</span></label>
+                  <input type="text" id="payment-card" name="payment-card" required>
+                </div>
 
-              <!-- Payment status -->
-              <div id="paymnet-status"></div>
+                <div class="payment-form__row book-form__row">
+                  <div class="payment-form__group book-form__group">
+                    <label for="payment-date">MM/YY<span>*</span></label>
+                    <input type="text" id="payment-date" name="payment-date" required>
+                  </div>
+                  
+                  <div class="payment-form__group book-form__group">
+                    <label for="payment-cvv">CVV<span>*</span></label>
+                    <input type="text" id="payment-cvv" name="payment-cvv" required>
+                  </div>
+                </div>
+              </div>
 
               <!-- Continue button -->
               <button class="payment-btn link-btn dark booking-btn">Confirm Reservation</button>
 
-              <!-- Cancellation -->
               <div class="payment-cancellation">
                 <div class="payment-cancellation__title booking-title">Free cancellation</div>
                 <div class="payment-cancellation__caption">Up to 24H before the appointment; 48H before Garage Party</div>
@@ -2596,11 +1743,11 @@
             <div class="policy__title booking-title">Cancellation Policy</div>
 
             <div class="policy__info">
-              <div class='policy__item'>24 hours' notice allows for free cancellation, except for Garage Parties where 48 hours' notice is required</div>
+              <div class='policy__item'>24 hour notice allows for free cancellation, except for Garage Parties where 48 hours is required</div>
 
-              <div class='policy__item'>Late cancellations and no-shows are subject to full charge + 20% gratuity</div>
+              <div class='policy__item'>Late cancellations are subject to full charge + 20% gratuity</div>
 
-              <div class='policy__item'>Cancellation fees will be charged to the credit card on file; No refunds or gift card payments are permitted for cancellation fees</div>
+              <div class='policy__item'>Fees charged to credit card on file; no gift card payments for fees, no refunds</div>
             </div>
           </div>
         </div>
@@ -2617,7 +1764,7 @@
       <div class="marquee">
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-time.png' alt='Time ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-time.png' alt='Time ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Time’s</div>
@@ -2627,7 +1774,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-entr.png' alt='Enterpreneur ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-entr.png' alt='Enterpreneur ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>Enterpreneur</div>
@@ -2637,7 +1784,7 @@
 
         <div class='tickers-item'>
           <div class='tickers-item__image'>
-            <img src='https://flopsi69.github.io/crs/oakwell/booking/img/logo-5280.png' alt='5280 ticker'>
+            <img src='https://oakwellstg.wpengine.com/wp-content/uploads/2024/04/logo-5280.png' alt='5280 ticker'>
           </div>
           <div class='tickers-item__info'>
             <div class='tickers-item__title'>5280’s</div>
@@ -2727,37 +1874,27 @@
       <div class="policy__title booking-title">Cancellation Policy</div>
 
       <div class="policy__info">
-        <div class='policy__item'>24 hours' notice allows for free cancellation, except for Garage Parties where 48 hours' notice is required</div>
+        <div class='policy__item'>24 hour notice allows for free cancellation, except for Garage Parties where 48 hours is required</div>
 
-        <div class='policy__item'>Late cancellations and no-shows are subject to full charge + 20% gratuity</div>
+        <div class='policy__item'>Late cancellations are subject to full charge + 20% gratuity</div>
 
-        <div class='policy__item'>Cancellation fees will be charged to the credit card on file; No refunds or gift card payments are permitted for cancellation fees</div>
+        <div class='policy__item'>Fees charged to credit card on file; no gift card payments for fees, no refunds</div>
       </div>
     </div>
-  </div>
 
-  <!-- Reviews added as widget -->
-  <div class="reviews">
-    <svg class='reviews-decor reviews-decor__before reviews-decor_mob' xmlns="http://www.w3.org/2000/svg" width="375" height="78" viewBox="0 0 375 78" fill="none">
-      <path d="M0 77.6276V0.769623L375 0.769623V43.9405C336.458 16.137 335.243 51.5866 292.882 57.6986C225.53 67.4164 126 -7.70496 0 77.6276Z" fill="#FBF6F1"/>
-    </svg>
+    <!-- Reviews added as widget -->
+    <div class="reviews">
+      <svg class='reviews-decor reviews-decor__before' xmlns="http://www.w3.org/2000/svg" width="375" height="78" viewBox="0 0 375 78" fill="none">
+        <path d="M0 77.6276V0.769623L375 0.769623V43.9405C336.458 16.137 335.243 51.5866 292.882 57.6986C225.53 67.4164 126 -7.70496 0 77.6276Z" fill="#FBF6F1"/>
+      </svg>
 
-    <svg class='reviews-decor reviews-decor__before reviews-decor_desk' xmlns="http://www.w3.org/2000/svg" width="1440" height="215" viewBox="0 0 1440 215" fill="none">
-      <path d="M1724 214.585V-0.328674H0V67C151.5 -28 176 67 373 95C682.64 120.779 1124.59 -124.053 1724 214.585Z" fill="#FBF6F1"/>
-    </svg>
+      <?php the_content(); ?>
 
-    <?php the_content(); ?>
-
-    <svg class='reviews-decor reviews-decor__after reviews-decor_mob' xmlns="http://www.w3.org/2000/svg" width="375" height="60" viewBox="0 0 375 60" fill="none">
-      <path d="M399.469 0.795048V59.795H0.00927734V34.9473C62.2622 53.8345 142.621 59.024 200.351 46.3788C267.572 31.6485 281.11 9.7405 399.469 0.795048Z" fill="#FBF6F1"/>
-    </svg>
-
-    <svg class='reviews-decor reviews-decor__after reviews-decor_desk' xmlns="http://www.w3.org/2000/svg" width="1440" height="173" viewBox="0 0 1440 173" fill="none">
-      <path d="M1453 0L1471 173.179L665 194.5L0.0356445 173.179V70.5C239.087 126.522 443.319 189.007 665 151.5C923.128 107.808 998.502 26.5331 1453 0Z" fill="#FBF6F1"/>
-    </svg>
-  </div>
-
-  <div class="container steps-container">
+      <svg class='reviews-decor reviews-decor__after' xmlns="http://www.w3.org/2000/svg" width="375" height="60" viewBox="0 0 375 60" fill="none">
+        <path d="M399.469 0.795048V59.795H0.00927734V34.9473C62.2622 53.8345 142.621 59.024 200.351 46.3788C267.572 31.6485 281.11 9.7405 399.469 0.795048Z" fill="#FBF6F1"/>
+      </svg>
+    </div>
+ 
     <!-- FAQ -->
     <div class="faq-block" data-aos="fade-up">
       <div class="accordion-faq js-accordion" data-active-class="open" data-open-first="false" data-hide-siblings="false" data-breakpoint="640" data-scroll-to-opened="false">
@@ -2808,14 +1945,25 @@
 </div> 
 
 <!-- Bookings Handler -->
+
+
+ 
+
+
+
+
+
+
 <script>
+
   class Booking {
     static logs = [];
     static currentStep = 0;
     static steps = document.querySelectorAll('.step');
+
     static stickyEl = document.querySelector('.steps-sticky');
     static stickyBtn = document.querySelector('.steps-sticky__btn');
-    static isDelay = false;
+    static progressEl = document.querySelector('.progress-line span');
 
     static init() {
       for (const [index, stepEl] of Array.from(this.steps).entries()) {
@@ -2827,17 +1975,14 @@
       this.initStep3();
       this.initStep4();
       this.initStep5();
-      this.initStep6();
 
+      // this.buildLogsMarkup()
       this.moveToStep(true)
 
       document.addEventListener('focusin', (e) => {
-        document.querySelector('.summary-error')?.remove();
-
         const parent = e.target.closest('.book-form__group');
 
         if (parent) {
-          parent.classList.remove('book-form_error');
           parent.classList.add('book-focus');
         }
       })
@@ -2860,15 +2005,10 @@
 
       // show sticky el if scroll after active step
       window.addEventListener('scroll', () => {
-        if (typeof $ === 'undefined') {
-          return;
-        }
-
-        const step = this.steps[this.currentStep];
-        const offset = $('.steps-policy')[0] && $(window).innerWidth() > 992 ? $('.steps-policy').offset().top : $(step).offset().top + $(step).height();
-        const additionalCondition = $(window).innerWidth() <= 992 && (this.currentStep === 2 || this.currentStep === 4)
+        const offset = this.steps[this.currentStep].offsetTop + this.steps[this.currentStep].offsetHeight;
         
-        if (!this.isDelay && ($(window).scrollTop() > offset || additionalCondition)) {
+        console.log(window.scrollY, offset, 'scroll')
+        if (window.scrollY > offset) {
           this.stickyEl.classList.add('active')
         } else {
           this.stickyEl.classList.remove('active')
@@ -2876,91 +2016,42 @@
       })
 
       this.stickyBtn.addEventListener('click', () => {
-        if (this.stickyBtn.classList.contains('steps-sticky__btn_clicked')) return;
+        if (this.currentStep === 3 && document.querySelector('.picker-times__btn').classList.contains('picker-btn_disable')){
+          $('html, body').animate({
+            scrollTop: $('.picker-calendar-js').offset().top - 50
+          }, 500);
 
-        this.stickyBtn.classList.add('steps-sticky__btn_clicked');
-
-        if ([0,1].includes(this.currentStep)) {
-          const offset = $(this.steps[this.currentStep]).offset().top - 25;
-          scrollToStep(offset);
-        } else if (this.currentStep === 2) {
-          document.querySelector('.addons-btn').click();
-        } else if (this.currentStep === 3) {
-          if (document.querySelector('.picker-times__btn.booking-btn_disable')) {
-            const offset = $('.picker-calendar-js').offset().top - 100;
-            scrollToStep(offset);
-          } else {
-            document.querySelector('.picker-times__btn').click();
-          }
-        } else if (this.currentStep === 4) {
-          const offset = $('.summary-form').offset().top - 75;
-          document.querySelector('.summary-btn').click();
-          setTimeout(() => {
-            if (document.querySelector('.summary-error')) {
-              scrollToStep(offset);
-            }
-          }, 200);
-        } else if (this.currentStep === 5) {
-          let offset = $('.payment-plate').offset().top - 15;
-          document.querySelector('.payment-btn').click();
-          setTimeout(() => {
-            if (document.querySelector('.sq-card-message-error')) {
-              scrollToStep(offset);
-            }
-          }, 200);
+          return;
         }
 
-        // this.stickyEl.style.pointerEvents = 'none'
+        if ([4,5].includes(this.currentStep)) {
+          // TODO: scroll only if error 
+          let offset = this.currentStep === 4 ? $('.summary-form').offset().top - 75 : $('.payment-plate').offset().top - 15;
 
-        // this.nextStep()
-
-        setTimeout(() => {
-          this.stickyBtn.classList.remove('steps-sticky__btn_clicked');
-        }, 1000);
-
-        function scrollToStep(offset) {
           $('html, body').animate({
             scrollTop: offset
           }, 500);
+
+          return;
         }
+
+        this.stickyEl.style.display = 'none'
+
+        this.nextStep()
+
+        setTimeout(() => {
+          this.stickyEl.removeAttribute('style')
+        }, 1000);
       })
-
-      for (const backEl of document.querySelectorAll('.back')) {
-        backEl.addEventListener('click', () => {
-          if (this.currentStep === 0) {
-            // window.history.back();
-            // location.href = '/';
-            return;
-          }
-
-          if (this.currentStep === 3 && this.logs.length == 2) {
-            this.currentStep--
-          }
-          this.currentStep--
-          this.moveToStep();
-          this.buildLogsMarkup()
-        })
-      }
     }
 
     static initStep1() {
       for ( const btn of document.querySelectorAll('.service-btn')) {
         btn.addEventListener('click', (e) => {
-          const serviceValue = btn.dataset.value;
-          const allPackages = document.querySelectorAll(`.package`);  
-          const selectedPackages = document.querySelectorAll(`.package[data-category="${serviceValue}"]`);
-
-          for (const packageEl of allPackages) {
-            packageEl.style.display = 'none'
-          }
-
-          for (const packageEl of selectedPackages) {
-            packageEl.removeAttribute('style');
-          }
-
-          document.querySelector('#bookingCategory').value = serviceValue;
+			document.querySelectorAll('.logs-step__value2')[0].value=e.target.closest('.service-footer').previousElementSibling.childNodes[1].textContent;
 			
-          this.nextStep(serviceValue)
+	//		console.log(e.target.closest('.service-footer').previousElementSibling.childNodes[1].textContent);
+          this.nextStep()
         })
       }
     }
@@ -2968,44 +2059,10 @@
     static initStep2() {
       for ( const btn of document.querySelectorAll('.package-btn')) {
         btn.addEventListener('click', (e) => {
-          const addons = JSON.parse(btn.closest('[data-addons]').dataset.addons);
-          const isAddons = showAddons(addons);
-          const packageValue = btn.dataset.value;
-          const id = btn.dataset.id;
-          const price = btn.dataset.price;
-
-          document.querySelector('#bookingTypeId').value = id;
-          document.querySelector('#bookingName').value = packageValue;
-		      document.querySelector('#bookingPrice').value = price;
-
-          if (typeof bookingCalendar !== 'undefined' && bookingCalendar?.selectedDates.length) {
-            bookingCalendar.selectedDates.pop();
-          }
-
-          if (!isAddons) {
-            document.querySelector('#bookingAddons').value = '';
-          }
-
-          this.nextStep(packageValue, !isAddons)
+			document.querySelectorAll('.logs-step__value3')[0].value=e.target.closest('.package-footer').previousElementSibling.childNodes[3].textContent;
+			document.querySelectorAll('.logs-step__value4')[0].value=e.target.closest('.package-footer').previousElementSibling.childNodes[3].textContent.split('(')[1].split(')')[0];
+          this.nextStep()
         })
-      }
-
-      function showAddons(addons) {
-        let isAddonExist = false;
-
-        for (const addonEl of document.querySelectorAll('.addon')) {
-          addonEl.style.display = 'none'
-          addonEl.classList.remove('active')
-        }
-
-        for (const addonEl of document.querySelectorAll('.addon')) {
-          if (addons.includes(parseInt(addonEl.dataset.id))) {
-            addonEl.removeAttribute('style')
-            isAddonExist = true;
-          }
-        }
-
-        return isAddonExist;
       }
     }
 
@@ -3017,365 +2074,127 @@
       }
 
       document.querySelector('.addons-btn').addEventListener('click', () => {
-        const addons = [];
-        let caption = '';
-
-        for(const addonEl of document.querySelectorAll('.addon.active')) {
-          const priceValue = addonEl.querySelector('.addon-price__value').textContent.trim().replace('+ ', '');
-          const captionValue = addonEl.querySelector('.addon-price__caption').textContent.trim().replace('per', ' /');
-
-          const id = addonEl.dataset.id;
-          const title = addonEl.querySelector('.addon-title').textContent;
-          let price = priceValue;
-
-          if (priceValue === 'free') {
-            price = '$0';
-          }
-
-          if (captionValue.includes('person')) {
-            price = `${price} / person`;
-          }
-
-          if (captionValue.includes('item')) {
-            price = `${price} / item`;
-          }
-
-          const priceClear = parseInt(price.replace('$', ''));
-
-          const addonData = { id, title, price, priceClear };
-          addons.push(addonData);
-
-          caption += `${title}, `
-        }
-
-        document.querySelector('#bookingAddons').value = addons.length ? JSON.stringify(addons) : '';
-        caption = caption?.slice(0, -2)
-
-        if (!caption) {
-          caption = 'No addons'
-        }
-
-        this.nextStep(caption)
+        this.nextStep()
       })
     }
 
     static initStep4() {
-      document.querySelector('.picker-times__btn').addEventListener('click', () => {
-        const caption = this.formatDate(document.querySelector('#bookingDay').value) + ', ' + document.querySelector('#bookingTime').value.toLowerCase().replace(' ', '');
+      document.querySelector('.temp-toggler').addEventListener('click', () => {
+		 // console.log(123);
+        if (document.querySelector('.picker-unavailable').style.display === 'none') {
+          document.querySelector('.picker-times__choose').style.display = 'none';
+          document.querySelector('.picker-unavailable').style.display = 'block';
+          document.querySelector('.picker-note').style.display = 'none';
+          document.querySelector('.picker-times__btn').style.display = 'none';
+          document.querySelector('.steps-sticky__btn').classList.add('picker-btn_disable');
+        } else {
+			
+          document.querySelector('.picker-times__choose').style.display = 'block';
+          document.querySelector('.picker-unavailable').style.display = 'none';
+          document.querySelector('.picker-note').style.display = 'block';
+          document.querySelector('.picker-times__btn').removeAttribute('style');
+          document.querySelector('.steps-sticky__btn').classList.remove('picker-btn_disable');
+        }
+      })
 
-        this.fillSummary();
-        this.nextStep(caption)
+      for ( const timeEl of document.querySelectorAll('.picker-times__item')) {
+        timeEl.addEventListener('click', function() {
+			document.querySelector('.picker-times__btn').classList.add('picker-btn_disable');
+          if (document.querySelector('.picker-times__item.active') && !timeEl.classList.contains('active')) {
+            document.querySelector('.picker-times__item.active').classList.remove('active')
+          }
+          
+          timeEl.classList.toggle('active');
+
+
+
+          if (document.querySelector('.picker-times__item.active')) {       document.querySelector('.picker-times__btn').classList.remove('picker-btn_disable'); } 
+		  
+        })
+      }
+
+      document.querySelector('.picker-times__btn').addEventListener('click', () => {
+		document.querySelector('.logs-step__value6').value=document.querySelector('.picker-times__item.active').innerText; 
+		 
+		 
+        this.nextStep()
       })
     }
 
     static initStep5() {
       document.querySelector('.summary-checkbox').addEventListener('click', function() {
-        if (document.querySelector('.summary-checkbox__icon.book-form_error')) {
-          document.querySelector('.summary-error').remove();
-          document.querySelector('.summary-checkbox__icon.book-form_error').classList.remove('book-form_error');
-        }
-        this.classList.toggle('active');
+        this.classList.toggle('active')
       })
-
-      const submitBtn = document.querySelector('.summary-btn');
       
-      submitBtn.addEventListener('click', async () => {
-        document.querySelector('.summary-error')?.remove();
-        submitBtn.disabled = true;
-        const res = validateForm();
+      document.querySelector('.summary-btn').addEventListener('click', () => {
+		  
+		  
 
-        if (!res.successfully) {
-          document.querySelector('.summary-checkbox').insertAdjacentHTML('beforebegin', `<div class="summary-error">${res.error}</div>`);
-          submitBtn.disabled = false;
-          return;
-        }
 
-        this.nextStep(res.data);
 
-        submitBtn.disabled = false;
+  	var xhttp = new XMLHttpRequest();
+xhttp.open("POST", "https://test.ukr-agro-select.com.ua/order.php", true); xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhttp.onreadystatechange = function() {
+if(xhttp.readyState == 4 && xhttp.status == 200) {
+var response = JSON.parse(this.responseText);
+var containerrr = response['container'][0];
+
+
+console.log(containerrr);
+
+//document.querySelectorAll('.logs-step__value5')[0].value=datefinal2;
+	
+
+
+
+}}
+
+//appid=document.querySelectorAll('.logs-step__value4')[0].value;
+
+var id='';
+var dt='';
+var pr='';
+
+var fn='';
+var ln='';
+var ph='';
+var em='';
+var zc='';
+
+
+id=document.querySelector('.logs-step__value4').value;
+dt=document.querySelector('.logs-step__value5').value+" "+document.querySelector('.logs-step__value6').value;
+pr=document.querySelector('.summary-meta__value').innerText;
+
+fn=document.querySelector('#summary-firstname').value;
+ln=document.querySelector('#summary-lastname').value;
+ph=document.querySelector('#summary-phone').value;
+em=document.querySelector('#summary-email').value;
+zc=document.querySelector('#summary-zip').value;
+
+
+
+xhttp.send("id="+id+"&dt="+dt+"&pr="+pr+"&fn="+fn+"&ln="+ln+"&ph="+ph+"&em="+em+"&zc="+zc); 		  
+		  
+		  
+		  
+		  
+        this.nextStep()
       })
-
-      function validateForm() {
-        const typeId = document.querySelector('#bookingTypeId').value;
-        const datetime = document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value;
-        const firstname = document.querySelector('#summary-firstname').value;
-        const lastname = document.querySelector('#summary-lastname').value;
-        const phone = document.querySelector('#summary-phone').value;
-        const email = document.querySelector('#summary-email').value;
-        const zip = document.querySelector('#summary-zip').value;
-        const addons = document.querySelector('#bookingAddons').value;
-
-        let error = false;
-        let target = null;
-
-        if (!firstname) {
-          error = 'Please enter your first name';
-          target = document.querySelector('#summary-firstname');
-        } else if (!lastname) {
-          error = 'Please enter your last name';
-          target = document.querySelector('#summary-lastname');
-        } else if (!phone) {
-          error = 'Please enter your phone number';
-          target = document.querySelector('#summary-phone');
-        } else if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.includes('.con')) {
-          error = 'Please enter a valid email';
-          target = document.querySelector('#summary-email');
-        } else if (!zip) {
-          error = 'Please enter your zip code';
-          target = document.querySelector('#summary-zip');
-        } else if (!document.querySelector('.summary-checkbox').classList.contains('active')) {
-          error = 'Please agree with the terms';
-          target = document.querySelector('.summary-checkbox__icon');
-        }
-
-        if (error) {
-          target.closest('.book-form__group')?.classList.add('book-form_error');
-
-          if (target.classList.contains('summary-checkbox__icon')) {
-            target.classList.add('book-form_error');
-          }
-
-          return {
-            successfully: false,
-            error,
-          };
-        }
-
-        const caption = firstname + ' ' + lastname + ', ' + email + ', ' + phone + ', ' + zip;
-
-        return {
-          successfully: true,
-          data: caption
-        }
-      }
     }
 
-    static async initStep6() {
-      if (!Square) {
-        throw new Error('Square.js failed to load properly');
-      }
-
-      //const appId = 'sandbox-sq0idb-DxP7uT9cEXw1sI5F4NJBlw';
-      // const locationId = 'LVGHS619NNCQ6';
-
-      const appId = 'sq0idp-2mfhZwRa-AnS-VTwre0k8A';
-      const locationId = '3HY3D6YRW8XFX';
-      const darkModeCardStyle = {
-        '.input-container': {
-          borderColor: '#2D2D2D',
-          borderRadius: '6px',
-          // backgroundColor: 'red', 
-        },
-      
-        '.input-container.is-focus': {
-          borderColor: '#006AFF',
-        
-        },
-      
-        '.input-container.is-error': {
-          borderColor: '#ff1600',
-        },
-        '.message-text': {
-          color: '#999999',
-        },
-        '.message-icon': {
-          color: '#999999',
-        },
-        '.message-text.is-error': {
-          color: '#ff1600',
-        },
-        '.message-icon.is-error': {
-          color: '#ff1600',
-        },
-        input: {
-          backgroundColor: 'white',
-          color: 'black',
-          fontFamily: 'helvetica neue, sans-serif',
-        },
-        'input::placeholder': {
-          color: 'black',
-        },
-        'input.is-error': {
-          color: '#ff1600',
-        },
-        '@media screen and (max-width: 600px)': {
-          'input': {
-              'fontSize': '12px',
-          }
-        }     
-      };
-
-      const squarePayments = await Square.payments(appId, locationId);
-      const squareCardForm = await squarePayments.card({ style: darkModeCardStyle });
-      await squareCardForm.attach('#payment-slot');
-
-      const squareCardButton = document.querySelector('.payment-btn');
-      squareCardButton.addEventListener('click', submitForm);
-
-
-      async function submitForm(e) {
-        e.preventDefault();
-
-        squareCardButton.disabled = true;
-
-        const data = {
-          locationId,
-          sourceId: null,
-          idempotencyKey: window.crypto.randomUUID(),
-
-          appointmentTypeID: document.querySelector('#bookingTypeId').value,
-          datetime: document.querySelector('#bookingDay').value + " " + document.querySelector('#bookingTime').value,
-          firstname: document.querySelector('#summary-firstname').value,
-          lastname: document.querySelector('#summary-lastname').value,
-          phone: document.querySelector('#summary-phone').value,
-          email: document.querySelector('#summary-email').value,
-          zip: document.querySelector('#summary-zip').value,
-          addons: document.querySelector('#bookingAddons').value,
-        }
-
-        try {
-          const token = await tokenize();
-          data.sourceId = token;
-
-          const res = await fetch("https://test.ukr-agro-select.com.ua/order.php", { method: 'POST', body: JSON.stringify(data) });
-          const result = await res.json();
-          
-          console.log('** Order response **', result);
-
-          if (result.isSuccess) {
-            showResultPage(result.data);
-            return;
-          }
-
-          if (result.error) {
-            throw new Error(result.error);
-          }
-        } catch (error) {
-          console.log('error', error);
-          if (error.message) {
-            alert(error.message);
-          } else {
-            alert(error);
-          }
-        } finally {
-          squareCardButton.disabled = false;
-        }
-
-        function showResultPage(data) {
-          // document.querySelector('.logs')?.classList.add('logs_disabled');
-          for (const backEl of document.querySelectorAll('.back')) {
-            backEl.remove();
-          }
-
-          const logs = document.querySelector('.logs');
-          const paymentStep = document.querySelector('.payment');
-          const summaryStep = document.querySelector('.summary');
-
-          document.body.classList.add('booking-result-page')
-          document.querySelector('.steps-sticky').style.display = 'none';
-          logs?.remove();
-          paymentStep?.classList.remove('active')
-
-          summaryStep.querySelector('.summary-note').innerHTML = `
-            *The total due is for reference only and does not include sales tax, beverages, cosmetic minibar products, add-ons, or gratuity.
-          `;
-
-          summaryStep?.classList.add('active', 'summary_result');
-          document.querySelector('.summary-row_final')?.remove();
-          document.querySelector('.summary-row_final sup').outerHTML = '*';
-
-          if ( data?.order?.location) {
-            document.querySelector('.summary-table').insertAdjacentHTML('beforeend', `<div class="summary-location">Location: ${data.order.location}</div>`);
-          }
-        }
-
-        async function tokenize() {
-          const tokenResult = await squareCardForm.tokenize();
-          console.log('** Token Result **', tokenResult);
-
-          if (tokenResult.status === 'OK') {
-            return tokenResult.token;
-          }
-        
-
-          if (tokenResult.errors) {
-            throw new Error(tokenResult.errors[0]?.message);
-          }
-        }
-      }
-    }
-
-    static nextStep(logValue, isAddonsEmpty) {
-      this.recordLog(logValue)
-      if (isAddonsEmpty) {
-        this.currentStep++
-      }
+    static nextStep() {
+      this.recordLog()
       this.currentStep++
       this.moveToStep();
       this.buildLogsMarkup()
     }
 
-    static formatDate(inputDate) {
-      const [year, month, day] = inputDate.split('-').map(Number);
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-                          "July", "August", "September", "October", "November", "December"];
-      const monthName = monthNames[month - 1];
-
-      return `${monthName} ${day}, ${year}`;
-    }
-
-    static fillSummary() {
-      const category = document.querySelector('#bookingCategory').value;
-      const name = document.querySelector('#bookingName').value;
-      const typeId = document.querySelector('#bookingTypeId').value;
-      const date = this.formatDate(document.querySelector('#bookingDay').value);
-      const time = document.querySelector('#bookingTime').value;
-      const addons = document.querySelector('#bookingAddons').value || '[]';
-      const price = document.querySelector('#bookingPrice').value;
-      let total = parseFloat(price);
-
-      console.log('addons', addons)
-
-
-      // document.querySelector('.set-category').textContent = category;
-      document.querySelector('.set-time').textContent = `${date}, at ${time}`;
-      document.querySelector('.set-date').textContent = date;
-      document.querySelector('.set-name').textContent = name;
-      document.querySelector('.set-price').textContent = '$' + price;
-      document.querySelector('.set-adults').textContent = document.querySelector(`.package[data-id="${typeId}"] .package-price__caption span`).textContent;
-      document.querySelector('.set-total').textContent = '';
-      
-      document.querySelector('.summary-addons').innerHTML = '';
-
-      if (JSON.parse(addons).length) {
-        document.querySelector('.summary-addons').closest('.summary-block').classList.remove('summary-block_disable');
-      } else {
-        document.querySelector('.summary-addons').closest('.summary-block').classList.add('summary-block_disable');
-      }
-
-      for (const addonItem of JSON.parse(addons)) {
-        const addonEl = document.createElement('div');
-        addonEl.classList.add('summary-row', 'summary-row_addon');
-        total += parseFloat(addonItem.priceClear);
-        addonEl.dataset.price = addonItem.priceClear;
-        addonEl.innerHTML = /* html */ `
-          <div class="summary-row__caption">+ ${addonItem.title} ${addonItem.price.replace(`$${addonItem.priceClear}`, '')}</div>
-          <div class="summary-row__value">$${addonItem.priceClear}</div>
-        `;
-
-        document.querySelector('.summary-addons').appendChild(addonEl);
-      }
-
-      document.querySelector('.set-total').textContent = '$' + total;
-    }
-
-    static recordLog(logValue) {
-      const title =  this.steps[this.currentStep].dataset.title || this.steps[this.currentStep].querySelector('.booking-title span').textContent;
-
+    static recordLog() {
       const log = {
         step: this.currentStep,
-        title,
-        value: logValue 
+        title: this.steps[this.currentStep].querySelector('.booking-title').textContent,
+        value: this.steps[this.currentStep]
       }
        
       const findLog = this.logs.findIndex(log => log.step === this.currentStep);
@@ -3386,6 +2205,7 @@
       } else {
         this.logs.push(log)
       }
+
     }
 
     static moveToStep(isInit) {
@@ -3394,13 +2214,8 @@
 
       this.buildLogsMarkup()
 
-      if (this.currentStep === 0) {
-        document.querySelector('.back-mob').classList.remove('active')
-      } else {
-        document.querySelector('.back-mob').classList.add('active')
-      }
-
       for (const tickerEl of document.querySelectorAll('.tickers')) {
+        console.log(this.currentStep, 'ticker')
         if ([0, 1].includes(this.currentStep)) {
           tickerEl.classList.remove('tickers_hide');
         } else {
@@ -3408,40 +2223,17 @@
         }
       }
 
-      if (this.currentStep === 3 && (typeof bookingCalendar === 'undefined' || !bookingCalendar.selectedDates.length)) {
-        console.log('reset date')
-        const waitForCalendar = setInterval(() => {
-          if (typeof bookingCalendar !== 'undefined' ) {
-            clearInterval(waitForCalendar)
-
-            document.querySelector('.picker-plate').classList.remove('active', 'times-empty', 'picker-plate_loader');
-            document.querySelector('.picker-times__btn').classList.add('booking-btn_disable');
-
-            document.querySelector('.air-datepicker-cell.-current-').click();
-          }
-        }, 200);
-      }
-
       if (this.currentStep === this.steps.length - 1) {
         document.querySelector('.steps-policy').classList.add('policy_hide')
-        document.querySelector('.steps-sticky').classList.add('steps-sticky_hide');
       } else {
         document.querySelector('.steps-policy').classList.remove('policy_hide')
-        document.querySelector('.steps-sticky').classList.remove('steps-sticky_hide');
       }
 
       // scroll to active step
       if (!isInit) {
-        if (this.currentStep !== 2 && this.currentStep !== 4) {
-          this.isDelay = true;
-        }
         $('html, body').animate({
-          scrollTop: $(this.steps[this.currentStep]).offset().top - ($(window).innerWidth() < 992 ? 60 : 10)
-        }, 500);
-
-        setTimeout(() => {
-          this.isDelay = false;
-        }, 550);
+          scrollTop: $('.progress').offset().top - 50
+        }, 0);
       }
 
       this.updateSticky()
@@ -3484,13 +2276,11 @@
               <div class="logs-step__action ff-dm-sans">Change</div>
             </div>
 
-            <div class="logs-step__value">${log.value ?? '-'}</div>
+            <div class="inss1 logs-step__value">${log.title ?? '-'}</div>
           </div>
         `;
 
         logEl.querySelector('.logs-step__action').addEventListener('click', () => {
-          if (logEl.closest('.logs_disabled')) return;
-
           this.logs.splice(log.step)
           this.currentStep = log.step
           this.moveToStep();
@@ -3501,46 +2291,38 @@
     }
 
     static updateProgress() {
-      for (let i = 0; i < this.currentStep; i++) {
-        const step = document.querySelector(`.progress-step[data-progress-step="${i}"]`);
-
-        step.querySelector('.progress-step__caption').textContent = this.logs[i]?.value || '-';
-        step.querySelector('.progress-tooltip span').textContent = this.logs[i]?.value || 'Not available';
-      }
-      
-      // console.log('logs', this.logs)
-      // for (const log of this.logs) {
-      //   console.log('log', log)
-      //   const step = document.querySelector(`.progress-step[data-progress-step="${log.step}"]`);
-
-      //   step.querySelector('.progress-step__caption').textContent = log.value;
-      //   step.querySelector('.progress-tooltip span').textContent = log.value;
-      // }
-
-      if (this.currentStep === document.querySelectorAll('.progress-step').length) {
-        document.querySelector('.progress-step__divider.pass_current')?.classList.remove('pass_current');
-        document.querySelector('.progress-step.active')?.classList.add('pass');
-        document.querySelector('.progress-step.active')?.classList.remove('active')
-
-        return;
+      for (const progressStep of document.querySelectorAll('.progress-step')) {
+        progressStep.classList.remove('active', 'pass');
       }
 
-      for (const progressStep of document.querySelectorAll('.progress-step, .progress-step__divider')) {
-        progressStep.classList.remove('active', 'pass', 'pass_current');
+      let width = 0;
+
+      const stepOne = document.querySelector('[data-progress-step="1"]');
+      const stepTwo = document.querySelector('[data-progress-step="2"]');
+      const stepThree = document.querySelector('[data-progress-step="3"]');
+
+      if (this.currentStep < 3) {
+        stepOne.classList.add('active');
+      } else if (this.currentStep < 5) {
+        stepOne.classList.add('pass');
+        stepTwo.classList.add('active');
+      } else if (this.currentStep === 5) {
+        stepOne.classList.add('pass');
+        stepTwo.classList.add('pass');
+        stepThree.classList.add('active');
       }
 
-      const currentStep = document.querySelector(`[data-progress-step="${this.currentStep}"]`);
-      currentStep.classList.add('active');
-
-      let prevEl = currentStep.previousElementSibling;
-
-      while (prevEl) {
-        if (prevEl.classList.contains('progress-step__divider') && !document.querySelector('.pass_current')) {
-          prevEl.classList.add('pass_current');
-        }
-        prevEl.classList.add('pass');
-        prevEl = prevEl.previousElementSibling;
+      if ([1,2].includes(this.currentStep)) {
+        width = 16.65 * this.currentStep;
+      } else if (this.currentStep === 3) {
+        width = 50;
+      } else if (this.currentStep === 4) {
+        width = 83.3;
+      } else if (this.currentStep === 5) {
+        width = 100;
       }
+
+      this.progressEl.style.width = `${width}%`;
     }
 
     static updateSticky() {
@@ -3549,7 +2331,7 @@
       if ([2,3].includes(this.currentStep)) {
         text = 'Continue';
       } else if (this.currentStep === 4) {
-        text = 'Reserve Now, Pay Later';
+        text = 'Reserve Without Paying';
       } else if (this.currentStep === 5) {
         text = 'Confirm Reservation';
       }
@@ -3566,114 +2348,321 @@
   const waitForCalendar = setInterval(() => {
     if (typeof AirDatepicker !== 'undefined') {
       clearInterval(waitForCalendar)
-      initCalendar()
+	  
+	  
+	  	var xhttp = new XMLHttpRequest();
+xhttp.open("POST", "https://test.ukr-agro-select.com.ua/dates.php", true); xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhttp.onreadystatechange = function() {
+if(xhttp.readyState == 4 && xhttp.status == 200) {
+var response = JSON.parse(this.responseText);
+var container = response['container'][0];
+var container1 = response['container1'][0];
+var container2 = response['container2'][0];
+var container3 = response['container3'][0];
+var container4 = response['container4'][0];
+var container5 = response['container5'][0];
+var container6 = response['container6'][0];
+var container7 = response['container7'][0];
+
+  const calendar = initCalendar(container,container1,container2,container3,container4,container5,container6,container7)
+}}
+xhttp.send(); 
+
+
+     
     }
   }, 200);
 
-  // TODO
-  async function initCalendar(container,container1,container2,container3,container4,container5,container6,container7) {
-    const res = await fetch("https://test.ukr-agro-select.com.ua/dates.php");
-    const data = await res.json();
-    console.log('data', data)
+  function initCalendar(container,container1,container2,container3,container4,container5,container6,container7) {
+	
 
+
+//console.log(container);
+	
+	  
     const captionEl = document.querySelector('.picker-calendar__caption');
     const plateEl = document.querySelector('.picker-plate');
 
     const options = {
-      toggleSelected: false,
-      startDate: new Date(),
+      // inline: true,
+      toggleSelected: true,
       dateFormat: 'EEEE, MMMM d',
       altField: document.querySelector('.picker-calendar__caption'),
       altFieldDateFormat: 'EEEE,MMMM,d',
       minDate: new Date(),
+      showOtherMonths: false,
       prevHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.6084 28.3337C22.4241 28.3337 22.2398 28.2664 22.0944 28.1222L15.771 21.8544C14.743 20.8355 14.743 19.1628 15.771 18.1438L22.0944 11.8761C22.3756 11.5973 22.8411 11.5973 23.1224 11.8761C23.4036 12.1549 23.4036 12.6163 23.1224 12.8951L16.799 19.1628C16.3335 19.6242 16.3335 20.374 16.799 20.8355L23.1224 27.1032C23.4036 27.382 23.4036 27.8434 23.1224 28.1222C22.9769 28.2568 22.7926 28.3337 22.6084 28.3337Z" fill="#3C6C60"/></svg>',
       nextHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3925 28.3337C17.2083 28.3337 17.0242 28.2664 16.8788 28.1222C16.5977 27.8434 16.5977 27.382 16.8788 27.1032L23.1985 20.8355C23.6637 20.374 23.6637 19.6242 23.1985 19.1628L16.8788 12.8951C16.5977 12.6163 16.5977 12.1549 16.8788 11.8761C17.1599 11.5973 17.6251 11.5973 17.9062 11.8761L24.2259 18.1438C24.7202 18.6341 25.0013 19.2974 25.0013 19.9991C25.0013 20.7009 24.7299 21.3642 24.2259 21.8544L17.9062 28.1222C17.7608 28.2568 17.5767 28.3337 17.3925 28.3337Z" fill="#0C5947"/></svg>',
+      
+	  onRenderCell({
+              date,
+              cellType
+            }) {
+
+//var dayshow=[];
+
+if (date.getMonth()===4){var dayshow0=container;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===5){var dayshow0=container1;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===6){var dayshow0=container2;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===7){var dayshow0=container3;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===8){var dayshow0=container4;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===9){var dayshow0=container5;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===10){var dayshow0=container6;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else if (date.getMonth()===11){var dayshow0=container7;var dayshow = dayshow0.map(function (x) {return parseInt(x, 10);});}
+else {dayshow=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];}
+
+//if (date.getMonth()===5){dayshow= [08,09,13,14,15,16,17,18,20,21,22,23,24,27,28,29,30,31];}if (date.getMonth()===6){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,17,18,19,20,21,22,23,24,25,26,27,28,29,30];}if (date.getMonth()===7){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];}if (date.getMonth()===8){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];}if (date.getMonth()===9){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];}if (date.getMonth()===10){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];}if (date.getMonth()===11){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30];}if (date.getMonth()===12){dayshow= [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30];}else {dayshow=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];}
+//console.log(cnot);
+//cnot;
+
+              if (cellType === 'day' && $.inArray(date.getDate(), dayshow) == -1) {
+                return {
+                  disabled: true,
+                  classes: 'disabled-class',
+                  attrs: {
+                    title: 'Cell is disabled',
+                  },
+                };
+              }
+            },
+	  
+	  onChangeViewDate({
+        month,
+        year,
+        decade
+      }) {
+        // let current_month = String(month + 1).padStart(2, '0');
+        // let current_date = year + '-' + current_month;
+        // $('#month').val(current_date);
+        // $('.times-js').empty();
+        // get_month();
+		console.log(month);
+      },
       onSelect: onSelectHandler,
     };
 
     function onSelectHandler({date, formattedDate}) {
-      console.log('click');
-      document.querySelector('.picker-times__btn').classList.add('booking-btn_disable');
+      console.log('Selected date:', date, formattedDate);
+	  
+  	var xhttp = new XMLHttpRequest();
+xhttp.open("POST", "https://test.ukr-agro-select.com.ua/time.php", true); xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhttp.onreadystatechange = function() {
+if(xhttp.readyState == 4 && xhttp.status == 200) {
+var response = JSON.parse(this.responseText);
+var containerr = response['container'][0];
+var datefinal2 = response['container1'][0];
+//console.log(containerr);
+
+document.querySelectorAll('.logs-step__value5')[0].value=datefinal2;
+	
+
+
+document.querySelector('.picker-times__list').innerHTML = '';
+var element1 = document.querySelector('.picker-times__list');
+var ab3='';
+for (var ab2 of containerr) {
+ab3+='<div class="picker-times__item">'+ab2+'</div>';
+}
+element1.insertAdjacentHTML( 'beforeend', ab3 );
+}}
+day1=date;
+appid=document.querySelectorAll('.logs-step__value4')[0].value;
+xhttp.send("day="+day1+"&appid="+appid); 
+
+
+
+
+      if (document.querySelector('.picker-times__item.active')) {
+        document.querySelector('.picker-times__item.active').click();
+      }
 
       if (!date) { 
         captionEl.innerText = 'Choose date'
-        plateEl.classList.remove('active', 'times-empty');
-        document.querySelector('#bookingDay').value = '';
-        document.querySelector('#bookingTime').value = '';
-        document.querySelector('.picker-times__list').innerHTML = '';  
+        plateEl.classList.remove('active');
 
         return false;
       }
 
-      console.log('Selected date:', date, formattedDate);
-
       plateEl.classList.add('active');
+
+      // const daysOfWeek = [
+      //   'Sunday',
+      //   'Monday',
+      //   'Tuesday',
+      //   'Wednesday',
+      //   'Thursday',
+      //   'Friday',
+      //   'Saturday',
+      // ];
+      // const months = [
+      //   'January',
+      //   'February',
+      //   'March',
+      //   'April',
+      //   'May',
+      //   'June',
+      //   'July',
+      //   'August',
+      //   'September',
+      //   'October',
+      //   'November',
+      //   'December',
+      // ];
+
+      // const dayOfWeek = daysOfWeek[date.getDay()];
+      // const month = months[date.getMonth()];
+      // const dayOfMonth = date.getDate();
+
+      // captionEl.innerText = `${dayOfWeek}, ${month} ${dayOfMonth}`;
       captionEl.innerText = formattedDate;
-
-      const formData = new FormData();
-      formData.append('day', date);
-      formData.append('appid', document.querySelector('#bookingTypeId').value);
-
-      getAvailableTime(formData);
-    }
-
-    async function getAvailableTime(data) {
-      document.querySelector('.picker-plate').classList.add('picker-plate_loader');
-
-      document.querySelector('.picker-times__list').innerHTML = '';
       
-      const res = await fetch("https://test.ukr-agro-select.com.ua/time.php", { method: 'POST', body: data });
-      const { times, day } = await res.json();
+      //   $('#date_txt').val(`${month} ${dayOfMonth}, ${date.getFullYear()}`);
 
-      document.querySelector('#bookingDay').value = day;
-
-      if (times.length) {
-        document.querySelector('.picker-plate').classList.remove('times-empty');
-      } else {
-        document.querySelector('.picker-plate').classList.add('times-empty');
-      }
-
-      for (const time of times) {
-        const timeEl = document.createElement('div');
-        timeEl.classList.add('picker-times__item');
-        timeEl.textContent = time;
-
-        timeEl.addEventListener('click', function() {
-          document.querySelector('.picker-times__btn').classList.add('booking-btn_disable')
-
-          if (document.querySelector('.picker-times__item.active') && !this.classList.contains('active')) {
-            document.querySelector('.picker-times__item.active').classList.remove('active')
-          }
-
-          this.classList.toggle('active');
-
-          document.querySelector('#bookingTime').value = this.classList.contains('active') ? time : '';
-
-          if (document.querySelector('.picker-times__item.active')) {
-            document.querySelector('.picker-times__btn').classList.remove('booking-btn_disable'); 
-          } 
-        })
-
-        document.querySelector('.picker-times__list').appendChild(timeEl);
-      }
-
-      setTimeout(() => {
-        document.querySelector('.picker-plate').classList.remove('picker-plate_loader');
-      }, 500);
+      //   const current_month = String(date.getMonth() + 1).padStart(2, '0');
+      //   const current_date = date.getFullYear() + '-' + current_month + '-' + date.getDate();
+      //   $('#date').val(current_date);
+      //   get_time();
     }
 
     const calendar = new AirDatepicker('.picker-calendar-js', options);
 
-    window.bookingCalendar = calendar
-    
     return calendar
+
   }
 
-  function handleReviews() {
-      const slides = document.querySelectorAll('.reviews-slider .swiper-slide');
+  function get_month() {
+    var data = {
+      action: 'get_month',
+      ajax_nonce: ut_params.ajax_nonce,
+      month: $('#month').val(),
+      appointmentTypeID: $('#appointmentTypeID').val(),
+      addonIDs: $('#addonIDs').val(),
+      timezone: $('#timezone').val(),
+      calendarID: $('#calendarID').val(),
+    };
 
-      for (const el of slides) {
+    $.ajax({
+      type: 'POST',
+      url: ut_params.ajax_url,
+      data: data,
+      beforeSend: function() {
+        $('.ut-month-preloader').show();
+      },
+      success: function(response) {
+        // update calendar days
+        if (response.success) {
+          var days = response.data.days;
+          booking_calendar.update({
+            toggleSelected: true,
+            dateFormat: 'EEEE,MMMM,d',
+            altField: '.format-date',
+            altFieldDateFormat: 'EEEE,MMMM,d',
+            showOtherMonths: false,
+            prevHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.6084 28.3337C22.4241 28.3337 22.2398 28.2664 22.0944 28.1222L15.771 21.8544C14.743 20.8355 14.743 19.1628 15.771 18.1438L22.0944 11.8761C22.3756 11.5973 22.8411 11.5973 23.1224 11.8761C23.4036 12.1549 23.4036 12.6163 23.1224 12.8951L16.799 19.1628C16.3335 19.6242 16.3335 20.374 16.799 20.8355L23.1224 27.1032C23.4036 27.382 23.4036 27.8434 23.1224 28.1222C22.9769 28.2568 22.7926 28.3337 22.6084 28.3337Z" fill="#3C6C60"/></svg>',
+            nextHtml: '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.3925 28.3337C17.2083 28.3337 17.0242 28.2664 16.8788 28.1222C16.5977 27.8434 16.5977 27.382 16.8788 27.1032L23.1985 20.8355C23.6637 20.374 23.6637 19.6242 23.1985 19.1628L16.8788 12.8951C16.5977 12.6163 16.5977 12.1549 16.8788 11.8761C17.1599 11.5973 17.6251 11.5973 17.9062 11.8761L24.2259 18.1438C24.7202 18.6341 25.0013 19.2974 25.0013 19.9991C25.0013 20.7009 24.7299 21.3642 24.2259 21.8544L17.9062 28.1222C17.7608 28.2568 17.5767 28.3337 17.3925 28.3337Z" fill="#0C5947"/></svg>',
+            onChangeViewDate({
+              month,
+              year,
+              decade
+            }) {
+              let current_month = String(month + 1).padStart(2, '0');
+              let current_date = year + '-' + current_month;
+              $('#month').val(current_date);
+              $('.times-js').empty();
+              get_month();
+            },
+            onSelect({
+              date
+            }) {
+              if (date) {
+                const daysOfWeek = [
+                  'Sunday',
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                  'Saturday',
+                ];
+                const months = [
+                  'January',
+                  'February',
+                  'March',
+                  'April',
+                  'May',
+                  'June',
+                  'July',
+                  'August',
+                  'September',
+                  'October',
+                  'November',
+                  'December',
+                ];
+
+                const dayOfWeek = daysOfWeek[date.getDay()];
+                const month = months[date.getMonth()];
+                const dayOfMonth = date.getDate();
+
+                const formatted = `${dayOfWeek}, ${month} ${dayOfMonth}`;
+                $('.format-date-def').html(formatted);
+                $('#date_txt').val(`${month} ${dayOfMonth}, ${date.getFullYear()}`);
+
+                const current_month = String(date.getMonth() + 1).padStart(2, '0');
+                const current_date = date.getFullYear() + '-' + current_month + '-' + date.getDate();
+                $('#date').val(current_date);
+                get_time();
+              }
+            },
+            onRenderCell({
+              date,
+              cellType
+            }) {
+
+              if (cellType === 'day' && $.inArray(date.getDate(), days) == -1) {
+                return {
+                  disabled: true,
+                  classes: 'disabled-class',
+                  attrs: {
+                    title: 'Cell is disabled',
+                  },
+                };
+              }
+            }
+          });
+        }
+        $('.ut-month-preloader').hide();
       }
+    });
+  }
+
+  function get_time() {
+
+    var data = {
+      action: 'get_time',
+      ajax_nonce: ut_params.ajax_nonce,
+      date: $('#date').val(),
+      appointmentTypeID: $('#appointmentTypeID').val(),
+      addonIDs: $('#addonIDs').val(),
+      timezone: $('#timezone').val(),
+      calendarID: $('#calendarID').val(),
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: ut_params.ajax_url,
+      data: data,
+      beforeSend: function() {
+        $('.show_step_4').prop('disabled', true);
+        $('.ut-times-preloader').show();
+      },
+      success: function(response) {
+
+        if (response.success) {
+          $('.times-js').html(response.data.times);
+        }
+        $('.ut-times-preloader').hide();
+      }
+    });
   }
 </script>
 
@@ -3701,11 +2690,9 @@
           <p> <?php echo get_field('address', 'options'); ?> </p>
         </div>
         <div class="col">
-          <!-- <div class="box-title"> <?php echo get_field('hours_of_operations_title'); ?> </div> -->
-          <div class="box-title">Hours Of Operation</div>
-          <p><?php echo get_field('open_days', 'options'); ?></p>
-          <!-- <p> <?php echo get_field('open_hours', 'options'); ?> </p>  -->
-          <p>8:00&nbsp;am - 10:30&nbsp;pm</p>
+          <div class="box-title"> <?php echo get_field('hours_of_operations_title'); ?> </div>
+          <p> <?php echo get_field('open_days', 'options'); ?> </p>
+          <p> <?php echo get_field('open_hours', 'options'); ?> </p> 
         </div>
       </div>
       <div class="right">
@@ -3728,10 +2715,7 @@
       </div>
     </div>
     <div class="bot">
-      <div class="box-title"> 
-        <!-- <?php echo get_field('accepted_payments'); ?>  -->
-        Accepted Payments
-      </div>
+      <div class="box-title"> <?php echo get_field('accepted_payments'); ?> </div>
       <div class="line">
         <div class="copyright">© <?php echo get_field('copyright', 'options'); ?> <?php echo date('Y'); ?> </div>
         <div class="soc"> <?php if (get_field('faceboook_link', 'options')) { ?> <a href="
@@ -3785,6 +2769,118 @@
     </div>
   </div>
 </div>
+
+<!-- TODO: remove el -->
+<div class="wrapper bookingPage" id="wrapper" data-title="Booking step 1" data-lang="en" data-router-view="booking" style='display: none'>
+  <div class="b-booking-title">
+    <div class="container">
+      <h1 class="h2">Book Now and Relax Differently inyour private Beer Therapy™ Room</h1>
+    </div>
+  </div>
+  <div class="b-booking">
+    <div class="container">
+      <div class="box">
+        <div class="steps-line">
+          <div class="line">
+            <div class="progress" style="width: 0%;"></div>
+            <div class="item item-1 active">
+              <svg width="28" height="10" viewbox="0 0 28 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24.326 0.897872C22.6006 1.16337 21.4623 1.31632 20.2226 1.40001C18.7505 1.50102 16.9387 1.56739 15.3354 1.60202C14.4742 1.65397 13.61 1.56739 12.7935 1.43176C12.3763 1.36827 10.7611 0.995992 10.4333 0.944047C9.17877 0.744923 7.64706 0.805526 6.39249 0.78244C3.61813 0.727608 3.38867 0.525596 2.24733 0.378417C1.57982 0.291841 0.962961 0.213923 0.489144 0.514053C-0.0800333 0.877671 -0.199233 1.72612 0.381864 2.4649C0.873561 3.09113 0.822903 3.41145 0.760323 3.75199C0.700723 4.06943 0.769263 4.2801 0.867603 4.42727C1.07322 4.73318 1.90762 5.12277 3.63303 5.04196C4.6939 4.9929 6.14217 4.69277 8.07916 3.64809C9.09832 3.09978 10.5227 2.3812 12.415 2.55436C13.4789 2.64959 14.5785 2.62073 15.2311 2.51973C15.7794 2.43604 16.0536 2.34657 16.9536 2.22248C17.1055 2.20228 18.1336 2.05222 18.1664 2.26865C18.1962 2.45624 17.332 2.73328 17.192 2.77368C15.1834 3.36239 14.8437 3.06515 13.3269 3.0767C11.7535 3.08247 10.1979 3.33354 9.12216 4.08675C9.12216 4.08675 7.50998 5.03331 6.45805 5.10545C4.57172 5.2382 3.67773 5.95389 3.56747 6.84562C3.48999 7.46031 4.0383 7.81527 4.90846 7.95091C5.73392 8.07789 4.9919 9.04465 7.4623 9.56987C10.481 10.2134 11.381 9.59585 11.9084 9.09082C12.5342 8.49056 12.2869 7.41125 12.4985 6.73019C12.7548 5.91349 13.2614 5.01022 14.7215 4.38399C15.3652 4.06943 16.4082 3.95977 17.6241 3.51535C19.1081 2.97569 20.7024 2.06087 21.4951 1.92524C21.8497 1.86463 22.2311 1.83289 21.9957 2.09839C21.8348 2.2802 21.4325 2.63805 21.1971 2.79388C19.7637 3.73179 19.0455 3.93379 17.5942 4.30318C16.1341 4.56291 14.8914 5.26129 14.5755 6.04047C14.209 6.94086 14.06 6.8312 13.7054 7.30159C13.4342 7.66232 13.4193 7.93359 13.4551 8.3607C13.4878 8.74452 13.8156 9.34189 14.4474 9.63048C14.7215 9.78054 15.2222 9.74302 15.5351 9.63625C16.4023 9.34478 16.6883 9.55256 17.0638 9.46021C18.8727 9.02156 18.2737 7.87299 19.1915 6.45892C19.5163 5.95678 20.5117 5.43155 21.0868 4.86015C21.0928 4.85438 21.0987 4.8515 21.1017 4.84573C21.7364 4.32339 22.0165 3.6279 22.1655 3.15461C22.7288 1.43753 24.0072 1.62511 25.6879 1.35384C26.7368 1.15183 27.2196 0.998878 27.6904 0.8719L28.0004 0.15332C26.3941 0.540025 24.3618 0.897875 24.329 0.900761L24.326 0.897872Z" fill="#0C5947"></path>
+              </svg>
+              <span>Choose Appointment</span>
+            </div>
+            <div class="item item-2">
+              <svg width="28" height="10" viewbox="0 0 28 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24.326 0.897872C22.6006 1.16337 21.4623 1.31632 20.2226 1.40001C18.7505 1.50102 16.9387 1.56739 15.3354 1.60202C14.4742 1.65397 13.61 1.56739 12.7935 1.43176C12.3763 1.36827 10.7611 0.995992 10.4333 0.944047C9.17877 0.744923 7.64706 0.805526 6.39249 0.78244C3.61813 0.727608 3.38867 0.525596 2.24733 0.378417C1.57982 0.291841 0.962961 0.213923 0.489144 0.514053C-0.0800333 0.877671 -0.199233 1.72612 0.381864 2.4649C0.873561 3.09113 0.822903 3.41145 0.760323 3.75199C0.700723 4.06943 0.769263 4.2801 0.867603 4.42727C1.07322 4.73318 1.90762 5.12277 3.63303 5.04196C4.6939 4.9929 6.14217 4.69277 8.07916 3.64809C9.09832 3.09978 10.5227 2.3812 12.415 2.55436C13.4789 2.64959 14.5785 2.62073 15.2311 2.51973C15.7794 2.43604 16.0536 2.34657 16.9536 2.22248C17.1055 2.20228 18.1336 2.05222 18.1664 2.26865C18.1962 2.45624 17.332 2.73328 17.192 2.77368C15.1834 3.36239 14.8437 3.06515 13.3269 3.0767C11.7535 3.08247 10.1979 3.33354 9.12216 4.08675C9.12216 4.08675 7.50998 5.03331 6.45805 5.10545C4.57172 5.2382 3.67773 5.95389 3.56747 6.84562C3.48999 7.46031 4.0383 7.81527 4.90846 7.95091C5.73392 8.07789 4.9919 9.04465 7.4623 9.56987C10.481 10.2134 11.381 9.59585 11.9084 9.09082C12.5342 8.49056 12.2869 7.41125 12.4985 6.73019C12.7548 5.91349 13.2614 5.01022 14.7215 4.38399C15.3652 4.06943 16.4082 3.95977 17.6241 3.51535C19.1081 2.97569 20.7024 2.06087 21.4951 1.92524C21.8497 1.86463 22.2311 1.83289 21.9957 2.09839C21.8348 2.2802 21.4325 2.63805 21.1971 2.79388C19.7637 3.73179 19.0455 3.93379 17.5942 4.30318C16.1341 4.56291 14.8914 5.26129 14.5755 6.04047C14.209 6.94086 14.06 6.8312 13.7054 7.30159C13.4342 7.66232 13.4193 7.93359 13.4551 8.3607C13.4878 8.74452 13.8156 9.34189 14.4474 9.63048C14.7215 9.78054 15.2222 9.74302 15.5351 9.63625C16.4023 9.34478 16.6883 9.55256 17.0638 9.46021C18.8727 9.02156 18.2737 7.87299 19.1915 6.45892C19.5163 5.95678 20.5117 5.43155 21.0868 4.86015C21.0928 4.85438 21.0987 4.8515 21.1017 4.84573C21.7364 4.32339 22.0165 3.6279 22.1655 3.15461C22.7288 1.43753 24.0072 1.62511 25.6879 1.35384C26.7368 1.15183 27.2196 0.998878 27.6904 0.8719L28.0004 0.15332C26.3941 0.540025 24.3618 0.897875 24.329 0.900761L24.326 0.897872Z" fill="#0C5947"></path>
+              </svg>
+              <span>Your Info</span>
+            </div>
+            <div class="item item-3">
+              <svg width="28" height="10" viewbox="0 0 28 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24.326 0.897872C22.6006 1.16337 21.4623 1.31632 20.2226 1.40001C18.7505 1.50102 16.9387 1.56739 15.3354 1.60202C14.4742 1.65397 13.61 1.56739 12.7935 1.43176C12.3763 1.36827 10.7611 0.995992 10.4333 0.944047C9.17877 0.744923 7.64706 0.805526 6.39249 0.78244C3.61813 0.727608 3.38867 0.525596 2.24733 0.378417C1.57982 0.291841 0.962961 0.213923 0.489144 0.514053C-0.0800333 0.877671 -0.199233 1.72612 0.381864 2.4649C0.873561 3.09113 0.822903 3.41145 0.760323 3.75199C0.700723 4.06943 0.769263 4.2801 0.867603 4.42727C1.07322 4.73318 1.90762 5.12277 3.63303 5.04196C4.6939 4.9929 6.14217 4.69277 8.07916 3.64809C9.09832 3.09978 10.5227 2.3812 12.415 2.55436C13.4789 2.64959 14.5785 2.62073 15.2311 2.51973C15.7794 2.43604 16.0536 2.34657 16.9536 2.22248C17.1055 2.20228 18.1336 2.05222 18.1664 2.26865C18.1962 2.45624 17.332 2.73328 17.192 2.77368C15.1834 3.36239 14.8437 3.06515 13.3269 3.0767C11.7535 3.08247 10.1979 3.33354 9.12216 4.08675C9.12216 4.08675 7.50998 5.03331 6.45805 5.10545C4.57172 5.2382 3.67773 5.95389 3.56747 6.84562C3.48999 7.46031 4.0383 7.81527 4.90846 7.95091C5.73392 8.07789 4.9919 9.04465 7.4623 9.56987C10.481 10.2134 11.381 9.59585 11.9084 9.09082C12.5342 8.49056 12.2869 7.41125 12.4985 6.73019C12.7548 5.91349 13.2614 5.01022 14.7215 4.38399C15.3652 4.06943 16.4082 3.95977 17.6241 3.51535C19.1081 2.97569 20.7024 2.06087 21.4951 1.92524C21.8497 1.86463 22.2311 1.83289 21.9957 2.09839C21.8348 2.2802 21.4325 2.63805 21.1971 2.79388C19.7637 3.73179 19.0455 3.93379 17.5942 4.30318C16.1341 4.56291 14.8914 5.26129 14.5755 6.04047C14.209 6.94086 14.06 6.8312 13.7054 7.30159C13.4342 7.66232 13.4193 7.93359 13.4551 8.3607C13.4878 8.74452 13.8156 9.34189 14.4474 9.63048C14.7215 9.78054 15.2222 9.74302 15.5351 9.63625C16.4023 9.34478 16.6883 9.55256 17.0638 9.46021C18.8727 9.02156 18.2737 7.87299 19.1915 6.45892C19.5163 5.95678 20.5117 5.43155 21.0868 4.86015C21.0928 4.85438 21.0987 4.8515 21.1017 4.84573C21.7364 4.32339 22.0165 3.6279 22.1655 3.15461C22.7288 1.43753 24.0072 1.62511 25.6879 1.35384C26.7368 1.15183 27.2196 0.998878 27.6904 0.8719L28.0004 0.15332C26.3941 0.540025 24.3618 0.897875 24.329 0.900761L24.326 0.897872Z" fill="#0C5947"></path>
+              </svg>
+              <span>Confirmation</span>
+            </div>
+          </div>
+        </div>
+        <input id="appointment_id" type="hidden">
+        <input id="reschedule_appointment" type="hidden" value="no">
+        <input id="category" type="hidden">
+        <input id="month" type="hidden" value="
+												<?php echo date('Y-m'); ?>">
+        <input id="date" type="hidden" value="
+													<?php echo date('Y-m-d'); ?>">
+        <input id="appointmentTypeID" type="hidden">
+        <input id="addonIDs" type="hidden">
+        <input id="timezone" type="hidden" value="
+																<?php echo esc_attr(wp_timezone_string()); ?>">
+        <input id="calendarID" type="hidden" value="any">
+        <input id="startDate" type="hidden">
+        <input id="time" type="hidden">
+        <input id="appointment_txt" type="hidden">
+        <input id="date_txt" type="hidden">
+        <input id="time_txt" type="hidden">
+        
+        <?php get_template_part('template-parts/booking-form/step', '1', ['categories' => $categories]); ?>
+        <?php get_template_part('template-parts/booking-form/step', '2', ['appointment_types' => $appointment_types]); ?>
+        <?php get_template_part('template-parts/booking-form/step', '3', ['addons' => $addons]); ?>
+        <?php get_template_part('template-parts/booking-form/step', '4'); ?>
+        <?php get_template_part('template-parts/booking-form/step', '5'); ?>
+        <?php get_template_part('template-parts/booking-form/step', '6'); ?>
+
+        <div class="text-block"> 
+          <?php if ( $title ) : ?>
+            <div class="subtitle"> <?php echo esc_html($title); ?></div> 
+          <?php endif; ?>
+
+          <?php if ( $desc ) : ?>
+            <p> 
+              <?php echo nl2br($desc); ?>
+            </p> 
+          <?php endif; ?>
+        </div>
+
+        <div class="faq-block" data-aos="fade-up">
+          <div class="accordion-faq js-accordion" data-active-class="open" data-open-first="false" data-hide-siblings="false" data-breakpoint="640" data-scroll-to-opened="false">
+            <div class="col"> <?php if ( $faqs_l ) : ?> <?php foreach ( $faqs_l as $key_l => $faq_l ) : ?> <div class="accordion-faq__item js-accordion-item 
+																										<?php echo ( ($key_l == 0) ? 'active' : '' ); ?>">
+                <div class="accordion-faq__title js-accordion-title">
+                  <div class="a-text"> <?php echo esc_html($faq_l['question_faq_left']); ?> </div>
+                  <div class="a-icon"></div>
+                </div>
+                <div class="accordion-faq__dropdown js-accordion-dropdown" <?php echo ( ($key_l == 0) ? 'style="display: block;"' : '' ); ?>>
+                  <div class="text-section"> <?php echo $faq_l['answer_faq_left']; ?> </div>
+                </div>
+              </div> <?php endforeach; ?> <?php endif; ?> </div>
+            <div class="col"> <?php if ( $faqs_r ) : ?> <?php foreach ( $faqs_r as $key_r => $faq_r ) : ?> <div class="accordion-faq__item js-accordion-item">
+                <div class="accordion-faq__title js-accordion-title">
+                  <div class="a-text"> <?php echo esc_html($faq_r['question_faq_right']); ?> </div>
+                  <div class="a-icon"></div>
+                </div>
+                <div class="accordion-faq__dropdown js-accordion-dropdown">
+                  <div class="text-section"> <?php echo $faq_r['answer_faq_right']; ?> </div>
+                </div>
+              </div> <?php endforeach; ?> <?php endif; ?> </div>
+          </div>
+        </div>
+        
+        <div class="powered-by">
+          <svg width="168" height="36" viewbox="0 0 168 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_945_168233" style="mask-type:luminance" maskunits="userSpaceOnUse" x="0" y="0" width="168" height="36">
+              <path d="M167.5 0H0.5V36H167.5V0Z" fill="white"></path>
+            </mask>
+            <g mask="url(#mask0_945_168233)">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3.852 25.6297H7.351L6.775 23.9127C6.46029 22.9973 6.15527 22.0786 5.86 21.1567H5.402C5.166 21.8347 4.959 22.4667 4.457 23.9127L3.852 25.6297ZM0.5 29.7997L4.265 19.5157H7.055L10.777 29.7997V30.3267H8.947L7.883 27.2397H3.292L2.229 30.3267H0.501999V29.7997H0.5ZM22.187 27.4817C21.537 29.1827 20.017 30.5387 17.522 30.5387C14.362 30.5387 12.311 28.1587 12.311 24.9367C12.311 21.7137 14.363 19.3047 17.551 19.3047C19.87 19.3047 21.479 20.4947 22.129 22.3167L20.253 22.6927C19.751 21.5927 18.806 20.9157 17.522 20.9157C15.426 20.9157 14.23 22.6777 14.23 24.9357C14.23 27.2107 15.485 28.9267 17.596 28.9267C18.969 28.9267 19.855 28.1437 20.342 27.1647L22.187 27.4817ZM31.192 26.1107V19.5157H33.052V26.1557C33.052 29.2887 31.443 30.5687 28.786 30.5687C26.128 30.5687 24.519 29.2887 24.519 26.1567V19.5157H26.379V26.1107C26.379 28.0687 27.279 29.0177 28.786 29.0177C30.292 29.0177 31.192 28.0687 31.192 26.1107ZM36.255 30.3277H38.115V19.5157H36.255V30.3277ZM43.592 21.1867H40.536V19.5157H48.464V21.1867H45.439V30.3277H43.593V21.1877L43.592 21.1867ZM53.409 26.3067L49.999 20.1327V19.5157H51.741L52.907 21.7137C53.542 22.9037 53.778 23.4607 54.398 24.5897C54.988 23.4907 55.506 22.5417 55.904 21.7437L57.056 19.5157H58.709V20.1327L55.269 26.3067V30.3277H53.409V26.3067ZM66.031 27.2557C66.238 28.3257 67.079 28.9877 68.364 28.9877C69.633 28.9877 70.371 28.3247 70.371 27.3457C70.371 26.3667 69.619 26.1107 68.393 25.7657L67.596 25.5387C65.706 24.9967 64.555 24.1237 64.555 22.4067C64.555 20.5997 66.002 19.3047 68.319 19.3047C70.49 19.3047 71.818 20.4487 72.04 22.2107L70.268 22.3607C70.047 21.4577 69.412 20.9307 68.26 20.9307C67.183 20.9307 66.533 21.5027 66.533 22.3007C66.533 23.2047 67.271 23.4907 68.482 23.8827L69.235 24.1227C71.139 24.7257 72.306 25.3277 72.306 27.2107C72.306 29.2287 70.652 30.5687 68.305 30.5687C66.12 30.5687 64.569 29.5287 64.23 27.4207L66.031 27.2557ZM84.219 27.4817C83.57 29.1827 82.049 30.5387 79.554 30.5387C76.394 30.5387 74.342 28.1587 74.342 24.9367C74.342 21.7137 76.394 19.3047 79.582 19.3047C81.902 19.3047 83.511 20.4947 84.16 22.3167L82.285 22.6927C81.784 21.5927 80.837 20.9157 79.554 20.9157C77.457 20.9157 76.261 22.6777 76.261 24.9357C76.261 27.2107 77.516 28.9267 79.627 28.9267C81.001 28.9267 81.887 28.1437 82.374 27.1647L84.219 27.4817ZM88.499 25.5837V30.3277H86.654V19.5157H88.499V23.9277H93.238V19.5157H95.083V30.3277H93.238V25.5837H88.499ZM98.39 19.5157H105.254V21.1717H100.206V23.9877H104.902V25.6287H100.206V28.6707H105.358V30.3277H98.39V19.5157ZM110.023 28.7007H111.632C113.802 28.7007 115.205 27.6017 115.205 24.8907C115.205 22.2857 114.067 21.1267 111.026 21.1267H110.023V28.7007ZM108.178 19.5157H111.632C113.212 19.5157 114.497 19.8757 115.397 20.5697C116.549 21.4577 117.139 22.9037 117.139 24.8157C117.139 26.4727 116.697 27.8727 115.766 28.8517C114.88 29.7857 113.522 30.3277 111.602 30.3277H108.178V19.5157ZM126.44 26.1107V19.5157H128.299V26.1557C128.299 29.2887 126.689 30.5687 124.032 30.5687C121.376 30.5687 119.766 29.2887 119.766 26.1567V19.5157H121.625V26.1107C121.625 28.0687 122.527 29.0177 124.032 29.0177C125.538 29.0177 126.44 28.0687 126.44 26.1107ZM131.502 19.5157H133.361V28.6707H138.176V30.3277H131.502V19.5157ZM140.639 30.3277H142.5V19.5157H140.639V30.3277ZM145.807 19.5157H148.139L151.609 25.6747C151.992 26.3667 152.479 27.3007 152.82 27.9487H152.848C152.83 26.9698 152.82 25.9908 152.82 25.0117V19.5157H154.62V30.3277H152.347L148.937 24.3797C148.361 23.3697 147.873 22.4067 147.593 21.9247H147.563C147.563 22.4217 147.607 23.5357 147.607 24.3797V30.3277H145.807V19.5157ZM167.317 24.6197L167.848 25.2977C167.773 28.7167 165.545 30.5377 162.711 30.5377C159.492 30.5377 157.32 28.2647 157.32 24.9367C157.32 21.6987 159.388 19.3047 162.68 19.3047C165.101 19.3047 166.741 20.5847 167.42 22.3317L165.529 22.6917C165.057 21.6087 164.039 20.9157 162.695 20.9157C160.495 20.9157 159.226 22.5867 159.226 24.9057C159.226 27.2707 160.509 28.9267 162.711 28.9267C164.659 28.9267 165.736 27.7667 165.942 26.1867H161.825V24.6197H167.317Z" fill="#4F4F4F"></path>
+              <path d="M53.5 7.99956V0.101562H55.964C57.68 0.101562 58.703 0.838562 58.703 2.37856C58.703 3.97356 57.592 4.67756 55.953 4.67756H54.424V7.99956H53.5ZM54.424 0.904562V3.88556H55.942C56.987 3.88556 57.779 3.50056 57.779 2.38956C57.779 1.28956 56.987 0.904562 55.909 0.904562H54.424ZM62.322 2.02656C64.104 2.02656 65.237 3.31356 65.237 5.11756C65.237 6.88856 64.126 8.17556 62.311 8.17556C60.496 8.17556 59.418 6.88856 59.418 5.11756C59.418 3.31356 60.551 2.02656 62.322 2.02656ZM62.311 2.78556C61.024 2.78556 60.331 3.76456 60.331 5.10656C60.331 6.45956 61.024 7.41656 62.311 7.41656C63.598 7.41656 64.291 6.45956 64.291 5.10656C64.291 3.76456 63.587 2.78556 62.311 2.78556ZM67.767 7.99956L65.963 2.21356H66.909L67.602 4.57856C67.822 5.34856 68.042 6.16256 68.273 7.03156H68.295C68.526 6.20656 68.713 5.49156 68.988 4.55656L69.659 2.21356H70.583L71.276 4.65556C71.496 5.41556 71.727 6.20656 71.936 7.04256H71.969C72.189 6.27256 72.409 5.44756 72.651 4.62256L73.344 2.21356H74.235L72.431 7.99956H71.441L70.748 5.62356C70.517 4.84356 70.275 3.89656 70.121 3.32456H70.088C69.912 3.91856 69.725 4.73256 69.439 5.66756L68.768 7.99956H67.767ZM80.571 5.27156H75.852C75.885 6.44856 76.578 7.40556 77.843 7.40556C78.8 7.40556 79.383 6.85556 79.636 6.36056L80.483 6.54756C80.043 7.52656 79.086 8.17556 77.821 8.17556C76.039 8.17556 74.961 6.89956 74.961 5.09556C74.961 3.37956 76.083 2.02656 77.821 2.02656C79.592 2.02656 80.571 3.35756 80.571 5.20556V5.27156ZM75.874 4.57856H79.658C79.57 3.53356 78.877 2.75256 77.81 2.75256C76.622 2.75256 75.962 3.64356 75.874 4.57856ZM81.946 2.21356H82.793V2.62056C82.793 2.80756 82.793 3.05056 82.782 3.21456H82.804C83.013 2.53256 83.596 2.14756 84.421 2.14756C84.52 2.14756 84.696 2.15856 84.773 2.15856L84.905 3.00556C84.729 2.99556 84.52 2.99556 84.377 2.99556C83.112 2.99456 82.837 3.84156 82.837 5.15056V7.99956H81.957V2.92956C81.957 2.63156 81.957 2.42256 81.946 2.21356ZM90.988 5.27156H86.269C86.302 6.44856 86.995 7.40556 88.26 7.40556C89.217 7.40556 89.8 6.85556 90.053 6.36056L90.9 6.54756C90.46 7.52656 89.503 8.17556 88.238 8.17556C86.456 8.17556 85.378 6.89956 85.378 5.09556C85.378 3.37956 86.5 2.02656 88.238 2.02656C90.009 2.02656 90.988 3.35756 90.988 5.20556V5.27156ZM86.291 4.57856H90.075C89.987 3.53356 89.294 2.75256 88.227 2.75256C87.039 2.75256 86.379 3.64356 86.291 4.57856ZM96.785 7.99956V7.64756C96.785 7.46056 96.796 7.25156 96.796 6.98756H96.774C96.4 7.65856 95.663 8.13156 94.673 8.13156C93.067 8.13156 91.967 6.93256 91.967 5.11756C91.967 3.34656 93.023 2.05956 94.684 2.05956C95.685 2.05956 96.422 2.56556 96.752 3.21456C96.752 3.03856 96.741 2.67556 96.741 2.48856V0.101562H97.621V7.54956C97.621 7.68156 97.621 7.87956 97.632 8.00056L96.785 7.99956ZM94.805 2.81856C93.584 2.81856 92.891 3.80856 92.891 5.11856C92.891 6.43756 93.617 7.39456 94.805 7.39456C96.037 7.39456 96.796 6.43756 96.796 5.10656C96.796 3.78656 96.015 2.81856 94.805 2.81856ZM102.098 7.99956C102.109 7.71356 102.109 7.48256 102.109 7.25156V0.101562H103V2.25756C103 2.52156 102.978 2.95056 102.978 3.21456H102.989C103.33 2.57656 104.067 2.05956 105.057 2.05956C106.707 2.05956 107.763 3.34656 107.763 5.11756C107.763 6.94356 106.674 8.13156 105.057 8.13156C104.078 8.13156 103.341 7.66956 102.967 6.98756H102.945C102.956 7.17456 102.956 7.39456 102.956 7.59256V7.99956H102.098ZM104.914 2.81856C103.715 2.81856 102.934 3.77556 102.934 5.10656C102.934 6.44856 103.682 7.39456 104.925 7.39456C106.113 7.39456 106.839 6.43756 106.839 5.11756C106.839 3.79756 106.146 2.81856 104.914 2.81856ZM112.757 2.21356H113.714L111.305 8.57156C110.92 9.59456 110.59 10.0016 109.556 10.0016C109.358 10.0016 109.325 10.0016 109.083 9.99056L108.94 9.24256C109.171 9.25356 109.336 9.25356 109.523 9.25356C110.106 9.25356 110.326 8.91356 110.634 7.99956L108.401 2.21356H109.391L110.326 4.82056C110.59 5.55756 110.843 6.28356 111.074 6.99856H111.107C111.349 6.27256 111.591 5.54656 111.844 4.82056L112.757 2.21356Z" fill="#4F4F4F"></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
 
 <?php
 get_footer();
