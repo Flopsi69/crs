@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/exitIntent',
-  debug: true
+  debug: false
 }
 
 // *** Utils *** //
@@ -405,8 +405,6 @@ async function initExp() {
 }
 
 function isPopupShown() {
-  return false
-
   if (sessionStorage.getItem('isPopupShown')) {
     return true
   }
