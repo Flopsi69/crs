@@ -607,6 +607,12 @@ function handleExitIntent() {
     new Modal('lav-intent', markup)
 
     $('.lavm__complete').addEventListener('click', () => {
+      if ($('.lavm__complete_loading')) return
+
+      $('.lavm__complete').disabled = true
+
+      $('.lavm__complete').classList.add('lavm__complete_loading')
+
       pushDataLayer(
         'exp_scarcity_button_02',
         'Complete my order',
@@ -614,11 +620,7 @@ function handleExitIntent() {
         'Pop-up. Filled cart. Reserve Now, Limited Supply'
       )
 
-      if ($('.lavm__complete_loading')) return
-
-      $('.lavm__complete').classList.add('lavm__complete_loading')
-
-      // location.href = 'https://www.restaurantsupply.com/checkout/cart/'
+      location.href = 'https://www.restaurantsupply.com/checkout/cart/'
     })
 
     visibilityEvent('.lav-intent', () => {
