@@ -315,6 +315,9 @@ class Modal {
         width: 12px;
         flex-shrink: 0;
       }
+      .lavm__slider {
+        overflow: visible;
+      }
       .lavm__slider .owl-dots {
         display: flex;
         align-items: center;
@@ -326,6 +329,8 @@ class Modal {
         margin: 0;
         width: 8px;
         height: 8px;
+        display: block;
+        border-radius: 50%;
         opacity: 1;
         background-color: #EBECED;
       }
