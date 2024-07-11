@@ -4,7 +4,9 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/exitIntent',
-  debug: false
+  debug: false,
+  isDelay: false,
+  isDelayTimeout: null
 }
 
 // *** Utils *** //
@@ -446,6 +448,16 @@ function handleExitIntent() {
     document.body,
     (node) => {
       if (node.closest('.notify-addcart')) {
+        config.isDelay = true
+
+        if (config.isDelayTimeout) {
+          clearTimeout(config.isDelayTimeout)
+        }
+
+        config.isDelayTimeout = setTimeout(() => {
+          config.isDelay = false
+        }, 20 * 1000)
+
         waitFor(
           () =>
             localStorage['mage-cache-storage'] &&
@@ -642,7 +654,7 @@ function handleExitIntent() {
 
   function handlePopupTriggers() {
     const isMob = window.innerWidth <= 768
-    let isAction = false
+    // let isAction = false
     let timer = 0
 
     const timerInterval = setInterval(() => {
@@ -667,7 +679,7 @@ function handleExitIntent() {
     }, 500)
 
     document.addEventListener('click', (e) => {
-      if (!isAction) isAction = true
+      // if (!isAction) isAction = true
 
       if (!isPopupShown()) {
         console.log('Click: reset timer')
@@ -676,7 +688,7 @@ function handleExitIntent() {
     })
 
     document.addEventListener('scroll', () => {
-      if (!isAction) isAction = true
+      // if (!isAction) isAction = true
 
       if (!isPopupShown()) {
         console.log('Scroll: reset timer')
@@ -685,7 +697,7 @@ function handleExitIntent() {
     })
 
     document.addEventListener('visibilitychange', function () {
-      if (!isAction && !document.hidden && !isPopupShown()) {
+      if (!document.hidden && !isPopupShown()) {
         console.log('Visibility Trigger')
 
         openModal()
@@ -694,7 +706,16 @@ function handleExitIntent() {
 
     if (!isMob) {
       document.addEventListener('mouseout', (e) => {
-        if (!e.toElement && !e.relatedTarget && !isPopupShown()) {
+        if (config.isDelay) {
+          console.log('MouseOut Trigger fired but delay active!')
+        }
+
+        if (
+          !config.isDelay &&
+          !e.toElement &&
+          !e.relatedTarget &&
+          !isPopupShown()
+        ) {
           console.log('MouseOut Trigger')
           openModal()
         }
@@ -726,7 +747,11 @@ function handleExitIntent() {
 
     checkScrollSpeed(window, (speed) => {
       if (speed > 120) {
-        if (!isPopupShown()) {
+        if (config.isDelay) {
+          console.log('FastScroll Trigger fired but delay active!')
+        }
+
+        if (!isPopupShown() && !config.isDelay) {
           console.log('FastScroll Trigger')
           openModal()
         }
