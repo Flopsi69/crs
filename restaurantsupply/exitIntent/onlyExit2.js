@@ -4,9 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantSupply/exitIntent',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/exitIntent',
-  debug: false,
-  isDelay: false,
-  isDelayTimeout: null
+  debug: false
 }
 
 // *** Utils *** //
@@ -448,15 +446,7 @@ function handleExitIntent() {
     document.body,
     (node) => {
       if (node.closest('.notify-addcart')) {
-        config.isDelay = true
-
-        if (config.isDelayTimeout) {
-          clearTimeout(config.isDelayTimeout)
-        }
-
-        config.isDelayTimeout = setTimeout(() => {
-          config.isDelay = false
-        }, 20 * 1000)
+        saveTriggerDelay()
 
         waitFor(
           () =>
@@ -489,6 +479,28 @@ function handleExitIntent() {
 
   handlePopupTriggers()
 
+  function saveTriggerDelay(delay = 20) {
+    const delayTime = Date.now() + delay * 1000
+    sessionStorage.setItem('triggerIsDelay', delayTime)
+  }
+
+  function isTriggerDelay() {
+    const delayTime = sessionStorage.getItem('triggerIsDelay')
+    if (!delayTime) return false
+
+    if (+delayTime < Date.now()) {
+      sessionStorage.removeItem('triggerIsDelay')
+      return false
+    }
+
+    console.log(
+      'Trigger Delay active:',
+      parseInt((+delayTime - Date.now()) / 1000) + 's'
+    )
+
+    return true
+  }
+
   function addProducts() {
     console.log('addProducts')
     if ($('.lavm__slider')) {
@@ -509,7 +521,7 @@ function handleExitIntent() {
     )
 
     for (const item of cart.items) {
-      console.log('product', item)
+      // console.log('product', item)
       addProduct(item)
     }
 
@@ -706,15 +718,11 @@ function handleExitIntent() {
 
     if (!isMob) {
       document.addEventListener('mouseout', (e) => {
-        if (config.isDelay) {
-          console.log('MouseOut Trigger fired but delay active!')
-        }
-
         if (
-          !config.isDelay &&
           !e.toElement &&
           !e.relatedTarget &&
-          !isPopupShown()
+          !isPopupShown() &&
+          !isTriggerDelay()
         ) {
           console.log('MouseOut Trigger')
           openModal()
@@ -747,11 +755,7 @@ function handleExitIntent() {
 
     checkScrollSpeed(window, (speed) => {
       if (speed > 120) {
-        if (config.isDelay) {
-          console.log('FastScroll Trigger fired but delay active!')
-        }
-
-        if (!isPopupShown() && !config.isDelay) {
+        if (!isPopupShown() && !isTriggerDelay()) {
           console.log('FastScroll Trigger')
           openModal()
         }
@@ -783,7 +787,7 @@ function handleExitIntent() {
         return acc + item.qty
       }, 0)
 
-      console.log('qty', qty)
+      // console.log('qty', qty)
 
       if (qty !== cart?.summary_count) {
         $('.lav-intent')?.classList.add('lav-intent__no-qty')
