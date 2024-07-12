@@ -543,6 +543,16 @@
     line-height: 20px; 
   }
 
+  .catalog-product-view .shipping-wrapper #shipping-zip-form {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  #block-summary {
+    padding: 0;
+    box-shadow: none;
+  }
   #block-summary .title .shipping-title {
     display: block;
     color: #536D80;
@@ -577,6 +587,9 @@
     display: none;
   }
 
+  #block-summary .visible-form:not([style]) + .shipping-rates {
+    display: none;
+  }
   #block-summary .visible-form[style]:not([style='display: none;']) + .shipping-rates {
     display: none;
   }
@@ -598,6 +611,7 @@
 
   #block-summary .visible-information .heading span {
     padding-left: 0;
+    margin: 0;
     color: #1F6699;
     font-size: 14px;
     font-weight: 600;
@@ -616,6 +630,8 @@
 
   #block-summary .visible-information {
     flex-flow: column-reverse;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
     gap: 12px;
   }
   #block-summary .shipping-address-form .visible-information .heading {
@@ -627,6 +643,7 @@
     top: 50%;
     transform: translateY(-50%);
     left: 12px;
+    z-index: 1;
   }
 
   #block-summary .pac-target-input::placeholder {
@@ -846,7 +863,10 @@
       ).placeholder = 'Delivery address'
     }
 
+    $('#block-summary').classList.add('block', 'shipping', 'shipping-wrapper')
+
     $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
+    // '#block-summary', el
     // el.style.display = 'block'
   }
 
