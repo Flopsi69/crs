@@ -63,9 +63,13 @@ async function initExp() {
 
   console.debug('** InitExp **')
 
+  pushDataLayer('exp_express_checkout_loaded')
+
   await waitFor('.scom-klarna-checkout-buttons-wrapper', false, { ms: 50 })
 
   addTitle()
+  addEvents()
+
   function addTitle() {
     const html = /* html */ `
       <div class='lav-title'>
@@ -78,6 +82,27 @@ async function initExp() {
       'beforebegin',
       html
     )
+  }
+
+  function addEvents() {
+    waitFor('.paypal.checkout', () => {
+      let isPaypalFire = false
+      $('.paypal.checkout').addEventListener('click', function () {
+        if (isPaypalFire) return
+
+        isPaypalFire = true
+        pushDataLayer(
+          'exp_express_checkout_paypal',
+          'PayPal',
+          'Button',
+          'Express checkout method'
+        )
+
+        setTimeout(() => {
+          isPaypalFire = false
+        }, 1000)
+      })
+    })
   }
 }
 
