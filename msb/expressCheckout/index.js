@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/msb/expressCheckout/',
   dir: 'https://flopsi69.github.io/crs/msb/expressCheckout/',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'express_checkout', 'variant_1'],
   debug: false
 }
 
@@ -462,18 +462,18 @@ function connectSplide() {
 // *** Exp BG process *** //
 
 //Clarity
-// if (
-//   !config.debug &&
-//   Array.isArray(config.clarity) &&
-//   config.clarity.length === 3
-// ) {
-//   waitFor(
-//     () => typeof clarity == 'function',
-//     () => {
-//       clarity(...config.clarity)
-//     }
-//   )
-// }
+if (
+  !config.debug &&
+  Array.isArray(config.clarity) &&
+  config.clarity.length === 3
+) {
+  waitFor(
+    () => typeof clarity == 'function',
+    () => {
+      clarity(...config.clarity)
+    }
+  )
+}
 
 // Svg objects
 function getSvg(name) {
