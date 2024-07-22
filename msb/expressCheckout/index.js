@@ -462,18 +462,18 @@ function connectSplide() {
 // *** Exp BG process *** //
 
 //Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
-  waitFor(
-    () => typeof clarity == 'function',
-    () => {
-      clarity(...config.clarity)
-    }
-  )
-}
+// if (
+//   !config.debug &&
+//   Array.isArray(config.clarity) &&
+//   config.clarity.length === 3
+// ) {
+//   waitFor(
+//     () => typeof clarity == 'function',
+//     () => {
+//       clarity(...config.clarity)
+//     }
+//   )
+// }
 
 // Svg objects
 function getSvg(name) {
