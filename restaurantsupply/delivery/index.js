@@ -865,7 +865,7 @@
 
     $('#block-summary').classList.add('block', 'shipping', 'shipping-wrapper')
 
-    $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
+    // $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
     // '#block-summary', el
     // el.style.display = 'block'
   }
