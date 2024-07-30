@@ -845,7 +845,8 @@
     )
 
     if (
-      $('[placeholder="Start typing your address for shipping estimate..."]')
+      $('[placeholder="Start typing your address for shipping estimate..."]') &&
+      false
     ) {
       $(
         '[placeholder="Start typing your address for shipping estimate..."]'
