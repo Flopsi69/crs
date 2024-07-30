@@ -778,16 +778,15 @@
           el.classList.contains('stock-status-logic') &&
           window.innerWidth < 768
         ) {
-          $('.product-view-left').insertAdjacentElement(
-            'afterend',
-            $('.product-shipping-time.stock-status-logic')
-          )
-
-          if ($('.product-shipping-time:not(.stock-status-logic)')) {
-            $(
-              '.product-shipping-time.stock-status-logic'
-            ).insertAdjacentElement('afterend', $('.product-shipping-time'))
-          }
+          // $('.product-view-left').insertAdjacentElement(
+          //   'afterend',
+          //   $('.product-shipping-time.stock-status-logic')
+          // )
+          // if ($('.product-shipping-time:not(.stock-status-logic)')) {
+          //   $(
+          //     '.product-shipping-time.stock-status-logic'
+          //   ).insertAdjacentElement('afterend', $('.product-shipping-time'))
+          // }
         }
       })
 
@@ -865,7 +864,7 @@
 
     $('#block-summary').classList.add('block', 'shipping', 'shipping-wrapper')
 
-    // $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
+    $('.lavd-calc').insertAdjacentElement('beforeend', $('#block-summary', el))
     // '#block-summary', el
     // el.style.display = 'block'
   }
