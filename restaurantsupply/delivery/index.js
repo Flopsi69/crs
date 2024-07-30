@@ -778,19 +778,15 @@
           el.classList.contains('stock-status-logic') &&
           window.innerWidth < 768
         ) {
-          $('.product-view-left').insertAdjacentElement(
-            'afterend',
-            $('.product-shipping-time.stock-status-logic')
-          )
-
-          if ($('.product-shipping-time:not(.stock-status-logic)')) {
-            $(
-              '.product-shipping-time.stock-status-logic'
-            ).insertAdjacentElement('afterend', $('.product-shipping-time'))
-          }
-
-          console.log($('#shipping-zip-form [placeholder="Delivery address"]'))
-          $('#shipping-zip-form [placeholder="Delivery address"]').focus()
+          // $('.product-view-left').insertAdjacentElement(
+          //   'afterend',
+          //   $('.product-shipping-time.stock-status-logic')
+          // )
+          // if ($('.product-shipping-time:not(.stock-status-logic)')) {
+          //   $(
+          //     '.product-shipping-time.stock-status-logic'
+          //   ).insertAdjacentElement('afterend', $('.product-shipping-time'))
+          // }
         }
       })
 
