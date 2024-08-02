@@ -385,6 +385,9 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+  .product-shipping-time.stock-status-logic {
+    display: none;
+  }
   [class*='lavd-'] {
     box-sizing: border-box;
   }
@@ -722,28 +725,24 @@
   function handleShipping() {
     if (!$('.product-shipping-time.stock-status-logic')) return
 
-    visibilityEvent('.product-shipping-time.stock-status-logic', () => {
-      pushDataLayer(
-        'exp_shipping_info_pdp_section_01',
-        'Section',
-        'Visibility',
-        'PDP. Shipping '
-      )
-    })
-
-    const waitHtml = /* html */ `
+    const shippingInnerHTML = /* html */ `
     <div class="lavd-calc"></div>
     <div class="lavd-policy" data-modal='.lavd-shipping'>
         <span>Shipping and Delivery policy</span>&nbsp;&nbsp;>
     </div>
   `
 
-    $('.product-shipping-time.stock-status-logic')
-
-    $('.product-shipping-time.stock-status-logic').insertAdjacentHTML(
-      'beforeend',
-      waitHtml
+    const cloneNode = $('.product-shipping-time.stock-status-logic').cloneNode(
+      true
     )
+    cloneNode.classList.remove('stock-status-logic')
+    cloneNode.classList.add('lavd-shipping__clone')
+    $('.product-shipping-time.stock-status-logic').insertAdjacentElement(
+      'beforebegin',
+      cloneNode
+    )
+
+    cloneNode.insertAdjacentHTML('beforeend', shippingInnerHTML)
 
     $('.lavd-policy').addEventListener('click', () => {
       pushDataLayer(
@@ -754,53 +753,56 @@
       )
     })
 
-    if (
-      $(
-        '.product-shipping-time.stock-status-logic .product-shipping-time-title'
-      )
-    ) {
-      $(
-        '.product-shipping-time.stock-status-logic .product-shipping-time-title'
-      ).innerHTML =
-        getSvg('truck') +
-        $(
-          '.product-shipping-time.stock-status-logic .product-shipping-time-title'
-        ).innerHTML
+    if ($('.product-shipping-time-title', cloneNode)) {
+      $('.product-shipping-time-title', cloneNode).innerHTML =
+        getSvg('truck') + $('.product-shipping-time-title', cloneNode).innerHTML
     }
 
     if ($('#block-shipping')) {
       waitFor('#block-shipping .street-wrapper', handleCalc)
     }
 
-    if (window.innerWidth < 768) {
-      initMutation('.product-view-left', (el) => {
-        if (
-          el.classList.contains('stock-status-logic') &&
-          window.innerWidth < 768
-        ) {
-          // $('.product-view-left').insertAdjacentElement(
-          //   'afterend',
-          //   $('.product-shipping-time.stock-status-logic')
-          // )
-          // if ($('.product-shipping-time:not(.stock-status-logic)')) {
-          //   $(
-          //     '.product-shipping-time.stock-status-logic'
-          //   ).insertAdjacentElement('afterend', $('.product-shipping-time'))
-          // }
-        }
-      })
-
-      $('.product-view-left').insertAdjacentElement(
-        'afterend',
-        $('.product-shipping-time.stock-status-logic')
-      )
-
-      if ($('.product-shipping-time:not(.stock-status-logic)')) {
-        $('.product-shipping-time.stock-status-logic').insertAdjacentElement(
+    initMutation('.product-view-left', (el) => {
+      if (el.classList.contains('lavd-wait') && window.innerWidth < 768) {
+        $('.product-view-left').insertAdjacentElement(
           'afterend',
-          $('.product-shipping-time')
+          $('.lavd-wait')
         )
       }
+      if (
+        el.classList.contains('lavd-shipping__clone') &&
+        window.innerWidth < 768
+      ) {
+        $('.product-view-left').insertAdjacentElement(
+          'afterend',
+          $('.lavd-shipping__clone')
+        )
+        // if ($('.product-shipping-time:not(.stock-status-logic)')) {
+        //   $(
+        //     '.product-shipping-time.stock-status-logic'
+        //   ).insertAdjacentElement('afterend', $('.product-shipping-time'))
+        // }
+      }
+    })
+
+    visibilityEvent('.lavd-shipping__clone', () => {
+      pushDataLayer(
+        'exp_shipping_info_pdp_section_01',
+        'Section',
+        'Visibility',
+        'PDP. Shipping '
+      )
+    })
+
+    if (window.innerWidth < 768) {
+      $('.product-view-left').insertAdjacentElement('afterend', cloneNode)
+
+      // if ($('.product-shipping-time:not(.stock-status-logic)')) {
+      //   $('.product-shipping-time.stock-status-logic').insertAdjacentElement(
+      //     'afterend',
+      //     $('.product-shipping-time')
+      //   )
+      // }
     }
   }
 
