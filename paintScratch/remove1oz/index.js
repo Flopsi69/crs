@@ -5,14 +5,14 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/paintScratch/remove1oz',
     dir: 'https://flopsi69.github.io/crs/paintScratch/remove1oz',
-    clarity: ['set', '', 'variant_1'],
-    debug: true
+    clarity: ['set', 'variant_1'],
+    debug: false
   }
 
-  const orig = console.log
-  console.log = function (...args) {
-    orig.apply(console, ['Debug:', ...args])
-  }
+  // const orig = console.log
+  // console.log = function (...args) {
+  //   orig.apply(console, ['Debug:', ...args])
+  // }
 
   // Styles for Experiment
   const styles = ``
@@ -40,6 +40,15 @@
 
     for (const product of document.querySelectorAll('.products-list')) {
       const title = product.querySelector('p a').textContent
+
+      if (title.includes('1 oz.')) {
+        console.log('title:', title)
+        product.remove()
+      }
+    }
+
+    for (const product of document.querySelectorAll('.kit-item')) {
+      const title = product.querySelector('h2').textContent
 
       if (title.includes('1 oz.')) {
         console.log('title:', title)
