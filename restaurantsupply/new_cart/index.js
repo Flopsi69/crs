@@ -536,7 +536,9 @@ function initCheckout() {
   handleShipping()
   handleQuote()
   waitFor(
-    '.totals-wrapper .checkout-methods-items .pay-with-wrapper .title',
+    () =>
+      $('.totals-wrapper .checkout-methods-items .pay-with-wrapper .title') &&
+      $$('.checkout.methods.items .active').length,
     handlePayment
   )
   addBenefits()
@@ -613,6 +615,45 @@ function handlePayment() {
       }
     })
   })
+
+  waitFor(
+    () => $('[data-tid="bolt-checkout-button"]'),
+    () => {
+      $('[data-tid="bolt-checkout-button"]').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_checkout_cart_button_01',
+          'Secure checkout',
+          'Button',
+          'Price detail'
+        )
+      })
+    }
+  )
+
+  waitFor('#creditkey-modal-init', () => {
+    $('#creditkey-modal-init').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_checkout_cart_button_01',
+        'Credit Key',
+        'Button',
+        'Price detail'
+      )
+    })
+  })
+
+  waitFor(
+    () => $('[data-tid="apple-pay-button"]'),
+    () => {
+      $('[data-tid="apple-pay-button"]').addEventListener('click', () => {
+        pushDataLayer(
+          'exp_checkout_cart_button_01',
+          'Apple pay',
+          'Button',
+          'Price detail'
+        )
+      })
+    }
+  )
 }
 
 function addEvents() {
