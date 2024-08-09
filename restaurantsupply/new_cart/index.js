@@ -726,6 +726,15 @@ function addEvents() {
       )
     }
 
+    if (e.target.closest('.lsb_container2')) {
+      pushDataLayer(
+        'exp_checkout_cart_button_01',
+        'quickSpark',
+        'Button',
+        'Price detail'
+      )
+    }
+
     if (e.target.closest('.add-manually-button')) {
       pushDataLayer(
         'exp_checkout_cart_link_02',
