@@ -448,6 +448,7 @@ div.block.shipping .fieldset.rate .shipping-title {
   gap: 10px;
   align-items: center;
   margin-top: 16px;
+  margin-bottom: 16px;
 }
 @media(max-width: 1023px) {
   .rp-micro-app-dummy-icon-container, [style='border: none; position: fixed; bottom: 0px; right: 0px; width: 120px; height: 120px; max-width: 450px; max-height: 1080px; z-index: 2147483647; user-select: none; opacity: 1; visibility: visible;'] {
