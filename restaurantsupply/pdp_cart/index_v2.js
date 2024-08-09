@@ -1,12 +1,12 @@
-console.debug('*** Experiment started ***');
+console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
   // dir: 'http://127.0.0.1:5500/restaurantsupply/pdp_cart',
   dir: 'https://flopsi69.github.io/crs/restaurantsupply/pdp_cart',
   clarity: ['set', 'exp_pdp_car_imp', 'variant_1'],
-  debug: false,
-};
+  debug: false
+}
 
 // const orig = console.log;
 // console.log = function (...args) {
@@ -445,7 +445,7 @@ const stylesPdp = /* css */ `
       border-left: none;
     }
   }
-`;
+`
 
 const stylesCart = /* css */ `
   [class^='lav-'] {
@@ -688,36 +688,36 @@ const stylesCart = /* css */ `
       margin-top: 0;
     }
   }
-`;
+`
 
-const stylesEl = document.createElement('style');
-stylesEl.classList.add('exp-styles');
+const stylesEl = document.createElement('style')
+stylesEl.classList.add('exp-styles')
 
 // *** Logic *** //
-initExp();
+initExp()
 
 async function initExp() {
-  console.debug('** InitExp **');
-  await waitFor(() => document.head && document.body, false, { ms: 100 });
+  console.debug('** InitExp **')
+  await waitFor(() => document.head && document.body, false, { ms: 100 })
 
   if (location.href.includes('/search/')) {
-    handleNewTabLinks('search');
+    handleNewTabLinks('search')
   } else if (
     location.href.includes('/everest-refrigeration') &&
     $('body.category-everest-refrigeration')
   ) {
-    handleNewTabLinks('everest');
+    handleNewTabLinks('everest')
   }
 
   if ($('.catalog-product-view')) {
-    handleNewTabLinks('pdp');
-    stylesEl.innerHTML = stylesPdp;
-    document.head.appendChild(stylesEl);
-    initPdp();
+    handleNewTabLinks('pdp')
+    stylesEl.innerHTML = stylesPdp
+    document.head.appendChild(stylesEl)
+    initPdp()
   } else if ($('.checkout-cart-index')) {
-    stylesEl.innerHTML = stylesCart;
-    document.head.appendChild(stylesEl);
-    initCart();
+    stylesEl.innerHTML = stylesCart
+    document.head.appendChild(stylesEl)
+    initCart()
   }
 }
 
@@ -726,29 +726,29 @@ function handleNewTabLinks(loc) {
     document.addEventListener('click', (e) => {
       const link =
         e.target.closest('.kuTrackRecentView') ||
-        e.target.closest('.item-card-upper')?.querySelector('a');
+        e.target.closest('.item-card-upper')?.querySelector('a')
       if (link && link.href) {
         // console.log('fire', link.href);
-        e.preventDefault();
-        window.open(link.href, '_blank');
+        e.preventDefault()
+        window.open(link.href, '_blank')
       }
-    });
+    })
   }
 
   if (loc === 'everest') {
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('a');
+      const link = e.target.closest('a')
       if (e.target.closest('.category-product-data') && link && link.href) {
         // console.log('fire', link.href);
-        e.preventDefault();
-        window.open(link.href, '_blank');
+        e.preventDefault()
+        window.open(link.href, '_blank')
       }
-    });
+    })
   }
 
   if (loc === 'pdp') {
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('a');
+      const link = e.target.closest('a')
       if (
         (e.target.closest('.product-slider-item') ||
           e.target.closest('.item-card-upper') ||
@@ -757,47 +757,47 @@ function handleNewTabLinks(loc) {
         link.href
       ) {
         // console.log('fire', link.href);
-        e.preventDefault();
-        window.open(link.href, '_blank');
+        e.preventDefault()
+        window.open(link.href, '_blank')
       }
-    });
+    })
   }
 }
 
 function initPdp() {
-  addMiniCart();
+  addMiniCart()
   // waitFor(
   //   '.product-reviews .pr-snippet .pr-snippet-review-count',
-  handleRating();
+  handleRating()
   // );
-  handleUpsell();
-  handleSimilar();
-  addQuickLinks();
-  addSticky();
+  handleUpsell()
+  handleSimilar()
+  addQuickLinks()
+  addSticky()
 
-  checkQuickLinks();
+  checkQuickLinks()
 
   initMutation(document.body, (node) => {
     if (
       node.classList.contains('klevuWrap') &&
       node.closest('.product-interested-in')
     ) {
-      $("[data-target='.product-interested-in']").style.display = 'block';
-      handleSimilar();
+      $("[data-target='.product-interested-in']").style.display = 'block'
+      handleSimilar()
     }
 
     if (
       node.classList.contains('pr-qa-display') &&
       node.closest('#pr-questiondisplay')
     ) {
-      $("[data-target='#pr-questiondisplay']").style.display = 'block';
+      $("[data-target='#pr-questiondisplay']").style.display = 'block'
     }
 
     if (
       node.classList.contains('pr-review-snapshot') &&
       node.closest('#product-reviews')
     ) {
-      handleRating();
+      handleRating()
     }
 
     if (
@@ -805,27 +805,27 @@ function initPdp() {
       node.closest('.product-other-line')
     ) {
       // We have other products
-      $("[data-target='.product-other-line']").style.display = 'block';
+      $("[data-target='.product-other-line']").style.display = 'block'
     }
 
     if (
       node.classList.contains('notify-addcart-wrapper') &&
       node.closest('.notify-addcart')
     ) {
-      $('.lav-sticky__btn').innerText = 'Added';
+      $('.lav-sticky__btn').innerText = 'Added'
       setTimeout(() => {
-        $('.lav-sticky__btn').innerText = 'ADD TO CART';
-        $('.lav-sticky__btn').classList.remove('disabled');
-      }, 1000);
+        $('.lav-sticky__btn').innerText = 'ADD TO CART'
+        $('.lav-sticky__btn').classList.remove('disabled')
+      }, 1000)
     }
 
     if (
       node.classList.contains('notify-addcart-wrapper') &&
       node.closest('.notify-addcart')
     ) {
-      $('.lav-cart__wrap')?.classList.add('lav-cart__wrap_loader');
+      $('.lav-cart__wrap')?.classList.add('lav-cart__wrap_loader')
 
-      const href = $('.name a', node).href;
+      const href = $('.name a', node).href
 
       waitFor(
         () =>
@@ -833,64 +833,64 @@ function initPdp() {
           JSON.parse(localStorage['mage-cache-storage'])?.cart.items[0]
             ?.product_image,
         () => {
-          addMiniCart(href);
+          addMiniCart(href)
         }
-      );
+      )
     }
     // console.log('added', node);
-  });
+  })
 
   function checkQuickLinks() {
     if ($('.product-interested-in .klevuWrap')) {
-      $("[data-target='.product-interested-in']").style.display = 'block';
+      $("[data-target='.product-interested-in']").style.display = 'block'
     }
 
     if ($('#pr-questiondisplay .pr-qa-display')) {
-      $("[data-target='#pr-questiondisplay']").style.display = 'block';
+      $("[data-target='#pr-questiondisplay']").style.display = 'block'
     }
 
     if ($('.product-other-line .product-slider')) {
-      $("[data-target='.product-other-line']").style.display = 'block';
+      $("[data-target='.product-other-line']").style.display = 'block'
     }
   }
 
   function handleRating() {
-    handleRecommendCaption();
-    if (!$('.product-reviews .pr-snippet') || $('.lav-rating')) return;
+    handleRecommendCaption()
+    if (!$('.product-reviews .pr-snippet') || $('.lav-rating')) return
 
     const countReview = parseInt(
       $('.product-reviews .pr-snippet .pr-snippet-review-count')?.innerText
-    );
+    )
 
-    if (!countReview || countReview < 3) return;
+    if (!countReview || countReview < 3) return
 
     const markup = /*html*/ `
       <div class='lav-rating p-w-r'>
         ${$('.product-reviews .pr-rating-stars')?.outerHTML}
         <span>View ${countReview} reviews</span>
       </div>
-    `;
+    `
 
-    $('.product-view-sku-wrap')?.insertAdjacentHTML('afterbegin', markup);
+    $('.product-view-sku-wrap')?.insertAdjacentHTML('afterbegin', markup)
 
     $('.lav-rating span').addEventListener('click', () => {
-      pushDataLayer('exp_pdp_car_imp_link_pdp_review', 'Review', 'Link', 'PDP');
+      pushDataLayer('exp_pdp_car_imp_link_pdp_review', 'Review', 'Link', 'PDP')
       jQuery('html, body').animate(
         {
           scrollTop:
             jQuery('.product-reviews').offset().top -
-            (jQuery(window).width() < 768 ? 10 : 60),
+            (jQuery(window).width() < 768 ? 10 : 60)
         },
         500
-      );
-    });
+      )
+    })
 
     function handleRecommendCaption() {
       if (
         !$('.product-reviews .pr-snippet-reco-to-friend') ||
         $('.lav-recommend')
       )
-        return;
+        return
 
       const markup = /*html*/ `
         <div class='lav-recommend'>
@@ -898,22 +898,22 @@ function initPdp() {
           <div class='lav-recommend__value'>100%</div>
           <div class='lav-recommend__caption'>of respondents would<br/> recommend this to a friend</div>
         </div>
-      `;
+      `
 
-      $('.product.media').insertAdjacentHTML('afterbegin', markup);
+      $('.product.media').insertAdjacentHTML('afterbegin', markup)
     }
   }
 
   function addMiniCart(href) {
     if ($('.lav-cart__wrap')) {
-      $('.lav-cart__wrap').remove();
+      $('.lav-cart__wrap').remove()
     }
 
-    if (!localStorage['mage-cache-storage']) return false;
+    if (!localStorage['mage-cache-storage']) return false
 
-    const cart = JSON.parse(localStorage['mage-cache-storage'])?.cart;
+    const cart = JSON.parse(localStorage['mage-cache-storage'])?.cart
 
-    if (!cart || !cart.items.length) return false;
+    if (!cart || !cart.items.length) return false
 
     // <div class='lav-product'>
     //   <div class='lav-product__image'>
@@ -947,9 +947,9 @@ function initPdp() {
           </div>
         </div>
       </div>
-    `;
+    `
 
-    $('header.page-header').insertAdjacentHTML('afterend', markup);
+    $('header.page-header').insertAdjacentHTML('afterend', markup)
 
     visibilityEvent('.lav-cart__wrap', () => {
       pushDataLayer(
@@ -957,21 +957,21 @@ function initPdp() {
         'Block view',
         'Visibility',
         'PDP. First screen. Header block'
-      );
-    });
+      )
+    })
 
     for (const item of cart.items) {
-      console.log('product', item, href);
-      addProduct(item, href);
+      console.log('product', item, href)
+      addProduct(item, href)
     }
 
     if (!$('.lav-cart__products .lav-product')) {
-      $('.lav-cart__wrap').remove();
-      return false;
+      $('.lav-cart__wrap').remove()
+      return false
     }
 
-    $('.lav-total span').innerHTML = cart.subtotal;
-    $('.lav-total span').innerHTML = $('.lav-total span span').innerText;
+    $('.lav-total span').innerHTML = cart.subtotal
+    $('.lav-total span').innerHTML = $('.lav-total span span').innerText
 
     $('.lav-summary__btn').addEventListener('click', () => {
       pushDataLayer(
@@ -979,17 +979,17 @@ function initPdp() {
         'View cart',
         'Button',
         'PDP. First screen. Header block'
-      );
-      $('.action.showcart').click();
-    });
+      )
+      $('.action.showcart').click()
+    })
 
-    initCarousel();
+    initCarousel()
 
     function addProduct(
       { product_url, product_name, qty, product_image },
       href
     ) {
-      if (!product_image?.src) return false;
+      if (!product_image?.src) return false
 
       const product = /*html*/ `
         <div class='lav-product'>
@@ -1015,9 +1015,9 @@ function initPdp() {
             <div class='lav-product__quantity'>Quantity: <span>${qty}</span></div>
           </div>
         </div>
-      `;
+      `
 
-      $('.lav-cart__products').insertAdjacentHTML('beforeend', product);
+      $('.lav-cart__products').insertAdjacentHTML('beforeend', product)
     }
 
     function initCarousel() {
@@ -1032,32 +1032,31 @@ function initPdp() {
             nav: true,
             responsive: {
               0: {
-                items: 1,
+                items: 1
               },
               880: {
-                items: 2,
+                items: 2
               },
               1250: {
-                items: 3,
-              },
+                items: 3
+              }
               // 1200: {
               //   items: 4,
               // },
-            },
-          });
+            }
+          })
         }
-      );
+      )
     }
   }
 
   function handleUpsell() {
-    addTipStyles();
-    const parent = $('.product-related-wrap .product-slider');
+    addTipStyles()
+    const parent = $('.product-related-wrap .product-slider')
 
-    if (!parent) return;
+    if (!parent) return
 
-    $('#block-related-heading', parent).innerText =
-      'Works great together with:';
+    $('#block-related-heading', parent).innerText = 'Works great together with:'
 
     const tip = /*html*/ `
       <div class='lav-tip'>
@@ -1066,9 +1065,9 @@ function initPdp() {
           ✨ Perfect Match: Elevate your choice with complementary items designed to enhance performance and experience!
         </div>
       </div>
-    `;
+    `
 
-    $('#block-related-heading', parent).insertAdjacentHTML('afterend', tip);
+    $('#block-related-heading', parent).insertAdjacentHTML('afterend', tip)
 
     visibilityEvent(parent, () => {
       pushDataLayer(
@@ -1076,8 +1075,8 @@ function initPdp() {
         'Block view',
         'Visibility',
         'PDP. Block. Works great together with.'
-      );
-    });
+      )
+    })
 
     for (const el of $$('.tocart', parent)) {
       el.addEventListener('click', () => {
@@ -1086,8 +1085,8 @@ function initPdp() {
           'Add to Cart',
           'Button',
           'PDP. Block. Works great together with.'
-        );
-      });
+        )
+      })
     }
 
     for (const el of $$('.product-item-link', parent)) {
@@ -1097,8 +1096,8 @@ function initPdp() {
           'Product',
           'Icone',
           'PDP. Block. Works great together with.'
-        );
-      });
+        )
+      })
     }
 
     if (window.innerWidth > 768) {
@@ -1108,8 +1107,8 @@ function initPdp() {
           'Hover',
           'Tooltip',
           'PDP. Block. Works great together with.'
-        );
-      });
+        )
+      })
     }
 
     $('.lav-tip').addEventListener('click', () => {
@@ -1118,16 +1117,16 @@ function initPdp() {
         'Click',
         'Tooltip',
         'PDP. Block. Works great together with.'
-      );
-    });
+      )
+    })
   }
 
   function handleSimilar() {
-    const parent = $('.product-interested-in .product-slider-title');
+    const parent = $('.product-interested-in .product-slider-title')
 
-    if (!parent) return;
+    if (!parent) return
 
-    $('span', parent).innerText = 'Similar products';
+    $('span', parent).innerText = 'Similar products'
   }
 
   function addQuickLinks() {
@@ -1141,31 +1140,31 @@ function initPdp() {
           <div class='lav-quick__item' data-target='.product-other-line' style='display: none;'>Other products from this line</div>
         </div>
       </div>
-    `;
+    `
 
-    $('#product-description').insertAdjacentHTML('beforebegin', markup);
+    $('#product-description').insertAdjacentHTML('beforebegin', markup)
 
     for (const anchor of $$('.lav-quick__item')) {
       anchor.addEventListener('click', () => {
-        const target = anchor.dataset.target;
-        const text = anchor.innerText;
+        const target = anchor.dataset.target
+        const text = anchor.innerText
 
         pushDataLayer(
           'exp_pdp_car_imp_but_pdpundgre_item',
           `${text} - Choose navigation`,
           'Button',
           'PDP. Under. Block Works great together with '
-        );
+        )
 
         jQuery('html, body').animate(
           {
             scrollTop:
               jQuery(target).offset().top -
-              (jQuery(window).width() < 768 ? 10 : 60),
+              (jQuery(window).width() < 768 ? 10 : 60)
           },
           500
-        );
-      });
+        )
+      })
     }
   }
 
@@ -1178,27 +1177,27 @@ function initPdp() {
           'heart'
         )}</div>
       </div>
-    `;
+    `
 
-    $('body').insertAdjacentHTML('beforeend', markup);
+    $('body').insertAdjacentHTML('beforeend', markup)
 
     $('.lav-sticky__amount').addEventListener('input', () => {
       $('.lav-sticky__amount').value = $('.lav-sticky__amount').value.replace(
         /\D/g,
         ''
-      );
-    });
+      )
+    })
 
     $('.lav-sticky__amount').addEventListener('change', () => {
       $('.lav-sticky__amount').value = $('.lav-sticky__amount').value.replace(
         /\D/g,
         ''
-      );
+      )
 
       if (!$('.lav-sticky__amount').value) {
-        $('.lav-sticky__amount').value = 1;
+        $('.lav-sticky__amount').value = 1
       }
-    });
+    })
 
     $('.lav-sticky__btn').addEventListener('click', function () {
       pushDataLayer(
@@ -1206,58 +1205,58 @@ function initPdp() {
         'Add to Cart',
         'Sticky button',
         'PDP'
-      );
-      $('#qty').value = $('.lav-sticky__amount').value;
-      this.innerText = 'Adding...';
-      this.classList.add('disabled');
-      $('#product-addtocart-button').click();
-    });
+      )
+      $('#qty').value = $('.lav-sticky__amount').value
+      this.innerText = 'Adding...'
+      this.classList.add('disabled')
+      $('#product-addtocart-button').click()
+    })
 
     $('.lav-sticky__favorite').addEventListener('click', () => {
-      $('#qty').value = $('.lav-sticky__amount').value;
-      $('[data-action="add-to-wishlist"]').click();
-    });
+      $('#qty').value = $('.lav-sticky__amount').value
+      $('[data-action="add-to-wishlist"]').click()
+    })
 
     waitFor(
       () => typeof jQuery === 'function',
       () => {
         jQuery(window).scroll(function () {
-          if (window.innerWidth >= 768) return;
+          if (window.innerWidth >= 768) return
 
           if (
             jQuery(window).scrollTop() >
             jQuery('.product-add-form').offset().top + 50
           ) {
-            jQuery('.lav-sticky').addClass('active');
+            jQuery('.lav-sticky').addClass('active')
             jQuery('.rp-micro-app-dummy-icon-container').css({
-              bottom: '74px',
-            });
+              bottom: '74px'
+            })
             jQuery('#richpanel_messenger_iframe').css({
-              bottom: '74px',
-            });
+              bottom: '74px'
+            })
           } else {
-            jQuery('.lav-sticky').removeClass('active');
+            jQuery('.lav-sticky').removeClass('active')
             jQuery('.rp-micro-app-dummy-icon-container').css({
-              bottom: '0',
-            });
+              bottom: '0'
+            })
             jQuery('#richpanel_messenger_iframe').css({
-              bottom: '0',
-            });
+              bottom: '0'
+            })
           }
-        });
+        })
       }
-    );
+    )
   }
 }
 
 function initCart() {
-  addSecurity();
-  waitFor('.cart-info', handleHelp);
+  addSecurity()
+  waitFor('.cart-info', handleHelp)
   waitFor(
     () =>
       $('#shopping-cart-table .item-info .product-item-name')?.innerText.trim(),
     handleProducts
-  );
+  )
 
   waitFor(
     () => $('.totals-wrapper'),
@@ -1268,10 +1267,10 @@ function initCart() {
           'Block view',
           'Visibility',
           'Shopping Cart. Price detail'
-        );
-      });
+        )
+      })
     }
-  );
+  )
 
   waitFor(
     () => $('[data-opt="spark.checkout.button"] .qscustomcart'),
@@ -1288,19 +1287,19 @@ function initCart() {
               'As low as',
               'Button',
               'Shopping Cart. Price detail'
-            );
+            )
           } else {
             pushDataLayer(
               'exp_pdp_car_imp_but_shopcarpric_aplly',
               'Aplly now',
               'Button',
               'Shopping Cart. Price detail'
-            );
+            )
           }
         }
-      );
+      )
     }
-  );
+  )
 
   waitFor(
     () => $('[data-tid="bolt-checkout-button"]'),
@@ -1311,43 +1310,43 @@ function initCart() {
           'Checkout',
           'Button',
           'Shopping Cart. Price detail'
-        );
-      });
+        )
+      })
     }
-  );
+  )
 
   function handleProducts() {
-    addTipStyles();
+    addTipStyles()
     // let isFirstFires = false;
-    const parser = new DOMParser();
+    const parser = new DOMParser()
 
     for (const product of $$('#shopping-cart-table .item-info')) {
       if (!$('.lav-first-product')) {
-        product.classList.add('lav-first-product');
+        product.classList.add('lav-first-product')
       }
-      updateProduct(product);
+      updateProduct(product)
     }
 
     async function updateProduct(pr) {
-      const link = $('.product-item-name a', pr).href;
+      const link = $('.product-item-name a', pr).href
 
-      const res = await fetch(link);
-      const html = await res.text();
-      const doc = parser.parseFromString(html, 'text/html');
+      const res = await fetch(link)
+      const html = await res.text()
+      const doc = parser.parseFromString(html, 'text/html')
 
       if (!$('.item-options', pr)?.children.length) {
-        $('.item-options', pr)?.remove();
+        $('.item-options', pr)?.remove()
       }
 
       // Add warranty
       waitFor(
         () => $$('.product-warranty-info-content li', doc).length,
         () => {
-          const warrantyElements = $$('.product-warranty-info-content li', doc);
-          console.log('fire', warrantyElements);
+          const warrantyElements = $$('.product-warranty-info-content li', doc)
+          console.log('fire', warrantyElements)
 
-          const warrantyEl = document.createElement('tr');
-          warrantyEl.classList.add('lav-warranty');
+          const warrantyEl = document.createElement('tr')
+          warrantyEl.classList.add('lav-warranty')
           warrantyEl.innerHTML = /*html*/ `
             <td></td>
             <td class='lav-warranty__content'>
@@ -1356,7 +1355,7 @@ function initCart() {
                 <div class='lav-warranty__list'></div>
               </div>
             </td>
-          `;
+          `
 
           warrantyElements.forEach((el) => {
             const item = /*html*/ `
@@ -1364,15 +1363,15 @@ function initCart() {
               ${getSvg('warranty')}
               ${el.innerText}
             </div>
-          `;
+          `
 
             $('.lav-warranty__list', warrantyEl).insertAdjacentHTML(
               'beforeend',
               item
-            );
-          });
+            )
+          })
 
-          pr.insertAdjacentElement('afterend', warrantyEl);
+          pr.insertAdjacentElement('afterend', warrantyEl)
 
           visibilityEvent(warrantyEl, () => {
             pushDataLayer(
@@ -1380,17 +1379,17 @@ function initCart() {
               'Element view',
               'Visibility',
               'Shopping Cart. Warranty'
-            );
-          });
+            )
+          })
         }
-      );
+      )
 
       // Add related
       waitFor(
         () => $$('.product-related-wrap .product-slider-item', doc).length,
         () => {
           // .product-slider-list
-          const target = $('.product-related-wrap', doc).cloneNode(true);
+          const target = $('.product-related-wrap', doc).cloneNode(true)
 
           const tip = /*html*/ `
             <div class='lav-tip'>
@@ -1399,19 +1398,19 @@ function initCart() {
                 ✨ Perfect Match: Elevate your choice with complementary items designed to enhance performance and experience!
               </div>
             </div>
-          `;
+          `
 
-          $('.product-slider-title span', target).removeAttribute('id');
+          $('.product-slider-title span', target).removeAttribute('id')
           $(
             '.product-slider-title span',
             target
-          ).innerText = `Works great together with:`;
+          ).innerText = `Works great together with:`
           $('.product-slider-title', target).insertAdjacentHTML(
             'beforeend',
             tip
-          );
+          )
 
-          $('.product-slider-content', target).style.display = 'none';
+          $('.product-slider-content', target).style.display = 'none'
 
           // $('.product-slider-title', target).insertAdjacentHTML(
           //   'beforeend',
@@ -1427,22 +1426,22 @@ function initCart() {
             `
               <div class='lav-toggler'></div>
             `
-          );
+          )
 
           $('.lav-toggler', target).addEventListener('click', function () {
             if (this.classList.contains('lav-toggler_hide')) {
               // $('.product-slider-content', target).classList.remove('active');
-              jQuery($('.product-slider-content', target)).slideUp();
+              jQuery($('.product-slider-content', target)).slideUp()
             } else {
               // $('.product-slider-content', target).classList.add('active');
-              jQuery($('.product-slider-content', target)).slideDown();
+              jQuery($('.product-slider-content', target)).slideDown()
             }
-            this.classList.toggle('lav-toggler_hide');
-          });
+            this.classList.toggle('lav-toggler_hide')
+          })
 
           if (pr.classList.contains('lav-first-product')) {
-            jQuery($('.product-slider-content', target)).show();
-            $('.lav-toggler', target).classList.add('lav-toggler_hide');
+            jQuery($('.product-slider-content', target)).show()
+            $('.lav-toggler', target).classList.add('lav-toggler_hide')
           }
           // if (!isFirstFires) {
           // jQuery($('.product-slider-content', target)).show();
@@ -1450,9 +1449,9 @@ function initCart() {
           // }
 
           if (pr.nextElementSibling?.classList.contains('lav-warranty')) {
-            pr.nextElementSibling.insertAdjacentElement('afterend', target);
+            pr.nextElementSibling.insertAdjacentElement('afterend', target)
           } else {
-            pr.insertAdjacentElement('afterend', target);
+            pr.insertAdjacentElement('afterend', target)
           }
 
           if (window.innerWidth > 768) {
@@ -1462,8 +1461,8 @@ function initCart() {
                 'Hover',
                 'Tooltip',
                 'Shopping Cart'
-              );
-            });
+              )
+            })
           }
 
           $('.lav-tip', target).addEventListener('click', () => {
@@ -1472,40 +1471,40 @@ function initCart() {
               'Click',
               'Tooltip',
               'Shopping Cart'
-            );
-          });
+            )
+          })
 
           for (const addToCart of $$('.tocart', target)) {
             addToCart.addEventListener('click', (e) => {
-              e.preventDefault();
+              e.preventDefault()
               pushDataLayer(
                 'exp_pdp_car_imp_but_shopcar_addcar',
                 'Add to Cart',
                 'Button',
                 'Shopping Cart'
-              );
-              const form = addToCart.closest('form');
-              const id = $('[name="product"]', form).value;
-              const key = $('.main.column > [name="form_key"]').value;
+              )
+              const form = addToCart.closest('form')
+              const id = $('[name="product"]', form).value
+              const key = $('.main.column > [name="form_key"]').value
               const href = addToCart
                 .closest('.product-slider-item')
-                .querySelector('a').href;
+                .querySelector('a').href
 
-              addProduct(id, key, href);
+              addProduct(id, key, href)
               // console.log('addToCart');
               // console.log(addToCart.closest('form'));
               // $('.tocart', target).click();
               // addToCart.closest('form').submit();
-            });
+            })
           }
 
           for (const img of $$('.product-image-photo', target)) {
             // data-cfsrc
-            const lazySrc = img.dataset.cfsrc;
+            const lazySrc = img.dataset.cfsrc
             if (lazySrc) {
-              img.removeAttribute('data-cfsrc');
-              img.removeAttribute('style');
-              img.src = lazySrc;
+              img.removeAttribute('data-cfsrc')
+              img.removeAttribute('style')
+              img.src = lazySrc
             }
           }
 
@@ -1516,8 +1515,8 @@ function initCart() {
                 'Product',
                 'Icone',
                 'Shopping Cart'
-              );
-            });
+              )
+            })
           }
 
           waitFor(
@@ -1532,22 +1531,22 @@ function initCart() {
                 // loop: true,
                 responsive: {
                   0: {
-                    items: 1,
+                    items: 1
                   },
                   768: {
-                    items: 2,
+                    items: 2
                   },
                   1024: {
-                    items: 1,
+                    items: 1
                   },
                   1150: {
-                    items: 2,
+                    items: 2
                   },
                   1350: {
-                    items: 3,
-                  },
-                },
-              });
+                    items: 3
+                  }
+                }
+              })
 
               visibilityEvent(target, () => {
                 pushDataLayer(
@@ -1555,76 +1554,76 @@ function initCart() {
                   'Block view',
                   'Visibility',
                   'Shopping Cart'
-                );
-              });
+                )
+              })
             }
-          );
+          )
         }
-      );
+      )
     }
   }
 
   function addSecurity() {
     const markup = /*html*/ `
       <div class='lav-security__caption'>All payments are secured through a 256 bit SSL Encryption software to ensure your personal details are kept safe.</div>
-    `;
+    `
 
     waitFor('.totals-wrapper', () => {
-      $('.totals-wrapper').insertAdjacentHTML('beforeend', markup);
-    });
+      $('.totals-wrapper').insertAdjacentHTML('beforeend', markup)
+    })
   }
 
   function handleHelp() {
-    $('.cart-container').insertAdjacentElement('afterend', $('.cart-info'));
+    $('.cart-container').insertAdjacentElement('afterend', $('.cart-info'))
 
     $('.cart-info .cart-info-title').addEventListener('click', (e) => {
       if (window.innerWidth > 768) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
+        e.preventDefault()
+        e.stopImmediatePropagation()
       }
-    });
+    })
   }
 
   function addProduct(id, key, href) {
-    console.log(id, key, href);
+    console.log(id, key, href)
 
     if (id && key) {
-      $('#form-validate .loader').classList.add('show');
+      $('#form-validate .loader').classList.add('show')
     } else {
-      window.open(href);
-      return false;
+      window.open(href)
+      return false
     }
 
-    const url = `https://www.restaurantsupply.com/rest/V1/gomage-guest-carts/addtocart/items/${id}`;
+    const url = `https://www.restaurantsupply.com/rest/V1/gomage-guest-carts/addtocart/items/${id}`
     const data = {
       productIds: id,
       productInfo: [
         {
-          id: id,
-        },
+          id: id
+        }
       ],
       params: [
         {
           name: 'qty',
-          value: '1',
+          value: '1'
         },
         {
           name: 'product',
-          value: id,
+          value: id
         },
         {
           name: 'form_key',
-          value: key,
-        },
-      ],
-    };
+          value: key
+        }
+      ]
+    }
 
     postData(url, data).then((data) => {
       if (data && JSON.parse(data)?.success) {
-        location.reload();
+        location.reload()
       }
-      console.log(JSON.parse(data)); // JSON data parsed by `data.json()` call
-    });
+      console.log(JSON.parse(data)) // JSON data parsed by `data.json()` call
+    })
   }
 
   async function postData(url = '', data = {}) {
@@ -1635,14 +1634,14 @@ function initCart() {
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
-    return response.json();
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    })
+    return response.json()
   }
 }
 
@@ -1691,86 +1690,86 @@ function addTipStyles() {
         left: -100%;
       }
     }
-  `;
+  `
 
-  const stylesTipEl = document.createElement('style');
-  stylesTipEl.classList.add('exp-styles');
-  stylesTipEl.innerHTML = styles;
-  document.head.appendChild(stylesTipEl);
+  const stylesTipEl = document.createElement('style')
+  stylesTipEl.classList.add('exp-styles')
+  stylesTipEl.innerHTML = styles
+  document.head.appendChild(stylesTipEl)
 }
 
 // *** Utils *** //
 class Modal {
-  static list = [];
+  static list = []
   constructor(name, html) {
     if (!$('.lav-modal')) {
-      this.constructor.init();
+      this.constructor.init()
     }
 
     if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists');
-      return;
+      console.warn('Modal with this name already exists')
+      return
     }
 
-    this.el = document.createElement('div');
-    this.el.classList.add('lav-modal__inner', name);
-    this.name = name;
-    this.el.innerHTML = html;
+    this.el = document.createElement('div')
+    this.el.classList.add('lav-modal__inner', name)
+    this.name = name
+    this.el.innerHTML = html
 
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el);
+    $('.lav-modal').insertAdjacentElement('beforeend', this.el)
 
-    this.constructor.list.push(this);
+    this.constructor.list.push(this)
   }
 
   static init() {
     document.body.insertAdjacentHTML(
       'beforeend',
       "<div class='lav-modal'></div>"
-    );
+    )
 
     document.addEventListener('click', (e) => {
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
       )
-        this.close();
+        this.close()
 
       if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal);
+        this.open(e.target.dataset.modal)
       } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal);
+        this.open(e.target.closest('[data-modal]').dataset.modal)
       }
-    });
+    })
 
-    this.addStyles();
+    this.addStyles()
   }
 
   static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open');
+    document.body.classList.add('lav-modal-open')
 
     if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active');
+      $('.lav-modal__inner.active').classList.remove('active')
     }
 
-    $(modalName).classList.add('active');
+    $(modalName).classList.add('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal').classList.add('active');
-    }, 100);
+      $('.lav-modal').classList.add('active')
+    }, 100)
   }
 
   static close(cb) {
-    document.body.classList.remove('lav-modal-open');
+    document.body.classList.remove('lav-modal-open')
 
-    $('.lav-modal')?.classList.remove('active');
+    $('.lav-modal')?.classList.remove('active')
 
-    if (typeof cb === 'function') cb();
+    if (typeof cb === 'function') cb()
 
     setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active');
-    }, 400);
+      $('.lav-modal__inner.active')?.classList.remove('active')
+    }, 400)
   }
 
   static addStyles() {
@@ -1824,12 +1823,12 @@ class Modal {
       .lav-modal-open {
         overflow: hidden;
       }
-    `;
+    `
 
-    const stylesEl = document.createElement('style');
-    stylesEl.classList.add('exp-modal');
-    stylesEl.innerHTML = styles;
-    document.head.appendChild(stylesEl);
+    const stylesEl = document.createElement('style')
+    stylesEl.classList.add('exp-modal')
+    stylesEl.innerHTML = styles
+    document.head.appendChild(stylesEl)
   }
 }
 
@@ -1841,122 +1840,122 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     ms: 500, // repeat each 0.5 second if condition is false
     limit: 10, // limit in second seconds
 
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   if (typeof condition === 'function') {
     if (condition()) {
-      if (typeof cb === 'function') cb();
-      return;
+      if (typeof cb === 'function') cb()
+      return
     }
 
     return new Promise((resolve) => {
-      let limit = config.limit * 1000;
+      let limit = config.limit * 1000
       const interval = setInterval(function () {
         if (condition() || limit <= 0) {
-          clearInterval(interval);
-          if (limit > 0 && typeof cb === 'function') cb();
-          resolve();
+          clearInterval(interval)
+          if (limit > 0 && typeof cb === 'function') cb()
+          resolve()
         }
-        limit -= config.ms;
-      }, config.ms);
-    });
+        limit -= config.ms
+      }, config.ms)
+    })
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
     if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition));
-      return;
+      if (typeof cb === 'function') cb($(condition))
+      return
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
         if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition));
-          observer.disconnect();
-          resolve();
+          if (typeof cb === 'function') cb($(condition))
+          observer.disconnect()
+          resolve()
         }
-      });
+      })
 
-      observer.observe(document, { childList: true, subtree: true });
-    });
+      observer.observe(document, { childList: true, subtree: true })
+    })
   }
 }
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el) return;
+  if (!el) return
 
   let observer = new MutationObserver((mutations, observer) => {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbAdded(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbAdded(node, observer)
         }
       }
 
       if (typeof cbRemoved === 'function') {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
-          cbRemoved(node, observer);
+          if (!(node instanceof HTMLElement)) continue
+          cbRemoved(node, observer)
         }
       }
     }
-  });
+  })
 
-  observer.observe(el, { childList: true, subtree: true });
+  observer.observe(el, { childList: true, subtree: true })
 
-  return observer;
+  return observer
 }
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl;
+  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el || typeof cb !== 'function') return;
+  if (!el || typeof cb !== 'function') return
 
   const config = {
     root: null,
     threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig,
-  };
+    ...customConfig
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      cb(entry);
-    });
-  }, config);
+      cb(entry)
+    })
+  }, config)
 
-  observer.observe(el);
+  observer.observe(el)
 
-  return observer;
+  return observer
 }
 
 function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0;
+  let entryTime = 0
   initIntersection(
     el,
     ({ isIntersecting, time }) => {
       if (isIntersecting) {
-        entryTime = time;
+        entryTime = time
       } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1);
-        cb(diffTime + 's');
-        entryTime = 0;
+        const diffTime = +((time - entryTime) / 1000).toFixed(1)
+        cb(diffTime + 's')
+        entryTime = 0
       }
     },
     { threshold: viewElementProcent }
-  );
+  )
 }
 
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
-    ...customConfig,
-  };
+    ...customConfig
+  }
   initIntersection(
     el,
     ({ isIntersecting, target }) => {
@@ -1964,44 +1963,44 @@ function visibilityEvent(el, cb, customConfig = {}) {
       if (isIntersecting) {
         setTimeout(() => {
           if (isElementInViewport(target)) {
-            cb();
+            cb()
           }
-        }, 3000);
+        }, 3000)
       }
     },
     config
-  );
+  )
 }
 
 // Artificial delay
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector;
+  const el = typeof selector === 'string' ? $(selector) : selector
 
-  if (!el) return false;
+  if (!el) return false
 
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight;
+    window.innerHeight || document.documentElement.clientHeight
 
   return (
     rect.top + rect.height * 0.3 < windowHeight &&
     rect.bottom > rect.height * 0.3
-  );
+  )
 }
 
 // Shordcode for selectors
 function $(selector, context = document) {
-  return context.querySelector(selector);
+  return context.querySelector(selector)
 }
 function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector);
+  const arr = context.querySelectorAll(selector)
 
-  return toSimpleArray ? Array.from(arr) : arr;
+  return toSimpleArray ? Array.from(arr) : arr
 }
 
 // GA 4 events
@@ -2012,31 +2011,31 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
       event_name: name.trim(),
       event_desc: desc.trim(),
       event_type: type.trim(),
-      event_loc: loc.trim(),
-    };
+      event_loc: loc.trim()
+    }
 
-    console.debug('** GA4 Event **', event);
+    console.debug('** GA4 Event **', event)
 
     if (!config.debug) {
-      dataLayer.push(event);
+      dataLayer.push(event)
     }
   } catch (e) {
-    console.log('** GA4 Error **', e);
+    console.log('** GA4 Error **', e)
   }
 }
 
 // Slider
 function connectSplide() {
-  const sliderStyles = document.createElement('link');
-  sliderStyles.rel = 'stylesheet';
+  const sliderStyles = document.createElement('link')
+  sliderStyles.rel = 'stylesheet'
   sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css';
-  document.head.appendChild(sliderStyles);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+  document.head.appendChild(sliderStyles)
 
-  let sliderScript = document.createElement('script');
+  let sliderScript = document.createElement('script')
   sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js';
-  document.head.appendChild(sliderScript);
+    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+  document.head.appendChild(sliderScript)
 }
 
 // *** Exp BG process *** //
@@ -2050,9 +2049,9 @@ if (
   waitFor(
     () => typeof clarity == 'function',
     () => {
-      clarity(...config.clarity);
+      clarity(...config.clarity)
     }
-  );
+  )
 }
 
 // Svg objects
@@ -2084,8 +2083,8 @@ function getSvg(name) {
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M22.288 10.9665L20.588 8.96652C20.3726 8.71286 20.2421 8.39814 20.2146 8.06652C20.168 7.39985 20.068 6.33318 20.0013 5.45985C19.972 5.08125 19.8079 4.72573 19.5388 4.45783C19.2696 4.18993 18.9134 4.02744 18.5346 3.99985L15.928 3.78652C15.5964 3.7591 15.2816 3.62855 15.028 3.41318C14.548 2.99985 13.6947 2.28652 13.028 1.71318C12.7403 1.4663 12.3737 1.33057 11.9946 1.33057C11.6156 1.33057 11.249 1.4663 10.9613 1.71318L8.96132 3.41318C8.70766 3.62855 8.39294 3.7591 8.06132 3.78652L5.46798 3.99985C5.0882 4.02764 4.73108 4.19108 4.46181 4.46035C4.19255 4.72961 4.0291 5.08673 4.00132 5.46652C3.92798 6.34652 3.84132 7.46652 3.78798 8.07318C3.76057 8.40481 3.63002 8.71953 3.41465 8.97318C3.00798 9.45985 2.28798 10.3065 1.71465 10.9732C1.46776 11.2609 1.33203 11.6274 1.33203 12.0065C1.33203 12.3856 1.46776 12.7522 1.71465 13.0399L3.41465 15.0399C3.63002 15.2935 3.76057 15.6082 3.78798 15.9399C3.84132 16.6065 3.93465 17.6732 4.00132 18.5465C4.03215 18.9239 4.19693 19.2779 4.46591 19.5444C4.73488 19.8109 5.09031 19.9725 5.46798 19.9999L8.07465 20.2132C8.40627 20.2406 8.72099 20.3711 8.97465 20.5865L10.9746 22.2865C11.2623 22.5334 11.6289 22.6691 12.008 22.6691C12.3871 22.6691 12.7536 22.5334 13.0413 22.2865C13.708 21.7132 14.5546 20.9999 15.0413 20.5865C15.295 20.3711 15.6097 20.2406 15.9413 20.2132L18.5346 19.9999C18.9144 19.9721 19.2716 19.8086 19.5408 19.5394C19.8101 19.2701 19.9735 18.913 20.0013 18.5332C20.0746 17.6532 20.168 16.5332 20.2146 15.9265C20.2421 15.5949 20.3726 15.2802 20.588 15.0265C21.0013 14.5465 21.7147 13.6932 22.288 13.0265C22.5331 12.7393 22.6677 12.3741 22.6677 11.9965C22.6677 11.6189 22.5331 11.2537 22.288 10.9665ZM11.208 15.1199L8.24798 12.1599L9.37465 11.0332L11.208 12.8599L14.628 9.43985L15.7546 10.5665L11.208 15.1199Z" fill="#4F9E34"/>
       </svg>
-    `,
-  };
+    `
+  }
 
-  return svgObj[name];
+  return svgObj[name]
 }
