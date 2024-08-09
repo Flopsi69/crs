@@ -403,11 +403,14 @@ div.block.shipping .fieldset.rate .shipping-title {
   justify-content: center;
   align-items: center;
   margin-top: 0;
-  min-height: 44px;
+  min-height: 46px;
   padding: 2px;
 }
 #creditkey-modal-init img {
   height: 34px;
+}
+.cart-summary .qscustomcart:before {
+  display: none;
 }
 .totals-wrapper .checkout-methods-items .select-wrapper {
   opacity: 0.2;
@@ -654,7 +657,7 @@ function handlePayment() {
 
     console.log('fireee', $('#creditkey-modal-init'))
     $(
-      '#creditkey-modal-init span'
+      '#creditkey-modal-init'
     ).innerHTML = `Buy with <img src="${config.dir}/img/creditKey-white.png" alt="Credit Key">`
   })
 
