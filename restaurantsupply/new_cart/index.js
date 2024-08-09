@@ -409,6 +409,27 @@ div.block.shipping .fieldset.rate .shipping-title {
 #creditkey-modal-init img {
   height: 34px;
 }
+.totals-wrapper .checkout-methods-items ul[data-methods-list] .spark-checkout-button {
+  margin-top: 25px;
+}
+.totals-wrapper .checkout-methods-items ul[data-methods-list] .spark-checkout-button .qscustomcart {
+  padding-top: 25px;
+}
+.lav-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #536D80;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 0 10px;
+  background: #fff;
+  width: 36px;
+  top: -11px;
+}
 .cart-summary .qscustomcart:before {
   display: none;
 }
@@ -674,6 +695,13 @@ function handlePayment() {
       })
     }
   )
+
+  waitFor('.qscustomcart', () => {
+    $('.qscustomcart').insertAdjacentHTML(
+      'beforebegin',
+      /* html */ `<span class='lav-divider'>Or</span>`
+    )
+  })
 }
 
 function addEvents() {
