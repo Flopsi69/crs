@@ -341,9 +341,10 @@ div.block.shipping .fieldset.rate .shipping-title {
   background: #FFF;
   box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.08);
   transition: .3s;
-}
-.lav-sticky_hide {
   transform: translateY(100%);
+}
+.lav-sticky_showed .lav-sticky {
+  transform: translateY(0%);
 }
 .lav-sticky__button {
   border-radius: 4px;
@@ -532,6 +533,8 @@ div.block.shipping .fieldset.rate .shipping-title {
   }
   .lav-footer {
     padding: 22px 15px;
+  }
+  .lav-sticky_showed .lav-footer {
     margin-bottom: 80px;
   }
   .lav-footer__copy {
@@ -726,6 +729,9 @@ function handlePayment() {
       'Tab',
       'Price detail'
     )
+    if (!isElementInViewport('.totals-wrapper')) {
+      document.body.classList.add('lav-sticky_showed')
+    }
   })
 
   let isCreditImg = false
@@ -955,11 +961,15 @@ function addSticky() {
     $('.totals-wrapper').scrollIntoView({ behavior: 'smooth', block: 'center' })
   })
 
+  if (!isElementInViewport('.totals-wrapper')) {
+    document.body.classList.add('lav-sticky_showed')
+  }
+
   window.onscroll = function () {
     if (isElementInViewport('.totals-wrapper')) {
-      $('.lav-sticky').classList.add('lav-sticky_hide')
+      document.body.classList.remove('lav-sticky_showed')
     } else {
-      $('.lav-sticky').classList.remove('lav-sticky_hide')
+      document.body.classList.add('lav-sticky_showed')
     }
   }
 }
