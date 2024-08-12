@@ -731,6 +731,8 @@ function handlePayment() {
     )
     if (!isElementInViewport('.totals-wrapper')) {
       document.body.classList.add('lav-sticky_showed')
+    } else {
+      document.body.classList.remove('lav-sticky_showed')
     }
   })
 
