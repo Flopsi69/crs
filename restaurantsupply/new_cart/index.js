@@ -257,6 +257,13 @@ div.block.shipping #shipping-zip-form .field[name="shippingAddress.shipping_addr
   gap: 6px;
   align-items: center;
 }
+.lav-key_desk .lav-key__caption img {
+  cursor: pointer;
+  transition: .3s;
+}
+.lav-key_desk .lav-key__caption img:hover {
+  opacity: .7;
+}
 .lav-key__pay {
   white-space: nowrap;
 }
@@ -463,6 +470,9 @@ div.block.shipping .fieldset.rate .shipping-title {
     display: none;
   }
   .lav-collapse {
+    margin-bottom: 16px;
+  }
+  .lav-collapse__head {
     display: none;
   }
 }
@@ -696,6 +706,7 @@ function handlePayment() {
     'beforeend',
     $('[data-opt="creditkey.cart.form"]')
   )
+
   $('.lav-collapse__body').insertAdjacentElement(
     'beforeend',
     $('[data-opt="spark.checkout.button"]')
@@ -705,16 +716,29 @@ function handlePayment() {
     $('.lav-collapse').classList.toggle('lav-collapse__open')
   })
 
+  let isCreditImg = false
+
   $$('.lav-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       const value = tab.dataset.value
 
-      pushDataLayer(
-        'exp_checkout_cart_button_04',
-        tab.textContent.trim() || value,
-        'Tab',
-        'Price detail'
-      )
+      if (isCreditImg) {
+        pushDataLayer(
+          'exp_checkout_cart_text_image_05',
+          'CreditKey',
+          'Image',
+          'Price detail'
+        )
+      } else {
+        pushDataLayer(
+          'exp_checkout_cart_button_04',
+          tab.textContent.trim() || value,
+          'Tab',
+          'Price detail'
+        )
+      }
+
+      isCreditImg = false
 
       if (tab.classList.contains('active')) return
 
@@ -736,6 +760,11 @@ function handlePayment() {
         $('[data-opt="spark.checkout.button"]')?.classList.add('active')
       }
     })
+  })
+
+  $('.lav-key_desk .lav-key__caption img').addEventListener('click', () => {
+    isCreditImg = true
+    $('[data-value="other"]').click()
   })
 
   waitFor(
