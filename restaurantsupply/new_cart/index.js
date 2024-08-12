@@ -549,9 +549,12 @@ div.block.shipping .fieldset.rate .shipping-title {
     margin-top: 24px;
   }
   .lav-footer img {
-    top: 24px;
-    right: 15px;
+    // top: 24px;
+    // right: 15px;
     transform: none;
+    position: static;
+    margin-top: 7px;
+    margin-bottom: -4px;
   }
   .shipping-wrapper {
     padding: 16px;
