@@ -1558,8 +1558,8 @@ function isElementInViewport(selector) {
     window.innerHeight || document.documentElement.clientHeight
 
   return (
-    rect.top + rect.height * 0.1 < windowHeight &&
-    rect.bottom > rect.height * 0.1
+    rect.top + rect.height * 0.3 < windowHeight &&
+    rect.bottom > rect.height * 0.3
   )
   // return (
   //   rect.top >= 0 &&
