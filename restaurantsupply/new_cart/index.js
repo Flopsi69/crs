@@ -867,22 +867,26 @@ function addEvents() {
     })
   })
 
-  visibilityEvent('.street-wrapper', () => {
-    pushDataLayer(
-      'exp_checkout_cart_section_01',
-      'Step 1',
-      'Visibility',
-      'Estimate Shipping and Tax'
-    )
+  waitFor('.street-wrapper', () => {
+    visibilityEvent('.street-wrapper', () => {
+      pushDataLayer(
+        'exp_checkout_cart_section_01',
+        'Step 1',
+        'Visibility',
+        'Estimate Shipping and Tax'
+      )
+    })
   })
 
-  visibilityEvent('#co-shipping-method-form .fieldset', () => {
-    pushDataLayer(
-      'exp_checkout_cart_section_02',
-      'Step 2',
-      'Visibility',
-      'Estimate Shipping and Tax'
-    )
+  waitFor('#co-shipping-method-form .fieldset', () => {
+    visibilityEvent('#co-shipping-method-form .fieldset', () => {
+      pushDataLayer(
+        'exp_checkout_cart_section_02',
+        'Step 2',
+        'Visibility',
+        'Estimate Shipping and Tax'
+      )
+    })
   })
 
   document.addEventListener('click', (e) => {
