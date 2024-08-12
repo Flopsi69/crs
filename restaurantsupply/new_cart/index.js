@@ -841,24 +841,24 @@ function addEvents() {
         )
       } else if (tip.dataset.id === 'tip3') {
         pushDataLayer(
-          'exp_checkout_cart_tooltip_2',
+          'exp_checkout_cart_tooltip_1',
           'Found a lower price? We’ll refund the difference',
           'Visibility',
-          'Price detail'
+          'Top banner'
         )
       } else if (tip.dataset.id === 'tip4') {
         pushDataLayer(
-          'exp_checkout_cart_tooltip_2',
+          'exp_checkout_cart_tooltip_1',
           'Pay Zero Interest for the First 90 Days',
           'Visibility',
-          'Price detail'
+          'Top banner'
         )
       } else if (tip.dataset.id === 'tip5') {
         pushDataLayer(
-          'exp_checkout_cart_tooltip_2',
+          'exp_checkout_cart_tooltip_1',
           'Full Refund for Unopened and Undamaged Items',
           'Visibility',
-          'Price detail'
+          'Top banner'
         )
       }
     })
