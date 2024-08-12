@@ -459,6 +459,12 @@ div.block.shipping .fieldset.rate .shipping-title {
   .lav-sticky {
     display: none;
   }
+  .lav-key_mob {
+    display: none;
+  }
+  .lav-collapse {
+    display: none;
+  }
 }
 @media(max-width: 1023px) {
   .page-header .nav-toggle {
@@ -545,6 +551,50 @@ div.block.shipping .fieldset.rate .shipping-title {
     max-width: 100%!important;
     gap: 8px;
   }
+  .lav-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+  [data-value="other"] {
+    display: none;
+  }
+  [data-opt="creditkey.cart.form"], [data-opt="spark.checkout.button"] {
+    display: block!important;
+  }
+  .lav-key_desk {
+    display: none;
+  }
+  .lav-collapse {
+    border-radius: 4px;
+    border: 1px solid #EBECED;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  .lav-collapse__head {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 13px;
+    color: #536D80;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .lav-collapse__head svg {
+    transition: .3s;
+  }
+  .lav-collapse__open .lav-collapse__head svg {
+    transform: rotate(180deg);
+  }
+  .lav-collapse__open .lav-collapse__body {
+    display: block;
+  }
+  .lav-collapse__body {
+    display: none;
+    padding: 13px;
+  }
+  .lav-arrow-collapse {
+    margin-left: auto;
+  }
 }
 `
 
@@ -589,23 +639,23 @@ function handlePayment() {
   ).insertAdjacentHTML(
     'afterend',
     /* html */ `
-    <div class='lav-key'>
-      <span class='lav-key__caption'>
-        Buy in instalments with
-        <img src='${config.dir}/img/creditKey.png'>
-      </span>
-      <span class='lav-key__pay'>Pay 8% now and the rest later</span>
-    </div>
-    <div class='lav-tabs'>
-      <div class='lav-tab active' data-value='credit'>${getSvg(
-        'cards'
-      )} Credit Card</div>
-      <div class='lav-tab' data-value='paypal'>${getSvg('paypal')}</div>
-      <div class='lav-tab' data-value='other'>${getSvg(
-        'installments'
-      )} Buy in instalments </div>
-    </div>
-  `
+      <div class='lav-key lav-key_desk'>
+        <span class='lav-key__caption'>
+          Buy in instalments with
+          <img src='${config.dir}/img/creditKey.png'>
+        </span>
+        <span class='lav-key__pay'>Pay 8% now and the rest later</span>
+      </div>
+      <div class='lav-tabs'>
+        <div class='lav-tab active' data-value='credit'>${getSvg(
+          'cards'
+        )} Credit Card</div>
+        <div class='lav-tab' data-value='paypal'>${getSvg('paypal')}</div>
+        <div class='lav-tab' data-value='other'>${getSvg(
+          'installments'
+        )} Buy in instalments </div>
+      </div>
+    `
   )
 
   $('[data-opt="bolt.checkout.button"]')?.insertAdjacentHTML(
@@ -619,6 +669,41 @@ function handlePayment() {
     </div>
   `
   )
+
+  $('[data-opt="creditkey.cart.form"]').insertAdjacentHTML(
+    'beforebegin',
+    /* html */ `
+    <div class='lav-key lav-key_mob'>
+      <span class='lav-key__caption'>
+        Buy in instalments with
+        <img src='${config.dir}/img/creditKey.png'>
+      </span>
+      <span class='lav-key__pay'>Pay 8% now and the rest later</span>
+    </div>
+
+    <div class='lav-collapse'>
+      <div class='lav-collapse__head'>
+        <img src='${config.dir}/img/installments.svg'>
+        Buy in instalments 
+        ${getSvg('arrowCollapse')}
+      </div>
+      <div class='lav-collapse__body'></div>
+    </div>
+  `
+  )
+
+  $('.lav-collapse__body').insertAdjacentElement(
+    'beforeend',
+    $('[data-opt="creditkey.cart.form"]')
+  )
+  $('.lav-collapse__body').insertAdjacentElement(
+    'beforeend',
+    $('[data-opt="spark.checkout.button"]')
+  )
+
+  $('.lav-collapse__head').addEventListener('click', () => {
+    $('.lav-collapse').classList.toggle('lav-collapse__open')
+  })
 
   $$('.lav-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -1507,6 +1592,14 @@ if (
 // Svg objects
 function getSvg(name) {
   const svgObj = {
+    arrowCollapse: `
+    <svg class='lav-arrow-collapse' xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
+      <mask id="path-1-inside-1_4305_791" fill="white">
+        <path d="M0 0.144043H8L4 5.85404L0 0.144043Z"/>
+      </mask>
+      <path d="M0 0.144043V-4.85596H-9.60741L-4.09515 3.0128L0 0.144043ZM8 0.144043L12.0951 3.0128L17.6074 -4.85596H8V0.144043ZM4 5.85404L-0.0951486 8.7228L4 14.5686L8.09515 8.7228L4 5.85404ZM0 5.14404H8V-4.85596H0V5.14404ZM3.90485 -2.72471L-0.0951486 2.98529L8.09515 8.7228L12.0951 3.0128L3.90485 -2.72471ZM8.09515 2.98529L4.09515 -2.72471L-4.09515 3.0128L-0.0951486 8.7228L8.09515 2.98529Z" fill="#536D80" mask="url(#path-1-inside-1_4305_791)"/>
+    </svg>
+    `,
     paypal: `<svg xmlns="http://www.w3.org/2000/svg" width="54" height="16" viewBox="0 0 54 16" fill="none">
   <g clip-path="url(#clip0_4295_474)">
     <path d="M41.7421 4.62311H38.8278C38.6564 4.62311 38.4849 4.79853 38.3992 4.97395L37.1992 12.6925C37.1992 12.8679 37.2849 12.9557 37.4564 12.9557H38.9992C39.1706 12.9557 39.2564 12.8679 39.2564 12.6925L39.5992 10.4998C39.5992 10.3243 39.7706 10.1489 40.0278 10.1489H40.9706C42.9421 10.1489 44.0564 9.18408 44.3135 7.25444C44.4849 6.46504 44.3135 5.76335 43.9706 5.3248C43.4564 4.88624 42.6849 4.62311 41.7421 4.62311ZM42.0849 7.51758C41.9135 8.57011 41.1421 8.57011 40.3706 8.57011H39.8564L40.1992 6.55275C40.1992 6.46504 40.2849 6.37733 40.4564 6.37733H40.6278C41.1421 6.37733 41.6564 6.37733 41.9135 6.72817C42.0849 6.81589 42.0849 7.07902 42.0849 7.51758Z" fill="#139AD6"/>
