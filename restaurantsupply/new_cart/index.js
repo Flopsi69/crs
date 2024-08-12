@@ -590,7 +590,7 @@ div.block.shipping .fieldset.rate .shipping-title {
   }
   .lav-collapse__body {
     display: none;
-    padding: 13px;
+    padding: 0 13px 13px;
   }
   .lav-arrow-collapse {
     margin-left: auto;
