@@ -457,6 +457,9 @@ div.block.shipping .fieldset.rate .shipping-title {
   margin-top: 16px;
   margin-bottom: 16px;
 }
+.rp-micro-app-dummy-icon-container, [style='border: none; position: fixed; bottom: 0px; right: 0px; width: 120px; height: 120px; max-width: 450px; max-height: 1080px; z-index: 2147483647; user-select: none; opacity: 1; visibility: visible;'] {
+  bottom: 55px !important;
+}
 @media(max-width: 1023px) {
   .rp-micro-app-dummy-icon-container, [style='border: none; position: fixed; bottom: 0px; right: 0px; width: 120px; height: 120px; max-width: 450px; max-height: 1080px; z-index: 2147483647; user-select: none; opacity: 1; visibility: visible;'] {
     bottom: 70px !important;
@@ -1126,7 +1129,7 @@ function handleShipping() {
         'beforebegin',
         /*html*/ `
         <tr class="lav-free-ship">
-          <th>${getSvg('truck')} Shipping(FREE Common Carrier)</th>
+          <th>${getSvg('truck')} Shipping (FREE Common Carrier)</th>
           <td>$0.00</td>
         </tr>
       `
