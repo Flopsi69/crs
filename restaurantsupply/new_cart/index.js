@@ -729,6 +729,7 @@ function handlePayment() {
       'Tab',
       'Price detail'
     )
+
     if (!isElementInViewport('.totals-wrapper')) {
       document.body.classList.add('lav-sticky_showed')
     } else {
