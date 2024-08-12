@@ -1607,16 +1607,12 @@ function connectSplide() {
 
 // *** Exp BG process *** //
 
-//Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
+//Hotjar
+if (!config.debug) {
   waitFor(
-    () => typeof clarity == 'function',
+    () => typeof hj == 'function',
     () => {
-      clarity(...config.clarity)
+      hj('event', 'exp_checkout_cart')
     }
   )
 }
