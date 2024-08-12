@@ -347,8 +347,8 @@ div.block.shipping .fieldset.rate .shipping-title {
 }
 .lav-sticky__button {
   border-radius: 4px;
-  background: linear-gradient(180deg, #189CC5 0%, #0C6595 100%);
-  color: #FFF;
+  border: 1px solid #117BA8;
+  color: #117BA8;
   font-size: 14px;
   font-weight: 700;
   line-height: 14px;
@@ -720,6 +720,12 @@ function handlePayment() {
 
   $('.lav-collapse__head').addEventListener('click', () => {
     $('.lav-collapse').classList.toggle('lav-collapse__open')
+    pushDataLayer(
+      'exp_checkout_cart_button_04',
+      'Buy in instalments',
+      'Tab',
+      'Price detail'
+    )
   })
 
   let isCreditImg = false
@@ -940,7 +946,6 @@ function addEvents() {
 function addSticky() {
   const markup = /* html */ `
     <div class='lav-sticky'>
-      <div class='lav-sticky__price'></div>
       <div class='lav-sticky__button'>proceed to checkout</div>
     </div>
   `
