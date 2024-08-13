@@ -1270,7 +1270,8 @@ function handleHeaderAndFooter() {
   const newFooter = /* html */ `
     <footer class="lav-footer">
       <div class='lav-footer__copy'>&copy; 2006 - 2024 RestaurantSupply All&nbsp;Rights&nbsp;Reserved.</div>
-      ${footerFlag}
+
+      <img src='${config.dir}/img/flag.svg' />
     </footer>
   `
 
