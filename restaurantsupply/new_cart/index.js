@@ -1080,15 +1080,15 @@ function handleShipping() {
 
   $('.cart-right-col').insertAdjacentElement('beforeend', shippingEl)
 
-  shippingEl.insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
-    <div class='lav-truck'>
-      ${getSvg('truck')}
-      Typically shipped within 2-3 business days
-    </div>
-  `
-  )
+  // shippingEl.insertAdjacentHTML(
+  //   'beforeend',
+  //   /* html */ `
+  //   <div class='lav-truck'>
+  //     ${getSvg('truck')}
+  //     Typically shipped within 2-3 business days
+  //   </div>
+  // `
+  // )
 
   waitFor('.grand.totals', getShippingCaption)
 
