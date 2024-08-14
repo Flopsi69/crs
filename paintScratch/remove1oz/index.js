@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/paintScratch/remove1oz',
     dir: 'https://flopsi69.github.io/crs/paintScratch/remove1oz',
-    clarity: ['set', 'variant_1'],
+    clarity: ['set', 'exp_remove_prod', 'variant_1'],
     debug: false
   }
 
