@@ -582,12 +582,14 @@
 
     console.debug('** InitExp **')
 
-    addSticky()
-    setOptions()
-    handleProgress()
-    handleFinishStep()
-    handlePopup()
-    addEvents()
+    waitFor('.transcription-section', () => {
+      addSticky()
+      setOptions()
+      handleProgress()
+      handleFinishStep()
+      handlePopup()
+      addEvents()
+    })
   }
 
   function addEvents() {
