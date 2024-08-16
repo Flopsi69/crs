@@ -50,6 +50,8 @@
         gap: 20px;
         transition: .5s;
         padding: 30px 40px;
+        cursor: pointer;
+        transition: .3s;
       }
       .active .lav-collapse {
         transform: scale(0);
@@ -238,6 +240,21 @@
         width: 725px;
         grid-row-gap: 24px;
         grid-column-gap: 13px;
+        margin-top: 28px;
+      }
+      .step2-active:not(.step3-active) .basic-input-wrapper.file-progress {
+        padding-top: 11px;
+        border-radius: 4px;
+        background: #282828;
+      }
+      .step2-active:not(.step3-active) .basic-input-wrapper.basic-input-wrapper.search-lang {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        border-radius: 4px;
+        background: #282828;
+      }
+      .step2-active:not(.step3-active) .file-progress-inner {
+        padding-bottom: 11px;
       }
       .ts-form>div:not([class]) {
         display: none;
@@ -247,6 +264,14 @@
       }
       #start-transcribing {
         grid-column: span 2;
+        padding: 11px 24px;
+        border-radius: 4px;
+        transition: .3s;
+      }
+      #start-transcribing:disabled { 
+        background: #9671FF;
+        color: #fff;
+        opacity: .3;
       }
       .lav-options {
         grid-column: span 2;
@@ -297,9 +322,12 @@
         transition: border .3s;
       }
       .lav-option.active:before {
-        background: #9671FF url('${config.dir}/img/check.svg') no-repeat center;
+        background: #9671FF;
         background-size: 10px;
         border-color: #9671FF;
+      }
+      .custom-checkbox-label .checkmark:after {
+        background: url('${config.dir}/img/check.svg') no-repeat center;
       }
       .verification-content .basic-input-wrapper {
         background: none;
@@ -334,9 +362,6 @@
       .custom-checkbox-label .checkmark:after {
         left: 1px;
         top: 1px;
-      }
-      #start-transcribing {
-        padding: 11px 24px;
       }
       .verification-content .spinner-wrapper:after {
         width: 24px;
@@ -563,6 +588,32 @@
       .transcribed-content-wrapper {
         height: 75vh !important;
         margin-top: 40px;
+      }
+      .transcription-heading-link {
+        font-size: 14px;
+      }
+      .transcription-heading-link .t-heading-small {
+        font-size: 12px;
+      }
+      .custom-file-upload-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+      }
+      .custom-file-upload {
+        font-size: 16px;
+      }
+      .upload-main-wrapper {
+        margin-top: 5px;
+      }
+      @media (max-height: 590px) {
+        .upload-main-wrapper {
+          width: auto;
+          height: auto;
+        }
+      }
+      .transcription-h3.step2-title {
+        font-size: 86px;
       }
     }
   `
@@ -846,7 +897,7 @@
               <div class='lav-expand__audio'>
                 <img src='${
                   config.dir
-                }/img/banner.png' alt='Riverside banner' />
+                }/img/audio-placeholder.png' alt='Riverside placeholder audio' />
               </div>
             </div>
 
@@ -873,8 +924,24 @@
 
     $('.transcription-bottom-badge').insertAdjacentHTML('afterend', markup)
 
+    $('.lav-collapse').addEventListener('click', function (e) {
+      $('.lav-sticky').classList.add('active')
+      pushDataLayer(
+        'exp_blogcontentsctas_button_01',
+        'Explore more features Open',
+        'Button',
+        'Sticky block'
+      )
+      pushDataLayer(
+        'exp_blogcontentsctas_visibility_01',
+        'Explore more features',
+        'Visibility',
+        'Sticky block'
+      )
+    })
+
     $('.lav-sticky__toggler').addEventListener('click', () => {
-      const expandHeight = $('.lav-expand').scrollHeight
+      // const expandHeight = $('.lav-expand').scrollHeight
       if ($('.lav-sticky').classList.contains('active')) {
         pushDataLayer(
           'exp_blogcontentsctas_button_02',
