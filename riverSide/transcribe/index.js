@@ -811,7 +811,7 @@
     }
 
     const configText = {
-      podcasts: {
+      podcast: {
         title:
           'Transcribe, record, edit your Podcast seamlessly with Riverside',
         list: [
@@ -909,6 +909,8 @@
 
     $('.tr-button-wrapper a').textContent = 'Try Riverside for Free'
 
+    $('.tr-button-wrapper a').href = 'https://riverside.fm/register'
+
     $('.tr-button-wrapper').insertAdjacentHTML(
       'afterend',
       '<div class="lav-popup-caption">*No credit card required</div>'
@@ -920,7 +922,7 @@
       <div class='lav-options'>
         <div class='lav-options__caption'>What would you like to transcribe:</div>
         <div class='lav-options__list'>
-          <div class='lav-option'>Podcasts</div>
+          <div class='lav-option'>Podcast</div>
           <div class='lav-option'>Interview</div>
           <div class='lav-option'>Webinar</div>
           <div class='lav-option'>Keynote</div>
