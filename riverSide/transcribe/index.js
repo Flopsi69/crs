@@ -678,6 +678,9 @@
         .transcription-content.step3-content, .step5-active .transcription-content.step4-content, .ts-form {
           width: 650px;
         }
+        .transcription-content.step4-content, .transcribed-content-wrapper {
+          max-width: 650px;
+        }
         #u-file-name {
           white-space: nowrap;
         }
