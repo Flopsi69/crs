@@ -701,14 +701,14 @@
     })
     document.addEventListener('click', (e) => {
       // console.log('click', e.target)
-      if (e.target.id === 'w-dropdown-toggle-3') {
-        pushDataLayer(
-          'exp_blogcontentsctas_button_03',
-          'Try Riverside for Free',
-          'Button',
-          'Sticky block'
-        )
-      }
+      // if (e.target.id === 'w-dropdown-toggle-3') {
+      //   pushDataLayer(
+      //     'exp_blogcontentsctas_button_03',
+      //     'Try Riverside for Free',
+      //     'Button',
+      //     'Sticky block'
+      //   )
+      // }
 
       if (e.target.closest('.tr-popup-close')) {
         pushDataLayer(
@@ -760,7 +760,7 @@
     $('#start-transcribing').addEventListener('click', () => {
       pushDataLayer(
         'exp_blogcontentsctas_button_04',
-        $('.lav-option')?.textContent.trim() || 'Empty',
+        $('.lav-option.active')?.textContent.trim() || 'Empty',
         'Button',
         'CTA start transcribing'
       )
@@ -1015,6 +1015,12 @@
     // TODO: ask
     $('.lav-expand__button').addEventListener('click', (e) => {
       e.preventDefault()
+      pushDataLayer(
+        'exp_blogcontentsctas_button_03',
+        'Try Riverside for Free',
+        'Button',
+        'Sticky block'
+      )
       window.open('https://riverside.fm/register', '_blank')
     })
   }
