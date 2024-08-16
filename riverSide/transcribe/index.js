@@ -642,6 +642,20 @@
         .lav-expand__audio img {
           margin-bottom: -20px;
         }
+        .tr-popup-image-wrapper{
+          height: 280px;
+        }
+        .tr-popup-image-wrapper img {
+          margin-top: -20px;
+        }
+        .tr-popup-content {
+          padding-top: 25px;
+          padding-bottom: 25px;
+        }
+        .tr-popup-features {
+          margin-top: 25px;
+          margin-bottom: 25px;
+        }
       }
       @media(max-height: 660px) {
         .lav-expand__audio img {
@@ -658,6 +672,20 @@
       @media(max-height: 610px) {
         .lav-expand__audio {
           display: none;
+        }
+      }
+      @media(max-width: 1340px) {
+        .transcription-content.step3-content, .step5-active .transcription-content.step4-content, .ts-form {
+          width: 650px;
+        }
+        #u-file-name {
+          white-space: nowrap;
+        }
+        .transcription-h3.step2-title {
+          font-size: 77px;
+        }
+        .lav-sticky {
+          right: 20px;
         }
       }
     }
