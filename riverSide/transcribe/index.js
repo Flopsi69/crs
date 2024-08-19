@@ -679,6 +679,12 @@
         .transcription-content.step3-content, .step5-active .transcription-content.step4-content, .ts-form {
           width: 650px;
         }
+        .ts-form .file-name {
+          display: none;
+        }
+        .ts-form .file-name.mobile-file-name {
+          display: block;
+        }
         .lav-option {
           padding-right: 10px;
           padding-left: 38px;
