@@ -295,6 +295,7 @@
         position: relative;
         color: #8E9095;
         font-size: 14px;
+        white-space: nowrap;
         font-weight: 300;
         line-height: 22px;
         padding: 14px 22px 14px 42px;
@@ -678,6 +679,10 @@
         .transcription-content.step3-content, .step5-active .transcription-content.step4-content, .ts-form {
           width: 650px;
         }
+        .lav-option {
+          padding-right: 10px;
+          padding-left: 38px;
+        }
         .transcription-content.step4-content, .transcribed-content-wrapper {
           max-width: 650px;
         }
@@ -841,14 +846,14 @@
           'Transcribe, clip, and edit your Webinar in seconds'
         ]
       },
-      keynote: {
+      videocontent: {
         title:
-          'Transcribe, record, edit your Keynote seamlessly with Riverside',
+          'Transcribe, record, edit your Video content seamlessly with Riverside',
         list: [
           'Starts transcribing as soon as you’re done recording or uploading, so no need to wait long',
           'Record in up to 4K video and 48kHz audio',
           'Add speaker labels in seconds with our AI-powered Speaker Detective.',
-          'Transcribe, clip, and edit your Keynote in seconds'
+          'Transcribe, clip, and edit your Video content in seconds'
         ]
       },
       other: {
@@ -863,8 +868,13 @@
       }
     }
 
-    const optionValue =
+    let optionValue =
       $('.lav-option.active')?.textContent.trim().toLowerCase() || 'other'
+
+    console.log('option', optionValue)
+    if (optionValue === 'video content') {
+      optionValue = 'videocontent'
+    }
 
     console.log('option', optionValue)
 
@@ -925,7 +935,7 @@
           <div class='lav-option'>Podcast</div>
           <div class='lav-option'>Interview</div>
           <div class='lav-option'>Webinar</div>
-          <div class='lav-option'>Keynote</div>
+          <div class='lav-option'>Video content</div>
           <div class='lav-option'>Other</div>
         </div>
       </div>
