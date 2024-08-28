@@ -1,91 +1,92 @@
-console.debug('*** Experiment started ***')
+;(function () {
+  console.debug('*** Experiment started ***')
 
-// Config for Experiment
-const config = {
-  // dir: 'http://127.0.0.1:5500/cleanMyMac/new_homepage',
-  dir: 'https://flopsi69.github.io/crs/cleanMyMac/new_homepage',
-  debug: true
-}
-
-class Modal {
-  static list = []
-  constructor(name, html) {
-    if (!$('.lav-modal')) {
-      this.constructor.init()
-    }
-
-    if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists')
-      return
-    }
-
-    this.el = document.createElement('div')
-    this.el.classList.add('lav-modal__inner', name)
-    this.name = name
-    this.el.innerHTML = html
-
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el)
-
-    this.constructor.list.push(this)
+  // Config for Experiment
+  const config = {
+    // dir: 'http://127.0.0.1:5500/cleanMyMac/new_homepage',
+    dir: 'https://flopsi69.github.io/crs/cleanMyMac/new_homepage',
+    debug: true
   }
 
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      "<div class='lav-modal'></div>"
-    )
-
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close()
-
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal)
-      } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal)
+  class Modal {
+    static list = []
+    constructor(name, html) {
+      if (!$('.lav-modal')) {
+        this.constructor.init()
       }
-    })
 
-    this.addStyles()
-  }
+      if (this.constructor.list.find((item) => item.name === name)) {
+        console.warn('Modal with this name already exists')
+        return
+      }
 
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open')
+      this.el = document.createElement('div')
+      this.el.classList.add('lav-modal__inner', name)
+      this.name = name
+      this.el.innerHTML = html
 
-    if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active')
+      $('.lav-modal').insertAdjacentElement('beforeend', this.el)
+
+      this.constructor.list.push(this)
     }
 
-    $(modalName).classList.add('active')
+    static init() {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        "<div class='lav-modal'></div>"
+      )
 
-    if (typeof cb === 'function') cb()
+      document.addEventListener('click', (e) => {
+        if (
+          e.target.classList.contains('lav-modal') ||
+          e.target.closest('.lav-modal__close')
+        )
+          this.close()
 
-    setTimeout(() => {
-      $('.lav-modal').classList.add('active')
-    }, 100)
-  }
+        if (e.target.dataset.modal) {
+          this.open(e.target.dataset.modal)
+        } else if (e.target.closest('[data-modal]')) {
+          this.open(e.target.closest('[data-modal]').dataset.modal)
+        }
+      })
 
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open')
-
-    if (!$('.lav-video__inner video').paused) {
-      $('.lav-video__inner video').pause()
+      this.addStyles()
     }
 
-    $('.lav-modal')?.classList.remove('active')
+    static open(modalName, cb) {
+      document.body.classList.add('lav-modal-open')
 
-    if (typeof cb === 'function') cb()
+      if ($('.lav-modal__inner.active')) {
+        $('.lav-modal__inner.active').classList.remove('active')
+      }
 
-    setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active')
-    }, 400)
-  }
+      $(modalName).classList.add('active')
 
-  static addStyles() {
-    const styles = /*css */ `
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        $('.lav-modal').classList.add('active')
+      }, 100)
+    }
+
+    static close(cb) {
+      document.body.classList.remove('lav-modal-open')
+
+      if (!$('.lav-video__inner video').paused) {
+        $('.lav-video__inner video').pause()
+      }
+
+      $('.lav-modal')?.classList.remove('active')
+
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        $('.lav-modal__inner.active')?.classList.remove('active')
+      }, 400)
+    }
+
+    static addStyles() {
+      const styles = /*css */ `
       .lav-modal {
         position: fixed;
         z-index: 999;
@@ -342,15 +343,15 @@ class Modal {
       .lav-benefit {}
     `
 
-    const stylesEl = document.createElement('style')
-    stylesEl.classList.add('exp-modal')
-    stylesEl.innerHTML = styles
-    document.head.appendChild(stylesEl)
+      const stylesEl = document.createElement('style')
+      stylesEl.classList.add('exp-modal')
+      stylesEl.innerHTML = styles
+      document.head.appendChild(stylesEl)
+    }
   }
-}
 
-// Styles for Experiment
-const styles = /*css*/ `
+  // Styles for Experiment
+  const styles = /*css*/ `
   .topper p {
     font-size: 22px;
     line-height: 34px;
@@ -736,162 +737,162 @@ const styles = /*css*/ `
   }
 `
 
-const stylesEl = document.createElement('style')
-stylesEl.classList.add('exp-styles')
-stylesEl.innerHTML = styles
+  const stylesEl = document.createElement('style')
+  stylesEl.classList.add('exp-styles')
+  stylesEl.innerHTML = styles
 
-// *** Logic *** //
-initExp()
+  // *** Logic *** //
+  initExp()
 
-async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 25 })
+  async function initExp() {
+    await waitFor(() => document.head && document.body, false, { ms: 25 })
 
-  if (location.href !== 'https://cleanmymac.com/') return
+    if (location.pathname !== '/') return
 
-  pushDataLayer('exp_homepage_loaded')
+    pushDataLayer('exp_homepage_loaded')
 
-  console.debug('** InitExp **')
+    console.debug('** InitExp **')
 
-  document.head.appendChild(stylesEl)
+    document.head.appendChild(stylesEl)
 
-  connectSplide()
-  addGuaranteeCaption()
-  addAwards()
-  addGenius()
-  addNewSections()
-  initVideoModal()
-  initModalBenefit()
-  addEvents()
-}
+    connectSplide()
+    addGuaranteeCaption()
+    addAwards()
+    addGenius()
+    addNewSections()
+    initVideoModal()
+    initModalBenefit()
+    addEvents()
+  }
 
-function addEvents() {
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.lav-btn__green')) {
-      window.open($('.cta-wrapper .buy_now').href, '_blank')
+  function addEvents() {
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.lav-btn__green')) {
+        window.open($('.cta-wrapper .buy_now').href, '_blank')
 
-      if (e.target.closest('.lav-benefit')) {
-        const title = $(
-          '.lav-benefit.active .lav-benefit__title'
-        )?.textContent.trim()
-        pushDataLayer(
-          'exp_homepage_popup_card_buy',
-          'Buy Now',
-          'Button',
-          'Popup with additional info after card: ' + title
-        )
+        if (e.target.closest('.lav-benefit')) {
+          const title = $(
+            '.lav-benefit.active .lav-benefit__title'
+          )?.textContent.trim()
+          pushDataLayer(
+            'exp_homepage_popup_card_buy',
+            'Buy Now',
+            'Button',
+            'Popup with additional info after card: ' + title
+          )
+        }
+
+        if (e.target.closest('.lav-video')) {
+          pushDataLayer(
+            'exp_homepage_popup_hiw_buy',
+            'Buy Now',
+            'Button',
+            'Popup How it works'
+          )
+        }
       }
 
-      if (e.target.closest('.lav-video')) {
+      if (e.target.closest('.lav-btn__trans')) {
+        window.open($('.cta-wrapper .download').href, '_blank')
+
+        if (e.target.closest('.lav-benefit')) {
+          const title = $(
+            '.lav-benefit.active .lav-benefit__title'
+          )?.textContent.trim()
+          pushDataLayer(
+            'exp_homepage_popup_card_try',
+            'Try 7 Days Free',
+            'Button',
+            'Popup with additional info after card: ' + title
+          )
+        }
+
+        if (e.target.closest('.lav-video')) {
+          pushDataLayer(
+            'exp_homepage_popup_hiw_try',
+            'Try 7 Days Free',
+            'Button',
+            'Popup How it works'
+          )
+        }
+      }
+
+      if (e.target.closest('.lav-video') && e.target.closest('video')) {
         pushDataLayer(
-          'exp_homepage_popup_hiw_buy',
-          'Buy Now',
-          'Button',
+          'exp_homepage_popup_hiw_play',
+          'Play',
+          'Video',
           'Popup How it works'
         )
       }
-    }
+    })
 
-    if (e.target.closest('.lav-btn__trans')) {
-      window.open($('.cta-wrapper .download').href, '_blank')
-
-      if (e.target.closest('.lav-benefit')) {
-        const title = $(
-          '.lav-benefit.active .lav-benefit__title'
-        )?.textContent.trim()
-        pushDataLayer(
-          'exp_homepage_popup_card_try',
-          'Try 7 Days Free',
-          'Button',
-          'Popup with additional info after card: ' + title
-        )
-      }
-
-      if (e.target.closest('.lav-video')) {
-        pushDataLayer(
-          'exp_homepage_popup_hiw_try',
-          'Try 7 Days Free',
-          'Button',
-          'Popup How it works'
-        )
-      }
-    }
-
-    if (e.target.closest('.lav-video') && e.target.closest('video')) {
+    visibilityEvent('.lav-awards__list', () => {
       pushDataLayer(
-        'exp_homepage_popup_hiw_play',
-        'Play',
-        'Video',
-        'Popup How it works'
+        'exp_homepage_trust_view',
+        'View on screen',
+        'Element',
+        'Enhanced trust'
       )
-    }
-  })
+    })
 
-  visibilityEvent('.lav-awards__list', () => {
-    pushDataLayer(
-      'exp_homepage_trust_view',
-      'View on screen',
-      'Element',
-      'Enhanced trust'
-    )
-  })
+    visibilityEvent('.lav-genius', () => {
+      pushDataLayer(
+        'exp_homepage_meet_view',
+        'View on screen',
+        'Element',
+        'Meet your personal Mac genius'
+      )
+    })
 
-  visibilityEvent('.lav-genius', () => {
-    pushDataLayer(
-      'exp_homepage_meet_view',
-      'View on screen',
-      'Element',
-      'Meet your personal Mac genius'
-    )
-  })
+    visibilityEvent('.lav-speed .lav-section__info', () => {
+      pushDataLayer(
+        'exp_homepage_get_more_view',
+        'View on screen',
+        'Element',
+        'Get more done on a faster Mac'
+      )
+    })
 
-  visibilityEvent('.lav-speed .lav-section__info', () => {
-    pushDataLayer(
-      'exp_homepage_get_more_view',
-      'View on screen',
-      'Element',
-      'Get more done on a faster Mac'
-    )
-  })
+    visibilityEvent('.lav-speed .lav-splide', () => {
+      pushDataLayer(
+        'exp_homepage_get_car_view',
+        'View on screen',
+        'Element',
+        'Get more done on a faster Mac. Carousel'
+      )
+    })
 
-  visibilityEvent('.lav-speed .lav-splide', () => {
-    pushDataLayer(
-      'exp_homepage_get_car_view',
-      'View on screen',
-      'Element',
-      'Get more done on a faster Mac. Carousel'
-    )
-  })
+    visibilityEvent('.lav-clean .lav-section__info', () => {
+      pushDataLayer(
+        'exp_homepage_clean_view',
+        'View on screen',
+        'Element',
+        'Clean up your Mac with one click'
+      )
+    })
 
-  visibilityEvent('.lav-clean .lav-section__info', () => {
-    pushDataLayer(
-      'exp_homepage_clean_view',
-      'View on screen',
-      'Element',
-      'Clean up your Mac with one click'
-    )
-  })
+    visibilityEvent('.lav-clean .lav-splide', () => {
+      pushDataLayer(
+        'exp_homepage_clean_car_view',
+        'View on screen',
+        'Element',
+        'Clean up your Mac with one click. Carousel'
+      )
+    })
 
-  visibilityEvent('.lav-clean .lav-splide', () => {
-    pushDataLayer(
-      'exp_homepage_clean_car_view',
-      'View on screen',
-      'Element',
-      'Clean up your Mac with one click. Carousel'
-    )
-  })
+    visibilityEvent('.lav-malware .lav-section__info', () => {
+      pushDataLayer(
+        'exp_homepage_remove_view',
+        'View on screen',
+        'Element',
+        'Remove malvare from Mac'
+      )
+    })
+  }
 
-  visibilityEvent('.lav-malware .lav-section__info', () => {
-    pushDataLayer(
-      'exp_homepage_remove_view',
-      'View on screen',
-      'Element',
-      'Remove malvare from Mac'
-    )
-  })
-}
-
-function initModalBenefit() {
-  const markup = /*html*/ `
+  function initModalBenefit() {
+    const markup = /*html*/ `
     <img class='lav-benefit__close lav-modal__close' src='${config.dir}/img/plus.png'>
 
     <!-- 4x -->
@@ -1309,11 +1310,11 @@ function initModalBenefit() {
     </div>
   `
 
-  new Modal('lav-benefit', markup)
-}
+    new Modal('lav-benefit', markup)
+  }
 
-function initVideoModal() {
-  const markup = /*html*/ `
+  function initVideoModal() {
+    const markup = /*html*/ `
     <div class='lav-video__close lav-modal__close'>
       ${getSvg('close')}
     </div>
@@ -1337,13 +1338,13 @@ function initVideoModal() {
     </div>
   `
 
-  new Modal('lav-video', markup)
+    new Modal('lav-video', markup)
 
-  // Modal.open('.lav-video')
-}
+    // Modal.open('.lav-video')
+  }
 
-async function addNewSections() {
-  const markup = /*html*/ `
+  async function addNewSections() {
+    const markup = /*html*/ `
     <section class="lav-section lav-speed">
       <div class='container lav-section__container'>
         <div class='lav-section__inner'>
@@ -1607,101 +1608,103 @@ async function addNewSections() {
     </section>
   `
 
-  $('.video').insertAdjacentHTML('afterend', markup)
+    $('.video').insertAdjacentHTML('afterend', markup)
 
-  $$('.lav-section__button').forEach((el) => {
-    el.addEventListener('click', () => {
-      if (el.closest('.lav-speed')) {
-        pushDataLayer(
-          'exp_homepage_get_more_cta',
-          'Speed up your Mac now',
-          'Button',
-          'Get more done on a faster Mac'
-        )
-      }
+    $$('.lav-section__button').forEach((el) => {
+      el.addEventListener('click', () => {
+        if (el.closest('.lav-speed')) {
+          pushDataLayer(
+            'exp_homepage_get_more_cta',
+            'Speed up your Mac now',
+            'Button',
+            'Get more done on a faster Mac'
+          )
+        }
 
-      if (el.closest('.lav-clean')) {
-        pushDataLayer(
-          'exp_homepage_clean_cta',
-          'Clean up your Mac now',
-          'Button',
-          'Clean up your Mac with one click'
-        )
-      }
+        if (el.closest('.lav-clean')) {
+          pushDataLayer(
+            'exp_homepage_clean_cta',
+            'Clean up your Mac now',
+            'Button',
+            'Clean up your Mac with one click'
+          )
+        }
 
-      if (el.closest('.lav-malware')) {
-        pushDataLayer(
-          'exp_homepage_remove_cta',
-          'Protect your Mac now',
-          'Button',
-          'Remove malvare from Mac'
-        )
-      }
+        if (el.closest('.lav-malware')) {
+          pushDataLayer(
+            'exp_homepage_remove_cta',
+            'Protect your Mac now',
+            'Button',
+            'Remove malvare from Mac'
+          )
+        }
 
-      window.open($('.cta-wrapper .download').href, '_blank')
+        window.open($('.cta-wrapper .download').href, '_blank')
+      })
     })
-  })
 
-  await waitFor(() => typeof Splide === 'function', false, { ms: 25 })
+    await waitFor(() => typeof Splide === 'function', false, { ms: 25 })
 
-  const splideOptions = {
-    perPage: 3,
-    // perMove: 1,
-    pagination: false,
-    gap: 30
+    const splideOptions = {
+      perPage: 3,
+      // perMove: 1,
+      pagination: false,
+      gap: 30
+    }
+
+    $$('.lav-splide').forEach((el) => {
+      const splide = new Splide(el, splideOptions).mount()
+
+      splide.on('click', function (slide) {
+        $$('.lav-benefit__info.active').forEach((el) => {
+          el.classList.remove('active')
+        })
+
+        $('.lav-benefit__' + slide.slide.dataset.target)?.classList.add(
+          'active'
+        )
+
+        const title = $('.lav-benefit__' + slide.slide.dataset.target)
+          ?.querySelector('.lav-benefit__title')
+          ?.textContent.trim()
+
+        pushDataLayer(
+          'exp_homepage_popup_card_view',
+          'View on screen',
+          'Element',
+          'Popup with additional info after card: ' + title
+        )
+
+        if (el.closest('.lav-speed')) {
+          pushDataLayer(
+            'exp_homepage_get_car_card',
+            slide.slide
+              .querySelector('.lav-slide__caption')
+              ?.textContent?.trim() || '-',
+            'Card',
+            'Get more done on a faster Mac. Carousel'
+          )
+        }
+
+        if (el.closest('.lav-clean')) {
+          pushDataLayer(
+            'exp_homepage_clean_car_card',
+            slide.slide
+              .querySelector('.lav-slide__caption')
+              ?.textContent?.trim() || '-',
+            'Card',
+            'Clean up your Mac with one click. Carousel'
+          )
+        }
+
+        splide.go(slide.index)
+        Modal.open('.lav-benefit')
+      })
+    })
   }
 
-  $$('.lav-splide').forEach((el) => {
-    const splide = new Splide(el, splideOptions).mount()
-
-    splide.on('click', function (slide) {
-      $$('.lav-benefit__info.active').forEach((el) => {
-        el.classList.remove('active')
-      })
-
-      $('.lav-benefit__' + slide.slide.dataset.target)?.classList.add('active')
-
-      const title = $('.lav-benefit__' + slide.slide.dataset.target)
-        ?.querySelector('.lav-benefit__title')
-        ?.textContent.trim()
-
-      pushDataLayer(
-        'exp_homepage_popup_card_view',
-        'View on screen',
-        'Element',
-        'Popup with additional info after card: ' + title
-      )
-
-      if (el.closest('.lav-speed')) {
-        pushDataLayer(
-          'exp_homepage_get_car_card',
-          slide.slide
-            .querySelector('.lav-slide__caption')
-            ?.textContent?.trim() || '-',
-          'Card',
-          'Get more done on a faster Mac. Carousel'
-        )
-      }
-
-      if (el.closest('.lav-clean')) {
-        pushDataLayer(
-          'exp_homepage_clean_car_card',
-          slide.slide
-            .querySelector('.lav-slide__caption')
-            ?.textContent?.trim() || '-',
-          'Card',
-          'Clean up your Mac with one click. Carousel'
-        )
-      }
-
-      splide.go(slide.index)
-      Modal.open('.lav-benefit')
-    })
-  })
-}
-
-function addGenius() {
-  const markup = /*html*/ `
+  function addGenius() {
+    const markup = /*html*/ `
     <section class="lav-genius">
       <div class='container lav-genius__container'>
         <div class="lav-genius__title">Meet your personal Mac genius</div>
@@ -1715,27 +1718,27 @@ function addGenius() {
     </section>
   `
 
-  $('.video').insertAdjacentHTML('beforebegin', markup)
+    $('.video').insertAdjacentHTML('beforebegin', markup)
 
-  $('.lav-genius__button').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_homepage_meet_cta',
-      'See How It Works',
-      'Button',
-      'Meet your personal Mac genius'
-    )
+    $('.lav-genius__button').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_homepage_meet_cta',
+        'See How It Works',
+        'Button',
+        'Meet your personal Mac genius'
+      )
 
-    pushDataLayer(
-      'exp_homepage_popup_hiw_view',
-      'View on screen',
-      'Element',
-      'Popup How it works'
-    )
-  })
-}
+      pushDataLayer(
+        'exp_homepage_popup_hiw_view',
+        'View on screen',
+        'Element',
+        'Popup How it works'
+      )
+    })
+  }
 
-function addAwards() {
-  const markup = /*html*/ `
+  function addAwards() {
+    const markup = /*html*/ `
     <section class="lav-awards">
       <div class='container lav-awards__container'>
         <div class="lav-awards__list">
@@ -1788,13 +1791,13 @@ function addAwards() {
     </section>
   `
 
-  $('.video').insertAdjacentHTML('beforebegin', markup)
-}
+    $('.video').insertAdjacentHTML('beforebegin', markup)
+  }
 
-function addGuaranteeCaption() {
-  $('.topper .cta-wrapper').insertAdjacentHTML(
-    'afterend',
-    /*html*/ `
+  function addGuaranteeCaption() {
+    $('.topper .cta-wrapper').insertAdjacentHTML(
+      'afterend',
+      /*html*/ `
     <div class="lav-guarantee">
       <div class="lav-guarantee__icon">
         ${getSvg('guarantee30')}
@@ -1802,248 +1805,248 @@ function addGuaranteeCaption() {
       <div class="lav-guarantee__caption">- day money back guarantee</div>
     </div>
   `
-  )
-}
-
-// *** HELPERS *** //
-
-// Waiting for loading by condition
-async function waitFor(condition, cb = false, customConfig = {}) {
-  const config = {
-    ms: 500, // repeat each 0.5 second if condition is false
-    limit: 10, // limit in second seconds
-
-    ...customConfig
+    )
   }
 
-  if (typeof condition === 'function') {
-    if (condition()) {
-      if (typeof cb === 'function') cb()
-      return
+  // *** HELPERS *** //
+
+  // Waiting for loading by condition
+  async function waitFor(condition, cb = false, customConfig = {}) {
+    const config = {
+      ms: 500, // repeat each 0.5 second if condition is false
+      limit: 10, // limit in second seconds
+
+      ...customConfig
     }
 
-    return new Promise((resolve) => {
-      let limit = config.limit * 1000
-      const interval = setInterval(function () {
-        if (condition() || limit <= 0) {
-          clearInterval(interval)
-          if (limit > 0 && typeof cb === 'function') cb()
-          resolve()
-        }
-        limit -= config.ms
-      }, config.ms)
-    })
-  }
+    if (typeof condition === 'function') {
+      if (condition()) {
+        if (typeof cb === 'function') cb()
+        return
+      }
 
-  if (condition.startsWith('.') || condition.startsWith('#')) {
-    if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition))
-      return
-    }
-
-    return new Promise((resolve) => {
-      const observer = new MutationObserver((mutations, observer) => {
-        if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition))
-          observer.disconnect()
-          resolve()
-        }
+      return new Promise((resolve) => {
+        let limit = config.limit * 1000
+        const interval = setInterval(function () {
+          if (condition() || limit <= 0) {
+            clearInterval(interval)
+            if (limit > 0 && typeof cb === 'function') cb()
+            resolve()
+          }
+          limit -= config.ms
+        }, config.ms)
       })
+    }
 
-      observer.observe(document, { childList: true, subtree: true })
-    })
+    if (condition.startsWith('.') || condition.startsWith('#')) {
+      if ($(condition)) {
+        if (typeof cb === 'function') cb($(condition))
+        return
+      }
+
+      return new Promise((resolve) => {
+        const observer = new MutationObserver((mutations, observer) => {
+          if ($(condition)) {
+            if (typeof cb === 'function') cb($(condition))
+            observer.disconnect()
+            resolve()
+          }
+        })
+
+        observer.observe(document, { childList: true, subtree: true })
+      })
+    }
   }
-}
 
-// Mutation Observer
-function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
+  // Mutation Observer
+  function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-  if (!el) return
+    if (!el) return
 
-  let observer = new MutationObserver((mutations, observer) => {
-    for (let mutation of mutations) {
-      if (typeof cbAdded === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          cbAdded(node, observer)
+    let observer = new MutationObserver((mutations, observer) => {
+      for (let mutation of mutations) {
+        if (typeof cbAdded === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue
+            cbAdded(node, observer)
+          }
+        }
+
+        if (typeof cbRemoved === 'function') {
+          for (let node of mutation.removedNodes) {
+            if (!(node instanceof HTMLElement)) continue
+            cbRemoved(node, observer)
+          }
         }
       }
-
-      if (typeof cbRemoved === 'function') {
-        for (let node of mutation.removedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          cbRemoved(node, observer)
-        }
-      }
-    }
-  })
-
-  observer.observe(el, { childList: true, subtree: true })
-
-  return observer
-}
-
-// Intersection Observer
-function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
-
-  if (!el || typeof cb !== 'function') return
-
-  const config = {
-    root: null,
-    threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig
-  }
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      cb(entry, observer)
     })
-  }, config)
 
-  observer.observe(el)
+    observer.observe(el, { childList: true, subtree: true })
 
-  return observer
-}
-
-function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0
-  initIntersection(
-    el,
-    ({ isIntersecting, time }) => {
-      if (isIntersecting) {
-        entryTime = time
-      } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1)
-        cb(diffTime + 's')
-        entryTime = 0
-      }
-    },
-    { threshold: viewElementProcent }
-  )
-}
-
-function visibilityEvent(el, cb, customConfig = {}) {
-  const config = {
-    threshold: 0.5,
-    ...customConfig,
-    timer: null
+    return observer
   }
-  initIntersection(
-    el,
-    ({ isIntersecting, target }, observer) => {
-      // console.log(target, isIntersecting);
-      if (isIntersecting) {
-        // if (isElementInViewport(target)) {
-        cb()
-        observer.disconnect()
-        // }
-      } else {
-        clearTimeout(config.timer)
-      }
-    },
-    config
-  )
-}
 
-// Artificial delay
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+  // Intersection Observer
+  function initIntersection(observeEl, cb, customConfig) {
+    const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
 
-// Check if element in viewport
-function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector
+    if (!el || typeof cb !== 'function') return
 
-  if (!el) return false
-
-  const rect = el.getBoundingClientRect()
-  const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight
-
-  return (
-    rect.top + rect.height * 0.3 < windowHeight &&
-    rect.bottom > rect.height * 0.3
-  )
-  // return (
-  //   rect.top >= 0 &&
-  //   rect.left >= 0 &&
-  //   rect.bottom <=
-  //     (window.innerHeight || document.documentElement.clientHeight) &&
-  //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  // );
-}
-
-// Shordcode for selectors
-function $(selector, context = document) {
-  return context.querySelector(selector)
-}
-function $$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector)
-
-  return toSimpleArray ? Array.from(arr) : arr
-}
-
-// GA 4 events
-function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  window.dataLayer = window.dataLayer || []
-
-  try {
-    const event = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc
+    const config = {
+      root: null,
+      threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
+      ...customConfig
     }
 
-    console.debug('** GA4 Event **', event)
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        cb(entry, observer)
+      })
+    }, config)
 
-    if (!config.debug) {
-      dataLayer.push(event)
-    }
-  } catch (e) {
-    console.log('** GA4 Error **', e)
+    observer.observe(el)
+
+    return observer
   }
-}
 
-// Slider
-function connectSplide() {
-  const sliderStyles = document.createElement('link')
-  sliderStyles.rel = 'stylesheet'
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
-  document.head.appendChild(sliderStyles)
+  function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
+    let entryTime = 0
+    initIntersection(
+      el,
+      ({ isIntersecting, time }) => {
+        if (isIntersecting) {
+          entryTime = time
+        } else if (entryTime) {
+          const diffTime = +((time - entryTime) / 1000).toFixed(1)
+          cb(diffTime + 's')
+          entryTime = 0
+        }
+      },
+      { threshold: viewElementProcent }
+    )
+  }
 
-  let sliderScript = document.createElement('script')
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
-  document.head.appendChild(sliderScript)
-}
-
-// *** Exp BG process *** //
-
-//Clarity
-if (!config.debug) {
-  waitFor(
-    () => typeof hj == 'function',
-    () => {
-      hj('event', 'exp_homepage')
+  function visibilityEvent(el, cb, customConfig = {}) {
+    const config = {
+      threshold: 0.5,
+      ...customConfig,
+      timer: null
     }
-  )
-}
+    initIntersection(
+      el,
+      ({ isIntersecting, target }, observer) => {
+        // console.log(target, isIntersecting);
+        if (isIntersecting) {
+          // if (isElementInViewport(target)) {
+          cb()
+          observer.disconnect()
+          // }
+        } else {
+          clearTimeout(config.timer)
+        }
+      },
+      config
+    )
+  }
 
-// Svg objects
-function getSvg(name) {
-  const svgObj = {
-    close: `
+  // Artificial delay
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+
+  // Check if element in viewport
+  function isElementInViewport(selector) {
+    const el = typeof selector === 'string' ? $(selector) : selector
+
+    if (!el) return false
+
+    const rect = el.getBoundingClientRect()
+    const windowHeight =
+      window.innerHeight || document.documentElement.clientHeight
+
+    return (
+      rect.top + rect.height * 0.3 < windowHeight &&
+      rect.bottom > rect.height * 0.3
+    )
+    // return (
+    //   rect.top >= 0 &&
+    //   rect.left >= 0 &&
+    //   rect.bottom <=
+    //     (window.innerHeight || document.documentElement.clientHeight) &&
+    //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+  }
+
+  // Shordcode for selectors
+  function $(selector, context = document) {
+    return context.querySelector(selector)
+  }
+  function $$(selector, context = document, toSimpleArray = false) {
+    const arr = context.querySelectorAll(selector)
+
+    return toSimpleArray ? Array.from(arr) : arr
+  }
+
+  // GA 4 events
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+    window.dataLayer = window.dataLayer || []
+
+    try {
+      const event = {
+        event: 'event-to-ga4',
+        event_name: name,
+        event_desc: desc,
+        event_type: type,
+        event_loc: loc
+      }
+
+      console.debug('** GA4 Event **', event)
+
+      if (!config.debug) {
+        dataLayer.push(event)
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e)
+    }
+  }
+
+  // Slider
+  function connectSplide() {
+    const sliderStyles = document.createElement('link')
+    sliderStyles.rel = 'stylesheet'
+    sliderStyles.href =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+    document.head.appendChild(sliderStyles)
+
+    let sliderScript = document.createElement('script')
+    sliderScript.src =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+    document.head.appendChild(sliderScript)
+  }
+
+  // *** Exp BG process *** //
+
+  //Clarity
+  if (!config.debug) {
+    waitFor(
+      () => typeof hj == 'function',
+      () => {
+        hj('event', 'exp_homepage')
+      }
+    )
+  }
+
+  // Svg objects
+  function getSvg(name) {
+    const svgObj = {
+      close: `
        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M17 7.00024L7.0003 16.9999" stroke="#666666" stroke-width="1.6"/>
         <path d="M17 16.9998L7.0003 7.00006" stroke="#666666" stroke-width="1.6"/>
       </svg>
     `,
-    shield: `
+      shield: `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <g clip-path="url(#clip0_169_2151)">
         <path d="M5.69434 7.78679C5.78921 8.92177 6.00709 10.4765 6.50007 12.1089C7.54707 15.5756 9.39666 18.0406 12.0003 19.4414C14.604 18.0406 16.4536 15.5756 17.5006 12.1089C17.9935 10.4766 18.2114 8.92187 18.3063 7.78679L12.0003 4.63379L5.69434 7.78679Z" fill="#F1795E"/>
@@ -2056,12 +2059,12 @@ function getSvg(name) {
       </defs>
     </svg>
     `,
-    server: `
+      server: `
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M20 20V18C20 16.895 19.105 16 18 16H6C4.895 16 4 16.895 4 18V20C4 21.105 4.895 22 6 22H18C19.105 22 20 21.105 20 20ZM8 18H7C6.448 18 6 18.448 6 19C6 19.552 6.448 20 7 20H8C8.552 20 9 19.552 9 19C9 18.448 8.552 18 8 18ZM20 13V11C20 9.895 19.105 9 18 9H6C4.895 9 4 9.895 4 11V13C4 14.105 4.895 15 6 15H18C19.105 15 20 14.105 20 13ZM8 11H7C6.448 11 6 11.448 6 12C6 12.552 6.448 13 7 13H8C8.552 13 9 12.552 9 12C9 11.448 8.552 11 8 11ZM20 6V4C20 2.895 19.105 2 18 2H6C4.895 2 4 2.895 4 4V6C4 7.105 4.895 8 6 8H18C19.105 8 20 7.105 20 6ZM8 4H7C6.448 4 6 4.448 6 5C6 5.552 6.448 6 7 6H8C8.552 6 9 5.552 9 5C9 4.448 8.552 4 8 4Z" fill="#B96FB4"/>
     </svg>
     `,
-    stars: `
+      stars: `
     <svg xmlns="http://www.w3.org/2000/svg" width="103" height="16" viewBox="0 0 103 16" fill="none">
       <path d="M9.10129 6.53561L7.32203 0.677979L5.54278 6.53561H0L4.52502 9.76462L2.80434 15.322L7.32203 11.888L11.8471 15.322L10.1264 9.76462L14.6441 6.53561H9.10129Z" fill="#FFC803"/>
       <path d="M29.7458 6.53561L27.9666 0.677979L26.1873 6.53561H20.6445L25.1695 9.76462L23.4489 15.322L27.9666 11.888L32.4916 15.322L30.7709 9.76462L35.2886 6.53561H29.7458Z" fill="#FFC803"/>
@@ -2070,7 +2073,7 @@ function getSvg(name) {
       <path d="M96.4763 6.53561L94.4746 0.677979L92.4729 6.53561H86.2373L91.3279 9.76462L89.3922 15.322L94.4746 11.888L99.5652 15.322L97.6295 9.76462L102.712 6.53561H96.4763Z" fill="#FFC803"/>
     </svg>
     `,
-    rocket: `
+      rocket: `
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <g clip-path="url(#clip0_169_2023)">
           <path d="M23.5078 0.00294914C18.8228 -0.0810509 13.4798 2.36795 10.0978 6.16695C6.86576 6.22795 3.71877 7.55295 1.40177 9.86995C1.26677 10.0029 1.21877 10.2019 1.27777 10.3819C1.33777 10.5629 1.49377 10.6939 1.68177 10.7209L5.53577 11.2729L5.05977 11.8059C4.88277 12.0039 4.89177 12.3049 5.07977 12.4929L11.5068 18.9199C11.6038 19.0169 11.7318 19.0659 11.8608 19.0659C11.9798 19.0659 12.0988 19.0239 12.1938 18.9389L12.7268 18.4629L13.2788 22.3169C13.3058 22.5049 13.4538 22.6429 13.6328 22.7029C13.6788 22.7179 13.7268 22.7249 13.7758 22.7249C13.9178 22.7249 14.0628 22.6629 14.1628 22.5639C16.4478 20.2789 17.7728 17.1319 17.8338 13.8999C21.6368 10.5109 24.1058 5.16995 23.9968 0.490949C23.9898 0.224949 23.7748 0.00994914 23.5078 0.00294914ZM18.8998 8.63495C18.4128 9.12195 17.7728 9.36595 17.1318 9.36595C16.4908 9.36595 15.8508 9.12195 15.3638 8.63495C14.3898 7.65995 14.3898 6.07395 15.3638 5.09895C16.3388 4.12395 17.9248 4.12395 18.8998 5.09895C19.8748 6.07395 19.8748 7.66095 18.8998 8.63495Z" fill="#F3659F"/>
@@ -2083,18 +2086,19 @@ function getSvg(name) {
         </defs>
       </svg>
     `,
-    play: `
+      play: `
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M8 14.5L14 10L8 5.5V14.5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z" fill="black"/>
       </svg>
     `,
-    guarantee30: `
+      guarantee30: `
       <svg xmlns="http://www.w3.org/2000/svg" width="34" height="30" viewBox="0 0 34 30" fill="none">
         <path d="M12.9689 19.3413C12.2871 19.3413 11.6191 19.2446 10.9649 19.0511C10.32 18.8484 9.77638 18.572 9.33413 18.2219L10.1081 16.826C10.4582 17.1117 10.882 17.342 11.3795 17.517C11.8771 17.6921 12.3976 17.7796 12.9412 17.7796C13.5862 17.7796 14.0883 17.6506 14.4476 17.3927C14.807 17.1255 14.9866 16.7661 14.9866 16.3147C14.9866 15.8724 14.8208 15.5223 14.4891 15.2643C14.1574 15.0064 13.623 14.8774 12.886 14.8774H12.0015V13.6474L14.7655 10.3581L15.0005 11.0353H9.80402V9.52891H16.3963V10.7313L13.6322 14.0205L12.6925 13.4677H13.2315C14.42 13.4677 15.3091 13.7349 15.8988 14.2693C16.4977 14.7944 16.7971 15.4716 16.7971 16.3009C16.7971 16.8445 16.6589 17.3466 16.3825 17.8073C16.1061 18.268 15.6823 18.6411 15.111 18.9267C14.549 19.2031 13.8349 19.3413 12.9689 19.3413ZM22.0078 19.3413C21.2431 19.3413 20.5521 19.1478 19.9347 18.7609C19.3266 18.3739 18.8475 17.8119 18.4974 17.0748C18.1473 16.3285 17.9723 15.4256 17.9723 14.366C17.9723 13.3065 18.1473 12.4081 18.4974 11.6711C18.8475 10.9248 19.3266 10.3581 19.9347 9.97116C20.5521 9.58419 21.2431 9.3907 22.0078 9.3907C22.7817 9.3907 23.4727 9.58419 24.0808 9.97116C24.6889 10.3581 25.168 10.9248 25.5181 11.6711C25.8775 12.4081 26.0571 13.3065 26.0571 14.366C26.0571 15.4256 25.8775 16.3285 25.5181 17.0748C25.168 17.8119 24.6889 18.3739 24.0808 18.7609C23.4727 19.1478 22.7817 19.3413 22.0078 19.3413ZM22.0078 17.7796C22.4593 17.7796 22.8508 17.6599 23.1825 17.4203C23.5142 17.1715 23.7722 16.7938 23.9565 16.287C24.1499 15.7803 24.2467 15.14 24.2467 14.366C24.2467 13.5829 24.1499 12.9425 23.9565 12.445C23.7722 11.9382 23.5142 11.5651 23.1825 11.3255C22.8508 11.0768 22.4593 10.9524 22.0078 10.9524C21.5748 10.9524 21.1878 11.0768 20.8469 11.3255C20.5152 11.5651 20.2526 11.9382 20.0591 12.445C19.8749 12.9425 19.7827 13.5829 19.7827 14.366C19.7827 15.14 19.8749 15.7803 20.0591 16.287C20.2526 16.7938 20.5152 17.1715 20.8469 17.4203C21.1878 17.6599 21.5748 17.7796 22.0078 17.7796Z" fill="#EE5898"/>
         <path d="M27.47 4.9549C24.8805 2.40882 21.3824 0.98684 17.7414 1.00014C15.9092 0.991891 14.0937 1.3482 12.4019 2.04811C10.7101 2.74801 9.17604 3.77739 7.89003 5.07568C7.8224 5.14392 7.76905 5.22482 7.73306 5.31369C7.69706 5.40257 7.67915 5.49767 7.68034 5.59348C7.68154 5.68929 7.70182 5.78392 7.74002 5.87188C7.77822 5.95984 7.83357 6.03939 7.90288 6.10594C8.0452 6.23951 8.23412 6.31284 8.42977 6.31045C8.62541 6.30806 8.81247 6.23015 8.95145 6.09315C10.0994 4.93554 11.4683 4.01779 12.9777 3.3938C14.4872 2.76981 16.1068 2.45218 17.7414 2.45955C24.5128 2.45386 30.0185 7.85666 30.0185 14.5C30.0185 21.1434 24.5128 26.5462 17.7414 26.5462C10.97 26.5462 5.46432 21.1434 5.46432 14.5V14.348L6.68717 15.5473C6.82713 15.6839 7.01538 15.7605 7.21146 15.7605C7.40753 15.7605 7.59579 15.6839 7.73574 15.5473C7.80451 15.4803 7.85913 15.4002 7.89642 15.3119C7.93372 15.2236 7.95292 15.1287 7.95292 15.0329C7.95292 14.9371 7.93372 14.8423 7.89642 14.7539C7.85913 14.6656 7.80451 14.5856 7.73574 14.5185L5.25432 12.0772C5.11436 11.9405 4.92611 11.864 4.73003 11.864C4.53395 11.864 4.3457 11.9405 4.20575 12.0772L1.71718 14.5185C1.64842 14.5856 1.59379 14.6656 1.5565 14.7539C1.51921 14.8423 1.5 14.9371 1.5 15.0329C1.5 15.1287 1.51921 15.2236 1.5565 15.3119C1.59379 15.4002 1.64842 15.4803 1.71718 15.5473C2.00718 15.8315 2.47718 15.8315 2.76718 15.5473L3.98861 14.348V14.5C3.9862 16.2781 4.34166 18.0388 5.03404 19.6781C5.72641 21.3174 6.74169 22.8023 8.02003 24.0452C10.6096 26.5912 14.1076 28.0132 17.7486 27.9999C21.42 27.9999 24.8771 26.5945 27.4757 24.0452C28.753 22.8019 29.7671 21.3168 30.4583 19.6774C31.1494 18.0381 31.5036 16.2777 31.5 14.5C31.5026 12.722 31.1473 10.9615 30.4552 9.32213C29.7631 7.68282 28.7481 6.1979 27.47 4.9549Z" fill="#EE5898"/>
       </svg>
     `
-  }
+    }
 
-  return svgObj[name]
-}
+    return svgObj[name]
+  }
+})()
