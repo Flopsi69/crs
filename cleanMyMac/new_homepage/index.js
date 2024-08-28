@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/cleanMyMac/new_homepage',
     dir: 'https://flopsi69.github.io/crs/cleanMyMac/new_homepage',
-    debug: true
+    debug: false
   }
 
   class Modal {
