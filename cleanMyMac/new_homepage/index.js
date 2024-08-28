@@ -2,9 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/cleanMyMac/new_homepage',
-  // dir: 'https://flopsi69.github.io/crs/cleanMyMac/new_homepage',
-  clarity: ['set', '', 'variant_1'],
+  // dir: 'http://127.0.0.1:5500/cleanMyMac/new_homepage',
+  dir: 'https://flopsi69.github.io/crs/cleanMyMac/new_homepage',
   debug: true
 }
 
@@ -138,6 +137,9 @@ class Modal {
       .lav-video {
         max-width: 1280px;
         padding: 37px 100px 30px;
+      }
+      .lav-video video {
+        cursor: pointer;
       }
       .lav-btn {
         border: none;
@@ -745,6 +747,9 @@ async function initExp() {
   await waitFor(() => document.head && document.body, false, { ms: 25 })
 
   if (location.href !== 'https://cleanmymac.com/') return
+
+  pushDataLayer('exp_homepage_loaded')
+
   console.debug('** InitExp **')
 
   document.head.appendChild(stylesEl)
@@ -762,12 +767,126 @@ async function initExp() {
 function addEvents() {
   document.addEventListener('click', (e) => {
     if (e.target.closest('.lav-btn__green')) {
-      window.open()
+      window.open($('.cta-wrapper .buy_now').href, '_blank')
+
+      if (e.target.closest('.lav-benefit')) {
+        const title = $(
+          '.lav-benefit.active .lav-benefit__title'
+        )?.textContent.trim()
+        pushDataLayer(
+          'exp_homepage_popup_card_buy',
+          'Buy Now',
+          'Button',
+          'Popup with additional info after card: ' + title
+        )
+      }
+
+      if (e.target.closest('.lav-video')) {
+        pushDataLayer(
+          'exp_homepage_popup_hiw_buy',
+          'Buy Now',
+          'Button',
+          'Popup How it works'
+        )
+      }
     }
 
     if (e.target.closest('.lav-btn__trans')) {
-      window.open($('.cta-wrapper .buy_now').href, '_blank')
+      window.open($('.cta-wrapper .download').href, '_blank')
+
+      if (e.target.closest('.lav-benefit')) {
+        const title = $(
+          '.lav-benefit.active .lav-benefit__title'
+        )?.textContent.trim()
+        pushDataLayer(
+          'exp_homepage_popup_card_try',
+          'Try 7 Days Free',
+          'Button',
+          'Popup with additional info after card: ' + title
+        )
+      }
+
+      if (e.target.closest('.lav-video')) {
+        pushDataLayer(
+          'exp_homepage_popup_hiw_try',
+          'Try 7 Days Free',
+          'Button',
+          'Popup How it works'
+        )
+      }
     }
+
+    if (e.target.closest('.lav-video') && e.target.closest('video')) {
+      pushDataLayer(
+        'exp_homepage_popup_hiw_play',
+        'Play',
+        'Video',
+        'Popup How it works'
+      )
+    }
+  })
+
+  visibilityEvent('.lav-awards__list', () => {
+    pushDataLayer(
+      'exp_homepage_trust_view',
+      'View on screen',
+      'Element',
+      'Enhanced trust'
+    )
+  })
+
+  visibilityEvent('.lav-genius', () => {
+    pushDataLayer(
+      'exp_homepage_meet_view',
+      'View on screen',
+      'Element',
+      'Meet your personal Mac genius'
+    )
+  })
+
+  visibilityEvent('.lav-speed .lav-section__info', () => {
+    pushDataLayer(
+      'exp_homepage_get_more_view',
+      'View on screen',
+      'Element',
+      'Get more done on a faster Mac'
+    )
+  })
+
+  visibilityEvent('.lav-speed .lav-splide', () => {
+    pushDataLayer(
+      'exp_homepage_get_car_view',
+      'View on screen',
+      'Element',
+      'Get more done on a faster Mac. Carousel'
+    )
+  })
+
+  visibilityEvent('.lav-clean .lav-section__info', () => {
+    pushDataLayer(
+      'exp_homepage_clean_view',
+      'View on screen',
+      'Element',
+      'Clean up your Mac with one click'
+    )
+  })
+
+  visibilityEvent('.lav-clean .lav-splide', () => {
+    pushDataLayer(
+      'exp_homepage_clean_car_view',
+      'View on screen',
+      'Element',
+      'Clean up your Mac with one click. Carousel'
+    )
+  })
+
+  visibilityEvent('.lav-malware .lav-section__info', () => {
+    pushDataLayer(
+      'exp_homepage_remove_view',
+      'View on screen',
+      'Element',
+      'Remove malvare from Mac'
+    )
   })
 }
 
@@ -1492,6 +1611,33 @@ async function addNewSections() {
 
   $$('.lav-section__button').forEach((el) => {
     el.addEventListener('click', () => {
+      if (el.closest('.lav-speed')) {
+        pushDataLayer(
+          'exp_homepage_get_more_cta',
+          'Speed up your Mac now',
+          'Button',
+          'Get more done on a faster Mac'
+        )
+      }
+
+      if (el.closest('.lav-clean')) {
+        pushDataLayer(
+          'exp_homepage_clean_cta',
+          'Clean up your Mac now',
+          'Button',
+          'Clean up your Mac with one click'
+        )
+      }
+
+      if (el.closest('.lav-malware')) {
+        pushDataLayer(
+          'exp_homepage_remove_cta',
+          'Protect your Mac now',
+          'Button',
+          'Remove malvare from Mac'
+        )
+      }
+
       window.open($('.cta-wrapper .download').href, '_blank')
     })
   })
@@ -1509,11 +1655,44 @@ async function addNewSections() {
     const splide = new Splide(el, splideOptions).mount()
 
     splide.on('click', function (slide) {
-      console.log(slide)
       $$('.lav-benefit__info.active').forEach((el) => {
         el.classList.remove('active')
       })
-      $('.lav-benefit__' + slide.slide.dataset.target).classList.add('active')
+
+      $('.lav-benefit__' + slide.slide.dataset.target)?.classList.add('active')
+
+      const title = $('.lav-benefit__' + slide.slide.dataset.target)
+        ?.querySelector('.lav-benefit__title')
+        ?.textContent.trim()
+
+      pushDataLayer(
+        'exp_homepage_popup_card_view',
+        'View on screen',
+        'Element',
+        'Popup with additional info after card: ' + title
+      )
+
+      if (el.closest('.lav-speed')) {
+        pushDataLayer(
+          'exp_homepage_get_car_card',
+          slide.slide
+            .querySelector('.lav-slide__caption')
+            ?.textContent?.trim() || '-',
+          'Card',
+          'Get more done on a faster Mac. Carousel'
+        )
+      }
+
+      if (el.closest('.lav-clean')) {
+        pushDataLayer(
+          'exp_homepage_clean_car_card',
+          slide.slide
+            .querySelector('.lav-slide__caption')
+            ?.textContent?.trim() || '-',
+          'Card',
+          'Clean up your Mac with one click. Carousel'
+        )
+      }
 
       splide.go(slide.index)
       Modal.open('.lav-benefit')
@@ -1537,6 +1716,22 @@ function addGenius() {
   `
 
   $('.video').insertAdjacentHTML('beforebegin', markup)
+
+  $('.lav-genius__button').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_homepage_meet_cta',
+      'See How It Works',
+      'Button',
+      'Meet your personal Mac genius'
+    )
+
+    pushDataLayer(
+      'exp_homepage_popup_hiw_view',
+      'View on screen',
+      'Element',
+      'Popup How it works'
+    )
+  })
 }
 
 function addAwards() {
@@ -1731,7 +1926,7 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
 
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
-    threshold: 0.3,
+    threshold: 0.5,
     ...customConfig,
     timer: null
   }
@@ -1740,12 +1935,10 @@ function visibilityEvent(el, cb, customConfig = {}) {
     ({ isIntersecting, target }, observer) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
-        config.timer = setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb()
-            observer.disconnect()
-          }
-        }, 3000)
+        // if (isElementInViewport(target)) {
+        cb()
+        observer.disconnect()
+        // }
       } else {
         clearTimeout(config.timer)
       }
@@ -1832,15 +2025,11 @@ function connectSplide() {
 // *** Exp BG process *** //
 
 //Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
+if (!config.debug) {
   waitFor(
-    () => typeof clarity == 'function',
+    () => typeof hj == 'function',
     () => {
-      clarity(...config.clarity)
+      hj('event', 'exp_homepage')
     }
   )
 }
