@@ -242,8 +242,8 @@
         overflow: auto;
         -webkit-overflow-scrolling: touch;
         overflow-scrolling: touch;
-        margin: 0 -28px;
-        padding: 0 28px;
+        margin: 0 -68px;
+        padding: 0 68px;
         padding-bottom: 5px;
         background:
           linear-gradient(
@@ -371,6 +371,9 @@
     justify-content: center;
     margin-top: 16px;
   }
+  .lav-guarantee__caption {
+    color: #000;
+  }
   .lav-guarantee__icon {
     line-height: 0;
   }
@@ -422,6 +425,7 @@
   .lav-genius {
     text-align: center;
     margin-top: 120px;
+    color: #000;
   }
   .lav-genius__container {
     max-width: 805px;
@@ -594,6 +598,7 @@
     line-height: 24px;
     min-width: 300px;
     padding: 5px 23px;
+    transition: .3s;
   }
   .lav-clean .lav-section__button {
     border-color: #BB85B7;
@@ -602,6 +607,17 @@
   .lav-malware .lav-section__button {
     border-color: #E58C78;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), #F1795E;
+  }
+  @media(hover:hover) {
+    .lav-speed .lav-section__button:hover {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 100%), #F3659F;
+    }
+    .lav-clean .lav-section__button:hover {
+      background: #B96FB4;
+    }
+    .lav-malware .lav-section__button:hover {
+      background: #F1795E;
+    }
   }
   .lav-section__caption {
     margin-top: 10px;
@@ -676,9 +692,8 @@
   .lav-slide__icon {
     line-height: 0;
     height: 64px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
   }
   .lav-slide__icon-text {
     color: #A965F3;
@@ -908,11 +923,6 @@
       </div>
 
       <img class='lav-benefit__image' src='${config.dir}/benefit/4x.png'>
-
-      <div class='lav-benefit__subtitle'>Many X times faster the performance</div>
-      <div class='lav-benefit__descr'>
-        Speed up your Mac and make it more responsive with CleanMyMac X. Below are the tools to increase the performance of your Mac.
-      </div>
     </div>
 
     <!-- 2.5x -->
@@ -1034,7 +1044,7 @@
     <!-- agents -->
     <div class='lav-benefit__info lav-benefit__agents'>
       <div class='lav-benefit__logo'>
-        <img src='${config.dir}/img/slide-rocket.png'>
+        <img src='${config.dir}/img/slide-rocket.png' style='width: 86px; height: 86px;'>
       </div>
 
       <div class='lav-benefit__title'>
@@ -1051,7 +1061,7 @@
     <!-- switch -->
     <div class='lav-benefit__info lav-benefit__switch'>
       <div class='lav-benefit__logo'>
-        <img src='${config.dir}/img/slide-switch.png'>
+        <img src='${config.dir}/img/slide-switch.png' style='height: 94px; width: 94px;'>
       </div>
 
       <div class='lav-benefit__title'>
@@ -1261,7 +1271,7 @@
           <div class='lav-benefit__block-descr'>
             When you import RAW files into Photos, the app creates JPEG copies of them. These JPEGs are what you see in Photos — and heavy RAWs just sit on your Mac, forgotten. If you no longer need the RAW originals, CleanMyMac will remove them to save you gigabytes of space.* But don’t worry: it will always ask you first.
             <br/><br/>
-            This feature is not yet available on macOS High Sierra.
+            <em>This feature is not yet available on macOS High Sierra.</em>
           </div>
         </div>
 
@@ -1295,7 +1305,7 @@
 
       <img class='lav-benefit__image' src='${config.dir}/benefit/uninstaller.png'/>
 
-      <div class='lav-benefit__subtitle'>
+      <div class='lav-benefit__subtitle' style='color: #000'>
         But there’s more to it than that
       </div>
 
@@ -1394,7 +1404,7 @@
                 <div class='lav-slide__icon lav-slide__icon-text' style='color: #F3659F;'>4x</div>
                 <div class='lav-slide__footer'>
                     <div class='lav-slide__caption'>
-                      Gigabytes of free<br/>space
+                      Faster boot: <br/>Mac wakes up earlier
                     </div>
                     <div class='lav-slide__open'>
                       <img src='${config.dir}/img/plus.png' />
@@ -1765,7 +1775,7 @@
               <img src="${config.dir}/img/logo-trustpilot.png">
             </div>
             <div class="lav-award__caption">
-              Outstanding Reputation with a 4.4 TrustScore
+              Outstanding reputation with a 4.4 TrustScore
             </div>
           </div>
 
