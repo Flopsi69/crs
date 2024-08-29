@@ -1050,6 +1050,7 @@ function addTipStyles() {
       width: 185px;
       transition: opacity 0.2s;
       transform: none;
+      box-sizing: border-box;
     }
     .shipping-wrapper:not(.lav-tip-activated) .lav-tip__shipping-wrap {
       display: none!important;
