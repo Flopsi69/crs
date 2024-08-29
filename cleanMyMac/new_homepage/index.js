@@ -80,9 +80,9 @@
 
       if (typeof cb === 'function') cb()
 
-      setTimeout(() => {
-        $('.lav-modal__inner.active')?.classList.remove('active')
-      }, 400)
+      // setTimeout(() => {
+      $('.lav-modal__inner.active')?.classList.remove('active')
+      // }, 400)
     }
 
     static addStyles() {
@@ -1315,7 +1315,7 @@
     </div>
 
     <div class='lav-benefit__control'>
-      <button class='lav-btn lav-btn__green'>Buy Now</button>
+      <button class='lav-btn lav-btn__green'>Buy it now</button>
       <button class='lav-btn lav-btn__trans'>Try 7 Days Free</button>
     </div>
   `
@@ -1404,7 +1404,7 @@
                 <div class='lav-slide__icon lav-slide__icon-text' style='color: #F3659F;'>4x</div>
                 <div class='lav-slide__footer'>
                     <div class='lav-slide__caption'>
-                      Faster boot: <br/>Mac wakes up earlier
+                      Faster boot: Mac wakes <br/> up earlier
                     </div>
                     <div class='lav-slide__open'>
                       <img src='${config.dir}/img/plus.png' />
@@ -1709,6 +1709,7 @@
 
         splide.go(slide.index)
         Modal.open('.lav-benefit')
+        $('.lav-benefit__info.active')?.scrollTo(0, 0)
       })
     })
   }
