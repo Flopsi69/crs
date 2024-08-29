@@ -135,7 +135,6 @@ header.page-header .authorisation-cart-container {
   font-weight: 400;
   line-height: 22px;
 }
-.lav-benefit {}
 
 @media(min-width: 1024px) {
   .cart-container .cart-left-col {
@@ -150,13 +149,17 @@ header.page-header .authorisation-cart-container {
   gap: 32px;
 }
 .shipping-wrapper {
-  padding: 32px 32px 22px;
+  transition: .3s;
+  outline: 0px solid transparent;
+}
+.shipping-wrapper.lav-tip-activated {
+  outline: 5px solid #E6F1F9;
 }
 #block-shipping {
-  padding: 0;
+  // padding: 0;
 }
 .shipping-wrapper .content {
-  display: block;
+  // display: block;
 }
 div.block.shipping #shipping-zip-form .input-text {
   min-height: 40px;
@@ -299,6 +302,9 @@ div.block.shipping .fieldset.rate .shipping-title {
 }
 .lav-free-ship__hide {
   display: none!important;
+}
+.lav-free-ship__loading {
+  pointer-events: none;
 }
 .lav-choose-ship {
   color: #536D80;
@@ -529,7 +535,7 @@ div.block.shipping .fieldset.rate .shipping-title {
     grid-gap: 16px;
   }
   .cart-container .cart-right-col {
-    margin-top: -16px;
+    // margin-top: -16px;
   }
   .lav-footer {
     padding: 22px 15px;
@@ -560,7 +566,10 @@ div.block.shipping .fieldset.rate .shipping-title {
     margin-bottom: -4px;
   }
   .shipping-wrapper {
-    padding: 16px;
+    padding: 0;
+  }
+  .cart-container .cart-summary {
+    order: 1;
   }
   .lav-benefit__title {
     font-size: 12px;
@@ -716,9 +725,14 @@ function handlePayment() {
     $('[data-opt="creditkey.cart.form"]')
   )
 
-  $('.lav-collapse__body').insertAdjacentElement(
-    'beforeend',
-    $('[data-opt="spark.checkout.button"]')
+  waitFor(
+    () => $('[data-opt="spark.checkout.button"]'),
+    () => {
+      $('.lav-collapse__body').insertAdjacentElement(
+        'beforeend',
+        $('[data-opt="spark.checkout.button"]')
+      )
+    }
   )
 
   $('.lav-collapse__head').addEventListener('click', () => {
@@ -906,6 +920,8 @@ function addEvents() {
 
   document.addEventListener('click', (e) => {
     if (e.target.closest('.pac-target-input')) {
+      $('.shipping-wrapper')?.classList.remove('lav-tip-activated')
+
       pushDataLayer(
         'exp_checkout_cart_input_01',
         'Address',
@@ -933,6 +949,9 @@ function addEvents() {
     }
 
     if (e.target.closest('.label') && e.target.closest('.field.choice.item')) {
+      $('div.block.shipping .fieldset.rate')?.classList.add(
+        'lav-free-ship__loading'
+      )
       pushDataLayer(
         'exp_checkout_cart_option_01',
         e.target.textContent.replace(/\$\d+\.\d{2}/g, '').trim(),
@@ -1027,6 +1046,27 @@ function addTipStyles() {
       transition: opacity 0.2s;
       pointer-events: auto;
     }
+    .lav-tip__shipping {
+      width: 185px;
+      transition: opacity 0.2s;
+      transform: none;
+    }
+    .shipping-wrapper:not(.lav-tip-activated) .lav-tip__shipping-wrap {
+      display: none!important;
+    }
+    .lav-tip__shipping-wrap {
+      padding: 0;
+      margin-bottom: 0;
+      bottom: 0;
+    }
+    .lav-tip__shipping {
+      opacity: 1;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .lav-tip__shipping:before {
+      left: 30px;
+    }
   `
 
   const stylesTipEl = document.createElement('style')
@@ -1053,7 +1093,7 @@ function handleQuote() {
   })
 }
 
-function handleDetails() {
+async function handleDetails() {
   const guaranteeEl = /* html */ `
     <div class='lav-guarantee'>
       30-Day Lowest Price Guarantee
@@ -1066,6 +1106,9 @@ function handleDetails() {
     </div>
   `
 
+  await waitFor('#cart-totals', false, { ms: 20 })
+  await waitFor('.checkout.methods', false, { ms: 20 })
+
   $('#cart-totals').insertAdjacentHTML('afterend', guaranteeEl)
 
   $('.checkout.methods').insertAdjacentElement(
@@ -1075,10 +1118,24 @@ function handleDetails() {
 }
 
 function handleShipping() {
+  waitFor('.shipping-wrapper #shipping-zip-form .street-wrapper', () => {
+    $(
+      '.shipping-wrapper #shipping-zip-form .street-wrapper'
+    ).insertAdjacentHTML(
+      'afterend',
+      /* html */ `
+      <div class='lav-tip lav-tip__shipping-wrap' data-id='tip6'>
+        <div class='lav-tip__popup lav-tip__shipping active'>
+          Enter your address here
+        </div>
+      </div>
+      `
+    )
+  })
   // const shippingEl = $('.cart-container > .cart-summary')
-  const shippingEl = $('.shipping-wrapper')
+  // const shippingEl = $('.shipping-wrapper')
 
-  $('.cart-right-col').insertAdjacentElement('beforeend', shippingEl)
+  // $('.cart-right-col').insertAdjacentElement('beforeend', shippingEl)
 
   // shippingEl.insertAdjacentHTML(
   //   'beforeend',
@@ -1100,6 +1157,9 @@ function handleShipping() {
     (removed) => {
       if (removed.classList.contains('loading-mask')) {
         waitFor('.grand.totals', getShippingCaption)
+        $('div.block.shipping .fieldset.rate')?.classList.remove(
+          'lav-free-ship__loading'
+        )
       }
     }
   )
@@ -1131,12 +1191,19 @@ function handleShipping() {
 
       $('.lav-choose-ship span').addEventListener('click', (e) => {
         e.preventDefault()
+        $('.shipping-wrapper')?.classList.add('lav-tip-activated')
+
         pushDataLayer(
           'exp_checkout_cart_link_01',
           'Calculate',
           'Link',
           'Price detail'
         )
+
+        setTimeout(() => {
+          $('.shipping-wrapper')?.classList.remove('lav-tip-activated')
+        }, 5000)
+
         $('.shipping-wrapper').scrollIntoView({
           behavior: 'smooth',
           block: 'center'
@@ -1163,7 +1230,7 @@ function handleShipping() {
   }
 }
 
-function addBenefits() {
+async function addBenefits() {
   const benefitsEl = /* html */ `
     <div class='lav-benefits'>
       <div class='lav-benefit'>
@@ -1237,13 +1304,19 @@ function addBenefits() {
     </div>
   `
 
+  await waitFor('.checkout-cart-index .cart-container .cart-title', false, {
+    ms: 20
+  })
+
   $('body.checkout-cart-index .cart-container .cart-title').insertAdjacentHTML(
     'afterend',
     benefitsEl
   )
 }
 
-function handleHeaderAndFooter() {
+async function handleHeaderAndFooter() {
+  await waitFor(() => $('header.page-header') && $('footer.page-footer'))
+
   const headerEl = $('header.page-header')
   const footerEl = $('footer.page-footer')
   const footerFlag = $('footer.page-footer .footer-flag img')?.outerHTML
