@@ -697,8 +697,8 @@
   }
   .lav-slide__icon-text {
     color: #A965F3;
-    font-size: 60px;
-    font-weight: 600;
+    font-size: 52px;
+    font-weight: 700;
     line-height: 1;
   }
   .lav-slide__icon img {
