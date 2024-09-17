@@ -208,7 +208,7 @@ body > div:not([class]) {
     max-width: 1360px;
   }
 }
-@media(max-height: 750px) {
+@media(max-height: 760px) {
   .home-hero__content {
     margin-top: 0;
   }
@@ -224,7 +224,7 @@ body > div:not([class]) {
 }
 @media(max-height: 600px) {
   .home-hero {
-    padding-top: 120px;
+    padding-top: 110px;
   }
   .lav-jumb__image {
     transform: scale(0.8);
