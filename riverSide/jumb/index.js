@@ -186,10 +186,15 @@ body > div:not([class]) {
 }
 @media(max-width: 1400px) {
   .home-hero__content {
-    max-width: 550px;
+    max-width: 600px;
   }
   .lav-jumb__image {
     transform: scale(0.85);
+  }
+}
+@media(max-width: 1320px) {
+  .home-hero__content {
+    max-width: 550px;
   }
 }
 @media(min-width: 1800px) {
