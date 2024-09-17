@@ -272,9 +272,9 @@ function handleInfo() {
 function handleOptions() {
   let historyImages = []
   window.historyImages = historyImages
-  console.log('test', _$$('.home-hero__checkbox'))
+
   _$$('.home-hero__checkbox').forEach((el) => {
-    const text = el.innerText
+    const text = el.innerText.trim()
 
     if (text === 'Podcasts') {
       el.style.order = '-1'
