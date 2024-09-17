@@ -179,9 +179,17 @@ body > div:not([class]) {
 .lav-jumb__image-main.active {
   opacity: 1;
 }
-@media(min-width: 1400px) {
+@media(min-width: 1200px) {
   .container-1160 {
     max-width: 1320px;
+  }
+}
+@media(max-width: 1400px) {
+  .home-hero__content {
+    max-width: 550px;
+  }
+  .lav-jumb__image {
+    transform: scale(0.85);
   }
 }
 @media(min-width: 1800px) {
