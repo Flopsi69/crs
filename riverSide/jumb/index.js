@@ -191,6 +191,9 @@ body > div:not([class]) {
   .lav-jumb__image {
     transform: scale(0.9);
   }
+  .home-hero {
+    padding-bottom: 120px;
+  }
 }
 @media(max-width: 1320px) {
   .home-hero__content {
@@ -198,6 +201,9 @@ body > div:not([class]) {
   }
   .lav-jumb__image {
     transform: scale(0.85);
+  }
+  .home-hero {
+    padding-bottom: 120px;
   }
 }
 @media(min-width: 1800px) {
@@ -223,13 +229,13 @@ body > div:not([class]) {
 @media(max-height: 690px) {
   .home-hero {
     padding-top: 17vh;
-    padding-bottom: 17vh;
+    padding-bottom: 14vh;
   }
 }
 @media(max-height: 600px) {
   .home-hero {
     padding-top: 110px;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
   }
   .lav-jumb__image {
     transform: scale(0.8);
