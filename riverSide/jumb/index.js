@@ -261,7 +261,7 @@ stylesEl.innerHTML = styles
 initExp()
 
 async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 100 })
+  await waitFor(() => document.head && document.body, false, { ms: 10 })
 
   document.head.appendChild(stylesEl)
   console.debug('** InitExp **')
