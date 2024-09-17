@@ -186,15 +186,18 @@ body > div:not([class]) {
 }
 @media(max-width: 1400px) {
   .home-hero__content {
-    max-width: 600px;
+    max-width: 550px;
   }
   .lav-jumb__image {
-    transform: scale(0.85);
+    transform: scale(0.9);
   }
 }
 @media(max-width: 1320px) {
   .home-hero__content {
     max-width: 550px;
+  }
+  .lav-jumb__image {
+    transform: scale(0.85);
   }
 }
 @media(min-width: 1800px) {
@@ -203,6 +206,35 @@ body > div:not([class]) {
   }
   .container-1160 {
     max-width: 1360px;
+  }
+}
+@media(max-height: 750px) {
+  .home-hero__content {
+    margin-top: 0;
+  }
+  .lav-jumb__image {
+    transform: scale(0.85);
+    margin-top: -40px;
+  }
+}
+@media(max-height: 690px) {
+  .home-hero {
+    padding-top: 17vh;
+  }
+}
+@media(max-height: 600px) {
+  .home-hero {
+    padding-top: 120px;
+  }
+  .lav-jumb__image {
+    transform: scale(0.8);
+  }
+  .home-hero__checkbox-wrapper {
+    margin-bottom: 25px;
+  }
+  .home-hero__intro {
+    margin-top: 15px;
+    margin-bottom: 20px;
   }
 }
 .c-updated-nav-button.get-started-start.c-nav-buttom-getstarted {
