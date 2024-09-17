@@ -270,8 +270,7 @@ function handleInfo() {
 }
 
 function handleOptions() {
-  let historyImages = []
-  window.historyImages = historyImages
+  window.historyImages = []
 
   _$$('.home-hero__checkbox').forEach((el) => {
     const text = el.innerText.trim()
@@ -279,7 +278,7 @@ function handleOptions() {
     if (text === 'Podcasts') {
       el.style.order = '-1'
       el.dataset.image = 'jumb-podcast'
-      historyImages.push('jumb-podcast')
+      window.historyImages.push('jumb-podcast')
       el.click()
     } else if (text === 'Transcriptions') {
       el.style.order = '0'
@@ -307,17 +306,19 @@ function handleOptions() {
     el.addEventListener('click', () => {
       if (el.classList.contains('is--checked')) {
         console.log('fire1')
-        historyImages.push(el.dataset.image)
+        window.historyImages.push(el.dataset.image)
       } else {
         console.log('fire2')
-        historyImages = historyImages.filter(
+        window.historyImages = historyImages.filter(
           (item) => item !== el.dataset.image
         )
       }
 
-      console.log(historyImages)
+      console.log(window.historyImages)
 
-      const image = historyImages[historyImages.length - 1] || el.dataset.image
+      const image =
+        window.historyImages[window.historyImages.length - 1] ||
+        el.dataset.image
 
       _$$('.lav-jumb__image-main.active').forEach((el) =>
         el.classList.remove('active')
