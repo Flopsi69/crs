@@ -216,15 +216,20 @@ body > div:not([class]) {
     transform: scale(0.85);
     margin-top: -40px;
   }
+  .home-hero {
+    padding-bottom: 10vh;
+  }
 }
 @media(max-height: 690px) {
   .home-hero {
     padding-top: 17vh;
+    padding-bottom: 17vh;
   }
 }
 @media(max-height: 600px) {
   .home-hero {
     padding-top: 110px;
+    padding-bottom: 70px;
   }
   .lav-jumb__image {
     transform: scale(0.8);
