@@ -85,7 +85,7 @@ class Modal {
     const styles = /* css */ `
       .lav-modal {
         position: fixed;
-        z-index: 9999;
+        z-index: 999999;
         left: 0;
         right: 0;
         top: 0;
@@ -315,6 +315,13 @@ const styles = /* css */ `
   iframe#launcher {
     margin-right: 10px!important;
   }
+  .lav-modal.active + .lav-sticky {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .additional-functional {
+    display: none!important;
+  }
   .lav-sticky-wrapper .additional-functional {
     bottom: 90px!important;
   }
@@ -326,6 +333,22 @@ const styles = /* css */ `
   }
   .lav-sticky-pdp-wrapper iframe#launcher  {
     bottom: 150px!important;
+  }
+  .crs-products {
+    display: none!important;
+  }
+  .crs-products_exp {
+    display: block!important;
+    margin-bottom: 100px!important;
+  }
+  .crs-products_exp .heading-2 {
+    color: #000;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    margin-bottom: 16px;
   }
   .btn--scroll-top {
     display: none!important
@@ -342,7 +365,31 @@ const styles = /* css */ `
   .lav-matches {
     padding: 16px;
     background-color: #FEF2CF;
+    overflow: hidden;
   }
+  .lav-matches__preload {
+    padding: 16px;
+    background-color: #FEF2CF;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  .lav-matches__loader {
+    width: 50px;
+    padding: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #00b4f1;
+    --_m:
+      conic-gradient(#0000 10%,#000),
+      linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+  @keyframes l3 {to{transform: rotate(1turn)}}
   .lav-matches__header {
     color: #000;
     font-size: 18px;
@@ -362,6 +409,9 @@ const styles = /* css */ `
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .lav-device__list {
     margin-top: 12px;
@@ -374,7 +424,8 @@ const styles = /* css */ `
     width: 64px;
     height: 64px;
     border: 2px solid transparent;
-    background: lightgray;
+    background-color: #fff;
+    background-size: contain;
     box-shadow: 0px 22px 6px 0px rgba(0, 0, 0, 0.00), 0px 14px 6px 0px rgba(0, 0, 0, 0.01), 0px 8px 5px 0px rgba(0, 0, 0, 0.02), 0px 3px 3px 0px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
     cursor: pointer;
     transition: .3s;
@@ -383,8 +434,22 @@ const styles = /* css */ `
     border-color: #00B0EE;
   }
 
+  .crs-products_exp .product-grid-item {
+    position: relative;
+  }
+  .crs-products_exp .product-grid-item:before, .lav-fit .product-grid-item:before  {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    right: 4px;
+    top: 4px;
+    width: 40px;
+    height: 40px;
+    background: url('${config.dir}/img/prime.svg') no-repeat;
+  }
   .lav-fit {
-    margin-top: 8px;
+    margin-top: 12px;
   }
   .lav-fit__header {
     display: flex;
@@ -415,14 +480,121 @@ const styles = /* css */ `
   .lav-fit__slide {
     padding: 8px;
     width: 156px;
-    height: 160px;
+    // height: 160px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0px 22px 6px 0px rgba(0, 0, 0, 0.00), 0px 14px 6px 0px rgba(0, 0, 0, 0.01), 0px 8px 5px 0px rgba(0, 0, 0, 0.02), 0px 3px 3px 0px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
   }
-  .lav-fit {}
-  .lav-fit {}
-  .lav-fit {}
+  .lav-fit .product-grid-item__title {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+  }
+  .lav-fit .product-grid-item__price {
+    flex-direction: row;
+    color: #000;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    margin-right: 4px;
+    margin-top: auto;
+  }
+  .lav-fit .product-grid-item {
+    display: flex;
+    height: 100%;
+  }
+  .lav-fit .product-grid-item__inner {
+    display: flex;
+    flex-flow: column;
+  }
+  .lav-fit .product-grid-item__info {
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+    flex-grow: 1;
+  }
+  .lav-fit .product-grid-item__price__new {
+    color: #000;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    margin-right: 4px;
+  }
+  .lav-fit .product-grid-item__price s {
+    color: var(--Grey-800, #4A4A4A);
+    font-family: Manrope;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .lav-fit .btn--quick {
+    display: none;
+  }
+  .lav-fit .yotpo-widget-instance {
+    display: none;
+  }
+  .lav-fit .splide__track {
+    overflow: visible;
+  }
+  .lav-fit .alternative-options {
+    margin: 0;
+  }
+  .lav-fit .product-grid-item__alternates .alternative-options__item-label {
+    min-width: 56px;
+    text-align: center;
+    color: var(--Blue-dark, #122231);
+    border: 1px solid var(--Grey-500, #DEDEDE);
+    font-size: 11px;
+  }
+  .lav-fit .product-grid-item__alternates .alternative-options__item--active .alternative-options__item-label {
+    border-color: #00B0EE
+  }
+  .lav-fit .splide__pagination__page {
+    background: #fff;
+    display: flex;
+    width: 100%;
+    border-radius: 100px;
+    transition: .3s;
+  }
+  .lav-fit .splide__pagination__page.is-active {
+    background: #000;
+  }
+  .lav-fit .splide__pagination {
+    border-radius: 100px;
+    margin-top: 12px;
+    background: #fff;
+    height: 4px;
+    box-shadow: 0px 22px 6px 0px rgba(0, 0, 0, 0.00), 0px 14px 6px 0px rgba(0, 0, 0, 0.01), 0px 8px 5px 0px rgba(0, 0, 0, 0.02), 0px 3px 3px 0px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+  }
+  .lav-fit .splide__pagination li {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+  }
+  .lav-fit__progress {
+    border-radius: 100px;
+    background: #fff;
+    margin-top: 12px;
+    box-shadow: 0px 22px 6px 0px rgba(0, 0, 0, 0.00), 0px 14px 6px 0px rgba(0, 0, 0, 0.01), 0px 8px 5px 0px rgba(0, 0, 0, 0.02), 0px 3px 3px 0px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+  }
+  .lav-fit__bar {
+    background: #000;
+    border-radius: 100px;
+    height: 4px;
+    transition: width 400ms ease, left 400ms ease;
+    width: 0;
+    transform: translateX(-100%);
+    position: relative;
+  }
+  .template-index .top-amazon, .template-index .warranty-sale-custom{
+    margin-bottom: 0;
+    display: none!important;
+  }
 
   .lav-more__title {
     padding: 24px 16px 16px;
@@ -454,7 +626,7 @@ const styles = /* css */ `
   .lav-sticky {
     display: flex;
     position: fixed;
-    z-index: 999999999999;
+    z-index: 120;
     bottom: 0;
     left: 0;
     right: 0;
@@ -603,18 +775,219 @@ stylesEl.innerHTML = styles
 // *** Logic *** //
 initExp()
 
+const deviceMap = {
+  bewrshc1jvlfavl5: {
+    id: '8136411611388',
+    name: 'Geeni Prisma A21 Smart Bulb - Multicolor and Warm White',
+    related: [
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  odrhfd5d0ak2fp3b: {
+    id: '7752466858236',
+    name: 'Merkury Innovations 720P Camera',
+    type: 'webp',
+    related: [
+      { productId: '4381945921615', variantId: '31341859930191' },
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '8215276650748', variantId: '44844077777148' },
+      { productId: '8210956222716', variantId: '44829321330940' },
+      { productId: '8094250369276', variantId: '44472366858492' }
+    ]
+  },
+  '7xdihijnnuambnr2': {
+    id: '7607581016316',
+    name: 'Merkury Innovations 1080p Camera',
+    related: [
+      { productId: '4850401181775', variantId: '32807658782799' },
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '8215276650748', variantId: '44844077777148' },
+      { productId: '8210956222716', variantId: '44829321330940' },
+      { productId: '8094250369276', variantId: '44472366858492' }
+    ]
+  },
+  bawdr6hlvis7yixw: {
+    id: '7607581442300',
+    name: 'Merkury Innovations A19 Light Bulb, 60W White (1-Pack)',
+    related: [
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8136411611388', variantId: '44629116879100' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  clczbpnx3yimjbcw: {
+    id: '4680310063183',
+    name: 'Geeni Dot Smart Plug',
+    related: [
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '2434904391759', variantId: '21552685711439' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '4660020936783', variantId: '32297298329679' },
+      { productId: '8088246157564', variantId: '44449774993660' }
+    ]
+  },
+  G4jwjOhQBYx5b5nw: {
+    id: '7607582228732',
+    name: 'Merkury Innovations A21 Multicolor Light Bulb',
+    related: [
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8136411611388', variantId: '44629116879100' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  k1okbbubwccmdcaq: {
+    id: '4850423136335',
+    name: 'Geeni Glimpse 1080p Camera',
+    related: [
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8094251385084', variantId: '44472367775996' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4680370815055', variantId: '32334053310543' },
+      { productId: '4850401181775', variantId: '32807658782799' },
+      { productId: '8071365787900', variantId: '44401167565052' }
+    ]
+  },
+  yk5dijqoa2oy341i: {
+    id: '7607579148540',
+    name: 'Merkury Innovations Indoor/Outdoor Symphony Light Strip (16 ft.)',
+    related: [
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  szqueo9p61yifscy: {
+    id: '7607578558716',
+    name: 'Merkury Innovations Plug',
+    related: [
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '2434904391759', variantId: '21552685711439' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '4660020936783', variantId: '32297298329679' },
+      { productId: '8088246157564', variantId: '44449774993660' }
+    ]
+  },
+  EeJJEptgHhZDScTD: {
+    id: '485103206440',
+    name: 'Geeni Spot Plug',
+    related: [
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '2434904391759', variantId: '21552685711439' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '4660020936783', variantId: '32297298329679' },
+      { productId: '8088246157564', variantId: '44449774993660' }
+    ]
+  },
+  bwolocfvtdy3w2mk: {
+    id: '7607580721404',
+    name: 'Merkury Innovations 1080P Auto-Tracking Security Camera',
+    related: [
+      { productId: '4381945921615', variantId: '31341859930191' },
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '8215276650748', variantId: '44844077777148' },
+      { productId: '8210956222716', variantId: '44829321330940' },
+      { productId: '8094250369276', variantId: '44472366858492' }
+    ]
+  },
+  eysxtzvaflhxyzyf: {
+    id: '4836701864015',
+    name: 'Geeni Hawk 3 1080p Outdoor Camera',
+    related: [
+      { productId: '8607220203772', variantId: '45966877753596' },
+      { productId: '8619661132028', variantId: '45995967611132' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  kcfw92tv9nworwl7: {
+    id: '4836701864015',
+    name: 'Geeni Hawk 3 1080p Outdoor Camera',
+    related: [
+      { productId: '8607220203772', variantId: '45966877753596' },
+      { productId: '8619661132028', variantId: '45995967611132' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  bewrshc1jvlfavl5: {
+    id: '8212624900348',
+    name: 'Hawk 2 Outdoor Camera',
+    related: [
+      { productId: '8607220203772', variantId: '45966877753596' },
+      { productId: '8619661132028', variantId: '45995967611132' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  a9wag4xbx6nhrxwy: {
+    id: '2451361300559',
+    name: 'Geeni Look - Indoor Camera',
+    related: [
+      { productId: '2451361300559', variantId: '21666897330255' },
+      { productId: '6628294262863', variantId: '39649036206159' },
+      { productId: '8088106828028', variantId: '44449445314812' },
+      { productId: '4821841969231', variantId: '32691873808463' },
+      { productId: '8305370693884', variantId: '45138686771452' },
+      { productId: '4850401181775', variantId: '32807658782799' }
+    ]
+  },
+  fp9pho5zcgw2harc: {
+    id: '4850425430095',
+    name: 'Geeni Scope 1080p Auto-Tracking Camera',
+    related: [
+      { productId: '8215276650748', variantId: '44844077777148' },
+      { productId: '4384644989007', variantId: '31352740675663' },
+      { productId: '4381945921615', variantId: '31341859930191' },
+      { productId: '8210956222716', variantId: '44829321330940' },
+      { productId: '8094250369276', variantId: '44472366858492' }
+    ]
+  }
+}
+
+let fitSplide
+
+let allProducts = null
+
 async function initExp() {
   await waitFor(() => document.head && document.body, false, { ms: 100 })
 
-  document.head.appendChild(stylesEl)
-
   // await (() => window._dy_customer_logged_in.email, false, { ms: 20 })
 
-  const userEmail = window._dy_customer_logged_in?.email
-  console.log('User email:', userEmail)
+  // const customerEmail = window._dy_customer_logged_in?.email
+  // await waitFor(() => window.userEmail, false, { ms: 20 })
 
   console.debug('** InitExp **')
+  document.head.appendChild(stylesEl)
+
+  applyDiscountCode('welcome')
+
   if (location.pathname === '/') {
+    // const allProductsReq = await fetch('/products.json?limit=2000')
+    // allProducts = await allProductsReq.json()
+    // allProducts = allProducts.products
+
+    // allProducts =
+    getAllProductsMarkup()
+
     connectSplide()
     addMatches()
   }
@@ -623,9 +996,49 @@ async function initExp() {
     addPdpDiscount()
   }
 
-  addSticky()
-  addModal()
+  let initTime = localStorage.getItem('initTime')
+  if (initTime) {
+    const currentTime = Math.floor(Date.now() / 1000)
+    let timeLeft = 20 * 60 - (currentTime - initTime)
+
+    if (timeLeft <= 0) {
+      return
+    }
+  }
+
   initTimer()
+  addModal()
+  addSticky()
+}
+
+async function getAllProductsMarkup() {
+  const productsArr = await Promise.all([
+    parseHTML(1),
+    parseHTML(2),
+    parseHTML(3)
+  ])
+
+  const productElements = [
+    ...productsArr[0],
+    ...productsArr[1],
+    ...productsArr[2]
+  ]
+
+  allProducts = productElements
+
+  return productElements
+
+  async function parseHTML(page) {
+    const res = await fetch(`https://mygeeni.com/collections/all?page=${page}`)
+    const data = await res.text()
+
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(data, 'text/html')
+
+    const products = doc.querySelectorAll('#AjaxinateLoop .product-grid-item')
+
+    return products
+  }
 }
 
 function addPdpDiscount() {
@@ -637,7 +1050,7 @@ function addPdpDiscount() {
         <div class='lav-pdp-discount__icon'>
           ${getSvg('spark')}
         </div>
-        <div class='lav-pdp-discount__caption'>Get -10 % off with code APPUSER10</div>
+        <div class='lav-pdp-discount__caption'>Get -10 % off with code WELCOME</div>
       </div>
     `
     )
@@ -657,7 +1070,7 @@ function addSticky() {
         <img src='${config.dir}/img/spark.svg' />
       </div>
       <div class='lav-sticky__info'>
-        Get <span>-10 % off</span> <br/> with code <span>APPUSER10</span>
+        Get <span>-10 % off</span> <br/> with code <span>WELCOME</span>
       </div>
 
       <div class='lav-sticky__timer lav-timer2'>
@@ -691,48 +1104,135 @@ function addSticky() {
     e.preventDefault()
     sessionStorage.setItem('stickyClosed', true)
 
-    _$('.lav-sticky').classList.add('lav-sticky_hide')
+    _$('.lav-sticky')?.classList.add('lav-sticky_hide')
     _$('body').classList.remove('lav-sticky-wrapper')
     _$('body').classList.remove('lav-sticky-pdp-wrapper')
 
     setTimeout(() => {
-      _$('.lav-sticky').remove()
+      _$('.lav-sticky')?.remove()
     }, 600)
   })
 }
 
-function addMatches() {
+function applyDiscountCode(discountCode) {
+  fetch(`/discount/${discountCode}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then((response) => {
+      console.log('Response:', response)
+      if (response.redirected) {
+        // Redirect to the checkout page where the discount is applied
+        // window.location.href = response.url;
+      } else {
+        // Handle failure to apply the discount
+        console.log('Invalid discount code or could not apply the discount.')
+      }
+    })
+    .catch((error) => console.error('Error:', error))
+}
+
+async function addMatches() {
+  if (typeof userEmail !== 'string') return false
+
+  _$('.shop-all').insertAdjacentHTML(
+    'beforebegin',
+    `<div class='lav-matches__preload'>
+      <div class='lav-matches__loader'></div>
+    </div>`
+  )
+  // const devices = await getDeviceList('nataliia.zaikina@conversionrate.store')
+  const devices = []
+
+  const userDevices = []
+
+  Object.keys(deviceMap).forEach((key) => {
+    if (devices.includes(key) || true) {
+      deviceMap[key].pid = key
+      userDevices.push(deviceMap[key])
+    }
+  })
+
+  // for (const device of devices) {
+  //   if (deviceMap[device.id]) {
+  //     deviceMap[device.id].pid = device
+  //     userDevices.push(deviceMap[device.id])
+  //   }
+  // }
+
+  // const relatedUniq = []
+
+  // console.log('userDevices', userDevices)
+
+  // let allRelated = userDevices.reduce((acc, device) => {
+  //   return [...acc, ...device.related]
+  // }, [])
+
+  // allRelated = allRelated.filter((item) => {
+  //   if (!relatedUniq.includes(item.productId)) {
+  //     relatedUniq.push(item.productId)
+  //     return true
+  //   }
+  //   return false
+  // })
+
+  // console.log('relatedUnique', relatedUniq)
+
+  // allRelated = allRelated.map((product) => {
+  //   const findEl = allProducts.find((item) => item.id == product.productId)
+
+  //   if (!findEl) return null
+
+  //   return {
+  //     ...findEl,
+  //     variantId: product.variantId
+  //   }
+  // })
+
+  // allRelated = allRelated.filter((item) => item)
+
+  // console.log('allRelated', allRelated)
+  // const related = deviceMap[device.id].related
+
+  // const relatedProducts = await getRelatedProducts(related)
+  // console.log('relatedProducts', relatedProducts)
+
+  // if (!devices?.length) return
+
   const markup = /* html */ `
     <div class='lav-matches'>
       <div class='lav-matches__header'>
-        Hey, {Name}! <br/>
+        ${customerName ? `Hey, ${customerName}! <br/>` : ''} 
         Get perfect matches for your device with&nbsp;<span class='lav-matches__header-mark'>max&nbsp;savings</span>
       </div>
 
       <div class='lav-matches__device lav-device'>
-        <div class='lav-device__title'>Your device: Geeni Hawk 3 1080p Outdoor...</div>
-        <div class='lav-device__list'>
-          <div class='lav-device__item'></div>
-          <div class='lav-device__item'></div>
-          <div class='lav-device__item'></div>
+        <div class='lav-device__title'>
+          Your device: 
+          <span>-</span>
         </div>
+        <div class='lav-device__list'></div>
       </div>
 
       <div class='lav-matches__fit lav-fit'>
         <div class='lav-fit__header'>
           <div class='lav-fit__title'>Great fit products</div>
           <div class='lav-fit__gift'>
-            Get <span>-10 % off</span> with code <span>APPUSER10</span>
+            Get <span>-10 % off</span> with code <span>WELCOME</span>
           </div>
         </div>
 
         <div class='lav-fit__slider splide'>
           <div class="splide__track">
             <ul class="splide__list">
-              <li class="splide__slide lav-fit__slide">Slide 01</li>
-              <li class="splide__slide lav-fit__slide">Slide 02</li>
-              <li class="splide__slide lav-fit__slide">Slide 03</li>
+              <li class="splide__slide lav-fit__slide"></li>
             </ul>
+          </div>
+
+          <div class="lav-fit__progress">
+            <div class="lav-fit__bar"></div>
           </div>
         </div>
       </div>
@@ -781,27 +1281,90 @@ function addMatches() {
 
   _$('.shop-all').insertAdjacentHTML('beforebegin', markup)
 
+  let isFirstRender = true
+
+  await waitFor(() => allProducts, false, { ms: 20 })
+
+  _$('.lav-matches__preload')?.remove()
+
+  for (const device of userDevices) {
+    if (_$$('.lav-device__item').length >= 4) break
+    const el = document.createElement('div')
+    el.classList.add('lav-device__item')
+    el.style.backgroundImage = `url(${config.dir}/img/products/${device.id}.${
+      device.type || 'jpg'
+    })`
+
+    el.addEventListener('click', () => {
+      if (el.classList.contains('active')) return
+
+      _$('.lav-fit__slider .splide__list').innerHTML = ''
+
+      _$('.lav-device__title span').textContent = device.name
+
+      _$('.lav-device__item.active')?.classList.remove('active')
+      el.classList.add('active')
+
+      device.related.forEach((product) => {
+        const findEl = allProducts.find(
+          (item) => item.dataset.productId == product.productId
+        )
+
+        if (!findEl) return
+
+        const el = document.createElement('li')
+        el.classList.add('splide__slide', 'lav-fit__slide')
+        // el.textContent = findEl.title
+        el.innerHTML = findEl.outerHTML
+
+        _$('.lav-fit__slider .splide__list').insertAdjacentElement(
+          'beforeend',
+          el
+        )
+
+        if (!isFirstRender && fitSplide) {
+          fitSplide.refresh()
+        }
+      })
+    })
+
+    _$('.lav-device__list').insertAdjacentElement('beforeend', el)
+  }
+
+  _$('.lav-device__item').click()
+
   waitFor(
     () => typeof Splide == 'function',
     () => {
-      new Splide('.lav-fit__slider', {
+      fitSplide = new Splide('.lav-fit__slider', {
         autoWidth: true,
+        arrows: false,
+        pagination: false,
         gap: 8
-      }).mount()
+      })
+
+      const bar = fitSplide.root.querySelector('.lav-fit__bar')
+
+      fitSplide.on('mounted move refresh', function () {
+        var end = fitSplide.Components.Controller.getEnd() + 1
+        var rate = Math.min((fitSplide.index + 1) / end, 1)
+        bar.style.left = String(100 * rate) + '%'
+        bar.style.width =
+          parseInt(100 / fitSplide.Components.Slides.get().length) + '%'
+      })
+
+      fitSplide.mount()
+
+      isFirstRender = false
     }
   )
-
-  _$$('.lav-device__item').forEach((item) => {
-    item.addEventListener('click', () => {
-      if (item.classList.contains('active')) return
-
-      _$('.lav-device__item.active')?.classList.remove('active')
-      item.classList.add('active')
-    })
-  })
 }
 
 function addModal() {
+  if (sessionStorage.getItem('modalShown')) return
+
+  sessionStorage.setItem('modalShown', true)
+
   const markup = /* html */ `
     <div class='lav-modal__close'>${getSvg('closeModal')}</div>
 
@@ -852,31 +1415,32 @@ function addModal() {
 
   new Modal('lav-discount', markup)
 
-  // Modal.open('.lav-discount')
+  Modal.open('.lav-discount')
 }
 
 function initTimer() {
   const totalTime = 20 * 60
 
-  const minutesEls = _$$('.lav-minutes')
-  const secondsEls = _$$('.lav-seconds')
+  let initTime = localStorage.getItem('initTime')
+  const currentTime = Math.floor(Date.now() / 1000)
 
-  console.log(minutesEls, secondsEls)
+  if (!initTime) {
+    initTime = currentTime
+    localStorage.setItem('initTime', initTime)
+  }
 
-  let timeLeft = sessionStorage.getItem('timeLeft')
-    ? parseInt(sessionStorage.getItem('timeLeft'))
-    : totalTime
+  let timeLeft = totalTime - (currentTime - initTime)
 
   function updateTimerDisplay() {
     const minutes = Math.floor(timeLeft / 60)
     const seconds = timeLeft % 60
 
-    minutesEls.forEach((el) => {
+    _$$('.lav-minutes').forEach((el) => {
       el.children[0].textContent = Math.floor(minutes / 10)
       el.children[1].textContent = minutes % 10
     })
 
-    secondsEls.forEach((el) => {
+    _$$('.lav-seconds').forEach((el) => {
       el.children[0].textContent = Math.floor(seconds / 10)
       el.children[1].textContent = seconds % 10
     })
@@ -885,10 +1449,17 @@ function initTimer() {
   function countdown() {
     if (timeLeft > 0) {
       timeLeft--
-      sessionStorage.setItem('timeLeft', timeLeft)
       updateTimerDisplay()
     } else {
       clearInterval(timerInterval) // Stop the timer when it reaches zero
+      _$('.lav-modal.active')?.classList.add('lav-sticky_hide')
+      _$('.lav-modal__inner.active')?.classList.add('lav-sticky_hide')
+      _$('.lav-sticky')?.classList.add('lav-sticky_hide')
+      _$('body').classList.remove('lav-sticky-wrapper')
+      _$('body').classList.remove('lav-sticky-pdp-wrapper')
+      setTimeout(() => {
+        _$('.lav-sticky')?.remove()
+      }, 600)
     }
   }
 
