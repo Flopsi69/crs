@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/geeni/discount10Off',
-  // dir: 'https://flopsi69.github.io/crs/geeni/discount10Off',
+  // dir: 'http://127.0.0.1:5500/geeni/discount10Off',
+  dir: 'https://flopsi69.github.io/crs/geeni/discount10Off',
   clarity: ['set', '', 'variant_1'],
   debug: true
 }
