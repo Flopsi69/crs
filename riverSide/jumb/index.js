@@ -107,7 +107,7 @@ body > div:not([class]) {
   overflow: hidden;
 }
 .home-hero {
-  padding-bottom: 40px;
+  padding-bottom: 50px;
 }
 .lav-circle-bg {
   pointer-events: none;
@@ -141,13 +141,13 @@ body > div:not([class]) {
 }
 @media(min-width: 1400px) {
   .lav-jumb__image {
-    transform: scale(0.9);
+    transform: scale(0.85);
     margin-top: -25px;
   }
 }
 @media(min-width: 1600px) {
   .lav-jumb__image {
-    transform: scale(0.95);
+    // transform: scale(0.9);
   }
 }
 .lav-jumb__image-main {
@@ -166,24 +166,24 @@ body > div:not([class]) {
 }
 .lav-jumb__image-caption {
   max-width: 940px;
-  left: -19px;
+  left: 0;
   top: -70px;
   transform: scale(0.5);
   transition: 0s;
   transition-property: transform, opacity;
 }
 .lav-jumb__image-caption[src*="jumb-webinars-text"] {
-  left: 0;
+  // left: 0;
 }
 .lav-jumb__image-caption[src*="jumb-captions-text"] {
-  left: 0;
+  // left: 0;
   top: -74px;
 }
 .lav-jumb__image-caption[src*="jumb-marketing-text"] {
-  left: 0;
+  // left: 0;
 }
 .lav-jumb__image-caption[src*="jumb-notes-text"] {
-  left: 0;
+  // left: 0;
 }
 .lav-jumb__image-caption.active {
   transition-duration: .5s;
@@ -230,14 +230,13 @@ body > div:not([class]) {
     max-width: 1360px;
   }
 }
-@media(max-height: 760px) {
+@media(min-width: 1400px) {
+  .home-hero {
+
+  }
 }
 @media(max-height: 700px) {
-  .lav-jumb__image-main {
-    max-width: 53vw;
-  }
   .lav-jumb__image {
-    margin-top: 3.5vw;
     margin-left: 25px;
   }
   .home-hero {
@@ -254,9 +253,20 @@ body > div:not([class]) {
     padding-bottom: 10px;
   }
 }
+@media(max-height: 700px) and (max-width: 1400px) {
+  .lav-jumb__image-main {
+    max-width: 53vw;
+  }
+  .lav-jumb__image {
+    margin-top: 3.5vw;
+  }
+}
 @media(max-height: 700px) and (min-width: 1400px) {
   .lav-jumb__image {
-    margin-top: 2.5vh;
+    // margin-top: 2.5vh;
+  }
+  .lav-jumb__image-main {
+    max-width: 850px;
   }
 }
 @media(max-height: 650px) {
