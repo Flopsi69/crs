@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/riverSide/jumb',
-  // dir: 'https://flopsi69.github.io/crs/riverSide/jumb',
+  // dir: 'http://127.0.0.1:5500/riverSide/jumb',
+  dir: 'https://flopsi69.github.io/crs/riverSide/jumb',
   clarity: ['set', 'exp_hero_pers', 'variant_1'],
   debug: false
 }
