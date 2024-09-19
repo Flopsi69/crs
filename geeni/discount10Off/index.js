@@ -341,6 +341,9 @@ const styles = /* css */ `
     display: block!important;
     margin-bottom: 100px!important;
   }
+  .crs-products_exp .product__shop-now {
+    display: none!important;
+  }
   .crs-products_exp .heading-2 {
     color: #000;
     font-family: Manrope;
@@ -980,7 +983,7 @@ async function initExp() {
 
   applyDiscountCode('welcome')
 
-  if (location.pathname === '/') {
+  if (location.pathname === '/' || location.pathname === '/index') {
     // const allProductsReq = await fetch('/products.json?limit=2000')
     // allProducts = await allProductsReq.json()
     // allProducts = allProducts.products

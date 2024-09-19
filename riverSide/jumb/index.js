@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  // dir: 'http://127.0.0.1:5500/riverSide/jumb',
-  dir: 'https://flopsi69.github.io/crs/riverSide/jumb',
+  dir: 'http://127.0.0.1:5500/riverSide/jumb',
+  // dir: 'https://flopsi69.github.io/crs/riverSide/jumb',
   clarity: ['set', 'exp_hero_pers', 'variant_1'],
   debug: false
 }
@@ -45,10 +45,12 @@ const styles = /* css */ `
 .home-hero__content {
   max-width: 640px;
   flex-shrink: 0;
-  margin-top: 40px;
+  margin-top: 26px;
 }
 .home-hero_title-xs {
-  display: none;
+  text-align: center;
+  max-width: 360px;
+  margin-top: 18px;
 }
 .home-hero__checkbox {
   grid-column-gap: 10px;
@@ -73,9 +75,9 @@ const styles = /* css */ `
   max-width: 16px;
 }
 .home-hero_title-sm {
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: normal;
+  line-height: 21px;
 }
 .home-hero__checkbox-wrapper {
   gap: 14px;
@@ -83,8 +85,8 @@ const styles = /* css */ `
   margin-bottom: 40px;
 }
 .home-hero__intro {
-  margin-bottom: 32px;
-  margin-top: 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   color: #FFF;
   font-size: 16px;
   font-weight: 300;
@@ -105,7 +107,7 @@ body > div:not([class]) {
   overflow: hidden;
 }
 .home-hero {
-  padding-bottom: 150px;
+  padding-bottom: 40px;
 }
 .lav-circle-bg {
   pointer-events: none;
@@ -116,7 +118,7 @@ body > div:not([class]) {
   border-radius: 860px;
   width: 860px;
   height: 860px;
-  opacity: 0.5;
+  opacity: 0.35;
   background: #9671FF;
   filter: blur(177px);
 }
@@ -136,6 +138,17 @@ body > div:not([class]) {
 .lav-jumb__image {
   position: relative;
   line-height: 0;
+}
+@media(min-width: 1400px) {
+  .lav-jumb__image {
+    transform: scale(0.9);
+    margin-top: -25px;
+  }
+}
+@media(min-width: 1600px) {
+  .lav-jumb__image {
+    transform: scale(0.95);
+  }
 }
 .lav-jumb__image-main {
   position: absolute;
@@ -157,6 +170,7 @@ body > div:not([class]) {
   top: -70px;
   transform: scale(0.5);
   transition: 0s;
+  transition-property: transform, opacity;
 }
 .lav-jumb__image-caption[src*="jumb-webinars-text"] {
   left: 0;
@@ -185,25 +199,27 @@ body > div:not([class]) {
   }
 }
 @media(max-width: 1400px) {
-  .home-hero__content {
-    max-width: 550px;
+  .lav-jumb__image-main {
+    max-width: 53vw;
   }
   .lav-jumb__image {
-    transform: scale(0.9);
+    margin-top: 3.5vw;
+    margin-left: 25px;
   }
   .home-hero {
-    padding-bottom: 120px;
+    padding-top: 100px;
   }
 }
 @media(max-width: 1320px) {
   .home-hero__content {
-    max-width: 550px;
+    max-width: 630px;
+    margin-top: 0;
   }
-  .lav-jumb__image {
-    transform: scale(0.85);
+  .home-hero__checkbox-wrapper {
+    gap: 12px;
   }
   .home-hero {
-    padding-bottom: 120px;
+    padding-bottom: 10px;
   }
 }
 @media(min-width: 1800px) {
@@ -215,38 +231,37 @@ body > div:not([class]) {
   }
 }
 @media(max-height: 760px) {
+}
+@media(max-height: 700px) {
+  .lav-jumb__image-main {
+    max-width: 53vw;
+  }
+  .lav-jumb__image {
+    margin-top: 3.5vw;
+    margin-left: 25px;
+  }
+  .home-hero {
+    padding-top: 100px;
+  }
   .home-hero__content {
+    max-width: 630px;
     margin-top: 0;
   }
-  .lav-jumb__image {
-    transform: scale(0.85);
-    margin-top: -40px;
+  .home-hero__checkbox-wrapper {
+    gap: 12px;
   }
   .home-hero {
-    padding-bottom: 10vh;
+    padding-bottom: 10px;
   }
 }
-@media(max-height: 690px) {
-  .home-hero {
-    padding-top: 17vh;
-    padding-bottom: 14vh;
+@media(max-height: 700px) and (min-width: 1400px) {
+  .lav-jumb__image {
+    margin-top: 2.5vh;
   }
+}
+@media(max-height: 650px) {
 }
 @media(max-height: 600px) {
-  .home-hero {
-    padding-top: 110px;
-    padding-bottom: 80px;
-  }
-  .lav-jumb__image {
-    transform: scale(0.8);
-  }
-  .home-hero__checkbox-wrapper {
-    margin-bottom: 25px;
-  }
-  .home-hero__intro {
-    margin-top: 15px;
-    margin-bottom: 20px;
-  }
 }
 .c-updated-nav-button.get-started-start.c-nav-buttom-getstarted {
   min-width: 166px;
@@ -302,14 +317,14 @@ function handleImages() {
 
 function handleInfo() {
   _$('.home-hero__intro').innerHTML = _$('.home-hero__intro').innerHTML.replace(
-    'edit',
-    'edit<br/>'
+    'edit in a',
+    'edit in a<br/>'
   )
 
-  _$('.home-hero__content .h1--80 span')?.remove()
-  _$('.home-hero__content .h1--80').innerHTML = _$(
-    '.home-hero__content .h1--80'
-  ).innerHTML.replace('tothe', 'to the<br/>')
+  // _$('.home-hero__content .h1--80 span')?.remove()
+  // _$('.home-hero__content .h1--80').innerHTML = _$(
+  //   '.home-hero__content .h1--80'
+  // ).innerHTML.replace('tothe', 'to the<br/>')
 
   _$('.home-hero').insertAdjacentHTML(
     'afterbegin',
@@ -390,11 +405,11 @@ function handleOptions() {
 
 function handleCTA() {
   waitFor('.c-nav-buttom-getstarted', () => {
-    _$('.c-nav-buttom-getstarted').innerText = 'Get Started for Free'
+    _$('.c-nav-buttom-getstarted').innerText = 'Start for Free'
   })
 
   waitFor('.home-hero__content .rs-button', () => {
-    _$('.home-hero__content .rs-button').innerText = 'Get Started for Free'
+    _$('.home-hero__content .rs-button').innerText = 'Start for Free'
   })
 }
 
