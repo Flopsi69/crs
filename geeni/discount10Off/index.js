@@ -929,18 +929,18 @@ const deviceMap = {
       { productId: '4850401181775', variantId: '32807658782799' }
     ]
   },
-  bewrshc1jvlfavl5: {
-    id: '8212624900348',
-    name: 'Hawk 2 Outdoor Camera',
-    related: [
-      { productId: '8607220203772', variantId: '45966877753596' },
-      { productId: '8619661132028', variantId: '45995967611132' },
-      { productId: '8088106828028', variantId: '44449445314812' },
-      { productId: '4821841969231', variantId: '32691873808463' },
-      { productId: '8305370693884', variantId: '45138686771452' },
-      { productId: '4850401181775', variantId: '32807658782799' }
-    ]
-  },
+  // bewrshc1jvlfavl5: {
+  //   id: '8212624900348',
+  //   name: 'Hawk 2 Outdoor Camera',
+  //   related: [
+  //     { productId: '8607220203772', variantId: '45966877753596' },
+  //     { productId: '8619661132028', variantId: '45995967611132' },
+  //     { productId: '8088106828028', variantId: '44449445314812' },
+  //     { productId: '4821841969231', variantId: '32691873808463' },
+  //     { productId: '8305370693884', variantId: '45138686771452' },
+  //     { productId: '4850401181775', variantId: '32807658782799' }
+  //   ]
+  // },
   a9wag4xbx6nhrxwy: {
     id: '2451361300559',
     name: 'Geeni Look - Indoor Camera',
@@ -1146,13 +1146,13 @@ async function addMatches() {
       <div class='lav-matches__loader'></div>
     </div>`
   )
-  // const devices = await getDeviceList('nataliia.zaikina@conversionrate.store')
-  const devices = []
+  const devices = await getDeviceList(userEmail)
+  // const devices = []
 
   const userDevices = []
 
   Object.keys(deviceMap).forEach((key) => {
-    if (devices.includes(key) || true) {
+    if (devices.includes(key)) {
       deviceMap[key].pid = key
       userDevices.push(deviceMap[key])
     }
