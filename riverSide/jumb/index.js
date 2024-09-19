@@ -349,30 +349,30 @@ function handleOptions() {
     const text = el.innerText.trim()
 
     if (text === 'Podcasts') {
-      el.style.order = '-1'
+      // el.style.order = '-1'
       el.dataset.image = 'jumb-podcast'
       window.historyImages.push('jumb-podcast')
       el.click()
     } else if (text === 'Transcriptions') {
-      el.style.order = '0'
+      // el.style.order = '0'
       el.dataset.image = 'jumb-transcriptions'
     } else if (text === 'Video interviews') {
-      el.style.order = '1'
+      // el.style.order = '1'
       el.dataset.image = 'jumb-interviews'
     } else if (text === 'Social media clips') {
-      el.style.order = '2'
+      // el.style.order = '2'
       el.dataset.image = 'jumb-social'
     } else if (text === 'Webinars') {
-      el.style.order = '3'
+      // el.style.order = '3'
       el.dataset.image = 'jumb-webinars'
     } else if (text === 'Captions') {
-      el.style.order = '4'
+      // el.style.order = '4'
       el.dataset.image = 'jumb-captions'
     } else if (text === 'Video marketing') {
-      el.style.order = '5'
+      // el.style.order = '5'
       el.dataset.image = 'jumb-marketing'
     } else if (text === 'AI show notes') {
-      el.style.order = '6'
+      // el.style.order = '6'
       el.dataset.image = 'jumb-notes'
     }
 
