@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/geeni/discount10Off',
   dir: 'https://flopsi69.github.io/crs/geeni/discount10Off',
   clarity: ['set', 'exp_promo', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 class Modal {
