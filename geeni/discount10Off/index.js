@@ -1005,6 +1005,17 @@ async function initExp() {
     connectSplide()
     addMatches()
     addAdvantages()
+
+    setTimeout(() => {
+      visibilityEvent('.crs-products_exp .product-grid-item', (el) => {
+        pushDataLayer(
+          'exp_promo_view_05',
+          'Section',
+          'view',
+          'Discover Our Top-Selling Products'
+        )
+      })
+    }, 1000)
   }
 
   if (_$('body.template-product')) {
@@ -1472,15 +1483,6 @@ function addAdvantages() {
     })
   }, 5000)
 
-  visibilityEvent('.crs-products_exp', (el) => {
-    pushDataLayer(
-      'exp_promo_view_05',
-      'Section',
-      'view',
-      'Discover Our Top-Selling Products'
-    )
-  })
-
   document.addEventListener('click', (e) => {
     console.log(e.target)
     if (e.target.closest('.product-grid-item__inner')) {
@@ -1742,10 +1744,11 @@ function visibilityEvent(el, cb, customConfig = {}) {
     ...customConfig,
     timer: null
   }
+  console.log(el)
   initIntersection(
     el,
     ({ isIntersecting, target }, observer) => {
-      // console.log(target, isIntersecting);
+      console.log(target, isIntersecting)
       if (isIntersecting) {
         // config.timer = setTimeout(() => {
         // if (isElementInViewport(target)) {
