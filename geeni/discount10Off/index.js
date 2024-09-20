@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/geeni/discount10Off',
   dir: 'https://flopsi69.github.io/crs/geeni/discount10Off',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'exp_promo', 'variant_1'],
   debug: true
 }
 
@@ -40,8 +40,10 @@ class Modal {
       if (
         e.target.classList.contains('lav-modal') ||
         e.target.closest('.lav-modal__close')
-      )
+      ) {
+        pushDataLayer('exp_promo_button_02', 'Close', 'click', 'Pop up Get 10')
         this.close()
+      }
 
       if (e.target.dataset.modal) {
         this.open(e.target.dataset.modal)
@@ -748,8 +750,8 @@ const styles = /* css */ `
     background: linear-gradient(90deg, #C50717 17%, #F71D2F 44.5%, #DC1122 100%);
     display: inline-flex;
     align-items: center;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
   }
   .lav-pdp-discount__icon {
     line-height: 0;
@@ -764,6 +766,9 @@ const styles = /* css */ `
     font-weight: 800;
     line-height: 14px;
     text-transform: uppercase;
+  }
+  .lav-pdp-discount__caption span {
+    font-weight: 400;
   }
   .product__price-and-badge .product__price {
     padding-top: 5px!important;
@@ -993,6 +998,7 @@ async function initExp() {
 
     connectSplide()
     addMatches()
+    addAdvantages()
   }
 
   if (_$('body.template-product')) {
@@ -1053,10 +1059,23 @@ function addPdpDiscount() {
         <div class='lav-pdp-discount__icon'>
           ${getSvg('spark')}
         </div>
-        <div class='lav-pdp-discount__caption'>Get -10 % off with code WELCOME</div>
+        <div class='lav-pdp-discount__caption'>Get -10 % off with code <span>WELCOME</span></div>
       </div>
     `
     )
+
+    visibilityEvent('.lav-pdp-discount', () => {
+      pushDataLayer('exp_promo_view_07', 'Get 09', 'view', 'Promo cod section')
+    })
+
+    // _$('.lav-pdp-discount').addEventListener('click', () => {
+    //   pushDataLayer(
+    //     'exp_promo_button_04',
+    //     'Get 10',
+    //     'click',
+    //     'Promo cod section'
+    //   )
+    // })
   }
 }
 
@@ -1107,6 +1126,8 @@ function addSticky() {
     e.preventDefault()
     sessionStorage.setItem('stickyClosed', true)
 
+    pushDataLayer('exp_promo_button_03', 'Close', 'click', 'Slide block')
+
     _$('.lav-sticky')?.classList.add('lav-sticky_hide')
     _$('body').classList.remove('lav-sticky-wrapper')
     _$('body').classList.remove('lav-sticky-pdp-wrapper')
@@ -1152,11 +1173,16 @@ async function addMatches() {
   const userDevices = []
 
   Object.keys(deviceMap).forEach((key) => {
-    if (devices.includes(key)) {
+    if (devices.includes(key) || true) {
       deviceMap[key].pid = key
       userDevices.push(deviceMap[key])
     }
   })
+
+  if (!userDevices.length) {
+    _$('.lav-matches__preload')?.remove()
+    return
+  }
 
   // for (const device of devices) {
   //   if (deviceMap[device.id]) {
@@ -1240,7 +1266,139 @@ async function addMatches() {
         </div>
       </div>
     </div>
+  `
 
+  if (_$('.lav-more')) {
+    _$('.lav-more').insertAdjacentHTML('beforebegin', markup)
+  } else {
+    _$('.shop-all').insertAdjacentHTML('beforebegin', markup)
+  }
+
+  visibilityEvent('.lav-fit__slider', () => {
+    pushDataLayer(
+      'exp_promo_view_01',
+      'Section fit products',
+      'view',
+      'First screen'
+    )
+  })
+
+  let isFirstRender = true
+  let isInit = true
+
+  await waitFor(() => allProducts, false, { ms: 20 })
+
+  _$('.lav-matches__preload')?.remove()
+
+  for (const device of userDevices) {
+    // if (_$$('.lav-device__item').length >= 4) break
+    const el = document.createElement('div')
+    el.classList.add('lav-device__item')
+    el.style.backgroundImage = `url(${config.dir}/img/products/${device.id}.${
+      device.type || 'jpg'
+    })`
+
+    el.addEventListener('click', () => {
+      if (el.classList.contains('active')) return
+
+      if (!isInit) {
+        pushDataLayer(
+          'exp_promo_section_01',
+          `Your device - ${device.name}`,
+          'click',
+          'First screen'
+        )
+      }
+
+      _$('.lav-fit__slider .splide__list').innerHTML = ''
+
+      _$('.lav-device__title span').textContent = device.name
+
+      _$('.lav-device__item.active')?.classList.remove('active')
+      el.classList.add('active')
+
+      device.related.forEach((product) => {
+        const findEl = allProducts.find(
+          (item) => item.dataset.productId == product.productId
+        )
+
+        if (!findEl) return
+
+        const el = document.createElement('li')
+        el.classList.add('splide__slide', 'lav-fit__slide')
+        // el.textContent = findEl.title
+        el.innerHTML = findEl.outerHTML
+
+        _$('.lav-fit__slider .splide__list').insertAdjacentElement(
+          'beforeend',
+          el
+        )
+
+        el.addEventListener('click', () => {
+          pushDataLayer(
+            'exp_promo_section_02',
+            `Fit product - ${
+              el.querySelector('.product-grid-item__title')?.innerText.trim() ||
+              '-'
+            }`,
+            'click',
+            'First screen'
+          )
+        })
+
+        if (!isFirstRender && fitSplide) {
+          fitSplide.refresh()
+        }
+      })
+    })
+
+    _$('.lav-device__list').insertAdjacentElement('beforeend', el)
+  }
+
+  _$('.lav-device__item').click()
+  isInit = false
+
+  waitFor(
+    () => typeof Splide == 'function',
+    () => {
+      fitSplide = new Splide('.lav-fit__slider', {
+        autoWidth: true,
+        arrows: false,
+        pagination: false,
+        gap: 8
+      })
+
+      const bar = fitSplide.root.querySelector('.lav-fit__bar')
+
+      fitSplide.on('mounted move refresh', function () {
+        var end = fitSplide.Components.Controller.getEnd() + 1
+        var rate = Math.min((fitSplide.index + 1) / end, 1)
+        bar.style.left = String(100 * rate) + '%'
+        bar.style.width =
+          parseInt(100 / fitSplide.Components.Slides.get().length) + '%'
+      })
+
+      fitSplide.on('move', function () {
+        var end = fitSplide.Components.Controller.getEnd() + 1
+        var rate = Math.min((fitSplide.index + 1) / end, 1)
+
+        pushDataLayer(
+          'exp_promo_view_02',
+          parseInt(String(100 * rate)) + '%',
+          'other',
+          'First screen'
+        )
+      })
+
+      fitSplide.mount()
+
+      isFirstRender = false
+    }
+  )
+}
+
+function addAdvantages() {
+  const markup = /* html */ `
     <div class='lav-more'>
       <div class='lav-more__title'>
         Get More with Every Purchase at Geeni&nbsp;Store
@@ -1284,83 +1442,40 @@ async function addMatches() {
 
   _$('.shop-all').insertAdjacentHTML('beforebegin', markup)
 
-  let isFirstRender = true
-
-  await waitFor(() => allProducts, false, { ms: 20 })
-
-  _$('.lav-matches__preload')?.remove()
-
-  for (const device of userDevices) {
-    if (_$$('.lav-device__item').length >= 4) break
-    const el = document.createElement('div')
-    el.classList.add('lav-device__item')
-    el.style.backgroundImage = `url(${config.dir}/img/products/${device.id}.${
-      device.type || 'jpg'
-    })`
-
-    el.addEventListener('click', () => {
-      if (el.classList.contains('active')) return
-
-      _$('.lav-fit__slider .splide__list').innerHTML = ''
-
-      _$('.lav-device__title span').textContent = device.name
-
-      _$('.lav-device__item.active')?.classList.remove('active')
-      el.classList.add('active')
-
-      device.related.forEach((product) => {
-        const findEl = allProducts.find(
-          (item) => item.dataset.productId == product.productId
-        )
-
-        if (!findEl) return
-
-        const el = document.createElement('li')
-        el.classList.add('splide__slide', 'lav-fit__slide')
-        // el.textContent = findEl.title
-        el.innerHTML = findEl.outerHTML
-
-        _$('.lav-fit__slider .splide__list').insertAdjacentElement(
-          'beforeend',
-          el
-        )
-
-        if (!isFirstRender && fitSplide) {
-          fitSplide.refresh()
-        }
-      })
+  setTimeout(() => {
+    visibilityEvent('.lav-more', () => {
+      pushDataLayer('exp_promo_view_03', 'Advantages', 'view', 'Get more')
     })
 
-    _$('.lav-device__list').insertAdjacentElement('beforeend', el)
-  }
+    visibilityEvent('.shop-all', (el) => {
+      pushDataLayer('exp_promo_view_04', 'Section', 'view', 'Shop by category')
+    })
+  }, 5000)
 
-  _$('.lav-device__item').click()
+  visibilityEvent('.crs-products_exp', (el) => {
+    pushDataLayer(
+      'exp_promo_view_05',
+      'Section',
+      'view',
+      'Discover Our Top-Selling Products'
+    )
+  })
 
-  waitFor(
-    () => typeof Splide == 'function',
-    () => {
-      fitSplide = new Splide('.lav-fit__slider', {
-        autoWidth: true,
-        arrows: false,
-        pagination: false,
-        gap: 8
-      })
-
-      const bar = fitSplide.root.querySelector('.lav-fit__bar')
-
-      fitSplide.on('mounted move refresh', function () {
-        var end = fitSplide.Components.Controller.getEnd() + 1
-        var rate = Math.min((fitSplide.index + 1) / end, 1)
-        bar.style.left = String(100 * rate) + '%'
-        bar.style.width =
-          parseInt(100 / fitSplide.Components.Slides.get().length) + '%'
-      })
-
-      fitSplide.mount()
-
-      isFirstRender = false
+  document.addEventListener('click', (e) => {
+    console.log(e.target)
+    if (e.target.closest('.product-grid-item__inner')) {
+      const title = e.target
+        .closest('.product-grid-item__inner')
+        .querySelector('.product-grid-item__title')
+        ?.innerText.trim()
+      pushDataLayer(
+        'exp_promo_section_03',
+        title,
+        'click',
+        'Discover Our Top-Selling Products'
+      )
     }
-  )
+  })
 }
 
 function addModal() {
@@ -1419,6 +1534,18 @@ function addModal() {
   new Modal('lav-discount', markup)
 
   Modal.open('.lav-discount')
+
+  pushDataLayer('exp_promo_view_06', 'Pop up', 'view', 'Pop up Get 10')
+
+  _$('.lav-discount__btn').addEventListener('click', () => {
+    Modal.close()
+    pushDataLayer(
+      'exp_promo_button_01',
+      'Start shopping',
+      'click',
+      'Pop up Get 10'
+    )
+  })
 }
 
 function initTimer() {
@@ -1591,7 +1718,7 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
 
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
-    threshold: 0.3,
+    threshold: 0.45,
     ...customConfig,
     timer: null
   }
@@ -1600,14 +1727,14 @@ function visibilityEvent(el, cb, customConfig = {}) {
     ({ isIntersecting, target }, observer) => {
       // console.log(target, isIntersecting);
       if (isIntersecting) {
-        config.timer = setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb()
-            observer.disconnect()
-          }
-        }, 3000)
+        // config.timer = setTimeout(() => {
+        // if (isElementInViewport(target)) {
+        cb()
+        observer.disconnect()
+        // }
+        // }, 3000)
       } else {
-        clearTimeout(config.timer)
+        // clearTimeout(config.timer)
       }
     },
     config
