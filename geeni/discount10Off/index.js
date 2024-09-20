@@ -1173,7 +1173,7 @@ async function addMatches() {
   const userDevices = []
 
   Object.keys(deviceMap).forEach((key) => {
-    if (devices.includes(key) || true) {
+    if (devices.includes(key)) {
       deviceMap[key].pid = key
       userDevices.push(deviceMap[key])
     }
@@ -1291,7 +1291,7 @@ async function addMatches() {
   _$('.lav-matches__preload')?.remove()
 
   for (const device of userDevices) {
-    // if (_$$('.lav-device__item').length >= 4) break
+    if (_$$('.lav-device__item').length >= 4) break
     const el = document.createElement('div')
     el.classList.add('lav-device__item')
     el.style.backgroundImage = `url(${config.dir}/img/products/${device.id}.${
