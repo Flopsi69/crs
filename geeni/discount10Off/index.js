@@ -983,6 +983,12 @@ async function initExp() {
   // const customerEmail = window._dy_customer_logged_in?.email
   // await waitFor(() => window.userEmail, false, { ms: 20 })
 
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant' // or just omit the behavior property
+  })
+
   console.debug('** InitExp **')
   document.head.appendChild(stylesEl)
 
@@ -1173,7 +1179,7 @@ async function addMatches() {
   const userDevices = []
 
   Object.keys(deviceMap).forEach((key) => {
-    if (devices.includes(key)) {
+    if (devices.includes(key) || true) {
       deviceMap[key].pid = key
       userDevices.push(deviceMap[key])
     }
@@ -1294,12 +1300,15 @@ async function addMatches() {
     if (_$$('.lav-device__item').length >= 4) break
     const el = document.createElement('div')
     el.classList.add('lav-device__item')
+    el.dataset.productId = device.pid
     el.style.backgroundImage = `url(${config.dir}/img/products/${device.id}.${
       device.type || 'jpg'
     })`
 
     el.addEventListener('click', () => {
       if (el.classList.contains('active')) return
+
+      sessionStorage.setItem('choosenFitDevice', device.pid)
 
       if (!isInit) {
         pushDataLayer(
@@ -1355,7 +1364,18 @@ async function addMatches() {
     _$('.lav-device__list').insertAdjacentElement('beforeend', el)
   }
 
-  _$('.lav-device__item').click()
+  const choosenFitDeviceEl = _$(
+    `.lav-device__item[data-product-id="${sessionStorage.getItem(
+      'choosenFitDevice'
+    )}"]`
+  )
+
+  if (choosenFitDeviceEl) {
+    choosenFitDeviceEl.click()
+  } else {
+    sessionStorage.removeItem('choosenFitDevice')
+    _$('.lav-device__item').click()
+  }
   isInit = false
 
   waitFor(
