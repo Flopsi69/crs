@@ -1484,8 +1484,11 @@ function addAdvantages() {
   }, 5000)
 
   document.addEventListener('click', (e) => {
-    console.log(e.target)
-    if (e.target.closest('.product-grid-item__inner')) {
+    // console.log(e.target)
+    if (
+      e.target.closest('.product-grid-item__inner') &&
+      e.target.closest('.crs-products_exp')
+    ) {
       const title = e.target
         .closest('.product-grid-item__inner')
         .querySelector('.product-grid-item__title')
@@ -1744,11 +1747,11 @@ function visibilityEvent(el, cb, customConfig = {}) {
     ...customConfig,
     timer: null
   }
-  console.log(el)
+  // console.log(el)
   initIntersection(
     el,
     ({ isIntersecting, target }, observer) => {
-      console.log(target, isIntersecting)
+      // console.log(target, isIntersecting)
       if (isIntersecting) {
         // config.timer = setTimeout(() => {
         // if (isElementInViewport(target)) {
