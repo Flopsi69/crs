@@ -1022,6 +1022,7 @@ async function initExp() {
     // allProducts =
     getAllProductsMarkup()
 
+    await waitFor('.shop-all', false, { ms: 100 })
     connectSplide()
     addMatches()
     addAdvantages()
