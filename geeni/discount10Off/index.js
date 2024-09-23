@@ -1042,7 +1042,7 @@ async function initExp() {
     addPdpDiscount()
   }
 
-  let initTime = localStorage.getItem('initTime')
+  let initTime = localStorage.getItem('initTime1')
   if (initTime) {
     const currentTime = Math.floor(Date.now() / 1000)
     let timeLeft = 20 * 60 - (currentTime - initTime)
@@ -1596,12 +1596,12 @@ function addModal() {
 function initTimer() {
   const totalTime = 20 * 60
 
-  let initTime = localStorage.getItem('initTime')
+  let initTime = localStorage.getItem('initTime1')
   const currentTime = Math.floor(Date.now() / 1000)
 
   if (!initTime) {
     initTime = currentTime
-    localStorage.setItem('initTime', initTime)
+    localStorage.setItem('initTime1', initTime)
   }
 
   let timeLeft = totalTime - (currentTime - initTime)
