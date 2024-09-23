@@ -1052,7 +1052,7 @@ async function initExp() {
     )
   }
 
-  let initTime = localStorage.getItem('initTime3')
+  let initTime = localStorage.getItem('initTime4')
   if (initTime) {
     const currentTime = Math.floor(Date.now() / 1000)
     let timeLeft = 20 * 60 - (currentTime - initTime)
@@ -1125,7 +1125,7 @@ function addPdpDiscount() {
 }
 
 function addSticky() {
-  if (localStorage.getItem('stickyClosed3')) return
+  if (localStorage.getItem('stickyClosed4')) return
 
   const markup = /* html */ `
     <div class='lav-sticky'>
@@ -1169,7 +1169,7 @@ function addSticky() {
 
   _$('.lav-sticky__close').addEventListener('click', (e) => {
     e.preventDefault()
-    localStorage.setItem('stickyClosed3', true)
+    localStorage.setItem('stickyClosed4', true)
 
     pushDataLayer('exp_promo_button_03', 'Close', 'click', 'Slide block')
 
@@ -1218,7 +1218,7 @@ async function addMatches() {
   const userDevices = []
 
   Object.keys(deviceMap).forEach((key) => {
-    if (devices.includes(key) || true) {
+    if (devices.includes(key)) {
       deviceMap[key].pid = key
       userDevices.push(deviceMap[key])
     }
@@ -1532,9 +1532,9 @@ function addAdvantages() {
 }
 
 function addModal() {
-  if (localStorage.getItem('modalShown3')) return
+  if (localStorage.getItem('modalShown4')) return
 
-  localStorage.setItem('modalShown3', true)
+  localStorage.setItem('modalShown4', true)
 
   const markup = /* html */ `
     <div class='lav-modal__close'>${getSvg('closeModal')}</div>
@@ -1604,12 +1604,12 @@ function addModal() {
 function initTimer() {
   const totalTime = 20 * 60
 
-  let initTime = localStorage.getItem('initTime3')
+  let initTime = localStorage.getItem('initTime4')
   const currentTime = Math.floor(Date.now() / 1000)
 
   if (!initTime) {
     initTime = currentTime
-    localStorage.setItem('initTime3', initTime)
+    localStorage.setItem('initTime4', initTime)
   }
 
   let timeLeft = totalTime - (currentTime - initTime)
