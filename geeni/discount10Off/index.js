@@ -1,24 +1,24 @@
-const origLog = console.log
-console.log = function () {
-  origLog.apply(console, arguments)
-  navigator.sendBeacon(
-    'https://console.wiredgeese.com/log/geeni',
-    JSON.stringify(arguments)
-  )
-}
+// const origLog = console.log
+// console.log = function () {
+//   origLog.apply(console, arguments)
+//   navigator.sendBeacon(
+//     'https://console.wiredgeese.com/log/geeni',
+//     JSON.stringify(arguments)
+//   )
+// }
 
-const origLogError = console.error
-console.error = function () {
-  origLogError.apply(console, arguments)
-  if (arguments[0]?.message) {
-    console.log('error: ' + arguments[0].message)
-  } else {
-    console.log('error: ' + JSON.stringify(arguments))
-  }
-}
+// const origLogError = console.error
+// console.error = function () {
+//   origLogError.apply(console, arguments)
+//   if (arguments[0]?.message) {
+//     console.log('error: ' + arguments[0].message)
+//   } else {
+//     console.log('error: ' + JSON.stringify(arguments))
+//   }
+// }
 
 console.log('*** Experiment started ***')
-console.log(location.href)
+// console.log(location.href)
 
 // Config for Experiment
 const config = {
