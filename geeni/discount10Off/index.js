@@ -1040,7 +1040,13 @@ async function initExp() {
   }
 
   if (_$('body.template-product')) {
-    addPdpDiscount()
+    waitFor(
+      '.product__price-and-badge',
+      () => {
+        addPdpDiscount()
+      },
+      { ms: 100 }
+    )
   }
 
   let initTime = localStorage.getItem('initTime2')
@@ -1089,10 +1095,9 @@ async function getAllProductsMarkup() {
 }
 
 function addPdpDiscount() {
-  if (_$('.product__price-and-badge')) {
-    _$('.product__price-and-badge').insertAdjacentHTML(
-      'beforebegin',
-      /* html */ `
+  _$('.product__price-and-badge').insertAdjacentHTML(
+    'beforebegin',
+    /* html */ `
       <div class='lav-pdp-discount'>
         <div class='lav-pdp-discount__icon'>
           ${getSvg('spark')}
@@ -1100,21 +1105,20 @@ function addPdpDiscount() {
         <div class='lav-pdp-discount__caption'>Get -10 % off with code <span>WELCOME</span></div>
       </div>
     `
-    )
+  )
 
-    visibilityEvent('.lav-pdp-discount', () => {
-      pushDataLayer('exp_promo_view_07', 'Get 09', 'view', 'Promo cod section')
-    })
+  visibilityEvent('.lav-pdp-discount', () => {
+    pushDataLayer('exp_promo_view_07', 'Get 09', 'view', 'Promo cod section')
+  })
 
-    // _$('.lav-pdp-discount').addEventListener('click', () => {
-    //   pushDataLayer(
-    //     'exp_promo_button_04',
-    //     'Get 10',
-    //     'click',
-    //     'Promo cod section'
-    //   )
-    // })
-  }
+  // _$('.lav-pdp-discount').addEventListener('click', () => {
+  //   pushDataLayer(
+  //     'exp_promo_button_04',
+  //     'Get 10',
+  //     'click',
+  //     'Promo cod section'
+  //   )
+  // })
 }
 
 function addSticky() {
