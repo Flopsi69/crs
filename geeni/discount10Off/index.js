@@ -1118,7 +1118,7 @@ function addPdpDiscount() {
 }
 
 function addSticky() {
-  if (sessionStorage.getItem('stickyClosed')) return
+  if (localStorage.getItem('stickyClosed')) return
 
   const markup = /* html */ `
     <div class='lav-sticky'>
@@ -1162,7 +1162,7 @@ function addSticky() {
 
   _$('.lav-sticky__close').addEventListener('click', (e) => {
     e.preventDefault()
-    sessionStorage.setItem('stickyClosed', true)
+    localStorage.setItem('stickyClosed', true)
 
     pushDataLayer('exp_promo_button_03', 'Close', 'click', 'Slide block')
 
@@ -1525,9 +1525,9 @@ function addAdvantages() {
 }
 
 function addModal() {
-  if (sessionStorage.getItem('modalShown')) return
+  if (localStorage.getItem('modalShown')) return
 
-  sessionStorage.setItem('modalShown', true)
+  localStorage.setItem('modalShown', true)
 
   const markup = /* html */ `
     <div class='lav-modal__close'>${getSvg('closeModal')}</div>
