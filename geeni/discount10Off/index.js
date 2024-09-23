@@ -10,8 +10,8 @@ console.log = function () {
 const origLogError = console.error
 console.error = function () {
   origLogError.apply(console, arguments)
-  if (arguments[0].message) {
-    console.log('error: ' + arguments[0]?.message)
+  if (arguments[0]?.message) {
+    console.log('error: ' + arguments[0].message)
   } else {
     console.log('error: ' + JSON.stringify(arguments))
   }
