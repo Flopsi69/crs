@@ -1,4 +1,23 @@
-console.debug('*** Experiment started ***')
+const origLog = console.log
+console.log = function () {
+  origLog.apply(console, arguments)
+  navigator.sendBeacon(
+    'https://console.wiredgeese.com/log/geeni',
+    JSON.stringify(arguments)
+  )
+}
+
+const origLogError = console.error
+console.error = function () {
+  origLogError.apply(console, arguments)
+  if (arguments[0].message) {
+    console.log('error: ' + arguments[0].message)
+  } else {
+    console.log('error: ' + JSON.stringify(arguments))
+  }
+}
+
+console.log('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
@@ -989,7 +1008,7 @@ async function initExp() {
     behavior: 'instant' // or just omit the behavior property
   })
 
-  console.debug('** InitExp **')
+  console.log('** InitExp **')
   document.head.appendChild(stylesEl)
 
   applyDiscountCode('welcome')
@@ -1818,7 +1837,7 @@ function pushDataLayer(name = '', desc = '', type = '', loc = '') {
       event_loc: loc
     }
 
-    console.debug('** GA4 Event **', event)
+    console.log('** GA4 Event **', event)
 
     if (!config.debug) {
       dataLayer.push(event)
