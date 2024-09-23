@@ -18,6 +18,7 @@ console.error = function () {
 }
 
 console.log('*** Experiment started ***')
+console.log(location.href)
 
 // Config for Experiment
 const config = {
