@@ -189,6 +189,10 @@ body > div:not([class]) {
   margin-top: -12px;
   // left: 0;
 }
+.lav-jumb__image-caption[src*="jumb-interviews-text"] {
+  margin-left: -20px;
+  // left: 0;
+}
 .lav-jumb__image-caption.active {
   transition-duration: .5s;
   transition-delay: .4s;
