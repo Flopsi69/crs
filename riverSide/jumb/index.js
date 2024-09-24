@@ -185,6 +185,10 @@ body > div:not([class]) {
 .lav-jumb__image-caption[src*="jumb-notes-text"] {
   // left: 0;
 }
+.lav-jumb__image-caption[src*="jumb-podcast-text"] {
+  margin-top: -12px;
+  // left: 0;
+}
 .lav-jumb__image-caption.active {
   transition-duration: .5s;
   transition-delay: .4s;
