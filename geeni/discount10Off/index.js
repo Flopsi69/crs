@@ -165,9 +165,9 @@ class Modal {
         position: relative;
         background: linear-gradient(90deg, #C50717 17%, #F71D2F 44.5%, #DC1122 100%);
         color: #fff;
-        padding: 24px 16px 24px 120px;
+        padding: 24px 14px 24px 118px;
         border-radius: 16px 16px 0 0;
-        font-size: 24px;
+        font-size: 21px;
         font-weight: 700;
         line-height: 32px;
         text-transform: uppercase;
@@ -192,8 +192,8 @@ class Modal {
       .lav-discount__head span:before {
         content: '';
         position: absolute;
-        left: 0px;
-        bottom: -2px;
+        left: -5px;
+        bottom: -5px;
         background: url('${config.dir}/img/blue-underline.svg') no-repeat;
         background-size: contain;
         width: 105px;
@@ -1540,7 +1540,7 @@ function addModal() {
     <div class='lav-modal__close'>${getSvg('closeModal')}</div>
 
     <div class='lav-discount__head'>
-        ONLY <span>New app</span> user deal
+      Limited-Time Deal for <span>New app</span> users 
     </div>
 
     <div class='lav-discount__body'>
