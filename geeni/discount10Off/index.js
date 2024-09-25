@@ -661,7 +661,7 @@ const styles = /* css */ `
     border-radius: 8px 8px 0px 0px;
     background: linear-gradient(90deg, #C50717 17%, #F71D2F 44.5%, #DC1122 100%);
     color: #fff;
-    padding: 12px 16px;
+    padding: 12px 12px 12px 5px;
     transition: .5s;
     transform: translateY(0);
   }
@@ -695,18 +695,18 @@ const styles = /* css */ `
   .lav-sticky__icon {
     line-height: 0;
     flex-shrink: 0;
-    margin-right: 4px;
+    margin-right: 5px;
   }
   .lav-sticky__info {
     position: relative;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 22px;
   }
   .lav-sticky__info:before {
     content: '';
     position: absolute;
-    left: 0px;
+    left: -3px;
     top: 20px;
     background: url('${config.dir}/img/blue2-underline.svg') no-repeat;
     background-size: contain;
@@ -725,6 +725,7 @@ const styles = /* css */ `
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
+    white-space: nowrap;
   }
   .lav-timer2__inner {
     display: flex;
@@ -1015,7 +1016,7 @@ async function initExp() {
   console.log('** InitExp **')
   document.head.appendChild(stylesEl)
 
-  applyDiscountCode('welcome')
+  applyDiscountCode('APPEXCLUSIVE10')
 
   if (location.pathname === '/' || location.pathname === '/index') {
     // const allProductsReq = await fetch('/products.json?limit=2000')
@@ -1105,7 +1106,7 @@ function addPdpDiscount() {
         <div class='lav-pdp-discount__icon'>
           ${getSvg('spark')}
         </div>
-        <div class='lav-pdp-discount__caption'>Get -10 % off with code <span>WELCOME</span></div>
+        <div class='lav-pdp-discount__caption'>Get -10 % off with code <span>APPEXCLUSIVE10</span></div>
       </div>
     `
   )
@@ -1137,7 +1138,7 @@ function addSticky() {
         <img src='${config.dir}/img/spark.svg' />
       </div>
       <div class='lav-sticky__info'>
-        Get <span>-10 % off</span> <br/> with code <span>WELCOME</span>
+        Get <span>-10 % off</span> with code <span>APPEXCLUSIVE10</span>
       </div>
 
       <div class='lav-sticky__timer lav-timer2'>
@@ -1294,7 +1295,7 @@ async function addMatches() {
         <div class='lav-fit__header'>
           <div class='lav-fit__title'>Great fit products</div>
           <div class='lav-fit__gift'>
-            Get <span>-10 % off</span> with code <span>WELCOME</span>
+            Get <span>-10 % off</span> with code <span>APPEXCLUSIVE10</span>
           </div>
         </div>
 
