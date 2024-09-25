@@ -653,6 +653,7 @@ const styles = /* css */ `
 
   .lav-sticky {
     display: flex;
+    align-items: center;
     position: fixed;
     z-index: 120;
     bottom: 0;
