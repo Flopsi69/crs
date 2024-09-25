@@ -1054,7 +1054,7 @@ async function initExp() {
     )
   }
 
-  let initTime = localStorage.getItem('initTime4')
+  let initTime = localStorage.getItem('initTime5')
   if (initTime) {
     const currentTime = Math.floor(Date.now() / 1000)
     let timeLeft = 20 * 60 - (currentTime - initTime)
@@ -1127,7 +1127,7 @@ function addPdpDiscount() {
 }
 
 function addSticky() {
-  if (localStorage.getItem('stickyClosed4')) return
+  if (localStorage.getItem('stickyClosed5')) return
 
   const markup = /* html */ `
     <div class='lav-sticky'>
@@ -1171,7 +1171,7 @@ function addSticky() {
 
   _$('.lav-sticky__close').addEventListener('click', (e) => {
     e.preventDefault()
-    localStorage.setItem('stickyClosed4', true)
+    localStorage.setItem('stickyClosed5', true)
 
     pushDataLayer('exp_promo_button_03', 'Close', 'click', 'Slide block')
 
@@ -1534,9 +1534,9 @@ function addAdvantages() {
 }
 
 function addModal() {
-  if (localStorage.getItem('modalShown4')) return
+  if (localStorage.getItem('modalShown5')) return
 
-  localStorage.setItem('modalShown4', true)
+  localStorage.setItem('modalShown5', true)
 
   const markup = /* html */ `
     <div class='lav-modal__close'>${getSvg('closeModal')}</div>
@@ -1606,12 +1606,12 @@ function addModal() {
 function initTimer() {
   const totalTime = 20 * 60
 
-  let initTime = localStorage.getItem('initTime4')
+  let initTime = localStorage.getItem('initTime5')
   const currentTime = Math.floor(Date.now() / 1000)
 
   if (!initTime) {
     initTime = currentTime
-    localStorage.setItem('initTime4', initTime)
+    localStorage.setItem('initTime5', initTime)
   }
 
   let timeLeft = totalTime - (currentTime - initTime)
