@@ -1065,7 +1065,7 @@ async function initExp() {
   }
 
   initTimer()
-  addModal()
+  // addModal()
   addSticky()
 }
 
