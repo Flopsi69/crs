@@ -1169,6 +1169,13 @@ function addSticky() {
     _$('body').classList.add('lav-sticky-pdp-wrapper')
   }
 
+  setTimeout(() => {
+    if (_$('.sticky-btn-wrapper')) {
+      _$('.lav-sticky').classList.add('lav-sticky_pdp')
+      _$('body').classList.add('lav-sticky-pdp-wrapper')
+    }
+  }, 3500)
+
   _$('.lav-sticky__close').addEventListener('click', (e) => {
     e.preventDefault()
     localStorage.setItem('stickyClosed5', true)
