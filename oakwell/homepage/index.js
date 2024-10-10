@@ -1245,7 +1245,7 @@ async function initExp() {
     addSticky()
     handleBetter()
     handleReviews()
-    handleConnected()
+    waitFor('.b-main-press', handleConnected)
     handleGift()
     addFaq()
 
