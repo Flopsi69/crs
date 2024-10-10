@@ -1273,17 +1273,17 @@ function handleBooking() {
 
   const products = [
     {
-      title: 'Date Night Package',
+      title: 'Oakwell Escape Package',
       fullTitle:
         'Indulge in a romantic experience and cultivate a unique bond with your partner.',
       descr:
         'Are you looking for a romantic spa treatment? The Date Night package makes Oakwell Beer Spa the best spa in Denver for couples.',
       link: '/waitlist-crs/',
-      id: '68950903',
+      id: '68951432',
       image: `${config.dir}/img/booking-1.png`
     },
     {
-      title: 'Standard Beer Therapy Room',
+      title: "Couple's Retreat Package",
       fullTitle: 'Take a break and indulge in self-care.',
       descr:
         'Get access to a private Beer Therapy™ Room that includes everything you need for rest, relaxation, and other wellness benefits.',
@@ -1292,17 +1292,17 @@ function handleBooking() {
       image: `${config.dir}/img/booking-2.png`
     },
     {
-      title: 'Garage Party',
+      title: 'Beer Therapy Ritual Package',
       fullTitle:
         'Get ready for an unforgettable spa day surrounded by your closest friends.',
       descr:
         'Ideal for groups. The Garage Party is easily one of the most fun but relaxing ways to hang out with a small group.',
       link: '/waitlist-crs/',
-      id: '68951432',
-      image: `${config.dir}/img/booking-3.png`
+      id: '68950903',
+      image: `${config.dir}/img/booking-2.png`
     },
     {
-      title: 'Special Events',
+      title: 'Garage Party',
       fullTitle:
         'Celebrate special holidays with your loved ones at Oakwell Beer Spa.',
       descr:
