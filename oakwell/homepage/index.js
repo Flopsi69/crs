@@ -405,6 +405,8 @@ const styles = /* css */ `
   }
 
   .craftpartners-slider .swiper-slide .item {
+    border: 1px solid var(--Light-Green, #DDF2D0);
+    background: rgba(185, 209, 177, 0.10);
     backdrop-filter: blur(7px);
   }
 
@@ -1348,9 +1350,15 @@ function handleBooking() {
     }
   )
 
-  // _$$('.b-main-craftpartners img[data-src*="Snow-Capped-Cider.png"]').forEach((img) => {
-  //   img.src = `${config.dir}/img/Snow-Capped-Cider.png`
-  // });
+  _$$('.b-main-craftpartners img[data-src*="Snow-Capped-Cider.png"]').forEach(
+    (img) => {
+      img.insertAdjacentHTML(
+        'beforebegin',
+        `<img src="${config.dir}/img/Snow-Capped-Cider.svg" />`
+      )
+      img.remove()
+    }
+  )
 
   //oakwell.com/wp-content/uploads/2024/03/jagged-mountain-oakwell-logo.png
 
