@@ -1885,8 +1885,10 @@ function handleGift() {
     giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
   })
 
-  _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
-    'Buy Gift Card'
+  waitFor('.lav-gift .b-main-giftcards .btns .link-btn span', () => {
+    _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
+      'Buy Gift Card'
+  })
 }
 
 function addFaq() {
