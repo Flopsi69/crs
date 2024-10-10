@@ -1876,12 +1876,14 @@ function handleGift() {
   )
   giftEl.insertAdjacentElement('afterbegin', _$('.b-main-giftcards'))
 
-  _$('.b-insta')
-    .closest('.pin-spacer')
-    .insertAdjacentElement('beforebegin', giftEl)
+  waitFor('.pin-spacer .b-insta', () => {
+    _$('.b-insta')
+      .closest('.pin-spacer')
+      .insertAdjacentElement('beforebegin', giftEl)
 
-  giftEl.insertAdjacentHTML('beforeend', getSvg('waveTop'))
-  giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
+    giftEl.insertAdjacentHTML('beforeend', getSvg('waveTop'))
+    giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
+  })
 
   _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
     'Buy Gift Card'
