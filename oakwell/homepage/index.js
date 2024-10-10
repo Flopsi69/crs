@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/oakwell/homepage',
-  // dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
+  // dir: 'http://127.0.0.1:5500/oakwell/homepage',
+  dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
   clarity: ['set', 'new_hp', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // Styles for Experiment
