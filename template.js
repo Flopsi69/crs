@@ -14,7 +14,7 @@ console.log = function (...args) {
 }
 
 // Styles for Experiment
-const styles = ``
+const styles = /* css */ ``
 
 const stylesEl = document.createElement('style')
 stylesEl.classList.add('exp-styles')
@@ -24,7 +24,7 @@ stylesEl.innerHTML = styles
 initExp()
 
 async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 100 })
+  await waitFor(() => document.head && document.body, false, { ms: 20 })
 
   document.head.appendChild(stylesEl)
 
