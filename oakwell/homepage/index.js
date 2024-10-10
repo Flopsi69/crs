@@ -203,6 +203,9 @@ const styles = /* css */ `
     background: var(--Main-White, #FFF);
     box-shadow: 0px -6px 24px 0px rgba(0, 0, 0, 0.10);
   }
+  .lav-fixed:after {
+    display: none!important;
+  }
   .lav-fixed__info {
     max-width: 430px;
   }
@@ -220,14 +223,27 @@ const styles = /* css */ `
     max-width: 337px;
     width: 100%;
   }
-
+  .lav-sticky-wrap {
+    position: relative;
+    height: 78px;
+    background: #fff;
+  }
   .lav-sticky {
-    position: sticky;
+    position: absolute;
+    left: 0;
+    right: 0;
     top: 0;
-    z-index: 99;
     padding-top: 18px;
     padding-bottom: 18px;
     background: #fff;
+    height: 78px;
+  }
+  .lav-sticky_active {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
   }
   .lav-sticky__nav {
     display: flex;
@@ -1242,7 +1258,6 @@ async function initExp() {
     console.debug('** InitExp **')
 
     addHero()
-    addSticky()
     handleBetter()
     handleReviews()
     waitFor('.b-main-press', handleConnected)
@@ -1250,6 +1265,7 @@ async function initExp() {
     addFaq()
 
     handleBooking()
+    addSticky()
   } else if (location.pathname === '/waitlist-crs/') {
     let hash = location.hash?.replace('#service-', '')
 
@@ -1299,7 +1315,7 @@ function handleBooking() {
         'Ideal for groups. The Garage Party is easily one of the most fun but relaxing ways to hang out with a small group.',
       link: '/waitlist-crs/',
       id: '68950903',
-      image: `${config.dir}/img/booking-2.png`
+      image: `${config.dir}/img/booking-3.png`
     },
     {
       title: 'Garage Party',
@@ -1713,28 +1729,111 @@ function handleBetter() {
 
 function addSticky() {
   const markup = /* html */ `
-    <div class='lav-sticky'>
-      <div class='container'>
-        <div class='lav-sticky__nav'>
-          <a data-router-disabled class='lav-sticky__link active' href='#'>Our Services</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Location</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Our Story</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Reviews</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Benefits</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Additional Services</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Beverages</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Blog</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>Gift Cards</a>
-          <a data-router-disabled class='lav-sticky__link' href='#'>FAQs</a>
+    <div class='lav-sticky-wrap'>
+      <div class='lav-sticky'>
+        <div class='container'>
+          <div class='lav-sticky__nav'>
+            <a data-router-disabled class='lav-sticky__link active' data-target='.lav-products--one' href='#'>Our Services</a>
+            <a data-router-disabled class='lav-sticky__link' data-target='.lav-location' href='#'>Location</a>
+            <a data-router-disabled data-target='.b-main-left-right.first .box' class='lav-sticky__link' href='#'>Our Story</a>
+            <a data-router-disabled data-target='.b-main-most-services' class='lav-sticky__link' href='#'>Benefits</a>
+            <a data-router-disabled data-target='.b-goog-review' class='lav-sticky__link' href='#'>Reviews</a>
+            <a data-router-disabled data-target='.b-vert-scroll-cards' class='lav-sticky__link' href='#'>Beverages</a>
+            <a data-router-disabled data-target='.lav-benefits' class='lav-sticky__link' href='#'>Additional Services</a>
+            <a data-router-disabled data-target='.b-main-articles' class='lav-sticky__link' href='#'>Blog</a>
+            <a data-router-disabled data-target='.b-main-giftcards' class='lav-sticky__link' href='#'>Gift Cards</a>
+            <a data-router-disabled data-target='.lav-faq' class='lav-sticky__link' href='#'>FAQs</a>
+          </div>
         </div>
       </div>
     </div>
   `
 
-  // _$('.b-main').insertAdjacentHTML('beforebegin', markup)
+  _$('.lav-hero').insertAdjacentHTML('afterend', markup)
+
+  window.addEventListener('scroll', function () {
+    const stickyEl = _$('.lav-sticky')
+    const offsetTop = _$('.lav-sticky-wrap').offsetTop
+
+    if (window.scrollY >= offsetTop) {
+      stickyEl.classList.add('lav-sticky_active')
+    } else {
+      stickyEl.classList.remove('lav-sticky_active')
+    }
+  })
+
+  initSticky()
+
+  function initSticky() {
+    // Smooth scrolling to section on click
+    document.querySelectorAll('.lav-sticky__link').forEach((link) => {
+      link.addEventListener('click', function (event) {
+        event.preventDefault() // Prevent default anchor behavior
+
+        const target = document.querySelector(this.dataset.target)
+        if (target) {
+          const rect = target.getBoundingClientRect() // Get the position relative to the viewport
+          const scrollPosition =
+            window.pageYOffset +
+            rect.top -
+            document.querySelector('.lav-sticky').offsetHeight
+
+          window.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
+          })
+        }
+
+        // Remove active class from all links
+        document
+          .querySelectorAll('.lav-sticky__link')
+          .forEach((l) => l.classList.remove('active'))
+        // Add active class to the clicked link
+        this.classList.add('active')
+      })
+    })
+
+    const navLinks = document.querySelectorAll('.lav-sticky__link')
+    let targets = Array.from(navLinks).map((link) => {
+      console.log(link)
+      const target = _$(link.dataset.target)
+      target.dataset.target = link.dataset.target
+
+      return target
+    })
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.3 // Adjust this to control when the section is considered in view
+    }
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log('intersecting', entry.target.dataset.target)
+          // Remove active class from all links
+          navLinks.forEach((link) => link.classList.remove('active'))
+
+          // Add active class to the corresponding link
+          const activeLink = _$(
+            `.lav-sticky__link[data-target='${entry.target.dataset.target}']`
+          )
+          if (activeLink) {
+            activeLink.classList.add('active')
+          }
+        }
+      })
+    }, observerOptions)
+
+    console.log(targets)
+    // Observe each section
+    targets.forEach((section) => {
+      observer.observe(section)
+    })
+  }
 
   _$('.mainPage').insertAdjacentHTML(
-    'afterend',
+    'beforeend',
     /* html */ `
     <div class='lav-fixed'>
       <div class='lav-fixed__info'>
