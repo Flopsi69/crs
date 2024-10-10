@@ -1775,6 +1775,7 @@ function addSticky() {
           const rect = target.getBoundingClientRect() // Get the position relative to the viewport
           const scrollPosition =
             window.pageYOffset +
+            2 +
             rect.top -
             document.querySelector('.lav-sticky').offsetHeight
 
