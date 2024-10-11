@@ -331,7 +331,7 @@
     margin: 18px 0;
   }
   .lav-product__link {
-    max-width: 207px;
+    max-width: 13rem;
     margin-top: auto;
     width: 100%;
   }
@@ -622,7 +622,7 @@
     margin-bottom: 2rem;
   }
   .lav-review__btn {
-    max-width: 438px;
+    max-width: 27.375rem;
     width: 100%;
   }
   .lav-review__btn-wrap {
@@ -880,6 +880,12 @@
     .lav-wave-top {
       bottom: 2rem;
       transform: translateY(99%);
+    }
+    .lav-review__btn {
+      max-width: 438px;
+    }
+    .lav-product__link {
+      max-width: 207px;
     }
     .lav-sticky {
       padding-top: 0;
@@ -1214,7 +1220,10 @@
     .b-vert-scroll-cards .box .right {
       display: none;
     }
-    .lav-gift .b-main-wave h2 + p, .lav-gift .b-main-giftcards .subtitle {
+    .lav-gift .b-main-wave h2 + p {
+      font-size: 1rem;
+    }
+    .lav-gift .b-main-giftcards .subtitle {
       font-size: 1rem;
     }
     .lav-sticky__link {
