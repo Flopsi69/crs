@@ -1342,9 +1342,7 @@
         _$('.b-goog-review') &&
         _$('.b-main-craftpartners') &&
         _$('.b-main-left-right.third') &&
-        _$('.b-start-doing') &&
-        _$('.b-main-wave.top') &&
-        _$('.b-main-wave.bot')
+        _$('.b-start-doing')
       )
     },
     initExp,
