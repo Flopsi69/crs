@@ -1,15 +1,18 @@
-console.debug('*** Experiment started ***')
+;(function () {
+  if (config.dir) return
 
-// Config for Experiment
-const config = {
-  // dir: 'http://127.0.0.1:5500/oakwell/homepage',
-  dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
-  clarity: ['set', 'new_hp', 'variant_1'],
-  debug: false
-}
+  console.debug('*** Experiment started ***')
 
-// Styles for Experiment
-const styles = /* css */ `
+  // Config for Experiment
+  const config = {
+    // dir: 'http://127.0.0.1:5500/oakwell/homepage',
+    dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
+    clarity: ['set', 'new_hp', 'variant_1'],
+    debug: false
+  }
+
+  // Styles for Experiment
+  const styles = /* css */ `
   .lav-quincy {
     font-family: quincycf, sans-serif;
   }
@@ -1266,185 +1269,188 @@ const styles = /* css */ `
   
 `
 
-const stylesEl = document.createElement('style')
-stylesEl.classList.add('exp-styles')
-stylesEl.innerHTML = styles
+  const stylesEl = document.createElement('style')
+  stylesEl.classList.add('exp-styles')
+  stylesEl.innerHTML = styles
 
-// *** Logic *** //
-initExp()
+  // *** Logic *** //
+  initExp()
 
-async function initExp() {
-  await waitFor(() => document.head && document.body, false, { ms: 20 })
+  async function initExp() {
+    await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-  if (location.pathname === '/') {
-    document.head.appendChild(stylesEl)
+    if (location.pathname === '/') {
+      document.head.appendChild(stylesEl)
 
-    console.debug('** InitExp **')
-    await waitFor('.wrapper.mainPage', false, { ms: 20 })
+      console.debug('** InitExp **')
+      await waitFor('.wrapper.mainPage', false, { ms: 20 })
 
-    addHero()
-    handleBetter()
-    handleReviews()
-    waitFor('.b-main-press', handleConnected)
-    handleGift()
-    addFaq()
+      addHero()
+      handleBetter()
+      handleReviews()
+      waitFor('.b-main-press', handleConnected)
+      handleGift()
+      addFaq()
 
-    handleBooking()
-    addSticky()
-  } else if (location.pathname === '/waitlist-crs/') {
-    let hash = location.hash?.replace('#service-', '')
+      handleBooking()
+      addSticky()
+    } else if (location.pathname === '/waitlist-crs/') {
+      let hash = location.hash?.replace('#service-', '')
 
-    if (!hash) return
+      if (!hash) return
 
-    _$(`.service[data-id="${hash}"]`)?.querySelector('.service-btn').click()
+      _$(`.service[data-id="${hash}"]`)?.querySelector('.service-btn').click()
+    }
   }
-}
 
-function handleBooking() {
-  const benefits = Array.from(_$$('.b-main-left-right.third .container')).map(
-    (el) => {
-      return {
-        title: el.querySelector('h2').textContent,
-        descr: el.querySelector('h2 + p').textContent,
-        link: el.querySelector('h2 + p + a').href,
-        image: el.querySelector('.img img').dataset.src
+  function handleBooking() {
+    const benefits = Array.from(_$$('.b-main-left-right.third .container')).map(
+      (el) => {
+        return {
+          title: el.querySelector('h2').textContent,
+          descr: el.querySelector('h2 + p').textContent,
+          link: el.querySelector('h2 + p + a').href,
+          image: el.querySelector('.img img').dataset.src
+        }
       }
-    }
-  )
-
-  const products = [
-    {
-      title: 'Oakwell Escape Package',
-      fullTitle:
-        'Indulge in a romantic experience and cultivate a unique bond with your partner.',
-      descr:
-        'Are you looking for a romantic spa treatment? The Date Night package makes Oakwell Beer Spa the best spa in Denver for couples.',
-      link: '/waitlist-crs/',
-      id: '68951432',
-      image: `${config.dir}/img/booking-1.png`
-    },
-    {
-      title: "Couple's Retreat Package",
-      fullTitle: 'Take a break and indulge in self-care.',
-      descr:
-        'Get access to a private Beer Therapy™ Room that includes everything you need for rest, relaxation, and other wellness benefits.',
-      link: '/waitlist-crs/',
-      id: '68951079',
-      image: `${config.dir}/img/booking-2.png`
-    },
-    {
-      title: 'Beer Therapy Ritual Package',
-      fullTitle:
-        'Get ready for an unforgettable spa day surrounded by your closest friends.',
-      descr:
-        'Ideal for groups. The Garage Party is easily one of the most fun but relaxing ways to hang out with a small group.',
-      link: '/waitlist-crs/',
-      id: '68950903',
-      image: `${config.dir}/img/booking-3.png`
-    },
-    {
-      title: 'Garage Party',
-      fullTitle:
-        'Celebrate special holidays with your loved ones at Oakwell Beer Spa.',
-      descr:
-        'Oakwell Beer Spa offers a wellness experience unlike any other. Celebrate special holidays at Oakwell Beer Spa',
-      link: '/waitlist-crs/',
-      id: '27351564',
-      image: `${config.dir}/img/booking-4.png`
-    }
-  ]
-
-  const productsOne = getProducts('one')
-  const productsTwo = getProducts('two')
-  const benefitsEl = getBenefits()
-
-  // _$('.lav-sticky').insertAdjacentElement('afterend', productsOne)
-  _$('.b-main').insertAdjacentElement('beforebegin', productsOne)
-  _$('.b-main-craftpartners').insertAdjacentElement('beforebegin', productsTwo)
-  _$('.b-main-craftpartners').insertAdjacentElement('beforebegin', benefitsEl)
-
-  _$$('.b-main-craftpartners img[data-src*="craft-1.png"]').forEach((img) => {
-    img.insertAdjacentHTML(
-      'beforebegin',
-      `<img src="${config.dir}/img/craft-1.png" />`
     )
-    img.remove()
-  })
 
-  _$$(
-    '.b-main-craftpartners img[data-src*="jagged-mountain-oakwell-logo.png"]'
-  ).forEach((img) => {
-    img.insertAdjacentHTML(
+    const products = [
+      {
+        title: 'Oakwell Escape Package',
+        fullTitle:
+          'Indulge in a romantic experience and cultivate a unique bond with your partner.',
+        descr:
+          'Are you looking for a romantic spa treatment? The Date Night package makes Oakwell Beer Spa the best spa in Denver for couples.',
+        link: '/waitlist-crs/',
+        id: '68951432',
+        image: `${config.dir}/img/booking-1.png`
+      },
+      {
+        title: "Couple's Retreat Package",
+        fullTitle: 'Take a break and indulge in self-care.',
+        descr:
+          'Get access to a private Beer Therapy™ Room that includes everything you need for rest, relaxation, and other wellness benefits.',
+        link: '/waitlist-crs/',
+        id: '68951079',
+        image: `${config.dir}/img/booking-2.png`
+      },
+      {
+        title: 'Beer Therapy Ritual Package',
+        fullTitle:
+          'Get ready for an unforgettable spa day surrounded by your closest friends.',
+        descr:
+          'Ideal for groups. The Garage Party is easily one of the most fun but relaxing ways to hang out with a small group.',
+        link: '/waitlist-crs/',
+        id: '68950903',
+        image: `${config.dir}/img/booking-3.png`
+      },
+      {
+        title: 'Garage Party',
+        fullTitle:
+          'Celebrate special holidays with your loved ones at Oakwell Beer Spa.',
+        descr:
+          'Oakwell Beer Spa offers a wellness experience unlike any other. Celebrate special holidays at Oakwell Beer Spa',
+        link: '/waitlist-crs/',
+        id: '27351564',
+        image: `${config.dir}/img/booking-4.png`
+      }
+    ]
+
+    const productsOne = getProducts('one')
+    const productsTwo = getProducts('two')
+    const benefitsEl = getBenefits()
+
+    // _$('.lav-sticky').insertAdjacentElement('afterend', productsOne)
+    _$('.b-main').insertAdjacentElement('beforebegin', productsOne)
+    _$('.b-main-craftpartners').insertAdjacentElement(
       'beforebegin',
-      `<img src="${config.dir}/img/jagged-mountain-oakwell-logo.png" />`
+      productsTwo
     )
-    img.remove()
-  })
+    _$('.b-main-craftpartners').insertAdjacentElement('beforebegin', benefitsEl)
 
-  _$$('.b-main-craftpartners img[data-src*="Mor-Kombucha.png"]').forEach(
-    (img) => {
+    _$$('.b-main-craftpartners img[data-src*="craft-1.png"]').forEach((img) => {
       img.insertAdjacentHTML(
         'beforebegin',
-        `<img src="${config.dir}/img/Mor-Kombucha.png" />`
+        `<img src="${config.dir}/img/craft-1.png" />`
       )
       img.remove()
-    }
-  )
+    })
 
-  _$$('.b-main-craftpartners img[data-src*="Snow-Capped-Cider.png"]').forEach(
-    (img) => {
+    _$$(
+      '.b-main-craftpartners img[data-src*="jagged-mountain-oakwell-logo.png"]'
+    ).forEach((img) => {
       img.insertAdjacentHTML(
         'beforebegin',
-        `<img src="${config.dir}/img/Snow-Capped-Cider.svg" />`
+        `<img src="${config.dir}/img/jagged-mountain-oakwell-logo.png" />`
       )
       img.remove()
-    }
-  )
+    })
 
-  //oakwell.com/wp-content/uploads/2024/03/jagged-mountain-oakwell-logo.png
+    _$$('.b-main-craftpartners img[data-src*="Mor-Kombucha.png"]').forEach(
+      (img) => {
+        img.insertAdjacentHTML(
+          'beforebegin',
+          `<img src="${config.dir}/img/Mor-Kombucha.png" />`
+        )
+        img.remove()
+      }
+    )
 
-  https: productsTwo.insertAdjacentHTML('afterbegin', getSvg('leafProduct'))
+    _$$('.b-main-craftpartners img[data-src*="Snow-Capped-Cider.png"]').forEach(
+      (img) => {
+        img.insertAdjacentHTML(
+          'beforebegin',
+          `<img src="${config.dir}/img/Snow-Capped-Cider.svg" />`
+        )
+        img.remove()
+      }
+    )
 
-  _$('.b-main-craftpartners').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-left-right.first>.desk')
-  )
-  _$('.b-main-craftpartners').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-left-right.first>.mob')
-  )
+    //oakwell.com/wp-content/uploads/2024/03/jagged-mountain-oakwell-logo.png
 
-  _$('.b-main-craftpartners h2').textContent =
-    'Featured Local Craft Brewery Partners'
+    https: productsTwo.insertAdjacentHTML('afterbegin', getSvg('leafProduct'))
 
-  _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-left-right.second.after-first .wave')
-  )
+    _$('.b-main-craftpartners').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-left-right.first>.desk')
+    )
+    _$('.b-main-craftpartners').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-left-right.first>.mob')
+    )
 
-  _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-left-right.second.after-first .mob')
-  )
+    _$('.b-main-craftpartners h2').textContent =
+      'Featured Local Craft Brewery Partners'
 
-  _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-left-right.second.after-first .desk')
-  )
+    _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-left-right.second.after-first .wave')
+    )
 
-  _$('.b-main-craftpartners + .b-marquee').insertAdjacentHTML(
-    'afterbegin',
-    /* html */ `
+    _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-left-right.second.after-first .mob')
+    )
+
+    _$('.b-main-craftpartners + .b-marquee').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-left-right.second.after-first .desk')
+    )
+
+    _$('.b-main-craftpartners + .b-marquee').insertAdjacentHTML(
+      'afterbegin',
+      /* html */ `
     <svg class='lav-marq-wave' xmlns="http://www.w3.org/2000/svg" width="375" height="58" viewBox="0 0 375 58" fill="none">
       <path d="M0 58V0H375V24.4267C316.559 5.8595 241.12 0.757969 186.926 13.1888C123.82 27.6695 111.111 49.2061 0 58Z" fill="#0C5947"/>
     </svg>
     `
-  )
+    )
 
-  function getProducts(num) {
-    const productsEl = document.createElement('div')
-    productsEl.classList.add('lav-products', 'lav-products--' + num)
-    productsEl.innerHTML = /* html */ `
+    function getProducts(num) {
+      const productsEl = document.createElement('div')
+      productsEl.classList.add('lav-products', 'lav-products--' + num)
+      productsEl.innerHTML = /* html */ `
       <div class='container'>
         <h2 class='lav-products__title'>${
           num === 'one'
@@ -1466,11 +1472,11 @@ function handleBooking() {
       </svg>
     `
 
-    products.forEach((product) => {
-      const productEl = document.createElement('div')
-      productEl.classList.add('lav-product')
-      productEl.dataset.aos = 'fade-up'
-      productEl.innerHTML = /* html */ `
+      products.forEach((product) => {
+        const productEl = document.createElement('div')
+        productEl.classList.add('lav-product')
+        productEl.dataset.aos = 'fade-up'
+        productEl.innerHTML = /* html */ `
         <div class='lav-product__image'>
           <img src='${product.image}' />
         </div>
@@ -1478,65 +1484,65 @@ function handleBooking() {
           <div class='lav-product__title lav-quincy'>${product.title}</div>
           <div class='lav-product__descr'>${product.descr}</div>
           <a data-id='${product.id}' data-router-disabled href='${
-        product.link
-      }' class='lav-product__link lav-btn link-btn ${
-        num === 'one' ? 'light' : 'dark'
-      }'>Book Now</a>
+          product.link
+        }' class='lav-product__link lav-btn link-btn ${
+          num === 'one' ? 'light' : 'dark'
+        }'>Book Now</a>
         </div>
       `
 
-      productEl
-        .querySelector('.lav-product__link')
-        .addEventListener('click', (e) => {
-          e.preventDefault()
-          const id = product.id
-          if (productEl.closest('.lav-products--one')) {
-            pushDataLayer(
-              'exp_hp_button_03',
-              product.title,
-              'click',
-              'All Beer Spa Services'
-            )
-          } else {
-            pushDataLayer(
-              'exp_hp_button_08',
-              product.title,
-              'click',
-              'Seeking a Unique Way to Relax'
-            )
-          }
+        productEl
+          .querySelector('.lav-product__link')
+          .addEventListener('click', (e) => {
+            e.preventDefault()
+            const id = product.id
+            if (productEl.closest('.lav-products--one')) {
+              pushDataLayer(
+                'exp_hp_button_03',
+                product.title,
+                'click',
+                'All Beer Spa Services'
+              )
+            } else {
+              pushDataLayer(
+                'exp_hp_button_08',
+                product.title,
+                'click',
+                'Seeking a Unique Way to Relax'
+              )
+            }
 
-          location.href = '/waitlist-crs/#service-' + id
-        })
+            location.href = '/waitlist-crs/#service-' + id
+          })
 
-      if (num === 'two') {
-        productEl.querySelector('.lav-product__title').textContent =
-          product.fullTitle
-        productEl.querySelector('.lav-product__descr').remove()
-      }
+        if (num === 'two') {
+          productEl.querySelector('.lav-product__title').textContent =
+            product.fullTitle
+          productEl.querySelector('.lav-product__descr').remove()
+        }
 
-      productsEl
-        .querySelector('.lav-products__list')
-        .insertAdjacentElement('beforeend', productEl)
-    })
+        productsEl
+          .querySelector('.lav-products__list')
+          .insertAdjacentElement('beforeend', productEl)
+      })
 
-    return productsEl
-  }
+      return productsEl
+    }
 
-  function getBenefits() {
-    const benefitsEl = document.createElement('div')
-    benefitsEl.classList.add('lav-benefits')
-    benefitsEl.innerHTML = /* html */ `
+    function getBenefits() {
+      const benefitsEl = document.createElement('div')
+      benefitsEl.classList.add('lav-benefits')
+      benefitsEl.innerHTML = /* html */ `
       <div class='container'>
         <div class='lav-benefits__list'></div>
       </div>
     `
 
-    benefits.forEach((benefit) => {
-      const benefitEl = document.createElement('div')
-      benefitEl.classList.add('lav-benefit')
-      benefitEl.dataset.aos = 'fade-up'
-      benefitEl.innerHTML = /* html */ `
+      benefits.forEach((benefit) => {
+        const benefitEl = document.createElement('div')
+        benefitEl.classList.add('lav-benefit')
+        benefitEl.dataset.aos = 'fade-up'
+        benefitEl.innerHTML = /* html */ `
         <div class='lav-benefit__image'>
           <img src='${benefit.image}' />
         </div>
@@ -1547,28 +1553,28 @@ function handleBooking() {
         </div>
       `
 
-      benefitEl
-        .querySelector('.lav-benefit__link')
-        .addEventListener('click', () => {
-          pushDataLayer(
-            'exp_hp_button_09',
-            benefit.title,
-            'click',
-            'block with main and additional services'
-          )
-        })
+        benefitEl
+          .querySelector('.lav-benefit__link')
+          .addEventListener('click', () => {
+            pushDataLayer(
+              'exp_hp_button_09',
+              benefit.title,
+              'click',
+              'block with main and additional services'
+            )
+          })
 
-      benefitsEl
-        .querySelector('.lav-benefits__list')
-        .insertAdjacentElement('beforeend', benefitEl)
-    })
+        benefitsEl
+          .querySelector('.lav-benefits__list')
+          .insertAdjacentElement('beforeend', benefitEl)
+      })
 
-    return benefitsEl
+      return benefitsEl
+    }
   }
-}
 
-function addHero() {
-  const markup = /* html */ `
+  function addHero() {
+    const markup = /* html */ `
     <div class='lav-hero'>
       <div class='container'>
         <div class='lav-hero__title lav-quincy'>
@@ -1612,29 +1618,29 @@ function addHero() {
     </div>
   `
 
-  _$('.wrapper.mainPage').insertAdjacentHTML('afterbegin', markup)
+    _$('.wrapper.mainPage').insertAdjacentHTML('afterbegin', markup)
 
-  _$('.lav-hero__btn').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_hp_button_01',
-      'Book Your Beer Spa Experience Now',
-      'click',
-      'First screen'
+    _$('.lav-hero__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp_button_01',
+        'Book Your Beer Spa Experience Now',
+        'click',
+        'First screen'
+      )
+      location.href = 'https://oakwell.com/waitlist-crs/'
+    })
+
+    _$('.lav-hero').insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main .main-anim-wave')
     )
-    location.href = 'https://oakwell.com/waitlist-crs/'
-  })
 
-  _$('.lav-hero').insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main .main-anim-wave')
-  )
+    _$('.lav-video').insertAdjacentElement(
+      'beforeend',
+      _$('.b-main .img-video-box')
+    )
 
-  _$('.lav-video').insertAdjacentElement(
-    'beforeend',
-    _$('.b-main .img-video-box')
-  )
-
-  const reviewsMarkup = /* html */ `
+    const reviewsMarkup = /* html */ `
     <div class='lav-reviews'>
       <div class='lav-review'>
         <div class='lav-review__head'>
@@ -1671,11 +1677,11 @@ function addHero() {
     </div>
   `
 
-  _$('.lav-video').insertAdjacentHTML('beforeend', reviewsMarkup)
-}
+    _$('.lav-video').insertAdjacentHTML('beforeend', reviewsMarkup)
+  }
 
-function handleBetter() {
-  const locationMarkup = /* html */ `
+  function handleBetter() {
+    const locationMarkup = /* html */ `
     <div class='container lav-location' data-aos="fade-up" data-aos-delay="0">
       <div class='lav-location__inner'>
         <div class="lav-location__item">
@@ -1698,62 +1704,70 @@ function handleBetter() {
       </div>
     </div>
   `
-  _$('.b-main-left-right.first').insertAdjacentHTML(
-    'afterbegin',
-    locationMarkup
-  )
-
-  _$('.lav-location .lav-location__caption a').addEventListener('click', () => {
-    pushDataLayer('exp_hp_button_04', 'Phone number', 'click', 'Location info')
-  })
-
-  _$(
-    '.b-main-left-right.first .subtitle'
-  ).textContent = `WHY Oakwell Beer Spa MAKE FOR ONE OF COLORADO'S MOST MEMORABLE SPA EXPERIENCES?`
-
-  const buttonsWrap = document.createElement('div')
-  buttonsWrap.classList.add('lav-better__buttons')
-
-  buttonsWrap.insertAdjacentElement(
-    'beforeend',
-    _$('.b-main-left-right.first .link-btn')
-  )
-
-  buttonsWrap.insertAdjacentHTML(
-    'beforeend',
-    /* html */ `<a data-router-disabled href="/the-experience/" data-aos="fade-up" data-aos-delay="100" class="lav-better__discover lav-btn link-btn light">Discover Oakwell Beer Spa Experience</a>`
-  )
-
-  _$('.b-main-left-right.first .right').insertAdjacentElement(
-    'beforeend',
-    buttonsWrap
-  )
-
-  _$('.lav-better__discover').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_hp_button_05',
-      'Discover More About Beer Spa Experience',
-      'click',
-      'Better Than Your Traditional Denver Spa'
+    _$('.b-main-left-right.first').insertAdjacentHTML(
+      'afterbegin',
+      locationMarkup
     )
-  })
 
-  _$('.b-main-left-right.first p + p').innerHTML = _$(
-    '.b-main-left-right.first p + p'
-  ).innerHTML.replace(
-    `Pop in for a drink or spend the entire afternoon here, and you'll quickly see why we're considered one of the best Denver day spas.`,
-    ''
-  )
+    _$('.lav-location .lav-location__caption a').addEventListener(
+      'click',
+      () => {
+        pushDataLayer(
+          'exp_hp_button_04',
+          'Phone number',
+          'click',
+          'Location info'
+        )
+      }
+    )
 
-  _$('.b-main-left-right.first p + p').insertAdjacentHTML(
-    'afterend',
-    /* html */ `
+    _$(
+      '.b-main-left-right.first .subtitle'
+    ).textContent = `WHY Oakwell Beer Spa MAKE FOR ONE OF COLORADO'S MOST MEMORABLE SPA EXPERIENCES?`
+
+    const buttonsWrap = document.createElement('div')
+    buttonsWrap.classList.add('lav-better__buttons')
+
+    buttonsWrap.insertAdjacentElement(
+      'beforeend',
+      _$('.b-main-left-right.first .link-btn')
+    )
+
+    buttonsWrap.insertAdjacentHTML(
+      'beforeend',
+      /* html */ `<a data-router-disabled href="/the-experience/" data-aos="fade-up" data-aos-delay="100" class="lav-better__discover lav-btn link-btn light">Discover Oakwell Beer Spa Experience</a>`
+    )
+
+    _$('.b-main-left-right.first .right').insertAdjacentElement(
+      'beforeend',
+      buttonsWrap
+    )
+
+    _$('.lav-better__discover').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp_button_05',
+        'Discover More About Beer Spa Experience',
+        'click',
+        'Better Than Your Traditional Denver Spa'
+      )
+    })
+
+    _$('.b-main-left-right.first p + p').innerHTML = _$(
+      '.b-main-left-right.first p + p'
+    ).innerHTML.replace(
+      `Pop in for a drink or spend the entire afternoon here, and you'll quickly see why we're considered one of the best Denver day spas.`,
+      ''
+    )
+
+    _$('.b-main-left-right.first p + p').insertAdjacentHTML(
+      'afterend',
+      /* html */ `
     <p data-aos="fade-up" data-aos-delay="100">Pop in for a drink or spend the entire afternoon here, and you'll quickly see why we're considered one of the best Denver day spas.</p>`
-  )
-}
+    )
+  }
 
-function addSticky() {
-  const markup = /* html */ `
+  function addSticky() {
+    const markup = /* html */ `
     <div class='lav-sticky-wrap'>
       <div class='lav-sticky'>
         <div class='container'>
@@ -1774,101 +1788,103 @@ function addSticky() {
     </div>
   `
 
-  _$('.lav-hero').insertAdjacentHTML('afterend', markup)
+    _$('.lav-hero').insertAdjacentHTML('afterend', markup)
 
-  window.addEventListener('scroll', function () {
-    const stickyEl = _$('.lav-sticky')
-    const offsetTop = _$('.lav-sticky-wrap').offsetTop
+    window.addEventListener('scroll', function () {
+      if (location.pathname !== '/') return
 
-    if (window.scrollY >= offsetTop) {
-      stickyEl.classList.add('lav-sticky_active')
-    } else {
-      stickyEl.classList.remove('lav-sticky_active')
-    }
-  })
+      const stickyEl = _$('.lav-sticky')
+      const offsetTop = _$('.lav-sticky-wrap').offsetTop
 
-  initSticky()
-
-  async function initSticky() {
-    // Smooth scrolling to section on click
-    document.querySelectorAll('.lav-sticky__link').forEach((link) => {
-      link.addEventListener('click', function (event) {
-        event.preventDefault() // Prevent default anchor behavior
-
-        const target = document.querySelector(this.dataset.target)
-        if (target) {
-          const rect = target.getBoundingClientRect() // Get the position relative to the viewport
-          const scrollPosition =
-            window.pageYOffset +
-            2 +
-            rect.top -
-            document.querySelector('.lav-sticky').offsetHeight
-
-          window.scrollTo({
-            top: scrollPosition,
-            behavior: 'smooth'
-          })
-        }
-
-        // Remove active class from all links
-        document
-          .querySelectorAll('.lav-sticky__link')
-          .forEach((l) => l.classList.remove('active'))
-        // Add active class to the clicked link
-        this.classList.add('active')
-      })
+      if (window.scrollY >= offsetTop) {
+        stickyEl.classList.add('lav-sticky_active')
+      } else {
+        stickyEl.classList.remove('lav-sticky_active')
+      }
     })
 
-    const navLinks = document.querySelectorAll('.lav-sticky__link')
+    initSticky()
 
-    await waitFor(
-      () => {
-        return Array.from(navLinks).every((l) => _$(l.dataset.target))
-      },
-      { ms: 20 }
-    )
+    async function initSticky() {
+      // Smooth scrolling to section on click
+      document.querySelectorAll('.lav-sticky__link').forEach((link) => {
+        link.addEventListener('click', function (event) {
+          event.preventDefault() // Prevent default anchor behavior
 
-    let targets = Array.from(navLinks).map((link) => {
-      console.log(link)
-      const target = _$(link.dataset.target)
-      target.dataset.target = link.dataset.target
+          const target = document.querySelector(this.dataset.target)
+          if (target) {
+            const rect = target.getBoundingClientRect() // Get the position relative to the viewport
+            const scrollPosition =
+              window.pageYOffset +
+              2 +
+              rect.top -
+              document.querySelector('.lav-sticky').offsetHeight
 
-      return target
-    })
-
-    const observerOptions = {
-      root: null,
-      threshold: 0.3 // Adjust this to control when the section is considered in view
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log('intersecting', entry.target.dataset.target)
-          // Remove active class from all links
-          navLinks.forEach((link) => link.classList.remove('active'))
-
-          // Add active class to the corresponding link
-          const activeLink = _$(
-            `.lav-sticky__link[data-target='${entry.target.dataset.target}']`
-          )
-          if (activeLink) {
-            activeLink.classList.add('active')
+            window.scrollTo({
+              top: scrollPosition,
+              behavior: 'smooth'
+            })
           }
-        }
+
+          // Remove active class from all links
+          document
+            .querySelectorAll('.lav-sticky__link')
+            .forEach((l) => l.classList.remove('active'))
+          // Add active class to the clicked link
+          this.classList.add('active')
+        })
       })
-    }, observerOptions)
 
-    console.log(targets)
-    // Observe each section
-    targets.forEach((section) => {
-      observer.observe(section)
-    })
-  }
+      const navLinks = document.querySelectorAll('.lav-sticky__link')
 
-  _$('.mainPage').insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
+      await waitFor(
+        () => {
+          return Array.from(navLinks).every((l) => _$(l.dataset.target))
+        },
+        { ms: 20 }
+      )
+
+      let targets = Array.from(navLinks).map((link) => {
+        console.log(link)
+        const target = _$(link.dataset.target)
+        target.dataset.target = link.dataset.target
+
+        return target
+      })
+
+      const observerOptions = {
+        root: null,
+        threshold: 0.3 // Adjust this to control when the section is considered in view
+      }
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('intersecting', entry.target.dataset.target)
+            // Remove active class from all links
+            navLinks.forEach((link) => link.classList.remove('active'))
+
+            // Add active class to the corresponding link
+            const activeLink = _$(
+              `.lav-sticky__link[data-target='${entry.target.dataset.target}']`
+            )
+            if (activeLink) {
+              activeLink.classList.add('active')
+            }
+          }
+        })
+      }, observerOptions)
+
+      console.log(targets)
+      // Observe each section
+      targets.forEach((section) => {
+        observer.observe(section)
+      })
+    }
+
+    _$('.mainPage').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `
     <div class='lav-fixed'>
       <div class='lav-fixed__info'>
         <div class='lav-fixed__title lav-quincy'>Relax at the best Denver spa!</div>
@@ -1879,51 +1895,51 @@ function addSticky() {
       </a>
     </div>
   `
-  )
-
-  _$('.lav-fixed__btn').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_hp_button_11',
-      'Book Your Beer Spa Experience Now',
-      'click',
-      'Sticky button'
     )
-  })
-}
 
-function handleReviews() {
-  _$('.b-main-left-right.first').insertAdjacentElement(
-    'afterend',
-    _$('.b-goog-review')
-  )
-  _$('.b-main-left-right.first').insertAdjacentElement(
-    'afterend',
-    _$('.b-main-most-services')
-  )
+    _$('.lav-fixed__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp_button_11',
+        'Book Your Beer Spa Experience Now',
+        'click',
+        'Sticky button'
+      )
+    })
+  }
 
-  _$('.b-goog-review h2').textContent = 'Our Guest Reviews'
+  function handleReviews() {
+    _$('.b-main-left-right.first').insertAdjacentElement(
+      'afterend',
+      _$('.b-goog-review')
+    )
+    _$('.b-main-left-right.first').insertAdjacentElement(
+      'afterend',
+      _$('.b-main-most-services')
+    )
 
-  _$('.b-goog-review .container').insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
+    _$('.b-goog-review h2').textContent = 'Our Guest Reviews'
+
+    _$('.b-goog-review .container').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `
     <div class='lav-review__btn-wrap'>
       <a data-router-disabled href="/waitlist-crs/" data-aos="fade-up" data-aos-delay="100" class="lav-review__btn lav-btn link-btn light">Book Your Beer Spa Experience Now</a>
     </div>
     `
-  )
-
-  _$('.lav-review__btn').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_hp_button_06',
-      'Book Your Beer Spa Experience Now',
-      'click',
-      'Reviews'
     )
-  })
 
-  _$('.b-vert-scroll-cards .container').insertAdjacentHTML(
-    'afterbegin',
-    /* html */ `
+    _$('.lav-review__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp_button_06',
+        'Book Your Beer Spa Experience Now',
+        'click',
+        'Reviews'
+      )
+    })
+
+    _$('.b-vert-scroll-cards .container').insertAdjacentHTML(
+      'afterbegin',
+      /* html */ `
     <div class='lav-memorable__head'>
       <h2 class='lav-memorable__title' data-aos="fade-up" data-aos-delay="0">A Memorable Denver Spa Experience</h2>
       <div class='lav-memorable__caption' data-aos="fade-up" data-aos-delay="100">
@@ -1931,47 +1947,47 @@ function handleReviews() {
       </div>
     </div>
   `
-  )
+    )
 
-  _$('.b-vert-scroll-cards .scrl-fix').insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
+    _$('.b-vert-scroll-cards .scrl-fix').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `
       <div class='lav-memorable__image'>
         <img src='https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp' />
       </div>
       `
-  )
+    )
 
-  _$('.b-vert-scroll-cards  .container').insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
+    _$('.b-vert-scroll-cards  .container').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `
     <div class='lav-memorable__btn-wrap'>
       <a href="/the-experience/"  data-aos="fade-up" data-aos-delay="100" class="lav-memorable__btn lav-btn link-btn light">Discover More About Beer Spa Experience</a>
     </div>
     `
-  )
-
-  _$('.lav-memorable__btn').addEventListener('click', () => {
-    pushDataLayer(
-      'exp_hp_button_07',
-      'Discover More About Beer Spa Experience',
-      'click',
-      'A Memorable Denver Spa Experience'
     )
-  })
 
-  // https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp
-}
+    _$('.lav-memorable__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp_button_07',
+        'Discover More About Beer Spa Experience',
+        'click',
+        'A Memorable Denver Spa Experience'
+      )
+    })
 
-function handleConnected() {
-  _$('.b-main-press').insertAdjacentElement('beforebegin', _$('.b-form'))
+    // https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp
+  }
 
-  _$('.b-form .box .right .subtitle').textContent =
-    'Become a part of our community and be the first to learn all there is to know about Oakwell'
+  function handleConnected() {
+    _$('.b-main-press').insertAdjacentElement('beforebegin', _$('.b-form'))
 
-  _$('.b-form .box').insertAdjacentHTML(
-    'beforeend',
-    /* html */ `
+    _$('.b-form .box .right .subtitle').textContent =
+      'Become a part of our community and be the first to learn all there is to know about Oakwell'
+
+    _$('.b-form .box').insertAdjacentHTML(
+      'beforeend',
+      /* html */ `
     <div class="soc">
       <a href="https://www.facebook.com/OakwellBeerSpa/" target="_blank" data-uw-rm-brl="PR" data-uw-original-href="https://www.facebook.com/OakwellBeerSpa/" aria-label="facebook - open in a new tab" data-uw-rm-empty-ctrl="" data-uw-rm-ext-link="" uw-rm-external-link-id="https://www.facebook.com/oakwellbeerspa/$facebook">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1992,40 +2008,40 @@ function handleConnected() {
       </a>
     </div>
   `
-  )
-}
+    )
+  }
 
-function handleGift() {
-  const giftEl = document.createElement('div')
-  giftEl.classList.add('lav-gift')
+  function handleGift() {
+    const giftEl = document.createElement('div')
+    giftEl.classList.add('lav-gift')
 
-  giftEl.insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-giftcards + .b-marquee + .b-main-wave')
-  )
-  giftEl.insertAdjacentElement(
-    'afterbegin',
-    _$('.b-main-giftcards + .b-marquee')
-  )
-  giftEl.insertAdjacentElement('afterbegin', _$('.b-main-giftcards'))
+    giftEl.insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-giftcards + .b-marquee + .b-main-wave')
+    )
+    giftEl.insertAdjacentElement(
+      'afterbegin',
+      _$('.b-main-giftcards + .b-marquee')
+    )
+    giftEl.insertAdjacentElement('afterbegin', _$('.b-main-giftcards'))
 
-  waitFor('.pin-spacer .b-insta', () => {
-    _$('.b-insta')
-      .closest('.pin-spacer')
-      .insertAdjacentElement('beforebegin', giftEl)
+    waitFor('.pin-spacer .b-insta', () => {
+      _$('.b-insta')
+        .closest('.pin-spacer')
+        .insertAdjacentElement('beforebegin', giftEl)
 
-    giftEl.insertAdjacentHTML('beforeend', getSvg('waveTop'))
-    giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
-  })
+      giftEl.insertAdjacentHTML('beforeend', getSvg('waveTop'))
+      giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
+    })
 
-  waitFor('.lav-gift .b-main-giftcards .btns .link-btn span', () => {
-    _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
-      'Buy Gift Card'
-  })
-}
+    waitFor('.lav-gift .b-main-giftcards .btns .link-btn span', () => {
+      _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
+        'Buy Gift Card'
+    })
+  }
 
-function addFaq() {
-  const markup = /* html */ `
+  function addFaq() {
+    const markup = /* html */ `
     <div class='lav-faq'>
       <div class='container'>
 
@@ -2150,96 +2166,96 @@ function addFaq() {
     </div>
   `
 
-  _$('.b-start-doing').insertAdjacentHTML('afterbegin', markup)
+    _$('.b-start-doing').insertAdjacentHTML('afterbegin', markup)
 
-  _$$('.lav-faq .accordion-faq__item').forEach((item) => {
-    item.addEventListener('click', function () {
-      pushDataLayer(
-        'exp_hp_button_10',
-        item.querySelector('.a-text').textContent,
-        'click',
-        'FAQ'
-      )
+    _$$('.lav-faq .accordion-faq__item').forEach((item) => {
+      item.addEventListener('click', function () {
+        pushDataLayer(
+          'exp_hp_button_10',
+          item.querySelector('.a-text').textContent,
+          'click',
+          'FAQ'
+        )
+      })
     })
-  })
-}
-
-// *** Utils *** //
-class Modal {
-  static list = []
-  constructor(name, html) {
-    if (!_$('.lav-modal')) {
-      this.constructor.init()
-    }
-
-    if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists')
-      return
-    }
-
-    this.el = document.createElement('div')
-    this.el.classList.add('lav-modal__inner', name)
-    this.name = name
-    this.el.innerHTML = html
-
-    _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
-
-    this.constructor.list.push(this)
   }
 
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      "<div class='lav-modal'></div>"
-    )
-
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close()
-
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal)
-      } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal)
+  // *** Utils *** //
+  class Modal {
+    static list = []
+    constructor(name, html) {
+      if (!_$('.lav-modal')) {
+        this.constructor.init()
       }
-    })
 
-    this.addStyles()
-  }
+      if (this.constructor.list.find((item) => item.name === name)) {
+        console.warn('Modal with this name already exists')
+        return
+      }
 
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open')
+      this.el = document.createElement('div')
+      this.el.classList.add('lav-modal__inner', name)
+      this.name = name
+      this.el.innerHTML = html
 
-    if (_$('.lav-modal__inner.active')) {
-      _$('.lav-modal__inner.active').classList.remove('active')
+      _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
+
+      this.constructor.list.push(this)
     }
 
-    _$(modalName).classList.add('active')
+    static init() {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        "<div class='lav-modal'></div>"
+      )
 
-    if (typeof cb === 'function') cb()
+      document.addEventListener('click', (e) => {
+        if (
+          e.target.classList.contains('lav-modal') ||
+          e.target.closest('.lav-modal__close')
+        )
+          this.close()
 
-    setTimeout(() => {
-      _$('.lav-modal').classList.add('active')
-    }, 100)
-  }
+        if (e.target.dataset.modal) {
+          this.open(e.target.dataset.modal)
+        } else if (e.target.closest('[data-modal]')) {
+          this.open(e.target.closest('[data-modal]').dataset.modal)
+        }
+      })
 
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open')
+      this.addStyles()
+    }
 
-    _$('.lav-modal')?.classList.remove('active')
+    static open(modalName, cb) {
+      document.body.classList.add('lav-modal-open')
 
-    if (typeof cb === 'function') cb()
+      if (_$('.lav-modal__inner.active')) {
+        _$('.lav-modal__inner.active').classList.remove('active')
+      }
 
-    setTimeout(() => {
-      _$('.lav-modal__inner.active')?.classList.remove('active')
-    }, 400)
-  }
+      _$(modalName).classList.add('active')
 
-  static addStyles() {
-    const styles = `
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        _$('.lav-modal').classList.add('active')
+      }, 100)
+    }
+
+    static close(cb) {
+      document.body.classList.remove('lav-modal-open')
+
+      _$('.lav-modal')?.classList.remove('active')
+
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        _$('.lav-modal__inner.active')?.classList.remove('active')
+      }, 400)
+    }
+
+    static addStyles() {
+      const styles = `
       .lav-modal {
         position: fixed;
         z-index: 999;
@@ -2291,257 +2307,257 @@ class Modal {
       }
     `
 
-    const stylesEl = document.createElement('style')
-    stylesEl.classList.add('exp-modal')
-    stylesEl.innerHTML = styles
-    document.head.appendChild(stylesEl)
-  }
-}
-
-// *** HELPERS *** //
-
-// Waiting for loading by condition
-async function waitFor(condition, cb = false, customConfig = {}) {
-  const config = {
-    ms: 500, // repeat each 0.5 second if condition is false
-    limit: 10, // limit in second seconds
-
-    ...customConfig
+      const stylesEl = document.createElement('style')
+      stylesEl.classList.add('exp-modal')
+      stylesEl.innerHTML = styles
+      document.head.appendChild(stylesEl)
+    }
   }
 
-  if (typeof condition === 'function') {
-    if (condition()) {
-      if (typeof cb === 'function') cb()
-      return
+  // *** HELPERS *** //
+
+  // Waiting for loading by condition
+  async function waitFor(condition, cb = false, customConfig = {}) {
+    const config = {
+      ms: 500, // repeat each 0.5 second if condition is false
+      limit: 10, // limit in second seconds
+
+      ...customConfig
     }
 
-    return new Promise((resolve) => {
-      let limit = config.limit * 1000
-      const interval = setInterval(function () {
-        if (condition() || limit <= 0) {
-          clearInterval(interval)
-          if (limit > 0 && typeof cb === 'function') cb()
-          resolve()
-        }
-        limit -= config.ms
-      }, config.ms)
-    })
-  }
-
-  if (condition.startsWith('.') || condition.startsWith('#')) {
-    if (_$(condition)) {
-      if (typeof cb === 'function') cb(_$(condition))
-      return
-    }
-
-    return new Promise((resolve) => {
-      const observer = new MutationObserver((mutations, observer) => {
-        if (_$(condition)) {
-          if (typeof cb === 'function') cb(_$(condition))
-          observer.disconnect()
-          resolve()
-        }
-      })
-
-      observer.observe(document, { childList: true, subtree: true })
-    })
-  }
-}
-
-// Mutation Observer
-function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
-
-  if (!el) return
-
-  let observer = new MutationObserver((mutations, observer) => {
-    for (let mutation of mutations) {
-      if (typeof cbAdded === 'function') {
-        for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          cbAdded(node, observer)
-        }
+    if (typeof condition === 'function') {
+      if (condition()) {
+        if (typeof cb === 'function') cb()
+        return
       }
 
-      if (typeof cbRemoved === 'function') {
-        for (let node of mutation.removedNodes) {
-          if (!(node instanceof HTMLElement)) continue
-          cbRemoved(node, observer)
-        }
-      }
-    }
-  })
-
-  observer.observe(el, { childList: true, subtree: true })
-
-  return observer
-}
-
-// Intersection Observer
-function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
-
-  if (!el || typeof cb !== 'function') return
-
-  const config = {
-    root: null,
-    threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-    ...customConfig
-  }
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      cb(entry, observer)
-    })
-  }, config)
-
-  observer.observe(el)
-
-  return observer
-}
-
-function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-  let entryTime = 0
-  initIntersection(
-    el,
-    ({ isIntersecting, time }) => {
-      if (isIntersecting) {
-        entryTime = time
-      } else if (entryTime) {
-        const diffTime = +((time - entryTime) / 1000).toFixed(1)
-        cb(diffTime + 's')
-        entryTime = 0
-      }
-    },
-    { threshold: viewElementProcent }
-  )
-}
-
-function visibilityEvent(el, cb, customConfig = {}) {
-  const config = {
-    threshold: 0.3,
-    ...customConfig,
-    timer: null
-  }
-  initIntersection(
-    el,
-    ({ isIntersecting, target }, observer) => {
-      // console.log(target, isIntersecting);
-      if (isIntersecting) {
-        config.timer = setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb()
-            observer.disconnect()
+      return new Promise((resolve) => {
+        let limit = config.limit * 1000
+        const interval = setInterval(function () {
+          if (condition() || limit <= 0) {
+            clearInterval(interval)
+            if (limit > 0 && typeof cb === 'function') cb()
+            resolve()
           }
-        }, 3000)
-      } else {
-        clearTimeout(config.timer)
+          limit -= config.ms
+        }, config.ms)
+      })
+    }
+
+    if (condition.startsWith('.') || condition.startsWith('#')) {
+      if (_$(condition)) {
+        if (typeof cb === 'function') cb(_$(condition))
+        return
       }
-    },
-    config
-  )
-}
 
-// Artificial delay
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+      return new Promise((resolve) => {
+        const observer = new MutationObserver((mutations, observer) => {
+          if (_$(condition)) {
+            if (typeof cb === 'function') cb(_$(condition))
+            observer.disconnect()
+            resolve()
+          }
+        })
 
-// Check if element in viewport
-function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? _$(selector) : selector
-
-  if (!el) return false
-
-  const rect = el.getBoundingClientRect()
-  const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight
-
-  return (
-    rect.top + rect.height * 0.3 < windowHeight &&
-    rect.bottom > rect.height * 0.3
-  )
-  // return (
-  //   rect.top >= 0 &&
-  //   rect.left >= 0 &&
-  //   rect.bottom <=
-  //     (window.innerHeight || document.documentElement.clientHeight) &&
-  //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  // );
-}
-
-// Shordcode for selectors
-function _$(selector, context = document) {
-  return context.querySelector(selector)
-}
-function _$$(selector, context = document, toSimpleArray = false) {
-  const arr = context.querySelectorAll(selector)
-
-  return toSimpleArray ? Array.from(arr) : arr
-}
-
-// GA 4 events
-function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-  window.dataLayer = window.dataLayer || []
-
-  try {
-    const event = {
-      event: 'event-to-ga4',
-      event_name: name,
-      event_desc: desc,
-      event_type: type,
-      event_loc: loc
+        observer.observe(document, { childList: true, subtree: true })
+      })
     }
-
-    console.debug('** GA4 Event **', event)
-
-    if (!config.debug) {
-      dataLayer.push(event)
-    }
-  } catch (e) {
-    console.log('** GA4 Error **', e)
   }
-}
 
-// Slider
-function connectSplide() {
-  const sliderStyles = document.createElement('link')
-  sliderStyles.rel = 'stylesheet'
-  sliderStyles.href =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
-  document.head.appendChild(sliderStyles)
+  // Mutation Observer
+  function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+    const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
-  let sliderScript = document.createElement('script')
-  sliderScript.src =
-    'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
-  document.head.appendChild(sliderScript)
-}
+    if (!el) return
 
-// *** Exp BG process *** //
+    let observer = new MutationObserver((mutations, observer) => {
+      for (let mutation of mutations) {
+        if (typeof cbAdded === 'function') {
+          for (let node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue
+            cbAdded(node, observer)
+          }
+        }
 
-//Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
-  waitFor(
-    () => typeof clarity == 'function',
-    () => {
-      clarity(...config.clarity)
+        if (typeof cbRemoved === 'function') {
+          for (let node of mutation.removedNodes) {
+            if (!(node instanceof HTMLElement)) continue
+            cbRemoved(node, observer)
+          }
+        }
+      }
+    })
+
+    observer.observe(el, { childList: true, subtree: true })
+
+    return observer
+  }
+
+  // Intersection Observer
+  function initIntersection(observeEl, cb, customConfig) {
+    const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
+
+    if (!el || typeof cb !== 'function') return
+
+    const config = {
+      root: null,
+      threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
+      ...customConfig
     }
-  )
-}
 
-// Svg objects
-function getSvg(name) {
-  const svgObj = {
-    waveTop: `
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        cb(entry, observer)
+      })
+    }, config)
+
+    observer.observe(el)
+
+    return observer
+  }
+
+  function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
+    let entryTime = 0
+    initIntersection(
+      el,
+      ({ isIntersecting, time }) => {
+        if (isIntersecting) {
+          entryTime = time
+        } else if (entryTime) {
+          const diffTime = +((time - entryTime) / 1000).toFixed(1)
+          cb(diffTime + 's')
+          entryTime = 0
+        }
+      },
+      { threshold: viewElementProcent }
+    )
+  }
+
+  function visibilityEvent(el, cb, customConfig = {}) {
+    const config = {
+      threshold: 0.3,
+      ...customConfig,
+      timer: null
+    }
+    initIntersection(
+      el,
+      ({ isIntersecting, target }, observer) => {
+        // console.log(target, isIntersecting);
+        if (isIntersecting) {
+          config.timer = setTimeout(() => {
+            if (isElementInViewport(target)) {
+              cb()
+              observer.disconnect()
+            }
+          }, 3000)
+        } else {
+          clearTimeout(config.timer)
+        }
+      },
+      config
+    )
+  }
+
+  // Artificial delay
+  function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+
+  // Check if element in viewport
+  function isElementInViewport(selector) {
+    const el = typeof selector === 'string' ? _$(selector) : selector
+
+    if (!el) return false
+
+    const rect = el.getBoundingClientRect()
+    const windowHeight =
+      window.innerHeight || document.documentElement.clientHeight
+
+    return (
+      rect.top + rect.height * 0.3 < windowHeight &&
+      rect.bottom > rect.height * 0.3
+    )
+    // return (
+    //   rect.top >= 0 &&
+    //   rect.left >= 0 &&
+    //   rect.bottom <=
+    //     (window.innerHeight || document.documentElement.clientHeight) &&
+    //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    // );
+  }
+
+  // Shordcode for selectors
+  function _$(selector, context = document) {
+    return context.querySelector(selector)
+  }
+  function _$$(selector, context = document, toSimpleArray = false) {
+    const arr = context.querySelectorAll(selector)
+
+    return toSimpleArray ? Array.from(arr) : arr
+  }
+
+  // GA 4 events
+  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+    window.dataLayer = window.dataLayer || []
+
+    try {
+      const event = {
+        event: 'event-to-ga4',
+        event_name: name,
+        event_desc: desc,
+        event_type: type,
+        event_loc: loc
+      }
+
+      console.debug('** GA4 Event **', event)
+
+      if (!config.debug) {
+        dataLayer.push(event)
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e)
+    }
+  }
+
+  // Slider
+  function connectSplide() {
+    const sliderStyles = document.createElement('link')
+    sliderStyles.rel = 'stylesheet'
+    sliderStyles.href =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
+    document.head.appendChild(sliderStyles)
+
+    let sliderScript = document.createElement('script')
+    sliderScript.src =
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
+    document.head.appendChild(sliderScript)
+  }
+
+  // *** Exp BG process *** //
+
+  //Clarity
+  if (
+    !config.debug &&
+    Array.isArray(config.clarity) &&
+    config.clarity.length === 3
+  ) {
+    waitFor(
+      () => typeof clarity == 'function',
+      () => {
+        clarity(...config.clarity)
+      }
+    )
+  }
+
+  // Svg objects
+  function getSvg(name) {
+    const svgObj = {
+      waveTop: `
     <svg class='lav-wave-top' xmlns="http://www.w3.org/2000/svg" width="1440" height="328" viewBox="0 0 1440 328" fill="none">
       <path d="M1534 328V0H0V138.137C239.063 33.1365 547.657 4.28644 769.349 74.585C1027.49 156.476 1079.48 278.269 1534 328Z" fill="#DDF2D0"/>
     </svg>
     `,
-    waveBottom: `
+      waveBottom: `
     <svg class="desk lav-wave" width="1440" height="526" viewBox="0 0 1440 526" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1724 0V526H0V326.56C177.189 455.006 182.776 291.236 377.524 263C687.164 218.106 1124.59 589.733 1724 0Z" fill="#DDF2D0"></path>
     </svg>
@@ -2549,17 +2565,18 @@ function getSvg(name) {
       <path d="M375 0V114H0V70.7753C38.5417 98.6135 39.7569 63.1196 82.118 57C149.47 47.2701 244.618 127.813 375 0Z" fill="#DDF2D0"></path>
     </svg>
     `,
-    leaf: `
+      leaf: `
     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
       <path d="M19.3053 38.4786C18.6445 29.2542 13.9026 23.8187 9.69502 20.7276C5.49051 17.5197 2.07039 17.0224 3.38285 13.876C5.11838 9.71296 7.11796 8.39 8.91372 6.61553C10.782 4.96104 12.9237 3.09817 18.0454 1.33317C20.4201 0.608547 20.1638 2.95292 19.5941 5.60673C17.8477 16.8661 21.728 16.5961 20.3182 33.5341C20.6054 25.6911 21.2987 24.1803 20.749 16.3293C20.59 14.0465 20.2395 10.2813 20.519 6.95496C20.7614 3.64282 21.7728 0.633799 23.953 0.535919C26.1332 0.438039 29.6151 0.240706 30.8287 4.549C32.2833 10.0745 32.0841 12.8972 31.7629 16.3151C31.1298 23.1004 21.0748 29.8557 21.955 36.48C23.0852 31.4928 26.6829 28.2975 29.6383 24.2876C32.5427 20.2493 34.8063 15.3947 32.0903 6.42925C31.5159 4.38956 30.9368 1.92046 32.6106 1.89204C34.7291 1.85573 36.9742 3.89699 38.3654 5.03682C40.7108 7.00547 42.0387 8.52734 44.097 11.7037C46.2448 14.9337 48.2814 19.3873 47.9679 22.6647C47.6051 25.7558 41.1184 26.8262 34.6102 29.1516C28.1189 31.556 21.6075 35.2154 21.5628 45.3429C21.4886 41.6613 24.6185 34.9692 30.6234 32.0328C36.7533 28.828 47.9402 25.3027 47.6576 28.5864C47.7302 29.431 47.0554 33.722 43.4145 34.7323C40.5842 35.468 35.9798 36.7073 31.8617 38.4218C27.736 40.1742 24.0966 42.4017 23.0466 45.9617C25.1759 42.5454 30.855 39.9389 40.246 37.012C47.094 34.6376 45.7491 35.858 44.1664 38.7517C43.1983 40.3668 40.9332 42.5912 40.0299 43.2826C35.0549 46.9547 30.0027 48.7197 24.2433 48.4782C18.4931 48.3124 12.6102 45.7281 7.32178 41.625C6.59761 41.044 6.15137 40.5625 5.74219 40.021C4.82347 38.8859 3.29638 36.0695 2.66177 34.3598C1.55312 31.7754 5.88424 33.1884 10.3358 36.0727C14.8553 38.9175 19.4937 43.2353 20.5607 45.5291C19.7222 42.8832 18.8004 41.5713 16.7236 39.3248C13.6602 36.0253 9.44333 33.9367 5.90123 32.6706C2.79919 31.3808 0.97255 29.2605 0.38117 27.0456C-0.261164 24.8291 -0.0851403 23.0815 0.859832 20.786C1.48209 19.2736 3.2516 19.0526 5.00104 19.5325C6.74121 19.9762 8.55858 21.1649 9.34297 21.7775C15.9516 26.4662 16.9784 31.0429 19.3038 38.4755L19.3053 38.4786Z" fill="#0C5947"/>
     </svg>
     `,
-    leafProduct: `
+      leafProduct: `
       <svg class='lav-products__leaf' xmlns="http://www.w3.org/2000/svg" width="148" height="148" viewBox="0 0 148 148" fill="none">
         <path d="M114.498 130.617C107.681 134.361 99.8321 135.192 91.6067 133.754C83.4816 132.449 74.9795 128.88 69.1349 126.954C53.8626 121.25 34.4634 115.603 23.5996 119.95C28.2419 113.6 40.6181 112.499 56.3007 117.297C72.2981 121.957 87.4559 130.038 95.0371 129.763C106.612 131.462 115.982 125.848 124.05 120.044C131.999 114.056 138.65 107.868 141.97 104.19C142.963 103.16 142.662 102.71 141.536 103.497C135.639 107.735 124.317 114.882 117.7 116.134C101.292 119.371 92.5562 112.528 68.758 104.133C55.8236 99.5682 43.4092 104.062 36.2382 105.837C39.8022 101.547 44.2918 98.7283 49.8263 97.0626C60.8332 93.8643 72.8564 99.7865 83.973 105.168C95.2566 110.573 105.629 115.437 117.194 110.786C130.839 105.747 141.279 93.7409 144.919 89.3087C145.673 88.3644 145.172 87.9373 144.146 88.6064C139.647 91.6007 130.491 96.8443 123.449 97.9215C111.855 99.9099 103.067 94.7849 93.2098 91.3112C81.3155 87.0452 66.7637 84.7199 55.3417 88.0891C70.4326 77.6066 83.0617 84.9002 97.4704 90.049C111.831 95.6865 125.863 96.0234 140.181 82.9119C143.769 79.6803 146.407 75.9885 147.801 73.668C148.345 72.7663 147.7 72.3203 146.775 72.9372C143.717 74.9112 137.595 78.5794 129.375 78.8547C120.333 78.8452 114.374 76.2305 102.909 74.9634C93.3148 73.7202 83.4959 73.3643 77.408 74.4984C87.6133 66.6828 97.6469 71.0912 108.124 73.3643C118.54 75.8935 129.389 76.2826 139.809 66.3743C142.037 64.2152 143.822 61.8283 144.943 60.0772C145.453 59.28 144.843 58.5634 144.003 58.9146C142.242 59.6264 139.222 60.7321 133.874 61.2066C129.131 61.814 119.751 59.7877 112.437 59.7972C105.152 60.0582 98.1861 60.7036 94.6268 61.4154C102.06 54.9807 108.907 56.5799 116.302 57.1683C123.573 57.9181 131.393 57.6523 137.905 51.2224C138.65 50.4583 139.213 49.2008 139.542 48.1758C139.761 47.4925 139.036 46.7759 138.34 46.9515C137.094 47.2695 135.143 47.6111 132.609 47.4166C128.616 47.1793 123.115 44.6548 118.54 44.6738C114.689 44.7354 110.314 45.5564 107.709 47.3027C115.782 38.1157 121.426 43.8196 128.936 41.6035C133.182 40.308 136.064 37.5225 136.002 36.265C135.944 35.202 132.886 35.8426 129.155 35.3966C124.155 34.7939 123.826 32.6964 116.645 36.0419C121.459 32.1697 125.935 28.9903 127.027 25.3269C128.754 19.5423 127.042 18.7213 121.86 22.119C119.193 23.8701 116.975 28.53 114.622 33.8875C115.62 26.5417 115.71 24.3351 112.862 20.7096C110.357 17.5255 109.851 13.4018 108.487 13.658C107.614 13.8241 106.535 15.8029 106.941 21.9055C107.671 32.8341 114.622 33.8923 105.734 44.185C107.251 41.2571 108.172 36.488 107.69 33.693C106.965 29.4648 105.634 26.1858 102.575 20.2161C100.906 16.9608 100.462 12.1537 99.9037 10.2414C99.584 9.1689 99.0401 8.20558 98.3626 8.83672C97.6851 9.46785 95.6478 12.7137 95.0515 16.7662C93.6392 26.3614 96.8311 28.6059 98.4055 36.9957C99.8273 45.3191 98.1479 52.4419 91.9693 57.994C93.5295 54.7482 95.2137 50.2686 95.7814 45.8791C96.4971 40.3602 97.1269 35.2305 90.9579 20.0832C88.3767 13.7482 88.5676 7.84495 88.1095 5.49125C87.8853 4.36185 87.2984 3.83986 86.6782 4.47573C85.2803 5.91833 83.744 9.95663 83.0903 12.5476C79.6647 26.1146 80.6571 31.4816 83.5007 42.4861C85.9148 51.8345 86.1057 61.8425 74.135 69.9239C77.6895 65.3114 81.1151 56.7744 81.3394 47.0986C81.6018 35.5531 78.3526 28.3307 75.9814 18.7783C73.8344 10.1417 73.9251 4.35235 74.0587 1.18245C74.1064 0.233374 73.3573 -0.350307 72.8564 0.233374C71.5586 1.73291 69.5548 4.20999 68.0709 7.24228C62.0785 18.299 63.8199 32.1887 65.5566 46.7807C67.0881 61.1117 65.9383 73.9954 52.0735 83.7519C59.0536 74.3608 63.8676 62.0276 63.171 50.0598C62.6033 40.2179 59.1538 30.3855 58.8628 20.2541C58.6576 14.0424 59.9028 7.1284 60.5279 3.81614C60.671 3.04739 59.9744 2.73419 59.4067 3.30838C56.649 6.27423 50.0601 12.8656 46.6822 23.6897C43.7527 32.8103 45.2795 42.9654 46.3673 54.0364C47.3931 64.9934 47.9894 76.8568 41.7059 86.8269C38.6286 91.9139 35.2268 96.123 30.9233 99.7817C32.7553 91.9851 39.7116 84.0983 41.3862 67.8976C43.7527 44.9869 39.6162 36.1084 40.7946 23.2247C41.3147 17.9716 44.2966 10.4264 45.6755 7.0857C45.9474 6.42135 45.2317 6.4166 44.5924 7.08095C42.412 9.1879 38.4807 13.6533 34.1771 19.789C29.9929 25.977 23.695 33.7309 22.8124 43.7864C21.6912 56.5656 24.3964 64.0111 24.4966 79.6092C24.3391 94.837 23.5519 109.59 18.4325 114.583C20.5986 101.594 22.5309 92.1749 19.4583 68.1538C17.9697 56.5134 17.526 39.9379 23.299 29.3937C26.2046 23.3148 30.2935 17.5872 32.7029 14.2227C33.2802 13.416 32.5979 13.4824 31.7725 14.3271C30.3698 15.7507 28.7524 17.3879 27.5406 18.6549C19.9688 26.76 13.232 34.8034 8.84742 42.4577C4.33874 50.0977 2.18698 57.3486 0.913097 63.5224C-1.65852 78.29 1.07532 91.0455 10.7272 107.569C18.9001 121.065 12.7549 120.059 14.5584 121.696C14.5441 121.696 14.5346 121.696 14.525 121.701C14.6443 121.829 14.7779 121.966 14.9067 122.104C15.088 122.303 15.3122 122.541 15.5794 122.816C15.8418 123.091 16.0756 123.328 16.2855 123.532C16.4287 123.675 16.567 123.817 16.7006 123.95C16.7102 123.95 16.7197 123.945 16.734 123.94C19.4106 126.949 17.4831 119.518 31.6532 129.246C50.4084 142.495 66.3438 149.214 82.4176 147.819C89.3834 147.259 97.0553 145.461 104.689 141.626C112.385 137.783 120.109 131.732 129.198 122.944C130.677 121.511 132.676 119.522 134.542 117.662C135.649 116.561 135.401 116.177 134.213 117.136C129.208 121.169 121.798 127.063 114.498 130.627V130.617Z" fill="#B9D1B1"/>
       </svg>
     `
-  }
+    }
 
-  return svgObj[name]
-}
+    return svgObj[name]
+  }
+})()
