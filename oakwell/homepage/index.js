@@ -479,6 +479,7 @@
     position: relative;
     background: #0C5947;
     padding-top: 2.5rem;
+    padding-bottom: 0.5rem;
   }
   .b-main-craftpartners>svg {
     display: block;
@@ -1145,6 +1146,7 @@
     }
     .b-main-craftpartners + .b-marquee {
       padding-bottom: 2rem;
+      padding-top: 2.5rem;
     }
     .b-form {
       padding-bottom: 0;
@@ -1816,16 +1818,16 @@
       <div class='lav-sticky'>
         <div class='container'>
           <div class='lav-sticky__nav'>
-            <a data-router-disabled class='lav-sticky__link active' data-target='.lav-products--one' href='#'>Our Services</a>
-            <a data-router-disabled class='lav-sticky__link' data-target='.lav-location' href='#'>Location</a>
-            <a data-router-disabled data-target='.b-main-left-right.first .box' class='lav-sticky__link' href='#'>Our Story</a>
-            <a data-router-disabled data-target='.b-main-most-services' class='lav-sticky__link' href='#'>Benefits</a>
-            <a data-router-disabled data-target='.b-goog-review' class='lav-sticky__link' href='#'>Reviews</a>
+            <a data-router-disabled class='lav-sticky__link active' data-offset='0' data-target='.lav-products--one' href='#'>Our Services</a>
+            <a data-router-disabled class='lav-sticky__link' data-offset='100' data-target='.lav-location' href='#'>Location</a>
+            <a data-router-disabled data-offset='100'  data-target='.b-main-left-right.first .box' class='lav-sticky__link' href='#'>Our Story</a>
+            <a data-router-disabled data-target='.b-main-most-services' data-offset='0' class='lav-sticky__link' href='#'>Benefits</a>
+            <a data-router-disabled data-offset='0' data-target='.b-goog-review' class='lav-sticky__link' data-offset='0' href='#'>Reviews</a>
             <a data-router-disabled data-target='.b-vert-scroll-cards' class='lav-sticky__link' href='#'>Beverages</a>
-            <a data-router-disabled data-target='.lav-benefits' class='lav-sticky__link' href='#'>Additional Services</a>
-            <a data-router-disabled data-target='.b-main-articles' class='lav-sticky__link' href='#'>Blog</a>
-            <a data-router-disabled data-target='.b-main-giftcards' class='lav-sticky__link' href='#'>Gift Cards</a>
-            <a data-router-disabled data-target='.lav-faq' class='lav-sticky__link' href='#'>FAQs</a>
+            <a data-router-disabled data-offset='0' data-target='.lav-benefits' class='lav-sticky__link' href='#'>Additional Services</a>
+            <a data-router-disabled data-offset='0' data-target='.b-main-articles' class='lav-sticky__link' href='#'>Blog</a>
+            <a data-router-disabled data-offset='0' data-target='.b-main-giftcards' class='lav-sticky__link' href='#'>Gift Cards</a>
+            <a data-router-disabled data-offset='0' data-target='.lav-faq' class='lav-sticky__link' href='#'>FAQs</a>
           </div>
         </div>
       </div>
@@ -1860,12 +1862,13 @@
           const target = document.querySelector(this.dataset.target)
           if (target) {
             const rect = target.getBoundingClientRect() // Get the position relative to the viewport
+            let offset = window.innerWidth > 768 ? this.dataset.offset || 0 : 0
             const scrollPosition =
               window.pageYOffset +
               2 +
               rect.top -
               document.querySelector('.lav-sticky').offsetHeight -
-              (target === _$('.lav-products--one') ? 0 : 100)
+              parseInt(offset)
 
             if (target === _$('.lav-products--one')) {
             }
