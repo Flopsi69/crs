@@ -1366,6 +1366,7 @@
 
       console.debug('** InitExp **')
       await waitFor(() => _$('.wrapper.mainPage'), false, { ms: 30 })
+      console.log('Add elements')
 
       addHero()
       waitFor('.b-main-left-right.first', handleBetter)
@@ -1374,6 +1375,7 @@
       waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', handleGift)
       waitFor('.b-start-doing', addFaq)
 
+      console.log('Add elements2')
       handleBooking()
       addSticky()
 
