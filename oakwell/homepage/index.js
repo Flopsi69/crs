@@ -1238,6 +1238,8 @@
       z-index: 1;
       transform: scaleX(-1) translateY(-99%);
       top: 0;
+      width: 100%;
+      height: auto;
     }
     .lav-review__image img {
       height: 25px;
@@ -2131,7 +2133,7 @@
       giftEl.insertAdjacentHTML('afterbegin', getSvg('waveBottom'))
     })
 
-    waitFor('.lav-gift .b-main-giftcards .btns .link-btn span', () => {
+    waitFor('.b-main-giftcards .btns .link-btn span', () => {
       _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
         'Buy Gift Card'
     })
