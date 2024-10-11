@@ -1280,6 +1280,7 @@ async function initExp() {
     document.head.appendChild(stylesEl)
 
     console.debug('** InitExp **')
+    await waitFor('.wrapper.mainPage', false, { ms: 20 })
 
     addHero()
     handleBetter()
