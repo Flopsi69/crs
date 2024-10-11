@@ -1285,7 +1285,7 @@
       await waitFor('.wrapper.mainPage', false, { ms: 20 })
 
       addHero()
-      handleBetter()
+      waitFor('.b-main-left-right.first', handleBetter)
       waitFor('.b-goog-review', handleReviews)
       waitFor('.b-main-press', handleConnected)
       waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', handleGift)
