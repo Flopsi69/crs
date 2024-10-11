@@ -226,6 +226,8 @@
   .lav-fixed__btn {
     max-width: 337px;
     width: 100%;
+    font-size: 16px;
+    max-height: 56px;
   }
   .lav-sticky-wrap {
     position: relative;
@@ -703,7 +705,7 @@
     padding-top: 4rem;
   }
   .lav-memorable__btn {
-    max-width: 438px;
+    max-width: 27.375rem;
     width: 100%;
   }
   .lav-memorable__btn-wrap {
@@ -1838,7 +1840,11 @@
               window.pageYOffset +
               2 +
               rect.top -
-              document.querySelector('.lav-sticky').offsetHeight
+              document.querySelector('.lav-sticky').offsetHeight -
+              (target === _$('.lav-products--one') ? 0 : 100)
+
+            if (target === _$('.lav-products--one')) {
+            }
 
             window.scrollTo({
               top: scrollPosition,
@@ -1874,7 +1880,7 @@
 
       const observerOptions = {
         root: null,
-        threshold: 0.3 // Adjust this to control when the section is considered in view
+        threshold: 0.7 // Adjust this to control when the section is considered in view
       }
 
       const observer = new IntersectionObserver((entries, observer) => {
