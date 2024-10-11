@@ -879,7 +879,7 @@
   }
   .b-main-most-services .box .right {
     padding-left: 0;
-    padding-right: 55%;
+    width: 55%;
   }
   .blog-cards .card .text .tag {
     padding-top: 2px;
@@ -888,6 +888,9 @@
     .lav-wave-top {
       bottom: 2rem;
       transform: translateY(99%);
+    }
+    .b-main-most-services .box .right {
+      width: 100%;
     }
     .lav-review__btn {
       max-width: 438px;
