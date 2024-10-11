@@ -880,9 +880,9 @@ const styles = /* css */ `
       padding-bottom: 0;
     }
     .lav-sticky__nav {
-      padding-top: 10px;
-      padding-bottom: 10px;
       overflow: auto;
+      margin: 0 -1rem;
+      padding: 10px 1rem;
     }
     .lav-sticky__link {
       padding: 10px 12px;
