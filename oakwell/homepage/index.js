@@ -1288,7 +1288,7 @@
       handleBetter()
       waitFor('.b-goog-review', handleReviews)
       waitFor('.b-main-press', handleConnected)
-      handleGift()
+      waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', handleGift)
       addFaq()
 
       handleBooking()
