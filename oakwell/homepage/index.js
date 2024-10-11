@@ -1859,7 +1859,7 @@
             <a data-router-disabled data-offset='100'  data-target='.b-main-left-right.first .box' class='lav-sticky__link' href='#'>Our Story</a>
             <a data-router-disabled data-target='.b-main-most-services' data-offset='0' class='lav-sticky__link' href='#'>Benefits</a>
             <a data-router-disabled data-offset='0' data-target='.b-goog-review' class='lav-sticky__link' data-offset='0' href='#'>Reviews</a>
-            <a data-router-disabled data-target='.b-vert-scroll-cards'  data-offset='0' class='lav-sticky__link' href='#'>Beverages</a>
+            <a data-router-disabled data-target='.b-vert-scroll-cards .cards'  data-offset='0' class='lav-sticky__link' href='#'>Beverages</a>
             <a data-router-disabled data-offset='0' data-target='.lav-benefits' class='lav-sticky__link' href='#'>Additional Services</a>
             <a data-router-disabled data-offset='0' data-target='.b-main-articles' class='lav-sticky__link' href='#'>Blog</a>
             <a data-router-disabled data-offset='0' data-target='.b-main-giftcards' class='lav-sticky__link' href='#'>Gift Cards</a>
