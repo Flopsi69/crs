@@ -1367,6 +1367,10 @@
 
       handleBooking()
       addSticky()
+
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'))
+      }, 500)
     } else if (location.pathname === '/waitlist-crs/') {
       let hash = location.hash?.replace('#service-', '')
 
