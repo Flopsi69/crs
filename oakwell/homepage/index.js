@@ -1804,7 +1804,9 @@
       }
     })
 
-    initSticky()
+    setTimeout(() => {
+      initSticky()
+    }, 1500)
 
     async function initSticky() {
       // Smooth scrolling to section on click
