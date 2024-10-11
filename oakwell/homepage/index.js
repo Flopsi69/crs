@@ -1274,7 +1274,8 @@
   // *** Logic *** //
   waitFor(
     () => {
-      _$('.mainPage') &&
+      return (
+        _$('.mainPage') &&
         _$('.b-main-left-right.first') &&
         _$('.b-main-giftcards') &&
         _$('.b-main-press') &&
@@ -1284,6 +1285,7 @@
         _$('.b-start-doing') &&
         _$('.b-main-wave.top') &&
         _$('.b-main-wave.bot')
+      )
     },
     initExp,
     { ms: 20 }
