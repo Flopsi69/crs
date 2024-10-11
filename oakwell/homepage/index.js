@@ -1225,6 +1225,18 @@
     .b-vert-scroll-cards .box .right {
       display: none;
     }
+    .mob.lav-wave {
+      position: absolute;
+      z-index: 1;
+      transform: scaleX(-1) translateY(-99%);
+      top: 0;
+    }
+    .b-main-giftcards {
+      padding-top: 1rem;
+    }
+    .b-other-articles.b-main-articles {
+      padding-bottom: 10rem;
+    }
     .lav-gift .b-main-wave h2 + p {
       font-size: 1rem;
     }
