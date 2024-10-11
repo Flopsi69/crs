@@ -880,6 +880,9 @@
   .blog-cards .card .text .tag {
     padding-top: 2px;
   }
+  .b-main-most-services .box .right .col:first-child .item {
+    padding-right: 4.125rem;
+  }
   @media(max-width: 1025px) {
     .lav-wave-top {
       bottom: 2rem;
@@ -1226,10 +1229,20 @@
       display: none;
     }
     .mob.lav-wave {
+      display: block;
       position: absolute;
       z-index: 1;
       transform: scaleX(-1) translateY(-99%);
       top: 0;
+    }
+    .lav-review__image img {
+      height: 25px;
+    }
+    .lav-review__count, .lav-review__rate {
+      height: 12px;
+    }
+    .lav-review__stars {
+      width: 60px;
     }
     .b-main-giftcards {
       padding-top: 1rem;
