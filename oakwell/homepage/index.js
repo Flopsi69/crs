@@ -1356,9 +1356,12 @@
 
     if (location.pathname === '/') {
       if (_$('.lav-hero')) {
+        console.log('exist hero')
         location.reload()
         return
       }
+
+      console.log('not exist hero')
       document.head.appendChild(stylesEl)
 
       console.debug('** InitExp **')
