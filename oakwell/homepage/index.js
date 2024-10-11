@@ -1289,7 +1289,7 @@
       waitFor('.b-goog-review', handleReviews)
       waitFor('.b-main-press', handleConnected)
       waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', handleGift)
-      addFaq()
+      waitFor('.b-start-doing', addFaq)
 
       handleBooking()
       addSticky()
