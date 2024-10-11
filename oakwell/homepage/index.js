@@ -1272,7 +1272,7 @@
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
-  initExp()
+  waitFor('.mainPage', initExp, { ms: 20 })
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
