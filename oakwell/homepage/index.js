@@ -1272,7 +1272,22 @@
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
-  waitFor('.mainPage', initExp, { ms: 20 })
+  waitFor(
+    () => {
+      _$('.mainPage') &&
+        _$('.b-main-left-right.first') &&
+        _$('.b-main-giftcards') &&
+        _$('.b-main-press') &&
+        _$('.b-goog-review') &&
+        _$('.b-main-craftpartners') &&
+        _$('.b-main-left-right.third') &&
+        _$('.b-start-doing') &&
+        _$('.b-main-wave.top') &&
+        _$('.b-main-wave.bot')
+    },
+    initExp,
+    { ms: 20 }
+  )
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
