@@ -1365,7 +1365,7 @@
       document.head.appendChild(stylesEl)
 
       console.debug('** InitExp **')
-      await waitFor('.wrapper.mainPage', false, { ms: 20 })
+      await waitFor(() => _$('.wrapper.mainPage'), false, { ms: 30 })
 
       addHero()
       waitFor('.b-main-left-right.first', handleBetter)
