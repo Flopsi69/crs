@@ -1551,7 +1551,7 @@ function handleBooking() {
 
 function addHero() {
   const markup = /* html */ `
-    <div class='lav-hero' data-aos="fade">
+    <div class='lav-hero'>
       <div class='container'>
         <div class='lav-hero__title lav-quincy'>
           Relax Differently at the Best Denver Spa with a Craft Beer in Hand
