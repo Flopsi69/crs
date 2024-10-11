@@ -1764,7 +1764,7 @@ function addSticky() {
 
   initSticky()
 
-  function initSticky() {
+  async function initSticky() {
     // Smooth scrolling to section on click
     document.querySelectorAll('.lav-sticky__link').forEach((link) => {
       link.addEventListener('click', function (event) {
@@ -1795,6 +1795,14 @@ function addSticky() {
     })
 
     const navLinks = document.querySelectorAll('.lav-sticky__link')
+
+    await waitFor(
+      () => {
+        return Array.from(navLinks).every((l) => _$(l.dataset.target))
+      },
+      { ms: 20 }
+    )
+
     let targets = Array.from(navLinks).map((link) => {
       console.log(link)
       const target = _$(link.dataset.target)
