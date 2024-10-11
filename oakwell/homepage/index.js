@@ -253,6 +253,7 @@ const styles = /* css */ `
     display: flex;
     gap: 5px;
     justify-content: space-between;
+    overflow: auto;
   }
   .lav-sticky__link {
     color: #0C5947;
@@ -262,6 +263,7 @@ const styles = /* css */ `
     padding: 12px;
     border-radius: 8px;
     transition: .3s;
+    white-space: nowrap;
   }
   .lav-sticky__link.active {
     background: #3C6C60;
@@ -872,6 +874,21 @@ const styles = /* css */ `
     .lav-wave-top {
       bottom: 2rem;
       transform: translateY(99%);
+    }
+    .lav-sticky {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .lav-sticky__nav {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      overflow: auto;
+    }
+    .lav-sticky__link {
+      padding: 10px 12px;
+    }
+    .lav-sticky-wrap, .lav-sticky {
+      height: 58px;
     }
     .lav-products__wave {
       display: none;
