@@ -1,6 +1,4 @@
 ;(function () {
-  if (config?.dir) return
-
   console.debug('*** Experiment started ***')
 
   // Config for Experiment
@@ -1280,6 +1278,7 @@
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
     if (location.pathname === '/') {
+      if (_$('.exp-styles')) return
       document.head.appendChild(stylesEl)
 
       console.debug('** InitExp **')
