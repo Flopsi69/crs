@@ -1,5 +1,5 @@
 ;(function () {
-  if (config.dir) return
+  if (config?.dir) return
 
   console.debug('*** Experiment started ***')
 
