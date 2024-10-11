@@ -21,6 +21,9 @@ const styles = /* css */ `
     text-align: center;
     padding-top: 190px;
     padding-bottom: 80px;
+    position: relative;
+    z-index: 13;
+    background: #3b6c5f;
   }
   .lav-hero .main-anim-wave {
     pointer-events: none;
@@ -237,6 +240,7 @@ const styles = /* css */ `
     padding-bottom: 18px;
     background: #fff;
     height: 78px;
+    z-index: 13;
   }
   .lav-sticky_active {
     position: fixed;
@@ -860,6 +864,9 @@ const styles = /* css */ `
   }
   footer[data-wpr-lazyrender] {
     content-visibility: initial;
+  }
+  footer {
+    z-index: 10;
   }
   @media(max-width: 1025px) {
     .lav-wave-top {
