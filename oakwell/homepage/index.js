@@ -29,7 +29,7 @@
   .lav-hero .main-anim-wave {
     pointer-events: none;
   }
-  .lav-hero.aos-animate > .main-anim-wave svg path {
+  .lav-hero > .main-anim-wave svg path {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
@@ -873,6 +873,9 @@
   footer {
     z-index: 10;
   }
+  .b-main-most-services .box .right .item span {
+    font-family: quincycf, sans-serif;
+  }
   @media(max-width: 1025px) {
     .lav-wave-top {
       bottom: 2rem;
@@ -1210,6 +1213,18 @@
   @media(max-width: 768px) {
     .b-vert-scroll-cards .box .right {
       display: none;
+    }
+    .lav-gift .b-main-wave h2 + p, .lav-gift .b-main-giftcards .subtitle {
+      font-size: 1rem;
+    }
+    .lav-sticky__link {
+      font-size: 14px;
+    }
+    .lav-awards {
+      padding-top: 2rem;
+    }
+    .lav-hero {
+      padding-bottom: 2rem;
     }
     .lav-products__wave {
       display: none;
