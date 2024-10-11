@@ -1286,7 +1286,7 @@
 
       addHero()
       handleBetter()
-      handleReviews()
+      waitFor('.b-goog-review', handleReviews)
       waitFor('.b-main-press', handleConnected)
       handleGift()
       addFaq()
