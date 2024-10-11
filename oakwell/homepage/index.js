@@ -1339,7 +1339,6 @@
       return (
         _$('.mainPage') &&
         _$('.b-main-left-right.first') &&
-        _$('.b-main-giftcards') &&
         _$('.b-main-press') &&
         _$('.b-goog-review') &&
         _$('.b-main-craftpartners') &&
