@@ -628,7 +628,7 @@
   }
   .lav-review__btn-wrap {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 4.5rem;
   }
 
   .b-vert-scroll-cards {
@@ -877,11 +877,12 @@
   .b-main-most-services .box .right .item span {
     font-family: quincycf, sans-serif;
   }
+  .b-main-most-services .box .right {
+    padding-left: 0;
+    padding-right: 55%;
+  }
   .blog-cards .card .text .tag {
     padding-top: 2px;
-  }
-  .b-main-most-services .box .right .col:first-child .item {
-    padding-right: 4.125rem;
   }
   @media(max-width: 1025px) {
     .lav-wave-top {
