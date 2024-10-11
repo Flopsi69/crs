@@ -1982,7 +1982,9 @@
     // https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp
   }
 
-  function handleConnected() {
+  async function handleConnected() {
+    await waitFor('.b-form', false, { ms: 20 })
+
     _$('.b-main-press').insertAdjacentElement('beforebegin', _$('.b-form'))
 
     _$('.b-form .box .right .subtitle').textContent =
