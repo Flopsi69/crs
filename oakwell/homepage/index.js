@@ -1792,7 +1792,7 @@
     _$('.lav-hero').insertAdjacentHTML('afterend', markup)
 
     window.addEventListener('scroll', function () {
-      if (location.pathname !== '/') return
+      if (location.pathname !== '/' || !_$('.lav-sticky-wrap')) return
 
       const stickyEl = _$('.lav-sticky')
       const offsetTop = _$('.lav-sticky-wrap').offsetTop
