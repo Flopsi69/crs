@@ -1934,8 +1934,8 @@
       )
 
       let targets = Array.from(navLinks).map((link) => {
-        console.log(link)
         const target = _$(link.dataset.target)
+        console.log(link, target)
         target.dataset.target = link.dataset.target
 
         return target
@@ -1943,7 +1943,7 @@
 
       const observerOptions = {
         root: null,
-        threshold: 0.7 // Adjust this to control when the section is considered in view
+        threshold: 0.6 // Adjust this to control when the section is considered in view
       }
 
       const observer = new IntersectionObserver((entries, observer) => {
