@@ -1634,10 +1634,12 @@
       _$('.b-main .main-anim-wave')
     )
 
-    _$('.lav-video').insertAdjacentElement(
-      'beforeend',
-      _$('.b-main .img-video-box')
-    )
+    waitFor('.b-main .img-video-box', () => {
+      _$('.lav-video').insertAdjacentElement(
+        'beforeend',
+        _$('.b-main .img-video-box')
+      )
+    })
 
     const reviewsMarkup = /* html */ `
     <div class='lav-reviews'>
