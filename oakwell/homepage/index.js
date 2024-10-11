@@ -1355,7 +1355,10 @@
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
     if (location.pathname === '/') {
-      if (_$('.lav-hero')) return
+      if (_$('.lav-hero')) {
+        location.reload()
+        return
+      }
       document.head.appendChild(stylesEl)
 
       console.debug('** InitExp **')
