@@ -1395,7 +1395,7 @@
   }
 
   function handleGiftPosition() {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 640) {
       if (
         _$('.b-main-giftcards .left') &&
         !_$('.b-main-giftcards .left .right')
