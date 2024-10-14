@@ -1426,10 +1426,7 @@
         )
       }
 
-      if (
-        _$('.b-main-wave.bot .left') &&
-        !_$('.b-main-wave.bot .right .left')
-      ) {
+      if (_$('.b-main-wave.bot .right .left')) {
         console.log('change position gift 2 reverse')
         _$('.b-main-wave.bot .right').insertAdjacentElement(
           'beforebegin',
