@@ -1245,7 +1245,7 @@
       height: 25px;
     }
     .lav-review__count, .lav-review__rate {
-      height: 12px;
+      font-size: 12px;
     }
     .lav-review__stars {
       width: 60px;
@@ -1406,18 +1406,19 @@
       {
         title: 'Oakwell Escape Package',
         fullTitle:
-          'Indulge in a romantic experience and cultivate a unique bond with your partner.',
+          'Unwind in a romantic private spa suite tastefully decorated with candles and rose petals while indulging in a gourmet charcuterie board paired with artisan chocolate bonbons, then melt your stress away during a zero gravity massage.',
         descr:
-          'Are you looking for a romantic spa treatment? The Date Night package makes Oakwell Beer Spa the best spa in Denver for couples.',
+          'Unwind in a romantic private spa suite tastefully decorated with candles and rose petals while indulging in a gourmet charcuterie board paired with artisan chocolate bonbons, then melt your stress away during a zero gravity massage.',
         link: '/waitlist-crs/',
         id: '68951432',
         image: `${config.dir}/img/booking-1.png`
       },
       {
         title: "Couple's Retreat Package",
-        fullTitle: 'Take a break and indulge in self-care.',
+        fullTitle:
+          'Kick back with your special someone in a private spa suite equipped with your own infrared sauna, rain shower, and hydrotherapy tub, while enjoying a selection of artisan chocolate bonbons.',
         descr:
-          'Get access to a private Beer Therapy™ Room that includes everything you need for rest, relaxation, and other wellness benefits.',
+          'Kick back with your special someone in a private spa suite equipped with your own infrared sauna, rain shower, and hydrotherapy tub, while enjoying a selection of artisan chocolate bonbons.',
         link: '/waitlist-crs/',
         id: '68951079',
         image: `${config.dir}/img/booking-2.png`
@@ -1425,9 +1426,9 @@
       {
         title: 'Beer Therapy Ritual Package',
         fullTitle:
-          'Get ready for an unforgettable spa day surrounded by your closest friends.',
+          'Soak away your stress in a private spa suite, including your own personal infrared sauna, rain shower, and hydrotherapy tub, all with a cold beverage in hand.',
         descr:
-          'Ideal for groups. The Garage Party is easily one of the most fun but relaxing ways to hang out with a small group.',
+          'Soak away your stress in a private spa suite, including your own personal infrared sauna, rain shower, and hydrotherapy tub, all with a cold beverage in hand.',
         link: '/waitlist-crs/',
         id: '68950903',
         image: `${config.dir}/img/booking-3.png`
@@ -1435,9 +1436,9 @@
       {
         title: 'Garage Party',
         fullTitle:
-          'Celebrate special holidays with your loved ones at Oakwell Beer Spa.',
+          'Enjoy the ultimate group outing with two private spa suites joined together giving your group access to two infrared saunas, two rain showers, and two hydrotherapy tubs, all while indulging in craft beverages.',
         descr:
-          'Oakwell Beer Spa offers a wellness experience unlike any other. Celebrate special holidays at Oakwell Beer Spa',
+          'Enjoy the ultimate group outing with two private spa suites joined together giving your group access to two infrared saunas, two rain showers, and two hydrotherapy tubs, all while indulging in craft beverages.',
         link: '/waitlist-crs/',
         id: '27351564',
         image: `${config.dir}/img/booking-4.png`
@@ -1900,7 +1901,14 @@
       // Smooth scrolling to section on click
       document.querySelectorAll('.lav-sticky__link').forEach((link) => {
         link.addEventListener('click', function (event) {
-          event.preventDefault() // Prevent default anchor behavior
+          event.preventDefault()
+
+          pushDataLayer(
+            'exp_hp_button_02',
+            link.textContent,
+            'click',
+            'Navigation sticky submenu'
+          )
 
           const target = document.querySelector(this.dataset.target)
           if (target) {
