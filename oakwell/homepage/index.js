@@ -1372,6 +1372,10 @@
       waitFor('.b-goog-review', handleReviews)
       waitFor('.b-main-press', handleConnected)
       waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', handleGift)
+      waitFor('.b-main-giftcards + .b-marquee + .b-main-wave', () => {
+        handleGiftPosition()
+        window.addEventListener('resize', handleGiftPosition)
+      })
       waitFor('.b-start-doing', addFaq)
 
       console.log('Add elements2')
@@ -1387,6 +1391,29 @@
       if (!hash) return
 
       _$(`.service[data-id="${hash}"]`)?.querySelector('.service-btn').click()
+    }
+  }
+
+  function handleGiftPosition() {
+    if (window.innerWidth < 768) {
+      if (_$('.lav-gift .left') && !_$('.lav-gift .left .right')) {
+        console.log('change position gift')
+        _$('.lav-gift .left .btns').insertAdjacentElement(
+          'beforebegin',
+          _$('.b-main-giftcards .right')
+        )
+      }
+
+      if (
+        _$('.b-main-wave.bot .left') &&
+        !_$('.b-main-wave.bot .right .left')
+      ) {
+        console.log('change position gift 2')
+        _$('.lav-gift .right .link-btn').insertAdjacentElement(
+          'beforebegin',
+          _$('.b-main-giftcards .left')
+        )
+      }
     }
   }
 
