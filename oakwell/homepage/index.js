@@ -1396,9 +1396,12 @@
 
   function handleGiftPosition() {
     if (window.innerWidth < 768) {
-      if (_$('.lav-gift .left') && !_$('.lav-gift .left .right')) {
+      if (
+        _$('.b-main-giftcards .left') &&
+        !_$('.b-main-giftcards .left .right')
+      ) {
         console.log('change position gift')
-        _$('.lav-gift .left .btns').insertAdjacentElement(
+        _$('.b-main-giftcards .left .btns').insertAdjacentElement(
           'beforebegin',
           _$('.b-main-giftcards .right')
         )
@@ -1409,9 +1412,28 @@
         !_$('.b-main-wave.bot .right .left')
       ) {
         console.log('change position gift 2')
-        _$('.lav-gift .right .link-btn').insertAdjacentElement(
+        _$('.b-main-wave.bot .right .link-btn').insertAdjacentElement(
           'beforebegin',
-          _$('.b-main-giftcards .left')
+          _$('.b-main-wave.bot .left')
+        )
+      }
+    } else {
+      if (_$('.b-main-giftcards .left .right')) {
+        console.log('change position gift reverse')
+        _$('.b-main-giftcards .left').insertAdjacentElement(
+          'afterend',
+          _$('.b-main-giftcards .left .right')
+        )
+      }
+
+      if (
+        _$('.b-main-wave.bot .left') &&
+        !_$('.b-main-wave.bot .right .left')
+      ) {
+        console.log('change position gift 2 reverse')
+        _$('.b-main-wave.bot .right').insertAdjacentElement(
+          'beforebegin',
+          _$('.b-main-wave.bot .right .left')
         )
       }
     }
