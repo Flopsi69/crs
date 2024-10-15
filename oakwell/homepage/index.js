@@ -1232,6 +1232,11 @@
     .b-vert-scroll-cards .box .right {
       display: none;
     }
+    .lav-faq .accordion-faq__title .a-icon {
+      width: 26px;
+      height: 26px;
+      margin-top: -2px;
+    }
     .mob.lav-wave {
       display: block;
       position: absolute;
@@ -1452,9 +1457,9 @@
       {
         title: 'Oakwell Escape Package',
         fullTitle:
-          'Unwind in a romantic private spa suite tastefully decorated with candles and rose petals while indulging in a gourmet charcuterie board paired with artisan chocolate bonbons, then melt your stress away during a zero gravity massage.',
+          'Unwind together with a beer bath, sauna, and massage for a truly unforgettable date.',
         descr:
-          'Unwind in a romantic private spa suite tastefully decorated with candles and rose petals while indulging in a gourmet charcuterie board paired with artisan chocolate bonbons, then melt your stress away during a zero gravity massage.',
+          'Romantic private spa suite decorated with candles and rose petals, plus a gourmet charcuterie board, chocolate bonbons, and 30-minute zero gravity massages. ',
         link: '/waitlist-crs/',
         id: '68951432',
         image: `${config.dir}/img/booking-1.png`
@@ -1462,9 +1467,9 @@
       {
         title: "Couple's Retreat Package",
         fullTitle:
-          'Kick back with your special someone in a private spa suite equipped with your own infrared sauna, rain shower, and hydrotherapy tub, while enjoying a selection of artisan chocolate bonbons.',
+          'Indulge in a romantic escape with a beer bath, sauna, and chocolates for a blissful time together.',
         descr:
-          'Kick back with your special someone in a private spa suite equipped with your own infrared sauna, rain shower, and hydrotherapy tub, while enjoying a selection of artisan chocolate bonbons.',
+          'Private spa suite equipped with an infrared sauna, rain shower, and hydrotherapy tub, plus a selection of artisan chocolate bonbons for you and a special someone.',
         link: '/waitlist-crs/',
         id: '68951079',
         image: `${config.dir}/img/booking-2.png`
@@ -1472,9 +1477,9 @@
       {
         title: 'Beer Therapy Ritual Package',
         fullTitle:
-          'Soak away your stress in a private spa suite, including your own personal infrared sauna, rain shower, and hydrotherapy tub, all with a cold beverage in hand.',
+          'Dive into a relaxing ritual of a bubbly beer bath and sauna, creating a harmonious escape for two.',
         descr:
-          'Soak away your stress in a private spa suite, including your own personal infrared sauna, rain shower, and hydrotherapy tub, all with a cold beverage in hand.',
+          'Private spa suite, including an infrared sauna, rain shower, and hydrotherapy tub - perfect for a solo spa day or enjoyed with a friend. ',
         link: '/waitlist-crs/',
         id: '68950903',
         image: `${config.dir}/img/booking-3.png`
@@ -1482,9 +1487,9 @@
       {
         title: 'Garage Party',
         fullTitle:
-          'Enjoy the ultimate group outing with two private spa suites joined together giving your group access to two infrared saunas, two rain showers, and two hydrotherapy tubs, all while indulging in craft beverages.',
+          'Host a fun Garage Party with friends, relaxing in bubbly beer baths and saunas.',
         descr:
-          'Enjoy the ultimate group outing with two private spa suites joined together giving your group access to two infrared saunas, two rain showers, and two hydrotherapy tubs, all while indulging in craft beverages.',
+          'The ultimate group outing featuring two private spa suites joined together with access to two infrared saunas, two rain showers, and two hydrotherapy tubs. ',
         link: '/waitlist-crs/',
         id: '27351564',
         image: `${config.dir}/img/booking-4.png`
