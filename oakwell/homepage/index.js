@@ -319,7 +319,7 @@
     overflow: hidden;
     color: #DDF2D0;
     text-overflow: ellipsis;
-    font-size: 26px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
   }
@@ -1457,7 +1457,7 @@
       {
         title: 'Oakwell Escape Package',
         fullTitle:
-          'Unwind together with a beer bath, sauna, and massage for a truly unforgettable date.',
+          'Experience bliss like never before with the ultimate date experience, including a beer bath, sauna, tasty treats, and massages.',
         descr:
           'Romantic private spa suite decorated with candles and rose petals, plus a gourmet charcuterie board, chocolate bonbons, and 30-minute zero gravity massages. ',
         link: '/waitlist-crs/',
@@ -1467,7 +1467,7 @@
       {
         title: "Couple's Retreat Package",
         fullTitle:
-          'Indulge in a romantic escape with a beer bath, sauna, and chocolates for a blissful time together.',
+          'Soak your stress away with your special someone by kicking back in a private spa suite while nibbling on artisan chocolates.',
         descr:
           'Private spa suite equipped with an infrared sauna, rain shower, and hydrotherapy tub, plus a selection of artisan chocolate bonbons for you and a special someone.',
         link: '/waitlist-crs/',
@@ -1477,7 +1477,7 @@
       {
         title: 'Beer Therapy Ritual Package',
         fullTitle:
-          'Dive into a relaxing ritual of a bubbly beer bath and sauna, creating a harmonious escape for two.',
+          'Dive into a relaxing ritual of a bubbly beer bath and dry sauna in your private spa suite with a craft beverage in hand.',
         descr:
           'Private spa suite, including an infrared sauna, rain shower, and hydrotherapy tub - perfect for a solo spa day or enjoyed with a friend. ',
         link: '/waitlist-crs/',
@@ -1487,7 +1487,7 @@
       {
         title: 'Garage Party',
         fullTitle:
-          'Host a fun Garage Party with friends, relaxing in bubbly beer baths and saunas.',
+          'Make memories during the ultimate group spa experience by sharing a private spa suite while saying ‘cheers’ with a craft beverage.',
         descr:
           'The ultimate group outing featuring two private spa suites joined together with access to two infrared saunas, two rain showers, and two hydrotherapy tubs. ',
         link: '/waitlist-crs/',
