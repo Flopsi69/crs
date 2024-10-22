@@ -200,7 +200,7 @@
     right: 0;
     margin: auto;
     border-radius: 16px;
-    max-width: 870px;
+    max-width: 1000px;
     padding: 18px 24px;
     z-index: 10;
     color: #0C5947;
@@ -211,7 +211,7 @@
     display: none!important;
   }
   .lav-fixed__info {
-    max-width: 430px;
+    max-width: 575px;
   }
   .lav-fixed__title {
     font-size: 24px;
