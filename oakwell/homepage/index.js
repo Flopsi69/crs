@@ -1733,7 +1733,7 @@
             <img src='${config.dir}/img/award-1.svg' class='lav-award__image' />
             <div class='lav-award__info'>
               <div class='lav-award__title'>Time’s</div>
-              <div class='lav-award__caption'>VOTED #1 Day Spa in Denver</div>
+              <div class='lav-award__caption'>World’s Greatest Places</div>
             </div>
           </div>
 
