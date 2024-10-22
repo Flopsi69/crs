@@ -1785,7 +1785,7 @@
     <div class='lav-reviews'>
       <div class='lav-review'>
         <div class='lav-review__head'>
-          <div class='lav-review__rate'>4.9</div>
+          <div class='lav-review__rate'>5.0</div>
           <img class='lav-review__stars' src='${config.dir}/img/stars.svg' />
           <div class='lav-review__count'>2,234 reviews</div>
         </div>
@@ -1796,7 +1796,7 @@
 
       <div class='lav-review'>
         <div class='lav-review__head'>
-          <div class='lav-review__rate'>4.9</div>
+          <div class='lav-review__rate'>5.0</div>
           <img class='lav-review__stars' src='${config.dir}/img/stars.svg' />
           <div class='lav-review__count'>490 reviews</div>
         </div>
@@ -1807,7 +1807,7 @@
 
       <div class='lav-review'>
         <div class='lav-review__head'>
-          <div class='lav-review__rate'>4.9</div>
+          <div class='lav-review__rate'>5.0</div>
           <img class='lav-review__stars' src='${config.dir}/img/stars.svg' />
           <div class='lav-review__count'>222 reviews</div>
         </div>
@@ -2043,7 +2043,7 @@
     <div class='lav-fixed'>
       <div class='lav-fixed__info'>
         <div class='lav-fixed__title lav-quincy'>Relax at the best Denver spa!</div>
-        <div class='lav-fixed__caption'>Award-winning, beer-inspired spa for top-notch wellness</div>
+        <div class='lav-fixed__caption'>A beer-inspired, award-winning spa offering a top-notch wellness experience</div>
       </div>
       <a  data-router-disabled  href='/waitlist-crs/' class='lav-fixed__btn lav-btn link-btn dark'>
         Book Your Beer Spa Experience Now
