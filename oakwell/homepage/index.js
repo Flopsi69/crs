@@ -298,6 +298,9 @@
     display: flex;
     flex-flow: column;
   }
+  .lav-product__image img {
+    border-radius: 40px;
+  }
   .lav-products__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
