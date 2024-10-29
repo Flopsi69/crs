@@ -1462,7 +1462,8 @@
           'Romantic private spa suite decorated with candles and rose petals, plus a gourmet charcuterie board, chocolate bonbons, and 30-minute zero gravity massages. ',
         link: '/waitlist-crs/',
         id: '68951432',
-        image: `${config.dir}/img/booking-1.png`
+        image: `${config.dir}/img/booking-1.png`,
+        image2: `${config.dir}/img/booking-1.jpg`
       },
       {
         title: "Couple's Retreat Package",
@@ -1472,7 +1473,8 @@
           'Private spa suite equipped with an infrared sauna, rain shower, and hydrotherapy tub, plus a selection of artisan chocolate bonbons for you and a special someone.',
         link: '/waitlist-crs/',
         id: '68951079',
-        image: `${config.dir}/img/booking-2.png`
+        image: `${config.dir}/img/booking-2.png`,
+        image2: `${config.dir}/img/booking-2.jpg`
       },
       {
         title: 'Beer Therapy Ritual Package',
@@ -1482,7 +1484,8 @@
           'Private spa suite, including an infrared sauna, rain shower, and hydrotherapy tub - perfect for a solo spa day or enjoyed with a friend. ',
         link: '/waitlist-crs/',
         id: '68950903',
-        image: `${config.dir}/img/booking-3.png`
+        image: `${config.dir}/img/booking-3.png`,
+        image2: `${config.dir}/img/booking-3.jpg`
       },
       {
         title: 'Garage Party',
@@ -1492,7 +1495,8 @@
           'The ultimate group outing featuring two private spa suites joined together with access to two infrared saunas, two rain showers, and two hydrotherapy tubs. ',
         link: '/waitlist-crs/',
         id: '27351564',
-        image: `${config.dir}/img/booking-4.png`
+        image: `${config.dir}/img/booking-4.png`,
+        image2: `${config.dir}/img/booking-4.jpg`
       }
     ]
 
@@ -1617,7 +1621,7 @@
         productEl.dataset.aos = 'fade-up'
         productEl.innerHTML = /* html */ `
         <div class='lav-product__image'>
-          <img src='${product.image}' />
+          <img src='${num === 'one' ? product.image : product.image2}' />
         </div>
         <div class='lav-product__info'>
           <div class='lav-product__title lav-quincy'>${product.title}</div>
