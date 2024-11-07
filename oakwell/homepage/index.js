@@ -892,7 +892,7 @@
   }
   @media(max-width: 1025px) {
       .modal-notification {
-        bottom: 7rem;
+        bottom: 6rem;
       }
     .lav-wave-top {
       bottom: 2rem;
