@@ -887,7 +887,13 @@
   .blog-cards .card .text .tag {
     padding-top: 2px;
   }
+  .modal-notification {
+    bottom: 7.5rem;
+  }
   @media(max-width: 1025px) {
+      .modal-notification {
+        bottom: 7rem;
+      }
     .lav-wave-top {
       bottom: 2rem;
       transform: translateY(99%);
@@ -1360,6 +1366,12 @@
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
+
+    waitFor('.modal-notification .close', () => {
+      if (window.innerWidth > 1024) {
+        _$('.modal-notification .close').click()
+      }
+    })
 
     if (location.pathname === '/') {
       if (_$('.lav-hero')) {
