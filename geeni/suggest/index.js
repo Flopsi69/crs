@@ -421,7 +421,7 @@
       'afterbegin',
       /* html */ `
       <div class='lav-benefits'>
-        <div class='lav-benefits__title'>Get second camera with -10% off directly from the manufacturer and enjoy all the benefits:</div>
+        <div class='lav-benefits__title'>Get second <span>camera</span> with -10% off directly from the manufacturer and enjoy all the benefits:</div>
         <div class='lav-benefits__list'>
           <div class='lav-benefits__item'>
             <div class='lav-benefits__icon'>
@@ -501,6 +501,12 @@
     `
 
     _$('.back-navigation').insertAdjacentHTML('beforebegin', murkup)
+
+    waitFor('.lav-benefits__title span', () => {
+      _$('.lav-benefits__title span').textContent = findDevice.category
+        ? findDevice.category
+        : 'camera'
+    })
 
     visibilityEvent('.lav-banner', () => {
       pushDataLayer(
