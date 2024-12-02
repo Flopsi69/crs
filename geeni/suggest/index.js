@@ -470,7 +470,9 @@
       <div class='lav-banner'>
         ${getSvg('confetti')}
         <div class='lav-banner__title'>
-          ${customerName ? `Hey, ${customerName}!` : ''}   You already own:
+        ${
+          typeof customerName !== 'undefined' ? `Hey, ${customerName}!` : ''
+        } You already own:
         </div>
         <div class='lav-banner__item'>
           <div class='lav-banner__item-image'>
