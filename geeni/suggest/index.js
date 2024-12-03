@@ -373,10 +373,10 @@
       waitFor('.lav-pdp-discount', () => {
         visibilityEvent('.lav-pdp-discount', () => {
           pushDataLayer(
-            'exp_direct_app__discount_banner',
+            'exp_direct_app__get_10_discount',
             'Element on screen',
             'view',
-            'First screen (discount banner)'
+            'Get discount with code'
           )
         })
       })
