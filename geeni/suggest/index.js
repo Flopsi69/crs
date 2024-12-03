@@ -31,6 +31,9 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+  .go1272136950 + [role="dialog"], .needsclick [style="display: flex; z-index: 90000; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; justify-content: center; align-items: center; overflow: auto; background-color: rgba(0, 0, 0, 0.41); animation-timing-function: ease; animation-play-state: running; animation-iteration-count: 1; animation-fill-mode: forwards; animation-delay: 0s; animation-duration: 0.35s; animation-name: klaviyo-fadein;"] {
+    display: none!important;
+  }
   iframe#launcher {
     margin-right: 10px!important;
   }
