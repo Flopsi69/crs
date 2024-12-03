@@ -329,7 +329,10 @@
     // applyDiscountCode('APPEXCLUSIVE10')
 
     // TODO
-    if (location.href.includes('pages/app-index')) {
+    if (
+      location.href.includes('pages/app-index') &&
+      typeof userEmail !== 'string'
+    ) {
       if (!sessionStorage.getItem('userDevicesHyp')) {
         getUserDevices()
       }
