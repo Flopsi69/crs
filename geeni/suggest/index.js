@@ -331,7 +331,7 @@
     // TODO
     if (
       location.href.includes('pages/app-index') &&
-      typeof userEmail !== 'string'
+      typeof userEmail == 'string'
     ) {
       if (!sessionStorage.getItem('userDevicesHyp')) {
         getUserDevices()
