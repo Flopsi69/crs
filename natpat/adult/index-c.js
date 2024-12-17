@@ -157,7 +157,7 @@ const styles = /* css */ `
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 1;
+  line-height: 18px;
   letter-spacing: 0.6px;
   margin-top: 4px;
 }
@@ -761,7 +761,7 @@ function addModal() {
 
     _$('.lav-pack__amount').textContent = caption
     _$('.lav-pack__image img').src = image
-    _$('.lav-pack__price').textContent = price
+    _$('.lav-pack__price').textContent = price.replace(' Each', '/pack')
     _$('.lav-pack__total').innerHTML = _$('#getNow .js-total').innerHTML
 
     Modal.open('.lav-adult')
