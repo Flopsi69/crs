@@ -470,7 +470,7 @@ async function initExp() {
   console.debug('** InitExp **')
 
   waitFor('.js-heading.js-mobile h1', updateHero)
-  addInfoBlock()
+  waitFor('#LoveBuzzPatch', addInfoBlock)
   addModal()
 }
 
@@ -626,8 +626,8 @@ function addModal() {
   const formatPrice = (price) => {
     const [integer, decimal] = price.toFixed(2).split('.')
     // If decimal is 00, return the integer only, else return integer with decimal
-    return decimal === '00'
-      ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + `.${decimal}`
+    return integer.length > 5 && decimal === '00'
+      ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       : integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + `.${decimal}`
   }
 
