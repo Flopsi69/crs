@@ -427,7 +427,7 @@ function updatePackages() {
       const [integer, decimal] = price.toFixed(2).split('.')
       // If decimal is 00, return the integer only, else return integer with decimal
       return decimal === '00'
-        ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + `.${decimal}`
         : integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + `.${decimal}`
     }
 
@@ -505,6 +505,12 @@ function updatePackages() {
       discountEl.textContent = _$('.lav-collapse__package.active')
         ? averageDiscount
         : Math.round(origDiscount * 100)
+
+      setTimeout(() => {
+        discountEl.textContent = _$('.lav-collapse__package.active')
+          ? averageDiscount
+          : Math.round(origDiscount * 100)
+      }, 400)
 
       modifyCartUrl()
     }
