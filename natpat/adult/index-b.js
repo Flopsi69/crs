@@ -224,7 +224,7 @@ async function initExp() {
 
   console.debug('** InitExp **')
 
-  updateHero()
+  waitFor('.js-heading.js-mobile h1', updateHero)
   addInfoBlock()
   updatePackages()
 }
