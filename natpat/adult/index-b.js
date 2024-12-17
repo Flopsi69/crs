@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/natpat/adult',
   dir: 'https://flopsi69.github.io/crs/natpat/adult',
   clarity: ['set', 'adult_2_b', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
