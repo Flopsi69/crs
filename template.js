@@ -8,10 +8,10 @@ const config = {
   debug: true
 }
 
-const orig = console.log
-console.log = function (...args) {
-  orig.apply(console, ['Debug:', ...args])
-}
+// const orig = console.log
+// console.log = function (...args) {
+//   orig.apply(console, ['Debug:', ...args])
+// }
 
 // Styles for Experiment
 const styles = /* css */ ``
