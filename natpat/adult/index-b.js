@@ -416,6 +416,10 @@ function updatePackages() {
 
         setTimeout(() => {
           updatePrice()
+        }, 50)
+
+        setTimeout(() => {
+          updatePrice()
         }, 500)
       })
     })
