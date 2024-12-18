@@ -544,14 +544,14 @@ function addModal() {
       </div>
 
       <div class="lav-collapse__packages">
-        <div class="lav-collapse__package" data-id='41195285053484' data-price='${productAdultsVariants['3pack'].fullPrice}' data-discount='59'>
+        <div class="lav-collapse__package" data-id='41195285053484' data-price='${productAdultsVariants['3pack'].fullPrice}' data-discount='51'>
           <div class="lav-collapse__package-title">3 Packs</div>
           <div class="lav-collapse__package-price">
             <span>${productAdultsVariants['3pack'].price}</span> Each
           </div>
         </div>
         
-        <div class="lav-collapse__package" data-id='41195285184556' data-price='${productAdultsVariants['2pack'].fullPrice}' data-discount='54'>
+        <div class="lav-collapse__package" data-id='41195285184556' data-price='${productAdultsVariants['2pack'].fullPrice}' data-discount='45'>
           <div class="lav-collapse__package-title">2 Packs</div>
           <div class="lav-collapse__package-price">
             <span>${productAdultsVariants['2pack'].price}</span> Each
@@ -565,7 +565,7 @@ function addModal() {
           </div>
         </div>
 
-        <div class="lav-collapse__package" data-id='41195285250092' data-price='${productAdultsVariants['4pack'].fullPrice}' data-discount='64'>
+        <div class="lav-collapse__package" data-id='41195285250092' data-price='${productAdultsVariants['4pack'].fullPrice}' data-discount='57'>
           <div class="lav-collapse__package-title">4 Packs</div>
           <div class="lav-collapse__package-price">
             <span>${productAdultsVariants['4pack'].price}</span> Each

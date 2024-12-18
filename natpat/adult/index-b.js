@@ -298,14 +298,14 @@ function updatePackages() {
           <div class="lav-collapse__subtitle">For Kids and Adults Alike: Because Mosquitoes Don’t Play Favorites! </div>
           <div class="lav-collapse__descr">Pack of 40 adult sized neutral colours BuzzPatch mosquito repellent stickers</div>
           <div class="lav-collapse__packages">
-            <div class="lav-collapse__package" data-id='41195285053484' data-price='${productAdultsVariants['3pack'].fullPrice}' data-discount='59'>
+            <div class="lav-collapse__package" data-id='41195285053484' data-price='${productAdultsVariants['3pack'].fullPrice}' data-discount='51'>
               <div class="lav-collapse__package-title">3 Packs</div>
               <div class="lav-collapse__package-price">
                 <span>${productAdultsVariants['3pack'].price}</span> Each
               </div>
             </div>
             
-            <div class="lav-collapse__package" data-id='41195285184556' data-price='${productAdultsVariants['2pack'].fullPrice}' data-discount='54'>
+            <div class="lav-collapse__package" data-id='41195285184556' data-price='${productAdultsVariants['2pack'].fullPrice}' data-discount='45'>
               <div class="lav-collapse__package-title">2 Packs</div>
               <div class="lav-collapse__package-price">
                 <span>${productAdultsVariants['2pack'].price}</span> Each
@@ -319,7 +319,7 @@ function updatePackages() {
               </div>
             </div>
 
-            <div class="lav-collapse__package" data-id='41195285250092' data-price='${productAdultsVariants['4pack'].fullPrice}' data-discount='64'>
+            <div class="lav-collapse__package" data-id='41195285250092' data-price='${productAdultsVariants['4pack'].fullPrice}' data-discount='57'>
               <div class="lav-collapse__package-title">4 Packs</div>
               <div class="lav-collapse__package-price">
                 <span>${productAdultsVariants['4pack'].price}</span> Each
@@ -502,9 +502,14 @@ function updatePackages() {
       // console.log(averageDiscount)
 
       priceEl.textContent = formatPrice(origPrice + additionalPrice)
-      discountEl.textContent = _$('.lav-collapse__package.active')
+      const discountValue = _$('.lav-collapse__package.active')
         ? averageDiscount
         : Math.round(origDiscount * 100)
+      if (discountValue > 0) {
+        discountEl.textContent = discountValue
+      } else {
+        _$('.percent-off').style.display = 'none'
+      }
 
       initMutation(
         '.js-total .pr',
@@ -516,9 +521,11 @@ function updatePackages() {
           )
           if (node.trim() != formatPrice(origPrice + additionalPrice)) {
             priceEl.textContent = formatPrice(origPrice + additionalPrice)
-            discountEl.textContent = _$('.lav-collapse__package.active')
-              ? averageDiscount
-              : Math.round(origDiscount * 100)
+            if (discountValue > 0) {
+              discountEl.textContent = discountValue
+            } else {
+              _$('.percent-off').style.display = 'none'
+            }
           }
         },
         false,
