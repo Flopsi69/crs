@@ -678,22 +678,18 @@ function addModal() {
         100
     )
 
-    console.log(
-      'Orig -',
-      origPrice,
-      origDiscount,
-      'Add -',
-      additionalPrice,
-      additionDiscount,
-      '=',
-      origPrice + additionalPrice
-    )
+    // console.log(
+    //   'Orig -',
+    //   origPrice,
+    //   origDiscount,
+    //   'Add -',
+    //   additionalPrice,
+    //   additionDiscount,
+    //   '=',
+    //   origPrice + additionalPrice
+    // )
 
     // console.log(averageDiscount)
-
-    const discountTotal = _$('.lav-collapse__package.active')
-      ? averageDiscount
-      : Math.round(origDiscount * 100)
 
     const symbol = _$('#addToCart').dataset.symbol
 
@@ -701,6 +697,18 @@ function addModal() {
       symbol +
       formatPrice(origPrice + additionalPrice) +
       (_$('#radios-3').checked ? '' : ' (' + discountTotal + '% OFF)')
+
+    setPrice()
+
+    function setPrice() {
+      priceEl.textContent =
+        symbol +
+        formatPrice(origPrice + additionalPrice) +
+        (_$('#radios-3').checked &&
+        _$('.lav-collapse__package.active[data-id="41195285119020"]')
+          ? ''
+          : ' (' + discountTotal + '% OFF)')
+    }
 
     modifyCartUrl()
   }
