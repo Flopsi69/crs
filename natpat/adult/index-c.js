@@ -703,8 +703,9 @@ function addModal() {
       priceEl.textContent =
         symbol +
         formatPrice(origPrice + additionalPrice) +
-        (_$('#radios-3').checked &&
-        _$('.lav-collapse__package.active[data-id="41195285119020"]')
+        ((_$('#radios-3').checked &&
+          _$('.lav-collapse__package.active[data-id="41195285119020"]')) ||
+        discountTotal === 0
           ? ''
           : ' (' + discountTotal + '% OFF)')
     }
