@@ -413,6 +413,10 @@ function updatePackages() {
 
         checkCaptionShow()
         updatePrice()
+
+        setTimeout(() => {
+          updatePrice()
+        }, 500)
       })
     })
 
@@ -499,44 +503,7 @@ function updatePackages() {
       //   origPrice + additionalPrice
       // )
 
-      // console.log(averageDiscount)
-
       setPrice()
-      // priceEl.textContent = formatPrice(origPrice + additionalPrice)
-      // const discountValue = _$('.lav-collapse__package.active')
-      //   ? averageDiscount
-      //   : Math.round(origDiscount * 100)
-      // if (discountValue > 0) {
-      //   discountEl.textContent = discountValue
-      // } else {
-      //   _$('.percent-off').style.display = 'none'
-      // }
-
-      initMutation(
-        '.js-total .pr',
-        (node) => {
-          console.log('node', node)
-          console.log(
-            node.textContent.trim(),
-            formatPrice(origPrice + additionalPrice)
-          )
-          // console.log(
-          //   node.textContent.trim() === formatPrice(origPrice + additionalPrice)
-          // )
-          // if (
-          //   node.textContent.trim() !== formatPrice(origPrice + additionalPrice)
-          // ) {
-          //   priceEl.textContent = formatPrice(origPrice + additionalPrice)
-          //   if (discountValue > 0) {
-          //     discountEl.textContent = discountValue
-          //   } else {
-          //     _$('.percent-off').style.display = 'none'
-          //   }
-          // }
-        },
-        false,
-        { all: true }
-      )
 
       function setPrice() {
         priceEl.textContent = formatPrice(origPrice + additionalPrice)
@@ -546,12 +513,38 @@ function updatePackages() {
         if (discountValue > 0) {
           discountEl.textContent = discountValue
         } else {
-          // _$('.percent-off').style.display = 'none'
+          _$('.percent-off').style.display = 'none'
         }
       }
 
       modifyCartUrl()
     }
+
+    // initMutation(
+    //   '.js-total .pr',
+    //   (node) => {
+    //     console.log('node', node)
+    //     console.log(
+    //       node.textContent.trim(),
+    //       formatPrice(origPrice + additionalPrice)
+    //     )
+    // console.log(
+    //   node.textContent.trim() === formatPrice(origPrice + additionalPrice)
+    // )
+    // if (
+    //   node.textContent.trim() !== formatPrice(origPrice + additionalPrice)
+    // ) {
+    //   priceEl.textContent = formatPrice(origPrice + additionalPrice)
+    //   if (discountValue > 0) {
+    //     discountEl.textContent = discountValue
+    //   } else {
+    //     _$('.percent-off').style.display = 'none'
+    //   }
+    // }
+    //   },
+    //   false,
+    //   { all: true }
+    // )
 
     function modifyCartUrl() {
       const item1 = _$('#getNow input[name="radios"]:checked')
