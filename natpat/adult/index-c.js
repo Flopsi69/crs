@@ -693,14 +693,13 @@ function addModal() {
 
     const symbol = _$('#addToCart').dataset.symbol
 
-    priceEl.textContent =
-      symbol +
-      formatPrice(origPrice + additionalPrice) +
-      (_$('#radios-3').checked ? '' : ' (' + discountTotal + '% OFF)')
-
     setPrice()
 
     function setPrice() {
+      const discountTotal = _$('.lav-collapse__package.active')
+        ? averageDiscount
+        : Math.round(origDiscount * 100)
+
       priceEl.textContent =
         symbol +
         formatPrice(origPrice + additionalPrice) +
