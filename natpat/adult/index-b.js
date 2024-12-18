@@ -420,7 +420,7 @@ function updatePackages() {
 
         setTimeout(() => {
           updatePrice()
-        }, 500)
+        }, 350)
       })
     })
 
