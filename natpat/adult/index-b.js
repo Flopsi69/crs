@@ -506,10 +506,15 @@ function updatePackages() {
         ? averageDiscount
         : Math.round(origDiscount * 100)
 
-      initMutation('.js-total', (node) => {
-        console.log(node)
-        console.log(formatPrice(origPrice + additionalPrice))
-      })
+      initMutation(
+        '.js-total .pr',
+        (node) => {
+          console.log(node)
+          console.log(formatPrice(origPrice + additionalPrice))
+        },
+        false,
+        { all: true }
+      )
       setTimeout(() => {
         priceEl.textContent = formatPrice(origPrice + additionalPrice)
         discountEl.textContent = _$('.lav-collapse__package.active')
@@ -723,7 +728,7 @@ async function waitFor(condition, cb = false, customConfig = {}) {
 }
 
 // Mutation Observer
-function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
+function initMutation(observeEl = document.body, cbAdded, cbRemoved, options) {
   const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
   if (!el) return
@@ -732,7 +737,7 @@ function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
     for (let mutation of mutations) {
       if (typeof cbAdded === 'function') {
         for (let node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue
+          if (!options.all && !(node instanceof HTMLElement)) continue
           cbAdded(node, observer)
         }
       }
