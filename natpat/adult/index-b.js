@@ -506,6 +506,10 @@ function updatePackages() {
         ? averageDiscount
         : Math.round(origDiscount * 100)
 
+      initMutation('.js-total', (node) => {
+        console.log(node)
+        console.log(formatPrice(origPrice + additionalPrice))
+      })
       setTimeout(() => {
         priceEl.textContent = formatPrice(origPrice + additionalPrice)
         discountEl.textContent = _$('.lav-collapse__package.active')
