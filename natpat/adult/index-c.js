@@ -651,7 +651,7 @@ function addModal() {
       ? getpack2OffPrice / 100
       : _$('#radios-4').checked
       ? getpack5OffPrice / 100
-      : getpack1OffPrice / 100
+      : 0
 
     const origPrice = !_$('#getNow input[name="radios"]:checked')
       ? 0
