@@ -210,7 +210,15 @@ class Modal {
     )
 
     document.addEventListener('click', (e) => {
-      if (e.target.closest('.lav-modal__close')) this.close()
+      if (e.target.closest('.lav-modal__close')) {
+        this.close()
+        pushDataLayer(
+          'exp_adult2_click_021',
+          'Change',
+          'click',
+          'SELECT PACKAGE'
+        )
+      }
 
       if (e.target.dataset.modal) {
         this.open(e.target.dataset.modal)

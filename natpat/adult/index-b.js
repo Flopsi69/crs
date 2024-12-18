@@ -516,6 +516,7 @@ function updatePackages() {
           : Math.round(origDiscount * 100)
         if (discountValue > 0) {
           discountEl.textContent = discountValue
+          _$('.percent-off').removeAttribute('style')
         } else {
           _$('.percent-off').style.display = 'none'
         }
