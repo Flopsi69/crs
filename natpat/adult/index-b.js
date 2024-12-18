@@ -507,10 +507,11 @@ function updatePackages() {
         : Math.round(origDiscount * 100)
 
       setTimeout(() => {
+        priceEl.textContent = formatPrice(origPrice + additionalPrice)
         discountEl.textContent = _$('.lav-collapse__package.active')
           ? averageDiscount
           : Math.round(origDiscount * 100)
-      }, 400)
+      }, 500)
 
       modifyCartUrl()
     }
