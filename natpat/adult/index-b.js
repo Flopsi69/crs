@@ -515,6 +515,10 @@ function updatePackages() {
         '.js-total .pr',
         (node) => {
           console.log(
+            node.textContent.trim(),
+            formatPrice(origPrice + additionalPrice)
+          )
+          console.log(
             node.textContent.trim() === formatPrice(origPrice + additionalPrice)
           )
           if (
