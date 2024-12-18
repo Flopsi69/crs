@@ -509,18 +509,21 @@ function updatePackages() {
       initMutation(
         '.js-total .pr',
         (node) => {
-          console.log(node)
-          console.log(formatPrice(origPrice + additionalPrice))
+          console.log(
+            node.trim(),
+            formatPrice(origPrice + additionalPrice),
+            node.trim() != formatPrice(origPrice + additionalPrice)
+          )
+          if (node.trim() != formatPrice(origPrice + additionalPrice)) {
+            priceEl.textContent = formatPrice(origPrice + additionalPrice)
+            discountEl.textContent = _$('.lav-collapse__package.active')
+              ? averageDiscount
+              : Math.round(origDiscount * 100)
+          }
         },
         false,
         { all: true }
       )
-      setTimeout(() => {
-        priceEl.textContent = formatPrice(origPrice + additionalPrice)
-        discountEl.textContent = _$('.lav-collapse__package.active')
-          ? averageDiscount
-          : Math.round(origDiscount * 100)
-      }, 500)
 
       modifyCartUrl()
     }
