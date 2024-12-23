@@ -717,10 +717,17 @@ function addModalMarkup(packages) {
 
     pack.addEventListener('touchend', () => {
       const deltaX = endX - startX
+      const activeNav = _$('.lavd-nav__item.active')
 
       if (deltaX > 50) {
+        if (activeNav.previousElementSibling) {
+          activeNav.previousElementSibling.click()
+        }
         console.log('Swiped right', pack)
       } else if (deltaX < -50) {
+        if (activeNav.nextElementSibling) {
+          activeNav.nextElementSibling.click()
+        }
         console.log('Swiped left', pack)
       }
 
