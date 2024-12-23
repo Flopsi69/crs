@@ -718,12 +718,16 @@ function addModalMarkup(packages) {
 
       const packId = _$('.lavd-nav__item.active').dataset.id
 
+      if (!triggeredDepths.has(packId)) {
+        triggeredDepths.set(packId, new Set())
+      }
+
       thresholds.forEach((depth) => {
         if (
           scrolledPercentage >= depth &&
           !triggeredDepths.get(packId).has(depth)
         ) {
-          triggeredDepths.get(divId).add(depth)
+          triggeredDepths.get(packId).add(depth)
           pushDataLayer(
             'exp_hp2_scroll_01',
             `Scroll - ${depth}`,
