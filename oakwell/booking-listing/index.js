@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/oakwell/booking-listing',
   dir: 'https://flopsi69.github.io/crs/oakwell/booking-listing',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'new_hp', 'variant_1'],
   debug: true
 }
 
@@ -472,6 +472,16 @@ function changeLayout(packages) {
       el.addEventListener('click', () => {
         if (el.closest('.lavp').classList.contains('active')) return
 
+        pushDataLayer(
+          'exp_hp2_button_01',
+          `See details - ${el
+            .closest('.lavp')
+            .querySelector('.lavp__title')
+            .innerText.trim()}`,
+          'click',
+          'Choose your experience'
+        )
+
         if (
           !_$(
             '.lavd-nav__item[data-id="' + package.id + '"]'
@@ -647,6 +657,8 @@ function addNavigation(packages) {
     el.addEventListener('click', () => {
       if (el.classList.contains('active')) return
 
+      pushDataLayer('exp_hp2_button_04', package.nav, 'click', 'Header')
+
       const activeIndex = Array.from(_$$('.lavd-nav__item')).indexOf(
         _$('.lavd-nav__item.active')
       )
@@ -701,6 +713,13 @@ function addModalMarkup(packages) {
       _$$('.lav-pop__list .addon').forEach((el) => {
         const target = _$(`.addons .addon[data-id="${el.dataset.id}"]`)
 
+        pushDataLayer(
+          'exp_hp2_button_05',
+          el.querySelector('.addon-title').innerText.trim(),
+          'click',
+          'Experience pop up'
+        )
+
         if (el.classList.contains('activated')) {
           target.classList.add('active')
         } else {
@@ -728,6 +747,12 @@ function addModalMarkup(packages) {
   )
 
   _$('.lav-sticky__btn').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_hp2_button_02',
+      'Select package',
+      'click',
+      'Stiky button'
+    )
     toggleModalPopup(true)
     // selectModalPackage()
     return
@@ -878,6 +903,12 @@ function toggleModalPopup(isActive) {
   }
   if (isActive) {
     _$('.lav-pop').classList.add('active')
+    pushDataLayer(
+      'exp_hp2_element_02',
+      'Experience pop up',
+      'view',
+      'Experience pop up'
+    )
   } else {
     _$('.lav-pop').classList.remove('active')
   }
@@ -942,16 +973,23 @@ class Modal {
     })
 
     _$('.lav-pop__btn-wrap .lav-pop__btn').addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp2_button_06',
+        'Continue',
+        'click',
+        'Experience pop up'
+      )
       selectModalPackage()
       toggleModalPopup(false)
     })
 
     document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
+      if (e.target.classList.contains('lav-modal')) this.close()
+
+      if (e.target.closest('.lav-modal__close')) {
+        pushDataLayer('exp_hp2_button_03', 'Close', 'click', 'Event details')
         this.close()
+      }
 
       if (e.target.dataset.modal) {
         this.open(e.target.dataset.modal)
