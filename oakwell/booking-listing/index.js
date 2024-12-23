@@ -715,7 +715,13 @@ function addModalMarkup(packages) {
       endX = event.touches[0].clientX // Continuously update the current touch position
     })
 
-    pack.addEventListener('touchend', () => {
+    pack.addEventListener('touchend', (e) => {
+      console.log('e', e)
+      if (
+        e.target.closest('.swiper__wrap') ||
+        e.target.closest('.b-goog-review')
+      )
+        return
       const deltaX = endX - startX
       const activeNav = _$('.lavd-nav__item.active')
 
