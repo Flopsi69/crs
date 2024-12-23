@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/oakwell/booking-listing',
-  // dir: 'https://flopsi69.github.io/crs/oakwell/booking-listing',
+  // dir: 'http://127.0.0.1:5500/oakwell/booking-listing',
+  dir: 'https://flopsi69.github.io/crs/oakwell/booking-listing',
   clarity: ['set', '', 'variant_1'],
   debug: true
 }
