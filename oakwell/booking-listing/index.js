@@ -639,6 +639,7 @@ function changeSlide(target, isReverse) {
 }
 
 var timerExitingAnim = null
+let isDisableEventNav = false
 
 function addNavigation(packages) {
   const navMarkup = /* html */ `
@@ -663,7 +664,9 @@ function addNavigation(packages) {
     el.addEventListener('click', () => {
       if (el.classList.contains('active')) return
 
-      pushDataLayer('exp_hp2_button_04', package.nav, 'click', 'Header')
+      if (!isDisableEventNav) {
+        pushDataLayer('exp_hp2_button_04', package.nav, 'click', 'Header')
+      }
 
       const activeIndex = Array.from(_$$('.lavd-nav__item')).indexOf(
         _$('.lavd-nav__item.active')
@@ -725,6 +728,7 @@ function addModalMarkup(packages) {
       const deltaX = endX - startX
       const activeNav = _$('.lavd-nav__item.active')
 
+      isDisableEventNav = true
       if (deltaX > 50) {
         if (activeNav.previousElementSibling) {
           activeNav.previousElementSibling.click()
@@ -736,6 +740,7 @@ function addModalMarkup(packages) {
         }
         console.log('Swiped left', pack)
       }
+      isDisableEventNav = false
 
       // Reset start and end positions
       startX = 0
