@@ -704,8 +704,30 @@ function addModalMarkup(packages) {
     const pack = _$('.lavd-pack[data-id="' + package.id + '"]')
 
     swipeHandler(pack)
-    scrollHandler(pack)
   })
+
+  scrollHandler(_$('.lav-modal'))
+  function scrollHandler(pack) {
+    const thresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    let triggeredDepths = new Set()
+
+    pack.addEventListener('scroll', () => {
+      const scrollHeight = pack.scrollHeight - pack.clientHeight
+      const scrolledPercentage = (pack.scrollTop / scrollHeight) * 100
+
+      thresholds.forEach((depth) => {
+        if (scrolledPercentage >= depth && !triggeredDepths.has(depth)) {
+          triggeredDepths.add(depth) // Mark this depth as triggered
+          pushDataLayer(
+            'exp_hp2_scroll_01',
+            `Scroll - ${depth}`,
+            'other',
+            'Event details'
+          )
+        }
+      })
+    })
+  }
 
   function swipeHandler(pack) {
     let startX = 0
@@ -748,28 +770,6 @@ function addModalMarkup(packages) {
       // Reset start and end positions
       startX = 0
       endX = 0
-    })
-  }
-
-  function scrollHandler(pack) {
-    const thresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    let triggeredDepths = new Set()
-
-    pack.addEventListener('scroll', () => {
-      const scrollHeight = pack.scrollHeight - pack.clientHeight
-      const scrolledPercentage = (pack.scrollTop / scrollHeight) * 100
-
-      thresholds.forEach((depth) => {
-        if (scrolledPercentage >= depth && !triggeredDepths.has(depth)) {
-          triggeredDepths.add(depth) // Mark this depth as triggered
-          pushDataLayer(
-            'exp_hp2_scroll_01',
-            `Scroll - ${depth}`,
-            'other',
-            'Event details'
-          )
-        }
-      })
     })
   }
 
