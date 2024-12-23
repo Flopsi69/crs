@@ -682,7 +682,11 @@ function addModalMarkup(packages) {
   })
 
   _$('.back-mob').addEventListener('click', (e) => {
-    console.log(_$('.step.active'))
+    console.log(
+      _$('.step.active'),
+      _$('.step.packages.active'),
+      _$('.lavd-nav__item.active').dataset.id
+    )
     if (
       _$('.step.packages.active') &&
       _$('.lavd-nav__item.active').dataset.id !== '28107448'
