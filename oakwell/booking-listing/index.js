@@ -697,7 +697,38 @@ function addModalMarkup(packages) {
       'beforeend',
       getPackageMarkup(package, index)
     )
+
+    const pack = _$('.lavd-pack[data-id="' + package.id + '"]')
+
+    swipeHandler(pack)
   })
+
+  function swipeHandler(pack) {
+    let startX = 0
+    let endX = 0
+
+    pack.addEventListener('touchstart', (event) => {
+      startX = event.touches[0].clientX // Record the starting touch position
+    })
+
+    pack.addEventListener('touchmove', (event) => {
+      endX = event.touches[0].clientX // Continuously update the current touch position
+    })
+
+    pack.addEventListener('touchend', () => {
+      const deltaX = endX - startX
+
+      if (deltaX > 50) {
+        console.log('Swiped right', pack)
+      } else if (deltaX < -50) {
+        console.log('Swiped left', pack)
+      }
+
+      // Reset start and end positions
+      startX = 0
+      endX = 0
+    })
+  }
 
   _$('.back-mob').addEventListener('click', (e) => {
     console.log(
