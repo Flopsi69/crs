@@ -595,6 +595,12 @@ function fillPopAddons() {
 
   _$$('.lav-pop__list .addon').forEach((el) => {
     el.addEventListener('click', () => {
+      pushDataLayer(
+        'exp_hp2_button_05',
+        el.querySelector('.addon-title').innerText.trim(),
+        'click',
+        'Experience pop up'
+      )
       el.classList.toggle('activated')
     })
   })
@@ -712,13 +718,6 @@ function addModalMarkup(packages) {
     el.addEventListener('click', () => {
       _$$('.lav-pop__list .addon').forEach((el) => {
         const target = _$(`.addons .addon[data-id="${el.dataset.id}"]`)
-
-        pushDataLayer(
-          'exp_hp2_button_05',
-          el.querySelector('.addon-title').innerText.trim(),
-          'click',
-          'Experience pop up'
-        )
 
         if (el.classList.contains('activated')) {
           target.classList.add('active')
