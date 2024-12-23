@@ -447,11 +447,14 @@ async function initExp() {
     }
   ]
 
-  waitFor('.services-title', () => {
-    changeLayout(packages)
-    addModalMarkup(packages)
-    addNavigation(packages)
-  })
+  waitFor(
+    () => _$('.services-title') && _$('.tickers'),
+    () => {
+      changeLayout(packages)
+      addModalMarkup(packages)
+      addNavigation(packages)
+    }
+  )
   // Modal.open('.lav-package')
 }
 
