@@ -735,11 +735,13 @@ function addModalMarkup(packages) {
           activeNav.previousElementSibling.click()
         }
         console.log('Swiped right', pack)
+        pushDataLayer('exp_hp2_element_01', 'Swipe', 'click', 'Event details')
       } else if (deltaX < -50) {
         if (activeNav.nextElementSibling) {
           activeNav.nextElementSibling.click()
         }
         console.log('Swiped left', pack)
+        pushDataLayer('exp_hp2_element_01', 'Swipe', 'click', 'Event details')
       }
       isDisableEventNav = false
 
