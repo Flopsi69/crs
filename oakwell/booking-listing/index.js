@@ -712,12 +712,12 @@ function addModalMarkup(packages) {
     let triggeredDepths = new Set()
 
     pack.addEventListener('scroll', () => {
-      const scrollHeight = pack.scrollHeight - pack.clientHeight + 50
+      const scrollHeight = pack.scrollHeight - pack.clientHeight - 50
       const scrolledPercentage = (pack.scrollTop / scrollHeight) * 100
 
       thresholds.forEach((depth) => {
         if (scrolledPercentage >= depth && !triggeredDepths.has(depth)) {
-          // triggeredDepths.add(depth) // Mark this depth as triggered
+          triggeredDepths.add(depth) // Mark this depth as triggered
           pushDataLayer(
             'exp_hp2_scroll_01',
             `Scroll - ${depth}`,
