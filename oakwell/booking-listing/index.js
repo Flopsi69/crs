@@ -811,15 +811,17 @@ function addModalMarkup(packages) {
 
   _$$('.package-btn').forEach((el) => {
     el.addEventListener('click', () => {
-      _$$('.lav-pop__list .addon').forEach((el) => {
-        const target = _$(`.addons .addon[data-id="${el.dataset.id}"]`)
+      setTimeout(() => {
+        _$$('.lav-pop__list .addon').forEach((el) => {
+          const target = _$(`.addons .addon[data-id="${el.dataset.id}"]`)
 
-        if (el.classList.contains('activated')) {
-          target.classList.add('active')
-        } else {
-          target.classList.remove('active')
-        }
-      })
+          if (el.classList.contains('activated')) {
+            target.classList.add('active')
+          } else {
+            target.classList.remove('active')
+          }
+        })
+      }, 20)
     })
   })
 
