@@ -763,7 +763,8 @@ function addModalMarkup(packages) {
       console.log('e', e)
       if (
         e.target.closest('.swiper__wrap') ||
-        e.target.closest('.b-goog-review')
+        e.target.closest('.b-goog-review') ||
+        e.target.closest('.lav-modal__close')
       )
         return
       const deltaX = endX - startX
@@ -1172,8 +1173,9 @@ class Modal {
         transition: 0.35s;
         line-height: 0;
         position: absolute;
-        top: 16px;
-        right: 16px;
+        top: 6px;
+        right: 6px;
+        padding: 10px;
         z-index: 10;
       }
       .lav-modal__close svg {
@@ -1294,9 +1296,9 @@ class Modal {
       .lavd-item {
         position: relative;
         padding-left: 28px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
       .lavd-item svg {
         position: absolute;
