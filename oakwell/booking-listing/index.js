@@ -717,8 +717,7 @@ function addModalMarkup(packages) {
   scrollHandler(_$('.lav-modal'))
   function scrollHandler(pack) {
     const thresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    const triggeredDepths = new Map()
-    // let triggeredDepths = new Set()
+    let triggeredDepths = new Set()
 
     pack.addEventListener('scroll', () => {
       const scrollHeight = pack.scrollHeight - pack.clientHeight - 50
@@ -726,16 +725,9 @@ function addModalMarkup(packages) {
 
       const packId = _$('.lavd-nav__item.active').dataset.id
 
-      if (!triggeredDepths.has(packId)) {
-        triggeredDepths.set(packId, new Set())
-      }
-
       thresholds.forEach((depth) => {
-        if (
-          scrolledPercentage >= depth &&
-          !triggeredDepths.get(packId).has(depth)
-        ) {
-          triggeredDepths.get(packId).add(depth)
+        if (scrolledPercentage >= depth && !triggeredDepths.has(depth)) {
+          triggeredDepths.add(depth)
           pushDataLayer(
             'exp_hp2_scroll_01',
             `Scroll - ${depth}`,
