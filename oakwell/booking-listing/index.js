@@ -723,7 +723,7 @@ function addModalMarkup(packages) {
       const scrollHeight = pack.scrollHeight - pack.clientHeight - 50
       const scrolledPercentage = (pack.scrollTop / scrollHeight) * 100
 
-      const packId = _$('.lavd-nav__item.active').dataset.id
+      // const packId = _$('.lavd-nav__item.active').dataset.id
 
       thresholds.forEach((depth) => {
         if (scrolledPercentage >= depth && !triggeredDepths.has(depth)) {
@@ -798,13 +798,15 @@ function addModalMarkup(packages) {
       _$('.step.packages.active'),
       _$('.lavd-nav__item.active').dataset.id
     )
-    if (
-      _$('.step.packages.active') &&
-      _$('.lavd-nav__item.active').dataset.id !== '28107448'
-    ) {
-      console.log('fire')
-      _$('.back-mob').click()
-    }
+    setTimeout(() => {
+      if (
+        _$('.step.packages.active') &&
+        _$('.lavd-nav__item.active').dataset.id !== '28107448'
+      ) {
+        console.log('fire')
+        _$('.back-mob').click()
+      }
+    }, 10)
   })
 
   _$$('.package-btn').forEach((el) => {
@@ -972,16 +974,19 @@ function selectModalPackage() {
 
   _$(`.services__item[data-id="${id}"] .service-btn`)?.click()
 
-  if (
-    _$$(".packages.active .package:not([style='display: none;'])").length === 1
-  ) {
-    _$(
-      ".packages.active .package:not([style='display: none;']) .package-btn"
-    ).click()
-    _$('.logs').classList.add('logs_skip')
-  } else {
-    _$('.logs').classList.remove('logs_skip')
-  }
+  setTimeout(() => {
+    if (
+      _$$(".packages.active .package:not([style='display: none;'])").length ===
+      1
+    ) {
+      _$(
+        ".packages.active .package:not([style='display: none;']) .package-btn"
+      ).click()
+      _$('.logs').classList.add('logs_skip')
+    } else {
+      _$('.logs').classList.remove('logs_skip')
+    }
+  }, 10)
 
   _$('.steps').insertAdjacentElement('afterend', _$('.tickers'))
 
