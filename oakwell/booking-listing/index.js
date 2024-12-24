@@ -37,11 +37,14 @@ const styles = /* css */ `
   }
   .lavp.active {
     position: relative;
-    transform: scale(2);
-    opacity: 0;
+    transform: scale(1.6);
+    opacity: 0.3;
     transform-origin: center;
     z-index: 1;
-    transition: 1.2s;
+    transition: 0.9s;
+  }
+  .lavp[data-id="27351564"] {
+    order: 1;
   }
   .lavp:before {
     content: '';
@@ -186,7 +189,7 @@ const styles = /* css */ `
     display: none;
   }
   .addons .addon[data-id="1581536"], .addons .addon[data-id="1581538"], .addons .addon[data-id="5423077"] {
-    order: 2;
+    // order: 2;
   }
 `
 
@@ -206,6 +209,7 @@ async function initExp() {
 
   const packages = [
     {
+      order: 1,
       nav: '2025 New Year',
       hero: 'party-hero.jpg',
       id: 28107448,
@@ -218,8 +222,8 @@ async function initExp() {
         'Bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks...',
       descr:
         'We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks',
-      price: '$449',
-      pricePer: 'for up 2 adults',
+      price: '$499',
+      pricePer: 'For up to 2 adults',
       idealAmount: 2,
       ideal: 'Ideal for Couples and Friends',
       list: [
@@ -257,6 +261,51 @@ async function initExp() {
       }
     },
     {
+      order: 2,
+      nav: 'Beer Therapy Ritual',
+      hero: 'ritual-hero.jpg',
+      id: 68950903,
+      label: false,
+      key: 'ritual',
+      color: '#C61717',
+      check: '#1B4B65',
+      title: 'Beer Therapy Ritual',
+      altDescr:
+        'Private spa suite with infrared sauna, rain shower, and hydrotherapy tub for solo or shared relaxation...',
+      descr:
+        'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
+      price: '$199',
+      pricePer: 'For up to 2 adults',
+      idealAmount: 1,
+      ideal: 'Ideal solo or for friends',
+      list: [
+        '90-minute beer therapy room access',
+        'Private spa suite for up to two guests',
+        'Beer bath, rain shower, and infrared sauna'
+      ],
+      details: {
+        title: 'Package Details:',
+        descr:
+          'Each private spa suite Beer Therapy Room features an infrared sauna, a rain shower, and a relaxation deck to kick back and unwind. But that’s not it! The highlight of your Beer Therapy Room is the cedar hydrotherapy tub filled with water infused with a unique herbal blend of barley, hops, and other beneficial herbs. Soaking in this relaxing and fizzy beer bath offers many benefits, including reduced muscle tension, smoother skin, and decreased muscle and joint pain.'
+      },
+      slider: [
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Standard-Beer-Therapy-Room-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Infrared-Sauna-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_18-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/TBS_Sauna_Inside-Web-scaled.webp'
+      ],
+      timing: {
+        title: 'Timing | 90 minutes',
+        descr:
+          'The private spa suite Beer Therapy Room is all yours for 90 minutes. This allows ample time to enjoy each spa treatment in your room. Detox in the sauna for 20 minutes, take a cold shower to keep your blood circulating, then relax in your beer bath for 40 minutes. While relaxing in your private spa suite, check out our Beer Therapy Minibar and beer-infused shower products to enhance your experience. Your beer bath will start to drain 70 minutes after your appointment start time leaving you 20 minutes to shower, gather your belongings, and exit the room.'
+      }
+    },
+    {
+      order: 3,
       nav: `Couple's Retreat`,
       hero: 'retreat-hero.jpg',
       id: 68951079,
@@ -269,7 +318,7 @@ async function initExp() {
         'Private spa suite with infrared sauna, rain shower, hydrotherapy tub, and artisan chocolates for two...',
       descr: `Are you looking for a special spa treatment with your significant other? The Couple's Retreat package makes Oakwell Beer Spa the best spa in Denver for couples.`,
       price: '$259',
-      pricePer: 'for up 2 adults',
+      pricePer: 'For up to 2 adults',
       idealAmount: 2,
       ideal: 'Ideal for Couples',
       list: [
@@ -299,6 +348,7 @@ async function initExp() {
       }
     },
     {
+      order: 4,
       nav: 'Oakwell Escape',
       hero: 'escape-hero.jpg',
       id: 68951432,
@@ -314,7 +364,7 @@ async function initExp() {
         During your spa date, you’ll spend quality time together while treating yourselves to delicious drinks and snacks, an infrared sauna, a herbal beer bath, and a zero gravity massage experience.
         `,
       price: '$349',
-      pricePer: 'for up 2 adults',
+      pricePer: 'For up to 2 adults',
       idealAmount: 2,
       ideal: 'Ideal for Couples',
       list: [
@@ -359,49 +409,7 @@ async function initExp() {
       }
     },
     {
-      nav: 'Beer Therapy Ritual',
-      hero: 'ritual-hero.jpg',
-      id: 68950903,
-      label: false,
-      key: 'ritual',
-      color: '#C61717',
-      check: '#1B4B65',
-      title: 'Beer Therapy Ritual',
-      altDescr:
-        'Private spa suite with infrared sauna, rain shower, and hydrotherapy tub for solo or shared relaxation...',
-      descr:
-        'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
-      price: '$199',
-      pricePer: 'for up 2 adults',
-      idealAmount: 1,
-      ideal: 'Ideal solo or for friends',
-      list: [
-        '90-minute beer therapy room access',
-        'Private spa suite for up to two guests',
-        'Beer bath, rain shower, and infrared sauna'
-      ],
-      details: {
-        title: 'Package Details:',
-        descr:
-          'Each private spa suite Beer Therapy Room features an infrared sauna, a rain shower, and a relaxation deck to kick back and unwind. But that’s not it! The highlight of your Beer Therapy Room is the cedar hydrotherapy tub filled with water infused with a unique herbal blend of barley, hops, and other beneficial herbs. Soaking in this relaxing and fizzy beer bath offers many benefits, including reduced muscle tension, smoother skin, and decreased muscle and joint pain.'
-      },
-      slider: [
-        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Standard-Beer-Therapy-Room-Web-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Infrared-Sauna-Web-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_18-Web-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/TBS_Sauna_Inside-Web-scaled.webp'
-      ],
-      timing: {
-        title: 'Timing | 90 minutes',
-        descr:
-          'The private spa suite Beer Therapy Room is all yours for 90 minutes. This allows ample time to enjoy each spa treatment in your room. Detox in the sauna for 20 minutes, take a cold shower to keep your blood circulating, then relax in your beer bath for 40 minutes. While relaxing in your private spa suite, check out our Beer Therapy Minibar and beer-infused shower products to enhance your experience. Your beer bath will start to drain 70 minutes after your appointment start time leaving you 20 minutes to shower, gather your belongings, and exit the room.'
-      }
-    },
-    {
+      order: 5,
       nav: 'Garage Party',
       hero: 'garage-hero.jpg',
       id: 27351564,
@@ -415,7 +423,7 @@ async function initExp() {
       descr:
         'If you’re planning a day at the spa with friends, The Garage Party package is perfect. This is easily one of the most fun but relaxing ways to hang out with a small group.',
       price: '$450',
-      pricePer: 'for up 4 adults',
+      pricePer: 'For up to 4 adults',
       idealAmount: 4,
       ideal: 'Ideal for groups',
       list: [
