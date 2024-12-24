@@ -751,13 +751,21 @@ function addModalMarkup(packages) {
     let startX = 0
     let endX = 0
 
-    pack.addEventListener('touchstart', (event) => {
-      startX = event.touches[0].clientX // Record the starting touch position
-    })
+    pack.addEventListener(
+      'touchstart',
+      (event) => {
+        startX = event.touches[0].clientX // Record the starting touch position
+      },
+      { passive: true }
+    )
 
-    pack.addEventListener('touchmove', (event) => {
-      endX = event.touches[0].clientX // Continuously update the current touch position
-    })
+    pack.addEventListener(
+      'touchmove',
+      (event) => {
+        endX = event.touches[0].clientX // Continuously update the current touch position
+      },
+      { passive: false }
+    )
 
     pack.addEventListener('touchend', (e) => {
       console.log('e', e)
@@ -771,13 +779,13 @@ function addModalMarkup(packages) {
       const activeNav = _$('.lavd-nav__item.active')
 
       isDisableEventNav = true
-      if (deltaX > 50) {
+      if (deltaX > 80) {
         if (activeNav.previousElementSibling) {
           activeNav.previousElementSibling.click()
         }
         console.log('Swiped right', pack)
         pushDataLayer('exp_hp2_element_01', 'Swipe', 'click', 'Event details')
-      } else if (deltaX < -50) {
+      } else if (deltaX < -80) {
         if (activeNav.nextElementSibling) {
           activeNav.nextElementSibling.click()
         }
