@@ -208,58 +208,58 @@ async function initExp() {
   console.debug('** InitExp **')
 
   const packages = [
-    {
-      order: 1,
-      nav: '2025 New Year',
-      hero: 'party-hero.jpg',
-      id: 28107448,
-      label: 'Almost fully reserved',
-      key: 'party',
-      check: '#B26E22',
-      color: '#C61717',
-      title: 'Beer Therapy & Bubble<br/> - New Year 2025',
-      altDescr:
-        'Bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks...',
-      descr:
-        'We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks',
-      price: '$499',
-      pricePer: 'For up to 2 adults',
-      idealAmount: 2,
-      ideal: 'Ideal for Couples and Friends',
-      list: [
-        'VIP experience for two',
-        '90-minute private spa suite access',
-        'Romantic suite decor with candles and rose petals',
-        'Complimentary check-in drink',
-        'Bottle of French sparkling wine',
-        'Mimosa & beermosa bar',
-        'Gourmet charcuterie board',
-        'Artisan chocolate bonbons',
-        '$15 Cosmetic minibar credit',
-        '2 x 15-minute Zero Gravity Massage experiences',
-        'Festive photo booth with Polaroid photos to take home'
-      ],
-      details: {
-        title: 'Package Details:',
-        descr:
-          'Experience a relaxing and fun New Years in Denver. We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks.'
-      },
-      slider: [
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE4012.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE4123.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE3314.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE3315.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE3327.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE3971.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE4206.webp',
-        'https://oakwell.com/wp-content/uploads/2023/10/NYE3945.webp'
-      ],
-      timing: {
-        title: 'Timing | 90 minutes',
-        descr:
-          'Reservation includes a 90-minute session in a romantic Beer Therapy Room, bottle of French sparkling wine, bountiful charcuterie board paired with gourmet chocolates, $15 cosmetic mini-bar credit, and 15-minute zero gravity massages. Enjoy a complimentary drink at check-in, plus a mimosa bar and festive photo booth. Price per couple. 20% gratuity added at checkout. Cancellations made less than 7 days in advance will incur a 50% fee. Cancellations less than 24 hours in advance will incur a 100% fee.'
-      }
-    },
+    // {
+    //   order: 1,
+    //   nav: '2025 New Year',
+    //   hero: 'party-hero.jpg',
+    //   id: 28107448,
+    //   label: 'Almost fully reserved',
+    //   key: 'party',
+    //   check: '#B26E22',
+    //   color: '#C61717',
+    //   title: 'Beer Therapy & Bubble<br/> - New Year 2025',
+    //   altDescr:
+    //     'Bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks...',
+    //   descr:
+    //     'We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks',
+    //   price: '$499',
+    //   pricePer: 'For up to 2 adults',
+    //   idealAmount: 2,
+    //   ideal: 'Ideal for Couples and Friends',
+    //   list: [
+    //     'VIP experience for two',
+    //     '90-minute private spa suite access',
+    //     'Romantic suite decor with candles and rose petals',
+    //     'Complimentary check-in drink',
+    //     'Bottle of French sparkling wine',
+    //     'Mimosa & beermosa bar',
+    //     'Gourmet charcuterie board',
+    //     'Artisan chocolate bonbons',
+    //     '$15 Cosmetic minibar credit',
+    //     '2 x 15-minute Zero Gravity Massage experiences',
+    //     'Festive photo booth with Polaroid photos to take home'
+    //   ],
+    //   details: {
+    //     title: 'Package Details:',
+    //     descr:
+    //       'Experience a relaxing and fun New Years in Denver. We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks.'
+    //   },
+    //   slider: [
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE4012.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE4123.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE3314.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE3315.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE3327.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE3971.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE4206.webp',
+    //     'https://oakwell.com/wp-content/uploads/2023/10/NYE3945.webp'
+    //   ],
+    //   timing: {
+    //     title: 'Timing | 90 minutes',
+    //     descr:
+    //       'Reservation includes a 90-minute session in a romantic Beer Therapy Room, bottle of French sparkling wine, bountiful charcuterie board paired with gourmet chocolates, $15 cosmetic mini-bar credit, and 15-minute zero gravity massages. Enjoy a complimentary drink at check-in, plus a mimosa bar and festive photo booth. Price per couple. 20% gratuity added at checkout. Cancellations made less than 7 days in advance will incur a 50% fee. Cancellations less than 24 hours in advance will incur a 100% fee.'
+    //   }
+    // },
     {
       order: 2,
       nav: 'Beer Therapy Ritual',
