@@ -474,18 +474,18 @@ function changeLayout(packages) {
   _$$('.services__item').forEach((item) => {
     const package = packages.find((p) => p.id == item.dataset.id)
 
+    if (!package) return
+
     item.insertAdjacentHTML('beforebegin', getPackageMarkup(package))
 
-    _$$('.lavp__details').forEach((el) => {
-      el.addEventListener('click', () => {
+    _$(`.lavp[data-id="${package.id}"] .lavp__details`).addEventListener(
+      'click',
+      () => {
         if (el.closest('.lavp').classList.contains('active')) return
 
         pushDataLayer(
           'exp_hp2_button_01',
-          `See details - ${el
-            .closest('.lavp')
-            .querySelector('.lavp__title')
-            .innerText.trim()}`,
+          `See details - ${package.title}`,
           'click',
           'Choose your experience'
         )
@@ -516,8 +516,8 @@ function changeLayout(packages) {
         //   el.closest('.lavp').classList.remove('active')
         // }, 1200)
         Modal.open('.lav-package')
-      })
-    })
+      }
+    )
   })
 
   function getPackageMarkup(package) {
