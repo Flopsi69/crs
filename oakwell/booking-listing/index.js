@@ -481,7 +481,8 @@ function changeLayout(packages) {
     _$(`.lavp[data-id="${package.id}"] .lavp__details`).addEventListener(
       'click',
       () => {
-        if (el.closest('.lavp').classList.contains('active')) return
+        if (_$(`.lavp[data-id="${package.id}"]`).classList.contains('active'))
+          return
 
         pushDataLayer(
           'exp_hp2_button_01',
@@ -511,7 +512,9 @@ function changeLayout(packages) {
 
         fillPopAddons()
 
-        el.closest('.lavp').classList.add('active')
+        _$(`.lavp[data-id="${package.id}"]`)
+          .closest('.lavp')
+          .classList.add('active')
         // setTimeout(() => {
         //   el.closest('.lavp').classList.remove('active')
         // }, 1200)
