@@ -83,6 +83,13 @@ const styles = /* css */ `
   .lavp[data-id="68951432"]:before {
     background: linear-gradient(180deg, rgba(183, 40, 40, 0.00) 26.41%, rgba(183, 40, 40, 0.90) 44.41%, #B72828 69.4%);
   }
+  .lavp[data-id="29184104"] {
+    background-color: #D92C1F;
+    order: -1;
+  }
+  .lavp[data-id="29184104"]:before {
+    background: linear-gradient(180deg, rgba(217, 44, 31, 0.00) 26.41%, rgba(217, 44, 31, 0.90) 44.41%, #D92C1F 69.4%);
+  }
   .lavp__label {
     position: absolute;
     left: 0;
@@ -260,6 +267,71 @@ async function initExp() {
     //       'Reservation includes a 90-minute session in a romantic Beer Therapy Room, bottle of French sparkling wine, bountiful charcuterie board paired with gourmet chocolates, $15 cosmetic mini-bar credit, and 15-minute zero gravity massages. Enjoy a complimentary drink at check-in, plus a mimosa bar and festive photo booth. Price per couple. 20% gratuity added at checkout. Cancellations made less than 7 days in advance will incur a 50% fee. Cancellations less than 24 hours in advance will incur a 100% fee.'
     //   }
     // },
+    {
+      order: 1,
+      nav: "Valentine's Day & Week",
+      hero: 'valentine-hero.jpg',
+      id: 29184104,
+      label: 'Couples favorite',
+      key: 'valentine',
+      color: '#134D3A',
+      check: '#B72929',
+      title: 'Valentine’s Day & Week',
+      altDescr:
+        "Relax and celebrate Valentine's Day differently in a romantic setting...",
+      descr: `
+        Have a romantic and relaxing date for Valentine's Day in Denver with your love.
+        <br/><br/>
+        Oakwell Beer Spa offers a unique experience to celebrate Valentine’s Day in Denver. Enjoy a one-of-a-kind experience for couples and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.
+      `,
+      price: '$450',
+      pricePer: 'For up to 2 adults',
+      idealAmount: 2,
+      ideal: 'Ideal for Couples',
+      list: [
+        'Enjoy a VIP experience for two',
+        'Get a Complimentary check-in drink',
+        'Unwind in your private spa suite',
+        'Pamper yourself with a $15 Cosmetic Mini Bar credit',
+        'Float into relaxation with 15-Minute Zero Gravity Massages',
+        'Cheers to your love with a bottle of French sparkling wine',
+        'Graze on a charcuterie board paired with gourmet chocolates'
+        // 'VIP experience for two',
+        // '90-minute private spa suite access',
+        // 'Romantic suite decor with candles and rose petals',
+        // 'Complimentary welcome drink',
+        // 'Bottle of French sparkling wine',
+        // 'Mimosa & beermosa bar',
+        // 'Gourmet charcuterie board',
+        // 'Chocolate-dipped strawberries',
+        // '$15 Cosmetic minibar credit',
+        // '2 x 15-minute Zero Gravity Massage experiences',
+        // 'Festive photo booth with Polaroid photos to take home'
+      ],
+      details: {
+        title: 'Package Details:',
+        descr: `
+          With the Oakwell Escape package, you and your date can enjoy a 90-minute spa session in a private spa suite known as the Beer Therapy Room. This tranquil space will be romantically decorated with candles and rose petals. While enjoying your couples spa day, you can also indulge in a gourmet charcuterie board paired with artisan chocolate bonbons.<br/>
+          In your Beer Therapy Room, you can treat yourselves to the ultimate relaxation while detoxing in the sauna and then soaking in a cedar hydrotherapy tub filled with warm, bubbly water infused with a therapeutic blend of barley, hops, and other beneficial herbs.<br/>
+          The Oakwell Escape package also includes a 30-minute Zero Gravity Massage experience.
+          `
+      },
+      slider: [
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Date-Night-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Date-Night-2-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Date-Night-3-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Date-Night-4-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Valentines-Day-Web-1-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Valentines-Day-Web-scaled.webp',
+        'https://oakwell.com/wp-content/uploads/2023/10/NYE3315.webp'
+      ],
+      timing: {
+        title: 'Timing | 90 minutes',
+        descr: `
+            Reservation includes a 90-minute session in a romantic private spa suite for two.
+          `
+      }
+    },
     {
       order: 2,
       nav: 'Beer Therapy Ritual',
@@ -590,7 +662,8 @@ function fillPopAddons() {
     27351564: ['1581536', '1581538'],
     68951079: ['1581536', '1581538'],
     68950903: ['1581536', '1581538'],
-    28107448: ['5423077']
+    28107448: ['5423077'],
+    29184104: ['5423077']
   }
 
   const addons = addonsConfig[_$('.lavd-nav__item.active').dataset.id]
@@ -1477,6 +1550,13 @@ class Modal {
       .lavd-pack[data-id="68951432"] .lavd-hero:before {
         background: linear-gradient(180deg, rgba(183, 40, 40, 0.00) 26.41%, rgba(183, 40, 40, 0.90) 44.41%, #B72828 69.4%);
       }
+      .lavd-pack[data-id="29184104"] .lavd-hero {
+        background-color: #D92C1F;
+        background-size: 130%;
+      }
+      .lavd-pack[data-id="29184104"] .lavd-hero:before {
+        background: linear-gradient(180deg, rgba(217, 44, 31, 0.00) 26.41%, rgba(217, 44, 31, 0.90) 44.41%, #D92C1F 69.4%);
+      }
       .lav-sticky {
         position: sticky;
         z-index: 9999;
@@ -1840,6 +1920,18 @@ function getSvg(name) {
         <path d="M10.9717 9.22731C10.9555 8.99349 10.9228 8.73842 10.8745 8.46907C10.8258 8.19771 10.7631 7.94118 10.688 7.70672C10.6105 7.46438 10.505 7.22506 10.3746 6.99572C10.2393 6.75769 10.0804 6.55041 9.90203 6.37985C9.71554 6.20141 9.48721 6.05795 9.22317 5.95331C8.96005 5.84921 8.66846 5.79648 8.35654 5.79648C8.23404 5.79648 8.11557 5.84674 7.88678 5.9957C7.74598 6.08752 7.58127 6.19372 7.39744 6.31119C7.24024 6.41134 7.02729 6.50519 6.76426 6.59015C6.50764 6.67318 6.24708 6.7153 5.98991 6.7153C5.73274 6.7153 5.47227 6.67318 5.21538 6.59015C4.95262 6.50528 4.73967 6.41144 4.58266 6.31128C4.40056 6.19491 4.23577 6.08871 4.09285 5.9956C3.86434 5.84665 3.74578 5.79639 3.62328 5.79639C3.31127 5.79639 3.01977 5.84921 2.75674 5.9534C2.49288 6.05786 2.26446 6.20132 2.07779 6.37994C1.89953 6.5506 1.74051 6.75778 1.60537 6.99572C1.4751 7.22506 1.36963 7.46429 1.29199 7.70681C1.21701 7.94128 1.1543 8.19771 1.10559 8.46907C1.05734 8.73806 1.02457 8.99321 1.00836 9.22759C0.992432 9.4572 0.984375 9.69551 0.984375 9.9362C0.984375 10.5626 1.1835 11.0697 1.57617 11.4437C1.96399 11.8128 2.47714 12 3.10116 12H8.87921C9.50323 12 10.0162 11.8128 10.4041 11.4437C10.7969 11.07 10.996 10.5628 10.996 9.93611C10.9959 9.69432 10.9878 9.45583 10.9717 9.22731Z" fill="white"/>
       </svg>
     `,
+    'label-valentine': `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <g clip-path="url(#clip0_2277_19841)">
+          <path d="M8 0C3.58187 0 0 3.58187 0 8C0 12.4181 3.58187 16 8 16C12.4181 16 16 12.4181 16 8C16 3.58187 12.4181 0 8 0ZM12.9909 7.03125C12.9306 7.82812 12.56 8.57 11.9791 9.11906L8.20406 12.6441C8.14868 12.6958 8.07575 12.7245 8 12.7245C7.92425 12.7245 7.85132 12.6958 7.79594 12.6441L4.02094 9.11906C3.44 8.56938 3.06938 7.8275 3.00906 7.03125C2.8675 5.16344 4.42344 4.16625 5.52938 4.03937C6.91219 3.88062 8 5.26344 8 5.26344C8 5.26344 9.08781 3.88062 10.4706 4.03937C11.5766 4.16562 13.1325 5.16281 12.9909 7.03125Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2277_19841">
+            <rect width="16" height="16" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    `,
     'label-escape': `
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <g clip-path="url(#clip0_2277_19841)">
@@ -1860,6 +1952,18 @@ function getSvg(name) {
         <defs>
           <clipPath id="clip0_2277_19849">
             <rect width="16" height="16" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    `,
+    valentine: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <g clip-path="url(#clip0_2513_9231)">
+          <path d="M31.9994 0.998086C31.9982 0.533802 31.6694 0.114327 31.1952 0.0203331C31.0607 -0.00641528 31.2992 0.000896779 27.7861 0.000959275C26.965 0.000959275 26.2689 0.64542 26.2503 1.46625C26.2324 2.25614 26.8285 2.91316 27.5937 2.99265L25.0785 5.508C22.4932 3.93822 19.1915 4.23664 16.938 6.16502C15.6905 5.09759 14.09 4.50075 12.4114 4.50075C6.44897 4.50075 2.1391 11.8483 9.07293 18.5774C9.19567 18.6965 9.39116 18.6958 9.51209 18.575L15.2937 12.7934C15.6843 12.4028 16.3167 12.4028 16.7073 12.7934C17.0373 13.1227 17.0886 13.6258 16.8611 14.0095C16.7627 14.1754 17.2899 13.6244 9.41466 21.4997H5.50115C5.23623 21.4997 4.98218 21.605 4.79488 21.7923L0.294589 26.2925C-0.334185 26.9199 0.1121 27.9993 1.00142 27.9993H4.00124V30.9991C4.00124 31.8872 5.07867 32.3353 5.70801 31.7059L10.2083 27.2056C10.3956 27.0183 10.5008 26.7643 10.5008 26.4994V22.9133L12.2926 21.1216C14.525 22.5883 16.4655 23.387 16.5605 23.4258C16.7962 23.5218 17.0683 23.5264 17.3154 23.4258C17.4267 23.3802 20.0703 22.2927 22.7489 20.3091C25.7554 18.0818 28.3691 15.0351 28.3691 11.2959C28.3691 9.568 27.7105 7.98879 26.6263 6.7883L29.0078 4.40675C29.0862 5.16077 29.7252 5.75061 30.4996 5.75061C31.3267 5.75061 31.9995 5.07778 31.9995 4.2507C31.9995 4.18764 31.9996 1.04858 31.9994 0.998086Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2513_9231">
+            <rect width="32" height="32" fill="white"/>
           </clipPath>
         </defs>
       </svg>
