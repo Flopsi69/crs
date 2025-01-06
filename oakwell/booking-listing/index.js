@@ -315,9 +315,9 @@ async function initExp() {
       details: {
         title: 'Package Details:',
         descr: `
-          With the Oakwell Escape package, you and your date can enjoy a 90-minute spa session in a private spa suite known as the Beer Therapy Room. This tranquil space will be romantically decorated with candles and rose petals. While enjoying your couples spa day, you can also indulge in a gourmet charcuterie board paired with artisan chocolate bonbons.<br/>
-          In your Beer Therapy Room, you can treat yourselves to the ultimate relaxation while detoxing in the sauna and then soaking in a cedar hydrotherapy tub filled with warm, bubbly water infused with a therapeutic blend of barley, hops, and other beneficial herbs.<br/>
-          The Oakwell Escape package also includes a 30-minute Zero Gravity Massage experience.
+          This Valentine’s Day, give your love a celebration they’ll never forget with our Valentine’s Day Package—the best Valentine’s Day experience in town. Step into a world of romance and relaxation, where every detail is designed to delight and bring you closer. Your journey begins in a private spa suite, beautifully adorned with flickering candles and scattered rose petals, creating an intimate ambiance like no other. Together, you’ll detox in the soothing warmth of an infrared sauna and luxuriate in a cedar hydrotherapy tub infused with therapeutic herbs for the ultimate rejuvenation. <br/>
+          Savor a delectable gourmet charcuterie board paired with indulgent chocolate-dipped strawberries, and toast to your love with a bottle of exquisite French sparkling wine. To complete your perfect day, unwind with a 15-minute Zero Gravity Massage, leaving you both refreshed and utterly pampered. <br/>
+          Don’t settle for ordinary this Valentine’s Day—choose Oakwell Beer Spa for a one-of-a-kind, unforgettable celebration of love.
           `
       },
       slider: [
