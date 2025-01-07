@@ -316,7 +316,7 @@ async function initExp() {
         title: 'Package Details:',
         descr: `
           This Valentine’s Day, give your love a celebration they’ll never forget with our Valentine’s Day Package—the best Valentine’s Day experience in town. Step into a world of romance and relaxation, where every detail is designed to delight and bring you closer. Your journey begins in a private spa suite, beautifully adorned with flickering candles and scattered rose petals, creating an intimate ambiance like no other. Together, you’ll detox in the soothing warmth of an infrared sauna and luxuriate in a cedar hydrotherapy tub infused with therapeutic herbs for the ultimate rejuvenation. <br/><br/>
-          Savor a delectable gourmet charcuterie board paired with indulgent chocolate-dipped strawberries, and toast to your love with a bottle of exquisite French sparkling wine. To complete your perfect day, unwind with a 15-minute Zero Gravity Massage, leaving you both refreshed and utterly pampered. <br/><br/>
+          Savor a delectable gourmet charcuterie board paired with indulgent chocolate-dipped strawberries, and toast to your love with a bottle of exquisite French sparkling wine. To complete your perfect day, unwind with a 15-minute Zero Gravity Massage, leaving you both refreshed and utterly pampered. <br/>
           Don’t settle for ordinary this Valentine’s Day—choose Oakwell Beer Spa for a one-of-a-kind, unforgettable celebration of love.
           `
       },
