@@ -84,11 +84,11 @@ const styles = /* css */ `
     background: linear-gradient(180deg, rgba(183, 40, 40, 0.00) 26.41%, rgba(183, 40, 40, 0.90) 44.41%, #B72828 69.4%);
   }
   .lavp[data-id="29184104"] {
-    background-color: #D92C1F;
+    background-color: #BC4F5E;
     order: -1;
   }
   .lavp[data-id="29184104"]:before {
-    background: linear-gradient(180deg, rgba(217, 44, 31, 0.00) 26.41%, rgba(217, 44, 31, 0.90) 44.41%, #D92C1F 69.4%);
+    background: linear-gradient(180deg, rgba(188, 79, 94, 0.00) 26.41%, rgba(188, 79, 94, 0.90) 44.41%, #BC4F5E 69.4%);
   }
   .lavp__label {
     position: absolute;
@@ -275,7 +275,7 @@ async function initExp() {
       label: 'Valentine’s & Galentine’s favorite',
       key: 'valentine',
       color: '#134D3A',
-      check: '#B72929',
+      check: '#BC4F5E',
       title: 'Valentine’s Day & Week',
       altDescr:
         "Relax and celebrate Valentine's Day differently in a romantic setting...",
@@ -1555,11 +1555,11 @@ class Modal {
         background: linear-gradient(180deg, rgba(183, 40, 40, 0.00) 26.41%, rgba(183, 40, 40, 0.90) 44.41%, #B72828 69.4%);
       }
       .lavd-pack[data-id="29184104"] .lavd-hero {
-        background-color: #D92C1F;
+        background-color: #BC4F5E;
         background-size: 130%;
       }
       .lavd-pack[data-id="29184104"] .lavd-hero:before {
-        background: linear-gradient(180deg, rgba(217, 44, 31, 0.00) 26.41%, rgba(217, 44, 31, 0.90) 44.41%, #D92C1F 69.4%);
+        background: linear-gradient(180deg, rgba(188, 79, 94, 0.00) 26.41%, rgba(188, 79, 94, 0.90) 44.41%, #BC4F5E 69.4%);
       }
       .lav-sticky {
         position: sticky;
