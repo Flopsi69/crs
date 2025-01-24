@@ -274,7 +274,7 @@ async function initExp() {
       id: 29184104,
       label: 'Almost fully Reserved',
       key: 'valentine',
-      color: '#134D3A',
+      color: '#C61717',
       check: '#BC4F5E',
       title: 'Valentine’s Day & Week',
       altDescr:
