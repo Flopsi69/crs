@@ -272,7 +272,7 @@ async function initExp() {
       nav: "Valentine's Day & Week",
       hero: 'valentine-hero.jpg',
       id: 29184104,
-      label: 'Valentine’s & Galentine’s favorite',
+      label: 'Almost fully Reserved',
       key: 'valentine',
       color: '#134D3A',
       check: '#BC4F5E',
