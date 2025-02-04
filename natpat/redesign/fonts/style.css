@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Urbane Rounded';
-    src: local('Urbane Rounded Heavy'), local('Urbane-Rounded-Heavy'),
-        url('UrbaneRounded-Heavy.woff2') format('woff2'),
-        url('UrbaneRounded-Heavy.woff') format('woff'),
-        url('UrbaneRounded-Heavy.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-  }

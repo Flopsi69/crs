@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/natpat/redesign',
   dir: 'https://flopsi69.github.io/crs/natpat/redesign',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'exp_introduce_b', 'variant_1'],
   debug: true
 }
 
@@ -30,6 +30,18 @@ const styles = /* css */ `
       url('${config.dir}/fonts/UrbaneRounded-Heavy.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
+}
+@font-face {
+  font-family: 'Urbane';
+  src: url('Urbane-Medium.eot');
+  src: local('Urbane Medium'), local('Urbane-Medium'),
+      url('${config.dir}/fonts/Urbane-Medium.eot?#iefix') format('embedded-opentype'),
+      url('${config.dir}/fonts/Urbane-Medium.woff2') format('woff2'),
+      url('${config.dir}/fonts/Urbane-Medium.woff') format('woff'),
+      url('${config.dir}/fonts/Urbane-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Urbane';
@@ -546,6 +558,7 @@ header {
   margin: 8px 0;
 }
 .mosquito-problems .accordion-BP-title {
+  font-family: 'Urbane';
   position: relative;
   color: var(--Midnight, #1F1F5B);
   text-align: center;
@@ -562,6 +575,7 @@ header {
   font-size: 24px;
   font-weight: 900;
   line-height: 34px;
+  text-transform: initial;
 }
 .mosquito-problems .title-container {
   margin-bottom: 0;
@@ -1042,6 +1056,25 @@ function addMainSection() {
 
   _$$('.lav-btn').forEach((el) => {
     el.addEventListener('click', () => {
+      if (el.classList.contains('lav-modal__btn')) {
+        pushDataLayer(
+          'exp_introduce_v4_click_03',
+          `Get buzzpatch now - ${_$('.lav-modal__title').innerText.trim()}`,
+          'Click',
+          'Pop up with details'
+        )
+        Modal.close()
+      }
+
+      if (el.classList.contains('lav-globally__btn')) {
+        pushDataLayer(
+          'exp_introduce_v4_click_06',
+          'Get buzzpatch',
+          'Click',
+          'In over 5000 stores globally'
+        )
+      }
+
       $('html, body').animate(
         {
           scrollTop:
@@ -1093,7 +1126,9 @@ function addModals() {
   new Modal('lav-details', markup)
 
   _$$('[data-trigger-modal]').forEach((el) => {
-    el.addEventListener('click', () => openModal(el.dataset.triggerModal))
+    el.addEventListener('click', () =>
+      openModal(el.dataset.triggerModal, el.innerText.trim())
+    )
   })
 }
 
@@ -1197,7 +1232,23 @@ const modalConfig = {
   }
 }
 
-function openModal(modalId = 'modal1') {
+function openModal(modalId = 'modal1', text) {
+  if (modalId !== 'modal5') {
+    pushDataLayer(
+      'exp_introduce_v4_click_01',
+      text + ' - ' + modalId,
+      'Click',
+      'Why kids love BuzzPatch'
+    )
+  } else {
+    pushDataLayer(
+      'exp_introduce_v4_click_04',
+      'Learn more',
+      'Click',
+      'Proven Results'
+    )
+  }
+
   const info = modalConfig[modalId]
 
   _$('.lav-modal__title').textContent = info.title
@@ -1421,7 +1472,7 @@ function addFeedbackSection() {
 
         #review-slides-2 .bottom .content {
           position: absolute;
-          bottom: 10px;
+          bottom: 5px;
           left: 50%;
           transform: translateX(-50%);
           color: #fff;
@@ -1457,8 +1508,8 @@ function addFeedbackSection() {
           <div class="top">
             <img src="//www.natpat.com/cdn/shop/files/lp-catalog-green-box-curl.png?v=676449803224702422" alt="">
             <div class="heading">
-              <h3>We're in the news...</h3>
-              <h3>for good reasons.</h3>
+              <h3 style='margin-bottom: 0;margin-top: -4px;font-size:22px;line-height: 30px;'>We're in the news...</h3>
+              <h3 style='margin-top: 3px;margin-bottom: 0;font-size:22px;line-height: 30px;'>for good reasons</h3>
             </div>
           </div>
           <div class="bottom">
@@ -1480,8 +1531,8 @@ function addFeedbackSection() {
           <div class="top">
             <img src="//www.natpat.com/cdn/shop/files/lp-catalog-green-box-curl.png?v=676449803224702422" alt="">
             <div class="heading">
-              <h3>We're in the news...</h3>
-              <h3>for good reasons.</h3>
+              <h3 style='margin-bottom: 0;margin-top: -4px;font-size:22px;line-height: 30px;'>We're in the news...</h3>
+              <h3 style='margin-top: 3px;margin-bottom: 0;font-size:22px;line-height: 30px;'>for good reasons</h3>
             </div>
           </div>
           <div class="bottom">
@@ -1500,8 +1551,8 @@ function addFeedbackSection() {
           <div class="top">
             <img src="//www.natpat.com/cdn/shop/files/lp-catalog-green-box-curl.png?v=676449803224702422" alt="">
             <div class="heading">
-              <h3>We're in the news...</h3>
-              <h3>for good reasons.</h3>
+              <h3 style='margin-bottom: 0;margin-top: -4px;font-size:22px;line-height: 30px;'>We're in the news...</h3>
+              <h3 style='margin-top: 3px;margin-bottom: 0;font-size:22px;line-height: 30px;'>for good reasons</h3>
             </div>
           </div>
           <div class="bottom">
@@ -1524,8 +1575,8 @@ function addFeedbackSection() {
           <div class="top">
             <img src="//www.natpat.com/cdn/shop/files/lp-catalog-green-box-curl.png?v=676449803224702422" alt="">
             <div class="heading">
-              <h3>We're in the news...</h3>
-              <h3>for good reasons.</h3>
+              <h3 style='margin-bottom: 0;margin-top: -4px;font-size:22px;line-height: 30px;'>We're in the news...</h3>
+              <h3 style='margin-top: 3px;margin-bottom: 0;font-size:22px;line-height: 30px;'>for good reasons</h3>
             </div>
           </div>
           <div class="bottom">
@@ -1548,8 +1599,8 @@ function addFeedbackSection() {
           <div class="top">
             <img src="//www.natpat.com/cdn/shop/files/lp-catalog-green-box-curl.png?v=676449803224702422" alt="">
             <div class="heading">
-              <h3>We're in the news...</h3>
-              <h3>for good reasons.</h3>
+              <h3 style='margin-bottom: 0;margin-top: -4px;font-size:22px;line-height: 30px;'>We're in the news...</h3>
+              <h3 style='margin-top: 3px;margin-bottom: 0;font-size:22px;line-height: 30px;'>for good reasons</h3>
             </div>
           </div>
           <div class="bottom">
@@ -1843,6 +1894,13 @@ function addFeaturesSection() {
   features.forEach((feature) => addItem(feature))
 
   _$('.lav-features__show').addEventListener('click', () => {
+    pushDataLayer(
+      'exp_introduce_v4_click_05',
+      _$('.lav-features__show').textContent.trim(),
+      'Click',
+      'Features Customers Love About BuzzPatch'
+    )
+
     _$('.lav-features__list').classList.toggle('lav-features__list_expanded')
     _$('.lav-features__show').textContent = _$('.lav-features__list_expanded')
       ? 'Show less'
@@ -2097,19 +2155,25 @@ function initFeed() {
   link.setAttribute('as', 'style')
   document.head.appendChild(link)
 
-  const shadowHost = document.querySelector(
-    '[data-widget-host="habitat-static-feed"]'
-  )
+  waitFor(
+    () => _$('[data-widget-host="habitat-static-feed"]').shadowRoot,
+    () => {
+      const shadowRootEl = _$(
+        '[data-widget-host="habitat-static-feed"]'
+      ).shadowRoot
 
-  if (shadowHost && shadowHost.shadowRoot) {
-    const section = shadowHost.shadowRoot.querySelector(
-      '.shoppables-root>div>div'
-    )
-    console.log(section)
-    if (section) {
-      section.padding = '0'
+      shadowRootEl.addEventListener('click', (e) => {
+        if (['IMG', 'VIDEO'].includes(e.target?.tagName)) {
+          pushDataLayer(
+            'exp_introduce_v4_click_07',
+            'Video',
+            'Click',
+            'Why people love BuzzPatch'
+          )
+        }
+      })
     }
-  }
+  )
 
   // setTimeout(trackInstallationStatus, 1000)
 
@@ -2181,11 +2245,17 @@ function initModal() {
       )
 
       document.addEventListener('click', (e) => {
-        if (
-          e.target.classList.contains('lav-modal') ||
-          e.target.closest('.lav-modal__close')
-        )
+        if (e.target.classList.contains('lav-modal')) this.close()
+
+        if (e.target.closest('.lav-modal__close')) {
+          pushDataLayer(
+            'exp_introduce_v4_click_02',
+            `Close - ${_$('.lav-modal__title').innerText.trim()}`,
+            'Click',
+            'Pop up with details'
+          )
           this.close()
+        }
 
         if (e.target.dataset.modal) {
           this.open(e.target.dataset.modal)
