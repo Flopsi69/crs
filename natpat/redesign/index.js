@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/natpat/redesign',
   dir: 'https://flopsi69.github.io/crs/natpat/redesign',
   clarity: ['set', 'exp_introduce_b', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
@@ -975,6 +975,32 @@ footer .js-logo img {
 .instagram-video-slides {
   margin: 0 -25px -30px;
 }
+
+.lav-modal__single {
+ margin-top: 20px;
+}
+.lav-modal__single-slide {
+  border-radius: 24px;
+  background: #ECEEF0;
+  height: 235px;
+  color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lav-modal__nav {
+  margin: 20px -6px 0;
+}
+.lav-modal__nav-slide {
+  border-radius: 8px;
+  background: #ECEEF0;
+  height: 52px;
+	margin: 0 6px;
+  color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 `
 
 const stylesEl = document.createElement('style')
@@ -1055,6 +1081,8 @@ function addMainSection() {
   handleFaq()
   addModals()
 
+  openModal()
+
   _$$('.lav-btn').forEach((el) => {
     el.addEventListener('click', () => {
       if (el.classList.contains('lav-modal__btn')) {
@@ -1113,6 +1141,73 @@ function addModals() {
         100% natural content & chemical free
       </div>
     </div>
+
+    <div class='lav-modal__slider'>
+      <div class="slider lav-modal__single">
+        <div class='lav-modal__single-slide'>
+          1
+        </div>
+        <div class='lav-modal__single-slide'>
+          12
+        </div>
+        <div class='lav-modal__single-slide'>
+          13
+        </div>
+        <div class='lav-modal__single-slide'>
+          14
+        </div>
+        <div class='lav-modal__single-slide'>
+          15
+        </div>
+        <div class='lav-modal__single-slide'>
+          16
+        </div>
+        <div class='lav-modal__single-slide'>
+          17
+        </div>
+        <div class='lav-modal__single-slide'>
+          18
+        </div>
+        <div class='lav-modal__single-slide'>
+          19
+        </div>
+        <div class='lav-modal__single-slide'>
+          10
+        </div>
+      </div>
+      <div class="slider lav-modal__nav">
+        <div class='lav-modal__nav-slide'>
+          1
+        </div>
+        <div class='lav-modal__nav-slide'>
+          2
+        </div>
+        <div class='lav-modal__nav-slide'>
+          3
+        </div>
+        <div class='lav-modal__nav-slide'>
+          4
+        </div>
+        <div class='lav-modal__nav-slide'>
+          5
+        </div>
+        <div class='lav-modal__nav-slide'>
+          6
+        </div>
+        <div class='lav-modal__nav-slide'>
+          7
+        </div>
+        <div class='lav-modal__nav-slide'>
+          8
+        </div>
+        <div class='lav-modal__nav-slide'>
+          9
+        </div>
+        <div class='lav-modal__nav-slide'>
+          1>
+        </div>
+      </div>
+    </div>
     
     <div class='lav-modal__descr'></div>
     <div class='lav-modal__features'></div>
@@ -1125,6 +1220,33 @@ function addModals() {
   `
 
   new Modal('lav-details', markup)
+
+  $('.lav-modal__single').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: '.lav-modal__nav'
+  })
+
+  $('.lav-modal__nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: false,
+    asNavFor: '.lav-modal__single',
+    // centerMode: true,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  })
 
   visibilityEvent(
     '.lav-modal__inner',
@@ -2389,7 +2511,7 @@ function initModal() {
       .lav-modal__inner {
         position: relative;
         background: #fff;
-        max-width: 380px;
+        max-width: 100%;
         width: 100%;
         display: none;
         margin: auto;
