@@ -1126,6 +1126,19 @@ function addModals() {
 
   new Modal('lav-details', markup)
 
+  visibilityEvent(
+    '.lav-modal__inner',
+    () => {
+      pushDataLayer(
+        'exp_introduce_v4_element_02',
+        _$('.lav-modal__title').innerText.trim(),
+        'Visibility',
+        'Pop up with details'
+      )
+    },
+    { once: false }
+  )
+
   _$$('[data-trigger-modal]').forEach((el) => {
     el.addEventListener('click', () =>
       openModal(el.dataset.triggerModal, el.innerText.trim())
@@ -1391,6 +1404,15 @@ function addWhySection() {
   `
 
   _$('#LoveBuzzPatch').insertAdjacentHTML('beforebegin', markup)
+
+  visibilityEvent('.lav-why', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_01',
+      'Why kids love BuzzPatch',
+      'Visibility',
+      'Why kids love BuzzPatch'
+    )
+  })
 }
 
 function addFeedbackSection() {
@@ -1702,6 +1724,15 @@ function addFeedbackSection() {
     focusOnSelect: !0,
     centerPadding: '60px'
   })
+
+  visibilityEvent('#review-slides-2', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_03',
+      "We're in the news...",
+      'Visibility',
+      "We're in the news..."
+    )
+  })
 }
 
 function addScienceSection() {
@@ -1782,6 +1813,15 @@ function addScienceSection() {
   `
 
   _$('.lavh-reviews').insertAdjacentHTML('afterend', markup)
+
+  visibilityEvent('.lav-science', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_04',
+      'The Science Behind BuzzPatch ',
+      'Visibility',
+      'The Science Behind BuzzPatch '
+    )
+  })
 }
 
 function addFeaturesSection() {
@@ -1952,6 +1992,15 @@ function addFeaturesSection() {
 
     _$('.lav-features__list').insertAdjacentHTML('beforeend', markup)
   }
+
+  visibilityEvent('.lav-features', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_05',
+      'Features Customers Love About BuzzPatch',
+      'Visibility',
+      'Features Customers Love About BuzzPatch'
+    )
+  })
 }
 
 function updateEffective() {
@@ -2058,6 +2107,15 @@ function addGlobally() {
   `
 
   _$('#featured-reviews').insertAdjacentHTML('beforebegin', markup)
+
+  visibilityEvent('.lav-globally', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_06',
+      'In over 5000 stores globally',
+      'Visibility',
+      'In over 5000 stores globally'
+    )
+  })
 }
 
 function handleLove() {
@@ -2111,6 +2169,15 @@ function initFeed() {
     'beforebegin',
     instagramFeed
   )
+
+  visibilityEvent('.instagram-video-slides', () => {
+    pushDataLayer(
+      'exp_introduce_v4_element_07',
+      'Why people love BuzzPatch',
+      'Visibility',
+      'Why people love BuzzPatch'
+    )
+  })
 
   const container = document.createElement('div')
   container.id =
@@ -2533,19 +2600,22 @@ function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
 function visibilityEvent(el, cb, customConfig = {}) {
   const config = {
     threshold: 0.3,
-    ...customConfig,
-    timer: null
+    once: true,
+    timer: null,
+    ...customConfig
   }
   initIntersection(
     el,
     ({ isIntersecting, target }, observer) => {
-      // console.log(target, isIntersecting);
+      console.log(target, isIntersecting)
       if (isIntersecting) {
         config.timer = setTimeout(() => {
-          if (isElementInViewport(target)) {
-            cb()
+          // if (isElementInViewport(target)) {
+          cb()
+          if (config.once) {
             observer.disconnect()
           }
+          // }
         }, 3000)
       } else {
         clearTimeout(config.timer)
