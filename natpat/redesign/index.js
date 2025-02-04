@@ -1337,7 +1337,7 @@ function addWhySection() {
             </div>
             <div class="lav-why__item-info">
               <div class="lav-why__item-title ff-b">
-                100% natural ingredients
+                100% natural essentials oils
               </div>
               <div class="lav-why__item-descr ff-b">
                 An amazing scent, featuring Citronella Oil
