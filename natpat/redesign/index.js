@@ -1081,7 +1081,7 @@ function addMainSection() {
   handleFaq()
   addModals()
 
-  openModal()
+  // openModal()
 
   _$$('.lav-btn').forEach((el) => {
     el.addEventListener('click', () => {
