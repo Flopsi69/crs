@@ -32,81 +32,82 @@ async function initExp() {
 }
 
 // *** Utils *** //
-class Modal {
-  static list = []
-  constructor(name, html) {
-    if (!$('.lav-modal')) {
-      this.constructor.init()
-    }
-
-    if (this.constructor.list.find((item) => item.name === name)) {
-      console.warn('Modal with this name already exists')
-      return
-    }
-
-    this.el = document.createElement('div')
-    this.el.classList.add('lav-modal__inner', name)
-    this.name = name
-    this.el.innerHTML = html
-
-    $('.lav-modal').insertAdjacentElement('beforeend', this.el)
-
-    this.constructor.list.push(this)
-  }
-
-  static init() {
-    document.body.insertAdjacentHTML(
-      'beforeend',
-      "<div class='lav-modal'></div>"
-    )
-
-    document.addEventListener('click', (e) => {
-      if (
-        e.target.classList.contains('lav-modal') ||
-        e.target.closest('.lav-modal__close')
-      )
-        this.close()
-
-      if (e.target.dataset.modal) {
-        this.open(e.target.dataset.modal)
-      } else if (e.target.closest('[data-modal]')) {
-        this.open(e.target.closest('[data-modal]').dataset.modal)
+function initModal() {
+  class Modal {
+    static list = []
+    constructor(name, html) {
+      if (!_$('.lav-modal')) {
+        this.constructor.init()
       }
-    })
 
-    this.addStyles()
-  }
+      if (this.constructor.list.find((item) => item.name === name)) {
+        console.warn('Modal with this name already exists')
+        return
+      }
 
-  static open(modalName, cb) {
-    document.body.classList.add('lav-modal-open')
+      this.el = document.createElement('div')
+      this.el.classList.add('lav-modal__inner', name)
+      this.name = name
+      this.el.innerHTML = html
 
-    if ($('.lav-modal__inner.active')) {
-      $('.lav-modal__inner.active').classList.remove('active')
+      _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
+
+      this.constructor.list.push(this)
     }
 
-    $(modalName).classList.add('active')
+    static init() {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        "<div class='lav-modal'></div>"
+      )
 
-    if (typeof cb === 'function') cb()
+      document.addEventListener('click', (e) => {
+        if (
+          e.target.classList.contains('lav-modal') ||
+          e.target.closest('.lav-modal__close')
+        )
+          this.close()
 
-    setTimeout(() => {
-      $('.lav-modal').classList.add('active')
-    }, 100)
-  }
+        if (e.target.dataset.modal) {
+          this.open(e.target.dataset.modal)
+        } else if (e.target.closest('[data-modal]')) {
+          this.open(e.target.closest('[data-modal]').dataset.modal)
+        }
+      })
 
-  static close(cb) {
-    document.body.classList.remove('lav-modal-open')
+      this.addStyles()
+    }
 
-    $('.lav-modal')?.classList.remove('active')
+    static open(modalName, cb) {
+      document.body.classList.add('lav-modal-open')
 
-    if (typeof cb === 'function') cb()
+      if (_$('.lav-modal__inner.active')) {
+        _$('.lav-modal__inner.active').classList.remove('active')
+      }
 
-    setTimeout(() => {
-      $('.lav-modal__inner.active')?.classList.remove('active')
-    }, 400)
-  }
+      _$(modalName).classList.add('active')
 
-  static addStyles() {
-    const styles = `
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        _$('.lav-modal').classList.add('active')
+      }, 100)
+    }
+
+    static close(cb) {
+      document.body.classList.remove('lav-modal-open')
+
+      _$('.lav-modal')?.classList.remove('active')
+
+      if (typeof cb === 'function') cb()
+
+      setTimeout(() => {
+        _$('.lav-modal__inner.active')?.classList.remove('active')
+      }, 400)
+    }
+
+    static addStyles() {
+      const styles = /* css */ `
       .lav-modal {
         position: fixed;
         z-index: 999;
@@ -158,13 +159,15 @@ class Modal {
       }
     `
 
-    const stylesEl = document.createElement('style')
-    stylesEl.classList.add('exp-modal')
-    stylesEl.innerHTML = styles
-    document.head.appendChild(stylesEl)
+      const stylesEl = document.createElement('style')
+      stylesEl.classList.add('exp-modal')
+      stylesEl.innerHTML = styles
+      document.head.appendChild(stylesEl)
+    }
   }
-}
 
+  window.Modal = Modal
+}
 // *** HELPERS *** //
 
 // Waiting for loading by condition
