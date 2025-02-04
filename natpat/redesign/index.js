@@ -1635,6 +1635,12 @@ function addFeedbackSection() {
           letter-spacing: 0;
           text-align: center;
         }
+        @media(max-width: 460px) and (min-width: 430px) {
+          #review-slides-2 .bottom .content p {
+            font-size: 18px;
+            line-height: 22px;
+          }
+        }
 
         #review-slides-2 .bottom .blue-curl {
           width: 100%;
@@ -1805,7 +1811,7 @@ function addFeedbackSection() {
         }
       },
       {
-        breakpoint: 431,
+        breakpoint: 550,
         settings: {
           centerPadding: '30px',
           arrows: !1,
@@ -1815,7 +1821,7 @@ function addFeedbackSection() {
         }
       },
       {
-        breakpoint: 376,
+        breakpoint: 400,
         settings: {
           centerPadding: '15px',
           arrows: !1,
@@ -1824,7 +1830,7 @@ function addFeedbackSection() {
         }
       },
       {
-        breakpoint: 340,
+        breakpoint: 360,
         settings: {
           centerPadding: '5px',
           arrows: !1,
@@ -2729,7 +2735,7 @@ function visibilityEvent(el, cb, customConfig = {}) {
   initIntersection(
     el,
     ({ isIntersecting, target }, observer) => {
-      console.log(target, isIntersecting)
+      // console.log(target, isIntersecting)
       if (isIntersecting) {
         config.timer = setTimeout(() => {
           // if (isElementInViewport(target)) {
