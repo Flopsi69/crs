@@ -154,7 +154,7 @@ header .navbar + .js-reviews {
 }
 .lav-hero {
   // background: linear-gradient(180deg, #F0F0F4 0%, #F0F0F4 80.83%, rgba(240, 240, 244, 0.00) 100%);
-  background: url('${config.dir}/img/bg-hero.jpg') no-repeat center center;
+  background: url('${config.dir}/img/bg-hero.png') no-repeat center center;
   background-size: 100% auto;
   color: var(--Midnight, #1F1F5B);
   font-size: 16px;
@@ -853,15 +853,16 @@ header {
   background: var(--Midnight, #1F1F5B);
   color: var(--White, #FFF);
   text-align: center;
-  font-family: "Barlow";
+  font-family: "Urbane";
   font-size: 12px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 18px; 
   text-transform: capitalize;
   letter-spacing: 0;
 }
 .js-packs input[type=radio]+label {
+  color: var(--Midnight, #1F1F5B);
   font-family: "Urbane";
   font-size: 16px;
   font-weight: 700;
