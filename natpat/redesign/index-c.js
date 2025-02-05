@@ -1113,6 +1113,15 @@ function addMainSection() {
         )
       }
 
+      if (el.classList.contains('lav-science__btn')) {
+        pushDataLayer(
+          'exp_introduce_v4_click_10',
+          'Get BuzzPatch Now',
+          'Click',
+          'Proven results'
+        )
+      }
+
       $('html, body').animate(
         {
           scrollTop:
