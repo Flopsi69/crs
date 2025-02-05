@@ -222,7 +222,7 @@ header {
   line-height: 34px; 
 }
 .lav-learn {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 7px;
   color: var(--Rasbery, #FF209E);
@@ -1079,7 +1079,7 @@ function addMainSection() {
   handleLove()
   initFeed()
   handleFaq()
-  addModals()
+  // addModals()
 
   // openModal()
 
