@@ -286,7 +286,7 @@ header {
   line-height: 18px;
 }
 .lav-why__item-descr {
-  color: var(--Black, #000);
+  color: #1F1F5B;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px; 
@@ -1051,7 +1051,7 @@ function updateHero() {
         </div>
       </div>
 
-      <button class="lav-btn lav-btn_purple lav-hero__btn">Get it now!</button>
+      <button class="lav-btn lav-btn_purple lav-hero__btn">Get it now</button>
     </div>
 
     <div class="lav-hero__note">
@@ -1632,7 +1632,7 @@ function addFeedbackSection() {
           font-family: "Barlow"
           , sans-serif;
           font-size: 18px;
-          font-weight: 500;
+          font-weight: 600;
           line-height: 22px;
           letter-spacing: 0;
           text-align: center;

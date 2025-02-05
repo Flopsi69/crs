@@ -286,7 +286,7 @@ header {
   line-height: 18px;
 }
 .lav-why__item-descr {
-  color: var(--Black, #000);
+  color: #1F1F5B;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px; 
@@ -976,6 +976,9 @@ footer .js-logo img {
   margin: 0 -25px -30px;
 }
 
+.lav-modal__slider:not(.active) {
+  // display: none;
+}
 .lav-modal__single {
  margin-top: 20px;
 }
@@ -1051,7 +1054,7 @@ function updateHero() {
         </div>
       </div>
 
-      <button class="lav-btn lav-btn_purple lav-hero__btn">Get it now!</button>
+      <button class="lav-btn lav-btn_purple lav-hero__btn">Get it now</button>
     </div>
 
     <div class="lav-hero__note">
@@ -1206,7 +1209,7 @@ function addModals() {
           9
         </div>
         <div class='lav-modal__nav-slide'>
-          1>
+          1
         </div>
       </div>
     </div>
@@ -1223,32 +1226,40 @@ function addModals() {
 
   new Modal('lav-details', markup)
 
-  $('.lav-modal__single').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
-    asNavFor: '.lav-modal__nav'
-  })
+  waitFor(
+    () => {
+      return typeof jQuery && typeof jQuery.fn.slick
+    },
+    () => {
+      _$('.lav-modal__slider').classList.add('active')
+      $('.lav-modal__single').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.lav-modal__nav'
+      })
 
-  $('.lav-modal__nav').slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    dots: false,
-    arrows: false,
-    asNavFor: '.lav-modal__single',
-    // centerMode: true,
-    focusOnSelect: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  })
+      $('.lav-modal__nav').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        arrows: false,
+        asNavFor: '.lav-modal__single',
+        // centerMode: true,
+        focusOnSelect: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      })
+    }
+  )
 
   visibilityEvent(
     '.lav-modal__inner',
@@ -1632,7 +1643,7 @@ function addFeedbackSection() {
           font-family: "Barlow"
           , sans-serif;
           font-size: 18px;
-          font-weight: 500;
+          font-weight: 600;
           line-height: 22px;
           letter-spacing: 0;
           text-align: center;
