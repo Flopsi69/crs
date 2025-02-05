@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/natpat/redesign',
   dir: 'https://flopsi69.github.io/crs/natpat/redesign',
-  clarity: ['set', 'exp_introduce_b', 'variant_1'],
+  clarity: ['set', 'exp_introduce_c', 'variant_1'],
   debug: false
 }
 
