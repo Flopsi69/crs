@@ -984,25 +984,21 @@ footer .js-logo img {
 }
 .lav-modal__single-slide {
   border-radius: 24px;
-  background: #ECEEF0;
+  background-color: #ECEEF0;
   height: 235px;
-  color: blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  overflow: hidden;
 }
 .lav-modal__nav {
   margin: 20px -6px 0;
 }
 .lav-modal__nav-slide {
   border-radius: 8px;
-  background: #ECEEF0;
+  background-color: #ECEEF0;
   height: 52px;
 	margin: 0 6px;
-  color: blue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-size: cover;
+  overflow: hidden;
 }
 `
 
@@ -1157,70 +1153,8 @@ function addModals() {
     </div>
 
     <div class='lav-modal__slider'>
-      <div class="slider lav-modal__single">
-        <div class='lav-modal__single-slide'>
-          1
-        </div>
-        <div class='lav-modal__single-slide'>
-          12
-        </div>
-        <div class='lav-modal__single-slide'>
-          13
-        </div>
-        <div class='lav-modal__single-slide'>
-          14
-        </div>
-        <div class='lav-modal__single-slide'>
-          15
-        </div>
-        <div class='lav-modal__single-slide'>
-          16
-        </div>
-        <div class='lav-modal__single-slide'>
-          17
-        </div>
-        <div class='lav-modal__single-slide'>
-          18
-        </div>
-        <div class='lav-modal__single-slide'>
-          19
-        </div>
-        <div class='lav-modal__single-slide'>
-          10
-        </div>
-      </div>
-      <div class="slider lav-modal__nav">
-        <div class='lav-modal__nav-slide'>
-          1
-        </div>
-        <div class='lav-modal__nav-slide'>
-          2
-        </div>
-        <div class='lav-modal__nav-slide'>
-          3
-        </div>
-        <div class='lav-modal__nav-slide'>
-          4
-        </div>
-        <div class='lav-modal__nav-slide'>
-          5
-        </div>
-        <div class='lav-modal__nav-slide'>
-          6
-        </div>
-        <div class='lav-modal__nav-slide'>
-          7
-        </div>
-        <div class='lav-modal__nav-slide'>
-          8
-        </div>
-        <div class='lav-modal__nav-slide'>
-          9
-        </div>
-        <div class='lav-modal__nav-slide'>
-          1
-        </div>
-      </div>
+      <div class="slider lav-modal__single"> </div>
+      <div class="slider lav-modal__nav"></div>
     </div>
     
     <div class='lav-modal__descr'></div>
@@ -1234,41 +1168,6 @@ function addModals() {
   `
 
   new Modal('lav-details', markup)
-
-  waitFor(
-    () => {
-      return typeof jQuery && typeof jQuery.fn.slick
-    },
-    () => {
-      _$('.lav-modal__slider').classList.add('active')
-      $('.lav-modal__single').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.lav-modal__nav'
-      })
-
-      $('.lav-modal__nav').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        asNavFor: '.lav-modal__single',
-        // centerMode: true,
-        focusOnSelect: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      })
-    }
-  )
 
   visibilityEvent(
     '.lav-modal__inner',
@@ -1299,6 +1198,7 @@ const modalConfig = {
       At the heart of its effectiveness are therapeutic-grade essential  Citronella oil, renowned for its natural mosquito-repelling properties and refreshing scents. This oil is carefully sourced and formulated to meet the highest standards of purity and potency, ensuring they deliver both safety and results.<br/>
       Citronella offers a light, citrusy aroma that uplifts the mood while acting as a natural barrier against mosquitoes.
     `,
+    images: ['modal1-1.jpg', 'modal1-2.jpg'],
     features: [
       {
         type: 'drop',
@@ -1316,6 +1216,7 @@ const modalConfig = {
     descr: `
       Kids love BuzzPatch for its playful, colorful sticker designs and enjoy wearing it every day. There are X different characters - while its fun factor turns mosquito protection into an enjoyable routine.
     `,
+    images: ['modal2-1.jpg', 'modal2-2.jpg', 'modal2-3.jpg'],
     features: [
       {
         type: 'time',
@@ -1341,6 +1242,7 @@ const modalConfig = {
     descr: `
       BuzzPatch is incredibly easy to use. There’s no need for sprays, lotions, or complicated applications — applying BuzzPatch takes just a moment. Its simplicity saves time, making it perfect for busy mornings, spontaneous outdoor plans, or active children who dislike greasy or sticky products on their skin. Just stick ob clothes and go. 
     `,
+    images: ['modal3-1.jpg', 'modal3-2.jpg', 'modal3-3.jpg'],
     features: [
       {
         type: 'sticker',
@@ -1358,6 +1260,7 @@ const modalConfig = {
     descr: `
       BuzzPatch provides effective protection for up to 8 hours. Whether it’s a full day at daycare, an afternoon camping trip, or hours of outdoor play, BuzzPatch ensures long-lasting mosquito protection without the need for constant reapplication. It doesn’t stain clothes, it won’t rub off on clothing or wash away with water – kids are protected for all this time.
     `,
+    images: ['modal4-1.jpg', 'modal4-2.jpg', 'modal4-3.jpg'],
     features: [
       {
         type: 'tree',
@@ -1377,6 +1280,7 @@ const modalConfig = {
       <br/><br/>
       Central to BuzzPatch is AromaWeave™—a biodegradable bamboo-based material that embeds essential oils into its fibers for consistent, long-lasting diffusion. Eco-friendly and gentle on sensitive skin, this innovative technology ensures a safe and enjoyable aromatherapy experience for children. Extensive research backs every detail, from adhesive performance to the precise formulation of oils, making BuzzPatch a scientifically proven, trusted choice for families.
     `,
+    images: ['video5.mp4', 'modal5-1.jpg', 'modal5-2.jpg'],
     features: [
       {
         type: 'shield',
@@ -1416,7 +1320,67 @@ function openModal(modalId = 'modal1', text) {
 
   info.features.forEach((feature) => addItem(feature))
 
+  initModalSlider()
+
   Modal.open('.lav-details')
+
+  function initModalSlider() {
+    if (_$('.lav-modal__single.slick-initialized')) {
+      $('.lav-modal__single').slick('unslick')
+      $('.lav-modal__nav').slick('unslick')
+    }
+    _$('.lav-modal__nav').innerHTML = ''
+    _$('.lav-modal__single').innerHTML = ''
+
+    info.images.forEach((img) => {
+      const slide = document.createElement('div')
+      slide.classList.add('lav-modal__single-slide')
+      if (img.includes('.mp4')) {
+        slide.innerHTML = `
+          <video autoplay loop muted playsinline style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+            <source src="${config.dir}/img/${img}" type="video/mp4">
+          </video>
+        `
+      } else {
+        slide.style.backgroundImage = `url(${config.dir}/img/${img})`
+      }
+      _$('.lav-modal__single').appendChild(slide)
+
+      const navSlide = document.createElement('div')
+      navSlide.classList.add('lav-modal__nav-slide')
+      navSlide.style.backgroundImage = `url(${config.dir}/img/${img.replace(
+        '.mp4',
+        '.jpg'
+      )})`
+      _$('.lav-modal__nav').appendChild(navSlide)
+    })
+
+    $('.lav-modal__single').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true
+      // asNavFor: '.lav-modal__nav'
+    })
+
+    $('.lav-modal__nav').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      dots: false,
+      arrows: false,
+      asNavFor: '.lav-modal__single',
+      focusOnSelect: true,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    })
+  }
 
   function addItem(feature) {
     const markup = /* html */ `
