@@ -1136,10 +1136,12 @@ function addModals() {
   initModal()
 
   const markup = /* html */ `
-     <svg class='lav-modal__close' xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path d="M17 1.00024L1.00024 17" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
-      <path d="M17 16.9998L1.00025 1" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
-    </svg>
+    <div class='lav-modal__close'>
+      <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M17 1.00024L1.00024 17" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+        <path d="M17 16.9998L1.00025 1" stroke="#161718" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
 
     <div class='lav-modal__title ff-u'></div>
 
@@ -2069,6 +2071,13 @@ function addFeaturesSection() {
     _$('.lav-features__show').textContent = _$('.lav-features__list_expanded')
       ? 'Show less'
       : 'Show more'
+
+    if (!_$('.lav-features__list_expanded')) {
+      _$('.lav-features__show').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+    }
   })
 
   function addItem(feature) {
@@ -2525,6 +2534,9 @@ function initModal() {
         cursor: pointer;
         transition: 0.35s;
         line-height: 0;
+        display: inline-block;
+        padding: 10px;
+        margin: -10px;
       }
       [data-modal] {
         cursor: pointer;

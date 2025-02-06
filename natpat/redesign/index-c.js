@@ -2094,6 +2094,13 @@ function addFeaturesSection() {
     _$('.lav-features__show').textContent = _$('.lav-features__list_expanded')
       ? 'Show less'
       : 'Show more'
+
+    if (!_$('.lav-features__list_expanded')) {
+      _$('.lav-features__show').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+    }
   })
 
   function addItem(feature) {
