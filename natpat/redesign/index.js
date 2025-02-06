@@ -1040,13 +1040,13 @@ function updateHero() {
           <div class="lav-hero__item-icon">
             ${getSvg('leafs')}
           </div>
-          <div class="lav-hero__item-caption">All natural content & chemical free </div>
+          <div class="lav-hero__item-caption">All natural content & chemical free</div>
         </div>
         <div class="lav-hero__item">
           <div class="lav-hero__item-icon">
             ${getSvg('scinece')}
           </div>
-          <div class="lav-hero__item-caption">Scientifically proven effective for up&nbsp;to&nbsp;8&nbsp;hrs</div>
+          <div class="lav-hero__item-caption">Proven effective by science</div>
         </div>
       </div>
 
@@ -1447,10 +1447,10 @@ function addWhySection() {
             </div>
             <div class="lav-why__item-info">
               <div class="lav-why__item-title ff-b">
-                100% natural essentials oils
+                100% natural essentials&nbsp;oils
               </div>
               <div class="lav-why__item-descr ff-b">
-                An amazing scent, featuring Citronella Oil
+                An amazing scent, featuring&nbsp;Citronella&nbsp;Oil
               </div>
               <div class='lav-learn lav-why__item-learn' data-trigger-modal='modal1'>
                 <span>Learn more</span> ${getSvg('learnArrow')}
