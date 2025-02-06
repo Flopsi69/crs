@@ -2568,9 +2568,14 @@ function initModal() {
         width: 100%;
         margin: 30px 0;
       }
+      .lav-modal__trust {
+        margin: auto;
+        display: block;
+      }
       .lav-modal__natural {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 20px;
         border-radius: 10px;
         background: #ECEEF0;
@@ -2583,7 +2588,7 @@ function initModal() {
         flex-shrink: 0;
       }
       .lav-modal__natural-title {
-        font-size: 22px;
+        font-size: 20px;
         text-transform: none;
         line-height: 26px;
         color: #0c0b0b;
