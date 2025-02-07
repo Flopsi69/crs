@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/oakwell/booking-listing',
   dir: 'https://flopsi69.github.io/crs/oakwell/booking-listing',
   clarity: ['set', 'new_hp', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
