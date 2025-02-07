@@ -539,12 +539,11 @@ function changeLayout(packages) {
         if (packageEl.classList.contains('active')) return
 
         pushDataLayer(
-          'exp_hp2_button_01',
-          `Select - ${package.title}`,
+          'exp_hp2_button_04',
+          `Details popup - ${package.title}`,
           'click',
           'Choose your experience'
         )
-
         // if (
         //   !packageEl.classList.contains(
         //     'active'
@@ -568,6 +567,12 @@ function changeLayout(packages) {
           isDisableTrakingVisibility = false
         }, 50)
       } else {
+        pushDataLayer(
+          'exp_hp2_button_01',
+          `Select - ${package.title}`,
+          'click',
+          'Choose your experience'
+        )
         fillPopAddons()
         toggleModalPopup(true)
       }
@@ -720,11 +725,17 @@ function addModalMarkup(packages) {
   _$$('.lavd-hero__select').forEach((el) => {
     el.addEventListener('click', () => {
       // TODO event
+      pushDataLayer(
+        'exp_hp2_button_06',
+        'Select package - hero',
+        'click',
+        'Event details'
+      )
       toggleModalPopup(true)
     })
   })
 
-  scrollHandler(_$('.lav-modal'))
+  scrollHandler(_$('.lav-package'))
   function scrollHandler(pack) {
     const thresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     let triggeredDepths = new Set()
@@ -1054,7 +1065,16 @@ class Modal {
     })
 
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('lav-modal')) this.close()
+      if (e.target.classList.contains('lav-modal')) {
+        pushDataLayer(
+          'exp_hp2_button_05',
+          'Overlay close',
+          'click',
+          'Event details'
+        )
+
+        this.close()
+      }
 
       if (e.target.closest('.lav-modal__close')) {
         pushDataLayer('exp_hp2_button_03', 'Close', 'click', 'Event details')
