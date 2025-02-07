@@ -1116,9 +1116,10 @@ class Modal {
         right: 0;
         top: 0;
         bottom: 0;
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
+        // backdrop-filter: blur(3px);
+        // -webkit-backdrop-filter: blur(3px);
         background: #8F8F8F;
+        background: linear-gradient(0deg, rgba(12, 89, 71, 0.30) 0%, rgba(12, 89, 71, 0.30) 100%), rgba(68, 68, 68, 0.70);
         transition: opacity 0.35s;
         opacity: 0;
         pointer-events: none;
