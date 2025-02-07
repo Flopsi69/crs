@@ -1412,7 +1412,7 @@ class Modal {
         background-size: 130%;
       }
       .lav-sticky {
-        position: sticky;
+        position: fixed;
         z-index: 9999;
         bottom: 0;
         left: 0;
