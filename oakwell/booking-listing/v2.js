@@ -726,7 +726,7 @@ function addModalMarkup(packages) {
     el.addEventListener('click', () => {
       // TODO event
       pushDataLayer(
-        'exp_hp2_button_06',
+        'exp_hp2_button_07',
         'Select package - hero',
         'click',
         'Event details'
