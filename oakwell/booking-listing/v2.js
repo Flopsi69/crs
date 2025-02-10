@@ -274,7 +274,7 @@ async function initExp() {
         '2 x 15-minute Zero Gravity Massage experiences',
         'Festive photo booth with Polaroid photos to take home'
       ],
-      feedback: `My husband and I went to the beer spa for our 5th anniversary and we had the most fun we’ve had in a long time. It was so fun, so relaxing, and so romantic! 10/10 would recommend!!!`,
+      feedback: `My husband got us a Valentine's Day Package. It sounded fun but I wasn't sure what to expect. Our experience was perfect from the minute we walked in the door! We interacted with at least 4 employees, all of them were very friendly and helpful. We were immediately greeted with insulated cups & shown to the self-pour bar. Each spa room is beautifully set up for a nice romantic escape from reality. They have thought of everything. 10/10, would recommend!`,
       feedbackCaption: 'Raine T.',
       details: {
         title: 'Package Details:',
@@ -425,7 +425,7 @@ async function initExp() {
         'Complimentary check-in drink',
         '2 x 30-minute Zero Gravity Massage experiences'
       ],
-      feedback: `I’ve been to the Beer Spa 5 times now. I think that speaks for itself. It’s a very relaxing experience, even without the massage chairs added on at the end. I always leave feeling refreshed and relaxed. The beer is always local, the rooms are always immaculate, and the service is always friendly and polite. My partner and I love taking trips here, and I can’t recommend it enough.`,
+      feedback: `I’ve been to Oakwell Beer Spa 5 times now. I think that speaks for itself. It’s a very relaxing experience. I always leave feeling refreshed and relaxed. The beers on tap are always local, the rooms are always immaculate, and the service is always friendly and polite. My partner and I love taking trips here, and I can’t recommend it enough. Book the Zero Gravity Massage as well! `,
       feedbackCaption: 'Gus A.',
       details: {
         title: 'Package Details:',
