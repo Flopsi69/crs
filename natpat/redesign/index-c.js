@@ -69,7 +69,7 @@ const styles = /* css */ `
 }
 
 
-#flowers, .lav-features + .js-mobile.wave-bg, #flowers + .effectiveness .scientific, header .wave-bg  {
+#flowers, .lav-features + .js-mobile.wave-bg, #flowers + .effectiveness .scientific, header .wave-bg, .lav-features + #children-safe, #kids-adults-alike, #kids-adults-alike + .wave-bg  {
   display: none;
 }
 .bitepatch-template .js-logo img, .bitepatch-template header .fixed-top .js-logo img {
@@ -1040,16 +1040,18 @@ footer .js-logo img {
   text-transform: uppercase;
 }
 .js-heading ul li .adult-pack-details span.adult-pack-price {
+  color: var(--Midnight, #1F1F5B);
   font-family: 'Barlow';
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: 0.6px;
+  margin-top: 6px;
 }
 .adult-pack--container {
   margin-top: 12px;
 }
-.js-heading ul li.active .adult-pack-details span.adult-pack-number {
+.js-heading ul li.active .adult-pack-details span.adult-pack-number, .js-heading ul li.active .adult-pack-details span.adult-pack-price {
   color: #fff;
 }
 `
