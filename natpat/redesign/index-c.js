@@ -1001,6 +1001,57 @@ footer .js-logo img {
   align-items: center;
   justify-content: center;
 }
+.adult-pack--dropdown-toggle p {
+  color: var(--Midnight, #1F1F5B);
+  text-align: center;
+  font-family: "Urbane";
+  font-size: 16px!important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px!important;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-left: 8px;
+  padding-top: 2px;
+}
+.lp-bp--mosquito-repellent-patches {
+  width: 36px;
+}
+#getNow .adult-pack--container img:not(.lp-bp--mosquito-repellent-patches) {
+  margin-right: 7px;
+}
+.adult-pack--container .adult-pack--dropdown-toggle {
+  padding: 8px;
+}
+.adult-pack-content p {
+  margin-top: 10px;
+  font-family: 'Barlow';
+}
+.js-heading .adult-pack-btns {
+  margin-top: 15px;
+}
+.js-heading ul li .adult-pack-details span.adult-pack-number {
+  color: var(--Midnight, #1F1F5B);
+  font-family: "Urbane";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+.js-heading ul li .adult-pack-details span.adult-pack-price {
+  font-family: 'Barlow';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.6px;
+}
+.adult-pack--container {
+  margin-top: 12px;
+}
+.js-heading ul li.active .adult-pack-details span.adult-pack-number {
+  color: #fff;
+}
 `
 
 const stylesEl = document.createElement('style')

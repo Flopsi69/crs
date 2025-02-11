@@ -1045,6 +1045,12 @@ footer .js-logo img {
   line-height: 18px;
   letter-spacing: 0.6px;
 }
+.adult-pack--container {
+  margin-top: 12px;
+}
+.js-heading ul li.active .adult-pack-details span.adult-pack-number {
+  color: #fff;
+}
 `
 
 const stylesEl = document.createElement('style')
