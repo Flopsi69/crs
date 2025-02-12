@@ -1310,7 +1310,7 @@ const modalConfig = {
     ]
   },
   modal4: {
-    title: 'Effective for up to 8h',
+    title: 'Day-long effectiveness',
     isNatural: false,
     descr: `
       BuzzPatch provides effective protection for up to 8 hours. Whether it’s a full day at daycare, an afternoon camping trip, or hours of outdoor play, BuzzPatch ensures long-lasting mosquito protection without the need for constant reapplication. It doesn’t stain clothes, it won’t rub off on clothing or wash away with water – kids are protected for all this time.
@@ -1551,7 +1551,7 @@ function addWhySection() {
             </div>
             <div class="lav-why__item-info">
               <div class="lav-why__item-title">
-                Patch effective for up to&nbsp;8h
+                Day-long effectiveness
               </div>
               <div class="lav-why__item-descr">
                 Forget about reapplying during&nbsp;day
