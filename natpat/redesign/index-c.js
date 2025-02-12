@@ -1398,7 +1398,7 @@ const modalConfig = {
     title: 'Day-long effectiveness',
     isNatural: false,
     descr: `
-      BuzzPatch provides effective protection for up to 8 hours. Whether it’s a full day at daycare, an afternoon camping trip, or hours of outdoor play, BuzzPatch ensures long-lasting mosquito protection without the need for constant reapplication. It doesn’t stain clothes, it won’t rub off on clothing or wash away with water – kids are protected for all this time.
+      Whether it’s a full day at daycare, an afternoon camping trip, or hours of outdoor play, BuzzPatch ensures long-lasting mosquito protection without the need for constant reapplication. It doesn’t stain clothes, it won’t rub off on clothing or wash away with water – kids are protected for all this time.  
     `,
     features: [
       {
