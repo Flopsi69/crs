@@ -1099,7 +1099,7 @@ function updateHero() {
           <div class="lav-hero__item-icon">
             ${getSvg('scinece')}
           </div>
-          <div class="lav-hero__item-caption">Proven effective by science</div>
+          <div class="lav-hero__item-caption">Backed by science for results</div>
         </div>
       </div>
 
@@ -1310,10 +1310,10 @@ const modalConfig = {
     ]
   },
   modal4: {
-    title: 'Day-long effectiveness',
+    title: 'How long does it work?',
     isNatural: false,
     descr: `
-      Whether it’s a full day at daycare, an afternoon camping trip, or hours of outdoor play, BuzzPatch ensures long-lasting mosquito protection without the need for constant reapplication. It doesn’t stain clothes, it won’t rub off on clothing or wash away with water – kids are protected for all this time.  
+      From daycare to outdoor adventures, BuzzPatch provides reliable mosquito protection. For best results, we recommend replacing it every 8 hours. It won’t stain clothes, rub off, or wash away—keeping kids covered throughout their day.  
     `,
     images: ['modal4-1.jpg', 'modal4-2.jpg', 'modal4-3.jpg'],
     features: [
@@ -1551,10 +1551,10 @@ function addWhySection() {
             </div>
             <div class="lav-why__item-info">
               <div class="lav-why__item-title">
-                Day-long effectiveness
+                How long does it work?
               </div>
               <div class="lav-why__item-descr">
-                Forget about reapplying during&nbsp;day
+                For best results, use and replace every&nbsp;8&nbsp;hours
               </div>
               <div class='lav-learn lav-why__item-learn' data-trigger-modal='modal4'>
                 <span>Learn more</span> ${getSvg('learnArrow')}
@@ -2205,7 +2205,7 @@ function updateEffective() {
         <div class="lav-effective__icon">
           <img src="${config.dir}/img/icon-12oclock.svg">
         </div>
-        <div class="lav-title lav-effective__title">Effective for 12 hours</div>
+        <div class="lav-title lav-effective__title">How long does it work?</div>
       </div>
 
       <div class='lav-effective__caption ff-b'>
