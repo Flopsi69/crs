@@ -994,7 +994,8 @@ async function initExp() {
   document.head.appendChild(stylesEl)
 
   console.debug('** InitExp **')
-
+  await waitFor(() => '.cart .col-md-8', false)
+  await waitFor(() => '.cart .col-md-4', false)
   updateHeader()
   addHead()
   handleCart()
