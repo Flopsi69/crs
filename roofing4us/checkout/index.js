@@ -994,18 +994,22 @@ async function initExp() {
   document.head.appendChild(stylesEl)
 
   console.debug('** InitExp **')
-  await waitFor(() => '.cart .col-md-8', false)
-  await waitFor(() => '.cart .col-md-4', false)
-  updateHeader()
-  addHead()
-  handleCart()
-  handleSummary()
-  addShippingEstimate()
-  waitFor(() => {
-    return _$('.clerk_heading_center.clerk>div>h2')
-  }, updateFrequent)
-  addTrust()
-  addSitcky()
+  waitFor(
+    () => _$('.cart .col-md-8') && _$('.cart .col-md-4'),
+    init,
+    () => {
+      updateHeader()
+      addHead()
+      handleCart()
+      handleSummary()
+      addShippingEstimate()
+      waitFor(() => {
+        return _$('.clerk_heading_center.clerk>div>h2')
+      }, updateFrequent)
+      addTrust()
+      addSitcky()
+    }
+  )
 }
 
 function addSitcky() {
