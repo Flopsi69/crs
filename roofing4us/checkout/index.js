@@ -996,7 +996,6 @@ async function initExp() {
   console.debug('** InitExp **')
   waitFor(
     () => _$('.cart .col-md-8') && _$('.cart .col-md-4'),
-    init,
     () => {
       updateHeader()
       addHead()
