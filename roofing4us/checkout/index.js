@@ -139,6 +139,7 @@ div.cart {
   font-size: 12px;
   gap: 8px;
   margin-bottom: 12px;
+  font-weight: 400;
 }
 .lav-timer--product svg {
   width: 20px;
@@ -782,7 +783,13 @@ form.cart {
 @media(max-width: 768px) {
   .lav-sticky {
     display: block;
-    z-index: 9999999990;
+    z-index: 999;
+  }
+  .smile-launcher-frame-container {
+    bottom: 100px!important;
+  }
+  #chat-widget-container {
+    bottom: 85px!important;
   }
   .lav-header__logo img {
     max-width: 196px;
