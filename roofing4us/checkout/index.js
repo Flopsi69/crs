@@ -785,10 +785,13 @@ form.cart {
     display: block;
     z-index: 999;
   }
-  .smile-launcher-frame-container {
+  .smile-launcher-frame-container, #chat-widget-container  {
+    transiton: .3s;
+  }
+  .lav-sticky-active .smile-launcher-frame-container {
     bottom: 100px!important;
   }
-  #chat-widget-container {
+  .lav-sticky-active #chat-widget-container {
     bottom: 85px!important;
   }
   .lav-header__logo img {
@@ -1043,9 +1046,11 @@ function addSitcky() {
     '.lav-summary',
     () => {
       _$('.lav-sticky').classList.remove('active')
+      document.body.classList.remove('lav-sticky-active')
     },
     () => {
       _$('.lav-sticky').classList.add('active')
+      document.body.classList.add('lav-sticky-active')
     },
     {
       once: false,
