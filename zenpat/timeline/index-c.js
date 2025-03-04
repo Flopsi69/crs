@@ -190,6 +190,19 @@ const styles = /* css */ `
   letter-spacing: 0;
   text-align: center;
 }
+.trust-rating {
+  text-align: center;
+}
+.trust-rating .stars {
+  margin-top: 8px;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+.trust-rating .rate img {
+  margin-top: 0;
+  width: 103px;
+}
 `
 
 const stylesEl = document.createElement('style')
@@ -202,11 +215,19 @@ initExp()
 async function initExp() {
   await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-  document.head.appendChild(stylesEl)
+  document.body.appendChild(stylesEl)
 
   console.debug('** InitExp **')
-  handleTimeline()
+  waitFor('#ScienceBased', handleTimeline)
+  waitFor('.trust-rating', handleTrust)
   addModals()
+}
+
+function handleTrust() {
+  _$('.trust-rating .rate img').src = `${config.dir}/img/trustpilot-stars.svg`
+
+  _$('.trust-rating .stars .text').innerText =
+    _$('.trust-rating .stars .text').innerText.trim().split(' ')[0] + ' 3763'
 }
 
 function handleTimeline() {
@@ -372,8 +393,9 @@ const modalConfig = {
   modal2: {
     title: 'Precision infusion for Long-Lasting calm',
     descr: `
-      To ensure a consistent and effective release of essential oils, each ZenPatch undergoes a specialized infusion process. Our innovative <strong>AromaWeave™ technology</strong> locks in the highest quality essential oils, embedding them within a biodegradable bamboo fiber matrix. This advanced method allows for a <strong>controlled, steady diffusion</strong> of calming aromas, ensuring ensuring the long-lasting benefits of aromatherapy.<br/><br/>
-      Unlike traditional diffusers or sprays that fade quickly, ZenPatch delivers a <strong>microdose of natural essential oils every 5 minutes</strong>, continuously activating olfactory receptors that signal relaxation and emotional balance. The result? A seamless, hassle-free aromatherapy experience that supports a sense of tranquility throughout the day or night.
+      To ensure a consistent and effective release of essential oils, each ZenPatch is crafted using our innovative <strong>AromaWeave® Technology</strong>. This patented system integrates a premium cotton-rayon fiber matrix, designed to retain and <strong>gradually release essential oil molecules over time</strong>. Unlike traditional diffusers or sprays that dissipate quickly, AromaWeave® provides a controlled, slow-release diffusion that lasts <strong>up to 8 hours</strong>.<br/><br/>
+      By embedding essential oils within a precisely engineered microstructur e, ZenPatch <strong>delivers a microdose of natural aromas every 5 minutes</strong>, continuously stimulating olfactory receptors to promote relaxation and emotional balance. The result? A seamless, hassle-free aromatherapy experience that enhances tranquility throughout the day or night—without the need for reapplication or refills.<br/><br/>
+      Experience the power of wearable aromatherapy, powered by science and designed for your well-being. 
     `,
     images: ['modal2-1.jpg', 'modal2-2.jpg', 'modal2-3.jpg'],
     feature: {
