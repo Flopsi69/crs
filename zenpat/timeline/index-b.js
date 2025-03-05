@@ -329,7 +329,7 @@ const modalConfig = {
         Our expert aromatherapists carefully measure and mix these oils to create a synergistic effect—one that calms without drowsiness and refreshes without overstimulation. This precise blending process ensures that each ZenPatch delivers a steady, consistent aroma, helping both kids and adults stay centered and relaxed throughout the day.
 
     `,
-    images: ['modal1-1.jpg', 'modal1-2.jpg'],
+    images: ['modal1-1.jpg', 'modal1-2.jpg', 'modal1-3.jpg'],
     feature: {
       name: 'V.S.',
       location: 'US',
@@ -490,6 +490,7 @@ function openModal(modalId = 'modal1') {
       arrows: false,
       asNavFor: '.lav-modal__single',
       focusOnSelect: true,
+      variableWidth: true,
       responsive: [
         {
           breakpoint: 1024,
@@ -746,9 +747,10 @@ function initModal() {
       }
       .lav-modal__single .lav-modal__single-slide {
         border-radius: 24px;
-        background-color: #D9D9D9;
-        height: 235px;
-        background-size: cover;
+        line-height: 0;
+        padding-top: 33.334%;
+        background-size: contain;
+        background-repeat: no-repeat;
         overflow: hidden;
         margin: 0;
         box-shadow: none;
@@ -759,7 +761,8 @@ function initModal() {
       .lav-modal__nav .lav-modal__nav-slide {
         border-radius: 8px!important;
         background-color: #D9D9D9;
-        height: 52px;
+        height: 56px;
+        width: 56px;
         margin: 0 6px;
         background-size: cover;
         overflow: hidden;
