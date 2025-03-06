@@ -18,13 +18,14 @@ const styles = /* css */ `
 #ScienceBased, #ScienceBased + .science-based {
   display: none;
 }
-.header-shipping + .wave-bg {
+.header-shipping + .wave-bg img {
   filter: brightness(100000%);
 }
 .ff-bb {
   font-family: Bebas,Bebas Fallback,Roboto,sans-serif;
 }
 .lav-timeline {
+  background: #fff;
   position: relative;
   z-index: 1;
   margin-top: -100px;
