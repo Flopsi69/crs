@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/zenpat/timeline',
   dir: 'https://flopsi69.github.io/crs/zenpat/timeline',
   clarity: ['set', 'exp_zen_journey', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
