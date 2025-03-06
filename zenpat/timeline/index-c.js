@@ -18,9 +18,6 @@ const styles = /* css */ `
 #ScienceBased, #ScienceBased + .science-based {
   display: none;
 }
-.header-shipping + .wave-bg img {
-  filter: brightness(100000%);
-}
 .ff-bb {
   font-family: Bebas,Bebas Fallback,Roboto,sans-serif;
 }
@@ -219,6 +216,11 @@ async function initExp() {
   document.body.appendChild(stylesEl)
 
   console.debug('** InitExp **')
+  waitFor('.header-shipping + .wave-bg img', () => {
+    const wave = _$('.header-shipping + .wave-bg img')
+    wave.src = `${config.dir}/img/wave.svg`
+    wave.srcset = ''
+  })
   waitFor('#ScienceBased', handleTimeline)
   waitFor('.trust-rating', handleTrust)
   addModals()
