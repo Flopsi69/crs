@@ -621,7 +621,7 @@ function initModal() {
       const styles = /* css */ `
       .lav-modal {
         position: fixed;
-        z-index: 9999;
+        z-index: 9999999;
         left: 0;
         right: 0;
         top: 0;
@@ -732,6 +732,8 @@ function initModal() {
       }
 
       .lav-modal__btn {
+        position: sticky;
+        bottom: 20px;
         width: 100%;
         margin: 30px 0;
         border: none;
