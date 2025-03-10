@@ -1119,7 +1119,7 @@ function handleCart() {
 }
 
 function getTimerMarkup(
-  text = 'Act fast –  the last items are waiting in your cart!',
+  text = 'Act fast - some of the items in your cart are in high demand!',
   additionalClass
 ) {
   const markup = /* html */ `
@@ -1168,10 +1168,10 @@ function setMostExpensiveProduct() {
   )
 
   function setLabel(el) {
-    el.querySelector('.cart__product-title')?.insertAdjacentHTML(
-      'afterend',
-      getTimerMarkup('Hurry up, only 4 items left!', 'lav-timer--product')
-    )
+    // el.querySelector('.cart__product-title')?.insertAdjacentHTML(
+    //   'afterend',
+    //   getTimerMarkup('Hurry up, only 4 items left!', 'lav-timer--product')
+    // )
   }
 }
 
