@@ -619,7 +619,7 @@ function initModal() {
       const styles = /* css */ `
       .lav-modal {
         position: fixed;
-        z-index: 9999999;
+        z-index: 999999999999999999999;
         left: 0;
         right: 0;
         top: 0;
