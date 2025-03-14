@@ -263,11 +263,11 @@ async function initExp() {
 
   console.debug('** InitExp **')
 
-  handleHero()
-  addTrustpilot()
+  waitFor('.lp-fp--green-box', handleHero)
+  waitFor('.lp-fp--main-title', addTrustpilot)
   addModal()
-  addNews()
-  addTrusted()
+  waitFor('.lp-fp--main-review-section', addNews)
+  waitFor('.lp-fp--as-seen-section', addTrusted)
   addGlobal()
 
   _$$('.lav-btn').forEach((btn) => {
@@ -511,13 +511,27 @@ function addNews() {
 
   _$('.lp-fp--main-review-section').insertAdjacentHTML('beforebegin', markup)
 
-  $('.lav-news__slider').slick({
-    dots: true,
-    arrows: false,
-    infinite: true,
-    slidesToShow: 1
-    // adaptiveHeight: true
+  visibilityEvent('.lav-news', () => {
+    pushDataLayer(
+      'exp_focuspatch_view_03',
+      "We're in the news...for good reasons",
+      'view',
+      "We're in the news...for good reasons"
+    )
   })
+
+  waitFor(
+    () => typeof $?.fn?.slick === 'function',
+    () => {
+      $('.lav-news__slider').slick({
+        dots: true,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 1
+        // adaptiveHeight: true
+      })
+    }
+  )
 }
 
 function addModal() {
@@ -917,7 +931,7 @@ function visibilityEvent(el, cb, customConfig = {}) {
             cb()
             observer.disconnect()
           }
-        }, 1000)
+        }, 3000)
       } else {
         clearTimeout(config.timer)
       }
