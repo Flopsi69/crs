@@ -407,20 +407,14 @@ function addTrusted() {
   link.href = 'https://shoppables.archive.com/ugc_feed.css'
   link.as = 'style'
 
-  // Pre
-  console.log('pre')
   waitFor(
     () =>
       _$('.lav-trusted__widget').shadowRoot?.querySelector(
         'a[href^="https://archive.com?domain=natpat"]'
       ) && _$('.lav-trusted__widget').shadowRoot?.querySelector('figure'),
     () => {
-      console.log('pre2')
       setTimeout(() => {
-        console.log('pre3')
         const shadowRootEl = _$('.lav-trusted__widget').shadowRoot
-
-        console.log('Trusted by over 1 million customers', shadowRootEl)
 
         shadowRootEl
           .querySelector('a[href^="https://archive.com?domain=natpat"]')
@@ -827,7 +821,6 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     return new Promise((resolve) => {
       let limit = config.limit * 1000
       const interval = setInterval(function () {
-        console.log(config.limit, condition())
         if (condition() || (limit <= 0 && config.limit > 0)) {
           clearInterval(interval)
           if ((limit > 0 || config.limit === -1) && typeof cb === 'function')
