@@ -411,7 +411,7 @@ function addTrusted() {
     () =>
       _$('.lav-trusted__widget').shadowRoot?.querySelector(
         'a[href^="https://archive.com?domain=natpat"]'
-      ),
+      ) && _$('.lav-trusted__widget').shadowRoot?.querySelector('figure'),
     () => {
       setTimeout(() => {
         const shadowRootEl = _$('.lav-trusted__widget').shadowRoot
@@ -434,6 +434,9 @@ function addTrusted() {
           }
         })
       }, 500)
+    },
+    {
+      limit: -1
     }
   )
 
@@ -820,7 +823,7 @@ async function waitFor(condition, cb = false, customConfig = {}) {
     return new Promise((resolve) => {
       let limit = config.limit * 1000
       const interval = setInterval(function () {
-        if (condition() || limit <= 0) {
+        if (condition() || (limit <= 0 && config.limit > 0)) {
           clearInterval(interval)
           if (limit > 0 && typeof cb === 'function') cb()
           resolve()
