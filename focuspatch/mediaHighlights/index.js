@@ -830,7 +830,8 @@ async function waitFor(condition, cb = false, customConfig = {}) {
         console.log(config.limit, condition())
         if (condition() || (limit <= 0 && config.limit > 0)) {
           clearInterval(interval)
-          if (limit > 0 && typeof cb === 'function') cb()
+          if ((limit > 0 || config.limit === -1) && typeof cb === 'function')
+            cb()
           resolve()
         }
         limit -= config.ms
