@@ -413,23 +413,27 @@ function addTrusted() {
         'a[href^="https://archive.com?domain=natpat"]'
       ),
     () => {
-      const shadowRootEl = _$('.lav-trusted__widget').shadowRoot
+      setTimeout(() => {
+        const shadowRootEl = _$('.lav-trusted__widget').shadowRoot
 
-      shadowRootEl
-        .querySelector('a[href^="https://archive.com?domain=natpat"]')
-        .remove()
+        console.log('Trusted by over 1 million customers', shadowRootEl)
 
-      shadowRootEl.addEventListener('click', (e) => {
-        console.log(e.target)
-        if (e.target.closest('figure')) {
-          pushDataLayer(
-            'exp_focuspatch_click_05',
-            e.target.closest('[tabindex="0"]')?.ariaLabel || 'Video',
-            'click',
-            'Trusted by over 1 million customers'
-          )
-        }
-      })
+        shadowRootEl
+          .querySelector('a[href^="https://archive.com?domain=natpat"]')
+          .remove()
+
+        shadowRootEl.addEventListener('click', (e) => {
+          console.log(e.target)
+          if (e.target.closest('figure')) {
+            pushDataLayer(
+              'exp_focuspatch_click_05',
+              e.target.closest('[tabindex="0"]')?.ariaLabel || 'Video',
+              'click',
+              'Trusted by over 1 million customers'
+            )
+          }
+        })
+      }, 500)
     }
   )
 
