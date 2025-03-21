@@ -199,15 +199,15 @@ async function waitFor(condition, cb = false, customConfig = {}) {
   }
 
   if (condition.startsWith('.') || condition.startsWith('#')) {
-    if ($(condition)) {
-      if (typeof cb === 'function') cb($(condition))
+    if (_$(condition)) {
+      if (typeof cb === 'function') cb(_$(condition))
       return
     }
 
     return new Promise((resolve) => {
       const observer = new MutationObserver((mutations, observer) => {
-        if ($(condition)) {
-          if (typeof cb === 'function') cb($(condition))
+        if (_$(condition)) {
+          if (typeof cb === 'function') cb(_$(condition))
           observer.disconnect()
           resolve()
         }
@@ -220,7 +220,7 @@ async function waitFor(condition, cb = false, customConfig = {}) {
 
 // Mutation Observer
 function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
   if (!el) return
 
@@ -249,7 +249,7 @@ function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
 
 // Intersection Observer
 function initIntersection(observeEl, cb, customConfig) {
-  const el = typeof observeEl === 'string' ? $(observeEl) : observeEl
+  const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
 
   if (!el || typeof cb !== 'function') return
 
@@ -319,7 +319,7 @@ function delay(ms) {
 
 // Check if element in viewport
 function isElementInViewport(selector) {
-  const el = typeof selector === 'string' ? $(selector) : selector
+  const el = typeof selector === 'string' ? _$(selector) : selector
 
   if (!el) return false
 
@@ -341,10 +341,10 @@ function isElementInViewport(selector) {
 }
 
 // Shordcode for selectors
-function $(selector, context = document) {
+function _$(selector, context = document) {
   return context.querySelector(selector)
 }
-function $$(selector, context = document, toSimpleArray = false) {
+function _$$(selector, context = document, toSimpleArray = false) {
   const arr = context.querySelectorAll(selector)
 
   return toSimpleArray ? Array.from(arr) : arr
