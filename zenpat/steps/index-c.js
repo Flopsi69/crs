@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/zenpat/steps',
-  // dir: 'https://flopsi69.github.io/crs/zenpat/steps',
+  // dir: 'http://127.0.0.1:5500/zenpat/steps',
+  dir: 'https://flopsi69.github.io/crs/zenpat/steps',
   clarity: ['set', 'exp_zen_slider_c', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
