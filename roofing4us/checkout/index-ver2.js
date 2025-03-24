@@ -15,6 +15,9 @@ const config = {
 
 // Styles for Experiment
 const styles = /* css */ `
+.template-cart .delivery_charges {
+  margin: 24px 0;
+}
 .page-width {
   max-width: 1350px;
   margin: auto;
@@ -350,6 +353,8 @@ div.cart {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #CCC;
 }
 .cart-subtotal__title {
   color: #101010;
@@ -404,8 +409,9 @@ div.cart {
   margin: 0!important;
 }
 .cart-note {
-  padding-top: 24px;
-  border-top: 1px solid #CCC;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 24px;
 }
 klarna-placement {
   display: block;
