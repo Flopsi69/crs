@@ -195,6 +195,9 @@ const styles = /* css */ `
 .lav-acc__how-divider {
   line-height: 0;
 }
+.lav-acc__image {
+  text-align: center;
+}
 .lav-acc__image img {
   max-width: 100%;
 }
@@ -285,7 +288,12 @@ const styles = /* css */ `
 .lav-key__btn {
   margin-top: 16px;
 }
-
+@media(min-width: 768px) {
+  .lav-calms {
+    margin-top: 0;
+    padding-top: 25px;
+  }
+}
 `
 
 const stylesEl = document.createElement('style')
