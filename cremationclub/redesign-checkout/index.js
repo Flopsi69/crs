@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/cremationclub/redesign-checkout',
-  // dir: 'https://flopsi69.github.io/crs/cremationclub/redesign-checkout',
+  // dir: 'http://127.0.0.1:5500/cremationclub/redesign-checkout',
+  dir: 'https://flopsi69.github.io/crs/cremationclub/redesign-checkout',
   clarity: ['set', 'form_steps', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
