@@ -590,6 +590,7 @@
       location.href.includes('/book-now') &&
       location.search.includes('preset')
     ) {
+      console.log('fire2')
       waitFor('.service-item-new', () => {
         _$$('.custom-modal-package .modal-close').forEach((el) => {
           el.addEventListener('click', function () {
@@ -624,7 +625,15 @@
         const params = new URLSearchParams(location.search)
         const preset = params.get('preset')
 
-        _$(`.service-item-new.${preset} .modal-trigger`).click()
+        console.log(
+          'preset',
+          preset,
+          _$(`.services-list-new .service-item-new.${preset} .modal-trigger`)
+        )
+
+        _$(
+          `.services-list-new .service-item-new.${preset} .modal-trigger`
+        ).click()
       })
     }
   }
