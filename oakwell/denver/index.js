@@ -590,7 +590,6 @@
       location.href.includes('/book-now') &&
       location.search.includes('preset')
     ) {
-      console.log('fire2')
       waitFor('.service-item-new', () => {
         _$$('.custom-modal-package .modal-close').forEach((el) => {
           el.addEventListener('click', function () {
@@ -624,8 +623,6 @@
 
         const params = new URLSearchParams(location.search)
         const preset = params.get('preset')
-
-        console.log('preset', preset, _$('.steps').style.opacity)
 
         waitFor(
           () => _$('.steps').style.opacity === '1',
