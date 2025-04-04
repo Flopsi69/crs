@@ -625,15 +625,16 @@
         const params = new URLSearchParams(location.search)
         const preset = params.get('preset')
 
-        console.log(
-          'preset',
-          preset,
-          _$(`.services-list-new .service-item-new.${preset} .modal-trigger`)
-        )
+        console.log('preset', preset, _$('.steps').style.opacity)
 
-        _$(
-          `.services-list-new .service-item-new.${preset} .modal-trigger`
-        ).click()
+        waitFor(
+          () => _$('.steps').style.opacity === '1',
+          () => {
+            _$(
+              `.services-list-new .service-item-new.${preset} .modal-trigger`
+            ).click()
+          }
+        )
       })
     }
   }
