@@ -472,6 +472,22 @@ const styles = /* css */ `
   .lav-control:not([data-step='1']) .lav-control__back {
     display: inline-flex;
   }
+  .lav-control__cancel {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    color: #FFF;
+    font-family: Castoro;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    order: 3;
+    margin-top: -10px;
+  }
+  .lav-control__cancel svg {
+    margin-top: -3px;
+  }
   @media(hover:hover) {
     .lav-control__back:hover {
       opacity: .7;
@@ -614,6 +630,9 @@ const styles = /* css */ `
 
   .lav-include {
     padding-bottom: 56px;
+  }
+  .view-page:not([data-step='1']) .lav-include__inner {
+
   }
   .lav-quote {
     display: flex;
@@ -762,12 +781,24 @@ const styles = /* css */ `
     border: 2px solid #DF1B41;
     background: #FAF4F3;
   }
+  .cremation-club-checkout-page .advantages-list .item:first-child {
+    display: none;
+  }
+  .cremation-club-checkout-page .advantages-list .container {
+    justify-content: space-evenly;
+  }
   @media(max-width: 1999.98px) {
     .cremation-club-checkout-page .steps-progress {
       display: none !important;
     }
   }
   @media(max-width: 768px) {
+    .cremation-club-checkout-page .advantages-list .container {
+      justify-content: flex-start;
+    }
+    .lav-control:not([data-step='4']) .lav-control__cancel {
+      display: flex;
+    }
     .lav-head__title {
       font-size: 32px;
       line-height: 44px;
@@ -959,9 +990,12 @@ const styles = /* css */ `
     .lav-include__item {
       gap: 8px;
     }
+    .lav-include__inner {
+      padding-bottom: 24px;
+    }
     .lav-trouble {
       flex-flow: column;
-      margin-top: 57px;
+      margin-top: 33px;
     }
     .lav-trouble__title {
       gap: 20px;
@@ -1199,13 +1233,13 @@ function handleStep(step) {
   }
 
   if (step === '4') {
-    _$('.lav-control__btn').textContent = 'Join now'
+    _$('.lav-control__btn').textContent = 'JOIN NOW'
     _$('.lav-progress__caption').innerHTML =
       'Just one step left to secure your $99&nbsp;cremation plan!'
   } else {
     _$('.lav-control__btn').textContent = 'Save & Continue'
     _$('.lav-progress__caption').textContent =
-      'Complete  registration  in  just  4  steps'
+      'Complete application in just 4 steps'
   }
 
   _$('.lav-progress__line span').style.width = `${(parseInt(step) - 1) * 30}%`
@@ -1434,6 +1468,12 @@ function addControl() {
         <span>Back</span>
       </div>
       <div class='lav-control__btn lav-btn'>Save & Continue</div>
+      <div class='lav-control__cancel'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 16.5C10.0825 16.5 11.6294 16.0307 12.9451 15.1514C14.2608 14.2721 15.2862 13.0223 15.8916 11.5602C16.4969 10.0981 16.655 8.48928 16.3459 6.93729C16.0368 5.38529 15.2743 3.95984 14.1549 2.84124C13.0356 1.72263 11.6096 0.961132 10.0574 0.653062C8.5052 0.344992 6.89649 0.504191 5.43478 1.11052C3.97307 1.71685 2.72402 2.74308 1.84562 4.05938C0.967216 5.37569 0.498931 6.92293 0.500002 8.50541C0.501437 10.6262 1.34492 12.6596 2.84506 14.1588C4.34519 15.6579 6.37921 16.5 8.5 16.5ZM14.3349 7.09811C14.6428 8.36658 14.5284 9.70086 14.0091 10.8984C13.4899 12.096 12.5941 13.0914 11.4577 13.7337C10.3214 14.376 9.00652 14.63 7.71272 14.4571C6.41892 14.2843 5.21683 13.6941 4.2889 12.776L14.3349 7.09811ZM8.5 2.4973C9.49166 2.49976 10.4672 2.7483 11.3392 3.22065C12.2111 3.69299 12.9522 4.37436 13.4959 5.20366L3.05481 11.0169C2.69299 10.2275 2.50825 9.36841 2.51353 8.5C2.51353 6.9108 3.14372 5.38644 4.26594 4.26118C5.38815 3.13592 6.9108 2.5016 8.5 2.4973Z" fill="white"/>
+        </svg>
+        Cancel Anytime
+      </div>
     </div>
   `
 
@@ -1557,75 +1597,77 @@ function addRatedblock() {
           <div class='lav-quote__author-name'>Jackie</div>
         </div>
 
-        <div class='lav-include__title'>What’s Included in Your Membership?</div>
+        <div class='lav-include__inner'>
+          <div class='lav-include__title'>What’s Included in Your Membership?</div>
 
-        <div class='lav-include__list'>
-          <div class='lav-include__item'>
-            <div class='lav-include__item-icon'>
-              <img src="${config.dir}/img/include-1.svg">
-            </div>
-            <div class='lav-include__item-info'>
-              <div class='lav-include__item-title'>
-                $99 Cremation Service:
+          <div class='lav-include__list'>
+            <div class='lav-include__item'>
+              <div class='lav-include__item-icon'>
+                <img src="${config.dir}/img/include-1.svg">
               </div>
-              <div class='lav-include__item-descr'>
-                Covers the entire process from transportation to the crematory, processing, returning the urn to family.
+              <div class='lav-include__item-info'>
+                <div class='lav-include__item-title'>
+                  $99 Cremation Service:
+                </div>
+                <div class='lav-include__item-descr'>
+                  Covers the entire process from transportation to the crematory, processing, returning the urn to family.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class='lav-include__item'>
-            <div class='lav-include__item-icon'>
-              <img src="${config.dir}/img/include-2.svg">
-            </div>
-            <div class='lav-include__item-info'>
-              <div class='lav-include__item-title'>
-                Nationwide Coverage:
+            <div class='lav-include__item'>
+              <div class='lav-include__item-icon'>
+                <img src="${config.dir}/img/include-2.svg">
               </div>
-              <div class='lav-include__item-descr'>
-                With an extensive network of tens of thousands of funeral homes, our Cremation Club covers you anywhere in the contiguous U.S. You can rest easy knowing that no matter where life takes you, your final arrangements are in good hands.
+              <div class='lav-include__item-info'>
+                <div class='lav-include__item-title'>
+                  Nationwide Coverage:
+                </div>
+                <div class='lav-include__item-descr'>
+                  With an extensive network of tens of thousands of funeral homes, our Cremation Club covers you anywhere in the contiguous U.S. You can rest easy knowing that no matter where life takes you, your final arrangements are in good hands.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class='lav-include__item'>
-            <div class='lav-include__item-icon'>
-              <img src="${config.dir}/img/include-3.svg">
-            </div>
-            <div class='lav-include__item-info'>
-              <div class='lav-include__item-title'>
-                Free Online Obituary: 
+            <div class='lav-include__item'>
+              <div class='lav-include__item-icon'>
+                <img src="${config.dir}/img/include-3.svg">
               </div>
-              <div class='lav-include__item-descr'>
-                Receive a free online obituary, a $99 savings.
+              <div class='lav-include__item-info'>
+                <div class='lav-include__item-title'>
+                  Free Online Obituary: 
+                </div>
+                <div class='lav-include__item-descr'>
+                  Receive a free online obituary, a $99 savings.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class='lav-include__item'>
-            <div class='lav-include__item-icon'>
-              <img src="${config.dir}/img/include-4.svg">
-            </div>
-            <div class='lav-include__item-info'>
-              <div class='lav-include__item-title'>
-                Discounts on Trusts and Wills:
+            <div class='lav-include__item'>
+              <div class='lav-include__item-icon'>
+                <img src="${config.dir}/img/include-4.svg">
               </div>
-              <div class='lav-include__item-descr'>
-                $50 discount on Trust & Will services to help with estate planning.
+              <div class='lav-include__item-info'>
+                <div class='lav-include__item-title'>
+                  Discounts on Trusts and Wills:
+                </div>
+                <div class='lav-include__item-descr'>
+                  $50 discount on Trust & Will services to help with estate planning.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class='lav-include__item'>
-            <div class='lav-include__item-icon'>
-              <img src="${config.dir}/img/include-5.svg">
-            </div>
-            <div class='lav-include__item-info'>
-              <div class='lav-include__item-title'>
-                Concierge Service for Estate Closure:
+            <div class='lav-include__item'>
+              <div class='lav-include__item-icon'>
+                <img src="${config.dir}/img/include-5.svg">
               </div>
-              <div class='lav-include__item-descr'>
-                $1000 discount on estate discovery and closure.
+              <div class='lav-include__item-info'>
+                <div class='lav-include__item-title'>
+                  Concierge Service for Estate Closure:
+                </div>
+                <div class='lav-include__item-descr'>
+                  $1000 discount on estate discovery and closure.
+                </div>
               </div>
             </div>
           </div>
