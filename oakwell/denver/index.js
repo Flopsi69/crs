@@ -708,7 +708,7 @@
         <div class="lav-rate">
           <div class="lav-rate__head">
             <div class="lav-rate__score">
-              <img src="${config.dir}/img/rate.svg" />
+              <img src="${config.dir}/img/rate-new.svg" />
             </div>
             <div class="lav-rate__title">GUESTS CHOICE</div>
             <div class="lav-rate__caption">
