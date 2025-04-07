@@ -641,27 +641,32 @@
   function checkSpecialEvents() {
     const params = new URLSearchParams(location.search)
     const isScroll = params.get('exp')
-    console.log('fire prescroll')
 
     if (isScroll !== 'scroll') return
 
-    console.log('fire scroll')
-
     if (location.href.includes('https://oakwell.com/mothers-day')) {
       waitFor('.locations__on_select_pac', () => {
-        _$('.locations__on_select_pac').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+          _$('.locations__on_select_pac').scrollIntoView({ behavior: 'smooth' })
+        }, 500)
       })
     } else if (location.href.includes('https://oakwell.com/fathers-day')) {
       waitFor('.frame-box', () => {
-        _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+          _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+        }, 500)
       })
     } else if (location.href.includes('https://oakwell.com/new-years-eve/')) {
       waitFor('.lav-old-booking', () => {
-        _$('.lav-old-booking').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+          _$('.lav-old-booking').scrollIntoView({ behavior: 'smooth' })
+        }, 500)
       })
     } else if (location.href.includes('https://oakwell.com/valentines-day/')) {
       waitFor('.frame-box', () => {
-        _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+          _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+        }, 500)
       })
     }
   }
