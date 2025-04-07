@@ -796,7 +796,7 @@ const styles = /* css */ `
     .cremation-club-checkout-page .advantages-list .container {
       justify-content: flex-start;
     }
-    .lav-control:not([data-step='4']) .lav-control__cancel {
+    .lav-control[data-step='4'] .lav-control__cancel {
       display: flex;
     }
     .lav-head__title {
