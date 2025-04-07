@@ -569,6 +569,8 @@
 
     console.debug('** InitExp **')
 
+    checkSpecialEvents()
+
     if (location.href.includes('/spa-packages-denver') && !_$('.lav-hero')) {
       waitFor('.js-first-section', () => {
         _$('.js-first-section').insertAdjacentHTML(
@@ -632,6 +634,34 @@
             ).click()
           }
         )
+      })
+    }
+  }
+
+  function checkSpecialEvents() {
+    const params = new URLSearchParams(location.search)
+    const isScroll = params.get('exp')
+    console.log('fire prescroll')
+
+    if (isScroll !== 'scroll') return
+
+    console.log('fire scroll')
+
+    if (location.href.includes('https://oakwell.com/mothers-day')) {
+      waitFor('.locations__on_select_pac', () => {
+        _$('.locations__on_select_pac').scrollIntoView({ behavior: 'smooth' })
+      })
+    } else if (location.href.includes('https://oakwell.com/fathers-day')) {
+      waitFor('.frame-box', () => {
+        _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+      })
+    } else if (location.href.includes('https://oakwell.com/new-years-eve/')) {
+      waitFor('.lav-old-booking', () => {
+        _$('.lav-old-booking').scrollIntoView({ behavior: 'smooth' })
+      })
+    } else if (location.href.includes('https://oakwell.com/valentines-day/')) {
+      waitFor('.frame-box', () => {
+        _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
       })
     }
   }
@@ -1182,6 +1212,7 @@
         key: 'mother',
         color: '#0C5947',
         title: "Mother's Day 2025",
+        url: 'https://oakwell.com/mothers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
         caption: 'For up to 4 adults',
@@ -1199,6 +1230,7 @@
         key: 'father',
         color: '#0C5947',
         title: "Father's Day 2025",
+        url: 'https://oakwell.com/fathers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
         caption: 'For up to 4 adults',
@@ -1219,6 +1251,7 @@
         key: 'year',
         color: '#0C5947',
         title: "New Year's Eve 2026",
+        url: 'https://oakwell.com/new-years-eve/',
         descr:
           'Experience a relaxing and fun New Years in Denver. We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks.',
         caption: 'For up to 4 adults',
@@ -1237,6 +1270,7 @@
         key: 'valentine',
         color: '#0C5947',
         title: "Valentine's Day 2026",
+        url: 'https://oakwell.com/valentines-day/',
         descr:
           "Relax and celebrate Valentine's and Galentine's Day differently in a romantic setting. This Valentine’s and Galentine's Day, give your love a celebration they’ll never forget with our Valentine’s Day Package—the best Valentine’s and Galentine's Day experience in town. Step into a world of romance, fun and relaxation, where every detail is designed to delight and bring you closer. Your journey begins in a private spa suite, beautifully adorned with flickering candles and scattered rose petals, creating an intimate ambiance like no other. Together, you’ll detox in the soothing warmth of an infrared sauna and luxuriate in a cedar hydrotherapy tub infused with therapeutic herbs for the ultimate rejuvenation.",
         caption: 'For up to 2 adults',
@@ -1312,21 +1346,28 @@
           `${
             item.closest('.lav-package').querySelector('.lav-package__title')
               .innerText
-          } - buy gift card`,
+          } - book now`,
           'Button',
           'Special Events'
         )
-        const targetEl = _$('.tabsContent__item[aria-labelledly="spa-events"]')
 
-        _$(
-          `#pr${index} .buttons-group__item .link-btn.border`,
-          targetEl
-        ).setAttribute('data-router-disabled', 'true')
+        if (item.dataset.url.length) {
+          location.href = item.dataset.url + `?exp=scroll`
+        } else {
+          const targetEl = _$(
+            '.tabsContent__item[aria-labelledly="spa-events"]'
+          )
 
-        _$(
-          `#pr${index} .buttons-group__item .link-btn.border`,
-          targetEl
-        ).click()
+          _$(
+            `#pr${index} .buttons-group__item .link-btn.border`,
+            targetEl
+          ).setAttribute('data-router-disabled', 'true')
+
+          _$(
+            `#pr${index} .buttons-group__item .link-btn.border`,
+            targetEl
+          ).click()
+        }
       })
     })
 
@@ -1394,7 +1435,9 @@
           <div class='lav-package__footer'>
             <div class='lav-package__soon'>${getSvg('soon')} Comming soon</div>
             <div class='lav-package__caption'>${item.caption}</div>
-            <div class='lav-btn lav-package__btn'>Buy Gift Card</div>
+            <div class='lav-btn lav-package__btn' data-url='${
+              item.url || ''
+            }'>Book Now</div>
           </div>
         </div>
       `
