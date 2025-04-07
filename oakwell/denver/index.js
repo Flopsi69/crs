@@ -937,27 +937,6 @@
   function addPackages() {
     const packages = [
       {
-        preset: 'blue',
-        color: '#1A4B65',
-        idealNum: 1,
-        ideal: 'Ideal solo or for friends',
-        title: 'Beer Therapy Ritual',
-        descr:
-          'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
-        price: '$199.00',
-        caption: 'For up to 2 adults',
-        slider: [
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Standard-Beer-Therapy-Room-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Infrared-Sauna-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_18-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Sauna_Inside-Web-scaled.webp'
-        ]
-      },
-      {
         preset: 'green',
         color: '#104C38',
         idealNum: 2,
@@ -1004,6 +983,27 @@
         ]
       },
       {
+        preset: 'blue',
+        color: '#1A4B65',
+        idealNum: 1,
+        ideal: 'Ideal solo or for friends',
+        title: 'Beer Therapy Ritual',
+        descr:
+          'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
+        price: '$199.00',
+        caption: 'For up to 2 adults',
+        slider: [
+          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Standard-Beer-Therapy-Room-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Infrared-Sauna-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_18-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Sauna_Inside-Web-scaled.webp'
+        ]
+      },
+      {
         preset: 'swamp',
         color: '#3B5923',
         idealNum: 4,
@@ -1031,15 +1031,17 @@
 
         <div class="lav-nav">
           <div class="lav-nav__item active" data-target='all'>All (4)</div>
-          <div class="lav-nav__item" data-target='1'>${getSvg(
-            'personGreen'
-          )} <span>Solo (1)</span></div>
-          <div class="lav-nav__item" data-target='2'>${getSvg(
-            'personGreen'
-          ).repeat(2)} <span>Couples (2)</span></div>
-          <div class="lav-nav__item" data-target='4'>${getSvg(
-            'personGreen'
-          ).repeat(4)} <span>Groups (1)</span></div>
+          <div class="lav-nav__item" data-target='2'>
+            ${getSvg('personGreen').repeat(2)} <span>Couples (2)</span>
+          </div>
+          <div class="lav-nav__item" data-target='1'>
+            ${getSvg('personGreen')}
+            <span>Solo (1)</span>
+          </div>
+          <div class="lav-nav__item" data-target='4'>
+            ${getSvg('personGreen').repeat(4)} 
+            <span>Groups (1)</span>
+          </div>
         </div>
 
         <div class='lav-packages__list'></div>
