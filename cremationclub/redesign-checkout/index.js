@@ -1321,7 +1321,8 @@ function handleStep(step) {
       )
 
       _$('.lav-payment .lav-inner > .block-sub-title').innerText =
-        'Choose a billing plan that works best for you. Opt for a monthly subscription for flexibility or save more with an annual plan.'
+        'Select your preferred payment method tocomplete the transaction securely and conveniently.'
+      // 'Choose a billing plan that works best for you. Opt for a monthly subscription for flexibility or save more with an annual plan.'
 
       const text = _$('.lav-payment .block-title').innerText
       const match = text.match(/\(([^)]+)\)/)
