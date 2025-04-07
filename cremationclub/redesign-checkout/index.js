@@ -632,7 +632,7 @@ const styles = /* css */ `
     padding-bottom: 56px;
   }
   .view-page:not([data-step='1']) .lav-include__inner {
-
+    display: none;
   }
   .lav-quote {
     display: flex;
