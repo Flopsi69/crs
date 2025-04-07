@@ -776,10 +776,22 @@ const styles = /* css */ `
     font-size: 22px;
     line-height: 28px;
   }
-  .view-page[data-step='4'] .check-field.error .checkmark {
+  .view-page[data-step='4'] .check-field.error input:not(:checked)+.checkmark {
     border-radius: 4px;
     border: 2px solid #DF1B41;
     background: #FAF4F3;
+  }
+  .view-page[data-step='4'] .check-field.error input:not(:checked)+.checkmark:before {
+    content: 'Please, check the box to confirm you’ve read the terms above.';
+    color: #DF1B41;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    position: absolute;
+    width: 450px;
+    top: 100%;
+    padding-top: 7px;
   }
   .cremation-club-checkout-page .advantages-list .item:first-child {
     display: none;
@@ -795,6 +807,12 @@ const styles = /* css */ `
   @media(max-width: 768px) {
     .cremation-club-checkout-page .advantages-list .container {
       justify-content: flex-start;
+    }
+    .view-page[data-step='4'] .check-field.error {
+      margin-bottom: 40px;
+    }
+    .view-page[data-step='4'] .check-field.error input:not(:checked)+.checkmark:before {
+      width: 325px;
     }
     .lav-control[data-step='4'] .lav-control__cancel {
       display: flex;
