@@ -155,7 +155,7 @@
       margin-top: 2px;
     }
     .lav-rate__footer {
-      padding: 14px 24px 24px;
+      padding: 14px 12px 24px;
     }
     .lav-rate__footer-caption {
       margin-top: 4px;
@@ -165,7 +165,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px 12px;
+      gap: 8px;
     }
     .lav-rate__item {
       display: flex;
@@ -174,7 +174,7 @@
       background: #0C5947;
       border-radius: 1000px;
       color: #FFF;
-      font-size: 14px;
+      font-size: 12px;
       font-style: normal;
       font-weight: 400;
       line-height: 140%;
@@ -776,19 +776,23 @@
             <div class="lav-rate__list">
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Amazing to stay
+                Relaxation at its finest
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Feels welcome
+                Outstanding service
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Great
+                Exceptional Experience
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Lovely
+                Perfect for couples
+              </div>
+              <div class="lav-rate__item">
+                <img src="${config.dir}/img/check-green.png" />
+                Outstanding Staff
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
@@ -796,15 +800,15 @@
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Zero gravity
+                Craft Beverages Selection
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Couple expirience
+                Zero Gravity Massage
               </div>
               <div class="lav-rate__item">
                 <img src="${config.dir}/img/check-green.png" />
-                Anniversary
+                Large Hydrotherapy Tub
               </div>
             </div>
           </div>
@@ -1446,9 +1450,10 @@
             <div class='lav-package__descr'>${item.descr}</div>
           </div>
           <div class='lav-package__footer'>
-            <div class='lav-package__soon' style='color: ${
-              item.soonColor
-            }'>${getSvg('soon', item.soonColor)} Comming soon</div>
+            <div class='lav-package__soon' style='color: ${item.soonColor}'>
+              ${getSvg('soon', item.soonColor)} 
+              ${item.key === 'mother' ? 'Filling up fast' : 'Comming soon'}
+            </div>
             <div class='lav-package__caption'>${item.caption}</div>
             <div 
               class='lav-btn lav-package__btn'
