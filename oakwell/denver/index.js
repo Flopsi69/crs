@@ -1452,7 +1452,7 @@
           <div class='lav-package__footer'>
             <div class='lav-package__soon' style='color: ${item.soonColor}'>
               ${getSvg('soon', item.soonColor)} 
-              ${item.key === 'mother' ? 'Filling up fast' : 'Comming soon'}
+              Filling up fast
             </div>
             <div class='lav-package__caption'>${item.caption}</div>
             <div 
