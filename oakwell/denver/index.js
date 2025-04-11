@@ -592,13 +592,17 @@
         () => {
           document.querySelectorAll('.sub-menu a').forEach((el) => {
             el.addEventListener('click', function (e) {
+              let target = '.lav-packages'
               if (
                 el.href ===
                 'https://oakwell.com/spa-packages-denver/#oakwell-escape-package'
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package[data-package="red"]').scrollIntoView({
+                if (_$('.lav-package[data-package="red"]').checkVisibility()) {
+                  target = '.lav-package[data-package="red"]'
+                }
+                _$(target).scrollIntoView({
                   behavior: 'smooth'
                 })
               }
@@ -608,7 +612,12 @@
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package[data-package="green"]').scrollIntoView({
+                if (
+                  _$('.lav-package[data-package="green"]').checkVisibility()
+                ) {
+                  target = '.lav-package[data-package="green"]'
+                }
+                _$(target).scrollIntoView({
                   behavior: 'smooth'
                 })
               }
@@ -618,7 +627,20 @@
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package[data-package="blue"]').scrollIntoView({
+                if (_$('.lav-package[data-package="blue"]').checkVisibility()) {
+                  target = '.lav-package[data-package="blue"]'
+                }
+                _$(target).scrollIntoView({
+                  behavior: 'smooth'
+                })
+              }
+              if (
+                el.href ===
+                'https://oakwell.com/spa-packages-denver/#garage-party'
+              ) {
+                e.preventDefault()
+                _$('.menu-btn').click()
+                _$('.lav-packages').scrollIntoView({
                   behavior: 'smooth'
                 })
               }
