@@ -598,7 +598,7 @@
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package__slider').scrollIntoView({
+                _$('.lav-package[data-package="red"]').scrollIntoView({
                   behavior: 'smooth'
                 })
               }
@@ -608,7 +608,7 @@
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package__slider').scrollIntoView({
+                _$('.lav-package[data-package="green"]').scrollIntoView({
                   behavior: 'smooth'
                 })
               }
@@ -618,7 +618,7 @@
               ) {
                 e.preventDefault()
                 _$('.menu-btn').click()
-                _$('.lav-package__slider').scrollIntoView({
+                _$('.lav-package[data-package="blue"]').scrollIntoView({
                   behavior: 'smooth'
                 })
               }
@@ -1212,9 +1212,9 @@
 
     function fillList(item) {
       const markup = /* html */ `
-        <div class='lav-package' data-type='${
-          item.idealNum
-        }' style='background-color: ${item.color}'>
+        <div class='lav-package' data-package='${item.preset}'  data-type='${
+        item.idealNum
+      }' style='background-color: ${item.color}'>
           <div class='lav-package__slider'>
             <div class='swiper'>
               <div class="swiper-wrapper">
