@@ -555,9 +555,9 @@
       window.dispatchEvent(new Event('pushstate'))
     }
 
-    window.addEventListener('pushstate', () => {
-      initExp()
-    })
+    // window.addEventListener('pushstate', () => {
+    //   initExp()
+    // })
   }
 
   async function initExp() {
