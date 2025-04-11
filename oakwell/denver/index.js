@@ -571,7 +571,7 @@
     await waitFor(
       () => !document.body.style.opacity || document.body.style.opacity === '1',
       false,
-      { ms: 100 }
+      { ms: 20 }
     )
 
     console.debug('** InitExp **')
@@ -579,7 +579,6 @@
     checkSpecialEvents()
 
     if (location.href.includes('/spa-packages-denver') && !_$('.lav-hero')) {
-      console.log('debug', _$('.tabs-section-wrap.section-prices'))
       waitFor(
         () => {
           return (
@@ -590,8 +589,6 @@
           )
         },
         () => {
-          console.log('debug', _$('.tabs-section-wrap.section-prices'))
-
           _$('.js-first-section').insertAdjacentHTML(
             'beforebegin',
             /* html */ `<div class='lav-wrap'></div>`
@@ -606,6 +603,9 @@
           waitFor('.modal-notification .close', () => {
             _$('.modal-notification .close').click()
           })
+        },
+        {
+          ms: 20
         }
       )
     } else if (
