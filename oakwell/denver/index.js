@@ -581,10 +581,14 @@
     if (location.href.includes('/spa-packages-denver') && !_$('.lav-hero')) {
       console.log('debug', _$('.tabs-section-wrap.section-prices'))
       waitFor(
-        () =>
-          (_$('.tabs-section-wrap.section-prices') &&
-            !document.body.style.opacity) ||
-          document.body.style.opacity === '1',
+        () => {
+          return (
+            _$('.tabs-section-wrap.section-prices') &&
+            _$('#private_party__form') &&
+            (!document.body.style.opacity ||
+              document.body.style.opacity === '1')
+          )
+        },
         () => {
           console.log('debug', _$('.tabs-section-wrap.section-prices'))
 
