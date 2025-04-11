@@ -580,24 +580,30 @@
 
     if (location.href.includes('/spa-packages-denver') && !_$('.lav-hero')) {
       console.log('debug', _$('.tabs-section-wrap.section-prices'))
-      waitFor('.tabs-section-wrap.section-prices', () => {
-        console.log('debug', _$('.tabs-section-wrap.section-prices'))
+      waitFor(
+        () =>
+          (_$('.tabs-section-wrap.section-prices') &&
+            !document.body.style.opacity) ||
+          document.body.style.opacity === '1',
+        () => {
+          console.log('debug', _$('.tabs-section-wrap.section-prices'))
 
-        _$('.js-first-section').insertAdjacentHTML(
-          'beforebegin',
-          /* html */ `<div class='lav-wrap'></div>`
-        )
+          _$('.js-first-section').insertAdjacentHTML(
+            'beforebegin',
+            /* html */ `<div class='lav-wrap'></div>`
+          )
 
-        addMainInfo()
-        addPackages()
-        addSpecialEvents()
-        addPrivateParty()
-        addSticky()
+          addMainInfo()
+          addPackages()
+          addSpecialEvents()
+          addPrivateParty()
+          addSticky()
 
-        waitFor('.modal-notification .close', () => {
-          _$('.modal-notification .close').click()
-        })
-      })
+          waitFor('.modal-notification .close', () => {
+            _$('.modal-notification .close').click()
+          })
+        }
+      )
     } else if (
       location.href.includes('/book-now') &&
       location.search.includes('preset')
