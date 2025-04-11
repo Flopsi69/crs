@@ -589,6 +589,40 @@
           )
         },
         () => {
+          document.querySelectorAll('.sub-menu a').forEach((el) => {
+            el.addEventListener('click', function (e) {
+              if (
+                el.href ===
+                'https://oakwell.com/spa-packages-denver/#oakwell-escape-package'
+              ) {
+                e.preventDefault()
+                _$('.menu-btn').click()
+                _$('.lav-package__slider').scrollIntoView({
+                  behavior: 'smooth'
+                })
+              }
+              if (
+                el.href ===
+                'https://oakwell.com/spa-packages-denver/#couple-s-retreat-package'
+              ) {
+                e.preventDefault()
+                _$('.menu-btn').click()
+                _$('.lav-package__slider').scrollIntoView({
+                  behavior: 'smooth'
+                })
+              }
+              if (
+                el.href ===
+                'https://oakwell.com/spa-packages-denver/#beer-therapy-ritual-package'
+              ) {
+                e.preventDefault()
+                _$('.menu-btn').click()
+                _$('.lav-package__slider').scrollIntoView({
+                  behavior: 'smooth'
+                })
+              }
+            })
+          })
           _$('.js-first-section').insertAdjacentHTML(
             'beforebegin',
             /* html */ `<div class='lav-wrap'></div>`
