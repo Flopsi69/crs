@@ -570,7 +570,7 @@
     await waitFor(
       () => !document.body.style.opacity || document.body.style.opacity === '1',
       false,
-      { ms: 20 }
+      { ms: 100 }
     )
 
     console.debug('** InitExp **')
