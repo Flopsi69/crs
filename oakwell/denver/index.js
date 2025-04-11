@@ -561,6 +561,7 @@
   // }
 
   async function initExp() {
+    console.log('location', location.href)
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
     if (!_$('.exp-styles')) {
