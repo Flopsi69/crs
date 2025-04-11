@@ -578,7 +578,10 @@
     checkSpecialEvents()
 
     if (location.href.includes('/spa-packages-denver') && !_$('.lav-hero')) {
-      waitFor('#private_party__form', () => {
+      console.log('debug', _$('.tabs-section-wrap.section-prices'))
+      waitFor('.tabs-section-wrap.section-prices', () => {
+        console.log('debug', _$('.tabs-section-wrap.section-prices'))
+
         _$('.js-first-section').insertAdjacentHTML(
           'beforebegin',
           /* html */ `<div class='lav-wrap'></div>`
