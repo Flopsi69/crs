@@ -585,8 +585,7 @@
             _$('.tabs-section-wrap.section-prices') &&
             _$('#private_party__form') &&
             (!document.body.style.opacity ||
-              document.body.style.opacity === '1' ||
-              parseFloat(document.body.style?.opacity) === '1') > 0.7
+              document.body.style.opacity === '1')
           )
         },
         () => {
