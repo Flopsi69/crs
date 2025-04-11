@@ -545,20 +545,20 @@
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
-  preInit()
+  // preInit()
   initExp()
 
-  function preInit() {
-    const pushState = history.pushState
-    history.pushState = function () {
-      pushState.apply(history, arguments)
-      window.dispatchEvent(new Event('pushstate'))
-    }
+  // function preInit() {
+  //   const pushState = history.pushState
+  //   history.pushState = function () {
+  //     pushState.apply(history, arguments)
+  //     window.dispatchEvent(new Event('pushstate'))
+  //   }
 
-    // window.addEventListener('pushstate', () => {
-    //   initExp()
-    // })
-  }
+  //   window.addEventListener('pushstate', () => {
+  //     initExp()
+  //   })
+  // }
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
@@ -566,6 +566,12 @@
     if (!_$('.exp-styles')) {
       document.head.appendChild(stylesEl)
     }
+
+    await waitFor(
+      () => !document.body.style.opacity || document.body.style.opacity === '1',
+      false,
+      { ms: 20 }
+    )
 
     console.debug('** InitExp **')
 
