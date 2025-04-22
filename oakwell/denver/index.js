@@ -1320,7 +1320,7 @@
         textColor: '#3774FA',
         soonColor: '#114DC9',
         title: "Father's Day 2025",
-        url: 'https://oakwell.com/fathers-day',
+        // url: 'https://oakwell.com/fathers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
         caption: 'For up to 4 adults',
@@ -1343,7 +1343,7 @@
         textColor: '#BB8040',
         soonColor: '#886209',
         title: "New Year's Eve 2026",
-        url: 'https://oakwell.com/new-years-eve/',
+        // url: 'https://oakwell.com/new-years-eve/',
         descr:
           'Experience a relaxing and fun New Years in Denver. We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks.',
         caption: 'For up to 4 adults',
@@ -1364,7 +1364,7 @@
         textColor: '#D93023',
         soonColor: '#620800',
         title: "Valentine's Day 2026",
-        url: 'https://oakwell.com/valentines-day/',
+        // url: 'https://oakwell.com/valentines-day/',
         descr:
           "Relax and celebrate Valentine's and Galentine's Day differently in a romantic setting. This Valentine’s and Galentine's Day, give your love a celebration they’ll never forget with our Valentine’s Day Package—the best Valentine’s and Galentine's Day experience in town. Step into a world of romance, fun and relaxation, where every detail is designed to delight and bring you closer. Your journey begins in a private spa suite, beautifully adorned with flickering candles and scattered rose petals, creating an intimate ambiance like no other. Together, you’ll detox in the soothing warmth of an infrared sauna and luxuriate in a cedar hydrotherapy tub infused with therapeutic herbs for the ultimate rejuvenation.",
         caption: 'For up to 2 adults',
@@ -1448,6 +1448,7 @@
         if (item.dataset.url.length) {
           location.href = item.dataset.url + `?exp=scroll`
         } else {
+          return false
           const targetEl = _$(
             '.tabsContent__item[aria-labelledly="spa-events"]'
           )
@@ -1529,14 +1530,14 @@
           <div class='lav-package__footer'>
             <div class='lav-package__soon' style='color: ${item.soonColor}'>
               ${getSvg('soon', item.soonColor)} 
-              Filling up fast
+              ${item.url ? 'Filling up fast' : 'Coming soon'}
             </div>
             <div class='lav-package__caption'>${item.caption}</div>
             <div 
               class='lav-btn lav-package__btn'
               data-url='${item.url || ''}'
               style='color: ${item.textColor}'
-            >Book Now</div>
+            >${item.url ? 'Book Now' : 'Coming soon'}</div>
           </div>
         </div>
       `
