@@ -856,7 +856,7 @@ function handleCart() {
   })
 
   _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
-    if (el.innerHTML.includes('&quot;')) {
+    if (el.innerText.includes('&quot;')) {
       el.innerHTML = el.textContent.replaceAll('&quot;', '"')
     }
   })
@@ -881,7 +881,7 @@ function getTimerMarkup(
 function setMostExpensiveProduct() {
   setTimeout(() => {
     _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
-      if (el.innerHTML.includes('&quot;')) {
+      if (el.innerText.includes('&quot;')) {
         el.innerHTML = el.textContent.replaceAll('&quot;', '"')
       }
     })
