@@ -855,6 +855,10 @@ function handleCart() {
     el.textContent = el.textContent.replace(' each', '/Each')
   })
 
+  _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
+    el.innerHTML = el.textContent.replaceAll('&quot;', '"')
+  })
+
   setMostExpensiveProduct()
 }
 
@@ -873,6 +877,10 @@ function getTimerMarkup(
 }
 
 function setMostExpensiveProduct() {
+  _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
+    el.innerHTML = el.textContent.replaceAll('&quot;', '"')
+  })
+
   _$('.lav-timer--product')?.remove()
 
   let mostExpensiveProductPrice = 0
