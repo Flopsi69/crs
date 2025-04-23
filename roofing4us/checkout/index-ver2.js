@@ -856,7 +856,9 @@ function handleCart() {
   })
 
   _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
-    el.innerHTML = el.textContent.replaceAll('&quot;', '"')
+    if (el.innerHTML.includes('&quot;')) {
+      el.innerHTML = el.textContent.replaceAll('&quot;', '"')
+    }
   })
 
   setMostExpensiveProduct()
@@ -877,9 +879,13 @@ function getTimerMarkup(
 }
 
 function setMostExpensiveProduct() {
-  _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
-    el.innerHTML = el.textContent.replaceAll('&quot;', '"')
-  })
+  setTimeout(() => {
+    _$$('.list-view-item__title a[data-cart-item-title]').forEach((el) => {
+      if (el.innerHTML.includes('&quot;')) {
+        el.innerHTML = el.textContent.replaceAll('&quot;', '"')
+      }
+    })
+  }, 500)
 
   _$('.lav-timer--product')?.remove()
 
