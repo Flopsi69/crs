@@ -2,8 +2,8 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5501/natpat/redesign',
-  // dir: 'https://flopsi69.github.io/crs/natpat/redesign',
+  // dir: 'http://127.0.0.1:5501/natpat/redesign',
+  dir: 'https://flopsi69.github.io/crs/natpat/redesign',
   clarity: ['set', 'exp_buzzpatch_5', 'variant_1'],
   debug: false
 }
