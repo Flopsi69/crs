@@ -1402,7 +1402,9 @@
           e.target.classList.contains('lav-modal') ||
           e.target.closest('.lav-modal__close')
         ) {
-          const name = _$('.lavm-short__title').textContent.trim()
+          const name = _$('.lav-modal[data-target="modal0"]')
+            ? 'Mothers day'
+            : _$('.lavm-short__title').textContent.trim()
 
           if (!_$('.lav-modal--video')) {
             pushDataLayer(
