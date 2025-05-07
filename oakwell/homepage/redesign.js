@@ -1416,7 +1416,7 @@
               'exp_hp3_click_09',
               'Close - ' + name,
               'click',
-              'Featured Spa Services'
+              'Video pop up'
             )
           }
 
@@ -1779,6 +1779,21 @@
       const current = _$('.lav-modal').dataset.target
       const prev = +current.replace('modal', '') - 1
 
+      // visibilityEvent(
+      //   '.lav-products--three',
+      //   () => {
+      //     pushDataLayer(
+      //       'exp_hp3_view_02',
+      //       'Featured Spa Services',
+      //       'view',
+      //       'Featured Spa Services'
+      //     )
+      //   },
+      //   {
+      //     delay: 0
+      //   }
+      // )
+
       if (prev < 0) return
 
       openModal(`modal${prev}`)
@@ -1796,11 +1811,17 @@
 
     _$$('.lavm-short__button').forEach((el) => {
       el.addEventListener('click', (e) => {
+        const name = _$('.lavm-short__title').textContent.trim()
         if (_$('.lav-modal--video')) {
+          pushDataLayer(
+            'exp_hp3_click_10',
+            'Larn more - ' + name,
+            'click',
+            'Video pop up'
+          )
           location.href = _$('.lav-modal--video').dataset.url
         } else {
           location.href = '/waitlist-crs/'
-          const name = _$('.lavm-short__title').textContent.trim()
           pushDataLayer(
             'exp_hp3_click_03',
             'Choose Spa Package - ' + name,
@@ -1876,6 +1897,20 @@
     }
 
     _$('.lav-modal').dataset.target = target
+
+    if (!pageUrl) {
+      const name =
+        target !== 'modal0'
+          ? _$('.lavm-short__title').textContent.trim()
+          : 'Mothers Day'
+
+      pushDataLayer(
+        'exp_hp3_view_01',
+        'Video - ' + name,
+        'view',
+        'Stories pop up'
+      )
+    }
 
     Modal.open('.lavm-short')
   }
@@ -2017,7 +2052,7 @@
 
     visibilityEvent('.lav-products--three', () => {
       pushDataLayer(
-        'exp_hp3_viewt_01',
+        'exp_hp3_view_02',
         'Featured Spa Services',
         'view',
         'Featured Spa Services'
