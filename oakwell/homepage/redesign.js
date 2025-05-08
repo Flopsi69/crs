@@ -1678,6 +1678,10 @@
     waitFor('.modal-notification .close', () => {
       if (window.innerWidth < 1024) {
         _$('.modal-notification .close').click()
+
+        setTimeout(() => {
+          _$('.modal-notification .close').click()
+        }, 1000)
       }
     })
 
@@ -2352,7 +2356,7 @@
               <img src='${config.dir}/img/short-3.png' />
             </div>
             <div class='lav-short__title'>
-              Hydrotherapy Bath
+              Private Spa Suite
             </div>
           </div>
 
