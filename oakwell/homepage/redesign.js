@@ -1675,11 +1675,11 @@
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-    // waitFor('.modal-notification .close', () => {
-    //   if (window.innerWidth > 1024) {
-    //     _$('.modal-notification .close').click()
-    //   }
-    // })
+    waitFor('.modal-notification .close', () => {
+      if (window.innerWidth < 1024) {
+        _$('.modal-notification .close').click()
+      }
+    })
 
     if (location.pathname === '/') {
       if (_$('.exp-modal')) {
@@ -2352,7 +2352,7 @@
               <img src='${config.dir}/img/short-3.png' />
             </div>
             <div class='lav-short__title'>
-              Beer Bath Therapy
+              Hydrotherapy Bath
             </div>
           </div>
 
