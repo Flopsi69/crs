@@ -1303,7 +1303,7 @@
         url: 'https://oakwell.com/mothers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
-        caption: 'For up to 4 adults',
+        caption: 'For up to 2 adults',
         slider: [
           'https://oakwell.com/wp-content/uploads/2024/04/mothers-day-denver-featured.webp',
           'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
@@ -1323,7 +1323,7 @@
         // url: 'https://oakwell.com/fathers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
-        caption: 'For up to 4 adults',
+        caption: 'For up to 2 adults',
         slider: [
           'https://oakwell.com/wp-content/uploads/2024/05/image-21.webp',
           'https://oakwell.com/wp-content/uploads/2024/05/096-From-the-Hip-Photo-scaled.webp',
@@ -1346,7 +1346,7 @@
         // url: 'https://oakwell.com/new-years-eve/',
         descr:
           'Experience a relaxing and fun New Years in Denver. We’re bringing in the new year with luxury spa treatments, a fun photo booth, refreshing drinks, and delicious snacks.',
-        caption: 'For up to 4 adults',
+        caption: 'For up to 2 adults',
         slider: [
           'https://oakwell.com/wp-content/uploads/2023/10/NYE4012.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/NYE4123.webp',
