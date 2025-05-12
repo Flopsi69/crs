@@ -1295,26 +1295,6 @@
   function addSpecialEvents() {
     const packages = [
       {
-        key: 'mother',
-        color: '#F37F64',
-        textColor: '#F37F64',
-        soonColor: '#A82301',
-        title: "Mother's Day 2025",
-        url: 'https://oakwell.com/mothers-day',
-        descr:
-          "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
-        caption: 'For up to 2 adults',
-        slider: [
-          'https://oakwell.com/wp-content/uploads/2024/04/mothers-day-denver-featured.webp',
-          'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/05/071-From-the-Hip-Photo-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/03/Mothers-Day-2024-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/03/image-13.webp',
-          'https://oakwell.com/wp-content/uploads/2024/02/far-infrared-sauna-featured.webp',
-          'https://oakwell.com/wp-content/uploads/2024/01/Sparkles.webp'
-        ]
-      },
-      {
         key: 'father',
         color: '#81A3ED',
         textColor: '#3774FA',
@@ -1322,7 +1302,7 @@
         title: "Father's Day 2025",
         // url: 'https://oakwell.com/fathers-day',
         descr:
-          "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
+          'Give Dad the gift of relaxation with a side of delicious beer for an unforgettable Father’s Day experience.',
         caption: 'For up to 2 adults',
         slider: [
           'https://oakwell.com/wp-content/uploads/2024/05/image-21.webp',
@@ -1377,6 +1357,26 @@
           'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Valentines-Day-Web-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/NYE3315.webp'
         ]
+      },
+      {
+        key: 'mother',
+        color: '#F37F64',
+        textColor: '#F37F64',
+        soonColor: '#A82301',
+        title: "Mother's Day 2025",
+        // url: 'https://oakwell.com/mothers-day',
+        descr:
+          "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
+        caption: 'For up to 2 adults',
+        slider: [
+          'https://oakwell.com/wp-content/uploads/2024/04/mothers-day-denver-featured.webp',
+          'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2024/05/071-From-the-Hip-Photo-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2024/03/Mothers-Day-2024-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2024/03/image-13.webp',
+          'https://oakwell.com/wp-content/uploads/2024/02/far-infrared-sauna-featured.webp',
+          'https://oakwell.com/wp-content/uploads/2024/01/Sparkles.webp'
+        ]
       }
     ]
 
@@ -1385,10 +1385,10 @@
         <div class="lav-packages__title">Special Events</div>
 
         <div class="lav-nav">
-          <div class="lav-nav__item active" data-target='mother'>Mother's Day 2025</div>
-          <div class="lav-nav__item" data-target='father'>Father's Day 2025</div>
+          <div class="lav-nav__item active" data-target='father'>Father's Day 2025</div>
           <div class="lav-nav__item" data-target='year'>New Year's Eve 2026</div>
           <div class="lav-nav__item" data-target='valentine'>Valentine's Day 2026</div>
+          <div class="lav-nav__item" data-target='mother'>Mother's Day 2026</div>
         </div>
 
         <div class='lav-packages__list'></div>
