@@ -1363,7 +1363,7 @@
         color: '#F37F64',
         textColor: '#F37F64',
         soonColor: '#A82301',
-        title: "Mother's Day 2025",
+        title: "Mother's Day 2026",
         // url: 'https://oakwell.com/mothers-day',
         descr:
           "Moms deserve to be celebrated in a special way. Oakwell Beer Spa offers a wellness experience unlike any other. We offer a unique experience to celebrate Mother's Day in Denver. Enjoy a one-of-a-kind experience and spend time together in a romantic and peaceful setting. Come indulge in relaxing spa treatments, refreshing beverages, and delicious snacks.",
