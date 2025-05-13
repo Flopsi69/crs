@@ -1300,7 +1300,7 @@
         textColor: '#3774FA',
         soonColor: '#114DC9',
         title: "Father's Day 2025",
-        // url: 'https://oakwell.com/fathers-day',
+        url: 'https://oakwell.com/fathers-day',
         descr:
           'Give Dad the gift of relaxation with a side of delicious beer for an unforgettable Father’s Day experience.',
         caption: 'For up to 2 adults',
