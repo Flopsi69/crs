@@ -1997,7 +1997,7 @@
           video = `infrared-sauna.mp4`
         } else if (idx === 2) {
           videoModal = 'modal5'
-          video = `zero-gravity.mp4`
+          video = `zero-gravityy.mp4`
         } else if (idx === 3) {
           videoModal = 'modal4'
           video = `beer-taproom.mp4`
