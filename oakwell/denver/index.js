@@ -896,7 +896,7 @@
             The Best Spa Packages in Denver
           </div>
 
-          <div class='lav-hero__info-text'>Relax differently at Oakwell Beer Spa, whereyou can indulge in beer-inspired spa services.</div>
+          <div class='lav-hero__info-text'>Relax differently at Oakwell Beer Spa, where you can indulge in beer-inspired spa services.</div>
           
           <div class='lav-hero__info-text'><strong>We combine two incredible things,</strong> beer and
           relaxation, to give you an unforgettable spa
