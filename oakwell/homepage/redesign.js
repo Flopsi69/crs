@@ -3,8 +3,8 @@
 
   // Config for Experiment
   const config = {
-    dir: 'http://127.0.0.1:5501/oakwell/homepage',
-    // dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
+    // dir: 'http://127.0.0.1:5501/oakwell/homepage',
+    dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
     clarity: ['set', 'new_hp_v3', 'variant_1'],
     debug: false
   }
