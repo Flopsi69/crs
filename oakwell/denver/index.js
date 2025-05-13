@@ -1306,13 +1306,13 @@
         caption: 'For up to 2 adults',
         slider: [
           'https://oakwell.com/wp-content/uploads/2024/05/image-21.webp',
-          'https://oakwell.com/wp-content/uploads/2024/05/096-From-the-Hip-Photo-scaled.webp',
+          `${config.dir}/img/father-2.jpg`,
           'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2021/11/Sauna.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Zero-Gravity-Massage-Oakwell-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/233-From-the-Hip-Photo-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Cosy-Taproom-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp',
+          `${config.dir}/img/father-5.jpg`,
+          `${config.dir}/img/father-6.jpg`,
+          `${config.dir}/img/father-7.jpg`,
+          `${config.dir}/img/father-8.jpg`,
           'https://oakwell.com/wp-content/uploads/2024/05/100-From-the-Hip-Photo-1-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/05/071-From-the-Hip-Photo-scaled.webp'
         ]
