@@ -728,9 +728,9 @@
         }, 500)
       })
     } else if (location.href.includes('https://oakwell.com/fathers-day')) {
-      waitFor('.frame-box', () => {
+      waitFor('.steps', () => {
         setTimeout(() => {
-          _$('.frame-box').scrollIntoView({ behavior: 'smooth' })
+          _$('.steps').scrollIntoView({ behavior: 'smooth' })
         }, 500)
       })
     } else if (location.href.includes('https://oakwell.com/new-years-eve/')) {
