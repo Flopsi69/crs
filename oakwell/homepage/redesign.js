@@ -3,8 +3,8 @@
 
   // Config for Experiment
   const config = {
-    // dir: 'http://127.0.0.1:5501/oakwell/homepage',
-    dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
+    dir: 'http://127.0.0.1:5501/oakwell/homepage',
+    // dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
     clarity: ['set', 'new_hp_v3', 'variant_1'],
     debug: false
   }
@@ -113,7 +113,7 @@
   }
   .lav-products__list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 24px;
     margin-top: 64px;
   }
@@ -907,10 +907,10 @@
     body .uwy.userway_p2 .userway_buttons_wrapper {
       display: none;
     }
-    .lav-products--three .lav-product:nth-child(2) {
+    .lav-products--three .lav-product:nth-child(1) {
       order: -2;
     }
-    .lav-products--three .lav-product:nth-child(4) {
+    .lav-products--three .lav-product:nth-child(3) {
       order: -1;
     }
     .lav-products--three .lav-product__video {
@@ -929,6 +929,9 @@
       height: 100%;
     }
     .lav-modal--video .lavm-short__control, .lav-modal--video .lavm-short__pagination, .lav-modal--video .lavm-short__title-old, .lav-modal--video .lavm-short__caption-old {
+      display: none;
+    }
+    .lav-modal--video[data-target="modal-hero"] .lavm-short__caption, .lav-modal--video[data-target="modal-hero"] .lavm-short__title {
       display: none;
     }
     .lav-products--three .lav-product__image {
@@ -1615,14 +1618,15 @@
         line-height: 0;
       }
       .lavm-short__mother-image img {
+        margin-bottom: -1px;
       }
       .lavm-short__mother-info {
-        background: #FFEAC8 url('${config.dir}/img/modal-mother-leaf.png') bottom no-repeat;
+        background: #81A3ED url('${config.dir}/img/modal-father-hat.png') bottom no-repeat;
         padding: 56px 15px 40px;
         flex-grow: 1;
       }
       .lavm-short__mother-caption {
-        color: #000;
+        color: #fff;
         font-size: 15px;
         font-weight: 500;
         line-height: 15.6px;
@@ -1630,20 +1634,20 @@
         text-transform: uppercase;
       }
       .lavm-short__mother-title {
-        margin: 12px 0;
-        color: #F37F64;
+        margin: 10px 0 14px;
+        color: #fff;
         font-size: 44px;
         font-weight: 400;
         line-height: 44px;
       }
       .lavm-short__mother-button {
-        width: 165px;
+        width: 205px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50px;
-        background: #0C5947;
-        color: #DDF2D0;
+        background: #fff;
+        color: #3774FA;
         font-size: 16px;
         font-weight: 500;
         line-height: 110%;
@@ -1759,11 +1763,11 @@
 
       <div class='lavm-short__mother'>
         <div class='lavm-short__mother-image'>
-          <img src="${config.dir}/img/modal-mother.png" alt="Mother's Day">
+          <img src="${config.dir}/img/modal-father.png" alt="Father's Day">
         </div>
         <div class='lavm-short__mother-info'>
           <div class='lavm-short__mother-caption'>Come Celebrate</div>
-          <div class='lavm-short__mother-title lav-quincy'>Mother’s Day</div>
+          <div class='lavm-short__mother-title lav-quincy'>Father’s Day</div>
           <div class='lavm-short__mother-caption'>at Oakwell Beer Spa</div>
           <div class='lavm-short__mother-button'>Book Now</div>
         </div>
@@ -1819,12 +1823,21 @@
       el.addEventListener('click', (e) => {
         const name = _$('.lavm-short__title').textContent.trim()
         if (_$('.lav-modal--video')) {
-          pushDataLayer(
-            'exp_hp3_click_10',
-            'Larn more - ' + name,
-            'click',
-            'Video pop up'
-          )
+          if (_$('.lav-modal--video[data-target="modal-hero"]')) {
+            pushDataLayer(
+              'exp_hp3_click_11',
+              'Choose Spa Package - Hero',
+              'click',
+              'Video pop up'
+            )
+          } else {
+            pushDataLayer(
+              'exp_hp3_click_10',
+              'Larn more - ' + name,
+              'click',
+              'Video pop up'
+            )
+          }
           location.href = _$('.lav-modal--video').dataset.url
         } else {
           location.href = '/waitlist-crs/'
@@ -1845,7 +1858,7 @@
       title: 'Most memorable spa experience',
       caption:
         'Your perfect Spa Day with a fun twist for you, her, him and everyone in between',
-      video: `https://oakwell.com/wp-content/uploads/2023/12/Beer-Spa-Hero-Video-1080p-Web_6mb.mp4`
+      video: `short-1.mp4`
     },
     modal2: {
       title: 'Beer Bath Hydrotherapy',
@@ -1873,29 +1886,35 @@
     }
   }
 
-  function openModal(target, pageUrl) {
+  function openModal(target, pageUrl, video) {
     const targetConfig = modalsShortsConfig[target]
     const index = +target.replace('modal', '')
 
     _$$('.lavm-short__pagination span').forEach((el, i) => {
+      if (index < 0) return
+
       el.classList.remove('active')
       if (index >= i) {
         el.classList.add('active')
       }
     })
 
-    if (target !== 'modal0') {
+    if (target !== 'modal0' && target !== 'modal-hero') {
       _$('.lavm-short__caption').textContent = targetConfig.caption
       _$('.lavm-short__title').textContent = targetConfig.title
-      _$('.lavm-short__video-el').src = targetConfig.video.includes('short-')
-        ? `${config.dir}/video/${targetConfig.video}`
-        : targetConfig.video
+      if (!pageUrl) {
+        _$('.lavm-short__video-el').src = targetConfig.video.includes('short-')
+          ? `${config.dir}/video/${targetConfig.video}`
+          : targetConfig.video
+      }
     }
 
     if (pageUrl) {
       _$('.lav-modal').classList.add('lav-modal--video')
       _$('.lav-modal').dataset.url = pageUrl
-      _$('.lavm-short__button').textContent = 'Learn More'
+      _$('.lavm-short__button').textContent =
+        target === 'modal-hero' ? 'Choose Spa Package' : 'Learn More'
+      _$('.lavm-short__video-el').src = video
     } else {
       _$('.lav-modal').classList.remove('lav-modal--video')
       _$('.lav-modal').removeAttribute('data-url')
@@ -1972,16 +1991,16 @@
 
         if (idx === 0) {
           videoModal = 'modal2'
-          video = `short-2.mp4`
+          video = `beer-bath.mp4`
         } else if (idx === 1) {
           videoModal = 'modal3'
-          video = `short-3.mp4`
+          video = `infrared-sauna.mp4`
         } else if (idx === 2) {
           videoModal = 'modal5'
-          video = `short-5.mp4`
+          video = `zero-gravity.mp4`
         } else if (idx === 3) {
           videoModal = 'modal4'
-          video = `short-4.mp4`
+          video = `beer-taproom.mp4`
         }
 
         return {
@@ -1998,33 +2017,33 @@
 
     const products = [
       {
-        title: 'Oakwell Escape Package',
+        title: 'Oakwell Escape',
         fullTitle:
-          'Experience bliss like never before with the ultimate date experience, including a beer bath, sauna, tasty treats, and massages.',
+          'Experience bliss like never before with the ultimate date featuring a therapeutic herb-infused bath, sauna session, delicious treats, and relaxing massages.',
         descr:
-          'Romantic private spa suite decorated with candles and rose petals, plus a gourmet charcuterie board, chocolate bonbons, and 30-minute zero gravity massages. ',
+          'Enjoy a romantic escape in a private spa suite adorned with candles and rose petals, complete with a gourmet charcuterie board, artisan bonbons, and 30-minute zero-gravity massages',
         link: '/waitlist-crs/',
         id: '68951432',
         image: `${config.dir}/img/booking-1.png`,
         image2: `${config.dir}/img/booking-1.jpg`
       },
       {
-        title: "Couple's Retreat Package",
+        title: "Couple's Retreat",
         fullTitle:
           'Soak your stress away with your special someone by kicking back in a private spa suite while nibbling on artisan chocolates.',
         descr:
-          'Private spa suite equipped with an infrared sauna, rain shower, and hydrotherapy tub, plus a selection of artisan chocolate bonbons for you and a special someone.',
+          'Unwind with someone special in a private spa suite featuring an infrared sauna, rain shower, and hydrotherapy tub, paired with artisan chocolate bonbons for a sweet, relaxing touch.',
         link: '/waitlist-crs/',
         id: '68951079',
         image: `${config.dir}/img/booking-2.png`,
         image2: `${config.dir}/img/booking-2.jpg`
       },
       {
-        title: 'Beer Therapy Ritual Package',
+        title: 'Beer Therapy Ritual',
         fullTitle:
-          'Dive into a relaxing ritual of a bubbly beer bath and dry sauna in your private spa suite with a craft beverage in hand.',
+          'Sink into a soothing ritual with a bubbly, herb-infused beer bath and an infrared sauna. Enjoy it all in your private spa suite, craft beverage in hand.',
         descr:
-          'Private spa suite, including an infrared sauna, rain shower, and hydrotherapy tub - perfect for a solo spa day or enjoyed with a friend. ',
+          'Relax your way in a private spa suite with an infrared sauna, rain shower, and hydrotherapy tub. Perfect for a solo reset or a laid-back spa day with a friend',
         link: '/waitlist-crs/',
         id: '68950903',
         image: `${config.dir}/img/booking-3.png`,
@@ -2033,13 +2052,24 @@
       {
         title: 'Garage Party',
         fullTitle:
-          'Make memories during the ultimate group spa experience by sharing a private spa suite while saying ‘cheers’ with a craft beverage.',
+          'Create unforgettable memories with your group by sharing two private spa suites. Relax, unwind, and toast together with your favorite craft beverages.',
         descr:
-          'The ultimate group outing featuring two private spa suites joined together with access to two infrared saunas, two rain showers, and two hydrotherapy tubs. ',
+          'The ultimate group outing featuring two private spa suites joined together with access to two infrared saunas, two rain showers, and two hydrotherapy tubs.',
         link: '/waitlist-crs/',
         id: '27351564',
         image: `${config.dir}/img/booking-4.png`,
         image2: `${config.dir}/img/booking-4.jpg`
+      },
+      {
+        title: 'Father’s Day',
+        fullTitle:
+          'Dads deserve to be celebrated in a special way, and Oakwell Beer Spa offers a one-of-a-kind wellness experience that even men enjoy!',
+        descr:
+          'Give Dad the gift of relaxation with a side of delicious beer for an unforgettable Father’s Day experience.',
+        link: '/waitlist-crs/',
+        id: '27351564',
+        image: `${config.dir}/img/booking-5.png`,
+        image2: `${config.dir}/img/booking-5.png`
       }
     ]
 
@@ -2080,7 +2110,9 @@
         )
         openModal(
           target,
-          video.closest('.lav-product').querySelector('.lav-product__link').href
+          video.closest('.lav-product').querySelector('.lav-product__link')
+            .href,
+          video.querySelector('.lav-product__video-el').src
         )
       })
     })
@@ -2338,7 +2370,7 @@
               <img src='${config.dir}/img/short-1.png' />
             </div>
             <div class='lav-short__title'>
-              Mother’s Day Exclusive
+              Father’s Day Exclusive
             </div>
           </div>
 
@@ -2360,6 +2392,15 @@
             </div>
           </div>
 
+          <div class='lav-short' data-target='modal5'>
+            <div class='lav-short__image'>
+              <img src='${config.dir}/img/short-6.png' />
+            </div>
+            <div class='lav-short__title'>
+              Zero Gravity Massage
+            </div>
+          </div>
+
           <div class='lav-short' data-target='modal3'>
             <div class='lav-short__image'>
               <img src='${config.dir}/img/short-4.png' />
@@ -2375,15 +2416,6 @@
             </div>
             <div class='lav-short__title'>
               Craft Beer Taproom
-            </div>
-          </div>
-
-          <div class='lav-short' data-target='modal5'>
-            <div class='lav-short__image'>
-              <img src='${config.dir}/img/short-6.png' />
-            </div>
-            <div class='lav-short__title'>
-              Zero Gravity Massage
             </div>
           </div>
         </div>
@@ -2474,7 +2506,7 @@
                 <div class='lav-loc__sublist'>
                   <div class='lav-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-1.svg' />
-                    6660 Timberline Rd, Littleton, CO 80130
+                    6660 Timberline Rd, Suite 100, Highlands Ranch, CO, 80130
                   </div>
 
                   <a href='tel:+17208101484' class='lav-loc__subitem'>
@@ -2557,9 +2589,18 @@
     )
 
     waitFor('.b-main .img-video-box', () => {
+      _$('.img-video-box video').src = `${config.dir}/video/hero-short.mp4`
       _$('.lav-video').insertAdjacentElement(
         'beforeend',
         _$('.b-main .img-video-box')
+      )
+    })
+
+    _$('.lav-video').addEventListener('click', (e) => {
+      openModal(
+        'modal-hero',
+        '/waitlist-crs/',
+        `${config.dir}/video/hero-long.mp4`
       )
     })
 
