@@ -1498,6 +1498,33 @@
         margin: auto;
         height: 100%;
       }
+      .lavm-short:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 48px;
+        opacity: .2;
+        height: 48px;
+        border: 5px solid #FFF;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotationVideo 1s linear infinite;
+
+      }
+      @keyframes rotationVideo {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+     } 
       .lav-modal__inner.active {
         display: block;
       }
