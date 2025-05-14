@@ -33,7 +33,7 @@
       background: #0C5947;
     }
     .lav-hero {
-      padding-top: 100px;
+      padding-top: 55px;
       padding-left: 16px;
       padding-right: 16px;
       padding-bottom: 56px;
@@ -806,7 +806,7 @@
     const markup = /* html */ `
       <div class="lav-hero">
         <div class="lav-hero__video">
-          <video src="https://oakwell.com/wp-content/uploads/2023/12/Beer-Spa-Hero-Video-1080p-Web_6mb.mp4" poster="https://oakwell.com/wp-content/uploads/2023/06/b-main-img@2x-scaled.jpg" autoplay playsinline="" muted loop></video>
+          <video src="https://oakwell.com/wp-content/uploads/2025/05/oba_20sec_overall-1080p.mp4" poster="https://oakwell.com/wp-content/uploads/2023/06/b-main-img@2x-scaled.jpg" autoplay playsinline="" muted loop></video>
         </div>
 
         <div class="lav-hero__title">
@@ -1053,6 +1053,31 @@
   function addPackages() {
     const packages = [
       {
+        preset: 'blue',
+        color: '#1A4B65',
+        idealNum: 1,
+        ideal: 'Ideal solo or for friends',
+        title: 'Beer Therapy Ritual',
+        descr:
+          'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
+        price: '$199.00',
+        caption: 'For up to 2 adults',
+        slider: [
+          'https://oakwell.com/wp-content/uploads/2025/05/3L4A1087.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8351.webp',
+          'https://oakwell.com/wp-content/uploads/2025/03/0-1.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8722.webp',
+          'https://oakwell.com/wp-content/uploads/2023/12/spa-treatments-sauna.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8752.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8404.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8559.webp',
+          'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp'
+        ]
+      },
+      {
         preset: 'green',
         color: '#104C38',
         idealNum: 2,
@@ -1063,13 +1088,19 @@
         price: '$259.00',
         caption: 'For up to 2 adults',
         slider: [
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8351.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8099-Edit-1.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/040-From-the-Hip-Photo-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/09/111-From-the-Hip-Photo-1-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/09/146-From-the-Hip-Photo-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8154.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/198-From-the-Hip-Photo-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2024/09/111-From-the-Hip-Photo-1-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8234-Edit.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A7977.webp',
+          'https://oakwell.com/wp-content/uploads/2024/09/146-From-the-Hip-Photo-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/207-From-the-Hip-Photo-1-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/09/TBS_Tubs_15-3-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/03/3-min-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/08/image-6.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A7859.webp',
           'https://oakwell.com/wp-content/uploads/2024/08/image-4.webp'
         ]
       },
@@ -1084,10 +1115,18 @@
         price: '$359.00',
         caption: 'For up to 2 adults',
         slider: [
+          'https://oakwell.com/wp-content/uploads/2025/03/AD_4nXf_PbM3x2a1ChhaRobG2zX0VPYNkYFu9IXYrKpbHO47YKqsZljsFrE8XX7cqgCJ5ono-hgClL9tyJHE2QLmLfAaA100l5NwsBtYSTD2QaWTLsv6NOynvfRJ3wLXGTu9ZI02w-xa.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/IMG_3831-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8080-Edit.webp',
+          'https://oakwell.com/wp-content/uploads/2025/04/date-ideas-highlands-ranch-oakwell.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8476.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/IMG_3836-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8099-Edit-1.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8906.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/TBS_Valentines_12-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/09/TBS_Valentines_5-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/3L4A8306.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8300.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/3L4A1099-Edit.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/118-From-the-Hip-Photo-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/105-From-the-Hip-Photo-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/171-From-the-Hip-Photo-scaled.webp',
@@ -1095,28 +1134,7 @@
           'https://oakwell.com/wp-content/uploads/2024/09/236-From-the-Hip-Photo-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/233-From-the-Hip-Photo-scaled.webp',
           'https://oakwell.com/wp-content/uploads/2024/09/155-From-the-Hip-Photo-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/09/TBS_Valentines_9-scaled.webp'
-        ]
-      },
-      {
-        preset: 'blue',
-        color: '#1A4B65',
-        idealNum: 1,
-        ideal: 'Ideal solo or for friends',
-        title: 'Beer Therapy Ritual',
-        descr:
-          'When you book your Denver spa day at Oakwell, you get access to a private Beer Therapy Room that includes everything you need for rest, relaxation, and other wellness benefits. Our private spa room accommodates up to two people.',
-        price: '$199.00',
-        caption: 'For up to 2 adults',
-        slider: [
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Standard-Beer-Therapy-Room-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Beer-Spa-Infrared-Sauna-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Cold-Shower-Oakwell-Beer-Spa-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_18-Web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/09/02-3.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/190-From-the-Hip-Photo-web-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/TBS_Sauna_Inside-Web-scaled.webp'
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8597.webp'
         ]
       },
       {
@@ -1130,13 +1148,20 @@
         price: '$450.00',
         caption: 'For up to 4 adults',
         slider: [
-          'https://oakwell.com/wp-content/uploads/2023/10/Garage-Party-Web-3-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Garage-Party-Web-2-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/3L4A8136-Enhanced-NR.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/Garage-Party-Web-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/04/AD_4nXfWZUuP0Y94tp3cKJJLltFQjOpAP06AUNCimlCsWJRkcfF907uy_h0wgKp8eto-CjnKybdsk5IlxdDH73XI3O0NhRODYpEWWXzCKz6n7sMbA35n3BL8UW4eWuxlJxF_zi99FGfkMA.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Double-Room-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A7645-Edit.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Garage-Party-Web-3-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8064-1.webp',
+          'https://oakwell.com/wp-content/uploads/2023/10/Garage-Party-Web-2-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/04/left-hand-oakwell.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Robes-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A8332.webp',
           'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-Cheering-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-scaled.webp'
+          'https://oakwell.com/wp-content/uploads/2023/10/Oakwell-Garage-Party-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2025/05/I71A7822-Edit.webp'
         ]
       }
     ]
