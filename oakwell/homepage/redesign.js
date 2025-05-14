@@ -1816,21 +1816,6 @@
       const current = _$('.lav-modal').dataset.target
       const prev = +current.replace('modal', '') - 1
 
-      // visibilityEvent(
-      //   '.lav-products--three',
-      //   () => {
-      //     pushDataLayer(
-      //       'exp_hp3_view_02',
-      //       'Featured Spa Services',
-      //       'view',
-      //       'Featured Spa Services'
-      //     )
-      //   },
-      //   {
-      //     delay: 0
-      //   }
-      // )
-
       if (prev < 0) return
 
       openModal(`modal${prev}`)
@@ -1877,6 +1862,43 @@
         }
       })
     })
+
+    swipeDetect()
+
+    function swipeDetect() {
+      const el = document.querySelector('.lav-modal__inner')
+      let startX = 0
+      let endX = 0
+
+      el.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX
+      })
+
+      el.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX
+        let diff = startX - endX
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            changeModal('left')
+          } else {
+            changeModal('right')
+          }
+        }
+      })
+
+      function changeModal(direction) {
+        const current = _$('.lav-modal:not(.lav-modal--video)')?.dataset.target
+
+        if (!current) return
+
+        const idx = +current.replace('modal', '')
+        const next = direction === 'left' ? idx + 1 : idx - 1
+
+        if (next > 5 || next < 0) return
+
+        openModal(`modal${next}`)
+      }
+    }
   }
 
   const modalsShortsConfig = {
