@@ -1867,22 +1867,22 @@
       video: `short-2.mp4`
     },
     modal3: {
+      title: 'Zero Gravity Massage',
+      caption:
+        'Take a trip to space in a futuristic, zero-gravity massage chair while treating yourself to a deep-tissue, full-body massage.',
+      video: `short-5.mp4`
+    },
+    modal4: {
       title: 'Infrared Sauna',
       caption:
         'Relax and detox while infrared rays deeply penetrate your core to eliminate harmful toxins. Think steam room but without being uncomfortably hot.',
       video: `short-3.mp4`
     },
-    modal4: {
+    modal5: {
       title: 'Craft Beer Taproom',
       caption:
         'Hang out in Oakwell’s self-pour taproom before and after your spa experience. Enjoy the rotating selection of craft beer, wine, cider, and non-alcoholic beverages.',
       video: `short-4.mp4`
-    },
-    modal5: {
-      title: 'Zero Gravity Massage',
-      caption:
-        'Take a trip to space in a futuristic, zero-gravity massage chair while treating yourself to a deep-tissue, full-body massage.',
-      video: `short-5.mp4`
     }
   }
 
@@ -1993,13 +1993,13 @@
           videoModal = 'modal2'
           video = `beer-bath.mp4`
         } else if (idx === 1) {
-          videoModal = 'modal3'
+          videoModal = 'modal4'
           video = `infrared-sauna.mp4`
         } else if (idx === 2) {
-          videoModal = 'modal5'
+          videoModal = 'modal3'
           video = `zero-gravityy.mp4`
         } else if (idx === 3) {
-          videoModal = 'modal4'
+          videoModal = 'modal5'
           video = `beer-taproom.mp4`
         }
 
@@ -2392,7 +2392,7 @@
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal5'>
+          <div class='lav-short' data-target='modal3'>
             <div class='lav-short__image'>
               <img src='${config.dir}/img/short-6.png' />
             </div>
@@ -2401,7 +2401,7 @@
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal3'>
+          <div class='lav-short' data-target='modal4'>
             <div class='lav-short__image'>
               <img src='${config.dir}/img/short-4.png' />
             </div>
@@ -2410,7 +2410,7 @@
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal4'>
+          <div class='lav-short' data-target='modal5'>
             <div class='lav-short__image'>
               <img src='${config.dir}/img/short-5.png' />
             </div>
