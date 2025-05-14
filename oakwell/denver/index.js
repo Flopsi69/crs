@@ -379,12 +379,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
     .lav-package__pagination span {
       display: block;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #fff;
       border: 1px solid #fff;
