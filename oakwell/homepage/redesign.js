@@ -2558,9 +2558,10 @@
                     6660 Timberline Rd, Suite 100, Highlands Ranch, CO, 80130
                   </div>
 
-                  <a href='tel:+17208101484' class='lav-loc__subitem'>
+                  <a href='tel:+17208070930' class='lav-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-2.svg' />
                     (720)-810-1484
+                    (720)-807-0930
                   </a>
 
                   <div class='lav-loc__subitem'>
