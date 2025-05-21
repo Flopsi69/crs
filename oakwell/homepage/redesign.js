@@ -2560,7 +2560,6 @@
 
                   <a href='tel:+17208070930' class='lav-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-2.svg' />
-                    (720)-810-1484
                     (720)-807-0930
                   </a>
 
