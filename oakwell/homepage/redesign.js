@@ -3,7 +3,7 @@
 
   // Config for Experiment
   const config = {
-    // dir: 'http://127.0.0.1:5501/oakwell/homepage',
+    // dir: 'http://127.0.0.1:5500/oakwell/homepage',
     dir: 'https://flopsi69.github.io/crs/oakwell/homepage',
     clarity: ['set', 'new_hp_v3', 'variant_1'],
     debug: false
@@ -940,7 +940,7 @@
     .lav-product__video-img {
       position: absolute;
       z-index: 2;
-      right: 23px;
+      right: 25px;
       bottom: 25px;
       width: 22px;
     }
@@ -2297,9 +2297,14 @@
           <img class='lav-product__video-img' src='${
             config.dir
           }/img/zoom-in.svg' />
-          <video class="lav-product__video-el" autoplay muted loop playsinline src='${
+          <video class="lav-product__video-el" poster="${
             config.dir
-          }/video/${product.video}'></video>
+          }/video/${product.video?.replace(
+          '.mp4',
+          '-poster.png'
+        )}" autoplay muted loop playsinline src='${config.dir}/video/${
+          product.video
+        }'></video>
         </div>
         <div class='lav-product__image'>
           <img src='${
@@ -2638,7 +2643,9 @@
     )
 
     waitFor('.b-main .img-video-box', () => {
-      _$('.img-video-box video').src = `${config.dir}/video/hero-short.mp4`
+      _$('.b-main .img-video-box .img-video').removeAttribute('data-aos')
+      _$('.b-main .img-video-box .img-video').removeAttribute('data-aos-delay')
+      // _$('.img-video-box video').src = `${config.dir}/video/hero-short.mp4`
       _$('.lav-video').insertAdjacentElement(
         'beforeend',
         _$('.b-main .img-video-box')
