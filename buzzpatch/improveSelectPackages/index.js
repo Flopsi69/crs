@@ -644,21 +644,34 @@
         _$('.lav-summary__coupon').style.display = 'flex'
         _$('.lav-summary__coupon span').innerText = coupon
 
-        // if (Shopify.currency.active === 'USD') {
-        const currentTotal = parseFloat(
-          _$('#getNow .prices .js-total .pr').innerText.replaceAll(',', '')
-        )
-        const newPrice = (currentTotal - currentTotal * 0.1).toFixed(2)
-
         if (
-          !_$('#getNow .prices .js-total .pr').dataset.newPrice ||
-          _$('#getNow .prices .js-total .pr').innerText !=
-            _$('#getNow .prices .js-total .pr').dataset.newPrice
+          Shopify.currency.active === 'USD' ||
+          Shopify.currency.active === 'EUR'
         ) {
-          _$('#getNow .prices .js-total .pr').dataset.newPrice = newPrice
-          _$('#getNow .prices .js-total .pr').innerText = newPrice
+          const totalPrice = _$('#getNow .prices .js-total .pr').innerText
+          let currentTotal = parseFloat(totalPrice.replaceAll(',', ''))
+
+          if (Shopify.currency.active === 'EUR') {
+            currentTotal = parseFloat(totalPrice.replaceAll(',', '.'))
+          }
+
+          console.log('currentTotal', currentTotal)
+
+          let newPrice = (currentTotal - currentTotal * 0.1).toFixed(2)
+
+          if (Shopify.currency.active === 'EUR') {
+            newPrice = newPrice.replaceAll('.', ',')
+          }
+
+          if (
+            !_$('#getNow .prices .js-total .pr').dataset.newPrice ||
+            _$('#getNow .prices .js-total .pr').innerText !=
+              _$('#getNow .prices .js-total .pr').dataset.newPrice
+          ) {
+            _$('#getNow .prices .js-total .pr').dataset.newPrice = newPrice
+            _$('#getNow .prices .js-total .pr').innerText = newPrice
+          }
         }
-        // }
         // clearInterval(intervalGetCoupon)
       } else {
         _$('.lav-summary__coupon').style.display = 'none'
