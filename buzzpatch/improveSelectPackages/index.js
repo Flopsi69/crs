@@ -548,11 +548,6 @@
         pushDataLayer('exp_buzz_v6_swipe', 'Image', 'other', 'Select package')
       })
 
-      $('.your-element').on('swipe', function (event, slick, direction) {
-        console.log(direction)
-        // left
-      })
-
       const fancyboxScript = document.createElement('script')
       fancyboxScript.src =
         'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js'
@@ -654,8 +649,6 @@
           if (Shopify.currency.active === 'EUR') {
             currentTotal = parseFloat(totalPrice.replaceAll(',', '.'))
           }
-
-          console.log('currentTotal', currentTotal)
 
           let newPrice = (currentTotal - currentTotal * 0.1).toFixed(2)
 
