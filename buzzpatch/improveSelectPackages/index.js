@@ -91,6 +91,10 @@
     border-radius: 6px;
     border: 1px solid #D9D9D9;
     background: #FFF;
+    max-width: 100%;
+  }
+  .new-bundle-pack {
+    max-width: 100%;
   }
   .adult-pack--container .adult-pack--dropdown-toggle {
     padding: 20px 12px 16px!important;
