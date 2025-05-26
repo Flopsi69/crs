@@ -93,9 +93,6 @@
     background: #FFF;
     max-width: 100%;
   }
-  .new-bundle-pack {
-    max-width: 100%;
-  }
   .adult-pack--container .adult-pack--dropdown-toggle {
     padding: 20px 12px 16px!important;
     color: #0C0B0B;
@@ -137,6 +134,7 @@
     background: #FFF;
     margin-top: 16px;
     padding: 18px 12px 10px;
+    max-width: 100%;
   }
   .form .new-bundle-pack .js-packs input[type=radio]+label .pack-title {
     color: #FF3C81;
