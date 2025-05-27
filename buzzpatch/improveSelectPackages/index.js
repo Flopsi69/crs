@@ -354,7 +354,9 @@
   .lav-carousel__item {
     line-height: 0;
   }
-  .lav-carousel  {}
+  .lav-carousel__link img {
+    max-height: 290px;
+  }
   .lav-carousel__arrow {
     position: absolute;
     z-index: 2;
@@ -494,10 +496,11 @@
     function addCarousel() {
       const images = [
         'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596',
-        'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596',
-        'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596',
-        'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596',
-        'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596'
+        `${config.dir}/img/slide-2.png`,
+        `${config.dir}/img/slide-3.png`,
+        `${config.dir}/img/slide-4.png`,
+        `${config.dir}/img/slide-5.png`,
+        `${config.dir}/img/slide-6.png`
       ]
 
       const carouselEl = document.createElement('div')
