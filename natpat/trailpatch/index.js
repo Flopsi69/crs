@@ -58,7 +58,7 @@ const styles = /* css */ `
     border-top-left-radius: 0!important;
   }
   .lav-best-offer:before {
-    content: 'Best Offer';
+    content: 'bestseller';
     position: absolute;
     left: 0;
     top: 0;
@@ -115,7 +115,7 @@ async function initExp() {
 }
 
 function handleHero() {
-  const titleAppend = '.<br/>Guaranteed ot It’s Free!'
+  const titleAppend = '.<br/>Guaranteed or It’s Free!'
 
   _$('.lp-tr--main-title.lp-tr--mobile span').insertAdjacentHTML(
     'beforebegin',
