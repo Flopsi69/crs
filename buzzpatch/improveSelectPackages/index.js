@@ -3,8 +3,8 @@
 
   // Config for Experiment
   const config = {
-    dir: 'http://127.0.0.1:5500/buzzpatch/improveSelectPackages',
-    // dir: 'https://flopsi69.github.io/crs/buzzpatch/improveSelectPackages',
+    // dir: 'http://127.0.0.1:5500/buzzpatch/improveSelectPackages',
+    dir: 'https://flopsi69.github.io/crs/buzzpatch/improveSelectPackages',
     clarity: ['set', 'exp_buzzpatch_7', 'variant_1'],
     debug: true
   }
