@@ -97,13 +97,23 @@
     })
 
     // Revisit
+
     // Revisit trigger: show modal if user has visited before
-    // const revisitKey = 'lav_almost_revisit'
-    // if (localStorage.getItem(revisitKey)) {
-    //   openModal()
-    // } else {
-    //   localStorage.setItem(revisitKey, '1')
-    // }
+    const revisitKey = 'lav_almost_revisit'
+    const time = localStorage.getItem(revisitKey)
+    if (time && new Date().getTime() > +time) {
+      if (
+        !localStorage.getItem('lav_almost_showed') &&
+        _$$('#rebuy-cart [data-smartcart-items] li').length
+      ) {
+        openModal()
+      }
+    }
+
+    if (!time) {
+      const date = new Date().getTime() + 3600000
+      localStorage.setItem(revisitKey, String(date))
+    }
   }
 
   function openModal() {
@@ -128,9 +138,8 @@
     initModal()
 
     const markup = /* html */ `
-      <div class='lav-modal__close'>${getSvg('modalClose')}</div>
       <div class='lav-almost__title'>It’s almost yours!</div>
-      <div class='lav-almost__caption'>Only one step left:</div>
+      <div class='lav-almost__caption'>Finish your order before it’s too late:</div>
       <div class='lav-almost__popular'>Popular choice, <br/>we may run out of stock soon</div>
       <div class='lav-almost__list lav-products'></div>
       <div class='lav-almost__looking'>
@@ -142,6 +151,9 @@
         </div>
       </div>
       <div class='lav-almost__btn'>Complete my order now</div>
+      <div class='lav-almost__skip'>
+        Skip for now
+      </div>
     `
 
     new Modal('lav-almost', markup)
@@ -151,6 +163,19 @@
       pushDataLayer(
         'exp_exit_intent_click_01',
         'Complete my order now',
+        'click',
+        'Almost pop up'
+      )
+      if (!_$('#rebuy-cart').classList.contains('is-visible')) {
+        _$('.site-header__cart.head_cart').click()
+      }
+    })
+
+    _$('.lav-almost__skip').addEventListener('click', () => {
+      Modal.close()
+      pushDataLayer(
+        'exp_exit_intent_click_04',
+        'Skip for now',
         'click',
         'Almost pop up'
       )
@@ -295,7 +320,7 @@
             width: 100%;
             display: none;
             margin: auto;
-            padding: 32px 16px 19px;
+            padding: 20px 14px;
           }
           .lav-modal__inner.active {
             display: block;
@@ -346,8 +371,8 @@
             font-weight: 600;
             line-height: 20px;
             padding: 7px 15px 9px;
-            background: #F4E8DD;
-            margin-top: 20px;
+            background: #E8F5FB;
+            margin-top: 8px;
           }
           .lav-almost__popular:before {
             content: "";
@@ -358,13 +383,13 @@
             display: block;
             width: 10px;
             height: 10px;
-            background-color: #F4E8DD;
+            background-color: #E8F5FB;
           }
           .lav-almost__looking {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 16px;
             padding: 10px;
             background: #eee;
           }
@@ -383,29 +408,43 @@
             font-weight: 600;
           }
           .lav-almost__btn {
-            margin-top: 16px;
-            background: #DAB28F;
+            margin-top: 12px;
+            background: #C28046;
             text-align: center;
-            padding: 10px 15px;
+            padding: 15px 15px;
             color: #FFF;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             font-style: normal;
+            font-weight: 600;
+            line-height: 18px;
+            text-transform: uppercase;
+          }
+          .lav-almost__skip {
+            color: #232323;
+            text-align: center;
+            font-size: 16px;
             font-weight: 400;
             line-height: 24px;
+            margin-top: 12px;
           }
 
           .lav-products {
             display: grid;
-            margin-top: 27px;
+            margin-top: 25px;
             gap: 20px;
             max-height: 240px;
             overflow: auto;
+            line-height: 0;
           }
 
           .lav-product {
             display: flex;
             gap: 14px;
+          }
+          .lav-product .rebuy-cart__flyout-item-media a {
+            display: flex;
+            line-height: 0;
           }
           .lav-product .rebuy-cart__flyout-item-media {
             width: 90px;
@@ -417,16 +456,15 @@
             font-size: 14px;
             font-style: normal;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 20.8px;
           }
           .lav-product .rebuy-cart__flyout-item-variant-title {
             font-size: 12px;
             margin-top: 4px;
+            line-height: 18px;
             color: #535353;
           }
           .lav-product .rebuy-cart__flyout-item-info {
-            display: flex;
-            flex-flow: column;
             flex-grow: 1;
           }
           .lav-product .rebuy-cart__flyout-item-price {
@@ -455,6 +493,7 @@
             gap: 12px;
             align-items: center;
             line-height: 1;
+            margin-top: 6px;
           }
         `
 
