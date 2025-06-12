@@ -3,10 +3,10 @@
 
   // Config for Experiment
   const config = {
-    dir: 'http://127.0.0.1:5500/buzzpatch/improveSelectPackages',
-    // dir: 'https://flopsi69.github.io/crs/buzzpatch/improveSelectPackages',
-    clarity: ['set', 'exp_buzzpatch_7', 'variant_1'],
-    debug: true
+    // dir: 'http://127.0.0.1:5500/buzzpatch/improveSelectPackages',
+    dir: 'https://flopsi69.github.io/crs/buzzpatch/improveSelectPackages',
+    clarity: ['set', 'exp_buzzpatch_6', 'variant_1'],
+    debug: false
   }
 
   // const orig = console.log
@@ -23,43 +23,49 @@
     border-top: 1px solid #FFEBF2;
     background: #F9DEE8;
     padding: 9px;
-    font-style: normal;
-    text-align: center;
-    color: #880030;
-    font-size: 22px;
+    color: #FF3C81;
+    font-size: 18.438px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 90.909% */
-    letter-spacing: 2px;
+    line-height: 20px; /* 108.475% */
+    letter-spacing: 0.6px;
     text-transform: uppercase;
+    text-align: center;
   }
   #getNow {
-    padding: 20px 27px 30px!important;
+    padding: 20px 27px 0!important;
   }
   .package h2 + p {
     font-size: 18px !important;
     margin-top: 8px;
   }
   .lav-kids {
-    padding-inline: 10px;
+    border-radius: 6px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    padding: 18px 12px 12px;
+    margin-top: 20px;
+    margin-bottom: 16px;
   }
   .lav-kids__title {
     color: #0C0B0B;
-    text-align: center;
     font-family: "DINEngschrift LT";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 83.333% */
+    line-height: 20px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    text-align: left;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #D9D9D9;
+    margin-bottom: 33px;
   }
   #getNow .form-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 16px!important;
+    margin-bottom: 0;
   }
   #getNow .lav-kids .js-packs {
     margin: 0;
@@ -68,27 +74,27 @@
   #getNow .lav-kids .js-packs:first-child input[type=radio]+label {
     border-top-left-radius: 0;
   }
+  .lav-kids__title span {
+    font-size: 18px;
+  }
   .bestseller {
     border-bottom-left-radius: 0!important;
     border-bottom-right-radius: 0!important;
-    font-size: 13px!important;
   }
   .lav-kids .js-packs input[type=radio]+label {
     padding: 14px 16px 10px!important;
-    background: #fff;
-    font-size: 18px;
   }
   .lav-kids .js-packs input[type=radio]+label span {
     margin-top: 1px;
   }
   .form .adult-pack--container {
     border-radius: 6px;
-    border: 2px solid #D9D9D9;
+    border: 1px solid #D9D9D9;
     background: #FFF;
     max-width: 100%;
   }
   .adult-pack--container .adult-pack--dropdown-toggle {
-    padding: 7px 12px!important;
+    padding: 20px 12px 16px!important;
     color: #0C0B0B;
     font-family: "DINEngschrift LT";
     font-size: 24px;
@@ -101,41 +107,20 @@
   #getNow .adult-pack--container img {
     margin-left: auto!important;
   }
+  .adult-pack--dropdown-toggle > .d-flex {
+    display: none!important;
+  }
+  .adult-pack--dropdown-toggle span span {
+    font-size: 18px;
+  }
   .form .adult-pack--container .adult-pack-content {
-    margin-top: 11px;
-    padding-bottom: 10px;
-    padding-inline: 12px;
-  }
-  .adult-pack--dropdown-toggle p {
-    color: #0C0B0B;
-    font-family: "DINEngschrift LT";
-    font-size: 24px !important;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px !important;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-  }
-  .lp-bp--mosquito-repellent-patches {
-    border: none!important;
-    border-radius: 0!important;
-  }
-  .adult-pack--dropdown-toggle p {
-    margin-left: 16px!important;
-  }
-  .adult-pack-details span.adult-pack-number {
-    font-size: 18px!important;
+    margin-top: 16px;
+    padding-bottom: 18px;
   }
   .form .adult-pack-content .adult-pack-btns {
     margin-bottom: 0;
-    margin-top: 16px;
+    margin-top: 15px;
     gap: 12px;
-  }
-  .adult-pack-content p {
-    margin-top: 0!important;
-  }
-  .adult-pack-content p + p {
-    margin-top: 6px!important;
   }
   .form .adult-pack-details {
     padding: 14px 16px 10px !important;
@@ -144,49 +129,61 @@
     margin-bottom: 0;
   }
   .form .new-bundle-pack {
-    padding: 0;
-    margin-top: 30px;
+    border-radius: 6px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    margin-top: 16px;
+    padding: 18px 12px 10px;
     max-width: 100%;
-    padding-inline: 10px;
   }
   .form .new-bundle-pack .js-packs input[type=radio]+label .pack-title {
-    color: #212529;
+    color: #FF3C81;
     font-family: Roboto;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 18.2px; /* 130% */
     display: inline-block;
+    margin-bottom: 4px;
   }
   .form .new-bundle-pack .js-packs input[type=radio]+label {
-    border-radius: 4px 0 4px 4px;
+    border-radius: 0px 4px 4px 4px;
     border: 2px solid #FF3C81;
   }
   .form .new-bundle-pack .bundle-off {
     color: #FFF;
     text-align: center;
     font-family: "DIN Condensed";
-    font-size: 16px;
+    font-size: 13.5px;
     font-style: normal;
-    font-weight: 700;
-    line-height: 14px; /* 87.5% */
+    font-weight: 400;
+    line-height: 14px;
     letter-spacing: 0.6px;
     margin-top: 0;
-    right: 0;
+    right: initial;
+    left: 0;
     border-radius: 3px 3px 0px 0px;
     background: #000;
     transform: translateY(-100%);
-    padding: 11px 14px 7px;
+    padding: 10px 14px 6px;
   }
   .form .new-bundle-pack .js-packs {
-    margin-top: 34px;
+    margin-top: 8px;
   }
   .form .new-bundle-pack h3 {
-    display: none;
+    color: #100505;
+    text-align: center;
+    font-family: "DIN Condensed";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px; /* 100% */
+    letter-spacing: 0.6px;
+    margin: 0;
   }
   .lav-bundle {
+    text-align: left;
     color: #0C0B0B;
-    text-align: center;
     font-family: "DINEngschrift LT";
     font-size: 24px;
     font-style: normal;
@@ -194,14 +191,23 @@
     line-height: 20px; /* 83.333% */
     letter-spacing: 0.6px;
     text-transform: uppercase;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+  }
+  .lav-bundle span {
+    font-size: 18px;
   }
   .lav-bundle__caption {
-    color: #6F6F6F;
-    font-family: Roboto;
-    font-size: 14px;
+    color: #181717;
+    display: inline-block;
+    font-family: "DIN Condensed"!important;
+    font-size: 16px!important;
     font-style: normal;
-    font-weight: 400;
-    line-height: 18.2px;
+    font-weight: 400!important;
+    line-height: 18px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase!important;
   }
   .lav-bundle__caption span {
     font-size: 12px!important;
@@ -213,10 +219,6 @@
     letter-spacing: 0.6px;
     text-transform: uppercase!important;
   }
-  .new-bundle-pack .js-packs input[type=radio]+label .pack-label .pack-price-each {
-    margin-top: 2px;
-    display: inline-block;
-  }
   .new-bundle-pack .js-packs input[type=radio]:checked+label .lav-bundle__caption, .new-bundle-pack .js-packs input[type=radio]:checked+label .lav-bundle__caption span {
     color: #fff;
   }
@@ -225,13 +227,22 @@
   }
   .prices .js-regular span {
     color: #FF3C81;
-    font-weight: 600;
   }
-  #getNow .prices {
-    margin-top: 25px;
-  }
+
   .percent-off {
-   margin-left: 10px;
+    border-radius: 3px;
+    background: #FF3C81;
+    padding: 8px 14px 4px;
+    color: #FFF;
+    text-align: center;
+    font-family: "DIN Condensed";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0.6px;
+    margin-right: 10px;
+    order: -1;
   }
   .lav-summary {
     text-align: left;
@@ -296,7 +307,6 @@
   }
   #getNow .prices .js-regular {
     margin-top: 20px;
-    margin-bottom: 16px;
   }
   .lav-proceed {
     position: fixed;
@@ -343,19 +353,9 @@
   }
   .lav-carousel__item {
     line-height: 0;
-    text-align: center;
-  }
-  .lav-carousel__link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 280px;
-    width: 280px;
   }
   .lav-carousel__link img {
-    max-height: 280px;
-    margin: 0!important;
-    border-radius: 6px;
+    max-height: 290px;
   }
   .lav-carousel__arrow {
     position: absolute;
@@ -364,37 +364,13 @@
     transform: translateY(-50%);
   }
   .lav-carousel__arrow--prev {
-    left: -2px;
+    left: -19px;
   }
   .lav-carousel__arrow--next {
-    right: -2px;
+    right: -19px;
   }
   .fancybox__container {
     z-index: 999999999!important;
-  }
-  .reviews .js-title {
-    margin-top: 10px;
-  }
-  .package .form {
-    margin-top: 38px!important;
-  }
-  .lav-carousel__previews {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-  .lav-carousel__preview {
-    border-radius: 4px;
-    border: 2px solid #D9D9D9;
-    width: 44px;
-    height: 44px;
-    display: flex!important;
-    background-size: contain;
-    cursor: pointer;
-  }
-  .lav-carousel__preview.active {
-    border-color: #FF3C81;
   }
 `
 
@@ -428,74 +404,79 @@
     _$('.form-group').insertAdjacentHTML(
       'beforebegin',
       `<div class="lav-kids">
-        <div class='lav-kids__title'>Patches FOR KIDS</div>
+        <div class='lav-kids__title'>Kids <span>Patches</span></div>
       </div>`
     )
     _$('.lav-kids').insertAdjacentElement('beforeend', _$('.form-group'))
 
+    _$('.adult-pack--dropdown-toggle').insertAdjacentHTML(
+      'afterbegin',
+      `<span>Adults <span>Patches</span></span>`
+    )
+
     _$('.new-bundle-pack').insertAdjacentHTML(
       'afterbegin',
       `
-       <div class='lav-bundle'>bundle & save</div>
+       <div class='lav-bundle'>KIDS + ADULTS <span>Patches</span></div>
       `
     )
 
-    // const bundleEl = _$(
-    //   '.form .new-bundle-pack .js-packs input[type=radio]+label .pack-label'
-    // )
-    // const tooltipEl = _$('.pack-price-each')
+    const bundleEl = _$(
+      '.form .new-bundle-pack .js-packs input[type=radio]+label .pack-label'
+    )
+    const tooltipEl = _$('.pack-price-each')
 
-    // bundleEl.innerHTML = bundleEl.innerHTML.replace(
-    //   '3 Packs + 40 Mosquito',
-    //   '<span class="lav-bundle__caption">Kids Patches 3 packs <span>x60</span></span>'
-    // )
-    // bundleEl.innerHTML = bundleEl.innerHTML.replace(
-    //   'Patches For Adults',
-    //   '<span class="lav-bundle__caption">Adults Patches 1 pack <span>x40</span></span>'
-    // )
+    bundleEl.innerHTML = bundleEl.innerHTML.replace(
+      '3 Packs + 40 Mosquito',
+      '<span class="lav-bundle__caption">Kids Patches 3 packs <span>x60</span></span>'
+    )
+    bundleEl.innerHTML = bundleEl.innerHTML.replace(
+      'Patches For Adults',
+      '<span class="lav-bundle__caption">Adults Patches 1 pack <span>x40</span></span>'
+    )
 
-    // bundleEl.querySelector('.pack-price-each').remove()
-    // bundleEl.insertAdjacentElement('beforeend', tooltipEl)
+    bundleEl.querySelector('.pack-price-each').remove()
+    bundleEl.insertAdjacentElement('beforeend', tooltipEl)
 
     _$('.prices .js-regular').innerHTML = _$(
       '.prices .js-regular'
-    ).innerHTML.replace(', It’s Free!', '— <span>It’s Free!</span>')
+    ).innerHTML.replace(', It’s Free!', '<span> — It’s Free!</span>')
 
     _$('#getNow>.days[src*="//www.natpat.com/cdn/shop"]').src =
       config.dir + '/img/trustpilot.png'
 
-    // _$('#purchase').insertAdjacentHTML(
-    //   'afterbegin',
-    //   /* html */ `
-    //   <div class='lav-proceed'>
-    //     <div class='lav-proceed__btn'>
-    //       PROCEED TO order SUMMARY
-    //     </div>
-    //   </div>
-    //   `
-    // )
+    _$('#purchase').insertAdjacentHTML(
+      'afterbegin',
+      /* html */ `
+      <div class='lav-proceed'>
+        <div class='lav-proceed__btn'>
+          PROCEED TO order SUMMARY
+        </div>
+      </div>
+      `
+    )
 
-    // visibilityEvent('.lav-proceed', () => {
-    //   pushDataLayer(
-    //     'exp_buzz_v6_click_01',
-    //     'Proceed to order summary',
-    //     'view',
-    //     'Select package'
-    //   )
-    // })
+    visibilityEvent('.lav-proceed', () => {
+      pushDataLayer(
+        'exp_buzz_v6_click_01',
+        'Proceed to order summary',
+        'view',
+        'Select package'
+      )
+    })
 
-    // _$('.lav-proceed__btn').addEventListener('click', (e) => {
-    //   pushDataLayer(
-    //     'exp_buzz_v6_view_02',
-    //     'Proceed to order summary',
-    //     'click',
-    //     'Select package'
-    //   )
-    //   _$('.lav-summary').scrollIntoView({
-    //     behavior: 'smooth',
-    //     block: 'center'
-    //   })
-    // })
+    _$('.lav-proceed__btn').addEventListener('click', (e) => {
+      pushDataLayer(
+        'exp_buzz_v6_view_02',
+        'Proceed to order summary',
+        'click',
+        'Select package'
+      )
+      _$('.lav-summary').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+    })
 
     window.addEventListener('scroll', function () {
       const offsetTopKids =
@@ -514,20 +495,17 @@
     waitFor(() => typeof jQuery !== 'undefined', addCarousel)
     function addCarousel() {
       const images = [
-        `${config.dir}/img/slide-1.png`,
+        'https://www.natpat.com/cdn/shop/files/BP_Free_Delivery.png?v=6708414757152350596',
         `${config.dir}/img/slide-2.png`,
         `${config.dir}/img/slide-3.png`,
         `${config.dir}/img/slide-4.png`,
         `${config.dir}/img/slide-5.png`,
-        `${config.dir}/img/slide-6.png`,
-        `${config.dir}/img/slide-7.png`
+        `${config.dir}/img/slide-6.png`
       ]
 
       const carouselEl = document.createElement('div')
       carouselEl.classList.add('lav-carousel')
-      const previewElParent = document.createElement('div')
-      previewElParent.classList.add('lav-carousel__previews')
-      images.forEach((img, idx) => {
+      images.forEach((img) => {
         const itemEl = document.createElement('div')
         itemEl.classList.add('lav-carousel__item')
 
@@ -542,16 +520,9 @@
         linkEl.appendChild(imgEl)
         itemEl.appendChild(linkEl)
         carouselEl.appendChild(itemEl)
-
-        const previewEl = document.createElement('div')
-        previewEl.classList.add('lav-carousel__preview')
-        previewEl.style.backgroundImage = `url(${img})`
-        previewEl.dataset.idx = idx
-        previewElParent.appendChild(previewEl)
       })
 
       _$('.package .form').insertAdjacentElement('beforebegin', carouselEl)
-      _$('.package .form').insertAdjacentElement('beforebegin', previewElParent)
 
       $('.lav-carousel').slick({
         infinite: false,
@@ -561,64 +532,22 @@
         prevArrow: `
         <div class='lav-carousel__arrow lav-carousel__arrow--prev'>
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="21" viewBox="0 0 13 21" fill="none">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2082 1.77426C11.3013 1.86715 11.3752 1.9775 11.4256 2.09899C11.476 2.22048 11.502 2.35072 11.502 2.48226C11.502 2.61379 11.476 2.74403 11.4256 2.86552C11.3752 2.98701 11.3013 3.09737 11.2082 3.19026L3.91417 10.4823L11.2082 17.7743C11.3959 17.962 11.5014 18.2167 11.5014 18.4823C11.5014 18.7478 11.3959 19.0025 11.2082 19.1903C11.0204 19.378 10.7657 19.4835 10.5002 19.4835C10.2346 19.4835 9.97994 19.378 9.79217 19.1903L1.79217 11.1903C1.69904 11.0974 1.62515 10.987 1.57474 10.8655C1.52433 10.744 1.49838 10.6138 1.49838 10.4823C1.49838 10.3507 1.52433 10.2205 1.57474 10.099C1.62515 9.9775 1.69904 9.86715 1.79217 9.77426L9.79217 1.77426C9.88506 1.68113 9.99541 1.60725 10.1169 1.55683C10.2384 1.50642 10.3686 1.48047 10.5002 1.48047C10.6317 1.48047 10.7619 1.50642 10.8834 1.55683C11.0049 1.60725 11.1153 1.68113 11.2082 1.77426Z" fill="#121212" fill-opacity="0.75"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2082 1.77426C11.3013 1.86715 11.3752 1.9775 11.4256 2.09899C11.476 2.22048 11.502 2.35072 11.502 2.48226C11.502 2.61379 11.476 2.74403 11.4256 2.86552C11.3752 2.98701 11.3013 3.09737 11.2082 3.19026L3.91417 10.4823L11.2082 17.7743C11.3959 17.962 11.5014 18.2167 11.5014 18.4823C11.5014 18.7478 11.3959 19.0025 11.2082 19.1903C11.0204 19.378 10.7657 19.4835 10.5002 19.4835C10.2346 19.4835 9.97994 19.378 9.79217 19.1903L1.79217 11.1903C1.69904 11.0974 1.62515 10.987 1.57474 10.8655C1.52433 10.744 1.49838 10.6138 1.49838 10.4823C1.49838 10.3507 1.52433 10.2205 1.57474 10.099C1.62515 9.9775 1.69904 9.86715 1.79217 9.77426L9.79217 1.77426C9.88506 1.68113 9.99541 1.60725 10.1169 1.55683C10.2384 1.50642 10.3686 1.48047 10.5002 1.48047C10.6317 1.48047 10.7619 1.50642 10.8834 1.55683C11.0049 1.60725 11.1153 1.68113 11.2082 1.77426Z" fill="#121212" fill-opacity="0.75"/>
           </svg>
         </div>
         `,
         nextArrow: `
         <div class='lav-carousel__arrow lav-carousel__arrow--next'>
           <svg xmlns="http://www.w3.org/2000/svg" width="13" height="21" viewBox="0 0 13 21" fill="none">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.79183 1.77426C1.69871 1.86715 1.62482 1.9775 1.57441 2.09899C1.524 2.22048 1.49805 2.35072 1.49805 2.48226C1.49805 2.61379 1.524 2.74403 1.57441 2.86552C1.62482 2.98701 1.69871 3.09737 1.79183 3.19026L9.08583 10.4823L1.79183 17.7743C1.60406 17.962 1.49857 18.2167 1.49857 18.4823C1.49857 18.7478 1.60406 19.0025 1.79183 19.1903C1.97961 19.378 2.23428 19.4835 2.49983 19.4835C2.76539 19.4835 3.02006 19.378 3.20783 19.1903L11.2078 11.1903C11.301 11.0974 11.3748 10.987 11.4253 10.8655C11.4757 10.744 11.5016 10.6138 11.5016 10.4823C11.5016 10.3507 11.4757 10.2205 11.4253 10.099C11.3748 9.9775 11.301 9.86715 11.2078 9.77426L3.20783 1.77426C3.11494 1.68113 3.00459 1.60725 2.8831 1.55683C2.76161 1.50642 2.63137 1.48047 2.49983 1.48047C2.3683 1.48047 2.23806 1.50642 2.11657 1.55683C1.99508 1.60725 1.88473 1.68113 1.79183 1.77426Z" fill="#121212" fill-opacity="0.75"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.79183 1.77426C1.69871 1.86715 1.62482 1.9775 1.57441 2.09899C1.524 2.22048 1.49805 2.35072 1.49805 2.48226C1.49805 2.61379 1.524 2.74403 1.57441 2.86552C1.62482 2.98701 1.69871 3.09737 1.79183 3.19026L9.08583 10.4823L1.79183 17.7743C1.60406 17.962 1.49857 18.2167 1.49857 18.4823C1.49857 18.7478 1.60406 19.0025 1.79183 19.1903C1.97961 19.378 2.23428 19.4835 2.49983 19.4835C2.76539 19.4835 3.02006 19.378 3.20783 19.1903L11.2078 11.1903C11.301 11.0974 11.3748 10.987 11.4253 10.8655C11.4757 10.744 11.5016 10.6138 11.5016 10.4823C11.5016 10.3507 11.4757 10.2205 11.4253 10.099C11.3748 9.9775 11.301 9.86715 11.2078 9.77426L3.20783 1.77426C3.11494 1.68113 3.00459 1.60725 2.8831 1.55683C2.76161 1.50642 2.63137 1.48047 2.49983 1.48047C2.3683 1.48047 2.23806 1.50642 2.11657 1.55683C1.99508 1.60725 1.88473 1.68113 1.79183 1.77426Z" fill="#121212" fill-opacity="0.75"/>
           </svg>
         </div>
         `
       })
 
-      // Set initial active preview
-      const previews = previewElParent.querySelectorAll(
-        '.lav-carousel__preview'
-      )
-      if (previews.length) previews[0].classList.add('active')
-
-      previews.forEach((el, idx) => {
-        el.addEventListener('click', function () {
-          previews.forEach((p, i) => {
-            if (i === idx) {
-              p.classList.add('active')
-            } else {
-              p.classList.remove('active')
-            }
-          })
-          $('.lav-carousel').slick('slickGoTo', idx)
-        })
-      })
-
-      // Click on preview navigates carousel
-      previews.forEach((el, idx) => {
-        el.addEventListener('click', function () {
-          pushData('exp_buzz_v7_click_01', 'Icon', 'click', 'Select package')
-          $('.lav-carousel').slick('slickGoTo', idx)
-        })
-      })
-
       $('.lav-carousel').on('swipe', (event, slick, direction) => {
-        pushDataLayer('exp_buzz_v7_swipe', 'Image', 'other', 'Select package')
+        pushDataLayer('exp_buzz_v6_swipe', 'Image', 'other', 'Select package')
       })
-
-      // Update active preview on carousel change
-      // Change active class immediately when slide is about to change
-      $('.lav-carousel').on(
-        'beforeChange',
-        function (event, slick, currentSlide, nextSlide) {
-          previews.forEach((p, i) => {
-            if (i === nextSlide) {
-              p.classList.add('active')
-            } else {
-              p.classList.remove('active')
-            }
-          })
-        }
-      )
 
       const fancyboxScript = document.createElement('script')
       fancyboxScript.src =
@@ -645,7 +574,7 @@
       document.head.appendChild(fancyboxCss)
     }
 
-    // addSummary()
+    addSummary()
 
     function addSummary() {
       const markup = /* html */ `
@@ -693,8 +622,8 @@
       if (parts.length === 2) return parts.pop().split(';').shift()
     }
 
-    // getCoupon()
-    // const intervalGetCoupon = setInterval(getCoupon, 2500)
+    getCoupon()
+    const intervalGetCoupon = setInterval(getCoupon, 2500)
 
     function getCoupon() {
       let localCode = localStorage.getItem('mcforms-221632806-shopifyCoupons')
@@ -743,11 +672,11 @@
       }
     }
 
-    // summaryHandler()
-    // _$('.package .form').addEventListener('click', (e) => {
-    //   summaryHandler()
-    //   setTimeout(getCoupon, 100)
-    // })
+    summaryHandler()
+    _$('.package .form').addEventListener('click', (e) => {
+      summaryHandler()
+      setTimeout(getCoupon, 100)
+    })
     function summaryHandler() {
       const kids = _$('.lav-summary__kids')
       const adults = _$('.lav-summary__adults')
