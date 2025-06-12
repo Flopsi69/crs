@@ -3,8 +3,8 @@
 
   // Config for Experiment
   const config = {
-    // dir: 'http://127.0.0.1:5500/asheln/triggerPopup',
-    dir: 'https://flopsi69.github.io/crs/asheln/triggerPopup',
+    // dir: 'http://127.0.0.1:5500/ashlen/triggerPopup',
+    dir: 'https://flopsi69.github.io/crs/ashlen/triggerPopup',
     clarity: ['set', 'exp_exit_intent_popup', 'variant_1'],
     debug: false
   }
