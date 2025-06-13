@@ -596,7 +596,12 @@
       // Click on preview navigates carousel
       previews.forEach((el, idx) => {
         el.addEventListener('click', function () {
-          pushData('exp_buzz_v7_click_01', 'Icon', 'click', 'Select package')
+          pushDataLayer(
+            'exp_buzz_v7_click_01',
+            'Icon',
+            'click',
+            'Select package'
+          )
           $('.lav-carousel').slick('slickGoTo', idx)
         })
       })
