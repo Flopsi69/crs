@@ -92,7 +92,7 @@
 
     if (
       lavCountry !== 'US' ||
-      _$('#kl-shopLogin-component-Xpk4XR' || coupon === 'mystery10')
+      _$('#kl-shopLogin-component-SpYzNU' || coupon === 'mystery10')
     ) {
       text = coupon
         ? 'You’ve got an extra 10% off your first order!'
@@ -134,8 +134,8 @@
     // klaviyo.openForm('Xpk4XR')
 
     window._klOnsite = window._klOnsite || []
-    if (_$('#kl-shopLogin-component-Xpk4XR') || lavCountry !== 'US') {
-      window._klOnsite.push(['openForm', 'Xpk4XR'])
+    if (_$('#kl-shopLogin-component-SpYzNU') || lavCountry !== 'US') {
+      window._klOnsite.push(['openForm', 'SpYzNU'])
     } else {
       window._klOnsite.push(['openForm', 'UEQFBf'])
     }
@@ -148,7 +148,7 @@
       parsedCart = JSON.parse(parsedCart)
     }
     if (parsedCart?.discount_codes?.[0]?.code) {
-      localCode = localCode.discount_codes[0].code
+      localCode = parsedCart.discount_codes[0].code
     }
 
     let coupon =
