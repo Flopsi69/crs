@@ -680,7 +680,18 @@
       margin-left: -1rem;
       margin-right: -1rem;
       border-radius: 0;
-      padding-top: 80.5%;
+      //comment padding-top: 80.5%;
+      padding-top: 0;
+    }
+    .lav-video #video-player-box {
+      display: none;
+    }
+    .lav-short__video-el-new {
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
     }
     .lav-video .img-video video {
       border-radius: 0;
@@ -2649,6 +2660,10 @@
       _$('.lav-video').insertAdjacentElement(
         'beforeend',
         _$('.b-main .img-video-box')
+      )
+      _$('.lav-video .img-video-box').insertAdjacentHTML(
+        'afterbegin',
+        /* html */ `<video class="lav-short__video-el-new" autoplay="" muted="" loop="" playsinline="" data-uw-rm-av="vi" src="${config.dir}/video/hero-short.mp4"></video>`
       )
     })
 
