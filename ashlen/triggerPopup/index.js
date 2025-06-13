@@ -433,7 +433,7 @@
             display: grid;
             margin-top: 25px;
             gap: 20px;
-            max-height: 240px;
+            max-height: 160px;
             overflow: auto;
             line-height: 0;
           }
