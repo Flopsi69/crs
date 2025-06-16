@@ -33,8 +33,12 @@
     margin-bottom: 8px;
   }
   .lav-label span {
-    border-bottom: 1px solid #fff;
-    line-height: 1;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    line-height: 1.2;
+  }
+  .lav-label svg {
+    flex-shrink: 0;
   }
 `
 
