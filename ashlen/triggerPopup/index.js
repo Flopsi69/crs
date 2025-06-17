@@ -45,7 +45,9 @@
         e.target.closest('#rebuy-cart-close') ||
         e.target.classList.contains('rebuy-cart__background')
       ) {
-        openModal()
+        setTimeout(() => {
+          openModal()
+        }, 30 * 1000)
       }
     })
 
