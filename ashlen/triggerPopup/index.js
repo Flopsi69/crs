@@ -39,13 +39,17 @@
   }
 
   function addTriggers() {
+    let timerClose = null
     // Close cart
     document.addEventListener('click', (e) => {
       if (
         e.target.closest('#rebuy-cart-close') ||
         e.target.classList.contains('rebuy-cart__background')
       ) {
-        setTimeout(() => {
+        if (timerClose) {
+          clearTimeout(timerClose)
+        }
+        timerClose = setTimeout(() => {
           openModal()
         }, 30 * 1000)
       }
