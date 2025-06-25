@@ -713,7 +713,6 @@
                 )} .modal-trigger`
               )
 
-              console.log('item', item)
               item?.click()
 
               localStorage.removeItem('lav_preset')
