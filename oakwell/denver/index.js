@@ -706,9 +706,25 @@
         waitFor(
           () => _$('.steps').style.opacity === '1',
           () => {
-            _$(
-              `.services-list-new .service-item-new.${preset} .modal-trigger`
-            ).click()
+            if (localStorage.getItem('lav_preset')) {
+              const item = _$(
+                `.services-list-new .service-item-new.${localStorage.getItem(
+                  'lav_preset'
+                )} .modal-trigger`
+              )
+
+              console.log('item', item)
+              item?.click()
+
+              localStorage.removeItem('lav_preset')
+            } else if (preset) {
+              _$$('.select__location').forEach((el) => {
+                el.dataset.href = el.dataset.href + '&preset=' + preset
+                el.addEventListener('click', function () {
+                  localStorage.setItem('lav_preset', preset)
+                })
+              })
+            }
           }
         )
       })
@@ -1233,7 +1249,7 @@
           'Packages'
         )
 
-        location.href = `https://oakwell.com/book-now/?skip-location=Downtown%20Denver&preset=${item.dataset.preset}`
+        location.href = `https://oakwell.com/book-now/?preset=${item.dataset.preset}`
       })
     })
 
