@@ -1052,6 +1052,7 @@ With the fresh smell of new wood, I imagine these are built to order. I found it
     ]
   }
   window.lavProductType = null
+
   waitFor(
     () => item?.Categories,
     () => {
@@ -1151,34 +1152,70 @@ function initLightbox() {
 
 const lavSliderConfig = {
   divan: [
-    'slide-divan-1.png',
+    getRandomSlideReview('divan', 3),
     'slide-divan-2.png',
     'slide-divan-3.png',
     'slide-divan-4.png',
     'slide-divan-5.png'
   ],
   upholstered: [
-    'slide-divan-1.png',
+    getRandomSlideReview('general', 3),
     'slide-upholstered-2.png',
     'slide-upholstered-3.png',
     'slide-upholstered-4.png',
     'slide-divan-5.png'
   ],
   ottoman: [
-    'slide-divan-1.png',
+    getRandomSlideReview('ottoman', 3),
     'slide-ottoman-2.png',
     'slide-ottoman-3.png',
     'slide-divan-4.png',
     'slide-divan-5.png'
   ],
   upholsteredOttoman: [
-    'slide-divan-1.png',
+    getRandomSlideReview('ottoman', 3),
     'slide-upholstered-ottoman-2.png',
     'slide-upholstered-ottoman-3.png',
     'slide-upholstered-4.png',
     'slide-divan-5.png'
   ],
-  mattresses: ['slide-matres-2.png', 'slide-matres-3.png', 'slide-divan-5.png']
+  mattresses: [
+    getRandomSlideReview('mattress', 3),
+    'slide-matres-2.png',
+    'slide-matres-3.png',
+    'slide-divan-5.png'
+  ]
+}
+
+function getRandomSlideReview(type, num = 3) {
+  // ranom number from 1 to num
+  const randomNumber = Math.floor(Math.random() * num) + 1
+
+  const name = item?.Name
+
+  if (name.includes('Moscow Divan Bed')) {
+    return 'slide-moscow-review-1.png'
+  } else if (name.includes('Sofia Ottoman Divan Bed')) {
+    return 'slide-sofia-review-1.png'
+  } else if (name.includes('Chesterfield Ottoman Divan Bed')) {
+    return 'slide-chesterfield-review-1.png'
+  } else if (name.includes('Prague Ottoman Divan Bed')) {
+    return 'slide-prague-review-1.png'
+  } else if (name.includes('Melbourne Upholstered Bed')) {
+    return 'slide-melbourne-review-1.png'
+  } else if (name.includes('Cidra Ottoman Divan Bed')) {
+    return 'slide-cidra-review-1.png'
+  } else if (name.includes('Prague Wingback Divan Bed')) {
+    return 'slide-prague-wingback-review-1.png'
+  }
+
+  // const special = lavProductSpecials.filter((s) => item?.Name.includes(s.name))
+  // if (special.length) {
+  //   console.log('Special review found:', special)
+  //   twoReviews = special.sort(() => Math.random() - 0.5).slice(0, 2)
+  // }
+
+  return `slide-${type}-review-${randomNumber}.png`
 }
 
 let videoPlayingEl = null
@@ -1277,13 +1314,13 @@ function addMainSlide(img, isString, isVideo, isChange) {
       'beforeend',
       /*html*/ `
       <a data-pswp-width="640" data-pswp-height="478" target="_blank" href="${src}">
-        <div class="absolute top-5 left-0 z-[1]"><div class="bg-[#01B67A] rounded-[1px] text-sm font-semibold text-white font-poppins py-1 px-2 text-start flex items-center justify-start gap-1">${getSvg(
-          'moon-dark'
-        )}<span>60 Night Risk Free Trial</span></div></div>
         <img src='${src}' />
       </a>
-      ${scrollIcon}
       `
+      // <div class="absolute top-5 left-0 z-[1]"><div class="bg-[#01B67A] rounded-[1px] text-sm font-semibold text-white font-poppins py-1 px-2 text-start flex items-center justify-start gap-1">${getSvg(
+      //     'moon-dark'
+      //   )}<span>60 Night Risk Free Trial</span></div></div>
+      // ${scrollIcon}
     )
   } else if (isVideo) {
     slide.insertAdjacentHTML('beforeend', img.innerHTML)
