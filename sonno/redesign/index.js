@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/sonno/redesign',
-  // dir: 'https://flopsi69.github.io/crs/sonno/redesign',
+  // dir: 'http://127.0.0.1:5500/sonno/redesign',
+  dir: 'https://flopsi69.github.io/crs/sonno/redesign',
   clarity: ['set', 'pdp_imp_2', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
@@ -188,11 +188,10 @@ const styles = /* css */ `
     font-weight: 500;
     line-height: 18px;
     letter-spacing: 0.65px;
+    white-space: pre-line;
   }
 
   .lav-review {
-    display: flex;
-    gap: 8px;
     border-radius: 12px;
     background: rgba(254, 240, 224, 0.76);
     padding: 16px;
@@ -220,11 +219,11 @@ const styles = /* css */ `
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0.65px;
+    white-space: pre-line;
   }
   .lav-review__all {
     flex-shrink: 0;
-    width: 80px;
-    text-align: center;
+    text-align: right;
   }
   .lav-review__all img {
     border-radius: 6px;
@@ -236,7 +235,7 @@ const styles = /* css */ `
     line-height: 21px;
     text-decoration: underline;
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 12px;
   }
   .footer-add-cart {
     margin-left: 3px;
@@ -454,6 +453,604 @@ async function initExp() {
     return
   }
 
+  window.lavProductSpecials = [
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Helen C',
+      userDescription:
+        "The whole process was a dream—great communication throughout. The bed was easy to assemble, with spacious drawers and soft, luxurious silver chenille. The orthopaedic mattress gives the best night's sleep!"
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Customer',
+      userDescription: `Highly recommend 👌
+The bed is fabulous! Strong base, great gas hinges and the soft silver is gorgeous, will definitely buy again..thank you!`
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Peter Turay Jr',
+      userDescription: `Super quick and straightforward lads!
+Maruf and kabir were super quick with the delivery and assembly of my bed - gorgeous silver style for me and my wife!😀
+
+Will definitely be ordering in the nearby future for a King-size!`
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Louise Tiley',
+      userDescription: `Oh Wow... i couldn't be happier with my Moscow King size bed in silver grey plush and Orthopedic mattress. Excellently made bed and perfect in every way and the colour was perfect. customer service also very easy to contact and bed was made and delivered within the 10 days... so happy and will use again thanks.`
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Stacey Offei Boadu',
+      userDescription:
+        'My Moscow Divan Bed arrived this morning—Silver Chenille, Double with 2 drawers and Diamonte Buttons. I love the design! Maruf and Kabir were great, called ahead, assembled it quickly, and helped with the mattress.'
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Chloe',
+      userDescription:
+        "I purchased the Moscow divan base bed and I'm very happy with it. Easy to assemble, great delivery, excellent price. Highly recommend Sonno!"
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Samantha Worster',
+      userDescription:
+        'Got the Moscow divan bed in emerald green with 2 drawers. It was easy to assemble, well-made, and stunning in color. The delivery took a couple of weeks, and although I was away for my anniversary, my mum received it. I was worried about the stairs, but the delivery men kindly brought it to the hallway for her. Amazing price for such quality! Definitely recommend Sonno to anyone!'
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Rebecca',
+      userDescription:
+        'Would highly recommend. Slept like I died. Moscow divan/Encapsulation 3000 mattress is fantastic! Best sleep ever. Great delivery team, worth the upgrade—just wish the headboard was sturdier.'
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Susan Bennett',
+      userDescription:
+        'Ordered the Moscow divan bed with two drawers—one didn’t fit. Support was quick, Abid and Josh fixed it perfectly. Very happy with the service and the bed. Would definitely recommend Sonno!'
+    },
+    {
+      name: 'Moscow Divan Bed',
+      userName: 'Monta',
+      userDescription:
+        'The Moscow Divan bed is made perfectly with lovely diamanté details. Umer and Sary delivered it, set it up quickly, and were super understanding when I asked to delay delivery. Amazing service—great experience!'
+    },
+    {
+      name: 'Sofia Ottoman Divan Bed',
+      userName: 'Nicole',
+      userDescription:
+        'Would 100% buy from sonno again. Quick reliable service. The Sofia ottoman bed is absolutely stunning. Best bed I have bought by far.'
+    },
+    {
+      name: 'Sofia Ottoman Divan Bed',
+      userName: 'Moira',
+      userDescription:
+        'Had the super king Sofia Ottoman bed with 3000 pillow top mattress—firm, super comfy, and looks great. Delivery team couldn’t have been any nicer and made sure the bed was placed where we wanted it before leaving. Bed looks great and seems good value.'
+    },
+    {
+      name: 'Sofia Ottoman Divan Bed',
+      userName: 'Customer',
+      userDescription:
+        'From ordering our king size ottoman bed with 3000 encapsulation mattress to delivery today, communication with Sonno has been amazing. The bed was delivered as promised within the 10 working days. Muzzy & Muddy were great. Taking away the old bed and putting together our new one. So helpful and polite. Now for a good night sleep on our new bed and mattress.'
+    },
+    {
+      name: 'Sofia Ottoman Divan Bed',
+      userName: 'Deanna F',
+      userDescription:
+        'Absolutely thrilled with our super king Sofia Ottoman in navy blue plush velvet. Incredibly comfy and gorgeous. Great service from order to delivery.  Will be ordering again for a new bed for my son.'
+    },
+    {
+      name: 'Sofia Ottoman Divan Bed',
+      userName: 'Sharon',
+      userDescription:
+        'Bought the Sofia bed from Sonno and how pleased I am.  The bed is extremely solid and the upholstery is beautiful. If you need a new bed I’d highly recommend sonno you won’t be disappointed.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Mohammed Khamis',
+      userDescription:
+        'I ordered a king-size Chesterfield Ottoman Divan bed with a Sonno 2000 memory pocket mattress, and well-made, and after nearly two weeks of use, I couldn’t be more satisfied. The mattress is incredibly comfortable, and the bed itself looks luxurious and well-crafted. Choosing the Ottoman style was a great decision—it offers ample storage space, which has helped me declutter my apartment significantly.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Katarzyna',
+      userDescription:
+        "Lovely bed. We've purchased chesterfield ottoman and we're very happy. It's very solid, made very well. Colour and material is very good and beautiful. We love her board, looks amazing 😍. Sportage is huge. Thank you"
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Taylor Downey',
+      userDescription:
+        'I got it in the mink coniston colour and it’s lovely. Fast delivery, excellent quality bed really happy with my purchase as I’m having much better sleep now compared to my old bed 10/10 would definitely buy again.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Zoe',
+      userDescription:
+        "The bed looks really lovely, it's exactly as on the catalogue if not better. The customer service is amazing, had enquiries and the responses were timeous and professional."
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Myles Davies',
+      userDescription:
+        "Over the moon!! Received our chesterfield ottoman bed today,the delivery lads were really polite and friendly the bed is fantastic!! The quality is very very good they assembled it in no time and took our old bed frame and mattress and all packaging, absolutely over the moon! Highly recommend so no you definitely won't be disappointed!! Myles Davies"
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Jacqueline Young',
+      userDescription:
+        'Sonno really do know what makes a perfect bed. Our super king in steel velvet looks and feels superb. If you are considering purchasing a new bed look no further Sonno will surpass any other.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'EILEEN LISTER',
+      userDescription:
+        'Ive just got my new divan and Chesterfield headboard from Sonno beds. I absolutely love it. I got it in plush velvet steel colour. I am so very pleased. It looks beautiful. I would definitely recommend Sonno beds.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'DFJ',
+      userDescription:
+        'Fantastic service from order to delivery! From ordering our new Chesterfield Bed and mattress to delivery the service was excellent. We were kept informed regularly by Sonno. We paid the extra to have the bed assembled which was definitely worth it. All in all a 5* experience with Sonno & their delivery staff Adam & Mubeen.'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Leanne Murphy',
+      userDescription:
+        'Received our new bed we ordered the super king chesterfield divan bed with the cool gel memory mattress and it is absolutely beautiful and so comfortable well worth the money Thank you xx'
+    },
+    {
+      name: 'Chesterfield Ottoman Divan Bed',
+      userName: 'Sarah Shanly',
+      userDescription:
+        'Wow what a fantastic bed and mattress, we have opted for the king size Chesterfield with a 3000 pillow topped mattress. Very pleased with the purchase, very comfortable!! The delivery men were fantastic, well worth the extra £20 for assembly so they got it up the stairs. I would highly recommended this company'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Dawn',
+      userDescription:
+        'Great service from the moment I placed the order. We got the Prague ottoman and it is very well made I’m sure itwill last a long time. It is for my daughter who loves it and says it is very comfy.'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Teresa',
+      userDescription:
+        'Prague ottoman looked exactly what we saw on the website. Delivery was a bit delayed on the day but the assembly was quick. Happy with the purchase and delivery overall.'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Kimberly Tough',
+      userDescription:
+        'Amazing communication, plenty of order updates. We bought an ottoman divan base with the armour coniston fabric, would really recommend.'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Shahida Begum',
+      userDescription:
+        'Very pleased with my Ottoman Divan Double bed. The delivery guys (Maruf & Kabir) were very polite and fitted the bed quickly and to a great standard. I am really happy with the service from Sonno from start to finish. Would definitely recommend.'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Angela Wilson',
+      userDescription:
+        'I was worried about ordering online and not seeing/touch/feel the product. However I was very impressed, my Prague Ottoman bed is of a high standard and would definitely recommended Sonno to friend and family'
+    },
+    {
+      name: 'Prague Ottoman Divan Bed',
+      userName: 'Yasmine Yoda',
+      userDescription: `Excellent delivery by Muzzy and Muddy. They really communicated well. I love my prague ottoman divan bed, it’s of good quality. It was just what I saw online.My uncle couldn’t stop wishing the bed for himself😂. Honestly, I’m impressed and always happy when going to bed. Buy from Sonno!!😍❤️`
+    },
+    {
+      name: 'Upholstered Ottoman Bed',
+      userName: 'Elsie Nwando',
+      userDescription:
+        'Luxury beds at unbeatable prices! I got the Melbourne Upholstered Ottoman Bed – Super King with Orthopaedic PillowTop Mattress and had the best sleep ever. Delivered on my chosen date. Baz and Abbaz were great!'
+    },
+    {
+      name: 'Upholstered Ottoman Bed',
+      userName: 'Michelle Greenhalgh',
+      userDescription:
+        'Ordered a king size upholstered ottoman and mattress—great quality for the price with a 5-year warranty. Baz and Abbas were friendly, quick, and made sure I was happy. Highly recommend Sonno!'
+    },
+    {
+      name: 'Upholstered Ottoman Bed',
+      userName: 'Jas B',
+      userDescription: `Would definitely recommend!
+Gorgeous upholstered double ottoman bed - very happy with it, exactly as described. Many thanks also to the delivery men Hassan Ali and Tubby - super friendly, arrived on time and fully assembled on my top floor within the hour!`
+    },
+    {
+      name: 'Upholstered Ottoman Bed',
+      userName: 'Christine Thompson',
+      userDescription:
+        '5-star SONNO! My new grey upholstered bed with 5ft headboard looks stunning and feels well made. Super comfy mattress. Alex and Timmy assembled it fast and took all packaging. Excellent service—highly recommend!'
+    },
+    {
+      name: 'Cidra Ottoman Divan Bed',
+      userName: 'MS Media',
+      userDescription:
+        'Umer and team delivered and assembled our beds quickly—polite, friendly, and professional. We got the Havana double with drawers and Cidra king ottoman—both sturdy with great storage. Highly recommend Sonno!'
+    },
+    {
+      name: 'Cidra Ottoman Divan Bed',
+      userName: 'Kerry Ballinger',
+      userDescription: `We are very pleased with our Cidra bed. Came quickly and was made beautifully. I am always dubious of ordering online but will definitely order from this company again. Great price too. Thank you Sonno beds`
+    },
+    {
+      name: 'Cidra Ottoman Divan Bed',
+      userName: 'jayant kaushik',
+      userDescription: `Sonno - Cidra Ottoman Divan Bed (Superking)
+Maruf and Kabir were very helpful. Delivered the bed on time and great effort to get the big headboard through our stairs.
+Bed looks great and sturdy for now.`
+    },
+    {
+      name: 'Cidra Ottoman Divan Bed',
+      userName: 'Rachel Naylor',
+      userDescription: `Great service, would recommend to anyone. The sonno bed and mattress look immaculate, the colour and size are exactly as expected. I can't wait to get a good night sleep later. Ordered Cidra Ottoman Divan Bed
+Sonno Memory Pocket 2000 Mattress - DOUBLE 4FT6 x 1`
+    },
+    {
+      name: 'Cidra Ottoman Divan Bed',
+      userName: 'Kathlene Dunlao',
+      userDescription: `Recommended!
+We are very happy with our sonno bed and mattress. The Cidra ottoman bed looks phenomenal in photos and more so in person. The mattress feels so comfortable and we are enjoying a very good sleep each time!`
+    },
+    {
+      name: 'Prague Wingback Divan Bed',
+      userName: 'Customer',
+      userDescription: `(Prague wingback, silver divan) super quick delivery, kept informed the full process and friendly delivery drivers. Bed is stunning too! Highly recommend`
+    },
+    {
+      name: 'Prague Wingback Divan Bed',
+      userName: 'Louise',
+      userDescription:
+        'Found Sonno searching for a pink bed for my daughter. Bought the Prague winged pink bed with swatches. The mattress that was only £339 is extraordinarily comfortable, better than my Sealy one that cost over a grand from John Lewis. The bed is amazing. The delivery and the assembly went smoothly. When my little boy needs a bed, I will not hesitate to order from Sonno again.'
+    },
+    {
+      name: 'Prague Wingback Divan Bed',
+      userName: 'Sarah',
+      userDescription: `Extremely good value for money
+We recently purchased the King Prague Wingback Divan bed with drawers at the foot end and the Sonno Gel Memory 3000 mattress, I was a little wary as the price on this bed was extremely reasonable and I was absolutely over the moon with the amazing quality of the bed and the ease to put it together.`
+    },
+    {
+      name: 'Prague Wingback Divan Bed',
+      userName: 'Deedoh',
+      userDescription:
+        'I bought this beautiful Wingback Divan bed for my daughter’s birthday. She loves it! Gorgeous and easy to assemble. I’ll definitely recommend Sonno to friends and family. Proud to have found them! ❤️'
+    },
+    {
+      name: 'Prague Wingback Divan Bed',
+      userName: 'Shanny',
+      userDescription:
+        'Ordered Prague Wingback Divan Bed with Pearl Pocket Sprung Pillow Top Mattress. Delivery was on time, and service was great.  Abbas and Naj were friendly and efficient. Happy with my purchase and have recommended Sonno to family and friends.'
+    }
+  ]
+
+  window.lavProductTwoReview = null
+
+  window.lavProductReviews = {
+    ottoman: [
+      {
+        userName: 'Kay Dodd',
+        userDescription: `Great service - great bed!
+This company was very easy to deal with, handled queries very quickly and they delayed delivery until we were ready. The guys who delivered our new superking bed put the ottoman bed together for me.
+The bed looks great and feels solid - I'm really happy with it.
+I would definitely use this company again.`
+      },
+      {
+        userName: 'Sherona White',
+        userDescription: `Lancaster Upholstered Ottoman Bed
+I brought the Lancaster Upholstered Ottoman Bed, and it is about amazing and putting it together very easily and straightforward. The bed is such great quality and worth every penny`
+      },
+      {
+        userName: 'Mrs Ann Mason',
+        userDescription: `Communication great.Ordered an Ottoman bed and mattress.Love them both,definitely the most comfortable mattress I have ever had.
+Would definitely recommend.`
+      },
+      {
+        userName: 'Abby Clarke',
+        userDescription: `Great price and fast delivery! I was hesitant at first but took a chance on the Athena Ottoman bed in Almond Coniston - absolutely fab. Cool Gel 1000 mattress is firmer than expected but comfy. Delivery team was efficient, polite, and early!`
+      },
+      {
+        userName: 'Kathryn Goldsmith',
+        userDescription: `Great experience all round!
+Ordering was easy, lead time and communication was great! I even delayed my order as I was having decorating done and the team sorted a new delivery date for me. 
+The bed itself.. I opted for a lift up ottoman and so far I couldn't be happier. Bed seems to be great quality and im loving having all the under bed storage in my little house!`
+      },
+      {
+        userName: 'Sharon',
+        userDescription: `My small double Ottoman Divan bed, headboard, and mattress were delivered and assembled by Naj and Idris - fantastic job! Quick, professional, and friendly. Sonno’s customer care also kept me well updated throughout.`
+      },
+      {
+        userName: 'Dan Patterson',
+        userDescription: `The bed was delivered quickly and it’s bloody lovely. Really nice quality and after 2-3 weeks of sleeping on it I can say the mattress is very comfortable. The ottoman pull-up base is sturdy and well made, the bed goes up and down without any problems and doesn’t feel wobbly at all.`
+      },
+      {
+        userName: 'SG',
+        userDescription: `Really pleased with our Prague King Ottoman and Sonno Memory Pillowtop 1000 mattress, looks super comfy! 40cm deep fitted sheets fit perfectly. Baz and Abbas were efficient and friendly. Assembly and removal service was worth it. Highly recommend!`
+      },
+      {
+        userName: 'Nadean',
+        userDescription: `My new bed was delivered and built by a lovely Duo Baz & Abbas. Bed was built in a good timely manner and was even given demonstration on how to safely open the Ottoman style bed. And also was informed how tp take bed apart if I was to move in the future. They took all the wrapping with them lovely job.`
+      },
+      {
+        userName: 'Jessy Chan',
+        userDescription: `I ordered their ottoman bed and I'm really impressed. The fabric quality both on the headboard and bed frame is excellent. I love the solid base and the spacious storage. It was easy to assemble. Love it!`
+      },
+      {
+        userName: 'Kathryn Goldsmith',
+        userDescription: `Received my bed today and so far, absolutely over the moon.
+Baz and Abbas delivered and installed my bed today and we're super polite and speedy, couldn't ask for better service. Even showed me how to work the ottoman safely!!
+Bed looks amazing, thanks to the sonno team!`
+      },
+      {
+        userName: 'Zaid',
+        userDescription: `Baz and Abbas were brilliant. Did everything they could to fit my Ottoman bed into the house. They even went round the back due to access issues and carried it in. Thanks to both of them. I am very happy!`
+      },
+      {
+        userName: 'Michelle Greenhalgh',
+        userDescription: `Ordered kingsize upholstered ottoman and mattress really pleased with both quality is great for the price , 5 year warranty also included which is good , would definitely recommend sonno`
+      },
+      {
+        userName: 'Warren Francis',
+        userDescription: `Ottoman style bed.
+With the fresh smell of new wood, I imagine these are built to order. I found it easy to put together and had no issues downloading the instructions from the QR code on the bed's base. Very pleased with the product and the delivery men.`
+      },
+      {
+        userName: 'Irene Husein-Goh',
+        userDescription: `Good quality ottoman. Quick delivery. The delivery guys are very friendly. Highly recommended.`
+      }
+    ],
+    divan: [
+      {
+        userName: 'Lisa CR',
+        userDescription:
+          'Absolutely love my new bed, I wasn’t expecting much as I paid £399 for a divan frame with drawers and headboard but amazing quality for the price I’m very impressed and already looking for beds for the kids rooms, the delivery drivers Idris and Jammy were so friendly and helpful can’t thank them enough I hope I get them for my next delivery ☺️'
+      },
+      {
+        userName: 'Alex',
+        userDescription:
+          'Gorgeous bed, delivered promptly.\nI ordered a divan bed but ordered mattress separately as I have back issues.\nThe guys assembled the bed and took away any rubbish. The email update made me smile too'
+      },
+      {
+        userName: 'Alison Watson',
+        userDescription:
+          'Sonno…\nOrdered two divan with headboards and mattresses from Sonno. Customer service is fabulous replying to online queries quickly. On delivery day was kept informed with tracking. The beds are lovely. I am very happy.'
+      },
+      {
+        userName: 'Consumer',
+        userDescription:
+          'Sonno have been amazing\nOrdered a superking divan base and could not get it into my bedroom!! They made a very stressful thing much easier, allowing me to swap for a different base that comes in different sections and charged me nothing for what was very much my mistake.  Thank you Sonno!!'
+      },
+      {
+        userName: 'Paula Waugh',
+        userDescription:
+          'I am over the moon with my new divan bed base. I paid extra for the larger headboard. It is such good quality and excellent value for money. Highly recommend'
+      },
+      {
+        userName: 'Michelle Allan',
+        userDescription:
+          "Divan Bed With Headboard\nLovely, well made bed divan.Delivery was great - on time and goods were delivered with no hassle.Bed was easy to assemble and I've been sleeping on it with no problems. Would recommend Sonno!"
+      },
+      {
+        userName: 'Guv',
+        userDescription:
+          'Excellent communication and fast delivery.  The divan base is perfect and as described. Lovely large headboard and solid base no complaints whatsoever. I highly recommend Sonno.'
+      },
+      {
+        userName: 'Nicola Cameron',
+        userDescription:
+          'Oslo Divan Bed King/Sonno Encapsulation 3000 Mattress.\nI phoned the sales team a couple of times before I ordered the bed and mattress. They were very helpful and polite and advised me on a mattress that helps with mattress movement isolation. The bed frame is great quality for the price and the mattress is amazing! The mattress is so comfortable and I sleep so much better now. \nFrom my experience I would highly recommend.'
+      },
+      {
+        userName: 'David Hanmore',
+        userDescription:
+          'super king size divan, ( extras - extended headboard, 2 draws, heavy duty support, and installation), plus a 2000 spring mattress. All this for less cost than a 1000 spring mattress at benson for beds. Easy 5 star review.'
+      },
+      {
+        userName: 'Customer',
+        userDescription:
+          '(Prague wingback, silver divan) super quick delivery, kept informed the full process and friendly delivery drivers. Bed is stunning too! Highly recommend'
+      },
+      {
+        userName: 'Joanna Hall',
+        userDescription:
+          'I ordered a divan base with two drawers and I also purchased a matching floor standing headboard. The delivery guys were friendly, efficient and professional. I paid for them to install the new bed and it took just a few minutes before I could make the bed. I am extremely pleased with the product, quality and service. Well done Sonno and thank you.'
+      },
+      {
+        userName: 'Hannah foreman',
+        userDescription:
+          'Great experience\nGreat bed and mattress- Victoria divan double and Memory PillowTop 1000 mattress so comfy.\n\nGreat service and delivery'
+      },
+      {
+        userName: 'Shenaz Harrod',
+        userDescription:
+          'Amazing bed and service! My divan bed with drawers was easy to assemble, great quality, and a fantastic price. Idris and Hassan delivered on time, were professional and helpful. One night on it confirmed I made the right choice. Highly recommend Sonno!'
+      },
+      {
+        userName: 'Edem',
+        userDescription:
+          'Ordered a divan bed for my daughter’s room and the entire process from ordering online to delivery and installation was seamless and the bed is beautiful. As a result I ordered a second one for my son’s room! Can’t wait to order an ottoman bed for my room.'
+      },
+      {
+        userName: 'Rachael Audis',
+        userDescription:
+          'Ordered a single divan bedframe with winged headboard. Delivery was within the specified time, phonecall on day of delivery, 2 drivers were extremely pleasant and delivered to a room of my choice. The bed itself is beautiful!! Would recommend!!'
+      }
+    ],
+    mattresses: [
+      {
+        userName: 'Abby Clarke',
+        userDescription:
+          "Very good price and quick/prompt delivery. I was a bit hesitant at buying as hadn't heard of the company before, only popped up on social media and was a bit untrusting of how many rapid reviews on trust pilot.  Mattress is a cool gel 1000 medium firm. A bit firmer than i expected having had soft to med ones but feels better to sleep on."
+      },
+      {
+        userName: 'Mark Longden',
+        userDescription:
+          'Once again baz and abbas and the sonno team have done an amazing job i ordered about a year ago and they not stopped the same standard as last time built and taken everything away for my parents bed and mattress would highly recommend'
+      },
+      {
+        userName: 'customer',
+        userDescription:
+          'If you want value for your money go for SONNO.My experience on the bed and mattress has left me feeling satisfied and fulfilled that I made the right choice .'
+      },
+      {
+        userName: 'John higginbotham',
+        userDescription: 'Great delivery by Idris and Naj, really good mattress'
+      },
+      {
+        userName: 'Alex',
+        userDescription:
+          'Gorgeous bed, delivered promptly.\nI ordered a divan bed but ordered mattress separately as I have back issues.\nThe guys assembled the bed and took away any rubbish. The email update made me smile too'
+      },
+      {
+        userName: 'Serena Craigie',
+        userDescription:
+          'Great delivery service from Baz and Abbas. When they realised that I live on my own they took my new mattress upstairs for me as they knew I would struggle. I’m so grateful to them. Superb service.'
+      },
+      {
+        userName: 'customer. Ian M',
+        userDescription:
+          'Love my mattress\nEasy web sight to navigate , great advice given by customer service over phone .'
+      },
+      {
+        userName: 'Daniel Forrester',
+        userDescription:
+          "Quick, efficient and friendly service\nWas notified of delivery date around a week in advance and given a 2 hour timeslot.\nIdris and Jammy were very friendly, quick and efficient - delivering all the parts of my bed + mattress to the desired room within a few minutes.\nHopefully won't need to buy a bed again for some time but I wouldn't hesitate to use Sonno again after this experience."
+      },
+      {
+        userName: 'Cheryl Forster',
+        userDescription:
+          "Fantastic service from Sav and Mobeen today, couldn't get the van up my road so carried the bed and mattress up a steep hill. Assembled perfectly and couldn't be more helpful."
+      },
+      {
+        userName: 'Adrian',
+        userDescription:
+          'Great quality, service, price.\nThe bed is great quality, well built and exactly as described. The mattress is also super comfortable and as described. I need another bed in a few weeks, and will definitely use sonno again for this. - plus the price was the best I found for this type of bed!'
+      },
+      {
+        userName: 'Mrs Heaton',
+        userDescription:
+          'Jolris and jammy delivered my mattress today what a credit to the company they are they put the mattress on my bed and took the plastic cover off for me. Brilliant lads'
+      },
+      {
+        userName: 'Kate Callier',
+        userDescription:
+          "I loooove my new bed. The delivery slot was stuck to & i could track the delivery on the day, the guys were friendly & fast. It was a very wet day & they removed their shoes immediately on entry, I hasn't asked! My new bed is so comfy, got the Ortho mattress and its amazing, bed is stable with great storage. Also a great height, no difficulty getting up in the morning. Would highly recommend."
+      },
+      {
+        userName: 'Keren',
+        userDescription:
+          'Highly recommend\n The bed itself is so gorgeous and high quality and the mattress is just dreamy! Highly recommend'
+      },
+      {
+        userName: 'Carol',
+        userDescription:
+          'To order this fantastic double mattress was very easy and to make it even better iam able to pay in instalments it also came very quickly within the week, they also took my old mattress away for £19. I think they are exceptional they kept me very informed by text when it was being delivered .thankyou 🙂'
+      },
+      {
+        userName: 'Helen C',
+        userDescription:
+          'The perfect addition to any bedroom\nThe bed itself was so easy to put together no drills required, and the drawers within the base are so spacious.\nAs for the mattress (we opted for the orthopaedic mattress) it’s the best nights sleep I have ever had!!'
+      }
+    ],
+    other: [
+      {
+        userName: 'Farzana Begum',
+        userDescription:
+          'I had a great experience with Sonno Beds! Jammy and Idris were absolutely fantastic - very friendly, professional, and prompt. From start to finish, the service was smooth and efficient. Highly recommend Sonno Beds, especially if Jammy and Idris are involved!'
+      },
+      {
+        userName: 'Karen Brickell',
+        userDescription:
+          'Hassan Ali and Aqeel delivered a 4ft6 mattress today, they took away the old mattress. They are such nice people, very helpful and polite. I give them a 5☆ rating SONNO are lucky to have them on their team.'
+      },
+      {
+        userName: 'Leeann',
+        userDescription:
+          'Communication was very good and knew what was going on.Tne delivery was smooth, assembly was good and they ensured that plave was left clean after delivery.Bed is amazing and comfortable 👏🏽. Wish l knew about Sonno beds earlier.'
+      },
+      {
+        userName: 'MRS JULIE M WILSON',
+        userDescription:
+          'The guys were friendly very helpful and went above and beyond will definitely be using this company again bed base was of excellent quality'
+      },
+      {
+        userName: 'Tina',
+        userDescription:
+          'Beautiful well crafted item that is exactly what I was looking for. From start to finish excellent service'
+      },
+      {
+        userName: 'Ms ad mr Slate',
+        userDescription:
+          'The whole experience from start to finish.\nOrdering was easy, even with the fact that the bed was being delivered to a different address.\nCommunication was excellent, delivery times spot on.\nBed is of great quality and will certainly buy again if ever need to for spare room.\nDelivery men very polite, friendly, and professional while bringing in and putting my bed together for me .'
+      },
+      {
+        userName: 'Mel',
+        userDescription:
+          'Great service\nCouldn’t be happier with my new bed. Service was great, and Idris and Jammy were amazing. Called me to tell me they were 30 mins away and checked I was all happy before they left. Super nice and friendly, thanks again!'
+      },
+      {
+        userName: 'Prism Vapes',
+        userDescription:
+          "Amazing customer service would recommend sonno to everyone the quality is fantastic I love my new bed and floor standing headboard it's so comfy. I'm even thinking of buying a matching ottoman for the end of the bed."
+      },
+      {
+        userName: 'Brenda Couzens',
+        userDescription:
+          'Kept informed of delivery time. Both men were polite and happy. Put bed together, we are very pleased and will recommend Sonno to everyone we know.'
+      },
+      {
+        userName: 'Sid',
+        userDescription:
+          'I would highly recommend this company. Easy ordering process and good communication regarding delivery. Saf and Alex even assembled my bed today, quickly and efficiently. Extremely polite and courteous and they even took away my old bed and mattress. Thank you so much.'
+      },
+      {
+        userName: 'Sri Thava',
+        userDescription:
+          'Good service\nWe ordered mattresses and bed\nIt’s is really good\nThe delivery service is fine . They didn’t bring corect baseboard first time . Then I called customer service they were really helpful and delivered and fixed very quickly .\nThanks sonno support'
+      },
+      {
+        userName: 'Carey G',
+        userDescription:
+          'I cannot fault Sarry! His customer service is 5*, he was friendly, professional and his communication was A+!\nThis is my second order with Sonno and once again I happy with the service! '
+      },
+      {
+        userName: 'Dom Saint',
+        userDescription:
+          'Perfect service, Thank you guys Najan & idris good communication and quick build. Bed is great and we are very happy'
+      },
+      {
+        userName: 'Mark Longden',
+        userDescription:
+          'once again baz and abbas and the sonno team have done an amazing job i ordered about a year ago and they not stopped the same standard as last time built and taken everything away for my parents bed and mattress would highly recommend'
+      },
+      {
+        userName: 'Prashanth L',
+        userDescription:
+          'Great bed and awesome service\nSary came on time and did a great job in installing the bed. The bed looks and feels great as described in the picture and looks sturdy.'
+      },
+      {
+        userName: 'Yemi',
+        userDescription:
+          'The delivery guys were very professional, and the bed was very Easy to assemble. I love everything about-Superb!!!'
+      },
+      {
+        userName: 'customer',
+        userDescription:
+          'The the delivery guys were wonderful in assembling it , Baz and ABBAs thank you I’m grateful.My experience on the bed and mattress has left me feeling satisfied and fulfilled that I made the right choice .'
+      },
+      {
+        userName: 'Simon Bentley',
+        userDescription:
+          'Great service, great price, short delivery time, communication from driver great and helped with getting old mattress out of house and helpful staff on the phone when I had a problem, would highly recommend to everyone'
+      },
+      {
+        userName: 'Lyndsay Noble',
+        userDescription:
+          'From the confirmation email - which was just brilliant- to our 1st night in the bed it has been seamless.'
+      }
+    ]
+  }
   window.lavProductType = null
   waitFor(
     () => item?.Categories,
@@ -855,33 +1452,39 @@ function changeUpsell() {
   )
 }
 
-function addAdditional() {
-  // TODO all review links
-  let reviewName = 'Paula Waugh'
-  let reviewDescr =
-    'I am over the moon with my new divan bed base. I paid extra for the larger headboard. It is such good quality and excellent value for money. Highly recommend'
-  let reviewImg = `${config.dir}/img/review-orig.png`
-  const reviewLink = 'https://uk.trustpilot.com/review/sonno.co.uk'
+function getRandomReview() {
+  if (window.lavProductTwoReview) return window.lavProductTwoReview
 
-  if (lavProductType === 'mattresses') {
-    reviewName = 'Laur'
-    reviewDescr = `Absolutely fantastic experience and great quality bed. Muddy was fantastic, really friendly. Arrived on time and was great at putting the bed together. There wasn't anything that was to much trouble, he went above and beyond expectations. Would definitely recommend to anyone 👌`
-    reviewImg = `${config.dir}/img/review-mattresses.png`
+  let twoReviews = null
+
+  const special = lavProductSpecials.filter((s) => item?.Name.includes(s.name))
+  if (special.length) {
+    console.log('Special review found:', special)
+    twoReviews = special.sort(() => Math.random() - 0.5).slice(0, 2)
+  } else {
+    const reviews =
+      lavProductReviews[lavProductType] || lavProductReviews['other']
+    twoReviews = reviews.sort(() => Math.random() - 0.5).slice(0, 2)
   }
+
+  console.log('2 reviews', twoReviews)
+  window.lavProductTwoReview = twoReviews
+  return window.lavProductTwoReview
+}
+
+function addAdditional() {
+  const reviewItem = getRandomReview()[1]
 
   const review = /* html */ `
     <div class='lav-review'>
       <div class='lav-review__info'>
         <div class='lav-review__head'>
-          <div class='lav-review__title'>${reviewName}</div>
+          <div class='lav-review__title'>${reviewItem.userName}</div>
           <img src='${config.dir}/img/trustpilot-stars.png' />
         </div>
-        <div class='lav-review__descr'>
-          ${reviewDescr}
-        </div>
+        <div class='lav-review__descr'>${reviewItem.userDescription}</div>
       </div>
       <div class='lav-review__all'>
-        <img src='${reviewImg}' />
         <div class='lav-review__all-link'>All reviews</div>
       </div>
     </div>
@@ -894,7 +1497,9 @@ function addAdditional() {
   })
 
   _$('.lav-review__all-link').addEventListener('click', () => {
-    alert('This link is not working yet: ' + reviewLink)
+    _$('.trustpilot-review-section')?.scrollIntoView({
+      behavior: 'smooth'
+    })
     // window.open(link, '_blank')
   })
 
@@ -997,15 +1602,15 @@ function addInfo() {
     </div>
   `
 
+  const reviewItem = getRandomReview()[0]
+
   const feedback = /* html */ `
     <div class='lav-feedback'>
       <div class='lav-feedback__head'>
-        <div class='lav-feedback__title'>Kathryn Goldsmith</div>
+        <div class='lav-feedback__title'>${reviewItem.userName}</div>
         <img src='${config.dir}/img/trustpilot-stars.png' />
       </div>
-      <div class='lav-feedback__descr'>
-        Received my bed today and so far, absolutely over the moon. Ordering, arranging delivery was super easy
-      </div>  
+      <div class='lav-feedback__descr'>${reviewItem.userDescription}</div>  
     </div>
   `
 
