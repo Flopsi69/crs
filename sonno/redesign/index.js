@@ -1249,12 +1249,17 @@ function handleCarousel() {
     addThumbSlide(img)
   })
 
+  additionalImages.slice(0, 1).forEach((img) => {
+    addMainSlide(img, true)
+    addThumbSlide(img, true)
+  })
+
   videos.forEach((video) => {
     addMainSlide(video, false, true)
     addThumbSlide(video, false, true)
   })
 
-  additionalImages.forEach((img) => {
+  additionalImages.slice(1).forEach((img) => {
     addMainSlide(img, true)
     addThumbSlide(img, true)
   })
@@ -1544,12 +1549,14 @@ function addAdditional() {
   const firstItem = _$(
     '.estimate-delivery-ele .estimate-delivery-item:nth-child(1) .estimate-delivery-date'
   ).innerText
-  const secondItem = _$(
-    '.estimate-delivery-ele .estimate-delivery-item:nth-child(2) .estimate-delivery-date'
-  ).innerText
+  // const secondItem = _$(
+  //   '.estimate-delivery-ele .estimate-delivery-item:nth-child(2) .estimate-delivery-date'
+  // ).innerText
   const thrirdItem = _$(
     '.estimate-delivery-ele .estimate-delivery-item:nth-child(3) .estimate-delivery-date'
   ).innerText
+
+  const trialNights = add60DaysToDateRange(thrirdItem)
 
   const delivery = /* html */ `
     <div class='lav-delivery'>
@@ -1565,12 +1572,12 @@ function addAdditional() {
         
         <div class='lav-delivery__item'>
           <div class='lav-delivery__item-title'>Delivered</div>
-          <div class='lav-delivery__item-subtitle'>${secondItem}</div>
+          <div class='lav-delivery__item-subtitle'>${thrirdItem}</div>
         </div>
         
         <div class='lav-delivery__item'>
           <div class='lav-delivery__item-title'>Enjoy a 60-Night Free Trial</div>
-          <div class='lav-delivery__item-subtitle'>${thrirdItem}</div>
+          <div class='lav-delivery__item-subtitle'>${trialNights}</div>
           <div class='lav-delivery__item-caption'>
             Not fully satisfied? Don't worry; we'll arrange a return or exchange for you.
           </div>
@@ -1580,6 +1587,26 @@ function addAdditional() {
   `
 
   _$('.estimate-delivery-wrapper').insertAdjacentHTML('beforebegin', delivery)
+}
+
+function add60DaysToDateRange(dateRange) {
+  const currentYear = new Date().getFullYear()
+  const [startStr, endStr] = dateRange.split(' - ')
+
+  // Parse input dates with current year
+  const startDate = new Date(`${startStr} ${currentYear}`)
+  const endDate = new Date(`${endStr} ${currentYear}`)
+
+  // Add 60 days to each
+  const newStart = new Date(startDate.setDate(startDate.getDate() + 60))
+  const newEnd = new Date(endDate.setDate(endDate.getDate() + 60))
+
+  // Format back to 'Mon D'
+  const options = { month: 'short', day: 'numeric' }
+  const formattedStart = newStart.toLocaleDateString('en-US', options)
+  const formattedEnd = newEnd.toLocaleDateString('en-US', options)
+
+  return `${formattedStart} - ${formattedEnd}`
 }
 
 function addInfo() {
@@ -1635,7 +1662,9 @@ function addInfo() {
   const date = dateRaw.split('-')[0].trim()
   const freeDelivery = /* html */ `
     <div class='lav-free-delivery'>
-      Order now for <span class='lav-free-delivery__free'>FREE delivery</span> by <span class='lav-free-delivery__date'>${date}</span>
+      Order now for <span class='lav-free-delivery__free'>FREE delivery</span> by <span class='lav-free-delivery__date'>${getDayWithDate(
+        date
+      )}</span>
     </div>
   `
 
@@ -1690,6 +1719,14 @@ function addInfo() {
       block: 'center'
     })
   })
+}
+
+function getDayWithDate(dateStr) {
+  const currentYear = new Date().getFullYear()
+  const date = new Date(`${dateStr} ${currentYear}`)
+
+  const options = { weekday: 'long', month: 'short', day: 'numeric' }
+  return date.toLocaleDateString('en-US', options)
 }
 
 function addTrust() {
