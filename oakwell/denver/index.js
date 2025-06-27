@@ -541,7 +541,7 @@
 `
 
   const stylesEl = document.createElement('style')
-  stylesEl.classList.add('exp-styles')
+  stylesEl.classList.add('exp-denver-styles')
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
@@ -564,7 +564,7 @@
     console.log('location', location.href)
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-    if (!_$('.exp-styles')) {
+    if (!_$('.exp-denver-styles')) {
       document.head.appendChild(stylesEl)
     }
 
@@ -1759,7 +1759,7 @@
     `
 
         const stylesEl = document.createElement('style')
-        stylesEl.classList.add('exp-denver')
+        stylesEl.classList.add('exp-modal-denver')
         stylesEl.innerHTML = styles
         document.head.appendChild(stylesEl)
       }

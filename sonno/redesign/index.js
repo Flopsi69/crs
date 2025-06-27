@@ -437,7 +437,7 @@ const styles = /* css */ `
 `
 
 const stylesEl = document.createElement('style')
-stylesEl.classList.add('exp-styles')
+stylesEl.classList.add('exp-homepage-styles')
 stylesEl.innerHTML = styles
 
 // *** Logic *** //
