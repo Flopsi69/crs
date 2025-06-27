@@ -448,6 +448,10 @@ async function initExp() {
 
   console.debug('** InitExp **')
 
+  await waitFor(() => document.querySelector('.product-details'), false, {
+    ms: 50
+  })
+
   if (!_$('.product-details')) {
     console.log('Product details not found')
     return
