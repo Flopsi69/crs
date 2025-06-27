@@ -15,10 +15,10 @@
     display: none;
   }
 
-  .lav-quincy {
+  .lavr-quincy {
     font-family: quincycf, sans-serif;
   }
-  .lav-container {
+  .lavr-container {
 
   }
 
@@ -40,18 +40,18 @@
     opacity: 1;
   }
 
-  .lav-video {
+  .lavr-video {
     position: relative;
     margin-top: 120px;
   }
-  .lav-video .img-video {
+  .lavr-video .img-video {
     border-radius: 5.625rem;
     padding-top: 56.397%;
     position: relative;
     z-index: 2;
     overflow: hidden;
   }
-  .lav-video .img-video:before {
+  .lavr-video .img-video:before {
     content: '';
     border-radius: inherit;
     position: absolute;
@@ -62,7 +62,7 @@
     bottom: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.30) 20.82%, rgba(0, 0, 0, 0.00) 58.62%);
   }
-  .lav-video .img-video video {
+  .lavr-video .img-video video {
     display: block;
     width: 100%;
     height: 100%;
@@ -84,10 +84,10 @@
   }
  
 
-  .lav-products {
+  .lavr-products {
     position: relative;
   }
-  .lav-products__caption {
+  .lavr-products__caption {
     margin-top: 24px;
     color: #DDF2D0;
     font-size: 16px;
@@ -96,39 +96,39 @@
     letter-spacing: 5.76px;
     text-transform: uppercase;
   }
-  .lav-products--one {
+  .lavr-products--one {
     padding: 120px 0 15rem;
     background: #0C5947;
   }
-  .lav-products--three {
+  .lavr-products--three {
     padding: 120px 0 15rem;
     background: #0C5947;
   }
-  .lav-product {
+  .lavr-product {
     display: flex;
     flex-flow: column;
   }
-  .lav-product__image img {
+  .lavr-product__image img {
     border-radius: 40px;
   }
-  .lav-products__list {
+  .lavr-products__list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 24px;
     margin-top: 64px;
   }
-  .lav-products__image {
+  .lavr-products__image {
     line-height: 0;
     border-radius: 32px;
     overflow: hidden;
   }
-  .lav-product__info {
+  .lavr-product__info {
     margin-top: 32px;
     display: flex;
     flex-flow: column;
     flex: 1;
   }
-  .lav-product__title {
+  .lavr-product__title {
     overflow: hidden;
     color: #DDF2D0;
     text-overflow: ellipsis;
@@ -136,19 +136,19 @@
     font-style: normal;
     font-weight: 400;
   }
-  .lav-product__descr {
+  .lavr-product__descr {
     color: #DDF2D0;
     font-size: 16px;
     font-weight: 400;
     line-height: 140%;
     margin: 18px 0;
   }
-  .lav-product__link {
+  .lavr-product__link {
     max-width: 13rem;
     margin-top: auto;
     width: 100%;
   }
-  .lav-products__wave {
+  .lavr-products__wave {
     width: 100%;
     position: absolute;
     left: 0;
@@ -157,53 +157,53 @@
     height: auto;
     pointer-events: none;
   }
-  .lav-products__wave-mob {
+  .lavr-products__wave-mob {
     display: none;
   }
   @media(max-width: 1200px) {
-    .lav-products__wave {
+    .lavr-products__wave {
       bottom: -9rem;
     }
   }
-  .lav-products--two {
+  .lavr-products--two {
     background: #DDF2D0;
     border-radius: 90px 90px 0 0;
     padding: 5.6rem 0 15rem;
   }
-  .lav-products--two .lav-products__title {
+  .lavr-products--two .lavr-products__title {
     color: #0C5947;
   }
-  .lav-products--two .lav-products__caption {
+  .lavr-products--two .lavr-products__caption {
     color: #0C5947;
   }
-  .lav-products--two .lav-product__title {
+  .lavr-products--two .lavr-product__title {
     color: #0C5947;
     margin-bottom: 18px;
   }
-  .lav-products--two .lav-products__wave {
+  .lavr-products--two .lavr-products__wave {
     transform: scaleX(-1);
   }
-  .lav-products--two .lav-products__leaf {
+  .lavr-products--two .lavr-products__leaf {
     position: absolute;
     top: 0;
     right: 58px;
     transform: translateY(-50%);
   }
 
-  .lav-benefits {
+  .lavr-benefits {
     padding: 5rem 0 13.5rem;
   }
-  .lav-benefits__list {
+  .lavr-benefits__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
-  .lav-benefit {
+  .lavr-benefit {
     display: flex;
     align-items: center;
     gap: 38px;
   }
-  .lav-benefit__image {
+  .lavr-benefit__image {
     line-height: 0;
     overflow: hidden;
     width: 300px;
@@ -212,32 +212,32 @@
     flex-shrink: 0;
   }
   @media(max-width: 1200px) {
-    .lav-benefit__image {
+    .lavr-benefit__image {
       width: 200px;
       height: 200px;
     }
   }
-  .lav-benefit__image img {
+  .lavr-benefit__image img {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
   }
-  .lav-benefit__info {
+  .lavr-benefit__info {
     color: #DDF2D0;
   }
-  .lav-benefit__title {
+  .lavr-benefit__title {
     font-size: 26px;
     font-weight: 400;
     line-height: 1;
   }
-  .lav-benefit__descr {
+  .lavr-benefit__descr {
     margin-top: 18px;
     margin-bottom: 26px;
     font-size: 16px;
     font-weight: 400;
     line-height: 140%;
   }
-  .lav-benefit__link {
+  .lavr-benefit__link {
     max-width: 207px;
     width: 100%;
   }
@@ -364,13 +364,13 @@
   .b-main-left-right .box h2 {
     margin-right: 0;
   }
-  .lav-better__buttons {
+  .lavr-better__buttons {
     display: flex;
     gap: 32px;
     margin-top: 42px;
   }
   @media(max-width: 1280px) {
-    .lav-better__buttons {
+    .lavr-better__buttons {
       gap: 1rem;
       flex-flow: column;
     }
@@ -413,10 +413,10 @@
     line-height: 140%;
   }
 
-  .lav-memorable__head {
+  .lavr-memorable__head {
     margin-bottom: 64px;
   }
-  .lav-memorable__caption {
+  .lavr-memorable__caption {
     margin-top: 24px;
     color: #DDF2D0;
     font-size: 16px;
@@ -428,13 +428,13 @@
   .b-vert-scroll-cards .scrl-fix h2, .b-vert-scroll-cards .scrl-fix p {
     display: none!important;
   }
-  .lav-memorable__image {
+  .lavr-memorable__image {
     position: relative;
     padding-top: 75%;
     border-radius: 32px;
     overflow: hidden;
   }
-  .lav-memorable__image img {
+  .lavr-memorable__image img {
     position: absolute;
     left: 0;
     top: 0;
@@ -467,11 +467,11 @@
   .b-main-press {
     padding-top: 4rem;
   }
-  .lav-memorable__btn {
+  .lavr-memorable__btn {
     max-width: 27.375rem;
     width: 100%;
   }
-  .lav-memorable__btn-wrap {
+  .lavr-memorable__btn-wrap {
     text-align: center;
     margin-top: 64px;
   }
@@ -495,14 +495,14 @@
     color: #0C5947;
   }
 
-  .lav-gift {
+  .lavr-gift {
     position: relative;
     padding-bottom: 80px;
   }
-  .mob.lav-wave {
+  .mob.lavr-wave {
     display: none;
   }
-  .desk.lav-wave {
+  .desk.lavr-wave {
     display: block;
     width: 100%;
     height: auto;
@@ -513,7 +513,7 @@
   .b-main-wave.bot {
     padding-bottom: 4.5rem;
   }
-  .lav-wave-top {
+  .lavr-wave-top {
     display: block;
     width: 100%;
     height: auto;
@@ -524,7 +524,7 @@
     transform: translateY(68%);
   }
   @media(max-width: 1100px) {
-    .lav-wave-top {
+    .lavr-wave-top {
       transform: translateY(58%);
     }
   }
@@ -532,14 +532,14 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .lav-gift .b-main-giftcards h2 {
+  .lavr-gift .b-main-giftcards h2 {
     color: #0C5947;
   }
   .b-main-giftcards+.b-marquee {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-  .lav-gift .b-main-giftcards .subtitle {
+  .lavr-gift .b-main-giftcards .subtitle {
     text-transform: none;
     color: #0C5947;
     font-size: 20px;
@@ -547,10 +547,10 @@
     line-height: 140%;
     letter-spacing: normal;
   }
-  .lav-gift .b-main-wave h2 {
+  .lavr-gift .b-main-wave h2 {
     color: #0C5947;
   }
-  .lav-gift .b-main-wave h2 + p {
+  .lavr-gift .b-main-wave h2 + p {
     text-transform: none;
     color: #0C5947;
     font-size: 20px;
@@ -560,41 +560,41 @@
   }
 
 
-  .lav-faq {
+  .lavr-faq {
     padding-top: 90px;
   }
-  .lav-faq__head {
+  .lavr-faq__head {
     display: flex;
     gap: 20px;
     align-items: center;
     justify-content: space-between;
   }
-  .lav-faq__title {
+  .lavr-faq__title {
     color: #0C5947;
     font-size: 64px;
     font-weight: 400;
     line-height: 102%;
   }
-  .lav-faq__title span {
+  .lavr-faq__title span {
     display: none;
   }
-  .lav-faq__btn {
+  .lavr-faq__btn {
     max-width: 305px;
     height: 56px;
     font-size: 16px;
     width: 100%;
   }
-  .lav-faq__list {
+  .lavr-faq__list {
     margin-top: 64px;
   }
-  .lav-faq .container {
+  .lavr-faq .container {
     padding-left: 90px;
     padding-right: 90px;
   }
-  .lav-faq .accordion-faq__title {
+  .lavr-faq .accordion-faq__title {
     border-top: 1px solid #0C5947;
   }
-  .lav-faq .accordion-faq__title .a-text {
+  .lavr-faq .accordion-faq__title .a-text {
     color: #0C5947;
     font-size: 16px;
     font-weight: 500;
@@ -602,15 +602,15 @@
     letter-spacing: 1.12px;
     text-transform: uppercase;
   }
-  .lav-faq .accordion-faq__title .a-icon {
+  .lavr-faq .accordion-faq__title .a-icon {
     width: 42px;
     height: 42px;
     filter: invert(24%) sepia(10%) saturate(5818%) hue-rotate(126deg) brightness(98%) contrast(91%);
   }
-  .lav-faq .text-section {
+  .lavr-faq .text-section {
     font-size: 16px;
   }
-  .lav-faq .text-section p + p {
+  .lavr-faq .text-section p + p {
     margin-top: 12px;
   }
   .b-start-doing>svg {
@@ -627,7 +627,7 @@
   .b-form .box .soc {
     display: none;
   }
-  .lav-marq-wave {
+  .lavr-marq-wave {
     display: none;
   }
   footer[data-wpr-lazyrender] {
@@ -647,17 +647,17 @@
     padding-top: 2px;
   }
   @media(max-width: 1025px) {
-    .lav-wave-top {
+    .lavr-wave-top {
       bottom: 2rem;
       transform: translateY(99%);
     }
     .b-main-most-services .box .right {
       width: 100%;
     }
-    .lav-product__link {
+    .lavr-product__link {
       max-width: 207px;
     }
-    .lav-products__wave {
+    .lavr-products__wave {
       display: none;
     }
     .b-main-craftpartners>svg {
@@ -670,45 +670,48 @@
       padding-top: 8rem;
       padding-bottom: 2.5rem;
     }
-    .lav-video {
+    .lavr-video {
       margin-top: 0;
     }
-    .lav-video {
+    .lavr-video {
       z-index: 0;
     }
-    .lav-video .img-video {
+    .lavr-video .img-video {
       margin-left: -1rem;
       margin-right: -1rem;
       border-radius: 0;
       //comment padding-top: 80.5%;
       padding-top: 0;
     }
-    .lav-video #video-player-box {
+    .lavr-video .img-video .youtube-player {
       display: none;
     }
-    .lav-short__video-el-new {
+    .lavr-video #video-player-box {
+      display: none;
+    }
+    .lavr-short__video-el-new {
       position: absolute;
       z-index: 10;
       left: 50%;
       transform: translateX(-50%);
       height: 100%;
     }
-    .lav-video .img-video video {
+    .lavr-video .img-video video {
       border-radius: 0;
     }
-    .lav-products--one {
+    .lavr-products--one {
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
-    .lav-products--three {
+    .lavr-products--three {
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
-    .lav-products__caption {
+    .lavr-products__caption {
       margin-top: 1rem;
       font-size: 1rem;
     }
-    .lav-products__list {
+    .lavr-products__list {
       margin-top: 2rem;
       gap: 1rem;
       margin-left: -1rem;
@@ -718,13 +721,13 @@
       padding-bottom: 1rem;
       overflow-x: auto;
     }
-    .lav-product {
+    .lavr-product {
       width: 255px;
     }
-    .lav-product__info {
+    .lavr-product__info {
       margin-top: 1rem;
     }
-    .lav-product__title {
+    .lavr-product__title {
       color: #fff;
       font-weight: 500;
     }
@@ -743,7 +746,7 @@
       margin-bottom: 0!important;
       margin-top: 2rem;
     }
-    .lav-better__buttons {
+    .lavr-better__buttons {
       order: 2;
       margin-top: 2rem;
     }
@@ -774,10 +777,10 @@
       padding-bottom: 4rem;
       margin-top: -4rem;
     }
-    .lav-memorable__caption {
+    .lavr-memorable__caption {
       margin-top: 2rem;
     }
-    .lav-memorable__head {
+    .lavr-memorable__head {
       margin-bottom: 2rem;
     }
     .b-vert-scroll-cards .cards .card {
@@ -791,42 +794,42 @@
       font-size: 26px;
       padding-right: 2rem;
     }
-    .lav-memorable__btn-wrap {
+    .lavr-memorable__btn-wrap {
       margin-top: 2rem;
     }
-    .lav-memorable__btn {
+    .lavr-memorable__btn {
       font-size: 15px;
       padding: 0;
     }
-    .lav-products--two .lav-products__leaf {
+    .lavr-products--two .lavr-products__leaf {
       display: none;
     }
-    .lav-products--two {
+    .lavr-products--two {
       border-radius: 2rem 2rem;
       padding: 4rem 0 3rem;
     }
-    .lav-benefits {
+    .lavr-benefits {
       padding: 4rem 0;
     }
-    .lav-benefit {
+    .lavr-benefit {
       align-items: flex-start;
       gap: 1.5rem;
     }
-    .lav-benefit__image {
+    .lavr-benefit__image {
       width: 6.9375rem;
       height: 6.9375rem;
       border-radius: 1rem;
     }
-    .lav-benefits__list {
+    .lavr-benefits__list {
       gap: 42px;
       grid-template-columns: repeat(1, 1fr);
     }
-    .lav-benefit__descr {
+    .lavr-benefit__descr {
       margin-top: 1rem;
       margin-bottom: 20px;
       font-size: 14px;
     }
-    .lav-benefit__link {
+    .lavr-benefit__link {
       max-width: 145px;
       height: 43px;
     }
@@ -865,7 +868,7 @@
       font-size: 50px;
       padding-right: 20px;
     }
-    .desk.lav-wave {
+    .desk.lavr-wave {
       display: none;
     }
     .blog-cards .card .text {
@@ -881,29 +884,29 @@
       padding-top: 1rem;
       padding-bottom: 4rem;
     }
-    .lav-gift {
+    .lavr-gift {
       padding-bottom: 2rem;
     }
     .b-start-doing>svg.mob {
       display: none;
     }
-    .lav-faq {
+    .lavr-faq {
       padding-top: 4rem;
     }
-    .lav-faq .container {
+    .lavr-faq .container {
       padding-left: 1rem;
       padding-right: 1rem;
     }
-    .lav-faq__btn {
+    .lavr-faq__btn {
       display: none;
     }
-    .lav-faq__title {
+    .lavr-faq__title {
       font-size: 3rem;
     }
-    .lav-faq__title span {
+    .lavr-faq__title span {
       display: inline;
     }
-    .lav-faq__list {
+    .lavr-faq__list {
       margin-top: 1.5rem;
     }
     .b-start-doing {
@@ -911,27 +914,27 @@
     }
   }
   @media(max-width: 768px) {
-    .lav-product__video {
+    .lavr-product__video {
       display: none;
       line-height: 0;
     }
     body .uwy.userway_p2 .userway_buttons_wrapper {
       display: none;
     }
-    .lav-products--three .lav-product:nth-child(1) {
+    .lavr-products--three .lavr-product:nth-child(1) {
       order: -2;
     }
-    .lav-products--three .lav-product:nth-child(3) {
+    .lavr-products--three .lavr-product:nth-child(3) {
       order: -1;
     }
-    .lav-products--three .lav-product__video {
+    .lavr-products--three .lavr-product__video {
       position: relative;
       display: block;
       height: 340px;
       overflow: hidden;
       border-radius: 32px;
     }
-    .lav-products--three .lav-product__video video {
+    .lavr-products--three .lavr-product__video video {
       position: absolute;
       top: 0;
       left: 50%;
@@ -939,16 +942,16 @@
       bottom: 0;
       height: 100%;
     }
-    .lav-modal--video .lavm-short__control, .lav-modal--video .lavm-short__pagination, .lav-modal--video .lavm-short__title-old, .lav-modal--video .lavm-short__caption-old {
+    .lavr-modal--video .lavrm-short__control, .lavr-modal--video .lavrm-short__pagination, .lavr-modal--video .lavrm-short__title-old, .lavr-modal--video .lavrm-short__caption-old {
       display: none;
     }
-    .lav-modal--video[data-target="modal-hero"] .lavm-short__caption, .lav-modal--video[data-target="modal-hero"] .lavm-short__title {
+    .lavr-modal--video[data-target="modal-hero"] .lavrm-short__caption, .lavr-modal--video[data-target="modal-hero"] .lavrm-short__title {
       display: none;
     }
-    .lav-products--three .lav-product__image {
+    .lavr-products--three .lavr-product__image {
       display: none;
     }
-    .lav-product__video-img {
+    .lavr-product__video-img {
       position: absolute;
       z-index: 2;
       right: 25px;
@@ -1020,26 +1023,26 @@
       margin-top: 2px;
     }
     
-    .lav-shorts {
+    .lavr-shorts {
       display: flex;
       gap: 10px;
       margin: 16px -1rem 12px;
       overflow-x: auto;
       padding: 0 1rem;
     }
-    .lav-short {
+    .lavr-short {
       width: 73px;
       flex-shrink: 0;
     }
-    .lav-short__image {
+    .lavr-short__image {
       line-height: 0;
       text-align: center;
     }
-    .lav-short__image img {
+    .lavr-short__image img {
       max-width: 64px;
       margin: auto;
     }
-    .lav-short__title {
+    .lavr-short__title {
       color: #DDF2D0;
       font-size: 12px;
       font-weight: 400;
@@ -1142,8 +1145,8 @@
       font-weight: 400;
       line-height: 20px;
     }
-    .lav-loc__wrap {}
-    .lav-loc__title {
+    .lavr-loc__wrap {}
+    .lavr-loc__title {
       color: #FFF;
       font-size: 16px;
       font-weight: 600;
@@ -1153,7 +1156,7 @@
       margin-top: 48px;
       margin-bottom: 24px;
     }
-    .lav-loc__list {
+    .lavr-loc__list {
       display: flex;
       gap: 12px;
       overflow-x: auto;
@@ -1161,60 +1164,60 @@
       margin: 0 -16px;
       padding: 0 16px;
     }
-    .lav-loc {
+    .lavr-loc {
       border-radius: 32px;
       background: #186150;
       width: 320px;
       flex-shrink: 0;
       overflow: hidden;
     }
-    .lav-loc__image {
+    .lavr-loc__image {
       background-size: 100%;
       height: 197px;
     }
-    .lav-loc {}
-    .lav-loc {}
-    .lav-loc__info {
+    .lavr-loc {}
+    .lavr-loc {}
+    .lavr-loc__info {
       padding: 16px;
     }
-    .lav-loc__subtitle {
+    .lavr-loc__subtitle {
       color: #FFF;
       font-family: quincycf, sans-serif;
       font-size: 30px;
       font-weight: 400;
       line-height: 36px;
     }
-    .lav-loc__sublist {
+    .lavr-loc__sublist {
       margin-top: 12px;
       color: #D3EFC2;
       font-size: 14px;
       font-weight: 400;
       line-height: 22px;
     }
-    .lav-loc__subitem {
+    .lavr-loc__subitem {
       display: flex;
       align-items: center;
       gap: 8px;
       color: #D3EFC2;
     }
-    .lav-loc__subitem:nth-child(1) img {
+    .lavr-loc__subitem:nth-child(1) img {
       height: 16px;
       width: auto;
     }
-    .lav-loc__subitem:nth-child(2) img {
+    .lavr-loc__subitem:nth-child(2) img {
       height: 14px;
       width: auto;
     }
-    .lav-loc__subitem:nth-child(3) img {
+    .lavr-loc__subitem:nth-child(3) img {
       height: 9px;
       width: auto;
     }
-    .lav-loc__subitem + .lav-loc__subitem {
+    .lavr-loc__subitem + .lavr-loc__subitem {
       margin-top: 8px;
     }
-    .lav-loc {}
-    .lav-loc {}
-    .lav-loc__footer {
+    .lavr-loc {}
+    .lavr-loc {}
+    .lavr-loc__footer {
       display: flex;
       justify-content: space-between;
       gap: 16px;
@@ -1222,7 +1225,7 @@
       background: var(--grad-1, linear-gradient(90deg, rgba(221, 242, 208, 0.00) 0%, rgba(221, 242, 208, 0.06) 56.5%));
       padding: 24px;
     }
-    .lav-loc__available {
+    .lavr-loc__available {
       color: #FFF;
       font-size: 14px;
       font-weight: 700;
@@ -1230,7 +1233,7 @@
       letter-spacing: 0.56px;
       text-transform: uppercase;
     }
-    .lav-loc__btn {
+    .lavr-loc__btn {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1245,7 +1248,7 @@
       white-space: nowrap;
     }
 
-    .lav-benefits__list .lav-benefit:nth-child(3) {
+    .lavr-benefits__list .lavr-benefit:nth-child(3) {
       order: -1;
     }
     .b-main-left-right .box .link-btn {
@@ -1254,10 +1257,10 @@
     .reviews-slider {
       padding: 0;
     }
-    .lav-memorable__btn {
+    .lavr-memorable__btn {
       font-size: 1rem;
     }
-    .lav-benefits__list .lav-benefit:nth-child(1) {
+    .lavr-benefits__list .lavr-benefit:nth-child(1) {
       order: -2;
     }
     .b-main-press h2 {
@@ -1269,16 +1272,16 @@
     .b-vert-scroll-cards .box .right {
       display: none;
     }
-    .lav-benefit__image {
+    .lavr-benefit__image {
       width: 6.937rem;
       height: 9.375rem;
     }
-    .lav-faq .accordion-faq__title .a-icon {
+    .lavr-faq .accordion-faq__title .a-icon {
       width: 26px;
       height: 26px;
       margin-top: -2px;
     }
-    .mob.lav-wave {
+    .mob.lavr-wave {
       display: block;
       position: absolute;
       z-index: 1;
@@ -1293,10 +1296,10 @@
     .b-other-articles.b-main-articles {
       padding-bottom: 8rem;
     }
-    .lav-gift .b-main-wave h2 + p {
+    .lavr-gift .b-main-wave h2 + p {
       font-size: 1rem;
     }
-    .lav-gift .b-main-giftcards .subtitle {
+    .lavr-gift .b-main-giftcards .subtitle {
       font-size: 1rem;
     }
 
@@ -1304,14 +1307,14 @@
       padding-top: 0;
       padding-bottom: 2rem;
     }
-    .lav-products__wave {
+    .lavr-products__wave {
       display: none;
     }
-    .lav-products--one {
+    .lavr-products--one {
       position: relative;
       z-index: 1;
     }
-    .lav-products--three {
+    .lavr-products--three {
       position: relative;
       z-index: 1;
     }
@@ -1321,7 +1324,7 @@
     .b-main-craftpartners + .b-marquee > svg {
       display: none;
     }
-    .lav-marq-wave {
+    .lavr-marq-wave {
       display: block!important;
       top: 100%!important;
       z-index: 1;
@@ -1332,10 +1335,10 @@
     .b-main-craftpartners + .b-marquee:before {
       display: none;
     }
-    .lav-products--two .lav-products__wave-mob {
+    .lavr-products--two .lavr-products__wave-mob {
       display: none;
     }
-    .lav-products__wave-mob {
+    .lavr-products__wave-mob {
       display: block;
       bottom: 0;
       transform: translateY(100%);
@@ -1347,7 +1350,7 @@
       top: -15rem;
       right: -10rem;
     }
-    .lav-gift + .pin-spacer {
+    .lavr-gift + .pin-spacer {
       margin-bottom: 2rem!important;
     }
     .b-insta  {
@@ -1386,7 +1389,7 @@
   class Modal {
     static list = []
     constructor(name, html) {
-      if (!_$('.lav-modal')) {
+      if (!_$('.lavr-modal')) {
         this.constructor.init()
       }
 
@@ -1396,11 +1399,11 @@
       }
 
       this.el = document.createElement('div')
-      this.el.classList.add('lav-modal__inner', name)
+      this.el.classList.add('lavr-modal__inner', name)
       this.name = name
       this.el.innerHTML = html
 
-      _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
+      _$('.lavr-modal').insertAdjacentElement('beforeend', this.el)
 
       this.constructor.list.push(this)
     }
@@ -1408,19 +1411,19 @@
     static init() {
       document.body.insertAdjacentHTML(
         'beforeend',
-        "<div class='lav-modal'></div>"
+        "<div class='lavr-modal'></div>"
       )
 
       document.addEventListener('click', (e) => {
         if (
-          e.target.classList.contains('lav-modal') ||
-          e.target.closest('.lav-modal__close')
+          e.target.classList.contains('lavr-modal') ||
+          e.target.closest('.lavr-modal__close')
         ) {
-          const name = _$('.lav-modal[data-target="modal0"]')
+          const name = _$('.lavr-modal[data-target="modal0"]')
             ? 'Mothers day'
-            : _$('.lavm-short__title').textContent.trim()
+            : _$('.lavrm-short__title').textContent.trim()
 
-          if (!_$('.lav-modal--video')) {
+          if (!_$('.lavr-modal--video')) {
             pushDataLayer(
               'exp_hp3_click_04',
               'Close - ' + name,
@@ -1450,10 +1453,10 @@
     }
 
     static open(modalName, cb) {
-      document.body.classList.add('lav-modal-open')
+      document.body.classList.add('lavr-modal-open')
 
-      if (_$('.lav-modal__inner.active')) {
-        _$('.lav-modal__inner.active').classList.remove('active')
+      if (_$('.lavr-modal__inner.active')) {
+        _$('.lavr-modal__inner.active').classList.remove('active')
       }
 
       _$(modalName).classList.add('active')
@@ -1461,26 +1464,26 @@
       if (typeof cb === 'function') cb()
 
       setTimeout(() => {
-        _$('.lav-modal').classList.add('active')
+        _$('.lavr-modal').classList.add('active')
       }, 100)
     }
 
     static close(cb) {
-      _$('.lav-short--active')?.classList.remove('lav-short--active')
-      document.body.classList.remove('lav-modal-open')
+      _$('.lavr-short--active')?.classList.remove('lavr-short--active')
+      document.body.classList.remove('lavr-modal-open')
 
-      _$('.lav-modal')?.classList.remove('active')
+      _$('.lavr-modal')?.classList.remove('active')
 
       if (typeof cb === 'function') cb()
 
       setTimeout(() => {
-        _$('.lav-modal__inner.active')?.classList.remove('active')
+        _$('.lavr-modal__inner.active')?.classList.remove('active')
       }, 400)
     }
 
     static addStyles() {
       const styles = /*css*/ `
-      .lav-modal {
+      .lavr-modal {
         position: fixed;
         z-index: 999;
         left: 0;
@@ -1497,11 +1500,11 @@
         max-height: 100%;
         display: flex;
       }
-      .lav-modal.active {
+      .lavr-modal.active {
         opacity: 1;
         pointer-events: auto;
       }
-      .lav-modal__inner {
+      .lavr-modal__inner {
         position: relative;
         background: #fff;
         width: 100%;
@@ -1509,7 +1512,7 @@
         margin: auto;
         height: 100%;
       }
-      .lavm-short:before {
+      .lavrm-short:before {
         content: '';
         position: absolute;
         top: 0;
@@ -1536,10 +1539,10 @@
             transform: rotate(360deg);
         }
      } 
-      .lav-modal__inner.active {
+      .lavr-modal__inner.active {
         display: block;
       }
-      .lav-modal__close {
+      .lavr-modal__close {
         position: absolute;
         top: 34px;
         right: 16px;
@@ -1548,7 +1551,7 @@
         line-height: 0;
         z-index: 4;
       }
-      .lav-modal__close svg {
+      .lavr-modal__close svg {
         width: 26px;
         height: 26px;
       }
@@ -1556,26 +1559,26 @@
         cursor: pointer;
       }
       @media(hover:hover) {
-        .lav-modal__close:hover {
+        .lavr-modal__close:hover {
           opacity: 0.5;
         }
       }
-      .lav-modal-open {
+      .lavr-modal-open {
         overflow: hidden;
       }
 
-      .lavm-short {
+      .lavrm-short {
         position: relative;
         background: black;
         overflow: hidden;
       }
-      .lavm-short__video-el {
+      .lavrm-short__video-el {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
         height: 100%;
       }
-      .lavm-short__info {
+      .lavrm-short__info {
         display: flex;
         flex-flow: column;
         z-index: 1;
@@ -1587,20 +1590,20 @@
         bottom: 0;
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.60) 15%, rgba(0, 0, 0, 0.00) 38.01%);
       }
-      .lavm-short__title {
+      .lavrm-short__title {
         color: #DDF2D0;
         font-size: 32px;
         line-height: 36px;
         padding-right: 40px;
       }
-      .lavm-short__caption {
+      .lavrm-short__caption {
         color: #DDF2D0;
         font-size: 16px;
         font-weight: 400;
         line-height: 140%;
         margin-top: 8px;
       }
-      .lavm-short__button {
+      .lavrm-short__button {
         border-radius: 50px;
         background: #DDF2D0;
         width: 234px;
@@ -1615,7 +1618,7 @@
         margin-top: auto;
         align-self: center;
       }
-      .lavm-short__pagination {
+      .lavrm-short__pagination {
         position: absolute;
         z-index: 2;
         top: 16px;
@@ -1625,23 +1628,23 @@
         align-items: center;
         gap: 6px;
       }
-      .lavm-short__pagination span {
+      .lavrm-short__pagination span {
         height: 2px;
         border-radius: 111px;
         background: rgba(255, 255, 255, 0.44);
         transition: .3s;
         flex: 1;
       }
-      .lavm-short__pagination span.active {
+      .lavrm-short__pagination span.active {
         background: #FFF;
       }
-      .lav-modal[data-target="modal0"] .lavm-short__info, .lav-modal[data-target="modal0"] .lavm-short__video-el {
+      .lavr-modal[data-target="modal0"] .lavrm-short__info, .lavr-modal[data-target="modal0"] .lavrm-short__video-el {
         display: none;
       }
-      .lav-modal[data-target="modal0"] .lavm-short__mother {
+      .lavr-modal[data-target="modal0"] .lavrm-short__mother {
         display: flex;
       }
-      .lavm-short__mother {
+      .lavrm-short__mother {
         display: none;
         flex-flow: column;
         z-index: 1;
@@ -1652,18 +1655,18 @@
         top: 0;
         bottom: 0;
       }
-      .lavm-short__mother-image {
+      .lavrm-short__mother-image {
         line-height: 0;
       }
-      .lavm-short__mother-image img {
+      .lavrm-short__mother-image img {
         margin-bottom: -1px;
       }
-      .lavm-short__mother-info {
+      .lavrm-short__mother-info {
         background: #81A3ED url('${config.dir}/img/modal-father-hat.png') bottom no-repeat;
         padding: 56px 15px 40px;
         flex-grow: 1;
       }
-      .lavm-short__mother-caption {
+      .lavrm-short__mother-caption {
         color: #fff;
         font-size: 15px;
         font-weight: 500;
@@ -1671,14 +1674,14 @@
         letter-spacing: 0.91px;
         text-transform: uppercase;
       }
-      .lavm-short__mother-title {
+      .lavrm-short__mother-title {
         margin: 10px 0 14px;
         color: #fff;
         font-size: 44px;
         font-weight: 400;
         line-height: 44px;
       }
-      .lavm-short__mother-button {
+      .lavrm-short__mother-button {
         width: 205px;
         display: flex;
         align-items: center;
@@ -1692,17 +1695,17 @@
         height: 48px;
         margin: 25px auto 0;
       }
-      .lavm-short__control-arrow {
+      .lavrm-short__control-arrow {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         z-index: 4;
         line-height: 0;
       }
-      .lavm-short__control-left {
+      .lavrm-short__control-left {
         left: 16px;
       }
-      .lavm-short__control-right {
+      .lavrm-short__control-right {
         right: 16px;
       }
     `
@@ -1766,14 +1769,14 @@
 
   function addModal() {
     const html = /*html*/ `
-      <div class="lav-modal__close">
+      <div class="lavr-modal__close">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </div>
 
-      <div class="lavm-short__pagination">
+      <div class="lavrm-short__pagination">
         <span class='active'></span>
         <span></span>
         <span></span>
@@ -1781,28 +1784,28 @@
         <span></span>
       </div>
 
-      <video class="lavm-short__video-el" autoplay muted loop playsinline></video>
+      <video class="lavrm-short__video-el" autoplay muted loop playsinline></video>
 
-      <div class="lavm-short__control">
-        <div class="lavm-short__control-left lavm-short__control-arrow">
+      <div class="lavrm-short__control">
+        <div class="lavrm-short__control-left lavrm-short__control-arrow">
           <img src="${config.dir}/img/modal-left.svg" alt="Arrow left">
         </div>
-        <div class="lavm-short__control-right lavm-short__control-arrow">
+        <div class="lavrm-short__control-right lavrm-short__control-arrow">
           <img src="${config.dir}/img/modal-right.svg" alt="Arrow right">
         </div>
       </div>
 
-      <div class="lavm-short__info">
-        <div class="lavm-short__title lav-quincy">Most memorable spa experience</div>
-        <div class="lavm-short__caption">Your perfect Spa Day with a fun twist for you, her, him and everyone in between</div>
-        <div class="lavm-short__button">Choose Spa Package</div>
+      <div class="lavrm-short__info">
+        <div class="lavrm-short__title lavr-quincy">Most memorable spa experience</div>
+        <div class="lavrm-short__caption">Your perfect Spa Day with a fun twist for you, her, him and everyone in between</div>
+        <div class="lavrm-short__button">Choose Spa Package</div>
       </div>
     `
 
-    new Modal('lavm-short', html)
+    new Modal('lavrm-short', html)
 
-    _$('.lavm-short__control-right').addEventListener('click', () => {
-      const current = _$('.lav-modal').dataset.target
+    _$('.lavrm-short__control-right').addEventListener('click', () => {
+      const current = _$('.lavr-modal').dataset.target
       const next = +current.replace('modal', '') + 1
 
       if (next > 5) return
@@ -1810,8 +1813,8 @@
       openModal(`modal${next}`)
     })
 
-    _$('.lavm-short__control-left').addEventListener('click', () => {
-      const current = _$('.lav-modal').dataset.target
+    _$('.lavrm-short__control-left').addEventListener('click', () => {
+      const current = _$('.lavr-modal').dataset.target
       const prev = +current.replace('modal', '') - 1
 
       if (prev < 1) return
@@ -1819,7 +1822,7 @@
       openModal(`modal${prev}`)
     })
 
-    _$('.lavm-short__mother-button')?.addEventListener('click', () => {
+    _$('.lavrm-short__mother-button')?.addEventListener('click', () => {
       location.href = '/waitlist-crs/'
       pushDataLayer(
         'exp_hp3_click_03',
@@ -1829,11 +1832,11 @@
       )
     })
 
-    _$$('.lavm-short__button').forEach((el) => {
+    _$$('.lavrm-short__button').forEach((el) => {
       el.addEventListener('click', (e) => {
-        const name = _$('.lavm-short__title').textContent.trim()
-        if (_$('.lav-modal--video')) {
-          if (_$('.lav-modal--video[data-target="modal-hero"]')) {
+        const name = _$('.lavrm-short__title').textContent.trim()
+        if (_$('.lavr-modal--video')) {
+          if (_$('.lavr-modal--video[data-target="modal-hero"]')) {
             pushDataLayer(
               'exp_hp3_click_11',
               'Choose Spa Package - Hero',
@@ -1848,7 +1851,7 @@
               'Video pop up'
             )
           }
-          location.href = _$('.lav-modal--video').dataset.url
+          location.href = _$('.lavr-modal--video').dataset.url
         } else {
           location.href = '/waitlist-crs/'
           pushDataLayer(
@@ -1864,7 +1867,7 @@
     swipeDetect()
 
     function swipeDetect() {
-      const el = document.querySelector('.lav-modal__inner')
+      const el = document.querySelector('.lavr-modal__inner')
       let startX = 0
       let endX = 0
 
@@ -1885,7 +1888,8 @@
       })
 
       function changeModal(direction) {
-        const current = _$('.lav-modal:not(.lav-modal--video)')?.dataset.target
+        const current = _$('.lavr-modal:not(.lavr-modal--video)')?.dataset
+          .target
 
         if (!current) return
 
@@ -1936,7 +1940,7 @@
     const targetConfig = modalsShortsConfig[target]
     const index = +target.replace('modal', '')
 
-    _$$('.lavm-short__pagination span').forEach((el, i) => {
+    _$$('.lavrm-short__pagination span').forEach((el, i) => {
       if (index < 0) return
 
       el.classList.remove('active')
@@ -1946,33 +1950,33 @@
     })
 
     if (target !== 'modal0' && target !== 'modal-hero') {
-      _$('.lavm-short__caption').textContent = targetConfig.caption
-      _$('.lavm-short__title').textContent = targetConfig.title
+      _$('.lavrm-short__caption').textContent = targetConfig.caption
+      _$('.lavrm-short__title').textContent = targetConfig.title
       if (!pageUrl) {
-        _$('.lavm-short__video-el').src = targetConfig.video.includes('short-')
+        _$('.lavrm-short__video-el').src = targetConfig.video.includes('short-')
           ? `${config.dir}/video/${targetConfig.video}`
           : targetConfig.video
       }
     }
 
     if (pageUrl) {
-      _$('.lav-modal').classList.add('lav-modal--video')
-      _$('.lav-modal').dataset.url = pageUrl
-      _$('.lavm-short__button').textContent =
+      _$('.lavr-modal').classList.add('lavr-modal--video')
+      _$('.lavr-modal').dataset.url = pageUrl
+      _$('.lavrm-short__button').textContent =
         target === 'modal-hero' ? 'Choose Spa Package' : 'Learn More'
-      _$('.lavm-short__video-el').src = video
+      _$('.lavrm-short__video-el').src = video
     } else {
-      _$('.lav-modal').classList.remove('lav-modal--video')
-      _$('.lav-modal').removeAttribute('data-url')
-      _$('.lavm-short__button').textContent = 'Choose Spa Package'
+      _$('.lavr-modal').classList.remove('lavr-modal--video')
+      _$('.lavr-modal').removeAttribute('data-url')
+      _$('.lavrm-short__button').textContent = 'Choose Spa Package'
     }
 
-    _$('.lav-modal').dataset.target = target
+    _$('.lavr-modal').dataset.target = target
 
     if (!pageUrl) {
       const name =
         target !== 'modal0'
-          ? _$('.lavm-short__title').textContent.trim()
+          ? _$('.lavrm-short__title').textContent.trim()
           : 'Mothers Day'
 
       pushDataLayer(
@@ -1983,7 +1987,7 @@
       )
     }
 
-    Modal.open('.lavm-short')
+    Modal.open('.lavrm-short')
   }
 
   function handleGiftPosition() {
@@ -2132,7 +2136,7 @@
     )
     _$('.b-main-craftpartners').insertAdjacentElement('beforebegin', benefitsEl)
 
-    visibilityEvent('.lav-products--three', () => {
+    visibilityEvent('.lavr-products--three', () => {
       pushDataLayer(
         'exp_hp3_view_02',
         'Featured Spa Services',
@@ -2141,12 +2145,12 @@
       )
     })
 
-    _$$('.lav-product__video').forEach((video) => {
+    _$$('.lavr-product__video').forEach((video) => {
       video.addEventListener('click', (e) => {
         const target = video.dataset.target
         const name = video
-          .closest('.lav-product')
-          .querySelector('.lav-product__title')
+          .closest('.lavr-product')
+          .querySelector('.lavr-product__title')
           .textContent.trim()
         pushDataLayer(
           'exp_hp3_click_07',
@@ -2156,18 +2160,18 @@
         )
         openModal(
           target,
-          video.closest('.lav-product').querySelector('.lav-product__link')
+          video.closest('.lavr-product').querySelector('.lavr-product__link')
             .href,
-          video.querySelector('.lav-product__video-el').src
+          video.querySelector('.lavr-product__video-el').src
         )
       })
     })
 
-    _$$('.lav-products--three .lav-product__link').forEach((link) => {
+    _$$('.lavr-products--three .lavr-product__link').forEach((link) => {
       link.addEventListener('click', (e) => {
         const name = link
-          .closest('.lav-product')
-          .querySelector('.lav-product__title')
+          .closest('.lavr-product')
+          .querySelector('.lavr-product__title')
           .textContent.trim()
         pushDataLayer(
           'exp_hp3_click_08',
@@ -2250,7 +2254,7 @@
     _$('.b-main-craftpartners + .b-marquee').insertAdjacentHTML(
       'afterbegin',
       /* html */ `
-    <svg class='lav-marq-wave' xmlns="http://www.w3.org/2000/svg" width="375" height="58" viewBox="0 0 375 58" fill="none">
+    <svg class='lavr-marq-wave' xmlns="http://www.w3.org/2000/svg" width="375" height="58" viewBox="0 0 375 58" fill="none">
       <path d="M0 58V0H375V24.4267C316.559 5.8595 241.12 0.757969 186.926 13.1888C123.82 27.6695 111.111 49.2061 0 58Z" fill="#0C5947"/>
     </svg>
     `
@@ -2258,27 +2262,27 @@
 
     function getProducts(num, isBenefit) {
       const productsEl = document.createElement('div')
-      productsEl.classList.add('lav-products', 'lav-products--' + num)
+      productsEl.classList.add('lavr-products', 'lavr-products--' + num)
       productsEl.innerHTML = /* html */ `
       <div class='container'>
-        <h2 class='lav-products__title'>${
+        <h2 class='lavr-products__title'>${
           num === 'one'
             ? 'Featured Spa Packages at Oakwell Beer Spa'
             : num === 'two'
             ? 'Looking for a one-of-a-kind way to unwind?'
             : 'Featured Spa Services'
         }</h2>
-        <div class='lav-products__caption'>${
+        <div class='lavr-products__caption'>${
           num === 'one' || num === 'three'
             ? 'RELAX DIFFERENTLY AT THE BEST DENVER SPA WITH A CRAFT BEER IN HAND'
             : 'Treat Yourself to the Ultimate Relaxation'
         }</div>
-        <div class='lav-products__list'></div>
+        <div class='lavr-products__list'></div>
       </div>
-      <svg class='lav-products__wave'  xmlns="http://www.w3.org/2000/svg" width="1440" height="588" viewBox="0 0 1440 588" fill="none">
+      <svg class='lavr-products__wave'  xmlns="http://www.w3.org/2000/svg" width="1440" height="588" viewBox="0 0 1440 588" fill="none">
         <path d="M1943 0V588H-0.00292969V365.052C199.694 508.638 205.991 325.564 425.478 294C774.452 243.814 1267.44 659.245 1943 0Z" fill="#3C6C60"/>
       </svg>
-      <svg class='lav-products__wave lav-products__wave-mob' xmlns="http://www.w3.org/2000/svg" width="375" height="58" viewBox="0 0 375 58" fill="none">
+      <svg class='lavr-products__wave lavr-products__wave-mob' xmlns="http://www.w3.org/2000/svg" width="375" height="58" viewBox="0 0 375 58" fill="none">
         <path d="M375 58V0H0V24.4267C58.4411 5.8595 133.88 0.757969 188.074 13.1888C251.18 27.6695 263.889 49.2061 375 58Z" fill="#0C5947"/>
       </svg>
     `
@@ -2287,14 +2291,14 @@
 
       target.forEach((product, index) => {
         const productEl = document.createElement('div')
-        productEl.classList.add('lav-product')
+        productEl.classList.add('lavr-product')
         productEl.dataset.aos = 'fade-up'
         productEl.innerHTML = /* html */ `
-        <div class='lav-product__video' data-target='${product.videoModal}'>
-          <img class='lav-product__video-img' src='${
+        <div class='lavr-product__video' data-target='${product.videoModal}'>
+          <img class='lavr-product__video-img' src='${
             config.dir
           }/img/zoom-in.svg' />
-          <video class="lav-product__video-el" poster="${
+          <video class="lavr-product__video-el" poster="${
             config.dir
           }/video/${product.video?.replace(
           '.mp4',
@@ -2303,7 +2307,7 @@
           product.video
         }'></video>
         </div>
-        <div class='lav-product__image'>
+        <div class='lavr-product__image'>
           <img src='${
             num === 'one' || num === 'three'
               ? product.image
@@ -2312,23 +2316,23 @@
               : `${config.dir}/img/short-product-${index}.png`
           }' />
         </div>
-        <div class='lav-product__info'>
-          <div class='lav-product__title lav-quincy'>${product.title}</div>
-          <div class='lav-product__descr'>${product.descr}</div>
+        <div class='lavr-product__info'>
+          <div class='lavr-product__title lavr-quincy'>${product.title}</div>
+          <div class='lavr-product__descr'>${product.descr}</div>
           <a data-id='${product.id}' data-router-disabled href='${
           product.link
-        }' class='lav-product__link lav-btn link-btn ${
+        }' class='lavr-product__link lavr-btn link-btn ${
           num === 'one' || num === 'three' ? 'light' : 'dark'
         }'>${isBenefit ? 'Learn more' : 'Book Now'}</a>
         </div>
       `
 
         productEl
-          .querySelector('.lav-product__link')
+          .querySelector('.lavr-product__link')
           .addEventListener('click', (e) => {
             const id = product.id
 
-            if (productEl.closest('.lav-products--one')) {
+            if (productEl.closest('.lavr-products--one')) {
               e.preventDefault()
 
               // pushDataLayer(
@@ -2339,7 +2343,7 @@
               // )
 
               location.href = '/waitlist-crs/#service-' + id
-            } else if (productEl.closest('.lav-products--two')) {
+            } else if (productEl.closest('.lavr-products--two')) {
               e.preventDefault()
 
               // pushDataLayer(
@@ -2354,13 +2358,13 @@
           })
 
         if (num === 'two') {
-          productEl.querySelector('.lav-product__title').textContent =
+          productEl.querySelector('.lavr-product__title').textContent =
             product.fullTitle
-          productEl.querySelector('.lav-product__descr').remove()
+          productEl.querySelector('.lavr-product__descr').remove()
         }
 
         productsEl
-          .querySelector('.lav-products__list')
+          .querySelector('.lavr-products__list')
           .insertAdjacentElement('beforeend', productEl)
       })
 
@@ -2369,30 +2373,30 @@
 
     function getBenefits() {
       const benefitsEl = document.createElement('div')
-      benefitsEl.classList.add('lav-benefits')
+      benefitsEl.classList.add('lavr-benefits')
       benefitsEl.innerHTML = /* html */ `
       <div class='container'>
-        <div class='lav-benefits__list'></div>
+        <div class='lavr-benefits__list'></div>
       </div>
     `
 
       benefits.forEach((benefit) => {
         const benefitEl = document.createElement('div')
-        benefitEl.classList.add('lav-benefit')
+        benefitEl.classList.add('lavr-benefit')
         benefitEl.dataset.aos = 'fade-up'
         benefitEl.innerHTML = /* html */ `
-        <div class='lav-benefit__image'>
+        <div class='lavr-benefit__image'>
           <img src='${benefit.image}' />
         </div>
-        <div class='lav-benefit__info'>
-          <div class='lav-benefit__title lav-quincy'>${benefit.title}</div>
-          <div class='lav-benefit__descr'>${benefit.descr}</div>
-          <a href='${benefit.link}' class='lav-benefit__link lav-btn link-btn light'>Learn more</a>
+        <div class='lavr-benefit__info'>
+          <div class='lavr-benefit__title lavr-quincy'>${benefit.title}</div>
+          <div class='lavr-benefit__descr'>${benefit.descr}</div>
+          <a href='${benefit.link}' class='lavr-benefit__link lavr-btn link-btn light'>Learn more</a>
         </div>
       `
 
         benefitEl
-          .querySelector('.lav-benefit__link')
+          .querySelector('.lavr-benefit__link')
           .addEventListener('click', () => {
             // pushDataLayer(
             //   'exp_hp_button_09',
@@ -2403,7 +2407,7 @@
           })
 
         benefitsEl
-          .querySelector('.lav-benefits__list')
+          .querySelector('.lavr-benefits__list')
           .insertAdjacentElement('beforeend', benefitEl)
       })
 
@@ -2414,54 +2418,54 @@
   function addHero() {
     const markup = /* html */ `
       <div class='lavh-hero'>
-        <div class='lav-video'></div>
-        <div class='lav-shorts'>
-          <div class='lav-short' data-target='modal1'>
-            <div class='lav-short__image'>
+        <div class='lavr-video'></div>
+        <div class='lavr-shorts'>
+          <div class='lavr-short' data-target='modal1'>
+            <div class='lavr-short__image'>
               <img src='${config.dir}/img/short-2.png' />
             </div>
-            <div class='lav-short__title'>
+            <div class='lavr-short__title'>
               About us
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal2'>
-            <div class='lav-short__image'>
+          <div class='lavr-short' data-target='modal2'>
+            <div class='lavr-short__image'>
               <img src='${config.dir}/img/short-3.png' />
             </div>
-            <div class='lav-short__title'>
+            <div class='lavr-short__title'>
               Private Spa Suite
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal3'>
-            <div class='lav-short__image'>
+          <div class='lavr-short' data-target='modal3'>
+            <div class='lavr-short__image'>
               <img src='${config.dir}/img/short-6.png' />
             </div>
-            <div class='lav-short__title'>
+            <div class='lavr-short__title'>
               Zero Gravity Massage
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal4'>
-            <div class='lav-short__image'>
+          <div class='lavr-short' data-target='modal4'>
+            <div class='lavr-short__image'>
               <img src='${config.dir}/img/short-4.png' />
             </div>
-            <div class='lav-short__title'>
+            <div class='lavr-short__title'>
               Infrared Sauna
             </div>
           </div>
 
-          <div class='lav-short' data-target='modal5'>
-            <div class='lav-short__image'>
+          <div class='lavr-short' data-target='modal5'>
+            <div class='lavr-short__image'>
               <img src='${config.dir}/img/short-5.png' />
             </div>
-            <div class='lav-short__title'>
+            <div class='lavr-short__title'>
               Craft Beer Taproom
             </div>
           </div>
         </div>
-        <div class='lavh-hero__title lav-quincy'>
+        <div class='lavh-hero__title lavr-quincy'>
           Relax Differently at the Best Denver Spa with a Craft Beer in Hand
         </div>
         <div class='lavh-hero__caption'>A beer-inspired, award-winning spa offering a top-notch wellness experience</div>
@@ -2507,66 +2511,66 @@
           </div>
         </div>
 
-        <div class="lav-loc__wrap">
-          <div class='lav-loc__title'>Our locations</div>
-          <div class='lav-loc__list'>
-            <div class='lav-loc'>
-              <div class='lav-loc__image' style='background-image: url(${config.dir}/img/location-bg-1.png)'></div>
-              <div class='lav-loc__info'>
-                <div class='lav-loc__subtitle'>Denver</div>
-                <div class='lav-loc__sublist'>
-                  <div class='lav-loc__subitem'>
+        <div class="lavr-loc__wrap">
+          <div class='lavr-loc__title'>Our locations</div>
+          <div class='lavr-loc__list'>
+            <div class='lavr-loc'>
+              <div class='lavr-loc__image' style='background-image: url(${config.dir}/img/location-bg-1.png)'></div>
+              <div class='lavr-loc__info'>
+                <div class='lavr-loc__subtitle'>Denver</div>
+                <div class='lavr-loc__sublist'>
+                  <div class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-1.svg' />
                     3004 N Downing St, Denver, CO, 80205
                   </div>
 
-                  <a href='tel:+17208101484' class='lav-loc__subitem'>
+                  <a href='tel:+17208101484' class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-2.svg' />
                     (720)-810-1484
                   </a>
 
-                  <div class='lav-loc__subitem'>
+                  <div class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-3.svg' />
                     Monday – Sunday: 08:00 am – 10:30&nbsp;pm 
                   </div>
                 </div>
               </div>
-              <div class='lav-loc__footer'>
-                <div class='lav-loc__available'>
+              <div class='lavr-loc__footer'>
+                <div class='lavr-loc__available'>
                   5 Packages avaiable
                 </div>
-                <div class='lav-loc__btn'>
+                <div class='lavr-loc__btn'>
                   Choose Location
                 </div>
               </div>
             </div>
 
-            <div class='lav-loc'>
-              <div class='lav-loc__image' style='background-image: url(${config.dir}/img/location-bg-2.png)'></div>
-              <div class='lav-loc__info'>
-                <div class='lav-loc__subtitle'>Highlands Ranch</div>
-                <div class='lav-loc__sublist'>
-                  <div class='lav-loc__subitem'>
+            <div class='lavr-loc'>
+              <div class='lavr-loc__image' style='background-image: url(${config.dir}/img/location-bg-2.png)'></div>
+              <div class='lavr-loc__info'>
+                <div class='lavr-loc__subtitle'>Highlands Ranch</div>
+                <div class='lavr-loc__sublist'>
+                  <div class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-1.svg' />
                     6660 Timberline Rd, Suite 100, Highlands Ranch, CO, 80130
                   </div>
 
-                  <a href='tel:+17208070930' class='lav-loc__subitem'>
+                  <a href='tel:+17208070930' class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-2.svg' />
                     (720)-807-0930
                   </a>
 
-                  <div class='lav-loc__subitem'>
+                  <div class='lavr-loc__subitem'>
                     <img src='${config.dir}/img/loc-icon-3.svg' />
                     Monday – Sunday: 08:00 am – 10:30&nbsp;pm 
                   </div>
                 </div>
               </div>
-              <div class='lav-loc__footer'>
-                <div class='lav-loc__available'>
+              <div class='lavr-loc__footer'>
+                <div class='lavr-loc__available'>
                   5 Packages avaiable
                 </div>
-                <div class='lav-loc__btn'>
+                <div class='lavr-loc__btn'>
                   Choose Location
                 </div>
               </div>
@@ -2610,11 +2614,11 @@
 
     _$('.wrapper.mainPage').insertAdjacentHTML('afterbegin', markup)
 
-    _$$('.lav-short').forEach((el) => {
+    _$$('.lavr-short').forEach((el) => {
       el.addEventListener('click', (e) => {
-        el.classList.add('lav-short--active')
+        el.classList.add('lavr-short--active')
         const target = e.currentTarget.dataset.target
-        const name = el.querySelector('.lav-short__title').textContent.trim()
+        const name = el.querySelector('.lavr-short__title').textContent.trim()
         pushDataLayer(
           'exp_hp3_click_02',
           'Stories - ' + name,
@@ -2634,17 +2638,17 @@
       _$('.b-main .img-video-box .img-video').removeAttribute('data-aos')
       _$('.b-main .img-video-box .img-video').removeAttribute('data-aos-delay')
       // _$('.img-video-box video').src = `${config.dir}/video/hero-short.mp4`
-      _$('.lav-video').insertAdjacentElement(
+      _$('.lavr-video').insertAdjacentElement(
         'beforeend',
         _$('.b-main .img-video-box')
       )
-      _$('.lav-video .img-video-box').insertAdjacentHTML(
+      _$('.lavr-video .img-video-box').insertAdjacentHTML(
         'afterbegin',
-        /* html */ `<video class="lav-short__video-el-new" autoplay="" muted="" loop="" playsinline="" data-uw-rm-av="vi" src="${config.dir}/video/hero-short.mp4"></video>`
+        /* html */ `<video class="lavr-short__video-el-new" autoplay="" muted="" loop="" playsinline="" data-uw-rm-av="vi" src="${config.dir}/video/hero-short.mp4"></video>`
       )
     })
 
-    _$('.lav-video').addEventListener('click', (e) => {
+    _$('.lavr-video').addEventListener('click', (e) => {
       openModal(
         'modal-hero',
         '/waitlist-crs/',
@@ -2657,11 +2661,11 @@
       location.href = '/waitlist-crs/'
     })
 
-    _$$('.lav-loc__btn').forEach((el) => {
+    _$$('.lavr-loc__btn').forEach((el) => {
       el.addEventListener('click', (e) => {
         const name = el
-          .closest('.lav-loc')
-          .querySelector('.lav-loc__subtitle')
+          .closest('.lavr-loc')
+          .querySelector('.lavr-loc__subtitle')
           .textContent.trim()
         pushDataLayer(
           'exp_hp3_click_06',
@@ -2781,7 +2785,7 @@
       requestAnimationFrame(() => customMarquee.init(targetEl))
     }
 
-    // scrollHandler(_$('.lav-shorts'))
+    // scrollHandler(_$('.lavr-shorts'))
     // function scrollHandler(pack) {
     //   const thresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     //   let triggeredDepths = new Set()
@@ -2811,7 +2815,7 @@
     ).textContent = `WHY Oakwell Beer Spa MAKE FOR ONE OF COLORADO'S MOST MEMORABLE SPA EXPERIENCES?`
 
     const buttonsWrap = document.createElement('div')
-    buttonsWrap.classList.add('lav-better__buttons')
+    buttonsWrap.classList.add('lavr-better__buttons')
 
     buttonsWrap.insertAdjacentElement(
       'beforeend',
@@ -2820,7 +2824,7 @@
 
     buttonsWrap.insertAdjacentHTML(
       'beforeend',
-      /* html */ `<a data-router-disabled href="/the-experience/" data-aos="fade-up" data-aos-delay="100" class="lav-better__discover lav-btn link-btn light">Discover Oakwell Beer Spa Experience</a>`
+      /* html */ `<a data-router-disabled href="/the-experience/" data-aos="fade-up" data-aos-delay="100" class="lavr-better__discover lavr-btn link-btn light">Discover Oakwell Beer Spa Experience</a>`
     )
 
     _$('.b-main-left-right.first .right').insertAdjacentElement(
@@ -2828,7 +2832,7 @@
       buttonsWrap
     )
 
-    _$('.lav-better__discover').addEventListener('click', () => {
+    _$('.lavr-better__discover').addEventListener('click', () => {
       // pushDataLayer(
       //   'exp_hp_button_05',
       //   'Discover More About Beer Spa Experience',
@@ -2866,9 +2870,9 @@
     _$('.b-vert-scroll-cards .container').insertAdjacentHTML(
       'afterbegin',
       /* html */ `
-    <div class='lav-memorable__head'>
-      <h2 class='lav-memorable__title' data-aos="fade-up" data-aos-delay="0">A Memorable Denver Spa Experience</h2>
-      <div class='lav-memorable__caption' data-aos="fade-up" data-aos-delay="100">
+    <div class='lavr-memorable__head'>
+      <h2 class='lavr-memorable__title' data-aos="fade-up" data-aos-delay="0">A Memorable Denver Spa Experience</h2>
+      <div class='lavr-memorable__caption' data-aos="fade-up" data-aos-delay="100">
         Your perfect Spa Day with a fun twist for you, her, him and everyone in between
       </div>
     </div>
@@ -2878,7 +2882,7 @@
     _$('.b-vert-scroll-cards .scrl-fix').insertAdjacentHTML(
       'beforeend',
       /* html */ `
-      <div class='lav-memorable__image'>
+      <div class='lavr-memorable__image'>
         <img src='https://oakwell.com/wp-content/uploads/2023/10/TBS_Tubs_15-Web-scaled.webp' />
       </div>
       `
@@ -2887,13 +2891,13 @@
     _$('.b-vert-scroll-cards  .container').insertAdjacentHTML(
       'beforeend',
       /* html */ `
-    <div class='lav-memorable__btn-wrap'>
-      <a href="/the-experience/"  data-aos="fade-up" data-aos-delay="100" class="lav-memorable__btn lav-btn link-btn light">Discover More About Beer Spa Experience</a>
+    <div class='lavr-memorable__btn-wrap'>
+      <a href="/the-experience/"  data-aos="fade-up" data-aos-delay="100" class="lavr-memorable__btn lavr-btn link-btn light">Discover More About Beer Spa Experience</a>
     </div>
     `
     )
 
-    _$('.lav-memorable__btn').addEventListener('click', () => {
+    _$('.lavr-memorable__btn').addEventListener('click', () => {
       // pushDataLayer(
       //   'exp_hp_button_07',
       //   'Discover More About Beer Spa Experience',
@@ -2941,7 +2945,7 @@
 
   function handleGift() {
     const giftEl = document.createElement('div')
-    giftEl.classList.add('lav-gift')
+    giftEl.classList.add('lavr-gift')
 
     giftEl.insertAdjacentElement(
       'afterbegin',
@@ -2963,24 +2967,24 @@
     })
 
     waitFor('.b-main-giftcards .btns .link-btn span', () => {
-      _$('.lav-gift .b-main-giftcards .btns .link-btn span').textContent =
+      _$('.lavr-gift .b-main-giftcards .btns .link-btn span').textContent =
         'Buy Gift Card'
     })
   }
 
   function addFaq() {
     const markup = /* html */ `
-    <div class='lav-faq'>
+    <div class='lavr-faq'>
       <div class='container'>
 
-      <div class="lav-faq__head">
-        <div class="lav-faq__title lav-quincy"><span>General</span> FAQs</div>
-        <a href='/faqs/' class='lav-faq__btn lav-btn border link-btn dark'>
+      <div class="lavr-faq__head">
+        <div class="lavr-faq__title lavr-quincy"><span>General</span> FAQs</div>
+        <a href='/faqs/' class='lavr-faq__btn lavr-btn border link-btn dark'>
           Oakwell Beer Spa Full FAQs
         </a>
       </div>
 
-        <div class="lav-faq__list accordion-faq js-accordion" data-active-class="open" data-open-first="false" data-hide-siblings="false" data-breakpoint="640" data-scroll-to-opened="false">
+        <div class="lavr-faq__list accordion-faq js-accordion" data-active-class="open" data-open-first="false" data-hide-siblings="false" data-breakpoint="640" data-scroll-to-opened="false">
           <div class="accordion-faq__item js-accordion-item">
             <div class="accordion-faq__title js-accordion-title">
               <div class="a-text">How do I make an appointment?</div>
@@ -3096,7 +3100,7 @@
 
     _$('.b-start-doing').insertAdjacentHTML('afterbegin', markup)
 
-    _$$('.lav-faq .accordion-faq__item').forEach((item) => {
+    _$$('.lavr-faq .accordion-faq__item').forEach((item) => {
       item.addEventListener('click', function () {
         // pushDataLayer(
         //   'exp_hp_button_10',
@@ -3347,15 +3351,15 @@
   function getSvg(name) {
     const svgObj = {
       waveTop: `
-    <svg class='lav-wave-top' xmlns="http://www.w3.org/2000/svg" width="1440" height="328" viewBox="0 0 1440 328" fill="none">
+    <svg class='lavr-wave-top' xmlns="http://www.w3.org/2000/svg" width="1440" height="328" viewBox="0 0 1440 328" fill="none">
       <path d="M1534 328V0H0V138.137C239.063 33.1365 547.657 4.28644 769.349 74.585C1027.49 156.476 1079.48 278.269 1534 328Z" fill="#DDF2D0"/>
     </svg>
     `,
       waveBottom: `
-    <svg class="desk lav-wave" width="1440" height="526" viewBox="0 0 1440 526" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="desk lavr-wave" width="1440" height="526" viewBox="0 0 1440 526" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1724 0V526H0V326.56C177.189 455.006 182.776 291.236 377.524 263C687.164 218.106 1124.59 589.733 1724 0Z" fill="#DDF2D0"></path>
     </svg>
-    <svg class="mob lav-wave" width="375" height="114" viewBox="0 0 375 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="mob lavr-wave" width="375" height="114" viewBox="0 0 375 114" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M375 0V114H0V70.7753C38.5417 98.6135 39.7569 63.1196 82.118 57C149.47 47.2701 244.618 127.813 375 0Z" fill="#DDF2D0"></path>
     </svg>
     `,
@@ -3365,7 +3369,7 @@
     </svg>
     `,
       leafProduct: `
-      <svg class='lav-products__leaf' xmlns="http://www.w3.org/2000/svg" width="148" height="148" viewBox="0 0 148 148" fill="none">
+      <svg class='lavr-products__leaf' xmlns="http://www.w3.org/2000/svg" width="148" height="148" viewBox="0 0 148 148" fill="none">
         <path d="M114.498 130.617C107.681 134.361 99.8321 135.192 91.6067 133.754C83.4816 132.449 74.9795 128.88 69.1349 126.954C53.8626 121.25 34.4634 115.603 23.5996 119.95C28.2419 113.6 40.6181 112.499 56.3007 117.297C72.2981 121.957 87.4559 130.038 95.0371 129.763C106.612 131.462 115.982 125.848 124.05 120.044C131.999 114.056 138.65 107.868 141.97 104.19C142.963 103.16 142.662 102.71 141.536 103.497C135.639 107.735 124.317 114.882 117.7 116.134C101.292 119.371 92.5562 112.528 68.758 104.133C55.8236 99.5682 43.4092 104.062 36.2382 105.837C39.8022 101.547 44.2918 98.7283 49.8263 97.0626C60.8332 93.8643 72.8564 99.7865 83.973 105.168C95.2566 110.573 105.629 115.437 117.194 110.786C130.839 105.747 141.279 93.7409 144.919 89.3087C145.673 88.3644 145.172 87.9373 144.146 88.6064C139.647 91.6007 130.491 96.8443 123.449 97.9215C111.855 99.9099 103.067 94.7849 93.2098 91.3112C81.3155 87.0452 66.7637 84.7199 55.3417 88.0891C70.4326 77.6066 83.0617 84.9002 97.4704 90.049C111.831 95.6865 125.863 96.0234 140.181 82.9119C143.769 79.6803 146.407 75.9885 147.801 73.668C148.345 72.7663 147.7 72.3203 146.775 72.9372C143.717 74.9112 137.595 78.5794 129.375 78.8547C120.333 78.8452 114.374 76.2305 102.909 74.9634C93.3148 73.7202 83.4959 73.3643 77.408 74.4984C87.6133 66.6828 97.6469 71.0912 108.124 73.3643C118.54 75.8935 129.389 76.2826 139.809 66.3743C142.037 64.2152 143.822 61.8283 144.943 60.0772C145.453 59.28 144.843 58.5634 144.003 58.9146C142.242 59.6264 139.222 60.7321 133.874 61.2066C129.131 61.814 119.751 59.7877 112.437 59.7972C105.152 60.0582 98.1861 60.7036 94.6268 61.4154C102.06 54.9807 108.907 56.5799 116.302 57.1683C123.573 57.9181 131.393 57.6523 137.905 51.2224C138.65 50.4583 139.213 49.2008 139.542 48.1758C139.761 47.4925 139.036 46.7759 138.34 46.9515C137.094 47.2695 135.143 47.6111 132.609 47.4166C128.616 47.1793 123.115 44.6548 118.54 44.6738C114.689 44.7354 110.314 45.5564 107.709 47.3027C115.782 38.1157 121.426 43.8196 128.936 41.6035C133.182 40.308 136.064 37.5225 136.002 36.265C135.944 35.202 132.886 35.8426 129.155 35.3966C124.155 34.7939 123.826 32.6964 116.645 36.0419C121.459 32.1697 125.935 28.9903 127.027 25.3269C128.754 19.5423 127.042 18.7213 121.86 22.119C119.193 23.8701 116.975 28.53 114.622 33.8875C115.62 26.5417 115.71 24.3351 112.862 20.7096C110.357 17.5255 109.851 13.4018 108.487 13.658C107.614 13.8241 106.535 15.8029 106.941 21.9055C107.671 32.8341 114.622 33.8923 105.734 44.185C107.251 41.2571 108.172 36.488 107.69 33.693C106.965 29.4648 105.634 26.1858 102.575 20.2161C100.906 16.9608 100.462 12.1537 99.9037 10.2414C99.584 9.1689 99.0401 8.20558 98.3626 8.83672C97.6851 9.46785 95.6478 12.7137 95.0515 16.7662C93.6392 26.3614 96.8311 28.6059 98.4055 36.9957C99.8273 45.3191 98.1479 52.4419 91.9693 57.994C93.5295 54.7482 95.2137 50.2686 95.7814 45.8791C96.4971 40.3602 97.1269 35.2305 90.9579 20.0832C88.3767 13.7482 88.5676 7.84495 88.1095 5.49125C87.8853 4.36185 87.2984 3.83986 86.6782 4.47573C85.2803 5.91833 83.744 9.95663 83.0903 12.5476C79.6647 26.1146 80.6571 31.4816 83.5007 42.4861C85.9148 51.8345 86.1057 61.8425 74.135 69.9239C77.6895 65.3114 81.1151 56.7744 81.3394 47.0986C81.6018 35.5531 78.3526 28.3307 75.9814 18.7783C73.8344 10.1417 73.9251 4.35235 74.0587 1.18245C74.1064 0.233374 73.3573 -0.350307 72.8564 0.233374C71.5586 1.73291 69.5548 4.20999 68.0709 7.24228C62.0785 18.299 63.8199 32.1887 65.5566 46.7807C67.0881 61.1117 65.9383 73.9954 52.0735 83.7519C59.0536 74.3608 63.8676 62.0276 63.171 50.0598C62.6033 40.2179 59.1538 30.3855 58.8628 20.2541C58.6576 14.0424 59.9028 7.1284 60.5279 3.81614C60.671 3.04739 59.9744 2.73419 59.4067 3.30838C56.649 6.27423 50.0601 12.8656 46.6822 23.6897C43.7527 32.8103 45.2795 42.9654 46.3673 54.0364C47.3931 64.9934 47.9894 76.8568 41.7059 86.8269C38.6286 91.9139 35.2268 96.123 30.9233 99.7817C32.7553 91.9851 39.7116 84.0983 41.3862 67.8976C43.7527 44.9869 39.6162 36.1084 40.7946 23.2247C41.3147 17.9716 44.2966 10.4264 45.6755 7.0857C45.9474 6.42135 45.2317 6.4166 44.5924 7.08095C42.412 9.1879 38.4807 13.6533 34.1771 19.789C29.9929 25.977 23.695 33.7309 22.8124 43.7864C21.6912 56.5656 24.3964 64.0111 24.4966 79.6092C24.3391 94.837 23.5519 109.59 18.4325 114.583C20.5986 101.594 22.5309 92.1749 19.4583 68.1538C17.9697 56.5134 17.526 39.9379 23.299 29.3937C26.2046 23.3148 30.2935 17.5872 32.7029 14.2227C33.2802 13.416 32.5979 13.4824 31.7725 14.3271C30.3698 15.7507 28.7524 17.3879 27.5406 18.6549C19.9688 26.76 13.232 34.8034 8.84742 42.4577C4.33874 50.0977 2.18698 57.3486 0.913097 63.5224C-1.65852 78.29 1.07532 91.0455 10.7272 107.569C18.9001 121.065 12.7549 120.059 14.5584 121.696C14.5441 121.696 14.5346 121.696 14.525 121.701C14.6443 121.829 14.7779 121.966 14.9067 122.104C15.088 122.303 15.3122 122.541 15.5794 122.816C15.8418 123.091 16.0756 123.328 16.2855 123.532C16.4287 123.675 16.567 123.817 16.7006 123.95C16.7102 123.95 16.7197 123.945 16.734 123.94C19.4106 126.949 17.4831 119.518 31.6532 129.246C50.4084 142.495 66.3438 149.214 82.4176 147.819C89.3834 147.259 97.0553 145.461 104.689 141.626C112.385 137.783 120.109 131.732 129.198 122.944C130.677 121.511 132.676 119.522 134.542 117.662C135.649 116.561 135.401 116.177 134.213 117.136C129.208 121.169 121.798 127.063 114.498 130.627V130.617Z" fill="#B9D1B1"/>
       </svg>
     `
