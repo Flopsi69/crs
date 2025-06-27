@@ -1779,7 +1779,6 @@
         <span></span>
         <span></span>
         <span></span>
-        <span></span>
       </div>
 
       <video class="lavm-short__video-el" autoplay muted loop playsinline></video>
@@ -1798,18 +1797,6 @@
         <div class="lavm-short__caption">Your perfect Spa Day with a fun twist for you, her, him and everyone in between</div>
         <div class="lavm-short__button">Choose Spa Package</div>
       </div>
-
-      <div class='lavm-short__mother'>
-        <div class='lavm-short__mother-image'>
-          <img src="${config.dir}/img/modal-father.png" alt="Father's Day">
-        </div>
-        <div class='lavm-short__mother-info'>
-          <div class='lavm-short__mother-caption'>Come Celebrate</div>
-          <div class='lavm-short__mother-title lav-quincy'>Father’s Day</div>
-          <div class='lavm-short__mother-caption'>at Oakwell Beer Spa</div>
-          <div class='lavm-short__mother-button'>Book Now</div>
-        </div>
-      </div>
     `
 
     new Modal('lavm-short', html)
@@ -1827,12 +1814,12 @@
       const current = _$('.lav-modal').dataset.target
       const prev = +current.replace('modal', '') - 1
 
-      if (prev < 0) return
+      if (prev < 1) return
 
       openModal(`modal${prev}`)
     })
 
-    _$('.lavm-short__mother-button').addEventListener('click', () => {
+    _$('.lavm-short__mother-button')?.addEventListener('click', () => {
       location.href = '/waitlist-crs/'
       pushDataLayer(
         'exp_hp3_click_03',
@@ -1913,7 +1900,6 @@
   }
 
   const modalsShortsConfig = {
-    modal0: {},
     modal1: {
       title: 'Most memorable spa experience',
       caption:
@@ -1954,7 +1940,7 @@
       if (index < 0) return
 
       el.classList.remove('active')
-      if (index >= i) {
+      if (index > i) {
         el.classList.add('active')
       }
     })
@@ -2430,15 +2416,6 @@
       <div class='lavh-hero'>
         <div class='lav-video'></div>
         <div class='lav-shorts'>
-          <div class='lav-short' data-target='modal0'>
-            <div class='lav-short__image'>
-              <img src='${config.dir}/img/short-1.png' />
-            </div>
-            <div class='lav-short__title'>
-              Father’s Day Exclusive
-            </div>
-          </div>
-
           <div class='lav-short' data-target='modal1'>
             <div class='lav-short__image'>
               <img src='${config.dir}/img/short-2.png' />
