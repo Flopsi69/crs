@@ -2681,6 +2681,8 @@
       () => typeof $ !== 'undefined',
       () => {
         $(window).scroll(function () {
+          if (location.pathname !== '/') return
+
           if (
             $('.lavh-hero__btn-wrap').offset().top +
               $('.lavh-hero__btn-wrap').height() <
