@@ -1335,29 +1335,6 @@
   function addSpecialEvents() {
     const packages = [
       {
-        key: 'father',
-        color: '#81A3ED',
-        textColor: '#3774FA',
-        soonColor: '#114DC9',
-        title: "Father's Day 2025",
-        url: 'https://oakwell.com/fathers-day',
-        descr:
-          'Give Dad the gift of relaxation with a side of delicious beer for an unforgettable Father’s Day experience.',
-        caption: 'For up to 2 adults',
-        slider: [
-          'https://oakwell.com/wp-content/uploads/2024/05/image-21.webp',
-          `${config.dir}/img/father-2.jpg`,
-          'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2021/11/Sauna.webp',
-          `${config.dir}/img/father-5.jpg`,
-          `${config.dir}/img/father-6.jpg`,
-          `${config.dir}/img/father-7.jpg`,
-          `${config.dir}/img/father-8.jpg`,
-          'https://oakwell.com/wp-content/uploads/2024/05/100-From-the-Hip-Photo-1-scaled.webp',
-          'https://oakwell.com/wp-content/uploads/2024/05/071-From-the-Hip-Photo-scaled.webp'
-        ]
-      },
-      {
         key: 'year',
         color: '#DBB250',
         textColor: '#BB8040',
@@ -1417,6 +1394,29 @@
           'https://oakwell.com/wp-content/uploads/2024/02/far-infrared-sauna-featured.webp',
           'https://oakwell.com/wp-content/uploads/2024/01/Sparkles.webp'
         ]
+      },
+      {
+        key: 'father',
+        color: '#81A3ED',
+        textColor: '#3774FA',
+        soonColor: '#114DC9',
+        title: "Father's Day 2026",
+        // url: 'https://oakwell.com/fathers-day',
+        descr:
+          'Give Dad the gift of relaxation with a side of delicious beer for an unforgettable Father’s Day experience.',
+        caption: 'For up to 2 adults',
+        slider: [
+          'https://oakwell.com/wp-content/uploads/2024/05/image-21.webp',
+          `${config.dir}/img/father-2.jpg`,
+          'https://oakwell.com/wp-content/uploads/2024/05/155-From-the-Hip-Photo-2-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2021/11/Sauna.webp',
+          `${config.dir}/img/father-5.jpg`,
+          `${config.dir}/img/father-6.jpg`,
+          `${config.dir}/img/father-7.jpg`,
+          `${config.dir}/img/father-8.jpg`,
+          'https://oakwell.com/wp-content/uploads/2024/05/100-From-the-Hip-Photo-1-scaled.webp',
+          'https://oakwell.com/wp-content/uploads/2024/05/071-From-the-Hip-Photo-scaled.webp'
+        ]
       }
     ]
 
@@ -1425,10 +1425,10 @@
         <div class="lav-packages__title">Special Events</div>
 
         <div class="lav-nav">
-          <div class="lav-nav__item active" data-target='father'>Father's Day 2025</div>
-          <div class="lav-nav__item" data-target='year'>New Year's Eve 2026</div>
+          <div class="lav-nav__item active" data-target='year'>New Year's Eve 2026</div>
           <div class="lav-nav__item" data-target='valentine'>Valentine's Day 2026</div>
           <div class="lav-nav__item" data-target='mother'>Mother's Day 2026</div>
+          <div class="lav-nav__item" data-target='father'>Father's Day 2026</div>
         </div>
 
         <div class='lav-packages__list'></div>
@@ -1759,7 +1759,7 @@
     `
 
         const stylesEl = document.createElement('style')
-        stylesEl.classList.add('exp-modal')
+        stylesEl.classList.add('exp-denver')
         stylesEl.innerHTML = styles
         document.head.appendChild(stylesEl)
       }
