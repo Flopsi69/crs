@@ -262,7 +262,7 @@ function addSwipeListener(el, onSwipeLeft, onSwipeRight) {
 
     if (Math.abs(delta) > threshold) {
       if (delta < 0) {
-        pushData('exp_buzz_v7_swipe', 'Swipe', 'other', 'Stories')
+        pushDataLayer('exp_buzz_v7_swipe', 'Swipe', 'other', 'Stories')
         onSwipeLeft?.() // Swipe left
       } else {
         pushDataLayer('exp_buzz_v7_swipe', 'Swipe', 'other', 'Stories')
