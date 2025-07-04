@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/buzzpatch/stories',
   dir: 'https://flopsi69.github.io/crs/buzzpatch/stories',
   clarity: ['set', 'exp_buzzpatch_7', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
