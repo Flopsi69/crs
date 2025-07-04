@@ -503,7 +503,7 @@ function initModal() {
       const styles = /* css */ `
       .lav-modal {
         position: fixed;
-        z-index: 999999;
+        z-index: 999999999999;
         left: 0;
         right: 0;
         top: 0;
@@ -634,6 +634,23 @@ function initModal() {
       }
       .lavm-video {
         line-height: 0;
+      }
+      .lavm-video:before, .lavm-video:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 85px;
+        z-index: 8;
+        pointer-events: none;
+      }
+      .lavm-video:before {
+        top: 0;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.60) 100%);
+      }
+      .lavm-video:after {
+        bottom: 0;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.00) 100%);
       }
       .lavm-video__group {
         position: absolute;
