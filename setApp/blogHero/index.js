@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/setApp/blogHero',
   dir: 'https://flopsi69.github.io/crs/setApp/blogHero',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'successful-registration"', 'variant_1'],
   debug: true
 }
 
@@ -506,17 +506,19 @@ const stylesSuccessful = /* css */ `
 initExp()
 
 const lavBlogLinks = [
-  // '/how-to/recover-deleted-photos-from-iphone',
-  '/how-to/download-youtube-videos'
-  // '/how-to/how-to-recover-deleted-text-messages-on-iphone',
-  // '/how-to/how-to-recover-an-unsaved-word-document-on-mac',
-  // '/how-to/convert-youtube-to-mp3',
-  // '/how-to/download-facebook-video',
-  // '/how-to/how-to-recover-sd-card-on-mac',
-  // '/how-to/unblur-an-image',
-  // '/how-to/tiktok-banned-reasons-and-solutions',
-  // '/how-to/open-rar-files-on-mac',
+  '/how-to/download-youtube-videos',
+  '/how-to/recover-deleted-photos-from-iphone',
+  '/how-to/how-to-recover-deleted-text-messages-on-iphone',
+  '/how-to/how-to-recover-an-unsaved-word-document-on-mac',
+  '/how-to/convert-youtube-to-mp3',
+  '/how-to/download-facebook-video',
+  '/how-to/how-to-recover-sd-card-on-mac',
+  '/how-to/unblur-an-image',
+  '/how-to/tiktok-banned-reasons-and-solutions',
+  '/how-to/open-rar-files-on-mac'
 ]
+
+const lavBlogLinks2 = ['/how-to/download-youtube-videos']
 
 const lavArticleData = [
   {
@@ -1053,7 +1055,7 @@ async function initExp() {
 async function handleSuccessfulRegistration() {
   const refferer = document.referrer
 
-  const configLink = lavBlogLinks.find((link) => refferer.includes(link))
+  const configLink = lavBlogLinks2.find((link) => refferer.includes(link))
 
   if (!configLink) {
     console.error('No matching blog link found for the referrer')
@@ -1848,18 +1850,18 @@ function connectSplide() {
 // *** Exp BG process *** //
 
 //Clarity
-if (
-  !config.debug &&
-  Array.isArray(config.clarity) &&
-  config.clarity.length === 3
-) {
-  waitFor(
-    () => typeof clarity == 'function',
-    () => {
-      clarity(...config.clarity)
-    }
-  )
-}
+// if (
+//   !config.debug &&
+//   Array.isArray(config.clarity) &&
+//   config.clarity.length === 3
+// ) {
+//   waitFor(
+//     () => typeof clarity == 'function',
+//     () => {
+//       clarity(...config.clarity)
+//     }
+//   )
+// }
 
 // Svg objects
 function getSvg(name) {
