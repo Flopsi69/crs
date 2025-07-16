@@ -1427,10 +1427,9 @@ function eventListeners() {
   // Download button logic
   const downloadButton = document.querySelector('#crs-download')
   downloadButton?.addEventListener('click', async () => {
-    const controlDownloadButtons =
-      document.querySelectorAll <
-      HTMLButtonElement >
+    const controlDownloadButtons = document.querySelectorAll(
       'a[href*="signup"].promo-new-banner__cta-btn, a[href*="signup"].promo-banner__cta-btn'
+    )
 
     controlDownloadButtons.forEach((button) => {
       button?.click()
