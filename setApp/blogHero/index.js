@@ -392,7 +392,6 @@ const stylesSuccessful = /* css */ `
   font-weight: 400;
   line-height: 35px;
   letter-spacing: 1.3px;
-  max-width: 570px;
   margin: 12px auto 0;
 }
 .lav-steps {
@@ -401,8 +400,19 @@ const stylesSuccessful = /* css */ `
   justify-content: space-between;
   gap: 24px;
 }
+@media(min-width: 1240px) {
+  .lav-steps {
+    width: 1200px;
+    padding: 0 20px;
+  }
+}
 .lav-divider {
   margin-top: 52px;
+}
+@media(max-width: 1100px) {
+  .lav-divider {
+    display: none;
+  }
 }
 .lav-step {
   text-align: center;
@@ -441,6 +451,13 @@ const stylesSuccessful = /* css */ `
   font-weight: 600;
   line-height: 28px;
   margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+@media(min-width: 1240px) {
+  .lav-step__title {
+    white-space: nowrap;
+  }
 }
 .lav-step__descr {
   color: #26262B;
@@ -517,8 +534,6 @@ const lavBlogLinks = [
   '/how-to/tiktok-banned-reasons-and-solutions',
   '/how-to/open-rar-files-on-mac'
 ]
-
-const lavBlogLinks2 = ['/how-to/download-youtube-videos']
 
 const lavArticleData = [
   {
@@ -1053,11 +1068,69 @@ async function initExp() {
 }
 
 async function handleSuccessfulRegistration() {
-  const refferer = document.referrer
+  const successConfig = [
+    {
+      url: '/how-to/download-youtube-videos',
+      caption:
+        'Just a couple of steps to get Downie and start <br/> downloading your videos',
+      secondColumn: {
+        title: 'Get Downie through Setapp',
+        description:
+          'Downie is part of Setapp. Once you open the Setapp app, just one click — and Downie will be installed on your Mac.',
+        icon: '/img/downie-logo.png'
+      },
+      thirdColumn: {
+        title: 'Start Downloading Videos',
+        description:
+          'Enjoy Downie right away! <br/> Plus, you now have access to 260+ top-tier Mac apps for anything you need',
+        icon: '/img/downie-video.png'
+      }
+    },
+    {
+      url: '/how-to/open-rar-files-on-mac',
+      caption: 'Just a couple of steps to get Archiver and open your RAR file',
+      secondColumn: {
+        title: 'Get Archiver through Setapp',
+        description:
+          'Archiver is part of Setapp. Once you open the Setapp app, just one click — and Archiver will be installed on your Mac.',
+        icon: '/img/rar-logo.png'
+      },
+      thirdColumn: {
+        title: 'Open your RAR file on Mac',
+        description:
+          'Enjoy Archiver right away! <br/> Plus, you now have access to 260+ top-tier Mac apps for anything you need',
+        icon: '/img/rar-third.png'
+      }
+    },
+    {
+      url: '/how-to/convert-youtube-to-mp3',
+      caption:
+        'Just a couple of steps to get Pulltube and streamline <br/> your video-to-audio workflow',
+      secondColumn: {
+        title: 'Get Pulltube through Setapp',
+        description:
+          'Pulltube is part of Setapp. Once you open the Setapp app, just one click — and Pulltube will be installed on your Mac.',
+        icon: '/img/convert-logo.png'
+      },
+      thirdColumn: {
+        title: 'Simplify your video-to-audio workflow',
+        description:
+          'Enjoy Pulltube right away! <br/> Plus, you now have access to 260+ top-tier Mac apps for anything you need',
+        icon: '/img/convert-third.png'
+      }
+    }
+  ]
 
-  const configLink = lavBlogLinks2.find((link) => refferer.includes(link))
+  // /how-to/download-youtube-videos
+  // /how-to/open-rar-files-on-mac
+  // /how-to/convert-youtube-to-mp3
+  const refferer = document.referrer || '/how-to/convert-youtube-to-mp3'
 
-  if (!configLink) {
+  const pageConfig = successConfig.find((config) =>
+    refferer.includes(config.url)
+  )
+
+  if (!pageConfig) {
     console.error('No matching blog link found for the referrer')
     return
   }
@@ -1068,19 +1141,17 @@ async function handleSuccessfulRegistration() {
     ms: 20
   })
 
-  console.log('config link', configLink)
+  console.log('config link', pageConfig)
 
   const stylesEl = document.createElement('style')
   stylesEl.classList.add('exp-styles')
   stylesEl.innerHTML = stylesSuccessful
   document.head.appendChild(stylesEl)
 
-  const successConfig = {}
+  changeHeader(pageConfig)
+  addSteps(pageConfig)
 
-  changeHeader()
-  addSteps()
-
-  function changeHeader() {
+  function changeHeader(pageConfig) {
     if (!_$('.successful-registration-desktop-ccr__title')) return
 
     _$(
@@ -1089,14 +1160,12 @@ async function handleSuccessfulRegistration() {
     _$('.successful-registration-desktop-ccr__title').insertAdjacentHTML(
       'afterend',
       /*html*/ `
-      <div class='lav-caption'>
-        Just a couple of steps to get Downie and start downloading your videos
-      </div>
+      <div class='lav-caption'>${pageConfig.caption}</div>
     `
     )
   }
 
-  function addSteps() {
+  function addSteps(pageConfig) {
     if (!_$('.successful-registration-desktop-ccr__steps')) return
 
     const markup = /* HTML */ `
@@ -1120,13 +1189,13 @@ async function handleSuccessfulRegistration() {
         
         <div class="lav-step" data-step="2">
           <div class="lav-step__icon">
-            <img class='lav-step__icon-default' src="${
-              config.dir
-            }/img/downie-logo.png" />
+            <img class='lav-step__icon-default' src="${config.dir}${
+      pageConfig.secondColumn.icon
+    }" />
           </div>
-          <div class="lav-step__title">Get Downie through Setapp</div>
+          <div class="lav-step__title">${pageConfig.secondColumn.title}</div>
           <div class="lav-step__descr">
-            Downie is part of Setapp. Once you open the Setapp app, just one click — and Downie will be installed on your Mac.
+            ${pageConfig.secondColumn.description}
           </div>
         </div>
 
@@ -1136,13 +1205,13 @@ async function handleSuccessfulRegistration() {
 
         <div class="lav-step" data-step="3">
           <div class="lav-step__icon">
-            <img class='lav-step__icon-downloading' src="${
-              config.dir
-            }/img/start-downloading.png" />
+            <img class='lav-step__icon-downloading' src="${config.dir}${
+      pageConfig.thirdColumn.icon
+    }" />
           </div>
-          <div class="lav-step__title">Start Downloading Videos</div>
+          <div class="lav-step__title">${pageConfig.thirdColumn.title}</div>
           <div class="lav-step__descr">
-            Enjoy Downie right away! <br/> Plus, you now have access to 260+ top-tier Mac apps for anything you need
+            ${pageConfig.thirdColumn.description}
           </div>
         </div>
       </div>
@@ -1427,12 +1496,17 @@ function eventListeners() {
   // Download button logic
   const downloadButton = document.querySelector('#crs-download')
   downloadButton?.addEventListener('click', async () => {
+    const isClicked = false
+
     const controlDownloadButtons = document.querySelectorAll(
       'a[href*="signup"].promo-new-banner__cta-btn, a[href*="signup"].promo-banner__cta-btn'
     )
 
     controlDownloadButtons.forEach((button) => {
-      button?.click()
+      if (button) {
+        isClicked = true
+        button.click()
+      }
     })
     pushDataLayer('Blog Article', 'Click - Download now', 'First screen')
   })
