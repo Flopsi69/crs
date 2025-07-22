@@ -3,11 +3,16 @@
 
   // Config for Experiment
   const config = {
-    // dir: 'http://127.0.0.1:5500/<dir>/<project>',
-    dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
+    // dir: 'http://127.0.0.1:5500/buzzpatch/oneButton',
+    dir: 'https://flopsi69.github.io/crs/buzzpatch/oneButton',
     clarity: ['set', 'exp_buzzpatch_8', 'variant_1'],
     debug: false
   }
+
+  let script = document.createElement('script')
+  script.src = 'https://flopsi69.github.io/crs/buzzpatch/oneButton/index.js'
+  script.async = false
+  document.head.appendChild(script)
 
   // const orig = console.log
   // console.log = function (...args) {
@@ -100,126 +105,9 @@
     }
   }
 
-  // Mutation Observer
-  function initMutation(observeEl = document.body, cbAdded, cbRemoved) {
-    const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
-
-    if (!el) return
-
-    let observer = new MutationObserver((mutations, observer) => {
-      for (let mutation of mutations) {
-        if (typeof cbAdded === 'function') {
-          for (let node of mutation.addedNodes) {
-            if (!(node instanceof HTMLElement)) continue
-            cbAdded(node, observer)
-          }
-        }
-
-        if (typeof cbRemoved === 'function') {
-          for (let node of mutation.removedNodes) {
-            if (!(node instanceof HTMLElement)) continue
-            cbRemoved(node, observer)
-          }
-        }
-      }
-    })
-
-    observer.observe(el, { childList: true, subtree: true })
-
-    return observer
-  }
-
-  // Intersection Observer
-  function initIntersection(observeEl, cb, customConfig) {
-    const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
-
-    if (!el || typeof cb !== 'function') return
-
-    const config = {
-      root: null,
-      threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-      ...customConfig
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        cb(entry, observer)
-      })
-    }, config)
-
-    observer.observe(el)
-
-    return observer
-  }
-
-  function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-    let entryTime = 0
-    initIntersection(
-      el,
-      ({ isIntersecting, time }) => {
-        if (isIntersecting) {
-          entryTime = time
-        } else if (entryTime) {
-          const diffTime = +((time - entryTime) / 1000).toFixed(1)
-          cb(diffTime + 's')
-          entryTime = 0
-        }
-      },
-      { threshold: viewElementProcent }
-    )
-  }
-
-  function visibilityEvent(el, cb, customConfig = {}) {
-    const config = {
-      threshold: 0.3,
-      ...customConfig,
-      timer: null
-    }
-    initIntersection(
-      el,
-      ({ isIntersecting, target }, observer) => {
-        // console.log(target, isIntersecting);
-        if (isIntersecting) {
-          config.timer = setTimeout(() => {
-            if (isElementInViewport(target)) {
-              cb()
-              observer.disconnect()
-            }
-          }, 3000)
-        } else {
-          clearTimeout(config.timer)
-        }
-      },
-      config
-    )
-  }
-
   // Artificial delay
   function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
-  }
-
-  // Check if element in viewport
-  function isElementInViewport(selector) {
-    const el = typeof selector === 'string' ? _$(selector) : selector
-
-    if (!el) return false
-
-    const rect = el.getBoundingClientRect()
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight
-
-    return (
-      rect.top + rect.height * 0.3 < windowHeight &&
-      rect.bottom > rect.height * 0.3
-    )
-    // return (
-    //   rect.top >= 0 &&
-    //   rect.left >= 0 &&
-    //   rect.bottom <=
-    //     (window.innerHeight || document.documentElement.clientHeight) &&
-    //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
   }
 
   // Shordcode for selectors
@@ -253,20 +141,6 @@
     } catch (e) {
       console.log('** GA4 Error **', e)
     }
-  }
-
-  // Slider
-  function connectSplide() {
-    const sliderStyles = document.createElement('link')
-    sliderStyles.rel = 'stylesheet'
-    sliderStyles.href =
-      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
-    document.head.appendChild(sliderStyles)
-
-    let sliderScript = document.createElement('script')
-    sliderScript.src =
-      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
-    document.head.appendChild(sliderScript)
   }
 
   // *** Exp BG process *** //
