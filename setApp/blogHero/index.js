@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/setApp/blogHero',
   dir: 'https://flopsi69.github.io/crs/setApp/blogHero',
-  clarity: ['set', 'successful-registration"', 'variant_1'],
+  clarity: ['set', 'successful-registration', 'variant_1'],
   debug: false
 }
 
