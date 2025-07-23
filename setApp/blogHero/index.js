@@ -524,15 +524,15 @@ initExp()
 
 const lavBlogLinks = [
   '/how-to/download-youtube-videos',
-  '/how-to/recover-deleted-photos-from-iphone',
-  '/how-to/how-to-recover-deleted-text-messages-on-iphone',
-  '/how-to/how-to-recover-an-unsaved-word-document-on-mac',
-  '/how-to/convert-youtube-to-mp3',
-  '/how-to/download-facebook-video',
-  '/how-to/how-to-recover-sd-card-on-mac',
-  '/how-to/unblur-an-image',
-  '/how-to/tiktok-banned-reasons-and-solutions',
-  '/how-to/open-rar-files-on-mac'
+  '/how-to/open-rar-files-on-mac',
+  '/how-to/convert-youtube-to-mp3'
+  // '/how-to/recover-deleted-photos-from-iphone',
+  // '/how-to/how-to-recover-deleted-text-messages-on-iphone',
+  // '/how-to/how-to-recover-an-unsaved-word-document-on-mac',
+  // '/how-to/download-facebook-video',
+  // '/how-to/how-to-recover-sd-card-on-mac',
+  // '/how-to/unblur-an-image',
+  // '/how-to/tiktok-banned-reasons-and-solutions',
 ]
 
 const lavArticleData = [
@@ -1124,7 +1124,7 @@ async function handleSuccessfulRegistration() {
   // /how-to/download-youtube-videos
   // /how-to/open-rar-files-on-mac
   // /how-to/convert-youtube-to-mp3
-  const refferer = document.referrer || '/how-to/convert-youtube-to-mp3'
+  const refferer = document.referrer || '/how-to/download-youtube-videos'
 
   const pageConfig = successConfig.find((config) =>
     refferer.includes(config.url)
@@ -1229,27 +1229,23 @@ async function handleSuccessfulRegistration() {
 
     _$('.lav-btn__black').addEventListener('click', () => {
       pushDataLayer(
-        'Successful registration',
-        'Click - Download Setapp',
-        'First screen'
+        'Successful Registration Page',
+        'Direct Link',
+        'Download Setapp'
       )
       _$('.text_color-secondary .link-outer').click()
     })
 
     _$('.lav-btn__trans').addEventListener('click', () => {
-      pushDataLayer(
-        'Successful registration',
-        'Click - How Setapp works',
-        'First screen'
-      )
+      pushDataLayer('Successful Registration Page', 'Click - How Setapp works')
       openModalVideo()
     })
 
     _$('.lav-step__download').addEventListener('click', () => {
       pushDataLayer(
-        'Successful registration',
-        'Click - Download manually link',
-        'First screen'
+        'Successful Registration Page',
+        'Direct Link',
+        'Download manually'
       )
       _$('.text_color-secondary .link-outer').click()
     })
