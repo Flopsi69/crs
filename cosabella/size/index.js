@@ -63,7 +63,7 @@
   .template-product .js-product-info .form--product__field--Size + .form--product__add-to-cart {
     margin-top: 6px;
   }
-  .template-product span.form--product__dropdown-label.js-dropdown-label {
+  .template-product .form--product__field--Size span.form--product__dropdown-label.js-dropdown-label {
     color: #0A0A12;
     font-size: 14.125px;
     font-style: normal;
