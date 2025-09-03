@@ -2,10 +2,10 @@ console.debug('*** Experiment started ***')
 
 // Config for Experiment
 const config = {
-  dir: 'http://127.0.0.1:5500/petals/pdp_improvment',
-  // dir: 'https://flopsi69.github.io/crs/petals/pdp_improvment',
+  // dir: 'http://127.0.0.1:5500/petals/pdp_improvment',
+  dir: 'https://flopsi69.github.io/crs/petals/pdp_improvment',
   clarity: ['set', 'exp_pdp', 'variant_1'],
-  debug: true
+  debug: false
 }
 
 // const orig = console.log
