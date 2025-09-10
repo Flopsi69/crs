@@ -697,6 +697,9 @@
 #satcb_bar {
   display: none!important;
 }
+.lav-carousel-trust {
+  object-position: top;
+}
 
 .owlCustomCarouselThumbs {
   overflow: visible;
@@ -768,7 +771,7 @@
   `
     const newSlide2 = /*html*/ `
     <li class="owlCustomCarousel">
-      <img src="${config.dir}/img/review-slide-2.png" />
+      <img class='lav-carousel-trust' src="${config.dir}/img/review-slide-2.png" />
     </li>
   `
 
@@ -780,7 +783,7 @@
 
     const newThumb2 = /*html*/ `
     <button class="owlCustomCarouselThumb_Item">
-      <img src="${config.dir}/img/review-slide-2.png" />
+      <img class='lav-carousel-trust' src="${config.dir}/img/review-slide-2.png" />
     </button>
   `
 
@@ -792,6 +795,30 @@
       .trigger('add.owl.carousel', [newThumb1])
       .trigger('add.owl.carousel', [newThumb2])
       .trigger('refresh.owl.carousel')
+    
+     // Sync navigation carousel with main carousel
+    mainCarousel.on('changed.owl.carousel', function(event) {
+      const currentIndex = event.item.index
+      const totalItems = event.item.count
+      const visibleItems = event.page.size
+      
+      // Calculate which thumbnail should be in focus
+      let targetIndex = currentIndex
+      
+      // If we're near the end, adjust the target to keep thumbs visible
+      if (currentIndex >= totalItems - visibleItems) {
+        targetIndex = totalItems - visibleItems
+      }
+      
+      // Scroll thumbs carousel to show the active thumbnail
+      thumbsCarousel.trigger('to.owl.carousel', [targetIndex, 300, true])
+    })
+
+    // Optional: Also sync when thumbnail is clicked
+    thumbsCarousel.on('click', '.owlCustomCarouselThumb_Item', function(e) {
+      const index = $(this).index()
+      mainCarousel.trigger('to.owl.carousel', [index, 300, true])
+    })
   }
 
   function addSticky() {
@@ -916,12 +943,29 @@
 
           _$('.lav-selector__toggler').innerHTML = headerHTML + bodyHTML
 
+          if (_$('.lav-selector__toggler #guide_desc')) {
+            _$('.lav-selector__toggler #guide_desc').addEventListener('click', () => {
+              // TODO
+              _$('.section-header')?.classList.remove('lav-selector-opened')
+
+              const interval = setInterval(() => {
+                if (_$('#custom_notifications[style*="translateX(100%)"]')) {
+                  if (_$('.lav-selector.active')) {
+                    _$('.section-header')?.classList.add('lav-selector-opened')
+                  }
+                  clearInterval(interval)
+                }
+              }, 350);
+            });
+          }
+
           _$$('.lav-selector__toggler a').forEach((el, index) => {
             el.addEventListener('click', (e) => {
               _$(
                 'product-info .lav-measure li:nth-child(' + (index + 1) + ') a'
               ).click()
               rerender()
+              closeSelector()
             })
           })
         }
@@ -1049,6 +1093,7 @@
                 'product-info .lav-material li:nth-child(' + (index + 1) + ') a'
               ).click()
               rerender()
+              closeSelector()
             })
           })
         }
@@ -1421,6 +1466,16 @@
         'Trustpilot Reviews'
       )
       _$('product-recommendations')?.scrollIntoView({ behavior: 'smooth' })
+      //  const $targetSection = $('product-recommendations');
+      // if ($targetSection.length) {
+      //   const headerHeight = $('.header').outerHeight() || 0;
+      //   const utilityBarHeight = $('.utility-bar').outerHeight() || 0;
+      //   const totalOffset = headerHeight + utilityBarHeight;
+        
+      //   $('html, body').animate({
+      //     scrollTop: $targetSection.offset().top - totalOffset
+      //   }, 1000);
+      // }
     })
   }
 
