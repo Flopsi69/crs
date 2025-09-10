@@ -815,13 +815,13 @@
       }
       
       // Scroll thumbs carousel to show the active thumbnail
-      thumbsCarousel.trigger('to.owl.carousel', [targetIndex, 300, true])
+      thumbsCarousel.trigger('to.owl.carousel', [targetIndex, 150, true])
     })
 
     // Optional: Also sync when thumbnail is clicked
     thumbsCarousel.on('click', '.owlCustomCarouselThumb_Item', function(e) {
       const index = $(this).index()
-      mainCarousel.trigger('to.owl.carousel', [index, 300, true])
+      mainCarousel.trigger('to.owl.carousel', [index, 150, true])
     })
   }
 
