@@ -750,9 +750,13 @@
           'beforebegin',
           "<div class='lav-selects-title'>Customise your order:</div>"
         )
-        updateSizeAndLength()
-        updateMaterial()
-        addLabelHandler()
+        waitFor(
+          () => _$$('variant-selects li a').length,
+          () => {
+          updateSizeAndLength()
+          updateMaterial()
+          addLabelHandler()
+          })
       }
     )
   }
