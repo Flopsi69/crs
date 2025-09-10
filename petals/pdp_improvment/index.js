@@ -729,7 +729,7 @@
 
     initModal()
     addSlideInModal()
-    waitFor('#satcb_bar', addSticky)
+    waitFor(() => _$('#satcb_bar') && _$('.form .product-form__submit'), addSticky, { ms: 50 })
     waitFor('.customCarouselForMbl', updateGallery)
 
     waitFor(() => _$('[id*=price-template]') && !_$('.lav-how'), addHowItWorks)
@@ -756,7 +756,7 @@
           updateSizeAndLength()
           updateMaterial()
           addLabelHandler()
-          })
+          }, { ms: 50 })
       }
     )
   }
