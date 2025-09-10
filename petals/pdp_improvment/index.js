@@ -730,7 +730,11 @@
     initModal()
     addSlideInModal()
     waitFor(() => _$('#satcb_bar') && _$('.form .product-form__submit'), addSticky, { ms: 50 })
-    waitFor('.customCarouselForMbl', updateGallery)
+    waitFor('.customCarouselForMbl', () => {
+      setTimeout(() => {
+        updateGallery()
+      }, 500);
+    })
 
     waitFor(() => _$('[id*=price-template]') && !_$('.lav-how'), addHowItWorks)
 
