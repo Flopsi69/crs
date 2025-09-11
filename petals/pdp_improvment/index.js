@@ -711,6 +711,9 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+ul.owlCustomCarousel img {
+  max-height: 305px;
+}
 `
 
   const stylesEl = document.createElement('style')
