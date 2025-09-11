@@ -856,7 +856,7 @@
     // _$('#satcb_bar').insertAdjacentHTML('afterend', markup)
     document.body.insertAdjacentHTML('afterbegin', markup)
 
-    _$('.lav-selector__close').addEventListener('click', closeSelector)
+    _$('.lav-selector__close').addEventListener('click', () => closeSelector())
 
     _$('.lav-sticky__add').addEventListener('click', () => {
       pushDataLayer('exp_pdp_click_03', 'Add to cart', 'click', 'Sticky button')
@@ -973,7 +973,7 @@
                 'product-info .lav-measure li:nth-child(' + (index + 1) + ') a'
               ).click()
               rerender()
-              closeSelector()
+              closeSelector(true)
             })
           })
         }
@@ -990,12 +990,12 @@
     }, 50)
   }
 
-  function closeSelector() {
+  function closeSelector(isPassive) {
     _$('.section-header')?.classList.remove('lav-selector-opened')
     const label = _$(
       '.lav-selector__inner.active .form__label'
     )?.innerText.trim()
-    if (label) {
+    if (label && !isPassive) {
       pushDataLayer('exp_pdp_click_05', 'Close', 'click', `${label} - Sticky`)
     }
     _$('.lav-selector__inner').classList.remove('active')
@@ -1101,7 +1101,7 @@
                 'product-info .lav-material li:nth-child(' + (index + 1) + ') a'
               ).click()
               rerender()
-              closeSelector()
+              closeSelector(true)
             })
           })
         }
