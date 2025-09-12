@@ -1379,13 +1379,13 @@ ul.owlCustomCarousel img {
       <div class='lav-reels__list'>
         <div class='lav-reels__item' data-video='${config.dir}/video/1.mp4'>
           <video class='lav-reels__video' preload='metadata'>
-            <source src='${config.dir}/video/1.mp4' type='video/mp4'>
+            <source src='${config.dir}/video/1.mp4#t=0.1' type='video/mp4'>
           </video>
           <div class='lav-reels__views'>${getSvg('play')} 1.4M</div>
         </div>
         <div class='lav-reels__item' data-video='${config.dir}/video/2.mp4'>
           <video class='lav-reels__video' preload='metadata'>
-            <source src='${config.dir}/video/2.mp4' type='video/mp4'>
+            <source src='${config.dir}/video/2.mp4#t=0.1' type='video/mp4'>
           </video>
 
           <div class='lav-reels__views'>${getSvg(
@@ -1393,7 +1393,7 @@ ul.owlCustomCarousel img {
           )} 5.3M</div>        </div>
         <div class='lav-reels__item' data-video='${config.dir}/video/3.mp4'>
           <video class='lav-reels__video' preload='metadata'>
-            <source src='${config.dir}/video/3.mp4' type='video/mp4'>
+            <source src='${config.dir}/video/3.mp4#t=0.1' type='video/mp4'>
           </video>
 
           <div class='lav-reels__views'>${getSvg('play')} 9.3M</div>
@@ -1401,7 +1401,7 @@ ul.owlCustomCarousel img {
         <div class='lav-reels__item' data-video='${
           config.dir
         }/video/4.mp4'>          <video class='lav-reels__video' preload='metadata'>
-            <source src='${config.dir}/video/4.mp4' type='video/mp4'>
+            <source src='${config.dir}/video/4.mp4#t=0.1' type='video/mp4'>
           </video>
 
           <div class='lav-reels__views'>${getSvg('play')} 2.1M</div>
@@ -1410,7 +1410,7 @@ ul.owlCustomCarousel img {
           <video class='lav-reels__video' preload='metadata'>
             <source src='${
               config.dir
-            }/video/5.mp4' type='video/mp4'>          </video>
+            }/video/5.mp4#t=0.1' type='video/mp4'>          </video>
 
           <div class='lav-reels__views'>${getSvg('play')} 3.7M</div>
         </div>
@@ -1420,6 +1420,21 @@ ul.owlCustomCarousel img {
 
     _$('.custom.dwa').insertAdjacentHTML('afterend', markup)
     // Add click event for fullscreen video playback
+    // Force load first frame for iOS devices
+    _$$('.lav-reels__video').forEach((video) => {
+      video.addEventListener('loadedmetadata', () => {
+        video.currentTime = 0.1
+      })
+      
+      // Fallback for iOS
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        video.load()
+        setTimeout(() => {
+          video.currentTime = 0.1
+        }, 100)
+      }
+    })
+    
     _$$('.lav-reels__item').forEach((item) => {
       item.addEventListener('click', () => {
         const videoSrc = item.getAttribute('data-video')
