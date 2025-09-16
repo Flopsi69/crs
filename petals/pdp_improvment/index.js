@@ -504,7 +504,7 @@
   opacity: 1;
 }
 .lav-sticky__top {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 32px;
   padding: 7px 12px 9px;
@@ -834,27 +834,27 @@ ul.owlCustomCarousel img {
 
   function addSticky() {
     const markup = /* html */ `
-    <div class="lav-sticky">
-      <div class="lav-sticky__top">
-      </div>
-      <div class="lav-sticky__bottom">
-        <div class='lav-sticky__add'>
-          Add to cart
+      <div class="lav-sticky">
+        <div class="lav-sticky__top">
+        </div>
+        <div class="lav-sticky__bottom">
+          <div class='lav-sticky__add'>
+            Add to cart
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class='lav-selector'>
-      <div class='lav-selector__inner'>
-        <div class='lav-selector__close'>
-          ${getSvg('closeWhite')}
-        </div>
-        <div class='lav-selector__toggler'>
-          test
+      <div class='lav-selector'>
+        <div class='lav-selector__inner'>
+          <div class='lav-selector__close'>
+            ${getSvg('closeWhite')}
+          </div>
+          <div class='lav-selector__toggler'>
+            test
+          </div>
         </div>
       </div>
-    </div>
-  `
+    `
 
     // _$('#satcb_bar').insertAdjacentHTML('afterend', markup)
     document.body.insertAdjacentHTML('afterbegin', markup)
@@ -878,6 +878,8 @@ ul.owlCustomCarousel img {
   function updateSizeAndLength() {
     const sizeEl = _$(
       'variant-selects [name="options[Size]"] + .jquery-grid-picker-widget'
+    ) || _$(
+      'variant-selects [name="options[Ring Size]"] + .jquery-grid-picker-widget'
     )
 
     const lengthEl = _$(
@@ -899,6 +901,8 @@ ul.owlCustomCarousel img {
       const label = sizeEl
         .closest('.product-form__input--dropdown')
         .querySelector('.form__label')?.innerText
+      
+      console.log(value, label);
 
       addToSticky(value, label)
     }
@@ -1025,6 +1029,8 @@ ul.owlCustomCarousel img {
       'variant-selects [name="options[Material]"] + .jquery-grid-picker-widget'
     )
 
+    if (!materialEl) return
+
     _$$('li a', materialEl).forEach((el) => {
       const key = el.closest('li').getAttribute('data-jquery-grid-picker-value')
 
@@ -1040,7 +1046,6 @@ ul.owlCustomCarousel img {
       }
     })
 
-    if (!materialEl) return
 
     materialEl.classList.add('lav-label-handler', 'lav-material')
 
@@ -1061,25 +1066,27 @@ ul.owlCustomCarousel img {
     async function addToSticky(value, label, color) {
       await waitFor(() => _$('.lav-sticky__top'), false)
 
+      _$('.lav-sticky__top').classList.add('active')
+
       _$('.lav-sticky__top').insertAdjacentHTML(
         'afterbegin',
         /*html*/ `
-      <div class='lav-sticky__option lavs-option lav-selector-material'>
-        <div class="lavs-option__facture" style="${
-          color ? 'display: flex;' : 'display: none;'
-        }">
-          ${color || ''}
-        </div>
-        <div class="lavs-option__info">
-          <div class="lavs-option__label">${label}</div>
-          <div class="lavs-option__value">${value}</div>
-        </div>
-    
-        <div class="lavs-option__icon">
-          ${getSvg('chevronRight')}
-        </div>
-      </div>
-    `
+          <div class='lav-sticky__option lavs-option lav-selector-material'>
+            <div class="lavs-option__facture" style="${
+              color ? 'display: flex;' : 'display: none;'
+            }">
+              ${color || ''}
+            </div>
+            <div class="lavs-option__info">
+              <div class="lavs-option__label">${label}</div>
+              <div class="lavs-option__value">${value}</div>
+            </div>
+        
+            <div class="lavs-option__icon">
+              ${getSvg('chevronRight')}
+            </div>
+          </div>
+        `
       )
 
       _$('.lav-selector-material').addEventListener('click', function (e) {
