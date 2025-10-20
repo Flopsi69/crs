@@ -550,6 +550,16 @@
 .lav-sticky__top.active {
   display: flex;
 }
+.lav-sticky__price {
+  margin-left: auto;
+  color: #121212;
+  font-family: Assistant;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1.3px;
+}
 .lav-sticky__bottom {
   display: flex;
   min-height: 50px;
@@ -849,13 +859,38 @@ ul.owlCustomCarousel {
       }
     )
 
+    handleStickyPrice()
+
     waitFor(
       () => _$$('variant-selects li a').length,
       () => {
-      updateSizeAndLength()
-      updateMaterial()
-      addLabelHandler()
+        updateSizeAndLength()
+        updateMaterial()
+        addLabelHandler()
       }, { ms: 50 })
+  }
+
+  async function handleStickyPrice() {
+    await waitFor(() => _$('.lav-sticky__top'), false)
+
+    _$('.lav-sticky__top').classList.add('active')
+
+    _$('.lav-sticky__top').insertAdjacentHTML(
+      'beforeend',
+      /*html*/ `
+        <div class='lav-sticky__price'>
+          ${getPrice()}
+        </div>
+      `
+    )
+
+    initMutation('[id*="price-template"]', () => {
+      _$('.lav-sticky__price').innerHTML = getPrice()
+    })
+
+    function getPrice() {
+      return _$('.product .product__info-wrapper .price-item--sale')?.innerHTML || _$('.product .product__info-wrapper .price-item--regular').innerHTML()
+    }
   }
 
   async function updateGallery() {
