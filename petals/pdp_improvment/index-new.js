@@ -19,6 +19,9 @@
   .cac .owlCustomCarouselThumbs, .cac .product__info-wrapper div.product__title, .cac .product__info-wrapper .price, .cac .product__info-wrapper .customProductImage, .cac .product__info-wrapper .product-form__input--dropdown, .cac .product__info-wrapper .product__description, .cac .product__info-wrapper .product-form__buttons, .cac .product__info-wrapper .custom.dwa, .cac .product__accordion {
     margin: 0;
   }
+  .cac .owlCustomCarouselThumbs {
+    margin: 0!important;
+  }
 .announcement-bar-section + .section-header + #MainContent {
   margin-top: 35px;
 }
