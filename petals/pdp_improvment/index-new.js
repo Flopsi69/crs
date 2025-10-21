@@ -1550,13 +1550,13 @@ ul.owlCustomCarousel {
 
       <div class='lav-reels__list'>
         <div class='lav-reels__item' data-video='${config.dir}/video/1.mp4'>
-          <video class='lav-reels__video' preload='metadata'>
+          <video class='lav-reels__video' preload='metadata' playsinline muted>
             <source src='${config.dir}/video/1.mp4#t=0.1' type='video/mp4'>
           </video>
           <div class='lav-reels__views'>${getSvg('play')} 1.4M</div>
         </div>
         <div class='lav-reels__item' data-video='${config.dir}/video/2.mp4'>
-          <video class='lav-reels__video' preload='metadata'>
+          <video class='lav-reels__video' preload='metadata' playsinline muted>
             <source src='${config.dir}/video/2.mp4#t=0.1' type='video/mp4'>
           </video>
 
@@ -1564,7 +1564,7 @@ ul.owlCustomCarousel {
             'play'
           )} 5.3M</div>        </div>
         <div class='lav-reels__item' data-video='${config.dir}/video/3.mp4'>
-          <video class='lav-reels__video' preload='metadata'>
+          <video class='lav-reels__video' preload='metadata' playsinline muted>
             <source src='${config.dir}/video/3.mp4#t=0.1' type='video/mp4'>
           </video>
 
@@ -1572,14 +1572,14 @@ ul.owlCustomCarousel {
         </div>
         <div class='lav-reels__item' data-video='${
           config.dir
-        }/video/4.mp4'>          <video class='lav-reels__video' preload='metadata'>
+        }/video/4.mp4'>          <video class='lav-reels__video' preload='metadata' playsinline muted>
             <source src='${config.dir}/video/4.mp4#t=0.1' type='video/mp4'>
           </video>
 
           <div class='lav-reels__views'>${getSvg('play')} 2.1M</div>
         </div>
         <div class='lav-reels__item' data-video='${config.dir}/video/5.mp4'>
-          <video class='lav-reels__video' preload='metadata'>
+          <video class='lav-reels__video' preload='metadata' playsinline muted>
             <source src='${
               config.dir
             }/video/5.mp4#t=0.1' type='video/mp4'>          </video>
@@ -1591,22 +1591,54 @@ ul.owlCustomCarousel {
   `
 
     _$('.custom.dwa').insertAdjacentHTML('afterend', markup)
-    // Add click event for fullscreen video playback
+    
     // Force load first frame for iOS devices
     _$$('.lav-reels__video').forEach((video) => {
+      // Add playsinline and muted attributes
+      video.setAttribute('playsinline', '')
+      video.setAttribute('muted', '')
+      
       video.addEventListener('loadedmetadata', () => {
         video.currentTime = 0.1
+        // Force a paint/render
+        video.style.opacity = '0.99'
+        setTimeout(() => {
+          video.style.opacity = '1'
+        }, 10)
       })
       
-      // Fallback for iOS
+      // Enhanced iOS support
       if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        // Force load
         video.load()
+        
+        // Multiple attempts to set currentTime
+        const setCurrentTime = () => {
+          if (video.readyState >= 1) {
+            video.currentTime = 0.1
+          } else {
+            setTimeout(setCurrentTime, 50)
+          }
+        }
+        
+        setTimeout(setCurrentTime, 100)
+        
+        // Fallback: try to play briefly then pause
         setTimeout(() => {
-          video.currentTime = 0.1
-        }, 100)
+          const playPromise = video.play()
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              video.pause()
+              video.currentTime = 0.1
+            }).catch(() => {
+              // Silent fail
+            })
+          }
+        }, 200)
       }
     })
     
+    // Add click event for fullscreen video playback
     _$$('.lav-reels__item').forEach((item) => {
       item.addEventListener('click', () => {
         const videoSrc = item.getAttribute('data-video')
