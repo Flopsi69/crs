@@ -267,6 +267,29 @@
   // *** Logic *** //
   initExp()
 
+  let lastUrl = location.href
+  new MutationObserver(() => {
+    const url = location.href
+    if (url !== lastUrl) {
+      lastUrl = url
+      onUrlChange()
+    }
+  }).observe(document, { subtree: true, childList: true })
+
+  // Handle URL changes
+  function onUrlChange() {
+    if (location.pathname.includes('/checkout/')) {
+      console.debug('** URL changed to checkout **')
+      // Remove previous styles if needed
+      const oldStyles = document.querySelector('.exp-styles')
+      if (oldStyles) oldStyles.remove()
+      
+      initExp()
+    }
+  }
+
+
+
   async function initExp() {
     await waitFor(() => document.head && document.body && _$('#app>div'), false, { ms: 20 })
     if (location.pathname.includes('/checkout/') === false) return
