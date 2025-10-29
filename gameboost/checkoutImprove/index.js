@@ -305,7 +305,8 @@
   _$('[aria-labelledby="section-two-heading"] h2.sr-only').insertAdjacentHTML('afterend', summaryHeader);
   }
 
-  function updateProducts() {
+  async function updateProducts() {
+    await waitFor(() => window.exposedData, null, { ms: 50 });
     const containerEl = _$('[aria-labelledby="section-two-heading"] ul');
 
     _$$('li', containerEl).forEach((productEl) => {
