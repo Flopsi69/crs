@@ -270,7 +270,6 @@
   let lastUrl = location.href
   new MutationObserver(() => {
     const url = location.href
-    console.log('url', url, lastUrl)
     if (url !== lastUrl) {
       lastUrl = url
       onUrlChange()
@@ -383,7 +382,9 @@
 
 
       if (productInfo.first_image_url && _$('.lav-product > img')) { 
-        _$('.lav-product > img').src = productInfo.first_image_url;
+        const image = _$('.lav-product > img')
+        image.removeAttribute('src')
+        image.src = productInfo.first_image_url;
       }
 
       if (!productInfo.is_instant_delivery) {
