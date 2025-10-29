@@ -270,6 +270,7 @@
   let lastUrl = location.href
   new MutationObserver(() => {
     const url = location.href
+    console.log('url', url, lastUrl)
     if (url !== lastUrl) {
       lastUrl = url
       onUrlChange()
