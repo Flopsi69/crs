@@ -268,7 +268,7 @@
   initExp()
 
   async function initExp() {
-    await waitFor(() => document.head && document.body, false, { ms: 20 })
+    await waitFor(() => document.head && document.body && _$('#app>div'), false, { ms: 20 })
     if (location.pathname.includes('/checkout/') === false) return
 
     _$('#app>div').appendChild(stylesEl)
