@@ -16,12 +16,49 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+:root {
+      /* default theme (halloween) */
+      --lav-primary: #FF9166;
+      --lav-accent: #F68717;
+      --lav-text-primary: #A1A1AA; 
+      --lav-text-secondary: #FAFAFA;
+      --lav-background-1: #353941;
+      --lav-background-2: #272A30;
+      --lav-border: rgba(156, 163, 175, 0.20);
+      --lav-shadow: 0 0 0 0 #FFF inset, 0 0 0 0 rgba(156, 163, 175, 0.20) inset;
+      --lav-tooltip-bg: hsl(var(--card));
+      --lav-tooltip-border: hsl(var(--border));
+      --lav-icon-color: var(--lav-primary);
+    }
+    /* dark theme */
+    html.dark {
+      --lav-primary: #66A1FF;
+      --lav-accent: #66A1FF;
+      --lav-background-2: #272A30;
+    }
+    /* blue theme */
+    html.blue {
+      --lav-primary: #66A1FF;
+      --lav-accent: #66A1FF;
+      --lav-background-1: #28334D;
+      --lav-background-2: var(--lav-background-1);
+    }
+    /* light theme */
+    html.light {
+      --lav-primary: #245FEB;
+      --lav-accent: #245FEB;
+      --lav-text-primary: #71717A;
+      --lav-text-secondary: #000;
+      --lav-background-1: #FAFAFA;
+      --lav-background-2: var(--lav-background-1);
+      --lav-border: #D4D4D4;
+    }
     .lav-protected {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 0 24px;
-      color: #FF9166;
+      color: var(--lav-primary);
       font-size: 12px;
       line-height: 16px;
     }
@@ -36,11 +73,11 @@
     }
     .lav-warranty > span {
       border-radius: 12px 12px 0 0;
-      border-top: 1px solid rgba(156, 163, 175, 0.20);
-      border-right: 1px solid rgba(156, 163, 175, 0.20);
-      border-left: 1px solid rgba(156, 163, 175, 0.20);
-      background: #353941;
-      box-shadow: 0 0 0 0 #FFF inset, 0 0 0 0 rgba(156, 163, 175, 0.20) inset;
+      border-top: 1px solid var(--lav-border);
+      border-right: 1px solid var(--lav-border);
+      border-left: 1px solid var(--lav-border);
+      background: var(--lav-background-1);
+      box-shadow: var(--lav-shadow);
       border-bottom: none;
       padding: 12px 18px;
     }
@@ -55,13 +92,13 @@
     }
     .lav-warranty__footer {
       border-radius: 0 0 12px 12px;
-      border: 1px solid rgba(156, 163, 175, 0.20);
-      background: #272A30;
+      border: 1px solid var(--lav-border);
+      background: var(--lav-background-2);
       padding: 8px 18px;
     }
     .lav-warranty__caption {
       display: inline;
-      color: #F68717;
+      color: var(--lav-accent);
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
@@ -72,7 +109,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      color: #FAFAFA;
+      color: var(--lav-text-secondary);
       font-size: 12px;
       font-weight: 500;
       line-height: 16px;
@@ -90,7 +127,7 @@
       flex-shrink: 0;
     }
     .lav-summary-title {
-      color: #FAFAFA;
+      color: var(--lav-text-secondary);
       font-size: 30px;
       font-weight: 600;
       line-height: 36px;
@@ -100,7 +137,7 @@
       display: none;
     }
     [aria-labelledby="section-two-heading"] ul li p.flex-none {
-      color: #FAFAFA;
+      color: var(--lav-text-secondary);
       font-size: 20px;
       font-weight: 500;
       line-height: 24px;
@@ -132,7 +169,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #A1A1AA;
+      color: var(--lav-text-primary);
       font-size: 14px;
       font-weight: 400;
       line-height: 24px;
@@ -158,7 +195,9 @@
     .lav-benefit--warranty i {
       margin-left: 4px;
     }
-
+    :is(.lav-benefit--instant, .lav-benefit--warranty) svg {
+      color: var(--lav-icon-color);
+    }
     .lav-tooltip-wrapper {
       position: relative;
     }
@@ -176,8 +215,8 @@
       z-index: 9;
       width: 280px;
       border-radius: 6px;
-      border: 1px solid #1F2328;
-      background: #181B20;
+      border: 1px solid var(--lav-tooltip-border);
+      background: var(--lav-tooltip-bg);
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       padding: 6px 10px;
       transform: translateY(10px) translateX(-50%);
@@ -186,13 +225,13 @@
       pointer-events: none;
     }
     .lav-tooltip__title {
-      color: #FAFAFA;
+      color: var(--lav-text-secondary);
       font-size: 12px;
       font-weight: 600;
       line-height: 20px;
     }
     .lav-tooltip__content {
-      color: #FAFAFA;
+      color: var(--lav-text-secondary);
       font-size: 12px;
       font-weight: 400;
       line-height: 20px;
@@ -238,7 +277,7 @@
         height: 18px;
       }
       .lav-warranty + .border-t {
-        border-top: 1px solid #1F2328;
+        border-top: 1px solid #var(--lav-tooltip-border);
         margin-top: 36px;
       }
       .lav-tooltip {
@@ -642,17 +681,17 @@
     const svgObj = {
       orangeShield: /* html */ `
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
-          <path d="M5.49991 0.352869C5.60017 0.352869 5.69327 0.374928 5.77921 0.419045L9.83975 2.18375C10.0832 2.28669 10.2766 2.44846 10.4198 2.66905C10.5774 2.88963 10.6562 3.14699 10.6562 3.4411C10.6705 4.1911 10.5487 5.07346 10.2909 6.08816C10.0331 7.10287 9.56762 8.08816 8.89444 9.04405C8.23559 10.0146 7.29027 10.8161 6.0585 11.4485C5.68611 11.6249 5.31371 11.6249 4.94132 11.4485C3.70955 10.8161 2.76423 10.0146 2.10538 9.04405C1.4322 8.08816 0.966707 7.10287 0.708894 6.08816C0.451082 5.07346 0.329337 4.1911 0.34366 3.4411C0.34366 3.14699 0.422436 2.88963 0.579988 2.66905C0.723217 2.44846 0.916577 2.28669 1.16007 2.18375L5.22061 0.419045C5.30655 0.374928 5.39965 0.352869 5.49991 0.352869ZM5.49991 1.83081V10.169C6.47387 9.65434 7.24014 8.99993 7.79874 8.20581C8.34301 7.41169 8.72973 6.59552 8.95889 5.75728C9.17374 4.90434 9.28116 4.13963 9.28116 3.46316L5.49991 1.83081Z" fill="#FF9166"/>
+          <path d="M5.49991 0.352869C5.60017 0.352869 5.69327 0.374928 5.77921 0.419045L9.83975 2.18375C10.0832 2.28669 10.2766 2.44846 10.4198 2.66905C10.5774 2.88963 10.6562 3.14699 10.6562 3.4411C10.6705 4.1911 10.5487 5.07346 10.2909 6.08816C10.0331 7.10287 9.56762 8.08816 8.89444 9.04405C8.23559 10.0146 7.29027 10.8161 6.0585 11.4485C5.68611 11.6249 5.31371 11.6249 4.94132 11.4485C3.70955 10.8161 2.76423 10.0146 2.10538 9.04405C1.4322 8.08816 0.966707 7.10287 0.708894 6.08816C0.451082 5.07346 0.329337 4.1911 0.34366 3.4411C0.34366 3.14699 0.422436 2.88963 0.579988 2.66905C0.723217 2.44846 0.916577 2.28669 1.16007 2.18375L5.22061 0.419045C5.30655 0.374928 5.39965 0.352869 5.49991 0.352869ZM5.49991 1.83081V10.169C6.47387 9.65434 7.24014 8.99993 7.79874 8.20581C8.34301 7.41169 8.72973 6.59552 8.95889 5.75728C9.17374 4.90434 9.28116 4.13963 9.28116 3.46316L5.49991 1.83081Z" fill="currentColor"/>
         </svg>
       `,
       benefitInstant: /* html */ `
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15.3305 3.69004C15.5383 3.15883 15.4229 2.70846 14.984 2.33892C14.499 2.03867 14.0371 2.06176 13.5983 2.40821L4.72935 10.1685C4.35982 10.5149 4.25588 10.9191 4.41756 11.3811C4.62542 11.843 4.97186 12.0855 5.45688 12.1086H9.33703L6.66943 18.3099C6.46156 18.8411 6.57705 19.2915 7.01587 19.661C7.50089 19.9613 7.96281 19.9382 8.40164 19.5917L17.2706 11.8314C17.6401 11.485 17.744 11.0808 17.5824 10.6189C17.3976 10.157 17.0511 9.91445 16.543 9.89135H12.6975L15.3305 3.69004Z" fill="#FF9166"/>
+          <path d="M15.3305 3.69004C15.5383 3.15883 15.4229 2.70846 14.984 2.33892C14.499 2.03867 14.0371 2.06176 13.5983 2.40821L4.72935 10.1685C4.35982 10.5149 4.25588 10.9191 4.41756 11.3811C4.62542 11.843 4.97186 12.0855 5.45688 12.1086H9.33703L6.66943 18.3099C6.46156 18.8411 6.57705 19.2915 7.01587 19.661C7.50089 19.9613 7.96281 19.9382 8.40164 19.5917L17.2706 11.8314C17.6401 11.485 17.744 11.0808 17.5824 10.6189C17.3976 10.157 17.0511 9.91445 16.543 9.89135H12.6975L15.3305 3.69004Z" fill="currentColor"/>
         </svg>
       `,
       benefitWarranty: /* html */ `
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.9999 2.52943C11.1458 2.52943 11.2812 2.56252 11.4062 2.62869L17.3124 5.27575C17.6666 5.43016 17.9479 5.67281 18.1562 6.00369C18.3854 6.33457 18.4999 6.7206 18.4999 7.16178C18.5208 8.28678 18.3437 9.61031 17.9687 11.1324C17.5937 12.6544 16.9166 14.1324 15.9374 15.5662C14.9791 17.0221 13.6041 18.2243 11.8124 19.1728C11.2708 19.4375 10.7291 19.4375 10.1874 19.1728C8.39577 18.2243 7.02077 17.0221 6.06244 15.5662C5.08327 14.1324 4.40619 12.6544 4.03119 11.1324C3.65619 9.61031 3.4791 8.28678 3.49994 7.16178C3.49994 6.7206 3.61452 6.33457 3.84369 6.00369C4.05202 5.67281 4.33327 5.43016 4.68744 5.27575L10.5937 2.62869C10.7187 2.56252 10.8541 2.52943 10.9999 2.52943ZM10.9999 4.74634V17.2537C12.4166 16.4816 13.5312 15.5 14.3437 14.3088C15.1354 13.1177 15.6979 11.8934 16.0312 10.636C16.3437 9.35663 16.4999 8.20957 16.4999 7.19487L10.9999 4.74634Z" fill="#FF9166"/>
+          <path d="M10.9999 2.52943C11.1458 2.52943 11.2812 2.56252 11.4062 2.62869L17.3124 5.27575C17.6666 5.43016 17.9479 5.67281 18.1562 6.00369C18.3854 6.33457 18.4999 6.7206 18.4999 7.16178C18.5208 8.28678 18.3437 9.61031 17.9687 11.1324C17.5937 12.6544 16.9166 14.1324 15.9374 15.5662C14.9791 17.0221 13.6041 18.2243 11.8124 19.1728C11.2708 19.4375 10.7291 19.4375 10.1874 19.1728C8.39577 18.2243 7.02077 17.0221 6.06244 15.5662C5.08327 14.1324 4.40619 12.6544 4.03119 11.1324C3.65619 9.61031 3.4791 8.28678 3.49994 7.16178C3.49994 6.7206 3.61452 6.33457 3.84369 6.00369C4.05202 5.67281 4.33327 5.43016 4.68744 5.27575L10.5937 2.62869C10.7187 2.56252 10.8541 2.52943 10.9999 2.52943ZM10.9999 4.74634V17.2537C12.4166 16.4816 13.5312 15.5 14.3437 14.3088C15.1354 13.1177 15.6979 11.8934 16.0312 10.636C16.3437 9.35663 16.4999 8.20957 16.4999 7.19487L10.9999 4.74634Z" fill="currentColor"/>
         </svg>
       `
     }
