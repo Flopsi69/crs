@@ -350,10 +350,31 @@
     userLogoEl.parentElement.insertAdjacentHTML('afterend', getMarkup('lav-protected--mobile'));
 
     function getMarkup(extraClass) {
+      const orderType = getCheckoutData().order_type;
+
+      let text = 'Your purchase is protected by Gameboost’s Comprehensive Warranty.'
+      if (orderType === "Account") {
+        text = 'Your account purchase is protected under Gameboost’s Comprehensive Warranty.'
+      }
+      if (orderType === "Boost") {
+        text = 'Your boosting order is protected under Gameboost’s Comprehensive Warranty.'
+      }
+      if (orderType === "GameKey") {
+        text = 'Your game key purchase is protected under Gameboost’s Comprehensive Warranty.'
+      }
+      // if (orderType === "Currency") {
+      //   text = 'Your currency purchase is protected under Gameboost’s Comprehensive Warranty'
+      // }
+      if (orderType === "Item") {
+        text = 'Your item purchase is protected under Gameboost’s Comprehensive Warranty.'
+      }
+      if (orderType === "CsSkin") {
+        text = 'Your skin purchase is protected under Gameboost’s Comprehensive Warranty.'
+      }
       return /* html */ `
         <div class='lav-protected ${extraClass || ''}'>
           ${getSvg('orangeShield')}
-          Your purchase is protected by Gameboost’s Comprehensive Warranty.
+          ${text}
         </div>
       `
     }
@@ -387,7 +408,7 @@
           <div class="lav-benefit lav-benefit--instant">${getSvg('benefitInstant')} Instant delivery after payment</div>
           <div class="lav-benefit lav-benefit--warranty" data-tippy-content="hello">
             ${getSvg('benefitWarranty')}
-            14-days Warranty Included 
+            <div class="lav-benefit__title">14-days Warranty Included</div> 
             <div class='lav-tooltip-wrapper'>
               <i class="fa-duotone fa-circle-question"></i>
               <div class='lav-tooltip'>
@@ -404,7 +425,11 @@
       const productInfo = getCheckoutData()
       console.log('productInfo', productInfo);
 
-      if (["Currency", "Item"].includes(productInfo.order_type)) {
+      if (productInfo.order_type === "GameKey") {
+        _$('.lav-benefit--warranty .lav-benefit__title', productEl).innerText = 'Valid Key Guarantee';
+        _$('.lav-benefit--warranty .lav-tooltip__title', productEl).innerText = 'Valid Key Guarantee';
+        _$('.lav-benefit--warranty .lav-tooltip__content', productEl).innerText = 'This product is covered by our validity guarantee: replacement or refund in case of any issue.';
+      } else if (["Currency", "Item"].includes(productInfo.order_type)) {
         _$('.lav-benefit--warranty .lav-tooltip__content', productEl).innerText = 'You’re eligible for a refund or replacement if the seller fails to deliver, doesn’t disclose RWT risks, or causes penalties to your account.';
       } else if (productInfo.order_type !== "Account") {
         _$('.lav-benefit--warranty', productEl).remove();
@@ -426,7 +451,7 @@
         image.src = productInfo.first_image_url;
       }
 
-      if (!productInfo.is_instant_delivery) {
+      if (!productInfo.is_instant_delivery && !["GameKey"].includes(productInfo.order_type)) {
         _$('.lav-benefit--instant')?.remove();
       }
     }
