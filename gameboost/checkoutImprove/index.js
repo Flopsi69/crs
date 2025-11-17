@@ -430,6 +430,11 @@
         image.src = productInfo.first_image_url;
       }
 
+      if (productInfo.first_image_url && _$('.lav-product > div.w-12.h-12')) { 
+        _$('.lav-product > div.w-12.h-12').outerHTML =
+        `<img class="flex-none object-cover object-center w-12 h-12 rounded-md" src="${productInfo.first_image_url}">`
+      }
+
       if (!productInfo.is_instant_delivery && !["GameKey"].includes(productInfo.order_type)) {
         _$('.lav-benefit--instant')?.remove();
       }
