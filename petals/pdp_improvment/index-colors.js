@@ -2195,7 +2195,7 @@ ul.owlCustomCarousel {
         position: relative;
         background: #fff;
         width: 80%;
-        max-width: 600px;
+        max-width: 450px;
         margin-left: auto;
         overflow: auto;
         transform: translateX(100%);
