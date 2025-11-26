@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/petals/pdp_improvment',
     dir: 'https://flopsi69.github.io/crs/petals/pdp_improvment',
     clarity: ['set', 'exp_pdp', 'variant_1'],
-    debug: true
+    debug: false
   }
 
   // const orig = console.log
@@ -1377,6 +1377,10 @@ ul.owlCustomCarousel {
 
     _$('variant-selects').insertAdjacentHTML('afterbegin', markup)
 
+    visibilityEvent('.lav-colors', () => {
+      pushDataLayer('exp_color_selector_view', 'Stone Color Selector', 'view', 'Product Info');
+    })
+
     // Fill items
     _$('.lav-colors__list').innerHTML = ''
     for (const item of items) {
@@ -1401,12 +1405,8 @@ ul.owlCustomCarousel {
 
       colorEl.addEventListener('click', function () {
         if (this.classList.contains('active')) return
-        // pushDataLayer(
-        //   'exp_pdp_click_04',
-        //   `Stone Color - ${item.name}`,
-        //   'click',
-        //   'Color options'
-        // )
+
+        pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
 
         _$$('product-info .lav-color').forEach((el) => el.classList.remove('active'))
         this.classList.add('active')
