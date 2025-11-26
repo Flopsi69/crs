@@ -6,7 +6,8 @@
     // dir: 'http://127.0.0.1:5500/petals/pdp_improvment',
     dir: 'https://flopsi69.github.io/crs/petals/pdp_improvment',
     clarity: ['set', 'exp_pdp', 'variant_1'],
-    debug: false
+    debug: false,
+    isPassive: false,
   }
 
   // const orig = console.log
@@ -1264,12 +1265,22 @@ ul.owlCustomCarousel {
     // _$('#satcb_bar').insertAdjacentHTML('afterend', markup)
     document.body.insertAdjacentHTML('afterbegin', markup)
 
-    _$('.lav-selector__close').addEventListener('click', () => closeSelector())
+    _$('.lav-selector__close').addEventListener('click', () => {
+      let section = 'Sticky color selector';
+      if (_$('.lav-selector__toggler .lav-measure')) {
+        section = 'Sticky size selector'
+      }
+      if (_$('.lav-selector__toggler .lav-material')) {
+        section = 'Sticky material selector'
+      }
+      pushDataLayer('exp_color_sticky_click', 'Close', 'click', section);
+      closeSelector()
+    })
 
-    // _$('.lav-sticky__add').addEventListener('click', () => {
-    //   pushDataLayer('exp_pdp_click_03', 'Add to cart', 'click', 'Sticky button')
-    //   _$('.form .product-form__submit').click()
-    // })
+    _$('.lav-sticky__add').addEventListener('click', () => {
+      pushDataLayer('exp_color_sticky_button', 'Add to cart', 'click', 'Sticky block');
+      _$('.form .product-form__submit').click()
+    })
 
     if (document.querySelector('.parent-variant')) {
       initIntersection('.parent-variant', ({ isIntersecting }) => {
@@ -1406,7 +1417,9 @@ ul.owlCustomCarousel {
       colorEl.addEventListener('click', function () {
         if (this.classList.contains('active')) return
 
-        pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
+        if (!config.isPassive) {
+          pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
+        }
 
         _$$('product-info .lav-color').forEach((el) => el.classList.remove('active'))
         this.classList.add('active')
@@ -1447,7 +1460,7 @@ ul.owlCustomCarousel {
 
       _$('.lav-selector-color').addEventListener('click', function (e) {
         e.preventDefault()
-        // pushDataLayer('exp_pdp_click_03', 'Material', 'click', 'Sticky button')
+        pushDataLayer('exp_color_sticky_button', 'Color', 'click', 'Sticky block');
         rerender()
         openSelector()
 
@@ -1460,9 +1473,12 @@ ul.owlCustomCarousel {
           _$$('.lav-selector__toggler .lav-color').forEach((el, index) => {
             el.addEventListener('click', (e) => {
               e.preventDefault()
+              pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector');
+              config.isPassive = true;
               _$(
                 'product-info .lav-color:nth-child(' + (index + 1) + ')'
               ).click()
+              config.isPassive = false;
 
               rerender()
               closeSelector(true)
@@ -1646,12 +1662,12 @@ ul.owlCustomCarousel {
       )
 
       _$('.lav-sticky__size').addEventListener('click', function () {
-        // pushDataLayer(
-        //   'exp_pdp_click_03',
-        //   _$('.lav-sticky__size-label').innerText.trim(),
-        //   'click',
-        //   'Sticky button'
-        // )
+        pushDataLayer(
+          'exp_pdp_click_03',
+          'Size',
+          'click',
+          'Sticky button'
+        )
         rerender()
         openSelector()
 
@@ -1681,6 +1697,7 @@ ul.owlCustomCarousel {
 
           _$$('.lav-selector__toggler a').forEach((el, index) => {
             el.addEventListener('click', (e) => {
+              pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky size selector');
               e.preventDefault();
               _$('.lav-options span').innerText = el.innerText.trim()
               _$('.lav-options select').value = el.closest('li').getAttribute('data-jquery-grid-picker-value')
@@ -1827,7 +1844,7 @@ ul.owlCustomCarousel {
 
       _$('.lav-selector-material').addEventListener('click', function (e) {
         e.preventDefault()
-        // pushDataLayer('exp_pdp_click_03', 'Material', 'click', 'Sticky button')
+        pushDataLayer('exp_color_sticky_button', 'Material', 'click', 'Sticky block');
         rerender()
         openSelector()
 
@@ -1842,6 +1859,7 @@ ul.owlCustomCarousel {
 
           _$$('.lav-selector__toggler a').forEach((el, index) => {
             el.addEventListener('click', (e) => {
+              pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky material selector');
               e.preventDefault()
               _$(
                 'product-info .lav-material li:nth-child(' + (index + 1) + ') a'
