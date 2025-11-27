@@ -498,7 +498,7 @@
   // margin-bottom: 0;
 }
 .cac .product__info-wrapper .product-form__input--dropdown + .product-form__input--dropdown {
-  // margin-top: 32px!important;
+  margin-top: 20px!important;
 }
 .parent-variant .select .lav-material li.jquery-grid-picker-item-selected a {
   // color: #fff;
@@ -716,6 +716,8 @@
   margin: 0 -12px;
   padding: 0 12px;
   margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 .lav-selector__toggler ul.lav-measure {
   padding-bottom: 8px;
@@ -727,50 +729,55 @@
 .lav-selector__toggler .form__label, .lav-selector__toggler .ringSize_guide p {
   margin-bottom: 0;
   font-size: 13px;
-  // font-weight: 600;
-  // line-height: 19.5px;
+  font-weight: 600;
+  line-height: 19.5px;
+  color: #5C5C5C;
 }
 .lav-selector__toggler .lav-measure a {
   display: flex;
-  color: #000;
+  flex-flow: column;
   align-items: center;
-  justify-content: center;
-  min-width: 55px;
-  min-height: 42px;
   text-align: center;
+  justify-content: center;
   font-family: Assistant;
-  font-size: 10px;
+  font-size: 9px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 1; /* 83.333% */
+  font-weight: 400;
+  line-height: 10px;
   letter-spacing: 0.6px;
+  padding-left: 4px;
+  padding-right: 4px;
+  height: 100%;
+  min-height: 40px;
+  border-color: #000;
+  width: 57px;
 }
 .lav-selector__toggler .lav-measure .jquery-grid-picker-item-selected a {
   color: #fff;
-}
-.lav-selector__toggler .lav-material  {
-  gap: 12px;
 }
 .lav-selector__toggler .lav-material li {
   display: flex;
   flex-flow: column;
   align-items: center;
+  width: 57px;
 }
 .lav-selector__toggler .lav-material a {
   display: flex;
   flex-flow: column;
   align-items: center;
   text-align: center;
+  justify-content: center;
   font-family: Assistant;
-  font-size: 10px;
+  font-size: 9px;
   font-style: normal;
-  min-width: 60px;
-  font-weight: 600;
-  line-height: 13px;
-  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 10px;
+  letter-spacing: 0.6px;
   padding-left: 4px;
   padding-right: 4px;
   height: 100%;
+  min-height: 40px;
+  border-color: #000;
 }
 @media(max-width: 767px) {
   #satcb_bar {
@@ -889,7 +896,8 @@ ul.owlCustomCarousel {
   gap: 15px;
 }
 .lav-selector .lav-colors__list {
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 10px;
 }
 .lav-colors__caption {
@@ -1264,6 +1272,20 @@ ul.owlCustomCarousel {
 
     // _$('#satcb_bar').insertAdjacentHTML('afterend', markup)
     document.body.insertAdjacentHTML('afterbegin', markup)
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('lav-selector')) {
+        let section = 'Sticky color selector';
+        if (_$('.lav-selector__toggler .lav-measure')) {
+          section = 'Sticky size selector'
+        }
+        if (_$('.lav-selector__toggler .lav-material')) {
+          section = 'Sticky material selector'
+        }
+        pushDataLayer('exp_color_sticky_click', 'Close Overlay', 'click', section);
+        closeSelector()
+      }
+    })
 
     _$('.lav-selector__close').addEventListener('click', () => {
       let section = 'Sticky color selector';
