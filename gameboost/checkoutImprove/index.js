@@ -20,7 +20,7 @@
       /* default theme (halloween) */
       --lav-primary: #FF9166;
       --lav-accent: #F68717;
-      --lav-text-primary: #A1A1AA; 
+      --lav-text-primary: #A1A1AA;
       --lav-text-secondary: #FAFAFA;
       --lav-background-1: #353941;
       --lav-background-2: #272A30;
@@ -134,7 +134,10 @@
       letter-spacing: -0.75px;
     }
     .lav-summary-title + dl {
-      display: none;
+      // display: none;
+    }
+    .lav-summary-title + dl + dt {
+      // color: #A1A1AA;
     }
     [aria-labelledby="section-two-heading"] ul li p.flex-none {
       color: var(--lav-text-secondary);
@@ -277,8 +280,8 @@
         height: 18px;
       }
       .lav-warranty + .border-t {
-        border-top: 1px solid #var(--lav-tooltip-border);
-        margin-top: 36px;
+        // border-top: 1px solid var(--lav-tooltip-border);
+        // margin-top: 36px;
       }
       .lav-tooltip {
         width: 240px;
@@ -317,7 +320,7 @@
     console.debug('** InitExp **')
 
     addProtectedCaption();
-    addSummaryHeader();
+    // addSummaryHeader();
     updateProducts();
     updateWarranty();
   }
