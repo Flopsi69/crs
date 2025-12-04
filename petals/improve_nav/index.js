@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/petals/improve_nav',
     dir: 'https://flopsi69.github.io/crs/petals/improve_nav',
     clarity: ['set', 'exp_nav', 'variant_1'],
-    debug: true
+    debug: false
   }
 
   // Styles for Experiment
