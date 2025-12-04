@@ -129,7 +129,8 @@
     handleMobileNav()
   }
 
-  function handleDesktopNav() {
+  async function handleDesktopNav() {
+    await waitFor('.header__inline-menu', null, { ms: 25 })
     _$$('.header__inline-menu li>a').forEach((linkEl) => {
       linkEl.addEventListener('click', () => {
         pushDataLayer('exp_nav_lvl1', linkEl.textContent.trim(), 'click', 'Navigation');
@@ -161,7 +162,8 @@
     })
   }
 
-  function handleMobileNav() {
+  async function handleMobileNav() {
+    await waitFor('.menu-drawer__menu', null, { ms: 25 })
     _$$('.menu-drawer__menu li>a').forEach((linkEl) => {
       linkEl.addEventListener('click', () => {
         pushDataLayer('exp_nav_lvl1', linkEl.textContent.trim(), 'click', 'Navigation');
