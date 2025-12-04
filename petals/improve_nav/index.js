@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/petals/improve_nav',
     dir: 'https://flopsi69.github.io/crs/petals/improve_nav',
-    clarity: ['set', '', 'variant_1'],
+    clarity: ['set', 'exp_nav', 'variant_1'],
     debug: true
   }
 
@@ -130,6 +130,12 @@
   }
 
   function handleDesktopNav() {
+    _$$('.header__inline-menu li>a').forEach((linkEl) => {
+      linkEl.addEventListener('click', () => {
+        pushDataLayer('exp_nav_lvl1', linkEl.textContent.trim(), 'click', 'Navigation');
+      });
+    })
+    
     const navEl = _$('.header__inline-menu')
     const firstItemEl = _$('li', navEl)
     firstItemEl.classList.add('lav-nav-select')
@@ -137,19 +143,31 @@
 
     _$('span', firstItemEl).innerHTML = `Shop ${getSvg('chevronDown')}`
 
+    firstItemEl.addEventListener('mouseenter', () => {
+      pushDataLayer('exp_nav_shop_dd_view', 'Shop Drop-down', 'view', 'Navigation - Shop');
+    })
+
     const dropdownHtml = getDropdownHtml()
     firstItemEl.insertAdjacentHTML('beforeend', dropdownHtml)
 
     firstItemEl.addEventListener('click', (e) => {
       if (e.target.closest('#HeaderMenu-home')) {
         e.preventDefault();
-        console.log(33)
       }
-
+      if (e.target.closest('.lav-dropdown__link')) {
+        const subCategory = e.target.textContent.trim();
+        pushDataLayer('exp_nav_lvl2', subCategory, 'click', 'Navigation - Shop');
+      }
     })
   }
 
   function handleMobileNav() {
+    _$$('.menu-drawer__menu li>a').forEach((linkEl) => {
+      linkEl.addEventListener('click', () => {
+        pushDataLayer('exp_nav_lvl1', linkEl.textContent.trim(), 'click', 'Navigation');
+      });
+    })
+
     const navEl = _$('.menu-drawer__menu')
     const firstItemEl = _$('li', navEl)
     firstItemEl.classList.add('lav-nav-select')
@@ -166,6 +184,14 @@
         firstItemEl.classList.toggle('active')
         const dropdown = _$('.lav-dropdown__wrap', firstItemEl)
         $(dropdown).slideToggle()
+
+        if (firstItemEl.classList.contains('active')) {
+          pushDataLayer('exp_nav_shop_dd_view', 'Shop Drop-down', 'view', 'Navigation - Shop');
+        }
+      }
+      if (e.target.closest('.lav-dropdown__link')) {
+        const subCategory = e.target.textContent.trim();
+        pushDataLayer('exp_nav_lvl2', subCategory, 'click', 'Navigation - Shop');
       }
     })
   }
