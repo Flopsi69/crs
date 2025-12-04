@@ -16,31 +16,42 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+  .cac .owlCustomCarouselThumbs, .cac .product__info-wrapper div.product__title, .cac .product__info-wrapper .price, .cac .product__info-wrapper .customProductImage, .cac .product__info-wrapper .product-form__input--dropdown, .cac .product__info-wrapper .product__description, .cac .product__info-wrapper .product-form__buttons, .cac .product__info-wrapper .custom.dwa, .cac .product__accordion {
+    margin: 0;
+  }
 .announcement-bar-section + .section-header + #MainContent {
-  margin-top: 33px;
+  margin-top: 35px;
 }
 .cac.product .product__title a h2 {
   color: #121212;
   font-family: Overlock;
-  font-size: 20px!important;
+  font-size: 22px!important;
   font-style: normal;
   font-weight: 700;
   line-height: 1!important; /* 100% */
   letter-spacing: 0.6px;
+  margin-top: 4px;
 }
 .product__title + [role="status"] {
   margin-top: 12px;
+  margin-bottom: 0;
 }
 .fera-storeReviewsSummary .fera-storeReviewsSummary-avgRating {
   color: #000;
   font-size: 15px;
+  font-family: Assistant;
   font-style: normal;
   font-weight: 600;
   line-height: 28px;
   letter-spacing: 0.6px;
 }
+.product .price .badge, .product .price__container {
+  margin-bottom: 0!important;
+}
 .fera-storeReviewsSummary .fera-storeReviewsSummary-verifiedBadgeWrapper {
   color: rgba(0, 0, 0, 0.50);
+  text-align: center;
+  font-family: Assistant;
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
@@ -50,6 +61,8 @@
 }
 .fera-storeReviewsSummary .fera-storeReviewsSummary-wrapper {
   padding-left: 5px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .price--large .price-item--sale, .price__regular .price-item--regular {
   color: #121212;
@@ -113,28 +126,51 @@
 .parent-variant {
   margin-left: 0!important;
   max-width: 100%;
+  margin-top: 5px!important;
 }
 #guide_desc {
+  display: flex;
+  gap: 4px;
   color: #2E45E0;
+  font-family: Assistant;
+  font-size: 14px;
+  font-style: normal;
   font-weight: 600;
+  line-height: 14px;
   margin-left: auto;
+}
+.lav-selector__toggler #guide_desc {
+  align-items: center;
 }
 .product-form__input .form__label {
   margin-bottom: 10px;
   display: flex;
+  color: #5C5C5C;
+  font-family: Assistant;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19.5px; /* 139.286% */
+  letter-spacing: 0.4px;
 }
 .product-form__input .form__label:after {
   content: ':';
 }
 
 .product__info-container .lav-how {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.20);
-  background: #F9F0F4;
-  padding: 12px;
-  margin-bottom: 24px;
+  margin-top: 20px;
 }
 .lav-how {
   letter-spacing: 0;
+}
+.lav-how__block {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #F9F0F4;
+  padding: 12px;
+}
+.lav-how__block + .lav-how__block {
+  margin-top: 12px;
 }
 .lav-how__title {
   color: #000;
@@ -325,8 +361,8 @@
 .lav-reels__item {
   position: relative;
   flex-shrink: 0;
-  width: 101px;
-  height: 134px;
+  width: 120px;
+  height: 160px;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
@@ -412,11 +448,14 @@
 }
 .parent-variant .select .lav-measure li a {
   color: #000;
-  font-size: 12px!important;
+  font-size: 13px!important;
   font-weight: 600;
   line-height: 10px;
   letter-spacing: 0.6px;
   border: 1px solid rgba(0, 0, 0, 0.24);
+}
+.product-form {
+  margin-top: 30px!important;
 }
 
 .ringSize_guide {
@@ -430,35 +469,32 @@
 .lav-selected {
   color: #000;
   font-family: Assistant;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 19.5px;
   letter-spacing: 0.4px;
-}
-.lav-selects-title {
-  color: #000;
-  font-family: Overlock;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 19.5px;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: -3px!important;
 }
 
 .parent-variant .select .lav-material li a {
   color: #000;
-  font-size: 10px!important;
+  font-size: 11px!important;
   font-weight: 600;
   letter-spacing: 0;
-  border: 1px solid rgba(0, 0, 0, 0.24);
+  border: 1px solid #D3D3D3;
   line-height: 13px; /* 130% */
   padding: 8px 4px!important;
   height: 100%;
   flex-flow: column;
+  width: 60px;
+  min-width: 60px;
+  justify-content: flex-start;
+}
+.parent-variant div:first-child .select ul {
+  margin-bottom: 0;
+}
+.cac .product__info-wrapper .product-form__input--dropdown + .product-form__input--dropdown {
+  margin-top: 32px!important;
 }
 .parent-variant .select .lav-material li.jquery-grid-picker-item-selected a {
   color: #fff;
@@ -481,6 +517,7 @@
   font-weight: 400;
   line-height: 10px; 
   letter-spacing: 0.6px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
 }
 .lav-sticky .lav-material-color {
   margin-bottom: 0;
@@ -547,7 +584,7 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 18px;
   letter-spacing: 0;
 }
 .lav-sticky__size-value {
@@ -556,12 +593,12 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 18px;
   letter-spacing: 0;
 }
-.lav-sticky__icon {
+.lav-sticky__size > svg {
   position: absolute;
-  right: 12px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -595,16 +632,16 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
-  line-height: 13px;
+  line-height: 18px;
   letter-spacing: 0;
 }
 .lavs-option__value {
   color: #000;
   font-family: Assistant;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 13px;
+  line-height: 18px;
   letter-spacing: 0;
 }
 .lav-selector {
@@ -648,26 +685,36 @@
   padding: 0 12px;
   margin-top: 10px;
 }
+.lav-selector__toggler ul.lav-measure {
+  padding-bottom: 8px;
+}
 .lav-selector__toggler .jquery-grid-picker-item-selected {
   background: black;
   color: #fff;
 }
 .lav-selector__toggler .form__label, .lav-selector__toggler .ringSize_guide p {
   margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.5px;
 }
 .lav-selector__toggler .lav-measure a {
   display: flex;
+  color: #000;
   align-items: center;
   justify-content: center;
   min-width: 55px;
   min-height: 42px;
   text-align: center;
   font-family: Assistant;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 600;
   line-height: 1; /* 83.333% */
   letter-spacing: 0.6px;
+}
+.lav-selector__toggler .lav-measure .jquery-grid-picker-item-selected a {
+  color: #fff;
 }
 .lav-selector__toggler .lav-material  {
   gap: 12px;
@@ -681,17 +728,16 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
   font-family: Assistant;
-  font-size: 10px;
+  font-size: 11px;
   font-style: normal;
-  min-width: 57px;
+  min-width: 60px;
   font-weight: 600;
   line-height: 13px;
   letter-spacing: 0;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
   height: 100%;
 }
 #satcb_bar {
@@ -703,6 +749,19 @@
 
 .owlCustomCarouselThumbs {
   overflow: visible;
+  padding: 0 10px;
+}
+.owlCustomCarouselThumbs .owl-item {
+  line-height: 0;
+  width: auto !important;
+  margin-right: 10px !important;
+}
+.owlCustomCarouselThumbs .owl-stage-outer {
+  margin-left: 0;
+}
+.owlCustomCarouselThumbs .owl-nav {
+  min-height: auto;
+  left: 0;
 }
 .customCarouselForMbl {
   overflow: hidden;
@@ -710,14 +769,33 @@
   margin-right: -15px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-bottom: 27px;
 }
 ul.owlCustomCarousel img {
   max-height: 305px;
 }
+ul.owlCustomCarousel {
+  right: 0;
+  padding: 0 17px;
+}
+.customCarouselForMbl .owlCustomCarousel .owl-nav {
+  padding: 0;
+  left: -10px;
+  right: -10px;
+  width: initial;
+}
+.customCarouselForMbl .owlCustomCarousel .owl-nav button {
+  margin-right: 0;
+}
+.owl-carousel.owl-drag .owl-item {
+}
+.custom_cnp .cnp_del img {
+  pointer-events: none;
+}
 `
 
   const stylesEl = document.createElement('style')
-  stylesEl.classList.add('exp-styles')
+  stylesEl.classList.add('lav-exp-styles')
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
@@ -725,6 +803,23 @@ ul.owlCustomCarousel img {
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
+
+    if (document.querySelector('.lav-exp-styles')) return
+
+    waitFor('.deliveryVan .bcb', () => {
+      initMutation('.deliveryVan .bcb', (mutations) => {
+        if (mutations.attributeName === 'style' && mutations.target.classList.contains('bcb')) {
+          const isFree = parseInt(mutations.target.style.width) > 100 ? 'Yes' : 'No'
+          pushDataLayer('exp_pdp_free_shipping_01', `IsFreeShipping - ${isFree}`, 'change', 'Slide in cart')
+        }
+      })
+    })
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#cart-notification') && e.target.closest('.cnp_del')) {
+        pushDataLayer('exp_pdp_click_09', 'Delete product', 'click', 'Slide in cart')
+      }
+    })
 
     document.head.appendChild(stylesEl)
 
@@ -736,10 +831,13 @@ ul.owlCustomCarousel img {
     waitFor('.customCarouselForMbl', () => {
       setTimeout(() => {
         updateGallery()
+        // setTimeout(() => {
+          window.dispatchEvent(new Event('resize'))
+        // }, 100);
       }, 500);
     })
 
-    waitFor(() => _$('[id*=price-template]') && !_$('.lav-how'), addHowItWorks)
+    // waitFor(() => _$('[id*=price-template]') && !_$('.lav-how'), addHowItWorks)
 
     waitFor(
       () => _$('.custom.dwa') && !_$('lav-review'),
@@ -747,25 +845,17 @@ ul.owlCustomCarousel img {
         addBenefits()
         addReview()
         addReels()
+        addHowItWorks()
       }
     )
 
     waitFor(
-      () => _$('variant-selects'),
+      () => _$$('variant-selects li a').length,
       () => {
-        _$('variant-selects').insertAdjacentHTML(
-          'beforebegin',
-          "<div class='lav-selects-title'>Customise your order:</div>"
-        )
-        waitFor(
-          () => _$$('variant-selects li a').length,
-          () => {
-          updateSizeAndLength()
-          updateMaterial()
-          addLabelHandler()
-          }, { ms: 50 })
-      }
-    )
+      updateSizeAndLength()
+      updateMaterial()
+      addLabelHandler()
+      }, { ms: 50 })
   }
 
   async function updateGallery() {
@@ -849,9 +939,7 @@ ul.owlCustomCarousel img {
           <div class='lav-selector__close'>
             ${getSvg('closeWhite')}
           </div>
-          <div class='lav-selector__toggler'>
-            test
-          </div>
+          <div class='lav-selector__toggler'></div>
         </div>
       </div>
     `
@@ -866,13 +954,23 @@ ul.owlCustomCarousel img {
       _$('.form .product-form__submit').click()
     })
 
-    initIntersection('.form .product-form__submit', ({ isIntersecting }) => {
-      if (isIntersecting) {
-        _$('.lav-sticky').classList.remove('active')
-      } else {
-        _$('.lav-sticky').classList.add('active')
-      }
-    })
+    if (document.querySelector('.parent-variant')) {
+      initIntersection('.parent-variant', ({ isIntersecting }) => {
+        if (isIntersecting) {
+          _$('.lav-sticky').classList.remove('active')
+        } else {
+          _$('.lav-sticky').classList.add('active')
+        }
+      })
+    } else if (document.querySelector('.product-form__buttons .product-form__submit')) {
+         initIntersection('.product-form__buttons .product-form__submit', ({ isIntersecting }) => {
+        if (isIntersecting) {
+          _$('.lav-sticky').classList.remove('active')
+        } else {
+          _$('.lav-sticky').classList.add('active')
+        }
+      })
+    }
   }
 
   function updateSizeAndLength() {
@@ -930,9 +1028,7 @@ ul.owlCustomCarousel img {
         'afterbegin',
         /*html*/ `
       <div class='lav-sticky__size'>
-        <svg class='lav-sticky__icon' xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
-          <path d="M4 6L0.535899 -6.52533e-07L7.4641 -4.68497e-08L4 6Z" fill="#C4C4C4"/>
-        </svg>
+        ${getSvg('chevronRight')}
         <div class='lav-sticky__size-label'>${label}</div>
         <div class='lav-sticky__size-value'>${value || 'Choose'}</div>
       </div>
@@ -960,7 +1056,6 @@ ul.owlCustomCarousel img {
 
           if (_$('.lav-selector__toggler #guide_desc')) {
             _$('.lav-selector__toggler #guide_desc').addEventListener('click', () => {
-              // TODO
               _$('.section-header')?.classList.remove('lav-selector-opened')
 
               const interval = setInterval(() => {
@@ -976,6 +1071,7 @@ ul.owlCustomCarousel img {
 
           _$$('.lav-selector__toggler a').forEach((el, index) => {
             el.addEventListener('click', (e) => {
+              e.preventDefault();
               _$(
                 'product-info .lav-measure li:nth-child(' + (index + 1) + ') a'
               ).click()
@@ -1011,39 +1107,64 @@ ul.owlCustomCarousel img {
 
   function updateMaterial() {
     const colorsMap = {
-      'Gold Filled':
-        'linear-gradient(205deg, #EDCE9B 11.36%, #FFF 30.57%, #EAC995 50.14%)',
-      'Rose Gold Filled':
-        'linear-gradient(205deg, #E8C2BD 11.36%, #FFF 30.57%, #E1B7B2 50.14%)',
-      'Sterling Silver':
-        'linear-gradient(205deg, #999 11.36%, #FFF 30.57%, #D8D8D8 50.14%)',
-      '14k Yellow Gold':
-        'linear-gradient(205deg, #EDCE9B 11.36%, #FFF 30.57%, #EAC995 50.14%)',
-      '14k White Gold':
-        'linear-gradient(205deg, #BABABA 11.36%, #FFF 30.57%, #D8D8D8 50.14%)',
-      '14k Rose Gold':
-        'linear-gradient(205deg, #EDCCC7 11.36%, #FFF 30.57%, #E8C8C3 50.14%)'
+      'gold filled':
+        'linear-gradient(205deg, #F8DEB0 11.36%, #FFF 30.57%, #F8DEB0 50.14%)',
+      'yellow gold filled':
+        'linear-gradient(205deg, #F8DEB0 11.36%, #FFF 30.57%, #F8DEB0 50.14%)',
+      'rose gold filled':
+        'linear-gradient(205deg, #F6C8A5 11.36%, #FFF 30.57%, #F6BF9F 50.14%)',
+      'sterling silver':
+        'linear-gradient(205deg, #C0C0C0 11.36%, #FFF 30.57%, #E7E7E7 50.14%)',
+       'white gold filled':
+        'linear-gradient(205deg, #D4D4D4 11.36%, #FFF 30.57%, #D8D8D8 50.14%)',
+      '14k yellow gold':
+        'linear-gradient(205deg, #F8DFB1 11.36%, #FFF 30.57%, #F6D69F 50.14%)',
+      '14k white gold':
+        'linear-gradient(205deg, #D4D4D4 11.36%, #FFF 30.57%, #D8D8D8 50.14%)',
+      '14 white gold':
+        'linear-gradient(205deg, #D4D4D4 11.36%, #FFF 30.57%, #D8D8D8 50.14%)',
+      '14k rose gold':
+        'linear-gradient(205deg, #F6C8A5 11.36%, #FFF 30.57%, #F6BF9F 50.14%)',
+      '14k solid gold':
+        'linear-gradient(205deg, #F8DFB1 11.36%, #FFF 30.57%, #F6D69F 50.14%)',
     }
 
     const materialEl = _$(
       'variant-selects [name="options[Material]"] + .jquery-grid-picker-widget'
-    )
+    ) || _$(
+      'variant-selects [name="options[Pendant Material]"] + .jquery-grid-picker-widget'
+    ) || _$(
+      'variant-selects [name="options[Finish]"] + .jquery-grid-picker-widget')
 
     if (!materialEl) return
 
     _$$('li a', materialEl).forEach((el) => {
-      const key = el.closest('li').getAttribute('data-jquery-grid-picker-value')
+      const key = el.closest('li').getAttribute('data-jquery-grid-picker-value')?.replace(/\u00A0/g, ' ').trim().toLowerCase()
+
+      console.log('key', key, colorsMap[key]);
 
       if (colorsMap[key]) {
         const colorEl = document.createElement('span')
         colorEl.classList.add('lav-material-color')
         colorEl.style.background = colorsMap[key]
-        if (key.includes('14k')) {
+        if (key.includes('14')) {
           colorEl.innerText = '14k'
         }
         // colorEl.innerText = key.includes('Gold') ? 'Au' : 'Ag'/
         el.prepend(colorEl)
       }
+
+      el.addEventListener('click', () => {
+        const currentSrc = document.querySelector('.owlCustomCarousel.owl-carousel>.owl-stage-outer>.owl-stage>.owl-item.active img')?.src
+
+        setTimeout(() => {
+          const newSrc = document.querySelector('.owlCustomCarousel.owl-carousel>.owl-stage-outer>.owl-stage>.owl-item.active img')?.src
+
+          if (currentSrc !== newSrc) {
+            document.querySelector('.product')?.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 500);
+      })
     })
 
 
@@ -1110,6 +1231,7 @@ ul.owlCustomCarousel img {
               _$(
                 'product-info .lav-material li:nth-child(' + (index + 1) + ') a'
               ).click()
+
               rerender()
               closeSelector(true)
             })
@@ -1120,6 +1242,7 @@ ul.owlCustomCarousel img {
   }
 
   function addLabelHandler() {
+    document.querySelector("#guide_desc")?.insertAdjacentHTML('afterbegin', getSvg('sizeGuide'))
     _$$('.lav-label-handler').forEach((container) => {
       addLabel(container)
       container.addEventListener('click', (e) => {
@@ -1341,26 +1464,30 @@ ul.owlCustomCarousel img {
   function addHowItWorks() {
     const markup = /* html */ `
     <div class="lav-how">
-      <div class="lav-how__title">How it works</div>
-      <div class="lav-how__descr">
-        Place an order, send us a tiny ammount of inclusion as per <a href="#">mailing instructions</a>, and we’ll create and ship your handcrafted memorial jewelry within 6-8 weeks
+      <div class="lav-how__block">
+        <div class="lav-how__title">How it works</div>
+        <div class="lav-how__descr">
+          Place an order, send us a tiny ammount of inclusion as per <a href="#">mailing instructions</a>, and we’ll create and ship your handcrafted memorial jewelry within 6-8 weeks
+        </div>
       </div>
       
-      <div class="lav-how__title">Jewelry Can be Created With:</div>
-      <div class="lav-how__list">
-        <div class="lav-how__item">Ashes</div>
-        <div class="lav-how__item">Fabric</div>
-        <div class="lav-how__item">Hair/Fur</div>
-        <div class="lav-how__item">Flowers</div>
-        <div class="lav-how__item">Breastmilk</div>
-      </div>
-      <div class="lav-how__descr">
-        We can include multiple sets of ashes, flowers, or other keepsakes in one piece at no extra cost.
+      <div class="lav-how__block">
+        <div class="lav-how__title">Jewelry Can be Created With:</div>
+        <div class="lav-how__list">
+          <div class="lav-how__item">Ashes</div>
+          <div class="lav-how__item">Fabric</div>
+          <div class="lav-how__item">Hair/Fur</div>
+          <div class="lav-how__item">Flowers</div>
+          <div class="lav-how__item">Breastmilk</div>
+        </div>
+        <div class="lav-how__descr">
+          We can include multiple sets of ashes, flowers, or other keepsakes in one piece at no extra cost.
+        </div>
       </div>
     </div>
   `
 
-    _$('[id*=price-template]').insertAdjacentHTML('afterend', markup)
+    _$('.custom.dwa').insertAdjacentHTML('afterend', markup)
 
     _$('.lav-how__descr a').addEventListener('click', function (e) {
       e.preventDefault()
@@ -1607,7 +1734,7 @@ ul.owlCustomCarousel img {
             Simple <span>Mailing Guide ${getSvg('benefitDecor3')}</span>
           </div>
           <div class='lav-benefit__descr'>
-            Easy steps to mail your inclusion and keep your keepsake a lifetime. <a href="">Preview the instructions</a>
+            Easy steps to mail your inclusion and keep your keepsake a lifetime. <a href="#">Preview the instructions</a>
           </div>
         </div>
       </div>
@@ -1902,22 +2029,12 @@ ul.owlCustomCarousel img {
     let observer = new MutationObserver((mutations, observer) => {
       for (let mutation of mutations) {
         if (typeof cbAdded === 'function') {
-          for (let node of mutation.addedNodes) {
-            if (!(node instanceof HTMLElement)) continue
-            cbAdded(node, observer)
-          }
-        }
-
-        if (typeof cbRemoved === 'function') {
-          for (let node of mutation.removedNodes) {
-            if (!(node instanceof HTMLElement)) continue
-            cbRemoved(node, observer)
-          }
+          cbAdded(mutation)
         }
       }
     })
 
-    observer.observe(el, { childList: true, subtree: true })
+    observer.observe(el, { childList: true, subtree: true, attributes: true })
 
     return observer
   }
@@ -1978,7 +2095,7 @@ ul.owlCustomCarousel img {
               cb()
               observer.disconnect()
             }
-          }, 3000)
+          }, 1500)
         } else {
           clearTimeout(config.timer)
         }
@@ -2081,6 +2198,20 @@ ul.owlCustomCarousel img {
   // Svg objects
   function getSvg(name) {
     const svgObj = {
+      sizeGuide: `
+      <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_863_6)">
+<path d="M11.5 3.5V6.11687C11.5 6.24948 11.4473 6.37666 11.3536 6.47043C11.2598 6.5642 11.1326 6.61687 11 6.61687C10.8674 6.61687 10.7402 6.5642 10.6464 6.47043C10.5527 6.37666 10.5 6.24948 10.5 6.11687V4.70711L8.63853 6.56858C8.54464 6.66175 8.41765 6.71392 8.28538 6.71367C8.1531 6.71342 8.02632 6.66076 7.93279 6.56723C7.83925 6.4737 7.78659 6.34691 7.78634 6.21464C7.78608 6.08236 7.83825 5.95538 7.93142 5.86148L9.79291 4H8.38312C8.25052 4 8.12334 3.94732 8.02957 3.85355C7.9358 3.75979 7.88312 3.63261 7.88312 3.5C7.88312 3.36739 7.9358 3.24021 8.02957 3.14645C8.12334 3.05268 8.25052 3 8.38312 3H11C11.1326 3 11.2598 3.05268 11.3536 3.14645C11.4473 3.24021 11.5 3.36739 11.5 3.5ZM3.5 10.5C3.5 10.6326 3.55268 10.7598 3.64645 10.8536C3.74021 10.9473 3.86739 11 4 11H6.61687C6.74948 11 6.87666 10.9473 6.97043 10.8536C7.0642 10.7598 7.11687 10.6326 7.11687 10.5C7.11687 10.3674 7.0642 10.2402 6.97043 10.1464C6.87666 10.0527 6.74948 10 6.61687 10H5.20712L7.06858 8.13853C7.16235 8.04476 7.21503 7.91759 7.21503 7.78498C7.21503 7.65237 7.16235 7.52519 7.06858 7.43142C6.97481 7.33765 6.84763 7.28497 6.71502 7.28497C6.58241 7.28497 6.45524 7.33765 6.36147 7.43142L4.5 9.29291V7.88314C4.5 7.75053 4.44732 7.62336 4.35355 7.52959C4.25979 7.43582 4.13261 7.38314 4 7.38314C3.86739 7.38314 3.74021 7.43582 3.64645 7.52959C3.55268 7.62336 3.5 7.75053 3.5 7.88314L3.5 10.5Z" fill="#2E45E0"/>
+</g>
+<circle cx="7.5" cy="7" r="6.5" stroke="#2E45E0"/>
+<defs>
+<clipPath id="clip0_863_6">
+<rect width="8" height="8" fill="white" transform="translate(3.5 3)"/>
+</clipPath>
+</defs>
+</svg>
+
+      `,
       play: `
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 12 14" fill="none">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 1.95775V12.0422L9.80486 7L1.5 1.95775ZM0 1.29138C0 0.414296 0.959137 -0.125446 1.70884 0.329748L11.1113 6.03835C11.8328 6.47643 11.8328 7.52358 11.1113 7.96165L1.70884 13.6702C0.959137 14.1255 0 13.5857 0 12.7086V1.29138Z" fill="white"/>
