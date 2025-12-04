@@ -1,5 +1,5 @@
 (function () {
-  console.debug('*** Experiment started ***')
+  if (document.querySelector('.exp-checkout-v2-styles')) return
 
   // Config for Experiment
   const config = {
@@ -303,7 +303,7 @@
   `
 
   const stylesEl = document.createElement('style')
-  stylesEl.classList.add('exp-styles')
+  stylesEl.classList.add('exp-checkout-v2-styles')
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
