@@ -1518,9 +1518,11 @@ ul.owlCustomCarousel {
     const colorId = colorEl?.dataset.id
 
     if (colorId == '1') return
+
+    console.log('noteEl, colorEl, colorId', noteEl, colorEl, colorId)
     
     const colorText = colorEl.dataset.color
-    const productTitle = _$('.cac.product .product__title h1')?.innerText.trim()
+    const productTitle = _$('.product .product__title h1')?.innerText.trim()
 
     if (!productTitle) return
 
