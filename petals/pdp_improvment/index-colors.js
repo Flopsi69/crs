@@ -8,6 +8,7 @@
     clarity: ['set', 'exp_pdp', 'variant_1'],
     debug: false,
     isPassive: false,
+    choosenColorId: null
   }
 
   // const orig = console.log
@@ -1015,14 +1016,14 @@ ul.owlCustomCarousel {
     //   }
     // })
 
-    waitFor('#note', () => {
+    // waitFor('#note', () => {
       // initMutation('.deliveryVan .bcb', (mutations) => {
       //   if (mutations.attributeName === 'style' && mutations.target.classList.contains('bcb')) {
       //     const isFree = parseInt(mutations.target.style.width) > 100 ? 'Yes' : 'No'
       //     pushDataLayer('exp_pdp_free_shipping_01', `IsFreeShipping - ${isFree}`, 'change', 'Slide in cart')
       //   }
       // })
-    })
+    // })
 
     document.head.appendChild(stylesEl)
 
@@ -1031,21 +1032,22 @@ ul.owlCustomCarousel {
     initModal()
     addSlideInModal()
 
-    waitFor(() => _$('#satcb_bar') && _$('.form .product-form__submit'), () => {
-      _$$('.product-form__submit').forEach(btn => {
-        btn.addEventListener('click', () => {
-          if (btn.disabled) return;
-          waitFor('.cart-notification-product .cnp_items', () => {
-            if (_$$('.cart-notification-product .cnp_items').length) {
-              setTimeout(() => {
-                 addNoteRecord();
-              }, 2000);
-            }
-          })
-        });
-      });
-      addSticky();
-    }, { ms: 50 })
+    // Add records
+    // waitFor(() => _$('#satcb_bar') && _$('.form .product-form__submit'), () => {
+    //   _$$('.product-form__submit').forEach(btn => {
+    //     btn.addEventListener('click', () => {
+    //       if (btn.disabled) return;
+    //       waitFor('.cart-notification-product .cnp_items', () => {
+    //         if (_$$('.cart-notification-product .cnp_items').length) {
+    //           setTimeout(() => {
+    //              addNoteRecord();
+    //           }, 1400);
+    //         }
+    //       })
+    //     });
+    //   });
+    //   addSticky();
+    // }, { ms: 50 })
 
     // waitFor('.customCarouselForMbl', () => {
     //   setTimeout(() => {
@@ -1068,8 +1070,9 @@ ul.owlCustomCarousel {
     //   }
     // )
 
-    waitFor('.custom.dwa .dwa_formCustomJs', () => {
-      _$('.custom.dwa .dwa_formCustomJs').addEventListener('click', function (e) {
+    // Mail instructions
+    waitFor('.custom.dwa .dwa_formCustomJs a', () => {
+      _$('.custom.dwa .dwa_formCustomJs a').addEventListener('click', function (e) {
         e.preventDefault()
         openModal()
         // pushDataLayer(
@@ -1081,16 +1084,61 @@ ul.owlCustomCarousel {
       })
     })
 
-    handleStickyPrice()
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('lav-selector')) {
+        let section = 'Sticky color selector';
+        if (_$('.lav-selector__toggler .lav-measure')) {
+          section = 'Sticky size selector'
+        }
+        if (_$('.lav-selector__toggler .lav-material')) {
+          section = 'Sticky material selector'
+        }
+        pushDataLayer('exp_color_sticky_click', 'Close Overlay', 'click', section);
+        closeSelector()
+      }
+    })
+
 
     waitFor(
-      () => _$$('variant-selects li a').length,
+      () => _$$('variant-selects li a').length && _$('#satcb_bar') && _$('.form .product-form__submit'),
       () => {
-        addColorsOptions();
-        updateSizeAndLength()
-        updateMaterial()
-        addLabelHandler()
+        _$$('.product-form__submit').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.disabled) return;
+            waitFor('.cart-notification-product .cnp_items', () => {
+              if (_$$('.cart-notification-product .cnp_items').length) {
+                setTimeout(() => {
+                    addNoteRecord();
+                }, 1400);
+              }
+            })
+          });
+        });
+        
+        initFuncHandler();
+
+        initMutation('[id*="price-template"]', () => {
+          if (!_$('.lav-sticky__price')) return
+          _$('.lav-sticky__price').innerHTML = getPrice()
+        })
+
+        initMutation('.product__info-container', (mutations) => {
+          if (mutations.type !== 'childList') return;
+          if (!(mutations.previousSibling instanceof HTMLElement) || !mutations.previousSibling?.classList.contains('parent-variant')) return;
+
+          initFuncHandler()
+        });
+
       }, { ms: 50 })
+  }
+  
+  function initFuncHandler() {
+    addSticky();
+    handleStickyPrice()
+    addColorsOptions();
+    updateSizeAndLength()
+    updateMaterial()
+    addLabelHandler()
   }
 
   async function handleStickyPrice() {
@@ -1106,14 +1154,10 @@ ul.owlCustomCarousel {
         </div>
       `
     )
+  }
 
-    initMutation('[id*="price-template"]', () => {
-      _$('.lav-sticky__price').innerHTML = getPrice()
-    })
-
-    function getPrice() {
-      return _$('.product .product__info-wrapper .price-item--sale')?.innerHTML || _$('.product .product__info-wrapper .price-item--regular').innerHTML()
-    }
+  function getPrice() {
+    return _$('.product .product__info-wrapper .price-item--sale')?.innerHTML || _$('.product .product__info-wrapper .price-item--regular').innerHTML()
   }
 
   async function updateGallery() {
@@ -1249,6 +1293,13 @@ ul.owlCustomCarousel {
   }
 
   function addSticky() {
+    if (_$('.lav-sticky')) {
+      _$('.lav-selector__toggler').innerHTML = '';
+      _$('.lav-sticky__top').innerHTML = '';
+      _$('.lav-sticky__size')?.remove()
+      initStickyIntersection();
+      return;
+    }
     const markup = /* html */ `
       <div class="lav-sticky">
         <div class="lav-sticky__top">
@@ -1273,20 +1324,6 @@ ul.owlCustomCarousel {
     // _$('#satcb_bar').insertAdjacentHTML('afterend', markup)
     document.body.insertAdjacentHTML('afterbegin', markup)
 
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('lav-selector')) {
-        let section = 'Sticky color selector';
-        if (_$('.lav-selector__toggler .lav-measure')) {
-          section = 'Sticky size selector'
-        }
-        if (_$('.lav-selector__toggler .lav-material')) {
-          section = 'Sticky material selector'
-        }
-        pushDataLayer('exp_color_sticky_click', 'Close Overlay', 'click', section);
-        closeSelector()
-      }
-    })
-
     _$('.lav-selector__close').addEventListener('click', () => {
       let section = 'Sticky color selector';
       if (_$('.lav-selector__toggler .lav-measure')) {
@@ -1304,22 +1341,26 @@ ul.owlCustomCarousel {
       _$('.form .product-form__submit').click()
     })
 
-    if (document.querySelector('.parent-variant')) {
-      initIntersection('.parent-variant', ({ isIntersecting }) => {
-        if (isIntersecting) {
-          _$('.lav-sticky').classList.remove('active')
-        } else {
-          _$('.lav-sticky').classList.add('active')
-        }
-      })
-    } else if (document.querySelector('.product-form__buttons .product-form__submit')) {
-         initIntersection('.product-form__buttons .product-form__submit', ({ isIntersecting }) => {
-        if (isIntersecting) {
-          _$('.lav-sticky').classList.remove('active')
-        } else {
-          _$('.lav-sticky').classList.add('active')
-        }
-      })
+    initStickyIntersection();
+
+    function initStickyIntersection() {
+      if (document.querySelector('.parent-variant')) {
+        initIntersection('.parent-variant', ({ isIntersecting }) => {
+          if (isIntersecting) {
+            _$('.lav-sticky').classList.remove('active')
+          } else {
+            _$('.lav-sticky').classList.add('active')
+          }
+        })
+      } else if (document.querySelector('.product-form__buttons .product-form__submit')) {
+        initIntersection('.product-form__buttons .product-form__submit', ({ isIntersecting }) => {
+          if (isIntersecting) {
+            _$('.lav-sticky').classList.remove('active')
+          } else {
+            _$('.lav-sticky').classList.add('active')
+          }
+        })
+      }
     }
   }
 
@@ -1430,7 +1471,11 @@ ul.owlCustomCarousel {
         <div class="lav-color__caption">${item.name}</div>
       `
 
-      if (item.id === 1) {
+      if (config.choosenColorId !== null && config.choosenColorId === item.id) {
+        colorEl.classList.add('active')
+        value = item.name
+        color = _$('.lav-color__image', colorEl).outerHTML
+      } else if (item.id === 1 && config.choosenColorId === null) {
         value = item.name
         color = _$('.lav-color__image', colorEl).outerHTML
         colorEl.classList.add('active', 'lav-color--default')
@@ -1442,6 +1487,8 @@ ul.owlCustomCarousel {
         if (!config.isPassive) {
           pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
         }
+
+        config.choosenColorId = item.id
 
         _$$('product-info .lav-color').forEach((el) => el.classList.remove('active'))
         this.classList.add('active')
@@ -1518,8 +1565,6 @@ ul.owlCustomCarousel {
     const colorId = colorEl?.dataset.id
 
     if (colorId == '1') return
-
-    console.log('noteEl, colorEl, colorId', noteEl, colorEl, colorId)
     
     const colorText = colorEl.dataset.color
     const productTitle = _$('.product .product__title h1')?.innerText.trim()
@@ -1898,7 +1943,7 @@ ul.owlCustomCarousel {
     }
   }
 
-  function addLabelHandler() {
+  async function addLabelHandler() {
     // document.querySelector("#guide_desc")?.insertAdjacentHTML('afterbegin', getSvg('sizeGuide'))
     _$$('.lav-label-handler').forEach((container) => {
       addLabel(container)
