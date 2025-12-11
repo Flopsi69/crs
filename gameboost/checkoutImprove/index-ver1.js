@@ -134,10 +134,7 @@
       letter-spacing: -0.75px;
     }
     .lav-summary-title + dl {
-      // display: none;
-    }
-    .lav-summary-title + dl + dt {
-      // color: #A1A1AA;
+      display: none;
     }
     [aria-labelledby="section-two-heading"] ul li p.flex-none {
       color: var(--lav-text-secondary);
@@ -321,7 +318,7 @@
     console.debug('** InitExp **')
 
     addProtectedCaption();
-    // addSummaryHeader();
+    addSummaryHeader();
     updateProducts();
     updateWarranty();
   }
