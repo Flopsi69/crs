@@ -150,6 +150,7 @@
     }
     [aria-labelledby="section-two-heading"] ul li .flex-auto.space-y-1 {
       margin-left: 24px;
+      min-width: 0;
     }
     .lav-product {
       align-items: flex-start;

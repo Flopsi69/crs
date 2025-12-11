@@ -261,6 +261,7 @@
       }
       [aria-labelledby="section-two-heading"] ul li .flex-auto.space-y-1 {
         margin-left: 1rem;
+        min-width: 0;
       }
       [aria-labelledby="section-two-heading"] ul li h3 {
         font-size: 14px;
