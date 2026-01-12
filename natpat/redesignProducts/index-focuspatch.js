@@ -414,6 +414,9 @@
       #purchase .view-prices .button-proceed {
         height: 62px;
       }
+      .lav-benefits {
+        margin-top: 0;
+      }
       .reviews-slide {
         padding-top: 0!important;
         margin-top: 24px!important;
@@ -432,7 +435,7 @@
       .lav-subscribe {
         flex-wrap: nowrap;
         gap: 12px;
-        margin-bottom: 23px;
+        padding-bottom: 23px;
       }
       .lav-plan__inner {
         padding: 19px 12px 8px;
@@ -450,10 +453,14 @@
       }
       .lav-delivery {
         margin-top: 0;
+        padding-bottom: 12px;
       }
       .rtx-plan-preview {
         padding-right: 12px;
         padding-left: 12px;
+      }
+      #getNow .js-heading + .lp-fp--mobile {
+        display: none;
       }
     }
   `
