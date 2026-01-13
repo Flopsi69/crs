@@ -52,6 +52,7 @@
     .view-prices h3 {
       margin-bottom: 18px;
       margin-top: 0;
+      white-space: nowrap;
     }
 
     .lav-plans {
@@ -462,6 +463,15 @@
       }
       #getNow .js-heading + .lp-fp--mobile {
         display: none;
+      }
+    }
+    @media(max-width: 390px) {
+      .hide-price-pack {
+        margin-left: 10px;
+        font-size: 23px;
+      }
+      .hide-price-pack svg {
+        width: 22px;
       }
     }
   `

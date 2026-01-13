@@ -59,6 +59,7 @@
     #getNow .view-prices h3 {
       margin-bottom: 18px;
       margin-top: 0;
+      white-space: nowrap;
     }
 
     .lav-plans {
@@ -498,6 +499,15 @@
       .rtx-plan-preview {
         padding-right: 12px;
         padding-left: 12px;
+      }
+    }
+    @media(max-width: 390px) {
+      .hide-price-pack {
+        margin-left: 10px;
+        font-size: 23px;
+      }
+      .hide-price-pack svg {
+        width: 22px;
       }
     }
   `
