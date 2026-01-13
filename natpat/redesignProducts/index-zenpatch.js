@@ -687,7 +687,7 @@
       });
 
 
-      planEl.addEventListener('click', function () {
+      planEl.addEventListener('click', function (e) {
         if (e.target.closest('.rtx-plan-preview.dropdown-toggle[aria-expanded="false"]')) {
           pushDataLayer('exp_zp_deliver_every_dropdown', 'Open drop-down', 'click', `${planEl.dataset.packs} Pack(-s)`);
           return
@@ -754,7 +754,7 @@
         }
 
         updatePrices();
-      });
+      }, true);
 
       return planEl;
     }
