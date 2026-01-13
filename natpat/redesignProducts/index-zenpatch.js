@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/natpat/redesignProducts/',
     dir: 'https://flopsi69.github.io/crs/natpat/redesignProducts/',
-    clarity: ['set', 'exp_fp_sub_and_save', 'variant_1'],
+    clarity: ['set', 'exp_zp_sub_and_save', 'variant_1'],
     debug: false
   }
 
@@ -15,7 +15,7 @@
       margin-bottom: 15px;
     }
     #getNow .js-heading {
-      margin-bottom: 20px;
+      margin-bottom: 42px;
     }
     .lav-subtitle {
       font-family: Roboto;
@@ -36,9 +36,15 @@
     #purchase .view-prices .button-proceed {
       border-radius: 38px;
       height: 64px;
-      font-size: 22px;
+      font-size: 24px;
       margin-top: 0;
       box-shadow: 0 4px 15px 0 rgba(72, 67, 69, 0.51);
+      width: 100%;
+      max-width: 100%;
+      line-height: 1;
+    }
+    .container .view-prices {
+      max-width: 100%;
     }
     @media(hover:hover) {
       #purchase .view-prices .button-proceed:hover {
@@ -47,9 +53,9 @@
     }
     #purchase .view-prices .button-proceed:not(.lav-active) {
       pointer-events: none;
-      background: rgba(0, 80, 212, 0.50);
+      background: rgba(42, 123, 114, 0.50);
     }
-    .view-prices h3 {
+    #getNow .view-prices h3 {
       margin-bottom: 18px;
       margin-top: 0;
     }
@@ -57,7 +63,7 @@
     .lav-plans {
       display: grid;
       gap: 12px;
-      margin-top: 36px;
+      margin-top: 34px;
     }
     .lav-plan {
       position: relative;
@@ -68,8 +74,8 @@
       transition: background .3s;
     }
     .lav-plan.active {
-      border: 2px solid #F05A27;
-      background: #FBEFDD;
+      border: 2px solid #2A7B72;
+      background: #E1F1F3;
     }
     .lav-plan:not(.active):hover {
       cursor: pointer;
@@ -78,13 +84,13 @@
       order: -4;
     }
     .lav-plan[data-packs='1'] {
-      order: -3;
+      order: -1;
     }
     .lav-plan[data-packs='2'] {
       order: -2;
     }
     .lav-plan[data-packs='4'] {
-      order: -1;
+      order: -3;
     }
     .lav-plan__header {
       display: flex;
@@ -100,11 +106,11 @@
     .lav-plan__title {
       color: #202020;
       font-family: "DINEngschrift LT";
-      font-size: 28px;
+      font-size: 26px;
       font-style: normal;
       font-weight: 400;
       line-height: 28px;
-      width: 73px;
+      width: 69px;
       text-align: left;
     }
     .lav-plan__count {
@@ -127,20 +133,20 @@
     }
     .lav-plan__price-new {
       color: #000;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
       line-height: 28px;
     }
     .lav-plan__price-old {
       color: #5D5D5D;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
       line-height: 28px;
       text-decoration: line-through;
     }
     .lav-plan__price-per-patch {
       color: #202020;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 22px;
     }
@@ -175,18 +181,8 @@
       background: #000;
     }
     .lav-plan__bage--save {
-      background: #F05A27;
-      background:
-      linear-gradient(135deg,
-        rgba(255,255,255,0.16) 25%,
-        rgba(255,255,255,0.06) 25%,
-        rgba(255,255,255,0.06) 50%,
-        rgba(255,255,255,0.16) 50%,
-        rgba(255,255,255,0.16) 75%,
-        rgba(255,255,255,0.06) 75%
-      ),
-      #F05A27;
-      background-size: 30px 30px;
+      color: #000;
+      background: #EFAE16;
     }
     .lav-plan__body {
       display: none;
@@ -201,8 +197,8 @@
     }
     .lav-plan__inner--single {
       border-radius: 4px;
-      border-left: 6px solid #C1390A;
-      background: #F05A27;
+      border-left: 6px solid #048E60;
+      background: #02B57A;
       padding: 12px 12px 12px 6px!important;
     }
     .lav-plan__note {
@@ -232,7 +228,7 @@
       display: block!important;
       width: 52px;
       height: 28px;
-      border: 2px solid #F05A27;
+      border: 2px solid #02B57A;
       border-radius: 100px;
       transition: 0.2s;
     }
@@ -244,11 +240,11 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #F05A27;
+      background: #02B57A;
       transition: 0.2s;
     }
     .lav-subscribe__switch.active {
-      background: #F05A27;
+      background: #02B57A;
     }
     .lav-subscribe__switch.active:before {
       background: #FFF;
@@ -264,7 +260,7 @@
     .lav-subscribe__bage {
       white-space: nowrap;
       border-radius: 4px;
-      background: #F05A27;
+      background: #02B57A;
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12);
       color: #FFF;
       text-align: center;
@@ -313,7 +309,7 @@
       margin-left: 5px;
     }
     .lav-benefits__item--mark {
-      color: #F05A27;
+      color: #02B57A;
     }
     .lav-benefits__item--mob {
       display: none;
@@ -334,10 +330,10 @@
     }
     .rtx-plan-selected-text {
       font-weight: 500;
+      margin-bottom: 0;
     }
-    .rtx-plan-preview::before {
+    .rtx-plan-preview {
       background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><script xmlns=""/><path d="M7.15984 9.49366L7.4874 9.16382C7.59049 9.06081 7.72765 9.00407 7.87423 9.00407C8.02074 9.00407 8.15806 9.06081 8.26115 9.16382L11.9978 12.9006L15.7387 9.15968C15.8416 9.05667 15.9789 9 16.1254 9C16.2719 9 16.4093 9.05667 16.5124 9.15968L16.84 9.48748C17.0533 9.70066 17.0533 10.0479 16.84 10.2611L12.386 14.7311C12.2831 14.834 12.1459 14.9066 11.9981 14.9066L11.9964 14.9066C11.8498 14.9066 11.7126 14.834 11.6097 14.7311L7.15984 10.2732C7.05675 10.1703 7.00016 10.029 7 9.88245C7 9.73586 7.05675 9.59651 7.15984 9.49366Z" fill="%236E828C"/></svg>');
-      filter: none;
     }
     @media(hover:hover) {
       .rtx-plan-options li:hover {
@@ -350,7 +346,7 @@
     .rtx-plan-selected-text b, .rtx-plan-selected-text span {
       display: none;
     }
-    .view-prices h3 {
+    #getNow .view-prices h3 {
       display: flex;
       align-items: center;
       color: #000;
@@ -365,13 +361,36 @@
       display: flex;
       align-items: center;
       gap: 3px;
-      color: #F3541D;
+      color: #2A7B72;
       font-size: 24px;
       margin-left: 15px;
     }
     .hide-price-pack svg {
       width: 24px;
       height: 22px;
+    }
+    .package .sub {
+      display: inline-block;
+      background: #F4BE00;
+      padding: 6px;
+      color: #000;
+      font-family: Roboto;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+      margin-bottom: 0;
+    }
+    .lp-zenpatch-template #getNow .ptext {
+      display: none;
+    }
+    #purchase #getNow {
+      max-width: 564px;
+      padding-right: 30px!important;
+      padding-left: 30px!important;
+    }
+    .package .c-green.js-desktop img {
+      max-width: 100%
     }
     @media(max-width: 992px) {
       .lav-plan__header {
@@ -384,8 +403,27 @@
         font-size: 24px;
         width: 64px;
       }
+      #purchase .view-prices {
+        padding: 0;
+      }
+      #purchase .js-heading>h2 {
+        margin-bottom: 24px;
+      }
     }
     @media(max-width: 768px) {
+      .package .sub {
+        display: none;
+      }
+      #purchase .view-prices .button-proceed {
+        font-size: 22px;
+      }
+      #purchase #getNow {
+        max-width: 100%;
+        padding: 0 15px!important;
+      }
+      #getNow .js-heading {
+        margin-bottom: 24px;
+      }
       #getNow .free-shipping-checkout {
         margin-bottom: 12px;
       }
@@ -460,9 +498,6 @@
         padding-right: 12px;
         padding-left: 12px;
       }
-      #getNow .js-heading + .lp-fp--mobile {
-        display: none;
-      }
     }
   `
 
@@ -482,6 +517,34 @@
     updateUi();
     createNewPlans();
     checkChangePrice();
+
+    document.querySelectorAll("#open").forEach(openBtn => {
+      openBtn.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+
+        let offset = window.innerWidth < 768 ? 160 : 200;
+        if (_$('header .navbar.fixed-top')) {
+          offset = $('header .navbar.fixed-top').outerHeight();
+        }
+
+        const purchaseEl = _$('#purchase');
+        const targetPosition = purchaseEl.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetPosition });
+        setTimeout(() => {
+          window.scrollTo({ top: targetPosition });
+        }, 50);
+        // smoothScrollTo(targetPosition);
+        // setTimeout(() => {
+        // console.log('isElementInViewport', isElementInViewport(purchaseEl));
+        //   if (!isElementInViewport(purchaseEl)) {
+        //     smoothScrollTo(targetPosition, 100);
+        //   }
+        // }, 700);
+        // window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      }, true) // Add capture phase: true
+    })
   }
 
   async function checkChangePrice() {
@@ -575,14 +638,14 @@
         </div>
       `;
 
-      // if (el.classList.contains('active-slide')) {
+      if (el.classList.contains('active-slide')) {
         // planEl.classList.add('active');
         // if (planEl.dataset.packs !== '1') {
         //   const selectDeliveryEl = _$('.rtx-plan-preview.dropdown-toggle');
         //   _$('.lav-delivery', planEl).insertAdjacentElement('beforeend', selectDeliveryEl);
         //   _$('.lav-plan__body', planEl).style.display = 'block';
         // }
-      // }
+      }
       if (countPacks === 1) {
         planEl.querySelector('.lav-delivery').remove();
         planEl.querySelector('.lav-plan__inner').classList.add('lav-plan__inner--single');
@@ -606,28 +669,27 @@
         const switchEl = _$('.lav-subscribe__switch', planEl);
         const isActive = switchEl.classList.contains('active');
 
-
         if (isActive) {
-          _$('.rtx-subscription-label[for="purchaseTypeOneTime"]').click();
+          _$('#getNow .rtx-subscription-label[for="purchaseTypeOneTime"]').click();
           _$$('.lav-subscribe__switch').forEach(switchEl => switchEl.classList.remove('active'));
           _$$('.lav-delivery').forEach(element => {
             $(element).slideUp();
           });
         } else {
-          _$('.rtx-subscription-label[for="purchaseTypeSubscription"]').click();
+          _$('#getNow .rtx-subscription-label[for="purchaseTypeSubscription"]').click();
           _$$('.lav-subscribe__switch').forEach(switchEl => switchEl.classList.add('active'));
           _$$('.lav-delivery').forEach(element => {
             $(element).slideDown();
           });
         }
 
-        pushDataLayer('exp_fp_sub_toggle', isActive ? 'Disable' : 'Enable', 'click', `${planEl.dataset.packs} Pack(-s)`);
+        pushDataLayer('exp_zp_sub_toggle', isActive ? 'Disable' : 'Enable', 'click', `${planEl.dataset.packs} Pack(-s)`);
       });
 
 
-      planEl.addEventListener('click', function (e) {
+      planEl.addEventListener('click', function () {
         if (e.target.closest('.rtx-plan-preview.dropdown-toggle[aria-expanded="false"]')) {
-          pushDataLayer('exp_fp_deliver_every_dropdown', 'Open drop-down', 'click', `${planEl.dataset.packs} Pack(-s)`);
+          pushDataLayer('exp_zp_deliver_every_dropdown', 'Open drop-down', 'click', `${planEl.dataset.packs} Pack(-s)`);
           return
         }
 
@@ -635,16 +697,16 @@
           const selectedOption = e.target.closest('li').cloneNode(true);
           selectedOption.querySelector('b')?.remove();
           selectedOption.querySelector('span')?.remove();
-          pushDataLayer('exp_fp_deliver_every_option', selectedOption.innerText.trim(), 'click', `${planEl.dataset.packs} Pack(-s)`);
+          pushDataLayer('exp_zp_deliver_every_option', selectedOption.innerText.trim(), 'click', `${planEl.dataset.packs} Pack(-s)`);
           return
         }
-        
+
         if (planEl.classList.contains('active')) return;
-        
-        pushDataLayer('exp_fp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
+
+        pushDataLayer('exp_zp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
 
         if (!_$('#purchase .view-prices .button-proceed.lav-active')) {
-          _$('.view-prices h3').removeAttribute('style');
+          _$('#getNow .view-prices h3').removeAttribute('style');
           _$('#purchase .view-prices .button-proceed').classList.add('lav-active');
           _$('#purchase .view-prices .button-proceed').innerText = 'Proceed to Checkout';
           if (planEl.dataset.packs !== '1') {
@@ -654,12 +716,12 @@
           }
 
           _$('#purchase .view-prices .button-proceed.lav-active').addEventListener('click', () => {
-            pushDataLayer('exp_fp_proceed_to_checkout', 'Proceed to checkout', 'click', 'Purchase section');
+            pushDataLayer('exp_zp_proceed_to_checkout', 'Proceed to checkout', 'click', 'Purchase section');
           });
         }
 
         if (countPacks !== 1) {
-          const selectDeliveryEl = _$('.rtx-plan-preview.dropdown-toggle');
+          const selectDeliveryEl = _$('#getNow .rtx-plan-preview.dropdown-toggle');
           _$('.lav-delivery', planEl).insertAdjacentElement('beforeend', selectDeliveryEl);
         } else {
           // _$$('.lav-subscribe__switch').forEach(switchEl => switchEl.classList.add('active'));
@@ -683,7 +745,7 @@
         // Toggle to one purchase if before was choosen one time purchase
         if (currentActivePacks === '1' && countPacks !== 1) {
           if (!_$('.lav-subscribe__switch').classList.contains('active')) {
-            _$('.rtx-subscription-label[for="purchaseTypeOneTime"]').click();
+            _$('#getNow .rtx-subscription-label[for="purchaseTypeOneTime"]').click();
           } else {
             _$$('.lav-delivery').forEach(element => {
               $(element).slideDown();
@@ -692,27 +754,26 @@
         }
 
         updatePrices();
-      }, true);
+      });
 
       return planEl;
     }
   }
 
   function updateUi() {
+    console.debug('** Update UI **')
     const infoEl = _$('#getNow');
-
-    _$('.product__title', infoEl).insertAdjacentElement('beforebegin', _$('.lp-fp--star-rating', infoEl))
   
-    _$('.product__title', infoEl).insertAdjacentHTML('afterend', /* html */ `
-    <div class="lav-subtitle">
-      Choose Your Quantity & Plan
-    </div>
-  `)
+    _$('.js-heading', infoEl).insertAdjacentHTML('afterend', /* html */ `
+      <div class="lav-subtitle">
+        Choose Your Quantity & Plan
+      </div>
+    `)
 
     _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
 
-    waitFor(() => _$('.view-prices h3'), () => {
-      _$('.view-prices h3').style.setProperty('display', 'none', 'important');
+    waitFor(() => _$('.view-prices h3', infoEl), () => {
+      _$('.view-prices h3', infoEl).style.setProperty('display', 'none', 'important');
     })
   }
 
@@ -721,10 +782,10 @@
 
     _$$('.lav-plan').forEach(planEl => {
       const countPacks = planEl.dataset.packs;
-      const oldPrice = formatPrice(_$(`.reg-price-${countPacks}`).dataset.price);
-      const newPriceType = _$('.rtx-subscription-label.is-selected[for="purchaseTypeOneTime"]') ? 'price' : 'subscriptionPrice';
-      const newPrice = formatPrice(_$(`.save-price-${countPacks}`).dataset[newPriceType]);
-      const pricePerPatch = (parseFloat(_$(`.save-price-${countPacks}`).dataset[newPriceType]) / (countPacks * 24)).toFixed(2);
+      const oldPrice = formatPrice(_$(`#getNow .reg-price-${countPacks}`).dataset.price);
+      const newPriceType = _$('#getNow .rtx-subscription-label.is-selected[for="purchaseTypeOneTime"]') ? 'price' : 'subscriptionPrice';
+      const newPrice = formatPrice(_$(`#getNow .save-price-${countPacks}`).dataset[newPriceType]);
+      const pricePerPatch = (parseFloat(_$(`#getNow .save-price-${countPacks}`).dataset[newPriceType]) / (countPacks * 24)).toFixed(2);
 
       _$('.lav-plan__price-old', planEl).innerText = oldPrice;
       if (!isOnePackChoosed) {
@@ -736,7 +797,7 @@
     const choosedPlanPacks = _$('.lav-plan.active')?.dataset.packs
     if (choosedPlanPacks) {
       const choseedPlanOriginalPrice = _$(`.reg-price-${choosedPlanPacks}`).dataset.price;
-      _$('.view-prices .rtx-before-price + .rtx-before-price').innerText = choseedPlanOriginalPrice;
+      _$('#getNow .view-prices .rtx-before-price + .rtx-before-price').innerText = choseedPlanOriginalPrice;
     }
   }
 
