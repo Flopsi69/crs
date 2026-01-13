@@ -484,7 +484,7 @@
   initExp()
 
   async function initExp() {
-    await waitFor(() => document.head && document.body, false, { ms: 20 })
+    await waitFor(() => document.head && document.body && _$('#getNow .product__title'), false, { ms: 20 })
 
     document.body.appendChild(stylesEl)
 
