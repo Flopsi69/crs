@@ -508,7 +508,7 @@
   }
 
   async function createNewPlans() {
-    await waitFor(() => _$(`.save-price-1`).dataset.price, false, { ms: 20 })
+    await waitFor(() => _$(`.save-price-1`).dataset.price && Shopify.money_format, false, { ms: 20 })
     // Hide prices by default
     const packagesEl = _$('#getNow .magicpatch-packs');
 
