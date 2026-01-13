@@ -818,8 +818,11 @@
       const oldPrice = formatPrice(_$(`#getNow .reg-price-${countPacks}`).dataset.price);
       const newPriceType = _$('#getNow .rtx-subscription-label.is-selected[for="purchaseTypeOneTime"]') ? 'price' : 'subscriptionPrice';
       const newPrice = formatPrice(_$(`#getNow .save-price-${countPacks}`).dataset[newPriceType]);
-      const pricePerPatch = (parseFloat(_$(`#getNow .save-price-${countPacks}`).dataset[newPriceType]) / (countPacks * 24)).toFixed(2);
-
+      let price = _$(`.save-price-${countPacks}`).dataset[newPriceType];
+      if (price.contains(',') && !price.contains('.')) {
+        price = price.replace(',', '');
+      }
+      const pricePerPatch = (parseFloat(price) / (countPacks * 24)).toFixed(2);
       _$('.lav-plan__price-old', planEl).innerText = oldPrice;
       if (!isOnePackChoosed) {
         _$('.lav-plan__price-new', planEl).innerText = newPrice;
