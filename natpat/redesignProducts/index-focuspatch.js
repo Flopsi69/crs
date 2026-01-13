@@ -508,7 +508,7 @@
   }
 
   async function createNewPlans() {
-    await waitFor(() => _$(`.reg-price-1`).dataset.price, false, { ms: 20 })
+    await waitFor(() => _$(`.save-price-1`).dataset.price, false, { ms: 20 })
     // Hide prices by default
     const packagesEl = _$('#getNow .magicpatch-packs');
 
@@ -737,7 +737,7 @@
       const newPriceType = _$('.rtx-subscription-label.is-selected[for="purchaseTypeOneTime"]') ? 'price' : 'subscriptionPrice';
       const newPrice = formatPrice(_$(`.save-price-${countPacks}`).dataset[newPriceType]);
       let price = _$(`.save-price-${countPacks}`).dataset[newPriceType];
-      if (price.contains(',') && !price.contains('.')) {
+      if (price.includes(',') && price.includes('.')) {
         price = price.replace(',', '');
       }
       const pricePerPatch = (parseFloat(price) / (countPacks * 24)).toFixed(2);
@@ -755,12 +755,6 @@
       _$('.view-prices .rtx-before-price + .rtx-before-price').innerText = choseedPlanOriginalPrice;
     }
   }
-
-  
-
-  // setInterval(() => {
-  //   updatePrices();
-  // }, 1000);
 
   function formatPrice(price) {
      return Shopify.money_format.replace(/\{\{[^}]+\}\}/g, price)
