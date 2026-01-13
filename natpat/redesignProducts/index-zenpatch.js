@@ -6,6 +6,7 @@
     // dir: 'http://127.0.0.1:5500/natpat/redesignProducts/',
     dir: 'https://flopsi69.github.io/crs/natpat/redesignProducts/',
     clarity: ['set', 'exp_zp_sub_and_save', 'variant_1'],
+    firstScrollInstant: true,
     debug: false
   }
 
@@ -530,11 +531,33 @@
         }
 
         const purchaseEl = _$('#purchase');
-        const targetPosition = purchaseEl.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: targetPosition });
+
+        $('html, body').animate({
+          scrollTop: $('#purchase').offset().top - offset
+        }, 500);
+
         setTimeout(() => {
-          window.scrollTo({ top: targetPosition });
-        }, 50);
+          console.log('2nd scroll', isElementInViewport(purchaseEl))
+          if (isElementInViewport(purchaseEl)) return;
+
+          $('html, body').animate({
+            scrollTop: $('#purchase').offset().top - offset
+          }, 300);
+        }, 800);
+
+        // const targetPosition = purchaseEl.getBoundingClientRect().top + window.pageYOffset - offset;
+        // const isInstant = config.firstScrollInstant && window.innerWidth < 768 ? 'instant' : 'smooth';
+        // window.scrollTo({ top: targetPosition, behavior: isInstant });
+        // if (isInstant === 'instant') {
+        //   setTimeout(() => {
+        //     window.scrollTo({ top: targetPosition, behavior: isInstant });
+        //   }, 100);
+        // }
+        // setTimeout(() => {
+        //     config.firstScrollInstant = false;
+        // }, 150);
+
+
         // smoothScrollTo(targetPosition);
         // setTimeout(() => {
         // console.log('isElementInViewport', isElementInViewport(purchaseEl));
@@ -801,19 +824,8 @@
     }
   }
 
-  
-
-  // setInterval(() => {
-  //   updatePrices();
-  // }, 1000);
-
   function formatPrice(price) {
-    return Shopify.money_format
-      .replace('{{amount}}', price)
-      .replace(
-        '{{amount_no_decimals_with_comma_separator}}',
-        price
-      )
+    return Shopify.money_format.replace(/\{\{[^}]+\}\}/g, price)
   }
 
   // *** Utils *** //

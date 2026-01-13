@@ -747,12 +747,7 @@
   // }, 1000);
 
   function formatPrice(price) {
-    return Shopify.money_format
-      .replace('{{amount}}', price)
-      .replace(
-        '{{amount_no_decimals_with_comma_separator}}',
-        price
-      )
+     return Shopify.money_format.replace(/\{\{[^}]+\}\}/g, price)
   }
 
   // *** Utils *** //
