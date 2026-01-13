@@ -491,7 +491,6 @@
     console.debug('** InitExp **')
     updateUi();
     createNewPlans();
-    checkChangePrice();
   }
 
   async function checkChangePrice() {
@@ -508,7 +507,8 @@
     observer.observe(_$('.rtx-subscription__btn-container'), { childList: true, subtree: true, attributes: true })
   }
 
-  function createNewPlans() {
+  async function createNewPlans() {
+    await waitFor(() => _$(`.reg-price-1`).dataset.price, false, { ms: 20 })
     // Hide prices by default
     const packagesEl = _$('#getNow .magicpatch-packs');
 
@@ -522,6 +522,8 @@
       _$(".lav-plans").insertAdjacentElement('beforeend', planHTML);
       updatePrices();
     });
+
+    checkChangePrice();
 
     function getPlanMarkup(el) {
       const isBages = el.classList.contains('list-packs-3');
