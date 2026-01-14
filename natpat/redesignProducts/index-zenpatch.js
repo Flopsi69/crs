@@ -431,7 +431,7 @@
         max-height: 100%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(1.25);
+        transform: translate(-50%, -50%);
         transition: 0.4s;
         opacity: 0;
       }
