@@ -607,7 +607,7 @@
   async function checkChangePrice() {
     await waitFor('.rtx-subscription__btn-container', false, { ms: 20 })
 
-     let observer = new MutationObserver((mutations, observer) => {
+     const observer = new MutationObserver((mutations, observer) => {
        for (let mutation of mutations) {
          if (mutation.target.classList.contains('is-selected')) {
            updatePrices()
@@ -841,12 +841,20 @@
     `)
 
     _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    setTimeout(() => {
-      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    }, 500);
-    setTimeout(() => {
-      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    }, 1000);
+
+    const observerButton = new MutationObserver((mutations, observer) => {
+      for (let mutation of mutations) {
+        console.log('mutation', mutation);
+        if (mutation.addedNodes?.length) {
+          const text = _$('#purchase .view-prices .button-proceed:not(.lav-active)') ? 'Choose Quantity To Proceed' : 'Proceed to Checkout';
+          if (text.toLowerCase() !== _$('#purchase .view-prices .button-proceed').innerText.toLowerCase().trim()) {
+            _$('#purchase .view-prices .button-proceed').innerText = text;
+          }
+        }
+      }
+    })
+
+    observerButton.observe(_$('#purchase .view-prices .button-proceed'), { childList: true, subtree: true, attributes: true })
 
     waitFor(() => _$('.view-prices h3', infoEl), () => {
       _$('.view-prices h3', infoEl).style.setProperty('display', 'none', 'important');
