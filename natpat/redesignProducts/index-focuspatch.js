@@ -374,6 +374,9 @@
       width: 24px;
       height: 22px;
     }
+    .lav-preview {
+      display: none;
+    }
     @media(max-width: 992px) {
       .lav-plan__header {
         gap: 8px;
@@ -387,11 +390,33 @@
       }
     }
     @media(max-width: 768px) {
+      .lav-preview {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        padding-top: 77%;
+        overflow: hidden;
+      }
+      .lav-preview img {
+        position: absolute;
+        max-width: 100%;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.25);
+        transition: 0.4s;
+        opacity: 0;
+      }
+      .lav-preview img.active {
+        opacity: 1;
+      }
       #getNow .free-shipping-checkout {
         margin-bottom: 12px;
       }
       .lav-plans {
-        margin-top: 12px;
+        margin-top: 16px;
         letter-spacing: 0;
       }
       .lav-plan[data-packs='1'] {
@@ -652,6 +677,9 @@
         }
         
         if (planEl.classList.contains('active')) return;
+
+        _$(".lav-preview img.active").classList.remove('active');
+        _$(".lav-preview img[data-preview='" + planEl.dataset.packs + "']").classList.add('active');
         
         pushDataLayer('exp_fp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
 
@@ -716,6 +744,12 @@
     _$('.product__title', infoEl).insertAdjacentElement('beforebegin', _$('.lp-fp--star-rating', infoEl))
   
     _$('.product__title', infoEl).insertAdjacentHTML('afterend', /* html */ `
+    <div class="lav-preview">
+      <img class="active" data-preview='1' src="https://www.natpat.com/cdn/shop/files/natpat-focus-patch-enhance-concentration-boost-productivity-naturally-35986440749100.png" />
+      <img data-preview='2' src="https://www.natpat.com/cdn/shop/files/natpat-focus-patch-enhance-concentration-boost-productivity-naturally-35986440880172.png" />
+      <img data-preview='3' src="https://www.natpat.com/cdn/shop/files/natpat-focus-patch-enhance-concentration-boost-productivity-naturally-35986440814636.png" />
+      <img data-preview='4' src="https://www.natpat.com/cdn/shop/files/natpat-focus-patch-enhance-concentration-boost-productivity-naturally-35986440683564.png" />
+    </div>
     <div class="lav-subtitle">
       Choose Your Quantity & Plan
     </div>
