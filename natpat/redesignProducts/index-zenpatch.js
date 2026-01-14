@@ -841,6 +841,12 @@
     `)
 
     _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
+    setTimeout(() => {
+      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
+    }, 500);
+    setTimeout(() => {
+      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
+    }, 1000);
 
     waitFor(() => _$('.view-prices h3', infoEl), () => {
       _$('.view-prices h3', infoEl).style.setProperty('display', 'none', 'important');
