@@ -394,6 +394,9 @@
     .package .c-green.js-desktop img {
       max-width: 100%
     }
+    .lav-preview {
+      display: none;
+    }
     @media(max-width: 992px) {
       .lav-plan__header {
         gap: 8px;
@@ -413,6 +416,28 @@
       }
     }
     @media(max-width: 768px) {
+      .lav-preview {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        padding-top: 77%;
+        overflow: hidden;
+      }
+      .lav-preview img {
+        position: absolute;
+        max-width: 100%!important;
+        max-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.25);
+        transition: 0.4s;
+        opacity: 0;
+      }
+      .lav-preview img.active {
+        opacity: 1;
+      }
       .package .sub {
         display: none;
       }
@@ -430,7 +455,7 @@
         margin-bottom: 12px;
       }
       .lav-plans {
-        margin-top: 12px;
+        margin-top: 16px;
         letter-spacing: 0;
       }
       .lav-plan[data-packs='1'] {
@@ -687,7 +712,7 @@
         planEl.querySelector('.lav-plan__inner').classList.add('lav-plan__inner--single');
         planEl.querySelector('.lav-plan__inner').innerHTML = /* html */ `
           <div class='lav-plan__note'>
-            Select 2, 3 or 4 packs to subscribe with an extra of 15% off —&nbsp;save&nbsp;time and money
+            Select 2, 3 or 4 packs to subscribe with an extra 15% OFF —&nbsp;save&nbsp;time and money
           </div>
         `;
       }
@@ -738,6 +763,9 @@
         }
 
         if (planEl.classList.contains('active')) return;
+
+        _$(".lav-preview img.active").classList.remove('active');
+        _$(".lav-preview img[data-preview='" + planEl.dataset.packs + "']").classList.add('active');
 
         pushDataLayer('exp_zp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
 
@@ -801,6 +829,12 @@
     const infoEl = _$('#getNow');
   
     _$('.js-heading', infoEl).insertAdjacentHTML('afterend', /* html */ `
+      <div class="lav-preview">
+        <img class="active" data-preview='1' src="${config.dir}/img/zenpatch-1.png" />
+        <img data-preview='2' src="${config.dir}/img/zenpatch-2.png" />
+        <img data-preview='3' src="${config.dir}/img/zenpatch-3.png" />
+        <img data-preview='4' src="${config.dir}/img/zenpatch-4.png" />
+      </div>
       <div class="lav-subtitle">
         Choose Your Quantity & Plan
       </div>

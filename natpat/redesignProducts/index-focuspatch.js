@@ -625,7 +625,7 @@
         planEl.querySelector('.lav-plan__inner').classList.add('lav-plan__inner--single');
         planEl.querySelector('.lav-plan__inner').innerHTML = /* html */ `
           <div class='lav-plan__note'>
-            Select 2, 3 or 4 packs to subscribe with an extra of 15% off —&nbsp;save&nbsp;time and money
+            Select 2, 3 or 4 packs to subscribe with an extra 15% OFF —&nbsp;save&nbsp;time and money
           </div>
         `;
       }
