@@ -18,6 +18,9 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+  .drawer {
+    z-index: 9999999999!important;
+  }
   .cac .owlCustomCarouselThumbs, .cac .product__info-wrapper div.product__title, .cac .product__info-wrapper .price, .cac .product__info-wrapper .customProductImage, .cac .product__info-wrapper .product-form__input--dropdown, .cac .product__info-wrapper .product__description, .cac .product__info-wrapper .product-form__buttons, .cac .product__info-wrapper .custom.dwa, .cac .product__accordion {
     margin: 0;
   }
@@ -1500,6 +1503,11 @@ ul.owlCustomCarousel {
       colorEl.addEventListener('click', function () {
         if (is14K === false && item.id !== 1) {
           const highlightEl = _$('.product__info-container .lav-colors__note--highlight')
+
+          if (!config.isPassive) {
+            pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info', 'inactive');
+          }
+          
           if (highlightEl.classList.contains('lav-colors__note--highlight_active')) return;
 
           highlightEl.classList.add('lav-colors__note--highlight_active')
@@ -1511,11 +1519,12 @@ ul.owlCustomCarousel {
           return
         }
 
-        if (this.classList.contains('active')) return
 
         if (!config.isPassive) {
-          pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
+          pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info', 'active');
         }
+
+        if (this.classList.contains('active')) return
 
         config.choosenColorId = item.id
 
@@ -1576,8 +1585,11 @@ ul.owlCustomCarousel {
 
           _$('.lav-selector__toggler .lav-colors__note--highlight a').addEventListener('click', (e) => {
             e.preventDefault()
+            pushDataLayer('exp_color_sticky_select_material', 'Select material', 'click', 'Sticky block');
+            config.isPassive = true;
             closeSelector(true)
             _$('.lav-selector-material').click()
+            config.isPassive = false;
           })
 
           _$$('.lav-selector__toggler .lav-color').forEach((el, index) => {
@@ -1586,6 +1598,10 @@ ul.owlCustomCarousel {
 
               if (is14K === false && el.dataset.id !== '1') {
                 const highlightEl = _$('.lav-selector .lav-colors__note--highlight')
+
+                if (!config.isPassive) {
+                  pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'inactive');
+                }
 
                 if (highlightEl.classList.contains('lav-colors__note--highlight_active')) return;
 
@@ -1598,7 +1614,9 @@ ul.owlCustomCarousel {
                 return
               }
 
-              pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector');
+              if (!config.isPassive) {
+                pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'active');
+              }
               config.isPassive = true;
               _$(
                 'product-info .lav-color:nth-child(' + (index + 1) + ')'
@@ -1794,10 +1812,10 @@ ul.owlCustomCarousel {
 
       _$('.lav-sticky__size').addEventListener('click', function () {
         pushDataLayer(
-          'exp_pdp_click_03',
+          'exp_color_sticky_button',
           'Size',
           'click',
-          'Sticky button'
+          'Sticky block'
         )
         rerender()
         openSelector()
@@ -1939,7 +1957,9 @@ ul.owlCustomCarousel {
 
       _$('.lav-selector-material').addEventListener('click', function (e) {
         e.preventDefault()
-        pushDataLayer('exp_color_sticky_button', 'Material', 'click', 'Sticky block');
+        if (!config.isPassive) {
+          pushDataLayer('exp_color_sticky_button', 'Material', 'click', 'Sticky block');
+        }
         rerender()
         openSelector()
 
@@ -2513,7 +2533,7 @@ ul.owlCustomCarousel {
 
   function visibilityEvent(el, cb, customConfig = {}) {
     const config = {
-      threshold: 0.6,
+      threshold: 0.5,
       ...customConfig,
       timer: null
     }
@@ -2527,7 +2547,7 @@ ul.owlCustomCarousel {
               cb()
               observer.disconnect()
             }
-          }, 1500)
+          }, 3000)
         } else {
           clearTimeout(config.timer)
         }
@@ -2575,7 +2595,7 @@ ul.owlCustomCarousel {
   }
 
   // GA 4 events
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  function pushDataLayer(name = '', desc = '', type = '', loc = '', loc2 = '') {
     window.dataLayer = window.dataLayer || []
 
     try {
@@ -2585,6 +2605,10 @@ ul.owlCustomCarousel {
         event_desc: desc,
         event_type: type,
         event_loc: loc
+      }
+
+      if (loc2) {
+        event.event_loc2 = loc2
       }
 
       console.debug('** GA4 Event **', event)
