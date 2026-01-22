@@ -1121,7 +1121,7 @@ ul.owlCustomCarousel {
             waitFor('#CartDrawer-CartItems .single-cart-item', () => {
               if (_$$('#CartDrawer-CartItems .single-cart-item').length) {
                 setTimeout(() => {
-                    addNoteRecord();
+                  addNoteRecord();
                 }, 1400);
               }
             })
@@ -1677,6 +1677,7 @@ ul.owlCustomCarousel {
     if (!productTitle) return
 
     const newRecord = 'Stone color: ' + colorText + ' - ' + productTitle;
+    console.log('add Note', newRecord)
 
     if (!noteEl.value) {
       noteEl.value = newRecord
@@ -1689,14 +1690,11 @@ ul.owlCustomCarousel {
 
     function dispatchNote() {
       // create the event
-      const event = new KeyboardEvent('keyup', {
+      const event = new Event('input', {
         bubbles: true,
         cancelable: true,
-        key: 'a',          // optional
-        code: 'KeyA',      // optional
-        keyCode: 65,       // optional, for older handlers
       });
-
+      
       // dispatch it
       noteEl.dispatchEvent(event);
     }
