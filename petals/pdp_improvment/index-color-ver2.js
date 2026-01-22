@@ -18,6 +18,12 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+  .product-form__quantity .quantity__label {
+    display: none;
+  }
+  .product-form__input.product-form__quantity {
+    margin: 0;
+  }
   .drawer {
     z-index: 9999999999!important;
   }
@@ -28,7 +34,7 @@
     margin: 0!important;
   }
 .announcement-bar-section + .section-header + #MainContent {
-  margin-top: 35px;
+  // margin-top: 35px;
 }
 
 .parent-variant {
@@ -368,7 +374,7 @@
   // border: 1px solid rgba(0, 0, 0, 0.24);
 }
 .product-form {
-  // margin-top: 30px!important;
+  // margin-top: 10px!important;
 }
 
 .ringSize_guide {
@@ -1091,6 +1097,9 @@ ul.owlCustomCarousel {
       }
     })
 
+    if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
+      _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
+    }
 
     waitFor(
       () => _$$('variant-selects li a').length && _$('#satcb_bar') && _$('.form .product-form__submit'),
@@ -1140,6 +1149,9 @@ ul.owlCustomCarousel {
   }
   
   function initFuncHandler() {
+    if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
+      _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
+    }
     addSticky();
     handleStickyPrice()
     addColorsOptions();
