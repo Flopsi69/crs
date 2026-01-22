@@ -2259,10 +2259,10 @@ ul.owlCustomCarousel {
           )
             this.close()
 
-          if (e.target.dataset.modal) {
-            this.open(e.target.dataset.modal)
-          } else if (e.target.closest('[data-modal]')) {
-            this.open(e.target.closest('[data-modal]').dataset.modal)
+          if (e.target.dataset.lavModal) {
+            this.open(e.target.dataset.lavModal)
+          } else if (e.target.closest('[data-lav-modal]')) {
+            this.open(e.target.closest('[data-lav-modal]').dataset.lavModal)
           }
         })
 
@@ -2341,7 +2341,7 @@ ul.owlCustomCarousel {
         transition: 0.35s;
         line-height: 0;
       }
-      [data-modal] {
+      [data-lav-modal] {
         cursor: pointer;
       }
       @media(hover:hover) {
