@@ -450,6 +450,9 @@
   pointer-events: none;
   opacity: 0;
 }
+.lav-sticky.lav-gallery--opened {
+  display: none!important;
+}
 .lav-sticky.active {
   transform: translateY(0%);
   pointer-events: auto;
@@ -740,6 +743,7 @@ quantity-input.quantity, .product-form__buttons .quantity {
   #satcb_bar {
     display: none!important;
   }
+
 }
 .lav-carousel-trust {
   object-position: top;
@@ -1083,6 +1087,13 @@ ul.owlCustomCarousel {
       })
     })
 
+     waitFor('.accordion__content a[href="/pages/sending-your-petals-cremations-breastmilk"]', () => {
+      _$('.accordion__content a[href="/pages/sending-your-petals-cremations-breastmilk"]').addEventListener('click', function (e) {
+        e.preventDefault()
+        openModal()
+      })
+    })
+
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('lav-selector')) {
         let section = 'Sticky color selector';
@@ -1123,6 +1134,14 @@ ul.owlCustomCarousel {
           if (_$('.product-form__buttons .product-form__submit:disabled')) return;
           _$('.product-form__buttons .product-form__submit span').innerHTML = _$('.product-form__buttons .product-form__submit span').textContent + "<i>" + getSvg('priceDivider') + getPrice() + '</i>';
         });
+
+        initMutation('product-modal', (mut) => {
+          if (_$('product-modal[open]')) {
+            _$('.lav-sticky').classList.add('lav-gallery--opened')
+          } else {
+            _$('.lav-sticky').classList.remove('lav-gallery--opened')
+          }
+        })
 
         initMutation('[id*="price-template"]', () => {
           if (!_$('.lav-sticky__price')) return
@@ -1646,7 +1665,7 @@ ul.owlCustomCarousel {
 
   function addNoteRecord() {
     console.log('add Note')
-    const noteEl = _$('#note')
+    const noteEl = _$('#CartDrawer-Note')
     const colorEl = _$('product-info .lav-color.active')
     const colorId = colorEl?.dataset.id
 
