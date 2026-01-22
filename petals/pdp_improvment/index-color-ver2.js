@@ -1684,7 +1684,7 @@ ul.owlCustomCarousel {
       return
     }
 
-    noteEl.value = note.value + '\n' + newRecord
+    noteEl.value = noteEl.value + '\n' + newRecord
     dispatchNote();
 
     function dispatchNote() {
