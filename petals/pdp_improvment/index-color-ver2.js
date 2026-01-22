@@ -1107,8 +1107,8 @@ ul.owlCustomCarousel {
         _$$('.product-form__submit').forEach(btn => {
           btn.addEventListener('click', () => {
             if (btn.disabled) return;
-            waitFor('.cart-notification-product .cnp_items', () => {
-              if (_$$('.cart-notification-product .cnp_items').length) {
+            waitFor('#CartDrawer-CartItems .single-cart-item', () => {
+              if (_$$('#CartDrawer-CartItems .single-cart-item').length) {
                 setTimeout(() => {
                     addNoteRecord();
                 }, 1400);
