@@ -18,12 +18,6 @@
 
   // Styles for Experiment
   const styles = /* css */ `
-  .product-form__quantity .quantity__label {
-    display: none;
-  }
-  .product-form__input.product-form__quantity {
-    margin: 0;
-  }
   .drawer {
     z-index: 9999999999!important;
   }
@@ -1108,9 +1102,9 @@ ul.owlCustomCarousel {
       }
     })
 
-    if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
-      _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
-    }
+    // if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
+    //   _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
+    // }
 
     waitFor(
       () => _$$('variant-selects li a').length && _$('#satcb_bar') && _$('.form .product-form__submit'),
@@ -1118,6 +1112,9 @@ ul.owlCustomCarousel {
         _$$('.product-form__submit').forEach(btn => {
           btn.addEventListener('click', () => {
             if (btn.disabled) return;
+            if (_$('.drawer-cart-items')) {
+            _$('.drawer-cart-items').innerHTML = '';
+            }
             waitFor('#CartDrawer-CartItems .single-cart-item', () => {
               if (_$$('#CartDrawer-CartItems .single-cart-item').length) {
                 setTimeout(() => {
@@ -1168,9 +1165,9 @@ ul.owlCustomCarousel {
   }
   
   function initFuncHandler() {
-    if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
-      _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
-    }
+    // if (_$(".product-form__buttons") && _$('.product__column-sticky quantity-input.quantity')) {
+    //   _$(".product-form__buttons").insertAdjacentElement('afterbegin', _$('.product__column-sticky quantity-input.quantity'))
+    // }
     addSticky();
     handleStickyPrice()
     addColorsOptions();
