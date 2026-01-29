@@ -1553,7 +1553,7 @@ ul.owlCustomCarousel {
 
           setTimeout(() => {
             highlightEl.classList.remove('lav-colors__note--highlight_active')
-          }, 4500);
+          }, 4000);
 
           return
         }
