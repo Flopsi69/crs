@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/petals/pdp_improvment',
     dir: 'https://flopsi69.github.io/crs/petals/pdp_improvment',
     clarity: ['set', 'exp_pdp', 'variant_1'],
-    debug: true,
+    debug: false,
     isPassive: false,
     choosenColorId: null
   }
@@ -899,6 +899,7 @@ ul.owlCustomCarousel {
 }
 
 .lav-colors {
+  position: relative;
   letter-spacing: 0;
   margin-bottom: 16px;
 }
@@ -951,6 +952,7 @@ ul.owlCustomCarousel {
 }
 .lav-colors--disabled .lav-color:not([data-color="Original/ No color"]) {
   opacity: 0.6;
+  border: 1px solid #7C7C7C;
 }
 .lav-color.active {
   background: #2D2D2D;
@@ -985,28 +987,35 @@ ul.owlCustomCarousel {
   padding: 4px 0;
 }
 .lav-colors__note--highlight {
+  padding: 4px 8px 4px 32px;
+  transition: opacity 0.7s;
+  border-radius: 4px;
+  color: #fff;
+  background: #2D2D2D url('${config.dir}/img/stones-bg.png') left no-repeat;
+  background-size: contain;
+}
+.lav-colors .lav-colors__note--highlight {
+  position: absolute;
+  top: -20px;
+  left: 25px;
+  right: 25px;
+  pointer-events: none;
+  opacity: 0;
+}
+.lav-colors__list + .lav-colors__note {
   margin-top: 8px;
-  border-left: 2px solid transparent;
-  padding-left: 16px;
-  padding-right: 8px;
-  margin-left: -15px;
-  margin-right: -15px;
-  transition: 0.7s;
 }
 .lav-selector .lav-colors__note--highlight {
   margin-top: 10px;
-  margin-left: -12px;
-  margin-right: -12px;
 }
 .lav-selector .lav-colors__note--highlight a {
-  color: #5A31F4;
-  font-weight: 600;
+  color: #fff;
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.lav-colors__note--highlight_active {
-  border-left: 2px solid #C32275;
-  background: #FBE2EE;
+.lav-colors .lav-colors__note--highlight_active {
+  opacity: 1;
 }
 .lav-colors__note span {
   font-weight: 800;
@@ -1025,9 +1034,11 @@ ul.owlCustomCarousel {
     flex-wrap: wrap;
     margin-top: 18px;
   }
-  .lav-colors__note {
-    margin-left: 0;
-    margin-right: 0;
+  .lav-colors .lav-colors__note--highlight {
+    left: -2px;
+    right: 0;
+  }
+  .lav-colors__note:not(.lav-colors__note--highlight) {
     padding-left: 8px;
     padding-right: 8px;
   }
@@ -1461,6 +1472,9 @@ ul.owlCustomCarousel {
 
     const markup = /*html*/ `
       <div class="lav-colors">
+        <div class="lav-colors__note lav-colors__note--highlight">
+          Custom stone color selection is available at no extra cost with any 14k gold material.
+        </div>
         <div class="lav-colors__title">
           Stone Color:<span>Original/ No color</span>
         </div>
@@ -1478,9 +1492,6 @@ ul.owlCustomCarousel {
             </div>
             <div class="lav-color__caption">Original/ No color </div>
           </div>
-        </div>
-        <div class="lav-colors__note lav-colors__note--highlight">
-          <span>*</span> Custom stone color selection is available at no extra cost with any 14k gold material.
         </div>
         <div class="lav-colors__note">
           <span>*</span> Stone color cannot be changed for items created with Fabric&nbsp;or&nbsp;Flowers.
@@ -1542,7 +1553,7 @@ ul.owlCustomCarousel {
 
           setTimeout(() => {
             highlightEl.classList.remove('lav-colors__note--highlight_active')
-          }, 1300);
+          }, 1700);
 
           return
         }
@@ -1604,7 +1615,7 @@ ul.owlCustomCarousel {
           const headerHTML = _$('product-info .lav-colors__title').outerHTML
           const noteHTML = /*html*/ `
             <div class="lav-colors__note lav-colors__note--highlight">
-              <span>*</span> Custom stone color selection is available at no extra cost with any 14k gold material. <a href='#'>Select material</a>
+              Custom stone color selection is available at no extra cost with any 14k gold material. <a href='#'>Select material</a>
             </div>
           `
           const bodyHTML = _$('product-info .lav-colors__list').outerHTML
@@ -1625,19 +1636,9 @@ ul.owlCustomCarousel {
               e.preventDefault()
 
               if (is14K === false && el.dataset.id !== '1') {
-                const highlightEl = _$('.lav-selector .lav-colors__note--highlight')
-
                 if (!config.isPassive) {
                   pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'inactive');
                 }
-
-                if (highlightEl.classList.contains('lav-colors__note--highlight_active')) return;
-
-                highlightEl.classList.add('lav-colors__note--highlight_active')
-
-                setTimeout(() => {
-                  highlightEl.classList.remove('lav-colors__note--highlight_active')
-                }, 1300);
 
                 return
               }
@@ -1691,7 +1692,7 @@ ul.owlCustomCarousel {
         bubbles: true,
         cancelable: true,
       });
-      
+
       // dispatch it
       noteEl.dispatchEvent(event);
     }
@@ -2349,8 +2350,8 @@ ul.owlCustomCarousel {
       }
       .lav-modal__close {
         position: absolute;
-        right: 20px;;
-        top: 20px;;
+        right: 20px;
+        top: 20px;
         cursor: pointer;
         transition: 0.35s;
         line-height: 0;
