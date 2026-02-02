@@ -6,6 +6,7 @@
     // dir: 'http://127.0.0.1:5500/natpat/redesignProducts/',
     dir: 'https://flopsi69.github.io/crs/natpat/redesignProducts/',
     clarity: ['set', 'exp_fp_sub_and_save', 'variant_1'],
+    isPassive: false,
     debug: false
   }
 
@@ -545,9 +546,15 @@
       const planHTML = getPlanMarkup(el)
 
       _$(".lav-plans").insertAdjacentElement('beforeend', planHTML);
-      updatePrices();
     });
 
+    if (document.querySelector('.lav-plan[data-packs="3"]')) {
+      config.isPassive = true;
+      document.querySelector('.lav-plan[data-packs="3"]').click();
+      config.isPassive = false;
+    }
+
+    updatePrices();
     checkChangePrice();
 
     function getPlanMarkup(el) {
@@ -681,7 +688,9 @@
         _$(".lav-preview img.active").classList.remove('active');
         _$(".lav-preview img[data-preview='" + planEl.dataset.packs + "']").classList.add('active');
         
-        pushDataLayer('exp_fp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
+        if (!config.isPassive) {
+          pushDataLayer('exp_fp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
+        }
 
         if (!_$('#purchase .view-prices .button-proceed.lav-active')) {
           _$('.view-prices h3').removeAttribute('style');
@@ -756,12 +765,12 @@
   `)
 
     _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    setTimeout(() => {
-      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    }, 500);
-    setTimeout(() => {
-      _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
-    }, 1000);
+    // setTimeout(() => {
+    //   _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
+    // }, 500);
+    // setTimeout(() => {
+    //   _$('#purchase .view-prices .button-proceed').innerText = 'Choose Quantity To Proceed';
+    // }, 1000);
 
     waitFor(() => _$('.view-prices h3'), () => {
       _$('.view-prices h3').style.setProperty('display', 'none', 'important');

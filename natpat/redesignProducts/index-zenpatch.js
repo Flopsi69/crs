@@ -7,6 +7,7 @@
     dir: 'https://flopsi69.github.io/crs/natpat/redesignProducts/',
     clarity: ['set', 'exp_zp_sub_and_save', 'variant_1'],
     firstScrollInstant: true,
+    isPassive: false,
     debug: false
   }
 
@@ -631,9 +632,15 @@
       const planHTML = getPlanMarkup(el)
 
       _$(".lav-plans").insertAdjacentElement('beforeend', planHTML);
-      updatePrices();
     });
 
+    if (document.querySelector('.lav-plan[data-packs="3"]')) {
+      config.isPassive = true;
+      document.querySelector('.lav-plan[data-packs="3"]').click();
+      config.isPassive = false;
+    }
+
+    updatePrices();
     checkChangePrice();
 
     function getPlanMarkup(el) {
@@ -766,7 +773,9 @@
         _$(".lav-preview img.active").classList.remove('active');
         _$(".lav-preview img[data-preview='" + planEl.dataset.packs + "']").classList.add('active');
 
-        pushDataLayer('exp_zp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
+        if (!config.isPassive) {
+          pushDataLayer('exp_zp_sub_pack_click', `${planEl.dataset.packs} Pack(-s)`, 'click', 'Purchase section');
+        }
 
         if (!_$('#purchase .view-prices .button-proceed.lav-active')) {
           _$('#getNow .view-prices h3').removeAttribute('style');
@@ -865,7 +874,8 @@
       for (let mutation of mutations) {
         console.log('mutation', mutation);
         if (mutation.addedNodes?.length) {
-          const text = _$('#purchase .view-prices .button-proceed:not(.lav-active)') ? 'Choose Quantity To Proceed' : 'Proceed to Checkout';
+          // const text = _$('#purchase .view-prices .button-proceed:not(.lav-active)') ? 'Choose Quantity To Proceed' : 'Proceed to Checkout';
+          const text = 'Proceed to Checkout';
           if (text.toLowerCase() !== _$('#purchase .view-prices .button-proceed').innerText.toLowerCase().trim()) {
             _$('#purchase .view-prices .button-proceed').innerText = text;
           }
