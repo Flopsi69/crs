@@ -950,7 +950,11 @@ ul.owlCustomCarousel {
   width: 56px;
   cursor: pointer;
 }
-.lav-colors--disabled .lav-color:not([data-color="Original/ No color"]) {
+.lav-color[data-color="As pictured"] {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.lav-colors--disabled .lav-color:not([data-color="As pictured"]) {
   opacity: 0.6;
   border: 1px solid #7C7C7C;
 }
@@ -966,7 +970,9 @@ ul.owlCustomCarousel {
 .lav-color__image svg {
   position: absolute;
   right: -2px;
-  top: 1px;
+  top: -2px;
+  width: 16px;
+  height: 16px;
 }
 .lav-color__image img {
   width: 28px;
@@ -975,6 +981,9 @@ ul.owlCustomCarousel {
 .lav-color__caption {
   margin-top: 8px;
   letter-spacing: 0.6px;
+}
+.lav-color[data-color="As pictured"] .lav-color__caption {
+  letter-spacing: 0;
 }
 .lav-colors__note {
   color: #000;
@@ -1417,7 +1426,7 @@ ul.owlCustomCarousel {
 
     const items = [
       {
-        name: 'Original/ No color',
+        name: 'As pictured',
         img: 'original.png',
         id: 1
       },
@@ -1476,21 +1485,21 @@ ul.owlCustomCarousel {
           Custom stone color selection is available at no extra cost with any 14k gold material.
         </div>
         <div class="lav-colors__title">
-          Stone Color:<span>Original/ No color</span>
+          Stone Color:<span>As pictured</span>
         </div>
         <div class="lav-colors__list ${is14K ? '' : 'lav-colors--disabled'}">
           <div class="lav-colors__item lav-color">
             <div class="lav-color__image">
               <img src="${config.dir}/img/color-original.png" />
             </div>
-            <div class="lav-color__caption">Original/ No color </div>
+            <div class="lav-color__caption">As pictured</div>
           </div>
 
           <div class="lav-colors__item lav-color active">
             <div class="lav-color__image">
               <img src="${config.dir}/img/color-original.png" />
             </div>
-            <div class="lav-color__caption">Original/ No color </div>
+            <div class="lav-color__caption">As pictured</div>
           </div>
         </div>
         <div class="lav-colors__note">
