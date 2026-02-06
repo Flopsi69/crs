@@ -1431,7 +1431,9 @@ ul.owlCustomCarousel {
     const isDisable = await isDisableColorOption()
 
     if (isDisable) {
-      _$("#MainContent").classList.add('lav-no-color-option')
+       await waitFor('#MainContent', () => {
+        _$("#MainContent").classList.add('lav-no-color-option')
+      })
       return
     }
 
