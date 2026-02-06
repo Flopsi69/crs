@@ -837,7 +837,7 @@ ul.owlCustomCarousel {
   line-height: 11px;
   letter-spacing: 0.4px;
 }
-.jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
+#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
   content: '+ Get FREE Stone Color';
   position: absolute;
   top: 100%;
@@ -1422,7 +1422,10 @@ ul.owlCustomCarousel {
   async function addColorsOptions() {
     const isDisable = await isDisableColorOption()
 
-    if (isDisable) return
+    if (isDisable) {
+      _$("#MainContent").classList.add('lav-no-color-option')
+      return
+    }
 
     const items = [
       {
