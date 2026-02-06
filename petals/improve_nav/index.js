@@ -61,6 +61,7 @@
     .lav-dropdown {
       display: grid;
       background: #fff;
+      padding-bottom: 2px;
       border-right: 1px solid rgba(18, 18, 18, 0.08);
       border-bottom: 1px solid rgba(18, 18, 18, 0.08);
       border-left: 1px solid rgba(18, 18, 18, 0.08);
@@ -125,7 +126,12 @@
 
     console.debug('** InitExp **')
 
-    handleDesktopNav()
+    if (_$('body.index')) {
+      console.debug('** Exit: Home page **')
+      return
+    }
+
+    // handleDesktopNav()
     handleMobileNav()
   }
 
@@ -164,24 +170,23 @@
 
   async function handleMobileNav() {
     await waitFor('.menu-drawer__menu', null, { ms: 25 })
-    _$$('.menu-drawer__menu li>a').forEach((linkEl) => {
+    _$$('.menu-drawer__navigation>.menu-drawer__menu>li>a').forEach((linkEl) => {
       linkEl.addEventListener('click', () => {
         pushDataLayer('exp_nav_lvl1', linkEl.textContent.trim(), 'click', 'Navigation');
       });
     })
 
-    const navEl = _$('.menu-drawer__menu')
+    const navEl = _$('.menu-drawer__navigation>.menu-drawer__menu')
     const firstItemEl = _$('li', navEl)
     firstItemEl.classList.add('lav-nav-select')
-
-
-    _$('a', firstItemEl).innerHTML = `Shop ${getSvg('chevronDown')}`
+    firstItemEl.innerHTML = /* html */ `<a class="menu-drawer__menu-item list-menu__item link link--text focus-inset">Shop ${getSvg('chevronDown')}</a>`
+    firstItemEl.removeAttribute('style')
 
     const dropdownHtml = getDropdownHtml()
     firstItemEl.insertAdjacentHTML('beforeend', dropdownHtml)
 
     firstItemEl.addEventListener('click', (e) => {
-      if (e.target.closest('#HeaderDrawer-home')) {
+      if (e.target.closest('.lav-nav-select>a')) {
         e.preventDefault();
         firstItemEl.classList.toggle('active')
         const dropdown = _$('.lav-dropdown__wrap', firstItemEl)
@@ -205,20 +210,20 @@
         url: '/collections/all-memorial-jewelry'
       },
       {
-        name: 'Necklaces',
-        url: '/collections/cremation-necklaces'
-      },
-      {
         name: 'Rings',
         url: '/collections/cremation-rings'
       },
       {
-        name: 'Bracelets',
-        url: '/collections/cremation-bracelets'
+        name: 'Necklaces',
+        url: '/collections/cremation-necklaces'
       },
       {
         name: 'Mens',
         url: '/collections/mens'
+      },
+      {
+        name: 'Bracelets',
+        url: '/collections/cremation-bracelets'
       },
       {
         name: 'Earrings',
@@ -229,8 +234,8 @@
         url: '/collections/cremation-extras'
       },
       {
-        name: 'DIY Kits',
-        url: '/collections/diy-kits'
+        name: 'Diamond Jewelry',
+        url: '/collections/diamond-collection'
       }
     ]
     
