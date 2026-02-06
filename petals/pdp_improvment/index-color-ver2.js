@@ -821,7 +821,7 @@ ul.owlCustomCarousel {
 .parent-variant .select ul li.jquery-grid-picker-item-selected {
   border: none;
 }
-.jquery-grid-picker-item[data-jquery-grid-picker-value="14k White Gold"]:before, .jquery-grid-picker-item[data-jquery-grid-picker-value="14k Yellow Gold"]:before {
+.jquery-grid-picker-item[data-jquery-grid-picker-value="14k White Gold" i]:before, .jquery-grid-picker-item[data-jquery-grid-picker-value="14k Yellow Gold" i]:before {
   content: 'BESTSELLER';
   position: absolute;
   top: -13px;
@@ -1080,6 +1080,12 @@ ul.owlCustomCarousel {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
     if (document.querySelector('.lav-exp-styles')) return
+
+    const isDisable = await isDisableColorOption()
+
+    if (isDisable) {
+      _$("#MainContent").classList.add('lav-no-color-option')
+    }
 
     document.head.appendChild(stylesEl)
 
