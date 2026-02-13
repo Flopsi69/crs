@@ -18,6 +18,7 @@
   const styles = /* css */ `
     .lav-selector {
       position: relative;
+      clear: both;
       margin-bottom: 16px;
       margin-top: 28px;
     }
@@ -129,6 +130,10 @@
       border: 1px solid #DEE2E6;
       border-top: none;
       transition: .3s;
+    }
+    .lav-selector--compact .lav-selector__body {
+      max-height: 255px;
+      height: auto;
     }
     .lav-selector--highlight .lav-selector__body {
       border: 1px solid #F34545;
@@ -429,7 +434,7 @@
       font-size: 18px!important;
       font-weight: 500;
       line-height: 24px;
-      margin-right: -30px;
+      // margin-right: -30px;
     }
     .added-modal-accessories .variants-container .dimensions-info {
       padding: 0 !important;
@@ -585,6 +590,9 @@
     }
     .lav-upsell__image {
       line-height: 0;
+    }
+    .lav-upsell__info {
+      flex-grow: 1;
     }
     .lav-upsell__image img {
       max-width: 80px;
@@ -1232,9 +1240,13 @@
     }
 
     function updateSizes() {
-      const sizeRows = _$$('#product-options-modal .select-size-row');
+      const sizeRows = _$$('#product-options-modal .select-size-row[data-type="worktop"]');
 
       if (!sizeRows?.length) return;
+
+      if (sizeRows.length <= 3) {
+        _$('.lav-selector').classList.add('lav-selector--compact');
+      }
 
       _$('.lav-selector__body').innerHTML = '';
 
@@ -1245,7 +1257,7 @@
         if (size) {
           size = size.replace(/\((\d+)\sPiece\)/g, '($1\u00A0Piece)')
         }
-        const priceNew = row.querySelector('.worktop-price .price-new')?.textContent.trim() || '';
+        const priceNew = row.querySelector('.worktop-price .price-new')?.textContent.trim() || row.querySelector('.worktop-price .h6')?.textContent.trim() || '';
         const priceOld = row.querySelector('.worktop-price .price-old')?.textContent.trim() || '';
         const quantity = row.querySelector('.quantity-field')?.value.trim() || '0';
 
@@ -1280,6 +1292,10 @@
         `;
 
         const isOutOfStock = row.querySelector('.badge.bg-danger')?.textContent.trim().toLowerCase() === 'out of stock';
+
+        if (!row.querySelector('a.small')) {
+          _$('.lav-size__footer', sizeEl).remove();
+        }
 
         if (isOutOfStock) {
           _$('.lav-size__counter', sizeEl).innerHTML = 'Out of Stock';
