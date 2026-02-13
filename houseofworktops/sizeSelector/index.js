@@ -467,7 +467,7 @@
       border-bottom-right-radius: .25rem;
     }
     #added-modal-with-accessories-2 .discount-ribbon small {
-      font-size: 9px;
+      font-size: 9px!important;
     }
     .added-modal-accessories .subtotal-bottom {
       margin: 0 !important;
@@ -539,7 +539,8 @@
       display: none;
     }
     .added-modal-accessories .subtotal-bottom .row + .row .estimate {
-      font-size: 0;
+      font-size: 0!important;
+      white-space: nowrap;
     }
     .added-modal-accessories .subtotal-bottom .row + .row .estimate:before {
       content: '(excl. shipping)';
