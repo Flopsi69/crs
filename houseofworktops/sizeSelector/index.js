@@ -884,7 +884,12 @@
 
     _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
 
+    _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
+    });
+
     _$('.added-modal-accessories .subtotal-bottom .footer-buttons .col-6:nth-child(2) .btn', modalEl).addEventListener('click', (e) => {
+      pushDataLayer('exp_pdp_cart_modal_checkout', 'Checkout', 'click', 'Cart Modal');
       if (_$('.lav-upsell.active')) {
         e.preventDefault()
         const redirectUrl = e.target.href;
@@ -934,6 +939,7 @@
       } else {
         _$('.lav-selector').scrollIntoView({ behavior: 'smooth', block: 'center' });
         _$('.lav-selector').classList.add('lav-selector--highlight');
+        pushDataLayer('exp_pdp_size_error_view', 'Please select worktop size', 'view', 'Size error');
       }
     });
   }
@@ -960,6 +966,7 @@
     }, 5000);
 
     waitFor(() => _$('#added-modal-with-accessories-2.show'), () => {
+      pushDataLayer('exp_pdp_cart_modal_view', 'Cart Modal', 'view', 'Cart Modal');
       _$('.lav-add-to-cart').classList.remove('lav-disabled');
       _$('.lav-sticky').classList.remove('lav-disabled');
       _$('.lav-add-to-cart').textContent = previousText;
@@ -1103,9 +1110,12 @@
     _$('body').insertAdjacentHTML('beforeend', markup);
 
     _$('.lav-sticky').addEventListener('click', () => {
+      const text = _$('.lav-size.active') ? 'Add to Cart' : 'Choose Size';
       if (_$('.lav-size.active')) {
         addToCart();
+        pushDataLayer('exp_pdp_fixed_cta', text, 'click', 'Fixed block');
       } else {
+        pushDataLayer('exp_pdp_fixed_cta', text, 'click', 'Fixed block');
         _$('.lav-selector').scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
@@ -1194,6 +1204,11 @@
 
           optionItem.addEventListener('click', () => {
             const valueEl = option.querySelector('.lav-option__value');
+
+            const optionName = option.querySelector('.lav-option__label')?.textContent.replace(":", "").trim();
+
+            pushDataLayer('exp_pdp_size_filter_option', optionItem.innerText.trim(), 'click', optionName);
+            
             if (optionItem.classList.contains('active')) {
               optionItem.classList.remove('active');
               valueEl.textContent = 'All';
@@ -1220,6 +1235,10 @@
 
         option.addEventListener('click', () => {
           const dropdownEl = _$('.lav-selector__dropdown');
+
+          const optionName = option.querySelector('.lav-option__label')?.textContent.replace(":", "").trim();
+
+          pushDataLayer('exp_pdp_size_filter_open', optionName, 'click', 'Size Section');
 
           if (option.classList.contains('active')) {
             option.classList.remove('active');
@@ -1264,6 +1283,9 @@
 
         const sizeEl = document.createElement('div');
         sizeEl.classList.add('lav-size');
+        if (quantity !== '0') {
+          sizeEl.classList.add('active');
+        }
         Object.entries(row.dataset).map(([key, value]) => {
           sizeEl.dataset[key] = value;
         })
@@ -1304,6 +1326,7 @@
         }
 
         _$('.lav-size__counter-plus', sizeEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_size_qty_button', 'Plus', 'click', size);
           if (row.querySelector('.add-button:not(.d-none)')) {
             row.querySelector('.add-button').click();
           } else {
@@ -1318,6 +1341,8 @@
         });
 
         _$('.lav-size__counter-minus', sizeEl)?.addEventListener('click', () => {
+        pushDataLayer('exp_pdp_size_qty_button', 'Minus', 'click', size);
+
           const currentQty = row.querySelector('.quantity-field')?.value.trim() || '0';
           if (currentQty == '0') return;
 
@@ -1334,7 +1359,12 @@
           _$('.lav-size__counter-value', sizeEl).textContent = row.querySelector('.quantity-field')?.value.trim() || '0';
         });
 
+        _$('.lav-size__counter-value', sizeEl)?.addEventListener('click', () => { 
+          pushDataLayer('exp_pdp_size_qty_button', 'Input', 'click', size);
+        });
+
         _$('.lav-size__customize', sizeEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_size_customise', 'Customize this worktop', 'click', size);
           row.querySelector('a.small').click();
         });
 
@@ -1406,6 +1436,7 @@
         `;
 
         _$('.lav-upsell__add', upsellEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cart_modal_upsell_add', 'Add', 'click', size);
           if (row.querySelector('.add-button:not(.d-none)')) {
             row.querySelector('.add-button').click();
           } else {
@@ -1418,6 +1449,7 @@
         });
 
         _$('.lav-upsell__counter-plus', upsellEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cart_modal_upsell_qty', 'Plus', 'click', size);
           if (row.querySelector('.add-button:not(.d-none)')) {
             row.querySelector('.add-button').click();
           } else {
@@ -1429,7 +1461,12 @@
           _$('.lav-upsell__counter-minus', upsellEl).classList.remove('lav-disabled');
         });
 
+        _$('.lav-upsell__counter-value', upsellEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cart_modal_upsell_qty', 'Input', 'click', size);
+        });
+
         _$('.lav-upsell__counter-minus', upsellEl)?.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cart_modal_upsell_qty', 'Minus', 'click', size);
           const currentQty = row.querySelector('.quantity-field')?.value.trim() || '0';
           if (currentQty == '0') return;
 
