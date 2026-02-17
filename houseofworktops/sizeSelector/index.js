@@ -9,6 +9,43 @@
     debug: true
   }
 
+  const targetUrls = [
+    '/beige-gold-compact',
+    '/bella-bianche-compact',
+    '/lucida-white-compact',
+    '/pure-black-compact',
+    '/crystal-spark-compact',
+    '/magma-rodolit-compact',
+    '/black-gold-compact',
+    '/cloudy-cement-compact-laminate',
+    '/carrera-marble-compact-(white-core)',
+    '/carrara-solid-surface',
+    '/wooden-worktops/oak-worktop',
+    '/wooden-worktops/walnut-worktop',
+    '/wooden-worktops/prime-oak-worktop',
+    '/full-stave-deluxe-oak-worktop',
+    '/full-stave-deluxe-rustic-oak-worktop',
+    '/prime-beech-worktop',
+    '/iroko-worktop',
+    '/wooden-worktops/black-oak-worktop'
+  ]
+
+  const upsellConfig = {
+    'Compact Laminate Installation Kit': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
+    'Spectra Seal 290ml - Colour Matched': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
+    'Upstand - 3M x 95mm x 12mm': '3',
+    'Upstand 3M x 100mm x 12mm': '4',
+    'Upstand - 3M x 80mm x 20mm': '5',
+    'Upstand - 4.2M x 95mm x 12mm': '6',
+    'Splashback - 3M x 600 x 6mm': '7',
+    'Splashback - 3M x 600 x 12mm': '8',
+    'Splashback - 3M x 1300 x 2mm': '9',
+    'Splashback - 3M x 645 x 2mm': '10',
+    'Plinth - 3M x 150mm x 12mm': '11',
+    'Plinth - 3M x 150mm x 20mm': '12',
+  }
+
+
   // const orig = console.log
   // console.log = function (...args) {
   //   orig.apply(console, ['Debug:', ...args])
@@ -763,6 +800,9 @@
       }
     }
     @media(max-width: 767.98px) {
+      .lav-selector__body {
+        
+      }
       .lav-essentials {
         padding: 16px 12px;
       }
@@ -966,17 +1006,39 @@
     }, 5000);
 
     waitFor(() => _$('#added-modal-with-accessories-2.show'), () => {
+      _$('.added-modal-accessories .variants-container').dataset.added = _$$('.added-modal-accessories .variants-container>div').length
       pushDataLayer('exp_pdp_cart_modal_view', 'Cart Modal', 'view', 'Cart Modal');
       _$('.lav-add-to-cart').classList.remove('lav-disabled');
       _$('.lav-sticky').classList.remove('lav-disabled');
       _$('.lav-add-to-cart').textContent = previousText;
       _$('.lav-sticky').textContent = previousStickyText;
 
+      const isValidProduct = targetUrls.some(targetUrl => {
+        return location.href.includes(targetUrl)
+      });
+      let observerUpselss;
+
+      if (isValidProduct) {
+        observerUpselss = initMutation('.variants-container', (node, obs) => {
+          const startFrom = parseInt(_$('.added-modal-accessories .variants-container').dataset.added) || 0;
+
+          _$$(`.added-modal-accessories .variants-container>div:nth-child(n+${startFrom + 1})`).forEach(el => {
+            const img = _$('.position-relative>img', el);
+            const productName = _$('.variant-name-type', el)?.textContent?.trim();
+            const imagesSrc = upsellConfig[productName];
+            if (imagesSrc && productName && img) {
+              img.src = imagesSrc;
+            }
+          });
+        })
+      }
+
       const observer = new MutationObserver((mutationsList, observer) => {
         for (const mutation of mutationsList) {
           if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
             if (!mutation.target.classList.contains('show')) {
               resetExpSelector();
+              observerUpselss?.disconnect();
               observer.disconnect();
             }
           }
@@ -1412,9 +1474,15 @@
           upsellEl.dataset[key] = value;
         })
 
+        const isValidProduct = targetUrls.some(targetUrl => {
+          return location.href.includes(targetUrl)
+        });
+
+        const image = isValidProduct && upsellConfig[size] ? upsellConfig[size] : null;
+
         upsellEl.innerHTML = /* html */ `
           <div class="lav-upsell__image">
-            <img src="https://houseofworktops.s3.eu-west-2.amazonaws.com/image/cache/catalog/laminate-worktops/black-walnut-laminate-worktop/black-walnut-lamiante-side-500x500.jpg" itemprop="image" class="position-relative rounded" alt="Black Walnut Laminate Worktop" title="Black Walnut Laminate Worktop" width="209">
+            <img src="" class="position-relative rounded" />
           </div>
           <div class="lav-upsell__info">
             <div class="lav-upsell__title">${size}</div>
@@ -1434,6 +1502,12 @@
             </div>
           </div>
         `;
+
+        if (!image) {
+          _$('.lav-upsell__image', upsellEl).remove();
+        } else {
+          _$('.lav-upsell__image img', upsellEl).src = image;
+        }
 
         _$('.lav-upsell__add', upsellEl)?.addEventListener('click', () => {
           pushDataLayer('exp_pdp_cart_modal_upsell_add', 'Add', 'click', size);
@@ -1481,6 +1555,27 @@
 
         _$('.lav-essentials__list').insertAdjacentElement('beforeend', upsellEl);
       });
+
+      async function updateAddedImage(imageSrc) {
+        if (!imageSrc) return;
+
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        // const isValidProduct = targetUrls.some(targetUrl => {
+        //   return location.href.includes(targetUrl)
+        // });
+
+        // const image = isValidProduct && upsellConfig[size] ? upsellConfig[size] : null;
+
+        // await waitFor(() => _$('.added-modal-accessories .variants-container>div:not(.lav-first-step) .position-relative>img'), { ms: 100 })
+        const startFrom = parseInt(_$('.added-modal-accessories .variants-container').dataset.added) || 0;
+        
+        _$$(`.added-modal-accessories .variants-container>div:nth-child(n+${startFrom + 1})`).forEach(variant => {
+          if (variant.classList.contains('lav-first-step') || !_$('.position-relative>img', variant)) return;
+          
+          _$('.position-relative>img', variant).src = imageSrc;
+        });
+      }
     }
 
     function applyFilters() {
