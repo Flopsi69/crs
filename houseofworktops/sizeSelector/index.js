@@ -812,6 +812,10 @@
       .lav-selector__body {
 
       }
+      #added-modal-with-accessories-2.lav-atc-handle .modal-content {
+        max-width: 97%;
+        border-radius: 12px !important;
+      }
       .lav-essentials {
         padding: 16px 12px;
       }
@@ -944,7 +948,6 @@
       pushDataLayer('exp_pdp_cart_modal_checkout', 'Checkout', 'click', 'Cart Modal');
       if (_$('.lav-upsell.active')) {
         e.preventDefault()
-        const redirectUrl = e.target.href;
         _$$('#product-options-modal .select-size-row[data-type="worktop"] .checkbox-check [type="checkbox"]:checked ').forEach(checkbox => {
           if (checkbox?.checked) {
             checkbox.click();
@@ -960,7 +963,7 @@
           for (const mutation of mutationsList) {
             if (mutation.addedNodes.length) {
               observer.disconnect();
-              location.href = redirectUrl;
+              location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
               
               resetExpSelector();
 
