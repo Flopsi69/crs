@@ -18,7 +18,7 @@
     '/magma-rodolit-compact',
     '/black-gold-compact',
     '/cloudy-cement-compact-laminate',
-    '/carrera-marble-compact-(white-core)',
+    '/carrera-marble-compact-',
     '/carrara-solid-surface',
     '/wooden-worktops/oak-worktop',
     '/wooden-worktops/walnut-worktop',
@@ -894,6 +894,9 @@
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
+    await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
+
+    if (!_$('#product-options-modal .select-size-row')) return
 
     document.head.appendChild(stylesEl)
 
