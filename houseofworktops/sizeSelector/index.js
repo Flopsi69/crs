@@ -31,22 +31,22 @@
   ]
 
   const upsellConfig = {
-    'Compact Laminate Installation Kit': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
-    'Spectra Seal 290ml - Colour Matched': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
-    'Upstand - 3M x 95mm x 12mm': config.dir + 'img/upstand.jpg',
-    'Upstand 3M x 100mm x 12mm': config.dir + 'img/upstand.jpg',
-    'Upstand - 3M x 80mm x 20mm': config.dir + 'img/upstand.jpg',
-    'Upstand - 4.2M x 95mm x 12mm': config.dir + 'img/upstand.jpg',
-    'Splashback - 3M x 600 x 6mm': config.dir + 'img/splashback600.jpg',
-    'Splashback - 3M x 600mm x 6mm': config.dir + 'img/splashback600.jpg',
-    'Splashback - 3M x 600 x 12mm': config.dir + 'img/splashback600.jpg',
-    'Splashback - 3M x 600mm x 12mm': config.dir + 'img/splashback600.jpg',
-    'Splashback - 3M x 1300 x 2mm': config.dir + 'img/splashback1300.jpg',
-    'Splashback - 3M x 1300mm x 2mm': config.dir + 'img/splashback1300.jpg',
-    'Splashback - 3M x 645 x 2mm': config.dir + 'img/splashback600.jpg',
-    'Splashback - 3M x 645mm x 2mm': config.dir + 'img/splashback600.jpg',
-    'Plinth - 3M x 150mm x 12mm': config.dir + 'img/plinth.jpg',
-    'Plinth - 3M x 150mm x 20mm': config.dir + 'img/plinth.jpg',
+    'Compact Laminate Installation Kit': config.dir + '/img/laminate.jpg',
+    'Spectra Seal 290ml - Colour Matched': config.dir + '/img/spectra.jpg',
+    'Upstand - 3M x 95mm x 12mm': config.dir + '/img/upstand.jpg',
+    'Upstand 3M x 100mm x 12mm': config.dir + '/img/upstand.jpg',
+    'Upstand - 3M x 80mm x 20mm': config.dir + '/img/upstand.jpg',
+    'Upstand - 4.2M x 95mm x 12mm': config.dir + '/img/upstand.jpg',
+    'Splashback - 3M x 600 x 6mm': config.dir + '/img/splashback600.jpg',
+    'Splashback - 3M x 600mm x 6mm': config.dir + '/img/splashback600.jpg',
+    'Splashback - 3M x 600 x 12mm': config.dir + '/img/splashback600.jpg',
+    'Splashback - 3M x 600mm x 12mm': config.dir + '/img/splashback600.jpg',
+    'Splashback - 3M x 1300 x 2mm': config.dir + '/img/splashback1300.jpg',
+    'Splashback - 3M x 1300mm x 2mm': config.dir + '/img/splashback1300.jpg',
+    'Splashback - 3M x 645 x 2mm': config.dir + '/img/splashback600.jpg',
+    'Splashback - 3M x 645mm x 2mm': config.dir + '/img/splashback600.jpg',
+    'Plinth - 3M x 150mm x 12mm': config.dir + '/img/plinth.jpg',
+    'Plinth - 3M x 150mm x 20mm': config.dir + '/img/plinth.jpg',
   }
 
 
