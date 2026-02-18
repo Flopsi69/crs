@@ -458,6 +458,7 @@
     }
     .added-modal-accessories .variants-container>div>.container .variant-name-type {
       padding-right: 20px;
+      line-height: 1.3;
     }
     .added-modal-accessories .variants-container .content-block .og-price-display {
       font-weight: 500;
