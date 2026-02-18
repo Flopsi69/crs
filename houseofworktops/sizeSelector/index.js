@@ -454,6 +454,10 @@
     }
     .added-modal-accessories .variants-container .content-block .quantity-display {
       font-weight: 500!important;
+      white-space: nowrap;
+    }
+    .added-modal-accessories .variants-container>div>.container .variant-name-type {
+      padding-right: 20px;
     }
     .added-modal-accessories .variants-container .content-block .og-price-display {
       font-weight: 500;
