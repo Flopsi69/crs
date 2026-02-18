@@ -903,6 +903,13 @@
 
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
+    if (location.href.includes('route=checkout/checkout')) {
+      handleCheckoutImages();
+      return;
+    } else if (location.href.includes('route=checkout/cart')) {
+      handleCheckoutCartImages();
+      return;
+    }
     await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
 
     if (!_$('#product-options-modal .select-size-row')) return
@@ -917,6 +924,42 @@
     addSticky()
     addNewButton()
     handleAtcModal()
+    handleCartImages();
+  }
+
+  function handleCartImages() {
+    initMutation('#cart .dropdown-menu', (node) => {
+      console.log('fire', node);
+      if (node.classList?.contains('no-border-last')) {
+        console.log('fire!!!!!!');
+        updateImages();
+      }
+    })
+
+    updateImages();
+
+    function updateImages() {
+      const desktopItems = _$$('#cart .dropdown-menu .row.border-bottom');
+      const mobileItems = _$$('#cart-panel .row.border-bottom');
+      const allItems = [...desktopItems, ...mobileItems];
+      if (!allItems.length) return;
+
+      allItems.forEach(item => {
+        const imageEl = _$('a>img', item);
+        const link = _$('a', item)?.href;
+        const isValidProduct = targetUrls.some(targetUrl => {
+          return link?.includes(targetUrl)
+        });
+        if (!imageEl || !isValidProduct) return;
+
+        let type = _$('.cart-product-name small', item).innerText?.split('|')[0].trim();
+        const imgSrc = upsellConfig[type];
+        console.log('Updating cart image for type:', type, imgSrc);
+        if (imgSrc && imageEl.src !== imgSrc) {
+          imageEl.src = imgSrc;
+        }
+      })
+    }
   }
 
   function handleAtcModal() {
@@ -979,6 +1022,64 @@
         _$('.button-cart').click();
       }
     });
+  }
+
+  function handleCheckoutCartImages() {
+    const summaryItems = _$$('#accordion-summary .product-info');
+    const editorItems = _$$('.product-wrapper>.product-info');
+    // const mobileItems = _$$('#cart-panel .row.border-bottom');
+    // const allItems = [...desktopItems, ...mobileItems];
+    summaryItems.forEach(item => {
+      const imageEl = _$('a>img', item);
+      const link = _$('a', item)?.href;
+      const isValidProduct = targetUrls.some(targetUrl => {
+        return link?.includes(targetUrl)
+      });
+      if (!imageEl || !isValidProduct) return;
+
+      let type = _$('.text-gray-600.small', item)?.innerText?.replace(/\s*\([^)]*\)/g, '').trim();
+      const imgSrc = upsellConfig[type];
+
+      if (imgSrc && imageEl.src !== imgSrc) {
+        imageEl.src = imgSrc;
+      }
+    })
+
+    editorItems.forEach(item => {
+      const imageEl = _$('a>img', item);
+      const link = _$('a', item)?.href;
+      const isValidProduct = targetUrls.some(targetUrl => {
+        return link?.includes(targetUrl)
+      });
+      if (!imageEl || !isValidProduct) return;
+
+      let type = _$('.prod-description .text-gray-600', item)?.innerText?.replace('Worktop Size: ', '').trim();
+      const imgSrc = upsellConfig[type];
+
+      if (imgSrc && imageEl.src !== imgSrc) {
+        imageEl.src = imgSrc;
+      }
+    })
+  }
+
+  function handleCheckoutImages() {
+    const items = _$$('.product-info');
+    if (!items.length) return;
+
+    items.forEach(item => {
+      const imageEl = _$('.product-info a>img', item);
+      const link = _$('.product-info a', item)?.href;
+      const isValidProduct = targetUrls.some(targetUrl => {
+        return link?.includes(targetUrl)
+      });
+      if (!imageEl || !isValidProduct) return;
+
+      let type = _$('.text-gray-600.small', item)?.innerText?.replace(/\s*\([^)]*\)/g, '').trim();
+      const imgSrc = upsellConfig[type];
+      if (imgSrc && imageEl.src !== imgSrc) {
+        imageEl.src = imgSrc;
+      }
+    })
   }
 
   function addNewButton() {
@@ -1044,7 +1145,7 @@
               const type = _$('.variant-title', el)?.textContent?.trim().split(' - ')[1];
               productName = type + ' - ' +_$('.dimension + div', el)?.innerText?.trim().replaceAll('\n', ' x ');
             }
-            console.log('productName: ', productName);
+
             const imagesSrc = upsellConfig[productName];
             if (imagesSrc && productName && img) {
               img.src = imagesSrc;
