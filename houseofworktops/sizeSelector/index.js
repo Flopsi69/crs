@@ -33,16 +33,20 @@
   const upsellConfig = {
     'Compact Laminate Installation Kit': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
     'Spectra Seal 290ml - Colour Matched': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc9APxkj0xClmrU3PpMZglHQkx446nQPG6lA&s',
-    'Upstand - 3M x 95mm x 12mm': '3',
-    'Upstand 3M x 100mm x 12mm': '4',
-    'Upstand - 3M x 80mm x 20mm': '5',
-    'Upstand - 4.2M x 95mm x 12mm': '6',
-    'Splashback - 3M x 600 x 6mm': '7',
-    'Splashback - 3M x 600 x 12mm': '8',
-    'Splashback - 3M x 1300 x 2mm': '9',
-    'Splashback - 3M x 645 x 2mm': '10',
-    'Plinth - 3M x 150mm x 12mm': '11',
-    'Plinth - 3M x 150mm x 20mm': '12',
+    'Upstand - 3M x 95mm x 12mm': config.dir + 'img/upstand.jpg',
+    'Upstand 3M x 100mm x 12mm': config.dir + 'img/upstand.jpg',
+    'Upstand - 3M x 80mm x 20mm': config.dir + 'img/upstand.jpg',
+    'Upstand - 4.2M x 95mm x 12mm': config.dir + 'img/upstand.jpg',
+    'Splashback - 3M x 600 x 6mm': config.dir + 'img/splashback600.jpg',
+    'Splashback - 3M x 600mm x 6mm': config.dir + 'img/splashback600.jpg',
+    'Splashback - 3M x 600 x 12mm': config.dir + 'img/splashback600.jpg',
+    'Splashback - 3M x 600mm x 12mm': config.dir + 'img/splashback600.jpg',
+    'Splashback - 3M x 1300 x 2mm': config.dir + 'img/splashback1300.jpg',
+    'Splashback - 3M x 1300mm x 2mm': config.dir + 'img/splashback1300.jpg',
+    'Splashback - 3M x 645 x 2mm': config.dir + 'img/splashback600.jpg',
+    'Splashback - 3M x 645mm x 2mm': config.dir + 'img/splashback600.jpg',
+    'Plinth - 3M x 150mm x 12mm': config.dir + 'img/plinth.jpg',
+    'Plinth - 3M x 150mm x 20mm': config.dir + 'img/plinth.jpg',
   }
 
 
@@ -801,7 +805,7 @@
     }
     @media(max-width: 767.98px) {
       .lav-selector__body {
-        
+
       }
       .lav-essentials {
         padding: 16px 12px;
@@ -1024,7 +1028,12 @@
 
           _$$(`.added-modal-accessories .variants-container>div:nth-child(n+${startFrom + 1})`).forEach(el => {
             const img = _$('.position-relative>img', el);
-            const productName = _$('.variant-name-type', el)?.textContent?.trim();
+            let productName = _$('.variant-name-type', el)?.textContent?.trim();
+            if (!productName) {
+              const type = _$('.variant-title', el)?.textContent?.trim().split(' - ')[1];
+              productName = type + ' - ' +_$('.dimension + div', el)?.innerText?.trim().replaceAll('\n', ' x ');
+            }
+            console.log('productName: ', productName);
             const imagesSrc = upsellConfig[productName];
             if (imagesSrc && productName && img) {
               img.src = imagesSrc;
@@ -1047,115 +1056,6 @@
 
       observer.observe(_$('#added-modal-with-accessories-2'), {   attributes: true });
       }, { ms: 100 })
-  }
-
-  function addUpsellToCart(count) {
-    const $data = new FormData();
-    $data.append('product_id', '68');
-    $data.append('option[7]', '258')
-    $data.append('opqty[7][258]',count ? count : '1');
-
-    $.ajax({
-      url: 'index.php?route=checkout/cart/add',
-      type: 'post',
-      data: $data,
-      dataType: 'json',
-      processData: false,
-      contentType: false,
-      complete: function () {
-        //_this.button('reset');
-        // setTimeout(function () {
-        //   _this.attr('disabled', false);
-        
-        //   $('.button-sample').attr('disabled', true).removeClass('active-progress');
-        //   $('.button-sample').find('.submit').html('Added to Cart');
-        //   $('.button-sample, .btn-acc').removeClass('active-progress');
-        //   if ($('.button-sample').attr('disabled', true)) {
-        //     $(".button-sample").attr("title", "You have already added this sample");
-        //   }
-        //   else {
-        //     $(".button-sample").removeAttr("title");
-        //   }
-        //   //_this.button('reset');
-        // }, 1000);
-      },
-      success: function (json) {
-        console.log('json', json)
-        return
-        if (json['error'] && false) {
-          if (json['error']['option']) {
-            for (i in json['error']['option']) {
-              var element = $('#input-option' + i.replace('_', '-'));
-
-              if (element.parent().hasClass('input-group')) {
-                element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-              } else {
-                element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
-              }
-            }
-          }
-
-          if (json['error']['qty']) {
-            _this.button('reset');
-            _this.removeClass('finished');
-            // $('.check').text('Failed');
-            $('.table-responsive>.optionqty').after('<div class="alert alert-danger alert-dismissible">Please fill the Quantity<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-            _this.before('<div class="errorMsg mr-2 alert alert-danger d-none d-sm-block alert-dismissible mb-0">Please fill the Quantity</div>')
-            $('.error-msg').after('<div class="errorMsg mt-3 mt-sm-0 mr-2 alert alert-danger d-block d-sm-none alert-dismissible mb-0">Please fill the Quantity</div>')
-          }
-
-          if (json['error']['recurring']) {
-            $('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
-          }
-        }
-
-        if (json['success']) {
-          let existingProductIDs = JSON.parse(localStorage.getItem('productIDs')) || [];
-          existingProductIDs.push('68');
-          sendacc()
-          setTimeout(function () {
-            // _this.toggleClass("active-progress").addClass("finished");
-            $('#cart > button').html('<img src = "catalog/view/theme/houseofworktops/image/svg-icons/cart.svg" title = "" alt = "" class= "img-responsive mb-1" width = "20" loading = "lazy"/><div class="d-xl-inline" ><span class="px-1">Cart</span><span id="cart-total" class="badge badge-danger rounded-circle"> ' + json['total'] + '</span></div></span>');
-            $('#cart > ul').load('index.php?route=common/cart/info ul li');
-            $('#nav-cart-mobile ul').load('index.php?route=common/cart_menu/info ul li');
-
-          }, 1000);
-
-          proceedCheckoutObj = {}
-          proceedCheckoutObj['label'] = $('.proceed-checkout-content').data('label');
-          if (proceedCheckoutObj['label'] != undefined) {
-            dataLayer.push({
-              'event': 'checkoutpopupimpression',
-              'category': 'userInteraction',
-              'action': 'checkoutpopupimpression',
-              'label': proceedCheckoutObj.label
-            })
-          }
-
-          checkoutObj = {}
-          checkoutObj['label'] = $('.content-block').data('label');
-          if (checkoutObj['label'] != undefined) {
-            dataLayer.push({
-              'event': 'checkoutpopupimpression',
-              'category': 'userInteraction',
-              'action': 'checkoutpopupimpression',
-              'label': checkoutObj.label
-            })
-          }          
-      
-          /*
-          $('.breadcrumb').after('<div class="alert alert-success alert-dismissible">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-          $('html, body').animate({ scrollTop: 0 }, 'slow');
-          */
-          //_this.closest(".modal").modal('hide');
-          //$('#added-to-cart-modal').modal('show').find('.modal-body .text').html('<div>' + json['success'] + '</div>');
-
-        }
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-      }
-    });
   }
 
   async function addSticky() {
