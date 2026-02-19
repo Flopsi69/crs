@@ -5,8 +5,8 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/sizeSelector',
-    clarity: ['set', '', 'variant_1'],
-    debug: true
+    clarity: ['set', 'pdp_exp', 'variant_1'],
+    debug: false
   }
 
   const targetUrls = [
@@ -915,6 +915,14 @@
       return;
     } else if (location.href.includes('route=checkout/cart')) {
       handleCheckoutCartImages();
+      return;
+    }
+
+    const isValidProduct = targetUrls.some(targetUrl => {
+      return location.href.includes(targetUrl)
+    })
+    if (!isValidProduct) {
+      handleCartImages();
       return;
     }
     await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
