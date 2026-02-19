@@ -34,7 +34,7 @@
     '/prime-beech-worktop',
     '/iroko-worktop',
     // '/wooden-worktops/black-oak-worktop'
-    '/black-oak-worktop'`
+    '/black-oak-worktop'
   ]
 
   const upsellConfig = {
