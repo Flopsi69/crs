@@ -936,6 +936,9 @@
       }
     })
 
+    waitFor(() => {
+      return _$$('#cart .dropdown-menu .row.border-bottom').length || _$$('#cart-panel .row.border-bottom').length
+    }, updateImages )
     updateImages();
 
     function updateImages() {
