@@ -1017,6 +1017,8 @@
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
+    await waitFor(() => LPProductForm, false, { ms: 50 })
+
     document.body.appendChild(stylesEl)
 
     _$('#lptrPurchase').classList.remove('col-md-6')
