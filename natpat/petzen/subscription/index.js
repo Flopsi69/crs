@@ -1017,7 +1017,7 @@
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-    await waitFor(() => typeof LPProductForm === 'object' && _$('#lptrPurchase') && _$("#pack3")?.dataset.price, false, { ms: 50 })
+    await waitFor(() => typeof LPProductForm === 'object' && _$('#lptrPurchase') && _$("#pack3")?.dataset.tickPrice, false, { ms: 50 })
 
     document.body.appendChild(stylesEl)
 
@@ -1446,6 +1446,8 @@
 
   function normalizePrice(priceString, isGetMoney = false) {
     if (!priceString) return null;
+
+    console.log('Normalizing price:', priceString, `(isGetMoney: ${isGetMoney})`)
 
     if (typeof priceString === 'number') {
       priceString = priceString.toFixed(2);
