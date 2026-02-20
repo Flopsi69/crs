@@ -1017,7 +1017,7 @@
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-    await waitFor(() => typeof LPProductForm === 'object' && _$('#lptrPurchase'), false, { ms: 50 })
+    await waitFor(() => typeof LPProductForm === 'object' && _$('#lptrPurchase') && _$("#pack3")?.dataset.price, false, { ms: 50 })
 
     document.body.appendChild(stylesEl)
 
