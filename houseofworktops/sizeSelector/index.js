@@ -632,7 +632,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1px solid #DEE2E6;
       padding: 16px 0;
     }
@@ -641,6 +641,16 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 1.5;
+    }
+    .lav-upsell__description {
+      color: rgba(0, 0, 0, 0.50);
+      font-family: Archivo;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px;
+      margin-bottom: -5px;
+      margin-top: 6px
     }
     .lav-upsell__image {
       line-height: 0;
@@ -1516,6 +1526,7 @@
           </div>
           <div class="lav-upsell__info">
             <div class="lav-upsell__title">${size}</div>
+            <div class="lav-upsell__description">Made from the same material as your worktop</div>
             <div class="lav-upsell__price">
               <div class="lav-upsell__price-new">${priceNew}</div>
               <div class="lav-upsell__price-old">${priceOld}</div>
@@ -1535,8 +1546,12 @@
 
         if (!image) {
           _$('.lav-upsell__image', upsellEl).remove();
+          _$(".lav-upsell__description", upsellEl).remove();
         } else {
           _$('.lav-upsell__image img', upsellEl).src = image;
+          if (!image.includes('upstand.jpg') && !image.includes('plinth') && !image.includes('splashback')) {
+            _$(".lav-upsell__description", upsellEl).remove();
+          }
         }
 
         _$('.lav-upsell__add', upsellEl)?.addEventListener('click', () => {
