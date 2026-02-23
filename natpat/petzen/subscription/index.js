@@ -1576,7 +1576,8 @@
   function addUpsell() {
     const rawPrice = _$('#petlocket').dataset.price;
     const price = LPProductForm.formatMoney(rawPrice);
-    const subscribedPrice = LPProductForm.formatMoney(parseInt(rawPrice) - (parseInt(rawPrice) * 0.15));
+    const isEur = LPProductForm.currency === 'EUR';
+    const subscribedPrice = LPProductForm.formatMoney((parseInt(rawPrice) - (parseInt(rawPrice) * 0.15)) * (isEur ? 100 : 1)); // Assuming non-eur currencies have approx 10% higher price, adjust if needed
 
     const markup = /* html */ `
       <div class="lav-upsell" data-price="${price}" data-subscribed-price="${subscribedPrice}">
