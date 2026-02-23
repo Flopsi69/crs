@@ -1202,6 +1202,7 @@
       const newPack = addPackage(pack)
       newPack.addEventListener('click', () => {
         pushDataLayer('exp_pz_pack_click', newPack.querySelector('.lav-package__packs').innerText.trim(), 'click', _$('.lav-toggler__btn.active').textContent.trim());
+        _$('.lav-bundle.active')?.classList.remove('active');
         if (newPack.classList.contains('active')) return;
         _$('.lav-packages__list .lav-package.active')?.classList.remove('active');
         newPack.classList.add('active');
