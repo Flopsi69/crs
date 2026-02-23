@@ -564,6 +564,9 @@
       line-height: normal;
       letter-spacing: -0.25px;
     }
+    .lav-subscr__benefit--mob {
+      display: none;
+    }
     .lav-subscr__benefit svg {
       position: relative;
       top: 1px;
@@ -799,6 +802,12 @@
       }
     }
     @media(max-width: 768px) {
+      .lav-subscr__benefit--mob {
+        display: block;
+      }
+      .lav-subscr__benefit--desk {
+        display: none;
+      }
       body .lp-tr--purchase .content-container {
         margin-top: 0;
         background: #F7F7F4;
@@ -1356,7 +1365,8 @@
 
       <div class="lav-subscr active">
         <div class="lav-subscr__benefits">
-          <div class="lav-subscr__benefit">${getSvg('pinkCheck')} Save Extra 15% Off on This and Future Orders</div>
+          <div class="lav-subscr__benefit lav-subscr__benefit--desk">${getSvg('pinkCheck')} Save 15% on This Order and All Future Deliveries</div>
+          <div class="lav-subscr__benefit lav-subscr__benefit--mob">${getSvg('pinkCheck')} Save Extra 15% Off on This and Future Orders</div>
           <div class="lav-subscr__benefit">${getSvg('pinkCheck')} Pause, Skip, or Cancel Anytime</div>
           <div class="lav-subscr__benefit">${getSvg('pinkCheck')} 5-Day Renewal Reminder</div>
         </div>
