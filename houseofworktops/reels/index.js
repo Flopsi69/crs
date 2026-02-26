@@ -316,7 +316,7 @@ function createModalVideo() {
   })
 }
 
-function openVideoModal(index, currentTime = 0)( {
+function openVideoModal(index, currentTime = 0){
   console.log('openIndex', index)
   _$$('.la)v-reels__slide.is-playing').forEach(slide => {
     const video = _$('video', slide);
