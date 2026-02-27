@@ -318,7 +318,7 @@ function createModalVideo() {
 
 function openVideoModal(index, currentTime = 0){
   console.log('openIndex', index)
-  _$$('.la)v-reels__slide.is-playing').forEach(slide => {
+  _$$('.lav-reels__slide.is-playing').forEach(slide => {
     const video = _$('video', slide);
     if (video && !video.paused) {
       video.pause();
@@ -431,7 +431,7 @@ async function addReelsSection() {
           <path d="M12.6682 9.44303L3.00976 15.0922C1.67645 15.872 0 14.9104 0 13.3658V2.003C0 0.453956 1.68509 -0.507054 3.01831 0.281644L12.6767 5.9953C13.9894 6.77185 13.9847 8.67299 12.6682 9.44303Z" fill="black"/>
         </svg>
       </div>
-    `()
+    `
       
     return slideEl
   }
@@ -581,8 +581,37 @@ async function addReelsSection() {
       dotsContainer.appendChild(dot);
     }
 
+    splide.on('dragging', () => {
+      checkVideoInViewport()
+      return;
+      _$$('.lav-reels__slide.is-playing:not(.is-visible)').forEach(slide => {
+        console.log('checking videos on dragging')
+        const playingVideo = _$('video', slide);
+        if (!playingVideo) return;
+
+        const videoIndex = slide.dataset.index;
+        const findVisibleSlide = _$$('.lav-reels__slide.is-visible', document, true).find(visibleSlide => visibleSlide.dataset.index === videoIndex);
+        const currentTime = playingVideo.currentTime;
+
+        if (!findVisibleSlide) return;
+        
+        findVisibleSlide.classList.add('is-playing');
+        slide.classList.remove('is-playing');
+        const videoInVisibleSlide = _$('video', findVisibleSlide);
+        videoInVisibleSlide.setAttribute('controls', 'controls');
+        videoInVisibleSlide.currentTime = currentTime;
+        if (!playingVideo.paused) {
+          videoInVisibleSlide.play();
+          playingVideo.pause();
+        }
+        playingVideo.removeAttribute('controls');
+        playingVideo.currentTime = 0;
+      });
+    });
+
     // Update active dot on slide change
     splide.on('move', (newIndex) => {
+      console.log('move to', newIndex)
       // Get the real index (not clone index)
       const realIndex = newIndex % config.videoLength;
       _$$('.lav-reels__dot').forEach((dot, i) => {
@@ -591,16 +620,7 @@ async function addReelsSection() {
     });
 
     splide.on('moved', (newIndex) => {
-      // Pause videos that are more than 50% outside viewport
-      _$$('.lav-reels__slide:not(.is-visible)').forEach(slide => {
-        // const video = _$('video', slide);
-        // if (video && (!video.paused || video.currentTime > 0)) {
-        //     video.pause();
-        //     video.currentTime = 0;
-        //     video.removeAttribute('controls');
-        //     slide.classList.remove('is-playing');
-        // }
-      });
+      checkVideoInViewport();
     });
 
     // Connect custom arrows
@@ -634,6 +654,39 @@ async function addReelsSection() {
     });
     
     sliderObserver.observe(_$('.lav-reels__slider'));
+  }
+
+  function checkVideoInViewport() {
+    _$$('.lav-reels__slide.is-playing:not(.is-visible)').forEach(slide => {
+      const video = _$('video', slide);
+      if (!video) return;
+      
+      const videoIndex = slide.dataset.index;
+      const currentTime = video.currentTime;
+      const isPaused = video.paused;
+      
+      // Option 1: Transfer to visible clone (recommended)
+      const visibleClone = _$$(`.lav-reels__slide[data-index="${videoIndex}"].is-visible`)[0];
+      
+      if (visibleClone) {
+        const cloneVideo = _$('video', visibleClone);
+        
+        // Transfer playing state to visible clone
+        visibleClone.classList.add('is-playing');
+        cloneVideo.setAttribute('controls', 'controls');
+        cloneVideo.currentTime = currentTime;
+        
+        if (!isPaused) {
+          cloneVideo.play();
+        }
+      }
+      
+      // Clean up hidden slide
+      slide.classList.remove('is-playing');
+      video.pause();
+      video.removeAttribute('controls');
+      video.currentTime = 0;
+    });
   }
 }
 
