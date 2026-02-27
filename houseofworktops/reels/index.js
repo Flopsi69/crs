@@ -4,7 +4,7 @@ console.debug('*** Experiment started ***')
 const config = {
   // dir: 'http://127.0.0.1:5500/houseofworktops/reels',
   dir: 'https://flopsi69.github.io/crs/houseofworktops/reels',
-  clarity: ['set', '', 'variant_1'],
+  clarity: ['set', 'pdp_exp_reels', 'variant_1'],
   debug: true,
   videoLength: 7
 }
@@ -75,7 +75,7 @@ const styles = /* css */ `
   }
   .lav-reels__slide.is-playing video {
     display: block;
-    height: 100%;
+    // height: 100%;
   }
   .lav-reels__play {
     border-radius: 1111px;
@@ -93,6 +93,23 @@ const styles = /* css */ `
     transition: 0.3s ease;
     padding-left: 3px;
     cursor: pointer;
+  }
+  .lav-reels__author {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 12px;
+    color: #212529;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .lav-reels__from {
+    letter-spacing: 0.8px;
+  }
+  .lav-reels__author span {
+    font-style: italic;
   }
   @media(hover:hover) {
     .lav-reels__slide:hover .lav-reels__play {
@@ -132,7 +149,7 @@ const styles = /* css */ `
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-top: 45px;
+    margin-top: 93px;
   }
   .lav-reels__nav-arrow {
     width: 12px;
@@ -184,6 +201,16 @@ const styles = /* css */ `
   }
 
   @media(max-width: 767px) {
+    .lav-reels__author {
+      color: #FFF;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 20px;
+      margin-top: 8px;
+    }
+    .lav-reels__from {
+      letter-spacing: 0.65px;
+    }
     .lav-reels {
       padding: 32px 0;
       background: url(${config.dir}/img/reels-bg-mob.svg) repeat #093B32;
@@ -204,7 +231,7 @@ const styles = /* css */ `
       margin: 24px -15px 0;
     }
     .lav-reels__nav {
-      margin-top: 24px;
+      margin-top: 72px;
       gap: 10px;
     }
     .lav-reels__nav-arrow {
@@ -297,6 +324,7 @@ function createModalVideo() {
 
   _$('.lavm-reels__btn-prev').addEventListener('click', () => {
     const prevIndex = parseInt(_$('.lavm-reels__video video').dataset.index) - 1
+    pushDataLayer('exp_pdp_reels_overlay', 'Overlay close', 'click', 'reels modal');
     if (prevIndex < 1) {
       openVideoModal(config.videoLength)
       return
@@ -307,6 +335,7 @@ function createModalVideo() {
 
   _$('.lavm-reels__btn-next').addEventListener('click', () => {
     const nextIndex = parseInt(_$('.lavm-reels__video video').dataset.index) + 1
+    pushDataLayer('exp_pdp_reels_arrow', 'Arrow Right', 'click', 'reels modal');
     if (nextIndex > config.videoLength) {
       openVideoModal(1)
       return
@@ -401,6 +430,41 @@ async function addReelsSection() {
     }
   })
 
+  visibilityEvent(_$('.lav-reels'), () => {
+    pushDataLayer('exp_pdp_reels_visibility', 'Reels', 'view', 'reels section');
+  })
+
+  const authorNames = [
+    {
+      name: 'Lewis B.',
+      city: 'London'
+    },
+    {
+      name: 'Charlotte C.',
+      city: 'Cheltenham'
+    },
+    {
+      name: 'Nick B.',
+      city: 'Telford'
+    },
+    {
+      name: 'Figen U.',
+      city: 'London'
+    },
+    {
+      name: 'Andrew K.',
+      city: 'London'
+    },
+     {
+      name: 'Tristram A.',
+      city: 'Norwich'
+    },
+    {
+      name: 'Michael B.',
+      city: 'Glasgow'
+    }
+  ]
+
   for (let i = 0; i < config.videoLength; i++) {
     const slideEl = getSlideEl(i + 1)
     _$('.lav-reels__list').appendChild(slideEl)
@@ -412,6 +476,7 @@ async function addReelsSection() {
     const slideEl = document.createElement('li')
     slideEl.classList.add('splide__slide', 'lav-reels__slide')
     slideEl.dataset.index = index
+    const author = authorNames[index - 1]
     slideEl.innerHTML = /* html */ `
       <picture class="lav-reels__slide-picture">
         <source srcset="${config.dir}/media/media${index}-avif.avif" type="image/avif">
@@ -430,6 +495,13 @@ async function addReelsSection() {
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
           <path d="M12.6682 9.44303L3.00976 15.0922C1.67645 15.872 0 14.9104 0 13.3658V2.003C0 0.453956 1.68509 -0.507054 3.01831 0.281644L12.6767 5.9953C13.9894 6.77185 13.9847 8.67299 12.6682 9.44303Z" fill="black"/>
         </svg>
+      </div>
+
+      <div class="lav-reels__author">
+        ${author.name}
+        <div class="lav-reels__from">
+          <span>from</span> ${author.city}
+        </div>
       </div>
     `
       
@@ -474,6 +546,7 @@ async function addReelsSection() {
     _$('.lav-reels__list').addEventListener('click', (e) => {
       const fullscreenBtn = e.target.closest('.lav-reels__fullscreen');
       if (fullscreenBtn) {
+         pushDataLayer('exp_pdp_reels_fullscreen', 'Fullscreen', 'click', 'reels section');
         const slideElIndex = fullscreenBtn.closest('.lav-reels__slide').dataset.index
         const video = fullscreenBtn.closest('.lav-reels__slide').querySelector('video');
         const videoCurrentTime = video ? video.currentTime : 0;
@@ -507,8 +580,10 @@ async function addReelsSection() {
       if (videoEl) {
         if (videoEl.paused) {
           videoEl.play();
+          pushDataLayer('exp_pdp_reels_play', `Play Video - ${e.target.closest('.lav-reels__slide').dataset.index}`, 'click', 'reels section');
         } else {
           videoEl.pause();
+          pushDataLayer('exp_pdp_reels_pause', `Pause Video - ${e.target.closest('.lav-reels__slide').dataset.index}`, 'click', 'reels section');
         }
         return;
       }
@@ -519,6 +594,8 @@ async function addReelsSection() {
       if (picture || playBtn) {
         const slideEl = e.target.closest('.lav-reels__slide');
         const video = _$('video', slideEl);
+
+        pushDataLayer('exp_pdp_reels_play', `Play Video - ${slideEl.dataset.index}`, 'click', 'reels section');
         
         if (video) {
           // Pause all other playing videos first
