@@ -5,7 +5,7 @@ const config = {
   // dir: 'http://127.0.0.1:5500/houseofworktops/reels',
   dir: 'https://flopsi69.github.io/crs/houseofworktops/reels',
   clarity: ['set', 'pdp_exp_reels', 'variant_1'],
-  debug: true,
+  debug: false,
   videoLength: 7
 }
 
