@@ -695,7 +695,7 @@ async function addReelsSection() {
     });
 
     // iOS Safari
-    video.addEventListener('webkitendfullscreen', onExitFullscreen);
+    // video.addEventListener('webkitendfullscreen', onExitFullscreen);
     
     // Handle video pause event - return to AVIF preview
     // _$('.lav-reels__list').addEventListener('pause', (e) => {
