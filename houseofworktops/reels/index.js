@@ -452,9 +452,6 @@ async function addReelsSection() {
     const target = window.innerWidth < 768 ? _$('.d-md-none #delivery-info-line') : _$('#product-product div[itemscope]');
     const existedReelsEl = _$('.lav-reels')
     const position = window.innerWidth < 768 ? 'beforebegin' : 'afterend'
-
-    console.log('target', target)
-    console.log('existedReelsEl', existedReelsEl)
     
     if (!target) return
 
@@ -577,7 +574,6 @@ async function addReelsSection() {
       }
     }).mount();
 
-    // Handle video clicks using event delegation (works for clones too)
     _$('.lav-reels__list').addEventListener('click', (e) => {
       const fullscreenBtn = e.target.closest('.lav-reels__fullscreen');
       if (fullscreenBtn) {
@@ -590,8 +586,8 @@ async function addReelsSection() {
         } else {
           // On mobile, use default fullscreen mode
           if (video) {
-            const slideEl = video.closest('.lav-reels__slide');
-            slideEl.classList.remove('is-playing');
+            // const slideEl = video.closest('.lav-reels__slide');
+            // slideEl.classList.remove('is-playing');
             // Handle different fullscreen APIs for cross-browser compatibility
             if (video.requestFullscreen) {
               video.requestFullscreen();
@@ -676,6 +672,29 @@ async function addReelsSection() {
         }
       }
     }, true);
+
+    // Handle video clicks using event delegation (works for clones too)
+    function onExitFullscreen() {
+      _$$('.lav-reels__slide.is-playing').forEach(slide => {
+        const video = _$('video', slide);
+        if (video && !video.paused) {
+          video.pause();
+        }
+        video.currentTime = 0;
+        video.removeAttribute('controls');
+        slide.classList.remove('is-playing');
+      })
+    }
+
+    // Стандартный API
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        onExitFullscreen();
+      }
+    });
+
+    // iOS Safari
+    video.addEventListener('webkitendfullscreen', onExitFullscreen);
     
     // Handle video pause event - return to AVIF preview
     // _$('.lav-reels__list').addEventListener('pause', (e) => {
