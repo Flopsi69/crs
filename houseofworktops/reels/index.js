@@ -676,7 +676,7 @@ async function addReelsSection() {
     // Handle video clicks using event delegation (works for clones too)
     function onExitFullscreen() {
       _$$('.lav-reels__slide.is-playing').forEach(slide => {
-        alert('exit')
+        // alert('exit')
         // const video = _$('video', slide);
         // if (video && !video.paused) {
         //   video.pause();
@@ -688,11 +688,11 @@ async function addReelsSection() {
     }
 
     // Стандартный API
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        onExitFullscreen();
-      }
-    });
+    // document.addEventListener('fullscreenchange', () => {
+    //   if (!document.fullscreenElement) {
+    //     onExitFullscreen();
+    //   }
+    // });
 
     // iOS Safari
     // video.addEventListener('webkitendfullscreen', onExitFullscreen);
