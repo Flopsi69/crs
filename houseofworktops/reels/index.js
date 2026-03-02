@@ -586,8 +586,24 @@ async function addReelsSection() {
         } else {
           // On mobile, use default fullscreen mode
           if (video) {
-            // const slideEl = video.closest('.lav-reels__slide');
-            // slideEl.classList.remove('is-playing');
+            const handleExitNativeFullscreen = () => {
+              onExitFullscreen(video);
+            };
+
+            video.addEventListener('webkitendfullscreen', handleExitNativeFullscreen, { once: true });
+
+            const handleExitDocumentFullscreen = () => {
+              const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
+              if (!activeFullscreenEl) {
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                onExitFullscreen(video);
+              }
+            };
+
+            document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
+            document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+
             // Handle different fullscreen APIs for cross-browser compatibility
             if (video.requestFullscreen) {
               video.requestFullscreen();
@@ -674,17 +690,26 @@ async function addReelsSection() {
     }, true);
 
     // Handle video clicks using event delegation (works for clones too)
-    function onExitFullscreen() {
-      _$$('.lav-reels__slide.is-playing').forEach(slide => {
-        // alert('exit')
-        // const video = _$('video', slide);
-        // if (video && !video.paused) {
-        //   video.pause();
-        // }
-        // video.currentTime = 0;
-        // video.removeAttribute('controls');
-        slide.classList.remove('is-playing');
-      })
+    function resetSlideToPreview(slide) {
+      const video = _$('video', slide);
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute('controls');
+      }
+      slide.classList.remove('is-playing');
+    }
+
+    function onExitFullscreen(video) {
+      if (window.innerWidth > 767) return;
+
+      const slide = video ? video.closest('.lav-reels__slide') : null;
+      if (slide) {
+        resetSlideToPreview(slide);
+        return;
+      }
+
+      _$$('.lav-reels__slide.is-playing').forEach(resetSlideToPreview)
     }
 
     // Стандартный API
