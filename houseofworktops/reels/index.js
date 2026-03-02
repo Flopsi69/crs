@@ -515,7 +515,7 @@ async function addReelsSection() {
         <img src="${config.dir}/media/media${index}-avif.gif">
       </picture>
 
-      <video preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate nofullscreen" disablePictureInPicture playsinline webkit-playsinline>
+      <video preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate ${window.innerWidth > 767 ? 'nofullscreen' : ''}" disablePictureInPicture playsinline webkit-playsinline>
         <source src="${config.dir}/media/media${index}-video.mp4" type="video/mp4">
       </video>
 
@@ -606,19 +606,26 @@ async function addReelsSection() {
 
             // Handle different fullscreen APIs for cross-browser compatibility
             if (video.requestFullscreen) {
-              video.requestFullscreen();
+              console.debug('Fullscreen: Using requestFullscreen()');
+              video.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
             } else if (video.webkitEnterFullscreen) {
               // iOS Safari (iPhone/iPad)
+              console.debug('Fullscreen: Using webkitEnterFullscreen()');
               video.webkitEnterFullscreen();
             } else if (video.webkitRequestFullscreen) {
               // Older Safari
+              console.debug('Fullscreen: Using webkitRequestFullscreen()');
               video.webkitRequestFullscreen();
             } else if (video.mozRequestFullScreen) {
               // Firefox
+              console.debug('Fullscreen: Using mozRequestFullScreen()');
               video.mozRequestFullScreen();
             } else if (video.msRequestFullscreen) {
               // IE11
+              console.debug('Fullscreen: Using msRequestFullscreen()');
               video.msRequestFullscreen();
+            } else {
+              console.warn('No fullscreen API available');
             }
           }
         }
