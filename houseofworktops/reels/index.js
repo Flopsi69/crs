@@ -205,6 +205,11 @@ const styles = /* css */ `
       width: 40px;
       height: 40px;
     }
+    .lav-reels__fullscreen svg {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
     .lav-reels__author {
       color: #FFF;
       font-size: 13px;
@@ -416,34 +421,49 @@ async function addReelsSection() {
     </div>
   `
 
-  if (window.innerWidth < 768) {
-    _$('.d-md-none #delivery-info-line').insertAdjacentHTML('beforebegin', markup)
-  } else {
-    _$('.content-section.bg-pattern-dark').insertAdjacentHTML('beforebegin', markup)
-  }
+  renderSection();
 
   window.addEventListener('resize', () => {
-    const existedReelsEl = _$('.lav-reels')
+    renderSection();
+    // const targetEl = window.innerWidth < 768 ? _$('.d-md-none #delivery-info-line') : _$('.content-section.bg-pattern-dark') || _$('#product-product div[itemscope]');
+    // const existedReelsEl = _$('.lav-reels')
 
-    if (window.innerWidth < 768) {
-      if (existedReelsEl && !_$('[itemscope] .lav-reels')) {
-        _$('.d-md-none #delivery-info-line').insertAdjacentElement('beforebegin', existedReelsEl)
-      } 
+    // if (window.innerWidth < 768) {
+    //   if (existedReelsEl && !_$('[itemscope] .lav-reels')) {
+    //     _$(targetEl).insertAdjacentElement('beforebegin', existedReelsEl)
+    //   } 
 
 
-      if (!existedReelsEl && _$('.d-md-none #delivery-info-line')) {
-        _$('.d-md-none #delivery-info-line').insertAdjacentHTML('beforebegin', markup)
-      }
-    } else {
-      if (existedReelsEl && _$('[itemscope] .lav-reels')) {
-        _$('.content-section.bg-pattern-dark').insertAdjacentElement('beforebegin', existedReelsEl)
-      }
+    //   if (!existedReelsEl && _$(targetEl)) {
+    //     _$(targetEl).insertAdjacentHTML('beforebegin', markup)
+    //   }
+    // } else {
+    //   if (existedReelsEl && _$('[itemscope] .lav-reels')) {
+    //     _$(targetEl).insertAdjacentElement('beforebegin', existedReelsEl)
+    //   }
 
-      if (!existedReelsEl && _$('.content-section.bg-pattern-dark')) {
-        _$('.content-section.bg-pattern-dark').insertAdjacentHTML('beforebegin', markup)
-      }
-    }
+    //   if (!existedReelsEl && _$(targetEl)) {
+    //     _$(targetEl).insertAdjacentHTML('beforebegin', markup)
+    //   }
+    // }
   })
+
+  function renderSection() {
+    const target = window.innerWidth < 768 ? _$('.d-md-none #delivery-info-line') : _$('#product-product div[itemscope]');
+    const existedReelsEl = _$('.lav-reels')
+    const position = window.innerWidth < 768 ? 'beforebegin' : 'afterend'
+
+    console.log('target', target)
+    console.log('existedReelsEl', existedReelsEl)
+    
+    if (!target) return
+
+    if (existedReelsEl) {
+      target.insertAdjacentElement(position, existedReelsEl)
+    } else {
+      target.insertAdjacentHTML(position, markup)
+    }
+  }
 
   visibilityEvent(_$('.lav-reels'), () => {
     pushDataLayer('exp_pdp_reels_visibility', 'Reels', 'view', 'reels section');
