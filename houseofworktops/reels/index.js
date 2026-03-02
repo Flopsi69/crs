@@ -701,8 +701,6 @@ async function addReelsSection() {
     }
 
     function onExitFullscreen(video) {
-      if (window.innerWidth > 767) return;
-
       const slide = video ? video.closest('.lav-reels__slide') : null;
       if (slide) {
         resetSlideToPreview(slide);
