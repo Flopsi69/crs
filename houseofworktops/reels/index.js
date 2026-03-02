@@ -135,7 +135,7 @@ const styles = /* css */ `
     justify-content: center;
     cursor: pointer;
     transition: 0.3s ease;
-    z-index: 2;
+    z-index: 99;
   }
   @media(hover:hover) {
     .lav-reels__fullscreen:hover {
@@ -201,6 +201,10 @@ const styles = /* css */ `
   }
 
   @media(max-width: 767px) {
+    .lav-reels__fullscreen {
+      width: 40px;
+      height: 40px;
+    }
     .lav-reels__author {
       color: #FFF;
       font-size: 13px;
