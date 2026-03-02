@@ -676,12 +676,13 @@ async function addReelsSection() {
     // Handle video clicks using event delegation (works for clones too)
     function onExitFullscreen() {
       _$$('.lav-reels__slide.is-playing').forEach(slide => {
-        const video = _$('video', slide);
-        if (video && !video.paused) {
-          video.pause();
-        }
-        video.currentTime = 0;
-        video.removeAttribute('controls');
+        alert('exit')
+        // const video = _$('video', slide);
+        // if (video && !video.paused) {
+        //   video.pause();
+        // }
+        // video.currentTime = 0;
+        // video.removeAttribute('controls');
         slide.classList.remove('is-playing');
       })
     }
