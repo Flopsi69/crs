@@ -570,6 +570,9 @@ async function addReelsSection() {
         } else {
           // On mobile, use default fullscreen mode
           if (video) {
+            const slideEl = video.closest('.lav-reels__slide');
+            video.currentTime = 0;
+            slideEl.classList.remove('is-playing');
             // Handle different fullscreen APIs for cross-browser compatibility
             if (video.requestFullscreen) {
               video.requestFullscreen();
