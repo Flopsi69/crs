@@ -283,6 +283,9 @@ function createModalVideo() {
       ${getSvg('modal-prev')}
     </div>
     <div class="lavm-reels__video">
+      <div class="lavm-reels__fullscreen">
+        ${getSvg('fullscreen')}
+      </div>
       <div class="lavm-reels__preloader">
         <div class="lavm-reels__spinner"></div>
       </div>
@@ -299,6 +302,10 @@ function createModalVideo() {
 
   _$('.lavm-reels').addEventListener('click', function(e) {
     if (e.target === this) Modal.close()
+    if (e.target.closest('.lavm-reels__fullscreen')) {
+      pushDataLayer('exp_pdp_reels_modal_fullscreen', 'Fullscreen Close', 'click', 'reels modal');
+      Modal.close()
+    }
   })
 
   const video = _$('.lavm-reels__video video')
@@ -351,6 +358,10 @@ function openVideoModal(index, currentTime = 0){
     const video = _$('video', slide);
     if (video && !video.paused) {
       video.pause();
+      video.currentTime = 0;
+      video.removeAttribute('controls');
+      slide.classList.remove('is-playing');
+      // videoEl.pause();
     }
   })
   const video = _$('.lavm-reels__video video')
@@ -546,7 +557,7 @@ async function addReelsSection() {
     _$('.lav-reels__list').addEventListener('click', (e) => {
       const fullscreenBtn = e.target.closest('.lav-reels__fullscreen');
       if (fullscreenBtn) {
-         pushDataLayer('exp_pdp_reels_fullscreen', 'Fullscreen', 'click', 'reels section');
+        pushDataLayer('exp_pdp_reels_fullscreen', 'Fullscreen', 'click', 'reels section');
         const slideElIndex = fullscreenBtn.closest('.lav-reels__slide').dataset.index
         const video = fullscreenBtn.closest('.lav-reels__slide').querySelector('video');
         const videoCurrentTime = video ? video.currentTime : 0;
@@ -579,10 +590,15 @@ async function addReelsSection() {
       const videoEl = e.target.closest('video')
       if (videoEl) {
         if (videoEl.paused) {
-          videoEl.play();
+          // videoEl.play();
           pushDataLayer('exp_pdp_reels_play', `Play Video - ${e.target.closest('.lav-reels__slide').dataset.index}`, 'click', 'reels section');
         } else {
+          const slideEl = videoEl.closest('.lav-reels__slide');
           videoEl.pause();
+          videoEl.currentTime = 0;
+          videoEl.removeAttribute('controls');
+          slideEl.classList.remove('is-playing');
+          // videoEl.pause();
           pushDataLayer('exp_pdp_reels_pause', `Pause Video - ${e.target.closest('.lav-reels__slide').dataset.index}`, 'click', 'reels section');
         }
         return;
@@ -915,7 +931,30 @@ function initModal() {
           opacity: 0.7;
         }
       }
+      .lavm-reels__fullscreen {
+        position: absolute;
+        padding: 3px;
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s ease;
+        z-index: 2;
+        line-height: 0;
+      }
+      @media(hover:hover) {
+        .lavm-reels__fullscreen:hover {
+          opacity: 0.7;
+        }
+      }
       .lavm-reels__video {
+        position: relative;
         display: flex;
         line-height: 0;
       }
