@@ -586,43 +586,108 @@ async function addReelsSection() {
         } else {
           // On mobile, use default fullscreen mode
           if (video) {
-            const handleExitNativeFullscreen = () => {
-              onExitFullscreen(video);
-            };
-
-            video.addEventListener('webkitendfullscreen', handleExitNativeFullscreen, { once: true });
-
-            const handleExitDocumentFullscreen = () => {
-              const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
-              if (!activeFullscreenEl) {
-                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
-                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
-                onExitFullscreen(video);
-              }
-            };
-
-            document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
-            document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
-
             // Handle different fullscreen APIs for cross-browser compatibility
             if (video.requestFullscreen) {
               console.debug('Fullscreen: Using requestFullscreen()');
-              video.requestFullscreen().catch(err => console.error('Fullscreen error:', err));
+              let hasEnteredFullscreen = false;
+              const handleExitDocumentFullscreen = () => {
+                const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
+
+                if (activeFullscreenEl === video) {
+                  hasEnteredFullscreen = true;
+                  return;
+                }
+
+                if (activeFullscreenEl) return;
+                if (!hasEnteredFullscreen) return;
+
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                onExitFullscreen(video);
+              };
+
+              document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
+              document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+              video.requestFullscreen().catch(err => {
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                console.error('Fullscreen error:', err);
+              });
             } else if (video.webkitEnterFullscreen) {
               // iOS Safari (iPhone/iPad)
               console.debug('Fullscreen: Using webkitEnterFullscreen()');
+              video.addEventListener('webkitendfullscreen', () => {
+                onExitFullscreen(video);
+              }, { once: true });
               video.webkitEnterFullscreen();
             } else if (video.webkitRequestFullscreen) {
               // Older Safari
               console.debug('Fullscreen: Using webkitRequestFullscreen()');
+              let hasEnteredFullscreen = false;
+              const handleExitDocumentFullscreen = () => {
+                const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
+
+                if (activeFullscreenEl === video) {
+                  hasEnteredFullscreen = true;
+                  return;
+                }
+
+                if (activeFullscreenEl) return;
+                if (!hasEnteredFullscreen) return;
+
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                onExitFullscreen(video);
+              };
+
+              document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
+              document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
               video.webkitRequestFullscreen();
             } else if (video.mozRequestFullScreen) {
               // Firefox
               console.debug('Fullscreen: Using mozRequestFullScreen()');
+              let hasEnteredFullscreen = false;
+              const handleExitDocumentFullscreen = () => {
+                const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
+
+                if (activeFullscreenEl === video) {
+                  hasEnteredFullscreen = true;
+                  return;
+                }
+
+                if (activeFullscreenEl) return;
+                if (!hasEnteredFullscreen) return;
+
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                onExitFullscreen(video);
+              };
+
+              document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
+              document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
               video.mozRequestFullScreen();
             } else if (video.msRequestFullscreen) {
               // IE11
               console.debug('Fullscreen: Using msRequestFullscreen()');
+              let hasEnteredFullscreen = false;
+              const handleExitDocumentFullscreen = () => {
+                const activeFullscreenEl = document.fullscreenElement || document.webkitFullscreenElement;
+
+                if (activeFullscreenEl === video) {
+                  hasEnteredFullscreen = true;
+                  return;
+                }
+
+                if (activeFullscreenEl) return;
+                if (!hasEnteredFullscreen) return;
+
+                document.removeEventListener('fullscreenchange', handleExitDocumentFullscreen);
+                document.removeEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
+                onExitFullscreen(video);
+              };
+
+              document.addEventListener('fullscreenchange', handleExitDocumentFullscreen);
+              document.addEventListener('webkitfullscreenchange', handleExitDocumentFullscreen);
               video.msRequestFullscreen();
             } else {
               console.warn('No fullscreen API available');
