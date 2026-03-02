@@ -708,6 +708,7 @@ async function addReelsSection() {
     }
 
     function onExitFullscreen(video) {
+      console.log('exit fullscreen', video)
       const slide = video ? video.closest('.lav-reels__slide') : null;
       if (slide) {
         resetSlideToPreview(slide);
