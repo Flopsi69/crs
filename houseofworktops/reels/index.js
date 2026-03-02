@@ -494,7 +494,7 @@ async function addReelsSection() {
         <img src="${config.dir}/media/media${index}-avif.gif">
       </picture>
 
-      <video preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate nofullscreen" disablePictureInPicture>
+      <video preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate nofullscreen" disablePictureInPicture playsinline webkit-playsinline>
         <source src="${config.dir}/media/media${index}-video.mp4" type="video/mp4">
       </video>
 
@@ -628,7 +628,9 @@ async function addReelsSection() {
           });
           
           slideEl.classList.add('is-playing');
-          video.setAttribute('controls', 'controls');
+          if (window.innerWidth > 767) {
+            video.setAttribute('controls', 'controls');
+          }
           video.play();
         }
       }
@@ -766,7 +768,9 @@ async function addReelsSection() {
         
         // Transfer playing state to visible clone
         visibleClone.classList.add('is-playing');
-        cloneVideo.setAttribute('controls', 'controls');
+        if (window.innerWidth > 767) {
+          cloneVideo.setAttribute('controls', 'controls');
+        }
         cloneVideo.currentTime = currentTime;
         
         if (!isPaused) {
