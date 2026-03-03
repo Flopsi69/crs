@@ -298,7 +298,7 @@ function createModalVideo() {
       <div class="lavm-reels__preloader">
         <div class="lavm-reels__spinner"></div>
       </div>
-      <video autoplay controls preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate nofullscreen" disablePictureInPicture disableFullscreen>
+      <video controls playsinline webkit-playsinline preload="metadata" controlsList="nodownload noremoteplayback noplaybackrate nofullscreen" disablePictureInPicture disableFullscreen>
         <source src="" type="video/mp4">
       </video>
     </div>
