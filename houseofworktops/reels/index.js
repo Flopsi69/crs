@@ -340,7 +340,7 @@ function createModalVideo() {
 
   _$('.lavm-reels__btn-prev').addEventListener('click', () => {
     const prevIndex = parseInt(_$('.lavm-reels__video video').dataset.index) - 1
-    pushDataLayer('exp_pdp_reels_overlay', 'Overlay close', 'click', 'reels modal');
+    pushDataLayer('exp_pdp_reels_arrow', 'Arrow Left', 'click', 'reels modal');
     if (prevIndex < 1) {
       openVideoModal(config.videoLength)
       return
@@ -968,8 +968,10 @@ function initModal() {
         if (
           e.target.classList.contains('lav-modal') ||
           e.target.closest('.lav-modal__close')
-        )
+        ) {
+          pushDataLayer('exp_pdp_reels_overlay', 'Overlay close', 'click', 'reels modal');
           this.close()
+        }
 
         if (e.target.dataset.modal) {
           this.open(e.target.dataset.modal)
@@ -1139,6 +1141,15 @@ function initModal() {
       }
 
       @media(max-width: 767px) {
+        .lavm-reels__fullscreen {
+          width: 40px;
+          height: 40px;
+        }
+        .lavm-reels__fullscreen svg {
+          width: 32px;
+          height: 32px;
+          flex-shrink: 0;
+        }
         .lavm-reels__btn {
           display: none;
         }
