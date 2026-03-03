@@ -107,6 +107,7 @@ const styles = /* css */ `
   }
   .lav-reels__from {
     letter-spacing: 0.8px;
+    font-style: italic;
   }
   .lav-reels__author span {
     font-style: italic;
