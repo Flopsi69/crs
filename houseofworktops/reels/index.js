@@ -584,6 +584,8 @@ async function addReelsSection() {
         if (window.innerWidth > 767) {
           openVideoModal(slideElIndex, videoCurrentTime)
         } else {
+          openVideoModal(slideElIndex, videoCurrentTime)
+          return
           // On mobile, use default fullscreen mode
           if (video) {
             // Handle different fullscreen APIs for cross-browser compatibility
@@ -762,26 +764,26 @@ async function addReelsSection() {
     }, true);
 
     // Handle video clicks using event delegation (works for clones too)
-    function resetSlideToPreview(slide) {
-      const video = _$('video', slide);
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-        video.removeAttribute('controls');
-      }
-      slide.classList.remove('is-playing');
-    }
+    // function resetSlideToPreview(slide) {
+    //   const video = _$('video', slide);
+    //   if (video) {
+    //     video.pause();
+    //     video.currentTime = 0;
+    //     video.removeAttribute('controls');
+    //   }
+    //   slide.classList.remove('is-playing');
+    // }
 
-    function onExitFullscreen(video) {
-      console.log('exit fullscreen', video)
-      const slide = video ? video.closest('.lav-reels__slide') : null;
-      if (slide) {
-        resetSlideToPreview(slide);
-        return;
-      }
+    // function onExitFullscreen(video) {
+    //   console.log('exit fullscreen', video)
+    //   const slide = video ? video.closest('.lav-reels__slide') : null;
+    //   if (slide) {
+    //     resetSlideToPreview(slide);
+    //     return;
+    //   }
 
-      _$$('.lav-reels__slide.is-playing').forEach(resetSlideToPreview)
-    }
+    //   _$$('.lav-reels__slide.is-playing').forEach(resetSlideToPreview)
+    // }
 
     // Стандартный API
     // document.addEventListener('fullscreenchange', () => {
@@ -1134,6 +1136,23 @@ function initModal() {
       }
       @keyframes lavmSpinnerRotate {
         to { transform: rotate(360deg); }
+      }
+
+      @media(max-width: 767px) {
+        .lavm-reels__btn {
+          display: none;
+        }
+        .lavm-reels__video video {
+          max-height: 100vh;
+        }
+        .lav-modal {
+          padding: 0;
+          backdrop-filter: none;
+          background: #000;
+        }
+        .lav-modal-open {
+          overflow: hidden;
+        }
       }
     `
 
