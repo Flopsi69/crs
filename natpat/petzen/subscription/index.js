@@ -1577,7 +1577,11 @@
     const rawPrice = _$('#petlocket').dataset.price;
     const price = LPProductForm.formatMoney(rawPrice);
     const isEur = LPProductForm.currency === 'EUR';
-    const subscribedPrice = LPProductForm.formatMoney((parseInt(rawPrice) - (parseInt(rawPrice) * 0.15)) * (isEur ? 100 : 1)); // Assuming non-eur currencies have approx 10% higher price, adjust if needed
+    const subscribedPrice = LPProductForm.formatMoney((parseFloat(rawPrice) - (parseFloat(rawPrice) * 0.15)) * (isEur ? 100 : 100)); // Assuming non-eur currencies have approx 10% higher price, adjust if needed
+
+    console.log('rawPrice:', rawPrice);
+    console.log('Formatted price:', price);
+    console.log('Subscribed price:', subscribedPrice);
 
     const markup = /* html */ `
       <div class="lav-upsell" data-price="${price}" data-subscribed-price="${subscribedPrice}">
