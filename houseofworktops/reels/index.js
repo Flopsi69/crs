@@ -396,7 +396,7 @@ async function addReelsSection() {
   const markup = /* html */ `
     <div class="lav-reels">
       <div class="lav-reels__container container">
-        <div class="lav-reels__title">Trusted by 10,000+ Homeowners, Joiners  & Furniture Makers</div>
+        <div class="lav-reels__title">Trusted by 100,000+ Homeowners, Joiners  & Furniture Makers</div>
         <div class="lav-reels__caption">Discover why the UK’s finest craftsmen and families choose House of Worktops</div>
 
         <div class="splide lav-reels__slider" role="group" aria-label="Splide Basic HTML Example">
