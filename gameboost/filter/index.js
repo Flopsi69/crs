@@ -352,6 +352,8 @@
       document.head.appendChild(stylesEl)
     }
 
+    await waitFor(() => _$('[class*="2xl:max-w-[1550px]"] > div'), false, { ms: 20 })
+
     console.debug('** InitExp **')
 
     updateListingHeader()
