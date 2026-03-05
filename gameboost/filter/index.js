@@ -34,6 +34,7 @@
     }
     .lav-head__filter {
       min-width: 0;
+      flex-grow: 1;
     }
     .lav-head__filter .min-w-\\[125px\\], .lav-head__filter .min-w-\\[125px\\] + .sm\\:block {
       display: none;
