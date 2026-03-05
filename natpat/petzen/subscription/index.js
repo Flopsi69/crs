@@ -1575,9 +1575,11 @@
 
   function addUpsell() {
     const rawPrice = _$('#petlocket').dataset.price;
-    const price = LPProductForm.formatMoney(rawPrice);
-    const isEur = LPProductForm.currency === 'EUR';
-    const subscribedPrice = LPProductForm.formatMoney((parseFloat(rawPrice) - (parseFloat(rawPrice) * 0.15)) * (isEur ? 100 : 100)); // Assuming non-eur currencies have approx 10% higher price, adjust if needed
+    const price = normalizePrice(rawPrice, true);
+    const normalizedPrice = normalizePrice(rawPrice);
+    // const isEur = LPProductForm.currency === 'EUR';
+    const subscribedPrice = normalizePrice(normalizedPrice - (normalizedPrice * 0.15), true);
+    // const subscribedPrice = LPProductForm.formatMoney((parseFloat(rawPrice) - (parseFloat(rawPrice) * 0.15)) * (isEur ? 100 : 100)); // Assuming non-eur currencies have approx 10% higher price, adjust if needed
 
     console.log('rawPrice:', rawPrice);
     console.log('Formatted price:', price);
