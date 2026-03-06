@@ -535,7 +535,7 @@
         }
       })
 
-      _$('.lav-filter__item')?.classList.add('active');
+      // _$('.lav-filter__item')?.classList.add('active');
 
       if (_$('.lav-filter__item[data-type="price"]')) {
         new MutationObserver((mutations, observer) => {
@@ -565,7 +565,7 @@
       const isToggler = !!_$('button[role="switch"][value]', el)
 
       const itemEl = document.createElement('div');
-      itemEl.classList.add('lav-filter__item');
+      itemEl.classList.add('lav-filter__item', 'active');
       itemEl.dataset.index = index;
       if (isPrice) itemEl.dataset.type = 'price';
       else if (isRange) itemEl.dataset.type = 'range';
@@ -589,14 +589,14 @@
         const inputsEl = getInputsForRange(itemEl, el, isPrice)
         bodyEl.insertAdjacentHTML('afterbegin', inputsEl);
         
-        handleRangeFilter(bodyEl, isPrice, isPrice)
+        handleRangeFilter(bodyEl, isPrice)
       } else if (isRange) {
         // const myRangeEl = _$('.mt-2>.py-2', el).cloneNode(true)
         bodyEl.innerHTML = _$('.mt-2>.py-2', el).innerHTML;
         const inputsEl = getInputsForRange(itemEl, el, isPrice)
         bodyEl.insertAdjacentHTML('afterbegin', inputsEl);
         
-        handleRangeFilter(bodyEl, isPrice, isPrice)
+        handleRangeFilter(bodyEl, isPrice)
       }
       else if (isOptions) {
         _$$('[type="button"].text-sm', el).forEach((btn, index) => {
