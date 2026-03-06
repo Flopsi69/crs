@@ -6,13 +6,9 @@
     // dir: 'http://127.0.0.1:5500/<dir>/<project>',
     dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
     clarity: ['set', 'exp_filters', 'variant_1'],
+    isClarityStarted: false,
     debug: false
   }
-
-  // const orig = console.log
-  // console.log = function (...args) {
-  //   orig.apply(console, ['Debug:', ...args])
-  // }
 
   // Styles for Experiment
   const styles = /* css */ `
@@ -285,7 +281,7 @@
   stylesEl.classList.add('exp-filter-v1-styles');
   stylesEl.innerHTML = styles;
 
-  // *** Logic *** //
+  // *** Navigate Logic *** //
   (function () {
     // let currentUrl = location.href
     const urlsTarget = [
@@ -294,7 +290,7 @@
       '/fortnite/v-bucks',
       '/steal-a-brainrot/accounts',
       '/steal-a-brainrot/items',
-      '/valorant/accounts',
+      // '/valorant/accounts',
       '/valorant/top-up',
       '/grand-theft-auto-v/accounts',
       '/grand-theft-auto-v/items',
@@ -320,33 +316,22 @@
     ]
 
     function urlChangeHandler() {
-      // console.log('URL changed:', location.href)
       if (!urlsTarget.some(url => location.pathname.includes(url))) return;
       initExp()
     }
 
-    const pushState = history.pushState
-    const replaceState = history.replaceState
+    document.addEventListener('inertia:navigate', () => {
+      urlChangeHandler();
+    })
 
-    history.pushState = function () {
-      pushState.apply(this, arguments)
-      urlChangeHandler()
-    }
-
-    history.replaceState = function () {
-      replaceState.apply(this, arguments)
-      urlChangeHandler()
-    }
-
-    window.addEventListener('popstate', urlChangeHandler)
-
-    // first Launch
-    if (!urlsTarget.some(url => location.pathname.includes(url))) return;
-    initExp()
+    urlChangeHandler()
   })()
 
   async function initExp() {
+    startClarity();
+
     if (_$('.lav-filter__list') || _$('.lav-head')) return;
+
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
     if (!_$('.exp-filter-v1-styles')) {
@@ -450,7 +435,7 @@
     }
   }
 
-  function updateListingHeader() {
+  async function updateListingHeader() {
     const pageContent = _$('[class*="2xl:max-w-[1550px]"] > div')
     const pageHeader = _$('[class*="2xl:max-w-[1550px]"] > div > div > div')
     const pageToggler = _$('[role="radiogroup"][id*="headlessui-radiogroup"]')
@@ -663,9 +648,10 @@
           isProcessing = false
         });
       } else {
-        return false
-        const bodyEl = _$('.lav-filter__item-body', itemEl);
-        bodyEl.innerHTML = '111111' + el.innerHTML;
+        // bodyEl
+        // return false
+        // const bodyEl = _$('.lav-filter__item-body', itemEl);
+        bodyEl.innerHTML = 'Raw data' + el.innerHTML;
       }
 
       return itemEl
@@ -1035,143 +1021,6 @@
     })
   }
 
-  // *** Utils *** //
-  function initModal() {
-    class Modal {
-      static list = []
-      constructor(name, html) {
-        if (!_$('.lav-modal')) {
-          this.constructor.init()
-        }
-
-        if (this.constructor.list.find((item) => item.name === name)) {
-          console.warn('Modal with this name already exists')
-          return
-        }
-
-        this.el = document.createElement('div')
-        this.el.classList.add('lav-modal__inner', name)
-        this.name = name
-        this.el.innerHTML = html
-
-        _$('.lav-modal').insertAdjacentElement('beforeend', this.el)
-
-        this.constructor.list.push(this)
-      }
-
-      static init() {
-        document.body.insertAdjacentHTML(
-          'beforeend',
-          "<div class='lav-modal'></div>"
-        )
-
-        document.addEventListener('click', (e) => {
-          if (
-            e.target.classList.contains('lav-modal') ||
-            e.target.closest('.lav-modal__close')
-          )
-            this.close()
-
-          if (e.target.dataset.modal) {
-            this.open(e.target.dataset.modal)
-          } else if (e.target.closest('[data-modal]')) {
-            this.open(e.target.closest('[data-modal]').dataset.modal)
-          }
-        })
-
-        this.addStyles()
-      }
-
-      static open(modalName, cb) {
-        document.body.classList.add('lav-modal-open')
-
-        if (_$('.lav-modal__inner.active')) {
-          _$('.lav-modal__inner.active').classList.remove('active')
-        }
-
-        _$(modalName).classList.add('active')
-
-        if (typeof cb === 'function') cb()
-
-        setTimeout(() => {
-          _$('.lav-modal').classList.add('active')
-        }, 100)
-      }
-
-      static close(cb) {
-        document.body.classList.remove('lav-modal-open')
-
-        _$('.lav-modal')?.classList.remove('active')
-
-        if (typeof cb === 'function') cb()
-
-        setTimeout(() => {
-          _$('.lav-modal__inner.active')?.classList.remove('active')
-        }, 400)
-      }
-
-      static addStyles() {
-        const styles = /* css */ `
-        .lav-modal {
-          position: fixed;
-          z-index: 999;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          background: rgba(0,0,0,.1);
-          backdrop-filter: blur(3px);
-          -webkit-backdrop-filter: blur(3px);
-          transition: 0.35s;
-          opacity: 0;
-          pointer-events: none;
-          padding: 15px;
-          overflow-y: auto;
-          max-height: 100%;
-          display: flex;
-        }
-        .lav-modal.active {
-          opacity: 1;
-          pointer-events: auto;
-        }
-        .lav-modal__inner {
-          position: relative;
-          background: #fff;
-          max-width: 380px;
-          width: 100%;
-          display: none;
-          margin: auto;
-        }
-        .lav-modal__inner.active {
-          display: block;
-        }
-        .lav-modal__close {
-          cursor: pointer;
-          transition: 0.35s;
-          line-height: 0;
-        }
-        [data-modal] {
-          cursor: pointer;
-        }
-        @media(hover:hover) {
-          .lav-modal__close:hover {
-            opacity: 0.5;
-          }
-        }
-        .lav-modal-open {
-          overflow: hidden;
-        }
-      `
-
-        const stylesEl = document.createElement('style')
-        stylesEl.classList.add('exp-modal')
-        stylesEl.innerHTML = styles
-        document.head.appendChild(stylesEl)
-      }
-    }
-
-    window.Modal = Modal
-  }
   // *** HELPERS *** //
 
   // Waiting for loading by condition
@@ -1377,34 +1226,25 @@
     }
   }
 
-  // Slider
-  function connectSplide() {
-    const sliderStyles = document.createElement('link')
-    sliderStyles.rel = 'stylesheet'
-    sliderStyles.href =
-      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css'
-    document.head.appendChild(sliderStyles)
-
-    let sliderScript = document.createElement('script')
-    sliderScript.src =
-      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js'
-    document.head.appendChild(sliderScript)
-  }
-
   // *** Exp BG process *** //
-
   //Clarity
-  if (
-    !config.debug &&
-    Array.isArray(config.clarity) &&
-    config.clarity.length === 3
-  ) {
-    waitFor(
-      () => typeof clarity == 'function',
-      () => {
-        clarity(...config.clarity)
-      }
-    )
+  function startClarity() {
+    if (config.isClarityStarted) return
+
+    config.isClarityStarted = true
+
+    if (
+      !config.debug &&
+      Array.isArray(config.clarity) &&
+      config.clarity.length === 3
+    ) {
+      waitFor(
+        () => typeof clarity == 'function',
+        () => {
+          clarity(...config.clarity)
+        }
+      )
+    }
   }
 
   // Svg objects
