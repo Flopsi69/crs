@@ -316,7 +316,7 @@
     ]
 
     function urlChangeHandler() {
-      if (!urlsTarget.some(url => location.pathname.includes(url))) return;
+      if (!urlsTarget.some(url => location.pathname.startsWith(url))) return;
       initExp()
     }
 
