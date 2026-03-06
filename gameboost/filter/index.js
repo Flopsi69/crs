@@ -653,9 +653,9 @@
         });
       } else {
         // bodyEl
-        // return false
+        return false
         // const bodyEl = _$('.lav-filter__item-body', itemEl);
-        bodyEl.innerHTML = 'Raw data' + el.innerHTML;
+        // bodyEl.innerHTML = 'Raw data' + el.innerHTML;
       }
 
       return itemEl
