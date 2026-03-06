@@ -881,7 +881,6 @@
           optionEl.addEventListener('click', () => {
             pushDataLayer('exp_f_price_selector', 'Button', 'click', 'Price filter');
             if (optionEl.classList.contains('active')) {
-              optionEl.classList.remove('active')
               return
             }
             const value = parseInt(optionEl.dataset.value);
