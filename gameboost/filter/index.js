@@ -244,6 +244,9 @@
       padding: 0 14px 14px;
       border-bottom: 1px solid hsl(var(--border));
     }
+    .lav-preselect.lav-dragging {
+      // cursor: grabbing;
+    }
     .lav-preselect__option {
       flex-shrink: 0;
       white-space: nowrap;
@@ -259,6 +262,7 @@
       cursor: pointer;
       transition: .25s;
       border: 1px solid transparent;
+      user-select: none;
     }
     .lav-preselect__option.active {
       border: 1px solid rgba(96, 165, 250, 0.30);
@@ -893,6 +897,31 @@
 
         if (_$$('.lav-preselect__option', preselectEl)?.length) {
           el.insertAdjacentElement('afterbegin', preselectEl)
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            preselectEl.addEventListener('mousedown', (e) => {
+              isDown = true;
+              preselectEl.classList.add('lav-dragging');
+              startX = e.pageX - preselectEl.offsetLeft;
+              scrollLeft = preselectEl.scrollLeft;
+            });
+
+            document.addEventListener('mouseup', () => {
+              isDown = false;
+              preselectEl.classList.remove('lav-dragging');
+            });
+
+            document.addEventListener('mousemove', (e) => {
+              if (!isDown) return;
+              e.preventDefault();
+
+              const x = e.pageX - preselectEl.offsetLeft;
+              const walk = (x - startX) * 2; // скорость
+              preselectEl.scrollLeft = scrollLeft - walk;
+            });
         }
       }
 
