@@ -1712,7 +1712,7 @@ ul.owlCustomCarousel {
           const highlightEl = _$('.product__info-container .lav-colors__note--highlight')
 
           if (!config.isPassive) {
-            pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info', 'inactive');
+            // pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info', 'inactive');
           }
           
           if (highlightEl.classList.contains('lav-colors__note--highlight_active')) return;
@@ -1728,7 +1728,7 @@ ul.owlCustomCarousel {
 
 
         if (!config.isPassive) {
-          pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info', 'active');
+          pushDataLayer('exp_color_select', colorEl.innerText.trim(), 'click', 'Product Info');
         }
 
         if (this.classList.contains('active')) return
@@ -1805,14 +1805,14 @@ ul.owlCustomCarousel {
 
               if (is14K === false && el.dataset.id !== '1') {
                 if (!config.isPassive) {
-                  pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'inactive');
+                  // pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'inactive');
                 }
 
                 return
               }
 
               if (!config.isPassive) {
-                pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector', 'active');
+                pushDataLayer('exp_color_sticky_click', el.innerText.trim(), 'click', 'Sticky color selector');
               }
               config.isPassive = true;
               _$(
