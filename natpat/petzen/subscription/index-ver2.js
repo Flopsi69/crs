@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/natpat/petzen/subscription',
     dir: 'https://flopsi69.github.io/crs/natpat/petzen/subscription',
     clarity: ['set', 'exp_pz_sub_and_save', 'variant_1'],
-    debug: false
+    debug: true
   }
 
   // const orig = console.log
@@ -170,12 +170,18 @@
       border: 2px solid #FEA1C2;
       background: #FFF;
       box-shadow: 0 2px 4px 0 rgba(12, 11, 11, 0.10), 0 12px 32px 0 rgba(0, 0, 0, 0.05);
-      padding: 16px 14px;
+      padding: 9px 8px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       color: #202020;
       transition: .25s;
+    }
+    .lav-package__row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-grow: 1;
     }
     .lav-package__bestseller {
       position: absolute;
@@ -214,6 +220,22 @@
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 25%, rgba(255, 255, 255, 0.06) 25%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.16) 50%, rgba(255, 255, 255, 0.16) 75%, rgba(255, 255, 255, 0.06) 75%), #FF3C81;
       background-size: 40px 50px;
     }
+    .lav-package__image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      width: 50px;
+      height: 71px;
+      flex-shrink: 0;
+    }
+    .lav-package__image img:not(.active) {
+      display: none;
+    }
+    .lav-package__image img {
+      max-width: 100%;
+      height: auto;
+    }
     .lav-package.active {
       color: #fff;
       background: #EF3D6F;
@@ -227,6 +249,7 @@
     }
     .lav-package__right {
       text-align: right;
+      margin-left: auto;
     }
     .lav-package__packs {
       font-family: "DINEngschrift LT";
@@ -259,6 +282,7 @@
       line-height: 28px;
       letter-spacing: 0.18px;
       transition: .25s;
+      margin-top: 2px;
     }
     .lav-package__price-old {
       color: #5D5D5D;
@@ -272,6 +296,7 @@
       transition: .25s;
     }
     .lav-package__per-patch {
+      display: none;
       color: #202020;
       font-family: Roboto;
       font-size: 12px;
@@ -289,7 +314,7 @@
     }
 
     .lav-plans {
-      margin-top: 22px;
+      margin-top: 20px;
     }
     .lav-plans__title {
       color: #000;
@@ -401,34 +426,40 @@
     }
 
     .lav-bundle__wrap {
-      display: none;
-      margin-top: 16px;
+      margin-top: 12px;
       text-align: left;
     }
     .lav-bundle__section-title {
-      color: #000;
-      font-family: Roboto;
-      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-family: "DINEngschrift LT";
+      font-size: 15px;
       font-style: normal;
-      font-weight: 600;
-      line-height: 23.8px;
-      letter-spacing: 0.6px;
+      font-weight: 400;
+      line-height: 15px;
+      letter-spacing: 1px;
       text-transform: uppercase;
+    }
+    .lav-bundle__section-title span {
+      border-radius: 4px 4px 0 0;
+      background: #EF3D6F;
+      padding: 3px 12px;
     }
     .lav-bundle {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-top: 22px;
+      gap: 10px;
       border-radius: 12px;
       border: 2px solid #FEA1C2;
       background: #FFF;
       box-shadow: 0 2px 4px 0 rgba(12, 11, 11, 0.10), 0 12px 32px 0 rgba(0, 0, 0, 0.05);
-      padding: 8px 14px;
+      padding: 8px 14px 8px 8px;
       transition: .25s;
       cursor: pointer;
-      color: #202020;
+      color: #000;
     }
     .lav-bundle.active {
       background: #EF3D6F;
@@ -446,10 +477,15 @@
       flex-shrink: 0;
     }
     .lav-bundle__image img {
-      width: 83px;
       max-width: 100%;
+      width: 50px;
+    }
+    .lav-bundle__image img:not(.active) {
+      display: none;
     }
     .lav-bundle__save {
+      // display: flex;
+      display: none;
       position: absolute;
       right: 10px;
       top: -2px;
@@ -464,7 +500,6 @@
       line-height: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      display: flex;
       align-items: center;
       justify-content: center;
       padding: 2px 10px;
@@ -485,12 +520,15 @@
       letter-spacing: 0;
       margin-top: 6px;
     }
+    .lav-bundle__includes--mob {
+      display: none;
+    }
     .lav-bundle__price {
       margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       text-align: right;
+    }
+    .lav-bundle__price--mob {
+      display: none;
     }
     .lav-bundle__price-value {
       color: #000;
@@ -538,6 +576,9 @@
       font-weight: 500;
       line-height: normal;
       letter-spacing: -0.25px;
+    }
+    .lav-subscr__benefit--mob {
+      display: none;
     }
     .lav-subscr__benefit svg {
       position: relative;
@@ -632,6 +673,9 @@
       font-weight: 500;
       line-height: 21px;
       letter-spacing: -0.25px;
+    }
+    .lav-upsell__title-price.active {
+      color: #EF3D6F;
     }
     .lav-upsell__tip {
       position: relative;
@@ -771,6 +815,12 @@
       }
     }
     @media(max-width: 768px) {
+      .lav-subscr__benefit--mob {
+        display: block;
+      }
+      .lav-subscr__benefit--desk {
+        display: none;
+      }
       body .lp-tr--purchase .content-container {
         margin-top: 0;
         background: #F7F7F4;
@@ -798,9 +848,28 @@
         margin-top: 32px;
       }
       .lav-package {
-        display: block;
-        padding: 8px 14px 2px;
-        text-align: center;
+        padding: 13px 12px 13px 6px;
+        gap: 8px;
+      }
+      .lav-package__row {
+        flex-flow: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .lav-package__left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .lav-package__right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: 0;
+      }
+      .lav-package__image {
+        width: 35px;
+        height: 48px;
       }
       .lav-package__save {
         display: none;
@@ -812,20 +881,28 @@
         max-width: 80px;
       }
       .lav-package__packs {
-        font-size: 22px;
+        font-size: 20px;
+        white-space: nowrap;
       }
       .lav-package__patches {
-        display: none;
+        font-size: 13px;
+        margin-top: 0;
+        margin-bottom: -4px;
       }
       .lav-package__prices {
         justify-content: center;
-        margin-top: 4px;
       }
       .lav-package__price-new {
         font-size: 16px;
+        margin-top: 0;
+        letter-spacing: 0;
+        line-height: 1;
       }
       .lav-package__price-old {
         font-size: 14px;
+        letter-spacing: 0;
+        line-height: 1;
+        margin-bottom: -4px;
       }
       .lav-package__per-patch {
         text-align: center;
@@ -843,10 +920,10 @@
         margin-top: 24px;
       }
       .lav-plans__list {
-        margin-top: 38px;
+        margin-top: 46px;
       }
       .lav-plan {
-        padding: 14px 8px;
+        padding: 13px 8px;
       }
       .lav-plan__title {
         font-size: 22px;
@@ -864,30 +941,47 @@
         padding: 4px 6px 14px;
       }
       .lav-bundle__image img {
-        width: 69px;
+        width: 37px;
       }
       .lav-bundle {
-        padding: 9px 10px;
-        gap: 8px;
+        padding: 11px 6px;
+        gap: 5px;
       }
       .lav-bundle__title {
-        font-size: 22px;
+        font-size: 20px;
       }
       .lav-bundle__includes {
-        font-size: 14px;
+        display: none;
+        font-size: 13px;
+        margin-top: 0;
+        text-align: right;
+      }
+      .lav-bundle__info {
+        white-space: nowrap;
+        margin-left: 3px;
+      }
+      .lav-bundle__includes--mob {
+        display: block;
+        align-self: start;
+        margin-top: 4px;
       }
       .lav-bundle__price {
-        flex-flow: column;
-        align-items: flex-end;
-        gap: 0;
+        display: none;
+        align-items: center;
+        margin-left: 0;
+        gap: 6px;
+      }
+      .lav-bundle__price--mob {
+        display: flex;
+        margin-top: 2px;
       }
       .lav-bundle__price-value {
-        font-size: 15px;
+        font-size: 16px;
+        letter-spacing: 0;
       }
       .lav-bundle__price-caption {
         font-size: 14px;
-        line-height: 24px;
-        letter-spacing: 0.14px;
+        letter-spacing: 0;
       }
       .lav-subscr__benefit {
         font-size: 14px;
@@ -962,6 +1056,8 @@
   async function initExp() {
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
+    await waitFor(() => typeof LPProductForm === 'object' && LPProductForm?.isInitialized && _$('#lptrPurchase') && _$("#pack3")?.dataset.tickPrice, false, { ms: 50 })
+
     document.body.appendChild(stylesEl)
 
     _$('#lptrPurchase').classList.remove('col-md-6')
@@ -974,8 +1070,8 @@
     
     addCategoryToggler();
     addPackages();
-    addChoosePlan();
     addBundle();
+    addChoosePlan();
     addUpsell()
     updatePrices();
 
@@ -999,12 +1095,34 @@
 
     _$('.lav-section').insertAdjacentHTML('beforeend', markup)
 
+    const slideElDesk = _$('#purchaseSlide.lp-tr--desktop .slide-1 .card-box img');
+    const slideElMob = _$('#purchaseSlide.lp-tr--mobile .slide-1 .card-box img');
+    const slideElDogDeskSrc = slideElDesk.src; 
+    const slideElDogMobSrc = slideElMob.src;
+
+    const imgCat = new Image()
+    imgCat.src = config.dir + '/img/cat-slide.png';
+
+    const imgCatMob = new Image()
+    imgCatMob.src = config.dir + '/img/cat-slide-mob.png';
+
     _$('.lav-toggler__btn[data-category="dogs"]').addEventListener('click', (e) => {
       pushDataLayer('exp_pz_tab_click', 'For Dogs', 'click', 'Tab');
       if (e.target.classList.contains('active')) return;
 
       e.target.classList.add('active');
+      _$$('.lav-package__image-dog').forEach(img => img.classList.add('active'));
+      _$$('.lav-package__image-cat').forEach(img => img.classList.remove('active'));
+      _$$('.lav-bundle__image-dog').forEach(img => img.classList.add('active'));
+      _$$('.lav-bundle__image-cat').forEach(img => img.classList.remove('active'));
       _$('.lav-toggler__btn[data-category="cats"]').classList.remove('active');
+
+      if (!slideElDesk.src.includes(slideElDogDeskSrc)) {
+        slideElDesk.src = slideElDogDeskSrc;
+      }
+      if (!slideElMob.src.includes(slideElDogMobSrc)) {
+        slideElMob.src = slideElDogMobSrc;
+      }
     });
 
     _$('.lav-toggler__btn[data-category="cats"]').addEventListener('click', (e) => {
@@ -1012,7 +1130,18 @@
       if (e.target.classList.contains('active')) return;
 
       e.target.classList.add('active');
+      _$$('.lav-package__image-dog').forEach(img => img.classList.remove('active'));
+      _$$('.lav-package__image-cat').forEach(img => img.classList.add('active'));
+      _$$('.lav-bundle__image-dog').forEach(img => img.classList.remove('active'));
+      _$$('.lav-bundle__image-cat').forEach(img => img.classList.add('active'));
       _$('.lav-toggler__btn[data-category="dogs"]').classList.remove('active');
+
+      if (!slideElDesk.src.includes('cat-slide')) {
+        slideElDesk.src = config.dir + '/img/cat-slide.png';
+      }
+      if (!slideElMob.src.includes('cat-slide')) {
+        slideElMob.src = config.dir + '/img/cat-slide-mob.png';
+      }
     });
   }
 
@@ -1116,6 +1245,7 @@
       const newPack = addPackage(pack)
       newPack.addEventListener('click', () => {
         pushDataLayer('exp_pz_pack_click', newPack.querySelector('.lav-package__packs').innerText.trim(), 'click', _$('.lav-toggler__btn.active').textContent.trim());
+        _$('.lav-bundle.active')?.classList.remove('active');
         if (newPack.classList.contains('active')) return;
         _$('.lav-packages__list .lav-package.active')?.classList.remove('active');
         newPack.classList.add('active');
@@ -1151,21 +1281,27 @@
       packEl.dataset.subscriptionPerPatch = subscriptionPerPatch;
 
       packEl.innerHTML = /* html */ `
-        <div class="lav-package__left">
-          <div class="lav-package__packs">
-            ${countPack} pack${countPack > 1 ? 's' : ''}
-          </div>
-          <div class="lav-package__patches">
-            ${patchesCount} patches
-          </div>
+        <div class="lav-package__image">
+          <img class='lav-package__image-dog active' src="${config.dir}/img/dog-${countPack}.png" alt="${countPack} packs" />
+          <img class='lav-package__image-cat' src="${config.dir}/img/cat-${countPack}.png" alt="${countPack} packs" />
         </div>
-        <div class="lav-package__right">
-          <div class="lav-package__prices">
-            <div class="lav-package__price-new">${subscriptionPrice}</div>
-            <div class="lav-package__price-old">${oldPrice}</div>
+        <div class="lav-package__row">
+          <div class="lav-package__left">
+            <div class="lav-package__packs">
+              ${countPack} pack${countPack > 1 ? 's' : ''}
+            </div>
+            <div class="lav-package__patches">
+              ${patchesCount} patches
+            </div>
           </div>
-          <div class="lav-package__per-patch">
-            <span>${packEl.dataset.subscriptionPerPatch}</span> / patch
+          <div class="lav-package__right">
+            <div class="lav-package__prices">
+              <div class="lav-package__price-new">${subscriptionPrice}</div>
+            </div>
+            <div class="lav-package__price-old">${oldPrice}</div>
+            <div class="lav-package__per-patch">
+              <span>${packEl.dataset.subscriptionPerPatch}</span> / patch
+            </div>
           </div>
         </div>
       `;
@@ -1186,29 +1322,45 @@
     const price = _$('.packs.bundle-and-save').querySelector('[name="price"]').dataset.tickPrice
     const eachPrice = _$('.lp-tr--purchase .packs.bundle-and-save .lp-tr--pack-price').innerText.trim().toLowerCase().replace(' each item', '');
     const saveProcent = _$('.packs.bundle-and-save [name="price"]').dataset.percentOff;
-    const regularPrice = _$('.packs.bundle-and-save [name="price"]').dataset.comparePrice;
+    const oldPrice = _$('.packs.bundle-and-save [name="price"]').dataset.comparePrice;
+
+    const subscriptionRawPrice = normalizePrice(price) - normalizePrice(price) * 0.15;
+    const subscriptionPrice = normalizePrice(subscriptionRawPrice, true); 
+    const subscriptionPriceEach = normalizePrice(subscriptionRawPrice/4, true);
+    
     
     const markup = /* html */ `
       <div class="lav-bundle__wrap">
-        <div class="lav-bundle__section-title">Bundle & Save</div>
+        <div class="lav-bundle__section-title">
+          <span>Bundle & Save</span>
+        </div>
 
-        <div class="lav-bundle" data-price="${price}" data-each-price="${eachPrice}" data-save-procent="${saveProcent}" data-regular-price="${regularPrice}">
+        <div class="lav-bundle" data-subscription-price="${subscriptionPrice}" data-subscription-each-price="${subscriptionPriceEach}" data-price="${price}" data-each-price="${eachPrice}" data-save-procent="${saveProcent}" data-old-price="${oldPrice}">
           <div class='lav-bundle__save'>${saveProcent}% Off</div>
           <div class="lav-bundle__image">
-            <img src="https://www.natpat.com/cdn/shop/files/lp-pet-zen--bundle-save.png?v=15492836892742779719">
+            <img class='lav-bundle__image-dog active' src="${config.dir}/img/bundle-dog.png" alt="Bundle & Save dog" />
+            <img class='lav-bundle__image-cat' src="${config.dir}/img/bundle-cat.png" alt="Bundle & Save cat" />
           </div>
 
           <div class="lav-bundle__info">
             <div class="lav-bundle__title">Pet Zen Starter Pack</div>
-            <div class="lav-bundle__includes">
-              + Pet Locket <br/>
-              + 3 Packs of Pet Zen Vapor Stickers
+            <div class="lav-bundle__includes lav-bundle__includes--desk">
+              3 Packs of Pet Zen Vapor Stickers +&nbsp;Pet&nbsp;Locket 
+            </div>
+
+            <div class="lav-bundle__price lav-bundle__price--mob">
+              <div class="lav-bundle__price-value">${subscriptionPriceEach}</div>
+              <div class="lav-bundle__price-caption">/ Each Item</div>
             </div>
           </div>
 
-          <div class="lav-bundle__price">
-            <div class="lav-bundle__price-value">${eachPrice}</div>
+          <div class="lav-bundle__price lav-bundle__price--desk">
+            <div class="lav-bundle__price-value">${subscriptionPriceEach}</div>
             <div class="lav-bundle__price-caption">/ Each Item</div>
+          </div>
+
+          <div class="lav-bundle__includes lav-bundle__includes--mob">
+            3 Packs of Pet Zen Vapor Stickers +&nbsp;Pet&nbsp;Locket 
           </div>
         </div>
       </div>
@@ -1263,7 +1415,8 @@
 
       <div class="lav-subscr active">
         <div class="lav-subscr__benefits">
-          <div class="lav-subscr__benefit">${getSvg('pinkCheck')} Save Extra 15% Off on This and Future Orders</div>
+          <div class="lav-subscr__benefit lav-subscr__benefit--desk">${getSvg('pinkCheck')} Save 15% on This Order and All Future Deliveries</div>
+          <div class="lav-subscr__benefit lav-subscr__benefit--mob">${getSvg('pinkCheck')} Save Extra 15% Off on This and Future Orders</div>
           <div class="lav-subscr__benefit">${getSvg('pinkCheck')} Pause, Skip, or Cancel Anytime</div>
           <div class="lav-subscr__benefit">${getSvg('pinkCheck')} 5-Day Renewal Reminder</div>
         </div>
@@ -1333,15 +1486,15 @@
         if (selectedPlan === 'one-time') {
           pushDataLayer('exp_pz_purchase_plan_click', 'One-time purchase', 'click', activeTogglerText, activePacksText);
           $('.lav-subscr').slideUp().removeClass('active');
-          $('.lav-bundle__wrap').slideDown().addClass('active');
+          // $('.lav-bundle__wrap').slideDown().addClass('active');
         } else {
           pushDataLayer('exp_pz_purchase_plan_click', 'Subscribe & Save', 'click', activeTogglerText, activePacksText);
           $('.lav-subscr').slideDown().addClass('active');
-          $('.lav-bundle__wrap').slideUp().removeClass('active');
-          if (_$('.lav-bundle.active')) {
-            _$('.lav-packages__list .lav-package')?.classList.add('active');
-            _$('.lav-bundle').classList.remove('active');
-          }
+          // $('.lav-bundle__wrap').slideUp().removeClass('active');
+          // if (_$('.lav-bundle.active')) {
+          //   _$('.lav-packages__list .lav-package')?.classList.add('active');
+          //   _$('.lav-bundle').classList.remove('active');
+          // }
         }
 
         _$('.lav-plan.active')?.classList.remove('active');
@@ -1354,6 +1507,8 @@
 
   function normalizePrice(priceString, isGetMoney = false) {
     if (!priceString) return null;
+
+    // console.log('Normalizing price:', priceString, `(isGetMoney: ${isGetMoney})`)
 
     if (typeof priceString === 'number') {
       priceString = priceString.toFixed(2);
@@ -1386,19 +1541,22 @@
   }
 
   function updatePrices() {
-    const oneTimePrice = _$('.lav-package.active')?.dataset.price || _$('.lav-bundle.active')?.dataset.price;
+    const isLocketSubscr = _$('.lav-upsell__subscr.active') && _$('.lav-upsell__subscr-btn.active')?.dataset.subscription === 'true';
+    const targetPackage = _$('.lav-package.active') || _$('.lav-bundle.active');
+    const oneTimePrice = targetPackage?.dataset.price;
+    const subscriptionPrice = targetPackage?.dataset.subscriptionPrice;
+    const oldPrice = targetPackage?.dataset.oldPrice;
 
     _$('[data-plan="one-time"] .lav-plan__price-new').textContent = oneTimePrice;
+    _$('[data-plan="subscription"] .lav-plan__price-old').textContent = oneTimePrice;
+    _$('[data-plan="subscription"] .lav-plan__price-new').textContent = subscriptionPrice;
 
-    if (_$('.lav-bundle.active')) {
-      const threePackPrice = _$('.lav-package[data-pack="3"]').dataset.price;
-      const threePackSubscriptionPrice = _$('.lav-package[data-pack="3"]').dataset.subscriptionPrice;
-      _$('[data-plan="subscription"] .lav-plan__price-old').textContent = threePackPrice;
-      _$('[data-plan="subscription"] .lav-plan__price-new').textContent = threePackSubscriptionPrice;
+    if (!isLocketSubscr) {
+      _$(".lav-upsell__title-price").classList.remove('active');
+      _$(".lav-upsell__title-price").textContent = _$('.lav-upsell').dataset.price;
     } else {
-      const subscriptionPrice = _$('.lav-package.active')?.dataset.subscriptionPrice;
-      _$('[data-plan="subscription"] .lav-plan__price-old').textContent = oneTimePrice;
-      _$('[data-plan="subscription"] .lav-plan__price-new').textContent = subscriptionPrice;
+      _$(".lav-upsell__title-price").classList.add('active');
+      _$(".lav-upsell__title-price").textContent = _$('.lav-upsell').dataset.subscribedPrice;
     }
 
     const isSubscription = _$('.lav-plan.active')?.dataset.plan === 'subscription';
@@ -1413,6 +1571,12 @@
       packageEl.querySelector('.lav-package__per-patch span').textContent = perPatch;
     })
 
+    _$$('.lav-bundle__price-value').forEach(priceEl => {
+      const price = isSubscription ? _$('.lav-bundle').dataset.subscriptionEachPrice : _$('.lav-bundle').dataset.eachPrice;
+
+      priceEl.textContent = price;
+    })
+
     let regularPrice = 0;
     let totalPrice = 0
     console.log('** Price calculation: **')
@@ -1420,23 +1584,18 @@
     const locketCount = parseInt(_$('.lav-upsell__counter-value').textContent);
     if (locketCount > 0) {
       const locketsPrice = normalizePrice(_$('.lav-upsell').dataset.price) * locketCount;
-      console.log('----- Lockets:', locketsPrice)
-      totalPrice += locketsPrice;
+      const actualLocketPrice = normalizePrice(isLocketSubscr ? _$('.lav-upsell').dataset.subscribedPrice : _$('.lav-upsell').dataset.price) * locketCount;
+
+      console.log('----- Lockets:', locketsPrice, actualLocketPrice, `(count: ${locketCount}, subscribed: ${isLocketSubscr})`)
+
+      totalPrice += actualLocketPrice;
       regularPrice += locketsPrice;
     }
 
-    if (_$('.lav-bundle.active')) {
-      const el = _$('.lav-bundle.active');
-      totalPrice += normalizePrice(el.dataset.price);
-      regularPrice += normalizePrice(el.dataset.regularPrice);
-      console.log('----- Bundle:', el.dataset.price, el.dataset.regularPrice)
-    } else {
-      const isSubscription = _$('.lav-plan.active')?.dataset.plan === 'subscription';
-      const packagePrice = isSubscription ? _$('.lav-package.active')?.dataset.subscriptionPrice : _$('.lav-package.active')?.dataset.price;
-      console.log('----- PackagePrice:', normalizePrice(packagePrice), normalizePrice(_$('.lav-package.active')?.dataset.oldPrice))
-      totalPrice += normalizePrice(packagePrice);
-      regularPrice += normalizePrice(_$('.lav-package.active')?.dataset.oldPrice);
-    }
+    const packagePrice = isSubscription ? subscriptionPrice : oneTimePrice;
+    totalPrice += normalizePrice(packagePrice);
+    regularPrice += normalizePrice(oldPrice);
+    console.log(`----- ${_$('.lav-bundle.active') ? 'Bundle' : 'Package'} Price:`, normalizePrice(packagePrice), normalizePrice(oldPrice))
 
     let savePrice = regularPrice - totalPrice;
     const saveProcent = regularPrice > 0 ? Math.round((savePrice / regularPrice) * 100) : 0;
@@ -1457,17 +1616,20 @@
   }
 
   function addUpsell() {
-    const price = LPProductForm.formatMoney(_$('#petlocket').dataset.price);
+    const rawPrice = _$('#petlocket').dataset.price;
+    const price = normalizePrice(rawPrice, true);
+    const normalizedPrice = normalizePrice(rawPrice);
+    const subscribedPrice = normalizePrice(normalizedPrice - (normalizedPrice * 0.15), true);
 
     const markup = /* html */ `
-      <div class="lav-upsell" data-price="${price}">
+      <div class="lav-upsell" data-price="${price}" data-subscribed-price="${subscribedPrice}">
         <div class="lav-upsell__row">
           <div class="lav-upsell__image">
             <img src="${config.dir}/img/locket.png">
           </div>
           <div class="lav-upsell__info">
             <div class="lav-upsell__title">
-              Add a Pet Locket for ${price}
+              <div>Add a Pet Locket for <span class="lav-upsell__title-price active">${subscribedPrice}</span></div>
               <div class="lav-upsell__tip">
                 ${getSvg('tipIcon')}
                 <div class="lav-upsell__tip-body">
@@ -1619,6 +1781,9 @@
     if (isBundle) {
       formData.append(`items[${counter}][id]`, productConfig.bundle);
       formData.append(`items[${counter}][quantity]`, 1);
+      if (isSubscription) {
+        formData.append(`items[${counter}][selling_plan]`, subscriptionId);
+      }
       counter++;
     } else {
       const activePack = _$('.lav-packages__list .lav-package.active');
