@@ -56,6 +56,28 @@
   max-width: 100%;
   margin-top: 30px!important;
 }
+.parent-variant:not(.lav-parent-handled) {
+  position: relative;
+}
+.parent-variant:not(.lav-parent-handled) > * {
+  opacity: 0!important;
+}
+.parent-variant:not(.lav-parent-handled):before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #121212;
+  animation: lav-spin 0.7s linear infinite;
+}
+@keyframes lav-spin {
+  to { transform: translateX(-50%) rotate(360deg); }
+}
 .customProductImage .icons_box {
   padding-bottom: 10px;
 }
@@ -421,7 +443,7 @@
   line-height: 12px;
   font-size: 10px!important;
   width: 100%;
-  padding: 10px 8px!important;
+  padding: 10px 22px!important;
 }
 .cac .product__info-wrapper .product-form__input--dropdown + .product-form__input--dropdown {
   margin-top: 20px!important;
@@ -726,8 +748,8 @@
   font-weight: 600;
   line-height: 12px;
   letter-spacing: 0.6px;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 22px;
+  padding-right: 22px;
   height: 100%;
   min-height: 44px;
   border-color: #000;
@@ -872,10 +894,10 @@ ul.owlCustomCarousel {
   // line-height: 11px;
   // letter-spacing: 0.4px;
 }
-#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"], #MainContent:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"] {
+#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"], body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"] {
   margin-bottom: 35px;
 }
-#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after, #MainContent:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
+#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after, body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
   content: '+Stone Color Choice Available';
   max-width: 90px;
   position: absolute;
@@ -893,7 +915,7 @@ ul.owlCustomCarousel {
   line-height: 11px;
   letter-spacing: 0.6px;
 }
-#MainContent:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
+body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
   content: '+Stone Color Available';
 }
 .parent-variant .select ul.lav-material {
@@ -1089,6 +1111,9 @@ ul.owlCustomCarousel {
   font-weight: 800;
 }
 @media(min-width: 768px) {
+  .parent-variant .select .lav-material li a {
+    padding: 10px 26px!important;
+  }
   .lav-measure-container .lav-measure {
     display: none;
   }
@@ -1167,6 +1192,7 @@ ul.owlCustomCarousel {
     if (isDisable) {
       await waitFor('#MainContent', () => {
         _$("#MainContent").classList.add('lav-no-color-option')
+        document.body.classList.add('lav-no-color-option');
       })
     }
 
@@ -1283,6 +1309,9 @@ ul.owlCustomCarousel {
     updateSizeAndLength()
     updateMaterial()
     addLabelHandler()
+    setTimeout(() => {
+      _$('.parent-variant')?.classList.add('lav-parent-handled');
+    }, 150);
   }
 
   async function hideExpText() {
@@ -1577,6 +1606,7 @@ ul.owlCustomCarousel {
     if (isDisable) {
       await waitFor('#MainContent', () => {
         _$("#MainContent").classList.add('lav-no-color-option')
+        document.body.classList.add('lav-no-color-option');
       })
       return
     }
