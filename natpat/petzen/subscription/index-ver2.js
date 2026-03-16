@@ -868,8 +868,8 @@
         margin-left: 0;
       }
       .lav-package__image {
-        width: 35px;
-        height: 48px;
+        width: 37px;
+        height: 52px;
       }
       .lav-package__save {
         display: none;
