@@ -1754,7 +1754,10 @@
         3: '44853443788844',
         4: '44853443821612'
       },
-      bundle: '43842554855468',
+      bundle: {
+        dog: '43842554855468',
+        cat: '45389241712684'
+      },
       locket: '43558182027308'
     }
 
@@ -1779,7 +1782,8 @@
     }
 
     if (isBundle) {
-      formData.append(`items[${counter}][id]`, productConfig.bundle);
+      const bundleType = _$('.lav-toggler__btn[data-category="dogs"]').classList.contains('active') ? 'dog' : 'cat';
+      formData.append(`items[${counter}][id]`, productConfig.bundle[bundleType]);
       formData.append(`items[${counter}][quantity]`, 1);
       if (isSubscription) {
         formData.append(`items[${counter}][selling_plan]`, subscriptionId);
