@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/natpat/petzen/subscription',
     dir: 'https://flopsi69.github.io/crs/natpat/petzen/subscription',
     clarity: ['set', 'exp_pz_sub_and_save', 'variant_1'],
-    debug: true
+    debug: false
   }
 
   // const orig = console.log
