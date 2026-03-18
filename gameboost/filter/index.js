@@ -335,9 +335,9 @@
   async function initExp() {
     startClarity();
 
-    if (_$('.lav-filter__list') || _$('.lav-head')) return;
-
     await waitFor(() => document.head && document.body, false, { ms: 20 })
+
+    if (_$('.lav-filter__list') || _$('.lav-head')) return;
 
     if (!_$('.exp-filter-v1-styles')) {
       document.head.appendChild(stylesEl)
