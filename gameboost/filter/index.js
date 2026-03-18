@@ -320,7 +320,8 @@
     ]
 
     function urlChangeHandler() {
-      if (!urlsTarget.some(url => location.pathname.startsWith(url))) return;
+      if (!urlsTarget.includes(location.pathname)) return
+      // if (!urlsTarget.some(url => location.pathname.startsWith(url))) return;
       initExp()
     }
 
@@ -491,6 +492,7 @@
 
   async function addVerticalFilters() {
     await waitFor(() => _$('.col-span-1 > div > .min-w-0 > div') && _$('.mt-6 .gap-2.justify-start>[type="button"]'), false, { ms: 20 })
+    console.log('addVerticalFilters')
     const listWrapEl = _$('.col-span-1 > div > .min-w-0 > div');
     listWrapEl.classList.add('lav-list__wrap');
     _$(".flex.flex-wrap", listWrapEl).classList.add('lav-listing');
