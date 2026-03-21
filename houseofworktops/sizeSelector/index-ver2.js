@@ -502,11 +502,13 @@
       font-size: 16px!important;
     }
     .added-modal-accessories .variants-container .content-block .price-display {
-      color: #D89654;
       font-size: 16px!important;
       font-weight: 500!important;
       line-height: 24px;
       order: -1;
+    }
+    .added-modal-accessories .variants-container .content-block .og-price-display:not([style*="display: none"]) + .price-display {
+      color: #D89654;
     }
     .added-modal-accessories .variants-container .content-block .col-5 {
       gap: 11px;
@@ -601,7 +603,6 @@
     .added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display {
       font-weight: 500;
       line-height: 24px;
-      display: block!important;
       font-size: 18px!important;
       color: #212529!important;
       margin-right: 0!important;
@@ -724,10 +725,12 @@
       gap: 11px;
     }
     .lav-upsell__price-new {
-      color: #D89654;
       font-size: 16px;
       font-weight: 500;
       line-height: 1.5;
+    }
+    .lav-upsell__price-new:not(.lav-upsell__price-new--default) {
+      color: #D89654;
     }
     .lav-upsell__price-old {
       color: #212529;
@@ -1116,6 +1119,10 @@
       line-height: 24px;
       text-decoration-line: line-through;
       margin-left: 6px;
+      display: none;
+    }
+    .lavm-footer__old--active {
+      display: inline-block;
     }
     .lavm-footer > .mb-3 .cart-total.lavm-footer__total--active {
       color: #D89654;
@@ -1541,7 +1548,7 @@
 
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
 
-    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
+    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to Cart';
 
     _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
       pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
@@ -1837,16 +1844,23 @@
 
       parentEl.classList.add('lavm-footer')
       const totalEl = _$('.lavm-footer > .mb-3 .cart-total'); 
-      totalEl.insertAdjacentHTML('afterend', /* html */ `<span class='lavm-footer__old' style="display: none;">0</span>`);
+      totalEl.insertAdjacentHTML('afterend', /* html */ `<span class='lavm-footer__old'>0</span>`);
+
+      const oldPriceEl = _$('.lavm-footer__old', parentEl);
 
       const observer = new MutationObserver((mutationsList, observer) => {
         if (totalEl.innerText.includes('£0')) {
           totalEl.classList.remove('lavm-footer__total--active');
-          totalEl.nextElementSibling.style.display = 'none';
+          oldPriceEl.classList.remove('lavm-footer__old--active');
         } else {
-          totalEl.classList.add('lavm-footer__total--active');
-          totalEl.nextElementSibling.innerText = _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText;
-          totalEl.nextElementSibling.style.display = '';
+          oldPriceEl.innerText = _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText;
+          if (_$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display')?.style.display === 'none') {
+            oldPriceEl.classList.remove('lavm-footer__old--active');
+            totalEl.classList.remove('lavm-footer__total--active');
+          } else {
+            oldPriceEl.classList.add('lavm-footer__old--active');
+            totalEl.classList.add('lavm-footer__total--active');
+          }
         }
         // console.log('Footer mutation observed', totalEl.innerText, mutationsList);
       });
@@ -1884,6 +1898,7 @@
       }
       const priceNew = row.querySelector('.worktop-price .price-new')?.textContent.trim() || '';
       const priceOld = row.querySelector('.worktop-price .price-old')?.textContent.trim() || '';
+      const priceDefault = row.querySelector('.worktop-price .h6.text-gray-900')?.textContent.trim() || '';
       const quantity = row.querySelector('.quantity-field')?.value.trim() || '0';
 
       const upsellEl = document.createElement('div');
@@ -1911,7 +1926,7 @@
         </div>
         <div class="lav-upsell__summary">
           <div class="lav-upsell__price">
-            <div class="lav-upsell__price-new">${priceNew}</div>
+            <div class="lav-upsell__price-new ${!priceNew ? 'lav-upsell__price-new--default' : ''}">${priceNew || priceDefault}</div>
             <div class="lav-upsell__price-old">${priceOld}</div>
           </div>
           <div class="lav-upsell__add">Add</div>
