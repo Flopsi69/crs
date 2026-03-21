@@ -2013,7 +2013,8 @@
         const savedConfig = {
           price: _$('.added-modal-accessories .subtotal-bottom .row-subtotal .total-text-display')?.innerText.trim() || '',
           oldPrice: _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display')?.innerText.trim() || '',
-          products: _$('.added-modal-accessories .variants-container').innerHTML
+          products: _$('.added-modal-accessories .variants-container').innerHTML,
+          isOldActive: _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display')?.style.display !== 'none'
         }
 
         _$('.added-modal-accessories .variants-container').dataset.added = _$$('.added-modal-accessories .variants-container>div').length
@@ -2099,6 +2100,10 @@
       _$('.added-modal-accessories .subtotal-bottom .row-subtotal .total-text-display').innerText = formatPrice(currentPrice, true);
 
       _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText = formatPrice(currentOldPrice, true);
+
+      if (savedConfig.isOldActive && !_$('.lav-upsell-accessory')) {
+        _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').style.display = 'block';
+      }
     }
   }
 
