@@ -1740,7 +1740,7 @@
   async function addSticky() {
     await waitFor('.select-size-mobile', false, { ms: 20 }) 
 
-    const text = 'Choose Size';
+    const text = 'Choose Your Size';
 
     const markup = /* html */ `
       <div class="lav-sticky">
