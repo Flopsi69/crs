@@ -862,11 +862,18 @@
     }
     .lavm-header__close-desk {
       position: absolute;
+      pointer-events: auto;
       z-index: 99999999999999;
       cursor: pointer;
       padding: 6px;
       right: -60px;
       top: 0;
+      transition: .3s;
+    }
+    @media(hover:hover) {
+      .lavm-header__close-desk:hover {
+        opacity: .85;
+      }
     }
     .lavm-header__close-desk svg {
       width: 24px;
@@ -1751,6 +1758,7 @@
     _$('body').insertAdjacentHTML('beforeend', markup);
 
     _$('.lav-sticky').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_fixed_cta', 'Choose Your Size', 'click', 'Fixed block');
       _$('#select-size').click();
       // if (_$('.lav-size.active')) {
       //   addToCart();
@@ -1799,6 +1807,11 @@
           </svg>
         </div>
       `);
+
+      _$('.lavm-header__close-desk').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_size_modal_close', 'Close', 'click', 'Size Modal');
+        _$('.lavm-footer > .d-flex .btn.cancel').click();
+      });
       
       const parentEl = _$('#select-size-model .modal-content > .d-flex')
 
