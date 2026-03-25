@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/sizeSelector',
-    clarity: ['set', 'pdp_exp', 'variant_1'],
+    clarity: ['set', 'pdp_exp_size_modal', 'variant_1'],
     debug: false,
     atcConfig: {
       price: '',
