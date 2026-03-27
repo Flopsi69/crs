@@ -1399,7 +1399,7 @@
         align-self: flex-start !important;
       }
       #product-options-modal .worktop-price {
-        width: 39%;
+        width: 40%;
       }
       #product-options-modal .product-option-name .h6 {
         font-size: 16px!important;
