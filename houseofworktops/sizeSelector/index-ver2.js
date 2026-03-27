@@ -25,20 +25,13 @@
     '/cloudy-cement-compact-laminate',
     '/carrera-marble-compact-',
     '/carrara-solid-surface',
-    // '/wooden-worktops/oak-worktop',
     '/oak-worktop',
-    
-    // '/wooden-worktops/walnut-worktop',
     '/walnut-worktop',
-    
-    // '/wooden-worktops/prime-oak-worktop',
     '/prime-oak-worktop',
-    
     '/full-stave-deluxe-oak-worktop',
     '/full-stave-deluxe-rustic-oak-worktop',
     '/prime-beech-worktop',
     '/iroko-worktop',
-    // '/wooden-worktops/black-oak-worktop'
     '/black-oak-worktop'
   ]
 
@@ -1402,8 +1395,11 @@
         display: none;
       }
       #product-options-modal .product-option-name {
-        max-width: 55%;
+        max-width: 53%;
         align-self: flex-start !important;
+      }
+      #product-options-modal .worktop-price {
+        width: 39%;
       }
       #product-options-modal .product-option-name .h6 {
         font-size: 16px!important;
