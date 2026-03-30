@@ -5,10 +5,10 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/blog',
     dir: 'https://flopsi69.github.io/crs/gameboost/blog',
-    clarity: ['set', '', 'variant_1'],
+    clarity: ['set', 'exp_blog', 'variant_1'],
     isClarityStarted: false,
     gameFallback: null,
-    debug: true
+    debug: false
   }
 
   const productsCache = {}
@@ -782,6 +782,10 @@
 
     parentEl.insertAdjacentHTML('afterbegin', markup)
 
+    visibilityEvent(_$('.lav-sidebar__head'), () => {
+      pushDataLayer('exp_blog_1_banner_view', 'Side Banner/Carousel', 'view', config.game.url);
+    })
+
     let isInstant = true;
 
     config.items.forEach(item => {
@@ -808,6 +812,7 @@
     }
 
     _$(".lav-sidebar__btn").addEventListener('click', () => {
+      pushDataLayer('exp_blog_1_banner_show_more', config.game.url, 'click', config.game.url);
       location.href = config.game.url
     });
   }
@@ -819,8 +824,8 @@
     if (!config?.items?.length) return
 
     if (!isPassive) {
-      el.style.opacity = 0.5;
-      // el.style.display = 'none';
+      // el.style.opacity = 0.5;
+      el.style.display = 'none';
     }
 
     const bannerEl = document.createElement('div')
@@ -865,6 +870,10 @@
     `
 
     el.insertAdjacentElement('afterend', bannerEl)
+
+    visibilityEvent(bannerEl, () => {
+      pushDataLayer('exp_blog_2_banner_view', 'In-text Banner', 'view', config.game.url);
+    })
 
     let isInstant = true;
 
@@ -922,6 +931,7 @@
     splide.mount();
 
     _$(".lav-banner__btn", bannerEl).addEventListener('click', () => {
+      pushDataLayer('exp_blog_2_banner_show_more', config.game.url, 'click', config.game.url);
       location.href = config.game.url
     });
   }
@@ -988,6 +998,8 @@
     el.addEventListener('click', (e) => {
       e.preventDefault();
       const url = window.location.origin + gameUrl + '/' + data.slug
+      const num = location === 'banner' ? 2 : 1
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
       window.location.href = url
     });
     
@@ -1047,6 +1059,8 @@
     el.addEventListener('click', (e) => {
       e.preventDefault();
       const url = window.location.origin + gameUrl + '/' + data.slug
+      const num = location === 'banner' ? 2 : 1
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
       window.location.href = url
     });
 
@@ -1082,6 +1096,8 @@
 
     el.addEventListener('click', (e) => {
       const url = window.location.origin + gameUrl + '/' + data.uuid
+      const num = location === 'banner' ? 2 : 1
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
       window.location.href = url
     });
 
@@ -1321,7 +1337,7 @@
               cb()
               observer.disconnect()
             }
-          }, 3000)
+          }, 1500)
         } else {
           clearTimeout(config.timer)
         }
