@@ -910,6 +910,7 @@
       perMove: 1,
       gap: '16px',
       pagination: false,
+      focus: 0,
       breakpoints: {
         1480: {
           perPage: 2.5,
