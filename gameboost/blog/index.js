@@ -652,7 +652,7 @@
     console.debug('** InitExp **')
 
     connectSplide()
-    await waitFor(() => _$('.col-span-1 > .sm\\:mt-6 > .flex') && !_$('.lav-banner--handled') && !_$('html.nprogress-busy'), () => {
+    await waitFor(() => _$('.col-span-1 > .sm\\:mt-6 > .flex') && !_$('.lav-banner--handled') && !_$('html.nprogress-busy') && typeof Splide === 'function', () => {
       console.log('handleLayout')
       handleLayout()
     }, { ms: 20 })
