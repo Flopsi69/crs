@@ -1114,7 +1114,7 @@
       return cachedData;
     }
 
-    const res = await fetch(`https://gameboost.com/${gameName}/${type}`, {
+    let res = await fetch(`https://gameboost.com/${gameName}/${type}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -1125,13 +1125,36 @@
       credentials: 'include'
     });
 
-    const data = await res.json();
+    let data = await res.json();
     let descr = '';
 
     window.testik = data
 
-    const model = data.props.model;
-    if (typeof model.custom_content === 'object' && !Array.isArray(model.custom_content)) {
+    let model = data.props?.model;
+    
+    // If no model, retry once after 1.5 seconds
+    if (!model) {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      res = await fetch(`https://gameboost.com/${gameName}/${type}`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'X-Inertia': 'true',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-Inertia-Version': '3df20cadddcb1d19c1c1acddc1335ef3',
+        },
+        credentials: 'include'
+      });
+      
+      data = await res.json();
+      window.testik = data;
+      model = data.props?.model;
+      
+      if (!model) return null;
+    }
+
+    if (typeof model?.custom_content === 'object' && !Array.isArray(model?.custom_content)) {
       const descrKey = Object.keys(model.custom_content).find(key => key.toLowerCase().includes('description'))
       descr = descrKey ? model.custom_content[descrKey] : '';
     } else {
