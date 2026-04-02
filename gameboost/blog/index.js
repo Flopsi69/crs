@@ -60,10 +60,6 @@
       line-height: normal;
       letter-spacing: -0.6px;
       max-width: 480px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
     .lav-banner__bage {
       margin-top: 8px;
