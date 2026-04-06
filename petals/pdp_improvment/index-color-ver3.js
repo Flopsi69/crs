@@ -1412,6 +1412,11 @@ body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-gr
   async function isDisableColorOption() {
     await waitFor(() => meta?.product?.id, false, { ms: 20 })
     const disableIds = [
+      8948283080878,
+      9014368403630,
+      8947854442670,
+      8947469779118,
+      8943637823662,
       7944519745710,
       7877448564910,
       7969783218350,
@@ -2137,7 +2142,9 @@ body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-gr
     ) || _$(
       'variant-selects [name="options[Pendant Material]"] + .jquery-grid-picker-widget'
     ) || _$(
-      'variant-selects [name="options[Finish]"] + .jquery-grid-picker-widget')
+      'variant-selects [name="options[Finish]"] + .jquery-grid-picker-widget') || _$(
+      'variant-selects [name="options[Material ]"] + .jquery-grid-picker-widget'
+    )
 
     if (!materialEl) return
 
