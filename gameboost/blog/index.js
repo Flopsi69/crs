@@ -70,7 +70,7 @@
       font-weight: 600;
       line-height: 24px;
       letter-spacing: -0.9px;
-      padding: 2px 6px;
+      padding: 2px 12px;
       background: #EBDA25;
       white-space: nowrap;
     }
@@ -482,7 +482,7 @@
       line-height: 15px;
       letter-spacing: -0.5px;
       display: inline-block;
-      padding: 3px 6px;
+      padding: 3px 12px;
       background: #EBDA25;
     }
     .lav-sidebar__title {
