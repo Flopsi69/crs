@@ -59,7 +59,7 @@
       font-weight: 600;
       line-height: normal;
       letter-spacing: -0.6px;
-      max-width: 480px;
+      // max-width: 480px;
     }
     .lav-banner__bage {
       margin-top: 8px;
@@ -490,7 +490,7 @@
       font-weight: 600;
       line-height: 32px;
       letter-spacing: -0.9px;
-      margin: 4px auto 0;
+      margin: 0 auto 0;
       // max-width: 214px;
     }
     .lav-sidebar__benefits {
@@ -575,6 +575,7 @@
       }
       .lav-banner__head {
         justify-content: center;
+        gap: 16px;
       }
       .lav-banner__carousel {
         margin-top: 24px;
@@ -748,8 +749,6 @@
         </div>
 
         <div class='lav-sidebar__info'>
-          <div class='lav-sidebar__bage'>Lowest price guarantee</div>
-
           <div class='lav-sidebar__title'>
             ${typeof config.game.descr === 'string' ? config.game.descr : config.game.descr.en}
           </div>
@@ -757,7 +756,7 @@
           <div class='lav-sidebar__benefits'>
             <div class='lav-sidebar__benefit lav-sidebar__benefit--instant'>
               ${getSvg('instant-delivery')}
-              <span>Nearly Instant <br/> Delivery</span>
+              <span>Instant <br/> Delivery</span>
             </div>
             <div class='lav-sidebar__benefit lav-sidebar__benefit--warranty'>
               ${getSvg('warranty')}
@@ -782,7 +781,7 @@
       pushDataLayer('exp_blog_1_banner_view', 'Side Banner/Carousel', 'view', config.game.url);
     })
 
-    let isInstant = true;
+    let isInstant = type === 'accounts' ? true : false;
 
     config.items.forEach(item => {
       if (item.delivery_time?.format !== 'Instant') {
@@ -838,13 +837,12 @@
             <div class='lav-banner__title'>
               ${typeof config.game.descr === 'string' ? config.game.descr : config.game.descr.en}
             </div>
-            <div class='lav-banner__bage'>Lowest price guarantee</div>
           </div>
 
           <div class='lav-banner__benefits'>
             <div class='lav-banner__benefit lav-banner__benefit--instant'>
               ${getSvg('instant-delivery')}
-              <span>Nearly Instant <br/> Delivery</span>
+              <span>Instant <br/> Delivery</span>
             </div>
             <div class='lav-banner__benefit lav-banner__benefit--warranty'>
               ${getSvg('warranty')}
@@ -871,7 +869,7 @@
       pushDataLayer('exp_blog_2_banner_view', 'In-text Banner', 'view', config.game.url);
     })
 
-    let isInstant = true;
+    let isInstant = type === 'accounts' ? true : false;
 
     config.items.forEach(item => {
       if (item.delivery_time?.format !== 'Instant') {
