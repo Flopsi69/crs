@@ -59,7 +59,7 @@
       font-weight: 600;
       line-height: normal;
       letter-spacing: -0.6px;
-      // max-width: 480px;
+      max-width: 480px;
     }
     .lav-banner__bage {
       margin-top: 8px;
@@ -490,7 +490,7 @@
       font-weight: 600;
       line-height: 32px;
       letter-spacing: -0.9px;
-      margin: 0 auto 0;
+      margin: 4px auto 0;
       // max-width: 214px;
     }
     .lav-sidebar__benefits {
@@ -749,6 +749,8 @@
         </div>
 
         <div class='lav-sidebar__info'>
+          <div class='lav-sidebar__bage'>Best Price</div>
+
           <div class='lav-sidebar__title'>
             ${typeof config.game.descr === 'string' ? config.game.descr : config.game.descr.en}
           </div>
@@ -837,6 +839,8 @@
             <div class='lav-banner__title'>
               ${typeof config.game.descr === 'string' ? config.game.descr : config.game.descr.en}
             </div>
+
+            <div class='lav-banner__bage'>Best Price</div>
           </div>
 
           <div class='lav-banner__benefits'>
