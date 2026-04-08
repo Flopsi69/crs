@@ -627,7 +627,7 @@
         const allBannersFiltered = allBanners.filter(el => !el.classList.contains('lav-banner--handled'))
 
         const linkNodes = Array.from(_$('.ProseMirrorRender').childNodes).reverse();
-        const filterNodes = linkNodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A').reverse()
+        const filterNodes = linkNodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting')).reverse()
         
         if ((allBanners.length && allBannersFiltered.length) || (!allBanners.length && _$('.col-span-1 > .sm\\:mt-6 > .flex > .hidden') && filterNodes.length && !_$('.lav-sidebar'))) {
           urlChangeHandler();
@@ -700,7 +700,7 @@
     if (sidebarEl) {
       const nodes = Array.from(_$('.lav-content .ProseMirrorRender').childNodes).reverse();
 
-      const filterNodes = nodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A').reverse()
+      const filterNodes = nodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting')).reverse()
 
       if (!filterNodes.length) {
         if (config.gameFallback) {
