@@ -668,10 +668,9 @@
     parentInnerEl.classList.add('lav-inner')
 
     _$$('.lav-inner > div').forEach(el => {
-      if (el.classList.contains('hidden')) {
+      if (el.classList.contains('hidden') && !el.classList.contains('.max-w-4xl')) {
         el.classList.add('lav-sidebar')
-      }
-      if (el.classList.contains('max-w-4xl')) {
+      } else if (el.classList.contains('max-w-4xl') && el.classList.contains('flex-col')) {
         el.classList.add('lav-content')
       }
     })
