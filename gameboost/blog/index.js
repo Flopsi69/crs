@@ -23,6 +23,9 @@
     .lav-inner--sidebar {
       align-items: flex-start;
     }
+    .col-span-1 > .sm\\:mt-6 > .flex > .hidden > a {
+      display: none;
+    }
     .lav-inner:not(.lav-inner--flat) .max-w-4xl {
       max-width: 100%;
     }
