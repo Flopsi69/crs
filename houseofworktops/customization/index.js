@@ -4,9 +4,10 @@
   // Config for Experiment
   const config = {
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
-    dir: 'https://flopsi69.github.io/crs/houseofworktops/sizeSelector',
-    clarity: ['set', 'pdp_exp_size_modal', 'variant_1'],
+    dir: 'https://flopsi69.github.io/crs/houseofworktops/customization',
+    clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
     debug: true,
+    isDisableLayer: false,
     atcConfig: {
       price: '',
       oldPrice: '', 
@@ -1116,6 +1117,9 @@
 
     if (_$('#select-size')) {
       _$('#select-size').addEventListener('click', () => {
+        if (!config.isDisableLayer) {
+          pushDataLayer('exp_pdp_cta', _$('#select-size').innerText, 'click', 'Static');
+        }
         resetModalSizeSelectorModal();
       });
       updateSizeSelectorModal();
@@ -1147,7 +1151,10 @@
     `)
 
     _$('.lav-btn-accessories').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_cta', _$('.lav-btn-accessories').innerText, 'click', 'Static');
+      config.isDisableLayer = true;
       _$('#select-size').click();
+      config.isDisableLayer = false;
       resetModalSizeSelectorModal(true);
     });
   }
@@ -1279,6 +1286,7 @@
 
         _$$('.lavm-tab').forEach(tab => {
           tab.addEventListener('click', () => {
+            pushDataLayer('exp_pdp_ss_step', tab.querySelector('.lavm-tab-label').innerText.trim(), 'click', 'Custom Size Flow', _$('.lavm-tab.active .lavm-tab-label').innerText.trim());
             if (!tab.classList.contains('done')) return;
 
             const step = tab.dataset.step;
@@ -1333,6 +1341,7 @@
         `)
 
         _$('.lavm-banner-link').addEventListener('click', () => {
+          pushDataLayer('exp_pdp_ss_1_choose_exact_size', 'Choose your exact worktop size', 'click', 'Standard Size Flow');
           _$('.cancel[data-dismiss="modal"]')?.click();
           Modal.open('.lav-cutting');
         });
@@ -1357,6 +1366,7 @@
           newOption.dataset.value = option.dataset.filterValue
 
           newOption.addEventListener('click', () => {
+            pushDataLayer('exp_pdp_ss_filter_option', option.innerText.trim(), 'click', 'Standard Size Flow', type.charAt(0).toUpperCase() + type.slice(1));
             option.click();
 
             allOptions.forEach(opt => {
@@ -1434,6 +1444,9 @@
       `);
 
       _$('.lavm-btn-continue').addEventListener('click', (e) => {
+        const activeStep = _$('.lavm-tab.active .lavm-tab-label').innerText.trim();
+        pushDataLayer('exp_pdp_ss_cta', _$('.lavm-btn-continue').innerText.trim(), 'click', 'Standard Size Flow', activeStep);
+
         if (!_$('.select-size-row.selected')) {
           alert('Please select at least one worktop size to continue');
           return;
@@ -1451,6 +1464,7 @@
       });
 
       _$('.lavm-back').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_ss_2_back', 'Back', 'click', 'Standard Size Flow');
         moveToStep(1);
       })
 
@@ -1540,6 +1554,8 @@
 
       _$$('.lavm-oiling-card').forEach(card => {
         card.addEventListener('click', () => {
+          const text = _$('.lavm-oiling-title', card).innerText.trim();
+          pushDataLayer('exp_pdp_ss_2_oiling', text, 'click', 'Standard Size Flow');
           if (card.classList.contains('selected')) return;
 
           const option = card.dataset.option;
@@ -1901,13 +1917,18 @@
     }
 
     _$('.lav-sticky__size').addEventListener('click', () => {
-      // pushDataLayer('exp_pdp_fixed_cta', 'Choose Your Size', 'click', 'Fixed block');
+      pushDataLayer('exp_pdp_cta', _$('.lav-sticky__size .lav-sticky__text').innerText, 'click', 'Fixed');
+      config.isDisableLayer = true;
       _$('#select-size').click();
+      config.isDisableLayer = false;
     });
 
     _$('.lav-sticky__upsell')?.addEventListener('click', () => {
+      pushDataLayer('exp_pdp_cta', _$('.lav-sticky__upsell .lav-sticky__text').innerText, 'click', 'Fixed');
+      config.isDisableLayer = true;
       _$('#select-size').click();
       resetModalSizeSelectorModal(true);
+      config.isDisableLayer = false;
     });
     
     const observer = new MutationObserver((mutations, observer) => {
@@ -2403,7 +2424,7 @@
   }
 
   // GA 4 events
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  function pushDataLayer(name = '', desc = '', type = '', loc = '', loc2 = undefined) {
     window.dataLayer = window.dataLayer || []
 
     try {
@@ -2412,7 +2433,8 @@
         event_name: name,
         event_desc: desc,
         event_type: type,
-        event_loc: loc
+        event_loc: loc,
+        event_loc2: loc2
       }
 
       console.debug('** GA4 Event **', event)
@@ -2491,10 +2513,7 @@
 
     return svgObj[name]
   }
-})();
 
-// ===== ***** Customizator ***** ===== 
-(function () {
   const markup = /* html */ `
     <style>
       #worktop-customizer {
@@ -4952,33 +4971,35 @@
       container.querySelectorAll('.lawc-field-error-msg').forEach(el => el.remove());
 
       this.worktops.forEach(wt => {
-        var card = container.querySelector(`[data-id="${wt.id}"]`);
+        let card = container.querySelector(`[data-id="${wt.id}"]`);
         if (!card) return;
 
         // Get max dimensions for current thickness
-        var thicknessSelect = card.querySelector('select[data-field="thickness"]');
-        var currentThickness = thicknessSelect ? parseInt(thicknessSelect.value) : wt.thickness;
-        var thicknessKey = currentThickness + 'mm';
-        var maxDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
+        let thicknessSelect = card.querySelector('select[data-field="thickness"]');
+        let currentThickness = thicknessSelect ? parseInt(thicknessSelect.value) : wt.thickness;
+        let thicknessKey = currentThickness + 'mm';
+        let maxDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
 
         [['length', 'Length', 10, maxDims.max_length], ['width', 'Width', 10, maxDims.max_width]].forEach(([field, label, min, max]) => {
-          var input = card.querySelector(`input[data-field="${field}"]`);
-          var wrap = input.closest('.lawc-input-wrap');
-          var val = parseFloat(input.value);
-          var msg = '';
+          let input = card.querySelector(`input[data-field="${field}"]`);
+          let wrap = input.closest('.lawc-input-wrap');
+          let val = parseFloat(input.value);
+          let msg = '';
+          const icon = this.getSvg('field-error');
           if (!input.value || isNaN(val)) {
-            msg = `${this.getSvg('field-error')} Input worktop ${label} • Max ${max}mm`;
+            msg = `Input worktop ${label} • Max ${max}mm`;
           } else if (val < min) {
-            msg = `${this.getSvg('field-error')} ${label} must be at least ${min}mm`;
+            msg = `${label} must be at least ${min}mm`;
           } else if (val > max) {
-            // msg = `${this.getSvg('field-error')} ${label} must be at most ${max}mm`;
+            // msg = `${label} must be at most ${max}mm`;
             msg = `${this.getSvg('field-error')} Enter a value up to ${max}mm`;
           }
           if (msg) {
+            pushDataLayer('exp_pdp_cs_error_view', msg, 'view', 'Custom Size Flow', 'Choose worktop size');
             wrap.classList.add('lawc-field-error');
-            var err = document.createElement('div');
+            let err = document.createElement('div');
             err.className = 'lawc-field-error-msg';
-            err.innerHTML = msg;
+            err.innerHTML = icon + ' ' + msg;
             wrap.closest('.lawc-field').appendChild(err);
             if (!firstError) firstError = wrap;
             valid = false;
@@ -4986,28 +5007,31 @@
         });
 
         // Validate thickness select
-        var thicknessSelect = card.querySelector('select[data-field="thickness"]');
-        var thickness = parseInt(thicknessSelect.value);
+        // let thicknessSelect = card.querySelector('select[data-field="thickness"]');
+        let thickness = parseInt(thicknessSelect.value);
+        const icon = this.getSvg('field-error');
         if (!thickness) {
-          var thicknessWrap = thicknessSelect.closest('.lawc-select-wrap');
+          pushDataLayer('exp_pdp_cs_error_view', 'Thickness is required', 'view', 'Custom Size Flow', 'Choose worktop size');
+          let thicknessWrap = thicknessSelect.closest('.lawc-select-wrap');
           thicknessWrap.classList.add('lawc-field-error');
-          var err = document.createElement('div');
+          let err = document.createElement('div');
           err.className = 'lawc-field-error-msg';
-          err.innerHTML = `${this.getSvg('field-error')} Thickness is required`;
+          err.innerHTML = icon + ' Thickness is required';
           thicknessWrap.closest('.lawc-field').appendChild(err);
           if (!firstError) firstError = thicknessWrap;
           valid = false;
         }
 
         // Validate qty input
-        var qtyInput = card.querySelector('.lawc-qty-input');
-        var qty = parseInt(qtyInput.value);
+        let qtyInput = card.querySelector('.lawc-qty-input');
+        let qty = parseInt(qtyInput.value);
         if (!qty || qty < 1) {
-          var qtyHybrid = qtyInput.closest('.lawc-qty-hybrid');
+          pushDataLayer('exp_pdp_cs_error_view', 'Qty is required', 'view', 'Custom Size Flow', 'Choose worktop size');
+          let qtyHybrid = qtyInput.closest('.lawc-qty-hybrid');
           qtyHybrid.classList.add('lawc-field-error');
-          var err = document.createElement('div');
+          let err = document.createElement('div');
           err.className = 'lawc-field-error-msg';
-          err.innerHTML = `${this.getSvg('field-error')} Qty is required`;
+          err.innerHTML = icon + ' Qty is required';
           qtyHybrid.closest('.lawc-field').appendChild(err);
           if (!firstError) firstError = qtyHybrid;
           valid = false;
@@ -5101,7 +5125,10 @@
         if (canRemove) {
           removeBtn.style.display = 'block';
         }
-        removeBtn.addEventListener('click', () => this.removeWorktop(wt.id));
+        removeBtn.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cs_1_worktop_remove', 'Remove', 'click', 'Custom Size Flow', wt.id);
+          this.removeWorktop(wt.id)
+        });
 
         var keepOnlyDigits = function (inputEl) {
           inputEl.value = String(inputEl.value || '').replace(/\D+/g, '');
@@ -5115,6 +5142,11 @@
             wrap.classList.remove('lawc-field-error');
             var msg = wrap.closest('.lawc-field').querySelector('.lawc-field-error-msg');
             if (msg) msg.remove();
+          });
+
+          input.addEventListener('click', () => {
+            const type = input.dataset.field === 'length' ? 'Length' : 'Width';
+            pushDataLayer('exp_pdp_cs_1_worktop_input', type, 'input', 'Custom Size Flow', wt.id);
           });
           
           input.addEventListener('blur', () => {
@@ -5130,6 +5162,11 @@
         var qtyInput = card.querySelector('.lawc-qty-input');
         var qtySelect = card.querySelector('.lawc-qty-select');
         var qtyHybrid = card.querySelector('.lawc-qty-hybrid');
+
+        qtyInput.addEventListener('click', () => {
+          const type = 'Quantity';
+          pushDataLayer('exp_pdp_cs_1_worktop_input', type, 'input', 'Custom Size Flow', wt.id);
+        });
 
         qtyInput.addEventListener('input', () => {
           keepOnlyDigits(qtyInput);
@@ -5153,8 +5190,16 @@
           if (msg) msg.remove();
         });
 
+        let isDisableOpen = false;
+
         card.querySelectorAll('select').forEach(sel => {
+          const fieldName = sel.dataset.field === 'thickness' ? 'Thickness' : 'Quantity';
           sel.addEventListener('change', () => {
+            isDisableOpen = true;
+            setTimeout(() => {
+              isDisableOpen = false;
+            }, 500);
+            pushDataLayer('exp_pdp_cs_1_worktop_dropdown_select', fieldName, 'click', 'Custom Size Flow', wt.id);
             var selectWrap = sel.closest('.lawc-select-wrap');
             if (!selectWrap) return; // Skip if not in select-wrap (e.g., qty select)
             selectWrap.classList.remove('lawc-field-error');
@@ -5167,6 +5212,10 @@
             if (field === 'thickness') {
               this.renderWorktops();
             }
+          });
+          sel.addEventListener('click', () => {
+            if (isDisableOpen) return;
+            pushDataLayer('exp_pdp_cs_1_worktop_dropdown_open', fieldName, 'click', 'Custom Size Flow', wt.id);
           });
         });
 
@@ -5528,6 +5577,7 @@
     }
 
     renderStep2Error() {
+      pushDataLayer('exp_pdp_cs_error_view', 'Something went wrong', 'view', 'Custom Size Flow', 'Choose cutting plan');
       this.planData = null;
       document.querySelector('.lawc-tabs').style.display = '';
       document.getElementById('s2-loading').style.display = 'none';
@@ -5911,20 +5961,37 @@
     // ─────────────────────────────────────────────────────────────────
     _bindEvents() {
       document.querySelector('.lawc-banner-link').addEventListener('click', (e) => {
+        pushDataLayer('exp_pdp_cs_1_check_standard_sizes', 'Check our standard size list', 'click', 'Custom Size Flow');
         e.preventDefault();
         Modal?.close()
+        config.isDisableLayer = true;
         _$('#select-size')?.click()
+        config.isDisableLayer = false;
       })
-      document.getElementById('add-worktop-btn').addEventListener('click', () => this.addWorktop());
+      document.getElementById('add-worktop-btn').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_1_worktop_add', 'Add another worktop', 'click', 'Custom Size Flow');
+        this.addWorktop()
+      });
 
       document.getElementById('lawc-cta-btn').addEventListener('click', () => {
+        const activeStep = _$('.lawc-tab.active .lawc-tab-label').innerText.trim();
+        pushDataLayer('exp_pdp_cs_cta', document.getElementById('lawc-cta-btn').innerText.trim(), 'click', 'Custom Size Flow', activeStep);
         if (!this.validateStep1()) return;
         this.goToStep2();
       });
 
-      document.getElementById('card-wecut').addEventListener('click', () => this.selectPlan('wecut'));
-      document.getElementById('card-selfcut').addEventListener('click', () => this.selectPlan('selfcut'));
-      document.getElementById('s2-view-diagram-btn').addEventListener('click', () => this.openDiagram());
+      document.getElementById('card-wecut').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_cutting_plan', 'Cut for you', 'click', 'Custom Size Flow');
+        this.selectPlan('wecut')
+      });
+      document.getElementById('card-selfcut').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_cutting_plan', 'Cut yourself', 'click', 'Custom Size Flow');
+        this.selectPlan('selfcut')
+      });
+      document.getElementById('s2-view-diagram-btn').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_view_diagram', 'View cutting diagram', 'click', 'Custom Size Flow', 'Single');
+        this.openDiagram()
+      });
       document.querySelectorAll('.lawc-diagram-banner--mob').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation(); // Prevent triggering parent card click
@@ -5933,6 +6000,9 @@
           if (parentCard) {
             var planType = parentCard.dataset.plan;
             if (planType) {
+              const type = planType === 'wecut' ? 'Cut for you' : 'Cut yourself';
+              pushDataLayer('exp_pdp_cs_2_view_diagram', 'View cutting diagram', 'click', 'Custom Size Flow', type);
+
               this.selectedPlan = planType;
               this.updatePlanSelection();
             }
@@ -5940,17 +6010,33 @@
           this.openDiagram();
         });
       });
-      document.getElementById('s2-edit-btn').addEventListener('click', () => this.goBackToStep1());
-      document.getElementById('s2-error-edit-btn').addEventListener('click', () => this.goBackToStep1());
+      document.getElementById('s2-edit-btn').addEventListener('click', () => {
+        this.goBackToStep1()
+        pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow');
+      });
+      document.getElementById('s2-error-edit-btn').addEventListener('click', () => {
+        this.goBackToStep1()
+        pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow', 'error state');
+      });
 
       document.getElementById('s2-back-btn').addEventListener('click', () => {
         if (this.currentStep === 2 && document.getElementById('step-2b').classList.contains('active')) {
+          pushDataLayer('exp_pdp_cs_2_diagram_back_to_cutting', 'Back to cutting plans', 'click', 'Custom Size Flow', 'Bottom');
           this.closeDiagram();
         } else {
+          pushDataLayer('exp_pdp_cs_back', 'Back', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
           this.goBackToStep1();
         }
       });
       document.getElementById('s2-continue-btn').addEventListener('click', () => {
+        const activeStep = _$('.lawc-tab.active .lawc-tab-label').innerText.trim();
+
+        if (document.querySelector('#step-2b').classList.contains('active')) {
+          pushDataLayer('exp_pdp_cs_2_diagram_continue', 'Continue', 'click', 'Custom Size Flow');
+        } else {
+          pushDataLayer('exp_pdp_cs_cta', document.getElementById('s2-continue-btn').innerText.trim(), 'click', 'Custom Size Flow', activeStep);
+        }
+        document.querySelector('.lawc-tabs').style.display = '';
         if (this.isOiling) {
           this.goToStep3();
         } else {
@@ -5958,18 +6044,33 @@
         }
       });
 
-      document.getElementById('diag-back-bar').addEventListener('click', () => this.closeDiagram());
-
-      ['untreated', 'oiling', 'smoothguard'].forEach(f => {
-        document.getElementById('card-' + f).addEventListener('click', () => this.selectOiling(f));
+      document.getElementById('diag-back-bar').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_diagram_back_to_cutting', 'Back to cutting plans', 'click', 'Custom Size Flow', 'Top');
+        this.closeDiagram();
       });
 
-      document.getElementById('s3-back-btn').addEventListener('click', () => this.goBackToStep2());
-      document.getElementById('s3-add-to-basket-btn').addEventListener('click', () => this.addToBasket());
+      ['untreated', 'oiling', 'smoothguard'].forEach(f => {
+        document.getElementById('card-' + f).addEventListener('click', () => {
+          const text = f === 'untreated' ? 'Untreated' : (f === 'oiling' ? '3-Coat Oiling' : 'SmoothGuard 5X Oiling System');
+          pushDataLayer('exp_pdp_cs_3_oiling', text, 'click', 'Custom Size Flow');
+          this.selectOiling(f);
+        });
+      });
+
+      document.getElementById('s3-back-btn').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_back', 'Back', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
+        this.goBackToStep2()
+      });
+      document.getElementById('s3-add-to-basket-btn').addEventListener('click', () => {
+        const activeStep = _$('.lawc-tab.active .lawc-tab-label').innerText.trim();
+        pushDataLayer('exp_pdp_cs_cta', document.getElementById('s3-add-to-basket-btn').innerText.trim(), 'click', 'Custom Size Flow', activeStep);
+        this.addToBasket();
+      });
 
       // Tab click navigation (only backwards)
       document.querySelectorAll('.lawc-tab').forEach(tab => {
         tab.addEventListener('click', () => {
+          pushDataLayer('exp_pdp_cs_step', tab.querySelector('.lawc-tab-label').innerText.trim(), 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
           var targetStep = parseInt(tab.dataset.step);
           if (targetStep < this.currentStep) {
             this.goToStep(targetStep);
@@ -5988,8 +6089,31 @@
   // Modal.open('.lav-cutting')
 
 
-  // Shordcode for selectors
-  function _$(selector, context = document) {
-    return context.querySelector(selector)
-  }
+  // // Shordcode for selectors
+  // function _$(selector, context = document) {
+  //   return context.querySelector(selector)
+  // }
+
+  //   // GA 4 events
+  // function pushDataLayer(name = '', desc = '', type = '', loc = '') {
+  //   window.dataLayer = window.dataLayer || []
+
+  //   try {
+  //     const event = {
+  //       event: 'event-to-ga4',
+  //       event_name: name,
+  //       event_desc: desc,
+  //       event_type: type,
+  //       event_loc: loc
+  //     }
+
+  //     console.debug('** GA4 Event **', event)
+
+  //     if (!config.debug) {
+  //       dataLayer.push(event)
+  //     }
+  //   } catch (e) {
+  //     console.log('** GA4 Error **', e)
+  //   }
+  // }
 })()
