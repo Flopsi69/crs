@@ -4392,7 +4392,7 @@
             Edit sizes
           </button>
         </div>
-        
+
         <!-- Results (hidden until API returns) -->
         <div id="s2-results" style="display:none; flex-direction:column; gap:0;">
           <div class="lawc-s2-body">
@@ -4425,7 +4425,7 @@
                     <div class="lawc-radio"></div>
                   </div>
                   <div class="lawc-plan-title">Buy pre-cut to your exact sizes</div>
-                  <div class="lawc-plan-desc">We cut your <strong>3 pieces</strong> from 2 standard worktops and deliver them <strong>ready to install</strong>. All offcuts are included.</div>
+                  <div class="lawc-plan-desc">We cut your <strong>x pieces</strong> from x standard worktops and deliver them <strong>ready to install</strong>. All offcuts are included.</div>
                   <div class="lawc-plan-price-block">
                     <div class="lawc-plan-price" id="s2-wecut-price"></div>
                     <div class="lawc-plan-price-breakdown">
@@ -4879,7 +4879,7 @@
       this.currentStep = 1;
       this.planData = null;
       this.productConfig = null;
-      this.availableThickness = [40, 27, 12]; // Default fallback
+      this.availableThickness = []; // Default fallback
       this.maxDimensions = {}; // Will be populated from API
       this.isOiling = true; // Default fallback
       this.selectedPlan = 'wecut';
@@ -4938,8 +4938,8 @@
     // RESET
     // ─────────────────────────────────────────────────────────────────
     reset() {
-      var defaultThickness = this.availableThickness[0] || 40;
-      this.worktops = [{ id: 1, length: 1500, width: 720, thickness: defaultThickness, qty: 1 }];
+      var defaultThickness = this.getDefaultThickness();
+      this.worktops = [{ id: 1, length: 0, width: 0, thickness: defaultThickness, qty: 1 }];
       this.nextId = Math.max(...this.worktops.map(w => w.id)) + 1;
       this.currentStep = 1;
       this.planData = null;
@@ -4997,6 +4997,10 @@
           if (data.available_thickness) {
             this.availableThickness = Object.values(data.available_thickness).map(v => parseInt(v));
           }
+
+          this.worktops.forEach(wt => {
+            wt.thickness = this.normalizeWorktopThickness(wt);
+          });
           
           // Store max dimensions
           if (data.max_dimensions) {
@@ -5033,6 +5037,21 @@
       }
     }
 
+    getDefaultThickness() {
+      return this.availableThickness.length ? this.availableThickness[0] : null;
+    }
+
+    normalizeWorktopThickness(worktop) {
+      var thickness = parseInt(worktop && worktop.thickness);
+      if (!this.availableThickness.length) {
+        return Number.isFinite(thickness) ? thickness : null;
+      }
+
+      return this.availableThickness.includes(thickness)
+        ? thickness
+        : this.getDefaultThickness();
+    }
+
     // ─────────────────────────────────────────────────────────────────
     // STEP 1 — RENDER WORKTOPS
     // ─────────────────────────────────────────────────────────────────
@@ -5060,20 +5079,20 @@
       container.querySelectorAll('.lawc-field-error-msg').forEach(el => el.remove());
 
       this.worktops.forEach(wt => {
-        let card = container.querySelector(`[data-id="${wt.id}"]`);
+        var card = container.querySelector(`[data-id="${wt.id}"]`);
         if (!card) return;
 
         // Get max dimensions for current thickness
-        let thicknessSelect = card.querySelector('select[data-field="thickness"]');
-        let currentThickness = thicknessSelect ? parseInt(thicknessSelect.value) : wt.thickness;
-        let thicknessKey = currentThickness + 'mm';
-        let maxDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
+        var thicknessSelect = card.querySelector('select[data-field="thickness"]');
+        var currentThickness = thicknessSelect ? parseInt(thicknessSelect.value) : wt.thickness;
+        var thicknessKey = currentThickness + 'mm';
+        var maxDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
 
         [['length', 'Length', 10, maxDims.max_length], ['width', 'Width', 10, maxDims.max_width]].forEach(([field, label, min, max]) => {
-          let input = card.querySelector(`input[data-field="${field}"]`);
-          let wrap = input.closest('.lawc-input-wrap');
-          let val = parseFloat(input.value);
-          let msg = '';
+          var input = card.querySelector(`input[data-field="${field}"]`);
+          var wrap = input.closest('.lawc-input-wrap');
+          var val = parseFloat(input.value);
+          var msg = '';
           const icon = this.getSvg('field-error');
           if (!input.value || isNaN(val)) {
             msg = `Input worktop ${label} • Max ${max}mm`;
@@ -5081,12 +5100,12 @@
             msg = `${label} must be at least ${min}mm`;
           } else if (val > max) {
             // msg = `${label} must be at most ${max}mm`;
-            msg = `${this.getSvg('field-error')} Enter a value up to ${max}mm`;
+            msg = `Enter a value up to ${max}mm`;
           }
           if (msg) {
             pushDataLayer('exp_pdp_cs_error_view', msg, 'view', 'Custom Size Flow', 'Choose worktop size');
             wrap.classList.add('lawc-field-error');
-            let err = document.createElement('div');
+            var err = document.createElement('div');
             err.className = 'lawc-field-error-msg';
             err.innerHTML = icon + ' ' + msg;
             wrap.closest('.lawc-field').appendChild(err);
@@ -5096,31 +5115,31 @@
         });
 
         // Validate thickness select
-        // let thicknessSelect = card.querySelector('select[data-field="thickness"]');
-        let thickness = parseInt(thicknessSelect.value);
+        var thicknessSelect = card.querySelector('select[data-field="thickness"]');
+        var thickness = parseInt(thicknessSelect.value);
         const icon = this.getSvg('field-error');
         if (!thickness) {
           pushDataLayer('exp_pdp_cs_error_view', 'Thickness is required', 'view', 'Custom Size Flow', 'Choose worktop size');
-          let thicknessWrap = thicknessSelect.closest('.lawc-select-wrap');
+          var thicknessWrap = thicknessSelect.closest('.lawc-select-wrap');
           thicknessWrap.classList.add('lawc-field-error');
-          let err = document.createElement('div');
+          var err = document.createElement('div');
           err.className = 'lawc-field-error-msg';
-          err.innerHTML = icon + ' Thickness is required';
+          err.innerHTML = icon + ` Thickness is required`;
           thicknessWrap.closest('.lawc-field').appendChild(err);
           if (!firstError) firstError = thicknessWrap;
           valid = false;
         }
 
         // Validate qty input
-        let qtyInput = card.querySelector('.lawc-qty-input');
-        let qty = parseInt(qtyInput.value);
+        var qtyInput = card.querySelector('.lawc-qty-input');
+        var qty = parseInt(qtyInput.value);
         if (!qty || qty < 1) {
           pushDataLayer('exp_pdp_cs_error_view', 'Qty is required', 'view', 'Custom Size Flow', 'Choose worktop size');
-          let qtyHybrid = qtyInput.closest('.lawc-qty-hybrid');
+          var qtyHybrid = qtyInput.closest('.lawc-qty-hybrid');
           qtyHybrid.classList.add('lawc-field-error');
-          let err = document.createElement('div');
+          var err = document.createElement('div');
           err.className = 'lawc-field-error-msg';
-          err.innerHTML = icon + ' Qty is required';
+          err.innerHTML = cion + ` Qty is required`;
           qtyHybrid.closest('.lawc-field').appendChild(err);
           if (!firstError) firstError = qtyHybrid;
           valid = false;
@@ -5139,6 +5158,8 @@
       var canRemove = this.worktops.length >= 2;
 
       this.worktops.forEach((wt, index) => {
+        wt.thickness = this.normalizeWorktopThickness(wt);
+
         var card = document.createElement('div');
         card.className = 'lawc-card';
         card.dataset.id = wt.id;
@@ -5154,7 +5175,7 @@
         });
 
         // Get max dimensions for current thickness
-        var thicknessKey = (wt.thickness || this.availableThickness[0]) + 'mm';
+        var thicknessKey = wt.thickness + 'mm';
         var maxDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
 
         card.innerHTML = /*html*/`
@@ -5327,7 +5348,7 @@
     }
 
     addWorktop() {
-      var defaultThickness = this.availableThickness[0] || 40;
+      var defaultThickness = this.getDefaultThickness();
       // Ensure nextId is always ahead of max existing id
       var maxId = Math.max(...this.worktops.map(w => w.id), 0);
       if (this.nextId <= maxId) {
@@ -5444,20 +5465,27 @@
         totalCutCost  += cost.cut_cost  || 0;
         totalCutCount += cost.total_cuts || 0;
 
-        (r.pieces || []).forEach(p => {
-          // Find matching worktop to get the correct quantity
-          var matchingWorktop = this.worktops.find(w => 
-            w.length == p.length && w.width == p.width && w.thickness == p.thickness
-          );
-          var qty = matchingWorktop ? (matchingWorktop.qty || 1) : (p.qty || 1);
-          
-          for (var i = 0; i < qty; i++) {
-            allPieces.push({ length: p.length, width: p.width, thickness: p.thickness });
-          }
-        });
-
         (r.slabs || []).forEach((s, si) => {
           var layout = (r.layouts || [])[si];
+          var slabPieces = Array.isArray(s.pieces)
+            ? s.pieces.map(piece => ({
+                length: piece.length || piece.length_mm || null,
+                width: piece.width || piece.width_mm || null,
+                thickness: piece.thickness || piece.thickness_mm || s.thickness_mm || null,
+                qty: parseInt(piece.qty) || 1
+              }))
+            : [];
+
+          slabPieces.forEach(piece => {
+            for (var i = 0; i < piece.qty; i++) {
+              allPieces.push({
+                length: piece.length,
+                width: piece.width,
+                thickness: piece.thickness
+              });
+            }
+          });
+
           allSlabs.push({
             productOptionId: s.product_option_id || null,
             productOptionValueId: s.product_option_value_id || null,
@@ -5465,6 +5493,7 @@
             length: s.length_mm,
             width: s.width_mm,
             thickness: s.thickness_mm,
+            pieces: slabPieces,
             price: s.price,
             cutCount: s.cut_count || 0,
             svgUrl: layout ? (this.api.base + layout.svg_url) : null,
@@ -5595,7 +5624,7 @@
       
       // Group pieces by dimensions
       var groupedPieces = {};
-      wc.pieces.forEach(p => {
+      (wc.pieces || []).forEach(p => {
         var key = `${p.length}×${p.width}×${p.thickness}`;
         if (!groupedPieces[key]) {
           groupedPieces[key] = { length: p.length, width: p.width, thickness: p.thickness, qty: 0 };
@@ -5899,10 +5928,20 @@
             productOptionId: slab.productOptionId,
             productOptionValueId: slab.productOptionValueId,
             qty: 0,
-            slab: slab
+            pieces: []
           };
         }
         grouped[key].qty += 1;
+
+        var slabPieces = Array.isArray(slab.pieces) ? slab.pieces : [];
+        slabPieces.forEach(piece => {
+          grouped[key].pieces.push({
+            length: piece.length || null,
+            width: piece.width || null,
+            thickness: piece.thickness || slab.thickness || null,
+            qty: piece.qty
+          });
+        });
       });
 
       return Object.values(grouped);
@@ -5982,6 +6021,7 @@
         var oilingCost = this.OILINGS[this.selectedOiling].price || 0;
         var total = parseFloat((basePrice + oilingCost).toFixed(2));
         var cartSlabGroups = this._getCartSlabGroups();
+        console.log('cartSlabGroups', cartSlabGroups)
 
         if (!cartSlabGroups.length) {
           throw new Error('Missing product option data in /optimize response.');
@@ -5992,26 +6032,45 @@
         params.append('product_id', String(this.api.productId));
         params.append('quantity', String(totalQty));
 
-        cartSlabGroups.forEach(item => {
-          params.append(`option[${item.productOptionId}]`, String(item.productOptionValueId));
-          params.append(`opqty[${item.productOptionId}][${item.productOptionValueId}]`, String(item.qty));
+        cartSlabGroups.forEach(group => {
+          params.append(`option[${group.productOptionId}]`, String(group.productOptionValueId));
+          params.append(`opqty[${group.productOptionId}][${group.productOptionValueId}]`, String(group.qty));
 
           if (this.selectedOiling === 'oiling') {
-            params.append(`oiling_3_[${item.productOptionValueId}]`, 'yes');
+            params.append(`oiling_3_[${group.productOptionValueId}]`, 'yes');
           } else if (this.selectedOiling === 'smoothguard') {
-            params.append(`oiling_5_[${item.productOptionValueId}]`, 'yes');
+            params.append(`oiling_5_[${group.productOptionValueId}]`, 'yes');
+          }
+
+          if (this.selectedPlan === 'wecut') {
+            let currentIndex = 0;
+            group.pieces.forEach((piece, pieceIndex) => {
+              const isMain = pieceIndex === 0;
+              const keyName = isMain ? 'cut_to_size_' : 'offcut_';
+
+              for (let i = 0; i < piece.qty; i++) {
+                if (i > 0) {
+                  currentIndex++;
+                }
+                const index = isMain ? '' : `[${currentIndex}]`
+
+                params.append(`${keyName}[${group.productOptionValueId}]${index}[size][length]`, String(piece.length || 0));
+                params.append(`${keyName}[${group.productOptionValueId}]${index}[size][width]`, String(piece.width || 0));
+                params.append(`${keyName}[${group.productOptionValueId}]${index}[size][thickness]`, String(piece.thickness || 0));
+            
+                if (!isMain) {
+                  if (this.selectedOiling === 'oiling') {
+                    params.append(`offcut_oiling_3_[${group.productOptionValueId}]${index}`, 'yes');
+                  } else if (this.selectedOiling === 'smoothguard') {
+                    params.append(`offcut_oiling_5_[${group.productOptionValueId}]${index}`, 'yes');
+                  }
+                }
+              }
+
+              currentIndex++;
+            })
           }
         });
-
-        if (this.selectedPlan === 'wecut') {
-          this.worktops.forEach((wt, index) => {
-            var item = cartSlabGroups[index] || cartSlabGroups[0];
-            if (!item) return;
-            params.append(`cut_to_size_[${item.productOptionValueId}][size][length]`, String(wt.length || 0));
-            params.append(`cut_to_size_[${item.productOptionValueId}][size][width]`, String(wt.width || 0));
-            params.append(`cut_to_size_[${item.productOptionValueId}][size][thickness]`, String(wt.thickness || 0));
-          });
-        }
 
         var requestUrlParams = new URLSearchParams({
           route: this.api.cartRoute,
@@ -6038,6 +6097,7 @@
         alert(successMsg);
         this.reset();
       } catch (err) {
+        console.error(err)
         alert('Failed to add to basket: ' + err.message);
       } finally {
         this.isCartSubmitting = false;
@@ -6051,6 +6111,7 @@
     _bindEvents() {
       document.querySelector('.lawc-banner-link').addEventListener('click', (e) => {
         pushDataLayer('exp_pdp_cs_1_check_standard_sizes', 'Check our standard size list', 'click', 'Custom Size Flow');
+
         e.preventDefault();
         Modal?.close()
         config.isDisableLayer = true;
@@ -6059,6 +6120,7 @@
       })
       document.getElementById('add-worktop-btn').addEventListener('click', () => {
         pushDataLayer('exp_pdp_cs_1_worktop_add', 'Add another worktop', 'click', 'Custom Size Flow');
+
         this.addWorktop()
       });
 
@@ -6091,7 +6153,6 @@
             if (planType) {
               const type = planType === 'wecut' ? 'Cut for you' : 'Cut yourself';
               pushDataLayer('exp_pdp_cs_2_view_diagram', 'View cutting diagram', 'click', 'Custom Size Flow', type);
-
               this.selectedPlan = planType;
               this.updatePlanSelection();
             }
@@ -6100,12 +6161,12 @@
         });
       });
       document.getElementById('s2-edit-btn').addEventListener('click', () => {
-        this.goBackToStep1()
         pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow');
+        this.goBackToStep1()
       });
       document.getElementById('s2-error-edit-btn').addEventListener('click', () => {
-        this.goBackToStep1()
         pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow', 'error state');
+        this.goBackToStep1()
       });
 
       document.getElementById('s2-back-btn').addEventListener('click', () => {
@@ -6125,7 +6186,9 @@
         } else {
           pushDataLayer('exp_pdp_cs_cta', document.getElementById('s2-continue-btn').innerText.trim(), 'click', 'Custom Size Flow', activeStep);
         }
+
         document.querySelector('.lawc-tabs').style.display = '';
+
         if (this.isOiling) {
           this.goToStep3();
         } else {
@@ -6135,14 +6198,14 @@
 
       document.getElementById('diag-back-bar').addEventListener('click', () => {
         pushDataLayer('exp_pdp_cs_2_diagram_back_to_cutting', 'Back to cutting plans', 'click', 'Custom Size Flow', 'Top');
-        this.closeDiagram();
+        this.closeDiagram()
       });
 
       ['untreated', 'oiling', 'smoothguard'].forEach(f => {
         document.getElementById('card-' + f).addEventListener('click', () => {
           const text = f === 'untreated' ? 'Untreated' : (f === 'oiling' ? '3-Coat Oiling' : 'SmoothGuard 5X Oiling System');
           pushDataLayer('exp_pdp_cs_3_oiling', text, 'click', 'Custom Size Flow');
-          this.selectOiling(f);
+          this.selectOiling(f)
         });
       });
 
@@ -6153,7 +6216,7 @@
       document.getElementById('s3-add-to-basket-btn').addEventListener('click', () => {
         const activeStep = _$('.lawc-tab.active .lawc-tab-label').innerText.trim();
         pushDataLayer('exp_pdp_cs_cta', document.getElementById('s3-add-to-basket-btn').innerText.trim(), 'click', 'Custom Size Flow', activeStep);
-        this.addToBasket();
+        this.addToBasket()
       });
 
       // Tab click navigation (only backwards)
