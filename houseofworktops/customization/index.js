@@ -88,6 +88,25 @@
         background-color: #0b4d42;
       }
     }
+    .lavm-header__close {
+      position: absolute;
+      pointer-events: auto;
+      z-index: 99999999999999;
+      cursor: pointer;
+      padding: 6px;
+      right: 0;
+      top: -7px;
+      transition: .3s;
+      display: none;
+    }
+    .lavm-header__close svg {
+      width: 31px;
+    }
+    @media(hover:hover) {
+      .lavm-header__close:hover {
+        opacity: .85;
+      }
+    }
     .lavm-header {
       border-bottom: 1px solid #DEE2E6!important;
       background: #F8F9FA;
@@ -786,6 +805,12 @@
     
 
     @media(max-width: 992px) {
+      #select-size-model .modal-content {
+        margin-top: 40px;
+      }
+      .lavm-header__close {
+        display: block;
+      }
       #select-size-model .select-size-row .checkbox-check .small {
         opacity: 0!important;
         pointer-events: none!important;
@@ -1254,6 +1279,27 @@
 
       parentEl?.classList.add('lavm-header')
       _$('.d-none.d-md-block:not(.filter-header)', parentEl)?.classList.add('lavm-header__filters')
+
+      _$('#select-size-model .modal-content').insertAdjacentHTML('beforebegin', /* html */ `
+        <div class="lavm-header__close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <g clip-path="url(#clip0_1786_1895)">
+              <path d="M17.416 15.4683L21.712 19.6341C21.904 19.8203 22 20.053 22 20.3323C22 20.596 21.904 20.821 21.712 21.0072C21.52 21.1933 21.28 21.2864 20.992 21.2864C20.72 21.2864 20.488 21.1933 20.296 21.0072L16 16.8413L11.704 21.0072C11.512 21.1933 11.272 21.2864 10.984 21.2864C10.712 21.2864 10.48 21.1933 10.288 21.0072C10.096 20.821 10 20.596 10 20.3323C10 20.053 10.096 19.8203 10.288 19.6341L14.584 15.4683L10.288 11.3024C10.128 11.1007 10.056 10.8835 10.072 10.6508C10.088 10.4026 10.184 10.1931 10.36 10.0224C10.552 9.83625 10.768 9.7354 11.008 9.71989C11.264 9.70437 11.496 9.77419 11.704 9.92934L16 14.0952L20.296 9.92934C20.424 9.77419 20.576 9.66555 20.752 9.60349C20.928 9.54143 21.112 9.53367 21.304 9.58022C21.496 9.62676 21.656 9.71989 21.784 9.85953C21.928 9.98365 22.024 10.1388 22.072 10.325C22.12 10.5112 22.112 10.6896 22.048 10.8603C21.984 11.0309 21.872 11.1783 21.712 11.3024L17.416 15.4683Z" fill="white"/>
+              <path d="M28 0.825684H4C2.067 0.825684 0.5 2.3452 0.5 4.21962V27.4923C0.5 29.3668 2.067 30.8863 4 30.8863H28C29.933 30.8863 31.5 29.3668 31.5 27.4923V4.21962C31.5 2.3452 29.933 0.825684 28 0.825684Z" stroke="white" stroke-width="0.75"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_1786_1895">
+                <rect width="32" height="32" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      `);
+
+      _$('.lavm-header__close').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_ss_close', 'close', 'click', 'Custom Size Flow', _$('.lavm-tab.active .lavm-tab-label').innerText.trim());
+        _$('#select-size-model .btn.cancel[data-dismiss="modal"]').click();
+      });
 
       addNavigation()
       addNewFilters();
@@ -4608,6 +4654,27 @@
 
   new Modal('lav-cutting', markup);
 
+  _$('.lav-cutting').insertAdjacentHTML('beforebegin', /* html */`
+    <div class="lav-cutting__close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <g clip-path="url(#clip0_1786_1895)">
+          <path d="M17.416 15.4683L21.712 19.6341C21.904 19.8203 22 20.053 22 20.3323C22 20.596 21.904 20.821 21.712 21.0072C21.52 21.1933 21.28 21.2864 20.992 21.2864C20.72 21.2864 20.488 21.1933 20.296 21.0072L16 16.8413L11.704 21.0072C11.512 21.1933 11.272 21.2864 10.984 21.2864C10.712 21.2864 10.48 21.1933 10.288 21.0072C10.096 20.821 10 20.596 10 20.3323C10 20.053 10.096 19.8203 10.288 19.6341L14.584 15.4683L10.288 11.3024C10.128 11.1007 10.056 10.8835 10.072 10.6508C10.088 10.4026 10.184 10.1931 10.36 10.0224C10.552 9.83625 10.768 9.7354 11.008 9.71989C11.264 9.70437 11.496 9.77419 11.704 9.92934L16 14.0952L20.296 9.92934C20.424 9.77419 20.576 9.66555 20.752 9.60349C20.928 9.54143 21.112 9.53367 21.304 9.58022C21.496 9.62676 21.656 9.71989 21.784 9.85953C21.928 9.98365 22.024 10.1388 22.072 10.325C22.12 10.5112 22.112 10.6896 22.048 10.8603C21.984 11.0309 21.872 11.1783 21.712 11.3024L17.416 15.4683Z" fill="white"/>
+          <path d="M28 0.825684H4C2.067 0.825684 0.5 2.3452 0.5 4.21962V27.4923C0.5 29.3668 2.067 30.8863 4 30.8863H28C29.933 30.8863 31.5 29.3668 31.5 27.4923V4.21962C31.5 2.3452 29.933 0.825684 28 0.825684Z" stroke="white" stroke-width="0.75"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_1786_1895">
+            <rect width="32" height="32" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+  `)
+
+  _$('.lav-cutting__close').addEventListener('click', () => {
+    pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
+    Modal.close();
+  })
+
   function initModal() {
     class Modal {
       static list = []
@@ -4735,10 +4802,32 @@
         .lav-modal-open {
           overflow: hidden;
         }
+        .lav-cutting__close {
+          position: absolute;
+          pointer-events: auto;
+          z-index: 99999999999999;
+          cursor: pointer;
+          padding: 6px;
+          right: 8px;
+          top: 2px;
+          transition: .3s;
+          display: none;
+        }
+        .lav-cutting__close svg {
+          width: 31px;
+        }
+        @media(hover:hover) {
+          .lav-cutting__close:hover {
+            opacity: .85;
+          }
+        }
         @media(max-width: 992px) {
+          .lav-modal.active .lav-cutting__close {
+            display: block;
+          }
           .lav-modal__inner {
             max-height: calc(100% - 1rem);
-            margin: 0.5rem;
+            margin: 48px 0.5rem 0.5rem;
           }
         }
       `
