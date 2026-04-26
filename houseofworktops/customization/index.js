@@ -2599,14 +2599,14 @@
         padding: 16px 20px;
         border-bottom: 1px solid #D3E9DF;
         cursor: default;
-        font-size: 20px; 
+        font-size: 20px;
         line-height: 28px;
-        color: #495057; 
-        white-space: nowrap; 
+        color: #495057;
+        white-space: nowrap;
         font-weight: 500;
       }
-      .lawc-tab.done { 
-        color: #1f8964;  
+      .lawc-tab.done {
+        color: #1f8964;
         gap: 8px;
         cursor: pointer;
       }
@@ -2619,7 +2619,7 @@
 
       .lawc-tab.active {
         background: #D1EBDF;
-        color: #1f8964; 
+        color: #1f8964;
       }
 
       .lawc-tab.active + .lawc-tab .lawc-tab-divider {
@@ -2654,15 +2654,15 @@
       }
 
       /* ── STEPS ── */
-      .lawc-body { 
+      .lawc-body {
         overflow-y: auto;
         padding:  20px;
       }
-      .lawc-step { 
-        display: none; 
-        flex-direction: column; 
+      .lawc-step {
+        display: none;
+        flex-direction: column;
       }
-      .lawc-step.active { 
+      .lawc-step.active {
         display: flex;
       }
 
@@ -2670,7 +2670,7 @@
         .lawc-tabs {
           height: 56px;
         }
-        .lawc-body { 
+        .lawc-body {
           padding: 16px 14px 20px;
           flex-grow: 1;
         }
@@ -3256,7 +3256,7 @@
         .lawc-count {
           font-size: 14px;
           font-weight: 500;
-          line-height: 18px; 
+          line-height: 18px;
           margin-top: 3px;
         }
       }
@@ -3328,9 +3328,9 @@
         margin-top: 6px;
       }
 
-      .lawc-s2-size-info { 
+      .lawc-s2-size-info {
         flex: 1;
-        min-width: 0; 
+        min-width: 0;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -3643,9 +3643,9 @@
         line-height: 0;
       }
 
-      .lawc-diagram-text { 
+      .lawc-diagram-text {
         text-align: left;
-        flex: 1; 
+        flex: 1;
       }
 
       .lawc-diagram-title {
@@ -3752,6 +3752,8 @@
 
       /* ── STEP 2B — CUTTING DIAGRAM ── */
       .lawc-diag-back-bar {
+        position: sticky;
+        top: -20px;
         background: #f8f9fa;
         border-bottom: 1px solid #dee2e6;
         height: 78px;
@@ -3776,9 +3778,9 @@
         padding: 0;
       }
 
-      .lawc-diag-header { 
+      .lawc-diag-header {
         margin-top: 20px;
-        text-align: center; 
+        text-align: center;
       }
 
       .lawc-diag-title {
@@ -3835,9 +3837,9 @@
 
       /* Worktop slab section */
       .lawc-slab-section {
-        display: flex; 
-        flex-direction: column; 
-        gap: 12px; 
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         margin-top: 32px;
       }
 
@@ -3971,6 +3973,7 @@
           gap: 12px
         }
         .lawc-diag-back-bar {
+          top: -16px;
           height: 56px;
           justify-content: flex-start;
           padding: 0 14px;
@@ -5870,6 +5873,7 @@
       this.showFooter('footer-s2');
       document.getElementById('s2-back-btn').lastChild.textContent = ' Back to cutting plans';
       document.querySelector('.lawc-tabs').style.display = 'none';
+      document.querySelector('#step-2b').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     closeDiagram() {
