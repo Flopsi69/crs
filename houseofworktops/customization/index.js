@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/customization',
     clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
-    debug: true,
+    debug: false,
     isDisableLayer: false,
     atcConfig: {
       price: '',
@@ -1537,6 +1537,11 @@
 
     function updateFooterInfo() {
       const qty = _$$('.select-size-row.selected').length;
+      const totalQty = _$$('.select-size-row.selected', document, true).reduce((p, c) => {
+        const input = c.querySelector('.select-size-popup input');
+        const val = input ? parseInt(input.value || input.innerText || '0', 10) : 0;
+        return p + (isNaN(val) ? 0 : val);
+      }, 0);
       const price = _$('#select-size-model .modal-footer .cart-total').innerText
       const oilingSelected = _$('.lavm-oiling-card.selected');
 
@@ -1550,7 +1555,7 @@
 
       _$('.lavm-summary__price').innerText = price;
       _$('.lavm-summary__price-old').innerText = _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText;
-      _$('.lavm-summary__count').innerText = `${qty}x worktop${qty > 1 ? 's' : ''}`;
+      _$('.lavm-summary__count').innerText = `${totalQty}x worktop${qty > 1 ? 's' : ''}`;
 
       if (_$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').style.display == 'none' || _$('.lavm-summary__price')?.innerText.includes('£0')) {
         _$('.lavm-summary__price-old').style.display = 'none';
@@ -4772,7 +4777,7 @@
         const styles = /* css */ `
         .lav-modal {
           position: fixed;
-          z-index: 9999;
+          z-index: 99999999999;
           left: 0;
           right: 0;
           top: 0;
@@ -4819,9 +4824,10 @@
           }
         }
         .lav-modal-open {
-          overflow: hidden;
+          overflow: hidden!important;
         }
         .lav-cutting__close {
+          display: none;
           position: absolute;
           pointer-events: auto;
           z-index: 99999999999999;
@@ -4847,8 +4853,8 @@
         @media(max-width: 992px) {
           .lav-cutting__close {
             left: initial;
-            right: 8px;
-            top: 2px;
+            right: -12px;
+            top: 1px;
           }
           .lav-modal.active .lav-cutting__close {
             display: block;
