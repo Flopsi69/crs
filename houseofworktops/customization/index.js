@@ -4900,6 +4900,7 @@
         loginUsername: 'cutter',
         loginToken: 'AecAT1DcODAECq634BN5pXe0luOnCZpCp7D2KJVQi4dP3cXwqqRxwzOTcUBtNEM7R1hF3cF2JNu7lqNaGqGeYtEOleY6Yr6AyjRY1ADJMCtH6x5ES8WmYhUUIThujkOPBVXNKphTFyuXzMHZUMHJc3Zr1FO5kEbm4WTh7F4g2HqkskEcxUyqTx5WauIKh2JoCsYvSDNUsKuEQcXs8IQZJJN3ijmX4Sku42bAv5SdQfxTilAAEQF3GDgNFP1yQeSI',
         cartRoute: 'api/cart/add',
+        checkoutRouter: 'checkout/cart/add',
         cartToken: ''
       };
 
@@ -6055,7 +6056,7 @@
       try {
         var apiToken = this.api.cartToken;
         if (!apiToken) {
-          apiToken = await this.fetchCartToken();
+          // apiToken = await this.fetchCartToken();
         }
 
         var basePrice = this.selectedPlan === 'wecut' ? this.planData.wecut.totalPrice : this.planData.selfcut.totalPrice;
@@ -6114,8 +6115,8 @@
         });
 
         var requestUrlParams = new URLSearchParams({
-          route: this.api.cartRoute,
-          api_token: apiToken
+          route: this.api.checkoutRouter,
+          // api_token: apiToken
         });
         var requestUrl = this.api.apiUrl + '?' + requestUrlParams.toString();
 
