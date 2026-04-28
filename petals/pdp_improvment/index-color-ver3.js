@@ -894,10 +894,10 @@ ul.owlCustomCarousel {
   // line-height: 11px;
   // letter-spacing: 0.4px;
 }
-#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"], body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"] {
+#MainContent:not(.lav-no-color-option) .lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"], body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"] {
   margin-bottom: 35px;
 }
-#MainContent:not(.lav-no-color-option) .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after, body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
+#MainContent:not(.lav-no-color-option) .lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after, body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
   content: '+Stone Color Choice Available';
   max-width: 90px;
   position: absolute;
@@ -914,6 +914,32 @@ ul.owlCustomCarousel {
   font-weight: 400;
   line-height: 11px;
   letter-spacing: 0.6px;
+}
+.parent-variant div:first-child div.select:before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--inputs-radius-outset);
+  box-shadow: var(--inputs-shadow-horizontal-offset) var(--inputs-shadow-vertical-offset) var(--inputs-shadow-blur-radius) rgba(var(--color-shadow), var(--inputs-shadow-opacity));
+  z-index: -1;
+}
+.parent-variant div:first-child div.select:after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: var(--inputs-border-width);
+  right: var(--inputs-border-width);
+  bottom: var(--inputs-border-width);
+  left: var(--inputs-border-width);
+  border: .1rem solid transparent;
+  border-radius: var(--inputs-radius);
+  box-shadow: 0 0 0 var(--inputs-border-width) rgba(var(--color-foreground), var(--inputs-border-opacity));
+  transition: box-shadow var(--duration-short) ease;
+  z-index: 1;
 }
 body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-grid-picker-item[data-jquery-grid-picker-value*="14"]:after {
   content: '+Stone Color Available';
@@ -951,7 +977,7 @@ body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-gr
   transform: rotate(90deg);
 }
 .product-form__input--dropdown .lav-measure {
-  display: flex;
+  display: flex!important;
   // display: none!important;
 }
 .lav-options select {
@@ -1115,7 +1141,7 @@ body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-gr
     padding: 10px 26px!important;
   }
   .lav-measure-container .lav-measure {
-    display: none;
+    display: none!important;
   }
   .lav-measure-container .select select {
     display: block;
@@ -1669,7 +1695,7 @@ body:not(.lav-no-color-option) .lav-selector__toggler ul.lav-material .jquery-gr
       }
     ]
 
-    const is14K = _$('.lav-material .jquery-grid-picker-item-selected').dataset.jqueryGridPickerValue?.toLowerCase().includes('14k');
+    const is14K = _$('.lav-material .jquery-grid-picker-item-selected')?.dataset.jqueryGridPickerValue?.toLowerCase().includes('14k');
 
     if (!is14K) return
 
