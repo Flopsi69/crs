@@ -5498,7 +5498,8 @@
 
       var totalSlabCost = 0, totalCutCost = 0, totalCutCount = 0;
       var allSlabs = [], allPieces = [];
-      var oiling3Total = 0, oiling5Total = 0;
+      var oiling3TotalWecut = 0, oiling5TotalWecut = 0;
+      var oiling3TotalSelfcut = 0, oiling5TotalSelfcut = 0;
 
       results.forEach(r => {
         var cost = r.cost || {};
@@ -5545,12 +5546,17 @@
                 }))
               : []
           });
+
+          // For selfcut, sum oiling costs from slabs
+          oiling3TotalSelfcut += s.oiling_3_cost || 0;
+          oiling5TotalSelfcut += s.oiling_5_cost || 0;
         });
 
+        // For wecut, sum oiling costs from addons.breakdown
         ((r.addons && r.addons.breakdown) || []).forEach(b => {
           var qty = b.quantity || 1;
-          oiling3Total += (b.oiling_3_cost || 0) * qty;
-          oiling5Total += (b.oiling_5_cost || 0) * qty;
+          oiling3TotalWecut += (b.oiling_3_cost || 0) * qty;
+          oiling5TotalWecut += (b.oiling_5_cost || 0) * qty;
         });
       });
 
@@ -5561,8 +5567,10 @@
         wecut: { totalPrice: parseFloat((totalSlabCost + totalCutCost).toFixed(2)), materialPrice: totalSlabCost, cuttingTotal: totalCutCost, totalCuts: totalCutCount, pieces: allPieces },
         selfcut: { totalPrice: totalSlabCost, slabs: allSlabs },
         diagram: { materialPrice: totalSlabCost, cuttingTotal: totalCutCost, slabCount: allSlabs.length, totalCuts: totalCutCount, slabs: allSlabs },
-        oiling3Total: parseFloat(oiling3Total.toFixed(2)),
-        oiling5Total: parseFloat(oiling5Total.toFixed(2))
+        oiling3Total: parseFloat(oiling3TotalWecut.toFixed(2)),
+        oiling5Total: parseFloat(oiling5TotalWecut.toFixed(2)),
+        oiling3TotalSelfcut: parseFloat(oiling3TotalSelfcut.toFixed(2)),
+        oiling5TotalSelfcut: parseFloat(oiling5TotalSelfcut.toFixed(2))
       };
     }
 
@@ -5629,14 +5637,18 @@
     renderStep2(data) {
       this.planData = data;
 
-      if (data.oiling3Total) {
+      // Set oiling prices for both plans
+      // For "We cut for you" (wecut): use oiling3Total/oiling5Total
+      // For "You cut yourself" (selfcut): use oiling3TotalSelfcut/oiling5TotalSelfcut
+      if (this.selectedPlan === 'wecut') {
         this.OILINGS.oiling.price = data.oiling3Total;
-        document.querySelector('#card-oiling .lawc-oiling-price').textContent = this.fmt(data.oiling3Total);
-      }
-      if (data.oiling5Total) {
         this.OILINGS.smoothguard.price = data.oiling5Total;
-        document.querySelector('#card-smoothguard .lawc-oiling-price').textContent = this.fmt(data.oiling5Total);
+      } else {
+        this.OILINGS.oiling.price = data.oiling3TotalSelfcut;
+        this.OILINGS.smoothguard.price = data.oiling5TotalSelfcut;
       }
+      document.querySelector('#card-oiling .lawc-oiling-price').textContent = this.fmt(this.OILINGS.oiling.price);
+      document.querySelector('#card-smoothguard .lawc-oiling-price').textContent = this.fmt(this.OILINGS.smoothguard.price);
 
       var sizesList = document.getElementById('s2-sizes-list');
       sizesList.innerHTML = '';
@@ -5768,10 +5780,27 @@
         wecutCard.classList.add('selected');
         selfcutCard.classList.remove('selected');
         // viewDiagramBtn.style.display = 'flex';
+        // Update oiling prices for wecut
+        if (this.planData) {
+          this.OILINGS.oiling.price = this.planData.oiling3Total;
+          this.OILINGS.smoothguard.price = this.planData.oiling5Total;
+        }
       } else {
         wecutCard.classList.remove('selected');
         selfcutCard.classList.add('selected');
         // viewDiagramBtn.style.display = 'none';
+        // Update oiling prices for selfcut
+        if (this.planData) {
+          this.OILINGS.oiling.price = this.planData.oiling3TotalSelfcut;
+          this.OILINGS.smoothguard.price = this.planData.oiling5TotalSelfcut;
+        }
+      }
+      // Always update the UI prices
+      if (document.querySelector('#card-oiling .lawc-oiling-price')) {
+        document.querySelector('#card-oiling .lawc-oiling-price').textContent = this.fmt(this.OILINGS.oiling.price);
+      }
+      if (document.querySelector('#card-smoothguard .lawc-oiling-price')) {
+        document.querySelector('#card-smoothguard .lawc-oiling-price').textContent = this.fmt(this.OILINGS.smoothguard.price);
       }
       this.refreshStep2Footer();
     }
@@ -5942,7 +5971,13 @@
     refreshStep3Footer() {
       if (!this.planData) return;
       var basePrice = this.selectedPlan === 'wecut' ? this.planData.wecut.totalPrice : this.planData.selfcut.totalPrice;
-      var oilingCost = this.OILINGS[this.selectedOiling].price || 0;
+      // Use correct oiling price for the selected plan
+      var oilingCost = 0;
+      if (this.selectedOiling === 'oiling') {
+        oilingCost = this.selectedPlan === 'wecut' ? (this.planData.oiling3Total || 0) : (this.planData.oiling3TotalSelfcut || 0);
+      } else if (this.selectedOiling === 'smoothguard') {
+        oilingCost = this.selectedPlan === 'wecut' ? (this.planData.oiling5Total || 0) : (this.planData.oiling5TotalSelfcut || 0);
+      }
       document.getElementById('s3-footer-price').textContent = this.fmt(parseFloat((basePrice + oilingCost).toFixed(2)));
       var planDesc = '';
       if (this.selectedPlan === 'wecut') {
