@@ -1776,7 +1776,8 @@
         });
         if (!imageEl || !isValidProduct) return;
 
-        let type = _$('.cart-product-name small', item).innerText?.split('|')[0].trim();
+        let type = _$('.cart-product-name small', item)?.innerText?.split('|')[0].trim();
+        if (!type) return;
         const imgSrc = upsellConfig[type];
         // console.log('Updating cart image for type:', type, imgSrc);
         if (imgSrc && imageEl.src !== imgSrc) {
