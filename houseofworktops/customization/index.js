@@ -1285,6 +1285,13 @@
         }
       });
 
+      _$$('#filter-collapse .filters .dimension-filter-btn').forEach(option => {
+        option.addEventListener('click', () => {
+          const type = option.closest('.flex-column.mb-2')?.querySelector('.font-weight-medium')?.innerText.toLowerCase();
+          pushDataLayer('exp_pdp_ss_filter_option', option.innerText.trim(), 'click', 'Standard Size Flow', type);
+        });
+      })
+
       observer.observe(_$('#mobileFilterCount'), { attributes: true, childList: true, subtree: true });
 
       parentEl?.classList.add('lavm-header')
