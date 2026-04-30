@@ -40,6 +40,7 @@
     'Compact Laminate Installation Kit': config.dir + '/img/laminate.jpg',
     'Spectra Seal 290ml - Colour Matched': config.dir + '/img/spectra.jpg',
     'Upstand - 3M x 95mm x 12mm': config.dir + '/img/upstand.jpg',
+    'Upstand - 2M x 80mm x 20mm': config.dir + '/img/upstand.jpg',
     'Upstand 3M x 100mm x 12mm': config.dir + '/img/upstand.jpg',
     'Upstand - 3M x 80mm x 20mm': config.dir + '/img/upstand.jpg',
     'Upstand - 4.2M x 95mm x 12mm': config.dir + '/img/upstand.jpg',
