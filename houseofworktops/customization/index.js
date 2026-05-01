@@ -663,6 +663,14 @@
       line-height: 32px;
     }
 
+    .lavm-oiling-caption {
+      color: #1F8964;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      margin-top: -14px;
+    }
+
     .lavm-oiling-desc {
       font-size: 14px;
       color: #495057;
@@ -1166,13 +1174,14 @@
 
 
     handleCartImages();
+    // handleAtcModal();
 
     return
 
-    handleEssentials();
+    // handleEssentials();
     // TODO ask about sticky and what it should do
     // TODO remove
-    handleAtcModal()
+    // handleAtcModal()
   }
 
   function addNewButton() {
@@ -1386,33 +1395,33 @@
 
         _$('.lavm-header').insertAdjacentElement('afterbegin', el);
 
-        _$('.lavm-filters__item')?.insertAdjacentHTML('beforeend', /* html */ `
-          <div class="lavm-banner">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M14 5.33333V3.33333C14 2.97971 13.8595 2.64057 13.6095 2.39052C13.3594 2.14048 13.0203 2 12.6667 2H3.33333C2.97971 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333V5.33333" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M14 10.6667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10.6667" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M2.66683 8H1.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M6.66683 8H5.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M10.6668 8H9.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path d="M14.6668 8H13.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
+        // _$('.lavm-filters__item')?.insertAdjacentHTML('beforeend', /* html */ `
+        //   <div class="lavm-banner">
+        //     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        //       <path d="M14 5.33333V3.33333C14 2.97971 13.8595 2.64057 13.6095 2.39052C13.3594 2.14048 13.0203 2 12.6667 2H3.33333C2.97971 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333V5.33333" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //       <path d="M14 10.6667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10.6667" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //       <path d="M2.66683 8H1.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //       <path d="M6.66683 8H5.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //       <path d="M10.6668 8H9.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //       <path d="M14.6668 8H13.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //     </svg>
             
-            <span class="lavm-banner-text">
-              Need a pre-cut worktop? 
-              <span class="lavm-banner-link">
-                Choose your exact worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </span>
-            </span>
-          </div>
-        `)
+        //     <span class="lavm-banner-text">
+        //       Need a pre-cut worktop? 
+        //       <span class="lavm-banner-link">
+        //         Choose your exact worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        //           <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+        //         </svg>
+        //       </span>
+        //     </span>
+        //   </div>
+        // `)
 
-        _$('.lavm-banner-link').addEventListener('click', () => {
-          pushDataLayer('exp_pdp_ss_1_choose_exact_size', 'Choose your exact worktop size', 'click', 'Standard Size Flow');
-          _$('.cancel[data-dismiss="modal"]')?.click();
-          Modal.open('.lav-cutting');
-        });
+        // _$('.lavm-banner-link')?.addEventListener('click', () => {
+        //   pushDataLayer('exp_pdp_ss_1_choose_exact_size', 'Choose your exact worktop size', 'click', 'Standard Size Flow');
+        //   _$('.cancel[data-dismiss="modal"]')?.click();
+        //   Modal.open('.lav-cutting');
+        // });
       }
 
       function getFilterOptions(type, options, allOptions, parentEl) {
@@ -1565,6 +1574,14 @@
       _$('.lavm-summary__price').innerText = price;
       _$('.lavm-summary__price-old').innerText = _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText;
       _$('.lavm-summary__count').innerText = `${totalQty}x worktop${qty > 1 ? 's' : ''}`;
+      _$$('.lavm-oiling-caption').forEach(item => {
+        _$('span', item).innerText = totalQty;
+        if (totalQty > 1) {
+          item.removeAttribute('style');
+        } else {
+          item.style.display = 'none';
+        }
+      })
 
       if (_$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').style.display == 'none' || _$('.lavm-summary__price')?.innerText.includes('£0')) {
         _$('.lavm-summary__price-old').style.display = 'none';
@@ -1596,6 +1613,7 @@
                 <div class="lavm-radio" style="border-width: 1.5px; border-color: rgb(173, 181, 189);"></div>
               </div>
               <div class="lavm-oiling-price"></div>
+              <div class="lavm-oiling-caption">The price covers all <span></span> worktops you've selected.</div>
               <div class="lavm-oiling-desc">A 6-step process of sanding and oiling that leaves your worktop beautifully protected and ready to use straight away - no maintenance hassle. If the worktop fails the water test*, we'll refund 100% of the oiling fee.</div>
             </div>
 
@@ -1606,6 +1624,7 @@
                 <div class="lavm-radio" style="border-width: 1.5px; border-color: rgb(173, 181, 189);"></div>
               </div>
               <div class="lavm-oiling-price"></div>
+              <div class="lavm-oiling-caption">The price covers all <span></span> worktops you've selected.</div>
               <div class="lavm-oiling-desc">Engineered through a precise 12-step sequence alternating between detailed sanding and five distinct oil layers. Perfects the surface texture and sheen, backed by an 18-month maintenance warranty.</div>
               <div class="lavm-oiling-badges">
                 <span class="lavm-oiling-badge lavm-oiling-badge-green">
@@ -1798,6 +1817,7 @@
 
   function handleAtcModal() {
     const modalEl = _$('.added-modal-accessories');
+    modalEl.classList.add('lav-atc');
 
     _$('.added-modal-accessories .modal-header .close').innerHTML = /* html */ `
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -1813,49 +1833,50 @@
     </svg>
     `
 
+    _$('.subtotal-bottom .footer-buttons .col-6:nth-child(1) h6', modalEl).textContent = 'Choose Accessories';
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
 
-    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to Cart';
+    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
 
     _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
-      pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
+      // pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
     });
 
-    _$('.added-modal-accessories .subtotal-bottom .footer-buttons .col-6:nth-child(2) .btn', modalEl).addEventListener('click', (e) => {
-      pushDataLayer('exp_pdp_cart_modal_checkout', 'Checkout', 'click', 'Cart Modal');
-      if (_$('.lav-upsell.active')) {
-        e.preventDefault()
-        _$$('#product-options-modal .select-size-row[data-type="worktop"] .checkbox-check [type="checkbox"]:checked ').forEach(checkbox => {
-          if (checkbox?.checked) {
-            checkbox.click();
-          }
-        });
+    // _$('.added-modal-accessories .subtotal-bottom .footer-buttons .col-6:nth-child(2) .btn', modalEl).addEventListener('click', (e) => {
+    //   pushDataLayer('exp_pdp_cart_modal_checkout', 'Checkout', 'click', 'Cart Modal');
+    //   if (_$('.lav-upsell.active')) {
+    //     e.preventDefault()
+    //     _$$('#product-options-modal .select-size-row[data-type="worktop"] .checkbox-check [type="checkbox"]:checked ').forEach(checkbox => {
+    //       if (checkbox?.checked) {
+    //         checkbox.click();
+    //       }
+    //     });
 
-        _$('#added-modal-with-accessories-2').classList.add('lav-atc-handle');
+    //     _$('#added-modal-with-accessories-2').classList.add('lav-atc-handle');
 
-        _$('.added-modal-accessories .subtotal-bottom .footer-buttons .col-6:nth-child(2) .btn').classList.add('lav-btn-progress');
+    //     _$('.added-modal-accessories .subtotal-bottom .footer-buttons .col-6:nth-child(2) .btn').classList.add('lav-btn-progress');
 
-        // $('.added-modal-accessories .modal-header').slideUp();
-        const observer = new MutationObserver((mutationsList, observer) => {
-          for (const mutation of mutationsList) {
-            if (mutation.addedNodes.length) {
-              observer.disconnect();
-              location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
+    //     // $('.added-modal-accessories .modal-header').slideUp();
+    //     const observer = new MutationObserver((mutationsList, observer) => {
+    //       for (const mutation of mutationsList) {
+    //         if (mutation.addedNodes.length) {
+    //           observer.disconnect();
+    //           location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
               
-              resetExpSelector();
+    //           resetExpSelector();
 
-              setTimeout(() => {
-                _$('.lav-atc-handle')?.classList.remove('lav-atc-handle');
-                _$('.lav-btn-progress')?.classList.remove('lav-btn-progress');
-              }, 3000);
-            }
-          }
-        });
+    //           setTimeout(() => {
+    //             _$('.lav-atc-handle')?.classList.remove('lav-atc-handle');
+    //             _$('.lav-btn-progress')?.classList.remove('lav-btn-progress');
+    //           }, 3000);
+    //         }
+    //       }
+    //     });
 
-        observer.observe(_$('#cart>button'), { attributes: true, childList: true, subtree: true });
-        _$('.button-cart').click();
-      }
-    });
+    //     observer.observe(_$('#cart>button'), { attributes: true, childList: true, subtree: true });
+    //     _$('.button-cart').click();
+    //   }
+    // });
   }
 
   function handleCheckoutCartImages() {
