@@ -99,6 +99,9 @@
       top: -3px;
       transition: .3s;
     }
+    .lav-atc .lavm-header__close {
+      right: -40px;
+    }
     .lavm-header__close-desk {
       width: 24px;
     }
@@ -487,7 +490,9 @@
       font-weight: 600;
       line-height: 20px;
     }
-
+    .lav-adding-accessory #added-modal-with-accessories-2 {
+      display: none!important;
+    }
     .lavm-btn-continue {
       display: flex;
       align-items: center;
@@ -814,10 +819,372 @@
       font-weight: 700;
       line-height: 21px;
     }
+
+    .lav-atc .subtotal-bottom {
+      border-radius: 0 0 12px 12px;
+      border: 1px solid #DEE2E6;
+      background: #F8F9FA!important;
+      box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 0.08);
+      margin: 0 !important;
+      padding: 18px 20px !important;
+    }
+    .lav-atc .footer-buttons.my-3 {
+      margin-top: 16px!important;
+      margin-bottom: 0!important;
+    }
+    .lav-atc .modal-header {
+      border-bottom: 1px solid #D3E9DF !important;
+      background: #EAF5F0;
+      margin: 0 !important;
+      padding: 18px 12px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 78px;
+    }
+    .lav-atc .modal-header p {
+      gap: 12px;
+    }
+    .lav-atc .modal-header p span {
+      color: #1F8964;
+      font-size: 20px!important;
+      font-weight: 500;
+      line-height: 28px;
+    }
+    .lav-atc .modal-header p img {
+      width: 30px;
+    }
+    .lav-atc .modal-header .close {
+      display: none!important;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal + .row {
+      display: none;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal {
+      flex-flow: column;
+      align-items: center;
+      text-align: center;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal .align-items-sm-baseline {
+      justify-content: center!important;
+      flex-flow: row-reverse !important;
+      gap: 6px;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal .total-text-display {
+      color: #212529;
+      font-size: 24px!important;
+      font-style: normal;
+      font-weight: 800 !important;
+      line-height: 30px;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal .o-total-text-display {
+      margin: 0!important;
+      color: #212529!important;
+      font-size: 24px!important;
+      font-weight: 500!important;
+      line-height: 30px;
+      text-decoration-line: line-through;
+    }
+    .lav-atc .subtotal-bottom > .border {
+      display: none;
+    }
+    .lav-atc .subtotal-bottom .footer-buttons .col-6:nth-child(2) h6 {
+      font-size: 24px!important;
+      font-weight: 700;
+      line-height: 36px;
+    }
+    .lav-atc .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6 {
+      font-size: 24px!important;
+      font-weight: 700;
+      line-height: 36px;
+    }
+    .lav-atc .subtotal-bottom .footer-buttons .col-6 .btn {
+      min-height: 70px;
+    }
+    .lav-atc .subtotal-bottom .footer-buttons > .row {
+      margin: 0;
+      gap: 24px;
+      flex-wrap: nowrap;
+    }
+    .lav-atc .subtotal-bottom .footer-buttons > .row .col-6 {
+      padding: 0;
+      flex: auto;
+      max-width: inherit;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal h6 strong {
+      color: #1F8964;
+      text-align: right;
+      font-family: Archivo;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal h6 strong:after {
+      content: ':'
+    }
+    .lav-atc .subtotal-bottom .row-subtotal h6 {
+      font-size: 0!important;
+      margin-bottom: 2px;
+    }
+    .lav-atc .subtotal-bottom .row-subtotal h6:after {
+      content: '(excl. shipping)';
+      color: #212529;
+      font-family: Archivo;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin-left: 4px;
+    }
+    #added-modal-with-accessories-2 .modal-content {
+      border-radius: 12px !important;
+    }
+    .lav-atc .modal-body {
+      background: #F8F9FA;
+      padding-bottom: 25px!important;
+    }
+    .lav-atc .variants-container > div {
+      background: #FFF;
+      padding: 20px 32px;
+      border-bottom: 1px solid #DEE2E6;
+    }
+    .lav-atc .variants-container > div > hr.border {
+      display: none;
+    }
+    .lav-atc .variants-container {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .lav-atc .variants-container > div > .container {
+      padding: 0;
+      margin-bottom: 0!important;
+    }
+    .lav-atc .variants-container > div > .container > .row {
+      margin: 0;
+      flex-wrap: nowrap;
+      gap: 44px;
+    }
+    .lav-atc .variants-container [class*="col"] {
+      padding: 0!important;
+      margin: 0!important;
+      flex: none;
+      flex-shrink: 1;
+      max-width: inherit;
+      width: auto;
+    }
+    .lav-atc .variants-container [class*="row"] {
+      margin: 0!important;
+      padding: 0!important;
+    }
+    .lav-atc .variants-container .confirm-popup-details {
+      flex-grow: 1;
+      justify-content: flex-start !important;
+    }
+    .lav-atc .variants-container .variant-title {
+      font-size: 22px!important;
+      line-height: 24px;
+    }
+    .lav-atc .variants-container .dimension  {
+      margin-right: 0!important;
+    }
+    .lav-atc .variants-container .dimension h6  {
+      margin: 0!important;
+    }
+    .lav-atc .variants-container .dimension + div h6  {
+      margin: 0!important;
+      color: #212529;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .lav-atc .variants-container .confirm-popup-details > .mb-0 {
+      margin-bottom: 12px!important;
+      flex-wrap: nowrap;
+    }
+    .lav-atc .variants-container .dimensions-info {
+      justify-content: space-between;
+      gap: 12px;
+      flex-grow: 1;
+      padding-bottom: 12px!important;
+      margin-bottom: 12px!important;
+      border-bottom: 1px solid #DEE2E6;
+    }
+    .lav-atc .variants-container .dimension h6 strong {
+      color: #212529;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .lav-atc .quantity-display {
+      color: #212529;
+      font-size: 22px!important;
+      font-weight: 500!important;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+    .lav-atc .lav-product-price {
+      flex-flow: row-reverse !important;
+      justify-content: flex-start !important;
+      gap: 11px;
+    }
+    .lav-atc .lav-product-price .og-price-display {
+      margin-right: 0!important;
+      color: #212529!important;
+      font-size: 18px!important;
+      font-weight: 500!important;
+      line-height: 26px;
+      text-decoration-line: line-through;
+    }
+    .lav-atc .lav-product-price .price-display {
+      color: #D89654!important;
+      font-size: 18px!important;
+      font-weight: 500!important;
+      line-height: 26px;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon .cart-oiling p.mb-0:before {
+      content: '+';
+      font-size: 16px;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon .cart-oiling p.mb-0 {
+      color: #212529;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24.08px;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon {
+      justify-content: flex-end;
+      gap: 11px;
+      margin-top: 5px!important;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon > .col {
+      flex-flow: row-reverse !important;
+      gap: 11px;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon .o-oiling-price-display {
+      margin-right: 0!important;
+      color: #212529!important;
+      font-size: 16px!important;
+      font-weight: 400!important;
+      line-height: 22px;
+      text-decoration-line: line-through;
+    }
+    .lav-atc .variants-container .confirm-oiling-addon .oiling-price-display {
+      color: #D89654!important;
+      font-size: 16px!important;
+      font-weight: 400!important;
+      line-height: 22px;
+    }
+
+    @media(max-width: 767.98px) {
+      .lav-atc.added-modal-accessories .modal {
+        z-index: 9999999999 !important;
+      }
+      .lav-atc .variants-container > div {
+        padding: 12px;
+      }
+      #added-modal-with-accessories-2 .image-block img {
+        width: 100px;
+      }
+      .lav-atc .variants-container > div > .container > .row {
+        gap: 18px;
+      }
+      .lav-atc .variants-container .variant-title {
+        font-size: 18px!important;
+      }
+      .lav-atc .quantity-display {
+        font-size: 16px!important;
+      }
+      .lav-atc .variants-container .dimension h6 strong {
+        font-size: 14px!important;
+        line-height: 24px;
+      }
+      .lav-atc .variants-container .dimension + div h6 {
+        font-size: 14px!important;
+        line-height: 24px;
+      }
+      .lav-atc .modal-header p span {
+        font-size: 16px!important;
+        line-height: 24px;
+      }
+      .lav-atc .modal-header {
+        min-height: 56px;
+        padding: 10px !important;
+      }
+      .lav-atc .modal-header p {
+        gap: 10px;
+      }
+      .lav-atc .modal-header p img {
+        width: 24px;
+      }
+      .lav-atc .lav-product-price .price-display, .lav-atc .lav-product-price .og-price-display {
+        font-size: 16px!important;
+        line-height: 24px;
+      }
+      .lav-atc .variants-container .confirm-oiling-addon .oiling-price-display, .lav-atc .variants-container .confirm-oiling-addon .o-oiling-price-display {
+        font-size: 14px!important;
+        line-height: 24px;
+      }
+      .lav-atc .variants-container .confirm-oiling-addon .cart-oiling p.mb-0 {
+        font-size: 12px!important;
+        line-height: 1.3;
+      }
+      .lav-atc .variants-container .confirm-oiling-addon {
+        gap: 6px;
+        flex-wrap: nowrap;
+      }
+      .lav-atc .variants-container .confirm-oiling-addon > .col {
+        gap: 6px;
+      }
+      .lav-atc .subtotal-bottom {
+        padding: 14px!important;
+      }
+      .lav-atc .subtotal-bottom .row-subtotal h6 strong {
+        font-size: 12px;
+        line-height: 18px;
+      }
+      .lav-atc .subtotal-bottom .row-subtotal h6:after {
+        font-size: 12px;
+        line-height: 18px;
+      }
+      .lav-atc .subtotal-bottom .row-subtotal .total-text-display {
+        font-size: 20px!important;
+        line-height: 24px;
+      }
+      .lav-atc .subtotal-bottom .row-subtotal .o-total-text-display {
+        font-size: 20px!important;
+        line-height: 24px;
+      }
+      .lav-atc .subtotal-bottom .footer-buttons .col-6 .btn {
+        min-height: 56px;
+      }
+      .lav-atc .subtotal-bottom .footer-buttons .col-6:nth-child(2) h6 {
+        font-size: 16px!important;
+        font-weight: 500;
+        line-height: 1;
+      }
+      .lav-atc .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6 {
+        font-size: 14px!important;
+        font-weight: 500;
+        line-height: 1;
+      }
+      .lav-atc .subtotal-bottom .footer-buttons > .row {
+        gap: 16px;
+      }
+      .lav-atc .subtotal-bottom .footer-buttons .col-6:nth-child(1) [data-dismiss="modal"] {
+        padding-left: 5px!important;
+        padding-right: 5px!important;
+      }
+    }
     
 
     @media(max-width: 992px) {
-      #select-size-model .modal-content {
+      #select-size-model[data-type="accessory"] .lavm-btn-continue {
+        line-height: 24px;
+        width: 121px;
+        white-space: normal;
+      }
+      #select-size-model .modal-content, .lav-atc .modal-content {
         margin-top: 40px;
       }
       .lavm-header__close-mob {
@@ -829,6 +1196,9 @@
       .lavm-header__close {
         right: 0;
         top: -7px;
+      }
+      .lav-atc .lavm-header__close {
+        right: 0;
       }
       #select-size-model .select-size-row .checkbox-check .small {
         opacity: 0!important;
@@ -1174,7 +1544,7 @@
 
 
     handleCartImages();
-    // handleAtcModal();
+    handleAtcModal();
 
     return
 
@@ -1233,7 +1603,7 @@
       _$('.lavm-summary__price-old').innerText = '';
     }
 
-    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : 'Add to Basket';
+    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : isAccessory ? 'Add to Cart & Checkout' : 'Add to Cart';
     
     _$$('.lavm-filters__option').forEach(el => {
       el.classList.remove('active', 'disabled')
@@ -1327,7 +1697,7 @@
         </div>
       `);
 
-      _$('.lavm-header__close').addEventListener('click', () => {
+      _$('#select-size-model .lavm-header__close').addEventListener('click', () => {
         pushDataLayer('exp_pdp_ss_close', 'close', 'click', 'Custom Size Flow', _$('.lavm-tab.active .lavm-tab-label').innerText.trim());
         _$('#select-size-model .btn.cancel[data-dismiss="modal"]').click();
       });
@@ -1395,33 +1765,33 @@
 
         _$('.lavm-header').insertAdjacentElement('afterbegin', el);
 
-        // _$('.lavm-filters__item')?.insertAdjacentHTML('beforeend', /* html */ `
-        //   <div class="lavm-banner">
-        //     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        //       <path d="M14 5.33333V3.33333C14 2.97971 13.8595 2.64057 13.6095 2.39052C13.3594 2.14048 13.0203 2 12.6667 2H3.33333C2.97971 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333V5.33333" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //       <path d="M14 10.6667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10.6667" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //       <path d="M2.66683 8H1.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //       <path d="M6.66683 8H5.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //       <path d="M10.6668 8H9.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //       <path d="M14.6668 8H13.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //     </svg>
+        _$('.lavm-filters__item')?.insertAdjacentHTML('beforeend', /* html */ `
+          <div class="lavm-banner" style='display: none'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M14 5.33333V3.33333C14 2.97971 13.8595 2.64057 13.6095 2.39052C13.3594 2.14048 13.0203 2 12.6667 2H3.33333C2.97971 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333V5.33333" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14 10.6667V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10.6667" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M2.66683 8H1.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M6.66683 8H5.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M10.6668 8H9.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M14.6668 8H13.3335" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
             
-        //     <span class="lavm-banner-text">
-        //       Need a pre-cut worktop? 
-        //       <span class="lavm-banner-link">
-        //         Choose your exact worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        //           <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-        //         </svg>
-        //       </span>
-        //     </span>
-        //   </div>
-        // `)
+            <span class="lavm-banner-text">
+              Need a pre-cut worktop? 
+              <span class="lavm-banner-link">
+                Choose your exact worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </span>
+          </div>
+        `)
 
-        // _$('.lavm-banner-link')?.addEventListener('click', () => {
-        //   pushDataLayer('exp_pdp_ss_1_choose_exact_size', 'Choose your exact worktop size', 'click', 'Standard Size Flow');
-        //   _$('.cancel[data-dismiss="modal"]')?.click();
-        //   Modal.open('.lav-cutting');
-        // });
+        _$('.lavm-banner-link').addEventListener('click', () => {
+          pushDataLayer('exp_pdp_ss_1_choose_exact_size', 'Choose your exact worktop size', 'click', 'Standard Size Flow');
+          _$('.cancel[data-dismiss="modal"]')?.click();
+          Modal.open('.lav-cutting');
+        });
       }
 
       function getFilterOptions(type, options, allOptions, parentEl) {
@@ -1516,7 +1886,7 @@
         </div>
 
         <div class="lavm-btn-continue">
-          ${isOiling ? 'Continue' : 'Add to Basket'}
+          ${isOiling ? 'Continue' : 'Add to Cart'}
         </div>
       `);
 
@@ -1534,9 +1904,17 @@
         } else {
           _$('.lavm-btn-continue').classList.add('loading');
           _$('#select-size-model .btn-primary')?.click();
+          if (_$('.modal.show[data-type="accessory"]')) {
+            document.body.classList.add('lav-adding-accessory')
+            waitFor('#select-size-model.modal:not(.show)', () => {
+              location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
+            })
+          }
+
           setTimeout(() => {
+            document.body.classList.remove('lav-adding-accessory')
             _$('.lavm-btn-continue').classList.remove('loading');
-          }, 3500);
+          }, 4000);
         }
       });
 
@@ -1691,9 +2069,9 @@
         if (!_$('.lavm-oiling-card[data-option="untreated"]').classList.contains('selected')) {
           _$('.lavm-oiling-card[data-option="untreated"]').click();
         }
-        _$('.lavm-btn-continue').innerText = 'Add to Basket';
+        _$('.lavm-btn-continue').innerText = 'Add to Cart';
       } else {
-        _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : 'Add to Basket';
+        _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : 'Add to Cart';
       }
 
       _$$('.lavm-tab').forEach(tab => {
@@ -1821,22 +2199,39 @@
     const modalEl = _$('.added-modal-accessories');
     modalEl.classList.add('lav-atc');
 
-    _$('.added-modal-accessories .modal-header .close').innerHTML = /* html */ `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-      <g clip-path="url(#clip0_184_48126)">
-        <path d="M13.062 11.9637L16.284 15.1857C16.428 15.3297 16.5 15.5097 16.5 15.7257C16.5 15.9297 16.428 16.1037 16.284 16.2477C16.14 16.3917 15.96 16.4637 15.744 16.4637C15.54 16.4637 15.366 16.3917 15.222 16.2477L12 13.0257L8.778 16.2477C8.634 16.3917 8.454 16.4637 8.238 16.4637C8.034 16.4637 7.86 16.3917 7.716 16.2477C7.572 16.1037 7.5 15.9297 7.5 15.7257C7.5 15.5097 7.572 15.3297 7.716 15.1857L10.938 11.9637L7.716 8.74171C7.596 8.58571 7.542 8.41771 7.554 8.23771C7.566 8.04571 7.638 7.88371 7.77 7.75171C7.914 7.60771 8.076 7.52971 8.256 7.51771C8.448 7.50571 8.622 7.55971 8.778 7.67971L12 10.9017L15.222 7.67971C15.318 7.55971 15.432 7.47568 15.564 7.42768C15.696 7.37968 15.834 7.37368 15.978 7.40968C16.122 7.44568 16.242 7.51771 16.338 7.62571C16.446 7.72171 16.518 7.84171 16.554 7.98571C16.59 8.12971 16.584 8.26771 16.536 8.39971C16.488 8.53171 16.404 8.64571 16.284 8.74171L13.062 11.9637Z" fill="#212529"/>
-        <path d="M21 0.638672H3C1.55025 0.638672 0.375 1.81392 0.375 3.26367V21.2637C0.375 22.7134 1.55025 23.8887 3 23.8887H21C22.4497 23.8887 23.625 22.7134 23.625 21.2637V3.26367C23.625 1.81392 22.4497 0.638672 21 0.638672Z" stroke="#212529" stroke-width="0.75"/>
-      </g>
-      <defs>
-        <clipPath id="clip0_184_48126">
-          <rect width="24" height="24.75" fill="white"/>
-        </clipPath>
-      </defs>
-    </svg>
-    `
+    _$('.lav-atc .modal-content').insertAdjacentHTML('beforebegin', /* html */ `
+      <div class="lavm-header__close">
+        <svg class="lavm-header__close-desk" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M14.7059 12.102L23.2249 20.621C23.6057 21.0017 23.796 21.4776 23.796 22.0487C23.796 22.5881 23.6057 23.0482 23.2249 23.4289C22.8442 23.8096 22.3683 24 21.7972 24C21.2578 24 20.7977 23.8096 20.417 23.4289L11.898 14.9099L3.37904 23.4289C2.9983 23.8096 2.52238 24 1.95128 24C1.4119 24 0.951842 23.8096 0.571105 23.4289C0.190368 23.0482 0 22.5881 0 22.0487C0 21.4776 0.190368 21.0017 0.571105 20.621L9.09008 12.102L0.571105 3.58307C0.253825 3.17061 0.111047 2.72642 0.142775 2.2505C0.174503 1.74285 0.364872 1.31452 0.71388 0.965515C1.09462 0.584779 1.52295 0.378547 1.99887 0.346819C2.50652 0.315091 2.96657 0.457868 3.37904 0.775148L11.898 9.2941L20.417 0.775148C20.6708 0.457868 20.9722 0.235692 21.3212 0.108781C21.6703 -0.0181312 22.0351 -0.0339936 22.4159 0.0611902C22.7966 0.156374 23.1139 0.346819 23.3677 0.632371C23.6533 0.886194 23.8436 1.20347 23.9388 1.58421C24.034 1.96495 24.0181 2.32982 23.8912 2.67882C23.7643 3.02783 23.5422 3.32925 23.2249 3.58307L14.7059 12.102Z" fill="white"/>
+        </svg>
+        <svg class="lavm-header__close-mob" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <g clip-path="url(#clip0_1786_1895)">
+            <path d="M17.416 15.4683L21.712 19.6341C21.904 19.8203 22 20.053 22 20.3323C22 20.596 21.904 20.821 21.712 21.0072C21.52 21.1933 21.28 21.2864 20.992 21.2864C20.72 21.2864 20.488 21.1933 20.296 21.0072L16 16.8413L11.704 21.0072C11.512 21.1933 11.272 21.2864 10.984 21.2864C10.712 21.2864 10.48 21.1933 10.288 21.0072C10.096 20.821 10 20.596 10 20.3323C10 20.053 10.096 19.8203 10.288 19.6341L14.584 15.4683L10.288 11.3024C10.128 11.1007 10.056 10.8835 10.072 10.6508C10.088 10.4026 10.184 10.1931 10.36 10.0224C10.552 9.83625 10.768 9.7354 11.008 9.71989C11.264 9.70437 11.496 9.77419 11.704 9.92934L16 14.0952L20.296 9.92934C20.424 9.77419 20.576 9.66555 20.752 9.60349C20.928 9.54143 21.112 9.53367 21.304 9.58022C21.496 9.62676 21.656 9.71989 21.784 9.85953C21.928 9.98365 22.024 10.1388 22.072 10.325C22.12 10.5112 22.112 10.6896 22.048 10.8603C21.984 11.0309 21.872 11.1783 21.712 11.3024L17.416 15.4683Z" fill="white"/>
+            <path d="M28 0.825684H4C2.067 0.825684 0.5 2.3452 0.5 4.21962V27.4923C0.5 29.3668 2.067 30.8863 4 30.8863H28C29.933 30.8863 31.5 29.3668 31.5 27.4923V4.21962C31.5 2.3452 29.933 0.825684 28 0.825684Z" stroke="white" stroke-width="0.75"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_1786_1895">
+              <rect width="32" height="32" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+    `);
+
+    _$('.lav-atc .lavm-header__close').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_ss_close', 'close', 'click', 'ATC');
+      _$('.lav-atc .modal-header .close').click();
+    });
 
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(1) h6', modalEl).textContent = 'Choose Accessories';
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
+
+    _$('.subtotal-bottom .footer-buttons .col-6 [data-dismiss="modal"]', modalEl).addEventListener('click', () => {
+      config.isDisableLayer = true;
+      _$('#select-size').click();
+      config.isDisableLayer = false;
+      resetModalSizeSelectorModal(true);
+    });
 
     _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
 
@@ -1944,16 +2339,15 @@
       return location.href.includes(targetUrl)
     });
 
-    if (!isValidProduct) return;
-
+    handleLayout();
     update();
 
     const observer = new MutationObserver((mutationsList, observer) => {
       for (const mutation of mutationsList) {
-        // console.log('mutation', mutation)
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
           if (mutation.target.classList.contains('show')) {
             update();
+            handleLayout();
           }
         }
       }
@@ -1962,6 +2356,7 @@
     observer.observe(_$('#added-modal-with-accessories-2'), { attributes: true })
 
     function update() {
+      if (!isValidProduct) return;
       _$$(`.added-modal-accessories .variants-container>div`).forEach(el => {
         const img = _$('.position-relative>img', el);
         let productName = _$('.variant-name-type', el)?.textContent?.trim();
@@ -1975,6 +2370,16 @@
         if (imagesSrc && productName && img && img.src !== imagesSrc) {
           img.src = imagesSrc;
         }
+      });
+    }
+
+    function handleLayout() {
+      console.log('handle')
+      _$$('.added-modal-accessories .variants-container>div').forEach(el => { 
+        _$('.confirm-popup-details > .mb-0', el).insertAdjacentElement('beforeend', _$('.quantity-display', el).closest('.col'));
+
+        _$('.confirm-popup-details > .mb-0 > .col-5', el).classList.add('lav-product-price');
+        _$('.confirm-oiling-addon', el).insertAdjacentElement('beforebegin', _$('.lav-product-price', el))
       });
     }
   }
@@ -4699,7 +5104,7 @@
           </div>
           <div class="lawc-footer-total-desc" id="s3-footer-desc"></div>
         </div>
-        <button class="lawc-cta" id="s3-add-to-basket-btn">Add to Basket</button>
+        <button class="lawc-cta" id="s3-add-to-basket-btn">Add to Cart</button>
       </div>
     </div>
   `;
@@ -5103,7 +5508,7 @@
       
       if (!this.isOiling) {
         if (step3Tab) step3Tab.style.display = 'none';
-        if (continueBtn) continueBtn.textContent = 'Add to basket';
+        if (continueBtn) continueBtn.textContent = 'Add to Cart';
       } else {
         if (step3Tab) step3Tab.style.display = '';
         if (continueBtn) continueBtn.textContent = 'Continue';
@@ -6196,12 +6601,12 @@
           throw new Error(errMsg);
         }
 
-        var successMsg = (json && json.success) || ('Added to basket successfully. Total: ' + this.fmt(total));
+        var successMsg = (json && json.success) || ('Added to cart successfully. Total: ' + this.fmt(total));
         alert(successMsg);
         this.reset();
       } catch (err) {
         console.error(err)
-        alert('Failed to add to basket: ' + err.message);
+        alert('Failed to add to cart: ' + err.message);
       } finally {
         this.isCartSubmitting = false;
         this.setAddToCartLoading(false);
