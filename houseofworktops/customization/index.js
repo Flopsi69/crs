@@ -372,10 +372,6 @@
       transition: .3s;
       cursor: pointer;
     }
-    #select-size-model .select-size-row.selected .checkbox-check .small {
-      opacity: 1!important;
-      pointer-events: auto!important;
-    }
     @media(hover:hover) {
       #select-size-model .select-size-row.selected .checkbox-check .small:hover {
         opacity: .7!important;
@@ -1179,6 +1175,10 @@
     
 
     @media(max-width: 992px) {
+      #select-size-model .select-size-row.selected .checkbox-check .small {
+        opacity: 1!important;
+        pointer-events: auto!important;
+      }
       #select-size-model[data-type="accessory"] .lavm-btn-continue {
         line-height: 24px;
         width: 121px;
