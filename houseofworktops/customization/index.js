@@ -1781,7 +1781,9 @@
   function handleCartImages() {
     initMutation('#cart .dropdown-menu', (node) => {
       if (node.classList?.contains('no-border-last')) {
-        updateImages();
+        setTimeout(() => {
+          updateImages();
+        }, 500);
       }
     })
 
@@ -1948,7 +1950,7 @@
 
     const observer = new MutationObserver((mutationsList, observer) => {
       for (const mutation of mutationsList) {
-        console.log('mutation', mutation)
+        // console.log('mutation', mutation)
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
           if (mutation.target.classList.contains('show')) {
             update();
