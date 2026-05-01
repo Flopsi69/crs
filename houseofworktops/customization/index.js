@@ -1951,7 +1951,12 @@
 
       _$('.lavm-summary__price').innerText = price;
       _$('.lavm-summary__price-old').innerText = _$('.added-modal-accessories .subtotal-bottom .row-subtotal .o-total-text-display').innerText;
-      _$('.lavm-summary__count').innerText = `${totalQty}x worktop${qty > 1 ? 's' : ''}`;
+      _$('.lavm-summary__count').innerText = `${totalQty}x worktop${totalQty > 1 ? 's' : ''}`;
+      if (totalQty === 0) {
+        _$('.lavm-summary__selected').style.display = 'none';
+      } else {
+        _$('.lavm-summary__selected').removeAttribute('style');
+      }
       _$$('.lavm-oiling-caption').forEach(item => {
         _$('span', item).innerText = totalQty;
         if (totalQty > 1) {
