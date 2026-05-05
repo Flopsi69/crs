@@ -2232,6 +2232,7 @@
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
 
     _$('.subtotal-bottom .footer-buttons .col-6 [data-dismiss="modal"]', modalEl).addEventListener('click', () => {
+      pushDataLayer('exp_pdp_ss_cta', 'Choose Accessories', 'click', 'Standard Size Flow', 'ATC Modal');
       config.isDisableLayer = true;
       _$('#select-size').click();
       config.isDisableLayer = false;
