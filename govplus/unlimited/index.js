@@ -1,18 +1,16 @@
-(function () {
-  console.debug('*** Experiment started ***')
 
-  // Config for Experiment
-  const config = {
-    // dir: 'http://127.0.0.1:5500/<dir>/<project>',
-    dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
-    clarity: ['set', '', 'variant_1'],
-    debug: true
+(function () {
+  if (_$('.lav-pricing')) {
+    console.log('** Exp check failed: lav-pricing exist **', _$('.lav-pricing'))
+    return
   }
 
-  // const orig = console.log
-  // console.log = function (...args) {
-  //   orig.apply(console, ['Debug:', ...args])
-  // }
+  if (!isInitApp()) {
+    console.log('** Exp check failed: not init **')
+    return
+  }
+
+  console.log('*** Experiment started ***')
 
   // Styles for Experiment
   const styles = /* css */ `
@@ -155,6 +153,14 @@
       gap: 12px;
       padding: 5px 25px;
     }
+    .lav-pricing__btn-disable {
+      opacity: .5 !important;
+      pointer-events: none;
+    }
+    .lav-pricing__btn-loading {
+      opacity: .5 !important;
+      pointer-events: none;
+    }
     .lav-pricing__btn-add {
       border-radius: 12px;
       background: #216DE3;
@@ -226,6 +232,9 @@
       width: 8px;
       height: 8px;
       border-radius: 100%;
+    }
+    .lav-benefits__item span {
+      font-weight: 500;
     }
     .lav-benefits__without .lav-benefits__item:before {
       background-color: #DE0404;
@@ -302,19 +311,36 @@
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
-  // if (location.href.includes('page=upsell') && _$('#offer-unlimited-interstitial')) {
-    initExp()
-  // }
+  waitFor('#offer-unlimited-interstitial', initExp)
+
+  function isInitApp() {
+    // const targetFormIds = [
+    //   "passport-new",
+    //   "passport-renewal",
+    //   "passport-lost",
+    //   "passport-damaged",
+    //   "passport-stolen",
+    // ]
+    // const isApp = location.href.includes('dashboard.govplus');
+    const isValidPage = location.href.includes('page=upsell');
+    // const formId = new URLSearchParams(window.location.search).get('formId');
+
+    // console.log('Check init conditions:', { isApp, isValidPage, formId, isValidFormId: targetFormIds.includes(formId) });
+    // targetFormIds.includes(formId)
+    return isValidPage;
+  }
     
-
   async function initExp() {
-    await waitFor(() => document.head && document.body, false, { ms: 20 })
+    if (_$('.lav-pricing')) {
+      console.log('** Exp check failed: lav-pricing exist **', _$('.lav-pricing'))
+      return;
+    }
 
-    document.head.appendChild(stylesEl)
 
-    console.debug('** InitExp **')
+    console.log('** InitExp **')
     changeCopy();
     hanlePricingBlock();
+    _$('.lav-pricing')?.appendChild(stylesEl)
   }
 
   function hanlePricingBlock() {
@@ -329,6 +355,7 @@
     const price = _$('div.PricingBox__pricing-box__price-current').innerText.trim()
     const period = _$('div.PricingBox__pricing-box__price-period').innerText.trim()
     const oldPrice = _$('div.PricingBox__pricing-box__price-old').innerText.trim()
+    const passportFillingPrice = _$('.UnlimitedComparisonBlock__comparison-row .ant-typography:last-child').innerText.trim()
 
     const newPricingBlock = /* html */ `
       <div class='lav-pricing__title'>GOV+ Unlimited</div>
@@ -352,24 +379,22 @@
         </div>
       </div>
       <div class='lav-pricing__note'>
-        By clicking “Add auto-renewal & unlimited free fillings”, I authorize GOV+ to charge ${price} to my card on file and add this feature to my membership.
+        By clicking “Add auto-renewal & unlimited free filings”, I authorize GOV+ to charge ${price} to my card on file and add this feature to my membership.
       </div>
 
       <div class='lav-benefits'>
         <div class='lav-benefits__block lav-benefits__with'>
           <div class='lav-benefits__title'>With GOV+ Unlimited:</div>
           <div class='lav-benefits__list'>
-            <div class='lav-benefits__item'>All of your documents monitored for expiration and loss</div>
-            <div class='lav-benefits__item'>All of your documents automatically renewed/replaced</div>
-            <div class='lav-benefits__item'>No additional cost for each individual application</div>
+            <div class='lav-benefits__item'>All your essential documents covered with one membership</div>
+            <div class='lav-benefits__item'>Unlimited filings and replacements of any essential doc <span>at no additional cost</span></div>
           </div>
         </div>
         <div class='lav-benefits__block lav-benefits__without'>
           <div class='lav-benefits__title'>Without GOV+ Unlimited:</div>
           <div class='lav-benefits__list'>
-            <div class='lav-benefits__item'>Your documents <strong>are not</strong> monitored for expiration and loss</div>
-            <div class='lav-benefits__item'>Your documents <strong>are not</strong> automatically renewed/replaced</div>
-            <div class='lav-benefits__item'><strong>Additional cost</strong> for each individual application</div>
+            <div class='lav-benefits__item'>Manage and replace each essential document separately</div>
+            <div class='lav-benefits__item'>Pay for every individual filing, up to ${passportFillingPrice} each</div>
           </div>
         </div>
       </div>
@@ -378,11 +403,24 @@
     _$(".lav-pricing .PricingBox__pricing-box").insertAdjacentHTML('afterbegin', newPricingBlock);
     
     _$('.lav-pricing__btn-add').addEventListener('click', function () {
+      if (this.classList.contains('lav-pricing__btn-disable')) return;
+      _$('.lav-pricing__btn-skip').classList.add('lav-pricing__btn-disable');
+      this.classList.add('lav-pricing__btn-disable');
+      this.classList.add('lav-pricing__btn-loading');
+      this.insertAdjacentHTML('afterbegin', `<span class="ant-btn-loading-icon" style=""><span role="img" aria-label="loading" class="anticon anticon-loading anticon-spin"><svg viewBox="0 0 1024 1024" focusable="false" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path></svg></span></span>`);
       _$('.SubscriptionFooter .GButton--primary').click()
+    
     })
 
     _$('.lav-pricing__btn-skip').addEventListener('click', function () {
+      if (this.classList.contains('lav-pricing__btn-disable')) return;
+
+      _$('.lav-pricing__btn-add').classList.add('lav-pricing__btn-disable');
+      this.classList.add('lav-pricing__btn-disable');
+      this.classList.add('lav-pricing__btn-loading');
+      this.insertAdjacentHTML('afterbegin', `<span class="ant-btn-loading-icon" style=""><span role="img" aria-label="loading" class="anticon anticon-loading anticon-spin"><svg viewBox="0 0 1024 1024" focusable="false" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path></svg></span></span>`);
       _$('.SubscriptionFooter .GButton--secondary').click()
+      
     })
   }
 
@@ -394,8 +432,8 @@
       title: 'Apply for, renew, & file all your essential <br/> docs&nbsp;with one membership',
       caption: 'All your docs including TSA PreCheck, taxes, passport are auto-renewed & filed <br/> for you at no additional cost',
       buttonAdd: 'Add auto-renewal &<br/>unlimited free filings',
-      buttonSkip: 'No thanks — I\'ll pay the full filing fee each time manualy',
-      disclaimer: `By clicking “Add auto-renewal & unlimited fillings”, I authorize GOV+ to charge ${price} to my card on file and add this feature to my membership.`
+      buttonSkip: 'No thanks — I\'ll pay the full filing fee each time manually',
+      disclaimer: `By clicking “Add auto-renewal & unlimited filings”, I authorize GOV+ to charge ${price} to my card on file and add this feature to my membership.`
     }
     
     _$('.TopBanner__top-banner-badge .ant-typography').innerHTML = copyConfig.header;
@@ -485,99 +523,6 @@
     return observer
   }
 
-  // Intersection Observer
-  function initIntersection(observeEl, cb, customConfig) {
-    const el = typeof observeEl === 'string' ? _$(observeEl) : observeEl
-
-    if (!el || typeof cb !== 'function') return
-
-    const config = {
-      root: null,
-      threshold: 0.3, // 0 - 1 | A threshold of 1.0 means that when 100% of the target is visible within the element specified by the root option, the callback is invoked.
-      ...customConfig
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        cb(entry, observer)
-      })
-    }, config)
-
-    observer.observe(el)
-
-    return observer
-  }
-
-  function focusTimeEvent(el, cb, viewElementProcent = 0.1) {
-    let entryTime = 0
-    initIntersection(
-      el,
-      ({ isIntersecting, time }) => {
-        if (isIntersecting) {
-          entryTime = time
-        } else if (entryTime) {
-          const diffTime = +((time - entryTime) / 1000).toFixed(1)
-          cb(diffTime + 's')
-          entryTime = 0
-        }
-      },
-      { threshold: viewElementProcent }
-    )
-  }
-
-  function visibilityEvent(el, cb, customConfig = {}) {
-    const config = {
-      threshold: 0.3,
-      ...customConfig,
-      timer: null
-    }
-    initIntersection(
-      el,
-      ({ isIntersecting, target }, observer) => {
-        // console.log(target, isIntersecting);
-        if (isIntersecting) {
-          config.timer = setTimeout(() => {
-            if (isElementInViewport(target)) {
-              cb()
-              observer.disconnect()
-            }
-          }, 3000)
-        } else {
-          clearTimeout(config.timer)
-        }
-      },
-      config
-    )
-  }
-
-  // Artificial delay
-  function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms))
-  }
-
-  // Check if element in viewport
-  function isElementInViewport(selector) {
-    const el = typeof selector === 'string' ? _$(selector) : selector
-
-    if (!el) return false
-
-    const rect = el.getBoundingClientRect()
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight
-
-    return (
-      rect.top + rect.height * 0.3 < windowHeight &&
-      rect.bottom > rect.height * 0.3
-    )
-    // return (
-    //   rect.top >= 0 &&
-    //   rect.left >= 0 &&
-    //   rect.bottom <=
-    //     (window.innerHeight || document.documentElement.clientHeight) &&
-    //   rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    // );
-  }
-
   // Shordcode for selectors
   function _$(selector, context = document) {
     return context.querySelector(selector)
@@ -588,44 +533,7 @@
     return toSimpleArray ? Array.from(arr) : arr
   }
 
-  // GA 4 events
-  function pushDataLayer(name = '', desc = '', type = '', loc = '') {
-    window.dataLayer = window.dataLayer || []
-
-    try {
-      const event = {
-        event: 'event-to-ga4',
-        event_name: name,
-        event_desc: desc,
-        event_type: type,
-        event_loc: loc
-      }
-
-      console.debug('** GA4 Event **', event)
-
-      if (!config.debug) {
-        dataLayer.push(event)
-      }
-    } catch (e) {
-      console.log('** GA4 Error **', e)
-    }
-  }
-
   // *** Exp BG process *** //
-
-  //Clarity
-  if (
-    !config.debug &&
-    Array.isArray(config.clarity) &&
-    config.clarity.length === 3
-  ) {
-    waitFor(
-      () => typeof clarity == 'function',
-      () => {
-        clarity(...config.clarity)
-      }
-    )
-  }
 
   // Svg objects
   function getSvg(name) {
@@ -652,5 +560,4 @@
 
     return svgObj[name]
   }
-
 })()
