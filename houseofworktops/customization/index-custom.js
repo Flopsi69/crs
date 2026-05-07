@@ -105,6 +105,9 @@
     .lav-atc .lav-atc-accessory .subtotal-bottom .footer-buttons > .row .col-6:first-child {
       display: none!important;
     }
+    .lav-atc .lav-atc-accessory .subtotal-bottom .footer-buttons > .row .col-6:first-child {
+      display: none!important;
+    }
     .lavm-header__close-desk {
       width: 24px;
     }
@@ -1188,9 +1191,9 @@
         pointer-events: auto!important;
       }
       #select-size-model[data-type="accessory"] .lavm-btn-continue {
-        line-height: 24px;
-        width: 121px;
-        white-space: normal;
+        // line-height: 24px;
+        // width: 121px;
+        // white-space: normal;
       }
       #select-size-model .modal-content, .lav-atc .modal-content {
         margin-top: 40px;
@@ -1611,7 +1614,7 @@
       _$('.lavm-summary__price-old').innerText = '';
     }
 
-    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : isAccessory ? 'Add to Cart & Checkout' : 'Add to Cart';
+    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : 'Add to Cart';
     
     _$$('.lavm-filters__option').forEach(el => {
       el.classList.remove('active', 'disabled')
@@ -1914,16 +1917,16 @@
           _$('#select-size-model .btn-primary')?.click();
           if (_$('.modal.show[data-type="accessory"]')) {
             _$('#added-modal-with-accessories-2').classList.add('lav-atc-accessory');
-            document.body.classList.add('lav-adding-accessory')
-            waitFor('#select-size-model.modal:not(.show)', () => {
-              location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
-            })
+            // document.body.classList.add('lav-adding-accessory')
+            // waitFor('#select-size-model.modal:not(.show)', () => {
+            //   location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
+            // })
           } else {
             _$('#added-modal-with-accessories-2').classList.remove('lav-atc-accessory');
           }
 
           setTimeout(() => {
-            document.body.classList.remove('lav-adding-accessory')
+            // document.body.classList.remove('lav-adding-accessory')
             _$('.lavm-btn-continue').classList.remove('loading');
           }, 8500);
         }
@@ -2254,7 +2257,7 @@
       pushDataLayer('exp_pdp_ss_cta', 'Checkout', 'click', 'Standard Size Flow', 'ATC Modal');
     });
 
-    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
+    _$('.modal-header .h4', modalEl).textContent = 'Added to cart';
 
     _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
       // pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
