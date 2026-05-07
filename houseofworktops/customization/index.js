@@ -1073,6 +1073,10 @@
     }
 
     @media(max-width: 767.98px) {
+      #added-modal-with-accessories-2 .discount-ribbon {
+        padding-left: 5px!important;
+        padding-right: 5px!important;
+      }
       .lav-atc.added-modal-accessories .modal {
         z-index: 9999999999 !important;
       }
@@ -1087,6 +1091,7 @@
       }
       .lav-atc .variants-container .variant-title {
         font-size: 18px!important;
+        padding-right: 10px;
       }
       .lav-atc .quantity-display {
         font-size: 16px!important;
@@ -2241,6 +2246,10 @@
 
     _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
 
+
+     _$('.subtotal-bottom .footer-buttons .col-6 .btn-success', modalEl).addEventListener('click', () => {
+      pushDataLayer('exp_pdp_ss_cta', 'Checkout', 'click', 'Standard Size Flow', 'ATC Modal');
+    });
     _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
       // pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
     });
