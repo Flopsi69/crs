@@ -5339,7 +5339,6 @@
           overflow: hidden!important;
         }
         .lav-cutting__close {
-          display: none;
           position: absolute;
           pointer-events: auto;
           z-index: 99999999999999;
