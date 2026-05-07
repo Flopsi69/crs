@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/customization',
     clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
-    debug: true,
+    debug: false,
     isDisableLayer: false,
     atcConfig: {
       price: '',
@@ -2243,10 +2243,15 @@
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
 
     _$('.subtotal-bottom .footer-buttons .col-6 [data-dismiss="modal"]', modalEl).addEventListener('click', () => {
+      pushDataLayer('exp_pdp_ss_cta', 'Choose Accessories', 'click', 'Standard Size Flow', 'ATC Modal');
       config.isDisableLayer = true;
       _$('#select-size').click();
       config.isDisableLayer = false;
       resetModalSizeSelectorModal(true);
+    });
+
+    _$('.subtotal-bottom .footer-buttons .col-6 .btn-success', modalEl).addEventListener('click', () => {
+      pushDataLayer('exp_pdp_ss_cta', 'Checkout', 'click', 'Standard Size Flow', 'ATC Modal');
     });
 
     _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
@@ -5156,6 +5161,9 @@
   `)
 
   _$('.lawc-success__continue').addEventListener('click', function () {
+    if (this.classList.contains('lawc-success__btn--loading')) return;
+
+    pushDataLayer('exp_pdp_cs_cta', 'Choose Accessories', 'click', 'Custom Size Flow', 'ATC Modal');
     Modal?.close('.lawc-success-custom');
     config.isDisableLayer = true;
     _$('#select-size').click();
@@ -5165,6 +5173,8 @@
 
   _$('.lawc-success__checkout').addEventListener('click', function () {
     if (this.classList.contains('lawc-success__btn--loading')) return;
+
+    pushDataLayer('exp_pdp_cs_cta', 'Checkout', 'click', 'Custom Size Flow', 'ATC Modal');
 
     this.classList.add('lawc-success__btn--loading');
     _$('.lawc-success__continue').classList.add('lawc-success__btn--loading');
@@ -5196,7 +5206,7 @@
     if (_$('.lav-cutting.active')) {
       pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
     } else if (_$('.lawc-success-custom.active')) {
-      pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Success Modal', 'Added to Cart!');
+      pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Custom Size Flow', 'Success Modal');
     }
     Modal.close();
   })
@@ -5653,7 +5663,7 @@
       }
     }
 
-    fetchPrepareConfig() {
+    fetchPrepareConfig(retryCount = 3, retryDelay = 1500) {
       fetch('https://cutter.houseofworktops.co.uk/prepare', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': this.api.key },
@@ -5690,7 +5700,16 @@
         })
         .catch(err => {
           this.debugWarn('Failed to fetch prepare config:', err);
-          // Continue with defaults
+          
+          // Retry if retries remaining
+          if (retryCount > 0) {
+            this.debugWarn(`Retrying in ${retryDelay / 1000} seconds... (${retryCount} attempts remaining)`);
+            setTimeout(() => {
+              this.fetchPrepareConfig(retryCount - 1, retryDelay);
+            }, retryDelay);
+          } else {
+            this.debugWarn('All retry attempts exhausted. Continuing with defaults.');
+          }
         });
     }
 
