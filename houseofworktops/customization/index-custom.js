@@ -5339,6 +5339,7 @@
           overflow: hidden!important;
         }
         .lav-cutting__close {
+          display: none;
           position: absolute;
           pointer-events: auto;
           z-index: 99999999999999;
@@ -5348,6 +5349,9 @@
           transform: translateX(-50%);
           top: 23px;
           transition: .3s;
+        }
+        .lav-modal.active .lav-cutting__close {
+          display: block;
         }
         .lav-cutting__close-desk {
           width: 24px;
@@ -5366,9 +5370,6 @@
             left: initial;
             right: -12px;
             top: 1px;
-          }
-          .lav-modal.active .lav-cutting__close {
-            display: block;
           }
           .lav-cutting__close-mob {
             display: block;

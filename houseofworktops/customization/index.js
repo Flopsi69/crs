@@ -5291,6 +5291,9 @@
           top: 23px;
           transition: .3s;
         }
+        .lav-modal.active .lav-cutting__close {
+          display: block;
+        }
         .lav-cutting__close-desk {
           width: 24px;
         }
@@ -5308,9 +5311,6 @@
             left: initial;
             right: -12px;
             top: 1px;
-          }
-          .lav-modal.active .lav-cutting__close {
-            display: block;
           }
           .lav-cutting__close-mob {
             display: block;
