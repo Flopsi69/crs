@@ -5726,7 +5726,21 @@
     }
 
     getDefaultThickness() {
+      // Find first in-stock thickness
+      for (var i = 0; i < this.availableThickness.length; i++) {
+        var t = this.availableThickness[i];
+        if (this.isThicknessInStock(t)) {
+          return t;
+        }
+      }
+      // If all out of stock, return first available (edge case)
       return this.availableThickness.length ? this.availableThickness[0] : null;
+    }
+
+    isThicknessInStock(thickness) {
+      var thicknessKey = thickness + 'mm';
+      var dims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
+      return dims.max_length > 0 && dims.max_width > 0;
     }
 
     normalizeWorktopThickness(worktop) {
@@ -5735,9 +5749,13 @@
         return Number.isFinite(thickness) ? thickness : null;
       }
 
-      return this.availableThickness.includes(thickness)
-        ? thickness
-        : this.getDefaultThickness();
+      // If current thickness is valid and in stock, keep it
+      if (this.availableThickness.includes(thickness) && this.isThicknessInStock(thickness)) {
+        return thickness;
+      }
+      
+      // Otherwise get default (first in-stock)
+      return this.getDefaultThickness();
     }
 
     // ─────────────────────────────────────────────────────────────────
@@ -5859,7 +5877,12 @@
 
         var thicknessOptions = '';
         this.availableThickness.forEach(t => {
-          thicknessOptions += `<option value="${t}"${wt.thickness === t ? ' selected' : ''}>${t}mm</option>`;
+          var thicknessKey = t + 'mm';
+          var thicknessDims = this.maxDimensions[thicknessKey] || { max_length: 0, max_width: 0 };
+          var isOutOfStock = thicknessDims.max_length === 0 || thicknessDims.max_width === 0;
+          var label = isOutOfStock ? `${t}mm - out of stock` : `${t}mm`;
+          var disabled = isOutOfStock ? ' disabled' : '';
+          thicknessOptions += `<option value="${t}"${wt.thickness === t ? ' selected' : ''}${disabled}>${label}</option>`;
         });
 
         // Get max dimensions for current thickness
