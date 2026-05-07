@@ -1186,8 +1186,9 @@
       }
       #select-size-model[data-type="accessory"] .lavm-btn-continue {
         line-height: 24px;
-        width: 121px;
+        width: 125px;
         white-space: normal;
+        text-align: center;
       }
       #select-size-model .modal-content, .lav-atc .modal-content {
         margin-top: 40px;
@@ -1608,7 +1609,7 @@
       _$('.lavm-summary__price-old').innerText = '';
     }
 
-    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : isAccessory ? 'Add to Cart & Checkout' : 'Add to Cart';
+    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : isAccessory ? 'Add to Cart & Check out' : 'Add to Cart';
     
     _$$('.lavm-filters__option').forEach(el => {
       el.classList.remove('active', 'disabled')
