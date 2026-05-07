@@ -5415,6 +5415,9 @@
           text-underline-offset: 4px;
           white-space: nowrap;
         }
+        .lawc-success__body span {
+          font-weight: 500;
+        }
         .lawc-success__footer {
           display: flex;
           gap: 24px;
@@ -6889,6 +6892,10 @@
 
         if (location.href.includes('houseofworktops.co')) {
           _$('.lawc-success__body').innerHTML = json?.success || 'Worktop added to cart successfully!';
+          if (_$('.lawc-success__body a')) {
+            _$('.lawc-success__body a').outerHTML = `
+            <span>${_$('.lawc-success__body a').innerText.trim()}</span>`
+          }
           Modal?.open('.lawc-success-custom')
           setTimeout(function () {
             if (!location.href.includes('houseofworktops.co')) return
