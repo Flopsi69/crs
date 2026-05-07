@@ -67,6 +67,30 @@
     #CookiebotWidget:not(.CookiebotWidget-inactive) {
       bottom: 60px!important;
     }
+    #select-size {
+      display: none;
+    }
+    .lav-btn-size {
+      border-radius: 4px;
+      background-color: #1f8964;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 36px;
+      cursor: pointer;
+      transition: .2s;
+      margin-bottom: 8px;
+    }
+    @media(hover:hover) {
+      .lav-btn-size:hover {
+        background-color: #186a4d;
+      }
+    }
     .lav-btn-accessories {
       border-radius: 4px;
       background: #0E6857;
@@ -82,7 +106,6 @@
       cursor: pointer;
       transition: .2s;
       margin-bottom: 8px;
-      margin-top: -8px;
     }
     @media(hover:hover) {
       .lav-btn-accessories:hover {
@@ -101,12 +124,6 @@
     }
     .lav-atc .lavm-header__close {
       right: -40px;
-    }
-    .lav-atc .lav-atc-accessory .subtotal-bottom .footer-buttons > .row .col-6:first-child {
-      display: none!important;
-    }
-    .lav-atc .lav-atc-accessory .subtotal-bottom .footer-buttons > .row .col-6:first-child {
-      display: none!important;
     }
     .lavm-header__close-desk {
       width: 24px;
@@ -1230,6 +1247,10 @@
         padding-left: 6px;
         padding-right: 6px;
       }
+      .lav-btn-size {
+        font-size: 20px;
+        height: 64px;
+      }
       .lav-btn-accessories {
         font-size: 20px;
         height: 64px;
@@ -1535,16 +1556,15 @@
 
     if (!_$('#select-size')) return
 
-    _$$('#select-size span').forEach(el => {
-      el.innerText = 'Step1: Choose Worktop Size'
-    })
-
+    // _$$('#select-size span').forEach(el => {
+    //   el.innerText = 'Step1: Choose Worktop Size'
+    // })
 
     if (_$('#select-size')) {
       _$('#select-size').addEventListener('click', () => {
-        if (!config.isDisableLayer) {
-          pushDataLayer('exp_pdp_cta', _$('#select-size').innerText, 'click', 'Static');
-        }
+        // if (!config.isDisableLayer) {
+        //   pushDataLayer('exp_pdp_cta', _$('#select-size').innerText, 'click', 'Static');
+        // }
         resetModalSizeSelectorModal();
       });
       updateSizeSelectorModal();
@@ -1571,10 +1591,18 @@
     if (!isUpsell) return;
 
     _$('#select-size').insertAdjacentHTML('afterend', /* html */ `
+      <div class="lav-btn-size">
+        Step1: Choose Worktop Size
+      </div>
       <div class="lav-btn-accessories">
         Step2: Choose Accessories
       </div>
     `)
+
+    _$('.lav-btn-size').addEventListener('click', () => {
+      Modal.open('.lav-cutting');
+      pushDataLayer('exp_pdp_cta', _$('.lav-btn-size').innerText, 'click', 'Static');
+    });
 
     _$('.lav-btn-accessories').addEventListener('click', () => {
       pushDataLayer('exp_pdp_cta', _$('.lav-btn-accessories').innerText, 'click', 'Static');
@@ -1917,12 +1945,14 @@
           _$('#select-size-model .btn-primary')?.click();
           if (_$('.modal.show[data-type="accessory"]')) {
             _$('#added-modal-with-accessories-2').classList.add('lav-atc-accessory');
+            _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6').textContent = 'View Cart';
             // document.body.classList.add('lav-adding-accessory')
             // waitFor('#select-size-model.modal:not(.show)', () => {
             //   location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
             // })
           } else {
             _$('#added-modal-with-accessories-2').classList.remove('lav-atc-accessory');
+            _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6').textContent = 'Choose Accessories';
           }
 
           setTimeout(() => {
@@ -2246,11 +2276,16 @@
     _$('.subtotal-bottom .footer-buttons .col-6:nth-child(2) h6', modalEl).textContent = 'Checkout';
 
     _$('.subtotal-bottom .footer-buttons .col-6 [data-dismiss="modal"]', modalEl).addEventListener('click', () => {
-      pushDataLayer('exp_pdp_ss_cta', 'Choose Accessories', 'click', 'Standard Size Flow', 'ATC Modal');
-      config.isDisableLayer = true;
-      _$('#select-size').click();
-      config.isDisableLayer = false;
-      resetModalSizeSelectorModal(true);
+      if (_$('.lav-atc-accessory')) {
+        pushDataLayer('exp_pdp_ss_cta', 'View Cart', 'click', 'Standard Size Flow', 'ATC Modal');
+        location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/cart';
+      } else {
+        pushDataLayer('exp_pdp_ss_cta', 'Choose Accessories', 'click', 'Standard Size Flow', 'ATC Modal');
+        config.isDisableLayer = true;
+        _$('#select-size').click();
+        config.isDisableLayer = false;
+        resetModalSizeSelectorModal(true);
+      }
     });
 
     _$('.subtotal-bottom .footer-buttons .col-6 .btn-success', modalEl).addEventListener('click', () => {
@@ -2444,9 +2479,10 @@
 
     _$('.lav-sticky__size').addEventListener('click', () => {
       pushDataLayer('exp_pdp_cta', _$('.lav-sticky__size .lav-sticky__text').innerText, 'click', 'Fixed');
-      config.isDisableLayer = true;
-      _$('#select-size').click();
-      config.isDisableLayer = false;
+      Modal.open('.lav-cutting');
+      // config.isDisableLayer = true;
+      // _$('#select-size').click();
+      // config.isDisableLayer = false;
     });
 
     _$('.lav-sticky__upsell')?.addEventListener('click', () => {
@@ -3394,7 +3430,7 @@
       }
 
       .lawc-qty-hybrid .lawc-qty-arrow-btn {
-        width: 45px;
+        width: 38px;
         height: 45px;
         border: 1px solid #6c757d;
         border-radius: 0 4px 4px 0;
@@ -3415,7 +3451,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 45px;
+        width: 38px;
         height: 45px;
         opacity: 0;
         cursor: pointer;
@@ -3448,6 +3484,7 @@
       }
 
       .lawc-select-wrap select {
+        min-width: 0;
         flex-grow: 1;
         height: 45px;
         padding: 0 38px 0 8px;
@@ -3530,6 +3567,11 @@
         }
         .lawc-select-wrap select {
           width: 100%;
+          padding-right: 33px;
+          background-position: right 8px center;
+        }
+        .lawc-select-wrap::after {
+          right: 33px;
         }
       }
 
@@ -5150,7 +5192,7 @@
   new Modal('lawc-success-custom', /* html */`
     <div class="lawc-success__header">
       <img src="https://houseofworktops.co.uk/catalog/view/theme/houseofworktops/image/svg-icons/success-primary.svg" width="40">
-      <span>Added to Cart!</span>
+      <span>Added to Cart</span>
     </div>
     <div class="lawc-success__body"></div>
     <div class="lawc-success__footer">
@@ -5181,7 +5223,7 @@
 
     this.classList.add('lawc-success__btn--loading');
     _$('.lawc-success__continue').classList.add('lawc-success__btn--loading');
-    window.location.href = 'http://houseofworktops.co.uk/index.php?route=checkout/cart';
+    window.location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
   });
 
   // Modal.open('.lawc-success-custom');
@@ -5683,15 +5725,24 @@
           if (data.available_thickness) {
             this.availableThickness = Object.values(data.available_thickness).map(v => parseInt(v));
           }
-
-          this.worktops.forEach(wt => {
-            wt.thickness = this.normalizeWorktopThickness(wt);
-          });
           
           // Store max dimensions
           if (data.max_dimensions) {
             this.maxDimensions = data.max_dimensions;
           }
+
+          // Set default thickness to 40mm if available and in stock
+          var defaultThickness = this.getDefaultThickness();
+          
+          this.worktops.forEach(wt => {
+            // If worktop has no thickness or invalid thickness, use default (prefers 40mm)
+            if (!wt.thickness || !this.availableThickness.includes(wt.thickness)) {
+              wt.thickness = defaultThickness;
+            } else {
+              // Normalize existing thickness (checks stock)
+              wt.thickness = this.normalizeWorktopThickness(wt);
+            }
+          });
           
           // Store oiling availability
           if (data.hasOwnProperty('isOiling')) {
@@ -5733,7 +5784,12 @@
     }
 
     getDefaultThickness() {
-      // Find first in-stock thickness
+      // Prefer 40mm if available and in stock
+      if (this.availableThickness.includes(40) && this.isThicknessInStock(40)) {
+        return 40;
+      }
+      
+      // Otherwise, find first in-stock thickness
       for (var i = 0; i < this.availableThickness.length; i++) {
         var t = this.availableThickness[i];
         if (this.isThicknessInStock(t)) {
@@ -6899,6 +6955,10 @@
           if (_$('.lawc-success__body a')) {
             _$('.lawc-success__body a').outerHTML = `
             <span>${_$('.lawc-success__body a').innerText.trim()}</span>`
+
+            _$('.lawc-success__body a').addEventListener('click', (e) => {
+              pushDataLayer('exp_pdp_cs_cta', 'Shopping cart', 'click', 'Custom Size Flow', 'ATC Modal');
+            });
           }
           Modal?.open('.lawc-success-custom')
           setTimeout(function () {
