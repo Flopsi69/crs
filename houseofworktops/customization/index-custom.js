@@ -1188,9 +1188,9 @@
         pointer-events: auto!important;
       }
       #select-size-model[data-type="accessory"] .lavm-btn-continue {
-        // line-height: 24px;
-        // width: 121px;
-        // white-space: normal;
+        line-height: 24px;
+        width: 121px;
+        white-space: normal;
       }
       #select-size-model .modal-content, .lav-atc .modal-content {
         margin-top: 40px;
@@ -1611,7 +1611,7 @@
       _$('.lavm-summary__price-old').innerText = '';
     }
 
-    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : 'Add to Cart';
+    _$('.lavm-btn-continue').innerText = isOiling ? 'Continue' : isAccessory ? 'Add to Cart & Checkout' : 'Add to Cart';
     
     _$$('.lavm-filters__option').forEach(el => {
       el.classList.remove('active', 'disabled')
@@ -1914,18 +1914,18 @@
           _$('#select-size-model .btn-primary')?.click();
           if (_$('.modal.show[data-type="accessory"]')) {
             _$('#added-modal-with-accessories-2').classList.add('lav-atc-accessory');
-            // document.body.classList.add('lav-adding-accessory')
-            // waitFor('#select-size-model.modal:not(.show)', () => {
-              // location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
-            // })
+            document.body.classList.add('lav-adding-accessory')
+            waitFor('#select-size-model.modal:not(.show)', () => {
+              location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
+            })
           } else {
             _$('#added-modal-with-accessories-2').classList.remove('lav-atc-accessory');
           }
 
           setTimeout(() => {
-            // document.body.classList.remove('lav-adding-accessory')
+            document.body.classList.remove('lav-adding-accessory')
             _$('.lavm-btn-continue').classList.remove('loading');
-          }, 4000);
+          }, 8500);
         }
       });
 
@@ -2249,7 +2249,7 @@
       resetModalSizeSelectorModal(true);
     });
 
-    _$('.modal-header .h4', modalEl).textContent = 'Added to cart';
+    _$('.modal-header .h4', modalEl).textContent = 'Your Worktop Added to cart';
 
     _$('.added-modal-accessories .modal-header .close').addEventListener('click', () => {
       // pushDataLayer('exp_pdp_cart_modal_close', 'Close', 'click', 'Cart Modal');
@@ -5139,6 +5139,40 @@
 
   new Modal('lav-cutting', markup);
 
+  new Modal('lawc-success-custom', /* html */`
+    <div class="lawc-success__header">
+      <img src="https://houseofworktops.co.uk/catalog/view/theme/houseofworktops/image/svg-icons/success-primary.svg" width="40">
+      <span>Added to Cart!</span>
+    </div>
+    <div class="lawc-success__body"></div>
+    <div class="lawc-success__footer">
+      <div class="lawc-success__continue lawc-success__btn">
+        Choose Accessories
+      </div>
+       <div class="lawc-success__checkout lawc-success__btn">
+        Checkout
+      </div>
+    </div>
+  `)
+
+  _$('.lawc-success__continue').addEventListener('click', function () {
+    Modal?.close('.lawc-success-custom');
+    config.isDisableLayer = true;
+    _$('#select-size').click();
+    config.isDisableLayer = false;
+    resetModalSizeSelectorModal(true);
+  });
+
+  _$('.lawc-success__checkout').addEventListener('click', function () {
+    if (this.classList.contains('lawc-success__btn--loading')) return;
+
+    this.classList.add('lawc-success__btn--loading');
+    _$('.lawc-success__continue').classList.add('lawc-success__btn--loading');
+    window.location.href = 'http://houseofworktops.co.uk/index.php?route=checkout/cart';
+  });
+
+  // Modal.open('.lawc-success-custom');
+
   _$('.lav-cutting').insertAdjacentHTML('beforebegin', /* html */`
     <div class="lav-cutting__close">
       <svg class="lav-cutting__close-desk" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -5159,7 +5193,11 @@
   `)
 
   _$('.lav-cutting__close').addEventListener('click', () => {
-    pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
+    if (_$('.lav-cutting.active')) {
+      pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Custom Size Flow', _$('.lawc-tab.active .lawc-tab-label').innerText.trim());
+    } else if (_$('.lawc-success-custom.active')) {
+      pushDataLayer('exp_pdp_cs_close', 'close', 'click', 'Success Modal', 'Added to Cart!');
+    }
     Modal.close();
   })
 
@@ -5334,6 +5372,115 @@
             margin: 48px 0.5rem 0.5rem;
           }
         }
+
+        .lawc-success-custom {
+          text-align: center;
+          max-width: 767px;
+        }
+        .lawc-success__header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          border-bottom: 1px solid #D3E9DF;
+          background: #EAF5F0;
+          padding: 18px 12px;
+          min-height: 78px;
+        }
+        .lawc-success__header img {
+          width: 30px;
+        }
+        .lawc-success__header span {
+          color: #1F8964;
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 28px;
+        }
+        .lawc-success__body {
+          padding: 25px 15px 30px;
+          font-size: 20px;
+        }
+        .lawc-success__body a {
+          text-decoration: underline;
+          color: #1F8964;
+          text-underline-offset: 4px;
+          white-space: nowrap;
+        }
+        .lawc-success__footer {
+          display: flex;
+          gap: 24px;
+          padding: 15px;
+          border-top: 1px solid #DEE2E6;
+          background: #F8F9FA !important;
+          box-shadow: 0 -4px 6px 0 rgba(0, 0, 0, 0.08);
+        }
+        .lawc-success__btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 70px;
+          border-radius: 8px;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 36px;
+          flex: 1;
+          padding: 10px;
+          transition: .15s;
+          cursor: pointer;
+        }
+        .lawc-success__btn--loading {
+          cursor: default;
+          opacity: 0.8;
+          filter: grayscale(100%);
+          pointer-events: none;
+        }
+        .lawc-success__continue {
+          color: #1f8964;
+          border: 1px solid #1f8964;
+        }
+        .lawc-success__checkout {
+          color: #fff;
+          background-color: #1f8964;
+          border-color: #1f8964;
+        }
+        @media(hover: hover) {
+          .lawc-success__body a:hover {
+            opacity: 0.8;
+          }
+          .lawc-success__continue:hover {
+            color: #fff;
+            background-color: #1f8964;
+            border-color: #1f8964;
+          }
+          .lawc-success__checkout:hover {
+            color: #fff;
+            background-color: #186a4d;
+            border-color: #165f46;
+          }
+        }
+        @media(max-width: 767px) {
+          .lawc-success__header {
+            min-height: 56px;
+          }
+          .lawc-success__body {
+            padding: 20px 14px;
+            font-size: 18px;
+          }
+          .lawc-success__footer {
+            gap: 16px;
+            flex-flow: column;
+            padding: 20px 14px;
+          }
+          .lawc-success__btn {
+            min-height: 56px;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1;
+          }
+          .lawc-success-custom {
+            align-self: center;
+          }
+        }
       `
 
         const stylesEl = document.createElement('style')
@@ -5358,7 +5505,7 @@
         url: 'https://cutter.houseofworktops.co.uk/optimize',
         base: 'https://cutter.houseofworktops.co.uk/',
         key: '#B719j@qwx&x',
-        productId: config.productId || 68,
+        productId: config.productId,
         apiUrl: 'https://houseofworktops.co.uk/index.php',
         loginRoute: 'api/login',
         loginUsername: 'cutter',
@@ -5371,8 +5518,10 @@
       this.isDebug = config.isDebug === true;
       var debugNav = document.getElementById('wc-debug-nav');
       if (debugNav) debugNav.style.display = this.isDebug ? 'flex' : 'none';
+      // const defaultThickness = this.getDefaultThickness();
 
       this.worktops = [
+        { id: 1, length: 0, width: 0, thickness: 0, qty: 1 }
         // {id: 1, length: 2200, width: 700, thickness: 40 }
 
         // {id: 0, length: '800', width: '1000', thickness: '40' },
@@ -5389,12 +5538,12 @@
         // {id: 6, length: '350', width: '250', thickness: '40' },
         // {id: 7, length: '300', width: '200', thickness: '40' }
 
-        { id: 1, length: 1200, width: 620, thickness: 40, qty: 1 },
-        { id: 2, length: 1100, width: 800, thickness: 40, qty: 2 },
-        { id: 3, length: 2000, width: 900, thickness: 40, qty: 1 },
-        { id: 4, length: 2200, width: 900, thickness: 40, qty: 4 },
-        { id: 5, length: 1500, width: 720, thickness: 40, qty: 1 },
-        { id: 6, length: 500, width: 800, thickness: 40, qty: 3 }
+        // { id: 1, length: 1200, width: 620, thickness: 40, qty: 1 },
+        // { id: 2, length: 1100, width: 800, thickness: 40, qty: 2 },
+        // { id: 3, length: 2000, width: 900, thickness: 40, qty: 1 },
+        // { id: 4, length: 2200, width: 900, thickness: 40, qty: 4 },
+        // { id: 5, length: 1500, width: 720, thickness: 40, qty: 1 },
+        // { id: 6, length: 500, width: 800, thickness: 40, qty: 3 }
       ];
       this.nextId = Math.max(...this.worktops.map(w => w.id)) + 1;
       this.currentStep = 1;
@@ -6522,6 +6671,7 @@
         if (mainCut) {
           grouped[key].lineItems.push({
             ...mainCut,
+            cutCount: slab.cutCount,
             qty: 1,
             json: {
               type: 'cut_to_size',
@@ -6554,39 +6704,6 @@
             length: String(piece.length || ''),
             width: String(piece.width || ''),
             thickness: String(piece.thickness || slab.thickness || ''),
-            qty: piece.qty
-          });
-        });
-      });
-
-      return Object.values(grouped);
-    }
-
-    _getCartSlabGroups2() {
-      if (!this.planData || !this.planData.selfcut || !Array.isArray(this.planData.selfcut.slabs)) {
-        return [];
-      }
-
-      var grouped = {};
-      this.planData.selfcut.slabs.forEach(slab => {
-        if (!slab.productOptionId || !slab.productOptionValueId) return;
-        var key = slab.productOptionId + ':' + slab.productOptionValueId;
-        if (!grouped[key]) {
-          grouped[key] = {
-            productOptionId: slab.productOptionId,
-            productOptionValueId: slab.productOptionValueId,
-            qty: 0,
-            pieces: []
-          };
-        }
-        grouped[key].qty += 1;
-
-        var slabPieces = Array.isArray(slab.pieces) ? slab.pieces : [];
-        slabPieces.forEach(piece => {
-          grouped[key].pieces.push({
-            length: piece.length || null,
-            width: piece.width || null,
-            thickness: piece.thickness || slab.thickness || null,
             qty: piece.qty
           });
         });
@@ -6676,13 +6793,15 @@
         params.append('quantity', String(1));
 
         let lineItemIndex = 0
+        const is3Oiling = this.selectedOiling === 'oiling';
+        const is5Oiling = this.selectedOiling === 'smoothguard';
         cartSlabGroups.forEach((group, groupIndex) => {
           params.append(`option[${group.productOptionId}]`, String(group.productOptionValueId));
           params.append(`opqty[${group.productOptionId}][${group.productOptionValueId}]`, String(group.qty));
 
-          if (this.selectedOiling === 'oiling') {
+          if (is3Oiling) {
             params.append(`oiling_3_[${group.productOptionValueId}]`, 'yes');
-          } else if (this.selectedOiling === 'smoothguard') {
+          } else if (is5Oiling) {
             params.append(`oiling_5_[${group.productOptionValueId}]`, 'yes');
           }
 
@@ -6691,39 +6810,19 @@
               params.append(`line_items[${lineItemIndex}][option_id]`, group.productOptionId)
               params.append(`line_items[${lineItemIndex}][option_value_id]`, group.productOptionValueId)
               params.append(`line_items[${lineItemIndex}][qty]`, 1)
+              params.append(`line_items[${lineItemIndex}][cut_counts]`, lineItem.cutCount)
               params.append(`line_items[${lineItemIndex}][cut_to_size]`, JSON.stringify(lineItem.json))
               lineItem.offcuts.forEach((offcutItem, offcutItemIndex) => {
+                if (is3Oiling) {
+                  offcutItem.data.oiling_type = 3
+                } else if (is5Oiling) {
+                  offcutItem.data.oiling_type = 6
+                }
                 params.append(`line_items[${lineItemIndex}][offcut][${offcutItemIndex}]`, JSON.stringify(offcutItem))
               })
 
               lineItemIndex++;
             })
-            // let currentIndex = 0;
-            // group.pieces.forEach((piece, pieceIndex) => {
-            //   const isMain = pieceIndex === 0;
-            //   const keyName = isMain ? 'cut_to_size_' : 'offcut_';
-
-            //   for (let i = 0; i < piece.qty; i++) {
-            //     if (i > 0) {
-            //       currentIndex++;
-            //     }
-            //     const index = isMain ? '' : `[${currentIndex}]`
-
-            //     params.append(`${keyName}[${group.productOptionValueId}]${index}[size][length]`, String(piece.length || 0));
-            //     params.append(`${keyName}[${group.productOptionValueId}]${index}[size][width]`, String(piece.width || 0));
-            //     params.append(`${keyName}[${group.productOptionValueId}]${index}[size][thickness]`, String(piece.thickness || 0));
-            
-            //     if (!isMain) {
-            //       if (this.selectedOiling === 'oiling') {
-            //         params.append(`offcut_oiling_3_[${group.productOptionValueId}]${index}`, 'yes');
-            //       } else if (this.selectedOiling === 'smoothguard') {
-            //         params.append(`offcut_oiling_5_[${group.productOptionValueId}]${index}`, 'yes');
-            //       }
-            //     }
-            //   }
-
-            //   currentIndex++;
-            // })
           }
         });
 
@@ -6747,10 +6846,22 @@
           throw new Error(errMsg);
         }
 
-        // var successMsg = (json && json.success) || ('Added to basket successfully. Total: ' + this.fmt(total));
-        const successMsg = `Success! Totals (${json.total}): ${json.totals}`
-        alert(successMsg);
-        // this.reset();
+        if (location.href.includes('houseofworktops.co')) {
+          _$('.lawc-success__body').innerHTML = json?.success || 'Worktop added to cart successfully!';
+          Modal?.open('.lawc-success-custom')
+          setTimeout(function () {
+            if (!location.href.includes('houseofworktops.co')) return
+            // _this.toggleClass("active-progress").addClass("finished");
+            $('#cart > button').html('<img src = "catalog/view/theme/houseofworktops/image/svg-icons/cart.svg" title = "" alt = "" class= "img-responsive mb-1" width = "20" loading = "lazy"/><div class="d-xl-inline" ><span class="px-1">Cart</span><span id="cart-total" class="badge badge-danger rounded-circle"> ' + json['total'] + '</span></div></span>');
+            $('#cart > ul').load('index.php?route=common/cart/info ul li');
+            $('#nav-cart-mobile ul').load('index.php?route=common/cart_menu/info ul li');
+          }, 1000);
+        } else {
+          const successMsg = `Success! Totals (${json.total}): ${json.totals}`
+          alert(successMsg);
+        }
+
+        this.reset();
       } catch (err) {
         console.error(err)
         alert('Failed to add to cart: ' + err.message);
