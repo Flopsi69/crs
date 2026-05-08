@@ -1946,6 +1946,7 @@
           if (_$('.modal.show[data-type="accessory"]')) {
             _$('#added-modal-with-accessories-2').classList.add('lav-atc-accessory');
             _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6').textContent = 'View Cart';
+            _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(2) h6').textContent = 'Checkout';
             // document.body.classList.add('lav-adding-accessory')
             // waitFor('#select-size-model.modal:not(.show)', () => {
             //   location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
@@ -1953,6 +1954,7 @@
           } else {
             _$('#added-modal-with-accessories-2').classList.remove('lav-atc-accessory');
             _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(1) h6').textContent = 'Choose Accessories';
+            _$('#added-modal-with-accessories-2 .subtotal-bottom .footer-buttons .col-6:nth-child(2) h6').textContent = 'View Cart';
           }
 
           setTimeout(() => {
@@ -2288,8 +2290,14 @@
       }
     });
 
-    _$('.subtotal-bottom .footer-buttons .col-6 .btn-success', modalEl).addEventListener('click', () => {
-      pushDataLayer('exp_pdp_ss_cta', 'Checkout', 'click', 'Standard Size Flow', 'ATC Modal');
+    _$('.subtotal-bottom .footer-buttons .col-6 .btn-success', modalEl).addEventListener('click', (e) => {
+      if (_$('.lav-atc-accessory')) {
+        pushDataLayer('exp_pdp_ss_cta', 'Checkout', 'click', 'Standard Size Flow', 'ATC Modal');
+      } else {
+        e.preventDefault();
+        pushDataLayer('exp_pdp_ss_cta', 'View cart', 'click', 'Standard Size Flow', 'ATC Modal');
+        location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/cart';
+      }
     });
 
     _$('.modal-header .h4', modalEl).textContent = 'Added to cart';
@@ -5200,7 +5208,7 @@
         Choose Accessories
       </div>
        <div class="lawc-success__checkout lawc-success__btn">
-        Checkout
+        View Cart
       </div>
     </div>
   `)
@@ -5219,11 +5227,11 @@
   _$('.lawc-success__checkout').addEventListener('click', function () {
     if (this.classList.contains('lawc-success__btn--loading')) return;
 
-    pushDataLayer('exp_pdp_cs_cta', 'Checkout', 'click', 'Custom Size Flow', 'ATC Modal');
+    pushDataLayer('exp_pdp_cs_cta', 'View Cart', 'click', 'Custom Size Flow', 'ATC Modal');
 
     this.classList.add('lawc-success__btn--loading');
     _$('.lawc-success__continue').classList.add('lawc-success__btn--loading');
-    window.location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/checkout';
+    window.location.href = 'https://houseofworktops.co.uk/index.php?route=checkout/cart';
   });
 
   // Modal.open('.lawc-success-custom');
