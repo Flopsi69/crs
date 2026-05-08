@@ -5336,7 +5336,7 @@
 
         setTimeout(() => {
           _$('.lav-modal__inner.active')?.classList.remove('active')
-        }, 400)
+        }, 200)
       }
 
       static addStyles() {
