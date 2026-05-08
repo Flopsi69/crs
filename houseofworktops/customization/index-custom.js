@@ -71,6 +71,7 @@
       display: none;
     }
     .lav-btn-size {
+      clear: both;
       border-radius: 4px;
       background-color: #1f8964;
       height: 70px;
