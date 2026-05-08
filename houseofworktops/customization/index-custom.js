@@ -6749,6 +6749,7 @@
 
         if (!grouped[key]) {
           grouped[key] = {
+            label: slab.label,
             productOptionId: slab.productOptionId,
             productOptionValueId: slab.productOptionValueId,
             qty: 0,
@@ -6951,6 +6952,44 @@
         }
 
         if (location.href.includes('houseofworktops.co')) {
+          if (typeof pushdatalayer === 'function') {
+            const category = _$('.breadcrumb li:last-child')?.previousElementSibling?.textContent.trim() || 'Undefined';
+            const price = total.toFixed(2);
+            const oilingLabel = _$('.lawc-oiling-card.selected .lawc-oiling-title')?.textContent.trim() || 'none';
+            // {
+            //   name: prodname,
+            //   quantity: "1", // totalQty
+            //   price: basePrice.toFixed(2), // base price
+            //   accprice: undefined, // don't find
+            //   id: document.querySelector('#product [name="product_id"]')?.value,
+            //   brand: "House Of Worktops",
+            //   // opt_id: 87,
+            //   // variant: "1.5M x 620 x 40mm",
+            //   category: category,
+            //   category4: oilingLabel === 'Untreated' ? 'none' : oilingLabel, // oiling option
+            //   category5: "custom"
+            // }
+            const obj = []
+
+            cartSlabGroups.forEach(slab => {
+              obj.push({
+                name: prodname,
+                quantity: slab.qty, // totalQty
+                price: basePrice.toFixed(2), // base price
+                accprice: undefined, // don't find
+                id: document.querySelector('#product [name="product_id"]')?.value,
+                brand: "House Of Worktops",
+                opt_id: slab.productOptionValueId,
+                variant: slab.label,
+                category: category,
+                category4: oilingLabel === 'Untreated' ? 'none' : oilingLabel, // oiling option
+                category5: "custom"
+              })
+            })
+
+            console.log('obj', obj);
+            pushdatalayer(obj);
+          }
           _$('.lawc-success__body').innerHTML = json?.success || 'Worktop added to cart successfully!';
           if (_$('.lawc-success__body a')) {
             _$('.lawc-success__body a').outerHTML = `
