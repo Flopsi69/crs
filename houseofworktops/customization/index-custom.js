@@ -6648,6 +6648,7 @@
         data => this.renderStep2(data),
         () => this.renderStep2Error()
       );
+      document.querySelector('#step-2').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     goBackToStep1() {
@@ -6655,6 +6656,7 @@
       this.updateTabs(1);
       this.showStep('step-1');
       this.showFooter('footer-s1');
+      document.querySelector('#step-1').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     openDiagram() {
@@ -6671,6 +6673,7 @@
       this.showFooter('footer-s2');
       document.getElementById('s2-back-btn').lastChild.textContent = ' Back';
       document.querySelector('.lawc-tabs').style.display = '';
+      document.querySelector('#step-2').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     goToStep3() {
@@ -6680,6 +6683,7 @@
       this.showFooter('footer-s3');
       this.selectedOiling = 'untreated';
       this.updateOilingSelection();
+      document.querySelector('#step-3').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     goBackToStep2() {
@@ -6687,6 +6691,7 @@
       this.updateTabs(2);
       this.showStep('step-2');
       this.showFooter('footer-s2');
+      document.querySelector('#step-2').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     goToStep(stepNum) {
