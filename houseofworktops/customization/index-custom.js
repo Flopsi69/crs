@@ -1587,10 +1587,6 @@
   }
 
   function addNewButton() {
-    const isUpsell = !!_$('#select-size-model .select-size-row[data-type="accessory"]')
-
-    if (!isUpsell) return;
-
     _$('#select-size').insertAdjacentHTML('afterend', /* html */ `
       <div class="lav-btn-size">
         Step1: Choose Worktop Size
