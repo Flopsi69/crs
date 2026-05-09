@@ -1604,7 +1604,7 @@
     const isUpsell = !!_$('#select-size-model .select-size-row[data-type="accessory"]')
 
     if (!isUpsell) {
-      _$('.lav-btn-accessories')?.remove()()
+      _$('.lav-btn-accessories')?.remove()
     } else {
       _$('.lav-btn-accessories').addEventListener('click', () => {
         pushDataLayer('exp_pdp_cta', _$('.lav-btn-accessories').innerText, 'click', 'Static');
