@@ -1605,13 +1605,19 @@
       pushDataLayer('exp_pdp_cta', _$('.lav-btn-size').innerText, 'click', 'Static');
     });
 
-    _$('.lav-btn-accessories').addEventListener('click', () => {
-      pushDataLayer('exp_pdp_cta', _$('.lav-btn-accessories').innerText, 'click', 'Static');
-      config.isDisableLayer = true;
-      _$('#select-size').click();
-      config.isDisableLayer = false;
-      resetModalSizeSelectorModal(true);
-    });
+    const isUpsell = !!_$('#select-size-model .select-size-row[data-type="accessory"]')
+
+    if (!isUpsell) {
+      _$('.lav-btn-accessories')?.remove()()
+    } else {
+      _$('.lav-btn-accessories').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cta', _$('.lav-btn-accessories').innerText, 'click', 'Static');
+        config.isDisableLayer = true;
+        _$('#select-size').click();
+        config.isDisableLayer = false;
+        resetModalSizeSelectorModal(true);
+      });
+    }
   }
 
   function resetModalSizeSelectorModal(isAccessory) {
