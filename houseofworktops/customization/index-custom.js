@@ -5776,6 +5776,7 @@
               this.fetchPrepareConfig(retryCount - 1, retryDelay);
             }, retryDelay);
           } else {
+            pushDataLayer('exp_pdp_cs_api_error', 'prepare', 'error', 'Custom Size Flow');
             this.debugWarn('All retry attempts exhausted. Continuing with defaults.');
           }
         });
@@ -6231,6 +6232,7 @@
           onSuccess(mapped);
         })
         .catch(err => {
+          pushDataLayer('exp_pdp_cs_api_error', 'calculate', 'error', 'Custom Size Flow');
           this.debugWarn('Failed to fetch optimize plans:', err);
           if (typeof onError === 'function') onError(err);
         });
@@ -7030,6 +7032,7 @@
 
         this.reset();
       } catch (err) {
+        pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', 'Custom Size Flow');
         console.error(err)
         alert('Failed to add to cart: ' + err.message);
       } finally {
