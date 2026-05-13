@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/customization',
     clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
-    debug: true,
+    debug: false,
     isDisableLayer: false,
     atcConfig: {
       price: '',
