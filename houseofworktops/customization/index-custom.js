@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/customization',
     clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
-    debug: false,
+    debug: true,
     isDisableLayer: false,
     atcConfig: {
       price: '',
@@ -3113,14 +3113,14 @@
         padding: 16px 20px;
         border-bottom: 1px solid #D3E9DF;
         cursor: default;
-        font-size: 20px; 
+        font-size: 20px;
         line-height: 28px;
-        color: #495057; 
-        white-space: nowrap; 
+        color: #495057;
+        white-space: nowrap;
         font-weight: 500;
       }
-      .lawc-tab.done { 
-        color: #1f8964;  
+      .lawc-tab.done {
+        color: #1f8964;
         gap: 8px;
         cursor: pointer;
       }
@@ -3133,7 +3133,7 @@
 
       .lawc-tab.active {
         background: #D1EBDF;
-        color: #1f8964; 
+        color: #1f8964;
       }
 
       .lawc-tab.active + .lawc-tab .lawc-tab-divider {
@@ -3168,15 +3168,15 @@
       }
 
       /* ── STEPS ── */
-      .lawc-body { 
+      .lawc-body {
         overflow-y: auto;
         padding:  20px;
       }
-      .lawc-step { 
-        display: none; 
-        flex-direction: column; 
+      .lawc-step {
+        display: none;
+        flex-direction: column;
       }
-      .lawc-step.active { 
+      .lawc-step.active {
         display: flex;
       }
 
@@ -3184,7 +3184,7 @@
         .lawc-tabs {
           height: 56px;
         }
-        .lawc-body { 
+        .lawc-body {
           padding: 16px 14px 20px;
           flex-grow: 1;
         }
@@ -3776,7 +3776,7 @@
         .lawc-count {
           font-size: 14px;
           font-weight: 500;
-          line-height: 18px; 
+          line-height: 18px;
           margin-top: 3px;
         }
       }
@@ -3848,9 +3848,9 @@
         margin-top: 6px;
       }
 
-      .lawc-s2-size-info { 
+      .lawc-s2-size-info {
         flex: 1;
-        min-width: 0; 
+        min-width: 0;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -4163,9 +4163,9 @@
         line-height: 0;
       }
 
-      .lawc-diagram-text { 
+      .lawc-diagram-text {
         text-align: left;
-        flex: 1; 
+        flex: 1;
       }
 
       .lawc-diagram-title {
@@ -4298,9 +4298,9 @@
         padding: 0;
       }
 
-      .lawc-diag-header { 
+      .lawc-diag-header {
         margin-top: 20px;
-        text-align: center; 
+        text-align: center;
       }
 
       .lawc-diag-title {
@@ -4357,9 +4357,9 @@
 
       /* Worktop slab section */
       .lawc-slab-section {
-        display: flex; 
-        flex-direction: column; 
-        gap: 12px; 
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         margin-top: 32px;
       }
 
@@ -4536,7 +4536,7 @@
         align-items: center;
         justify-content: center;
         gap: 32px;
-        padding: 60px 0;
+        padding: 50px 0;
         text-align: center;
       }
 
@@ -4572,10 +4572,40 @@
         color: #495057;
       }
 
+      .lawc-s2-error-btns {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+      }
+
       .lawc-s2-error-btn {
         height: 56px;
-        padding: 4px 20px;
-        border: 1px solid #1f8964;
+        padding: 4px 24px;
+        border-radius: 8px;
+        border: 1px solid #1F8964;
+        background: #1F8964;
+        color: #fff;
+        font-family: 'Archivo', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+
+      @media(hover:hover) {
+        .lawc-s2-error-btn:hover {
+          background: #197a55;
+        }
+      }
+
+      .lawc-s2-error-btn-trans {
+        height: 56px;
+        padding: 4px 24px;
+        border: none;
         border-radius: 8px;
         background: #fff;
         color: #1f8964;
@@ -4590,8 +4620,10 @@
         transition: background 0.15s;
       }
 
-      .lawc-s2-error-btn:hover {
-        background: #f0f8f4;
+      @media(hover:hover) {
+        .lawc-s2-error-btn-trans:hover {
+          background: #f0f8f4;
+        }
       }
 
       /* ── STEP 2 FOOTER ── */
@@ -4649,10 +4681,15 @@
         .lawc-s2-error {
           padding-top: 45px;
           padding-bottom: 45px;
+          gap: 24px;
         }
         .lawc-s2-error-icon {
           width: 44px;
           height: 44px;
+        }
+        .lawc-s2-error-btns {
+          flex-flow: column-reverse;
+          gap: 12px;
         }
         .lawc-s2-error-copy {
           max-width: 320px;
@@ -4671,7 +4708,15 @@
         .lawc-s2-error-btn {
           height: 48px;
           font-size: 16px;
-        }      
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        .lawc-s2-error-btn-trans {
+          height: 48px;
+          font-size: 16px;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
         .lawc-footer-total-label {
           display: none;
         }
@@ -4781,20 +4826,20 @@
         border: 1px solid;
       }
 
-      .lawc-oiling-badge-green  { 
-        background: #e6f4f0; 
-        border-color: #c6e8dc; 
-        color: #1f8964; 
+      .lawc-oiling-badge-green  {
+        background: #e6f4f0;
+        border-color: #c6e8dc;
+        color: #1f8964;
       }
-      .lawc-oiling-badge-yellow { 
-        background: #fff4e5; 
-        border-color: #fde68a; 
-        color: #d97706; 
+      .lawc-oiling-badge-yellow {
+        background: #fff4e5;
+        border-color: #fde68a;
+        color: #d97706;
       }
-      .lawc-oiling-badge-red    { 
-        background: #fee2e2; 
-        border-color: #fecaca; 
-        color: #dc2626; 
+      .lawc-oiling-badge-red    {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #dc2626;
       }
 
       @media(max-width: 992px) {
@@ -4857,7 +4902,7 @@
           </svg>
           
           <span class="lawc-banner-text">
-            Need full, un-cut worktops? 
+            Need full, un-cut worktops?
             <span class="lawc-banner-link">
               Check our standard size list<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
@@ -4918,6 +4963,31 @@
           <div class="lawc-loading-text">Finding the best cutting plan for you&hellip;</div>
         </div>
 
+        <div class="lawc-s2-error" id="s2-error-size" style="display:none;">
+          <div class="lawc-s2-error-copy">
+            <div class="lawc-s2-error-icon">
+              <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="50" height="50" rx="25" fill="#D1EBDF"/>
+                <path d="M36.5595 19.4375L30.5625 13.4404C30.2448 13.1227 29.7313 13.1227 29.4136 13.4404L13.4407 29.4134C13.123 29.731 13.123 30.2445 13.4407 30.5622L19.4361 36.5593C19.5888 36.712 19.7944 36.7974 20.0105 36.7974C20.2267 36.7974 20.433 36.712 20.585 36.5593L36.5587 20.5872C36.7115 20.4344 36.7968 20.228 36.7968 20.0127C36.7968 19.7974 36.7115 19.5902 36.5595 19.4375ZM33.4761 21.372L31.0516 18.9508C30.7339 18.6339 30.2196 18.6331 29.9019 18.9516C29.585 19.2693 29.585 19.7836 29.9027 20.1005L32.3272 22.5217L30.794 24.0549L29.3722 22.6322C29.0545 22.3137 28.541 22.3145 28.2233 22.6314C27.9056 22.9483 27.9056 23.4626 28.2233 23.7803L29.6452 25.2038L28.1128 26.7362L25.6891 24.3125C25.3714 23.9948 24.8579 23.9948 24.5402 24.3125C24.2225 24.6302 24.2225 25.1437 24.5402 25.4614L26.9631 27.885L25.4315 29.4166L24.0064 27.9939C23.6887 27.677 23.1752 27.6762 22.8575 27.9947C22.5398 28.3124 22.5398 28.8267 22.8575 29.1436L24.2818 30.5663L22.7487 32.0987L20.3266 29.6766C20.0089 29.3589 19.4954 29.3589 19.1777 29.6766C18.86 29.9943 18.86 30.5078 19.1777 30.8255L21.5998 33.2475L20.0105 34.8368L15.164 29.9886L29.988 15.1645L34.8362 20.0127L33.4761 21.372Z" fill="#1F8964"/>
+              </svg>
+            </div>
+            <div class="lawc-s2-error-title" style="color:#1F8964;">Size not available in our standard&nbsp;range</div>
+            <div class="lawc-s2-error-desc">The dimensions you entered exceed our standard slab sizes. Browse our full list of available sizes to find the best fit for your project.</div>
+          </div>
+          <div class="lawc-s2-error-btns">
+            <button class="lawc-s2-error-btn-trans" id="s2-error-edit-btn-size">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M10 13.314L5 8.31396L10 3.31396" stroke="#1F8964" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Edit sizes
+            </button>
+
+            <button class="lawc-s2-error-btn" id="s2-error-browse-btn-size">
+              Browse standart sizes
+            </button>
+          </div>
+        </div>
+
         <div class="lawc-s2-error" id="s2-error" style="display:none;">
           <div class="lawc-s2-error-copy">
             <div class="lawc-s2-error-icon">
@@ -4930,8 +5000,8 @@
             <div class="lawc-s2-error-desc">We couldn't process your worktop configuration.<br> Please check your dimensions and try again.</div>
           </div>
           <button class="lawc-s2-error-btn" id="s2-error-edit-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 13.314L5 8.31396L10 3.31396" stroke="#1F8964" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M13.7502 16.499L8.25024 10.999L13.7502 5.49902" stroke="white" stroke-width="1.33231" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Edit sizes
           </button>
@@ -6206,6 +6276,7 @@
       document.getElementById('s2-loading').style.display = 'flex';
       document.getElementById('s2-results').style.display = 'none';
       document.getElementById('s2-error').style.display = 'none';
+      document.getElementById('s2-error-size').style.display = 'none';
     }
 
     // ─────────────────────────────────────────────────────────────────
@@ -6222,9 +6293,21 @@
         headers: { 'Content-Type': 'application/json', 'x-api-key': this.api.key },
         body: JSON.stringify(payload)
       })
-        .then(res => {
-          if (!res.ok) throw new Error('API error ' + res.status);
-          return res.json();
+        .then(async res => {
+          var text = await res.text();
+          var json = null;
+          try { json = text ? JSON.parse(text) : null; } catch (_) {}
+
+          if (!res.ok) {
+            var errorMessage = (json && (json.error || json.message)) || text || ('API error ' + res.status);
+            throw new Error(errorMessage);
+          }
+
+          if (!json) {
+            throw new Error('Invalid optimize response: expected JSON');
+          }
+
+          return json;
         })
         .then(json => {
           var mapped = this.mapApiResponse(json);
@@ -6488,18 +6571,25 @@
       this.refreshStep2Footer();
       document.getElementById('s2-loading').style.display = 'none';
       document.getElementById('s2-error').style.display = 'none';
+      document.getElementById('s2-error-size').style.display = 'none';
       document.getElementById('s2-results').style.display = 'flex';
       this.showFooter('footer-s2');
       this.updatePlanSelection();
     }
 
-    renderStep2Error() {
-      pushDataLayer('exp_pdp_cs_error_view', 'Something went wrong', 'view', 'Custom Size Flow', 'Choose cutting plan');
+    renderStep2Error(err) {
+      const errorMessage = err?.message || err.toString() || String(err);
       this.planData = null;
       document.querySelector('.lawc-tabs').style.display = '';
       document.getElementById('s2-loading').style.display = 'none';
       document.getElementById('s2-results').style.display = 'none';
-      document.getElementById('s2-error').style.display = 'flex';
+      if (errorMessage === 'No valid slab configuration found') {
+        pushDataLayer('exp_pdp_cs_error_view', 'Size not available', 'view', 'Custom Size Flow', 'Choose cutting plan');
+        document.getElementById('s2-error-size').style.display = 'flex';
+      } else {
+        pushDataLayer('exp_pdp_cs_error_view', 'Something went wrong', 'view', 'Custom Size Flow', 'Choose cutting plan');
+        document.getElementById('s2-error').style.display = 'flex';
+      }
       this.showFooter(null);
     }
 
@@ -6650,7 +6740,7 @@
       this.resetStep2State();
       this.fetchCuttingPlans(
         data => this.renderStep2(data),
-        () => this.renderStep2Error()
+        (err) => this.renderStep2Error(err)
       );
       document.querySelector('#step-2').scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -7103,6 +7193,18 @@
       document.getElementById('s2-error-edit-btn').addEventListener('click', () => {
         pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow', 'error state');
         this.goBackToStep1()
+      });
+      document.getElementById('s2-error-edit-btn-size').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Edit sizes', 'click', 'Custom Size Flow', 'error state - slab size issue');
+        this.goBackToStep1()
+      });
+      document.getElementById('s2-error-browse-btn-size').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_2_edit_sizes', 'Browse standart sizes', 'click', 'Custom Size Flow', 'error state - slab size issue');
+        Modal?.close()
+        config.isDisableLayer = true;
+        _$('#select-size')?.click()
+        config.isDisableLayer = false;
+        this.reset()
       });
 
       document.getElementById('s2-back-btn').addEventListener('click', () => {
