@@ -7127,9 +7127,10 @@
 
         this.reset();
       } catch (err) {
-        pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', 'Custom Size Flow');
+        const errorMessage = err?.message || err.toString() || String(err);
+        pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', 'Custom Size Flow', errorMessage);
         console.error(err)
-        alert('Failed to add to cart: ' + err.message);
+        alert('Failed to add to cart: ' + errorMessage);
       } finally {
         this.isCartSubmitting = false;
         this.setAddToCartLoading(false);
