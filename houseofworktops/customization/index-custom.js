@@ -5846,7 +5846,9 @@
               this.fetchPrepareConfig(retryCount - 1, retryDelay);
             }, retryDelay);
           } else {
-            pushDataLayer('exp_pdp_cs_api_error', 'prepare', 'error', 'Custom Size Flow');
+            const errorMessage = err?.message || err.toString() || String(err);
+
+            pushDataLayer('exp_pdp_cs_api_error', 'prepare', 'error', 'Custom Size Flow', errorMessage);
             this.debugWarn('All retry attempts exhausted. Continuing with defaults.');
           }
         });
@@ -6315,7 +6317,10 @@
           onSuccess(mapped);
         })
         .catch(err => {
-          pushDataLayer('exp_pdp_cs_api_error', 'calculate', 'error', 'Custom Size Flow');
+          const errorMessage = err?.message || err.toString() || String(err);
+
+          pushDataLayer('exp_pdp_cs_api_error', 'calculate', 'error', 'Custom Size Flow', errorMessage);
+
           this.debugWarn('Failed to fetch optimize plans:', err);
           if (typeof onError === 'function') onError(err);
         });
