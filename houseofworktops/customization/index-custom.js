@@ -5798,7 +5798,7 @@
         headers: { 'Content-Type': 'application/json', 'x-api-key': this.api.key },
         body: JSON.stringify({ product_id: this.api.productId })
       })
-        .then(res => res.ok ? res.json() : Promise.reject('Prepare API error'))
+        .then(res => res.ok ? res.json() : Promise.reject(new Error('Status: ' + res.status + '. Prepare API error')))
         .then(data => {
           this.productConfig = data;
           
@@ -6301,8 +6301,8 @@
           try { json = text ? JSON.parse(text) : null; } catch (_) {}
 
           if (!res.ok) {
-            var errorMessage = (json && (json.error || json.message)) || text || ('API error ' + res.status);
-            throw new Error(errorMessage);
+            var errorText = (json && (json.error || json.message)) || text || 'API error';
+            throw new Error('Status: ' + res.status + '. ' + errorText);
           }
 
           if (!json) {
@@ -7060,8 +7060,8 @@
         try { json = JSON.parse(text); } catch (_) {}
 
         if (!res.ok || (json && json.error)) {
-          var errMsg = (json && (json.error || json.message)) || ('Cart API error ' + res.status);
-          throw new Error(errMsg);
+          var errText = (json && (json.error || json.message)) || 'Cart API error';
+          throw new Error('Status: ' + res.status + '. ' + errText);
         }
 
         if (location.href.includes('houseofworktops.co')) {
