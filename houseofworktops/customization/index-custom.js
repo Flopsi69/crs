@@ -25,15 +25,15 @@
     '/black-gold-compact',
     '/cloudy-cement-compact-laminate',
     '/carrera-marble-compact-',
-    '/carrara-solid-surface',
+    // '/carrara-solid-surface',
     '/oak-worktop',
     '/walnut-worktop',
     '/prime-oak-worktop',
     '/full-stave-deluxe-oak-worktop',
     '/full-stave-deluxe-rustic-oak-worktop',
     '/prime-beech-worktop',
-    '/iroko-worktop',
-    '/black-oak-worktop'
+    // '/iroko-worktop',
+    // '/black-oak-worktop'
   ]
 
   const upsellConfig = {
@@ -5848,7 +5848,7 @@
           } else {
             const errorMessage = err?.message || err.toString() || String(err);
 
-            pushDataLayer('exp_pdp_cs_api_error', 'prepare', 'error', 'Custom Size Flow', errorMessage);
+            pushDataLayer('exp_pdp_cs_api_error', 'prepare', 'error', this.worktops.map(w => w.length + 'x' + w.width + 'x' + w.thickness + 'x' + w.qty).join('|'), errorMessage);
             this.debugWarn('All retry attempts exhausted. Continuing with defaults.');
           }
         });
@@ -6290,6 +6290,9 @@
         pieces: this.worktops.map(w => ({ length: w.length, width: w.width, thickness: w.thickness, qty: w.qty }))
       };
 
+      var sizesString = this.worktops.map(w => w.length + 'x' + w.width + 'x' + w.thickness + 'x' + w.qty).join('|');
+      pushDataLayer('exp_pdp_cs_size_submit', sizesString, 'submit', 'Custom Size Flow');
+
       fetch(this.api.url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': this.api.key },
@@ -6319,7 +6322,7 @@
         .catch(err => {
           const errorMessage = err?.message || err.toString() || String(err);
 
-          pushDataLayer('exp_pdp_cs_api_error', 'calculate', 'error', 'Custom Size Flow', errorMessage);
+          pushDataLayer('exp_pdp_cs_api_error', 'calculate', 'error', this.worktops.map(w => w.length + 'x' + w.width + 'x' + w.thickness + 'x' + w.qty).join('|'), errorMessage);
 
           this.debugWarn('Failed to fetch optimize plans:', err);
           if (typeof onError === 'function') onError(err);
@@ -7128,7 +7131,7 @@
         this.reset();
       } catch (err) {
         const errorMessage = err?.message || err.toString() || String(err);
-        pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', 'Custom Size Flow', errorMessage);
+        pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', this.worktops.map(w => w.length + 'x' + w.width + 'x' + w.thickness + 'x' + w.qty).join('|'), errorMessage);
         console.error(err)
         alert('Failed to add to cart: ' + errorMessage);
       } finally {
