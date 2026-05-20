@@ -3431,6 +3431,7 @@
         font-family: 'Archivo', sans-serif;
         border-right: none;
         min-width: 0;
+        pointer-events: none;
       }
 
       .lawc-qty-hybrid .lawc-qty-input:focus {
@@ -3462,7 +3463,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 38px;
+        width: 100%;
         height: 45px;
         opacity: 0;
         cursor: pointer;
