@@ -7011,6 +7011,7 @@
 
         var params = new URLSearchParams();
         var totalQty = cartSlabGroups.reduce((sum, item) => sum + item.qty, 0);
+        params.append('type', this.selectedPlan === 'wecut' ? 'precut' : 'non-precut');
         params.append('product_id', String(this.api.productId));
         params.append('quantity', String(1));
 
