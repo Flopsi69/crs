@@ -8,7 +8,7 @@
     clarity: ['set', '', 'variant_1'],
     observerEl: null,
     isClarityStarted: false,
-    debug: true
+    debug: false
   }
 
   // const orig = console.log
@@ -26,6 +26,17 @@
     .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .truncate .text-3xl.font-bold  + .text-sm {
       font-size: 13px;
     }
+    .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1 button.px-4 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1.pt-1 {
+      gap: 0;
+    }
     .lav-sold {
       font-size: 12px;
       line-height: 16px;
@@ -37,6 +48,7 @@
     @media (width >= 80rem) {
       .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 16px;
       }
     }
     .lav-pagination {
