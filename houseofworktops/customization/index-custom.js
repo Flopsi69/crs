@@ -26,7 +26,6 @@
     '/cloudy-cement-compact-laminate',
     '/carrera-marble-compact-(white-core)',
     // '/carrara-solid-surface',
-    // '/carrara-solid-surface',
     '/oak-worktop',
     '/walnut-worktop',
     '/prime-oak-worktop',
