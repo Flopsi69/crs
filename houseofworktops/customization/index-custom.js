@@ -1539,7 +1539,8 @@
     }
 
     const isValidProduct = targetUrls.some(targetUrl => {
-      return location.href.includes(targetUrl)
+      const idx = location.href.indexOf(targetUrl)
+      return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
     })
 
     if (!isValidProduct) {
@@ -7281,9 +7282,14 @@
     }
   }
 
+  const isValidProduct = targetUrls.some(targetUrl => {
+    const idx = location.href.indexOf(targetUrl)
+    return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
+  })
+
   const productId = _$('#product [name="product_id"]')?.value;
 
-  if (productId) {
+  if (isValidProduct && productId) {
     new WorktopCustomizer({ productId: parseInt(productId), debugStep: 'step-1', isDebug: false });
   }
 
