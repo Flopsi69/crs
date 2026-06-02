@@ -1824,7 +1824,7 @@
             <span class="lavm-banner-text">
               Need a pre-cut worktop? 
               <span class="lavm-banner-link">
-                Choose your exact worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                Choose your custom worktop size<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M6 12L10 8L6 4" stroke="#212529" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
               </span>
@@ -2493,10 +2493,10 @@
 
     _$('.lav-sticky__size').addEventListener('click', () => {
       pushDataLayer('exp_pdp_cta', _$('.lav-sticky__size .lav-sticky__text').innerText, 'click', 'Fixed');
-      Modal.open('.lav-cutting');
-      // config.isDisableLayer = true;
-      // _$('#select-size').click();
-      // config.isDisableLayer = false;
+      // Modal.open('.lav-cutting');
+      config.isDisableLayer = true;
+      _$('#select-size').click();
+      config.isDisableLayer = false;
     });
 
     _$('.lav-sticky__upsell')?.addEventListener('click', () => {
