@@ -1056,7 +1056,8 @@
       e.preventDefault();
       const url = window.location.origin + gameUrl + '/' + data.slug
       const num = location === 'banner' ? 2 : 1
-      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
+      const type = e.target.closest('.lav-product__buy') ? 'cta' : 'card'
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, type, gameUrl);
       window.location.href = url
     });
     
@@ -1115,7 +1116,8 @@
       e.preventDefault();
       const url = window.location.origin + gameUrl + '/' + data.slug
       const num = location === 'banner' ? 2 : 1
-      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
+      const type = e.target.closest('.lav-product__buy') ? 'cta' : 'card'
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, type, gameUrl);
       window.location.href = url
     });
 
@@ -1150,9 +1152,11 @@
     `
 
     el.addEventListener('click', (e) => {
+      e.preventDefault();
       const url = window.location.origin + gameUrl + '/' + data.uuid
       const num = location === 'banner' ? 2 : 1
-      pushDataLayer(`exp_blog_${num}_banner_item`, url, 'click', gameUrl);
+      const type = e.target.closest('.lav-product__buy') ? 'cta' : 'card'
+      pushDataLayer(`exp_blog_${num}_banner_item`, url, type, gameUrl);
       window.location.href = url
     });
 
