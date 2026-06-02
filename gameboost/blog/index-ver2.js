@@ -42,6 +42,40 @@
     .lav-banner.lav-banner--expand {
       margin-right: -464px;
     }
+    .lav-banner--persistent .lav-banner__image {
+      display: none;
+    }
+    .lav-banner--persistent .lav-banner__bage {
+      display: none;
+    }
+    .lav-banner--persistent .lav-banner__head {
+        justify-content: flex-end !important;
+    }
+    .lav-banner--persistent .lav-banner__carousel {
+      margin-top: 19px!important;
+    }
+    .lav-banner--persistent .lav-banner__btn svg {
+      display: none;
+    }
+    .lav-banner--persistent .lav-product__summary {
+      flex-flow: row;
+      align-items: center!important
+    }
+    .lav-banner--persistent .lav-product__descr {
+      margin-top: 0;
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+    .lav-banner--persistent .lav-product__row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 7px;
+    }
+    .lav-banner--persistent .lav-product__preview {
+      height: 77px;
+      width: 113px;
+      flex-shrink: 0;
+    }
     .lav-banner__image {
       line-height: 0;
       flex-shrink: 0;
@@ -646,6 +680,10 @@
 
     if (window.innerWidth <= 1024) {
       document.addEventListener('inertia:finish', () => {
+        if (!/\/blog\/.+/.test(location.href) || location.href.includes('/blog/categories/')) {
+          // _$('.exp-blog-v2-styles')?.remove()
+          return;
+        }
         const bannersLinksBanner = _$$('.ProseMirrorRender > .image-link', document, true).filter(el => el.href?.includes('cmpid=') && el.childElementCount === 1)
         const bannersImageBanners = _$$('.ProseMirrorRender > img', document, true).filter(el => el.alt.includes('cmpid='))
       
@@ -653,7 +691,21 @@
         const allBannersFiltered = allBanners.filter(el => !el.classList.contains('lav-banner--handled'))
 
         const linkNodes = Array.from(_$('.ProseMirrorRender').childNodes).reverse();
-        const filterNodes = linkNodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting')).reverse()
+        let filterNodes = linkNodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting') && !el.children[0].href?.includes('/services/')).reverse()
+
+        filterNodes.sort((a, b) => {
+          const aHref = a.children[0].href;
+          const bHref = b.children[0].href;
+          
+          const order = ['/accounts', '/items', '/pop-up'];
+          const aIndex = order.findIndex(path => aHref.includes(path));
+          const bIndex = order.findIndex(path => bHref.includes(path));
+          
+          const aOrder = aIndex === -1 ? Infinity : aIndex;
+          const bOrder = bIndex === -1 ? Infinity : bIndex;
+          
+          return aOrder - bOrder;
+        })
         
         if ((allBanners.length && allBannersFiltered.length) || (!allBanners.length && _$('.col-span-1 > .sm\\:mt-6 > .flex > .hidden') && filterNodes.length && !_$('.lav-sidebar'))) {
           urlChangeHandler();
@@ -708,10 +760,15 @@
       console.log('addBanner for', el, el.classList)
       const { game, type } = parseGameboostUrl(el.href || el.alt, true)
 
-      addBanner(el, game, type)
+      addBanner(el, game, type, false)
       // addBanner(el, game, 'items')
       // addBanner(el, game, 'top-up')
     })
+
+    if (allBanners.length) {
+      const { game, type } = parseGameboostUrl(allBanners[0].href || allBanners[0].alt, true)
+      addBanner(_$('.ProseMirrorRender'), game, type, true, true)
+    }
 
     if (!_$('.lav-sidebar')) {
       _$('.lav-inner').classList.add('lav-inner--flat')
@@ -727,12 +784,20 @@
 
     const nodes = Array.from(_$('.lav-content .ProseMirrorRender').childNodes).reverse();
 
-    let filterNodes = nodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting')).reverse()
+    let filterNodes = nodes.filter(el => el.tagName === 'P' && el.style.textAlign === 'center' && el.childElementCount === 1 && el.children[0].tagName === 'A' && !el.innerText.toLowerCase().includes('boosting')  && !el.children[0].href?.includes('/services/')).reverse()
 
     filterNodes.sort((a, b) => {
-      const aHasAccounts = a.children[0].href.includes('/accounts');
-      const bHasAccounts = b.children[0].href.includes('/accounts');
-      return bHasAccounts - aHasAccounts;
+      const aHref = a.children[0].href;
+      const bHref = b.children[0].href;
+      
+      const order = ['/accounts', '/items', '/top-up'];
+      const aIndex = order.findIndex(path => aHref.includes(path));
+      const bIndex = order.findIndex(path => bHref.includes(path));
+      
+      const aOrder = aIndex === -1 ? Infinity : aIndex;
+      const bOrder = bIndex === -1 ? Infinity : bIndex;
+      
+      return aOrder - bOrder;
     })
 
     if (!filterNodes.length) {
@@ -755,6 +820,7 @@
         const middleItem = allChilds[Math.floor(allChilds.length / 2)];
 
         addBanner(middleItem, game, type, true)
+        addBanner(_$('.ProseMirrorRender'), game, type, true, true)
       }
       
       break;
@@ -870,7 +936,7 @@
     });
   }
 
-  async function addBanner(el, gameName, type, isPassive) {
+  async function addBanner(el, gameName, type, isPassive, isPersistent) {
     el.classList.add('lav-banner--handled')
     const config = await fetchProducts(gameName, type)
 
@@ -883,6 +949,10 @@
 
     const bannerEl = document.createElement('div')
     bannerEl.classList.add('lav-banner')
+
+    if (isPersistent) {
+      bannerEl.classList.add('lav-banner--persistent')
+    }
 
     bannerEl.innerHTML = /* html */ `
       <div class='lav-banner__head'>
@@ -923,7 +993,11 @@
       </div>
     `
 
-    el.insertAdjacentElement('afterend', bannerEl)
+    if (isPersistent) {
+      el.insertAdjacentElement('beforebegin', bannerEl)
+    } else {
+      el.insertAdjacentElement('afterend', bannerEl)
+    }
 
     visibilityEvent(bannerEl, () => {
       pushDataLayer('exp_blog_2_banner_view', 'In-text Banner', 'view', config.game.url);
@@ -939,11 +1013,11 @@
       let productEl;
 
       if (type === 'accounts') {
-        productEl = getProductAccount('banner', item, config.game.url, type)
+        productEl = getProductAccount('banner', item, config.game.url, type, isPersistent)
       } else if (type === 'items') {
-        productEl = getProductItem('banner', item, config.game.url, type)
+        productEl = getProductItem('banner', item, config.game.url, type, isPersistent)
       } else {
-        productEl = getProductCurrency('banner', item, config.game.url, type)
+        productEl = getProductCurrency('banner', item, config.game.url, type, isPersistent)
       }
 
       if (!productEl) return
@@ -959,7 +1033,7 @@
     }
 
 
-    var splide = new Splide(_$('.lav-banner__carousel', bannerEl), {
+    let options = {
       // perPage: 3,
       // perMove: 1,
       type: 'loop',
@@ -981,7 +1055,19 @@
           fixedWidth: '162px'
         },
       },
-    });
+    }
+
+    if (isPersistent) {
+      options = {
+        type: 'loop',
+        gap: '16px',
+        pagination: false,
+        focus: 0,
+        fixedWidth: '297px',
+      }
+    }
+
+    var splide = new Splide(_$('.lav-banner__carousel', bannerEl), options);
 
     splide.mount();
 
@@ -993,7 +1079,7 @@
     updateBannerStyle();
   }
 
-  function getProductAccount(location, data, gameUrl, type) {
+  function getProductAccount(location, data, gameUrl, type, isPersistent) {
     const typeName = type === 'accounts' ? 'Account' : type === 'items' ? 'Item' : 'Currency'
     let title = ''
     if (data.data.platform) {
@@ -1019,10 +1105,12 @@
           <img src="${data.icon_url}" />
           <span>${title}</span>
         </div>
+        ${isPersistent ? `<div class='lav-product__row'>` : ''}
         <div class='lav-product__preview'>
           <img src="${data.media[0]}" />
         </div>
         <div class='lav-product__descr'>${data.title}</div>
+        ${isPersistent ? `</div>` : ''}
         <div class="lav-product__divider h-px w-full border-t-0 bg-[linear-gradient(90deg,theme(&quot;colors.border/10%&quot;),_theme(&quot;colors.border&quot;),_theme(&quot;colors.border/10%&quot;))]"></div>
         <div class='lav-product__summary'>
           ${data.local_original_price?.value ? `<div class='lav-product__price-old'>
@@ -1070,18 +1158,20 @@
     return el
   }
 
-  function getProductItem(location, data, gameUrl, type) {
+  function getProductItem(location, data, gameUrl, type, isPersistent) {
     const typeName = type === 'accounts' ? 'Account' : type === 'items' ? 'Item' : 'Currency'
 
     const el = document.createElement(location === 'banner' ? 'li' : 'div')
     el.classList.add(location === 'banner' ? 'splide__slide' : 'lav-product--wrap')
     el.innerHTML = /* html */ `
       <div class='lav-product lav-product--item'>
-       <div class='lav-product__preview'>
+        ${isPersistent ? `<div class='lav-product__row'>` : ''}
+        <div class='lav-product__preview'>
           <img src="${data.media[0]}" />
         </div>
 
         <div class='lav-product__descr'>${data.title}</div>
+        ${isPersistent ? `</div>` : ''}
 
         <div class="lav-product__divider h-px w-full border-t-0 bg-[linear-gradient(90deg,theme(&quot;colors.border/10%&quot;),_theme(&quot;colors.border&quot;),_theme(&quot;colors.border/10%&quot;))]"></div>
         <div class='lav-product__summary'>
@@ -1215,7 +1305,7 @@
     if (typeof props?.customContent === 'object' && !Array.isArray(props?.customContent)) {
       const descrKey = Object.keys(props.customContent).find(key => key.toLowerCase().includes('description'))
       descr = descrKey ? props.customContent[descrKey] : '';
-    } else if (props.cms.page_content && Array.isArray(props.cms.page_content)) {
+    } else if (props.cms?.page_content && Array.isArray(props.cms.page_content)) {
       const descriptionBlock = props.cms.page_content.find(block => block.field === 'description');
       descr = descriptionBlock ? descriptionBlock.content : data.props.meta?.title || '';
     } else {
