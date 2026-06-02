@@ -7103,8 +7103,9 @@
                 opt_id: slab.productOptionValueId,
                 variant: slab.label,
                 category: category,
+                category3: 'custom size flow',
                 category4: oilingLabel === 'Untreated' ? 'none' : oilingLabel, // oiling option
-                category5: "custom"
+                category5: this.selectedPlan === 'wecut' ? 'custom' : 'standard' // custom vs standard size
               })
             })
 
