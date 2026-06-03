@@ -765,7 +765,7 @@
       // addBanner(el, game, 'top-up')
     })
 
-    if (allBanners.length) {
+    if (allBanners.length && window.innerWidth <= 1024) {
       const { game, type } = parseGameboostUrl(allBanners[0].href || allBanners[0].alt, true)
       addBanner(_$('.ProseMirrorRender'), game, type, true, true)
     }
