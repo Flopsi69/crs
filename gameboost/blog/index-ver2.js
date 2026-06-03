@@ -8,7 +8,7 @@
     clarity: ['set', 'exp_blog', 'variant_1'],
     isClarityStarted: false,
     gameFallback: null,
-    debug: true
+    debug: false
   }
 
   const productsCache = {}
