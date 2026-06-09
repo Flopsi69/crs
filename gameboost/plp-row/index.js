@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/plp-row',
     dir: 'https://flopsi69.github.io/crs/gameboost/plp-row',
-    clarity: ['set', '', 'variant_1'],
+    clarity: ['set', 'exp_plp_5_row', 'variant_1'],
     observerEl: null,
     isClarityStarted: false,
     debug: false
