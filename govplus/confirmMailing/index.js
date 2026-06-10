@@ -15,16 +15,16 @@
 
   // Styles for Experiment
   const styles = /* css */ `
-    #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
+    #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions, #invalid_address_scrollById .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
       padding: 0 16px;
     }
-    #invalid_address .GSkipStep__CtaCancelText {
+    #invalid_address .GSkipStep__CtaCancelText, #invalid_address_scrollById .GSkipStep__CtaCancelText {
       order: -2;
     }
-    #invalid_address .AddressVerificationFormFields {
+    #invalid_address .AddressVerificationFormFields, #invalid_address_scrollById .AddressVerificationFormFields {
       order: -1;
     }
-    #invalid_address .AddressVerificationFormSelect__Footer__Actions .GCombinedText {
+    #invalid_address .AddressVerificationFormSelect__Footer__Actions .GCombinedText, #invalid_address_scrollById .AddressVerificationFormSelect__Footer__Actions .GCombinedText {
       display: none;
     }
     .lav-household {
@@ -122,15 +122,15 @@
     }
 
     @media(max-width: 768px) {
-      #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
+      #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions, #invalid_address_scrollById .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
         padding: 0;
       }
-      #invalid_address .AddressVerificationFormSelect__Footer__Actions .GButton--secondary {
+      #invalid_address .AddressVerificationFormSelect__Footer__Actions .GButton--secondary, #invalid_address_scrollById .AddressVerificationFormSelect__Footer__Actions .GButton--secondary {
         padding-left: 12px!important;
         padding-right: 12px!important;
         min-height: 64px !important;
       }
-      #invalid_address .GSkipStep__CtaCancelText {
+      #invalid_address .GSkipStep__CtaCancelText, #invalid_address_scrollById .GSkipStep__CtaCancelText {
         flex-flow: row;
         gap: 5px;
         margin-bottom: 2px;
@@ -171,6 +171,10 @@
     initExp()
   })
 
+  waitFor('#invalid_address_scrollById', () => {
+    initExp()
+  })
+
   function isInitApp() {
     // const targetFormIds = [
     //   "passport-new",
@@ -205,7 +209,7 @@
       document.addEventListener('click', function (e) {
         const target = e.target;
 
-        if (target.closest('#invalid_address') && target.closest('.ant-btn[type="submit"]') && target.closest('.AddressVerificationFormFields')) {
+        if ((target.closest('#invalid_address') || target.closest('#invalid_address_scrollById')) && target.closest('.ant-btn[type="submit"]') && target.closest('.AddressVerificationFormFields')) {
           waitFor('.AddressVerificationFormSelect__Footer__Actions', () => {
             handleFirstStep();
             _$('.lav-household')?.appendChild(stylesEl);
@@ -216,7 +220,7 @@
   }
 
   function handleFirstStep() {
-    const parentEl = _$('#invalid_address');
+    const parentEl = _$('#invalid_address') || _$('#invalid_address_scrollById');
     if (!parentEl) return
     if (_$('.lav-household')) return
 
