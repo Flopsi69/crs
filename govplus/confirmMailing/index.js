@@ -220,6 +220,10 @@
     if (!parentEl) return
     if (_$('.lav-household')) return
 
+    const addFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .js-upgrade-family', parentEl);
+
+    if (!addFamilyBtn) return
+
     const markup = /* html */ `
       <div class='lav-inner'>
         <div class='lav-household'>
@@ -244,9 +248,6 @@
 
     _$('.AddressVerificationFormSelect__Footer__Actions', parentEl).insertAdjacentHTML('beforebegin', markup);
 
-
-    // Handle add family btn
-    const addFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .js-upgrade-family', parentEl);
     _$('.ant-typography', addFamilyBtn).innerHTML = 'Confirm address & add my&nbsp;family&nbsp;to&nbsp;GOV+';
 
     _$('.lav-note', parentEl).insertAdjacentElement('afterend', addFamilyBtn)
