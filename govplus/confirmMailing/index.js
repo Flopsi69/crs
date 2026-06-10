@@ -18,6 +18,12 @@
     #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
       padding: 0 16px;
     }
+    #invalid_address .GSkipStep__CtaCancelText {
+      order: -2;
+    }
+    #invalid_address .AddressVerificationFormFields {
+      order: -1;
+    }
     #invalid_address .AddressVerificationFormSelect__Footer__Actions .GCombinedText {
       display: none;
     }
@@ -56,7 +62,7 @@
       font-weight: 600;
       line-height: 22.4px;
       cursor: pointer;
-      transition: .3s;
+      transition: .2s;
     }
     @media(hover: hover) {
       .lav-household__option:not(.active):hover {
@@ -64,7 +70,7 @@
       }
     }
     .lav-household__option.active {
-      border-color: 1px solid rgba(0, 0, 0, 0.00);
+      border-color: rgba(0, 0, 0, 0.00);
       background: #216DE3;
       box-shadow: 0 2px 0 1px #1B5ABD inset;
       color: #fff;
@@ -103,10 +109,26 @@
     .lav-note svg {
       flex-shrink: 0;
     }
+    .lav-skip-primary {
+      background: #216DE3!important;
+    }
+    .lav-skip-primary .ant-typography {
+      color: #fff!important;
+    }
+    @media(hover:hover) {
+      .lav-skip-primary:hover {
+        background: rgb(10, 72, 168)!important;
+      }
+    }
 
     @media(max-width: 768px) {
       #invalid_address .AddressVerificationFormSelect__Footer .AddressVerificationFormSelect__Footer__Actions {
         padding: 0;
+      }
+      #invalid_address .AddressVerificationFormSelect__Footer__Actions .GButton--secondary {
+        padding-left: 12px!important;
+        padding-right: 12px!important;
+        min-height: 64px !important;
       }
       #invalid_address .GSkipStep__CtaCancelText {
         flex-flow: row;
@@ -145,7 +167,9 @@
   stylesEl.innerHTML = styles
 
   // *** Logic *** //
-  waitFor('#invalid_address', initExp)
+  waitFor('#invalid_address', () => {
+    initExp()
+  })
 
   function isInitApp() {
     // const targetFormIds = [
@@ -171,17 +195,30 @@
       return;
     }
 
-
     console.log('** InitExp **')
-    handleFirstStep();
-    // changeCopy();
-    // handlePricingBlock();
-    _$('.lav-household')?.appendChild(stylesEl)
+    waitFor('.AddressVerificationFormSelect__Footer__Actions', () => {
+      handleFirstStep();
+      // changeCopy();
+      // handlePricingBlock();
+      _$('.lav-household')?.appendChild(stylesEl);
+
+      document.addEventListener('click', function (e) {
+        const target = e.target;
+
+        if (target.closest('#invalid_address') && target.closest('.ant-btn[type="submit"]') && target.closest('.AddressVerificationFormFields')) {
+          waitFor('.AddressVerificationFormSelect__Footer__Actions', () => {
+            handleFirstStep();
+            _$('.lav-household')?.appendChild(stylesEl);
+          });
+        }
+      });
+    })
   }
 
   function handleFirstStep() {
     const parentEl = _$('#invalid_address');
     if (!parentEl) return
+    if (_$('.lav-household')) return
 
     const markup = /* html */ `
       <div class='lav-inner'>
@@ -210,7 +247,7 @@
 
     // Handle add family btn
     const addFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .js-upgrade-family', parentEl);
-    _$('.ant-typography', addFamilyBtn).innerHTML = 'Confirm address & add my&nbsp;family&nbsp;to&nbsp;GOV+'
+    _$('.ant-typography', addFamilyBtn).innerHTML = 'Confirm address & add my&nbsp;family&nbsp;to&nbsp;GOV+';
 
     _$('.lav-note', parentEl).insertAdjacentElement('afterend', addFamilyBtn)
 
@@ -220,14 +257,35 @@
         this.classList.add('active')
 
         const selectedValue = this.getAttribute('data-value')
-        console.log('Selected household size:', selectedValue)
         if (selectedValue === '1') {
           _$(".lav-inner").classList.remove('active')
         } else {
           _$(".lav-inner").classList.add('active')
         }
+
+        updateSecondaryButton();
       })
     })
+
+    updateSecondaryButton();
+
+    function updateSecondaryButton() {
+      const selectedOption = _$('.lav-household__option.active', parentEl);
+
+      if (!selectedOption) return;
+
+      const selectedValue = selectedOption.getAttribute('data-value');
+
+      const skipFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .GButton--secondary', parentEl);
+
+      if (selectedValue === '1') {
+        skipFamilyBtn.classList.add('lav-skip-primary', 'GButton--primary')
+        _$('.ant-typography', skipFamilyBtn).innerHTML = 'Confirm my address';
+      } else {
+        skipFamilyBtn.classList.remove('lav-skip-primary', 'GButton--primary')
+        _$('.ant-typography', skipFamilyBtn).innerHTML = 'Just confirm address & file for myself';
+      }
+    }
   }
 
   // *** HELPERS *** //
