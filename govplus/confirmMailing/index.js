@@ -228,6 +228,19 @@
 
     if (!addFamilyBtn) return
 
+    if (!addFamilyBtn.classList.contains('lav-tracked')) {
+      addFamilyBtn.classList.add('lav-tracked')
+      addFamilyBtn.addEventListener('click', function () {
+        const count = _$('.lav-household__option.active', parentEl)?.getAttribute('data-value') || '-';
+        analytics.track('Button Clicked on the Application Processing',{
+          section_title: 'Confirm your mailing address',
+          button: addFamilyBtn.innerText.trim(),
+          household_size: count,
+          ab_test: 'Updating Confirm your mailing address'
+        });
+      });
+    }
+
     const markup = /* html */ `
       <div class='lav-inner'>
         <div class='lav-household'>
@@ -262,9 +275,32 @@
         this.classList.add('active')
 
         const selectedValue = this.getAttribute('data-value')
+
+        analytics.track('Household Size Selected on the Application Processing', {
+          section_title: 'Confirm your mailing address',
+          button: selectedValue,
+          ab_test: 'Updating Confirm your mailing address'
+        });
+
         if (selectedValue === '1') {
+          if (_$(".lav-inner").classList.contains('active')) {
+            analytics.track('Button State Changed to Family Upsell Offer',{
+              section_title: 'Confirm your mailing address',
+              button: 'Confirm address & add my family to GOV+',
+              household_size: selectedValue,
+              ab_test: 'Updating Confirm your mailing address'
+            });
+          }
           _$(".lav-inner").classList.remove('active')
         } else {
+          if (!_$(".lav-inner").classList.contains('active')) {
+            analytics.track('Button State Changed to Family Upsell Offer',{
+              section_title: 'Confirm your mailing address',
+              button: 'Confirm address & add my family to GOV+',
+              household_size: selectedValue,
+              ab_test: 'Updating Confirm your mailing address'
+            });
+          }
           _$(".lav-inner").classList.add('active')
         }
 
@@ -277,11 +313,25 @@
     function updateSecondaryButton() {
       const selectedOption = _$('.lav-household__option.active', parentEl);
 
+      const skipFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .GButton--secondary', parentEl);
+
+      if (!skipFamilyBtn.classList.contains('lav-tracked')) {
+        skipFamilyBtn.classList.add('lav-tracked')
+        skipFamilyBtn.addEventListener('click', function () {
+          const count = _$('.lav-household__option.active', parentEl)?.getAttribute('data-value') || '-';
+          analytics.track('Button Clicked on the Application Processing',{
+            section_title: 'Confirm your mailing address',
+            button: skipFamilyBtn.innerText.trim(),
+            household_size: count,
+            ab_test: 'Updating Confirm your mailing address'
+          });
+        });
+      }
+
       if (!selectedOption) return;
 
       const selectedValue = selectedOption.getAttribute('data-value');
 
-      const skipFamilyBtn = _$('.AddressVerificationFormSelect__Footer__Actions .GButton--secondary', parentEl);
 
       if (selectedValue === '1') {
         skipFamilyBtn.classList.add('lav-skip-primary', 'GButton--primary')
