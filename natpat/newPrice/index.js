@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/<dir>/<project>',
     dir: 'https://flopsi69.github.io/crs/<dir>/<project>',
-    clarity: ['set', '', 'variant_1'],
+    clarity: ['set', 'exp_zb_new_price', 'variant_1'],
     debug: false,
     altId: '45637565612076'
   }
