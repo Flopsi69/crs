@@ -35,26 +35,49 @@
   }
 
   function handleNewPrice() {
-    _$$('[data-crs-alternative]').forEach((el) => {
-      const price = el.dataset.crsAlternative
+    if (!location.href.includes('en-ca')) {
+      _$$('[data-crs-alternative]').forEach((el) => {
+        const price = el.dataset.crsAlternative
 
-      if (price) {
-        el.textContent = price
-      }
-    });
+        if (price) {
+          el.textContent = price
+        }
+      });
 
-    _$$('[data-crs-src-checkout]').forEach((el) => {
-      const href = el.dataset.crsSrcCheckout;
-      el.dataset.srcCheckout = href;
-      el.dataset.currentPrice = el.querySelector('.lp-mkv2-chk-price-main').innerText.trim();
+      _$$('[data-crs-src-checkout]').forEach((el) => {
+        const href = el.dataset.crsSrcCheckout;
+        el.dataset.srcCheckout = href;
+        el.dataset.currentPrice = el.querySelector('.lp-mkv2-chk-price-main').innerText.trim();
 
 
-      if (el.classList.contains('active') && el.closest('.lp-mkv2-chk-col-right')) {
-        el.closest('.lp-mkv2-chk-col-right').querySelector('.lp-mkv2-btn-primary.lp-mkv2-btn-full.lp-mkv2-chk-btn').href = href;
-        _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-price-main').innerText = el.dataset.currentPrice;
-        _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-action a').href = href;
-      }
-    });
+        if (el.classList.contains('active') && el.closest('.lp-mkv2-chk-col-right')) {
+          el.closest('.lp-mkv2-chk-col-right').querySelector('.lp-mkv2-btn-primary.lp-mkv2-btn-full.lp-mkv2-chk-btn').href = href;
+          _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-price-main').innerText = el.dataset.currentPrice;
+          _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-action a').href = href;
+        }
+      });
+    } else {
+      _$$('[data-crs-alternative-ca]').forEach((el) => {
+        const price = el.dataset.crsAlternativeCa
+
+        if (price) {
+          el.textContent = price
+        }
+      });
+
+      _$$('[data-crs-src-checkout-ca]').forEach((el) => {
+        const href = el.dataset.crsSrcCheckoutCa;
+        el.dataset.srcCheckout = href;
+        el.dataset.currentPrice = el.querySelector('.lp-mkv2-chk-price-main').innerText.trim();
+
+
+        if (el.classList.contains('active') && el.closest('.lp-mkv2-chk-col-right')) {
+          el.closest('.lp-mkv2-chk-col-right').querySelector('.lp-mkv2-btn-primary.lp-mkv2-btn-full.lp-mkv2-chk-btn').href = href;
+          _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-price-main').innerText = el.dataset.currentPrice;
+          _$('.lp-mkv2-sticky-inner .lp-mkv2-sticky-action a').href = href;
+        }
+      });
+    }
   }
 
   // *** HELPERS *** //
