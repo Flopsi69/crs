@@ -1,6 +1,5 @@
 
 (function () {
-  // https://dashboard.govplus.app/forms/?formId=passport-new&indexCurrentStep=0&page=processing
   if (_$('.lav-household')) {
     console.log('** Exp check failed: lav-household exist **', _$('.lav-household'))
     return
