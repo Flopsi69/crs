@@ -18,7 +18,6 @@
       display: none;
     }
     .lav-pricing {
-      grid-template-columns: repeat(4, 1fr);
       flex-flow: row!important;
       gap: 12px!important;
     }
@@ -92,7 +91,7 @@
       font-size: 36px;
       font-weight: 600;
       line-height: 46px;
-      letter-spacing: -0.1px;
+      letter-spacing: -1px;
       margin-bottom: 25px;
       padding-top: 12px;
     }
@@ -104,9 +103,12 @@
         padding-top: 0;
         font-size: 24px;
         line-height: 28px;
+        letter-spacing: -0.5px;
       }
       .charge-payment-form .payment-footer p {
         text-align: center!important;
+        font-size: 14px!important;
+        letter-spacing: -0.2px!important;
       }
       .lav-pricing {
         flex-wrap: wrap!important;

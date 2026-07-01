@@ -82,7 +82,7 @@
       font-size: 36px;
       font-weight: 600;
       line-height: 46px;
-      letter-spacing: -0.1px;
+      letter-spacing: -1px;
       margin-bottom: 25px;
       padding-top: 12px;
     }
@@ -100,6 +100,7 @@
         padding-top: 0;
         font-size: 24px;
         line-height: 28px;
+        letter-spacing: -0.5px;
       }
       .charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item .GSubscriptionMethodRadioButton {
         padding: 24px 16px !important;
