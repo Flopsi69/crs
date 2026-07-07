@@ -104,6 +104,8 @@
 
     changeListing();
 
+    await waitFor('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4', {ms: 25})
+
     const observerEl = _$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4').closest('.min-w-0')
 
     observerEl.classList.add('lav-observer-el');
