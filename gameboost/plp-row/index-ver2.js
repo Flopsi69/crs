@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/plp-row',
     dir: 'https://flopsi69.github.io/crs/gameboost/plp-row',
-    clarity: ['set', 'exp_plp_5_row_infinite', 'variant_1'],
+    clarity: ['set', 'exp_5_cards_autoloader', 'variant_1'],
     observerEl: null,
     isClarityStarted: false,
     debug: false
@@ -143,6 +143,7 @@
   function addAutoloadLogic() {
     let intersectionObserver = null;
     let btnObserver = null;
+    let autoloadCount = 0;
 
     function attachToLastProduct() {
       if (intersectionObserver) {
@@ -173,9 +174,12 @@
         }
 
         const btn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
-        if (!btn) return;
+        if (!btn || btn.disabled) return;
 
         btn.click();
+
+        autoloadCount += 1;
+        pushDataLayer('exp_plp_autoload', `${autoloadCount}`, 'other', 'Autoload');
 
         waitFor(
           () => _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0').length > prevCount,
