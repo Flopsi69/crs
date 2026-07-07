@@ -142,11 +142,16 @@
 
   function addAutoloadLogic() {
     let intersectionObserver = null;
+    let btnObserver = null;
 
     function attachToLastProduct() {
       if (intersectionObserver) {
         intersectionObserver.disconnect();
         intersectionObserver = null;
+      }
+      if (btnObserver) {
+        btnObserver.disconnect();
+        btnObserver = null;
       }
 
       const products = _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
@@ -157,11 +162,15 @@
 
       const prevCount = products.length;
 
-      intersectionObserver = initIntersection(lastProduct, ({ isIntersecting }, observer) => {
-        if (!isIntersecting) return;
-
-        observer.disconnect();
-        intersectionObserver = null;
+      const triggerLoad = () => {
+        if (intersectionObserver) {
+          intersectionObserver.disconnect();
+          intersectionObserver = null;
+        }
+        if (btnObserver) {
+          btnObserver.disconnect();
+          btnObserver = null;
+        }
 
         const btn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
         if (!btn) return;
@@ -172,7 +181,21 @@
           () => _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0').length > prevCount,
           () => attachToLastProduct()
         );
+      };
+
+      intersectionObserver = initIntersection(lastProduct, ({ isIntersecting }) => {
+        if (!isIntersecting) return;
+        triggerLoad();
       }, { threshold: 0.5 });
+
+      // On mobile the grid has fewer columns per row, so the button can enter
+      // the viewport before the pre-last product does — watch it too.
+      if (window.innerWidth < 768) {
+        btnObserver = initIntersection(showMoreBtn, ({ isIntersecting }) => {
+          if (!isIntersecting) return;
+          triggerLoad();
+        }, { threshold: 0.5 });
+      }
     }
 
     attachToLastProduct();
