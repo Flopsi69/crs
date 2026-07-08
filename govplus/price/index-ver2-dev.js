@@ -163,11 +163,11 @@ const n={standard:{label:"STANDARD",description:"Regular <br> Gov Timeline",bene
     _$$('.charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item').forEach((el, index) => {
       let text = "Regular Gov Timeline";
       if (index === 1) {
-        text = "20 business days";
+        text = "4 weeks";
       } else if (index === 2) {
-        text = "10 business days";
+        text = "2 weeks";
       } else if (index === 3) {
-        text = "3 business days";
+        text = "3 biz days";
       }
       el.querySelector('.sale-block__processing .ant-typography:nth-child(2)').innerText = text;
     });

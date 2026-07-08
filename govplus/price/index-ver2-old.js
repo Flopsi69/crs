@@ -1,3 +1,4 @@
+
 (function () {
   if (_$('.lav-pricing')) {
     console.log('** Exp check failed: lav-pricing exist **', _$('.lav-pricing'))
@@ -13,83 +14,99 @@
 
   // Styles for Experiment
   const styles = /* css */ `
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information .payment-method-information__item .ant-radio-wrapper .ant-radio {
-      position: relative;
-      left: 0 !important;
-      top: 0 !important;
-      transform: none!important;
+    .lav-pricing .traveling-soon {
+      display: none;
     }
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information .payment-method-information__item .ant-radio-wrapper :is(span:has(> .content), .content) {
-      flex-grow: 1!important;
-    }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper .price-block .prices {
-      justify-content: flex-end;
-    }
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information.lav-pricing {
+    .lav-pricing {
       gap: 16px!important;
       max-width: 440px;
       margin: auto;
-      flex-flow: column !important;
     }
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information .payment-method-information__item .ant-radio-wrapper .content {
-      padding: 0!important;
-      min-height: auto!important;
-    }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper .price-block .prices>div:last-child {
-      font-size: 18px!important;
-      line-height: 22px!important;
-    }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper .sale-block .sale-block__processing>div:last-child {
-      font-weight: 500!important;
-      letter-spacing: -0.1px!important;
-      font-size: 18px!important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lav-hero-title {
-      max-width: 550px;
-    }
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information .payment-method-information__item .ant-radio-wrapper {
-      border-color: #D3E4FD!important;
-      background: #F0F6FF!important;
-      padding: 22px 16px!important;
+    .charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item .GSubscriptionMethodRadioButton {
       display: flex!important;
+      padding: 24px 16px!important;
+      border: 1px solid #E2E2E2!important;
+      background: #fff!important;
       gap: 12px!important;
     }
-    .PaymentCombinedInformation .charge-payment-form .payment-method-information .payment-method-information__item .ant-radio-wrapper-checked .ant-radio {
-      background: #216DE3!important;
-    }
     .charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item .ant-radio-wrapper-checked {
-      border-color: #216DE3!important;
+      border: 1px solid #216DE3!important;
+      box-shadow: inset 0 0 0 1px #216DE3!important;
+      background-color: #F0F6FF!important;
     }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper {
-      display: flex;
+    .lav-pricing .GSubscriptionMethodRadioButton .content .sale-block {
       align-items: center;
-      gap: 12px;
     }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper .price-block .prices>div:first-child {
+    .lav-pricing .payment-method-information__item .content {
+      display: block;
+      margin: 0 !important;
+      padding: 0;
+    }
+    .lav-pricing .payment-method-information__item .content .sale-block__processing .GText {
+      display: none;
+    }
+    .lav-pricing .payment-method-information__item .content .sale-block__processing .ant-typography:nth-child(2) {
+      color: #191919!important;
+      text-align: center!important;
+      font-size: 18px!important;
+      font-weight: 500!important;
+      line-height: 24px!important;
+      letter-spacing: -0.1px!important;
+      text-decoration: none!important;
+    }
+    .lav-pricing .payment-method-information__item .ant-radio {
+      position: relative !important;
+      left: 0 !important;
+      top: 0 !important;
+      transform: none !important;
+      flex-shrink: 0;
+    }
+    .lav-pricing .payment-method-information__item .ant-radio + span {
+      flex-grow: 1;
+    }
+    .lav-pricing .GSubscriptionMethodRadioButton .content .prices {
+      justify-content: flex-end;
+    }
+    .lav-pricing .payment-method-information__item .content .price-block .ant-typography:nth-child(1) {
       display: none!important;
     }
-    .PaymentCombinedInformation .payment-footer {
-      margin-top: 24px!important;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
+    .lav-pricing .payment-method-information__item .content .price-block .ant-typography:nth-child(2) {
+      color: #191919!important;
+      font-size: 18px!important;
+      font-weight: 600!important;
+      line-height: 22px!important;
     }
-    .PaymentCombinedInformation .payment-method-information__item .content__wrapper :is(.sale-block, .sale-block__processing, .price-block) {
-      display: block;
+    .lav-title {
+      color: #191919;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 46px;
+      letter-spacing: -1px;
+      margin-bottom: 25px;
+      padding-top: 12px;
     }
-    @media(max-width: 772px) {
-      .PaymentCombinedInformation .charge-payment-form .payment-method-information :is(.payment-method-information__item, .payment-method-information__item) {
-        min-height: auto!important;
-        width: 100%!important;
+    .charge-payment-form .payment-footer {
+      margin-top: 24px;
+    }
+    .charge-payment-form .payment-footer p {
+      text-align: center!important;
+      font-size: 14px!important;
+      letter-spacing: -0.2px!important;
+      line-height: 22px!important;
+    }
+    @media(max-width: 767.98px) {
+      .lav-title {
+        padding-top: 0;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: -0.5px;
       }
-      .PaymentCombinedInformation .payment-footer p {
+      .charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item .GSubscriptionMethodRadioButton {
+        padding: 24px 16px !important;
+      }
+      .charge-payment-form .payment-footer p {
         text-align: left!important;
-      }
-      .PaymentPageWrapper::before {
-        letter-spacing: -0.5px !important;
       }
     }
   `
@@ -130,13 +147,9 @@
     _$('#itemPriceChargeId').classList.add('lav-pricing');
 
     _$('.GHeader .GImageTitle h1 p').classList.add('lav-hero-title');
-
-    updateTextContent()
-    setTimeout(updateTextContent, 400);
-  }
-
-  function updateTextContent() {
     _$('.GHeader .GImageTitle h1 p').innerText = 'Submit your passport renewal application';
+
+    _$('#itemPriceChargeId').insertAdjacentHTML('beforebegin', '<div class="lav-title">Get your passport within:</div>');
 
     _$$('.charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item').forEach((el, index) => {
       let text = "Regular Gov Timeline";
@@ -149,6 +162,7 @@
       }
       el.querySelector('.sale-block__processing .ant-typography:nth-child(2)').innerText = text;
     });
+
   }
 
   // *** HELPERS *** //

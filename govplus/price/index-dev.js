@@ -118,7 +118,6 @@ const n={standard:{label:"STANDARD",description:"Regular <br> Gov Timeline",bene
     _$('#itemPriceChargeId').classList.add('lav-pricing');
 
     _$('.GHeader .GImageTitle h1 p').classList.add('lav-hero-title');
-    _$('.GHeader .GImageTitle h1 p').innerText = 'Submit your passport renewal application';
 
     updateTextContent()
     setTimeout(updateTextContent, 500);
@@ -126,6 +125,8 @@ const n={standard:{label:"STANDARD",description:"Regular <br> Gov Timeline",bene
   }
 
   function updateTextContent() {
+    _$('.GHeader .GImageTitle h1 p').innerText = 'Submit your passport renewal application';
+
    _$$('.charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item').forEach((el, index) => {
       let text = "Regular Gov Timeline";
       if (index === 1) {
