@@ -169,7 +169,7 @@ const n={standard:{label:"STANDARD",description:"Regular <br> Gov Timeline",bene
     _$('.GHeader .GImageTitle h1 p').innerText = 'Submit your passport renewal application';
 
     _$$('.charge-payment-form .payment-method-information.lav-pricing .payment-method-information__item').forEach((el, index) => {
-      let text = "Regular Gov Timeline";
+      let text = "Regular government timeline";
       if (index === 1) {
         text = "4 weeks";
       } else if (index === 2) {
