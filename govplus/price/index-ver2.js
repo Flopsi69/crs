@@ -80,6 +80,13 @@
     .PaymentCombinedInformation .payment-method-information__item .content__wrapper :is(.sale-block, .sale-block__processing, .price-block) {
       display: block;
     }
+    .PaymentPageWrapper::before {
+      color: #191919;
+      font-family: "Inter Tight";
+      font-size: 32px;
+      line-height: 48px;
+      letter-spacing: -0.1px;
+    }
     @media(max-width: 772px) {
       .PaymentCombinedInformation .charge-payment-form .payment-method-information :is(.payment-method-information__item, .payment-method-information__item) {
         min-height: auto!important;
@@ -89,7 +96,8 @@
         text-align: left!important;
       }
       .PaymentPageWrapper::before {
-        letter-spacing: -0.5px !important;
+        font-size: 24px!important;
+        line-height: 28px!important;
       }
     }
   `
@@ -145,7 +153,7 @@
       } else if (index === 2) {
         text = "2 weeks";
       } else if (index === 3) {
-        text = "3 biz days";
+        text = "3 business days";
       }
       el.querySelector('.sale-block__processing .ant-typography:nth-child(2)').innerText = text;
     });
