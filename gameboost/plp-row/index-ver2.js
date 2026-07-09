@@ -159,7 +159,22 @@
       const lastProduct = products[products.length - 2] || products[products.length - 1];
       const showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
 
-      if (!lastProduct || !showMoreBtn) return;
+      if (!showMoreBtn) {
+        // Guard against a reload loop in case the button is genuinely gone for good (e.g. end of catalog).
+        const reloadKey = 'lav_plp_row_reload_count';
+        const reloadCount = Number(sessionStorage.getItem(reloadKey) || 0);
+
+        if (reloadCount < 1) {
+          sessionStorage.setItem(reloadKey, reloadCount + 1);
+          location.reload();
+        }
+
+        return;
+      }
+
+      sessionStorage.removeItem('lav_plp_row_reload_count');
+
+      if (!lastProduct) return;
 
       const prevCount = products.length;
 
