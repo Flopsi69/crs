@@ -68,6 +68,7 @@ const n={standard:{label:"STANDARD",description:"Regular <br> Gov Timeline",bene
       display: flex;
       align-items: center;
       justify-content: center;
+      white-space: nowrap;
     }
     .lav-hero-title {
       max-width: 550px;
