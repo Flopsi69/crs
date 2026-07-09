@@ -160,13 +160,15 @@
       const showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
 
       if (!showMoreBtn) {
-        // Guard against a reload loop in case the button is genuinely gone for good (e.g. end of catalog).
-        const reloadKey = 'lav_plp_row_reload_count';
-        const reloadCount = Number(sessionStorage.getItem(reloadKey) || 0);
+        if (getCookie('crsoptimize').includes('bXzhQmj14y_1')) {
+          // Guard against a reload loop in case the button is genuinely gone for good (e.g. end of catalog).
+          const reloadKey = 'lav_plp_row_reload_count';
+          const reloadCount = Number(sessionStorage.getItem(reloadKey) || 0);
 
-        if (reloadCount < 1) {
-          sessionStorage.setItem(reloadKey, reloadCount + 1);
-          location.reload();
+          if (reloadCount < 1) {
+            sessionStorage.setItem(reloadKey, reloadCount + 1);
+            location.reload();
+          }
         }
 
         return;
@@ -246,6 +248,11 @@
   // *** HELPERS *** //
   function formatNumber(num) {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') || '0'
+  }
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'))
+    return match ? decodeURIComponent(match[1]) : ''
   }
 
   // Waiting for loading by condition
