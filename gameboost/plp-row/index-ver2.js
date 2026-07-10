@@ -62,17 +62,7 @@
   // *** Logic *** //
   (function () {
     const urlsTarget = [
-      '/fortnite/accounts',
-      '/steal-a-brainrot/accounts',
-      '/valorant/accounts',
-      '/grand-theft-auto-v/accounts',
-      '/call-of-duty/accounts',
-      '/league-of-legends/accounts',
-      '/clash-of-clans/accounts',
-      '/brawl-stars/accounts',
-      '/pubg-mobile/accounts',
-      // '/raid-shadow-legends/accounts',
-      '/roblox/accounts',
+      '/accounts',
     ]
 
     function urlChangeHandler() {
