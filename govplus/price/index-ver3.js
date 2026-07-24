@@ -147,6 +147,7 @@
   function addDeliveryMethod(el, index) {
     if (_$('.lav-bage', el)) return;
 
+    const ESTIMATION_BUFFER_DAYS = 2;
     const DELIVERY_CONFIG = {
       0: { weeksRange: [5, 9] },            // 5-9 weeks
       1: { days: 28 },                     // 4 weeks
@@ -159,14 +160,15 @@
     let badgeText;
     if (config.weeksRange) {
       const [minWeeks, maxWeeks] = config.weeksRange;
-      const startDate = addCalendarDays(new Date(), minWeeks * 7);
-      const endDate = addCalendarDays(new Date(), maxWeeks * 7);
+      const startDate = addCalendarDays(new Date(), minWeeks * 7 + ESTIMATION_BUFFER_DAYS);
+      const endDate = addCalendarDays(new Date(), maxWeeks * 7 + ESTIMATION_BUFFER_DAYS);
       badgeText = `${formatShortDate(startDate)} — ${formatShortDate(endDate)}`;
     } else {
       const targetDate = config.businessDaysOnly
         ? addBusinessDays(new Date(), config.days)
         : addCalendarDays(new Date(), config.days);
-      badgeText = `<span>In hand</span> by ${formatInHandDate(targetDate)}`;
+      const bufferedDate = addCalendarDays(targetDate, ESTIMATION_BUFFER_DAYS);
+      badgeText = `<span>In hand</span> by ${formatInHandDate(bufferedDate)}`;
     }
 
     const badge = document.createElement('div');
