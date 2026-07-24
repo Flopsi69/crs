@@ -562,6 +562,11 @@
       }
     });
 
+    // Pay btn
+    const payBtn = _$('.sticky > .relative [type="button"]:nth-child(2)')
+    const replaceText = exposedData?.is_instant_delivery ? 'Pay securely · Instant delivery' : 'Pay securely'
+    payBtn.childNodes[2].textContent = 'Pay securely'
+
     // Handle coins
     const coinsBlockEl = _$('dl+.pt-5 .mt-1.text-muted-foreground', summaryBlockEl);
 
