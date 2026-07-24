@@ -462,7 +462,15 @@
     // Pay btn
     const payBtn = _$('[type="button"].mt-4:nth-of-type(2)', summaryBlockEl)
     const replaceText = exposedData?.is_instant_delivery ? 'Pay securely · Instant delivery' : 'Pay securely'
-    payBtn.innerHTML = payBtn.innerHTML.replace('Pay Now', replaceText)
+    payBtn.childNodes[2].textContent = replaceText
+
+    const payBtnObserver = new MutationObserver(() => {
+      if (payBtn.childNodes[2]?.textContent.trim() === 'Pay Now') {
+        payBtn.childNodes[2].textContent = replaceText
+      }
+    })
+
+    payBtnObserver.observe(payBtn, { childList: true, subtree: true, characterData: true })
 
     // Handle descriptions
     const descriptionRows = _$$('h2.font-display + div dl:first-child > .flex', summaryBlockEl);
@@ -564,8 +572,16 @@
 
     // Pay btn
     const payBtn = _$('.sticky > .relative [type="button"]:nth-child(2)')
-    const replaceText = exposedData?.is_instant_delivery ? 'Pay securely · Instant delivery' : 'Pay securely'
-    payBtn.childNodes[2].textContent = 'Pay securely'
+    const replaceText =  'Pay securely'
+    payBtn.childNodes[2].textContent = replaceText
+
+    const payBtnObserver = new MutationObserver(() => {
+      if (payBtn.childNodes[2]?.textContent.trim() === 'Pay Now') {
+        payBtn.childNodes[2].textContent = replaceText
+      }
+    })
+
+    payBtnObserver.observe(payBtn, { childList: true, subtree: true, characterData: true })
 
     // Handle coins
     const coinsBlockEl = _$('dl+.pt-5 .mt-1.text-muted-foreground', summaryBlockEl);
