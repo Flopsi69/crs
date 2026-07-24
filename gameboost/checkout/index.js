@@ -16,28 +16,63 @@
 
   // Styles for Experiment
   const styles = /* css */ `
+    :root {
+      --lav-label-border: #1A4A33;
+      --lav-label-bg: #0E2B1E;
+      --lav-label-border-active: #21554E;
+      --lav-label-bg-active: #21394A;
+    }
     /* dark theme */
     html.dark {
-      --lav-primary: #66A1FF;
-      --lav-accent: #66A1FF;
-      --lav-background-2: #272A30;
+      --lav-14-border: rgba(235, 235, 235, 0.20);
+      --lav-14-bg: rgba(156, 163, 175, 0.10);
+      --lav-14-border-active: rgba(235, 235, 235, 0.20);
+      --lav-14-bg-active: rgba(156, 163, 175, 0.20);
+      --lav-lifetime-border: #2F6BFF;
+      --lav-lifetime-bg: #171C2A;
+      --lav-lifetime-border-active: #2F6BFF;
+      --lav-lifetime-bg-active: #1C2643;
+      --lav-color-price: #7EA5FF;
     }
     /* blue theme */
     html.blue {
-      --lav-primary: #66A1FF;
-      --lav-accent: #66A1FF;
-      --lav-background-1: #28334D;
-      --lav-background-2: var(--lav-background-1);
+      --lav-14-border: rgba(235, 235, 235, 0.20);
+      --lav-14-bg: rgba(156, 163, 175, 0.10);
+      --lav-14-border-active: rgba(235, 235, 235, 0.20);
+      --lav-14-bg-active: rgba(156, 163, 175, 0.20);
+      --lav-lifetime-border: #2F6BFF;
+      --lav-lifetime-bg: #17345E;
+      --lav-lifetime-border-active: #2F6BFF;
+      --lav-lifetime-bg-active: #193258;
+      --lav-color-price: #7EA5FF;
+    }
+    /* purple theme */
+    html.purple {
+      --lav-14-border: rgba(235, 235, 235, 0.20);
+      --lav-14-bg: rgba(156, 163, 175, 0.10);
+      --lav-14-border-active: rgba(235, 235, 235, 0.20);
+      --lav-14-bg-active: rgba(165, 156, 175, 0.20);
+      --lav-lifetime-border: #2F6BFF;
+      --lav-lifetime-bg: #13224B;
+      --lav-lifetime-border-active: #2F6BFF;
+      --lav-lifetime-bg-active: #203677;
+      --lav-color-price: #7EA5FF;
     }
     /* light theme */
     html.light {
-      --lav-primary: #245FEB;
-      --lav-accent: #245FEB;
-      --lav-text-primary: #71717A;
-      --lav-text-secondary: #000;
-      --lav-background-1: #FAFAFA;
-      --lav-background-2: var(--lav-background-1);
-      --lav-border: #D4D4D4;
+      --lav-14-border: #D4D4D4;
+      --lav-14-bg: rgba(156, 163, 175, 0.10);
+      --lav-14-border-active: rgba(23, 23, 23, 0.20);
+      --lav-14-bg-active: #fff;
+      --lav-lifetime-border: #2F6BFF;
+      --lav-lifetime-bg: #E3EEFF;
+      --lav-lifetime-border-active: #2F6BFF;
+      --lav-lifetime-bg-active: #C9DEFF;
+      --lav-color-price: #0B6CFB;
+      --lav-label-border: #7FD6B9;
+      --lav-label-bg: #DBFFF3;
+      --lav-label-border-active: #7FD6B9;
+      --lav-label-bg-active: #DBFFF3;
     }
 
     .lav-trust {
@@ -63,20 +98,20 @@
       cursor: pointer;
     }
     .lav-warranty__option:first-child {
-      border: 1px solid rgba(235, 235, 235, 0.20);
-      background: rgba(156, 163, 175, 0.10);
+      border: 1px solid var(--lav-14-border);
+      background: var(--lav-14-bg);
     }
     .lav-warranty__option:last-child {
-      border: 1px solid #2F6BFF;
-      background: #171C2A;
+      border: 1px solid var(--lav-lifetime-border);
+      background: var(--lav-lifetime-bg);
     }
     .lav-warranty__option.active:first-child {
-      border: 1px solid rgba(235, 235, 235, 0.20);
-      background: rgba(156, 163, 175, 0.20);
+      border: 1px solid var(--lav-14-border-active);
+      background: var(--lav-14-bg-active);
     }
     .lav-warranty__option.active:last-child {
-      border: 1px solid #2F6BFF;
-      background: #1C2643;
+      border: 1px solid var(--lav-lifetime-border-active);
+      background: var(--lav-lifetime-bg-active);
     }
     .lav-warranty__option.active .lav-empty-checkbox {
       display: none;
@@ -90,12 +125,12 @@
       align-items: center;
       gap: 10px;
       justify-content: space-between;
-      color: #FFF;
+      color: hsl(var(--foreground));
       font-size: 13px;
       font-weight: 500;
     }
     .lav-warranty__price {
-      color: #7EA5FF;
+      color: var(--lav-color-price);
       font-size: 12px;
       font-weight: 600;
       margin-top: 6px;
@@ -115,10 +150,20 @@
       font-size: 11px;
       font-weight: 600;
       border-radius: 999px;
-      border: 1px solid #1A4A33;
-      background: #0E2B1E;
+      border: 1px solid var(--lav-label-border);
+      background: var(--lav-label-bg);
       padding: 1.5px 10px;
       white-space: nowrap;
+    }
+    html.light .lav-warranty__label {
+      color: #028744;
+    }
+    html.light .lav-warranty__option.active:first-child svg path {
+      fill: black;
+    }
+    .lav-warranty__option.active .lav-warranty__label {
+      border-color: var(--lav-label-border-active);
+      background: var(--lav-label-bg-active);
     }
     .lav-original-warranty {
       display: none;
@@ -407,8 +452,8 @@
       <div class='lav-benefits'>
         <div class='lav-benefits__item'>${ getSvg('iconShield') } Money-back guarantee</div>
         <div class='lav-benefits__item'>${ getSvg('iconHeadphone') } 24/7 human support</div>
-        <div class='lav-benefits__item'>${ getSvg('iconBlink') } Instant delivery</div>
-        <div class='lav-benefits__item'>${ getSvg('iconCheck') } 14-day warranty included</div>
+        ${ exposedData?.is_instant_delivery ? `<div class='lav-benefits__item'>${ getSvg('iconBlink') } Instant delivery</div>` : '' }
+        ${ isAccount ? `<div class='lav-benefits__item'>${ getSvg('iconCheck') } 14-day warranty included</div>` : '' }
       </div>
     `;
 
@@ -416,7 +461,8 @@
 
     // Pay btn
     const payBtn = _$('[type="button"].mt-4:nth-of-type(2)', summaryBlockEl)
-    payBtn.innerHTML = payBtn.innerHTML.replace('Pay Now', 'Pay securely · Instant delivery')
+    const replaceText = exposedData?.is_instant_delivery ? 'Pay securely · Instant delivery' : 'Pay securely'
+    payBtn.innerHTML = payBtn.innerHTML.replace('Pay Now', replaceText)
 
     // Handle descriptions
     const descriptionRows = _$$('h2.font-display + div dl:first-child > .flex', summaryBlockEl);
@@ -432,9 +478,15 @@
 
       if (titleText === 'marketplace fee') {
         titleEl.innerText = 'Buyer protection'
-        row.insertAdjacentHTML('afterend', /* html */ `
-          <div class='lav-summary__caption'>Escrow, instant delivery, 14-day warranty.</div>
-        `)
+        if (isAccount) {
+          row.insertAdjacentHTML('afterend', /* html */ `
+            <div class='lav-summary__caption'>Escrow${exposedData?.is_instant_delivery ? ', instant delivery' : ''}${isAccount ? ', 14-day warranty' : ''}</div>
+          `)
+        } else {
+          row.insertAdjacentHTML('afterend', /* html */ `
+            <div class='lav-summary__caption'>Secure escrow · Guaranteed delivery or full refund</div>
+          `)
+        }
       }
 
       if (titleText === 'processor fee') {
@@ -492,9 +544,15 @@
 
       if (titleText === 'marketplace fee') {
         titleEl.innerText = 'Buyer protection'
-        row.insertAdjacentHTML('afterend', /* html */ `
-          <div class='lav-summary__caption'>Escrow, instant delivery, 14-day warranty.</div>
-        `)
+        if (isAccount) {
+          row.insertAdjacentHTML('afterend', /* html */ `
+            <div class='lav-summary__caption'>Escrow${exposedData?.is_instant_delivery ? ', instant delivery' : ''}${isAccount ? ', 14-day warranty' : ''}</div>
+          `)
+        } else {
+          row.insertAdjacentHTML('afterend', /* html */ `
+            <div class='lav-summary__caption'>Secure escrow · Guaranteed delivery or full refund</div>
+          `)
+        }
       }
 
       if (titleText === 'processor fee') {
