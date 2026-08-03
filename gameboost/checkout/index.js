@@ -521,8 +521,8 @@
 
     if (bonusesBlockEl) {
       const hasBonuses = _$$('dl.border-border.py-3\\.5 > .flex', bonusesBlockEl, true).some((row) => {
-        const amount = _$('dd.text-xs', row).innerText.trim()
-        return amount !== '0' && amount !== '€0,00' && amount !== '$0,00'
+        const amount = _$('dt.text-xs', row).innerText.trim()
+        return !amount.includes('(€0,00)') && !amount.includes('($0,00)') && !amount.includes('(0)')
       })
 
       if (!hasBonuses) {
@@ -600,8 +600,8 @@
 
     if (bonusesBlockEl) {
       const hasBonuses = _$$('dl.border-border.py-3\\.5 > .flex', bonusesBlockEl, true).some((row) => {
-        const amount = _$('dd.text-xs', row).innerText.trim()
-        return amount !== '0' && amount !== '€0,00' && amount !== '$0,00'
+        const amount = _$('dt.text-xs', row).innerText.trim()
+        return !amount.includes('(€0,00)') && !amount.includes('($0,00)') && !amount.includes('(0)')
       })
 
       if (!hasBonuses) {
