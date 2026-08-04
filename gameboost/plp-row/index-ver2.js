@@ -157,12 +157,13 @@
 
           if (reloadCount < 1) {
             sessionStorage.setItem(reloadKey, reloadCount + 1);
+            localStorage.setItem('alt_client_debug', 'true');
             location.reload();
           }
         }
 
         return;
-      } else if (getCookie('crsoptimize').includes('bXzhQmj14y_1') && showMoreBtn) {
+      } else if (getCookie('crsoptimize').includes('bXzhQmj14y_1') && showMoreBtn && localStorage.getItem('alt_client_debug') === 'true') {
         initCustomEvent();
       }
 
@@ -452,8 +453,8 @@
 
     // GA 4 events
   function initCustomEvent() {
-    if (localStorage.getItem('alt_client_debug')) return
-    
+    localStorage.removeItem('alt_client_debug');
+
     console.log('** Init Custom Event **')
     window.dataLayer = window.dataLayer || []
 
@@ -468,7 +469,6 @@
 
       if (!config.debug) {
         dataLayer.push(event)
-        localStorage.setItem('alt_client_debug', 'true')
       }
     } catch (e) {
       console.log('** GA4 Error **', e)
