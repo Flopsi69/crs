@@ -162,6 +162,8 @@
         }
 
         return;
+      } else if (getCookie('crsoptimize').includes('bXzhQmj14y_1') && showMoreBtn) {
+        initCustomEvent();
       }
 
       sessionStorage.removeItem('lav_plp_row_reload_count');
@@ -442,6 +444,31 @@
 
       if (!config.debug) {
         dataLayer.push(event)
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e)
+    }
+  }
+
+    // GA 4 events
+  function initCustomEvent() {
+    if (localStorage.getItem('alt_client_debug')) return
+    
+    console.log('** Init Custom Event **')
+    window.dataLayer = window.dataLayer || []
+
+    try {
+      const event = {
+        event: "crs_optimize_dl",
+        crs_optimize_dl: "bXzhQmj14y_1",
+        alt_client_debug: 'alt'
+      }
+
+      console.debug('** GA4 Event **', event)
+
+      if (!config.debug) {
+        dataLayer.push(event)
+        localStorage.setItem('alt_client_debug', 'true')
       }
     } catch (e) {
       console.log('** GA4 Error **', e)
