@@ -269,7 +269,7 @@
 
     console.debug('** InitExp **')
     handleHeader();
-    waitFor(() => exposedData, () => {
+    waitFor(() => window?.exposedData, () => {
       const isAccount = exposedData?.order_type === 'Account'
       const isItem = exposedData?.order_type === 'Item'
       if (isAccount) {
