@@ -262,9 +262,6 @@
   initExp()
 
   async function initExp() {
-    const isAccount = exposedData?.order_type === 'Account'
-    const isItem = exposedData?.order_type === 'Item'
-    // if (!isAccount && !isItem) return
     await waitFor(() => document.head && document.body && _$('#app>div'), false, { ms: 20 })
     if (location.pathname.includes('/checkout/') === false || document.querySelectorAll('.lav-protected--desktop').length>0) return
 
@@ -272,13 +269,17 @@
 
     console.debug('** InitExp **')
     handleHeader();
-    if (isAccount) {
-      handleWarranty();
-      handleMobileWarranty();
-    }
-    handlePayments();
-    handleSummary(isAccount);
-    handleMobileSummary(isAccount);
+    waitFor(() => exposedData, () => {
+      const isAccount = exposedData?.order_type === 'Account'
+      const isItem = exposedData?.order_type === 'Item'
+      if (isAccount) {
+        handleWarranty();
+        handleMobileWarranty();
+      }
+      handlePayments();
+      handleSummary(isAccount);
+      handleMobileSummary(isAccount);
+    }, { ms: 20 })
   }
 
   function handleHeader() {
