@@ -309,10 +309,15 @@
     warrantyTogglerWrapEl.classList.add('lav-original-warranty');
     const warrantyToggler = _$('button[data-state]', warrantyTogglerWrapEl);
     const procent = _$('.bg-secondary.text-muted-foreground', warrantyTogglerWrapEl).innerText.trim();
+    const isCheckedLifetime = warrantyToggler.dataset.state === 'checked';
+    // let lifetimePrice = 0;
+    // if (isCheckedLifetime) {
+    //     lifetimePrice = 1
+    // }
 
     const newWarrantyMarkup = /* html */ `
       <div class="lav-warranty">
-        <div class='lav-warranty__option'>
+        <div class='lav-warranty__option lav-warranty__option-free'>
           <div class='lav-warranty__title'>
             14-day Warranty
           </div>
@@ -324,13 +329,13 @@
           </div>
         </div>
 
-        <div class='lav-warranty__option'>
+        <div class='lav-warranty__option lav-warranty__option-lifetime'>
           <div class='lav-warranty__label'>34% of buyers choose this</div>
           <div class='lav-warranty__title'>
             Lifetime Warranty
           </div>
           <div class='lav-warranty__price'>
-          ${warrantyToggler.dataset.state === 'checked' ? '+€14,40 one time' : procent}
+          ${isCheckedLifetime ? procent : procent}
           </div>
           <div class='lav-warranty__caption'>
             If it's ever recovered or banned through no fault of yours, we replace or refund — forever.
@@ -340,7 +345,7 @@
     `;
     warrantyTogglerWrapEl.insertAdjacentHTML('beforebegin', newWarrantyMarkup)
 
-    if (warrantyToggler.dataset.state === 'checked') {
+    if (isCheckedLifetime) {
       _$('.lav-warranty__option:nth-child(2)', warrantyBlockEl).classList.add('active')
     } else {
       _$('.lav-warranty__option:nth-child(1)', warrantyBlockEl).classList.add('active')
@@ -357,6 +362,12 @@
 
         optionEl.classList.add('active')
         warrantyToggler.click()
+       
+        const warrantyBenefitEl = _$('.lav-benefits__item-warranty span')
+
+        if (warrantyBenefitEl) {
+          warrantyBenefitEl.innerText = optionEl.classList.contains('active') && index === 1 ? 'Lifetime warranty' : '14-day warranty included'
+        }
       })
     })
   }
@@ -396,7 +407,7 @@
             Lifetime Warranty
           </div>
           <div class='lav-warranty__price'>
-          ${warrantyToggler.dataset.state === 'checked' ? '+€14,40 one time' : procent}
+          ${warrantyToggler.dataset.state === 'checked' ? procent : procent}
           </div>
           <div class='lav-warranty__caption'>
             If it's ever recovered or banned through no fault of yours, we replace or refund — forever.
@@ -454,7 +465,7 @@
         <div class='lav-benefits__item'>${ getSvg('iconShield') } Money-back guarantee</div>
         <div class='lav-benefits__item'>${ getSvg('iconHeadphone') } 24/7 human support</div>
         ${ exposedData?.is_instant_delivery ? `<div class='lav-benefits__item'>${ getSvg('iconBlink') } Instant delivery</div>` : '' }
-        ${ isAccount ? `<div class='lav-benefits__item'>${ getSvg('iconCheck') } 14-day warranty included</div>` : '' }
+        ${ isAccount ? `<div class='lav-benefits__item lav-benefits__item-warranty'>${ getSvg('iconCheck') } <span>${ _$('section h2.sr-only + .flex.gap-4 .mt-3 .gap-1.flex button[data-state]')?.dataset.state !== 'checked' ? '14-day warranty included' : 'Lifetime warranty' }</span></div>` : '' }
       </div>
     `;
 
