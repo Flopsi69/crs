@@ -19,23 +19,23 @@
   // Styles for Experiment
   const styles = /* css */ `
     @media(min-width: 768px) {
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .truncate .text-3xl.font-bold {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .truncate .text-3xl.font-bold {
         font-size: 24px;
         line-height: 32px;
         letter-spacing: -0.75px;
       }
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .truncate .text-3xl.font-bold  + .text-sm {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .truncate .text-3xl.font-bold  + .text-sm {
         font-size: 13px;
       }
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 {
         padding-left: 16px;
         padding-right: 16px;
       }
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1 button.px-4 {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1 button.px-4 {
         padding-left: 10px;
         padding-right: 10px;
       }
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1.pt-1 {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0 .sm\\:px-5 .gap-1.pt-1 {
         gap: 0;
       }
       .lav-sold {
@@ -48,7 +48,7 @@
       }
     }
     @media (width >= 80rem) {
-      .relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 {
+      .relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 {
         grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 16px;
       }
@@ -94,9 +94,9 @@
 
     changeListing();
 
-    await waitFor('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4', {ms: 25})
+    await waitFor('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4', {ms: 25})
 
-    const observerEl = _$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4').closest('.min-w-0')
+    const observerEl = _$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4').closest('.min-w-0')
 
     observerEl.classList.add('lav-observer-el');
 
@@ -111,7 +111,7 @@
           console.log('** Product Changed **', node)
           handleProduct(node);
         }
-        // if (_$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4')) {
+        // if (_$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4')) {
         //   console.log('** PLP Row Changed **', node)
         //   changeListing();
         // }
@@ -119,11 +119,11 @@
       }
     )
 
-    addAutoloadLogic();
+    await waitFor(() => typeof window.__gbAccountsShopPagination === 'object', addAutoloadLogic, { ms: 25 });
   }
 
   function changeListing() {
-    const products = _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
+    const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
 
     products.forEach(product => {
       handleProduct(product);
@@ -145,29 +145,16 @@
         btnObserver = null;
       }
 
-      const products = _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
+      const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
       const lastProduct = products[products.length - 2] || products[products.length - 1];
-      const showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
-
-      if (!showMoreBtn) {
-        if (getCookie('crsoptimize').includes('bXzhQmj14y_1')) {
-          // Guard against a reload loop in case the button is genuinely gone for good (e.g. end of catalog).
-          const reloadKey = 'lav_plp_row_reload_count';
-          const reloadCount = Number(sessionStorage.getItem(reloadKey) || 0);
-
-          if (reloadCount < 1) {
-            sessionStorage.setItem(reloadKey, reloadCount + 1);
-            localStorage.setItem('alt_client_debug', 'true');
-            location.reload();
-          }
-        }
-
-        return;
-      } else if (getCookie('crsoptimize').includes('bXzhQmj14y_1') && showMoreBtn && localStorage.getItem('alt_client_debug') === 'true') {
-        initCustomEvent();
+      let showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
+      if (showMoreBtn.closest('.hidden')?.style.display === 'none') {
+        window.__gbAccountsShopPagination.enableShowMore();
+        window.__gbAccountsShopPagination.setMode('show-more');
       }
-
-      sessionStorage.removeItem('lav_plp_row_reload_count');
+      if (!showMoreBtn) {        
+        showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
+      }
 
       if (!lastProduct) return;
 
@@ -192,7 +179,7 @@
         pushDataLayer('exp_plp_autoload', `${autoloadCount}`, 'other', 'Autoload');
 
         waitFor(
-          () => _$$('.relative .pt-36 .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0').length > prevCount,
+          () => _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0').length > prevCount,
           () => attachToLastProduct()
         );
       };
@@ -439,30 +426,6 @@
         event_desc: desc,
         event_type: type,
         event_loc: loc
-      }
-
-      console.debug('** GA4 Event **', event)
-
-      if (!config.debug) {
-        dataLayer.push(event)
-      }
-    } catch (e) {
-      console.log('** GA4 Error **', e)
-    }
-  }
-
-    // GA 4 events
-  function initCustomEvent() {
-    localStorage.removeItem('alt_client_debug');
-
-    console.log('** Init Custom Event **')
-    window.dataLayer = window.dataLayer || []
-
-    try {
-      const event = {
-        event: "crs_optimize_dl",
-        crs_optimize_dl: "bXzhQmj14y_1",
-        alt_client_debug: 'alt'
       }
 
       console.debug('** GA4 Event **', event)
