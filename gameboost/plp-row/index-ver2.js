@@ -123,7 +123,7 @@
   }
 
   function changeListing() {
-    const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
+    const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5 > .flex.min-w-0');
 
     products.forEach(product => {
       handleProduct(product);
@@ -145,7 +145,7 @@
         btnObserver = null;
       }
 
-      const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0');
+      const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5> .flex.min-w-0');
       const lastProduct = products[products.length - 2] || products[products.length - 1];
       let showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
       if (showMoreBtn.closest('.hidden')?.style.display === 'none') {
@@ -179,7 +179,7 @@
         pushDataLayer('exp_plp_autoload', `${autoloadCount}`, 'other', 'Autoload');
 
         waitFor(
-          () => _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4 > .flex.min-w-0').length > prevCount,
+          () => _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5 > .flex.min-w-0').length > prevCount,
           () => attachToLastProduct()
         );
       };
