@@ -108,7 +108,6 @@
       observerEl,
       (node, observer) => {
         if (node.tagName === 'A' && node.classList.contains('overflow-clip') && node.closest('.xl\\:grid-cols-4')) {
-          console.log('** Product Changed **', node)
           handleProduct(node);
         }
         // if (_$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:grid-cols-4')) {
@@ -133,9 +132,36 @@
   function addAutoloadLogic() {
     let intersectionObserver = null;
     let btnObserver = null;
+    let gridObserver = null;
     let autoloadCount = 0;
+    let prevCount = 0;
 
-    function attachToLastProduct() {
+    function getProductsCount() {
+      return _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5 > .flex.min-w-0').length;
+    }
+
+    // Filters re-render the grid with fewer products than we last counted —
+    // treat that as a reset so stale prevCount/observers don't get stuck.
+    function watchGridForFilters() {
+      if (gridObserver) return;
+
+      const grid = _$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5');
+      if (!grid) return;
+
+      gridObserver = new MutationObserver(() => {
+        const currentCount = getProductsCount();
+        if (currentCount < prevCount) {
+          console.log('** Filters changed, resetting autoload **', currentCount, prevCount);
+          prevCount = 0;
+          autoloadCount = 0;
+          attachToLastProduct();
+        }
+      });
+
+      gridObserver.observe(grid, { childList: true });
+    }
+
+    async function attachToLastProduct() {
       if (intersectionObserver) {
         intersectionObserver.disconnect();
         intersectionObserver = null;
@@ -146,19 +172,21 @@
       }
 
       const products = _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5> .flex.min-w-0');
-      const lastProduct = products[products.length - 2] || products[products.length - 1];
       let showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
-      if (showMoreBtn.closest('.hidden')?.style.display === 'none') {
+      if (!showMoreBtn) {
         window.__gbAccountsShopPagination.enableShowMore();
         window.__gbAccountsShopPagination.setMode('show-more');
-      }
-      if (!showMoreBtn) {        
+        await waitFor('.lav-observer-el .mt-2.mb-6 [type="button"]', false, { ms: 25 });
         showMoreBtn = _$('.lav-observer-el .mt-2.mb-6 [type="button"]');
       }
 
+      const lastProduct = products[products.length - 2] || products[products.length - 1];
+
       if (!lastProduct) return;
 
-      const prevCount = products.length;
+      prevCount = products.length;
+
+      watchGridForFilters();
 
       const triggerLoad = () => {
         if (intersectionObserver) {
@@ -179,7 +207,7 @@
         pushDataLayer('exp_plp_autoload', `${autoloadCount}`, 'other', 'Autoload');
 
         waitFor(
-          () => _$$('.relative .pt-\\[120px\\] .col-span-1 .min-w-0 .grid.gap-4.mt-4.xl\\:gap-5 > .flex.min-w-0').length > prevCount,
+          () => getProductsCount() > prevCount,
           () => attachToLastProduct()
         );
       };
@@ -189,14 +217,12 @@
         triggerLoad();
       }, { threshold: 0.5 });
 
-      // On mobile the grid has fewer columns per row, so the button can enter
-      // the viewport before the pre-last product does — watch it too.
-      if (window.innerWidth < 768) {
-        btnObserver = initIntersection(showMoreBtn, ({ isIntersecting }) => {
-          if (!isIntersecting) return;
-          triggerLoad();
-        }, { threshold: 0.5 });
-      }
+      // Trigger autoload as soon as the "Show more" button is even
+      // slightly visible, on any screen width.
+      btnObserver = initIntersection(showMoreBtn, ({ isIntersecting }) => {
+        if (!isIntersecting) return;
+        triggerLoad();
+      }, { threshold: 0 });
     }
 
     attachToLastProduct();
