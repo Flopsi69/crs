@@ -93,7 +93,7 @@
       line-height: 28px;
     }
     .lav-premium__badge {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 4px;
       padding: 3px 10px;
