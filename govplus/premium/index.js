@@ -172,10 +172,8 @@
       vertical-align: -3px;
     }
     .lav-premium__tab-badge {
-
       color: #12A649;
       text-align: center;
-      font-family: Inter;
       font-weight: 700;
       font-size: 12px;
       font-style: normal;
