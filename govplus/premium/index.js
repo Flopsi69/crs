@@ -616,7 +616,7 @@
         const plan = tabEl.dataset.plan
         selectPlan(plan)
 
-        analytics.track('Option Selected on Subscription Interstitial', {
+        analytics.track('Option Clicked on Subscription Interstitial', {
           button: plan === 'individual' ? 'Cover just me' : 'Cover my family',
           ab_test: 'Unify GOV+ Premium & GOV+ Premium Family'
         })
