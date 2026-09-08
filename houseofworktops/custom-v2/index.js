@@ -688,15 +688,15 @@
     //   return;
     // }
 
-    const isValidProduct = targetUrls.some(targetUrl => {
-      const idx = location.href.indexOf(targetUrl)
-      return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
-    })
+    // const isValidProduct = targetUrls.some(targetUrl => {
+    //   const idx = location.href.indexOf(targetUrl)
+    //   return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
+    // })
 
-    if (!isValidProduct) {
-      // handleCartImages();
-      return;
-    }
+    // if (!isValidProduct) {
+    //   // handleCartImages();
+    //   return;
+    // }
 
     await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
 
