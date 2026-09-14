@@ -4,7 +4,7 @@
   // Config for Experiment
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/checkoutImprove',
-    dir: 'https://flopsi69.github.io/crs/gameboost/checkout',
+    dir: 'https://flopsi69.github.io/crs/gameboost/checkoutLogin',
     clarity: ['set', 'exp_checkout', 'variant_1'],
     debug: true,
     isNoAuth: location.pathname.includes('/checkout/accounts/') || location.pathname.includes('/checkout/items/') || location.pathname.includes('/checkout/keys/'),
@@ -297,11 +297,12 @@
       border-color: var(--lav-label-border-active);
       background: var(--lav-label-bg-active);
     }
-    .lav-original-warranty {
-      display: none;
-    }
     .lav-original-warranty-wrapper .mt-3>.border-b.border-border {
       border: none!important;
+    }
+    .lav-original-warranty {
+      padding-bottom: 0;
+      padding-top: 0;
     }
 
     .lav-benefits {
@@ -740,21 +741,15 @@
         if (isAuthUser()) return
         let type = 'accounts'
         let offerIdEl = null;
-        if (location.pathname.includes('/accounts')) {
+        if (e.target.closest('.relative[aria-roledescription="carousel"]') && e.target.closest('.relative[aria-roledescription="carousel"]')?.querySelector('.contents.group.cursor-pointer')?.href.includes('/accounts')) {
+          type = 'accounts'
+          offerIdEl = e.target.closest('a.rounded-xl.ring-1')?.querySelector('[data-type="offer-id"]')
+        } else if (location.pathname.includes('/accounts')) {
           offerIdEl = e.target.closest('a.rounded-xl.ring-1')?.querySelector('[data-type="offer-id"]') || e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
-        }
-          
-        if (location.pathname.includes('/items/')) {
+        } else if (location.pathname.includes('/items/')) {
           type = 'items'
           offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
-        }
-
-        // if (location.pathname.includes('/keys')) {
-          // type = 'keys'
-          // offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
-        // }
-
-        if (_$('.sm\\:gap-x-1 .flex.gap-x-3.items-center[href="https://gameboost.com/keys"]')) {
+        } else if (_$('.sm\\:gap-x-1 .flex.gap-x-3.items-center[href="https://gameboost.com/keys"]')) {
           type = 'keys'
           offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
         }
@@ -918,6 +913,8 @@
 
     if (!warrantyTogglerWrapEl) return
     warrantyTogglerWrapEl.classList.add('lav-original-warranty');
+
+    return;
     const warrantyToggler = _$('button[data-state]', warrantyTogglerWrapEl);
     const procent = _$('.bg-secondary.text-muted-foreground', warrantyTogglerWrapEl).innerText.trim();
     const isCheckedLifetime = warrantyToggler.dataset.state === 'checked';
