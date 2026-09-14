@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/custom-v2',
-    clarity: ['set', 'exp_custom_size_flow', 'variant_1'],
+    clarity: ['set', 'exp_customization_feature', 'variant_1'],
     debug: true,
     isDisableLayer: false,
     cutAnswered: false,
@@ -754,7 +754,8 @@
 
       _$('.lav-tab-cut').addEventListener('click', () => {
         if (!_$('.lav-tab-cut').classList.contains('done')) return
-        // pushDataLayer('exp_pdp_ss_step', 'Choose cutting plan', 'click', 'Standard Size Flow')
+        const activeTab = _$('#select-size-model .lavm-tab.active')
+        pushDataLayer('exp_pdp_cs_tab_click', '2. Choose cutting plan', 'click', activeTab.innerText.replace(/\s+/g, ' ').trim());
         if (config.cutAnswered) {
           lavMoveToStep('question', 'cut')
         } else {
@@ -841,6 +842,7 @@
       `)
 
       _$('.lav-cut__skip').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_cut_skip', 'Skip, I\'ll cut myself', 'click', '2. Choose cutting plan');
         config.oilingAnswered = false
         config.cutAnswered = false
         _$('.lavc-continue')?.classList.remove('active')
@@ -856,7 +858,9 @@
       })
 
       _$('.lavc-continue').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_continue', 'Continue', 'click', '2. Choose cutting plan');
         if (_$('.lav-cut__list .lavc-item__field--error')) {
+          pushDataLayer('exp_pdp_cs_error_view', 'Please fix the highlighted cut sizes before continuing', 'click', '2. Choose cutting plan');
           alert('Please fix the highlighted cut sizes before continuing')
           return
         }
@@ -872,24 +876,29 @@
 
       _$('.lav-question .lav-question__back').addEventListener('click', () => {
         if (_$('.lav-question--oiling').classList.contains('active')) {
+          pushDataLayer('exp_pdp_cs_back', 'Back', 'click', '3. Choose worktop finish');
           if (config.cutAnswered) {
             lavMoveToStep('question', 'cut')
           } else {
             lavMoveToStep('question', 'cutting')
           }
         } else if (_$('.lav-question--cutting').classList.contains('active')) {
+          pushDataLayer('exp_pdp_cs_back', 'Back', 'click', '2. Choose cutting plan');
           lavMoveToStep('first')
         } else if (_$('.lav-cut').classList.contains('active')) {
+          pushDataLayer('exp_pdp_cs_back', 'Back', 'click', '2. Choose cutting plan');
           lavMoveToStep('question', 'cutting')
         }
       })
 
       _$('.lav-question--cutting [data-answer="yes"]').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_cutting_plan_select', 'Yes, cut for me', 'click', '2. Choose cutting plan');
         config.cutAnswered = true
         lavMoveToStep('question', 'cut')
         prepareCuttingStep()
       });
       _$('.lav-question--cutting [data-answer="no"]').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_cutting_plan_select', 'No, I\'ll cut myself', 'click', '2. Choose cutting plan');
         config.cutAnswered = false
         if (_$('.lavm-tab[data-step="2"]')) {
           _$('.lavm-btn-continue')?.click()
@@ -899,11 +908,13 @@
         }
       });
       _$('.lav-question--oiling [data-answer="yes"]').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_oiling_select', 'Yes', 'click', '3. Choose worktop finish');
         config.oilingAnswered = true
         _$('.lavm-oiling-card:not([data-option="untreated"])')?.click()
         _$('#select-size-model')?.classList.remove('lav-showing-question');
       });
       _$('.lav-question--oiling [data-answer="no"]').addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_oiling_select', 'Add without oiling', 'click', '3. Choose worktop finish');
         config.oilingAnswered = false
         _$('.lavm-oiling-card[data-option="untreated"]')?.click()
         // _$('#select-size-model')?.classList.remove('lav-showing-question');
@@ -953,6 +964,10 @@
 
     function addHandlers() {
       document.addEventListener('click', (e) => {
+        if (e.isTrusted && e.target.closest('.lavm-btn-continue')) {
+          const activeTab = _$('#select-size-model .lavm-tab.active')
+          pushDataLayer('exp_pdp_cs_continue', 'Continue', 'click', activeTab?.innerText?.replace(/\s+/g, ' ').trim());
+        }
         if (!_$('#select-size-model[data-type="accessory"]')) {
           if (e.target.closest('.lavm-btn-continue') && _$('.lavm-tab.active[data-step="1"]') && !_$('.lav-showing-question')) {
             e.preventDefault()
@@ -1123,6 +1138,7 @@
     _$$('.lavc-item', list).forEach((item) => {
       _$$('.lavc-item__field-input', item).forEach((input) => {
         input.addEventListener('input', () => {
+          pushDataLayer('exp_pdp_cs_size_input', `${input.placeholder}`, 'input', '2. Choose cutting plan');
           input.value = input.value.replace(/\D/g, '')
           updateItemCuts(item)
           updateItemCaption(item)
@@ -1206,6 +1222,7 @@
         }, 0)
       }
       if (type === 'cutting') {
+        pushDataLayer('exp_pdp_cs_cutting_plan_view', 'Cutting Plan', 'view', '2. Choose cutting plan');
         config.cutFooterActive = false
         if (_$('.lavm-tab.active[data-step="2"]')) {
           _$('.lavm-back')?.click()
@@ -1262,6 +1279,7 @@
 
 
     _$('.lav-question__back', parent).addEventListener('click', () => {
+        pushDataLayer('exp_pdp_cs_back', 'Back', 'click', '3. Choose worktop finish');
       if (_$('#select-size-model[data-type="accessory"]')) {
         _$('.lavm-back')?.click()
       } else {
@@ -1308,6 +1326,7 @@
     });
 
     _$('.lavo-heading__skip').addEventListener('click', () => {
+      pushDataLayer('exp_pdp_cs_oiling_skip', 'Skip — add without oiling', 'click', '3. Choose worktop finish');
       _$('.lavm-oiling-card[data-option="untreated"]')?.click()
       handleAddToCart()
     });
@@ -1420,10 +1439,11 @@
     const worktops = _getWortopsGroups();
     console.log('worktops', worktops)
 
+    const sizesString = worktops.flatMap(g => g.lineItems.map(li => `${li.length}x${li.width}x${li.json.data.size.thickness}x1`)).join('|');
+    pushDataLayer('exp_pdp_cs_size_submit', sizesString, 'submit', 'Custom Size Flow', productId);
+
     const is3Oiling = _$('.lavm-oiling-card.selected[data-option="oiling"]');
     const is5Oiling = _$('.lavm-oiling-card.selected[data-option="smoothguard"]');
-
-    console.log('oilings', { is3Oiling, is5Oiling })
 
     worktops.forEach((groupEl, groupElIndex) => {
       const productId = groupEl.dataset.productId;
@@ -1450,7 +1470,6 @@
       })
     });
 
-    console.log('params', params.toString())
 
     try {
       var requestUrl = 'https://houseofworktops.co.uk/index.php?route=checkout/cart/add';
@@ -1480,7 +1499,7 @@
       }, 1000);
     } catch (err) {
       const errorMessage = err?.message || err.toString() || String(err);
-      // pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', this.worktops.map(w => w.length + 'x' + w.width + 'x' + w.thickness + 'x' + w.qty).join('|'), errorMessage);
+      pushDataLayer('exp_pdp_cs_api_error', 'addToCart', 'error', sizesString, errorMessage);
       console.error(err)
       alert('Failed to add to cart: ' + errorMessage);
     }
