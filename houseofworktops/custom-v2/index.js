@@ -702,11 +702,16 @@
 
     if (!_$('#product-options-modal .select-size-row')) return
 
+    if (!_$('#product-product')) return
+
+    if (!_$('#select-size')) return
+
+    if (location.href.includes('/accessories/')) return
+
     document.head.appendChild(stylesEl)
 
     console.debug('** InitExp **')
 
-    if (!_$('#select-size')) return
 
     // _$$('#select-size span').forEach(el => {
     //   el.innerText = 'Step1: Choose Worktop Size'
