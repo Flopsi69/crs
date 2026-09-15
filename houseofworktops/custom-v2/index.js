@@ -1108,7 +1108,7 @@
 
       for (let unit = 0; unit < qty; unit++) {
         list.insertAdjacentHTML('beforeend', /* html */ `
-          <div class="lav-cut__item lavc-item" data-product-id="${productId}" data-option-id="${optionId}" data-unit="${unit}" data-max-length="${dims?.length ?? ''}" data-max-width="${dims?.width ?? ''}" data-thickness="${dims?.thickness ?? ''}" data-cuts="0">
+          <div class="lav-cut__item lavc-item" data-product-id="${productId}" data-option-id="${optionId}" data-unit="${unit}" data-max-length="${dims?.length ?? ''}" data-max-width="${dims?.width ?? ''}" data-thickness="${dims?.thickness ?? ''}" data-cuts="0" data-name="${name}" data-price="${price}">
             <div class="lavc-item__head">
               <div class="lavc-item__name">
                 <span class="lavc-item__dot"></span>
@@ -1375,6 +1375,8 @@
             optionId,
             maxLength: item.dataset.maxLength || null,
             maxWidth: item.dataset.maxWidth || null,
+            name: item.dataset.name || '',
+            price: item.dataset.price || '',
           },
           qty: 0,
           lineItems: []
@@ -1487,6 +1489,28 @@
       if (!res.ok || (json && json.error)) {
         var errText = (json && (json.error || json.message)) || 'Cart API error';
         throw new Error('Status: ' + res.status + '. ' + errText);
+      }
+
+      if (location.href.includes('houseofworktops.co') && typeof pushdatalayer === 'function') {
+        const category = _$('.breadcrumb li:last-child')?.previousElementSibling?.textContent.trim() || 'Undefined';
+        const oilingSelectedEl = _$('.lavm-oiling-card.selected');
+        const oilingLabel = oilingSelectedEl ? _$('.lavm-oiling-title', oilingSelectedEl)?.textContent.trim() : 'none';
+
+        const ecommerceProducts = worktops.map((groupEl) => ({
+          name: window.prodname,
+          quantity: String(groupEl.qty),
+          price: (Number(formatPrice(groupEl.dataset.price)) || 0).toFixed(2),
+          accprice: undefined,
+          id: productId,
+          brand: 'House Of Worktops',
+          opt_id: groupEl.dataset.optionId,
+          variant: groupEl.dataset.name,
+          category: category,
+          category4: (!oilingLabel || oilingLabel === 'Untreated') ? 'none' : oilingLabel,
+          category5: groupEl.lineItems.some((li) => parseInt(li.cutCount, 10) > 0) ? 'custom' : 'standard'
+        }));
+
+        pushdatalayer(ecommerceProducts);
       }
 
       setTimeout(function () {
