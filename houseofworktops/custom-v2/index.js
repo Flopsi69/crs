@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/houseofworktops/sizeSelector',
     dir: 'https://flopsi69.github.io/crs/houseofworktops/custom-v2',
     clarity: ['set', 'exp_customization_feature', 'variant_1'],
-    debug: true,
+    debug: false,
     isDisableLayer: false,
     cutAnswered: false,
     oilingAnswered: false,
