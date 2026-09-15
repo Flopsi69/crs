@@ -976,7 +976,10 @@
             lavMoveToStep('question', 'cutting')
           }
           if (e.target.closest('.lavm-tab[data-step="1"]')) {
+            const activeTab = _$('#select-size-model .lavm-tab.active')
             lavMoveToStep('first')
+            pushDataLayer('exp_pdp_cs_tab_click', 'Step 1. Choose worktop size', 'click', activeTab.innerText.replace(/\s+/g, ' ').trim());
+            
           }
           if (e.target.closest('.lavm-btn-continue') && _$('.lavm-tab.active[data-step="2"]') && !_$('.lav-showing-question') && config.cutAnswered && _$('#select-size-model').getAttribute('data-type') !== 'accessory') {
             e.preventDefault()
