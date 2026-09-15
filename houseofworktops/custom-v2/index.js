@@ -1004,6 +1004,17 @@
     }
   }
 
+  function parseWorktopDimensions(name) {
+    const match = /^([\d.]+)\s*M\s*x\s*([\d.]+)\s*x\s*([\d.]+)\s*mm$/i.exec((name || '').trim())
+    if (!match) return null
+
+    return {
+      length: parseFloat(match[1]) * 1000,
+      width: parseFloat(match[2]),
+      thickness: parseFloat(match[3])
+    }
+  }
+
   function prepareCuttingStep() {
     const list = _$('.lav-cut__list')
     if (!list) return
@@ -1011,17 +1022,6 @@
     list.innerHTML = ''
 
     const MIN_DIMENSION = 20
-
-    function parseWorktopDimensions(name) {
-      const match = /^([\d.]+)\s*M\s*x\s*([\d.]+)\s*x\s*([\d.]+)\s*mm$/i.exec((name || '').trim())
-      if (!match) return null
-
-      return {
-        length: parseFloat(match[1]) * 1000,
-        width: parseFloat(match[2]),
-        thickness: parseFloat(match[3])
-      }
-    }
 
     function validateItem(item) {
       const [lengthInput, widthInput] = _$$('.lavc-item__field-input', item, true)
@@ -1417,8 +1417,22 @@
 
   function handleAddToCart() {
     _$(".lav-cutting-cost")?.remove();
- 
-    if (!config.cutAnswered || _$('#select-size-model').getAttribute('data-type') === 'accessory') {
+
+    const isAccessory = _$('#select-size-model').getAttribute('data-type') === 'accessory';
+
+    if (!config.cutAnswered || isAccessory) {
+      if (!config.cutAnswered && !isAccessory) {
+        const productId = _$('#product [name="product_id"]')?.value;
+        const sizesString = _$$('.select-size-row.selected[data-type="worktop"]', document, true).map((row) => {
+          const qtyInput = _$('.quantity-field', row)
+          const qty = parseInt(qtyInput?.value, 10) || 0
+          const name = qtyInput?.dataset.name || row.dataset.name || ''
+          const dims = parseWorktopDimensions(name)
+          return `${dims?.length ?? ''}x${dims?.width ?? ''}x${dims?.thickness ?? ''}x${qty}`
+        }).join('|');
+
+        pushDataLayer('exp_pdp_cs_size_submit', sizesString, 'submit', 'none', productId);
+      }
       _$('.lavm-btn-continue')?.click()
       return;
     }
