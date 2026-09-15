@@ -1423,15 +1423,7 @@
     if (!config.cutAnswered || isAccessory) {
       if (!config.cutAnswered && !isAccessory) {
         const productId = _$('#product [name="product_id"]')?.value;
-        const sizesString = _$$('.select-size-row.selected[data-type="worktop"]', document, true).map((row) => {
-          const qtyInput = _$('.quantity-field', row)
-          const qty = parseInt(qtyInput?.value, 10) || 0
-          const name = qtyInput?.dataset.name || row.dataset.name || ''
-          const dims = parseWorktopDimensions(name)
-          return `${dims?.length ?? ''}x${dims?.width ?? ''}x${dims?.thickness ?? ''}x${qty}`
-        }).join('|');
-
-        pushDataLayer('exp_pdp_cs_size_submit', sizesString, 'submit', 'none', productId);
+        pushDataLayer('exp_pdp_cs_size_submit', 'none', 'submit', 'Custom Size Flow', productId);
       }
       _$('.lavm-btn-continue')?.click()
       return;
