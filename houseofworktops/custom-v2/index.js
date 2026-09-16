@@ -688,16 +688,6 @@
     //   return;
     // }
 
-    // const isValidProduct = targetUrls.some(targetUrl => {
-    //   const idx = location.href.indexOf(targetUrl)
-    //   return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
-    // })
-
-    // if (!isValidProduct) {
-    //   // handleCartImages();
-    //   return;
-    // }
-
     await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
 
     if (!_$('#product-options-modal .select-size-row')) return
@@ -707,6 +697,10 @@
     if (!_$('#select-size')) return
 
     if (location.href.includes('/accessories/')) return
+
+    if (!_$('.lav-btn-size')) return
+
+    if (!_$('.lavm-tabs')) return
 
     document.head.appendChild(stylesEl)
 
