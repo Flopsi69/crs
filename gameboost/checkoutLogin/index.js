@@ -660,7 +660,7 @@
   }
 
   function isAuthUser() {
-    return !!_$('#reka-dropdown-menu-trigger-v-24')
+    return !!_$('header a[href="https://gameboost.com/orders"]')
   }
 
   function addMobileCollapse() {
