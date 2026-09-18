@@ -392,11 +392,15 @@
     .lav-original-noauth-product {
       padding: 0;
       border: 0;
+      margin-bottom: 20px;
     }
     .lav-original-noauth-product .gap-3\\.5.pt-4.pb-5.border-b.border-border.pt-3\\! {
       border: 0;
     }
     .lav-original-noauth-product .flex.flex-col.gap-1.py-3\\.5.border-b.border-border {
+      display: none;
+    }
+    .lav-original-noauth-product > .flex.flex-col.gap-1.py-3\\.5 {
       display: none;
     }
     @media(max-width: 768px) {
