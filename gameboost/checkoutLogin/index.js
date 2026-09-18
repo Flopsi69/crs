@@ -6,7 +6,7 @@
     // dir: 'http://127.0.0.1:5500/gameboost/checkoutImprove',
     dir: 'https://flopsi69.github.io/crs/gameboost/checkoutLogin',
     clarity: ['set', 'exp_auth_on_checkout', 'variant_1'],
-    debug: true,
+    debug: false,
     isNoAuth: location.pathname.includes('/checkout/accounts/') || location.pathname.includes('/checkout/items/') || location.pathname.includes('/checkout/keys/'),
   }
 
@@ -733,6 +733,9 @@
   }
 
   function addProductToCheckoutHandlers() {
+    if (window.__lavBuyNowClickBound) return
+    window.__lavBuyNowClickBound = true
+
     console.log('addCLickHandlers')
     document.addEventListener('click', function (e) {
       // Items, accounts, keys
