@@ -5,7 +5,7 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/checkoutImprove',
     dir: 'https://flopsi69.github.io/crs/gameboost/checkoutLogin',
-    clarity: ['set', 'exp_checkout', 'variant_1'],
+    clarity: ['set', 'exp_auth_on_checkout', 'variant_1'],
     debug: true,
     isNoAuth: location.pathname.includes('/checkout/accounts/') || location.pathname.includes('/checkout/items/') || location.pathname.includes('/checkout/keys/'),
   }
@@ -876,6 +876,96 @@
     const productMobEl = _$('.relative.lg\\:hidden > .px-5.pt-5.pb-4.border-b.border-border + .px-5.pt-5.pb-4.border-b.border-border');
     productMobEl.classList.add('lav-original-noauth-product');
     _$('.relative.lg\\:hidden .lav-progress').insertAdjacentElement('afterend', productMobEl)
+
+    // GA4 events
+    ;[loginFormEl, loginFormMobile].forEach((formEl) => {
+      visibilityEvent(formEl, () => {
+        pushDataLayer('exp_checkout_auth_view', 'Auth Block', 'view', 'Checkout')
+      })
+
+      _$('input[type="email"]', formEl)?.addEventListener('input', () => {
+        pushDataLayer('exp_checkout_auth_email_input', 'Email', 'input', 'Checkout')
+      }, { once: true })
+
+      _$('button[type="submit"]', formEl)?.addEventListener('click', () => {
+        pushDataLayer('exp_checkout_auth_email_continue', 'Continue', 'click', 'Checkout')
+      })
+
+      _$$('.space-y-2 a.bg-secondary', formEl).forEach((socialBtn) => {
+        socialBtn.addEventListener('click', () => {
+          pushDataLayer('exp_checkout_auth_social_button', socialBtn.innerText.trim(), 'click', 'Checkout')
+        })
+      })
+
+      formEl.addEventListener('click', (e) => {
+        const linkEl = e.target.closest('a')
+        if (!linkEl || linkEl.classList.contains('bg-secondary')) return
+        pushDataLayer('exp_checkout_auth_legal_link', linkEl.getAttribute('href') || linkEl.innerText.trim(), 'click', 'Checkout')
+      })
+
+      initMutation(formEl, (node) => {
+        const errorEl = node.matches?.('.text-danger-light-foreground, [role="alert"]') ? node : node.querySelector?.('.text-danger-light-foreground, [role="alert"]')
+        if (!errorEl || !errorEl.innerText.trim()) return
+        if (formEl.checkVisibility()) {
+          pushDataLayer('exp_checkout_auth_error_view', errorEl.innerText.trim(), 'error', 'Checkout')
+        }
+      })
+    })
+
+    handleAuthVerification()
+  }
+
+  // Email verification popup (OTP) events
+  function handleAuthVerification() {
+    initMutation(document.body, (node) => {
+      const popupEl = node.matches?.('[data-dismissable-layer][data-state="open"]') ? node : node.querySelector?.('[data-dismissable-layer][data-state="open"]')
+      if (!popupEl || popupEl.dataset.lavTracked || !/verif|code/i.test(popupEl.innerText)) return
+      popupEl.dataset.lavTracked = 'yes'
+
+      pushDataLayer('exp_checkout_auth_email_verif_view', 'Verification Popup', 'view', 'Checkout')
+
+      const pinInputs = _$$('input[aria-label^="pin input"]', popupEl, true)
+
+      pinInputs[0]?.addEventListener('input', () => {
+        pushDataLayer('exp_checkout_auth_email_verif_input', 'Verification Code', 'input', 'Checkout')
+      }, { once: true })
+
+      // Pin auto-submits once all digits are filled - no native form submit fires
+      // let verifSubmitFired = false
+      function fireVerifSubmit() {
+        // if (verifSubmitFired) return
+        // verifSubmitFired = true
+        pushDataLayer('exp_checkout_auth_email_verif_submit', 'Verification Code', 'submit', 'Checkout')
+      }
+
+      pinInputs.forEach((pinEl) => {
+        pinEl.addEventListener('input', () => {
+          if (pinInputs.every((el) => el.value.trim() !== '')) fireVerifSubmit()
+        })
+      })
+
+      _$('form', popupEl)?.addEventListener('submit', fireVerifSubmit)
+
+      initMutation(popupEl, (errNode) => {
+        const errorEl = errNode.matches?.('.text-danger-light-foreground, [role="alert"]') ? errNode : errNode.querySelector?.('.text-danger-light-foreground, [role="alert"]')
+        if (!errorEl || !errorEl.innerText.trim()) return
+        pushDataLayer('exp_checkout_auth_error_view', errorEl.innerText.trim(), 'error', 'Checkout')
+      })
+
+      popupEl.addEventListener('click', (e) => {
+        const btnEl = e.target.closest('button, a')
+        if (!btnEl) return
+        const label = btnEl.innerText.trim().toLowerCase()
+        const ariaLabel = (btnEl.getAttribute('aria-label') || '').toLowerCase()
+        if (label.includes('loading...')) {
+          pushDataLayer('exp_checkout_auth_email_verif_continue', 'Continue', 'click', 'Checkout')
+        } else if (label.includes('resend') || label.includes('re-send')) {
+          pushDataLayer('exp_checkout_auth_email_verif_resend', 'Re-send code', 'click', 'Checkout')
+        } else if (label.includes('close') || ariaLabel.includes('close')) {
+          pushDataLayer('exp_checkout_auth_email_verif_close', 'Close', 'click', 'Checkout')
+        }
+      })
+    })
   }
 
   async function handlePayment() {
@@ -1054,6 +1144,10 @@
 
   function handleSummary(isAccount) {
     const summaryBlockEl = _$('.w-\\[380px\\].shrink-0.sticky.top-20');
+
+    visibilityEvent(summaryBlockEl, () => {
+      pushDataLayer('exp_checkout_summary_view', 'Order Summary', 'view', 'Checkout');
+    })
 
     const targetProduct = config.isNoAuth ? _$('section h2.sr-only + .flex.gap-4 + .flex.gap-4') : _$('section h2.sr-only + .flex.gap-4');
     const productEl = _$('.mt-3 > .flex.pt-0\\!', targetProduct);
