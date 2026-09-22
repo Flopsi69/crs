@@ -22,24 +22,53 @@
   const CUT_EXTRA_PRICE = 12.50
 
   const targetUrls = [
+    // Wooden
+    '/prime-oak-worktop',
+    '/oak-worktop',
+    '/full-stave-deluxe-rustic-oak-worktop',
+    '/full-stave-deluxe-oak-worktop',
+    '/deluxe-rustic-oak-worktop',
+    '/prime-beech-worktop',
+    '/walnut-worktop',
+    '/black-oak-worktop',
+    '/ash-worktop',
+    '/iroko-worktop',
+    '/deluxe-oak-worktop',
+    '/beech-worktop',
+    '/black-ash-worktop',
+    '/sapele-worktop',
+    // Compact Laminate
+    '/gold-vein-compact',
+    '/athena-marble-compact',
     '/beige-gold-compact',
     '/bella-bianche-compact',
+    '/calacatta-marble-compact',
     '/lucida-white-compact',
-    '/pure-black-compact',
-    '/crystal-spark-compact',
     '/magma-rodolit-compact',
     '/black-gold-compact',
-    '/cloudy-cement-compact-laminate',
     '/carrera-marble-compact-(white-core)',
-    // '/carrara-solid-surface',
-    '/oak-worktop',
-    '/walnut-worktop',
-    '/prime-oak-worktop',
-    '/full-stave-deluxe-oak-worktop',
-    '/full-stave-deluxe-rustic-oak-worktop',
-    '/prime-beech-worktop',
-    // '/iroko-worktop',
-    // '/black-oak-worktop'
+    '/copper-stone-compact',
+    '/crystal-spark-compact',
+    '/lava-stone-compact',
+    '/pure-black-compact',
+    '/cloudy-cement-compact-laminate',
+    '/creamy-carrara-compact',
+    '/white-quartz-compact',
+    '/cranbury-marble-compact',
+    '/distressed-oak-compact-laminate',
+    '/graphite-grey-compact',
+    '/terra-concrete-compact-laminate',
+    '/terrazzo-worktop-compact-laminate',
+    '/white-terrazzo-compact',
+    '/bella-bianche-dark-core',
+    '/carrera-marble-compact-(dark-core)',
+    '/full-stave-oak-compact-laminate',
+    // Solid Surface
+    '/pure-white-solid-surface',
+    '/stardust-solid-surface',
+    '/calacatta-veined-solid-surface',
+    '/carrara-solid-surface',
+    '/grey-cloud-solid-surface',
   ]
 
   const upsellConfig = {
@@ -687,6 +716,13 @@
     //   handleCheckoutCartImages();
     //   return;
     // }
+
+    const isValidProduct = targetUrls.some(targetUrl => {
+      const idx = location.href.indexOf(targetUrl)
+      return idx !== -1 && location.href[idx + targetUrl.length] !== '-'
+    })
+
+    if (!isValidProduct) return
 
     await waitFor(() => _$('#product-options-modal .select-size-row'), false, { ms: 20 })
 
