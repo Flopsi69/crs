@@ -667,6 +667,22 @@
     return !!_$('header a[href="https://gameboost.com/orders"]')
   }
 
+  // Reads Inertia's server-rendered page-data tag for the item offer this
+  // page was hard-loaded with. Only meaningful when that tag's own
+  // component is the item PDP — on any other page (or after an SPA
+  // transition moved us away from what this tag describes) there's no
+  // item offer to read, so this returns null rather than stale data.
+  function readItemOfferFromPage() {
+    try {
+      const pageDataEl = document.querySelector('script[type="application/json"][data-page="app"]')
+      const data = JSON.parse(pageDataEl.textContent)
+      return data?.component === 'main/items/show/page' ? (data.props?.itemOffer || null) : null
+    } catch (err) {
+      console.log('readItemOfferFromPage error', err)
+      return null
+    }
+  }
+
   function addMobileCollapse() {
     return false
     //   const target = config.isNoAuth ? 'section h2.sr-only + .flex.gap-4 + .flex.gap-4' : 'section h2.sr-only + .flex.gap-4';
@@ -740,10 +756,27 @@
     if (window.__lavBuyNowClickBound) return
     window.__lavBuyNowClickBound = true
 
+    // The item PDP's delivery_method (props.itemOffer.delivery_method) only
+    // lives in Inertia's server-rendered <script type="application/json">
+    // page-data tag, which is NOT re-rendered on client-side SPA navigation
+    // (listing -> PDP without a full reload) — Inertia instead updates the
+    // Vue app's live state and fires 'inertia:navigate' with the fresh page
+    // object. Reading the static tag at click time returns whichever page
+    // happened to hard-load first, which is stale after any SPA transition.
+    // Track it here instead: seed from the static tag once (covers a hard
+    // load landing directly on a PDP), then keep it current via the event
+    // (covers every SPA transition after that).
+    window.__lavCurrentItemOffer = readItemOfferFromPage()
+    document.addEventListener('inertia:navigate', (e) => {
+      window.__lavCurrentItemOffer = e.detail?.page?.component === 'main/items/show/page'
+        ? (e.detail.page.props?.itemOffer || null)
+        : null
+    })
+
     console.log('addCLickHandlers')
     document.addEventListener('click', function (e) {
       // Items, accounts, keys
-      console.log('click', e.target)
+      // console.log('click', e.target)
       if (e.target.closest('button')?.innerText.toLowerCase().trim().includes('buy now') || e.target.closest('button')?.innerText.toLowerCase().trim().includes('buy account')) {
         if (isAuthUser()) return
         console.log('click2')
@@ -755,16 +788,12 @@
         } else if (location.pathname.includes('/accounts')) {
           offerIdEl = e.target.closest('a.rounded-xl.ring-1')?.querySelector('[data-type="offer-id"]') || e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
         } else if (location.pathname.includes('/items/')) {
-          // Only present on item PDPs, embedded server-side in Inertia's
-          // page-data script tag (no visible UI, no JS global) at
-          // props.itemOffer.delivery_method — e.g. "redeem".
-          let deliveryMethod = null
-          try {
-            const pageDataEl = document.querySelector('script[type="application/json"]')
-            deliveryMethod = JSON.parse(pageDataEl.textContent)?.props?.itemOffer?.delivery_method ?? null
-          } catch (err) {
-            console.log('deliveryMethod parse error', err)
-          }
+          // See the __lavCurrentItemOffer tracking set up above — this stays
+          // correct across SPA navigation, unlike re-parsing the static
+          // page-data tag here (which goes stale the moment the visitor
+          // reaches this PDP via a client-side transition instead of a hard
+          // load).
+          const deliveryMethod = window.__lavCurrentItemOffer?.delivery_method ?? null
           type = 'items'
           if (deliveryMethod !== 'trade') {
             offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
