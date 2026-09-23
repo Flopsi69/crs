@@ -30,10 +30,10 @@
   // (eg. game hub pages like /league-of-legends).
   let observer = null
 
-  document.addEventListener('inertia:navigate', () => {
-    console.log('navigate')
-    initExp()
-  })
+  // document.addEventListener('inertia:navigate', () => {
+  //   console.log('navigate')
+  //   initExp()
+  // })
 
   initExp()
 
