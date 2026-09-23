@@ -746,6 +746,7 @@
       console.log('click', e.target)
       if (e.target.closest('button')?.innerText.toLowerCase().trim().includes('buy now') || e.target.closest('button')?.innerText.toLowerCase().trim().includes('buy account')) {
         if (isAuthUser()) return
+        console.log('click2')
         let type = 'accounts'
         let offerIdEl = null;
         if (e.target.closest('.relative[aria-roledescription="carousel"]') && e.target.closest('.relative[aria-roledescription="carousel"]')?.querySelector('.contents.group.cursor-pointer')?.href.includes('/accounts')) {
@@ -754,8 +755,20 @@
         } else if (location.pathname.includes('/accounts')) {
           offerIdEl = e.target.closest('a.rounded-xl.ring-1')?.querySelector('[data-type="offer-id"]') || e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
         } else if (location.pathname.includes('/items/')) {
+          // Only present on item PDPs, embedded server-side in Inertia's
+          // page-data script tag (no visible UI, no JS global) at
+          // props.itemOffer.delivery_method — e.g. "redeem".
+          let deliveryMethod = null
+          try {
+            const pageDataEl = document.querySelector('script[type="application/json"]')
+            deliveryMethod = JSON.parse(pageDataEl.textContent)?.props?.itemOffer?.delivery_method ?? null
+          } catch (err) {
+            console.log('deliveryMethod parse error', err)
+          }
           type = 'items'
-          offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
+          if (deliveryMethod !== 'trade') {
+            offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
+          }
         } else if (_$('.sm\\:gap-x-1 .flex.gap-x-3.items-center[href="https://gameboost.com/keys"]')) {
           type = 'keys'
           offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
