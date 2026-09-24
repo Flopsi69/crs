@@ -1,4 +1,19 @@
 (function () {
+  // Guards against this script running more than once. On this SPA
+  // (Inertia.js), client-side navigation doesn't reload the page - but if
+  // GTM re-fires the custom HTML tag on a virtual pageview (eg. a History
+  // Change trigger) instead of a real reload, this same IIFE gets
+  // re-injected as a brand new instance while the DOM it already patched
+  // survives. A second instance wouldn't know that (its own in-memory
+  // state starts empty), and the observer below already reacts to new
+  // price elements appearing on navigation on its own - so a second
+  // instance is never needed and would only duplicate observers/listeners
+  // and risk re-processing already-updated prices. Matches the same
+  // window.__lav*-guard pattern used in checkoutLogin/index.js for the
+  // same reason.
+  if (window.__lavUpdatePriceExpInit) return
+  window.__lavUpdatePriceExpInit = true
+
   console.debug('*** Experiment started ***')
 
   // Config for Experiment
@@ -212,18 +227,24 @@
     if (!btn) return
 
     btn.childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) applyPriceFormulaToTextNode(node)
+      if (node.nodeType === Node.TEXT_NODE) applyPriceFormulaToTextNode(btn, node)
     })
   }
 
   // Same idea as applyPriceFormula (re-derive from whatever is currently
   // rendered, skip if unchanged since our own last write) but for a bare
-  // Text node, which has no dataset to stash the last-computed value on -
-  // a WeakMap keyed by the node does that job instead.
-  const stickyBtnPriceComputed = new WeakMap()
-  function applyPriceFormulaToTextNode(node) {
+  // Text node, which has no dataset of its own to stash the last-computed
+  // value on - the marker is kept on the owning element instead (ownerEl).
+  // This has to be real DOM state (dataset), not an in-memory Map/WeakMap:
+  // if this script gets re-injected on an SPA route change (eg. a GTM tag
+  // re-firing on a History Change trigger, rather than a full page reload),
+  // a fresh script instance means a fresh in-memory map with no memory of
+  // what the previous instance already wrote - so the already-updated price
+  // would look "original" again and get the markup formula re-applied on
+  // top of itself, compounding a little more on every navigation.
+  function applyPriceFormulaToTextNode(ownerEl, node) {
     const current = node.textContent
-    if (stickyBtnPriceComputed.get(node) === current) return
+    if (ownerEl.dataset.lavComputed === current) return
 
     const leading = current.match(/^\s*/)[0]
     const trailing = current.match(/\s*$/)[0]
@@ -234,7 +255,7 @@
 
     const newText = leading + updated + trailing
     node.textContent = newText
-    stickyBtnPriceComputed.set(node, newText)
+    ownerEl.dataset.lavComputed = newText
   }
 
   // The price also shows in a Tippy.js tooltip on hover - a separate popup
