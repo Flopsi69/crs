@@ -16,11 +16,11 @@
   // }
 
   // Styles for Experiment
-  const styles = /* css */ ``
+  // const styles = /* css */ ``
 
-  const stylesEl = document.createElement('style')
-  stylesEl.classList.add('exp-update-price-v1-styles');
-  stylesEl.innerHTML = styles;
+  // const stylesEl = document.createElement('style')
+  // stylesEl.classList.add('exp-update-price-v1-styles');
+  // stylesEl.innerHTML = styles;
 
   // *** Logic *** //
   // Applies to any "Accounts" product card (PLP grid, hub "Recently Viewed"/
@@ -41,9 +41,9 @@
     startClarity()
     await waitFor(() => document.head && document.body, false, { ms: 20 })
 
-    if (!_$('.exp-update-price-v1-styles')) {
-      document.head.appendChild(stylesEl)
-    }
+    // if (!_$('.exp-update-price-v1-styles')) {
+    //   document.head.appendChild(stylesEl)
+    // }
 
     console.debug('** InitExp **')
 
@@ -75,6 +75,15 @@
   // actually touches something price-related - otherwise every unrelated
   // text change on the page schedules a full-page rescan.
   const PDP_PRICE_WRAP_SELECTOR = '.flex.flex-wrap.gap-y-1.gap-x-1\\.5.items-baseline.mt-6'
+  // The mobile "Buy Account · $X" bar fixed to the bottom of the viewport
+  // (CSS-hidden at the lg breakpoint, not removed from the DOM). Its own
+  // "bottom-*" class toggles as it slides in/out on scroll, so that class
+  // is deliberately left out of the selector to keep it matching either way.
+  const STICKY_BUY_BAR_SELECTOR = '.fixed.left-0.z-20.lg\\:hidden.bg-card'
+  // The mobile-only "Discounted Price" card shown above the fold (a
+  // separate widget from both the desktop sidebar price block and the
+  // sticky bottom bar - sm:hidden on its own ancestor, not this element).
+  const MOBILE_DISCOUNT_CARD_SELECTOR = '.flex.items-baseline.w-full.h-full.px-4.py-3.rounded-b-lg.gap-x-2'
   function isRelevantMutation(mutation) {
     // mutation.target is the node whose children changed (childList) or the
     // text node itself (characterData). For a currency switch this site
@@ -83,7 +92,7 @@
     // whose target is the price <span> itself. Checking target first covers
     // that directly, since closest() matches the element itself too.
     const targetEl = mutation.type === 'characterData' ? mutation.target.parentElement : mutation.target
-    if (targetEl instanceof Element && (targetEl.closest('a[href*="/accounts/"]') || targetEl.closest(PDP_PRICE_WRAP_SELECTOR))) {
+    if (targetEl instanceof Element && (targetEl.closest('a[href*="/accounts/"]') || targetEl.closest(PDP_PRICE_WRAP_SELECTOR) || targetEl.closest(STICKY_BUY_BAR_SELECTOR) || targetEl.closest(MOBILE_DISCOUNT_CARD_SELECTOR))) {
       return true
     }
 
@@ -103,6 +112,8 @@
         if (node.matches('a[href*="/accounts/"]') || node.querySelector('a[href*="/accounts/"]')) return true
         if (node.matches(PDP_PRICE_WRAP_SELECTOR) || node.querySelector(PDP_PRICE_WRAP_SELECTOR)) return true
         if (node.matches('[data-tippy-root]') || node.querySelector('[data-tippy-root]')) return true
+        if (node.matches(STICKY_BUY_BAR_SELECTOR) || node.querySelector(STICKY_BUY_BAR_SELECTOR)) return true
+        if (node.matches(MOBILE_DISCOUNT_CARD_SELECTOR) || node.querySelector(MOBILE_DISCOUNT_CARD_SELECTOR)) return true
       }
     }
     return false
@@ -139,6 +150,8 @@
   function updateAllPrices() {
     _$$('a[href*="/accounts/"]', document, true).forEach(updateCardPrice)
     updatePdpPrice()
+    updateStickyBuyButtonPrice()
+    updateMobileDiscountCardPrice()
   }
 
   // Some products show a struck-through "was" price alongside the current
@@ -168,6 +181,60 @@
     if (oldPriceEl) applyPriceFormula(oldPriceEl)
 
     updateTooltipPrice(priceWrap)
+  }
+
+  // Same current/old price layout as updatePdpPrice's wrap, just a
+  // different (mobile-only) widget - not covered by that selector since
+  // it's a separate DOM subtree, not a responsive variant of it.
+  function updateMobileDiscountCardPrice() {
+    if (!/\/accounts\//.test(location.pathname)) return
+
+    const priceWrap = _$(MOBILE_DISCOUNT_CARD_SELECTOR)
+    if (!priceWrap) return
+
+    const priceEl = priceWrap.firstElementChild
+    if (priceEl) applyPriceFormula(priceEl)
+
+    const oldPriceEl = _$('.flex.gap-x-2.items-center', priceWrap)?.firstElementChild
+    if (oldPriceEl) applyPriceFormula(oldPriceEl)
+  }
+
+  // Unlike every other price on the page, this button doesn't isolate the
+  // price in its own element - it's raw text mixed in with the "Buy
+  // Account" label and a "·" separator span, so it needs a text-node-level
+  // patch (applyPriceFormulaToTextNode) instead of applyPriceFormula's
+  // whole-element approach.
+  function updateStickyBuyButtonPrice() {
+    if (!/\/accounts\//.test(location.pathname)) return
+
+    const bar = _$(STICKY_BUY_BAR_SELECTOR)
+    const btn = bar && _$('button', bar)
+    if (!btn) return
+
+    btn.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) applyPriceFormulaToTextNode(node)
+    })
+  }
+
+  // Same idea as applyPriceFormula (re-derive from whatever is currently
+  // rendered, skip if unchanged since our own last write) but for a bare
+  // Text node, which has no dataset to stash the last-computed value on -
+  // a WeakMap keyed by the node does that job instead.
+  const stickyBtnPriceComputed = new WeakMap()
+  function applyPriceFormulaToTextNode(node) {
+    const current = node.textContent
+    if (stickyBtnPriceComputed.get(node) === current) return
+
+    const leading = current.match(/^\s*/)[0]
+    const trailing = current.match(/\s*$/)[0]
+    const core = current.slice(leading.length, current.length - trailing.length)
+
+    const updated = getUpdatedPriceText(core)
+    if (updated === null) return
+
+    const newText = leading + updated + trailing
+    node.textContent = newText
+    stickyBtnPriceComputed.set(node, newText)
   }
 
   // The price also shows in a Tippy.js tooltip on hover - a separate popup
