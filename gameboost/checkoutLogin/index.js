@@ -810,6 +810,7 @@
           e.preventDefault();
           e.stopPropagation();
           e.stopImmediatePropagation();
+          pushDataLayer('exp_checkout_auth_buy_now', 'Buy Now', 'click', 'Site');
           location.href = `https://gameboost.com/checkout/${type}/${offerId}`
           console.log('offerId', offerId, 'type', type)
         }
