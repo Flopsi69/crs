@@ -25,27 +25,39 @@ const config = {
   let PRICE_RANGES = []
 
   // Stone Shape has no real data source in Shopify (no tag/metafield/variant
-  // option) so it's inferred by matching these words against each product's
-  // title. Order here also controls display order in the pill.
+  // option), so it comes from PRODUCT_DATA below (curated in
+  // petals/filters/products.numbers) rather than being guessed from the
+  // product name. This list only controls display order in the pill, and
+  // which values PRODUCT_DATA is allowed to surface (we only have icons for
+  // these).
   const SHAPE_KEYWORDS = [
-    'Round', 'Princess', 'Cushion', 'Oval', 'Emerald',
-    'Pear', 'Asscher', 'Heart', 'Radiant', 'Marquise'
+    'Round',
+    // 'Princess',
+    'Oval',
+    'Marquise',
+    'Rectangle', // new
+    'Heart',
+    'Baguette', // new
+    'Cushion',
+    'Square', //new
+    'Radiant',
+    'Emerald',
+    'Pear',
+    'Star', // new
+    'Hexagon' // new
   ]
 
-  // Material canonical labels + regexes to normalize the differently-named
-  // variant options across products ("Material" vs "Finish", "Yellow Gold
-  // Filled" vs "Gold Filled", etc.) onto one shared vocabulary.
+  // Display order for materials in the pill. Like shapes, materials come
+  // from PRODUCT_DATA (curated in petals/filters/products.numbers), already
+  // normalized there (case/whitespace variants like "14K Rose Gold" /
+  // "14k Rose Gold" merged, non-material noise like ash-color options
+  // dropped) — this array is just ordering, not a source of truth.
   const MATERIAL_ORDER = [
     'Sterling Silver', 'Gold Filled', 'Rose Gold Filled',
-    '14k White Gold', '14k Yellow Gold', '14k Rose Gold'
-  ]
-  const MATERIAL_RULES = [
-    [/sterling\s*silver/i, 'Sterling Silver'],
-    [/rose\s*gold\s*filled/i, 'Rose Gold Filled'],
-    [/(yellow\s*)?gold\s*filled/i, 'Gold Filled'],
-    [/14k?\s*white\s*gold/i, '14k White Gold'],
-    [/14k?\s*yellow\s*gold/i, '14k Yellow Gold'],
-    [/14k?\s*rose\s*gold/i, '14k Rose Gold']
+    '14k White Gold', '14k Yellow Gold', '14k Rose Gold',
+    'Silver', 'Gold Plated', 'Rose Gold Plated',
+    'Gold Vermeil', 'Rose Gold Vermeil',
+    'Bronze', 'Stainless Steel', 'Black Zirconia'
   ]
 
   // Real vectors pulled from Figma (node 3369-2971), one viewBox per icon
@@ -62,23 +74,60 @@ const config = {
     Asscher: { viewBox: "0 0 25.4001 25.4", path: "<path d=\"M5.84293 0.7H19.5572L24.7001 5.84286V19.5571L19.5572 24.7H5.84293L0.700071 19.5571V5.84286L5.84293 0.7Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M8.70007 4.7H16.7001L20.7001 8.7V16.7L16.7001 20.7H8.70007L4.70007 16.7V8.7L8.70007 4.7Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M24.6999 5.84286L21.2001 8.20003\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.700071 5.84286L4.20007 8.20003\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M24.6999 19.5572L21.2001 17.2\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.700071 19.5572L4.20007 17.2\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
     Heart: { viewBox: "0 0 25.4001 23.5619", path: "<path d=\"M12.7001 22.8619C14.1297 20.0026 19.8481 15.7138 22.7073 12.1398C25.5666 8.56574 25.5666 3.56209 21.2777 1.41767C17.7037 -0.369344 14.1297 1.41767 12.7001 4.2769C11.2704 1.41767 7.6964 -0.369344 4.12237 1.41767C-0.166471 3.56209 -0.166471 8.56574 2.69276 12.1398C5.55198 15.7138 11.2704 20.0026 12.7001 22.8619Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12.6996 15.7136C14.844 13.9266 18.418 11.4248 19.1328 8.92296C19.8476 6.42113 18.418 4.84856 16.2736 4.84856C14.4866 4.84856 13.2714 6.06373 12.6996 7.49334C12.1277 6.06373 10.9126 4.84856 9.12555 4.84856C6.98113 4.84856 5.55151 6.42113 6.26632 8.92296C6.98113 11.4248 10.5552 13.9266 12.6996 15.7136Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12.7001 7.49353V4.27689\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12.7001 15.7138V22.8619\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M6.2668 8.92314L1.26315 7.85093\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M19.1335 8.92314L24.1372 7.85093\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
     Radiant: { viewBox: "0 0 25.4003 21.9715", path: "<path d=\"M4.98585 0.700054H20.4144L24.7001 4.98577V16.9858L20.4144 21.2715H4.98585L0.700135 16.9858V4.98577L4.98585 0.700054Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M16.1284 6.7002H9.27127V15.2716H16.1284V6.7002Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M4.9857 0.700054L9.27142 6.70005\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M20.4144 0.700054L16.1287 6.70005\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M24.7001 4.98562L16.1287 6.69991\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M24.7001 16.9856L16.1287 15.2713\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M20.4144 21.2713L16.1287 15.2713\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M4.9857 21.2713L9.27142 15.2713\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.700135 16.9856L9.27156 15.2713\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.700135 4.98562L9.27156 6.69991\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
-    Marquise: { viewBox: "0 0 22.4 31.4002", path: "<path d=\"M11.2 0.7C16.45 6.70003 21.7 12.7001 21.7 15.7001C21.7 18.7001 16.45 24.7001 11.2 30.7001C5.95 24.7001 0.7 18.7001 0.7 15.7001C0.7 12.7001 5.95 6.70003 11.2 0.7Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.1996 8.20012C13.8246 11.2001 16.4496 14.2001 16.4496 15.7002C16.4496 17.2002 13.8246 20.2002 11.1996 23.2002C8.57457 20.2002 5.94957 17.2002 5.94957 15.7002C5.94957 14.2001 8.57457 11.2001 11.1996 8.20012Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.7 15.7H21.7\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.2 0.7V8.20003\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.2 30.7002V23.2002\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" }
+    Marquise: { viewBox: "0 0 22.4 31.4002", path: "<path d=\"M11.2 0.7C16.45 6.70003 21.7 12.7001 21.7 15.7001C21.7 18.7001 16.45 24.7001 11.2 30.7001C5.95 24.7001 0.7 18.7001 0.7 15.7001C0.7 12.7001 5.95 6.70003 11.2 0.7Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.1996 8.20012C13.8246 11.2001 16.4496 14.2001 16.4496 15.7002C16.4496 17.2002 13.8246 20.2002 11.1996 23.2002C8.57457 20.2002 5.94957 17.2002 5.94957 15.7002C5.94957 14.2001 8.57457 11.2001 11.1996 8.20012Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M0.7 15.7H21.7\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.2 0.7V8.20003\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M11.2 30.7002V23.2002\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
+    // Not in the Figma set — hand-drawn to match its style (same stroke
+    // weight, rounded caps/joins, outer+inner facet look where it fits).
+    Rectangle: { viewBox: "0 0 28 18", path: "<rect x=\"1\" y=\"1\" width=\"26\" height=\"16\" rx=\"2\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <rect x=\"6\" y=\"5\" width=\"16\" height=\"8\" rx=\"1\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
+    Baguette: { viewBox: "0 0 14 26", path: "<rect x=\"1\" y=\"1\" width=\"12\" height=\"24\" rx=\"2\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <line x1=\"5\" y1=\"1\" x2=\"5\" y2=\"25\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <line x1=\"9\" y1=\"1\" x2=\"9\" y2=\"25\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
+    Square: { viewBox: "0 0 22 22", path: "<rect x=\"1\" y=\"1\" width=\"20\" height=\"20\" rx=\"2\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <rect x=\"6\" y=\"6\" width=\"10\" height=\"10\" rx=\"1\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
+    Star: { viewBox: "0 0 24 24", path: "<path d=\"M12 2L14.9 9.1L22.5 9.5L16.5 14.3L18.6 21.6L12 17.3L5.4 21.6L7.5 14.3L1.5 9.5L9.1 9.1Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" },
+    Hexagon: { viewBox: "0 0 24 22", path: "<path d=\"M12 1L21 6.5V15.5L12 21L3 15.5V6.5Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/> <path d=\"M12 6L16.5 8.75V13.25L12 16L7.5 13.25V8.75Z\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>" }
   }
 
   const MATERIAL_SWATCH = {
-    'Sterling Silver': { css: 'linear-gradient(135deg,#eceeef,#b9bcc0)' },
-    'Gold Filled': { css: 'linear-gradient(135deg,#f4d989,#c9a227)' },
-    'Rose Gold Filled': { css: 'linear-gradient(135deg,#f4c3b0,#d98a72)' },
-    '14k White Gold': { css: 'linear-gradient(135deg,#f2f2f2,#cfd0d2)', badge: '14k' },
-    '14k Yellow Gold': { css: 'linear-gradient(135deg,#f6da8b,#caa22e)', badge: '14k' },
-    '14k Rose Gold': { css: 'linear-gradient(135deg,#f0c4b3,#d68b74)', badge: '14k' }
+    'Sterling Silver': { css: 'linear-gradient(205deg, #999 11.36%, #FFF 30.57%, #D8D8D8 50.14%)' },
+    'Gold Filled': { css: 'linear-gradient(205deg, #EDCE9B 11.36%, #FFF 30.57%, #EAC995 50.14%)' },
+    'Rose Gold Filled': { css: 'linear-gradient(205deg, #E8C2BD 11.36%, #FFF 30.57%, #E1B7B2 50.14%)' },
+    '14k White Gold': { css: 'linear-gradient(205deg, #BABABA 11.36%, #FFF 30.57%, #D8D8D8 50.14%)', badge: '14k' },
+    '14k Yellow Gold': { css: 'linear-gradient(205deg, #EDCE9B 11.36%, #FFF 30.57%, #EAC995 50.14%)', badge: '14k' },
+    '14k Rose Gold': { css: 'linear-gradient(205deg, #EDCCC7 11.36%, #FFF 30.57%, #E8C8C3 50.14%)', badge: '14k' },
+    'Silver': { css: 'linear-gradient(135deg,#e8e8ea,#aeb1b6)' },
+    'Gold Plated': { css: 'linear-gradient(135deg,#f2d385,#bb8f1e)' },
+    'Rose Gold Plated': { css: 'linear-gradient(135deg,#eec2ae,#c17a5e)' },
+    'Gold Vermeil': { css: 'linear-gradient(135deg,#f0c14b,#a97a13)' },
+    'Rose Gold Vermeil': { css: 'linear-gradient(135deg,#e8a598,#a85c42)' },
+    'Bronze': { css: 'linear-gradient(135deg,#cd7f32,#8b5a2b)' },
+    'Stainless Steel': { css: 'linear-gradient(135deg,#d4d7d9,#8e959c)' },
+    'Black Zirconia': { css: 'linear-gradient(135deg,#4a4a4a,#161616)' }
   }
+
+  // Per-product Material + Stone Shape data, curated by hand in
+  // petals/filters/products.numbers (exported there from this script's own
+  // earlier products-materials-shapes.csv, then corrected) — not inferred
+  // from the product title/description at runtime. Keyed by product handle;
+  // 'm' = materials (already normalized: case/whitespace variants like
+  // '14K Rose Gold' merged, non-material noise like ash-color options
+  // dropped), 's' = stone shapes (restricted to SHAPE_ICONS' vocabulary).
+  // A handle missing from this map (e.g. a product added after curation)
+  // simply gets no materials/shapes, rather than falling back to guessing.
+  const PRODUCT_DATA = {"athena-necklace-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"alaina-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"harlie-ring-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"amara-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"amber-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Radiant"]},"amelia-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-cremation-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"angela-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"annalyse-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Radiant"]},"annie-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Radiant"]},"arabella-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"14k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-3":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Baguette"]},"aubrey-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Baguette"]},"gemstone-cremation-necklace-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"belle-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"dakota-bracelet-cz-collection":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Baguette"]},"dakota-bracelet-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Baguette"]},"cremation-ashes-jewelry-necklace-birthstone-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-jewelry":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"daphne-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"faye-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Marquise"]},"hallie-earring-studs-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"hannah-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Radiant"]},"harley-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"harmony-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Marquise"]},"hazel-ring-diamond-collection-2":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"holli-ring-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"9k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"jade-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"opal-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Vermeil","Rose Gold Vermeil","Gold Filled","Rose Gold Filled","14k Yellow Gold"],"s":["Oval"]},"10k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"kendall-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"lauren-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"louise-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"luna-earrings-cz-collection":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"luna-earrings-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"mabrey-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"mabry-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"14k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-2":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"madelyn-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-cremation-necklace-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"mallori-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"mayla-ring-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Emerald","Baguette"]},"milan-teardrop-necklace":{"m":["Sterling Silver"],"s":["Pear"]},"milan-teardrop-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"missy-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"mollie-necklace-cz-collection":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Baguette"]},"mollie-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Baguette"]},"morgan-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"10k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"phoebe-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"rosie-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"14k-solid-gold-cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-4":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"sage-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"sarah-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Marquise"]},"sophie-necklace-cz-collection":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"sophie-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"cremation-ashes-ring-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-jewellry":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"sylvia-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Marquise"]},"cremation-ashes-jewelry-necklace-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-jewelry-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"trinity-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"valentina-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"cremation-ashes-jewelry-necklace-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes-jewelry":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Emerald"]},"vinnie-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Radiant"]},"zara-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"zoey-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"angel-ornament":{"m":[],"s":[]},"angel-wings-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Pear"]},"funeral-flower-keepsake-ornaments-personalized-angel-wings-ornaments-keepsake-ornaments-keepsake-funeral-wedding-flower-keepsake":{"m":[],"s":[]},"asymmetrical-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":[]},"bar-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"bar-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"black-cremation-band":{"m":[],"s":[]},"bottle-opener":{"m":[],"s":[]},"butterfly-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"butterfly-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":[]},"14k-gold-filled-butterfly-wing-necklace":{"m":["Gold Filled","Sterling Silver"],"s":[]},"classic-cross-locket-necklace":{"m":["Sterling Silver","Gold Filled"],"s":[]},"locket-necklace":{"m":["Sterling Silver","Gold Filled"],"s":["Oval"]},"14k-gold-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"classic-rectangle-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"10k-solid-gold-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"silver-teardrop-cremation-necklace-cremation-jewelry-ashes-jewelry-loved-ones-pet-ashes-memorial-ashes-jewelry-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"cremation-ashes-jewelry-cremation-ashes-ring-memorial-ashes-jewelry-pet-cremation-ashes-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"round-halo-necklace-copy":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Star"]},"cross-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":[]},"funeral-flower-keepsake-ornaments-personalized-cross-ornaments-keepsake-ornaments-keepsake-loss-funeral-wedding-flower-keepsake":{"m":[],"s":[]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring-2":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"crown-gem-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"14k-gold-filled-crown-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"cuff-links-1":{"m":["Silver","Gold Plated"],"s":[]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring-5":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Cushion"]},"cushion-halo-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Cushion"]},"cremation-ashes-jewelry-cremation-ring-jewelry-ashes-jewelry-memorial-ashes-jewelry-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Cushion"]},"dainty-gold-heart-cremation-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"gem-teardrop-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"dainty-oval-gemstone-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Oval"]},"rectangle-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Rectangle"]},"dainty-silver-memorial-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"10k-solid-gold-oval-ring-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"dainty-square-and-marquise-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Marquise","Square"]},"dainty-square-and-marquise-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise","Square"]},"dainty-two-stone-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"sterling-silver-double-band-marquise-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Marquise"]},"14k-gold-ring-double-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"double-band-square-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Square"]},"silver-double-heart-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"sterling-silver-double-heart-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"double-heart-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Heart"]},"cremation-ashes-jewelry-cremation-ashes-jewelry-memorial-ashes-jewelry-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"cremation-ashes-jewelry-cremation-ashes-earrings-cremate-jewelry-sterling-silver-cremation-jewelry":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"elegant-marquise-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Marquise"]},"elegant-marquise-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"elegant-oval-halo-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"elegant-oval-halo-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"elegant-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"elegant-oval-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"sterling-silver-heart-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"four-point-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"four-point-oval-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round","Oval"]},"four-stone-marquise-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Marquise"]},"gem-teardrop-necklace-silver-or-rose-gold":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"silver-gem-teardrop-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Pear"]},"gem-teardrop-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Pear"]},"cremation-gemstone":{"m":[],"s":[]},"14k-gold-filled-cross-necklace":{"m":[],"s":[]},"golf-ball-marker":{"m":[],"s":[]},"gem-oval-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"halo-gem-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round"]},"harmony-necklace-cz-collection":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Marquise"]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring-4":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"heart-halo-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"sterling-silver-cremation-necklace-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Heart"]},"heart-halo-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round","Heart"]},"hexagon-ring-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Hexagon"]},"horizontal-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"cremation-keychain":{"m":[],"s":[]},"large-eternity-gem-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"large-infinity-gem-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round","Oval"]},"14k-gold-oval-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval"]},"large-round-memorial-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"14k-gold-round-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Marquise"]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring-6":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"sterling-silver-marquise-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"marquise-gem-eternity-band-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"marquise-gem-eternity-half-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"marquise-gem-stacker-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Marquise"]},"marquise-halo-ring-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Oval","Marquise"]},"marquise-halo-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round","Oval","Marquise"]},"mens-bar-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"mens-bar-necklace":{"m":["Sterling Silver","Gold Filled","14k Yellow Gold","14k White Gold"],"s":[]},"mens-cross-necklace":{"m":["Sterling Silver","Gold Filled","14k Yellow Gold","14k White Gold"],"s":[]},"mens-ribbed-square-necklace":{"m":["Sterling Silver","Gold Filled","14k Yellow Gold","14k White Gold"],"s":["Square"]},"money-clip":{"m":[],"s":[]},"nature-gem-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"nature-gem-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"nature-ivy-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Marquise"]},"off-centered-black-memorial-band":{"m":[],"s":[]},"off-centered-wide-eternity-band-copy":{"m":[],"s":[]},"classic-oval-ring-copy":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":[]},"oval-bypass-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"sterling-silver-oval-gemstone-band-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"oval-gemstone-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"cremation-ashes-bracelet-cremation-jewelry-ashes-jewelry-pet-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ashes":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"oval-halo-bracelet-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"oval-halo-necklace-copy":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"oval-halo-necklace-copy-1":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"marquise-gem-eternity-band-copy":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-ring-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval","Marquise"]},"oval-marquise-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Oval","Marquise"]},"cremation-ashes-jewelry-cremation-ashes-ring-ashes-jewelry-memorial-ashes-jewelry-pet-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"paw-print-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":[]},"paw-print-locket-necklace":{"m":["Sterling Silver","Gold Filled"],"s":["Oval"]},"paw-print-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":[]},"paw-print-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"pin":{"m":[],"s":[]},"pocket-watch":{"m":["Bronze","Silver"],"s":[]},"heart-halo-bracelet-copy":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"rectangle-cluster-halo-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Rectangle"]},"rectangle-cluster-halo-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Rectangle"]},"rectangle-halo-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"cremation-ashes-jewelry-mens-cremation-ashes-band-memorial-ashes-jewelry-pet-cremation-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"rectangle-band":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Rectangle"]},"ribbed-square-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Square"]},"ring-sizer":{"m":[],"s":[]},"round-halo-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Round"]},"angel-ornament-copy":{"m":[],"s":[]},"simple-thin-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":[]},"small-oval-necklace":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Rose Gold","14k Yellow Gold"],"s":["Oval"]},"14k-gold-round-necklace-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"split-stone-classic-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"split-stone-cushion-halo-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Cushion"]},"split-stone-cushion-halo-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Cushion"]},"split-stone-heart-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Heart"]},"split-stone-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Oval"]},"split-stone-oval-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Oval"]},"star-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Star"]},"sterling-silver-gem-studs":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"sun-burst-bracelet":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round"]},"sun-burst-locket-necklace":{"m":["Sterling Silver","Gold Filled"],"s":["Oval"]},"sterling-silver-teardrop-gem-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"teardrop-gem-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Round","Pear"]},"sterling-silver-teardrop-gemstone-band-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Pear"]},"teardrop-gemstone-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Pear"]},"cremation-ashes-jewelry-cremation-necklace-ashes-jewelry-pet-ashes-memorial-ashes-jewelry-pet-cremation-ashes-necklace-1":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Pear"]},"teardrop-halo-gem-necklace-memorial-diamond-collection":{"m":["Sterling Silver","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"cremation-ashes-jewelry-cremation-ashes-memorial-ashes-jewelry-cremation-ashes-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Pear"]},"beaded-t":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Pear"]},"cremation-band-1":{"m":["Stainless Steel","Black Zirconia"],"s":[]},"thin-rectangle-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"thin-stripe-black-memorial-band":{"m":[],"s":[]},"thin-two-stone-rectangle-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Rectangle"]},"memorial-flower-tie-bar":{"m":[],"s":[]},"toi-et-moi-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Emerald","Pear"]},"tri-marquise-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k White Gold","14k Rose Gold"],"s":["Marquise"]},"two-stone-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round"]},"victorian-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"locket-necklace-1":{"m":["Sterling Silver","Gold Filled"],"s":["Oval"]},"vintage-floral-locket-necklace":{"m":["Sterling Silver","Gold Filled"],"s":["Oval"]},"vintage-lace-oval-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Oval"]},"vintage-lace-oval-ring-memorial-diamond-collection":{"m":["Sterling Silver","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round","Oval"]},"vintage-round-necklace":{"m":["Sterling Silver","Gold Plated","Rose Gold Plated","14k White Gold","14k Rose Gold","14k Yellow Gold"],"s":["Round"]},"wave-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k White Gold","14k Yellow Gold","14k Rose Gold"],"s":["Round"]},"wide-cushion-ring":{"m":["Sterling Silver","Gold Filled","Rose Gold Filled","14k Yellow Gold","14k Rose Gold","14k White Gold"],"s":["Cushion"]},"cremation-band":{"m":[],"s":[]}}
 
   const selected = { shape: new Set(), material: new Set(), price: new Set() }
   const byHandle = new Map()
   let fullyLoaded = false
   let loadingPromise = null
-  let expectingNativeRefresh = false
+  let manualOrder = null // handles in "Featured" order, captured once the full catalog first loads
+
+  // Sort values we can replicate ourselves from data already on hand, so we
+  // never have to let Shopify's native AJAX refresh replace #product-grid.
+  // "Best selling" and "most relevant" need real sales/relevance data we
+  // don't have client-side, so those fall back to a real page navigation
+  // instead (see buildMetaRow).
+  const SUPPORTED_SORTS = new Set([
+    'manual', 'price-ascending', 'price-descending',
+    'title-ascending', 'title-descending',
+    'created-ascending', 'created-descending'
+  ])
 
   initExp()
 
@@ -94,20 +143,28 @@ const config = {
     const collectionHandle = (location.pathname.match(/\/collections\/([^/]+)/) || [])[1]
     if (!collectionHandle) return
 
+    // Price doesn't need fetched product data (just currency detection), so
+    // it's ready immediately. Build + show the whole bar right away — hiding
+    // native filters synchronously, before the catalog fetch even starts —
+    // instead of leaving Shopify's own filter links on screen for however
+    // long that fetch takes. Stone Shape and Material start disabled (no
+    // options yet) and get populated once the catalog resolves.
+    PRICE_RANGES = buildPriceRanges()
+
+    document.head.appendChild(buildStyles())
+    hideNativeFilters(desktopWrap)
+    const ui = renderFilterBar(desktopWrap, grid)
+
     let catalog
     try {
       catalog = await fetchCatalog(collectionHandle)
     } catch (e) {
-      console.warn('[crs-filters] could not load product catalog, leaving native filters in place', e)
+      console.warn('[crs-filters] could not load product catalog, leaving Stone Shape/Material disabled', e)
       return
     }
 
-    PRICE_RANGES = buildPriceRanges()
     const state = buildFilterState(catalog)
-
-    document.head.appendChild(buildStyles())
-    hideNativeFilters(desktopWrap)
-    renderFilterBar(desktopWrap, grid, state)
+    ui.populate(state)
 
     console.debug('** InitExp: Collection Filters Redesign **', state)
   }
@@ -126,11 +183,13 @@ const config = {
     const shapeCounts = new Map()
 
     catalog.forEach((product) => {
-      const materials = getMaterials(product)
-      const shapes = getShapes(product)
+      const data = getProductData(product.handle)
+      const materials = data.m
+      const shapes = data.s
       const price = getMinPrice(product)
+      const createdAt = product.created_at ? new Date(product.created_at).getTime() : 0
 
-      byHandle.set(product.handle, { materials, shapes, price })
+      byHandle.set(product.handle, { materials, shapes, price, title: product.title || '', createdAt })
 
       materials.forEach((m) => materialCounts.set(m, (materialCounts.get(m) || 0) + 1))
       shapes.forEach((s) => shapeCounts.set(s, (shapeCounts.get(s) || 0) + 1))
@@ -191,23 +250,8 @@ const config = {
     return prices.length ? Math.min(...prices) : 0
   }
 
-  function getMaterials(product) {
-    const values = new Set()
-    ;(product.variants || []).forEach((v) => {
-      ;[v.option1, v.option2, v.option3].forEach((val) => { if (val) values.add(val) })
-    })
-
-    const found = new Set()
-    values.forEach((val) => {
-      const rule = MATERIAL_RULES.find(([re]) => re.test(val))
-      if (rule) found.add(rule[1])
-    })
-    return [...found]
-  }
-
-  function getShapes(product) {
-    const title = product.title || ''
-    return SHAPE_KEYWORDS.filter((word) => new RegExp(`\\b${word}\\b`, 'i').test(title))
+  function getProductData(handle) {
+    return PRODUCT_DATA[handle] || { m: [], s: [] }
   }
 
   function getHandleFromCard(li) {
@@ -246,6 +290,41 @@ const config = {
 
     updateProductCount(visible)
     emptyState.classList.toggle('is-visible', visible === 0)
+  }
+
+  // Reorders the already-loaded cards in place using data we already have,
+  // instead of asking Shopify to re-fetch/replace the grid. Only called for
+  // values in SUPPORTED_SORTS; 'manual' restores the order the full catalog
+  // was originally loaded in (Shopify's own "Featured" order).
+  function buildSortComparator(value) {
+    const meta = (handle) => byHandle.get(handle) || {}
+    switch (value) {
+      case 'manual':
+        return (a, b) => (manualOrder || []).indexOf(a) - (manualOrder || []).indexOf(b)
+      case 'price-ascending':
+        return (a, b) => meta(a).price - meta(b).price
+      case 'price-descending':
+        return (a, b) => meta(b).price - meta(a).price
+      case 'title-ascending':
+        return (a, b) => meta(a).title.localeCompare(meta(b).title)
+      case 'title-descending':
+        return (a, b) => meta(b).title.localeCompare(meta(a).title)
+      case 'created-ascending':
+        return (a, b) => meta(a).createdAt - meta(b).createdAt
+      case 'created-descending':
+        return (a, b) => meta(b).createdAt - meta(a).createdAt
+      default:
+        return null
+    }
+  }
+
+  function applySort(grid, value) {
+    const comparator = buildSortComparator(value)
+    if (!comparator) return
+    Array.from(grid.querySelectorAll('li.grid__item'))
+      .map((li) => ({ li, handle: getHandleFromCard(li) }))
+      .sort((a, b) => comparator(a.handle, b.handle))
+      .forEach(({ li }) => grid.appendChild(li))
   }
 
   function updateProductCount(visible) {
@@ -287,6 +366,10 @@ const config = {
         const pagination = document.querySelector('nav.pagination')
         if (pagination) pagination.classList.add('crs-hide')
 
+        if (!manualOrder) {
+          manualOrder = Array.from(grid.querySelectorAll('li.grid__item')).map(getHandleFromCard)
+        }
+
         fullyLoaded = true
       } finally {
         bar.classList.remove('is-loading')
@@ -298,7 +381,13 @@ const config = {
 
   async function fetchPage(page) {
     try {
-      const res = await fetch(`${location.pathname}?page=${page}`)
+      // Keep the current sort_by (and any other query params) intact —
+      // dropping them here would fetch page N in default/manual order even
+      // while sorted by e.g. price-descending or (via the native fallback)
+      // best-selling, silently reshuffling products across page boundaries.
+      const url = new URL(location.href)
+      url.searchParams.set('page', page)
+      const res = await fetch(url.pathname + url.search)
       if (!res.ok) return null
       const html = await res.text()
       const doc = new DOMParser().parseFromString(html, 'text/html')
@@ -311,44 +400,6 @@ const config = {
     }
   }
 
-  // Watches for Shopify's native sort-triggered grid refresh (flagged via
-  // expectingNativeRefresh, set when the real sort <select> changes) and
-  // reapplies our filter/full-catalog state once the fresh HTML lands.
-  // Guarded by that flag so our own lazy-load appendChild calls (which also
-  // mutate the grid) don't re-trigger this and cause a fetch loop.
-  function watchForNativeGridRefresh(initialGrid, bar, emptyState) {
-    // Dawn's own section-refresh can swap an ancestor further up than
-    // #product-grid's immediate parent (e.g. a whole product-grid-container
-    // via outerHTML), which would detach that parent and silently orphan an
-    // observer watching it. #MainContent is stable across that swap.
-    const watchRoot = document.getElementById('MainContent') || initialGrid.parentElement
-    if (!watchRoot) return
-
-    let debounceTimer = null
-    const observer = new MutationObserver(() => {
-      if (!expectingNativeRefresh) return
-      clearTimeout(debounceTimer)
-      debounceTimer = setTimeout(async () => {
-        expectingNativeRefresh = false
-        const grid = document.querySelector('#product-grid')
-        if (!grid) return
-
-        fullyLoaded = false
-        loadingPromise = null
-
-        const hasActiveFilters = selected.shape.size || selected.material.size || selected.price.size
-        if (hasActiveFilters) {
-          await ensureFullCatalogLoaded(grid, bar)
-          applyFilters(grid, emptyState)
-        } else {
-          const pagination = document.querySelector('nav.pagination')
-          if (pagination) pagination.classList.remove('crs-hide')
-        }
-      }, 250)
-    })
-
-    observer.observe(watchRoot, { childList: true, subtree: true })
-  }
 
   // *** UI: native filters *** //
 
@@ -370,12 +421,9 @@ const config = {
 
   // *** UI: new filter bar *** //
 
-  function renderFilterBar(desktopWrap, grid, state) {
-    // Shopify's native sort-triggered refresh (see watchForNativeGridRefresh)
-    // replaces #product-grid with a new element sharing the same id, which
-    // detaches the `grid` reference captured here at setup time. Every call
-    // site that acts on the grid after initial setup must re-query the live
-    // one instead of closing over the now-possibly-stale parameter.
+  function renderFilterBar(desktopWrap, grid) {
+    // Defensive: re-query the live grid rather than closing over the `grid`
+    // parameter everywhere, in case anything ever replaces #product-grid.
     const currentGrid = () => document.querySelector('#product-grid') || grid
 
     const row = document.createElement('div')
@@ -393,38 +441,36 @@ const config = {
     backdrop.className = 'crs-backdrop'
     document.body.appendChild(backdrop)
 
-    const groups = []
-    if (state.availableShapes.length) {
-      groups.push({
-        key: 'shape',
-        title: 'Stone Shape',
-        options: state.availableShapes.map((v) => ({ value: v, label: v }))
-      })
-    }
-    if (state.availableMaterials.length) {
-      groups.push({
-        key: 'material',
-        title: 'Material',
-        options: state.availableMaterials.map((v) => ({ value: v, label: v, swatch: true }))
-      })
-    }
-    groups.push({
-      key: 'price',
-      title: 'Price',
-      options: PRICE_RANGES.map((r) => ({ value: r.id, label: r.label }))
-    })
-
     const emptyState = document.createElement('div')
     emptyState.className = 'crs-empty-state'
     emptyState.innerHTML = 'No products match your filters. <button type="button" class="crs-empty-state__clear">Clear all</button>'
     grid.insertAdjacentElement('afterend', emptyState)
     emptyState.querySelector('.crs-empty-state__clear').addEventListener('click', () => clearAll())
 
-    groups.forEach((g) => bar.appendChild(buildPill(g)))
+    // Shape/Material have no options yet — nothing in the catalog fetch has
+    // landed — so they start disabled. Price only needs PRICE_RANGES (pure
+    // currency math, no fetch), so it's fully interactive immediately.
+    const shapePill = buildPill({ key: 'shape', title: 'Stone Shape' })
+    const materialPill = buildPill({ key: 'material', title: 'Material' })
+    const pricePill = buildPill({
+      key: 'price',
+      title: 'Price',
+      options: PRICE_RANGES.map((r) => ({ value: r.id, label: r.label }))
+    })
+    shapePill.btn.disabled = true
+    materialPill.btn.disabled = true
+    bar.appendChild(shapePill.el)
+    bar.appendChild(materialPill.el)
+    bar.appendChild(pricePill.el)
 
     const status = document.createElement('span')
     status.className = 'crs-filters__status'
-    status.textContent = 'Loading all products…'
+    status.textContent = 'Loading filters…'
+    // A separate class from .is-loading (used later for full-catalog loads):
+    // that one also dims/disables every pill button via CSS, but Price
+    // should stay fully clickable here — only Shape/Material are actually
+    // disabled (via their own .disabled), this just needs to show the text.
+    bar.classList.add('crs-filters--pending')
     bar.appendChild(status)
 
     const clearBtn = document.createElement('button')
@@ -442,7 +488,26 @@ const config = {
     document.addEventListener('click', (e) => { if (!row.contains(e.target)) closeAllPanels() })
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllPanels() })
     backdrop.addEventListener('click', () => closeAllPanels())
-    watchForNativeGridRefresh(grid, bar, emptyState)
+    watchForNativeGridReplacement()
+
+    function populate(state) {
+      if (state.availableShapes.length) {
+        shapePill.setOptions(state.availableShapes.map((v) => ({ value: v, label: v })))
+        shapePill.btn.disabled = false
+      } else {
+        shapePill.el.remove()
+      }
+      if (state.availableMaterials.length) {
+        materialPill.setOptions(state.availableMaterials.map((v) => ({ value: v, label: v, swatch: true })))
+        materialPill.btn.disabled = false
+      } else {
+        materialPill.el.remove()
+      }
+      status.textContent = 'Loading all products…'
+      bar.classList.remove('crs-filters--pending')
+    }
+
+    return { populate }
 
     function buildMetaRow() {
       // Re-parent (not clone) Shopify's real sort control + product count so
@@ -454,14 +519,88 @@ const config = {
       const sorting = document.querySelector('#FacetFiltersForm > .facet-filters.sorting')
       if (count) meta.appendChild(count)
       if (sorting) meta.appendChild(sorting)
-      // Changing sort triggers Shopify's own native AJAX refresh of
-      // #product-grid (fresh, unfiltered, single page, in the new order) —
-      // it doesn't know about our lazy-loaded catalog or active filters.
-      // Flag it so the grid observer below knows a native swap is coming
-      // and reapplies our filter state once it lands.
-      const sortSelect = sorting && sorting.querySelector('select')
-      if (sortSelect) sortSelect.addEventListener('change', () => { expectingNativeRefresh = true })
+
+      // For sort values we can replicate ourselves (SUPPORTED_SORTS), handle
+      // it entirely client-side instead of Shopify's native <facet-filters-
+      // form> path, which replaces #product-grid wholesale. Delegating on
+      // `meta` itself — rather than attaching to the <select> directly, or
+      // even to a clone of it — matters because Shopify's own JS re-renders
+      // that select after *any* native section refresh, including ones we
+      // deliberately let through (best selling / most relevant), which
+      // silently wipes out a listener (or a cloned replacement) bound to
+      // the old node. `meta` is an element we create and Shopify never
+      // touches, so this listener survives no matter how many times the
+      // <select> underneath gets replaced. It also sits closer to the
+      // target than Shopify's own ancestor-level delegated listener (up on
+      // <facet-filters-form>), so stopPropagation here still reliably
+      // blocks that one from ever seeing supported-sort changes.
+      meta.addEventListener('input', (e) => {
+        if (e.target.matches('select') && SUPPORTED_SORTS.has(e.target.value)) e.stopPropagation()
+      })
+      meta.addEventListener('change', async (e) => {
+        if (!e.target.matches('select')) return
+        const value = e.target.value
+
+        if (!SUPPORTED_SORTS.has(value)) {
+          // "Best selling" / "most relevant" need real sales/relevance data
+          // we don't have client-side — let it bubble on to Shopify's own
+          // handling instead of blocking it. That native refresh replaces
+          // #product-grid with a fresh single page, so the full-catalog
+          // state we may have built up no longer matches what's on screen;
+          // reset it eagerly here (watchForNativeGridReplacement also does
+          // this once the new grid actually lands, and reloads/reapplies
+          // filters if any are active — this earlier reset just avoids a
+          // brief window where a stale "already loaded" flag could be read).
+          fullyLoaded = false
+          loadingPromise = null
+          return
+        }
+        e.stopPropagation()
+
+        const url = new URL(location.href)
+        url.searchParams.set('sort_by', value)
+        history.replaceState(null, '', url)
+
+        const liveGrid = currentGrid()
+        await ensureFullCatalogLoaded(liveGrid, bar)
+        applySort(liveGrid, value)
+        applyFilters(liveGrid, emptyState)
+        pushDataLayer('sort_apply', value, 'select', 'collection_sort')
+      })
       return meta
+    }
+
+    // Sort/filter values we don't handle ourselves (SUPPORTED_SORTS misses,
+    // e.g. "Best selling"/"Most relevant") fall through to Shopify's own
+    // <facet-filters-form> AJAX handling, which replaces #product-grid with
+    // a fresh, unfiltered, single (paginated) page — wiping out our crs-hide
+    // classes, the extra pages we'd appended, and the hidden pagination nav,
+    // even though the filter checkboxes (in our own persistent UI) stay
+    // checked. That silently breaks filtering: the grid shows all products
+    // again while the UI still looks filtered. Watch for that specific
+    // node-identity swap and, only when a filter is actually active, recover
+    // automatically — reload the full catalog for the new grid and reapply
+    // the current filters — instead of leaving a stale, broken-looking
+    // state. #ProductGridContainer is the actual boundary Shopify's section
+    // rendering replaces the *contents* of (verified live: the node itself
+    // persists across native refreshes, only its children get swapped), so
+    // childList on it (no subtree needed) is enough; fall back to a broader
+    // watch if that id is ever missing on some template.
+    function watchForNativeGridReplacement() {
+      let lastGrid = currentGrid()
+      if (!lastGrid) return
+      const container = document.querySelector('#ProductGridContainer') ||
+        document.querySelector('#MainContent') || document.body
+      const subtree = container === lastGrid.parentElement ? false : true
+      new MutationObserver(() => {
+        const liveGrid = currentGrid()
+        if (!liveGrid || liveGrid === lastGrid) return
+        lastGrid = liveGrid
+        if (!Object.values(selected).some((s) => s.size)) return // no active filters — native pagination is fine as-is
+        fullyLoaded = false
+        loadingPromise = null
+        ensureFullCatalogLoaded(liveGrid, bar).then(() => applyFilters(liveGrid, emptyState))
+      }).observe(container, { childList: true, subtree })
     }
 
     function clearAll() {
@@ -490,6 +629,12 @@ const config = {
       clearBtn.hidden = !any
     }
 
+    // Builds a pill immediately, with or without options up front. Shape and
+    // Material are built with no options (disabled, see setLoading) since we
+    // don't yet know what's available in this collection; Price is built
+    // fully populated right away since PRICE_RANGES doesn't depend on the
+    // catalog fetch. setOptions() lets the caller fill in real options later
+    // without rebuilding the pill (and without losing its open/closed state).
     function buildPill(g) {
       const pill = document.createElement('div')
       pill.className = 'crs-pill'
@@ -524,59 +669,66 @@ const config = {
 
       const list = document.createElement('ul')
       list.className = 'crs-pill__list'
-
-      g.options.forEach((opt) => {
-        const li = document.createElement('li')
-        const optLabel = document.createElement('label')
-
-        const textWrap = document.createElement('span')
-        textWrap.className = 'crs-pill__text'
-
-        const cb = document.createElement('input')
-        cb.type = 'checkbox'
-        cb.value = opt.value
-        // These checkboxes live inside Shopify's native <facet-filters-form>
-        // (via #FacetsWrapperDesktop) so the sort control's native AJAX
-        // wiring keeps working. That same custom element listens for
-        // input/change bubbling from ANY descendant to auto-submit its own
-        // facet refresh — which would silently replace our filtered/loaded
-        // grid with a fresh unfiltered one and can crash its own count-update
-        // code. Stop both events at the source so only our handler runs.
-        cb.addEventListener('input', (e) => e.stopPropagation())
-        cb.addEventListener('change', async (e) => {
-          e.stopPropagation()
-          if (cb.checked) selected[g.key].add(opt.value); else selected[g.key].delete(opt.value)
-          updatePillActiveState()
-          await ensureFullCatalogLoaded(grid, bar)
-          applyFilters(grid, emptyState)
-          pushDataLayer('filter_apply', `${g.key}:${opt.value}`, cb.checked ? 'select' : 'deselect', 'collection_filters')
-        })
-
-        const textSpan = document.createElement('span')
-        textSpan.textContent = opt.label
-
-        textWrap.appendChild(cb)
-        textWrap.appendChild(textSpan)
-        optLabel.appendChild(textWrap)
-
-        if (opt.swatch) {
-          optLabel.appendChild(buildSwatch(opt.value))
-        } else if (g.key === 'shape') {
-          const iconWrap = document.createElement('span')
-          iconWrap.className = 'crs-pill__icon'
-          const icon = SHAPE_ICONS[opt.value] || SHAPE_ICONS.Round
-          iconWrap.innerHTML = `<svg viewBox="${icon.viewBox}" fill="none" stroke="currentColor">${icon.path}</svg>`
-          optLabel.appendChild(iconWrap)
-        }
-
-        li.appendChild(optLabel)
-        list.appendChild(li)
-      })
-
       panel.appendChild(list)
+
       pill.appendChild(btn)
       pill.appendChild(panel)
-      return pill
+
+      function setOptions(options) {
+        list.innerHTML = ''
+        options.forEach((opt) => {
+          const li = document.createElement('li')
+          const optLabel = document.createElement('label')
+
+          const textWrap = document.createElement('span')
+          textWrap.className = 'crs-pill__text'
+
+          const cb = document.createElement('input')
+          cb.type = 'checkbox'
+          cb.value = opt.value
+          // These checkboxes live inside Shopify's native <facet-filters-form>
+          // (via #FacetsWrapperDesktop) so the sort control's native AJAX
+          // wiring keeps working. That same custom element listens for
+          // input/change bubbling from ANY descendant to auto-submit its own
+          // facet refresh — which would silently replace our filtered/loaded
+          // grid with a fresh unfiltered one and can crash its own count-update
+          // code. Stop both events at the source so only our handler runs.
+          cb.addEventListener('input', (e) => e.stopPropagation())
+          cb.addEventListener('change', async (e) => {
+            e.stopPropagation()
+            if (cb.checked) selected[g.key].add(opt.value); else selected[g.key].delete(opt.value)
+            updatePillActiveState()
+            const liveGrid = currentGrid()
+            await ensureFullCatalogLoaded(liveGrid, bar)
+            applyFilters(liveGrid, emptyState)
+            pushDataLayer('filter_apply', `${g.key}:${opt.value}`, cb.checked ? 'select' : 'deselect', 'collection_filters')
+          })
+
+          const textSpan = document.createElement('span')
+          textSpan.textContent = opt.label
+
+          textWrap.appendChild(cb)
+          textWrap.appendChild(textSpan)
+          optLabel.appendChild(textWrap)
+
+          if (opt.swatch) {
+            optLabel.appendChild(buildSwatch(opt.value))
+          } else if (g.key === 'shape') {
+            const iconWrap = document.createElement('span')
+            iconWrap.className = 'crs-pill__icon'
+            const icon = SHAPE_ICONS[opt.value] || SHAPE_ICONS.Round
+            iconWrap.innerHTML = `<svg viewBox="${icon.viewBox}" fill="none" stroke="currentColor">${icon.path}</svg>`
+            optLabel.appendChild(iconWrap)
+          }
+
+          li.appendChild(optLabel)
+          list.appendChild(li)
+        })
+      }
+
+      if (g.options) setOptions(g.options)
+
+      return { el: pill, btn, setOptions }
     }
   }
 
@@ -628,7 +780,7 @@ const config = {
         gap: 16px;
         width: 100%;
         position: relative;
-        z-index: 2147483002; /* above .crs-backdrop, so switching pills while one is open stays clickable */
+        // z-index: 2147483002; /* above .crs-backdrop, so switching pills while one is open stays clickable */
       }
       .crs-meta {
         display: flex;
@@ -704,8 +856,10 @@ const config = {
         color: rgba(18,18,18,.6);
         font-size: 13px;
       }
-      .crs-filters.is-loading .crs-filters__status { display: inline; }
+      .crs-filters.is-loading .crs-filters__status,
+      .crs-filters--pending .crs-filters__status { display: inline; }
       .crs-filters.is-loading .crs-pill__btn { opacity: .6; pointer-events: none; }
+      .crs-pill__btn:disabled { opacity: .45; pointer-events: none; cursor: default; }
       .crs-filters__clear {
         background: none;
         border: 0;
@@ -840,19 +994,23 @@ const config = {
 
       .crs-swatch {
         flex: none;
-        width: 22px;
-        height: 22px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+        // box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
       }
       .crs-swatch--badge {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 7px;
-        font-weight: 700;
-        color: rgba(0,0,0,.55);
-        letter-spacing: .2px;
+        color: #000;
+        text-align: center;
+        font-family: Assistant;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 10px;
+        letter-spacing: 0.6px;
       }
 
       .crs-empty-state {
@@ -959,6 +1117,12 @@ const config = {
         }
         .crs-backdrop.is-visible { display: block; }
         body.crs-filters-lock { overflow: hidden; }
+        /* Gorgias chat launcher is a same-document <iframe id="chat-button">,
+           so it's directly hideable — no cross-origin iframe content to
+           reach into. body.crs-filters-lock is already toggled exactly when
+           a pill panel opens/closes, so this needs no extra JS. */
+        body.crs-filters-lock #chat-button,
+        body.crs-filters-lock .gorgias-chat-key-1vly0ou { display: none !important; }
       }
     `
     const el = document.createElement('style')
