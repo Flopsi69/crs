@@ -795,7 +795,7 @@
           // load).
           const deliveryMethod = window.__lavCurrentItemOffer?.delivery_method ?? null
           type = 'items'
-          if (deliveryMethod !== 'trade') {
+          if (deliveryMethod === 'none' || !deliveryMethod || deliveryMethod === 'redeem') {
             offerIdEl = e.target.closest('div:not([class])')?.querySelector('div.hidden[data-type="offer-id"]')
           }
         } else if (_$('.sm\\:gap-x-1 .flex.gap-x-3.items-center[href="https://gameboost.com/keys"]')) {
