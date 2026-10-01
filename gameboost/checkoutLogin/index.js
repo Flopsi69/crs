@@ -1,5 +1,6 @@
 (function () {
   if (document.querySelector('.exp-checkout-styles')) return
+  if (!document.documentElement.lang.toLowerCase().startsWith('en')) return
 
   // Config for Experiment
   const config = {
@@ -754,6 +755,7 @@
 
   function addProductToCheckoutHandlers() {
     if (window.__lavBuyNowClickBound) return
+    if (!document.documentElement.lang.toLowerCase().startsWith('en')) return
     window.__lavBuyNowClickBound = true
 
     // The item PDP's delivery_method (props.itemOffer.delivery_method) only
