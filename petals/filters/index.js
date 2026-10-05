@@ -1,12 +1,11 @@
-console.debug('*** Experiment started: Collection Filters Redesign ***')
-
-// Config for Experiment
-const config = {
-  clarity: ['set', 'collection_filters_redesign', 'variant_1'],
-  debug: true
-}
-
 ;(function () {
+  console.debug('*** Experiment started: Collection Filters Redesign ***')
+
+  // Config for Experiment
+  const config = {
+    clarity: ['set', 'exp_plp_filters', 'variant_1'],
+    debug: false
+  }
   // Price bucket thresholds, defined in the shop's own currency (whatever the
   // merchant prices products in — typically its default/base currency). At
   // runtime these get multiplied by Shopify's own presentment conversion rate
@@ -537,9 +536,17 @@ const config = {
       meta.addEventListener('input', (e) => {
         if (e.target.matches('select') && SUPPORTED_SORTS.has(e.target.value)) e.stopPropagation()
       })
+      // Native <select> elements don't expose a real open/close event, so
+      // mousedown (the gesture that actually triggers the native options
+      // popup) is used as the closest click-based proxy for "opened".
+      meta.addEventListener('mousedown', (e) => {
+        if (e.target.matches('select')) pushDataLayer('exp_plp_sort_by_open', 'Open', 'click', 'Sort By')
+      })
       meta.addEventListener('change', async (e) => {
         if (!e.target.matches('select')) return
         const value = e.target.value
+        const optionText = e.target.options[e.target.selectedIndex]?.text || value
+        pushDataLayer('exp_plp_sort_by_select', optionText, 'click', 'Sort By')
 
         if (!SUPPORTED_SORTS.has(value)) {
           // "Best selling" / "most relevant" need real sales/relevance data
@@ -565,7 +572,6 @@ const config = {
         await ensureFullCatalogLoaded(liveGrid, bar)
         applySort(liveGrid, value)
         applyFilters(liveGrid, emptyState)
-        pushDataLayer('sort_apply', value, 'select', 'collection_sort')
       })
       return meta
     }
@@ -614,6 +620,9 @@ const config = {
       bar.querySelectorAll('.crs-pill.is-open').forEach((p) => {
         p.classList.remove('is-open')
         p.querySelector('.crs-pill__btn').setAttribute('aria-expanded', 'false')
+        if (window.innerWidth <= 748) {
+          pushDataLayer('exp_plp_filter_close', 'Close', 'click', p.dataset.crsTitle)
+        }
       })
       backdrop.classList.remove('is-visible')
       document.body.classList.remove('crs-filters-lock')
@@ -639,6 +648,7 @@ const config = {
       const pill = document.createElement('div')
       pill.className = 'crs-pill'
       pill.dataset.crsPill = g.key
+      pill.dataset.crsTitle = g.title
 
       const btn = document.createElement('button')
       btn.type = 'button'
@@ -657,6 +667,7 @@ const config = {
           btn.setAttribute('aria-expanded', 'true')
           backdrop.classList.add('is-visible')
           document.body.classList.add('crs-filters-lock')
+          pushDataLayer('exp_plp_filter_open', g.title, 'click', 'Filters')
         }
       })
 
@@ -698,10 +709,10 @@ const config = {
             e.stopPropagation()
             if (cb.checked) selected[g.key].add(opt.value); else selected[g.key].delete(opt.value)
             updatePillActiveState()
+            pushDataLayer(cb.checked ? 'exp_plp_filter_select' : 'exp_plp_filter_deselect', opt.label, 'click', g.title)
             const liveGrid = currentGrid()
             await ensureFullCatalogLoaded(liveGrid, bar)
             applyFilters(liveGrid, emptyState)
-            pushDataLayer('filter_apply', `${g.key}:${opt.value}`, cb.checked ? 'select' : 'deselect', 'collection_filters')
           })
 
           const textSpan = document.createElement('span')
