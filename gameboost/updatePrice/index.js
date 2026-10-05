@@ -20,9 +20,9 @@
   const config = {
     // dir: 'http://127.0.0.1:5500/gameboost/updatePrice',
     dir: 'https://flopsi69.github.io/crs/gameboost/updatePrice',
-    clarity: ['set', 'exp_update_price', 'variant_1'],
+    clarity: ['set', 'exp_account_total_pricing', 'variant_1'],
     isClarityStarted: false,
-    debug: true
+    debug: false
   }
 
   // const orig = console.log
