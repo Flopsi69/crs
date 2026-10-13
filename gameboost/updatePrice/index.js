@@ -107,6 +107,11 @@
     // whose target is the price <span> itself. Checking target first covers
     // that directly, since closest() matches the element itself too.
     const targetEl = mutation.type === 'characterData' ? mutation.target.parentElement : mutation.target
+    // On checkout the summary rows and product price re-render on payment
+    // method / discount changes, and the product row sits in an unrelated
+    // subtree - so any change inside the app is worth a (cheap) rescan.
+    if (isAccountCheckout() && targetEl instanceof Element && targetEl.closest('#app')) return true
+
     if (targetEl instanceof Element && (targetEl.closest('a[href*="/accounts/"]') || targetEl.closest(PDP_PRICE_WRAP_SELECTOR) || targetEl.closest(STICKY_BUY_BAR_SELECTOR) || targetEl.closest(MOBILE_DISCOUNT_CARD_SELECTOR))) {
       return true
     }
@@ -162,7 +167,114 @@
     if (!document.hidden && rescanScheduled) runRescan()
   })
 
+  // *** Checkout (accounts) *** //
+  // The listing/PDP prices above already include the fees (X * 1.07 + 0.20),
+  // so on checkout the fee rows are hidden and the product price in the
+  // "Review & Confirm" block shows the Total instead, keeping it equal to
+  // what the user saw on the PLP/PDP.
+  // The amount is read straight from the rendered Total, so it follows the
+  // payment method (fee) - and also discounts/store credit/coins if applied.
+  const HIDDEN_ATTR = 'data-lav-hidden'
+  const CHECKOUT_AMOUNT_RE = /^[+-]?\s*[€$]\s*[\d.,]+$/
+
+  const checkoutStyles = document.createElement('style')
+  checkoutStyles.classList.add('exp-update-price-v1-styles')
+  checkoutStyles.innerHTML = `
+    dl.flex.flex-col.gap-2.py-4.border-b.border-border {
+      padding: 7px 0 0 0;
+      border: 0;
+    }
+    [${HIDDEN_ATTR}] { display: none !important; }
+  `
+
+  function isAccountCheckout() {
+    if (!location.pathname.includes('/checkout/')) return false
+
+    return window.exposedData?.order_type === 'Account' || location.pathname.includes('/checkout/accounts/')
+  }
+
+  function updateCheckoutPrices() {
+    if (!_$('.exp-update-price-v1-styles')) document.head.appendChild(checkoutStyles)
+
+    // Desktop sidebar and mobile summary both render the same "dl > row"
+    // structure, so a single pass covers both. The subtotal is only read to
+    // recognise the product price element - the new price is the Total.
+    let subtotalText = ''
+
+    _$$('dl > .flex', document, true).forEach((row) => {
+      const label = (_$('.text-muted-foreground', row) || row.firstElementChild)?.textContent.trim().toLowerCase()
+      if (!label) return
+
+      if (label === 'subtotal') {
+        subtotalText = row.lastElementChild?.textContent.trim() || ''
+        row.setAttribute(HIDDEN_ATTR, '')
+      } else if (/\bfee\b/.test(label)) {
+        row.setAttribute(HIDDEN_ATTR, '')
+      }
+    })
+
+    const totalText = getCheckoutTotalText()
+    if (!subtotalText || !totalText) return
+
+    const isEuro = subtotalText.startsWith('€')
+    const subtotal = parsePrice(subtotalText, isEuro)
+    if (isNaN(subtotal)) return
+
+    _$$('h3.line-clamp-2', document, true).forEach((titleEl) => {
+      const priceEl = findCheckoutProductPriceEl(titleEl, subtotal, isEuro)
+      if (!priceEl || priceEl.textContent.trim() === totalText) return
+
+      priceEl.dataset.lavOriginal = subtotalText
+      priceEl.dataset.lavCheckout = ''
+      priceEl.textContent = totalText
+    })
+  }
+
+  // The Total isn't a "dl" row: it's a "Total" label with the big amount next
+  // to it, so find the label by its text and take the first amount nearby.
+  function getCheckoutTotalText() {
+    const labelEl = _$$('*', document, true).find((el) => {
+      return el.children.length === 0 && el.textContent.trim().toLowerCase() === 'total'
+    })
+
+    let scope = labelEl?.parentElement
+    for (let i = 0; i < 3 && scope && scope !== document.body; i++, scope = scope.parentElement) {
+      const amountEl = _$$('*', scope, true).find((el) => {
+        return el.children.length === 0 && CHECKOUT_AMOUNT_RE.test(el.textContent.trim())
+      })
+      if (amountEl) return amountEl.textContent.trim()
+    }
+
+    return ''
+  }
+
+  // The product price sits a few levels above the title, in the same row.
+  // A price is ours to patch if it still shows the original subtotal, or if
+  // it's one we already rewrote earlier (marked with data-lav-checkout) and
+  // the total has changed since (eg. another payment method was picked).
+  function findCheckoutProductPriceEl(titleEl, subtotal, isEuro) {
+    let scope = titleEl.parentElement
+
+    for (let i = 0; i < 4 && scope && scope !== document.body; i++, scope = scope.parentElement) {
+      const leaves = _$$('*', scope, true).filter((el) => {
+        return el.children.length === 0 && !el.closest('dl') && CHECKOUT_AMOUNT_RE.test(el.textContent.trim())
+      })
+
+      const priceEl = leaves.find((el) => {
+        return 'lavCheckout' in el.dataset || parsePrice(el.textContent.trim(), isEuro) === subtotal
+      })
+      if (priceEl) return priceEl
+    }
+
+    return null
+  }
+
   function updateAllPrices() {
+    if (location.pathname.includes('/checkout/')) {
+      if (isAccountCheckout()) updateCheckoutPrices()
+      return
+    }
+
     _$$('a[href*="/accounts/"]', document, true).forEach(updateCardPrice)
     updatePdpPrice()
     updateStickyBuyButtonPrice()
