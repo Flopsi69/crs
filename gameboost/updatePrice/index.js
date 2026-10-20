@@ -216,12 +216,11 @@
     const totalText = getCheckoutTotalText()
     if (!subtotalText || !totalText) return
 
-    const isEuro = subtotalText.startsWith('€')
-    const subtotal = parsePrice(subtotalText, isEuro)
+    const subtotal = parsePrice(subtotalText)
     if (isNaN(subtotal)) return
 
     _$$('h3.line-clamp-2', document, true).forEach((titleEl) => {
-      const priceEl = findCheckoutProductPriceEl(titleEl, subtotal, isEuro)
+      const priceEl = findCheckoutProductPriceEl(titleEl, subtotal)
       if (!priceEl || priceEl.textContent.trim() === totalText) return
 
       priceEl.dataset.lavOriginal = subtotalText
@@ -252,7 +251,7 @@
   // A price is ours to patch if it still shows the original subtotal, or if
   // it's one we already rewrote earlier (marked with data-lav-checkout) and
   // the total has changed since (eg. another payment method was picked).
-  function findCheckoutProductPriceEl(titleEl, subtotal, isEuro) {
+  function findCheckoutProductPriceEl(titleEl, subtotal) {
     let scope = titleEl.parentElement
 
     for (let i = 0; i < 4 && scope && scope !== document.body; i++, scope = scope.parentElement) {
@@ -261,7 +260,7 @@
       })
 
       const priceEl = leaves.find((el) => {
-        return 'lavCheckout' in el.dataset || parsePrice(el.textContent.trim(), isEuro) === subtotal
+        return 'lavCheckout' in el.dataset || parsePrice(el.textContent.trim()) === subtotal
       })
       if (priceEl) return priceEl
     }
@@ -307,7 +306,32 @@
     const oldPriceEl = _$('.flex.gap-x-2.items-center', priceWrap)?.firstElementChild
     if (oldPriceEl) applyPriceFormula(oldPriceEl)
 
+    updateUnitPriceBadge(priceWrap)
     updateTooltipPrice(priceWrap)
+  }
+
+  // With a quantity above 1 the PDP shows the order total, plus a small
+  // "€1,00 × 12" badge with the unit price. The total gets the formula (fee
+  // once per order), so the badge shows the new total split across the
+  // quantity - otherwise "unit × qty" would visibly disagree with the total.
+  const UNIT_BADGE_RE = /^([€$]\s*[\d.,]+)\s*×\s*(\d+)$/
+  function updateUnitPriceBadge(wrapEl) {
+    const badgeEl = Array.from(wrapEl.children).find((el) => UNIT_BADGE_RE.test(el.textContent.trim()))
+    if (!badgeEl) return
+
+    const current = badgeEl.textContent.trim()
+    if (badgeEl.dataset.lavComputed === current) return
+
+    const [, unitText, qtyText] = current.match(UNIT_BADGE_RE)
+    const isEuro = unitText.startsWith('€')
+    const qty = parseInt(qtyText, 10)
+    const unit = parsePrice(unitText)
+    if (isNaN(unit) || !qty) return
+
+    const updated = `${formatPrice(applyFormula(unit * qty, isEuro) / qty, isEuro)} × ${qty}`
+    badgeEl.dataset.lavOriginal = current
+    badgeEl.textContent = updated
+    badgeEl.dataset.lavComputed = updated
   }
 
   // Same current/old price layout as updatePdpPrice's wrap, just a
@@ -404,23 +428,32 @@
     const isUsd = text.startsWith('$')
     if (!isEuro && !isUsd) return null
 
-    const value = parsePrice(text, isEuro)
+    const value = parsePrice(text)
     if (isNaN(value)) return null
 
-    const updatedValue = isEuro
-      ? (value * 1.07) + 0.20
-      : (value * 1.07) + 0.23
-
-    return formatPrice(updatedValue, isEuro)
+    return formatPrice(applyFormula(value, isEuro), isEuro)
   }
 
-  // EUR on this site: "€3.951,78" ("." thousands, "," decimal)
-  // USD on this site: "$4,560.19" ("," thousands, "." decimal)
-  function parsePrice(text, isEuro) {
-    const numStr = text.replace(/[€$]/g, '').trim()
-    return isEuro
-      ? parseFloat(numStr.replace(/\./g, '').replace(',', '.'))
-      : parseFloat(numStr.replace(/,/g, ''))
+  // The fee is charged once per order, on whatever amount the price element
+  // shows - the unit price on a single-quantity PDP, or the quantity total
+  // once the quantity input is above 1 (the site then shows the total).
+  function applyFormula(value, isEuro) {
+    return isEuro ? value * 1.07 + 0.2 : value * 1.07 + 0.23
+  }
+
+  // The site isn't consistent about separators: a unit price comes as
+  // "€3.951,78" ("." thousands, "," decimal) and USD as "$4,560.19", but the
+  // quantity total on a PDP can show "€12.00" in a EUR context. So instead of
+  // trusting the currency, treat the last "." or "," as the decimal mark when
+  // it's followed by 1-2 digits, and every other separator as thousands.
+  function parsePrice(text) {
+    const numStr = text.replace(/[^\d.,]/g, '')
+    const decimalMatch = numStr.match(/[.,](\d{1,2})$/)
+
+    if (!decimalMatch) return parseFloat(numStr.replace(/[.,]/g, ''))
+
+    const intPart = numStr.slice(0, decimalMatch.index).replace(/[.,]/g, '')
+    return parseFloat(`${intPart || '0'}.${decimalMatch[1]}`)
   }
 
   function formatPrice(value, isEuro) {
