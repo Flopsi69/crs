@@ -22,8 +22,9 @@
 
   // Rows shown in the Overview tab before "Show more" (2 columns x 3 rows)
   const COLLAPSED_FIELDS = 6
-  // Description has its own tab, Platform is already shown in the header chip
-  const HIDDEN_FIELDS = ['Description', 'Platform']
+  // The site translates API labels and status names (eg. "En ligne"), but the
+  // status key is language-neutral, so labels are always shown in English
+  const STATUS_LABELS = { online: 'Online', idle: 'Idle', offline: 'Offline' }
   const CLOSE_ANIMATION_MS = 250
 
   // Styles for Experiment
@@ -469,12 +470,33 @@
       white-space: nowrap;
     }
     .lav-mp__value {
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-size: 14px;
       font-weight: 600;
       line-height: 20px;
+    }
+    .lav-mp__value span {
+      min-width: 0;
+      overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    .lav-mp__value img {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+    .lav-mp__value--success {
+      color: var(--mp-success);
+    }
+    .lav-mp__value--warning {
+      color: var(--mp-rating);
+    }
+    .lav-mp__value--danger {
+      color: #ef4444;
     }
     .lav-mp__more {
       display: flex;
@@ -497,6 +519,7 @@
       font-size: 13px;
       line-height: 20px;
       word-break: break-word;
+      padding-bottom: 12px;
     }
     .lav-mp__desc p {
       margin: 0 0 8px;
@@ -791,7 +814,7 @@
 
     if (!card || !img) return
 
-    const offer = getOffer(img.id.replace('account-media-', ''))
+    const offer = getOffer(img.id.replace('account-media-', ''), card)
 
     // Not an offer from the current Inertia page (eg. a widget on another
     // page type) - leave the native lightbox working.
@@ -814,12 +837,26 @@
     }
   }
 
-  // The listing page is an Inertia app, and every offer already carries its
-  // full gallery, description, seller and overview fields in the page props,
-  // so no extra request is needed.
-  function getOffer(id) {
-    const page = _$('#app')?.__vue_app__?.config.globalProperties.$page
-    return page?.props?.accounts?.data?.find((offer) => String(offer.id) === String(id))
+  // The site is an Inertia app, and every offer already carries its full
+  // gallery, description, seller and overview fields in the page props, so no
+  // extra request is needed. The listing keeps its offers in `accounts.data`
+  // (paginated), the game hub in a plain `accounts` array, so every top-level
+  // prop that looks like a list of offers is searched. The slug check ties the
+  // offer to the clicked card, since other product types (eg. `items`) are
+  // listed in the same props and could reuse an id.
+  function getOffer(id, card) {
+    const props = _$('#app')?.__vue_app__?.config.globalProperties.$page?.props || {}
+    const path = new URL(card.href).pathname
+
+    for (const value of Object.values(props)) {
+      const list = Array.isArray(value) ? value : value?.data
+
+      if (!Array.isArray(list)) continue
+
+      const offer = list.find((item) => item && String(item.id) === String(id) && item.seller && item.slug)
+
+      if (offer && path.endsWith('/' + offer.slug)) return offer
+    }
   }
 
   // Price is read from the card itself (not from the offer data) so the modal
@@ -885,10 +922,9 @@
     const price = getCardPrice(card, offer)
     const platformTitle = offer.presentation?.card?.title?.text || offer.data?.platform || ''
     const platformIcon = offer.presentation?.card?.title?.imageUrl
-    const fields = (offer.presentation?.overview?.fields || []).filter(
-      (field) =>
-        field.visible !== false && !HIDDEN_FIELDS.includes(field.label) && field.value !== null && field.value !== ''
-    )
+    const fields = (offer.presentation?.overview?.fields || [])
+      .map((field) => ({ ...field, text: getFieldText(field) }))
+      .filter((field) => isOverviewField(field, offer))
     const media = offer.media?.length ? offer.media : [_$('img[id^="account-media-"]', card)?.src].filter(Boolean)
     // Blank lines split paragraphs (8px gap in the design), single line breaks stay
     const descriptionParagraphs = String(offer.description || '')
@@ -944,7 +980,7 @@
               <div class="lav-mp__seller-row">
                 <span class="lav-mp__seller-name">${esc(seller?.username)}</span>
                 ${seller?.seller_rank ? `<span class="lav-mp__tier">${getSvg('crown')}${esc(seller.seller_rank)} Seller</span>` : ''}
-                ${seller?.status_badge?.name ? `<span class="lav-mp__status lav-mp__status--${esc(seller.status)}"><i></i>${esc(seller.status_badge.name)}</span>` : ''}
+                ${seller?.status ? `<span class="lav-mp__status lav-mp__status--${esc(seller.status)}"><i></i>${esc(STATUS_LABELS[seller.status] || seller.status_badge?.name)}</span>` : ''}
               </div>
               ${renderStats(seller)}
             </div>
@@ -964,7 +1000,9 @@
                     (field, i) => `
                       <div class="lav-mp__cell ${i >= COLLAPSED_FIELDS ? 'lav-mp__cell--extra' : ''}">
                         <span class="lav-mp__label">${esc(field.label)}</span>
-                        <span class="lav-mp__value" title="${esc(field.value)}">${esc(field.value)}</span>
+                        <span class="lav-mp__value ${field.badgeColor ? `lav-mp__value--${esc(field.badgeColor)}` : ''}" title="${esc(field.text)}">
+                          ${field.imageUrl ? `<img src="${esc(field.imageUrl)}" alt="">` : ''}<span>${esc(field.text)}</span>
+                        </span>
                       </div>`
                   )
                   .join('')}
@@ -1175,6 +1213,27 @@
       /[&<>"']/g,
       (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]
     )
+  }
+
+  // Overview fields come in several shapes depending on the game: plain
+  // text/number, `list` (array of strings) and `boolean-badge` ({ value, text }).
+  function getFieldText(field) {
+    const { value } = field
+
+    if (value === null || value === undefined) return ''
+    if (Array.isArray(value)) return value.join(', ')
+    if (typeof value === 'object') return String(value.text ?? value.name ?? value.label ?? '')
+
+    return String(value)
+  }
+
+  // Labels are translated by the site, so fields are told apart by their
+  // shape instead: the full-width one is the description (it has its own tab),
+  // and the one equal to the platform is already shown in the header chip.
+  function isOverviewField(field, offer) {
+    if (field.visible === false || field.fullWidth || field.text === '') return false
+
+    return !(offer.data?.platform && field.text === offer.data.platform)
   }
 
   function formatNumber(value) {
