@@ -615,7 +615,16 @@
 
   function patchTextNode(node) {
     const current = node.textContent
-    if (patchedTexts.get(node) === current || !/[€$]\s?\d/.test(current)) return
+    if (!/[€$]\s?\d/.test(current)) return
+
+    // The items PDP unit price depends on the chosen quantity, but the site
+    // doesn't re-render it when only the quantity changes - so a text that is
+    // still our own output is redone from its original if the quantity moved.
+    const items = getItemsOrder(node)
+    const prev = patchedTexts.get(node)
+    const isOwnOutput = prev?.out === current
+    if (isOwnOutput && prev.qty === (items?.qty || 1)) return
+    const source = isOwnOutput ? prev.orig : current
 
     const category = getNodeCategory(node)
     if (!category) return
@@ -625,17 +634,16 @@
     const qty = category === 'currency' ? getMinQuantity(node.parentElement) : 1
     // Without a known order size a per-unit price can't take the per-order
     // minimum fee (it would dwarf it), so fall back to the plain percentages.
-    const isBareUnitPrice = category === 'currency' && qty === 1 && /\d[.,]\d{4,}/.test(current)
-    const itemsQty = getItemsTotalQuantity(node)
+    const isBareUnitPrice = category === 'currency' && qty === 1 && /\d[.,]\d{4,}/.test(source)
 
-    const updated = current.replace(PRICE_IN_TEXT_RE, (match, symbol, numStr) => {
+    const updated = source.replace(PRICE_IN_TEXT_RE, (match, symbol, numStr) => {
       const { value, decimals } = parsePriceParts(numStr)
       if (isNaN(value)) return match
 
       const isEuro = symbol === '€'
       let newValue
       if (isBareUnitPrice) newValue = value * 1.04 * 1.039
-      else if (itemsQty > 1) newValue = applyFormula(getExactItemsTotal(value, itemsQty, isEuro), isEuro, category)
+      else if (items) newValue = applyItemsOrderFormula(value, items, isEuro)
       else newValue = applyFormula(value * qty, isEuro, category) / qty
 
       const formatted = formatPrice(newValue, isEuro, decimals)
@@ -643,24 +651,40 @@
       // that decimal comma so the variant doesn't change the price's style.
       return /^\d+,\d{2}$/.test(numStr) ? formatted.replace('.', ',') : formatted
     })
+    // Even when nothing changed this time, remember it was handled for this
+    // quantity (an unchanged unit price at qty 1 -> no-op).
+    patchedTexts.set(node, { out: updated, orig: source, qty: items?.qty || 1 })
     if (updated === current) return
 
-    node.parentElement.dataset.lavOriginal = current.trim()
+    node.parentElement.dataset.lavOriginal = source.trim()
     node.textContent = updated
-    patchedTexts.set(node, updated)
   }
 
-  // On an items PDP the "Buy Now · $X" buttons (page, order dialog, sticky
-  // bar) show the order total for the chosen quantity, so the fee tier has to
-  // be picked from that total. Everything else (the unit price, cards) is a
-  // single item. Returns the quantity for such a button, else 1.
-  function getItemsTotalQuantity(node) {
-    if (getNodeCategory(node) !== 'items') return 1
+  // On an items PDP with a quantity above 1, the "Buy Now · $X" buttons (page,
+  // order dialog, sticky bar) show the order total, while the big price in the
+  // purchase panel is still the price of one item. The fee is charged once
+  // per order (and has a minimum), so the tier has to come from the order
+  // total, and the unit price shown is the new total split across the
+  // quantity - otherwise it would read 0.54 while 20 of them cost 4.42.
+  // Everything else (cards, related items) is a single item. Returns
+  // { qty, isTotal } for those two cases, else null.
+  function getItemsOrder(node) {
     const el = node.parentElement
-    if (!el.closest('button') || el.closest('a[href]')) return 1
+    const input = _$('#product-detail-quantity')
+    const qty = parseInt(input?.value, 10)
+    if (!el || !(qty > 1) || el.closest('a[href]') || getNodeCategory(node) !== 'items') return null
 
-    const qty = parseInt(_$('#product-detail-quantity')?.value, 10)
-    return qty > 1 ? qty : 1
+    if (el.closest('button')) return { qty, isTotal: true }
+
+    let panel = input
+    for (let i = 0; i < 6 && panel.parentElement; i++) panel = panel.parentElement
+    return panel.contains(el) ? { qty, isTotal: false } : null
+  }
+
+  function applyItemsOrderFormula(value, { qty, isTotal }, isEuro) {
+    const total = isTotal ? value : value * qty
+    const newTotal = applyFormula(getExactItemsTotal(total, qty, isEuro), isEuro, 'items')
+    return isTotal ? newTotal : newTotal / qty
   }
 
   // The site builds the displayed total as (rounded unit price) x quantity,
