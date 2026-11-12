@@ -546,6 +546,7 @@
   const patchedTexts = new WeakMap()
 
   function updateCategoryPrices() {
+    refreshMinQuantities()
     const roots = _$$(CATEGORY_ROOT_SELECTOR, document, true)
     // Gift card and game key pages put prices in plain labels outside any
     // card/button (eg. "From $10.50", "Price: $45.01 USD"), so the whole
@@ -670,15 +671,51 @@
   // { qty, isTotal } for those two cases, else null.
   function getItemsOrder(node) {
     const el = node.parentElement
+    if (!el || getNodeCategory(node) !== 'items') return null
+
+    // A card ("$0.19 / Unit") is priced for the offer's minimum order, the
+    // quantity its PDP opens at - not for a single item, which would carry
+    // the whole per-order minimum fee and read much higher than the PDP.
+    const link = el.closest('a[href]')
+    if (link) {
+      const minQty = minQuantityBySlug.get(getLinkSlug(link))
+      return minQty > 1 ? { qty: minQty, isTotal: false } : null
+    }
+
     const input = _$('#product-detail-quantity')
     const qty = parseInt(input?.value, 10)
-    if (!el || !(qty > 1) || el.closest('a[href]') || getNodeCategory(node) !== 'items') return null
+    if (!(qty > 1)) return null
 
     if (el.closest('button')) return { qty, isTotal: true }
 
     let panel = input
     for (let i = 0; i < 6 && panel.parentElement; i++) panel = panel.parentElement
     return panel.contains(el) ? { qty, isTotal: false } : null
+  }
+
+  // Minimum order quantity per item offer, read from the page data (listing,
+  // related and recently viewed items all carry it) and refreshed on every
+  // scan so cards added by autoload are covered too.
+  let minQuantityBySlug = new Map()
+  function refreshMinQuantities() {
+    const map = new Map()
+    try {
+      const props = _$('#app').__vue_app__.config.globalProperties.$page.props
+      ;['items', 'similarItems', 'sellerItems', 'recently_viewed', 'itemOffer'].forEach((key) => {
+        const value = props[key]
+        const list = Array.isArray(value) ? value : Array.isArray(value?.data) ? value.data : value ? [value] : []
+        list.forEach((offer) => {
+          // An offer with less stock than its minimum can't be bought, and its
+          // PDP shows the single-item price - the card does the same.
+          if (offer?.slug && offer.min_quantity > 1 && !(offer.stock < offer.min_quantity)) map.set(offer.slug, offer.min_quantity)
+        })
+      })
+    } catch (e) {}
+    minQuantityBySlug = map
+  }
+
+  function getLinkSlug(link) {
+    return link.getAttribute('href').split(/[?#]/)[0].replace(/\/$/, '').split('/').pop()
   }
 
   function applyItemsOrderFormula(value, { qty, isTotal }, isEuro) {
