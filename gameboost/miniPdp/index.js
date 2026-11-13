@@ -187,11 +187,13 @@
       width: 42px;
       height: 42px;
       margin-top: -21px;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.55) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      /* Light button + dark chevron + shadow: readable on dark and bright screenshots alike */
+      color: #0a0b0f;
+      background: rgba(255, 255, 255, 0.92) !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
       border-radius: 999px;
-      transition: opacity 0.2s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      transition: opacity 0.2s, background-color 0.2s, transform 0.2s;
     }
     .lav-mp__arrow--prev {
       left: 14px;
@@ -629,9 +631,12 @@
       transition: background-color 0.2s;
     }
     @media (hover: hover) {
-      .lav-mp__close:hover,
-      .lav-mp__arrow:hover {
+      .lav-mp__close:hover {
         opacity: 0.7;
+      }
+      .lav-mp__arrow:hover {
+        background: #fff !important;
+        transform: scale(1.06);
       }
       .lav-mp__tab:hover {
         color: #fff;
@@ -714,10 +719,16 @@
       }
       .lav-mp__track {
         gap: 8px;
-        padding: 0 16px;
+        padding: 0 0 0 16px;
         scroll-padding-left: 16px;
         background: none;
         border-radius: 0;
+      }
+      /* Lets the last slide scroll to the same left edge as the others (16px
+         from the viewport), so the arrows below line up on every slide */
+      .lav-mp__track::after {
+        content: '';
+        flex: 0 0 40px;
       }
       .lav-mp__slide {
         flex: 0 0 calc(100vw - 64px);
@@ -726,16 +737,38 @@
         border-radius: 14px;
       }
       .lav-mp__bd,
-      .lav-mp__dim,
-      .lav-mp__arrow {
+      .lav-mp__dim {
         display: none;
+      }
+      /* The arrows are fixed to the stage; slides always snap to 16px from the
+         left and are 100vw - 64px wide, so the current slide's right edge is 48px
+         from the stage's right edge */
+      .lav-mp__arrow {
+        width: 34px;
+        height: 34px;
+        margin-top: -17px;
+      }
+      .lav-mp__arrow--prev {
+        left: 24px;
+      }
+      .lav-mp__arrow--next {
+        right: 56px;
+      }
+      .lav-mp__arrow[disabled] {
+        opacity: 0;
       }
       .lav-mp__img {
         object-fit: cover;
       }
       .lav-mp__count {
-        right: 16px;
-        bottom: 16px;
+        right: 12px;
+        bottom: 12px;
+        padding: 3px 8px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 999px;
+        text-shadow: none;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
       }
       .lav-mp__title {
         order: 3;
