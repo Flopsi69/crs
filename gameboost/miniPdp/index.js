@@ -12,7 +12,7 @@
     // dir: 'http://127.0.0.1:5500/gameboost/miniPdp',
     dir: 'https://flopsi69.github.io/crs/gameboost/miniPdp',
     clarity: ['set', 'exp_mini_pdp', 'variant_1'],
-    debug: true
+    debug: false
   }
 
   // const orig = console.log
@@ -824,7 +824,8 @@
     e.stopImmediatePropagation()
 
     openModal(offer, card)
-    pushDataLayer('exp_mp_open', 'Product image', 'click', 'Product card')
+    pushDataLayer('exp_mini_pdp_open_click', 'Product image', 'click', 'Product Card')
+    pushViewItem(offer)
   }
 
   function onKeydown(e) {
@@ -909,7 +910,7 @@
     document.body.classList.remove('lav-mp-open')
     document.body.style.paddingRight = ''
 
-    if (source) pushDataLayer('exp_mp_close', source, 'click', 'Mini PDP')
+    if (source) pushDataLayer('exp_mini_pdp_close_click', source, 'click', 'Mini PDP')
 
     closeTimer = setTimeout(() => {
       modalEl.innerHTML = ''
@@ -1060,12 +1061,13 @@
     initPanelFades()
     initDragToClose(box)
 
-    _$('.lav-mp__details', modalEl).addEventListener('click', () => {
-      pushDataLayer('exp_mp_details', 'View full account details', 'click', 'Mini PDP')
+    _$('.lav-mp__details', modalEl).addEventListener('click', (e) => {
+      // `href` property = the resolved absolute URL
+      pushDataLayer('exp_mini_pdp_details_click', e.currentTarget.href, 'click', 'Mini PDP')
     })
 
     _$('.lav-mp__buy', modalEl).addEventListener('click', () => {
-      pushDataLayer('exp_mp_buy', 'Buy Now', 'click', 'Mini PDP')
+      pushDataLayer('exp_mini_pdp_buy_click', 'Buy Now', 'click', 'Mini PDP')
       closeModal()
 
       // Trigger the card's own Buy Now button so checkout works exactly as it
@@ -1107,11 +1109,11 @@
 
     prev.addEventListener('click', () => {
       goTo(getIndex() - 1)
-      pushDataLayer('exp_mp_gallery', 'Previous', 'click', 'Mini PDP')
+      pushDataLayer('exp_mini_pdp_gallery_control_click', prev.getAttribute('aria-label'), 'click', 'Mini PDP')
     })
     next.addEventListener('click', () => {
       goTo(getIndex() + 1)
-      pushDataLayer('exp_mp_gallery', 'Next', 'click', 'Mini PDP')
+      pushDataLayer('exp_mini_pdp_gallery_control_click', next.getAttribute('aria-label'), 'click', 'Mini PDP')
     })
 
     modalEl.galleryGo = (dir) => goTo(getIndex() + dir)
@@ -1134,7 +1136,7 @@
         _$('.lav-mp__panel', modalEl).scrollTop = 0
         _$('.lav-mp__panel-wrap', modalEl).classList.toggle('is-desc', tab.dataset.tab === 'description')
         modalEl.updateFades?.()
-        pushDataLayer('exp_mp_tab', tab.textContent, 'click', 'Mini PDP')
+        pushDataLayer('exp_mini_pdp_tab_click', tab.textContent.trim(), 'click', 'Mini PDP')
       })
     })
   }
@@ -1150,7 +1152,7 @@
       _$('.lav-mp__panel', modalEl).classList.toggle('is-expanded', expanded)
       modalEl.updateFades?.()
       _$('span', btn).textContent = expanded ? 'Show less' : 'Show more'
-      pushDataLayer('exp_mp_show_more', expanded ? 'Show more' : 'Show less', 'click', 'Mini PDP')
+      pushDataLayer('exp_mini_pdp_overview_toggle_click', expanded ? 'Show more' : 'Show less', 'click', 'Mini PDP')
     })
   }
 
@@ -1321,6 +1323,48 @@
       console.debug('** GA4 Event **', event)
 
       if (!config.debug) {
+        dataLayer.push(event)
+      }
+    } catch (e) {
+      console.log('** GA4 Error **', e)
+    }
+  }
+
+  // GA4 ecommerce `view_item`, same payload the control pushes when a regular
+  // account PDP opens (EUR price, item fields from the offer data), plus an
+  // item-level experiment_variant to tell the mini PDP apart in reports.
+  function pushViewItem(offer) {
+    window.dataLayer = window.dataLayer || []
+
+    try {
+      const price = offer.price?.value
+
+      const event = {
+        event: 'view_item',
+        ecommerce: {
+          currency: offer.price?.currency?.code || 'EUR',
+          value: price,
+          items: [
+            {
+              item_id: `ACCOUNT-${offer.id}`,
+              item_name: offer.title,
+              item_category: 'Account',
+              price,
+              quantity: 1,
+              item_brand: offer.game?.name,
+              seller_id: offer.seller?.id,
+              ...offer.data,
+              experiment_variant: 'Alternative'
+            }
+          ]
+        }
+      }
+
+      console.debug('** GA4 Event **', event)
+
+      if (!config.debug) {
+        // Clear the previous ecommerce object so items don't merge across events
+        dataLayer.push({ ecommerce: null })
         dataLayer.push(event)
       }
     } catch (e) {
