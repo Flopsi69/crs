@@ -201,10 +201,6 @@
     .lav-mp__arrow--next {
       right: 14px;
     }
-    .lav-mp__arrow[disabled] {
-      opacity: 0.35;
-      pointer-events: none;
-    }
 
     /* Info */
     .lav-mp__info {
@@ -754,9 +750,7 @@
       .lav-mp__arrow--next {
         right: 56px;
       }
-      .lav-mp__arrow[disabled] {
-        opacity: 0;
-      }
+
       .lav-mp__img {
         object-fit: cover;
       }
@@ -1124,21 +1118,15 @@
 
     const step = () => slides[1].offsetLeft - slides[0].offsetLeft
     const getIndex = () => Math.round(track.scrollLeft / step())
+    // Arrows loop: next on the last image goes to the first and vice versa. The
+    // wrap-around jumps instead of animating, otherwise it would visibly
+    // scroll back through every slide.
     const goTo = (index) => {
-      const i = Math.max(0, Math.min(slides.length - 1, index))
-      track.scrollTo({ left: i * step(), behavior: 'smooth' })
-    }
+      const i = (index + slides.length) % slides.length
+      const wrapped = Math.abs(i - getIndex()) > 1
 
-    const updateArrows = () => {
-      prev.disabled = getIndex() <= 0
-      next.disabled = getIndex() >= slides.length - 1
+      track.scrollTo({ left: i * step(), behavior: wrapped ? 'instant' : 'smooth' })
     }
-
-    let frame = null
-    track.addEventListener('scroll', () => {
-      cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(updateArrows)
-    })
 
     prev.addEventListener('click', () => {
       goTo(getIndex() - 1)
@@ -1150,7 +1138,6 @@
     })
 
     modalEl.galleryGo = (dir) => goTo(getIndex() + dir)
-    updateArrows()
   }
 
   function initTabs() {
